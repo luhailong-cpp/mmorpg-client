@@ -4,6 +4,7 @@ using MmorpgClient.Game.Rank;
 using MmorpgClient.Game.Ranked;
 using MmorpgClient.Game.Team;
 using MmorpgClient.UI.Ugui.Battle;
+using MmorpgClient.UI.Ugui.CoreLoop;
 using MmorpgClient.UI.Ugui.Gameplay;
 using MmorpgClient.UI.Ugui.Team;
 using MmorpgClient.World.Tianyong;
@@ -31,7 +32,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
         public static RankedUiRoot Instance { get; private set; }
         public const int CanvasSortingOrder = 188;
 
-        public bool IsLobbyVisible => _window != null && _window.gameObject.activeSelf && !_settlement.IsVisible;
+        public bool IsLobbyVisible => CoreGameplayUiRoot.Instance?.IsFormalPvpVisible ?? false;
         public bool IsSettlementVisible => _settlement != null && _settlement.IsVisible;
         public RankedClient Client => _ranked;
 
@@ -249,30 +250,31 @@ namespace MmorpgClient.UI.Ugui.Ranked
 
         public void ToggleLobby()
         {
-            if (_window.gameObject.activeSelf && !_settlement.IsVisible) { HideAll(); return; }
-            OpenLobby(_ranked?.SelectedTeamSize ?? RankedFormatting.DefaultTeamSize);
+            CoreGameplayUiRoot.EnsureSpawned();
+            var coreUi = CoreGameplayUiRoot.Instance;
+            if (coreUi?.IsFormalPvpVisible == true) coreUi.CloseCurrent();
+            else coreUi?.OpenFormalPvp();
         }
 
         public void OpenLobby(uint teamSize = 0)
         {
             if (!_available || _ranked == null) return;
-            CityPanelRegistry.HideOthers(this);
             if (teamSize >= 1 && teamSize <= 5)
-            {
                 _ranked.SelectedTeamSize = teamSize;
-                _lobby.SetSelectedTeamSize(teamSize);
-            }
-            _settlement.Hide();
-            _drawer.Hide();
-            _lobby.SetVisible(true);
-            _window.gameObject.SetActive(true);
-            _ranked.RequestProfile(includeHistory: true);
-            RenderAll();
+            CoreGameplayUiRoot.EnsureSpawned();
+            CoreGameplayUiRoot.Instance?.OpenFormalPvp();
         }
 
         private void HideLobbyOnly()
         {
             if (_settlement != null && _settlement.IsVisible) return;
+            if (_waitingForSettlementRequeue)
+            {
+                _drawer?.Hide();
+                _lobby?.SetVisible(false);
+                if (_window != null) _window.gameObject.SetActive(false);
+                return;
+            }
             HideAll();
         }
 
@@ -312,6 +314,16 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _lobby?.SetVisible(false);
             _window.gameObject.SetActive(true);
             _settlement.Show(state);
+            if (_settlementFromRecovery)
+            {
+                CoreGameplayUiRoot.Instance?.HideRankedSettlement();
+                _settlement.SetCoreSettlementVisible(false);
+            }
+            else
+            {
+                bool showCoreReward = CoreGameplayUiRoot.Instance?.ShowRankedSettlement(_settlement.Root) ?? false;
+                _settlement.SetCoreSettlementVisible(showCoreReward);
+            }
         }
 
         private void DismissSettlementToCityOrLobby()
@@ -319,10 +331,18 @@ namespace MmorpgClient.UI.Ugui.Ranked
             bool fromRecovery = _settlementFromRecovery;
             _settlementFromRecovery = false;
             _ranked?.DismissSettlement();
+            CoreGameplayUiRoot.Instance?.HideRankedSettlement();
             _settlement?.Hide();
             if (!_waitingForSettlementRequeue)
                 _window.gameObject.SetActive(false);
             BattleUiRoot.Instance?.FinishInterceptedBattleResult(fromRecovery);
+        }
+
+        /// <summary>核心材料卡快捷领取复用本页唯一的结算确认路径。</summary>
+        public void CloseCoreSettlementForMaterialClaim()
+        {
+            if (_settlement != null && _settlement.IsVisible)
+                DismissSettlementToCityOrLobby();
         }
 
         private void TryRequeueAfterSettlement()
@@ -330,11 +350,9 @@ namespace MmorpgClient.UI.Ugui.Ranked
             var entry = TeamUiRoot.Instance?.MatchEntry;
             var battle = _game?.Battle;
             if (entry == null || battle == null || battle.Phase != BattlePhase.None) return;
-            _waitingForSettlementRequeue = false;
             uint size = _pendingRequeueSize >= 1 && _pendingRequeueSize <= 5 ? _pendingRequeueSize : _lobby.SelectedTeamSize;
-            uint ruleVer = _ranked?.Profile?.RuleVersion ?? 1u;
-            uint cfgId = _ranked?.Profile?.BattleConfigId ?? RankedFormatting.DefaultBattleConfigId;
-            entry.StartRankedPvp(size, _lobby.SelectedCharacterPresetId, _lobby.SelectedPetPresetId, ruleVer, cfgId);
+            if (CoreGameplayUiRoot.Instance?.EnterFormalPvp(size) != true) return;
+            _waitingForSettlementRequeue = false;
             RenderAll();
         }
 
@@ -359,10 +377,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             }
             if (_lobby.ActiveStateKey == "idle")
             {
-                uint ruleVer = _ranked.Profile?.RuleVersion ?? 1u;
-                uint cfgId = _ranked.Profile?.BattleConfigId ?? RankedFormatting.DefaultBattleConfigId;
-                entry.StartRankedPvp(_lobby.SelectedTeamSize, _lobby.SelectedCharacterPresetId,
-                    _lobby.SelectedPetPresetId, ruleVer, cfgId);
+                CoreGameplayUiRoot.Instance?.EnterFormalPvp(_lobby.SelectedTeamSize);
                 RenderAll();
             }
         }

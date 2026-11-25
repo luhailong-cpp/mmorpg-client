@@ -31,15 +31,29 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             bool writeBlocked = WriteBlocked(client, blocked);
             bool canEnhance = selected != null && view.Stage == EquipForgeStage.Ready
                 && view.EnhanceButton.Enabled && !writeBlocked;
+            bool pityGuaranteed = selected != null && view.Stage == EquipForgeStage.Ready
+                && view.HasNextLevel && selected.EnhanceNext?.PityGuaranteedNext == true;
             EquipmentUiArt.Button(parent, "EnhancementRefresh", "刷新", 150, 1350, 420,
                 () => forge?.Refresh(), enabled: forge != null && view.RefreshButton.Enabled);
-            EquipmentUiArt.Button(parent, "EnhancementCommit", view.EnhanceButton.Label, 3216, 1350, 600,
+            string commitLabel = pityGuaranteed ? view.EnhanceButton.Label + "（必成）" : view.EnhanceButton.Label;
+            var commitBtn = EquipmentUiArt.Button(parent, "EnhancementCommit", commitLabel, 3216, 1350, 600,
                 () =>
                 {
                     // 控件创建后状态仍可能改变；业务层会再次校验，窗口也不把旧选择发给新目标。
                     if (selected != null && forge != null && forge.TargetItemId == selected.ItemId && !WriteBlocked(client, blocked))
                         forge.Enhance();
                 }, primary: true, enabled: canEnhance);
+            if (pityGuaranteed)
+            {
+                var goldSprite = SeasonEconomyUiArt.LoadControl("btn_primary_gold");
+                var commitImg = commitBtn.GetComponent<Image>();
+                if (goldSprite != null && commitImg != null)
+                {
+                    commitImg.sprite = goldSprite;
+                    commitImg.type = goldSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                    commitImg.color = Color.white;
+                }
+            }
 
             string status = WriteBlockReason(client, blocked);
             if (status.Length == 0) status = view.StatusText;
@@ -138,6 +152,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             EquipmentUiArt.Label(parent, "EnhancementSelectedName", view.Title, 60, 40, 940, 140, 54, true);
             EquipmentUiArt.Label(parent, "EnhancementSelectedLocation", view.LocationText, 60, 192, 940, 62, 42);
             EquipmentUiArt.Icon(parent, item, 260, 300, 540);
+            bool isMaxEnhanced = item.EnhanceMaxLevel > 0 && item.EnhanceLevel >= item.EnhanceMaxLevel;
+            if (isMaxEnhanced)
+            {
+                var crownSprite = SeasonEconomyUiArt.LoadIcon("badge_plus11_crown");
+                if (crownSprite != null)
+                {
+                    var crown = QdaoUguiFactory.CreateImage("EnhancementMaxCrown", parent, 700, 270, 160, 160, crownSprite, false);
+                    crown.preserveAspect = true;
+                }
+                EquipmentUiArt.Label(parent, "EnhancementMaxStamp", $"+{item.EnhanceLevel} 满配",
+                    650, 434, 260, 56, 40, false, SeasonEconomyUiArt.GoldHighlight);
+            }
             EquipmentUiArt.Label(parent, "EnhancementSelectedLevel", view.EnhanceLevelText, 60, 864, 940, 72, 48);
         }
 
@@ -157,25 +183,60 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             IReadOnlyList<string> lines;
             if (view.HasNextLevel)
             {
-                string pitySuffix = item.EnhanceNext.PityLimit > 0
+                bool hasPity = item.EnhanceNext.PityLimit > 0;
+                string pitySuffix = hasPity
                     ? (item.EnhanceNext.PityGuaranteedNext
                         ? $" · 本手保底必成 ({item.EnhanceNext.CurrentPityCount}/{item.EnhanceNext.PityLimit})"
                         : $" · 保底 {item.EnhanceNext.CurrentPityCount}/{item.EnhanceNext.PityLimit} 必成")
                     : (item.EnhanceNext.SuccessRate == 10000 ? " · 必成" : string.Empty);
                 string rate = view.SuccessRateText + pitySuffix;
-                EquipmentUiArt.Label(parent, "EnhancementSuccessRate", rate, 48, 200, 1310, 60, 46);
-                EquipmentUiArt.Label(parent, "EnhancementCost", view.CostText, 48, 280, 1310, 110, 44, true);
-                EquipmentUiArt.Label(parent, "EnhancementOwned", view.OwnedText, 48, 400, 1310, 110, 44, true);
-                EquipmentUiArt.Label(parent, "EnhancementFailureRule", view.FailRuleText, 48, 520, 1310, 60, 40);
-                EquipmentUiArt.Label(parent, "EnhancementAttributesTitle", "属性预览 · 当前 → +" + item.EnhanceNext.NextLevel,
-                    48, 600, 1310, 62, 44);
-                previewTop = 686;
+                if (hasPity)
+                {
+                    EquipmentUiArt.Label(parent, "EnhancementSuccessRate", rate, 48, 192, 1310, 56, 44,
+                        color: item.EnhanceNext.PityGuaranteedNext ? SeasonEconomyUiArt.GoldHighlight : (Color?)null);
+                    SeasonEconomyUiArt.DrawPityBar(parent, "EnhancementPityBar", 48, 256, 660, 96,
+                        item.EnhanceNext.CurrentPityCount, item.EnhanceNext.PityLimit, item.EnhanceNext.PityGuaranteedNext);
+                    string pityRuleText = item.EnhanceNext.PityGuaranteedNext
+                        ? $"已满保底（{item.EnhanceNext.CurrentPityCount}/{item.EnhanceNext.PityLimit}）· 本次 100% 必成"
+                        : $"保底进度：{item.EnhanceNext.CurrentPityCount} / {item.EnhanceNext.PityLimit}（失败不掉级 · 永不清零）";
+                    EquipmentUiArt.Label(parent, "EnhancementPityDetail", pityRuleText, 728, 262, 630, 88, 36, true,
+                        item.EnhanceNext.PityGuaranteedNext ? SeasonEconomyUiArt.GoldHighlight : EquipmentUiArt.Jade);
+                    EquipmentUiArt.Label(parent, "EnhancementCost", view.CostText, 48, 368, 1310, 94, 42, true);
+                    EquipmentUiArt.Label(parent, "EnhancementOwned", view.OwnedText, 48, 468, 1310, 94, 42, true);
+                    EquipmentUiArt.Label(parent, "EnhancementFailureRule", view.FailRuleText, 48, 568, 1310, 52, 38);
+                    EquipmentUiArt.Label(parent, "EnhancementAttributesTitle", "属性预览 · 当前 → +" + item.EnhanceNext.NextLevel,
+                        48, 628, 1310, 56, 42);
+                    previewTop = 694;
+                }
+                else
+                {
+                    EquipmentUiArt.Label(parent, "EnhancementSuccessRate", rate, 48, 200, 1310, 60, 46);
+                    EquipmentUiArt.Label(parent, "EnhancementCost", view.CostText, 48, 280, 1310, 110, 44, true);
+                    EquipmentUiArt.Label(parent, "EnhancementOwned", view.OwnedText, 48, 400, 1310, 110, 44, true);
+                    EquipmentUiArt.Label(parent, "EnhancementFailureRule", view.FailRuleText, 48, 520, 1310, 60, 40);
+                    EquipmentUiArt.Label(parent, "EnhancementAttributesTitle", "属性预览 · 当前 → +" + item.EnhanceNext.NextLevel,
+                        48, 600, 1310, 62, 44);
+                    previewTop = 686;
+                }
                 lines = view.PreviewLines;
             }
             else
             {
-                string reason = item.EnhanceLevel >= item.EnhanceMaxLevel ? "已达到强化上限" : view.EnhanceButton.Hint;
-                EquipmentUiArt.Label(parent, "EnhancementNoNextLevel", reason, 48, 220, 1310, 120, 46, true);
+                bool isMax = item.EnhanceMaxLevel > 0 && item.EnhanceLevel >= item.EnhanceMaxLevel;
+                float textX = 48f;
+                if (isMax)
+                {
+                    var crownSprite = SeasonEconomyUiArt.LoadIcon("badge_plus11_crown");
+                    if (crownSprite != null)
+                    {
+                        var crown = QdaoUguiFactory.CreateImage("EnhancementPreviewMaxCrown", parent, 48, 210, 108, 108, crownSprite, false);
+                        crown.preserveAspect = true;
+                        textX = 172f;
+                    }
+                }
+                string reason = isMax ? $"已达到 +{item.EnhanceLevel} 满配顶格上限" : view.EnhanceButton.Hint;
+                EquipmentUiArt.Label(parent, "EnhancementNoNextLevel", reason, textX, 220, 1358f - textX, 120, 46, true,
+                    isMax ? SeasonEconomyUiArt.GoldHighlight : (Color?)null);
                 EquipmentUiArt.Label(parent, "EnhancementAttributesTitle", "当前基础属性", 48, 382, 1310, 62, 44);
                 previewTop = 472;
                 lines = item.BaseAttrs.OrderBy(line => line.Seq).Select(EquipDisplay.FormatLine).ToList();

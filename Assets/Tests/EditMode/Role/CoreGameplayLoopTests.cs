@@ -91,8 +91,15 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(scales[3].Status, Is.EqualTo(PvpScaleSlotStatus.SpecialModeClosed)); // 4V4
             Assert.That(scales[4].Status, Is.EqualTo(PvpScaleSlotStatus.PrimaryUpcoming));   // 5V5
 
-            // 3. 轮换娱乐场：护卫救援 (109) + 物法易势仅 5V5 (110)
-            var rotations = CoreGameplayLoopModels.BuildRotationCards(activeSeasonWeek: 5u);
+            // 3. 轮换娱乐场：护卫救援 (109) + 物法易势仅 5V5 (110) + 权威周次推导
+            Assert.That(CoreGameplayLoopModels.TryResolveAuthoritativeSeasonWeek(
+                new SeasonStateSnapshot { Available = true, StartsAtMs = 0ul, ServerNowMs = 1790000000000ul }, out _), Is.False);
+            const ulong startMs = 1790000000000ul;
+            const ulong weekMs = 7ul * 24ul * 3600ul * 1000ul;
+            Assert.That(CoreGameplayLoopModels.TryResolveAuthoritativeSeasonWeek(
+                new SeasonStateSnapshot { Available = true, StartsAtMs = startMs, ServerNowMs = startMs + 4ul * weekMs + 1000ul }, out uint resolvedWeek), Is.True);
+            Assert.That(resolvedWeek, Is.EqualTo(5u));
+            var rotations = CoreGameplayLoopModels.BuildRotationCards(activeSeasonWeek: resolvedWeek);
             Assert.That(rotations.Count, Is.EqualTo(2));
             Assert.That(rotations[0].DungeonConfigId, Is.EqualTo(109u));
             Assert.That(rotations[0].UsesFreePreset, Is.True);

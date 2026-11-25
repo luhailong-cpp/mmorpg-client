@@ -137,6 +137,7 @@ namespace MmorpgClient.Net
         public const uint NotifySpectateEnd      =  166; // BattleClientPlayerNotifySpectateEnd
         public const uint NotifySpectateState    =  161; // BattleClientPlayerNotifySpectateState
         public const uint NotifySpectateTurnResult =  158; // BattleClientPlayerNotifySpectateTurnResult
+        public const uint NotifySurrenderVote    =  480; // BattleClientPlayerNotifySurrenderVote
         public const uint NotifySyncDigest       =  254; // SceneSceneClientPlayerNotifySyncDigest
         public const uint NotifyTeamEvent        =  203; // ClientPlayerTeamNotifyTeamEvent
         public const uint NotifyTeamInvite       =  215; // ClientPlayerTeamNotifyTeamInvite
@@ -173,6 +174,7 @@ namespace MmorpgClient.Net
         public const uint StopWatchBattle        =  165; // BattleClientPlayerStopWatchBattle
         public const uint SubmitBattleAction     =  149; // BattleClientPlayerSubmitBattleAction
         public const uint SummonPet              =  183; // ScenePetClientPlayerSummonPet
+        public const uint SurrenderBattle        =  479; // BattleClientPlayerSurrenderBattle
         public const uint SwitchAppearance       =  443; // SceneAppearanceClientPlayerSwitchAppearance
         public const uint SwitchAttributeScheme  =  171; // SceneAttributeClientPlayerSwitchAttributeScheme
         public const uint TeleportRequest        =  136; // SceneMovementClientPlayerTeleportRequest

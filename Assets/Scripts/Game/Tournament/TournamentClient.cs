@@ -48,6 +48,8 @@ namespace MmorpgClient.Game.Tournament
         public bool IsBusy => IsLoading || IsMutating;
         public string Status { get; private set; } = string.Empty;
         public string LastError { get; private set; } = string.Empty;
+        /// <summary>最近一次服务端业务错误对应的结构化 Tip ID（0 表示无服务端 Tip 错误），供 UI 精准决策恢复路径。</summary>
+        public uint LastErrorTipId { get; private set; }
 
         public event Action Changed;
         public event Action<ulong> MatchBattleLaunched;
@@ -112,6 +114,7 @@ namespace MmorpgClient.Game.Tournament
             _mutating = false;
             Status = string.Empty;
             LastError = string.Empty;
+            LastErrorTipId = 0u;
             Changed?.Invoke();
         }
 
@@ -604,6 +607,7 @@ namespace MmorpgClient.Game.Tournament
             flag = true;
             Status = statusMessage;
             LastError = string.Empty;
+            LastErrorTipId = 0u;
             Changed?.Invoke();
             return true;
         }
@@ -627,6 +631,7 @@ namespace MmorpgClient.Game.Tournament
             _mutating = true;
             Status = statusMessage;
             LastError = string.Empty;
+            LastErrorTipId = 0u;
             Changed?.Invoke();
             return true;
         }
@@ -675,6 +680,7 @@ namespace MmorpgClient.Game.Tournament
 
         private void FailLocal(string message)
         {
+            LastErrorTipId = 0u;
             LastError = message ?? string.Empty;
             Status = LastError;
             Changed?.Invoke();
@@ -682,6 +688,7 @@ namespace MmorpgClient.Game.Tournament
 
         private void FailServer(TipInfoMessage tip)
         {
+            LastErrorTipId = tip?.Id ?? 0u;
             LastError = DescribeTip(tip);
             Status = LastError;
             Changed?.Invoke();
@@ -689,9 +696,20 @@ namespace MmorpgClient.Game.Tournament
 
         private void FailTransport(string prefix, string err)
         {
+            LastErrorTipId = TryExtractServerTipId(err);
             LastError = DescribeTransport(prefix, err);
             Status = LastError;
             Changed?.Invoke();
+        }
+
+        private static uint TryExtractServerTipId(string err)
+        {
+            const string serverTip = "server tip=";
+            if (!string.IsNullOrEmpty(err)
+                && err.StartsWith(serverTip, StringComparison.Ordinal)
+                && uint.TryParse(err.Substring(serverTip.Length), NumberStyles.None, CultureInfo.InvariantCulture, out uint tipId))
+                return tipId;
+            return 0u;
         }
 
         private bool IsCurrent(int generation, ulong player) =>

@@ -24,6 +24,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private uint _round;
 
         public uint Round => _round;
+        public RectTransform Root => _root;
 
         public BattleRoundCounter(UnityEngine.Transform parent, float x, float y)
         {
@@ -43,10 +44,12 @@ namespace MmorpgClient.UI.Ugui.Battle
             frame.transform.SetAsFirstSibling();
         }
 
-        public void SetRound(uint round, bool animate, string suffix = null)
+        public void SetRound(uint round, bool animate, string suffix = null, uint roundLimit = 0u)
         {
-            string text = $"第 {round} 回合{suffix ?? string.Empty}";
-            if (!animate || _front.text == text || _round == round && string.IsNullOrEmpty(suffix))
+            string text = roundLimit > 0u
+                ? $"第{round}/{roundLimit}回合{suffix ?? string.Empty}"
+                : $"第 {round} 回合{suffix ?? string.Empty}";
+            if (!animate || _front.text == text || (_round == round && string.IsNullOrEmpty(suffix) && roundLimit == 0u))
             {
                 _round = round;
                 _front.text = text;
@@ -104,6 +107,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly List<string> _lines = new List<string>();
 
         public bool IsVisible => _panel != null && _panel.gameObject.activeSelf;
+        public RectTransform ButtonRoot => _button.Rect;
 
         public BattleLogPanel(UnityEngine.Transform parent, float x, float y)
         {
@@ -220,6 +224,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         public int Count => _tiles.Count;
         public int CurrentIndex => _current;
+        public RectTransform Root => _root;
 
         public BattleActionOrderBar(UnityEngine.Transform parent)
         {
@@ -335,6 +340,12 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly List<Card> _cards = new List<Card>();
 
         public int Count => _cards.Count;
+
+        /// <summary>只移动右上角色卡，给刘海屏与小游戏原生胶囊留空间。</summary>
+        public void SetTopOffset(float designPixels)
+        {
+            if (_root != null) _root.anchoredPosition = new Vector2(0f, -designPixels);
+        }
 
         public BattlePartyCards(UnityEngine.Transform parent)
         {

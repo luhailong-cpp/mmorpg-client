@@ -27,6 +27,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// </summary>
         public const uint Pvp1V1BattleConfigId = 1;
 
+        /// <summary>正式会武/人数档 PVP_TEAM 匹配的 battle_config_id（对应 DungeonTable id=5）。</summary>
+        public const uint PvpTeamBattleConfigId = 5;
+
         /// <summary>PVE 组队匹配的 battle_config_id(对应 DungeonTable id;排几人档见 <see cref="PveTeamMaxSize"/>)。</summary>
         public const uint PveTeamBattleConfigId = 1;
 

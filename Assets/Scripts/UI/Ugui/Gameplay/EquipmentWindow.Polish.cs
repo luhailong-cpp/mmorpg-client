@@ -45,8 +45,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void RenderPolish()
         {
             var rules = _craft.Rules;
+            var masterySprite = SeasonEconomyUiArt.LoadCraftControl(
+                SeasonEconomyUiArt.MasteryBadgeKey(rules?.ForgeMastery?.Tier ?? 1u));
+            float masteryLabelX = 180f;
+            if (masterySprite != null)
+            {
+                var masteryImg = QdaoUguiFactory.CreateImage("PolishMasteryIcon", _body, 172, 274, 96, 96, masterySprite, false);
+                masteryImg.preserveAspect = true;
+                masteryLabelX = 282f;
+            }
             Label(_body, "PolishMasteryBadge", EquipmentScreenModel.FormatForgeMastery(rules?.ForgeMastery),
-                180, 290, 2400, 70, 40, color: Jade);
+                masteryLabelX, 290, 2960f - masteryLabelX, 70, 40, color: Jade);
             Button(_body, "PolishOddsButton", "品相概率", 3280, 270, 500, () =>
             {
                 _modal = Modal.PolishOdds;
@@ -78,8 +87,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     Render();
                 }, selected, !_craft.Pending && !_craft.Busy);
                 Icon(row.transform, item, 12, 12, 115);
+                var tbBadge = SeasonEconomyUiArt.LoadTradeSlice(item.Bound ? "badge_item_bound_b" : "badge_item_tradable_t");
+                if (tbBadge != null)
+                {
+                    var badgeImg = QdaoUguiFactory.CreateImage("PolishItemTradeBadge", row.transform, 620, 36, 56, 56, tbBadge, false);
+                    badgeImg.preserveAspect = true;
+                }
                 string bindText = item.Bound ? "仅自用" : "可交易";
-                Label(row.transform, "PolishItemLabel", $"{Name(item)}\n{item.EquipLevel}级 · {bindText}", 145, 15, 530, 115, 36, true);
+                Label(row.transform, "PolishItemLabel", $"{Name(item)}\n{item.EquipLevel}级 · {bindText}", 145, 15, tbBadge != null ? 465 : 530, 115, 36, true);
             }
             if (items.Count == 0)
                 Label(_body, "PolishItemsEmpty", "暂无可打磨的固定词条装备", 210, 680, 700, 160, 42, true, Muted);
@@ -95,8 +110,24 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
             Icon(_body, current, 1110, 550, 180);
             string header = $"{Name(current)} · {current.EquipLevel}级 · {(current.Bound ? "仅自用" : "可交易")}";
-            if (!string.IsNullOrWhiteSpace(current.CrafterName)) header += $"\n宗师·{current.CrafterName} 亲手铸造";
-            Label(_body, "PolishCurrentItem", header, 1320, 550, 820, 175, 40, true);
+            bool hasSignature = !string.IsNullOrWhiteSpace(current.CrafterName);
+            Label(_body, "PolishCurrentItem", header, 1320, 556, 820, hasSignature ? 84 : 175, 40, true);
+            if (hasSignature)
+            {
+                var sealSprite = SeasonEconomyUiArt.LoadCraftControl("seal_master_signature");
+                if (sealSprite != null)
+                {
+                    SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "PolishMasterSealBg", 1320, 648, 640, 72,
+                        sealSprite, new Color(0.95f, 0.91f, 0.80f, 0.95f));
+                    Label(_body, "PolishMasterSealText", $"宗师·{current.CrafterName} 亲手铸造",
+                        1386, 654, 520, 60, 34, false, Jade);
+                }
+                else
+                {
+                    Label(_body, "PolishMasterSealText", $"宗师·{current.CrafterName} 亲手铸造",
+                        1320, 648, 820, 72, 36, false, Jade);
+                }
+            }
 
             var slots = current.FixedAffixSlots.OrderBy(s => s.Slot).ToList();
             if (slots.All(s => s.Slot != _polishSlot)) _polishSlot = slots.FirstOrDefault()?.Slot ?? 0;
@@ -127,6 +158,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
                 if (affix != null)
                 {
+                    string tagKey = SeasonEconomyUiArt.QualityTagKey(affix.QualityTier);
+                    var tagSprite = !string.IsNullOrEmpty(tagKey) ? SeasonEconomyUiArt.LoadCraftControl(tagKey) : null;
+                    if (tagSprite != null)
+                    {
+                        SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "PolishQualityTag_" + slot.Slot,
+                            1100, y + 178, 240, 64, tagSprite, Cream);
+                        var tagLbl = Label(_body, "PolishQualityTagText_" + slot.Slot,
+                            EquipmentScreenModel.QualityTierName(affix.QualityTier, affix.QualityName),
+                            1140, y + 182, 160, 56, 32, false, affix.QualityTier >= 5 ? SeasonEconomyUiArt.GoldHighlight : Jade);
+                        tagLbl.alignment = TMPro.TextAlignmentOptions.Center;
+                    }
+                    if (!affix.PolishExempt && affix.QualityTier < 5 && affix.PolishPityLimit > 0)
+                    {
+                        SeasonEconomyUiArt.DrawPolishPityBar(_body, "PolishSlotPityBar_" + slot.Slot,
+                            1358, y + 188, 360, 44, affix.PolishPityCount, affix.PolishPityLimit);
+                    }
                     Button(_body, "PolishReforgeBtn_" + slot.Slot, "更换词条", 1740, y + 170, 400, () =>
                     {
                         if (WriteBlocked) return;
@@ -144,8 +191,28 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var selectedAffix = selectedSlot?.Selected;
             Panel(_body, "PolishDeskPaper", 2250, 415, 1580, 965);
             Label(_body, "PolishDeskTitle", "淬炼打磨台", 2330, 465, 980, 70, 48, color: Jade);
+            if (selectedAffix != null && selectedAffix.QualityTier > 0)
+            {
+                var deskTag = SeasonEconomyUiArt.LoadCraftControl(SeasonEconomyUiArt.QualityTagKey(selectedAffix.QualityTier));
+                if (deskTag != null)
+                {
+                    SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "PolishDeskQualityTag", 3500, 466, 250, 68, deskTag, Cream);
+                    var deskTagLbl = Label(_body, "PolishDeskQualityText",
+                        EquipmentScreenModel.QualityTierName(selectedAffix.QualityTier, selectedAffix.QualityName),
+                        3540, 470, 170, 60, 34, false, selectedAffix.QualityTier >= 5 ? SeasonEconomyUiArt.GoldHighlight : Jade);
+                    deskTagLbl.alignment = TMPro.TextAlignmentOptions.Center;
+                }
+            }
             Label(_body, "PolishTierLadder", "品相阶梯：凡品 80% → 良品 85% → 上品 90% → 珍品 95% → 极品 100%\n只升不降 · 累计第 8 次必出极品",
-                2330, 550, 1420, 115, 36, true, Muted);
+                2330, 542, 1420, 92, 34, true, Muted);
+            if (selectedAffix != null && !selectedAffix.PolishExempt && selectedAffix.QualityTier < 5 && selectedAffix.PolishPityLimit > 0)
+            {
+                SeasonEconomyUiArt.DrawPolishPityBar(_body, "PolishDeskPityBar", 2330, 636, 700, 44,
+                    selectedAffix.PolishPityCount, selectedAffix.PolishPityLimit);
+                Label(_body, "PolishDeskPityText", EquipmentScreenModel.FormatPolishPity(selectedAffix),
+                    3050, 636, 700, 46, 30, false,
+                    selectedAffix.PolishPityCount + 1 >= selectedAffix.PolishPityLimit ? SeasonEconomyUiArt.GoldHighlight : Jade);
+            }
 
             if (selectedAffix == null)
             {
@@ -175,7 +242,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 RequestPolishPreview(current, selectedSlot);
             }
 
-            Button(_body, "PolishCharmToggle", _polishUseCharm ? "✓ 已选：定星保底符（必出极品）" : "使用定星保底符（仅自用 · 必出极品）",
+            var charmBtn = Button(_body, "PolishCharmToggle", _polishUseCharm ? "✓ 已选：定星保底符（必出极品）" : "使用定星保底符（仅自用 · 必出极品）",
                 2330, 690, 1420, () =>
                 {
                     if (_craft.Busy || _craft.Pending) return;
@@ -184,6 +251,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     RequestPolishPreview(current, selectedSlot);
                     Render();
                 }, _polishUseCharm, !_craft.Busy && !_craft.Pending);
+            var charmIcon = SeasonEconomyUiArt.LoadCraftIcon("item_star_guarantee_charm");
+            if (charmIcon != null)
+            {
+                var charmImg = QdaoUguiFactory.CreateImage("PolishCharmIcon", charmBtn.transform, 52, 26, 88, 88, charmIcon, false);
+                charmImg.preserveAspect = true;
+            }
 
             var forgeMasters = ActiveForgeMasters();
             string masterLabel = _polishProxyMasterId == 0
@@ -322,10 +395,25 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void RenderBindConfirmModal()
         {
-            Label(_modalLayer, "BindConfirmTitle", "转为仅自用二次确认", 750, 210, 2380, 100, 64, color: Danger);
+            Label(_modalLayer, "BindConfirmTitle", "转为仅自用二次确认", 750, 200, 2380, 90, 64, color: Danger);
+            var alertBanner = SeasonEconomyUiArt.LoadTradeSlice("diff_alert_banner");
+            if (alertBanner != null)
+                SeasonEconomyUiArt.CreateSlicedOrSimple(_modalLayer, "BindConfirmAlertBanner", 760, 294, 2380, 96,
+                    alertBanner, new Color(0.98f, 0.90f, 0.84f, 0.95f));
+            var badgeT = SeasonEconomyUiArt.LoadTradeSlice("badge_item_tradable_t");
+            var badgeB = SeasonEconomyUiArt.LoadTradeSlice("badge_item_bound_b");
+            if (badgeT != null && badgeB != null)
+            {
+                var tImg = QdaoUguiFactory.CreateImage("BindConfirmFromT", _modalLayer, 1520, 304, 76, 76, badgeT, false);
+                tImg.preserveAspect = true;
+                var arrow = Label(_modalLayer, "BindConfirmArrow", "可交易 T  →  永久仅自用 B", 1620, 314, 620, 56, 38, false, Danger);
+                arrow.alignment = TMPro.TextAlignmentOptions.Center;
+                var bImg = QdaoUguiFactory.CreateImage("BindConfirmToB", _modalLayer, 2260, 304, 76, 76, badgeB, false);
+                bImg.preserveAspect = true;
+            }
             Label(_modalLayer, "BindConfirmBody",
                 "当前装备为【可交易】状态；背包内可交易材料不足。\n\n若继续混用绑定重铸砂或绑定定星保底符，该装备将永久变为【仅自用】，此后不可再挂集市或摆摊交易。\n\n请勾选下方确认项后继续。",
-                760, 370, 2380, 420, 44, true, Ink);
+                760, 412, 2380, 400, 44, true, Ink);
             Button(_modalLayer, "BindConfirmToggle",
                 _bindConfirmAcknowledged ? "✓ 我已知晓：装备将永久转为仅自用" : "□ 我已知晓并允许混用绑定材料（装备永久仅自用）",
                 760, 870, 2380, () =>

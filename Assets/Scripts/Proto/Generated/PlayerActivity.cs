@@ -26,7 +26,7 @@ public static partial class PlayerActivityReflection {
           "L3Byb3RvX29wdGlvbi5wcm90bxobcHJvdG8vY29tbW9uL2Jhc2UvdGlwLnBy",
           "b3RvIn4KGFBsYXllckFjdGl2aXR5UmV3YXJkSXRlbRIWCg5pdGVtX2NvbmZp",
           "Z19pZBgBIAEoDRINCgVjb3VudBgCIAEoBBIMCgRuYW1lGAMgASgJEhAKCGlj",
-          "b25fa2V5GAQgASgJEhsKE2JpbmRpbmdfZGVzY3JpcHRpb24YBSABKAkilwUK",
+          "b25fa2V5GAQgASgJEhsKE2JpbmRpbmdfZGVzY3JpcHRpb24YBSABKAkitQUK",
           "ElBsYXllckFjdGl2aXR5SW5mbxITCgthY3Rpdml0eV9pZBgBIAEoDRISCgpt",
           "aXNzaW9uX2lkGAIgASgNEgwKBG5hbWUYAyABKAkSEwoLZGVzY3JpcHRpb24Y",
           "BCABKAkSEAoIaWNvbl9rZXkYBSABKAkSJQoGc3RhdHVzGAYgASgOMhUuUGxh",
@@ -41,62 +41,176 @@ public static partial class PlayerActivityReflection {
           "b25fY291bnRfa25vd24YEiABKAgSFwoPY29tcGxldGVkX2NvdW50GBMgASgN",
           "EhgKEGNvbXBsZXRpb25fbGltaXQYFCABKA0SGQoRY29tcGxldGlvbl9wZXJp",
           "b2QYFSABKAkSFwoPdml0YWxpdHlfcG9pbnRzGBYgASgNEioKB3Jld2FyZHMY",
-          "FyADKAsyGS5QbGF5ZXJBY3Rpdml0eVJld2FyZEl0ZW0i2wEKHFBsYXllckFj",
-          "dGl2aXR5Vml0YWxpdHlSZXdhcmQSFAoMdGhyZXNob2xkX2lkGAEgASgNEhcK",
-          "D3JlcXVpcmVkX3BvaW50cxgCIAEoDRIRCglyZXdhcmRfaWQYAyABKA0SEQoJ",
-          "Y2FuX2NsYWltGAQgASgIEg8KB2NsYWltZWQYBSABKAgSDwoHZHVyYWJsZRgG",
-          "IAEoCBIaChJ1bmF2YWlsYWJsZV9yZWFzb24YByABKAkSKAoFaXRlbXMYCCAD",
-          "KAsyGS5QbGF5ZXJBY3Rpdml0eVJld2FyZEl0ZW0ioQIKHlBsYXllckFjdGl2",
-          "aXR5Vml0YWxpdHlTbmFwc2hvdBIRCglhdmFpbGFibGUYASABKAgSGgoSdW5h",
-          "dmFpbGFibGVfcmVhc29uGAIgASgJEg8KB3J1bGVfaWQYAyABKA0SHgoWY29u",
-          "ZmlndXJhdGlvbl9yZXZpc2lvbhgEIAEoBBIRCglwZXJpb2RfaWQYBSABKAQS",
-          "GwoTcGVyaW9kX3N0YXJ0c19hdF9tcxgGIAEoBBIZChFwZXJpb2RfZW5kc19h",
-          "dF9tcxgHIAEoBBIOCgZwb2ludHMYCCABKA0SFAoMcG9pbnRzX2xpbWl0GAkg",
-          "ASgNEi4KB3Jld2FyZHMYCiADKAsyHS5QbGF5ZXJBY3Rpdml0eVZpdGFsaXR5",
-          "UmV3YXJkIhgKFkdldEFjdGl2aXR5TGlzdFJlcXVlc3QitQEKF0dldEFjdGl2",
-          "aXR5TGlzdFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJ",
-          "bmZvTWVzc2FnZRInCgphY3Rpdml0aWVzGAIgAygLMhMuUGxheWVyQWN0aXZp",
-          "dHlJbmZvEhYKDnNlcnZlcl90aW1lX21zGAMgASgEEjEKCHZpdGFsaXR5GAQg",
-          "ASgLMh8uUGxheWVyQWN0aXZpdHlWaXRhbGl0eVNuYXBzaG90IpIBCiJDbGFp",
-          "bUFjdGl2aXR5Vml0YWxpdHlSZXdhcmRSZXF1ZXN0Eg8KB3J1bGVfaWQYASAB",
-          "KA0SHgoWY29uZmlndXJhdGlvbl9yZXZpc2lvbhgCIAEoBBIRCglwZXJpb2Rf",
-          "aWQYAyABKAQSFAoMdGhyZXNob2xkX2lkGAQgASgNEhIKCnJlcXVlc3RfaWQY",
-          "BSABKAkiyAEKI0NsYWltQWN0aXZpdHlWaXRhbGl0eVJld2FyZFJlc3BvbnNl",
-          "EiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIxCghz",
-          "bmFwc2hvdBgCIAEoCzIfLlBsYXllckFjdGl2aXR5Vml0YWxpdHlTbmFwc2hv",
-          "dBISCgpyZXF1ZXN0X2lkGAMgASgJEg8KB2NsYWltZWQYBCABKAgSDwoHZHVy",
-          "YWJsZRgFIAEoCBIQCghyZXBsYXllZBgGIAEoCCqKAQoUUGxheWVyQWN0aXZp",
-          "dHlTdGF0dXMSHwobUExBWUVSX0FDVElWSVRZX1VOU0NIRURVTEVEEAASHAoY",
-          "UExBWUVSX0FDVElWSVRZX1VQQ09NSU5HEAESGAoUUExBWUVSX0FDVElWSVRZ",
-          "X09QRU4QAhIZChVQTEFZRVJfQUNUSVZJVFlfRU5ERUQQAyrWAQoWUGxheWVy",
-          "QWN0aXZpdHlDYXRlZ29yeRIoCiRQTEFZRVJfQUNUSVZJVFlfQ0FURUdPUllf",
-          "VU5TUEVDSUZJRUQQABIiCh5QTEFZRVJfQUNUSVZJVFlfQ0FURUdPUllfREFJ",
-          "TFkQARIkCiBQTEFZRVJfQUNUSVZJVFlfQ0FURUdPUllfTElNSVRFRBACEiQK",
-          "IFBMQVlFUl9BQ1RJVklUWV9DQVRFR09SWV9CRU5FRklUEAMSIgoeUExBWUVS",
-          "X0FDVElWSVRZX0NBVEVHT1JZX09USEVSEAQq0AEKGFBsYXllckFjdGl2aXR5",
-          "UmV3YXJkVHlwZRImCiJQTEFZRVJfQUNUSVZJVFlfUkVXQVJEX1VOU1BFQ0lG",
-          "SUVEEAASJQohUExBWUVSX0FDVElWSVRZX1JFV0FSRF9FWFBFUklFTkNFEAES",
-          "HgoaUExBWUVSX0FDVElWSVRZX1JFV0FSRF9UQU8QAhIfChtQTEFZRVJfQUNU",
-          "SVZJVFlfUkVXQVJEX0lURU0QAxIkCiBQTEFZRVJfQUNUSVZJVFlfUkVXQVJE",
-          "X0VRVUlQTUVOVBAEKmMKF1BsYXllckFjdGl2aXR5RW50cnlLaW5kEiUKIVBM",
-          "QVlFUl9BQ1RJVklUWV9FTlRSWV9VTlNQRUNJRklFRBAAEiEKHVBMQVlFUl9B",
-          "Q1RJVklUWV9FTlRSWV9NSVNTSU9OEAEy1wEKGVNjZW5lQWN0aXZpdHlDbGll",
-          "bnRQbGF5ZXISRAoPR2V0QWN0aXZpdHlMaXN0EhcuR2V0QWN0aXZpdHlMaXN0",
-          "UmVxdWVzdBoYLkdldEFjdGl2aXR5TGlzdFJlc3BvbnNlEmgKG0NsYWltQWN0",
-          "aXZpdHlWaXRhbGl0eVJld2FyZBIjLkNsYWltQWN0aXZpdHlWaXRhbGl0eVJl",
-          "d2FyZFJlcXVlc3QaJC5DbGFpbUFjdGl2aXR5Vml0YWxpdHlSZXdhcmRSZXNw",
-          "b25zZRoKgKjDAQGIqMMBAUIOWgVzY2VuZYABAZjUYQNiBnByb3RvMw=="));
+          "FyADKAsyGS5QbGF5ZXJBY3Rpdml0eVJld2FyZEl0ZW0SHAoUaGFzX2NsYWlt",
+          "YWJsZV9yZXdhcmQYGCABKAgi2wEKHFBsYXllckFjdGl2aXR5Vml0YWxpdHlS",
+          "ZXdhcmQSFAoMdGhyZXNob2xkX2lkGAEgASgNEhcKD3JlcXVpcmVkX3BvaW50",
+          "cxgCIAEoDRIRCglyZXdhcmRfaWQYAyABKA0SEQoJY2FuX2NsYWltGAQgASgI",
+          "Eg8KB2NsYWltZWQYBSABKAgSDwoHZHVyYWJsZRgGIAEoCBIaChJ1bmF2YWls",
+          "YWJsZV9yZWFzb24YByABKAkSKAoFaXRlbXMYCCADKAsyGS5QbGF5ZXJBY3Rp",
+          "dml0eVJld2FyZEl0ZW0ioQIKHlBsYXllckFjdGl2aXR5Vml0YWxpdHlTbmFw",
+          "c2hvdBIRCglhdmFpbGFibGUYASABKAgSGgoSdW5hdmFpbGFibGVfcmVhc29u",
+          "GAIgASgJEg8KB3J1bGVfaWQYAyABKA0SHgoWY29uZmlndXJhdGlvbl9yZXZp",
+          "c2lvbhgEIAEoBBIRCglwZXJpb2RfaWQYBSABKAQSGwoTcGVyaW9kX3N0YXJ0",
+          "c19hdF9tcxgGIAEoBBIZChFwZXJpb2RfZW5kc19hdF9tcxgHIAEoBBIOCgZw",
+          "b2ludHMYCCABKA0SFAoMcG9pbnRzX2xpbWl0GAkgASgNEi4KB3Jld2FyZHMY",
+          "CiADKAsyHS5QbGF5ZXJBY3Rpdml0eVZpdGFsaXR5UmV3YXJkIhgKFkdldEFj",
+          "dGl2aXR5TGlzdFJlcXVlc3QitQEKF0dldEFjdGl2aXR5TGlzdFJlc3BvbnNl",
+          "EiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRInCgph",
+          "Y3Rpdml0aWVzGAIgAygLMhMuUGxheWVyQWN0aXZpdHlJbmZvEhYKDnNlcnZl",
+          "cl90aW1lX21zGAMgASgEEjEKCHZpdGFsaXR5GAQgASgLMh8uUGxheWVyQWN0",
+          "aXZpdHlWaXRhbGl0eVNuYXBzaG90IpIBCiJDbGFpbUFjdGl2aXR5Vml0YWxp",
+          "dHlSZXdhcmRSZXF1ZXN0Eg8KB3J1bGVfaWQYASABKA0SHgoWY29uZmlndXJh",
+          "dGlvbl9yZXZpc2lvbhgCIAEoBBIRCglwZXJpb2RfaWQYAyABKAQSFAoMdGhy",
+          "ZXNob2xkX2lkGAQgASgNEhIKCnJlcXVlc3RfaWQYBSABKAkiyAEKI0NsYWlt",
+          "QWN0aXZpdHlWaXRhbGl0eVJld2FyZFJlc3BvbnNlEiYKDWVycm9yX21lc3Nh",
+          "Z2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIxCghzbmFwc2hvdBgCIAEoCzIf",
+          "LlBsYXllckFjdGl2aXR5Vml0YWxpdHlTbmFwc2hvdBISCgpyZXF1ZXN0X2lk",
+          "GAMgASgJEg8KB2NsYWltZWQYBCABKAgSDwoHZHVyYWJsZRgFIAEoCBIQCghy",
+          "ZXBsYXllZBgGIAEoCCLFAgoeRmVzdGl2YWxCZWFzdFBlbmRpbmdMYXVuY2hJ",
+          "bmZvEhkKEWNsaWVudF9yZXF1ZXN0X2lkGAEgASgJEhwKFGFjdGl2aXR5X2lu",
+          "c3RhbmNlX2lkGAIgASgNEhcKD2NvbmZpZ19yZXZpc2lvbhgDIAEoDRIVCg1s",
+          "b2NrZWRfcGV0X2lkGAQgASgEEhcKD21hdGNoZWRfdGllcl9pZBgFIAEoDRIv",
+          "CgxsYXVuY2hfc3RhdGUYBiABKA4yGS5GZXN0aXZhbEJlYXN0TGF1bmNoU3Rh",
+          "dGUSEQoJYmF0dGxlX2lkGAcgASgEEhcKD3JlcXVlc3RlZF9hdF9tcxgIIAEo",
+          "BBIWCg5hZG1pdHRlZF9hdF9tcxgJIAEoBBIVCg1yZWplY3RfdGlwX2lkGAog",
+          "ASgNEhUKDXJlamVjdF9yZWFzb24YCyABKAki5wMKHEZlc3RpdmFsQmVhc3RN",
+          "YXRlcmlhbFN1bW1hcnkSMwoKcXVvdGFfbW9kZRgBIAEoDjIfLkZlc3RpdmFs",
+          "QmVhc3RNYXRlcmlhbFF1b3RhTW9kZRIaChJleHBlY3RlZF93aW5fdW5pdHMY",
+          "AiABKA0SIAoYZWFybmFibGVfcmVtYWluaW5nX3VuaXRzGAMgASgNEhcKD2F2",
+          "YWlsYWJsZV91bml0cxgEIAEoBBIgChhhdmFpbGFibGVfdHJhZGFibGVfdW5p",
+          "dHMYBSABKAQSFAoMZWFybmVkX3RvZGF5GAYgASgNEhMKC2RhaWx5X2xpbWl0",
+          "GAcgASgNEhgKEGRheV9zdGFydHNfYXRfbXMYCCABKAQSHAoUbmV4dF9kYXlf",
+          "cmVzZXRfYXRfbXMYCSABKAQSGwoTd2Vla2x5X3BoYXNlX2FjdGl2ZRgKIAEo",
+          "CBIXCg9saWZldGltZV9lYXJuZWQYCyABKA0SFgoObGlmZXRpbWVfbGltaXQY",
+          "DCABKA0SGAoQZWFybmVkX3RoaXNfd2VlaxgNIAEoDRIUCgx3ZWVrbHlfbGlt",
+          "aXQYDiABKA0SGQoRd2Vla19zdGFydHNfYXRfbXMYDyABKAQSHQoVbmV4dF93",
+          "ZWVrX3Jlc2V0X2F0X21zGBAgASgEIj0KHUdldEZlc3RpdmFsQmVhc3REZXRh",
+          "aWxSZXF1ZXN0EhwKFGFjdGl2aXR5X2luc3RhbmNlX2lkGAEgASgNIs0JCh5H",
+          "ZXRGZXN0aXZhbEJlYXN0RGV0YWlsUmVzcG9uc2USJgoNZXJyb3JfbWVzc2Fn",
+          "ZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhUKDXNlcnZlcl9ub3dfbXMYAiAB",
+          "KAQSIgoFcGhhc2UYAyABKA4yEy5GZXN0aXZhbEJlYXN0UGhhc2USHAoUYWN0",
+          "aXZpdHlfaW5zdGFuY2VfaWQYBCABKA0SFwoPY29uZmlnX3JldmlzaW9uGAUg",
+          "ASgNEhUKDWFjdGl2aXR5X25hbWUYBiABKAkSEQoJYm9zc19uYW1lGAcgASgJ",
+          "EhgKEGJhbm5lcl9hc3NldF9rZXkYCCABKAkSEAoIaWNvbl9rZXkYCSABKAkS",
+          "HQoVZWZmZWN0aXZlX3N0YXJ0X2F0X21zGAogASgEEhsKE2VmZmVjdGl2ZV9l",
+          "bmRfYXRfbXMYCyABKAQSIAoYY2xhaW1fc2hvd2Nhc2VfZW5kX2F0X21zGAwg",
+          "ASgEEhQKDGN1cnJlbnRfd2lucxgNIAEoDRIVCg1yZXF1aXJlZF93aW5zGA4g",
+          "ASgNEhcKD3Jld2FyZF9pZGVudGl0eRgPIAEoCRIhChlyZXdhcmRfZGVmaW5p",
+          "dGlvbl92ZXJzaW9uGBAgASgNEhsKE3Jld2FyZF9wZXRfdGFibGVfaWQYESAB",
+          "KA0SGwoTcmV3YXJkX3BldF9tb2RlbF9pZBgSIAEoDRIXCg9yZXdhcmRfcGV0",
+          "X25hbWUYEyABKAkSIQoZaGFzX3Blcm1hbmVudF9lbGlnaWJpbGl0eRgUIAEo",
+          "CBImCh5lbGlnaWJpbGl0eV9zb3VyY2VfaW5zdGFuY2VfaWQYFSABKA0SIAoY",
+          "ZWxpZ2liaWxpdHlfZWFybmVkX2F0X21zGBYgASgEEhYKDnJld2FyZF9jbGFp",
+          "bWVkGBcgASgIEhwKFHJld2FyZF9jbGFpbV9kdXJhYmxlGBggASgIEhYKDmNs",
+          "YWltZWRfcGV0X2lkGBkgASgEEhUKDWNsYWltZWRfYXRfbXMYGiABKAQSGAoQ",
+          "Y2xhaW1fcmVxdWVzdF9pZBgbIAEoCRIbChNjYW5fc3RhcnRfY2hhbGxlbmdl",
+          "GBwgASgIEjcKEHN0YXJ0X2Jsb2NrX2NvZGUYHSABKA4yHS5GZXN0aXZhbEJl",
+          "YXN0QWN0aW9uQmxvY2tDb2RlEhoKEnN0YXJ0X2Jsb2NrX3JlYXNvbhgeIAEo",
+          "CRIYChBjYW5fY2xhaW1fcmV3YXJkGB8gASgIEjcKEGNsYWltX2Jsb2NrX2Nv",
+          "ZGUYICABKA4yHS5GZXN0aXZhbEJlYXN0QWN0aW9uQmxvY2tDb2RlEhoKEmNs",
+          "YWltX2Jsb2NrX3JlYXNvbhghIAEoCRI3Cg5wZW5kaW5nX2xhdW5jaBgiIAEo",
+          "CzIfLkZlc3RpdmFsQmVhc3RQZW5kaW5nTGF1bmNoSW5mbxI3ChBtYXRlcmlh",
+          "bF9zdW1tYXJ5GCMgASgLMh0uRmVzdGl2YWxCZWFzdE1hdGVyaWFsU3VtbWFy",
+          "eRIXCg9tYXRjaGVkX3RpZXJfaWQYJCABKA0SEwoLcm91bmRfbGltaXQYJSAB",
+          "KA0SHAoUaGVhdnlfZGFtYWdlX3BlcmNlbnQYJiABKA0SFgoOc3RhdGVfcmV2",
+          "aXNpb24YJyABKAQidgoiU3RhcnRGZXN0aXZhbEJlYXN0Q2hhbGxlbmdlUmVx",
+          "dWVzdBIZChFjbGllbnRfcmVxdWVzdF9pZBgBIAEoCRIcChRhY3Rpdml0eV9p",
+          "bnN0YW5jZV9pZBgCIAEoDRIXCg9jb25maWdfcmV2aXNpb24YAyABKA0inQIK",
+          "I1N0YXJ0RmVzdGl2YWxCZWFzdENoYWxsZW5nZVJlc3BvbnNlEiYKDWVycm9y",
+          "X21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIvCgxsYXVuY2hfc3Rh",
+          "dGUYAiABKA4yGS5GZXN0aXZhbEJlYXN0TGF1bmNoU3RhdGUSEAoIcmVwbGF5",
+          "ZWQYAyABKAgSGQoRY2xpZW50X3JlcXVlc3RfaWQYBCABKAkSFQoNbG9ja2Vk",
+          "X3BldF9pZBgFIAEoBBIRCgliYXR0bGVfaWQYBiABKAQSFwoPbWF0Y2hlZF90",
+          "aWVyX2lkGAcgASgNEhYKDmFkbWl0dGVkX2F0X21zGAggASgEEhUKDXJlamVj",
+          "dF9yZWFzb24YCSABKAkiVQofQ2xhaW1GZXN0aXZhbEJlYXN0UmV3YXJkUmVx",
+          "dWVzdBIZChFjbGllbnRfcmVxdWVzdF9pZBgBIAEoCRIXCg9yZXdhcmRfaWRl",
+          "bnRpdHkYAiABKAkitQIKIENsYWltRmVzdGl2YWxCZWFzdFJld2FyZFJlc3Bv",
+          "bnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIr",
+          "CgdvdXRjb21lGAIgASgOMhouRmVzdGl2YWxCZWFzdENsYWltT3V0Y29tZRIQ",
+          "CghyZXBsYXllZBgDIAEoCBIPCgdkdXJhYmxlGAQgASgIEhkKEWNsaWVudF9y",
+          "ZXF1ZXN0X2lkGAUgASgJEhcKD3Jld2FyZF9pZGVudGl0eRgGIAEoCRIhChly",
+          "ZXdhcmRfZGVmaW5pdGlvbl92ZXJzaW9uGAcgASgNEhsKE3Jld2FyZF9wZXRf",
+          "dGFibGVfaWQYCCABKA0SDgoGcGV0X2lkGAkgASgEEhUKDWNsYWltZWRfYXRf",
+          "bXMYCiABKAQqigEKFFBsYXllckFjdGl2aXR5U3RhdHVzEh8KG1BMQVlFUl9B",
+          "Q1RJVklUWV9VTlNDSEVEVUxFRBAAEhwKGFBMQVlFUl9BQ1RJVklUWV9VUENP",
+          "TUlORxABEhgKFFBMQVlFUl9BQ1RJVklUWV9PUEVOEAISGQoVUExBWUVSX0FD",
+          "VElWSVRZX0VOREVEEAMq1gEKFlBsYXllckFjdGl2aXR5Q2F0ZWdvcnkSKAok",
+          "UExBWUVSX0FDVElWSVRZX0NBVEVHT1JZX1VOU1BFQ0lGSUVEEAASIgoeUExB",
+          "WUVSX0FDVElWSVRZX0NBVEVHT1JZX0RBSUxZEAESJAogUExBWUVSX0FDVElW",
+          "SVRZX0NBVEVHT1JZX0xJTUlURUQQAhIkCiBQTEFZRVJfQUNUSVZJVFlfQ0FU",
+          "RUdPUllfQkVORUZJVBADEiIKHlBMQVlFUl9BQ1RJVklUWV9DQVRFR09SWV9P",
+          "VEhFUhAEKvABChhQbGF5ZXJBY3Rpdml0eVJld2FyZFR5cGUSJgoiUExBWUVS",
+          "X0FDVElWSVRZX1JFV0FSRF9VTlNQRUNJRklFRBAAEiUKIVBMQVlFUl9BQ1RJ",
+          "VklUWV9SRVdBUkRfRVhQRVJJRU5DRRABEh4KGlBMQVlFUl9BQ1RJVklUWV9S",
+          "RVdBUkRfVEFPEAISHwobUExBWUVSX0FDVElWSVRZX1JFV0FSRF9JVEVNEAMS",
+          "JAogUExBWUVSX0FDVElWSVRZX1JFV0FSRF9FUVVJUE1FTlQQBBIeChpQTEFZ",
+          "RVJfQUNUSVZJVFlfUkVXQVJEX1BFVBAFKo0BChdQbGF5ZXJBY3Rpdml0eUVu",
+          "dHJ5S2luZBIlCiFQTEFZRVJfQUNUSVZJVFlfRU5UUllfVU5TUEVDSUZJRUQQ",
+          "ABIhCh1QTEFZRVJfQUNUSVZJVFlfRU5UUllfTUlTU0lPThABEigKJFBMQVlF",
+          "Ul9BQ1RJVklUWV9FTlRSWV9GRVNUSVZBTF9CRUFTVBACKu0BChJGZXN0aXZh",
+          "bEJlYXN0UGhhc2USJAogRkVTVElWQUxfQkVBU1RfUEhBU0VfVU5TUEVDSUZJ",
+          "RUQQABIkCiBGRVNUSVZBTF9CRUFTVF9QSEFTRV9VTlNDSEVEVUxFRBABEiEK",
+          "HUZFU1RJVkFMX0JFQVNUX1BIQVNFX1VQQ09NSU5HEAISHQoZRkVTVElWQUxf",
+          "QkVBU1RfUEhBU0VfT1BFThADEicKI0ZFU1RJVkFMX0JFQVNUX1BIQVNFX0NM",
+          "QUlNX1NIT1dDQVNFEAQSIAocRkVTVElWQUxfQkVBU1RfUEhBU0VfSElTVE9S",
+          "WRAFKp8EChxGZXN0aXZhbEJlYXN0QWN0aW9uQmxvY2tDb2RlEh0KGUZFU1RJ",
+          "VkFMX0JFQVNUX0JMT0NLX05PTkUQABIhCh1GRVNUSVZBTF9CRUFTVF9CTE9D",
+          "S19OT1RfT1BFThABEicKI0ZFU1RJVkFMX0JFQVNUX0JMT0NLX0NPTkZJR19J",
+          "TlZBTElEEAISHwobRkVTVElWQUxfQkVBU1RfQkxPQ0tfRlJPWkVOEAMSIgoe",
+          "RkVTVElWQUxfQkVBU1RfQkxPQ0tfSU5fQkFUVExFEAQSJQohRkVTVElWQUxf",
+          "QkVBU1RfQkxPQ0tfUEVUX1JFUVVJUkVEEAUSIQodRkVTVElWQUxfQkVBU1Rf",
+          "QkxPQ0tfUEVUX0RFQUQQBhIpCiVGRVNUSVZBTF9CRUFTVF9CTE9DS19MQVVO",
+          "Q0hfSU5fRkxJR0hUEAcSJQohRkVTVElWQUxfQkVBU1RfQkxPQ0tfTk9UX0VM",
+          "SUdJQkxFEAgSKAokRkVTVElWQUxfQkVBU1RfQkxPQ0tfQUxSRUFEWV9DTEFJ",
+          "TUVEEAkSKQolRkVTVElWQUxfQkVBU1RfQkxPQ0tfQ0xBSU1fQ09ORklSTUlO",
+          "RxAKEjAKLEZFU1RJVkFMX0JFQVNUX0JMT0NLX0VYQ0xVU0lWRV9TTE9UX09D",
+          "Q1VQSUVEEAsSLAooRkVTVElWQUxfQkVBU1RfQkxPQ0tfU0VSVklDRV9VTkFW",
+          "QUlMQUJMRRAMKtEBChhGZXN0aXZhbEJlYXN0TGF1bmNoU3RhdGUSJQohRkVT",
+          "VElWQUxfQkVBU1RfTEFVTkNIX1VOU1BFQ0lGSUVEEAASIwofRkVTVElWQUxf",
+          "QkVBU1RfTEFVTkNIX0xBVU5DSElORxABEiIKHkZFU1RJVkFMX0JFQVNUX0xB",
+          "VU5DSF9BRE1JVFRFRBACEiIKHkZFU1RJVkFMX0JFQVNUX0xBVU5DSF9SRUpF",
+          "Q1RFRBADEiEKHUZFU1RJVkFMX0JFQVNUX0xBVU5DSF9VTktOT1dOEAQq0gEK",
+          "GUZlc3RpdmFsQmVhc3RDbGFpbU91dGNvbWUSJAogRkVTVElWQUxfQkVBU1Rf",
+          "Q0xBSU1fVU5TUEVDSUZJRUQQABIgChxGRVNUSVZBTF9CRUFTVF9DTEFJTV9B",
+          "UFBMSUVEEAESKAokRkVTVElWQUxfQkVBU1RfQ0xBSU1fQUxSRUFEWV9DTEFJ",
+          "TUVEEAISIQodRkVTVElWQUxfQkVBU1RfQ0xBSU1fUkVKRUNURUQQAxIgChxG",
+          "RVNUSVZBTF9CRUFTVF9DTEFJTV9VTktOT1dOEAQqywEKHkZlc3RpdmFsQmVh",
+          "c3RNYXRlcmlhbFF1b3RhTW9kZRInCiNGRVNUSVZBTF9NQVRFUklBTF9RVU9U",
+          "QV9VTlNQRUNJRklFRBAAEisKJ0ZFU1RJVkFMX01BVEVSSUFMX1FVT1RBX1NU",
+          "QUdFMV9MSUZFVElNRRABEikKJUZFU1RJVkFMX01BVEVSSUFMX1FVT1RBX1NU",
+          "QUdFMl9XRUVLTFkQAhIoCiRGRVNUSVZBTF9NQVRFUklBTF9RVU9UQV9EQUlM",
+          "WV9MRUdBQ1kQAzL9AwoZU2NlbmVBY3Rpdml0eUNsaWVudFBsYXllchJECg9H",
+          "ZXRBY3Rpdml0eUxpc3QSFy5HZXRBY3Rpdml0eUxpc3RSZXF1ZXN0GhguR2V0",
+          "QWN0aXZpdHlMaXN0UmVzcG9uc2USaAobQ2xhaW1BY3Rpdml0eVZpdGFsaXR5",
+          "UmV3YXJkEiMuQ2xhaW1BY3Rpdml0eVZpdGFsaXR5UmV3YXJkUmVxdWVzdBok",
+          "LkNsYWltQWN0aXZpdHlWaXRhbGl0eVJld2FyZFJlc3BvbnNlElkKFkdldEZl",
+          "c3RpdmFsQmVhc3REZXRhaWwSHi5HZXRGZXN0aXZhbEJlYXN0RGV0YWlsUmVx",
+          "dWVzdBofLkdldEZlc3RpdmFsQmVhc3REZXRhaWxSZXNwb25zZRJoChtTdGFy",
+          "dEZlc3RpdmFsQmVhc3RDaGFsbGVuZ2USIy5TdGFydEZlc3RpdmFsQmVhc3RD",
+          "aGFsbGVuZ2VSZXF1ZXN0GiQuU3RhcnRGZXN0aXZhbEJlYXN0Q2hhbGxlbmdl",
+          "UmVzcG9uc2USXwoYQ2xhaW1GZXN0aXZhbEJlYXN0UmV3YXJkEiAuQ2xhaW1G",
+          "ZXN0aXZhbEJlYXN0UmV3YXJkUmVxdWVzdBohLkNsYWltRmVzdGl2YWxCZWFz",
+          "dFJld2FyZFJlc3BvbnNlGgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRhA2IG",
+          "cHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PlayerActivityStatus), typeof(global::PlayerActivityCategory), typeof(global::PlayerActivityRewardType), typeof(global::PlayerActivityEntryKind), }, null, new pbr::GeneratedClrTypeInfo[] {
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PlayerActivityStatus), typeof(global::PlayerActivityCategory), typeof(global::PlayerActivityRewardType), typeof(global::PlayerActivityEntryKind), typeof(global::FestivalBeastPhase), typeof(global::FestivalBeastActionBlockCode), typeof(global::FestivalBeastLaunchState), typeof(global::FestivalBeastClaimOutcome), typeof(global::FestivalBeastMaterialQuotaMode), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerActivityRewardItem), global::PlayerActivityRewardItem.Parser, new[]{ "ItemConfigId", "Count", "Name", "IconKey", "BindingDescription" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerActivityInfo), global::PlayerActivityInfo.Parser, new[]{ "ActivityId", "MissionId", "Name", "Description", "IconKey", "Status", "StartsAtMs", "EndsAtMs", "CanParticipate", "UnavailableReason", "RewardId", "DefinitionKey", "ConfigurationRevision", "Category", "RewardTypes", "EntryKind", "MissionScope", "CompletionCountKnown", "CompletedCount", "CompletionLimit", "CompletionPeriod", "VitalityPoints", "Rewards" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerActivityInfo), global::PlayerActivityInfo.Parser, new[]{ "ActivityId", "MissionId", "Name", "Description", "IconKey", "Status", "StartsAtMs", "EndsAtMs", "CanParticipate", "UnavailableReason", "RewardId", "DefinitionKey", "ConfigurationRevision", "Category", "RewardTypes", "EntryKind", "MissionScope", "CompletionCountKnown", "CompletedCount", "CompletionLimit", "CompletionPeriod", "VitalityPoints", "Rewards", "HasClaimableReward" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerActivityVitalityReward), global::PlayerActivityVitalityReward.Parser, new[]{ "ThresholdId", "RequiredPoints", "RewardId", "CanClaim", "Claimed", "Durable", "UnavailableReason", "Items" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerActivityVitalitySnapshot), global::PlayerActivityVitalitySnapshot.Parser, new[]{ "Available", "UnavailableReason", "RuleId", "ConfigurationRevision", "PeriodId", "PeriodStartsAtMs", "PeriodEndsAtMs", "Points", "PointsLimit", "Rewards" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetActivityListRequest), global::GetActivityListRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetActivityListResponse), global::GetActivityListResponse.Parser, new[]{ "ErrorMessage", "Activities", "ServerTimeMs", "Vitality" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ClaimActivityVitalityRewardRequest), global::ClaimActivityVitalityRewardRequest.Parser, new[]{ "RuleId", "ConfigurationRevision", "PeriodId", "ThresholdId", "RequestId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ClaimActivityVitalityRewardResponse), global::ClaimActivityVitalityRewardResponse.Parser, new[]{ "ErrorMessage", "Snapshot", "RequestId", "Claimed", "Durable", "Replayed" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::ClaimActivityVitalityRewardResponse), global::ClaimActivityVitalityRewardResponse.Parser, new[]{ "ErrorMessage", "Snapshot", "RequestId", "Claimed", "Durable", "Replayed" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::FestivalBeastPendingLaunchInfo), global::FestivalBeastPendingLaunchInfo.Parser, new[]{ "ClientRequestId", "ActivityInstanceId", "ConfigRevision", "LockedPetId", "MatchedTierId", "LaunchState", "BattleId", "RequestedAtMs", "AdmittedAtMs", "RejectTipId", "RejectReason" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::FestivalBeastMaterialSummary), global::FestivalBeastMaterialSummary.Parser, new[]{ "QuotaMode", "ExpectedWinUnits", "EarnableRemainingUnits", "AvailableUnits", "AvailableTradableUnits", "EarnedToday", "DailyLimit", "DayStartsAtMs", "NextDayResetAtMs", "WeeklyPhaseActive", "LifetimeEarned", "LifetimeLimit", "EarnedThisWeek", "WeeklyLimit", "WeekStartsAtMs", "NextWeekResetAtMs" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::GetFestivalBeastDetailRequest), global::GetFestivalBeastDetailRequest.Parser, new[]{ "ActivityInstanceId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::GetFestivalBeastDetailResponse), global::GetFestivalBeastDetailResponse.Parser, new[]{ "ErrorMessage", "ServerNowMs", "Phase", "ActivityInstanceId", "ConfigRevision", "ActivityName", "BossName", "BannerAssetKey", "IconKey", "EffectiveStartAtMs", "EffectiveEndAtMs", "ClaimShowcaseEndAtMs", "CurrentWins", "RequiredWins", "RewardIdentity", "RewardDefinitionVersion", "RewardPetTableId", "RewardPetModelId", "RewardPetName", "HasPermanentEligibility", "EligibilitySourceInstanceId", "EligibilityEarnedAtMs", "RewardClaimed", "RewardClaimDurable", "ClaimedPetId", "ClaimedAtMs", "ClaimRequestId", "CanStartChallenge", "StartBlockCode", "StartBlockReason", "CanClaimReward", "ClaimBlockCode", "ClaimBlockReason", "PendingLaunch", "MaterialSummary", "MatchedTierId", "RoundLimit", "HeavyDamagePercent", "StateRevision" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::StartFestivalBeastChallengeRequest), global::StartFestivalBeastChallengeRequest.Parser, new[]{ "ClientRequestId", "ActivityInstanceId", "ConfigRevision" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::StartFestivalBeastChallengeResponse), global::StartFestivalBeastChallengeResponse.Parser, new[]{ "ErrorMessage", "LaunchState", "Replayed", "ClientRequestId", "LockedPetId", "BattleId", "MatchedTierId", "AdmittedAtMs", "RejectReason" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ClaimFestivalBeastRewardRequest), global::ClaimFestivalBeastRewardRequest.Parser, new[]{ "ClientRequestId", "RewardIdentity" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ClaimFestivalBeastRewardResponse), global::ClaimFestivalBeastRewardResponse.Parser, new[]{ "ErrorMessage", "Outcome", "Replayed", "Durable", "ClientRequestId", "RewardIdentity", "RewardDefinitionVersion", "RewardPetTableId", "PetId", "ClaimedAtMs" }, null, null, null, null)
         }));
   }
   #endregion
@@ -124,11 +238,85 @@ public enum PlayerActivityRewardType {
   [pbr::OriginalName("PLAYER_ACTIVITY_REWARD_TAO")] PlayerActivityRewardTao = 2,
   [pbr::OriginalName("PLAYER_ACTIVITY_REWARD_ITEM")] PlayerActivityRewardItem = 3,
   [pbr::OriginalName("PLAYER_ACTIVITY_REWARD_EQUIPMENT")] PlayerActivityRewardEquipment = 4,
+  [pbr::OriginalName("PLAYER_ACTIVITY_REWARD_PET")] PlayerActivityRewardPet = 5,
 }
 
 public enum PlayerActivityEntryKind {
   [pbr::OriginalName("PLAYER_ACTIVITY_ENTRY_UNSPECIFIED")] PlayerActivityEntryUnspecified = 0,
   [pbr::OriginalName("PLAYER_ACTIVITY_ENTRY_MISSION")] PlayerActivityEntryMission = 1,
+  [pbr::OriginalName("PLAYER_ACTIVITY_ENTRY_FESTIVAL_BEAST")] PlayerActivityEntryFestivalBeast = 2,
+}
+
+public enum FestivalBeastPhase {
+  [pbr::OriginalName("FESTIVAL_BEAST_PHASE_UNSPECIFIED")] Unspecified = 0,
+  /// <summary>
+  /// 未排期/未开启
+  /// </summary>
+  [pbr::OriginalName("FESTIVAL_BEAST_PHASE_UNSCHEDULED")] Unscheduled = 1,
+  /// <summary>
+  /// 已排期预告（未到 effective_start_at_ms）
+  /// </summary>
+  [pbr::OriginalName("FESTIVAL_BEAST_PHASE_UPCOMING")] Upcoming = 2,
+  /// <summary>
+  /// 开放挑战 [effective_start_at_ms, effective_end_at_ms)
+  /// </summary>
+  [pbr::OriginalName("FESTIVAL_BEAST_PHASE_OPEN")] Open = 3,
+  /// <summary>
+  /// 结束后 7 天集中领奖展示 [end, end + 7d)
+  /// </summary>
+  [pbr::OriginalName("FESTIVAL_BEAST_PHASE_CLAIM_SHOWCASE")] ClaimShowcase = 4,
+  /// <summary>
+  /// 超过 7 天展示期转入历史（已达成永久资格仍永远可领）
+  /// </summary>
+  [pbr::OriginalName("FESTIVAL_BEAST_PHASE_HISTORY")] History = 5,
+}
+
+public enum FestivalBeastActionBlockCode {
+  [pbr::OriginalName("FESTIVAL_BEAST_BLOCK_NONE")] FestivalBeastBlockNone = 0,
+  [pbr::OriginalName("FESTIVAL_BEAST_BLOCK_NOT_OPEN")] FestivalBeastBlockNotOpen = 1,
+  [pbr::OriginalName("FESTIVAL_BEAST_BLOCK_CONFIG_INVALID")] FestivalBeastBlockConfigInvalid = 2,
+  [pbr::OriginalName("FESTIVAL_BEAST_BLOCK_FROZEN")] FestivalBeastBlockFrozen = 3,
+  [pbr::OriginalName("FESTIVAL_BEAST_BLOCK_IN_BATTLE")] FestivalBeastBlockInBattle = 4,
+  [pbr::OriginalName("FESTIVAL_BEAST_BLOCK_PET_REQUIRED")] FestivalBeastBlockPetRequired = 5,
+  [pbr::OriginalName("FESTIVAL_BEAST_BLOCK_PET_DEAD")] FestivalBeastBlockPetDead = 6,
+  [pbr::OriginalName("FESTIVAL_BEAST_BLOCK_LAUNCH_IN_FLIGHT")] FestivalBeastBlockLaunchInFlight = 7,
+  [pbr::OriginalName("FESTIVAL_BEAST_BLOCK_NOT_ELIGIBLE")] FestivalBeastBlockNotEligible = 8,
+  [pbr::OriginalName("FESTIVAL_BEAST_BLOCK_ALREADY_CLAIMED")] FestivalBeastBlockAlreadyClaimed = 9,
+  [pbr::OriginalName("FESTIVAL_BEAST_BLOCK_CLAIM_CONFIRMING")] FestivalBeastBlockClaimConfirming = 10,
+  [pbr::OriginalName("FESTIVAL_BEAST_BLOCK_EXCLUSIVE_SLOT_OCCUPIED")] FestivalBeastBlockExclusiveSlotOccupied = 11,
+  [pbr::OriginalName("FESTIVAL_BEAST_BLOCK_SERVICE_UNAVAILABLE")] FestivalBeastBlockServiceUnavailable = 12,
+}
+
+public enum FestivalBeastLaunchState {
+  [pbr::OriginalName("FESTIVAL_BEAST_LAUNCH_UNSPECIFIED")] FestivalBeastLaunchUnspecified = 0,
+  [pbr::OriginalName("FESTIVAL_BEAST_LAUNCH_LAUNCHING")] FestivalBeastLaunchLaunching = 1,
+  [pbr::OriginalName("FESTIVAL_BEAST_LAUNCH_ADMITTED")] FestivalBeastLaunchAdmitted = 2,
+  [pbr::OriginalName("FESTIVAL_BEAST_LAUNCH_REJECTED")] FestivalBeastLaunchRejected = 3,
+  [pbr::OriginalName("FESTIVAL_BEAST_LAUNCH_UNKNOWN")] FestivalBeastLaunchUnknown = 4,
+}
+
+public enum FestivalBeastClaimOutcome {
+  [pbr::OriginalName("FESTIVAL_BEAST_CLAIM_UNSPECIFIED")] FestivalBeastClaimUnspecified = 0,
+  [pbr::OriginalName("FESTIVAL_BEAST_CLAIM_APPLIED")] FestivalBeastClaimApplied = 1,
+  [pbr::OriginalName("FESTIVAL_BEAST_CLAIM_ALREADY_CLAIMED")] FestivalBeastClaimAlreadyClaimed = 2,
+  [pbr::OriginalName("FESTIVAL_BEAST_CLAIM_REJECTED")] FestivalBeastClaimRejected = 3,
+  [pbr::OriginalName("FESTIVAL_BEAST_CLAIM_UNKNOWN")] FestivalBeastClaimUnknown = 4,
+}
+
+public enum FestivalBeastMaterialQuotaMode {
+  [pbr::OriginalName("FESTIVAL_MATERIAL_QUOTA_UNSPECIFIED")] FestivalMaterialQuotaUnspecified = 0,
+  /// <summary>
+  /// 首套 660 份永久池（无日限）
+  /// </summary>
+  [pbr::OriginalName("FESTIVAL_MATERIAL_QUOTA_STAGE1_LIFETIME")] FestivalMaterialQuotaStage1Lifetime = 1,
+  /// <summary>
+  /// 满 660 后每周 100 份全绑定（UTC+8 周一 05:00 重置）
+  /// </summary>
+  [pbr::OriginalName("FESTIVAL_MATERIAL_QUOTA_STAGE2_WEEKLY")] FestivalMaterialQuotaStage2Weekly = 2,
+  /// <summary>
+  /// 旧版每日 20 份（UTC+8 每日 05:00 重置）
+  /// </summary>
+  [pbr::OriginalName("FESTIVAL_MATERIAL_QUOTA_DAILY_LEGACY")] FestivalMaterialQuotaDailyLegacy = 3,
 }
 
 #endregion
@@ -541,6 +729,7 @@ public sealed partial class PlayerActivityInfo : pb::IMessage<PlayerActivityInfo
     completionPeriod_ = other.completionPeriod_;
     vitalityPoints_ = other.vitalityPoints_;
     rewards_ = other.rewards_.Clone();
+    hasClaimableReward_ = other.hasClaimableReward_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -827,6 +1016,21 @@ public sealed partial class PlayerActivityInfo : pb::IMessage<PlayerActivityInfo
     get { return rewards_; }
   }
 
+  /// <summary>Field number for the "has_claimable_reward" field.</summary>
+  public const int HasClaimableRewardFieldNumber = 24;
+  private bool hasClaimableReward_;
+  /// <summary>
+  /// true 表示该活动入口当前有可立即领取的奖励（含活动结束后的永久神兽待领资格），UI 据此展示红点。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasClaimableReward {
+    get { return hasClaimableReward_; }
+    set {
+      hasClaimableReward_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -865,6 +1069,7 @@ public sealed partial class PlayerActivityInfo : pb::IMessage<PlayerActivityInfo
     if (CompletionPeriod != other.CompletionPeriod) return false;
     if (VitalityPoints != other.VitalityPoints) return false;
     if(!rewards_.Equals(other.rewards_)) return false;
+    if (HasClaimableReward != other.HasClaimableReward) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -895,6 +1100,7 @@ public sealed partial class PlayerActivityInfo : pb::IMessage<PlayerActivityInfo
     if (CompletionPeriod.Length != 0) hash ^= CompletionPeriod.GetHashCode();
     if (VitalityPoints != 0) hash ^= VitalityPoints.GetHashCode();
     hash ^= rewards_.GetHashCode();
+    if (HasClaimableReward != false) hash ^= HasClaimableReward.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -999,6 +1205,10 @@ public sealed partial class PlayerActivityInfo : pb::IMessage<PlayerActivityInfo
       output.WriteUInt32(VitalityPoints);
     }
     rewards_.WriteTo(output, _repeated_rewards_codec);
+    if (HasClaimableReward != false) {
+      output.WriteRawTag(192, 1);
+      output.WriteBool(HasClaimableReward);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1095,6 +1305,10 @@ public sealed partial class PlayerActivityInfo : pb::IMessage<PlayerActivityInfo
       output.WriteUInt32(VitalityPoints);
     }
     rewards_.WriteTo(ref output, _repeated_rewards_codec);
+    if (HasClaimableReward != false) {
+      output.WriteRawTag(192, 1);
+      output.WriteBool(HasClaimableReward);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1170,6 +1384,9 @@ public sealed partial class PlayerActivityInfo : pb::IMessage<PlayerActivityInfo
       size += 2 + pb::CodedOutputStream.ComputeUInt32Size(VitalityPoints);
     }
     size += rewards_.CalculateSize(_repeated_rewards_codec);
+    if (HasClaimableReward != false) {
+      size += 2 + 1;
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -1247,6 +1464,9 @@ public sealed partial class PlayerActivityInfo : pb::IMessage<PlayerActivityInfo
       VitalityPoints = other.VitalityPoints;
     }
     rewards_.Add(other.rewards_);
+    if (other.HasClaimableReward != false) {
+      HasClaimableReward = other.HasClaimableReward;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -1359,6 +1579,10 @@ public sealed partial class PlayerActivityInfo : pb::IMessage<PlayerActivityInfo
           rewards_.AddEntriesFrom(input, _repeated_rewards_codec);
           break;
         }
+        case 192: {
+          HasClaimableReward = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -1469,6 +1693,10 @@ public sealed partial class PlayerActivityInfo : pb::IMessage<PlayerActivityInfo
         }
         case 186: {
           rewards_.AddEntriesFrom(ref input, _repeated_rewards_codec);
+          break;
+        }
+        case 192: {
+          HasClaimableReward = input.ReadBool();
           break;
         }
       }
@@ -3668,6 +3896,4754 @@ public sealed partial class ClaimActivityVitalityRewardResponse : pb::IMessage<C
         }
         case 48: {
           Replayed = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class FestivalBeastPendingLaunchInfo : pb::IMessage<FestivalBeastPendingLaunchInfo>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<FestivalBeastPendingLaunchInfo> _parser = new pb::MessageParser<FestivalBeastPendingLaunchInfo>(() => new FestivalBeastPendingLaunchInfo());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<FestivalBeastPendingLaunchInfo> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerActivityReflection.Descriptor.MessageTypes[8]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public FestivalBeastPendingLaunchInfo() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public FestivalBeastPendingLaunchInfo(FestivalBeastPendingLaunchInfo other) : this() {
+    clientRequestId_ = other.clientRequestId_;
+    activityInstanceId_ = other.activityInstanceId_;
+    configRevision_ = other.configRevision_;
+    lockedPetId_ = other.lockedPetId_;
+    matchedTierId_ = other.matchedTierId_;
+    launchState_ = other.launchState_;
+    battleId_ = other.battleId_;
+    requestedAtMs_ = other.requestedAtMs_;
+    admittedAtMs_ = other.admittedAtMs_;
+    rejectTipId_ = other.rejectTipId_;
+    rejectReason_ = other.rejectReason_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public FestivalBeastPendingLaunchInfo Clone() {
+    return new FestivalBeastPendingLaunchInfo(this);
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 1;
+  private string clientRequestId_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "activity_instance_id" field.</summary>
+  public const int ActivityInstanceIdFieldNumber = 2;
+  private uint activityInstanceId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ActivityInstanceId {
+    get { return activityInstanceId_; }
+    set {
+      activityInstanceId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "config_revision" field.</summary>
+  public const int ConfigRevisionFieldNumber = 3;
+  private uint configRevision_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ConfigRevision {
+    get { return configRevision_; }
+    set {
+      configRevision_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "locked_pet_id" field.</summary>
+  public const int LockedPetIdFieldNumber = 4;
+  private ulong lockedPetId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong LockedPetId {
+    get { return lockedPetId_; }
+    set {
+      lockedPetId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "matched_tier_id" field.</summary>
+  public const int MatchedTierIdFieldNumber = 5;
+  private uint matchedTierId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MatchedTierId {
+    get { return matchedTierId_; }
+    set {
+      matchedTierId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "launch_state" field.</summary>
+  public const int LaunchStateFieldNumber = 6;
+  private global::FestivalBeastLaunchState launchState_ = global::FestivalBeastLaunchState.FestivalBeastLaunchUnspecified;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::FestivalBeastLaunchState LaunchState {
+    get { return launchState_; }
+    set {
+      launchState_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "battle_id" field.</summary>
+  public const int BattleIdFieldNumber = 7;
+  private ulong battleId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong BattleId {
+    get { return battleId_; }
+    set {
+      battleId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "requested_at_ms" field.</summary>
+  public const int RequestedAtMsFieldNumber = 8;
+  private ulong requestedAtMs_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong RequestedAtMs {
+    get { return requestedAtMs_; }
+    set {
+      requestedAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "admitted_at_ms" field.</summary>
+  public const int AdmittedAtMsFieldNumber = 9;
+  private ulong admittedAtMs_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong AdmittedAtMs {
+    get { return admittedAtMs_; }
+    set {
+      admittedAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reject_tip_id" field.</summary>
+  public const int RejectTipIdFieldNumber = 10;
+  private uint rejectTipId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RejectTipId {
+    get { return rejectTipId_; }
+    set {
+      rejectTipId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reject_reason" field.</summary>
+  public const int RejectReasonFieldNumber = 11;
+  private string rejectReason_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string RejectReason {
+    get { return rejectReason_; }
+    set {
+      rejectReason_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as FestivalBeastPendingLaunchInfo);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(FestivalBeastPendingLaunchInfo other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ClientRequestId != other.ClientRequestId) return false;
+    if (ActivityInstanceId != other.ActivityInstanceId) return false;
+    if (ConfigRevision != other.ConfigRevision) return false;
+    if (LockedPetId != other.LockedPetId) return false;
+    if (MatchedTierId != other.MatchedTierId) return false;
+    if (LaunchState != other.LaunchState) return false;
+    if (BattleId != other.BattleId) return false;
+    if (RequestedAtMs != other.RequestedAtMs) return false;
+    if (AdmittedAtMs != other.AdmittedAtMs) return false;
+    if (RejectTipId != other.RejectTipId) return false;
+    if (RejectReason != other.RejectReason) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ClientRequestId.Length != 0) hash ^= ClientRequestId.GetHashCode();
+    if (ActivityInstanceId != 0) hash ^= ActivityInstanceId.GetHashCode();
+    if (ConfigRevision != 0) hash ^= ConfigRevision.GetHashCode();
+    if (LockedPetId != 0UL) hash ^= LockedPetId.GetHashCode();
+    if (MatchedTierId != 0) hash ^= MatchedTierId.GetHashCode();
+    if (LaunchState != global::FestivalBeastLaunchState.FestivalBeastLaunchUnspecified) hash ^= LaunchState.GetHashCode();
+    if (BattleId != 0UL) hash ^= BattleId.GetHashCode();
+    if (RequestedAtMs != 0UL) hash ^= RequestedAtMs.GetHashCode();
+    if (AdmittedAtMs != 0UL) hash ^= AdmittedAtMs.GetHashCode();
+    if (RejectTipId != 0) hash ^= RejectTipId.GetHashCode();
+    if (RejectReason.Length != 0) hash ^= RejectReason.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ClientRequestId.Length != 0) {
+      output.WriteRawTag(10);
+      output.WriteString(ClientRequestId);
+    }
+    if (ActivityInstanceId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ActivityInstanceId);
+    }
+    if (ConfigRevision != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(ConfigRevision);
+    }
+    if (LockedPetId != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(LockedPetId);
+    }
+    if (MatchedTierId != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(MatchedTierId);
+    }
+    if (LaunchState != global::FestivalBeastLaunchState.FestivalBeastLaunchUnspecified) {
+      output.WriteRawTag(48);
+      output.WriteEnum((int) LaunchState);
+    }
+    if (BattleId != 0UL) {
+      output.WriteRawTag(56);
+      output.WriteUInt64(BattleId);
+    }
+    if (RequestedAtMs != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(RequestedAtMs);
+    }
+    if (AdmittedAtMs != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(AdmittedAtMs);
+    }
+    if (RejectTipId != 0) {
+      output.WriteRawTag(80);
+      output.WriteUInt32(RejectTipId);
+    }
+    if (RejectReason.Length != 0) {
+      output.WriteRawTag(90);
+      output.WriteString(RejectReason);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ClientRequestId.Length != 0) {
+      output.WriteRawTag(10);
+      output.WriteString(ClientRequestId);
+    }
+    if (ActivityInstanceId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ActivityInstanceId);
+    }
+    if (ConfigRevision != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(ConfigRevision);
+    }
+    if (LockedPetId != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(LockedPetId);
+    }
+    if (MatchedTierId != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(MatchedTierId);
+    }
+    if (LaunchState != global::FestivalBeastLaunchState.FestivalBeastLaunchUnspecified) {
+      output.WriteRawTag(48);
+      output.WriteEnum((int) LaunchState);
+    }
+    if (BattleId != 0UL) {
+      output.WriteRawTag(56);
+      output.WriteUInt64(BattleId);
+    }
+    if (RequestedAtMs != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(RequestedAtMs);
+    }
+    if (AdmittedAtMs != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(AdmittedAtMs);
+    }
+    if (RejectTipId != 0) {
+      output.WriteRawTag(80);
+      output.WriteUInt32(RejectTipId);
+    }
+    if (RejectReason.Length != 0) {
+      output.WriteRawTag(90);
+      output.WriteString(RejectReason);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ClientRequestId.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(ClientRequestId);
+    }
+    if (ActivityInstanceId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ActivityInstanceId);
+    }
+    if (ConfigRevision != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ConfigRevision);
+    }
+    if (LockedPetId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(LockedPetId);
+    }
+    if (MatchedTierId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MatchedTierId);
+    }
+    if (LaunchState != global::FestivalBeastLaunchState.FestivalBeastLaunchUnspecified) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) LaunchState);
+    }
+    if (BattleId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BattleId);
+    }
+    if (RequestedAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RequestedAtMs);
+    }
+    if (AdmittedAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(AdmittedAtMs);
+    }
+    if (RejectTipId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RejectTipId);
+    }
+    if (RejectReason.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(RejectReason);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(FestivalBeastPendingLaunchInfo other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ClientRequestId.Length != 0) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    if (other.ActivityInstanceId != 0) {
+      ActivityInstanceId = other.ActivityInstanceId;
+    }
+    if (other.ConfigRevision != 0) {
+      ConfigRevision = other.ConfigRevision;
+    }
+    if (other.LockedPetId != 0UL) {
+      LockedPetId = other.LockedPetId;
+    }
+    if (other.MatchedTierId != 0) {
+      MatchedTierId = other.MatchedTierId;
+    }
+    if (other.LaunchState != global::FestivalBeastLaunchState.FestivalBeastLaunchUnspecified) {
+      LaunchState = other.LaunchState;
+    }
+    if (other.BattleId != 0UL) {
+      BattleId = other.BattleId;
+    }
+    if (other.RequestedAtMs != 0UL) {
+      RequestedAtMs = other.RequestedAtMs;
+    }
+    if (other.AdmittedAtMs != 0UL) {
+      AdmittedAtMs = other.AdmittedAtMs;
+    }
+    if (other.RejectTipId != 0) {
+      RejectTipId = other.RejectTipId;
+    }
+    if (other.RejectReason.Length != 0) {
+      RejectReason = other.RejectReason;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          ClientRequestId = input.ReadString();
+          break;
+        }
+        case 16: {
+          ActivityInstanceId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          ConfigRevision = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          LockedPetId = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          MatchedTierId = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          LaunchState = (global::FestivalBeastLaunchState) input.ReadEnum();
+          break;
+        }
+        case 56: {
+          BattleId = input.ReadUInt64();
+          break;
+        }
+        case 64: {
+          RequestedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 72: {
+          AdmittedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 80: {
+          RejectTipId = input.ReadUInt32();
+          break;
+        }
+        case 90: {
+          RejectReason = input.ReadString();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          ClientRequestId = input.ReadString();
+          break;
+        }
+        case 16: {
+          ActivityInstanceId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          ConfigRevision = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          LockedPetId = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          MatchedTierId = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          LaunchState = (global::FestivalBeastLaunchState) input.ReadEnum();
+          break;
+        }
+        case 56: {
+          BattleId = input.ReadUInt64();
+          break;
+        }
+        case 64: {
+          RequestedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 72: {
+          AdmittedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 80: {
+          RejectTipId = input.ReadUInt32();
+          break;
+        }
+        case 90: {
+          RejectReason = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class FestivalBeastMaterialSummary : pb::IMessage<FestivalBeastMaterialSummary>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<FestivalBeastMaterialSummary> _parser = new pb::MessageParser<FestivalBeastMaterialSummary>(() => new FestivalBeastMaterialSummary());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<FestivalBeastMaterialSummary> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerActivityReflection.Descriptor.MessageTypes[9]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public FestivalBeastMaterialSummary() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public FestivalBeastMaterialSummary(FestivalBeastMaterialSummary other) : this() {
+    quotaMode_ = other.quotaMode_;
+    expectedWinUnits_ = other.expectedWinUnits_;
+    earnableRemainingUnits_ = other.earnableRemainingUnits_;
+    availableUnits_ = other.availableUnits_;
+    availableTradableUnits_ = other.availableTradableUnits_;
+    earnedToday_ = other.earnedToday_;
+    dailyLimit_ = other.dailyLimit_;
+    dayStartsAtMs_ = other.dayStartsAtMs_;
+    nextDayResetAtMs_ = other.nextDayResetAtMs_;
+    weeklyPhaseActive_ = other.weeklyPhaseActive_;
+    lifetimeEarned_ = other.lifetimeEarned_;
+    lifetimeLimit_ = other.lifetimeLimit_;
+    earnedThisWeek_ = other.earnedThisWeek_;
+    weeklyLimit_ = other.weeklyLimit_;
+    weekStartsAtMs_ = other.weekStartsAtMs_;
+    nextWeekResetAtMs_ = other.nextWeekResetAtMs_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public FestivalBeastMaterialSummary Clone() {
+    return new FestivalBeastMaterialSummary(this);
+  }
+
+  /// <summary>Field number for the "quota_mode" field.</summary>
+  public const int QuotaModeFieldNumber = 1;
+  private global::FestivalBeastMaterialQuotaMode quotaMode_ = global::FestivalBeastMaterialQuotaMode.FestivalMaterialQuotaUnspecified;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::FestivalBeastMaterialQuotaMode QuotaMode {
+    get { return quotaMode_; }
+    set {
+      quotaMode_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "expected_win_units" field.</summary>
+  public const int ExpectedWinUnitsFieldNumber = 2;
+  private uint expectedWinUnits_;
+  /// <summary>
+  /// 本活动单场胜利预计新增份数（0..10）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ExpectedWinUnits {
+    get { return expectedWinUnits_; }
+    set {
+      expectedWinUnits_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "earnable_remaining_units" field.</summary>
+  public const int EarnableRemainingUnitsFieldNumber = 3;
+  private uint earnableRemainingUnits_;
+  /// <summary>
+  /// 当前阶段/周期还可赚取的材料额度
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EarnableRemainingUnits {
+    get { return earnableRemainingUnits_; }
+    set {
+      earnableRemainingUnits_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "available_units" field.</summary>
+  public const int AvailableUnitsFieldNumber = 4;
+  private ulong availableUnits_;
+  /// <summary>
+  /// 跨日/跨周累计待领取余额
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong AvailableUnits {
+    get { return availableUnits_; }
+    set {
+      availableUnits_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "available_tradable_units" field.</summary>
+  public const int AvailableTradableUnitsFieldNumber = 5;
+  private ulong availableTradableUnits_;
+  /// <summary>
+  /// 待领取余额中可交易份数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong AvailableTradableUnits {
+    get { return availableTradableUnits_; }
+    set {
+      availableTradableUnits_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "earned_today" field.</summary>
+  public const int EarnedTodayFieldNumber = 6;
+  private uint earnedToday_;
+  /// <summary>
+  /// 兼容字段：今日已赚
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EarnedToday {
+    get { return earnedToday_; }
+    set {
+      earnedToday_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "daily_limit" field.</summary>
+  public const int DailyLimitFieldNumber = 7;
+  private uint dailyLimit_;
+  /// <summary>
+  /// 兼容字段：日限参考值
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint DailyLimit {
+    get { return dailyLimit_; }
+    set {
+      dailyLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "day_starts_at_ms" field.</summary>
+  public const int DayStartsAtMsFieldNumber = 8;
+  private ulong dayStartsAtMs_;
+  /// <summary>
+  /// 当前游戏日开始 UTC 毫秒（UTC+8 05:00）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong DayStartsAtMs {
+    get { return dayStartsAtMs_; }
+    set {
+      dayStartsAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "next_day_reset_at_ms" field.</summary>
+  public const int NextDayResetAtMsFieldNumber = 9;
+  private ulong nextDayResetAtMs_;
+  /// <summary>
+  /// 下一游戏日切换 UTC 毫秒（UTC+8 05:00）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong NextDayResetAtMs {
+    get { return nextDayResetAtMs_; }
+    set {
+      nextDayResetAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "weekly_phase_active" field.</summary>
+  public const int WeeklyPhaseActiveFieldNumber = 10;
+  private bool weeklyPhaseActive_;
+  /// <summary>
+  /// 是否已进入第二阶段周限池
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool WeeklyPhaseActive {
+    get { return weeklyPhaseActive_; }
+    set {
+      weeklyPhaseActive_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "lifetime_earned" field.</summary>
+  public const int LifetimeEarnedFieldNumber = 11;
+  private uint lifetimeEarned_;
+  /// <summary>
+  /// 阶段一累计已赚
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint LifetimeEarned {
+    get { return lifetimeEarned_; }
+    set {
+      lifetimeEarned_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "lifetime_limit" field.</summary>
+  public const int LifetimeLimitFieldNumber = 12;
+  private uint lifetimeLimit_;
+  /// <summary>
+  /// 阶段一总池（660）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint LifetimeLimit {
+    get { return lifetimeLimit_; }
+    set {
+      lifetimeLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "earned_this_week" field.</summary>
+  public const int EarnedThisWeekFieldNumber = 13;
+  private uint earnedThisWeek_;
+  /// <summary>
+  /// 阶段二本周已赚
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EarnedThisWeek {
+    get { return earnedThisWeek_; }
+    set {
+      earnedThisWeek_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "weekly_limit" field.</summary>
+  public const int WeeklyLimitFieldNumber = 14;
+  private uint weeklyLimit_;
+  /// <summary>
+  /// 阶段二周限（100）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint WeeklyLimit {
+    get { return weeklyLimit_; }
+    set {
+      weeklyLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "week_starts_at_ms" field.</summary>
+  public const int WeekStartsAtMsFieldNumber = 15;
+  private ulong weekStartsAtMs_;
+  /// <summary>
+  /// 本周开始 UTC 毫秒（UTC+8 周一 05:00）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong WeekStartsAtMs {
+    get { return weekStartsAtMs_; }
+    set {
+      weekStartsAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "next_week_reset_at_ms" field.</summary>
+  public const int NextWeekResetAtMsFieldNumber = 16;
+  private ulong nextWeekResetAtMs_;
+  /// <summary>
+  /// 下周重置 UTC 毫秒
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong NextWeekResetAtMs {
+    get { return nextWeekResetAtMs_; }
+    set {
+      nextWeekResetAtMs_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as FestivalBeastMaterialSummary);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(FestivalBeastMaterialSummary other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (QuotaMode != other.QuotaMode) return false;
+    if (ExpectedWinUnits != other.ExpectedWinUnits) return false;
+    if (EarnableRemainingUnits != other.EarnableRemainingUnits) return false;
+    if (AvailableUnits != other.AvailableUnits) return false;
+    if (AvailableTradableUnits != other.AvailableTradableUnits) return false;
+    if (EarnedToday != other.EarnedToday) return false;
+    if (DailyLimit != other.DailyLimit) return false;
+    if (DayStartsAtMs != other.DayStartsAtMs) return false;
+    if (NextDayResetAtMs != other.NextDayResetAtMs) return false;
+    if (WeeklyPhaseActive != other.WeeklyPhaseActive) return false;
+    if (LifetimeEarned != other.LifetimeEarned) return false;
+    if (LifetimeLimit != other.LifetimeLimit) return false;
+    if (EarnedThisWeek != other.EarnedThisWeek) return false;
+    if (WeeklyLimit != other.WeeklyLimit) return false;
+    if (WeekStartsAtMs != other.WeekStartsAtMs) return false;
+    if (NextWeekResetAtMs != other.NextWeekResetAtMs) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (QuotaMode != global::FestivalBeastMaterialQuotaMode.FestivalMaterialQuotaUnspecified) hash ^= QuotaMode.GetHashCode();
+    if (ExpectedWinUnits != 0) hash ^= ExpectedWinUnits.GetHashCode();
+    if (EarnableRemainingUnits != 0) hash ^= EarnableRemainingUnits.GetHashCode();
+    if (AvailableUnits != 0UL) hash ^= AvailableUnits.GetHashCode();
+    if (AvailableTradableUnits != 0UL) hash ^= AvailableTradableUnits.GetHashCode();
+    if (EarnedToday != 0) hash ^= EarnedToday.GetHashCode();
+    if (DailyLimit != 0) hash ^= DailyLimit.GetHashCode();
+    if (DayStartsAtMs != 0UL) hash ^= DayStartsAtMs.GetHashCode();
+    if (NextDayResetAtMs != 0UL) hash ^= NextDayResetAtMs.GetHashCode();
+    if (WeeklyPhaseActive != false) hash ^= WeeklyPhaseActive.GetHashCode();
+    if (LifetimeEarned != 0) hash ^= LifetimeEarned.GetHashCode();
+    if (LifetimeLimit != 0) hash ^= LifetimeLimit.GetHashCode();
+    if (EarnedThisWeek != 0) hash ^= EarnedThisWeek.GetHashCode();
+    if (WeeklyLimit != 0) hash ^= WeeklyLimit.GetHashCode();
+    if (WeekStartsAtMs != 0UL) hash ^= WeekStartsAtMs.GetHashCode();
+    if (NextWeekResetAtMs != 0UL) hash ^= NextWeekResetAtMs.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (QuotaMode != global::FestivalBeastMaterialQuotaMode.FestivalMaterialQuotaUnspecified) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) QuotaMode);
+    }
+    if (ExpectedWinUnits != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ExpectedWinUnits);
+    }
+    if (EarnableRemainingUnits != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(EarnableRemainingUnits);
+    }
+    if (AvailableUnits != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(AvailableUnits);
+    }
+    if (AvailableTradableUnits != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(AvailableTradableUnits);
+    }
+    if (EarnedToday != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(EarnedToday);
+    }
+    if (DailyLimit != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(DailyLimit);
+    }
+    if (DayStartsAtMs != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(DayStartsAtMs);
+    }
+    if (NextDayResetAtMs != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(NextDayResetAtMs);
+    }
+    if (WeeklyPhaseActive != false) {
+      output.WriteRawTag(80);
+      output.WriteBool(WeeklyPhaseActive);
+    }
+    if (LifetimeEarned != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(LifetimeEarned);
+    }
+    if (LifetimeLimit != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(LifetimeLimit);
+    }
+    if (EarnedThisWeek != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(EarnedThisWeek);
+    }
+    if (WeeklyLimit != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(WeeklyLimit);
+    }
+    if (WeekStartsAtMs != 0UL) {
+      output.WriteRawTag(120);
+      output.WriteUInt64(WeekStartsAtMs);
+    }
+    if (NextWeekResetAtMs != 0UL) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt64(NextWeekResetAtMs);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (QuotaMode != global::FestivalBeastMaterialQuotaMode.FestivalMaterialQuotaUnspecified) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) QuotaMode);
+    }
+    if (ExpectedWinUnits != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ExpectedWinUnits);
+    }
+    if (EarnableRemainingUnits != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(EarnableRemainingUnits);
+    }
+    if (AvailableUnits != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(AvailableUnits);
+    }
+    if (AvailableTradableUnits != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(AvailableTradableUnits);
+    }
+    if (EarnedToday != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(EarnedToday);
+    }
+    if (DailyLimit != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(DailyLimit);
+    }
+    if (DayStartsAtMs != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(DayStartsAtMs);
+    }
+    if (NextDayResetAtMs != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(NextDayResetAtMs);
+    }
+    if (WeeklyPhaseActive != false) {
+      output.WriteRawTag(80);
+      output.WriteBool(WeeklyPhaseActive);
+    }
+    if (LifetimeEarned != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(LifetimeEarned);
+    }
+    if (LifetimeLimit != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(LifetimeLimit);
+    }
+    if (EarnedThisWeek != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(EarnedThisWeek);
+    }
+    if (WeeklyLimit != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(WeeklyLimit);
+    }
+    if (WeekStartsAtMs != 0UL) {
+      output.WriteRawTag(120);
+      output.WriteUInt64(WeekStartsAtMs);
+    }
+    if (NextWeekResetAtMs != 0UL) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt64(NextWeekResetAtMs);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (QuotaMode != global::FestivalBeastMaterialQuotaMode.FestivalMaterialQuotaUnspecified) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) QuotaMode);
+    }
+    if (ExpectedWinUnits != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ExpectedWinUnits);
+    }
+    if (EarnableRemainingUnits != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(EarnableRemainingUnits);
+    }
+    if (AvailableUnits != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(AvailableUnits);
+    }
+    if (AvailableTradableUnits != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(AvailableTradableUnits);
+    }
+    if (EarnedToday != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(EarnedToday);
+    }
+    if (DailyLimit != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DailyLimit);
+    }
+    if (DayStartsAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(DayStartsAtMs);
+    }
+    if (NextDayResetAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(NextDayResetAtMs);
+    }
+    if (WeeklyPhaseActive != false) {
+      size += 1 + 1;
+    }
+    if (LifetimeEarned != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LifetimeEarned);
+    }
+    if (LifetimeLimit != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LifetimeLimit);
+    }
+    if (EarnedThisWeek != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(EarnedThisWeek);
+    }
+    if (WeeklyLimit != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WeeklyLimit);
+    }
+    if (WeekStartsAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(WeekStartsAtMs);
+    }
+    if (NextWeekResetAtMs != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(NextWeekResetAtMs);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(FestivalBeastMaterialSummary other) {
+    if (other == null) {
+      return;
+    }
+    if (other.QuotaMode != global::FestivalBeastMaterialQuotaMode.FestivalMaterialQuotaUnspecified) {
+      QuotaMode = other.QuotaMode;
+    }
+    if (other.ExpectedWinUnits != 0) {
+      ExpectedWinUnits = other.ExpectedWinUnits;
+    }
+    if (other.EarnableRemainingUnits != 0) {
+      EarnableRemainingUnits = other.EarnableRemainingUnits;
+    }
+    if (other.AvailableUnits != 0UL) {
+      AvailableUnits = other.AvailableUnits;
+    }
+    if (other.AvailableTradableUnits != 0UL) {
+      AvailableTradableUnits = other.AvailableTradableUnits;
+    }
+    if (other.EarnedToday != 0) {
+      EarnedToday = other.EarnedToday;
+    }
+    if (other.DailyLimit != 0) {
+      DailyLimit = other.DailyLimit;
+    }
+    if (other.DayStartsAtMs != 0UL) {
+      DayStartsAtMs = other.DayStartsAtMs;
+    }
+    if (other.NextDayResetAtMs != 0UL) {
+      NextDayResetAtMs = other.NextDayResetAtMs;
+    }
+    if (other.WeeklyPhaseActive != false) {
+      WeeklyPhaseActive = other.WeeklyPhaseActive;
+    }
+    if (other.LifetimeEarned != 0) {
+      LifetimeEarned = other.LifetimeEarned;
+    }
+    if (other.LifetimeLimit != 0) {
+      LifetimeLimit = other.LifetimeLimit;
+    }
+    if (other.EarnedThisWeek != 0) {
+      EarnedThisWeek = other.EarnedThisWeek;
+    }
+    if (other.WeeklyLimit != 0) {
+      WeeklyLimit = other.WeeklyLimit;
+    }
+    if (other.WeekStartsAtMs != 0UL) {
+      WeekStartsAtMs = other.WeekStartsAtMs;
+    }
+    if (other.NextWeekResetAtMs != 0UL) {
+      NextWeekResetAtMs = other.NextWeekResetAtMs;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          QuotaMode = (global::FestivalBeastMaterialQuotaMode) input.ReadEnum();
+          break;
+        }
+        case 16: {
+          ExpectedWinUnits = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          EarnableRemainingUnits = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          AvailableUnits = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          AvailableTradableUnits = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          EarnedToday = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          DailyLimit = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          DayStartsAtMs = input.ReadUInt64();
+          break;
+        }
+        case 72: {
+          NextDayResetAtMs = input.ReadUInt64();
+          break;
+        }
+        case 80: {
+          WeeklyPhaseActive = input.ReadBool();
+          break;
+        }
+        case 88: {
+          LifetimeEarned = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          LifetimeLimit = input.ReadUInt32();
+          break;
+        }
+        case 104: {
+          EarnedThisWeek = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          WeeklyLimit = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          WeekStartsAtMs = input.ReadUInt64();
+          break;
+        }
+        case 128: {
+          NextWeekResetAtMs = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          QuotaMode = (global::FestivalBeastMaterialQuotaMode) input.ReadEnum();
+          break;
+        }
+        case 16: {
+          ExpectedWinUnits = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          EarnableRemainingUnits = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          AvailableUnits = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          AvailableTradableUnits = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          EarnedToday = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          DailyLimit = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          DayStartsAtMs = input.ReadUInt64();
+          break;
+        }
+        case 72: {
+          NextDayResetAtMs = input.ReadUInt64();
+          break;
+        }
+        case 80: {
+          WeeklyPhaseActive = input.ReadBool();
+          break;
+        }
+        case 88: {
+          LifetimeEarned = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          LifetimeLimit = input.ReadUInt32();
+          break;
+        }
+        case 104: {
+          EarnedThisWeek = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          WeeklyLimit = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          WeekStartsAtMs = input.ReadUInt64();
+          break;
+        }
+        case 128: {
+          NextWeekResetAtMs = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class GetFestivalBeastDetailRequest : pb::IMessage<GetFestivalBeastDetailRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<GetFestivalBeastDetailRequest> _parser = new pb::MessageParser<GetFestivalBeastDetailRequest>(() => new GetFestivalBeastDetailRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<GetFestivalBeastDetailRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerActivityReflection.Descriptor.MessageTypes[10]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public GetFestivalBeastDetailRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public GetFestivalBeastDetailRequest(GetFestivalBeastDetailRequest other) : this() {
+    activityInstanceId_ = other.activityInstanceId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public GetFestivalBeastDetailRequest Clone() {
+    return new GetFestivalBeastDetailRequest(this);
+  }
+
+  /// <summary>Field number for the "activity_instance_id" field.</summary>
+  public const int ActivityInstanceIdFieldNumber = 1;
+  private uint activityInstanceId_;
+  /// <summary>
+  /// 0 表示查询当前权威期次（无开放期次时返回最近有未领/已领记录的历史期次）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ActivityInstanceId {
+    get { return activityInstanceId_; }
+    set {
+      activityInstanceId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as GetFestivalBeastDetailRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(GetFestivalBeastDetailRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ActivityInstanceId != other.ActivityInstanceId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ActivityInstanceId != 0) hash ^= ActivityInstanceId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ActivityInstanceId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ActivityInstanceId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ActivityInstanceId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ActivityInstanceId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ActivityInstanceId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ActivityInstanceId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(GetFestivalBeastDetailRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ActivityInstanceId != 0) {
+      ActivityInstanceId = other.ActivityInstanceId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ActivityInstanceId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ActivityInstanceId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class GetFestivalBeastDetailResponse : pb::IMessage<GetFestivalBeastDetailResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<GetFestivalBeastDetailResponse> _parser = new pb::MessageParser<GetFestivalBeastDetailResponse>(() => new GetFestivalBeastDetailResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<GetFestivalBeastDetailResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerActivityReflection.Descriptor.MessageTypes[11]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public GetFestivalBeastDetailResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public GetFestivalBeastDetailResponse(GetFestivalBeastDetailResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    serverNowMs_ = other.serverNowMs_;
+    phase_ = other.phase_;
+    activityInstanceId_ = other.activityInstanceId_;
+    configRevision_ = other.configRevision_;
+    activityName_ = other.activityName_;
+    bossName_ = other.bossName_;
+    bannerAssetKey_ = other.bannerAssetKey_;
+    iconKey_ = other.iconKey_;
+    effectiveStartAtMs_ = other.effectiveStartAtMs_;
+    effectiveEndAtMs_ = other.effectiveEndAtMs_;
+    claimShowcaseEndAtMs_ = other.claimShowcaseEndAtMs_;
+    currentWins_ = other.currentWins_;
+    requiredWins_ = other.requiredWins_;
+    rewardIdentity_ = other.rewardIdentity_;
+    rewardDefinitionVersion_ = other.rewardDefinitionVersion_;
+    rewardPetTableId_ = other.rewardPetTableId_;
+    rewardPetModelId_ = other.rewardPetModelId_;
+    rewardPetName_ = other.rewardPetName_;
+    hasPermanentEligibility_ = other.hasPermanentEligibility_;
+    eligibilitySourceInstanceId_ = other.eligibilitySourceInstanceId_;
+    eligibilityEarnedAtMs_ = other.eligibilityEarnedAtMs_;
+    rewardClaimed_ = other.rewardClaimed_;
+    rewardClaimDurable_ = other.rewardClaimDurable_;
+    claimedPetId_ = other.claimedPetId_;
+    claimedAtMs_ = other.claimedAtMs_;
+    claimRequestId_ = other.claimRequestId_;
+    canStartChallenge_ = other.canStartChallenge_;
+    startBlockCode_ = other.startBlockCode_;
+    startBlockReason_ = other.startBlockReason_;
+    canClaimReward_ = other.canClaimReward_;
+    claimBlockCode_ = other.claimBlockCode_;
+    claimBlockReason_ = other.claimBlockReason_;
+    pendingLaunch_ = other.pendingLaunch_ != null ? other.pendingLaunch_.Clone() : null;
+    materialSummary_ = other.materialSummary_ != null ? other.materialSummary_.Clone() : null;
+    matchedTierId_ = other.matchedTierId_;
+    roundLimit_ = other.roundLimit_;
+    heavyDamagePercent_ = other.heavyDamagePercent_;
+    stateRevision_ = other.stateRevision_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public GetFestivalBeastDetailResponse Clone() {
+    return new GetFestivalBeastDetailResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "server_now_ms" field.</summary>
+  public const int ServerNowMsFieldNumber = 2;
+  private ulong serverNowMs_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ServerNowMs {
+    get { return serverNowMs_; }
+    set {
+      serverNowMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "phase" field.</summary>
+  public const int PhaseFieldNumber = 3;
+  private global::FestivalBeastPhase phase_ = global::FestivalBeastPhase.Unspecified;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::FestivalBeastPhase Phase {
+    get { return phase_; }
+    set {
+      phase_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "activity_instance_id" field.</summary>
+  public const int ActivityInstanceIdFieldNumber = 4;
+  private uint activityInstanceId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ActivityInstanceId {
+    get { return activityInstanceId_; }
+    set {
+      activityInstanceId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "config_revision" field.</summary>
+  public const int ConfigRevisionFieldNumber = 5;
+  private uint configRevision_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ConfigRevision {
+    get { return configRevision_; }
+    set {
+      configRevision_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "activity_name" field.</summary>
+  public const int ActivityNameFieldNumber = 6;
+  private string activityName_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string ActivityName {
+    get { return activityName_; }
+    set {
+      activityName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "boss_name" field.</summary>
+  public const int BossNameFieldNumber = 7;
+  private string bossName_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string BossName {
+    get { return bossName_; }
+    set {
+      bossName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "banner_asset_key" field.</summary>
+  public const int BannerAssetKeyFieldNumber = 8;
+  private string bannerAssetKey_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string BannerAssetKey {
+    get { return bannerAssetKey_; }
+    set {
+      bannerAssetKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "icon_key" field.</summary>
+  public const int IconKeyFieldNumber = 9;
+  private string iconKey_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string IconKey {
+    get { return iconKey_; }
+    set {
+      iconKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "effective_start_at_ms" field.</summary>
+  public const int EffectiveStartAtMsFieldNumber = 10;
+  private ulong effectiveStartAtMs_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong EffectiveStartAtMs {
+    get { return effectiveStartAtMs_; }
+    set {
+      effectiveStartAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "effective_end_at_ms" field.</summary>
+  public const int EffectiveEndAtMsFieldNumber = 11;
+  private ulong effectiveEndAtMs_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong EffectiveEndAtMs {
+    get { return effectiveEndAtMs_; }
+    set {
+      effectiveEndAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "claim_showcase_end_at_ms" field.</summary>
+  public const int ClaimShowcaseEndAtMsFieldNumber = 12;
+  private ulong claimShowcaseEndAtMs_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClaimShowcaseEndAtMs {
+    get { return claimShowcaseEndAtMs_; }
+    set {
+      claimShowcaseEndAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "current_wins" field.</summary>
+  public const int CurrentWinsFieldNumber = 13;
+  private uint currentWins_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CurrentWins {
+    get { return currentWins_; }
+    set {
+      currentWins_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "required_wins" field.</summary>
+  public const int RequiredWinsFieldNumber = 14;
+  private uint requiredWins_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RequiredWins {
+    get { return requiredWins_; }
+    set {
+      requiredWins_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reward_identity" field.</summary>
+  public const int RewardIdentityFieldNumber = 15;
+  private string rewardIdentity_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string RewardIdentity {
+    get { return rewardIdentity_; }
+    set {
+      rewardIdentity_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "reward_definition_version" field.</summary>
+  public const int RewardDefinitionVersionFieldNumber = 16;
+  private uint rewardDefinitionVersion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RewardDefinitionVersion {
+    get { return rewardDefinitionVersion_; }
+    set {
+      rewardDefinitionVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reward_pet_table_id" field.</summary>
+  public const int RewardPetTableIdFieldNumber = 17;
+  private uint rewardPetTableId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RewardPetTableId {
+    get { return rewardPetTableId_; }
+    set {
+      rewardPetTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reward_pet_model_id" field.</summary>
+  public const int RewardPetModelIdFieldNumber = 18;
+  private uint rewardPetModelId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RewardPetModelId {
+    get { return rewardPetModelId_; }
+    set {
+      rewardPetModelId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reward_pet_name" field.</summary>
+  public const int RewardPetNameFieldNumber = 19;
+  private string rewardPetName_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string RewardPetName {
+    get { return rewardPetName_; }
+    set {
+      rewardPetName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "has_permanent_eligibility" field.</summary>
+  public const int HasPermanentEligibilityFieldNumber = 20;
+  private bool hasPermanentEligibility_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasPermanentEligibility {
+    get { return hasPermanentEligibility_; }
+    set {
+      hasPermanentEligibility_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "eligibility_source_instance_id" field.</summary>
+  public const int EligibilitySourceInstanceIdFieldNumber = 21;
+  private uint eligibilitySourceInstanceId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EligibilitySourceInstanceId {
+    get { return eligibilitySourceInstanceId_; }
+    set {
+      eligibilitySourceInstanceId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "eligibility_earned_at_ms" field.</summary>
+  public const int EligibilityEarnedAtMsFieldNumber = 22;
+  private ulong eligibilityEarnedAtMs_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong EligibilityEarnedAtMs {
+    get { return eligibilityEarnedAtMs_; }
+    set {
+      eligibilityEarnedAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reward_claimed" field.</summary>
+  public const int RewardClaimedFieldNumber = 23;
+  private bool rewardClaimed_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool RewardClaimed {
+    get { return rewardClaimed_; }
+    set {
+      rewardClaimed_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reward_claim_durable" field.</summary>
+  public const int RewardClaimDurableFieldNumber = 24;
+  private bool rewardClaimDurable_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool RewardClaimDurable {
+    get { return rewardClaimDurable_; }
+    set {
+      rewardClaimDurable_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "claimed_pet_id" field.</summary>
+  public const int ClaimedPetIdFieldNumber = 25;
+  private ulong claimedPetId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClaimedPetId {
+    get { return claimedPetId_; }
+    set {
+      claimedPetId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "claimed_at_ms" field.</summary>
+  public const int ClaimedAtMsFieldNumber = 26;
+  private ulong claimedAtMs_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClaimedAtMs {
+    get { return claimedAtMs_; }
+    set {
+      claimedAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "claim_request_id" field.</summary>
+  public const int ClaimRequestIdFieldNumber = 27;
+  private string claimRequestId_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string ClaimRequestId {
+    get { return claimRequestId_; }
+    set {
+      claimRequestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "can_start_challenge" field.</summary>
+  public const int CanStartChallengeFieldNumber = 28;
+  private bool canStartChallenge_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool CanStartChallenge {
+    get { return canStartChallenge_; }
+    set {
+      canStartChallenge_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "start_block_code" field.</summary>
+  public const int StartBlockCodeFieldNumber = 29;
+  private global::FestivalBeastActionBlockCode startBlockCode_ = global::FestivalBeastActionBlockCode.FestivalBeastBlockNone;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::FestivalBeastActionBlockCode StartBlockCode {
+    get { return startBlockCode_; }
+    set {
+      startBlockCode_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "start_block_reason" field.</summary>
+  public const int StartBlockReasonFieldNumber = 30;
+  private string startBlockReason_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string StartBlockReason {
+    get { return startBlockReason_; }
+    set {
+      startBlockReason_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "can_claim_reward" field.</summary>
+  public const int CanClaimRewardFieldNumber = 31;
+  private bool canClaimReward_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool CanClaimReward {
+    get { return canClaimReward_; }
+    set {
+      canClaimReward_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "claim_block_code" field.</summary>
+  public const int ClaimBlockCodeFieldNumber = 32;
+  private global::FestivalBeastActionBlockCode claimBlockCode_ = global::FestivalBeastActionBlockCode.FestivalBeastBlockNone;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::FestivalBeastActionBlockCode ClaimBlockCode {
+    get { return claimBlockCode_; }
+    set {
+      claimBlockCode_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "claim_block_reason" field.</summary>
+  public const int ClaimBlockReasonFieldNumber = 33;
+  private string claimBlockReason_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string ClaimBlockReason {
+    get { return claimBlockReason_; }
+    set {
+      claimBlockReason_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "pending_launch" field.</summary>
+  public const int PendingLaunchFieldNumber = 34;
+  private global::FestivalBeastPendingLaunchInfo pendingLaunch_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::FestivalBeastPendingLaunchInfo PendingLaunch {
+    get { return pendingLaunch_; }
+    set {
+      pendingLaunch_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "material_summary" field.</summary>
+  public const int MaterialSummaryFieldNumber = 35;
+  private global::FestivalBeastMaterialSummary materialSummary_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::FestivalBeastMaterialSummary MaterialSummary {
+    get { return materialSummary_; }
+    set {
+      materialSummary_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "matched_tier_id" field.</summary>
+  public const int MatchedTierIdFieldNumber = 36;
+  private uint matchedTierId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MatchedTierId {
+    get { return matchedTierId_; }
+    set {
+      matchedTierId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "round_limit" field.</summary>
+  public const int RoundLimitFieldNumber = 37;
+  private uint roundLimit_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RoundLimit {
+    get { return roundLimit_; }
+    set {
+      roundLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "heavy_damage_percent" field.</summary>
+  public const int HeavyDamagePercentFieldNumber = 38;
+  private uint heavyDamagePercent_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint HeavyDamagePercent {
+    get { return heavyDamagePercent_; }
+    set {
+      heavyDamagePercent_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "state_revision" field.</summary>
+  public const int StateRevisionFieldNumber = 39;
+  private ulong stateRevision_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong StateRevision {
+    get { return stateRevision_; }
+    set {
+      stateRevision_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as GetFestivalBeastDetailResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(GetFestivalBeastDetailResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (ServerNowMs != other.ServerNowMs) return false;
+    if (Phase != other.Phase) return false;
+    if (ActivityInstanceId != other.ActivityInstanceId) return false;
+    if (ConfigRevision != other.ConfigRevision) return false;
+    if (ActivityName != other.ActivityName) return false;
+    if (BossName != other.BossName) return false;
+    if (BannerAssetKey != other.BannerAssetKey) return false;
+    if (IconKey != other.IconKey) return false;
+    if (EffectiveStartAtMs != other.EffectiveStartAtMs) return false;
+    if (EffectiveEndAtMs != other.EffectiveEndAtMs) return false;
+    if (ClaimShowcaseEndAtMs != other.ClaimShowcaseEndAtMs) return false;
+    if (CurrentWins != other.CurrentWins) return false;
+    if (RequiredWins != other.RequiredWins) return false;
+    if (RewardIdentity != other.RewardIdentity) return false;
+    if (RewardDefinitionVersion != other.RewardDefinitionVersion) return false;
+    if (RewardPetTableId != other.RewardPetTableId) return false;
+    if (RewardPetModelId != other.RewardPetModelId) return false;
+    if (RewardPetName != other.RewardPetName) return false;
+    if (HasPermanentEligibility != other.HasPermanentEligibility) return false;
+    if (EligibilitySourceInstanceId != other.EligibilitySourceInstanceId) return false;
+    if (EligibilityEarnedAtMs != other.EligibilityEarnedAtMs) return false;
+    if (RewardClaimed != other.RewardClaimed) return false;
+    if (RewardClaimDurable != other.RewardClaimDurable) return false;
+    if (ClaimedPetId != other.ClaimedPetId) return false;
+    if (ClaimedAtMs != other.ClaimedAtMs) return false;
+    if (ClaimRequestId != other.ClaimRequestId) return false;
+    if (CanStartChallenge != other.CanStartChallenge) return false;
+    if (StartBlockCode != other.StartBlockCode) return false;
+    if (StartBlockReason != other.StartBlockReason) return false;
+    if (CanClaimReward != other.CanClaimReward) return false;
+    if (ClaimBlockCode != other.ClaimBlockCode) return false;
+    if (ClaimBlockReason != other.ClaimBlockReason) return false;
+    if (!object.Equals(PendingLaunch, other.PendingLaunch)) return false;
+    if (!object.Equals(MaterialSummary, other.MaterialSummary)) return false;
+    if (MatchedTierId != other.MatchedTierId) return false;
+    if (RoundLimit != other.RoundLimit) return false;
+    if (HeavyDamagePercent != other.HeavyDamagePercent) return false;
+    if (StateRevision != other.StateRevision) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (ServerNowMs != 0UL) hash ^= ServerNowMs.GetHashCode();
+    if (Phase != global::FestivalBeastPhase.Unspecified) hash ^= Phase.GetHashCode();
+    if (ActivityInstanceId != 0) hash ^= ActivityInstanceId.GetHashCode();
+    if (ConfigRevision != 0) hash ^= ConfigRevision.GetHashCode();
+    if (ActivityName.Length != 0) hash ^= ActivityName.GetHashCode();
+    if (BossName.Length != 0) hash ^= BossName.GetHashCode();
+    if (BannerAssetKey.Length != 0) hash ^= BannerAssetKey.GetHashCode();
+    if (IconKey.Length != 0) hash ^= IconKey.GetHashCode();
+    if (EffectiveStartAtMs != 0UL) hash ^= EffectiveStartAtMs.GetHashCode();
+    if (EffectiveEndAtMs != 0UL) hash ^= EffectiveEndAtMs.GetHashCode();
+    if (ClaimShowcaseEndAtMs != 0UL) hash ^= ClaimShowcaseEndAtMs.GetHashCode();
+    if (CurrentWins != 0) hash ^= CurrentWins.GetHashCode();
+    if (RequiredWins != 0) hash ^= RequiredWins.GetHashCode();
+    if (RewardIdentity.Length != 0) hash ^= RewardIdentity.GetHashCode();
+    if (RewardDefinitionVersion != 0) hash ^= RewardDefinitionVersion.GetHashCode();
+    if (RewardPetTableId != 0) hash ^= RewardPetTableId.GetHashCode();
+    if (RewardPetModelId != 0) hash ^= RewardPetModelId.GetHashCode();
+    if (RewardPetName.Length != 0) hash ^= RewardPetName.GetHashCode();
+    if (HasPermanentEligibility != false) hash ^= HasPermanentEligibility.GetHashCode();
+    if (EligibilitySourceInstanceId != 0) hash ^= EligibilitySourceInstanceId.GetHashCode();
+    if (EligibilityEarnedAtMs != 0UL) hash ^= EligibilityEarnedAtMs.GetHashCode();
+    if (RewardClaimed != false) hash ^= RewardClaimed.GetHashCode();
+    if (RewardClaimDurable != false) hash ^= RewardClaimDurable.GetHashCode();
+    if (ClaimedPetId != 0UL) hash ^= ClaimedPetId.GetHashCode();
+    if (ClaimedAtMs != 0UL) hash ^= ClaimedAtMs.GetHashCode();
+    if (ClaimRequestId.Length != 0) hash ^= ClaimRequestId.GetHashCode();
+    if (CanStartChallenge != false) hash ^= CanStartChallenge.GetHashCode();
+    if (StartBlockCode != global::FestivalBeastActionBlockCode.FestivalBeastBlockNone) hash ^= StartBlockCode.GetHashCode();
+    if (StartBlockReason.Length != 0) hash ^= StartBlockReason.GetHashCode();
+    if (CanClaimReward != false) hash ^= CanClaimReward.GetHashCode();
+    if (ClaimBlockCode != global::FestivalBeastActionBlockCode.FestivalBeastBlockNone) hash ^= ClaimBlockCode.GetHashCode();
+    if (ClaimBlockReason.Length != 0) hash ^= ClaimBlockReason.GetHashCode();
+    if (pendingLaunch_ != null) hash ^= PendingLaunch.GetHashCode();
+    if (materialSummary_ != null) hash ^= MaterialSummary.GetHashCode();
+    if (MatchedTierId != 0) hash ^= MatchedTierId.GetHashCode();
+    if (RoundLimit != 0) hash ^= RoundLimit.GetHashCode();
+    if (HeavyDamagePercent != 0) hash ^= HeavyDamagePercent.GetHashCode();
+    if (StateRevision != 0UL) hash ^= StateRevision.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (ServerNowMs != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(ServerNowMs);
+    }
+    if (Phase != global::FestivalBeastPhase.Unspecified) {
+      output.WriteRawTag(24);
+      output.WriteEnum((int) Phase);
+    }
+    if (ActivityInstanceId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(ActivityInstanceId);
+    }
+    if (ConfigRevision != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(ConfigRevision);
+    }
+    if (ActivityName.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(ActivityName);
+    }
+    if (BossName.Length != 0) {
+      output.WriteRawTag(58);
+      output.WriteString(BossName);
+    }
+    if (BannerAssetKey.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(BannerAssetKey);
+    }
+    if (IconKey.Length != 0) {
+      output.WriteRawTag(74);
+      output.WriteString(IconKey);
+    }
+    if (EffectiveStartAtMs != 0UL) {
+      output.WriteRawTag(80);
+      output.WriteUInt64(EffectiveStartAtMs);
+    }
+    if (EffectiveEndAtMs != 0UL) {
+      output.WriteRawTag(88);
+      output.WriteUInt64(EffectiveEndAtMs);
+    }
+    if (ClaimShowcaseEndAtMs != 0UL) {
+      output.WriteRawTag(96);
+      output.WriteUInt64(ClaimShowcaseEndAtMs);
+    }
+    if (CurrentWins != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(CurrentWins);
+    }
+    if (RequiredWins != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(RequiredWins);
+    }
+    if (RewardIdentity.Length != 0) {
+      output.WriteRawTag(122);
+      output.WriteString(RewardIdentity);
+    }
+    if (RewardDefinitionVersion != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(RewardDefinitionVersion);
+    }
+    if (RewardPetTableId != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(RewardPetTableId);
+    }
+    if (RewardPetModelId != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(RewardPetModelId);
+    }
+    if (RewardPetName.Length != 0) {
+      output.WriteRawTag(154, 1);
+      output.WriteString(RewardPetName);
+    }
+    if (HasPermanentEligibility != false) {
+      output.WriteRawTag(160, 1);
+      output.WriteBool(HasPermanentEligibility);
+    }
+    if (EligibilitySourceInstanceId != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(EligibilitySourceInstanceId);
+    }
+    if (EligibilityEarnedAtMs != 0UL) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt64(EligibilityEarnedAtMs);
+    }
+    if (RewardClaimed != false) {
+      output.WriteRawTag(184, 1);
+      output.WriteBool(RewardClaimed);
+    }
+    if (RewardClaimDurable != false) {
+      output.WriteRawTag(192, 1);
+      output.WriteBool(RewardClaimDurable);
+    }
+    if (ClaimedPetId != 0UL) {
+      output.WriteRawTag(200, 1);
+      output.WriteUInt64(ClaimedPetId);
+    }
+    if (ClaimedAtMs != 0UL) {
+      output.WriteRawTag(208, 1);
+      output.WriteUInt64(ClaimedAtMs);
+    }
+    if (ClaimRequestId.Length != 0) {
+      output.WriteRawTag(218, 1);
+      output.WriteString(ClaimRequestId);
+    }
+    if (CanStartChallenge != false) {
+      output.WriteRawTag(224, 1);
+      output.WriteBool(CanStartChallenge);
+    }
+    if (StartBlockCode != global::FestivalBeastActionBlockCode.FestivalBeastBlockNone) {
+      output.WriteRawTag(232, 1);
+      output.WriteEnum((int) StartBlockCode);
+    }
+    if (StartBlockReason.Length != 0) {
+      output.WriteRawTag(242, 1);
+      output.WriteString(StartBlockReason);
+    }
+    if (CanClaimReward != false) {
+      output.WriteRawTag(248, 1);
+      output.WriteBool(CanClaimReward);
+    }
+    if (ClaimBlockCode != global::FestivalBeastActionBlockCode.FestivalBeastBlockNone) {
+      output.WriteRawTag(128, 2);
+      output.WriteEnum((int) ClaimBlockCode);
+    }
+    if (ClaimBlockReason.Length != 0) {
+      output.WriteRawTag(138, 2);
+      output.WriteString(ClaimBlockReason);
+    }
+    if (pendingLaunch_ != null) {
+      output.WriteRawTag(146, 2);
+      output.WriteMessage(PendingLaunch);
+    }
+    if (materialSummary_ != null) {
+      output.WriteRawTag(154, 2);
+      output.WriteMessage(MaterialSummary);
+    }
+    if (MatchedTierId != 0) {
+      output.WriteRawTag(160, 2);
+      output.WriteUInt32(MatchedTierId);
+    }
+    if (RoundLimit != 0) {
+      output.WriteRawTag(168, 2);
+      output.WriteUInt32(RoundLimit);
+    }
+    if (HeavyDamagePercent != 0) {
+      output.WriteRawTag(176, 2);
+      output.WriteUInt32(HeavyDamagePercent);
+    }
+    if (StateRevision != 0UL) {
+      output.WriteRawTag(184, 2);
+      output.WriteUInt64(StateRevision);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (ServerNowMs != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(ServerNowMs);
+    }
+    if (Phase != global::FestivalBeastPhase.Unspecified) {
+      output.WriteRawTag(24);
+      output.WriteEnum((int) Phase);
+    }
+    if (ActivityInstanceId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(ActivityInstanceId);
+    }
+    if (ConfigRevision != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(ConfigRevision);
+    }
+    if (ActivityName.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(ActivityName);
+    }
+    if (BossName.Length != 0) {
+      output.WriteRawTag(58);
+      output.WriteString(BossName);
+    }
+    if (BannerAssetKey.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(BannerAssetKey);
+    }
+    if (IconKey.Length != 0) {
+      output.WriteRawTag(74);
+      output.WriteString(IconKey);
+    }
+    if (EffectiveStartAtMs != 0UL) {
+      output.WriteRawTag(80);
+      output.WriteUInt64(EffectiveStartAtMs);
+    }
+    if (EffectiveEndAtMs != 0UL) {
+      output.WriteRawTag(88);
+      output.WriteUInt64(EffectiveEndAtMs);
+    }
+    if (ClaimShowcaseEndAtMs != 0UL) {
+      output.WriteRawTag(96);
+      output.WriteUInt64(ClaimShowcaseEndAtMs);
+    }
+    if (CurrentWins != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(CurrentWins);
+    }
+    if (RequiredWins != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(RequiredWins);
+    }
+    if (RewardIdentity.Length != 0) {
+      output.WriteRawTag(122);
+      output.WriteString(RewardIdentity);
+    }
+    if (RewardDefinitionVersion != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(RewardDefinitionVersion);
+    }
+    if (RewardPetTableId != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(RewardPetTableId);
+    }
+    if (RewardPetModelId != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(RewardPetModelId);
+    }
+    if (RewardPetName.Length != 0) {
+      output.WriteRawTag(154, 1);
+      output.WriteString(RewardPetName);
+    }
+    if (HasPermanentEligibility != false) {
+      output.WriteRawTag(160, 1);
+      output.WriteBool(HasPermanentEligibility);
+    }
+    if (EligibilitySourceInstanceId != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(EligibilitySourceInstanceId);
+    }
+    if (EligibilityEarnedAtMs != 0UL) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt64(EligibilityEarnedAtMs);
+    }
+    if (RewardClaimed != false) {
+      output.WriteRawTag(184, 1);
+      output.WriteBool(RewardClaimed);
+    }
+    if (RewardClaimDurable != false) {
+      output.WriteRawTag(192, 1);
+      output.WriteBool(RewardClaimDurable);
+    }
+    if (ClaimedPetId != 0UL) {
+      output.WriteRawTag(200, 1);
+      output.WriteUInt64(ClaimedPetId);
+    }
+    if (ClaimedAtMs != 0UL) {
+      output.WriteRawTag(208, 1);
+      output.WriteUInt64(ClaimedAtMs);
+    }
+    if (ClaimRequestId.Length != 0) {
+      output.WriteRawTag(218, 1);
+      output.WriteString(ClaimRequestId);
+    }
+    if (CanStartChallenge != false) {
+      output.WriteRawTag(224, 1);
+      output.WriteBool(CanStartChallenge);
+    }
+    if (StartBlockCode != global::FestivalBeastActionBlockCode.FestivalBeastBlockNone) {
+      output.WriteRawTag(232, 1);
+      output.WriteEnum((int) StartBlockCode);
+    }
+    if (StartBlockReason.Length != 0) {
+      output.WriteRawTag(242, 1);
+      output.WriteString(StartBlockReason);
+    }
+    if (CanClaimReward != false) {
+      output.WriteRawTag(248, 1);
+      output.WriteBool(CanClaimReward);
+    }
+    if (ClaimBlockCode != global::FestivalBeastActionBlockCode.FestivalBeastBlockNone) {
+      output.WriteRawTag(128, 2);
+      output.WriteEnum((int) ClaimBlockCode);
+    }
+    if (ClaimBlockReason.Length != 0) {
+      output.WriteRawTag(138, 2);
+      output.WriteString(ClaimBlockReason);
+    }
+    if (pendingLaunch_ != null) {
+      output.WriteRawTag(146, 2);
+      output.WriteMessage(PendingLaunch);
+    }
+    if (materialSummary_ != null) {
+      output.WriteRawTag(154, 2);
+      output.WriteMessage(MaterialSummary);
+    }
+    if (MatchedTierId != 0) {
+      output.WriteRawTag(160, 2);
+      output.WriteUInt32(MatchedTierId);
+    }
+    if (RoundLimit != 0) {
+      output.WriteRawTag(168, 2);
+      output.WriteUInt32(RoundLimit);
+    }
+    if (HeavyDamagePercent != 0) {
+      output.WriteRawTag(176, 2);
+      output.WriteUInt32(HeavyDamagePercent);
+    }
+    if (StateRevision != 0UL) {
+      output.WriteRawTag(184, 2);
+      output.WriteUInt64(StateRevision);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (ServerNowMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ServerNowMs);
+    }
+    if (Phase != global::FestivalBeastPhase.Unspecified) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Phase);
+    }
+    if (ActivityInstanceId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ActivityInstanceId);
+    }
+    if (ConfigRevision != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ConfigRevision);
+    }
+    if (ActivityName.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(ActivityName);
+    }
+    if (BossName.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(BossName);
+    }
+    if (BannerAssetKey.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(BannerAssetKey);
+    }
+    if (IconKey.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(IconKey);
+    }
+    if (EffectiveStartAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(EffectiveStartAtMs);
+    }
+    if (EffectiveEndAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(EffectiveEndAtMs);
+    }
+    if (ClaimShowcaseEndAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClaimShowcaseEndAtMs);
+    }
+    if (CurrentWins != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CurrentWins);
+    }
+    if (RequiredWins != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RequiredWins);
+    }
+    if (RewardIdentity.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(RewardIdentity);
+    }
+    if (RewardDefinitionVersion != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RewardDefinitionVersion);
+    }
+    if (RewardPetTableId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RewardPetTableId);
+    }
+    if (RewardPetModelId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RewardPetModelId);
+    }
+    if (RewardPetName.Length != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeStringSize(RewardPetName);
+    }
+    if (HasPermanentEligibility != false) {
+      size += 2 + 1;
+    }
+    if (EligibilitySourceInstanceId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(EligibilitySourceInstanceId);
+    }
+    if (EligibilityEarnedAtMs != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(EligibilityEarnedAtMs);
+    }
+    if (RewardClaimed != false) {
+      size += 2 + 1;
+    }
+    if (RewardClaimDurable != false) {
+      size += 2 + 1;
+    }
+    if (ClaimedPetId != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(ClaimedPetId);
+    }
+    if (ClaimedAtMs != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(ClaimedAtMs);
+    }
+    if (ClaimRequestId.Length != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeStringSize(ClaimRequestId);
+    }
+    if (CanStartChallenge != false) {
+      size += 2 + 1;
+    }
+    if (StartBlockCode != global::FestivalBeastActionBlockCode.FestivalBeastBlockNone) {
+      size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) StartBlockCode);
+    }
+    if (StartBlockReason.Length != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeStringSize(StartBlockReason);
+    }
+    if (CanClaimReward != false) {
+      size += 2 + 1;
+    }
+    if (ClaimBlockCode != global::FestivalBeastActionBlockCode.FestivalBeastBlockNone) {
+      size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) ClaimBlockCode);
+    }
+    if (ClaimBlockReason.Length != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeStringSize(ClaimBlockReason);
+    }
+    if (pendingLaunch_ != null) {
+      size += 2 + pb::CodedOutputStream.ComputeMessageSize(PendingLaunch);
+    }
+    if (materialSummary_ != null) {
+      size += 2 + pb::CodedOutputStream.ComputeMessageSize(MaterialSummary);
+    }
+    if (MatchedTierId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(MatchedTierId);
+    }
+    if (RoundLimit != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RoundLimit);
+    }
+    if (HeavyDamagePercent != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(HeavyDamagePercent);
+    }
+    if (StateRevision != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(StateRevision);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(GetFestivalBeastDetailResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.ServerNowMs != 0UL) {
+      ServerNowMs = other.ServerNowMs;
+    }
+    if (other.Phase != global::FestivalBeastPhase.Unspecified) {
+      Phase = other.Phase;
+    }
+    if (other.ActivityInstanceId != 0) {
+      ActivityInstanceId = other.ActivityInstanceId;
+    }
+    if (other.ConfigRevision != 0) {
+      ConfigRevision = other.ConfigRevision;
+    }
+    if (other.ActivityName.Length != 0) {
+      ActivityName = other.ActivityName;
+    }
+    if (other.BossName.Length != 0) {
+      BossName = other.BossName;
+    }
+    if (other.BannerAssetKey.Length != 0) {
+      BannerAssetKey = other.BannerAssetKey;
+    }
+    if (other.IconKey.Length != 0) {
+      IconKey = other.IconKey;
+    }
+    if (other.EffectiveStartAtMs != 0UL) {
+      EffectiveStartAtMs = other.EffectiveStartAtMs;
+    }
+    if (other.EffectiveEndAtMs != 0UL) {
+      EffectiveEndAtMs = other.EffectiveEndAtMs;
+    }
+    if (other.ClaimShowcaseEndAtMs != 0UL) {
+      ClaimShowcaseEndAtMs = other.ClaimShowcaseEndAtMs;
+    }
+    if (other.CurrentWins != 0) {
+      CurrentWins = other.CurrentWins;
+    }
+    if (other.RequiredWins != 0) {
+      RequiredWins = other.RequiredWins;
+    }
+    if (other.RewardIdentity.Length != 0) {
+      RewardIdentity = other.RewardIdentity;
+    }
+    if (other.RewardDefinitionVersion != 0) {
+      RewardDefinitionVersion = other.RewardDefinitionVersion;
+    }
+    if (other.RewardPetTableId != 0) {
+      RewardPetTableId = other.RewardPetTableId;
+    }
+    if (other.RewardPetModelId != 0) {
+      RewardPetModelId = other.RewardPetModelId;
+    }
+    if (other.RewardPetName.Length != 0) {
+      RewardPetName = other.RewardPetName;
+    }
+    if (other.HasPermanentEligibility != false) {
+      HasPermanentEligibility = other.HasPermanentEligibility;
+    }
+    if (other.EligibilitySourceInstanceId != 0) {
+      EligibilitySourceInstanceId = other.EligibilitySourceInstanceId;
+    }
+    if (other.EligibilityEarnedAtMs != 0UL) {
+      EligibilityEarnedAtMs = other.EligibilityEarnedAtMs;
+    }
+    if (other.RewardClaimed != false) {
+      RewardClaimed = other.RewardClaimed;
+    }
+    if (other.RewardClaimDurable != false) {
+      RewardClaimDurable = other.RewardClaimDurable;
+    }
+    if (other.ClaimedPetId != 0UL) {
+      ClaimedPetId = other.ClaimedPetId;
+    }
+    if (other.ClaimedAtMs != 0UL) {
+      ClaimedAtMs = other.ClaimedAtMs;
+    }
+    if (other.ClaimRequestId.Length != 0) {
+      ClaimRequestId = other.ClaimRequestId;
+    }
+    if (other.CanStartChallenge != false) {
+      CanStartChallenge = other.CanStartChallenge;
+    }
+    if (other.StartBlockCode != global::FestivalBeastActionBlockCode.FestivalBeastBlockNone) {
+      StartBlockCode = other.StartBlockCode;
+    }
+    if (other.StartBlockReason.Length != 0) {
+      StartBlockReason = other.StartBlockReason;
+    }
+    if (other.CanClaimReward != false) {
+      CanClaimReward = other.CanClaimReward;
+    }
+    if (other.ClaimBlockCode != global::FestivalBeastActionBlockCode.FestivalBeastBlockNone) {
+      ClaimBlockCode = other.ClaimBlockCode;
+    }
+    if (other.ClaimBlockReason.Length != 0) {
+      ClaimBlockReason = other.ClaimBlockReason;
+    }
+    if (other.pendingLaunch_ != null) {
+      if (pendingLaunch_ == null) {
+        PendingLaunch = new global::FestivalBeastPendingLaunchInfo();
+      }
+      PendingLaunch.MergeFrom(other.PendingLaunch);
+    }
+    if (other.materialSummary_ != null) {
+      if (materialSummary_ == null) {
+        MaterialSummary = new global::FestivalBeastMaterialSummary();
+      }
+      MaterialSummary.MergeFrom(other.MaterialSummary);
+    }
+    if (other.MatchedTierId != 0) {
+      MatchedTierId = other.MatchedTierId;
+    }
+    if (other.RoundLimit != 0) {
+      RoundLimit = other.RoundLimit;
+    }
+    if (other.HeavyDamagePercent != 0) {
+      HeavyDamagePercent = other.HeavyDamagePercent;
+    }
+    if (other.StateRevision != 0UL) {
+      StateRevision = other.StateRevision;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          ServerNowMs = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          Phase = (global::FestivalBeastPhase) input.ReadEnum();
+          break;
+        }
+        case 32: {
+          ActivityInstanceId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          ConfigRevision = input.ReadUInt32();
+          break;
+        }
+        case 50: {
+          ActivityName = input.ReadString();
+          break;
+        }
+        case 58: {
+          BossName = input.ReadString();
+          break;
+        }
+        case 66: {
+          BannerAssetKey = input.ReadString();
+          break;
+        }
+        case 74: {
+          IconKey = input.ReadString();
+          break;
+        }
+        case 80: {
+          EffectiveStartAtMs = input.ReadUInt64();
+          break;
+        }
+        case 88: {
+          EffectiveEndAtMs = input.ReadUInt64();
+          break;
+        }
+        case 96: {
+          ClaimShowcaseEndAtMs = input.ReadUInt64();
+          break;
+        }
+        case 104: {
+          CurrentWins = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          RequiredWins = input.ReadUInt32();
+          break;
+        }
+        case 122: {
+          RewardIdentity = input.ReadString();
+          break;
+        }
+        case 128: {
+          RewardDefinitionVersion = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          RewardPetTableId = input.ReadUInt32();
+          break;
+        }
+        case 144: {
+          RewardPetModelId = input.ReadUInt32();
+          break;
+        }
+        case 154: {
+          RewardPetName = input.ReadString();
+          break;
+        }
+        case 160: {
+          HasPermanentEligibility = input.ReadBool();
+          break;
+        }
+        case 168: {
+          EligibilitySourceInstanceId = input.ReadUInt32();
+          break;
+        }
+        case 176: {
+          EligibilityEarnedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 184: {
+          RewardClaimed = input.ReadBool();
+          break;
+        }
+        case 192: {
+          RewardClaimDurable = input.ReadBool();
+          break;
+        }
+        case 200: {
+          ClaimedPetId = input.ReadUInt64();
+          break;
+        }
+        case 208: {
+          ClaimedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 218: {
+          ClaimRequestId = input.ReadString();
+          break;
+        }
+        case 224: {
+          CanStartChallenge = input.ReadBool();
+          break;
+        }
+        case 232: {
+          StartBlockCode = (global::FestivalBeastActionBlockCode) input.ReadEnum();
+          break;
+        }
+        case 242: {
+          StartBlockReason = input.ReadString();
+          break;
+        }
+        case 248: {
+          CanClaimReward = input.ReadBool();
+          break;
+        }
+        case 256: {
+          ClaimBlockCode = (global::FestivalBeastActionBlockCode) input.ReadEnum();
+          break;
+        }
+        case 266: {
+          ClaimBlockReason = input.ReadString();
+          break;
+        }
+        case 274: {
+          if (pendingLaunch_ == null) {
+            PendingLaunch = new global::FestivalBeastPendingLaunchInfo();
+          }
+          input.ReadMessage(PendingLaunch);
+          break;
+        }
+        case 282: {
+          if (materialSummary_ == null) {
+            MaterialSummary = new global::FestivalBeastMaterialSummary();
+          }
+          input.ReadMessage(MaterialSummary);
+          break;
+        }
+        case 288: {
+          MatchedTierId = input.ReadUInt32();
+          break;
+        }
+        case 296: {
+          RoundLimit = input.ReadUInt32();
+          break;
+        }
+        case 304: {
+          HeavyDamagePercent = input.ReadUInt32();
+          break;
+        }
+        case 312: {
+          StateRevision = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          ServerNowMs = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          Phase = (global::FestivalBeastPhase) input.ReadEnum();
+          break;
+        }
+        case 32: {
+          ActivityInstanceId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          ConfigRevision = input.ReadUInt32();
+          break;
+        }
+        case 50: {
+          ActivityName = input.ReadString();
+          break;
+        }
+        case 58: {
+          BossName = input.ReadString();
+          break;
+        }
+        case 66: {
+          BannerAssetKey = input.ReadString();
+          break;
+        }
+        case 74: {
+          IconKey = input.ReadString();
+          break;
+        }
+        case 80: {
+          EffectiveStartAtMs = input.ReadUInt64();
+          break;
+        }
+        case 88: {
+          EffectiveEndAtMs = input.ReadUInt64();
+          break;
+        }
+        case 96: {
+          ClaimShowcaseEndAtMs = input.ReadUInt64();
+          break;
+        }
+        case 104: {
+          CurrentWins = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          RequiredWins = input.ReadUInt32();
+          break;
+        }
+        case 122: {
+          RewardIdentity = input.ReadString();
+          break;
+        }
+        case 128: {
+          RewardDefinitionVersion = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          RewardPetTableId = input.ReadUInt32();
+          break;
+        }
+        case 144: {
+          RewardPetModelId = input.ReadUInt32();
+          break;
+        }
+        case 154: {
+          RewardPetName = input.ReadString();
+          break;
+        }
+        case 160: {
+          HasPermanentEligibility = input.ReadBool();
+          break;
+        }
+        case 168: {
+          EligibilitySourceInstanceId = input.ReadUInt32();
+          break;
+        }
+        case 176: {
+          EligibilityEarnedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 184: {
+          RewardClaimed = input.ReadBool();
+          break;
+        }
+        case 192: {
+          RewardClaimDurable = input.ReadBool();
+          break;
+        }
+        case 200: {
+          ClaimedPetId = input.ReadUInt64();
+          break;
+        }
+        case 208: {
+          ClaimedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 218: {
+          ClaimRequestId = input.ReadString();
+          break;
+        }
+        case 224: {
+          CanStartChallenge = input.ReadBool();
+          break;
+        }
+        case 232: {
+          StartBlockCode = (global::FestivalBeastActionBlockCode) input.ReadEnum();
+          break;
+        }
+        case 242: {
+          StartBlockReason = input.ReadString();
+          break;
+        }
+        case 248: {
+          CanClaimReward = input.ReadBool();
+          break;
+        }
+        case 256: {
+          ClaimBlockCode = (global::FestivalBeastActionBlockCode) input.ReadEnum();
+          break;
+        }
+        case 266: {
+          ClaimBlockReason = input.ReadString();
+          break;
+        }
+        case 274: {
+          if (pendingLaunch_ == null) {
+            PendingLaunch = new global::FestivalBeastPendingLaunchInfo();
+          }
+          input.ReadMessage(PendingLaunch);
+          break;
+        }
+        case 282: {
+          if (materialSummary_ == null) {
+            MaterialSummary = new global::FestivalBeastMaterialSummary();
+          }
+          input.ReadMessage(MaterialSummary);
+          break;
+        }
+        case 288: {
+          MatchedTierId = input.ReadUInt32();
+          break;
+        }
+        case 296: {
+          RoundLimit = input.ReadUInt32();
+          break;
+        }
+        case 304: {
+          HeavyDamagePercent = input.ReadUInt32();
+          break;
+        }
+        case 312: {
+          StateRevision = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class StartFestivalBeastChallengeRequest : pb::IMessage<StartFestivalBeastChallengeRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<StartFestivalBeastChallengeRequest> _parser = new pb::MessageParser<StartFestivalBeastChallengeRequest>(() => new StartFestivalBeastChallengeRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<StartFestivalBeastChallengeRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerActivityReflection.Descriptor.MessageTypes[12]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public StartFestivalBeastChallengeRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public StartFestivalBeastChallengeRequest(StartFestivalBeastChallengeRequest other) : this() {
+    clientRequestId_ = other.clientRequestId_;
+    activityInstanceId_ = other.activityInstanceId_;
+    configRevision_ = other.configRevision_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public StartFestivalBeastChallengeRequest Clone() {
+    return new StartFestivalBeastChallengeRequest(this);
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 1;
+  private string clientRequestId_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "activity_instance_id" field.</summary>
+  public const int ActivityInstanceIdFieldNumber = 2;
+  private uint activityInstanceId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ActivityInstanceId {
+    get { return activityInstanceId_; }
+    set {
+      activityInstanceId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "config_revision" field.</summary>
+  public const int ConfigRevisionFieldNumber = 3;
+  private uint configRevision_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ConfigRevision {
+    get { return configRevision_; }
+    set {
+      configRevision_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as StartFestivalBeastChallengeRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(StartFestivalBeastChallengeRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ClientRequestId != other.ClientRequestId) return false;
+    if (ActivityInstanceId != other.ActivityInstanceId) return false;
+    if (ConfigRevision != other.ConfigRevision) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ClientRequestId.Length != 0) hash ^= ClientRequestId.GetHashCode();
+    if (ActivityInstanceId != 0) hash ^= ActivityInstanceId.GetHashCode();
+    if (ConfigRevision != 0) hash ^= ConfigRevision.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ClientRequestId.Length != 0) {
+      output.WriteRawTag(10);
+      output.WriteString(ClientRequestId);
+    }
+    if (ActivityInstanceId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ActivityInstanceId);
+    }
+    if (ConfigRevision != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(ConfigRevision);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ClientRequestId.Length != 0) {
+      output.WriteRawTag(10);
+      output.WriteString(ClientRequestId);
+    }
+    if (ActivityInstanceId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ActivityInstanceId);
+    }
+    if (ConfigRevision != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(ConfigRevision);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ClientRequestId.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(ClientRequestId);
+    }
+    if (ActivityInstanceId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ActivityInstanceId);
+    }
+    if (ConfigRevision != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ConfigRevision);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(StartFestivalBeastChallengeRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ClientRequestId.Length != 0) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    if (other.ActivityInstanceId != 0) {
+      ActivityInstanceId = other.ActivityInstanceId;
+    }
+    if (other.ConfigRevision != 0) {
+      ConfigRevision = other.ConfigRevision;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          ClientRequestId = input.ReadString();
+          break;
+        }
+        case 16: {
+          ActivityInstanceId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          ConfigRevision = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          ClientRequestId = input.ReadString();
+          break;
+        }
+        case 16: {
+          ActivityInstanceId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          ConfigRevision = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class StartFestivalBeastChallengeResponse : pb::IMessage<StartFestivalBeastChallengeResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<StartFestivalBeastChallengeResponse> _parser = new pb::MessageParser<StartFestivalBeastChallengeResponse>(() => new StartFestivalBeastChallengeResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<StartFestivalBeastChallengeResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerActivityReflection.Descriptor.MessageTypes[13]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public StartFestivalBeastChallengeResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public StartFestivalBeastChallengeResponse(StartFestivalBeastChallengeResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    launchState_ = other.launchState_;
+    replayed_ = other.replayed_;
+    clientRequestId_ = other.clientRequestId_;
+    lockedPetId_ = other.lockedPetId_;
+    battleId_ = other.battleId_;
+    matchedTierId_ = other.matchedTierId_;
+    admittedAtMs_ = other.admittedAtMs_;
+    rejectReason_ = other.rejectReason_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public StartFestivalBeastChallengeResponse Clone() {
+    return new StartFestivalBeastChallengeResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "launch_state" field.</summary>
+  public const int LaunchStateFieldNumber = 2;
+  private global::FestivalBeastLaunchState launchState_ = global::FestivalBeastLaunchState.FestivalBeastLaunchUnspecified;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::FestivalBeastLaunchState LaunchState {
+    get { return launchState_; }
+    set {
+      launchState_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "replayed" field.</summary>
+  public const int ReplayedFieldNumber = 3;
+  private bool replayed_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Replayed {
+    get { return replayed_; }
+    set {
+      replayed_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 4;
+  private string clientRequestId_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "locked_pet_id" field.</summary>
+  public const int LockedPetIdFieldNumber = 5;
+  private ulong lockedPetId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong LockedPetId {
+    get { return lockedPetId_; }
+    set {
+      lockedPetId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "battle_id" field.</summary>
+  public const int BattleIdFieldNumber = 6;
+  private ulong battleId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong BattleId {
+    get { return battleId_; }
+    set {
+      battleId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "matched_tier_id" field.</summary>
+  public const int MatchedTierIdFieldNumber = 7;
+  private uint matchedTierId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MatchedTierId {
+    get { return matchedTierId_; }
+    set {
+      matchedTierId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "admitted_at_ms" field.</summary>
+  public const int AdmittedAtMsFieldNumber = 8;
+  private ulong admittedAtMs_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong AdmittedAtMs {
+    get { return admittedAtMs_; }
+    set {
+      admittedAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reject_reason" field.</summary>
+  public const int RejectReasonFieldNumber = 9;
+  private string rejectReason_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string RejectReason {
+    get { return rejectReason_; }
+    set {
+      rejectReason_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as StartFestivalBeastChallengeResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(StartFestivalBeastChallengeResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (LaunchState != other.LaunchState) return false;
+    if (Replayed != other.Replayed) return false;
+    if (ClientRequestId != other.ClientRequestId) return false;
+    if (LockedPetId != other.LockedPetId) return false;
+    if (BattleId != other.BattleId) return false;
+    if (MatchedTierId != other.MatchedTierId) return false;
+    if (AdmittedAtMs != other.AdmittedAtMs) return false;
+    if (RejectReason != other.RejectReason) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (LaunchState != global::FestivalBeastLaunchState.FestivalBeastLaunchUnspecified) hash ^= LaunchState.GetHashCode();
+    if (Replayed != false) hash ^= Replayed.GetHashCode();
+    if (ClientRequestId.Length != 0) hash ^= ClientRequestId.GetHashCode();
+    if (LockedPetId != 0UL) hash ^= LockedPetId.GetHashCode();
+    if (BattleId != 0UL) hash ^= BattleId.GetHashCode();
+    if (MatchedTierId != 0) hash ^= MatchedTierId.GetHashCode();
+    if (AdmittedAtMs != 0UL) hash ^= AdmittedAtMs.GetHashCode();
+    if (RejectReason.Length != 0) hash ^= RejectReason.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (LaunchState != global::FestivalBeastLaunchState.FestivalBeastLaunchUnspecified) {
+      output.WriteRawTag(16);
+      output.WriteEnum((int) LaunchState);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(Replayed);
+    }
+    if (ClientRequestId.Length != 0) {
+      output.WriteRawTag(34);
+      output.WriteString(ClientRequestId);
+    }
+    if (LockedPetId != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(LockedPetId);
+    }
+    if (BattleId != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(BattleId);
+    }
+    if (MatchedTierId != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(MatchedTierId);
+    }
+    if (AdmittedAtMs != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(AdmittedAtMs);
+    }
+    if (RejectReason.Length != 0) {
+      output.WriteRawTag(74);
+      output.WriteString(RejectReason);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (LaunchState != global::FestivalBeastLaunchState.FestivalBeastLaunchUnspecified) {
+      output.WriteRawTag(16);
+      output.WriteEnum((int) LaunchState);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(Replayed);
+    }
+    if (ClientRequestId.Length != 0) {
+      output.WriteRawTag(34);
+      output.WriteString(ClientRequestId);
+    }
+    if (LockedPetId != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(LockedPetId);
+    }
+    if (BattleId != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(BattleId);
+    }
+    if (MatchedTierId != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(MatchedTierId);
+    }
+    if (AdmittedAtMs != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(AdmittedAtMs);
+    }
+    if (RejectReason.Length != 0) {
+      output.WriteRawTag(74);
+      output.WriteString(RejectReason);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (LaunchState != global::FestivalBeastLaunchState.FestivalBeastLaunchUnspecified) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) LaunchState);
+    }
+    if (Replayed != false) {
+      size += 1 + 1;
+    }
+    if (ClientRequestId.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(ClientRequestId);
+    }
+    if (LockedPetId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(LockedPetId);
+    }
+    if (BattleId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BattleId);
+    }
+    if (MatchedTierId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MatchedTierId);
+    }
+    if (AdmittedAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(AdmittedAtMs);
+    }
+    if (RejectReason.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(RejectReason);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(StartFestivalBeastChallengeResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.LaunchState != global::FestivalBeastLaunchState.FestivalBeastLaunchUnspecified) {
+      LaunchState = other.LaunchState;
+    }
+    if (other.Replayed != false) {
+      Replayed = other.Replayed;
+    }
+    if (other.ClientRequestId.Length != 0) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    if (other.LockedPetId != 0UL) {
+      LockedPetId = other.LockedPetId;
+    }
+    if (other.BattleId != 0UL) {
+      BattleId = other.BattleId;
+    }
+    if (other.MatchedTierId != 0) {
+      MatchedTierId = other.MatchedTierId;
+    }
+    if (other.AdmittedAtMs != 0UL) {
+      AdmittedAtMs = other.AdmittedAtMs;
+    }
+    if (other.RejectReason.Length != 0) {
+      RejectReason = other.RejectReason;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          LaunchState = (global::FestivalBeastLaunchState) input.ReadEnum();
+          break;
+        }
+        case 24: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 34: {
+          ClientRequestId = input.ReadString();
+          break;
+        }
+        case 40: {
+          LockedPetId = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          BattleId = input.ReadUInt64();
+          break;
+        }
+        case 56: {
+          MatchedTierId = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          AdmittedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 74: {
+          RejectReason = input.ReadString();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          LaunchState = (global::FestivalBeastLaunchState) input.ReadEnum();
+          break;
+        }
+        case 24: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 34: {
+          ClientRequestId = input.ReadString();
+          break;
+        }
+        case 40: {
+          LockedPetId = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          BattleId = input.ReadUInt64();
+          break;
+        }
+        case 56: {
+          MatchedTierId = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          AdmittedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 74: {
+          RejectReason = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class ClaimFestivalBeastRewardRequest : pb::IMessage<ClaimFestivalBeastRewardRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ClaimFestivalBeastRewardRequest> _parser = new pb::MessageParser<ClaimFestivalBeastRewardRequest>(() => new ClaimFestivalBeastRewardRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ClaimFestivalBeastRewardRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerActivityReflection.Descriptor.MessageTypes[14]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ClaimFestivalBeastRewardRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ClaimFestivalBeastRewardRequest(ClaimFestivalBeastRewardRequest other) : this() {
+    clientRequestId_ = other.clientRequestId_;
+    rewardIdentity_ = other.rewardIdentity_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ClaimFestivalBeastRewardRequest Clone() {
+    return new ClaimFestivalBeastRewardRequest(this);
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 1;
+  private string clientRequestId_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "reward_identity" field.</summary>
+  public const int RewardIdentityFieldNumber = 2;
+  private string rewardIdentity_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string RewardIdentity {
+    get { return rewardIdentity_; }
+    set {
+      rewardIdentity_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ClaimFestivalBeastRewardRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ClaimFestivalBeastRewardRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ClientRequestId != other.ClientRequestId) return false;
+    if (RewardIdentity != other.RewardIdentity) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ClientRequestId.Length != 0) hash ^= ClientRequestId.GetHashCode();
+    if (RewardIdentity.Length != 0) hash ^= RewardIdentity.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ClientRequestId.Length != 0) {
+      output.WriteRawTag(10);
+      output.WriteString(ClientRequestId);
+    }
+    if (RewardIdentity.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(RewardIdentity);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ClientRequestId.Length != 0) {
+      output.WriteRawTag(10);
+      output.WriteString(ClientRequestId);
+    }
+    if (RewardIdentity.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(RewardIdentity);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ClientRequestId.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(ClientRequestId);
+    }
+    if (RewardIdentity.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(RewardIdentity);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ClaimFestivalBeastRewardRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ClientRequestId.Length != 0) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    if (other.RewardIdentity.Length != 0) {
+      RewardIdentity = other.RewardIdentity;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          ClientRequestId = input.ReadString();
+          break;
+        }
+        case 18: {
+          RewardIdentity = input.ReadString();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          ClientRequestId = input.ReadString();
+          break;
+        }
+        case 18: {
+          RewardIdentity = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class ClaimFestivalBeastRewardResponse : pb::IMessage<ClaimFestivalBeastRewardResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ClaimFestivalBeastRewardResponse> _parser = new pb::MessageParser<ClaimFestivalBeastRewardResponse>(() => new ClaimFestivalBeastRewardResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ClaimFestivalBeastRewardResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerActivityReflection.Descriptor.MessageTypes[15]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ClaimFestivalBeastRewardResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ClaimFestivalBeastRewardResponse(ClaimFestivalBeastRewardResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    outcome_ = other.outcome_;
+    replayed_ = other.replayed_;
+    durable_ = other.durable_;
+    clientRequestId_ = other.clientRequestId_;
+    rewardIdentity_ = other.rewardIdentity_;
+    rewardDefinitionVersion_ = other.rewardDefinitionVersion_;
+    rewardPetTableId_ = other.rewardPetTableId_;
+    petId_ = other.petId_;
+    claimedAtMs_ = other.claimedAtMs_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ClaimFestivalBeastRewardResponse Clone() {
+    return new ClaimFestivalBeastRewardResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "outcome" field.</summary>
+  public const int OutcomeFieldNumber = 2;
+  private global::FestivalBeastClaimOutcome outcome_ = global::FestivalBeastClaimOutcome.FestivalBeastClaimUnspecified;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::FestivalBeastClaimOutcome Outcome {
+    get { return outcome_; }
+    set {
+      outcome_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "replayed" field.</summary>
+  public const int ReplayedFieldNumber = 3;
+  private bool replayed_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Replayed {
+    get { return replayed_; }
+    set {
+      replayed_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "durable" field.</summary>
+  public const int DurableFieldNumber = 4;
+  private bool durable_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Durable {
+    get { return durable_; }
+    set {
+      durable_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 5;
+  private string clientRequestId_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "reward_identity" field.</summary>
+  public const int RewardIdentityFieldNumber = 6;
+  private string rewardIdentity_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string RewardIdentity {
+    get { return rewardIdentity_; }
+    set {
+      rewardIdentity_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "reward_definition_version" field.</summary>
+  public const int RewardDefinitionVersionFieldNumber = 7;
+  private uint rewardDefinitionVersion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RewardDefinitionVersion {
+    get { return rewardDefinitionVersion_; }
+    set {
+      rewardDefinitionVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reward_pet_table_id" field.</summary>
+  public const int RewardPetTableIdFieldNumber = 8;
+  private uint rewardPetTableId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RewardPetTableId {
+    get { return rewardPetTableId_; }
+    set {
+      rewardPetTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pet_id" field.</summary>
+  public const int PetIdFieldNumber = 9;
+  private ulong petId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PetId {
+    get { return petId_; }
+    set {
+      petId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "claimed_at_ms" field.</summary>
+  public const int ClaimedAtMsFieldNumber = 10;
+  private ulong claimedAtMs_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClaimedAtMs {
+    get { return claimedAtMs_; }
+    set {
+      claimedAtMs_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ClaimFestivalBeastRewardResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ClaimFestivalBeastRewardResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (Outcome != other.Outcome) return false;
+    if (Replayed != other.Replayed) return false;
+    if (Durable != other.Durable) return false;
+    if (ClientRequestId != other.ClientRequestId) return false;
+    if (RewardIdentity != other.RewardIdentity) return false;
+    if (RewardDefinitionVersion != other.RewardDefinitionVersion) return false;
+    if (RewardPetTableId != other.RewardPetTableId) return false;
+    if (PetId != other.PetId) return false;
+    if (ClaimedAtMs != other.ClaimedAtMs) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (Outcome != global::FestivalBeastClaimOutcome.FestivalBeastClaimUnspecified) hash ^= Outcome.GetHashCode();
+    if (Replayed != false) hash ^= Replayed.GetHashCode();
+    if (Durable != false) hash ^= Durable.GetHashCode();
+    if (ClientRequestId.Length != 0) hash ^= ClientRequestId.GetHashCode();
+    if (RewardIdentity.Length != 0) hash ^= RewardIdentity.GetHashCode();
+    if (RewardDefinitionVersion != 0) hash ^= RewardDefinitionVersion.GetHashCode();
+    if (RewardPetTableId != 0) hash ^= RewardPetTableId.GetHashCode();
+    if (PetId != 0UL) hash ^= PetId.GetHashCode();
+    if (ClaimedAtMs != 0UL) hash ^= ClaimedAtMs.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (Outcome != global::FestivalBeastClaimOutcome.FestivalBeastClaimUnspecified) {
+      output.WriteRawTag(16);
+      output.WriteEnum((int) Outcome);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(Replayed);
+    }
+    if (Durable != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(Durable);
+    }
+    if (ClientRequestId.Length != 0) {
+      output.WriteRawTag(42);
+      output.WriteString(ClientRequestId);
+    }
+    if (RewardIdentity.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(RewardIdentity);
+    }
+    if (RewardDefinitionVersion != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(RewardDefinitionVersion);
+    }
+    if (RewardPetTableId != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(RewardPetTableId);
+    }
+    if (PetId != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(PetId);
+    }
+    if (ClaimedAtMs != 0UL) {
+      output.WriteRawTag(80);
+      output.WriteUInt64(ClaimedAtMs);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (Outcome != global::FestivalBeastClaimOutcome.FestivalBeastClaimUnspecified) {
+      output.WriteRawTag(16);
+      output.WriteEnum((int) Outcome);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(Replayed);
+    }
+    if (Durable != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(Durable);
+    }
+    if (ClientRequestId.Length != 0) {
+      output.WriteRawTag(42);
+      output.WriteString(ClientRequestId);
+    }
+    if (RewardIdentity.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(RewardIdentity);
+    }
+    if (RewardDefinitionVersion != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(RewardDefinitionVersion);
+    }
+    if (RewardPetTableId != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(RewardPetTableId);
+    }
+    if (PetId != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(PetId);
+    }
+    if (ClaimedAtMs != 0UL) {
+      output.WriteRawTag(80);
+      output.WriteUInt64(ClaimedAtMs);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (Outcome != global::FestivalBeastClaimOutcome.FestivalBeastClaimUnspecified) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Outcome);
+    }
+    if (Replayed != false) {
+      size += 1 + 1;
+    }
+    if (Durable != false) {
+      size += 1 + 1;
+    }
+    if (ClientRequestId.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(ClientRequestId);
+    }
+    if (RewardIdentity.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(RewardIdentity);
+    }
+    if (RewardDefinitionVersion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RewardDefinitionVersion);
+    }
+    if (RewardPetTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RewardPetTableId);
+    }
+    if (PetId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PetId);
+    }
+    if (ClaimedAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClaimedAtMs);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ClaimFestivalBeastRewardResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.Outcome != global::FestivalBeastClaimOutcome.FestivalBeastClaimUnspecified) {
+      Outcome = other.Outcome;
+    }
+    if (other.Replayed != false) {
+      Replayed = other.Replayed;
+    }
+    if (other.Durable != false) {
+      Durable = other.Durable;
+    }
+    if (other.ClientRequestId.Length != 0) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    if (other.RewardIdentity.Length != 0) {
+      RewardIdentity = other.RewardIdentity;
+    }
+    if (other.RewardDefinitionVersion != 0) {
+      RewardDefinitionVersion = other.RewardDefinitionVersion;
+    }
+    if (other.RewardPetTableId != 0) {
+      RewardPetTableId = other.RewardPetTableId;
+    }
+    if (other.PetId != 0UL) {
+      PetId = other.PetId;
+    }
+    if (other.ClaimedAtMs != 0UL) {
+      ClaimedAtMs = other.ClaimedAtMs;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          Outcome = (global::FestivalBeastClaimOutcome) input.ReadEnum();
+          break;
+        }
+        case 24: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 32: {
+          Durable = input.ReadBool();
+          break;
+        }
+        case 42: {
+          ClientRequestId = input.ReadString();
+          break;
+        }
+        case 50: {
+          RewardIdentity = input.ReadString();
+          break;
+        }
+        case 56: {
+          RewardDefinitionVersion = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          RewardPetTableId = input.ReadUInt32();
+          break;
+        }
+        case 72: {
+          PetId = input.ReadUInt64();
+          break;
+        }
+        case 80: {
+          ClaimedAtMs = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          Outcome = (global::FestivalBeastClaimOutcome) input.ReadEnum();
+          break;
+        }
+        case 24: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 32: {
+          Durable = input.ReadBool();
+          break;
+        }
+        case 42: {
+          ClientRequestId = input.ReadString();
+          break;
+        }
+        case 50: {
+          RewardIdentity = input.ReadString();
+          break;
+        }
+        case 56: {
+          RewardDefinitionVersion = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          RewardPetTableId = input.ReadUInt32();
+          break;
+        }
+        case 72: {
+          PetId = input.ReadUInt64();
+          break;
+        }
+        case 80: {
+          ClaimedAtMs = input.ReadUInt64();
           break;
         }
       }

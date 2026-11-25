@@ -133,7 +133,7 @@ namespace MmorpgClient.UI.Ugui.Team
                     _client.MatchRecovery = game.TeamMatchRecovery;
                     _client.ActionRecovery = game.TeamActionRecovery;
                     MatchEntry = new BattleMatchEntryClient(_client, game.Battle,
-                        BattleUiStyle.PveTeamBattleConfigId, BattleUiStyle.Pvp1V1BattleConfigId,
+                        BattleUiStyle.PveTeamBattleConfigId, BattleUiStyle.PvpTeamBattleConfigId,
                         () => Time.realtimeSinceStartup, game.RpcGuard);
                     MatchEntry.Notice += ShowMatchNotice;
                     _client.Changed += SyncState;

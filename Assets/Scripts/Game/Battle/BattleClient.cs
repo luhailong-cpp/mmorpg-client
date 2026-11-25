@@ -203,6 +203,35 @@ namespace MmorpgClient.Game.Battle
         /// <summary>最新权威战斗状态(开战/回合结算/补拉时更新;断线清空)。</summary>
         public BattleStateS2C State { get; private set; }
 
+        /// <summary>本局逻辑回合上限（BattleStateS2C.round_limit）。</summary>
+        public uint RoundLimit => State?.RoundLimit ?? 0u;
+
+        /// <summary>当前战意渐盛层数（竞技 PVP 末 7 回合每回合 +1 层：伤 +10%/层，疗与新盾 -10%/层）。</summary>
+        public uint EscalationStacks => State?.EscalationStacks ?? 0u;
+
+        /// <summary>战意渐盛启动回合号（0 = 本局不启用）。</summary>
+        public uint EscalationStartRound => State?.EscalationStartRound ?? 0u;
+
+        /// <summary>PVP 延迟投降解锁回合号（0 = 本局不可投降，如 PVE；PVP 固定为 5）。</summary>
+        public uint SurrenderUnlockRound => State?.SurrenderUnlockRound ?? 0u;
+
+        /// <summary>己方队伍当前的投降表决态（含冷却期信息；敌方与观众永为 null，本局结束清空）。</summary>
+        public BattleSurrenderVoteState CurrentSurrenderVote { get; private set; }
+
+        /// <summary>本地判定当前是否可点击「投降」或「参与表决」（服务端仍是最终权威）。</summary>
+        public bool CanSurrenderNow =>
+            _battleId != 0
+            && (Phase == BattlePhase.WaitingAction || Phase == BattlePhase.Resolving)
+            && !IsBattleDecided
+            && IsBattleChannelReady
+            && State != null
+            && State.SurrenderUnlockRound > 0
+            && State.RoundIndex >= State.SurrenderUnlockRound
+            && (CurrentSurrenderVote == null
+                || CurrentSurrenderVote.Active
+                || CurrentSurrenderVote.NextAllowedRound == 0
+                || State.RoundIndex >= CurrentSurrenderVote.NextAllowedRound);
+
         /// <summary>最近一次已收到的权威终局结算快照（供通用结算页与核心循环模型读取材料增量/反挂机标记；断线清空）。</summary>
         public BattleEndS2C LastBattleEnd { get; private set; }
 
@@ -279,6 +308,8 @@ namespace MmorpgClient.Game.Battle
         public event Action<Match.GetQueueStatusResponse> OnQueueStatus;
         /// <summary>本人 is_auto 权威值变化(true=服务端已挂机;UI 据此渲染「自动」按钮态)。</summary>
         public event Action<bool> OnAutoStateChanged;
+        /// <summary>己方 PVP 投降表决进度变化（发起/队友表决/否决/通过/清场时触发；null 表示已清除）。</summary>
+        public event Action<BattleSurrenderVoteState> OnSurrenderVoteChanged;
         public event Action<string> OnError;
 
         /// <summary>
@@ -962,6 +993,58 @@ namespace MmorpgClient.Game.Battle
         }
 
         /// <summary>
+        /// 发起 PVP 延迟投降或响应队友投降表决（RPC 479 SurrenderBattle，走战斗直连；R5 起解锁）。
+        /// 返回 true 表示请求已发出；false 表示本地状态/直连未就绪拦截（已通过 OnError 提示）。
+        /// </summary>
+        public bool SurrenderBattle(bool agree = true, Action<bool> completed = null)
+        {
+            if (_battleId == 0 || (Phase != BattlePhase.WaitingAction && Phase != BattlePhase.Resolving) || IsBattleDecided)
+            {
+                OnError?.Invoke("当前不在可投降的对局阶段");
+                completed?.Invoke(false);
+                return false;
+            }
+            if (!IsBattleChannelReady)
+            {
+                OnError?.Invoke(_channelFailed ? BattleChannelFailedText : BattleChannelConnectingText);
+                completed?.Invoke(false);
+                return false;
+            }
+
+            ulong battleId = _battleId;
+            var req = new SurrenderBattleRequest
+            {
+                BattleId = battleId,
+                Agree = agree,
+            };
+            _net.Call(MessageIds.SurrenderBattle, req, SurrenderBattleResponse.Parser,
+                resp =>
+                {
+                    if (_battleId != battleId)
+                    {
+                        completed?.Invoke(false);
+                        return;
+                    }
+                    bool ok = !HasTip(resp?.ErrorMessage);
+                    if (!ok)
+                    {
+                        OnError?.Invoke(DescribeBattleTip("投降请求失败", resp.ErrorMessage));
+                    }
+                    else if (resp?.VoteState != null)
+                    {
+                        ApplySurrenderVoteState(resp.VoteState);
+                    }
+                    completed?.Invoke(ok);
+                },
+                err =>
+                {
+                    OnError?.Invoke($"投降请求失败:{err}");
+                    completed?.Invoke(false);
+                });
+            return true;
+        }
+
+        /// <summary>
         /// UI「重新连接」(turn-based §22 D74):重置直连恢复预算并立即补签重建直连。
         /// 不在战斗中 / 无直连通道 / 该局直连已在连接或已就绪时无事。
         /// 结果经 <see cref="OnBattleChannelReady"/> 或再次的 <see cref="OnBattleChannelFailed"/> 回来。
@@ -977,6 +1060,7 @@ namespace MmorpgClient.Game.Battle
         /// UI 收起结算面板后调用(契约):消费结束 Ack;连续战斗开关打开且有
         /// 排队参数记忆时自动重新 JoinQueue(§11.2)。相位早已回 None(既有
         /// Ended→None 流转不变),故本方法不改相位;迟到/多余 Ack 丢弃。
+        /// 正式排位(PVP_TEAM)、物法易势 5V5 与赛季锦标赛禁止连续战斗自动续排，避免关闭结算页误重排。
         /// </summary>
         public void AckBattleEnd()
         {
@@ -984,11 +1068,31 @@ namespace MmorpgClient.Game.Battle
             _endAckPending = false;
             if (!ContinuousBattle) return;
             if (Phase != BattlePhase.None) return; // 已在新排队/新战斗(重连等):不抢入口
+            if (IsContinuousBattleBlockedForLastBattle()) return;
             if (ContinuousMatchRequested != null) { ContinuousMatchRequested(); return; }
             if (!_hasQueueMemory) return;
             JoinQueue(_lastQueueMode, _lastQueueConfigId, _lastQueueTeamSize,
                 _lastQueueCharacterPresetId, _lastQueuePetPresetId, _lastQueueRankedRuleVersion);
         }
+
+        private bool IsContinuousBattleBlockedForLastBattle()
+        {
+            if (LastBattleEnd != null)
+            {
+                if (LastBattleEnd.SeasonId != 0) return true;
+                if (LastBattleEnd.Settlement != null)
+                {
+                    if (LastBattleEnd.Settlement.CompetitiveRanked) return true;
+                    if (IsContinuousBattleBlockedMode((Match.MatchMode)LastBattleEnd.Settlement.MatchMode)) return true;
+                }
+            }
+            return _hasQueueMemory && IsContinuousBattleBlockedMode(_lastQueueMode);
+        }
+
+        private static bool IsContinuousBattleBlockedMode(Match.MatchMode mode) =>
+            mode == Match.MatchMode.PvpTeam
+            || mode == Match.MatchMode.Polarity5V5
+            || mode == Match.MatchMode.SeasonTournament;
 
         /// <summary>
         /// 补拉权威状态(重连/异常兜底):GetBattleState,按返回态置
@@ -1042,6 +1146,8 @@ namespace MmorpgClient.Game.Battle
                 mc => HandleBattleEnd(BattleEndS2C.Parser.ParseFrom(mc.SerializedMessage)));
             _net.RegisterNotify(MessageIds.NotifyBattleReconnect,
                 mc => HandleBattleReconnect(BattleReconnectS2C.Parser.ParseFrom(mc.SerializedMessage)));
+            _net.RegisterNotify(MessageIds.NotifySurrenderVote,
+                mc => HandleSurrenderVote(SurrenderVoteS2C.Parser.ParseFrom(mc.SerializedMessage)));
             _net.RegisterNotify(MessageIds.NotifyChallengeInvite,
                 mc => OnChallengeInvite?.Invoke(Match.ChallengeInviteS2C.Parser.ParseFrom(mc.SerializedMessage)));
             _net.RegisterNotify(MessageIds.NotifyChallengeResult,
@@ -1074,6 +1180,7 @@ namespace MmorpgClient.Game.Battle
             if (phase == BattlePhase.None) phase = BattlePhase.WaitingAction; // 开局态不可能已结束,容错
             SetPhase(phase);
             RefreshMyAutoState();
+            ApplySurrenderVoteState(ev.State?.SurrenderVote);
 
             // 开局自愈:分配包与开局包同 key 有序,开局包到了直连却不服务该局 = 分配包丢了,补签;
             // 同局已在连 / 已验证时无事(turn-based §22 D74)
@@ -1097,6 +1204,7 @@ namespace MmorpgClient.Game.Battle
 
             if (ev.State != null) State = ev.State;
             RefreshMyAutoState();
+            ApplySurrenderVoteState(ev.State?.SurrenderVote);
             SetPhase(BattlePhase.Resolving);
             OnTurnResult?.Invoke(ev); // UI 播完调 AckTurnPlayed() 回 WaitingAction
         }
@@ -1253,6 +1361,24 @@ namespace MmorpgClient.Game.Battle
             if (phase == BattlePhase.None) SettleDecidedBattle();
             SetPhase(phase);
             RefreshMyAutoState();
+            ApplySurrenderVoteState(state.SurrenderVote);
+        }
+
+        private void HandleSurrenderVote(SurrenderVoteS2C ev)
+        {
+            if (ev == null || _battleId == 0) return;
+            if (ev.BattleId != 0 && ev.BattleId != _battleId) return;
+            ApplySurrenderVoteState(ev.VoteState);
+        }
+
+        private void ApplySurrenderVoteState(BattleSurrenderVoteState vote)
+        {
+            var next = vote != null && (vote.Active || vote.Passed || vote.Rejected || vote.NextAllowedRound > 0)
+                ? vote.Clone()
+                : null;
+            if (Equals(CurrentSurrenderVote, next)) return;
+            CurrentSurrenderVote = next;
+            OnSurrenderVoteChanged?.Invoke(CurrentSurrenderVote);
         }
 
         /// <summary>
@@ -1397,6 +1523,7 @@ namespace MmorpgClient.Game.Battle
             _channelFailed = false;
             _statePullBattleId = 0;
             _settleDeadline = 0;
+            ApplySurrenderVoteState(null);
             ResetStatePullRetry();      // 收尾 / 断线:自动重拉计划随本局作废
         }
 
@@ -1454,6 +1581,14 @@ namespace MmorpgClient.Game.Battle
                     return "论剑战法预设无效，请重新选择后再报名。";
                 case (uint)match_error.KMatchRankedRuleVersionMismatch:
                     return "论剑规则版本已更新，请刷新论剑界面后重试。";
+                case (uint)match_error.KMatchBattleSurrenderNotAllowed:
+                    return "当前战斗模式不支持投降。";
+                case (uint)match_error.KMatchBattleSurrenderTooEarly:
+                    return "需满第 5 回合后方可发起投降。";
+                case (uint)match_error.KMatchBattleSurrenderCooldown:
+                    return "投降表决冷却中，请稍后再试。";
+                case (uint)match_error.KMatchBattleSurrenderAlreadyVoted:
+                    return "你已参与本轮投降表决。";
                 default:
                     return $"{what}(tip={tip.Id})";
             }

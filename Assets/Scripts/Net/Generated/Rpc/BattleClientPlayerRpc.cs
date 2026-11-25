@@ -152,5 +152,27 @@ namespace MmorpgClient.Net.Generated
                 handler(message);
             });
         }
+
+        public const uint SurrenderBattleMessageId = 479;
+        /// <summary>
+        /// ---- PVP 延迟投降(docs/design/ranked-play-v2-overhaul.md):第 5 回合解锁,1V1 秒认输/多人同队投票 ----
+        /// </summary>
+        public static void SurrenderBattle(IRpcChannel channel, global::SurrenderBattleRequest request,
+            RpcDone<global::SurrenderBattleResponse> done)
+            => channel.CallMethod(SurrenderBattleMessageId, request, global::SurrenderBattleResponse.Parser, done);
+
+        public const uint NotifySurrenderVoteMessageId = 480;
+        public static void OnNotifySurrenderVote(IRpcChannel channel, Action<global::SurrenderVoteS2C> handler,
+            Action<InvalidProtocolBufferException> onMalformed = null)
+        {
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
+            channel.RegisterNotify(NotifySurrenderVoteMessageId, mc =>
+            {
+                global::SurrenderVoteS2C message;
+                try { message = global::SurrenderVoteS2C.Parser.ParseFrom(mc.SerializedMessage); }
+                catch (InvalidProtocolBufferException ex) { onMalformed?.Invoke(ex); return; }
+                handler(message);
+            });
+        }
     }
 }

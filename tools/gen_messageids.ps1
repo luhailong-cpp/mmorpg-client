@@ -182,9 +182,11 @@ $whitelist = @{
     "BattleClientPlayerNotifyBattleEnd"            = "NotifyBattleEnd"
     "BattleClientPlayerNotifyBattleReconnect"      = "NotifyBattleReconnect"
 
-    # 二期:观战 + 自动战斗(设计文档 §10/§11,service BattleClientPlayer)
+    # 二期:观战 + 自动战斗 + PVP延迟投降(设计文档 §10/§11 & ranked-play-v2-overhaul.md,service BattleClientPlayer)
     "BattleClientPlayerStopWatchBattle"            = "StopWatchBattle"
     "BattleClientPlayerSetAutoBattle"              = "SetAutoBattle"
+    "BattleClientPlayerSurrenderBattle"            = "SurrenderBattle"
+    "BattleClientPlayerNotifySurrenderVote"        = "NotifySurrenderVote"
     "BattleClientPlayerNotifySpectateState"        = "NotifySpectateState"
     "BattleClientPlayerNotifySpectateTurnResult"   = "NotifySpectateTurnResult"
     "BattleClientPlayerNotifySpectateEnd"          = "NotifySpectateEnd"

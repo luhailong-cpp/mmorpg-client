@@ -396,18 +396,50 @@ public static class AppearanceUiVerification
                     $"阅读过程不得产生写请求：switch={transport.SwitchCalls}, trial={transport.StartTrialCalls}, cancel={transport.CancelTrialCalls}");
                 summary.Add($"[{width}x{height}] Check 8 PASS: 全程阅读写请求计数=0 (Switch=0, Trial=0, Cancel=0)");
 
-                // 验收 9：人物收藏系列筛选、未集齐禁读合篇、集齐点亮印章与打开合篇阅读（零写请求）
+                // 验收 9：人物收藏系列 11 张正式切图加载与 Border 核验、未集齐禁读合篇、集齐点亮专属印章与打开合篇阅读（零写请求）
+                var expectedSeriesAssets = new[]
+                {
+                    ("series_tab_normal", new Vector4(60f, 0f, 60f, 0f)),
+                    ("series_tab_selected", new Vector4(60f, 0f, 60f, 0f)),
+                    ("series_badge_dim", new Vector4(55f, 0f, 55f, 0f)),
+                    ("series_badge_lit", new Vector4(55f, 0f, 55f, 0f)),
+                    ("series_banner_card", Vector4.zero),
+                    ("series_epilogue_card", Vector4.zero),
+                    ("series_seal_dim", Vector4.zero),
+                    ("series_seal_lit", Vector4.zero),
+                    ("series_seal_lantern_courtyard_lit", Vector4.zero),
+                    ("series_seal_elemental_blades_lit", Vector4.zero),
+                    ("series_seal_lotus_melody_lit", Vector4.zero),
+                };
+                foreach (var (key, expectedBorder) in expectedSeriesAssets)
+                {
+                    var sp = AppearanceUiArt.LoadSprite(AppearanceUiArt.SeriesStyleRoot + key);
+                    AssertTrue(sp != null, $"缺失正式系列切图：{AppearanceUiArt.SeriesStyleRoot}{key}");
+                    AssertTrue(sp.border == expectedBorder,
+                        $"系列切图 Border 不匹配 {key}：expected={expectedBorder}, actual={sp.border}");
+                }
+                uiRoot.AttachVerificationClient(client);
+                client.RequestInfo(force: true);
+                uiRoot.ShowPanel();
+
                 AssertTrue(uiRoot.SeriesTabBarRoot.activeSelf, "存在系列进度时应显示系列筛选栏");
                 Click("AppearanceSeriesTab_1");
                 AssertTrue(uiRoot.SeriesBannerRoot.activeSelf, "选中留灯院旧友后应显示系列信息条");
+                AssertTrue(!FindObject("SeriesSealFallbackBg").activeSelf && FindObject("SeriesSealIcon").GetComponent<Image>().enabled,
+                    "接入正式切图后未点亮系列必须显示 series_seal_dim 图标而非灰方块占位");
                 AssertTrue(!FindButton("AppearanceReadSeriesEpilogue").interactable, "未集齐系列时读合篇按钮必须不可点");
                 Shoot("08-series-incomplete-lantern");
 
                 Click("AppearanceSeriesTab_3");
+                AssertTrue(!FindObject("SeriesSealFallbackBg").activeSelf && FindObject("SeriesSealIcon").GetComponent<Image>().enabled,
+                    "已集齐清音济世应显示专属点亮印章 series_seal_lotus_melody_lit");
                 AssertTrue(FindButton("AppearanceReadSeriesEpilogue").interactable, "已集齐清音济世时应允许读合篇");
+                Shoot("08b-series-completed-lotus-banner");
                 uiRoot.PanelState.ArmLegacySwitchConfirmation("00_reference_topright_boy", clock);
                 Click("AppearanceReadSeriesEpilogue");
                 AssertTrue(uiRoot.SeriesEpilogueOverlay.activeSelf, "点击读合篇应打开系列合篇阅读层");
+                AssertTrue(!FindObject("SeriesEpilogueSealFallbackBg").activeSelf && FindObject("SeriesEpilogueSealIcon").GetComponent<Image>().enabled,
+                    "合篇弹层应显示专属点亮印章图而非绿方块占位");
                 AssertTrue(!uiRoot.PanelState.HasPendingSwitchConfirmation, "打开系列合篇必须清除旧扣卡确认");
                 AssertTrue(FindText("SeriesEpilogueTitle").text.Contains("青莲闻琴"), "系列合篇标题应匹配权威配表");
                 AssertTrue(uiRoot.SeriesEpilogueBodyText.text.Contains("莲心"), "系列合篇正文应来自权威配表");
@@ -418,12 +450,16 @@ public static class AppearanceUiVerification
                 AssertTrue(!uiRoot.SeriesBannerRoot.activeSelf, "切回全部时应隐藏单系列信息条");
                 AssertTrue(transport.SwitchCalls == 0 && transport.StartTrialCalls == 0 && transport.CancelTrialCalls == 0,
                     "系列筛选与合篇阅读全程不得产生写请求");
-                summary.Add($"[{width}x{height}] Check 9 PASS: 人物收藏系列筛选、未集齐灰态、集齐读合篇与零写请求验收通过");
+                summary.Add($"[{width}x{height}] Check 9 PASS: 人物收藏系列 11 张正式切图加载/Border、专属印章、未集齐灰态、集齐读合篇与零写请求验收通过");
             }
             else if (width < 1200 || height < 600)
             {
-                // 窄横屏 896×414 + 模拟安全区：核查列表→详情分步布局、小传与放大字号故事滚动
+                // 窄横屏 896×414 + 模拟安全区：核查列表→详情分步布局、系列信息条、小传与放大字号故事滚动
                 Shoot("10-compact-list");
+                Click("AppearanceSeriesTab_3");
+                AssertTrue(uiRoot.SeriesBannerRoot.activeSelf, "窄横屏选中系列应显示系列信息条");
+                Shoot("10b-compact-series-banner");
+                Click("AppearanceSeriesTab_All");
                 Click("AppearanceOption_10_crimson_spear_girl");
                 AssertTrue(FindObject("AppearanceBackToList").activeSelf, "窄横屏选中条目后应切换至详情并显示返回列表按钮");
                 Shoot("11-compact-detail-tingyun");

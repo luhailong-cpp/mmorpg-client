@@ -267,6 +267,7 @@ namespace MmorpgClient.Net
                 case MessageIds.GetBattleState:
                 case MessageIds.StopWatchBattle:
                 case MessageIds.SetAutoBattle:
+                case MessageIds.SurrenderBattle:
                     return "battle";
 
                 case MessageIds.RankGetRankPage:

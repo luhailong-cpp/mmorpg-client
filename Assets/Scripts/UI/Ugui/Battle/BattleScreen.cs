@@ -104,6 +104,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly RectTransform _timerRoot;
         private readonly Image _timerRing;
         private readonly TMP_Text _timerText;
+        private float _safeTopOffsetDesign = -1f;
 
         // 观战 / 回放只读模式
         private readonly TMP_Text _spectateText;
@@ -124,9 +125,13 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         // 技能子面板
         private readonly RectTransform _skillPanel;
+        private readonly RectTransform _skillViewport;
         private readonly RectTransform _skillContent;
         private readonly UnityEngine.UI.ScrollRect _skillScroll;
         private readonly TMP_Text _skillEmptyText;
+        private readonly UiTextButton[] _petSkillTabs = new UiTextButton[3];
+        private readonly TMP_Text _petSkillLimitText;
+        private int _petSkillTab;
         private readonly List<UiTextButton> _skillButtons = new();
 
         // 道具子面板(道具列表未随 BattleStateS2C 下发,先用输入 id 的极简方式,见 open_issues)
@@ -148,6 +153,11 @@ namespace MmorpgClient.UI.Ugui.Battle
         // 单位
         private readonly List<BattleUnitView> _views = new();
         private readonly Dictionary<ulong, BattleUnitView> _viewById = new();
+        private ulong _coreTelegraphTargetId;
+        private ulong _coreSecondTelegraphTargetId;
+        private ulong _coreProtectedGuardActorId;
+        private ulong _festivalTelegraphTargetId;
+        private string _festivalTelegraphLabel;
         private readonly BattlePresenter _presenter;
 
         private BattleStateS2C _state;
@@ -281,14 +291,30 @@ namespace MmorpgClient.UI.Ugui.Battle
             skillClose.Button.onClick.AddListener(() => _skillPanel.gameObject.SetActive(false));
             _skillEmptyText = QdaoUguiFactory.CreateText("SkillEmpty", _skillPanel, 24f, 70f, 852f, 40f,
                 "暂无可施放技能", 24f, QdaoUguiTheme.Cream);
-            var skillViewport = QdaoUguiFactory.CreateRect("SkillViewport", _skillPanel, 24f, 76f, 852f, 300f);
-            var skillViewportImage = skillViewport.gameObject.AddComponent<Image>();
+            string[] petTabNames = { "攻击", "障碍", "辅助" };
+            for (int i = 0; i < _petSkillTabs.Length; i++)
+            {
+                int tabIndex = i;
+                var tab = BattleUiWidgets.CreateTextButton("PetSkillTab" + i, _skillPanel,
+                    24f + i * 286f, 69f, 274f, 48f, petTabNames[i], 23f,
+                    BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+                BattleRoundCounter.ApplyNineSlice(tab.Plate, "button_9slice");
+                tab.Button.onClick.AddListener(() => { _petSkillTab = tabIndex; PopulateSkillPanel(); });
+                _petSkillTabs[i] = tab;
+                tab.SetVisible(false);
+            }
+            _petSkillLimitText = QdaoUguiFactory.CreateText("PetSkillLimit", _skillPanel,
+                24f, 122f, 852f, 29f, "攻击／障碍／辅助三类合计施放 1 招", 19f,
+                QdaoUguiTheme.StatusCream, TextAlignmentOptions.Center);
+            _petSkillLimitText.gameObject.SetActive(false);
+            _skillViewport = QdaoUguiFactory.CreateRect("SkillViewport", _skillPanel, 24f, 76f, 852f, 300f);
+            var skillViewportImage = _skillViewport.gameObject.AddComponent<Image>();
             skillViewportImage.color = new Color(0f, 0f, 0f, 0.001f);
             skillViewportImage.raycastTarget = true;
-            skillViewport.gameObject.AddComponent<UnityEngine.UI.RectMask2D>();
-            _skillContent = QdaoUguiFactory.CreateRect("SkillContent", skillViewport, 0f, 0f, 852f, 300f);
-            _skillScroll = skillViewport.gameObject.AddComponent<UnityEngine.UI.ScrollRect>();
-            _skillScroll.viewport = skillViewport;
+            _skillViewport.gameObject.AddComponent<UnityEngine.UI.RectMask2D>();
+            _skillContent = QdaoUguiFactory.CreateRect("SkillContent", _skillViewport, 0f, 0f, 852f, 300f);
+            _skillScroll = _skillViewport.gameObject.AddComponent<UnityEngine.UI.ScrollRect>();
+            _skillScroll.viewport = _skillViewport;
             _skillScroll.content = _skillContent;
             _skillScroll.horizontal = false;
             _skillScroll.vertical = true;
@@ -438,10 +464,14 @@ namespace MmorpgClient.UI.Ugui.Battle
             _deadlineStartMs = 0;
             _pending = PendingKind.None;
             _selectedTargetId = 0;
+            _coreTelegraphTargetId = 0;
+            _coreSecondTelegraphTargetId = 0;
+            _coreProtectedGuardActorId = 0;
             _shownOutcome = eBattleOutcome.BattleOutcomeOngoing;
             _notReadySince = -1f;   // 宽限期从本局第一次观察到未就绪起算
             ApplyChannelBanner(BattleChannelBanner.Hidden);
             _root.gameObject.SetActive(true);
+            ApplyTopSafety();
             _logPanel.Clear();
             _logPanel.SetVisible(false);
             _orderBar.Clear();
@@ -462,6 +492,9 @@ namespace MmorpgClient.UI.Ugui.Battle
             foreach (var view in _views) view.Destroy();
             _views.Clear();
             _viewById.Clear();
+            _coreTelegraphTargetId = 0;
+            _coreSecondTelegraphTargetId = 0;
+            _coreProtectedGuardActorId = 0;
             _orderBar.Clear();
             _partyCards.Clear();
             _state = null;
@@ -490,6 +523,46 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             _observerCount = count;
             RefreshSpectateHeader();
+        }
+
+        /// <summary>只把权威预告目标和护卫 ID 映射到可见单位名牌，不参与战斗选择或判定。</summary>
+        public void SetCoreLoopActorMarkers(ulong telegraphTargetId, ulong protectedGuardActorId) =>
+            SetCoreLoopActorMarkers(telegraphTargetId, 0, protectedGuardActorId);
+
+        public void SetCoreLoopActorMarkers(ulong firstTargetId, ulong secondTargetId,
+            ulong protectedGuardActorId)
+        {
+            _coreTelegraphTargetId = firstTargetId;
+            _coreSecondTelegraphTargetId = secondTargetId;
+            _coreProtectedGuardActorId = protectedGuardActorId;
+            RefreshActorMarkers();
+        }
+
+        public void SetFestivalBeastTelegraphMarker(ulong targetActorId, string label)
+        {
+            _festivalTelegraphTargetId = targetActorId;
+            _festivalTelegraphLabel = string.IsNullOrEmpty(label) ? "重击目标" : label;
+            RefreshActorMarkers();
+        }
+
+        private void RefreshActorMarkers()
+        {
+            foreach (var pair in _viewById)
+            {
+                bool festivalMarked = pair.Key != 0UL && pair.Key == _festivalTelegraphTargetId;
+                bool coreMarked = pair.Key != 0UL && (pair.Key == _coreTelegraphTargetId || pair.Key == _coreSecondTelegraphTargetId);
+                pair.Value.SetCoreMarkers(
+                    festivalMarked || coreMarked,
+                    pair.Key == _coreProtectedGuardActorId && _coreProtectedGuardActorId != 0UL,
+                    festivalMarked ? _festivalTelegraphLabel : "重击目标");
+            }
+        }
+
+        private static uint CurrentRoundLimit()
+        {
+            if (!(FestivalBeast.FestivalBeastUiRoot.Instance?.IsActiveFestivalBeastBattle ?? false)) return 0u;
+            uint configured = Game.FestivalBeast.FestivalBeastClient.Instance?.Detail?.RoundLimit ?? 0u;
+            return configured == 0u ? 12u : configured;
         }
 
         public void OnPhaseChanged(BattlePhase phase)
@@ -542,7 +615,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 }
             }
 
-            _roundCounter.SetRound(state.RoundIndex, state.RoundIndex != _roundCounter.Round && _roundCounter.Round != 0);
+            _roundCounter.SetRound(state.RoundIndex, state.RoundIndex != _roundCounter.Round && _roundCounter.Round != 0,
+                roundLimit: CurrentRoundLimit());
             _partyCards.Refresh(BattleHudLogic.PartyCardOrder(state.Actors, _myId, _myTeam, BattlePartyCards.MaxCards), ResolveTile);
 
             // 新回合开始:重置本地已提交标记。目标选择只对选的那一回合有效:直连断线期间服务端可能已替本人
@@ -610,6 +684,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _views.Add(view);
                 _viewById[actor.ActorId] = view;
             }
+            SetCoreLoopActorMarkers(_coreTelegraphTargetId, _coreSecondTelegraphTargetId,
+                _coreProtectedGuardActorId);
 
             // 绘制顺序:脚底 y 升序(下方的后画,盖住上方的);宝宝脚底在主人左上方,自然被主人盖住(与视频一致)
             _views.Sort((a, b) => BattleStage.CompareDepth(a.FootPosition, b.FootPosition));
@@ -621,6 +697,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public void Tick()
         {
             if (!IsOpen) return;
+            ApplyTopSafety();
             // 直连状态没有「掉线恢复中」事件(IBattleChannel 只报就绪 / 终结),每帧轮询才能及时置灰;
             // 放在播放分支之前:回合播放中直连断开 / 恢复,横幅照样更新
             RefreshChannelState();
@@ -693,6 +770,40 @@ namespace MmorpgClient.UI.Ugui.Battle
                     SetTimer(-1, 0f);
                     break;
             }
+        }
+
+        /// <summary>只移动战斗顶部控件，避让设备安全区与小游戏右上胶囊；舞台和底部指令不位移。</summary>
+        private void ApplyTopSafety()
+        {
+            var canvas = _hudRoot.GetComponentInParent<Canvas>();
+            if (canvas == null) return;
+            canvas = canvas.rootCanvas;
+            var pixels = canvas.pixelRect;
+            if (pixels.width <= 0f || pixels.height <= 0f) return;
+            float insetPixels = 0f;
+            if (canvas.targetDisplay == 0 && Screen.safeArea.width > 0f && Screen.safeArea.height > 0f)
+                insetPixels = Mathf.Max(0f, pixels.yMax - Mathf.Min(pixels.yMax, Screen.safeArea.yMax));
+#if UNITY_WEBGL && !UNITY_EDITOR
+            // 微信/抖音胶囊不一定计入 Screen.safeArea；保守预留宿主原生按钮上带。
+            insetPixels = Mathf.Max(insetPixels, 76f);
+#endif
+            float scale = Mathf.Max(0.001f, canvas.scaleFactor);
+            float offset = insetPixels / scale;
+            if (Mathf.Abs(offset - _safeTopOffsetDesign) < 0.5f) return;
+            _safeTopOffsetDesign = offset;
+            _roundCounter.Root.anchoredPosition = new Vector2(RoundCounterX, -(RoundCounterY + offset));
+            _logPanel.ButtonRoot.anchoredPosition = new Vector2(LogButtonRect.x, -(LogButtonRect.y + offset));
+            _orderBar.Root.anchoredPosition = new Vector2(0f, -(BattleActionOrderBar.Top + offset));
+            _timerRoot.anchoredPosition = new Vector2(TimerRect.x, -(TimerRect.y + offset));
+            _phaseText.rectTransform.anchoredPosition = new Vector2(40f, -(98f + offset));
+            _pendingText.rectTransform.anchoredPosition = new Vector2(PendingTextRect.x,
+                -(PendingTextRect.y + offset));
+            float partyOffset = offset;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            // 角色卡占右上角整列；其首卡须落在宿主胶囊下方。
+            partyOffset = Mathf.Max(partyOffset, 155f);
+#endif
+            _partyCards.SetTopOffset(partyOffset);
         }
 
         private float TimerRatio(long remainMs)
@@ -1121,7 +1232,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _playDone = false;
             ExitTargetMode();
             RefreshActionBar();
-            _roundCounter.SetRound(result.RoundIndex, true, fixedReplaySpeed.HasValue ? " · 回放" : " · 结算");
+            _roundCounter.SetRound(result.RoundIndex, true, fixedReplaySpeed.HasValue ? " · 回放" : " · 结算", CurrentRoundLimit());
 
             // 下一回合的截止时间随本回合结果一起到达:计时环从现在起算,而不是等播完 ApplyState 才起算
             if (!fixedReplaySpeed.HasValue && result.State != null && result.State.ActionDeadlineMs != _deadlineMs)
@@ -1163,7 +1274,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             _orderBar.ResetHighlight();
             if (result.State != null) ApplyState(result.State);
-            _roundCounter.SetRound(result.State?.RoundIndex ?? result.RoundIndex, false);
+            _roundCounter.SetRound(result.State?.RoundIndex ?? result.RoundIndex, false, roundLimit: CurrentRoundLimit());
             _playing = false;
             RefreshActionBar();
         }
@@ -1254,15 +1365,32 @@ namespace MmorpgClient.UI.Ugui.Battle
             _skillButtons.Clear();
 
             var me = FindMyActor();
+            bool isPet = me?.ActorType == eBattleActorType.BattleActorTypePet;
+            string[] petTabNames = { "攻击", "障碍", "辅助" };
+            for (int i = 0; i < _petSkillTabs.Length; i++)
+            {
+                var tab = _petSkillTabs[i];
+                tab.SetVisible(isPet);
+                if (!isPet) continue;
+                tab.Plate.color = i == _petSkillTab
+                    ? BattleUiStyle.PveSizeSelectedPlate : BattleUiStyle.ButtonPlate;
+                tab.SetText(i == _petSkillTab ? "√" + petTabNames[i] : petTabNames[i]);
+            }
+            _petSkillLimitText.gameObject.SetActive(isPet);
+            _skillViewport.anchoredPosition = new Vector2(24f, isPet ? -156f : -76f);
+            _skillViewport.sizeDelta = new Vector2(852f, isPet ? 220f : 300f);
+            _skillEmptyText.rectTransform.anchoredPosition = new Vector2(24f, isPet ? -178f : -70f);
+            _skillEmptyText.text = isPet
+                ? _petSkillTab == 0 ? "暂无可施放的攻击技能"
+                    : _petSkillTab == 1 ? "暂无可施放的障碍技能" : "暂无可施放的辅助技能"
+                : "暂无可施放技能";
             int index = 0;
             if (me != null)
             {
                 var skillIds = new List<uint>(me.SkillTableIds);
                 skillIds.Sort((a, b) =>
                 {
-                    int Category(uint id) { var d = Skills.SkillUiRoot.FindPresentation(id);
-                        return d?.IsObstacle == true ? 1 : d?.IsSupport == true ? 2 : 0; }
-                    int group = Category(a).CompareTo(Category(b));
+                    int group = SkillCategory(a).CompareTo(SkillCategory(b));
                     return group != 0 ? group : a.CompareTo(b);
                 });
                 foreach (var skillId in skillIds)
@@ -1270,6 +1398,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     // 列表归属仍来自战斗快照；这里只补显示元数据，不授予技能或计算战斗规则。
                     var definition = Skills.SkillUiRoot.FindPresentation(skillId);
                     if (definition?.IsPassive == true) continue;
+                    if (isPet && SkillCategory(skillId) != _petSkillTab) continue;
                     me.SkillCooldownRounds.TryGetValue(skillId, out uint cooldown);
                     int row = index / 3;
                     int col = index % 3;
@@ -1302,9 +1431,16 @@ namespace MmorpgClient.UI.Ugui.Battle
                     index++;
                 }
             }
-            _skillContent.sizeDelta = new Vector2(852f, Mathf.Max(300f, ((index + 2) / 3) * 100f));
+            _skillContent.sizeDelta = new Vector2(852f,
+                Mathf.Max(isPet ? 220f : 300f, ((index + 2) / 3) * 100f));
             _skillScroll.verticalNormalizedPosition = 1f;
             _skillEmptyText.gameObject.SetActive(index == 0);
+        }
+
+        private static int SkillCategory(uint skillId)
+        {
+            var presentation = Skills.SkillUiRoot.FindPresentation(skillId);
+            return presentation?.IsObstacle == true ? 1 : presentation?.IsSupport == true ? 2 : 0;
         }
 
         private void CloseSubPanels()

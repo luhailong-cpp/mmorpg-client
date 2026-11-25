@@ -17,7 +17,9 @@ namespace MmorpgClient.UI.Ugui
         AfkPass, // 挂机月卡(AfkPassUiRoot);未单独归类,落在「历练」
         BattleReport, // PVP 战报回放(BattleUiRoot);未单独归类,落在「历练」
         Appearance, // 角色形象切换与 1 小时免费试用(AppearanceUiRoot);落在「修行」
-        Ranked // 论剑排位首发 V1(RankedUiRoot);落在「历练」
+        Ranked, // 论剑排位首发 V1(RankedUiRoot);落在「历练」
+        PetFlip, // 灵宠翻牌休闲小游戏(PetFlipUiRoot);落在「历练」
+        Tournament // 全服赛季战队锦标赛《群仙问道赛》V1(TournamentUiRoot);落在「历练」
     }
 
     /// <summary>
@@ -491,6 +493,13 @@ namespace MmorpgClient.UI.Ugui
 
         private static Sprite EntryIcon(WorldHudEntry id)
         {
+            if (id == WorldHudEntry.PetFlip)
+                return PetFlip.PetFlipArtCatalog.LoadUiSprite("card-back")
+                    ?? QdaoUguiTheme.RequireSprite("UI/Ugui/RefreshV8/round_badge_taiji");
+            if (id == WorldHudEntry.Tournament)
+                return Resources.Load<Sprite>("UI/Ugui/MailV1/round_badge_taiji")
+                    ?? QdaoUguiTheme.RequireSprite("UI/Ugui/RefreshV8/round_badge_taiji");
+
             var path = NewArt + id.ToString().ToLowerInvariant();
             return LoadIcon(path, "UI/Ugui/RefreshV8/round_badge_taiji");
         }
@@ -507,6 +516,8 @@ namespace MmorpgClient.UI.Ugui
             WorldHudEntry.BattleReport => "战报复盘",
             WorldHudEntry.Appearance => "形象切换",
             WorldHudEntry.Ranked => "论剑排位",
+            WorldHudEntry.PetFlip => PetFlip.PetFlipUiPresentation.EntryPurposeText,
+            WorldHudEntry.Tournament => "全服战队赛",
             _ => string.Empty
         };
 

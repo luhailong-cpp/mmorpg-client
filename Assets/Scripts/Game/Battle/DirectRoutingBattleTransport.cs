@@ -73,12 +73,13 @@ namespace MmorpgClient.Game.Battle
 
         // ── IBattleTransport ────────────────────────────────
 
-        /// <summary>只有 BattleClientPlayer 的四条客户端 RPC 走直连(服务端白名单,D27)。</summary>
+        /// <summary>只有 BattleClientPlayer 的五条客户端 RPC 走直连(服务端白名单,D27 + V2 SurrenderBattle)。</summary>
         public static bool IsDirectMessage(uint messageId)
             => messageId == MessageIds.SubmitBattleAction
             || messageId == MessageIds.GetBattleState
             || messageId == MessageIds.StopWatchBattle
-            || messageId == MessageIds.SetAutoBattle;
+            || messageId == MessageIds.SetAutoBattle
+            || messageId == MessageIds.SurrenderBattle;
 
         public void RegisterNotify(uint messageId, Action<MessageContent> handler)
         {
@@ -102,6 +103,18 @@ namespace MmorpgClient.Game.Battle
                 onResponse = resp =>
                 {
                     _link.HandleBattleEnded(endedBattleId);
+                    inner?.Invoke(resp);
+                };
+            }
+
+            if (messageId == MessageIds.SurrenderBattle)
+            {
+                ulong surrenderBattleId = (request as SurrenderBattleRequest)?.BattleId ?? 0;
+                var inner = onResponse;
+                onResponse = resp =>
+                {
+                    if ((resp as SurrenderBattleResponse)?.VoteState?.Passed == true && surrenderBattleId != 0)
+                        _link.HandleBattleEnded(surrenderBattleId);
                     inner?.Invoke(resp);
                 };
             }
@@ -152,6 +165,19 @@ namespace MmorpgClient.Game.Battle
                     // 不在这里标记,紧跟着的 FIN 会被当成意外断开:白重连一次、被 battle 拒掉,再去补签。
                     ulong decided = ParseBattleId(() => DecidedBattleId(TurnResultS2C.Parser.ParseFrom(mc.SerializedMessage)));
                     if (decided != 0) _link.HandleBattleEnded(decided);
+                };
+            }
+            if (messageId == MessageIds.NotifySurrenderVote)
+            {
+                return mc =>
+                {
+                    handler(mc);
+                    ulong ended = ParseBattleId(() =>
+                    {
+                        var notify = SurrenderVoteS2C.Parser.ParseFrom(mc.SerializedMessage);
+                        return notify.VoteState != null && notify.VoteState.Passed ? notify.BattleId : 0;
+                    });
+                    if (ended != 0) _link.HandleBattleEnded(ended);
                 };
             }
             if (messageId == MessageIds.NotifyBattleEnd)

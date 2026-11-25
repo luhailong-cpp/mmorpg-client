@@ -297,5 +297,104 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(claimed.HasValue, Is.True);
             Assert.That(claimed.Value.GrantedAppearanceId, Is.EqualTo("20_star_formation_master_girl"));
         }
+
+        [Test]
+        public void UiState_EvaluatesAllNineAcceptancePhasesAndEntryRouting()
+        {
+            // 1. FirstLoad（无快照同步中，不假显示 0/24）
+            var loading = TrialJournalUiState.Evaluate(null, true, false, true, false, "", false,
+                TrialJournalNavTab.Overview, 0u);
+            Assert.That(loading.Phase, Is.EqualTo(TrialJournalVisualPhase.FirstLoad));
+            Assert.That(loading.OnlineWriteEnabled, Is.False);
+            Assert.That(loading.SyncPillText, Is.EqualTo("首次同步中"));
+
+            // 构造覆盖三卷 + M901 + 8法宝的完整样例快照
+            var snap = new TrialJournalSnapshot
+            {
+                Available = true,
+                CanOperate = true,
+                TotalPermanentLitSeals = 0,
+                TotalPermanentSeals = 24,
+                VoucherBalance = 0,
+                BoundSandBalance = 0,
+            };
+            var ch1 = new TrialJournalChapterView { ChapterId = 1, ChapterName = "卷一 · 破阵试炼", TotalSealCount = 12 };
+            var e101 = new TrialJournalEntryView { EntryId = 101, DisplayName = "普通·回春", RuleVersion = 1, RuleVersionName = "首测规则", CanEnter = true };
+            ch1.Entries.Add(e101);
+            var ch3 = new TrialJournalChapterView { ChapterId = 3, SeasonId = 1, ChapterName = "卷三 · 季游奇谈", TotalSealCount = 6 };
+            ch3.Entries.Add(new TrialJournalEntryView { EntryId = 302, DisplayName = "物法易势 5V5", SourceKind = 3, RuleVersion = 1, RuleVersionName = "首测规则", CanEnter = true });
+            snap.Chapters.Add(ch1);
+            snap.Chapters.Add(ch3);
+            var m901 = new TrialJournalMilestoneView
+            {
+                MilestoneId = 901,
+                ScopeChapterId = 0,
+                RequiredSeals = 18,
+                GrantAppearanceId = "20_star_formation_master_girl",
+                GrantAppearanceName = "星阵宗师",
+            };
+            snap.Milestones.Add(m901);
+            snap.RedeemableArtifacts.Add(new TrialRedeemableArtifactOption { ItemConfigId = 3301, ArtifactEffectId = 1, Name = "破阵刃" });
+
+            // 2. Empty（真空档）
+            var empty = TrialJournalUiState.Evaluate(snap, false, false, true, false, "", false,
+                TrialJournalNavTab.Overview, 101u);
+            Assert.That(empty.Phase, Is.EqualTo(TrialJournalVisualPhase.Empty));
+            Assert.That(empty.RedeemButtonEnabled, Is.False);
+
+            // 3. InProgress（进行中）+ 4. Refreshing（刷新保留旧图）
+            snap.TotalPermanentLitSeals = 7;
+            snap.VoucherBalance = 1;
+            var active = TrialJournalUiState.Evaluate(snap, false, false, true, false, "", false,
+                TrialJournalNavTab.Overview, 101u);
+            Assert.That(active.Phase, Is.EqualTo(TrialJournalVisualPhase.InProgress));
+            Assert.That(active.RedeemButtonEnabled, Is.True);
+
+            var refreshing = TrialJournalUiState.Evaluate(snap, true, false, true, false, "", false,
+                TrialJournalNavTab.Overview, 101u);
+            Assert.That(refreshing.Phase, Is.EqualTo(TrialJournalVisualPhase.Refreshing));
+            Assert.That(refreshing.PermanentLitSeals, Is.EqualTo(7u));
+
+            // 5. GrandmasterReached（18 印宗师）
+            snap.TotalPermanentLitSeals = 18;
+            m901.CurrentSeals = 18;
+            m901.Reached = true;
+            m901.Claimable = true;
+            var gm = TrialJournalUiState.Evaluate(snap, false, false, true, false, "", false,
+                TrialJournalNavTab.Overview, 101u);
+            Assert.That(gm.Phase, Is.EqualTo(TrialJournalVisualPhase.GrandmasterReached));
+            Assert.That(gm.GrandmasterClaimable, Is.True);
+            Assert.That(gm.GrandmasterButtonText, Is.EqualTo("领取宗师里程碑"));
+
+            // 6. SeasonalIsolated（卷三季游隔离）
+            var seasonal = TrialJournalUiState.Evaluate(snap, false, false, true, false, "", false,
+                TrialJournalNavTab.Seasonal, 302u);
+            Assert.That(seasonal.Phase, Is.EqualTo(TrialJournalVisualPhase.SeasonalIsolated));
+            Assert.That(TrialJournalUiState.ResolveTabForEntry(snap, 302u), Is.EqualTo(TrialJournalNavTab.Seasonal));
+            Assert.That(TrialJournalUiState.FilterEntries(snap, TrialJournalNavTab.Seasonal).Count, Is.EqualTo(1));
+
+            // 7. RuleRevision（规则换代旧版留档）
+            e101.HasLegacyRecordOnly = true;
+            var ruleRev = TrialJournalUiState.Evaluate(snap, false, false, true, false, "", false,
+                TrialJournalNavTab.Breakthrough, 101u);
+            Assert.That(ruleRev.Phase, Is.EqualTo(TrialJournalVisualPhase.RuleRevision));
+
+            // 8. BagFullError（背包满保留凭券）
+            e101.HasLegacyRecordOnly = false;
+            var bagFull = TrialJournalUiState.Evaluate(snap, false, false, true, false,
+                TrialJournalModels.DescribeTip((uint)trial_journal_error.KTrialJournalBagFull), true,
+                TrialJournalNavTab.Overview, 101u);
+            Assert.That(bagFull.Phase, Is.EqualTo(TrialJournalVisualPhase.BagFullError));
+            Assert.That(bagFull.VoucherBalance, Is.EqualTo(1ul));
+            Assert.That(bagFull.RedeemButtonText, Is.EqualTo("整理背包后重试"));
+
+            // 9. Disconnected（断线保留旧图且禁用写入）
+            var disconn = TrialJournalUiState.Evaluate(snap, false, false, false, true,
+                TrialJournalClient.RecoveryMessage, true, TrialJournalNavTab.Overview, 101u);
+            Assert.That(disconn.Phase, Is.EqualTo(TrialJournalVisualPhase.Disconnected));
+            Assert.That(disconn.OnlineWriteEnabled, Is.False);
+            Assert.That(disconn.RedeemButtonEnabled, Is.False);
+            Assert.That(disconn.PermanentLitSeals, Is.EqualTo(18u));
+        }
     }
 }

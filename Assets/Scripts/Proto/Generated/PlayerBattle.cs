@@ -25,109 +25,140 @@ public static partial class PlayerBattleReflection {
           "CiBwcm90by9iYXR0bGUvcGxheWVyX2JhdHRsZS5wcm90bxobcHJvdG8vZGIv",
           "cHJvdG9fb3B0aW9uLnByb3RvGhtwcm90by9jb21tb24vYmFzZS90aXAucHJv",
           "dG8aHXByb3RvL2NvbW1vbi9iYXNlL2VtcHR5LnByb3RvGh5wcm90by9iYXR0",
-          "bGUvYmF0dGxlX2RhdGEucHJvdG8ikwEKFEJhdHRsZVRlbGVncmFwaEVudHJ5",
+          "bGUvYmF0dGxlX2RhdGEucHJvdG8i3QEKFEJhdHRsZVRlbGVncmFwaEVudHJ5",
           "EhcKD3NvdXJjZV9hY3Rvcl9pZBgBIAEoBBIXCg90YXJnZXRfYWN0b3JfaWQY",
           "AiABKAQSFQoNZXhlY3V0ZV9yb3VuZBgDIAEoDRITCgtpbnRlbnRfa2luZBgE",
-          "IAEoDRIOCgZzdGF0dXMYBSABKA0SDQoFbGFiZWwYBiABKAki5AIKDkJhdHRs",
-          "ZVN0YXRlUzJDEhEKCWJhdHRsZV9pZBgBIAEoBBITCgtyb3VuZF9pbmRleBgC",
-          "IAEoDRIhCgZhY3RvcnMYAyADKAsyES5CYXR0bGVBY3RvclN0YXRlEhoKEmFj",
-          "dGlvbl9kZWFkbGluZV9tcxgEIAEoBBIgCgdvdXRjb21lGAUgASgOMg8uZUJh",
-          "dHRsZU91dGNvbWUSGQoRcGVuZGluZ19hY3Rvcl9pZHMYBiADKAQSJAoKc2Vs",
-          "Zl9pdGVtcxgHIAMoCzIQLkJhdHRsZUl0ZW1FbnRyeRIpCgp0ZWxlZ3JhcGhz",
-          "GAggAygLMhUuQmF0dGxlVGVsZWdyYXBoRW50cnkSFwoPYWN0aXZlX3BvbGFy",
-          "aXR5GAkgASgNEiIKGm5leHRfcG9sYXJpdHlfc3dpdGNoX3JvdW5kGAogASgN",
-          "EiAKGHByb3RlY3RlZF9ndWFyZF9hY3Rvcl9pZBgLIAEoBCJDCg5CYXR0bGVT",
-          "dGFydFMyQxIRCgliYXR0bGVfaWQYASABKAQSHgoFc3RhdGUYAiABKAsyDy5C",
-          "YXR0bGVTdGF0ZVMyQyKPAQoNVHVyblJlc3VsdFMyQxIRCgliYXR0bGVfaWQY",
-          "ASABKAQSEwoLcm91bmRfaW5kZXgYAiABKA0SIAoGZXZlbnRzGAMgAygLMhAu",
-          "QmF0dGxlRXZlbnRJdGVtEh4KBXN0YXRlGAQgASgLMg8uQmF0dGxlU3RhdGVT",
-          "MkMSFAoMYWN0aW9uX29yZGVyGAUgAygEIokCCgxCYXR0bGVFbmRTMkMSEQoJ",
-          "YmF0dGxlX2lkGAEgASgEEiAKB291dGNvbWUYAiABKA4yDy5lQmF0dGxlT3V0",
-          "Y29tZRIpCgpzZXR0bGVtZW50GAMgASgLMhUuQmF0dGxlU2V0dGxlbWVudERh",
-          "dGESFAoMaXRlbXNfbWFpbGVkGAQgASgIEiMKG21hdGVyaWFsX2NyZWRpdF91",
-          "bml0c19hZGRlZBgFIAEoDRIRCglzZWFzb25faWQYBiABKA0SJQodbWF0ZXJp",
-          "YWxfdHJhZGFibGVfdW5pdHNfYWRkZWQYByABKA0SJAocbWF0ZXJpYWxfcHZw",
-          "X2xvc3NfaW5lbGlnaWJsZRgIIAEoCCInChJCYXR0bGVSZWNvbm5lY3RTMkMS",
-          "EQoJYmF0dGxlX2lkGAEgASgEIkoKEFNwZWN0YXRlU3RhdGVTMkMSHgoFc3Rh",
-          "dGUYASABKAsyDy5CYXR0bGVTdGF0ZVMyQxIWCg5vYnNlcnZlcl9jb3VudBgC",
-          "IAEoDSJqCg5TcGVjdGF0ZUVuZFMyQxIRCgliYXR0bGVfaWQYASABKAQSIAoH",
-          "b3V0Y29tZRgCIAEoDjIPLmVCYXR0bGVPdXRjb21lEiMKBnJlYXNvbhgDIAEo",
-          "DjITLmVTcGVjdGF0ZUVuZFJlYXNvbiJ0ChlTdWJtaXRCYXR0bGVBY3Rpb25S",
-          "ZXF1ZXN0EhEKCWJhdHRsZV9pZBgBIAEoBBIdCgZhY3Rpb24YAiABKAsyDS5C",
-          "YXR0bGVBY3Rpb24SEAoIYWN0b3JfaWQYAyABKAQSEwoLcm91bmRfaW5kZXgY",
-          "BCABKA0iRAoaU3VibWl0QmF0dGxlQWN0aW9uUmVzcG9uc2USJgoNZXJyb3Jf",
-          "bWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlIioKFUdldEJhdHRsZVN0",
-          "YXRlUmVxdWVzdBIRCgliYXR0bGVfaWQYASABKAQiKwoWU3RvcFdhdGNoQmF0",
-          "dGxlUmVxdWVzdBIRCgliYXR0bGVfaWQYASABKAQiQQoXU3RvcFdhdGNoQmF0",
-          "dGxlUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9N",
-          "ZXNzYWdlIjoKFFNldEF1dG9CYXR0bGVSZXF1ZXN0EhEKCWJhdHRsZV9pZBgB",
-          "IAEoBBIPCgdlbmFibGVkGAIgASgIIj8KFVNldEF1dG9CYXR0bGVSZXNwb25z",
-          "ZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2UixwEK",
-          "E0JhdHRsZVRpY2tldFBheWxvYWQSEQoJYmF0dGxlX2lkGAEgASgEEhEKCXBs",
-          "YXllcl9pZBgCIAEoBBIWCg5iYXR0bGVfbm9kZV9pZBgDIAEoDRIaChJiYXR0",
-          "bGVfaW5zdGFuY2VfaWQYBCABKAkSFAoMZXhwaXJlX2F0X21zGAUgASgEEiAK",
-          "BHJvbGUYBiABKA4yEi5lQmF0dGxlVGlja2V0Um9sZRIeChZzcGVjdGF0b3Jf",
-          "b3BlcmF0aW9uX2lkGAcgASgJIj4KGEJhdHRsZVRva2VuVmVyaWZ5UmVxdWVz",
-          "dBIPCgdwYXlsb2FkGAEgASgMEhEKCXNpZ25hdHVyZRgCIAEoDCKLAQoZQmF0",
-          "dGxlVG9rZW5WZXJpZnlSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEg0KBWVy",
-          "cm9yGAIgASgJEhEKCWJhdHRsZV9pZBgDIAEoBBIdChVoZWFydGJlYXRfaW50",
-          "ZXJ2YWxfbXMYBCABKA0SHAoUaGVhcnRiZWF0X3RpbWVvdXRfbXMYBSABKA0i",
-          "ugEKEUJhdHRsZUFzc2lnbmVkUzJDEhEKCWJhdHRsZV9pZBgBIAEoBBIMCgRo",
-          "b3N0GAIgASgJEgwKBHBvcnQYAyABKA0SFQoNdG9rZW5fcGF5bG9hZBgEIAEo",
-          "DBIXCg90b2tlbl9zaWduYXR1cmUYBSABKAwSFAoMZXhwaXJlX2F0X21zGAYg",
-          "ASgEEiAKBHJvbGUYByABKA4yEi5lQmF0dGxlVGlja2V0Um9sZRIOCgZ3c191",
-          "cmwYCCABKAkiLwoaUmVxdWVzdEJhdHRsZVRpY2tldFJlcXVlc3QSEQoJYmF0",
-          "dGxlX2lkGAEgASgEIm0KG1JlcXVlc3RCYXR0bGVUaWNrZXRSZXNwb25zZRIm",
-          "Cg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USJgoKYXNz",
-          "aWdubWVudBgCIAEoCzISLkJhdHRsZUFzc2lnbmVkUzJDIv0CCgxCYXR0bGVS",
-          "ZXBsYXkSEQoJYmF0dGxlX2lkGAEgASgEEhIKCm1hdGNoX21vZGUYAiABKA0S",
-          "GAoQYmF0dGxlX2NvbmZpZ19pZBgDIAEoDRIVCg1zdGFydGVkX2F0X21zGAQg",
-          "ASgEEhYKDmZpbmlzaGVkX2F0X21zGAUgASgEEiAKB291dGNvbWUYBiABKA4y",
-          "Dy5lQmF0dGxlT3V0Y29tZRIrCgplbmRfcmVhc29uGAcgASgOMhcuZUJhdHRs",
-          "ZVJlcGxheUVuZFJlYXNvbhIUCgx0b3RhbF9yb3VuZHMYCCABKA0SGQoRdGFi",
-          "bGVfZmluZ2VycHJpbnQYCSABKAkSJAoLc3RhcnRfc3RhdGUYCiABKAsyDy5C",
-          "YXR0bGVTdGF0ZVMyQxIeCgZyb3VuZHMYCyADKAsyDi5UdXJuUmVzdWx0UzJD",
-          "EiQKC2ZpbmFsX3N0YXRlGAwgASgLMg8uQmF0dGxlU3RhdGVTMkMSEQoJdHJ1",
-          "bmNhdGVkGA0gASgIInYKFEJhdHRsZVJlcGxheUVudmVsb3BlEhYKDmZvcm1h",
-          "dF92ZXJzaW9uGAEgASgNEiIKBWNvZGVjGAIgASgOMhMuZUJhdHRsZVJlcGxh",
-          "eUNvZGVjEhEKCXJhd19ieXRlcxgDIAEoDRIPCgdwYXlsb2FkGAQgASgMKqYB",
-          "ChJlU3BlY3RhdGVFbmRSZWFzb24SFQoRU1BFQ1RBVEVfRU5EX05PTkUQABIg",
-          "ChxTUEVDVEFURV9FTkRfQkFUVExFX0ZJTklTSEVEEAESHwobU1BFQ1RBVEVf",
-          "RU5EX0JBVFRMRV9BQk9SVEVEEAISGAoUU1BFQ1RBVEVfRU5EX1JFTU9WRUQQ",
-          "AxIcChhTUEVDVEFURV9FTkRfU09VUkNFX0xPU1QQBCp1ChFlQmF0dGxlVGlj",
-          "a2V0Um9sZRIbChdCQVRUTEVfVElDS0VUX1JPTEVfTk9ORRAAEiIKHkJBVFRM",
-          "RV9USUNLRVRfUk9MRV9QQVJUSUNJUEFOVBABEh8KG0JBVFRMRV9USUNLRVRf",
-          "Uk9MRV9PQlNFUlZFUhACKlAKEmVCYXR0bGVSZXBsYXlDb2RlYxIcChhCQVRU",
-          "TEVfUkVQTEFZX0NPREVDX05PTkUQABIcChhCQVRUTEVfUkVQTEFZX0NPREVD",
-          "X0daSVAQASqAAQoWZUJhdHRsZVJlcGxheUVuZFJlYXNvbhIhCh1CQVRUTEVf",
-          "UkVQTEFZX0VORF9VTlNQRUNJRklFRBAAEh4KGkJBVFRMRV9SRVBMQVlfRU5E",
-          "X0ZJTklTSEVEEAESIwofQkFUVExFX1JFUExBWV9FTkRfREVBRExJTkVfRFJB",
-          "VxACMuUFChJCYXR0bGVDbGllbnRQbGF5ZXISTQoSU3VibWl0QmF0dGxlQWN0",
-          "aW9uEhouU3VibWl0QmF0dGxlQWN0aW9uUmVxdWVzdBobLlN1Ym1pdEJhdHRs",
-          "ZUFjdGlvblJlc3BvbnNlEjkKDkdldEJhdHRsZVN0YXRlEhYuR2V0QmF0dGxl",
-          "U3RhdGVSZXF1ZXN0Gg8uQmF0dGxlU3RhdGVTMkMSMwoRTm90aWZ5QmF0dGxl",
-          "U3RhcnQSDy5CYXR0bGVTdGFydFMyQxoGLkVtcHR5IgWImcgBAhIxChBOb3Rp",
-          "ZnlUdXJuUmVzdWx0Eg4uVHVyblJlc3VsdFMyQxoGLkVtcHR5IgWImcgBAhIv",
-          "Cg9Ob3RpZnlCYXR0bGVFbmQSDS5CYXR0bGVFbmRTMkMaBi5FbXB0eSIFiJnI",
-          "AQISOwoVTm90aWZ5QmF0dGxlUmVjb25uZWN0EhMuQmF0dGxlUmVjb25uZWN0",
-          "UzJDGgYuRW1wdHkiBYiZyAECEkQKD1N0b3BXYXRjaEJhdHRsZRIXLlN0b3BX",
-          "YXRjaEJhdHRsZVJlcXVlc3QaGC5TdG9wV2F0Y2hCYXR0bGVSZXNwb25zZRI+",
-          "Cg1TZXRBdXRvQmF0dGxlEhUuU2V0QXV0b0JhdHRsZVJlcXVlc3QaFi5TZXRB",
-          "dXRvQmF0dGxlUmVzcG9uc2USNwoTTm90aWZ5U3BlY3RhdGVTdGF0ZRIRLlNw",
-          "ZWN0YXRlU3RhdGVTMkMaBi5FbXB0eSIFiJnIAQISOQoYTm90aWZ5U3BlY3Rh",
-          "dGVUdXJuUmVzdWx0Eg4uVHVyblJlc3VsdFMyQxoGLkVtcHR5IgWImcgBAhIz",
-          "ChFOb3RpZnlTcGVjdGF0ZUVuZBIPLlNwZWN0YXRlRW5kUzJDGgYuRW1wdHki",
-          "BYiZyAECEjkKFE5vdGlmeUJhdHRsZUFzc2lnbmVkEhIuQmF0dGxlQXNzaWdu",
-          "ZWRTMkMaBi5FbXB0eSIFiJnIAQIaBYiowwEBQgxaBmJhdHRsZZjUYR5iBnBy",
-          "b3RvMw=="));
+          "IAEoDRIOCgZzdGF0dXMYBSABKA0SDQoFbGFiZWwYBiABKAkSFwoPdGVsZWdy",
+          "YXBoX3JvdW5kGAcgASgNEhUKDXN0YXRlX3ZlcnNpb24YCCABKAQSGAoQdGFy",
+          "Z2V0X2FjdG9yX2lkcxgJIAMoBCKfBgoOQmF0dGxlU3RhdGVTMkMSEQoJYmF0",
+          "dGxlX2lkGAEgASgEEhMKC3JvdW5kX2luZGV4GAIgASgNEiEKBmFjdG9ycxgD",
+          "IAMoCzIRLkJhdHRsZUFjdG9yU3RhdGUSGgoSYWN0aW9uX2RlYWRsaW5lX21z",
+          "GAQgASgEEiAKB291dGNvbWUYBSABKA4yDy5lQmF0dGxlT3V0Y29tZRIZChFw",
+          "ZW5kaW5nX2FjdG9yX2lkcxgGIAMoBBIkCgpzZWxmX2l0ZW1zGAcgAygLMhAu",
+          "QmF0dGxlSXRlbUVudHJ5EikKCnRlbGVncmFwaHMYCCADKAsyFS5CYXR0bGVU",
+          "ZWxlZ3JhcGhFbnRyeRIXCg9hY3RpdmVfcG9sYXJpdHkYCSABKA0SIgoabmV4",
+          "dF9wb2xhcml0eV9zd2l0Y2hfcm91bmQYCiABKA0SIAoYcHJvdGVjdGVkX2d1",
+          "YXJkX2FjdG9yX2lkGAsgASgEEjcKGGxhc3RfcmVzb2x2ZWRfdGVsZWdyYXBo",
+          "cxgMIAMoCzIVLkJhdHRsZVRlbGVncmFwaEVudHJ5EhIKCmJvc3NfcGhhc2UY",
+          "DSABKA0SHAoUYm9zc19tb21lbnR1bV9zdGFja3MYDiABKA0SGAoQYm9zc19z",
+          "dGFuY2VfdHlwZRgPIAEoDRIhChlib3NzX3N0YW5jZV9yZW1haW5fcm91bmRz",
+          "GBAgASgNEhgKEGJvc3NfZXhwb3NlZF9wY3QYESABKA0SIAoYYm9zc19leHBv",
+          "c2VkX3VudGlsX3JvdW5kGBIgASgNEhcKD2Jvc3NfdHJpYWxfa2luZBgTIAEo",
+          "DRIZChFiYXR0bGVfZGlmZmljdWx0eRgUIAEoDRITCgtyb3VuZF9saW1pdBgV",
+          "IAEoDRIZChFlc2NhbGF0aW9uX3N0YWNrcxgWIAEoDRIeChZlc2NhbGF0aW9u",
+          "X3N0YXJ0X3JvdW5kGBcgASgNEh4KFnN1cnJlbmRlcl91bmxvY2tfcm91bmQY",
+          "GCABKA0SMQoOc3VycmVuZGVyX3ZvdGUYGSABKAsyGS5CYXR0bGVTdXJyZW5k",
+          "ZXJWb3RlU3RhdGUiQwoOQmF0dGxlU3RhcnRTMkMSEQoJYmF0dGxlX2lkGAEg",
+          "ASgEEh4KBXN0YXRlGAIgASgLMg8uQmF0dGxlU3RhdGVTMkMiwwEKDVR1cm5S",
+          "ZXN1bHRTMkMSEQoJYmF0dGxlX2lkGAEgASgEEhMKC3JvdW5kX2luZGV4GAIg",
+          "ASgNEiAKBmV2ZW50cxgDIAMoCzIQLkJhdHRsZUV2ZW50SXRlbRIeCgVzdGF0",
+          "ZRgEIAEoCzIPLkJhdHRsZVN0YXRlUzJDEhQKDGFjdGlvbl9vcmRlchgFIAMo",
+          "BBIyChNyZXNvbHZlZF90ZWxlZ3JhcGhzGAYgAygLMhUuQmF0dGxlVGVsZWdy",
+          "YXBoRW50cnkixwIKHkZlc3RpdmFsQmVhc3RTZXR0bGVtZW50U3VtbWFyeRIc",
+          "ChRhY3Rpdml0eV9pbnN0YW5jZV9pZBgBIAEoDRIXCg9yZXdhcmRfaWRlbnRp",
+          "dHkYAiABKAkSEwoLd2luc19iZWZvcmUYAyABKA0SEgoKd2luc19hZnRlchgE",
+          "IAEoDRIVCg1yZXF1aXJlZF93aW5zGAUgASgNEhYKDm5ld2x5X2VsaWdpYmxl",
+          "GAYgASgIEhwKFG1hdGVyaWFsX3VuaXRzX2FkZGVkGAcgASgNEiUKHW1hdGVy",
+          "aWFsX3RyYWRhYmxlX3VuaXRzX2FkZGVkGAggASgNEiYKHm1hdGVyaWFsX2F2",
+          "YWlsYWJsZV91bml0c19hZnRlchgJIAEoBBIpCiFtYXRlcmlhbF9lYXJuYWJs",
+          "ZV9yZW1haW5pbmdfYWZ0ZXIYCiABKA0izQIKDEJhdHRsZUVuZFMyQxIRCgli",
+          "YXR0bGVfaWQYASABKAQSIAoHb3V0Y29tZRgCIAEoDjIPLmVCYXR0bGVPdXRj",
+          "b21lEikKCnNldHRsZW1lbnQYAyABKAsyFS5CYXR0bGVTZXR0bGVtZW50RGF0",
+          "YRIUCgxpdGVtc19tYWlsZWQYBCABKAgSIwobbWF0ZXJpYWxfY3JlZGl0X3Vu",
+          "aXRzX2FkZGVkGAUgASgNEhEKCXNlYXNvbl9pZBgGIAEoDRIlCh1tYXRlcmlh",
+          "bF90cmFkYWJsZV91bml0c19hZGRlZBgHIAEoDRIkChxtYXRlcmlhbF9wdnBf",
+          "bG9zc19pbmVsaWdpYmxlGAggASgIEkIKGWZlc3RpdmFsX2JlYXN0X3NldHRs",
+          "ZW1lbnQYCSABKAsyHy5GZXN0aXZhbEJlYXN0U2V0dGxlbWVudFN1bW1hcnki",
+          "JwoSQmF0dGxlUmVjb25uZWN0UzJDEhEKCWJhdHRsZV9pZBgBIAEoBCJKChBT",
+          "cGVjdGF0ZVN0YXRlUzJDEh4KBXN0YXRlGAEgASgLMg8uQmF0dGxlU3RhdGVT",
+          "MkMSFgoOb2JzZXJ2ZXJfY291bnQYAiABKA0iagoOU3BlY3RhdGVFbmRTMkMS",
+          "EQoJYmF0dGxlX2lkGAEgASgEEiAKB291dGNvbWUYAiABKA4yDy5lQmF0dGxl",
+          "T3V0Y29tZRIjCgZyZWFzb24YAyABKA4yEy5lU3BlY3RhdGVFbmRSZWFzb24i",
+          "dAoZU3VibWl0QmF0dGxlQWN0aW9uUmVxdWVzdBIRCgliYXR0bGVfaWQYASAB",
+          "KAQSHQoGYWN0aW9uGAIgASgLMg0uQmF0dGxlQWN0aW9uEhAKCGFjdG9yX2lk",
+          "GAMgASgEEhMKC3JvdW5kX2luZGV4GAQgASgNIkQKGlN1Ym1pdEJhdHRsZUFj",
+          "dGlvblJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
+          "TWVzc2FnZSIqChVHZXRCYXR0bGVTdGF0ZVJlcXVlc3QSEQoJYmF0dGxlX2lk",
+          "GAEgASgEIisKFlN0b3BXYXRjaEJhdHRsZVJlcXVlc3QSEQoJYmF0dGxlX2lk",
+          "GAEgASgEIkEKF1N0b3BXYXRjaEJhdHRsZVJlc3BvbnNlEiYKDWVycm9yX21l",
+          "c3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZSI6ChRTZXRBdXRvQmF0dGxl",
+          "UmVxdWVzdBIRCgliYXR0bGVfaWQYASABKAQSDwoHZW5hYmxlZBgCIAEoCCI/",
+          "ChVTZXRBdXRvQmF0dGxlUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEo",
+          "CzIPLlRpcEluZm9NZXNzYWdlIjoKFlN1cnJlbmRlckJhdHRsZVJlcXVlc3QS",
+          "EQoJYmF0dGxlX2lkGAEgASgEEg0KBWFncmVlGAIgASgIInAKF1N1cnJlbmRl",
+          "ckJhdHRsZVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJ",
+          "bmZvTWVzc2FnZRItCgp2b3RlX3N0YXRlGAIgASgLMhkuQmF0dGxlU3VycmVu",
+          "ZGVyVm90ZVN0YXRlIlQKEFN1cnJlbmRlclZvdGVTMkMSEQoJYmF0dGxlX2lk",
+          "GAEgASgEEi0KCnZvdGVfc3RhdGUYAiABKAsyGS5CYXR0bGVTdXJyZW5kZXJW",
+          "b3RlU3RhdGUixwEKE0JhdHRsZVRpY2tldFBheWxvYWQSEQoJYmF0dGxlX2lk",
+          "GAEgASgEEhEKCXBsYXllcl9pZBgCIAEoBBIWCg5iYXR0bGVfbm9kZV9pZBgD",
+          "IAEoDRIaChJiYXR0bGVfaW5zdGFuY2VfaWQYBCABKAkSFAoMZXhwaXJlX2F0",
+          "X21zGAUgASgEEiAKBHJvbGUYBiABKA4yEi5lQmF0dGxlVGlja2V0Um9sZRIe",
+          "ChZzcGVjdGF0b3Jfb3BlcmF0aW9uX2lkGAcgASgJIj4KGEJhdHRsZVRva2Vu",
+          "VmVyaWZ5UmVxdWVzdBIPCgdwYXlsb2FkGAEgASgMEhEKCXNpZ25hdHVyZRgC",
+          "IAEoDCKLAQoZQmF0dGxlVG9rZW5WZXJpZnlSZXNwb25zZRIPCgdzdWNjZXNz",
+          "GAEgASgIEg0KBWVycm9yGAIgASgJEhEKCWJhdHRsZV9pZBgDIAEoBBIdChVo",
+          "ZWFydGJlYXRfaW50ZXJ2YWxfbXMYBCABKA0SHAoUaGVhcnRiZWF0X3RpbWVv",
+          "dXRfbXMYBSABKA0iugEKEUJhdHRsZUFzc2lnbmVkUzJDEhEKCWJhdHRsZV9p",
+          "ZBgBIAEoBBIMCgRob3N0GAIgASgJEgwKBHBvcnQYAyABKA0SFQoNdG9rZW5f",
+          "cGF5bG9hZBgEIAEoDBIXCg90b2tlbl9zaWduYXR1cmUYBSABKAwSFAoMZXhw",
+          "aXJlX2F0X21zGAYgASgEEiAKBHJvbGUYByABKA4yEi5lQmF0dGxlVGlja2V0",
+          "Um9sZRIOCgZ3c191cmwYCCABKAkiLwoaUmVxdWVzdEJhdHRsZVRpY2tldFJl",
+          "cXVlc3QSEQoJYmF0dGxlX2lkGAEgASgEIm0KG1JlcXVlc3RCYXR0bGVUaWNr",
+          "ZXRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01l",
+          "c3NhZ2USJgoKYXNzaWdubWVudBgCIAEoCzISLkJhdHRsZUFzc2lnbmVkUzJD",
+          "Iv0CCgxCYXR0bGVSZXBsYXkSEQoJYmF0dGxlX2lkGAEgASgEEhIKCm1hdGNo",
+          "X21vZGUYAiABKA0SGAoQYmF0dGxlX2NvbmZpZ19pZBgDIAEoDRIVCg1zdGFy",
+          "dGVkX2F0X21zGAQgASgEEhYKDmZpbmlzaGVkX2F0X21zGAUgASgEEiAKB291",
+          "dGNvbWUYBiABKA4yDy5lQmF0dGxlT3V0Y29tZRIrCgplbmRfcmVhc29uGAcg",
+          "ASgOMhcuZUJhdHRsZVJlcGxheUVuZFJlYXNvbhIUCgx0b3RhbF9yb3VuZHMY",
+          "CCABKA0SGQoRdGFibGVfZmluZ2VycHJpbnQYCSABKAkSJAoLc3RhcnRfc3Rh",
+          "dGUYCiABKAsyDy5CYXR0bGVTdGF0ZVMyQxIeCgZyb3VuZHMYCyADKAsyDi5U",
+          "dXJuUmVzdWx0UzJDEiQKC2ZpbmFsX3N0YXRlGAwgASgLMg8uQmF0dGxlU3Rh",
+          "dGVTMkMSEQoJdHJ1bmNhdGVkGA0gASgIInYKFEJhdHRsZVJlcGxheUVudmVs",
+          "b3BlEhYKDmZvcm1hdF92ZXJzaW9uGAEgASgNEiIKBWNvZGVjGAIgASgOMhMu",
+          "ZUJhdHRsZVJlcGxheUNvZGVjEhEKCXJhd19ieXRlcxgDIAEoDRIPCgdwYXls",
+          "b2FkGAQgASgMKqYBChJlU3BlY3RhdGVFbmRSZWFzb24SFQoRU1BFQ1RBVEVf",
+          "RU5EX05PTkUQABIgChxTUEVDVEFURV9FTkRfQkFUVExFX0ZJTklTSEVEEAES",
+          "HwobU1BFQ1RBVEVfRU5EX0JBVFRMRV9BQk9SVEVEEAISGAoUU1BFQ1RBVEVf",
+          "RU5EX1JFTU9WRUQQAxIcChhTUEVDVEFURV9FTkRfU09VUkNFX0xPU1QQBCp1",
+          "ChFlQmF0dGxlVGlja2V0Um9sZRIbChdCQVRUTEVfVElDS0VUX1JPTEVfTk9O",
+          "RRAAEiIKHkJBVFRMRV9USUNLRVRfUk9MRV9QQVJUSUNJUEFOVBABEh8KG0JB",
+          "VFRMRV9USUNLRVRfUk9MRV9PQlNFUlZFUhACKlAKEmVCYXR0bGVSZXBsYXlD",
+          "b2RlYxIcChhCQVRUTEVfUkVQTEFZX0NPREVDX05PTkUQABIcChhCQVRUTEVf",
+          "UkVQTEFZX0NPREVDX0daSVAQASqAAQoWZUJhdHRsZVJlcGxheUVuZFJlYXNv",
+          "bhIhCh1CQVRUTEVfUkVQTEFZX0VORF9VTlNQRUNJRklFRBAAEh4KGkJBVFRM",
+          "RV9SRVBMQVlfRU5EX0ZJTklTSEVEEAESIwofQkFUVExFX1JFUExBWV9FTkRf",
+          "REVBRExJTkVfRFJBVxACMuQGChJCYXR0bGVDbGllbnRQbGF5ZXISTQoSU3Vi",
+          "bWl0QmF0dGxlQWN0aW9uEhouU3VibWl0QmF0dGxlQWN0aW9uUmVxdWVzdBob",
+          "LlN1Ym1pdEJhdHRsZUFjdGlvblJlc3BvbnNlEjkKDkdldEJhdHRsZVN0YXRl",
+          "EhYuR2V0QmF0dGxlU3RhdGVSZXF1ZXN0Gg8uQmF0dGxlU3RhdGVTMkMSMwoR",
+          "Tm90aWZ5QmF0dGxlU3RhcnQSDy5CYXR0bGVTdGFydFMyQxoGLkVtcHR5IgWI",
+          "mcgBAhIxChBOb3RpZnlUdXJuUmVzdWx0Eg4uVHVyblJlc3VsdFMyQxoGLkVt",
+          "cHR5IgWImcgBAhIvCg9Ob3RpZnlCYXR0bGVFbmQSDS5CYXR0bGVFbmRTMkMa",
+          "Bi5FbXB0eSIFiJnIAQISOwoVTm90aWZ5QmF0dGxlUmVjb25uZWN0EhMuQmF0",
+          "dGxlUmVjb25uZWN0UzJDGgYuRW1wdHkiBYiZyAECEkQKD1N0b3BXYXRjaEJh",
+          "dHRsZRIXLlN0b3BXYXRjaEJhdHRsZVJlcXVlc3QaGC5TdG9wV2F0Y2hCYXR0",
+          "bGVSZXNwb25zZRI+Cg1TZXRBdXRvQmF0dGxlEhUuU2V0QXV0b0JhdHRsZVJl",
+          "cXVlc3QaFi5TZXRBdXRvQmF0dGxlUmVzcG9uc2USNwoTTm90aWZ5U3BlY3Rh",
+          "dGVTdGF0ZRIRLlNwZWN0YXRlU3RhdGVTMkMaBi5FbXB0eSIFiJnIAQISOQoY",
+          "Tm90aWZ5U3BlY3RhdGVUdXJuUmVzdWx0Eg4uVHVyblJlc3VsdFMyQxoGLkVt",
+          "cHR5IgWImcgBAhIzChFOb3RpZnlTcGVjdGF0ZUVuZBIPLlNwZWN0YXRlRW5k",
+          "UzJDGgYuRW1wdHkiBYiZyAECEjkKFE5vdGlmeUJhdHRsZUFzc2lnbmVkEhIu",
+          "QmF0dGxlQXNzaWduZWRTMkMaBi5FbXB0eSIFiJnIAQISRAoPU3VycmVuZGVy",
+          "QmF0dGxlEhcuU3VycmVuZGVyQmF0dGxlUmVxdWVzdBoYLlN1cnJlbmRlckJh",
+          "dHRsZVJlc3BvbnNlEjcKE05vdGlmeVN1cnJlbmRlclZvdGUSES5TdXJyZW5k",
+          "ZXJWb3RlUzJDGgYuRW1wdHkiBYiZyAECGgWIqMMBAUIMWgZiYXR0bGWY1GEe",
+          "YgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, global::BattleDataReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eSpectateEndReason), typeof(global::eBattleTicketRole), typeof(global::eBattleReplayCodec), typeof(global::eBattleReplayEndReason), }, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleTelegraphEntry), global::BattleTelegraphEntry.Parser, new[]{ "SourceActorId", "TargetActorId", "ExecuteRound", "IntentKind", "Status", "Label" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleStateS2C), global::BattleStateS2C.Parser, new[]{ "BattleId", "RoundIndex", "Actors", "ActionDeadlineMs", "Outcome", "PendingActorIds", "SelfItems", "Telegraphs", "ActivePolarity", "NextPolaritySwitchRound", "ProtectedGuardActorId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleTelegraphEntry), global::BattleTelegraphEntry.Parser, new[]{ "SourceActorId", "TargetActorId", "ExecuteRound", "IntentKind", "Status", "Label", "TelegraphRound", "StateVersion", "TargetActorIds" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleStateS2C), global::BattleStateS2C.Parser, new[]{ "BattleId", "RoundIndex", "Actors", "ActionDeadlineMs", "Outcome", "PendingActorIds", "SelfItems", "Telegraphs", "ActivePolarity", "NextPolaritySwitchRound", "ProtectedGuardActorId", "LastResolvedTelegraphs", "BossPhase", "BossMomentumStacks", "BossStanceType", "BossStanceRemainRounds", "BossExposedPct", "BossExposedUntilRound", "BossTrialKind", "BattleDifficulty", "RoundLimit", "EscalationStacks", "EscalationStartRound", "SurrenderUnlockRound", "SurrenderVote" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleStartS2C), global::BattleStartS2C.Parser, new[]{ "BattleId", "State" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::TurnResultS2C), global::TurnResultS2C.Parser, new[]{ "BattleId", "RoundIndex", "Events", "State", "ActionOrder" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleEndS2C), global::BattleEndS2C.Parser, new[]{ "BattleId", "Outcome", "Settlement", "ItemsMailed", "MaterialCreditUnitsAdded", "SeasonId", "MaterialTradableUnitsAdded", "MaterialPvpLossIneligible" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TurnResultS2C), global::TurnResultS2C.Parser, new[]{ "BattleId", "RoundIndex", "Events", "State", "ActionOrder", "ResolvedTelegraphs" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::FestivalBeastSettlementSummary), global::FestivalBeastSettlementSummary.Parser, new[]{ "ActivityInstanceId", "RewardIdentity", "WinsBefore", "WinsAfter", "RequiredWins", "NewlyEligible", "MaterialUnitsAdded", "MaterialTradableUnitsAdded", "MaterialAvailableUnitsAfter", "MaterialEarnableRemainingAfter" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleEndS2C), global::BattleEndS2C.Parser, new[]{ "BattleId", "Outcome", "Settlement", "ItemsMailed", "MaterialCreditUnitsAdded", "SeasonId", "MaterialTradableUnitsAdded", "MaterialPvpLossIneligible", "FestivalBeastSettlement" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleReconnectS2C), global::BattleReconnectS2C.Parser, new[]{ "BattleId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SpectateStateS2C), global::SpectateStateS2C.Parser, new[]{ "State", "ObserverCount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SpectateEndS2C), global::SpectateEndS2C.Parser, new[]{ "BattleId", "Outcome", "Reason" }, null, null, null, null),
@@ -138,6 +169,9 @@ public static partial class PlayerBattleReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::StopWatchBattleResponse), global::StopWatchBattleResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SetAutoBattleRequest), global::SetAutoBattleRequest.Parser, new[]{ "BattleId", "Enabled" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SetAutoBattleResponse), global::SetAutoBattleResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SurrenderBattleRequest), global::SurrenderBattleRequest.Parser, new[]{ "BattleId", "Agree" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SurrenderBattleResponse), global::SurrenderBattleResponse.Parser, new[]{ "ErrorMessage", "VoteState" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SurrenderVoteS2C), global::SurrenderVoteS2C.Parser, new[]{ "BattleId", "VoteState" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleTicketPayload), global::BattleTicketPayload.Parser, new[]{ "BattleId", "PlayerId", "BattleNodeId", "BattleInstanceId", "ExpireAtMs", "Role", "SpectatorOperationId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleTokenVerifyRequest), global::BattleTokenVerifyRequest.Parser, new[]{ "Payload", "Signature" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleTokenVerifyResponse), global::BattleTokenVerifyResponse.Parser, new[]{ "Success", "Error", "BattleId", "HeartbeatIntervalMs", "HeartbeatTimeoutMs" }, null, null, null, null),
@@ -267,6 +301,9 @@ public sealed partial class BattleTelegraphEntry : pb::IMessage<BattleTelegraphE
     intentKind_ = other.intentKind_;
     status_ = other.status_;
     label_ = other.label_;
+    telegraphRound_ = other.telegraphRound_;
+    stateVersion_ = other.stateVersion_;
+    targetActorIds_ = other.targetActorIds_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -319,7 +356,7 @@ public sealed partial class BattleTelegraphEntry : pb::IMessage<BattleTelegraphE
   public const int IntentKindFieldNumber = 4;
   private uint intentKind_;
   /// <summary>
-  /// 意图种类：1=慢动作重劈，2=回春治疗，3=物防护势，4=法防护势，5=灵障蓄盾，6=玄毒封灵。
+  /// 意图种类：1=慢动作重劈，2=回春治疗，3=物防护势，4=法防护势，5=灵障蓄盾，6=玄毒封灵，7=强法重击，8=群体玄毒，9=瑞兽慢速重击。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -357,6 +394,50 @@ public sealed partial class BattleTelegraphEntry : pb::IMessage<BattleTelegraphE
     }
   }
 
+  /// <summary>Field number for the "telegraph_round" field.</summary>
+  public const int TelegraphRoundFieldNumber = 7;
+  private uint telegraphRound_;
+  /// <summary>
+  /// 发出预告的回合号（瑞兽迎春为 R2/5/8/11）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TelegraphRound {
+    get { return telegraphRound_; }
+    set {
+      telegraphRound_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "state_version" field.</summary>
+  public const int StateVersionFieldNumber = 8;
+  private ulong stateVersion_;
+  /// <summary>
+  /// 预告状态递增版本号，防客户端乱序覆盖
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong StateVersion {
+    get { return stateVersion_; }
+    set {
+      stateVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_actor_ids" field.</summary>
+  public const int TargetActorIdsFieldNumber = 9;
+  private static readonly pb::FieldCodec<ulong> _repeated_targetActorIds_codec
+      = pb::FieldCodec.ForUInt64(74);
+  private readonly pbc::RepeatedField<ulong> targetActorIds_ = new pbc::RepeatedField<ulong>();
+  /// <summary>
+  /// 多目标点名列表（3～5人裂地双劈为2名目标；单目标同时填充 target_actor_id 与本字段）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<ulong> TargetActorIds {
+    get { return targetActorIds_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -378,6 +459,9 @@ public sealed partial class BattleTelegraphEntry : pb::IMessage<BattleTelegraphE
     if (IntentKind != other.IntentKind) return false;
     if (Status != other.Status) return false;
     if (Label != other.Label) return false;
+    if (TelegraphRound != other.TelegraphRound) return false;
+    if (StateVersion != other.StateVersion) return false;
+    if(!targetActorIds_.Equals(other.targetActorIds_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -391,6 +475,9 @@ public sealed partial class BattleTelegraphEntry : pb::IMessage<BattleTelegraphE
     if (IntentKind != 0) hash ^= IntentKind.GetHashCode();
     if (Status != 0) hash ^= Status.GetHashCode();
     if (Label.Length != 0) hash ^= Label.GetHashCode();
+    if (TelegraphRound != 0) hash ^= TelegraphRound.GetHashCode();
+    if (StateVersion != 0UL) hash ^= StateVersion.GetHashCode();
+    hash ^= targetActorIds_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -433,6 +520,15 @@ public sealed partial class BattleTelegraphEntry : pb::IMessage<BattleTelegraphE
       output.WriteRawTag(50);
       output.WriteString(Label);
     }
+    if (TelegraphRound != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(TelegraphRound);
+    }
+    if (StateVersion != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(StateVersion);
+    }
+    targetActorIds_.WriteTo(output, _repeated_targetActorIds_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -467,6 +563,15 @@ public sealed partial class BattleTelegraphEntry : pb::IMessage<BattleTelegraphE
       output.WriteRawTag(50);
       output.WriteString(Label);
     }
+    if (TelegraphRound != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(TelegraphRound);
+    }
+    if (StateVersion != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(StateVersion);
+    }
+    targetActorIds_.WriteTo(ref output, _repeated_targetActorIds_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -495,6 +600,13 @@ public sealed partial class BattleTelegraphEntry : pb::IMessage<BattleTelegraphE
     if (Label.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Label);
     }
+    if (TelegraphRound != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TelegraphRound);
+    }
+    if (StateVersion != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(StateVersion);
+    }
+    size += targetActorIds_.CalculateSize(_repeated_targetActorIds_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -525,6 +637,13 @@ public sealed partial class BattleTelegraphEntry : pb::IMessage<BattleTelegraphE
     if (other.Label.Length != 0) {
       Label = other.Label;
     }
+    if (other.TelegraphRound != 0) {
+      TelegraphRound = other.TelegraphRound;
+    }
+    if (other.StateVersion != 0UL) {
+      StateVersion = other.StateVersion;
+    }
+    targetActorIds_.Add(other.targetActorIds_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -568,6 +687,19 @@ public sealed partial class BattleTelegraphEntry : pb::IMessage<BattleTelegraphE
           Label = input.ReadString();
           break;
         }
+        case 56: {
+          TelegraphRound = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          StateVersion = input.ReadUInt64();
+          break;
+        }
+        case 74:
+        case 72: {
+          targetActorIds_.AddEntriesFrom(input, _repeated_targetActorIds_codec);
+          break;
+        }
       }
     }
   #endif
@@ -609,6 +741,19 @@ public sealed partial class BattleTelegraphEntry : pb::IMessage<BattleTelegraphE
         }
         case 50: {
           Label = input.ReadString();
+          break;
+        }
+        case 56: {
+          TelegraphRound = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          StateVersion = input.ReadUInt64();
+          break;
+        }
+        case 74:
+        case 72: {
+          targetActorIds_.AddEntriesFrom(ref input, _repeated_targetActorIds_codec);
           break;
         }
       }
@@ -667,6 +812,20 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     activePolarity_ = other.activePolarity_;
     nextPolaritySwitchRound_ = other.nextPolaritySwitchRound_;
     protectedGuardActorId_ = other.protectedGuardActorId_;
+    lastResolvedTelegraphs_ = other.lastResolvedTelegraphs_.Clone();
+    bossPhase_ = other.bossPhase_;
+    bossMomentumStacks_ = other.bossMomentumStacks_;
+    bossStanceType_ = other.bossStanceType_;
+    bossStanceRemainRounds_ = other.bossStanceRemainRounds_;
+    bossExposedPct_ = other.bossExposedPct_;
+    bossExposedUntilRound_ = other.bossExposedUntilRound_;
+    bossTrialKind_ = other.bossTrialKind_;
+    battleDifficulty_ = other.battleDifficulty_;
+    roundLimit_ = other.roundLimit_;
+    escalationStacks_ = other.escalationStacks_;
+    escalationStartRound_ = other.escalationStartRound_;
+    surrenderUnlockRound_ = other.surrenderUnlockRound_;
+    surrenderVote_ = other.surrenderVote_ != null ? other.surrenderVote_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -830,6 +989,215 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     }
   }
 
+  /// <summary>Field number for the "last_resolved_telegraphs" field.</summary>
+  public const int LastResolvedTelegraphsFieldNumber = 12;
+  private static readonly pb::FieldCodec<global::BattleTelegraphEntry> _repeated_lastResolvedTelegraphs_codec
+      = pb::FieldCodec.ForMessage(98, global::BattleTelegraphEntry.Parser);
+  private readonly pbc::RepeatedField<global::BattleTelegraphEntry> lastResolvedTelegraphs_ = new pbc::RepeatedField<global::BattleTelegraphEntry>();
+  /// <summary>
+  /// 最近一回合已兑现或已取消的预告终态（供重连还原）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::BattleTelegraphEntry> LastResolvedTelegraphs {
+    get { return lastResolvedTelegraphs_; }
+  }
+
+  /// <summary>Field number for the "boss_phase" field.</summary>
+  public const int BossPhaseFieldNumber = 13;
+  private uint bossPhase_;
+  /// <summary>
+  /// 首领试炼当前阶段：0=非首领试炼，1=一阶段，2=二阶段决战姿态(破釜)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BossPhase {
+    get { return bossPhase_; }
+    set {
+      bossPhase_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "boss_momentum_stacks" field.</summary>
+  public const int BossMomentumStacksFieldNumber = 14;
+  private uint bossMomentumStacks_;
+  /// <summary>
+  /// 首领当前「蓄势」层数(0..3，可驱散，重劈消耗，每层+12%)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BossMomentumStacks {
+    get { return bossMomentumStacks_; }
+    set {
+      bossMomentumStacks_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "boss_stance_type" field.</summary>
+  public const int BossStanceTypeFieldNumber = 15;
+  private uint bossStanceType_;
+  /// <summary>
+  /// 敌方护势联防阵类型：0=无，1=物防阵，2=法防阵
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BossStanceType {
+    get { return bossStanceType_; }
+    set {
+      bossStanceType_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "boss_stance_remain_rounds" field.</summary>
+  public const int BossStanceRemainRoundsFieldNumber = 16;
+  private uint bossStanceRemainRounds_;
+  /// <summary>
+  /// 当前护势联防剩余回合数(含当轮)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BossStanceRemainRounds {
+    get { return bossStanceRemainRounds_; }
+    set {
+      bossStanceRemainRounds_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "boss_exposed_pct" field.</summary>
+  public const int BossExposedPctFieldNumber = 17;
+  private uint bossExposedPct_;
+  /// <summary>
+  /// 首领当前「破绽」易伤百分点(0/20/35)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BossExposedPct {
+    get { return bossExposedPct_; }
+    set {
+      bossExposedPct_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "boss_exposed_until_round" field.</summary>
+  public const int BossExposedUntilRoundFieldNumber = 18;
+  private uint bossExposedUntilRound_;
+  /// <summary>
+  /// 首领「破绽」持续到期回合号(含该回合末)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BossExposedUntilRound {
+    get { return bossExposedUntilRound_; }
+    set {
+      bossExposedUntilRound_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "boss_trial_kind" field.</summary>
+  public const int BossTrialKindFieldNumber = 19;
+  private uint bossTrialKind_;
+  /// <summary>
+  /// 本局首领试炼类型(镜像 DungeonTable.boss_trial_kind)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BossTrialKind {
+    get { return bossTrialKind_; }
+    set {
+      bossTrialKind_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "battle_difficulty" field.</summary>
+  public const int BattleDifficultyFieldNumber = 20;
+  private uint battleDifficulty_;
+  /// <summary>
+  /// 本局试炼难度档(0常规/1普通/2困难)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BattleDifficulty {
+    get { return battleDifficulty_; }
+    set {
+      battleDifficulty_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "round_limit" field.</summary>
+  public const int RoundLimitFieldNumber = 21;
+  private uint roundLimit_;
+  /// <summary>
+  /// 本局权威逻辑回合上限（供 HUD 展示与决胜倒计时）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RoundLimit {
+    get { return roundLimit_; }
+    set {
+      roundLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "escalation_stacks" field.</summary>
+  public const int EscalationStacksFieldNumber = 22;
+  private uint escalationStacks_;
+  /// <summary>
+  /// 竞技 PVP 后期「战意渐盛」当前层数（0=未开启；每层伤+10%、疗盾-10%）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EscalationStacks {
+    get { return escalationStacks_; }
+    set {
+      escalationStacks_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "escalation_start_round" field.</summary>
+  public const int EscalationStartRoundFieldNumber = 23;
+  private uint escalationStartRound_;
+  /// <summary>
+  /// 「战意渐盛」起算回合号（0=本模式不启用）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EscalationStartRound {
+    get { return escalationStartRound_; }
+    set {
+      escalationStartRound_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "surrender_unlock_round" field.</summary>
+  public const int SurrenderUnlockRoundFieldNumber = 24;
+  private uint surrenderUnlockRound_;
+  /// <summary>
+  /// PVP 投降解锁回合号（0=不可投降，PVP 为 5）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SurrenderUnlockRound {
+    get { return surrenderUnlockRound_; }
+    set {
+      surrenderUnlockRound_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "surrender_vote" field.</summary>
+  public const int SurrenderVoteFieldNumber = 25;
+  private global::BattleSurrenderVoteState surrenderVote_;
+  /// <summary>
+  /// 本队当前投降投票或冷却状态（对手与观众视角由节点清空）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::BattleSurrenderVoteState SurrenderVote {
+    get { return surrenderVote_; }
+    set {
+      surrenderVote_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -856,6 +1224,20 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     if (ActivePolarity != other.ActivePolarity) return false;
     if (NextPolaritySwitchRound != other.NextPolaritySwitchRound) return false;
     if (ProtectedGuardActorId != other.ProtectedGuardActorId) return false;
+    if(!lastResolvedTelegraphs_.Equals(other.lastResolvedTelegraphs_)) return false;
+    if (BossPhase != other.BossPhase) return false;
+    if (BossMomentumStacks != other.BossMomentumStacks) return false;
+    if (BossStanceType != other.BossStanceType) return false;
+    if (BossStanceRemainRounds != other.BossStanceRemainRounds) return false;
+    if (BossExposedPct != other.BossExposedPct) return false;
+    if (BossExposedUntilRound != other.BossExposedUntilRound) return false;
+    if (BossTrialKind != other.BossTrialKind) return false;
+    if (BattleDifficulty != other.BattleDifficulty) return false;
+    if (RoundLimit != other.RoundLimit) return false;
+    if (EscalationStacks != other.EscalationStacks) return false;
+    if (EscalationStartRound != other.EscalationStartRound) return false;
+    if (SurrenderUnlockRound != other.SurrenderUnlockRound) return false;
+    if (!object.Equals(SurrenderVote, other.SurrenderVote)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -874,6 +1256,20 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     if (ActivePolarity != 0) hash ^= ActivePolarity.GetHashCode();
     if (NextPolaritySwitchRound != 0) hash ^= NextPolaritySwitchRound.GetHashCode();
     if (ProtectedGuardActorId != 0UL) hash ^= ProtectedGuardActorId.GetHashCode();
+    hash ^= lastResolvedTelegraphs_.GetHashCode();
+    if (BossPhase != 0) hash ^= BossPhase.GetHashCode();
+    if (BossMomentumStacks != 0) hash ^= BossMomentumStacks.GetHashCode();
+    if (BossStanceType != 0) hash ^= BossStanceType.GetHashCode();
+    if (BossStanceRemainRounds != 0) hash ^= BossStanceRemainRounds.GetHashCode();
+    if (BossExposedPct != 0) hash ^= BossExposedPct.GetHashCode();
+    if (BossExposedUntilRound != 0) hash ^= BossExposedUntilRound.GetHashCode();
+    if (BossTrialKind != 0) hash ^= BossTrialKind.GetHashCode();
+    if (BattleDifficulty != 0) hash ^= BattleDifficulty.GetHashCode();
+    if (RoundLimit != 0) hash ^= RoundLimit.GetHashCode();
+    if (EscalationStacks != 0) hash ^= EscalationStacks.GetHashCode();
+    if (EscalationStartRound != 0) hash ^= EscalationStartRound.GetHashCode();
+    if (SurrenderUnlockRound != 0) hash ^= SurrenderUnlockRound.GetHashCode();
+    if (surrenderVote_ != null) hash ^= SurrenderVote.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -924,6 +1320,59 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
       output.WriteRawTag(88);
       output.WriteUInt64(ProtectedGuardActorId);
     }
+    lastResolvedTelegraphs_.WriteTo(output, _repeated_lastResolvedTelegraphs_codec);
+    if (BossPhase != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(BossPhase);
+    }
+    if (BossMomentumStacks != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(BossMomentumStacks);
+    }
+    if (BossStanceType != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(BossStanceType);
+    }
+    if (BossStanceRemainRounds != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(BossStanceRemainRounds);
+    }
+    if (BossExposedPct != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(BossExposedPct);
+    }
+    if (BossExposedUntilRound != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(BossExposedUntilRound);
+    }
+    if (BossTrialKind != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(BossTrialKind);
+    }
+    if (BattleDifficulty != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(BattleDifficulty);
+    }
+    if (RoundLimit != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(RoundLimit);
+    }
+    if (EscalationStacks != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(EscalationStacks);
+    }
+    if (EscalationStartRound != 0) {
+      output.WriteRawTag(184, 1);
+      output.WriteUInt32(EscalationStartRound);
+    }
+    if (SurrenderUnlockRound != 0) {
+      output.WriteRawTag(192, 1);
+      output.WriteUInt32(SurrenderUnlockRound);
+    }
+    if (surrenderVote_ != null) {
+      output.WriteRawTag(202, 1);
+      output.WriteMessage(SurrenderVote);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -966,6 +1415,59 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
       output.WriteRawTag(88);
       output.WriteUInt64(ProtectedGuardActorId);
     }
+    lastResolvedTelegraphs_.WriteTo(ref output, _repeated_lastResolvedTelegraphs_codec);
+    if (BossPhase != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(BossPhase);
+    }
+    if (BossMomentumStacks != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(BossMomentumStacks);
+    }
+    if (BossStanceType != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(BossStanceType);
+    }
+    if (BossStanceRemainRounds != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(BossStanceRemainRounds);
+    }
+    if (BossExposedPct != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(BossExposedPct);
+    }
+    if (BossExposedUntilRound != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(BossExposedUntilRound);
+    }
+    if (BossTrialKind != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(BossTrialKind);
+    }
+    if (BattleDifficulty != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(BattleDifficulty);
+    }
+    if (RoundLimit != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(RoundLimit);
+    }
+    if (EscalationStacks != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(EscalationStacks);
+    }
+    if (EscalationStartRound != 0) {
+      output.WriteRawTag(184, 1);
+      output.WriteUInt32(EscalationStartRound);
+    }
+    if (SurrenderUnlockRound != 0) {
+      output.WriteRawTag(192, 1);
+      output.WriteUInt32(SurrenderUnlockRound);
+    }
+    if (surrenderVote_ != null) {
+      output.WriteRawTag(202, 1);
+      output.WriteMessage(SurrenderVote);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1000,6 +1502,46 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     }
     if (ProtectedGuardActorId != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ProtectedGuardActorId);
+    }
+    size += lastResolvedTelegraphs_.CalculateSize(_repeated_lastResolvedTelegraphs_codec);
+    if (BossPhase != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BossPhase);
+    }
+    if (BossMomentumStacks != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BossMomentumStacks);
+    }
+    if (BossStanceType != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BossStanceType);
+    }
+    if (BossStanceRemainRounds != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(BossStanceRemainRounds);
+    }
+    if (BossExposedPct != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(BossExposedPct);
+    }
+    if (BossExposedUntilRound != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(BossExposedUntilRound);
+    }
+    if (BossTrialKind != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(BossTrialKind);
+    }
+    if (BattleDifficulty != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(BattleDifficulty);
+    }
+    if (RoundLimit != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RoundLimit);
+    }
+    if (EscalationStacks != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(EscalationStacks);
+    }
+    if (EscalationStartRound != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(EscalationStartRound);
+    }
+    if (SurrenderUnlockRound != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(SurrenderUnlockRound);
+    }
+    if (surrenderVote_ != null) {
+      size += 2 + pb::CodedOutputStream.ComputeMessageSize(SurrenderVote);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1037,6 +1579,49 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     }
     if (other.ProtectedGuardActorId != 0UL) {
       ProtectedGuardActorId = other.ProtectedGuardActorId;
+    }
+    lastResolvedTelegraphs_.Add(other.lastResolvedTelegraphs_);
+    if (other.BossPhase != 0) {
+      BossPhase = other.BossPhase;
+    }
+    if (other.BossMomentumStacks != 0) {
+      BossMomentumStacks = other.BossMomentumStacks;
+    }
+    if (other.BossStanceType != 0) {
+      BossStanceType = other.BossStanceType;
+    }
+    if (other.BossStanceRemainRounds != 0) {
+      BossStanceRemainRounds = other.BossStanceRemainRounds;
+    }
+    if (other.BossExposedPct != 0) {
+      BossExposedPct = other.BossExposedPct;
+    }
+    if (other.BossExposedUntilRound != 0) {
+      BossExposedUntilRound = other.BossExposedUntilRound;
+    }
+    if (other.BossTrialKind != 0) {
+      BossTrialKind = other.BossTrialKind;
+    }
+    if (other.BattleDifficulty != 0) {
+      BattleDifficulty = other.BattleDifficulty;
+    }
+    if (other.RoundLimit != 0) {
+      RoundLimit = other.RoundLimit;
+    }
+    if (other.EscalationStacks != 0) {
+      EscalationStacks = other.EscalationStacks;
+    }
+    if (other.EscalationStartRound != 0) {
+      EscalationStartRound = other.EscalationStartRound;
+    }
+    if (other.SurrenderUnlockRound != 0) {
+      SurrenderUnlockRound = other.SurrenderUnlockRound;
+    }
+    if (other.surrenderVote_ != null) {
+      if (surrenderVote_ == null) {
+        SurrenderVote = new global::BattleSurrenderVoteState();
+      }
+      SurrenderVote.MergeFrom(other.SurrenderVote);
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1102,6 +1687,65 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
           ProtectedGuardActorId = input.ReadUInt64();
           break;
         }
+        case 98: {
+          lastResolvedTelegraphs_.AddEntriesFrom(input, _repeated_lastResolvedTelegraphs_codec);
+          break;
+        }
+        case 104: {
+          BossPhase = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          BossMomentumStacks = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          BossStanceType = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          BossStanceRemainRounds = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          BossExposedPct = input.ReadUInt32();
+          break;
+        }
+        case 144: {
+          BossExposedUntilRound = input.ReadUInt32();
+          break;
+        }
+        case 152: {
+          BossTrialKind = input.ReadUInt32();
+          break;
+        }
+        case 160: {
+          BattleDifficulty = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          RoundLimit = input.ReadUInt32();
+          break;
+        }
+        case 176: {
+          EscalationStacks = input.ReadUInt32();
+          break;
+        }
+        case 184: {
+          EscalationStartRound = input.ReadUInt32();
+          break;
+        }
+        case 192: {
+          SurrenderUnlockRound = input.ReadUInt32();
+          break;
+        }
+        case 202: {
+          if (surrenderVote_ == null) {
+            SurrenderVote = new global::BattleSurrenderVoteState();
+          }
+          input.ReadMessage(SurrenderVote);
+          break;
+        }
       }
     }
   #endif
@@ -1164,6 +1808,65 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
         }
         case 88: {
           ProtectedGuardActorId = input.ReadUInt64();
+          break;
+        }
+        case 98: {
+          lastResolvedTelegraphs_.AddEntriesFrom(ref input, _repeated_lastResolvedTelegraphs_codec);
+          break;
+        }
+        case 104: {
+          BossPhase = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          BossMomentumStacks = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          BossStanceType = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          BossStanceRemainRounds = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          BossExposedPct = input.ReadUInt32();
+          break;
+        }
+        case 144: {
+          BossExposedUntilRound = input.ReadUInt32();
+          break;
+        }
+        case 152: {
+          BossTrialKind = input.ReadUInt32();
+          break;
+        }
+        case 160: {
+          BattleDifficulty = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          RoundLimit = input.ReadUInt32();
+          break;
+        }
+        case 176: {
+          EscalationStacks = input.ReadUInt32();
+          break;
+        }
+        case 184: {
+          EscalationStartRound = input.ReadUInt32();
+          break;
+        }
+        case 192: {
+          SurrenderUnlockRound = input.ReadUInt32();
+          break;
+        }
+        case 202: {
+          if (surrenderVote_ == null) {
+            SurrenderVote = new global::BattleSurrenderVoteState();
+          }
+          input.ReadMessage(SurrenderVote);
           break;
         }
       }
@@ -1457,6 +2160,7 @@ public sealed partial class TurnResultS2C : pb::IMessage<TurnResultS2C>
     events_ = other.events_.Clone();
     state_ = other.state_ != null ? other.state_.Clone() : null;
     actionOrder_ = other.actionOrder_.Clone();
+    resolvedTelegraphs_ = other.resolvedTelegraphs_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1536,6 +2240,20 @@ public sealed partial class TurnResultS2C : pb::IMessage<TurnResultS2C>
     get { return actionOrder_; }
   }
 
+  /// <summary>Field number for the "resolved_telegraphs" field.</summary>
+  public const int ResolvedTelegraphsFieldNumber = 6;
+  private static readonly pb::FieldCodec<global::BattleTelegraphEntry> _repeated_resolvedTelegraphs_codec
+      = pb::FieldCodec.ForMessage(50, global::BattleTelegraphEntry.Parser);
+  private readonly pbc::RepeatedField<global::BattleTelegraphEntry> resolvedTelegraphs_ = new pbc::RepeatedField<global::BattleTelegraphEntry>();
+  /// <summary>
+  /// 本回合刚兑现或取消的预告终态（status=3/4/5）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::BattleTelegraphEntry> ResolvedTelegraphs {
+    get { return resolvedTelegraphs_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1556,6 +2274,7 @@ public sealed partial class TurnResultS2C : pb::IMessage<TurnResultS2C>
     if(!events_.Equals(other.events_)) return false;
     if (!object.Equals(State, other.State)) return false;
     if(!actionOrder_.Equals(other.actionOrder_)) return false;
+    if(!resolvedTelegraphs_.Equals(other.resolvedTelegraphs_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1568,6 +2287,7 @@ public sealed partial class TurnResultS2C : pb::IMessage<TurnResultS2C>
     hash ^= events_.GetHashCode();
     if (state_ != null) hash ^= State.GetHashCode();
     hash ^= actionOrder_.GetHashCode();
+    hash ^= resolvedTelegraphs_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1600,6 +2320,7 @@ public sealed partial class TurnResultS2C : pb::IMessage<TurnResultS2C>
       output.WriteMessage(State);
     }
     actionOrder_.WriteTo(output, _repeated_actionOrder_codec);
+    resolvedTelegraphs_.WriteTo(output, _repeated_resolvedTelegraphs_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1624,6 +2345,7 @@ public sealed partial class TurnResultS2C : pb::IMessage<TurnResultS2C>
       output.WriteMessage(State);
     }
     actionOrder_.WriteTo(ref output, _repeated_actionOrder_codec);
+    resolvedTelegraphs_.WriteTo(ref output, _repeated_resolvedTelegraphs_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1645,6 +2367,7 @@ public sealed partial class TurnResultS2C : pb::IMessage<TurnResultS2C>
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(State);
     }
     size += actionOrder_.CalculateSize(_repeated_actionOrder_codec);
+    size += resolvedTelegraphs_.CalculateSize(_repeated_resolvedTelegraphs_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -1671,6 +2394,7 @@ public sealed partial class TurnResultS2C : pb::IMessage<TurnResultS2C>
       State.MergeFrom(other.State);
     }
     actionOrder_.Add(other.actionOrder_);
+    resolvedTelegraphs_.Add(other.resolvedTelegraphs_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -1712,6 +2436,10 @@ public sealed partial class TurnResultS2C : pb::IMessage<TurnResultS2C>
         case 42:
         case 40: {
           actionOrder_.AddEntriesFrom(input, _repeated_actionOrder_codec);
+          break;
+        }
+        case 50: {
+          resolvedTelegraphs_.AddEntriesFrom(input, _repeated_resolvedTelegraphs_codec);
           break;
         }
       }
@@ -1757,6 +2485,544 @@ public sealed partial class TurnResultS2C : pb::IMessage<TurnResultS2C>
           actionOrder_.AddEntriesFrom(ref input, _repeated_actionOrder_codec);
           break;
         }
+        case 50: {
+          resolvedTelegraphs_.AddEntriesFrom(ref input, _repeated_resolvedTelegraphs_codec);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 瑞兽迎春单局结算摘要（与 PlayerBattleResult 同源，供结算面板直接展示，UI 不自算）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class FestivalBeastSettlementSummary : pb::IMessage<FestivalBeastSettlementSummary>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<FestivalBeastSettlementSummary> _parser = new pb::MessageParser<FestivalBeastSettlementSummary>(() => new FestivalBeastSettlementSummary());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<FestivalBeastSettlementSummary> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[4]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public FestivalBeastSettlementSummary() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public FestivalBeastSettlementSummary(FestivalBeastSettlementSummary other) : this() {
+    activityInstanceId_ = other.activityInstanceId_;
+    rewardIdentity_ = other.rewardIdentity_;
+    winsBefore_ = other.winsBefore_;
+    winsAfter_ = other.winsAfter_;
+    requiredWins_ = other.requiredWins_;
+    newlyEligible_ = other.newlyEligible_;
+    materialUnitsAdded_ = other.materialUnitsAdded_;
+    materialTradableUnitsAdded_ = other.materialTradableUnitsAdded_;
+    materialAvailableUnitsAfter_ = other.materialAvailableUnitsAfter_;
+    materialEarnableRemainingAfter_ = other.materialEarnableRemainingAfter_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public FestivalBeastSettlementSummary Clone() {
+    return new FestivalBeastSettlementSummary(this);
+  }
+
+  /// <summary>Field number for the "activity_instance_id" field.</summary>
+  public const int ActivityInstanceIdFieldNumber = 1;
+  private uint activityInstanceId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ActivityInstanceId {
+    get { return activityInstanceId_; }
+    set {
+      activityInstanceId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reward_identity" field.</summary>
+  public const int RewardIdentityFieldNumber = 2;
+  private string rewardIdentity_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string RewardIdentity {
+    get { return rewardIdentity_; }
+    set {
+      rewardIdentity_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "wins_before" field.</summary>
+  public const int WinsBeforeFieldNumber = 3;
+  private uint winsBefore_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint WinsBefore {
+    get { return winsBefore_; }
+    set {
+      winsBefore_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "wins_after" field.</summary>
+  public const int WinsAfterFieldNumber = 4;
+  private uint winsAfter_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint WinsAfter {
+    get { return winsAfter_; }
+    set {
+      winsAfter_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "required_wins" field.</summary>
+  public const int RequiredWinsFieldNumber = 5;
+  private uint requiredWins_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RequiredWins {
+    get { return requiredWins_; }
+    set {
+      requiredWins_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "newly_eligible" field.</summary>
+  public const int NewlyEligibleFieldNumber = 6;
+  private bool newlyEligible_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool NewlyEligible {
+    get { return newlyEligible_; }
+    set {
+      newlyEligible_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "material_units_added" field.</summary>
+  public const int MaterialUnitsAddedFieldNumber = 7;
+  private uint materialUnitsAdded_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaterialUnitsAdded {
+    get { return materialUnitsAdded_; }
+    set {
+      materialUnitsAdded_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "material_tradable_units_added" field.</summary>
+  public const int MaterialTradableUnitsAddedFieldNumber = 8;
+  private uint materialTradableUnitsAdded_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaterialTradableUnitsAdded {
+    get { return materialTradableUnitsAdded_; }
+    set {
+      materialTradableUnitsAdded_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "material_available_units_after" field.</summary>
+  public const int MaterialAvailableUnitsAfterFieldNumber = 9;
+  private ulong materialAvailableUnitsAfter_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong MaterialAvailableUnitsAfter {
+    get { return materialAvailableUnitsAfter_; }
+    set {
+      materialAvailableUnitsAfter_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "material_earnable_remaining_after" field.</summary>
+  public const int MaterialEarnableRemainingAfterFieldNumber = 10;
+  private uint materialEarnableRemainingAfter_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaterialEarnableRemainingAfter {
+    get { return materialEarnableRemainingAfter_; }
+    set {
+      materialEarnableRemainingAfter_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as FestivalBeastSettlementSummary);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(FestivalBeastSettlementSummary other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ActivityInstanceId != other.ActivityInstanceId) return false;
+    if (RewardIdentity != other.RewardIdentity) return false;
+    if (WinsBefore != other.WinsBefore) return false;
+    if (WinsAfter != other.WinsAfter) return false;
+    if (RequiredWins != other.RequiredWins) return false;
+    if (NewlyEligible != other.NewlyEligible) return false;
+    if (MaterialUnitsAdded != other.MaterialUnitsAdded) return false;
+    if (MaterialTradableUnitsAdded != other.MaterialTradableUnitsAdded) return false;
+    if (MaterialAvailableUnitsAfter != other.MaterialAvailableUnitsAfter) return false;
+    if (MaterialEarnableRemainingAfter != other.MaterialEarnableRemainingAfter) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ActivityInstanceId != 0) hash ^= ActivityInstanceId.GetHashCode();
+    if (RewardIdentity.Length != 0) hash ^= RewardIdentity.GetHashCode();
+    if (WinsBefore != 0) hash ^= WinsBefore.GetHashCode();
+    if (WinsAfter != 0) hash ^= WinsAfter.GetHashCode();
+    if (RequiredWins != 0) hash ^= RequiredWins.GetHashCode();
+    if (NewlyEligible != false) hash ^= NewlyEligible.GetHashCode();
+    if (MaterialUnitsAdded != 0) hash ^= MaterialUnitsAdded.GetHashCode();
+    if (MaterialTradableUnitsAdded != 0) hash ^= MaterialTradableUnitsAdded.GetHashCode();
+    if (MaterialAvailableUnitsAfter != 0UL) hash ^= MaterialAvailableUnitsAfter.GetHashCode();
+    if (MaterialEarnableRemainingAfter != 0) hash ^= MaterialEarnableRemainingAfter.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ActivityInstanceId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ActivityInstanceId);
+    }
+    if (RewardIdentity.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(RewardIdentity);
+    }
+    if (WinsBefore != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(WinsBefore);
+    }
+    if (WinsAfter != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(WinsAfter);
+    }
+    if (RequiredWins != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(RequiredWins);
+    }
+    if (NewlyEligible != false) {
+      output.WriteRawTag(48);
+      output.WriteBool(NewlyEligible);
+    }
+    if (MaterialUnitsAdded != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(MaterialUnitsAdded);
+    }
+    if (MaterialTradableUnitsAdded != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(MaterialTradableUnitsAdded);
+    }
+    if (MaterialAvailableUnitsAfter != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(MaterialAvailableUnitsAfter);
+    }
+    if (MaterialEarnableRemainingAfter != 0) {
+      output.WriteRawTag(80);
+      output.WriteUInt32(MaterialEarnableRemainingAfter);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ActivityInstanceId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ActivityInstanceId);
+    }
+    if (RewardIdentity.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(RewardIdentity);
+    }
+    if (WinsBefore != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(WinsBefore);
+    }
+    if (WinsAfter != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(WinsAfter);
+    }
+    if (RequiredWins != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(RequiredWins);
+    }
+    if (NewlyEligible != false) {
+      output.WriteRawTag(48);
+      output.WriteBool(NewlyEligible);
+    }
+    if (MaterialUnitsAdded != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(MaterialUnitsAdded);
+    }
+    if (MaterialTradableUnitsAdded != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(MaterialTradableUnitsAdded);
+    }
+    if (MaterialAvailableUnitsAfter != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(MaterialAvailableUnitsAfter);
+    }
+    if (MaterialEarnableRemainingAfter != 0) {
+      output.WriteRawTag(80);
+      output.WriteUInt32(MaterialEarnableRemainingAfter);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ActivityInstanceId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ActivityInstanceId);
+    }
+    if (RewardIdentity.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(RewardIdentity);
+    }
+    if (WinsBefore != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WinsBefore);
+    }
+    if (WinsAfter != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WinsAfter);
+    }
+    if (RequiredWins != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RequiredWins);
+    }
+    if (NewlyEligible != false) {
+      size += 1 + 1;
+    }
+    if (MaterialUnitsAdded != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaterialUnitsAdded);
+    }
+    if (MaterialTradableUnitsAdded != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaterialTradableUnitsAdded);
+    }
+    if (MaterialAvailableUnitsAfter != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MaterialAvailableUnitsAfter);
+    }
+    if (MaterialEarnableRemainingAfter != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaterialEarnableRemainingAfter);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(FestivalBeastSettlementSummary other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ActivityInstanceId != 0) {
+      ActivityInstanceId = other.ActivityInstanceId;
+    }
+    if (other.RewardIdentity.Length != 0) {
+      RewardIdentity = other.RewardIdentity;
+    }
+    if (other.WinsBefore != 0) {
+      WinsBefore = other.WinsBefore;
+    }
+    if (other.WinsAfter != 0) {
+      WinsAfter = other.WinsAfter;
+    }
+    if (other.RequiredWins != 0) {
+      RequiredWins = other.RequiredWins;
+    }
+    if (other.NewlyEligible != false) {
+      NewlyEligible = other.NewlyEligible;
+    }
+    if (other.MaterialUnitsAdded != 0) {
+      MaterialUnitsAdded = other.MaterialUnitsAdded;
+    }
+    if (other.MaterialTradableUnitsAdded != 0) {
+      MaterialTradableUnitsAdded = other.MaterialTradableUnitsAdded;
+    }
+    if (other.MaterialAvailableUnitsAfter != 0UL) {
+      MaterialAvailableUnitsAfter = other.MaterialAvailableUnitsAfter;
+    }
+    if (other.MaterialEarnableRemainingAfter != 0) {
+      MaterialEarnableRemainingAfter = other.MaterialEarnableRemainingAfter;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ActivityInstanceId = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          RewardIdentity = input.ReadString();
+          break;
+        }
+        case 24: {
+          WinsBefore = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          WinsAfter = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          RequiredWins = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          NewlyEligible = input.ReadBool();
+          break;
+        }
+        case 56: {
+          MaterialUnitsAdded = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          MaterialTradableUnitsAdded = input.ReadUInt32();
+          break;
+        }
+        case 72: {
+          MaterialAvailableUnitsAfter = input.ReadUInt64();
+          break;
+        }
+        case 80: {
+          MaterialEarnableRemainingAfter = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ActivityInstanceId = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          RewardIdentity = input.ReadString();
+          break;
+        }
+        case 24: {
+          WinsBefore = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          WinsAfter = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          RequiredWins = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          NewlyEligible = input.ReadBool();
+          break;
+        }
+        case 56: {
+          MaterialUnitsAdded = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          MaterialTradableUnitsAdded = input.ReadUInt32();
+          break;
+        }
+        case 72: {
+          MaterialAvailableUnitsAfter = input.ReadUInt64();
+          break;
+        }
+        case 80: {
+          MaterialEarnableRemainingAfter = input.ReadUInt32();
+          break;
+        }
       }
     }
   }
@@ -1783,7 +3049,7 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[4]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1811,6 +3077,7 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     seasonId_ = other.seasonId_;
     materialTradableUnitsAdded_ = other.materialTradableUnitsAdded_;
     materialPvpLossIneligible_ = other.materialPvpLossIneligible_;
+    festivalBeastSettlement_ = other.festivalBeastSettlement_ != null ? other.festivalBeastSettlement_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1935,6 +3202,21 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     }
   }
 
+  /// <summary>Field number for the "festival_beast_settlement" field.</summary>
+  public const int FestivalBeastSettlementFieldNumber = 9;
+  private global::FestivalBeastSettlementSummary festivalBeastSettlement_;
+  /// <summary>
+  /// 瑞兽迎春活动局结算摘要
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::FestivalBeastSettlementSummary FestivalBeastSettlement {
+    get { return festivalBeastSettlement_; }
+    set {
+      festivalBeastSettlement_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1958,6 +3240,7 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     if (SeasonId != other.SeasonId) return false;
     if (MaterialTradableUnitsAdded != other.MaterialTradableUnitsAdded) return false;
     if (MaterialPvpLossIneligible != other.MaterialPvpLossIneligible) return false;
+    if (!object.Equals(FestivalBeastSettlement, other.FestivalBeastSettlement)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1973,6 +3256,7 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     if (SeasonId != 0) hash ^= SeasonId.GetHashCode();
     if (MaterialTradableUnitsAdded != 0) hash ^= MaterialTradableUnitsAdded.GetHashCode();
     if (MaterialPvpLossIneligible != false) hash ^= MaterialPvpLossIneligible.GetHashCode();
+    if (festivalBeastSettlement_ != null) hash ^= FestivalBeastSettlement.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2023,6 +3307,10 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
       output.WriteRawTag(64);
       output.WriteBool(MaterialPvpLossIneligible);
     }
+    if (festivalBeastSettlement_ != null) {
+      output.WriteRawTag(74);
+      output.WriteMessage(FestivalBeastSettlement);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2065,6 +3353,10 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
       output.WriteRawTag(64);
       output.WriteBool(MaterialPvpLossIneligible);
     }
+    if (festivalBeastSettlement_ != null) {
+      output.WriteRawTag(74);
+      output.WriteMessage(FestivalBeastSettlement);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2098,6 +3390,9 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     }
     if (MaterialPvpLossIneligible != false) {
       size += 1 + 1;
+    }
+    if (festivalBeastSettlement_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(FestivalBeastSettlement);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2137,6 +3432,12 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     }
     if (other.MaterialPvpLossIneligible != false) {
       MaterialPvpLossIneligible = other.MaterialPvpLossIneligible;
+    }
+    if (other.festivalBeastSettlement_ != null) {
+      if (festivalBeastSettlement_ == null) {
+        FestivalBeastSettlement = new global::FestivalBeastSettlementSummary();
+      }
+      FestivalBeastSettlement.MergeFrom(other.FestivalBeastSettlement);
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2190,6 +3491,13 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
         }
         case 64: {
           MaterialPvpLossIneligible = input.ReadBool();
+          break;
+        }
+        case 74: {
+          if (festivalBeastSettlement_ == null) {
+            FestivalBeastSettlement = new global::FestivalBeastSettlementSummary();
+          }
+          input.ReadMessage(FestivalBeastSettlement);
           break;
         }
       }
@@ -2246,6 +3554,13 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
           MaterialPvpLossIneligible = input.ReadBool();
           break;
         }
+        case 74: {
+          if (festivalBeastSettlement_ == null) {
+            FestivalBeastSettlement = new global::FestivalBeastSettlementSummary();
+          }
+          input.ReadMessage(FestivalBeastSettlement);
+          break;
+        }
       }
     }
   }
@@ -2272,7 +3587,7 @@ public sealed partial class BattleReconnectS2C : pb::IMessage<BattleReconnectS2C
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[5]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2476,7 +3791,7 @@ public sealed partial class SpectateStateS2C : pb::IMessage<SpectateStateS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[6]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[7]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2723,7 +4038,7 @@ public sealed partial class SpectateEndS2C : pb::IMessage<SpectateEndS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[7]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3001,7 +4316,7 @@ public sealed partial class SubmitBattleActionRequest : pb::IMessage<SubmitBattl
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[8]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3325,7 +4640,7 @@ public sealed partial class SubmitBattleActionResponse : pb::IMessage<SubmitBatt
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[9]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[10]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3532,7 +4847,7 @@ public sealed partial class GetBattleStateRequest : pb::IMessage<GetBattleStateR
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[10]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3733,7 +5048,7 @@ public sealed partial class StopWatchBattleRequest : pb::IMessage<StopWatchBattl
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[11]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3931,7 +5246,7 @@ public sealed partial class StopWatchBattleResponse : pb::IMessage<StopWatchBatt
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[12]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[13]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4141,7 +5456,7 @@ public sealed partial class SetAutoBattleRequest : pb::IMessage<SetAutoBattleReq
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[13]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[14]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4376,7 +5691,7 @@ public sealed partial class SetAutoBattleResponse : pb::IMessage<SetAutoBattleRe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[14]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[15]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4569,6 +5884,750 @@ public sealed partial class SetAutoBattleResponse : pb::IMessage<SetAutoBattleRe
 }
 
 /// <summary>
+/// PVP 延迟投降 / 投降投票表态(参战者;经直连发到 battle 节点，第 5 回合起开放)。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SurrenderBattleRequest : pb::IMessage<SurrenderBattleRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SurrenderBattleRequest> _parser = new pb::MessageParser<SurrenderBattleRequest>(() => new SurrenderBattleRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SurrenderBattleRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[16]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SurrenderBattleRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SurrenderBattleRequest(SurrenderBattleRequest other) : this() {
+    battleId_ = other.battleId_;
+    agree_ = other.agree_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SurrenderBattleRequest Clone() {
+    return new SurrenderBattleRequest(this);
+  }
+
+  /// <summary>Field number for the "battle_id" field.</summary>
+  public const int BattleIdFieldNumber = 1;
+  private ulong battleId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong BattleId {
+    get { return battleId_; }
+    set {
+      battleId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "agree" field.</summary>
+  public const int AgreeFieldNumber = 2;
+  private bool agree_;
+  /// <summary>
+  /// true=发起或同意投降；false=否决同队当前投降投票
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Agree {
+    get { return agree_; }
+    set {
+      agree_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SurrenderBattleRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SurrenderBattleRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (BattleId != other.BattleId) return false;
+    if (Agree != other.Agree) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (BattleId != 0UL) hash ^= BattleId.GetHashCode();
+    if (Agree != false) hash ^= Agree.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (BattleId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(BattleId);
+    }
+    if (Agree != false) {
+      output.WriteRawTag(16);
+      output.WriteBool(Agree);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (BattleId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(BattleId);
+    }
+    if (Agree != false) {
+      output.WriteRawTag(16);
+      output.WriteBool(Agree);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (BattleId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BattleId);
+    }
+    if (Agree != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SurrenderBattleRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.BattleId != 0UL) {
+      BattleId = other.BattleId;
+    }
+    if (other.Agree != false) {
+      Agree = other.Agree;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          BattleId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          Agree = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          BattleId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          Agree = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SurrenderBattleResponse : pb::IMessage<SurrenderBattleResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SurrenderBattleResponse> _parser = new pb::MessageParser<SurrenderBattleResponse>(() => new SurrenderBattleResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SurrenderBattleResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[17]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SurrenderBattleResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SurrenderBattleResponse(SurrenderBattleResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    voteState_ = other.voteState_ != null ? other.voteState_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SurrenderBattleResponse Clone() {
+    return new SurrenderBattleResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "vote_state" field.</summary>
+  public const int VoteStateFieldNumber = 2;
+  private global::BattleSurrenderVoteState voteState_;
+  /// <summary>
+  /// 成功时回填本队最新投票/冷却态
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::BattleSurrenderVoteState VoteState {
+    get { return voteState_; }
+    set {
+      voteState_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SurrenderBattleResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SurrenderBattleResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (!object.Equals(VoteState, other.VoteState)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (voteState_ != null) hash ^= VoteState.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (voteState_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(VoteState);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (voteState_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(VoteState);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (voteState_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(VoteState);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SurrenderBattleResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.voteState_ != null) {
+      if (voteState_ == null) {
+        VoteState = new global::BattleSurrenderVoteState();
+      }
+      VoteState.MergeFrom(other.VoteState);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (voteState_ == null) {
+            VoteState = new global::BattleSurrenderVoteState();
+          }
+          input.ReadMessage(VoteState);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (voteState_ == null) {
+            VoteState = new global::BattleSurrenderVoteState();
+          }
+          input.ReadMessage(VoteState);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 投降投票变动推送(仅推给投票所属同队成员，绝不向对手或观众推送)。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SurrenderVoteS2C : pb::IMessage<SurrenderVoteS2C>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SurrenderVoteS2C> _parser = new pb::MessageParser<SurrenderVoteS2C>(() => new SurrenderVoteS2C());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SurrenderVoteS2C> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[18]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SurrenderVoteS2C() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SurrenderVoteS2C(SurrenderVoteS2C other) : this() {
+    battleId_ = other.battleId_;
+    voteState_ = other.voteState_ != null ? other.voteState_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SurrenderVoteS2C Clone() {
+    return new SurrenderVoteS2C(this);
+  }
+
+  /// <summary>Field number for the "battle_id" field.</summary>
+  public const int BattleIdFieldNumber = 1;
+  private ulong battleId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong BattleId {
+    get { return battleId_; }
+    set {
+      battleId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "vote_state" field.</summary>
+  public const int VoteStateFieldNumber = 2;
+  private global::BattleSurrenderVoteState voteState_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::BattleSurrenderVoteState VoteState {
+    get { return voteState_; }
+    set {
+      voteState_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SurrenderVoteS2C);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SurrenderVoteS2C other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (BattleId != other.BattleId) return false;
+    if (!object.Equals(VoteState, other.VoteState)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (BattleId != 0UL) hash ^= BattleId.GetHashCode();
+    if (voteState_ != null) hash ^= VoteState.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (BattleId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(BattleId);
+    }
+    if (voteState_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(VoteState);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (BattleId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(BattleId);
+    }
+    if (voteState_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(VoteState);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (BattleId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BattleId);
+    }
+    if (voteState_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(VoteState);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SurrenderVoteS2C other) {
+    if (other == null) {
+      return;
+    }
+    if (other.BattleId != 0UL) {
+      BattleId = other.BattleId;
+    }
+    if (other.voteState_ != null) {
+      if (voteState_ == null) {
+        VoteState = new global::BattleSurrenderVoteState();
+      }
+      VoteState.MergeFrom(other.VoteState);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          BattleId = input.ReadUInt64();
+          break;
+        }
+        case 18: {
+          if (voteState_ == null) {
+            VoteState = new global::BattleSurrenderVoteState();
+          }
+          input.ReadMessage(VoteState);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          BattleId = input.ReadUInt64();
+          break;
+        }
+        case 18: {
+          if (voteState_ == null) {
+            VoteState = new global::BattleSurrenderVoteState();
+          }
+          input.ReadMessage(VoteState);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
 /// 票据载荷:battle 节点在 CreateBattle / AddObserver 登记之前预签(签不出即拒绝,turn-based §22 D70;HMAC-SHA256,
 /// 密钥 BaseDeployConfig.battle_token_secret,全部 battle 实例共享,与 gate 令牌密钥分域)。
 /// 签名 = hex(HMAC-SHA256(secret, 序列化后的本消息字节)),形态与 GateTokenPayload 一致。
@@ -4589,7 +6648,7 @@ public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPaylo
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[15]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[19]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5024,7 +7083,7 @@ public sealed partial class BattleTokenVerifyRequest : pb::IMessage<BattleTokenV
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[16]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[20]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5271,7 +7330,7 @@ public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleToken
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[17]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[21]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5635,7 +7694,7 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[18]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[22]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6114,7 +8173,7 @@ public sealed partial class RequestBattleTicketRequest : pb::IMessage<RequestBat
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[19]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[23]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6312,7 +8371,7 @@ public sealed partial class RequestBattleTicketResponse : pb::IMessage<RequestBa
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[20]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[24]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6569,7 +8628,7 @@ public sealed partial class BattleReplay : pb::IMessage<BattleReplay>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[21]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[25]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7248,7 +9307,7 @@ public sealed partial class BattleReplayEnvelope : pb::IMessage<BattleReplayEnve
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[22]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[26]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

@@ -26,7 +26,7 @@ public static partial class PlayerBattleResultCompReflection {
           "X2NvbXAucHJvdG8iQwoaUGxheWVyQmF0dGxlUmVzdWx0Q3VycmVuY3kSFQoN",
           "Y3VycmVuY3lfdHlwZRgBIAEoDRIOCgZhbW91bnQYAiABKAQiPgoWUGxheWVy",
           "QmF0dGxlUmVzdWx0SXRlbRIVCg1pdGVtX3RhYmxlX2lkGAEgASgNEg0KBWNv",
-          "dW50GAIgASgEItMFChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
+          "dW50GAIgASgEIusHChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
           "cRgBIAEoBBIRCgliYXR0bGVfaWQYAiABKAQSDwoHb3V0Y29tZRgDIAEoDRIS",
           "Cgp0ZWFtX2luZGV4GAQgASgNEg8KB2lzX2RlYWQYBSABKAgSDAoEZmxlZBgG",
           "IAEoCBIUCgx0b3RhbF9yb3VuZHMYByABKA0SFgoOZmluaXNoZWRfYXRfbXMY",
@@ -42,15 +42,22 @@ public static partial class PlayerBattleResultCompReflection {
           "X3NlYWxfaWRzGBYgAygNEhsKE3RyaWFsX25ld19zb2xvX2Jlc3QYFyABKAgS",
           "GwoTdHJpYWxfbmV3X2Nvb3BfYmVzdBgYIAEoCBIlCh1tYXRlcmlhbF90cmFk",
           "YWJsZV91bml0c19hZGRlZBgZIAEoDRIkChxtYXRlcmlhbF9wdnBfbG9zc19p",
-          "bmVsaWdpYmxlGBogASgIIlcKFlBsYXllckJhdHRsZVJlc3VsdENvbXASFwoP",
-          "bGFzdF9yZXN1bHRfc2VxGAEgASgEEiQKB2VudHJpZXMYAiADKAsyEy5QbGF5",
-          "ZXJCYXR0bGVSZXN1bHRCEloQY29tbW9uL2NvbXBvbmVudGIGcHJvdG8z"));
+          "bmVsaWdpYmxlGBogASgIEiUKHWZlc3RpdmFsX2FjdGl2aXR5X2luc3RhbmNl",
+          "X2lkGBsgASgNEiAKGGZlc3RpdmFsX3Jld2FyZF9pZGVudGl0eRgcIAEoCRIc",
+          "ChRmZXN0aXZhbF93aW5zX2JlZm9yZRgdIAEoDRIbChNmZXN0aXZhbF93aW5z",
+          "X2FmdGVyGB4gASgNEh4KFmZlc3RpdmFsX3JlcXVpcmVkX3dpbnMYHyABKA0S",
+          "HwoXZmVzdGl2YWxfbmV3bHlfZWxpZ2libGUYICABKAgSJgoebWF0ZXJpYWxf",
+          "YXZhaWxhYmxlX3VuaXRzX2FmdGVyGCEgASgEEikKIW1hdGVyaWFsX2Vhcm5h",
+          "YmxlX3JlbWFpbmluZ19hZnRlchgiIAEoDSJXChZQbGF5ZXJCYXR0bGVSZXN1",
+          "bHRDb21wEhcKD2xhc3RfcmVzdWx0X3NlcRgBIAEoBBIkCgdlbnRyaWVzGAIg",
+          "AygLMhMuUGxheWVyQmF0dGxlUmVzdWx0QhJaEGNvbW1vbi9jb21wb25lbnRi",
+          "BnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultCurrency), global::PlayerBattleResultCurrency.Parser, new[]{ "CurrencyType", "Amount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultItem), global::PlayerBattleResultItem.Parser, new[]{ "ItemTableId", "Count" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed", "ExpGain", "MaterialCreditUnitsAdded", "SeasonId", "TrialJournalEntryId", "TrialNewlyLitSealIds", "TrialNewSoloBest", "TrialNewCoopBest", "MaterialTradableUnitsAdded", "MaterialPvpLossIneligible" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed", "ExpGain", "MaterialCreditUnitsAdded", "SeasonId", "TrialJournalEntryId", "TrialNewlyLitSealIds", "TrialNewSoloBest", "TrialNewCoopBest", "MaterialTradableUnitsAdded", "MaterialPvpLossIneligible", "FestivalActivityInstanceId", "FestivalRewardIdentity", "FestivalWinsBefore", "FestivalWinsAfter", "FestivalRequiredWins", "FestivalNewlyEligible", "MaterialAvailableUnitsAfter", "MaterialEarnableRemainingAfter" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultComp), global::PlayerBattleResultComp.Parser, new[]{ "LastResultSeq", "Entries" }, null, null, null, null)
         }));
   }
@@ -604,6 +611,14 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     trialNewCoopBest_ = other.trialNewCoopBest_;
     materialTradableUnitsAdded_ = other.materialTradableUnitsAdded_;
     materialPvpLossIneligible_ = other.materialPvpLossIneligible_;
+    festivalActivityInstanceId_ = other.festivalActivityInstanceId_;
+    festivalRewardIdentity_ = other.festivalRewardIdentity_;
+    festivalWinsBefore_ = other.festivalWinsBefore_;
+    festivalWinsAfter_ = other.festivalWinsAfter_;
+    festivalRequiredWins_ = other.festivalRequiredWins_;
+    festivalNewlyEligible_ = other.festivalNewlyEligible_;
+    materialAvailableUnitsAfter_ = other.materialAvailableUnitsAfter_;
+    materialEarnableRemainingAfter_ = other.materialEarnableRemainingAfter_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -997,6 +1012,105 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
   }
 
+  /// <summary>Field number for the "festival_activity_instance_id" field.</summary>
+  public const int FestivalActivityInstanceIdFieldNumber = 27;
+  private uint festivalActivityInstanceId_;
+  /// <summary>
+  /// 瑞兽迎春限时活动结算增量（非活动局全 0/空）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint FestivalActivityInstanceId {
+    get { return festivalActivityInstanceId_; }
+    set {
+      festivalActivityInstanceId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "festival_reward_identity" field.</summary>
+  public const int FestivalRewardIdentityFieldNumber = 28;
+  private string festivalRewardIdentity_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string FestivalRewardIdentity {
+    get { return festivalRewardIdentity_; }
+    set {
+      festivalRewardIdentity_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "festival_wins_before" field.</summary>
+  public const int FestivalWinsBeforeFieldNumber = 29;
+  private uint festivalWinsBefore_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint FestivalWinsBefore {
+    get { return festivalWinsBefore_; }
+    set {
+      festivalWinsBefore_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "festival_wins_after" field.</summary>
+  public const int FestivalWinsAfterFieldNumber = 30;
+  private uint festivalWinsAfter_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint FestivalWinsAfter {
+    get { return festivalWinsAfter_; }
+    set {
+      festivalWinsAfter_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "festival_required_wins" field.</summary>
+  public const int FestivalRequiredWinsFieldNumber = 31;
+  private uint festivalRequiredWins_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint FestivalRequiredWins {
+    get { return festivalRequiredWins_; }
+    set {
+      festivalRequiredWins_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "festival_newly_eligible" field.</summary>
+  public const int FestivalNewlyEligibleFieldNumber = 32;
+  private bool festivalNewlyEligible_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool FestivalNewlyEligible {
+    get { return festivalNewlyEligible_; }
+    set {
+      festivalNewlyEligible_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "material_available_units_after" field.</summary>
+  public const int MaterialAvailableUnitsAfterFieldNumber = 33;
+  private ulong materialAvailableUnitsAfter_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong MaterialAvailableUnitsAfter {
+    get { return materialAvailableUnitsAfter_; }
+    set {
+      materialAvailableUnitsAfter_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "material_earnable_remaining_after" field.</summary>
+  public const int MaterialEarnableRemainingAfterFieldNumber = 34;
+  private uint materialEarnableRemainingAfter_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaterialEarnableRemainingAfter {
+    get { return materialEarnableRemainingAfter_; }
+    set {
+      materialEarnableRemainingAfter_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1038,6 +1152,14 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (TrialNewCoopBest != other.TrialNewCoopBest) return false;
     if (MaterialTradableUnitsAdded != other.MaterialTradableUnitsAdded) return false;
     if (MaterialPvpLossIneligible != other.MaterialPvpLossIneligible) return false;
+    if (FestivalActivityInstanceId != other.FestivalActivityInstanceId) return false;
+    if (FestivalRewardIdentity != other.FestivalRewardIdentity) return false;
+    if (FestivalWinsBefore != other.FestivalWinsBefore) return false;
+    if (FestivalWinsAfter != other.FestivalWinsAfter) return false;
+    if (FestivalRequiredWins != other.FestivalRequiredWins) return false;
+    if (FestivalNewlyEligible != other.FestivalNewlyEligible) return false;
+    if (MaterialAvailableUnitsAfter != other.MaterialAvailableUnitsAfter) return false;
+    if (MaterialEarnableRemainingAfter != other.MaterialEarnableRemainingAfter) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1071,6 +1193,14 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (TrialNewCoopBest != false) hash ^= TrialNewCoopBest.GetHashCode();
     if (MaterialTradableUnitsAdded != 0) hash ^= MaterialTradableUnitsAdded.GetHashCode();
     if (MaterialPvpLossIneligible != false) hash ^= MaterialPvpLossIneligible.GetHashCode();
+    if (FestivalActivityInstanceId != 0) hash ^= FestivalActivityInstanceId.GetHashCode();
+    if (FestivalRewardIdentity.Length != 0) hash ^= FestivalRewardIdentity.GetHashCode();
+    if (FestivalWinsBefore != 0) hash ^= FestivalWinsBefore.GetHashCode();
+    if (FestivalWinsAfter != 0) hash ^= FestivalWinsAfter.GetHashCode();
+    if (FestivalRequiredWins != 0) hash ^= FestivalRequiredWins.GetHashCode();
+    if (FestivalNewlyEligible != false) hash ^= FestivalNewlyEligible.GetHashCode();
+    if (MaterialAvailableUnitsAfter != 0UL) hash ^= MaterialAvailableUnitsAfter.GetHashCode();
+    if (MaterialEarnableRemainingAfter != 0) hash ^= MaterialEarnableRemainingAfter.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1181,6 +1311,38 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(208, 1);
       output.WriteBool(MaterialPvpLossIneligible);
     }
+    if (FestivalActivityInstanceId != 0) {
+      output.WriteRawTag(216, 1);
+      output.WriteUInt32(FestivalActivityInstanceId);
+    }
+    if (FestivalRewardIdentity.Length != 0) {
+      output.WriteRawTag(226, 1);
+      output.WriteString(FestivalRewardIdentity);
+    }
+    if (FestivalWinsBefore != 0) {
+      output.WriteRawTag(232, 1);
+      output.WriteUInt32(FestivalWinsBefore);
+    }
+    if (FestivalWinsAfter != 0) {
+      output.WriteRawTag(240, 1);
+      output.WriteUInt32(FestivalWinsAfter);
+    }
+    if (FestivalRequiredWins != 0) {
+      output.WriteRawTag(248, 1);
+      output.WriteUInt32(FestivalRequiredWins);
+    }
+    if (FestivalNewlyEligible != false) {
+      output.WriteRawTag(128, 2);
+      output.WriteBool(FestivalNewlyEligible);
+    }
+    if (MaterialAvailableUnitsAfter != 0UL) {
+      output.WriteRawTag(136, 2);
+      output.WriteUInt64(MaterialAvailableUnitsAfter);
+    }
+    if (MaterialEarnableRemainingAfter != 0) {
+      output.WriteRawTag(144, 2);
+      output.WriteUInt32(MaterialEarnableRemainingAfter);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1283,6 +1445,38 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(208, 1);
       output.WriteBool(MaterialPvpLossIneligible);
     }
+    if (FestivalActivityInstanceId != 0) {
+      output.WriteRawTag(216, 1);
+      output.WriteUInt32(FestivalActivityInstanceId);
+    }
+    if (FestivalRewardIdentity.Length != 0) {
+      output.WriteRawTag(226, 1);
+      output.WriteString(FestivalRewardIdentity);
+    }
+    if (FestivalWinsBefore != 0) {
+      output.WriteRawTag(232, 1);
+      output.WriteUInt32(FestivalWinsBefore);
+    }
+    if (FestivalWinsAfter != 0) {
+      output.WriteRawTag(240, 1);
+      output.WriteUInt32(FestivalWinsAfter);
+    }
+    if (FestivalRequiredWins != 0) {
+      output.WriteRawTag(248, 1);
+      output.WriteUInt32(FestivalRequiredWins);
+    }
+    if (FestivalNewlyEligible != false) {
+      output.WriteRawTag(128, 2);
+      output.WriteBool(FestivalNewlyEligible);
+    }
+    if (MaterialAvailableUnitsAfter != 0UL) {
+      output.WriteRawTag(136, 2);
+      output.WriteUInt64(MaterialAvailableUnitsAfter);
+    }
+    if (MaterialEarnableRemainingAfter != 0) {
+      output.WriteRawTag(144, 2);
+      output.WriteUInt32(MaterialEarnableRemainingAfter);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1362,6 +1556,30 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (MaterialPvpLossIneligible != false) {
       size += 2 + 1;
+    }
+    if (FestivalActivityInstanceId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(FestivalActivityInstanceId);
+    }
+    if (FestivalRewardIdentity.Length != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeStringSize(FestivalRewardIdentity);
+    }
+    if (FestivalWinsBefore != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(FestivalWinsBefore);
+    }
+    if (FestivalWinsAfter != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(FestivalWinsAfter);
+    }
+    if (FestivalRequiredWins != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(FestivalRequiredWins);
+    }
+    if (FestivalNewlyEligible != false) {
+      size += 2 + 1;
+    }
+    if (MaterialAvailableUnitsAfter != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(MaterialAvailableUnitsAfter);
+    }
+    if (MaterialEarnableRemainingAfter != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(MaterialEarnableRemainingAfter);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1444,6 +1662,30 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (other.MaterialPvpLossIneligible != false) {
       MaterialPvpLossIneligible = other.MaterialPvpLossIneligible;
+    }
+    if (other.FestivalActivityInstanceId != 0) {
+      FestivalActivityInstanceId = other.FestivalActivityInstanceId;
+    }
+    if (other.FestivalRewardIdentity.Length != 0) {
+      FestivalRewardIdentity = other.FestivalRewardIdentity;
+    }
+    if (other.FestivalWinsBefore != 0) {
+      FestivalWinsBefore = other.FestivalWinsBefore;
+    }
+    if (other.FestivalWinsAfter != 0) {
+      FestivalWinsAfter = other.FestivalWinsAfter;
+    }
+    if (other.FestivalRequiredWins != 0) {
+      FestivalRequiredWins = other.FestivalRequiredWins;
+    }
+    if (other.FestivalNewlyEligible != false) {
+      FestivalNewlyEligible = other.FestivalNewlyEligible;
+    }
+    if (other.MaterialAvailableUnitsAfter != 0UL) {
+      MaterialAvailableUnitsAfter = other.MaterialAvailableUnitsAfter;
+    }
+    if (other.MaterialEarnableRemainingAfter != 0) {
+      MaterialEarnableRemainingAfter = other.MaterialEarnableRemainingAfter;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1569,6 +1811,38 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
           MaterialPvpLossIneligible = input.ReadBool();
           break;
         }
+        case 216: {
+          FestivalActivityInstanceId = input.ReadUInt32();
+          break;
+        }
+        case 226: {
+          FestivalRewardIdentity = input.ReadString();
+          break;
+        }
+        case 232: {
+          FestivalWinsBefore = input.ReadUInt32();
+          break;
+        }
+        case 240: {
+          FestivalWinsAfter = input.ReadUInt32();
+          break;
+        }
+        case 248: {
+          FestivalRequiredWins = input.ReadUInt32();
+          break;
+        }
+        case 256: {
+          FestivalNewlyEligible = input.ReadBool();
+          break;
+        }
+        case 264: {
+          MaterialAvailableUnitsAfter = input.ReadUInt64();
+          break;
+        }
+        case 272: {
+          MaterialEarnableRemainingAfter = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -1691,6 +1965,38 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
         }
         case 208: {
           MaterialPvpLossIneligible = input.ReadBool();
+          break;
+        }
+        case 216: {
+          FestivalActivityInstanceId = input.ReadUInt32();
+          break;
+        }
+        case 226: {
+          FestivalRewardIdentity = input.ReadString();
+          break;
+        }
+        case 232: {
+          FestivalWinsBefore = input.ReadUInt32();
+          break;
+        }
+        case 240: {
+          FestivalWinsAfter = input.ReadUInt32();
+          break;
+        }
+        case 248: {
+          FestivalRequiredWins = input.ReadUInt32();
+          break;
+        }
+        case 256: {
+          FestivalNewlyEligible = input.ReadBool();
+          break;
+        }
+        case 264: {
+          MaterialAvailableUnitsAfter = input.ReadUInt64();
+          break;
+        }
+        case 272: {
+          MaterialEarnableRemainingAfter = input.ReadUInt32();
           break;
         }
       }

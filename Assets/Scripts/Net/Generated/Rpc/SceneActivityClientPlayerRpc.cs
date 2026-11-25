@@ -17,7 +17,7 @@ namespace MmorpgClient.Net.Generated
     {
         public const uint GetActivityListMessageId = 190;
         /// <summary>
-        /// 目录只读取 MissionTable.mission_type=2；无运营时间配置时一律未排期。
+        /// 目录只读取 MissionTable.mission_type=2 及限时瑞兽迎春入口；无运营时间配置时一律未排期（永久未领资格仍展示）。
         /// </summary>
         public static void GetActivityList(IRpcChannel channel, global::GetActivityListRequest request,
             RpcDone<global::GetActivityListResponse> done)
@@ -30,5 +30,29 @@ namespace MmorpgClient.Net.Generated
         public static void ClaimActivityVitalityReward(IRpcChannel channel, global::ClaimActivityVitalityRewardRequest request,
             RpcDone<global::ClaimActivityVitalityRewardResponse> done)
             => channel.CallMethod(ClaimActivityVitalityRewardMessageId, request, global::ClaimActivityVitalityRewardResponse.Parser, done);
+
+        public const uint GetFestivalBeastDetailMessageId = 476;
+        /// <summary>
+        /// 查询瑞兽迎春详情、永久资格、材料摘要及跨设备在途开局/领奖恢复态。
+        /// </summary>
+        public static void GetFestivalBeastDetail(IRpcChannel channel, global::GetFestivalBeastDetailRequest request,
+            RpcDone<global::GetFestivalBeastDetailResponse> done)
+            => channel.CallMethod(GetFestivalBeastDetailMessageId, request, global::GetFestivalBeastDetailResponse.Parser, done);
+
+        public const uint StartFestivalBeastChallengeMessageId = 477;
+        /// <summary>
+        /// 发起瑞兽迎春单人挑战（锁定出战宝宝、持久化在途开局并走 Match 权威准入）。
+        /// </summary>
+        public static void StartFestivalBeastChallenge(IRpcChannel channel, global::StartFestivalBeastChallengeRequest request,
+            RpcDone<global::StartFestivalBeastChallengeResponse> done)
+            => channel.CallMethod(StartFestivalBeastChallengeMessageId, request, global::StartFestivalBeastChallengeResponse.Parser, done);
+
+        public const uint ClaimFestivalBeastRewardMessageId = 478;
+        /// <summary>
+        /// 领取瑞兽迎春永久待领神兽奖励（同 UUID 重放，异 UUID 并发收敛至同一只宝宝，落盘确认后公开 durable=true）。
+        /// </summary>
+        public static void ClaimFestivalBeastReward(IRpcChannel channel, global::ClaimFestivalBeastRewardRequest request,
+            RpcDone<global::ClaimFestivalBeastRewardResponse> done)
+            => channel.CallMethod(ClaimFestivalBeastRewardMessageId, request, global::ClaimFestivalBeastRewardResponse.Parser, done);
     }
 }

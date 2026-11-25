@@ -23,7 +23,7 @@ public static partial class MatchErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvbWF0Y2hfZXJyb3JfdGlwLnBy",
-          "b3RvKqwNCgttYXRjaF9lcnJvchISCg5rTWF0Y2hfZXJyb3JPSxAAEhMKDmtN",
+          "b3RvKsIOCgttYXRjaF9lcnJvchISCg5rTWF0Y2hfZXJyb3JPSxAAEhMKDmtN",
           "YXRjaEluQmF0dGxlEIB9EhgKE2tNYXRjaEFscmVhZHlRdWV1ZWQQgX0SFgoR",
           "a01hdGNoTW9kZU5vdE9wZW4Qgn0SIAoba01hdGNoVGVhbVNpemVOb3RDb25m",
           "aWd1cmVkEIN9EhMKDmtNYXRjaEludGVybmFsEIR9EhkKFGtNYXRjaFRpY2tl",
@@ -61,8 +61,11 @@ public static partial class MatchErrorTipReflection {
           "b3VybmFtZW50UXVhbGlmaWVyTGltaXQQsH0SIgoda01hdGNoVG91cm5hbWVu",
           "dE1hdGNoTm90UmVhZHkQsX0SIwoea01hdGNoVG91cm5hbWVudEFscmVhZHlD",
           "aGVlcmVkELJ9EiYKIWtNYXRjaFRvdXJuYW1lbnRSZXdhcmRVbmF2YWlsYWJs",
-          "ZRCzfUIkCg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJhdGVkL3BiL3RhYmxlYgZw",
-          "cm90bzM="));
+          "ZRCzfRIkCh9rTWF0Y2hCYXR0bGVTdXJyZW5kZXJOb3RBbGxvd2VkELR9EiIK",
+          "HWtNYXRjaEJhdHRsZVN1cnJlbmRlclRvb0Vhcmx5ELV9EiIKHWtNYXRjaEJh",
+          "dHRsZVN1cnJlbmRlckNvb2xkb3duELZ9EiYKIWtNYXRjaEJhdHRsZVN1cnJl",
+          "bmRlckFscmVhZHlWb3RlZBC3fUIkCg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJh",
+          "dGVkL3BiL3RhYmxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::match_error), }, null, null));
@@ -125,6 +128,10 @@ public enum match_error {
   [pbr::OriginalName("kMatchTournamentMatchNotReady")] KMatchTournamentMatchNotReady = 16049,
   [pbr::OriginalName("kMatchTournamentAlreadyCheered")] KMatchTournamentAlreadyCheered = 16050,
   [pbr::OriginalName("kMatchTournamentRewardUnavailable")] KMatchTournamentRewardUnavailable = 16051,
+  [pbr::OriginalName("kMatchBattleSurrenderNotAllowed")] KMatchBattleSurrenderNotAllowed = 16052,
+  [pbr::OriginalName("kMatchBattleSurrenderTooEarly")] KMatchBattleSurrenderTooEarly = 16053,
+  [pbr::OriginalName("kMatchBattleSurrenderCooldown")] KMatchBattleSurrenderCooldown = 16054,
+  [pbr::OriginalName("kMatchBattleSurrenderAlreadyVoted")] KMatchBattleSurrenderAlreadyVoted = 16055,
 }
 
 #endregion

@@ -21,6 +21,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
     public sealed class RankedSettlementPanel
     {
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
+        public RectTransform Root => _root;
 
         public event Action BackRequested;
         public event Action<uint> RequeueSameSizeRequested;
@@ -37,6 +38,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private readonly TMP_Text _card1Main, _card1Sub;
         private readonly TMP_Text _card2Main, _card2Sub;
         private readonly TMP_Text _card3Main, _card3Sub;
+        private readonly RectTransform[] _legacyRewardCards = new RectTransform[3];
         private readonly Button _claimMaterialBtn;
 
         private readonly Button _backBtn, _requeueBtn;
@@ -70,9 +72,10 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _refreshRatingBtn.onClick.AddListener(() => RefreshRatingRequested?.Invoke());
 
             // 底部 3 张说明卡：x = 150 / 705 / 1260, y = 570, w = 510, h = 259
-            BuildCard(150f, "本季有效场次", out _card1Main, out _card1Sub);
-            BuildCard(705f, "赛季展示权益（仅展示）", out _card2Main, out _card2Sub);
+            _legacyRewardCards[0] = (RectTransform)BuildCard(150f, "本季有效场次", out _card1Main, out _card1Sub);
+            _legacyRewardCards[1] = (RectTransform)BuildCard(705f, "赛季展示权益（仅展示）", out _card2Main, out _card2Sub);
             var card3 = BuildCard(1260f, "日常材料自选额度", out _card3Main, out _card3Sub);
+            _legacyRewardCards[2] = (RectTransform)card3;
 
             _claimMaterialBtn = CreateArtButton("ClaimMaterialBtn", card3, 155f, 194f, 200f, 46f,
                 "appearance-action-idle", "前往领取材料", 19f, JadeDark, out _, out _);
@@ -100,6 +103,13 @@ namespace MmorpgClient.UI.Ugui.Ranked
         public void Hide()
         {
             _root.gameObject.SetActive(false);
+        }
+
+        /// <summary>核心玩法现场结算使用权威材料拆解块替换旧三卡，评分区仍由本面板负责。</summary>
+        public void SetCoreSettlementVisible(bool visible)
+        {
+            foreach (var card in _legacyRewardCards)
+                if (card != null) card.gameObject.SetActive(!visible);
         }
 
         public void Render(RankedBattleSettlementState state)

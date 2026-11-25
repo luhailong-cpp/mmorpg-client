@@ -403,5 +403,123 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_net.CallsOf(MessageIds.JoinQueue), Has.Count.EqualTo(1),
                 "随队开战须作废之前的单排记忆，不能在结算后独自排入旧队列");
         }
+
+        [Test]
+        public void ContinuousBattle_DoesNotAutoRequeueForRankedOrPvpModes()
+        {
+            _client.ContinuousBattle = true;
+            _client.Tick(0);
+            _client.JoinQueue(Match.MatchMode.PvpTeam, 5, 1);
+            PushBattleStart();
+            _net.PushNotify(MessageIds.NotifyBattleEnd, new BattleEndS2C
+            {
+                BattleId = TheBattleId,
+                Outcome = eBattleOutcome.BattleOutcomeSideAWin,
+                SeasonId = 1,
+                Settlement = new BattleSettlementData
+                {
+                    MatchMode = (uint)Match.MatchMode.PvpTeam,
+                    CompetitiveRanked = true,
+                },
+            });
+
+            int customTriggered = 0;
+            _client.ContinuousMatchRequested = () => customTriggered++;
+            _client.AckBattleEnd();
+
+            Assert.That(customTriggered, Is.EqualTo(0), "正式排位结算收起不得触发连续战斗回调");
+            Assert.That(_net.CallsOf(MessageIds.JoinQueue), Has.Count.EqualTo(1),
+                "正式排位关闭结算页不得悄悄自动重排");
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.None));
+
+            _client.ContinuousMatchRequested = null;
+            _client.JoinQueue(Match.MatchMode.Polarity5V5, 110, 5);
+            PushBattleStart();
+            PushBattleEnd();
+            _client.AckBattleEnd();
+
+            Assert.That(_net.CallsOf(MessageIds.JoinQueue), Has.Count.EqualTo(2),
+                "物法易势 5V5 关闭结算页同样禁止连续战斗自动续排");
+        }
+
+        [Test]
+        public void SurrenderBattle_EscalationFields_And_NotifySurrenderVoteFlow()
+        {
+            Assert.That(DirectRoutingBattleTransport.IsDirectMessage(MessageIds.SurrenderBattle), Is.True,
+                "SurrenderBattle 必须走战斗直连通道");
+
+            var voteEvents = new List<BattleSurrenderVoteState>();
+            _client.OnSurrenderVoteChanged += v => voteEvents.Add(v);
+
+            var r1 = MakeState(false, MyId, EnemyId);
+            r1.RoundIndex = 1;
+            r1.RoundLimit = 20;
+            r1.EscalationStartRound = 13;
+            r1.EscalationStacks = 0;
+            r1.SurrenderUnlockRound = 5;
+            _net.PushNotify(MessageIds.NotifyBattleStart, new BattleStartS2C { BattleId = TheBattleId, State = r1 });
+
+            Assert.That(_client.RoundLimit, Is.EqualTo(20u));
+            Assert.That(_client.EscalationStartRound, Is.EqualTo(13u));
+            Assert.That(_client.EscalationStacks, Is.EqualTo(0u));
+            Assert.That(_client.SurrenderUnlockRound, Is.EqualTo(5u));
+            Assert.That(_client.CanSurrenderNow, Is.False, "第 1 回合未满 5 回合不得允许本地点击投降");
+
+            // 推进到第 13 回合（战意渐盛 1 层，且已解锁投降）
+            var r13 = MakeState(false, MyId, EnemyId);
+            r13.RoundIndex = 13;
+            r13.RoundLimit = 20;
+            r13.EscalationStartRound = 13;
+            r13.EscalationStacks = 1;
+            r13.SurrenderUnlockRound = 5;
+            _net.PushNotify(MessageIds.NotifyTurnResult, new TurnResultS2C { BattleId = TheBattleId, RoundIndex = 12, State = r13 });
+            _client.AckTurnPlayed();
+            Assert.That(_client.EscalationStacks, Is.EqualTo(1u));
+            Assert.That(_client.CanSurrenderNow, Is.True);
+
+            bool? rpcOk = null;
+            Assert.That(_client.SurrenderBattle(agree: true, ok => rpcOk = ok), Is.True);
+            var calls = _net.CallsOf(MessageIds.SurrenderBattle);
+            Assert.That(calls, Has.Count.EqualTo(1));
+            var req = (SurrenderBattleRequest)calls[0].Request;
+            Assert.That(req.BattleId, Is.EqualTo(TheBattleId));
+            Assert.That(req.Agree, Is.True);
+
+            var activeVote = new BattleSurrenderVoteState
+            {
+                Active = true,
+                TeamIndex = 0,
+                InitiatorPlayerId = MyId,
+                InitiatedRound = 13,
+                RequiredAgrees = 2,
+            };
+            activeVote.AgreedPlayerIds.Add(MyId);
+            calls[0].Respond(new SurrenderBattleResponse { VoteState = activeVote });
+            Assert.That(rpcOk, Is.True);
+            Assert.That(_client.CurrentSurrenderVote, Is.Not.Null);
+            Assert.That(_client.CurrentSurrenderVote.Active, Is.True);
+            Assert.That(_client.CurrentSurrenderVote.RequiredAgrees, Is.EqualTo(2u));
+
+            // 收到同队否决推送 -> 进入冷却至 R16，CanSurrenderNow 置 false
+            var rejectedVote = new BattleSurrenderVoteState
+            {
+                Active = false,
+                Rejected = true,
+                TeamIndex = 0,
+                NextAllowedRound = 16,
+            };
+            _net.PushNotify(MessageIds.NotifySurrenderVote, new SurrenderVoteS2C
+            {
+                BattleId = TheBattleId,
+                VoteState = rejectedVote,
+            });
+            Assert.That(_client.CurrentSurrenderVote.Rejected, Is.True);
+            Assert.That(_client.CurrentSurrenderVote.NextAllowedRound, Is.EqualTo(16u));
+            Assert.That(_client.CanSurrenderNow, Is.False, "投降冷却期内本地应禁用投降按钮");
+
+            PushBattleEnd();
+            Assert.That(_client.CurrentSurrenderVote, Is.Null, "终局清场后必须清空投降状态");
+            Assert.That(voteEvents, Has.Count.GreaterThanOrEqualTo(3));
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.UI.Ugui.TrialJournal;
 using MmorpgClient.UI.Ugui.Tweening;
 using TMPro;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private const float RowDelay = 0.12f;
 
         private readonly RectTransform _root;
+        private readonly RectTransform _rewardViewport;
         private readonly CanvasGroup _group;
         private readonly TMP_Text _titleText;
         private readonly TMP_Text _roundsText;
@@ -39,14 +41,20 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly object _token = new object();
         private readonly Action _onConfirm;
         private readonly Action<ulong> _onWatchReplay;
+        private readonly Action<uint> _onOpenTrialJournal;
+        private readonly TrialJournalBattleResultHint _trialJournalHint;
         private ulong _replayBattleId;
+        private float _currentRowsViewportHeight = RowsViewportHeight;
 
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
+        public RectTransform Root => _root;
 
-        public BattleResultPanel(UnityEngine.Transform parent, Action onConfirm, Action<ulong> onWatchReplay = null)
+        public BattleResultPanel(UnityEngine.Transform parent, Action onConfirm, Action<ulong> onWatchReplay = null,
+            Action<uint> onOpenTrialJournal = null)
         {
             _onConfirm = onConfirm;
             _onWatchReplay = onWatchReplay;
+            _onOpenTrialJournal = onOpenTrialJournal;
             float x = (QdaoUguiTheme.DesignWidth - PanelW) * 0.5f;
             float y = (QdaoUguiTheme.DesignHeight - PanelH) * 0.5f;
             var bg = BattleUiWidgets.CreatePanel("BattleResultPanel", parent, x, y, PanelW, PanelH, BattleUiStyle.PanelBgLight);
@@ -71,6 +79,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _roundsText = QdaoUguiFactory.CreateText("Rounds", _root, 0f, 156f, PanelW, 36f,
                 string.Empty, 24f, QdaoUguiTheme.MutedBrown, TextAlignmentOptions.Center);
             var viewport = QdaoUguiFactory.CreateRect("RowsViewport", _root, 120f, RowStartY, PanelW - 240f, RowsViewportHeight);
+            _rewardViewport = viewport;
             viewport.gameObject.AddComponent<RectMask2D>();
             var surface = viewport.gameObject.AddComponent<Image>();
             surface.color = new Color(1f, 1f, 1f, 0.001f);
@@ -103,12 +112,15 @@ namespace MmorpgClient.UI.Ugui.Battle
             });
             _watchReplayButton.SetVisible(false);
 
+            // 试炼志行内提示条（仅在 TrialJournalEntryId != 0 时展示，不弹窗打断）
+            _trialJournalHint = new TrialJournalBattleResultHint(_root, 40f, 510f, entryId => _onOpenTrialJournal?.Invoke(entryId));
+
             BattleFidelityArt.ApplyPanel(_root);
             Hide();
         }
 
         /// <summary>展示结算。fallbackTeamIndex:结算数据缺失时用战斗屏记录的我方 team。</summary>
-        public void Show(BattleEndS2C end, uint fallbackTeamIndex)
+        public void Show(BattleEndS2C end, uint fallbackTeamIndex, bool coreSettlementVisible = false)
         {
             if (end == null || _root == null) return;
             var settlement = end.Settlement;
@@ -118,12 +130,19 @@ namespace MmorpgClient.UI.Ugui.Battle
             // 必须排在胜负判断之前 —— 落进下面的 else 会显示成「失败」,奖励行还会列出「HP 0 / MP 0」。
             bool voided = BattleClient.IsVoidEnd(end);
 
+            var journalSnap = AppBootstrap.Instance?.GameClient?.TrialJournal?.Snapshot;
+            bool hintVisible = !voided && _onOpenTrialJournal != null && _trialJournalHint != null
+                && _trialJournalHint.ShowForLive(end, journalSnap);
+            if (!hintVisible) _trialJournalHint?.Hide();
+            ApplySettlementBandLayout(coreSettlementVisible, hintVisible);
+
             ResolveTitle(outcome, myTeam, voided, out string title, out Color titleColor);
             string subtitle = voided ? VoidSubtitle
                 : settlement != null ? $"共 {settlement.TotalRounds} 回合" : string.Empty;
             var lines = voided ? BuildVoidLines() : BuildRewardLines(settlement, end.ItemsMailed);
             ConfigureActionButtons(replayBattleId: 0);
-            Present(title, titleColor, subtitle, lines, LiveConfirmText, AutoReturnSeconds);
+            Present(title, titleColor, subtitle, lines, LiveConfirmText,
+                coreSettlementVisible || hintVisible ? 0 : AutoReturnSeconds);
         }
 
         /// <summary>
@@ -134,6 +153,11 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (result == null || _root == null) return;
             bool voided = BattleResultRecoveryClient.IsVoid(result);
+            var journalSnap = AppBootstrap.Instance?.GameClient?.TrialJournal?.Snapshot;
+            bool hintVisible = !voided && _onOpenTrialJournal != null && _trialJournalHint != null
+                && _trialJournalHint.ShowForRecovered(result, journalSnap);
+            if (!hintVisible) _trialJournalHint?.Hide();
+            ApplySettlementBandLayout(coreSettlementVisible: false, hintVisible);
             ResolveTitle((eBattleOutcome)result.Outcome, result.TeamIndex, voided, out string title, out Color titleColor);
             ulong replayBattleId = _onWatchReplay != null && BattleReportClient.CanWatchReplayFromRecovered(result)
                 ? result.BattleId
@@ -141,6 +165,35 @@ namespace MmorpgClient.UI.Ugui.Battle
             ConfigureActionButtons(replayBattleId);
             Present(title, titleColor, voided ? VoidSubtitle : BuildRecoveredSubtitle(result), BuildRecoveredLines(result),
                 RecoveredConfirmText, autoConfirmSeconds: 0);
+        }
+
+        /// <summary>权威材料拆解块占据奖励列表下方时，为它留出独立区域。</summary>
+        public void SetCoreSettlementVisible(bool visible)
+            => ApplySettlementBandLayout(visible, _trialJournalHint != null && _trialJournalHint.IsVisible);
+
+        private void ApplySettlementBandLayout(bool coreSettlementVisible, bool trialHintVisible)
+        {
+            if (coreSettlementVisible && trialHintVisible)
+            {
+                _currentRowsViewportHeight = 88f;
+                _trialJournalHint?.SetVerticalPosition(330f);
+            }
+            else if (coreSettlementVisible)
+            {
+                _currentRowsViewportHeight = 170f;
+            }
+            else if (trialHintVisible)
+            {
+                _currentRowsViewportHeight = 264f;
+                _trialJournalHint?.SetVerticalPosition(510f);
+            }
+            else
+            {
+                _currentRowsViewportHeight = RowsViewportHeight;
+            }
+            _rewardViewport.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _currentRowsViewportHeight);
+            _rows.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
+                Mathf.Max(_currentRowsViewportHeight, _rowObjects.Count * RowHeight));
         }
 
         private void ConfigureActionButtons(ulong replayBattleId)
@@ -200,7 +253,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _root.SetAsLastSibling();
             _group.alpha = 1f;
             // 奖励数量可配置：内容增长后仍能滚动查看末行，每次展示从顶部开始。
-            _rows.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(RowsViewportHeight, lines.Count * RowHeight));
+            _rows.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
+                Mathf.Max(_currentRowsViewportHeight, lines.Count * RowHeight));
             _rewardScroll.StopMovement();
             _rows.anchoredPosition = Vector2.zero;
             _rewardScroll.verticalNormalizedPosition = 1f;
@@ -281,6 +335,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public void Hide()
         {
             KillTweens();
+            _trialJournalHint?.Hide();
             if (_root != null) _root.gameObject.SetActive(false);
         }
 

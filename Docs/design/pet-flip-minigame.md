@@ -399,3 +399,34 @@
 }
 ```
 > UI 依据 `LocalRecord.IsUnsaved == true`（或 `CompletionResult.IsRecordUnsaved == true`）展示“本机纪录未保存”提示；此时 `Snapshot.CanStartNewRound` 仍为 `true`，玩家可立即点击“再玩一局”不受任何阻塞。
+
+---
+
+## 8. 正式 UI 与美术接入记录（2026-11-25）
+
+### 8.1 已导入资源与 SHA-256 锁定
+来源：`D:\work\image\designs\pet-memory-ui-v1\assets\`（提交 `ccb5dfe8ac2eda18d49df2b8d3489e5cd5c29ecb`）导入至 `Assets/Resources/UI/Ugui/PetFlipV1/`（不导入 `previews/` 整图遮罩）：
+
+| 文件 | 原生尺寸 | SHA-256 | 用途 |
+|---|---:|---|---|
+| `window-frame.png` | 1922×818 | `15a7bd09e828d29aa67dceb0b54681ff232b039e9365e0aa24fe458bb722c6f9` | 横屏窗体无字底图 |
+| `window-frame-portrait.png` | 1024×1536 | `7641c2a58604f8b6e8897f0e32f47c0978fa433d6dac883cfcaf8afb0947eaaa` | 窄竖屏窗体无字底图 |
+| `card-back.png` | 870×1158 | `55c37fd6bd8988321391d102a7ea24fbac30382675f065f596d327dfa2e43553` | 12 张暗牌共用牌背与入口图标 |
+| `card-front.png` | 870×1158 | `10f0af1c857cdf4a44cd0b07a43e6a5eb9cc6f69742697a599098c5abf7927fa` | 明牌共用空白肖像框 |
+| `matched-mark.png` | 72×72 | `5d4c8a27e078ffec1f34fe96a8a4b4c8cf2cbc4ba959d0ce7d9c89f58932d887` | 已配对玉绿金边勾标 |
+| `button-primary.png` | 300×90 | `9f6245d2ca5fec91fcdfdf32ca76abbbe9a8c721f533847af78ac71d54f14e30` | 主按钮备用素材 |
+| `button-secondary.png` | 292×90 | `c18540a95a2e37739aae2b15575985a77c9e02d6af45187d51b6f54259c70bf2` | 副按钮备用素材 |
+
+6 种灵宠头像与显示名直接复用客户端权威目录 `QdaoPetCatalog`（`Assets/Resources/World/Pets/QdaoPets20261005/`）：
+`A -> 01-zhuling（烛翎）`、`B -> 03-shuangtuan（霜团貂）`、`C -> 04-guideng（桂灯童）`、`D -> 08-zhufengli（竹风狸）`、`E -> 10-xuanchaogui（玄潮龟）`、`F -> 11-xiajiaolu（霞角鹿）`。
+
+### 8.2 客户端 UI 代码结构
+- `Assets/Scripts/UI/Ugui/PetFlip/PetFlipUiPresentation.cs`：纯 C# 展示推导层（页面路由、四类终局文案、失配/断线/未保存提示、资源防缺失与防同图占位校验、横竖屏 12 槽几何计算与无障碍命名）。
+- `Assets/Scripts/UI/Ugui/PetFlip/PetFlipArtCatalog.cs`：`PetFlipV1` 精灵与 `QdaoPetCatalog` 头像统一加载、校验及圆遮罩/圆角便签生成。
+- `Assets/Scripts/UI/Ugui/PetFlip/PetFlipPanelView.cs`：严格按 `1922×818`（4×3）与 `1024×1536`（3×4）坐标排布五种页面态与 12 张牌位，使用 `RealtimeTween` 做轻巧翻开/配对弹跳反馈，动画不决定任何计次、配对或保存逻辑。
+- `Assets/Scripts/UI/Ugui/PetFlip/PetFlipUiRoot.cs`：主城自举根宿主（`CanvasSortingOrder = 186`），向 `WorldHudNavigation` 的「历练」分类注册直接入口 `WorldHudEntry.PetFlip`（无红点），通过 `AttachView` / `DetachView` 绑定长寿命 `PetFlipClient`，接入 `CityPanelRegistry`、`EquipmentUiFit` 安全区适配及战斗/观战/强制弹窗优先收起。
+
+### 8.3 验证分层边界
+- **样例预览完成**：`D:\work\image\designs\pet-memory-ui-v1\previews\01-entry.png`～`06-narrow-board.png`（设计稿参考）。
+- **真实逻辑已接入**：`PetFlipUiRoot` 与 `PetFlipPanelView` 全部绑定 `GameClient.PetFlip`，离线 Roslyn 编译与纯逻辑/UI 展示单测已通过。
+- **实际平台已验证**：尚未在 Unity 编辑器 PlayMode 截图逐像素核验、iOS/Android App 真机与微信/抖音小游戏宿主实测；需在 Unity 运行环境完成端到端截图与交互验收后才可标记平台验证完成。

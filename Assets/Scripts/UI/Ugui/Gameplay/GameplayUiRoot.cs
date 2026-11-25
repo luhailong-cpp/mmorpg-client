@@ -99,6 +99,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _window.TrackingChanged += mission => { if (mission != null) _client?.MissionTracking.Track(mission); };
             _window.ActivityRewardClaimRequested += (ruleId, periodId, thresholdId, revision) =>
                 _client?.ClaimActivityVitalityReward(ruleId, periodId, thresholdId, revision);
+            _window.FestivalBeastRequested += () =>
+            {
+                HidePanel();
+                FestivalBeast.FestivalBeastUiRoot.EnsureSpawned();
+                FestivalBeast.FestivalBeastUiRoot.Instance?.OpenMainWindow();
+            };
             // 面板长在背包窗口里:窗口关掉(含换角色 / 断线时的 ResetSession)它跟着关。
             _window.Closed += _forge.Close;
             // 强化结果的兜底提示(面板关了也照样来)。背包页正在屏幕上:写进它的状态行,下一次装备操作开始时由 Changed 收起;

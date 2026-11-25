@@ -160,6 +160,12 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly TMP_Text _name;
         private readonly Image _badgePlate;
         private readonly TMP_Text _badgeText;
+        private readonly Image _coreTargetMarker;
+        private readonly TMP_Text _coreTargetLabel;
+        private readonly Image _coreGuardMarker;
+        private bool _coreTargetMarked;
+        private string _coreTargetLabelText = "重击目标";
+        private bool _coreGuardMarked;
         private readonly List<GameObject> _buffIcons = new List<GameObject>();
         private readonly object _idleToken = new object(); // idle 独立 tween 目标,可单独 Kill
 
@@ -284,6 +290,44 @@ namespace MmorpgClient.UI.Ugui.Battle
                 BattleUiStyle.WarnText, TextAlignmentOptions.Center);
             _badgePlate.gameObject.SetActive(false);
 
+            // 公开预告目标与护卫保全标记挂在独立名牌层，跟随单位与血条（优先使用 SeasonEconomyV1 专属无字素材）。
+            var coreBadge = Resources.Load<Sprite>("UI/Ugui/CoreLoopV1/badge");
+            var targetLockArt = SeasonEconomyUiArt.LoadControl("target_lock_marker");
+            if (targetLockArt != null)
+            {
+                _coreTargetMarker = QdaoUguiFactory.CreateImage("CoreTelegraphTarget", _plate,
+                    barX + BarWidth * 0.5f - 66f, -46f, 132f, 83f, targetLockArt);
+                _coreTargetMarker.preserveAspect = true;
+                _coreTargetMarker.color = Color.white;
+                _coreTargetLabel = QdaoUguiFactory.CreateText("CoreTelegraphTargetLabel", _plate,
+                    barX + BarWidth * 0.5f - 48f, -5f, 96f, 18f, "重击目标", 13f, QdaoUguiTheme.Html("#FFF3D6"), TextAlignmentOptions.Center);
+                _coreTargetLabel.enableAutoSizing = true;
+                _coreTargetLabel.fontSizeMin = 10f;
+                _coreTargetLabel.fontSizeMax = 13f;
+            }
+            else
+            {
+                _coreTargetMarker = QdaoUguiFactory.CreateImage("CoreTelegraphTarget", _plate,
+                    barX - 38f, 8f, 28f, 28f, coreBadge);
+                _coreTargetMarker.color = QdaoUguiTheme.Html("#B34337");
+                _coreTargetLabel = QdaoUguiFactory.CreateText("CoreTelegraphTargetLabel", _plate,
+                    barX - 4f, 6f, BarWidth + 8f, 24f, "重击目标", 16f, QdaoUguiTheme.Html("#FFE6C8"), TextAlignmentOptions.Center);
+            }
+            _coreTargetMarker.raycastTarget = false;
+            _coreTargetMarker.gameObject.SetActive(false);
+            _coreTargetLabel.fontStyle = FontStyles.Bold;
+            _coreTargetLabel.raycastTarget = false;
+            _coreTargetLabel.gameObject.SetActive(false);
+
+            var guardShieldArt = SeasonEconomyUiArt.LoadIcon("badge_protect_guard");
+            _coreGuardMarker = QdaoUguiFactory.CreateImage("CoreProtectedGuard", _plate,
+                barX + BarWidth + 8f, 4f, guardShieldArt != null ? 40f : 28f, guardShieldArt != null ? 40f : 28f,
+                guardShieldArt ?? coreBadge);
+            _coreGuardMarker.preserveAspect = true;
+            _coreGuardMarker.color = guardShieldArt != null ? Color.white : QdaoUguiTheme.Html("#C19A4B");
+            _coreGuardMarker.raycastTarget = false;
+            _coreGuardMarker.gameObject.SetActive(false);
+
             ApplyBodySprite(null, false);
         }
 
@@ -302,6 +346,33 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_hpBgRect != null) _hpBgRect.anchoredPosition = new Vector2(_hpBgRect.anchoredPosition.x, -hpY);
             if (_buffRow != null) _buffRow.anchoredPosition = new Vector2(_buffRow.anchoredPosition.x, -buffY);
             if (_badgePlate != null) _badgePlate.rectTransform.anchoredPosition = new Vector2(_badgePlate.rectTransform.anchoredPosition.x, -(hpY - 5f));
+            if (_coreTargetMarker != null)
+            {
+                bool hasLockArt = _coreTargetMarker.rectTransform.sizeDelta.y > 40f;
+                float markerY = hasLockArt ? (hpY - 82f) : (hpY - 35f);
+                float labelY = hasLockArt ? (hpY - 41f) : (hpY - 36f);
+                _coreTargetMarker.rectTransform.anchoredPosition =
+                    new Vector2(_coreTargetMarker.rectTransform.anchoredPosition.x, -markerY);
+                if (_coreTargetLabel != null) _coreTargetLabel.rectTransform.anchoredPosition =
+                    new Vector2(_coreTargetLabel.rectTransform.anchoredPosition.x, -labelY);
+            }
+            if (_coreGuardMarker != null) _coreGuardMarker.rectTransform.anchoredPosition =
+                new Vector2(_coreGuardMarker.rectTransform.anchoredPosition.x, -(hpY - 26f));
+        }
+
+        public void SetCoreMarkers(bool telegraphTarget, bool protectedGuard, string targetLabel = null)
+        {
+            _coreTargetMarked = telegraphTarget;
+            _coreGuardMarked = protectedGuard;
+            if (!string.IsNullOrEmpty(targetLabel)) _coreTargetLabelText = targetLabel;
+            bool showTarget = _coreTargetMarked && !IsDead && !Fled;
+            if (_coreTargetMarker != null) _coreTargetMarker.gameObject.SetActive(showTarget);
+            if (_coreTargetLabel != null)
+            {
+                _coreTargetLabel.text = _coreTargetLabelText;
+                _coreTargetLabel.gameObject.SetActive(showTarget);
+            }
+            if (_coreGuardMarker != null) _coreGuardMarker.gameObject.SetActive(_coreGuardMarked && !IsDead && !Fled);
         }
 
         // ── 布局 ────────────────────────────────────────────
@@ -387,6 +458,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             // 人物倒地后保留模型与阵位供复生选择；宝宝死亡隐藏，但逻辑实例仍保留。
             _group.alpha = (dead || fled) && IsPet || captured ? 0f : fled ? 0.4f : 1f;
+            SetCoreMarkers(_coreTargetMarked, _coreGuardMarked);
             SetHighlight(SlotHighlight.None);
             if (!dead && !fled && !_actionActive && !RealtimeTween.IsTweening(_idleToken)) PlayIdle();
         }

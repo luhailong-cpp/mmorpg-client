@@ -16,6 +16,11 @@ namespace MmorpgClient.Game.Ranked
         public const uint MilestoneAvatarMatches = 4;
         public const uint MilestoneCardMatches = 8;
         public const uint MilestoneTalismanMatches = 12;
+        public const uint DefaultMilestoneWinMatches = 6;
+        public const uint DefaultTierQingfengCenti = 152000;
+        public const uint DefaultTierYunzhangCenti = 160000;
+        public const uint DefaultTierTianshuCenti = 172000;
+        public const uint DefaultTierWushuangCenti = 185000;
 
         /// <summary>
         /// 服务端段位枚举转中文名。客户端绝不自行按分数推算段位，始终展示服务端下发的段位枚举。
@@ -65,6 +70,7 @@ namespace MmorpgClient.Game.Ranked
             RankedRewardKind.RankedRewardTierBadge => "段位徽章",
             RankedRewardKind.RankedRewardTierTitle => "赛季称号",
             RankedRewardKind.RankedRewardChampionInscription => "榜首题名",
+            RankedRewardKind.RankedRewardWinMilestone => "锋芒称号",
             _ => "赛季外观",
         };
 
@@ -94,6 +100,58 @@ namespace MmorpgClient.Game.Ranked
                 return $"还差 {MilestoneTalismanMatches - validMatches} 场 · 青云玉符";
             return "本季三档展示外观已全部取得";
         }
+
+        public static string WinMilestoneHint(uint wins, uint targetWins = DefaultMilestoneWinMatches)
+        {
+            if (targetWins == 0) targetWins = DefaultMilestoneWinMatches;
+            if (wins >= targetWins)
+                return $"已达成 {targetWins} 胜 · 已解锁「锋芒」称号";
+            return $"再赢 {targetWins - wins} 场解锁「锋芒」称号（{wins}/{targetWins}）";
+        }
+
+        public static string NextTierHint(
+            long ratingCenti,
+            RankedTier currentTier,
+            bool qualified,
+            uint qingfengCenti = DefaultTierQingfengCenti,
+            uint yunzhangCenti = DefaultTierYunzhangCenti,
+            uint tianshuCenti = DefaultTierTianshuCenti,
+            uint wushuangCenti = DefaultTierWushuangCenti)
+        {
+            if (!qualified || currentTier == RankedTier.Unspecified)
+                return "完成 1 场有效对局即可亮段定级";
+            long targetCenti;
+            string nextName;
+            switch (currentTier)
+            {
+                case RankedTier.Chushi:
+                    targetCenti = qingfengCenti != 0 ? qingfengCenti : DefaultTierQingfengCenti;
+                    nextName = "青锋";
+                    break;
+                case RankedTier.Qingfeng:
+                    targetCenti = yunzhangCenti != 0 ? yunzhangCenti : DefaultTierYunzhangCenti;
+                    nextName = "云章";
+                    break;
+                case RankedTier.Yunzhang:
+                    targetCenti = tianshuCenti != 0 ? tianshuCenti : DefaultTierTianshuCenti;
+                    nextName = "天枢";
+                    break;
+                case RankedTier.Tianshu:
+                    targetCenti = wushuangCenti != 0 ? wushuangCenti : DefaultTierWushuangCenti;
+                    nextName = "无双";
+                    break;
+                default:
+                    return "已登无双之境";
+            }
+            long gapCenti = targetCenti - ratingCenti;
+            if (gapCenti <= 0)
+                return $"已达{nextName}分数线";
+            long gapPoints = (gapCenti + 99L) / 100L;
+            return $"距{nextName}还差 {gapPoints.ToString(CultureInfo.InvariantCulture)} 分";
+        }
+
+        public static string ActivePetWarning(ulong activePetId) =>
+            activePetId == 0 ? "当前未出战灵宠，正式会武将缺少宝宝参战，建议先前往灵宠栏出战。" : string.Empty;
 
         public static string CharacterPresetTitle(uint presetId, string serverName) =>
             !string.IsNullOrEmpty(serverName) ? serverName : presetId switch
@@ -150,11 +208,30 @@ namespace MmorpgClient.Game.Ranked
                 return false;
             }
         }
-        public uint RuleVersion => CurrentSeason != null && CurrentSeason.RuleVersion != 0 ? CurrentSeason.RuleVersion : 1u;
+        public uint RuleVersion => CurrentSeason != null && CurrentSeason.RuleVersion != 0 ? CurrentSeason.RuleVersion : 2u;
         public uint BattleConfigId => CurrentSeason != null && CurrentSeason.BattleConfigId != 0
             ? CurrentSeason.BattleConfigId : RankedFormatting.DefaultBattleConfigId;
         public uint WaitPromptSeconds => CurrentSeason != null && CurrentSeason.WaitPromptSeconds != 0
             ? CurrentSeason.WaitPromptSeconds : RankedFormatting.DefaultWaitPromptSeconds;
+        public uint TierQingfengCenti => CurrentSeason != null && CurrentSeason.TierQingfengCenti != 0
+            ? CurrentSeason.TierQingfengCenti : RankedFormatting.DefaultTierQingfengCenti;
+        public uint TierYunzhangCenti => CurrentSeason != null && CurrentSeason.TierYunzhangCenti != 0
+            ? CurrentSeason.TierYunzhangCenti : RankedFormatting.DefaultTierYunzhangCenti;
+        public uint TierTianshuCenti => CurrentSeason != null && CurrentSeason.TierTianshuCenti != 0
+            ? CurrentSeason.TierTianshuCenti : RankedFormatting.DefaultTierTianshuCenti;
+        public uint TierWushuangCenti => CurrentSeason != null && CurrentSeason.TierWushuangCenti != 0
+            ? CurrentSeason.TierWushuangCenti : RankedFormatting.DefaultTierWushuangCenti;
+        public uint MilestoneWinMatches => CurrentSeason != null && CurrentSeason.MilestoneWinMatches != 0
+            ? CurrentSeason.MilestoneWinMatches : RankedFormatting.DefaultMilestoneWinMatches;
+
+        public string GetNextTierHint() => CurrentProgress == null
+            ? RankedFormatting.NextTierHint(0, RankedTier.Unspecified, false)
+            : RankedFormatting.NextTierHint(
+                CurrentProgress.RatingCenti, CurrentProgress.CurrentTier, CurrentProgress.Qualified,
+                TierQingfengCenti, TierYunzhangCenti, TierTianshuCenti, TierWushuangCenti);
+
+        public string GetWinMilestoneHint() =>
+            RankedFormatting.WinMilestoneHint(CurrentProgress?.Wins ?? 0u, MilestoneWinMatches);
 
         private static readonly uint[] s_defaultAllowedSizes = { 1u, 3u };
         private static readonly uint[] s_defaultPrimarySizes = { 1u, 3u, 5u };
@@ -179,7 +256,7 @@ namespace MmorpgClient.Game.Ranked
                 : s_defaultSpecialSizes;
 
         /// <summary>正式人宠会武使用本人真实养成，免费人宠仅在娱乐轮换（护卫救援 / 物法易势 5V5）启用。</summary>
-        public bool UsesOwnProgression => CurrentSeason == null || CurrentSeason.UsesOwnProgression || CurrentSeason.SeasonId != 0;
+        public bool UsesOwnProgression => CurrentSeason == null || CurrentSeason.UsesOwnProgression;
 
         public uint DefaultOpenTeamSize => AllowedTeamSizes.Count > 0 ? AllowedTeamSizes[0] : RankedFormatting.DefaultTeamSize;
 

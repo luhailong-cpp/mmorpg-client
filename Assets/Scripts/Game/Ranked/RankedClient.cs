@@ -221,7 +221,7 @@ namespace MmorpgClient.Game.Ranked
             if (PresetSaving) return false;
             if (!TryConsumeBudget(MatchServiceRpc.SaveRankedPresetMessageId)) return false;
 
-            uint effectiveRuleVersion = ruleVersion != 0 ? ruleVersion : (Profile?.RuleVersion ?? 1u);
+            uint effectiveRuleVersion = ruleVersion != 0 ? ruleVersion : (Profile?.RuleVersion ?? 2u);
             int gen = _generation;
             ulong player = PlayerId;
             PresetSaving = true;
@@ -370,6 +370,7 @@ namespace MmorpgClient.Game.Ranked
                 FromRecovery = true,
                 MaterialCreditConfirmed = true,
                 MaterialCreditUnitsAdded = result.MaterialCreditUnitsAdded,
+                MaterialTradableUnitsAdded = result.MaterialTradableUnitsAdded,
                 MaterialPvpLossIneligible = result.MaterialPvpLossIneligible,
                 RatingLoading = !isVoid,
             };
@@ -442,6 +443,14 @@ namespace MmorpgClient.Game.Ranked
                     return "所选战法预设无效，请重新选择。";
                 case (uint)match_error.KMatchRankedRuleVersionMismatch:
                     return "论剑规则版本已更新，请刷新档案后重试。";
+                case (uint)match_error.KMatchBattleSurrenderNotAllowed:
+                    return "当前战斗模式不支持投降。";
+                case (uint)match_error.KMatchBattleSurrenderTooEarly:
+                    return "需满第 5 回合后方可发起投降。";
+                case (uint)match_error.KMatchBattleSurrenderCooldown:
+                    return "投降表决冷却中，请稍后再试。";
+                case (uint)match_error.KMatchBattleSurrenderAlreadyVoted:
+                    return "你已参与本轮投降表决。";
                 case (uint)common_error.KRateLimitExceeded:
                     return "操作过于频繁，请稍后再试。";
                 case (uint)common_error.KServiceUnavailable:

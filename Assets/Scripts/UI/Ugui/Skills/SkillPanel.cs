@@ -407,6 +407,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         }
         private static Sprite LoadIcon(SkillDefinition definition) =>
             QdaoUguiTheme.LoadSprite(definition.IconResource) ??
+            SeasonEconomyUiArt.LoadGrowthSkillIcon(definition.id) ??
             QdaoUguiTheme.LoadSprite("UI/Ugui/GameplayV1/icon_scroll");
     }
 }

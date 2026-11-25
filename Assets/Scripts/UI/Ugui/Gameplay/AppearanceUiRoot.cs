@@ -97,6 +97,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private TMP_Text _cardInfoLine2;
         private Button _buyMallBtn;
         private TMP_Text _buyMallLabel;
+        private TMP_Text _corePreviewBadge;
         private Button _trialBtn;
         private Image _trialBtnImage;
         private TMP_Text _trialLabel;
@@ -142,6 +143,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private Selectable[] _storyControls;
 
         private bool _available;
+        private bool _corePreviewOnly;
         private ulong _lastCountdownSeconds = ulong.MaxValue;
         private bool _lastCountdownActive;
         private int _lastEscapeHandledFrame = -1;
@@ -448,6 +450,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _buyMallBtn = AppearanceUiArt.GoldMallButton(cardSlot.transform, "AppearanceOpenMall",
                 "商城购买 ¥10", 534f, 34f, 202f, 68f, HandleOpenMallClicked, fontSize: 23f);
             _buyMallLabel = _buyMallBtn.GetComponentInChildren<TMP_Text>(true);
+            _corePreviewBadge = QdaoUguiFactory.CreateText("CorePreviewBadge", cardSlot.transform,
+                534f, 34f, 202f, 68f, "首测预览\n未开直充", 20f,
+                AppearanceUiArt.JadeInk, TextAlignmentOptions.Center);
+            _corePreviewBadge.gameObject.SetActive(false);
 
             // 底部双主操作按钮（固定位置，绝不被人物背景挤压）
             _trialBtn = AppearanceUiArt.ActionButton(mainRoot, "AppearanceStartTrial",
@@ -731,7 +737,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         public void ShowPanel()
         {
+            ShowPanelCore(false);
+        }
+
+        /// <summary>核心玩法首测预留位只开放外观与人物志查看。</summary>
+        public bool ShowPanelPreview()
+        {
+            if (!_available || _window == null) return false;
+            ShowPanelCore(true);
+            return true;
+        }
+
+        private void ShowPanelCore(bool previewOnly)
+        {
             if (!_available || _window == null) return;
+            _corePreviewOnly = previewOnly;
             CityPanelRegistry.HideOthers(this);
             _state.ResetForCloseOrDisconnect();
             _window.gameObject.SetActive(true);
@@ -751,11 +771,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_window != null) _window.gameObject.SetActive(false);
             ReleaseReadingPortraits();
             if (wasVisible) EventSystem.current?.SetSelectedGameObject(null);
+            _corePreviewOnly = false;
         }
 
         private void HandleOpenMallClicked()
         {
-            if (_state.IsReadOnlyOverlay || _client?.Info == null || !_client.Ready ||
+            if (_corePreviewOnly || _state.IsReadOnlyOverlay || _client?.Info == null || !_client.Ready ||
                 _client.Info.MallSkuId == 0 || _client.Info.MallPriceFen == 0) return;
             HidePanel();
             JubaozhaiUiRoot.Instance?.OpenOfficialMall();
@@ -763,7 +784,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void HandleStartTrialClicked()
         {
-            if (_state.HasOverlay || _client == null || string.IsNullOrEmpty(_state.SelectedAppearanceId)) return;
+            if (_corePreviewOnly || _state.HasOverlay || _client == null || string.IsNullOrEmpty(_state.SelectedAppearanceId)) return;
             _state.ClearPendingSwitchConfirmation();
             _client.StartTrial(_state.SelectedAppearanceId);
             Render();
@@ -771,7 +792,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void HandleCancelTrialClicked()
         {
-            if (_state.HasOverlay || _client == null) return;
+            if (_corePreviewOnly || _state.HasOverlay || _client == null) return;
             _state.ClearPendingSwitchConfirmation();
             _client.CancelTrial();
             Render();
@@ -779,7 +800,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void HandleSwitchClicked()
         {
-            if (_state.HasOverlay || _client == null || _client.Info == null) return;
+            if (_corePreviewOnly || _state.HasOverlay || _client == null || _client.Info == null) return;
             var info = _client.Info;
             var selected = FindEntry(info, _state.SelectedAppearanceId);
             if (selected == null) return;
@@ -1021,6 +1042,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 RenderSeriesUi(null);
                 UpdateStatusText();
                 SyncOverlayVisibility();
+                ApplyCorePreviewMode();
                 return;
             }
 
@@ -1151,6 +1173,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             RenderSeriesUi(info);
             RenderOverlays(info, requiredCards, priceText);
             SyncOverlayVisibility();
+            ApplyCorePreviewMode();
+        }
+
+        private void ApplyCorePreviewMode()
+        {
+            if (_buyMallBtn != null) _buyMallBtn.gameObject.SetActive(!_corePreviewOnly);
+            if (_corePreviewBadge != null) _corePreviewBadge.gameObject.SetActive(_corePreviewOnly);
+            if (_noCardMallBtn != null) _noCardMallBtn.gameObject.SetActive(!_corePreviewOnly);
+            if (!_corePreviewOnly) return;
+            if (_trialBtn != null) _trialBtn.interactable = false;
+            if (_switchBtn != null) _switchBtn.interactable = false;
+            if (_cancelTrialBtn != null) _cancelTrialBtn.interactable = false;
         }
 
         private void RenderOverlays(PlayerAppearanceInfo info, uint requiredCards, string priceText)

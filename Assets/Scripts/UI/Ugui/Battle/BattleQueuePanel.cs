@@ -243,6 +243,13 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void OnJoinPvpClicked()
         {
+            var rankedUi = Ranked.RankedUiRoot.Instance;
+            if (rankedUi != null)
+            {
+                Hide();
+                rankedUi.OpenLobby(_pvpTeamSize);
+                return;
+            }
             var entry = _owner?.MatchEntry;
             if (entry == null) { SetStatus("正在同步战斗与队伍模块，请稍候…"); return; }
             entry.StartPvp(_pvpTeamSize);

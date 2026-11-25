@@ -13,6 +13,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public event Action<uint, ulong, uint, ulong> ActivityRewardClaimRequested;
         public event Action ActivityChallengeRequested;
         public event Action ActivityContestRequested;
+        public event Action FestivalBeastRequested;
         private readonly ActivityPreferences _activityPreferences;
         private int _activityCategory = -1, _activityRewardFilter;
         private bool _activityRewardBusy;
@@ -70,8 +71,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             m => m.Scope == activity.MissionScope && m.MissionId == activity.MissionId && (int)m.Status != 0);
         private bool ActivitySnapshotUsable => _activities != null && !_activityLoading && string.IsNullOrEmpty(_activityError);
 
+        private static bool IsFestivalBeastActivity(PlayerActivityInfo activity)
+            => activity != null && activity.EntryKind == PlayerActivityEntryKind.PlayerActivityEntryFestivalBeast;
+
         private string ActivityReason(PlayerActivityInfo activity, PlayerMissionInfo mission)
         {
+            if (IsFestivalBeastActivity(activity))
+            {
+                if (!ActivitySnapshotUsable) return _activityLoading ? "正在同步活动安排…" : "请刷新活动后重试";
+                if (activity.HasClaimableReward) return "已达成 3 胜资格，点击免费领取春禧兽";
+                if (!string.IsNullOrWhiteSpace(activity.UnavailableReason)) return activity.UnavailableReason;
+                return (int)activity.Status == 2 ? "单人携宠免费挑战，累计 3 胜领春禧兽" : "查看活动排期与领取状态";
+            }
             if (!string.IsNullOrEmpty(_missionError)) return _missionError;
             if (_missionActionBusy) return "正在处理任务，请稍候…";
             if (!ActivitySnapshotUsable) return _activityLoading ? "正在同步活动安排…" : "请刷新活动后重试";
@@ -83,16 +94,27 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             return activity.CanParticipate ? "可接取活动任务" : "活动暂不可参与";
         }
 
-        private bool CanUseActivity(PlayerActivityInfo activity, PlayerMissionInfo mission) => ActivitySnapshotUsable &&
-            !_missionActionBusy && !_missionLoading && string.IsNullOrEmpty(_missionError) && _missions != null &&
-            (mission != null || ((int)activity.EntryKind == 1 && activity.MissionId != 0 && activity.CanParticipate &&
-                (!activity.CompletionCountKnown || activity.CompletionLimit == 0 || activity.CompletedCount < activity.CompletionLimit)));
+        private bool CanUseActivity(PlayerActivityInfo activity, PlayerMissionInfo mission)
+        {
+            if (IsFestivalBeastActivity(activity)) return ActivitySnapshotUsable && FestivalBeastRequested != null;
+            return ActivitySnapshotUsable &&
+                !_missionActionBusy && !_missionLoading && string.IsNullOrEmpty(_missionError) && _missions != null &&
+                (mission != null || ((int)activity.EntryKind == 1 && activity.MissionId != 0 && activity.CanParticipate &&
+                    (!activity.CompletionCountKnown || activity.CompletionLimit == 0 || activity.CompletedCount < activity.CompletionLimit)));
+        }
 
         private void UseActivity(uint activityId)
         {
             // 事件闭包只携带稳定ID；点击时重新从最新快照取资格，旧详情不能提交已经失效的活动。
             var activity = _activities?.Activities.FirstOrDefault(a => a.ActivityId == activityId);
             if (activity == null) return;
+            if (IsFestivalBeastActivity(activity))
+            {
+                if (!ActivitySnapshotUsable) return;
+                _selectedActivity = activityId;
+                FestivalBeastRequested?.Invoke();
+                return;
+            }
             var mission = ActivityMission(activity);
             if (!CanUseActivity(activity, mission)) return;
             _selectedActivity = activityId;
@@ -168,9 +190,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             var card = QdaoUguiFactory.CreateRect("Activity_" + activity.ActivityId, parent, x, y, 410, 495);
             NativeArt(card, "activity-card", 0, 0, 410, 495);
-            if (!string.IsNullOrWhiteSpace(activity.IconKey)) ItemIcon(card, activity.IconKey, 24, 21, 155);
+            bool isFestival = IsFestivalBeastActivity(activity);
+            if (isFestival)
+            {
+                var portrait = Resources.Load<Sprite>("UI/Ugui/FestivalBeastV1/beast_portrait");
+                if (portrait != null)
+                {
+                    var img = QdaoUguiFactory.CreateImage("FestivalPortrait", card, 24, 21, 155, 155, portrait, false);
+                    img.preserveAspect = true;
+                }
+                else if (!string.IsNullOrWhiteSpace(activity.IconKey)) ItemIcon(card, activity.IconKey, 24, 21, 155);
+            }
+            else if (!string.IsNullOrWhiteSpace(activity.IconKey)) ItemIcon(card, activity.IconKey, 24, 21, 155);
             NativeText(card, ActivityName(activity), 196, 15, 200, 62, 34);
-            string status = (int)activity.Status == 0 ? "未排期" : ActivityStatus(activity.Status);
+            string status = isFestival && activity.HasClaimableReward ? "可领神兽" : (int)activity.Status == 0 ? "未排期" : ActivityStatus(activity.Status);
             string badge = (int)activity.Category == 2 ? "activity-badge-blue" : (int)activity.Category == 3 ? "activity-badge-pink" : "activity-badge-green";
             NativeArt(card, badge, 200, 80, 115, 40);
             NativeText(card, status, 200, 80, 115, 40, 22, Cream, TextAlignmentOptions.Center);
@@ -200,7 +233,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     NativeText(rewards, "×" + reward.Count, left + 5, 81, 110, 27, 22, Ink, TextAlignmentOptions.MidlineRight);
                 }
             }
-            NativeButton(card, "ActivityAction_" + activity.ActivityId, _missionActionBusy ? "处理中…" : mission != null ? "查看任务" : "前往参与",
+            string actionText = isFestival
+                ? (activity.HasClaimableReward ? "领取神兽" : (int)activity.Status == 2 ? "前往挑战" : "查看活动")
+                : (_missionActionBusy ? "处理中…" : mission != null ? "查看任务" : "前往参与");
+            NativeButton(card, "ActivityAction_" + activity.ActivityId, actionText,
                 "activity-button", 41, 412, 327, 66, () => UseActivity(activity.ActivityId), CanUseActivity(activity, mission), 32, true);
         }
 

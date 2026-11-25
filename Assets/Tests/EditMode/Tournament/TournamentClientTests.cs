@@ -107,9 +107,11 @@ namespace MmorpgClient.Tests.EditMode.Tournament
             });
             Assert.That(_client.Overview.HasSquad, Is.False);
             Assert.That(_client.LastError, Does.Contain("不合规"));
+            Assert.That(_client.LastErrorTipId, Is.EqualTo((uint)match_error.KMatchTournamentSquadNameInvalid));
 
             _now += 2f;
             Assert.That(_client.CreateSquad("太玄剑阁"), Is.True);
+            Assert.That(_client.LastErrorTipId, Is.EqualTo(0u));
             var sq = new TournamentSquadView
             {
                 SquadId = 5001UL,

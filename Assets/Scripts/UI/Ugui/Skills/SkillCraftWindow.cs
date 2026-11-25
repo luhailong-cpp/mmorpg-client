@@ -143,12 +143,28 @@ namespace MmorpgClient.UI.Ugui.Skills
         private void RenderScrollsPage()
         {
             var state = _client?.State;
+            var scrollMasterySprite = SeasonEconomyUiArt.LoadCraftControl(
+                SeasonEconomyUiArt.MasteryBadgeKey(state?.ScrollMastery?.Tier ?? 1u));
+            float scrollMasteryX = 180f;
+            if (scrollMasterySprite != null)
+            {
+                var icon = QdaoUguiFactory.CreateImage("ScrollMasteryIcon", _body, 172, 276, 92, 92, scrollMasterySprite, false);
+                icon.preserveAspect = true;
+                scrollMasteryX = 278f;
+            }
             Label(_body, "ScrollMasteryBar", SkillCraftModels.FormatMastery(state?.ScrollMastery, true),
-                180, 290, 1650, 70, 38, color: Jade);
-            string wallet = state == null
-                ? "材料余额未同步"
-                : $"悟道残页 {state.FragmentOwned}  |  绝学残卷 {state.RareScrollOwned}  |  天工秘墨 {state.RareInkOwned}  |  银两 {state.GoldBalance}";
-            Label(_body, "ScrollMaterialBar", wallet, 1850, 290, 1950, 70, 38, color: Ink);
+                scrollMasteryX, 290, 1830f - scrollMasteryX, 70, 38, color: Jade);
+            if (state == null)
+            {
+                Label(_body, "ScrollMaterialBar", "材料余额未同步", 1850, 290, 1950, 70, 38, color: Ink);
+            }
+            else
+            {
+                DrawWalletItem("WalletPage", 1850, "item_enlightenment_page", $"悟道残页 {state.FragmentOwned}", 440);
+                DrawWalletItem("WalletRareScroll", 2310, "item_rare_scroll_fragment", $"绝学残卷 {state.RareScrollOwned}", 440);
+                DrawWalletItem("WalletInk", 2770, "item_celestial_ink", $"天工秘墨 {state.RareInkOwned}", 440);
+                Label(_body, "ScrollMaterialBar", $"银两 {state.GoldBalance}", 3230, 290, 560, 70, 38, color: Ink);
+            }
 
             // 左栏：分卷宗列表（老卷宗永不稀释，新主题卷宗自动出现）
             Panel(_body, "ScrollListPaper", 130, 390, 720, 1020);
@@ -157,25 +173,51 @@ namespace MmorpgClient.UI.Ugui.Skills
             if (_selectedScrollId == 0 || !scrolls.Any(s => s.ScrollId == _selectedScrollId))
                 _selectedScrollId = scrolls.FirstOrDefault()?.ScrollId ?? 0;
             var scrollList = Scroll(_body, "ScrollListViewport", 185, 530, 610, 820, Math.Max(820, scrolls.Count * 180));
+            var tabNormalSprite = SeasonEconomyUiArt.LoadCraftControl("scroll_tab_normal");
+            var tabSelectedSprite = SeasonEconomyUiArt.LoadCraftControl("scroll_tab_selected");
             for (int i = 0; i < scrolls.Count; ++i)
             {
                 var scroll = scrolls[i];
                 bool selected = scroll.ScrollId == _selectedScrollId;
                 string tag = scroll.RarityTier == 1 ? "稀世卷" : "常规卷";
-                Button(scrollList, "ScrollTab_" + scroll.ScrollId, $"{scroll.Name}\n{tag} · {scroll.SkillTableIds.Count} 技",
-                    10, i * 175, 560, () =>
+                // scroll_tab_normal/selected 为 420x140 固定比例切片，1:1 放置不拉伸
+                bool hasTabArt = (selected ? tabSelectedSprite : tabNormalSprite) != null;
+                var tabBtn = Button(scrollList, "ScrollTab_" + scroll.ScrollId, $"{scroll.Name}\n{tag} · {scroll.SkillTableIds.Count} 技",
+                    hasTabArt ? 80 : 10, i * 175, hasTabArt ? 420 : 560, () =>
                     {
                         _selectedScrollId = scroll.ScrollId;
                         _selectedSkillId = 0;
                         Render();
                     }, selected);
+                if (hasTabArt)
+                {
+                    var img = tabBtn.GetComponent<Image>();
+                    if (img != null)
+                    {
+                        img.sprite = selected ? tabSelectedSprite : tabNormalSprite;
+                        img.type = Image.Type.Simple;
+                        img.preserveAspect = true;
+                        img.color = Color.white;
+                    }
+                }
             }
 
             // 中栏：拓印案台
             Panel(_body, "ScrollDeskPaper", 890, 390, 1620, 1020);
             var activeScroll = scrolls.FirstOrDefault(s => s.ScrollId == _selectedScrollId);
             Label(_body, "ScrollDeskTitle", activeScroll == null ? "拓印案台" : $"{activeScroll.Name}（{(activeScroll.RarityTier == 1 ? "稀世绝学" : "常规卷宗")}）",
-                960, 440, 1480, 70, 46, color: Jade);
+                960, 440, 1240, 70, 46, color: Jade);
+            if (activeScroll != null && activeScroll.RarityTier == 1)
+            {
+                var rareBadge = SeasonEconomyUiArt.LoadCraftControl("badge_rare_skill");
+                if (rareBadge != null)
+                {
+                    var badgeImg = QdaoUguiFactory.CreateImage("ScrollRareBadge", _body, 2220, 439, 240, 72, rareBadge, false);
+                    badgeImg.preserveAspect = true;
+                    var rareLbl = Label(_body, "ScrollRareBadgeText", "稀世绝学", 2245, 445, 190, 60, 32, false, SeasonEconomyUiArt.GoldText);
+                    rareLbl.alignment = TMPro.TextAlignmentOptions.Center;
+                }
+            }
 
             if (activeScroll != null)
             {
@@ -190,12 +232,19 @@ namespace MmorpgClient.UI.Ugui.Skills
                     string name = ResolveSkillName(skillId);
                     string mark = unlocked.Contains(skillId) ? " [已解锁]" : string.Empty;
                     bool sel = skillId == _selectedSkillId;
-                    Button(skillList, "ScrollSkill_" + skillId, name + mark,
+                    var skillBtn = Button(skillList, "ScrollSkill_" + skillId, name + mark,
                         (i % 3) * 490 + 5, (i / 3) * 155, 470, () =>
                         {
                             _selectedSkillId = skillId;
                             Render();
                         }, sel);
+                    var skillIcon = ResolveSkillIcon(skillId);
+                    if (skillIcon != null)
+                    {
+                        var iconImg = QdaoUguiFactory.CreateImage("ScrollSkillIcon_" + skillId, skillBtn.transform,
+                            24, 34, 72, 72, skillIcon, false);
+                        iconImg.preserveAspect = true;
+                    }
                 }
 
                 ulong proxyFee = SelectedScrollProxyFee();
@@ -269,9 +318,21 @@ namespace MmorpgClient.UI.Ugui.Skills
         private void RenderProxyStallsPage()
         {
             var state = _client?.State;
-            Label(_body, "ProxySafetyBanner",
-                "官府托管 · 零风险代工：装备与材料全程留在本人背包，宗师不接触原件，成品直入本人背包（成交自动扣 5% 摆摊银两税）。",
-                180, 290, 3600, 80, 38, true, Jade);
+            var escrowBanner = SeasonEconomyUiArt.LoadCraftControl("banner_safe_escrow");
+            if (escrowBanner != null)
+            {
+                SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "ProxySafetyBannerBg", 150, 284, 3660, 84,
+                    escrowBanner, new Color(0.93f, 0.91f, 0.82f, 0.96f));
+                Label(_body, "ProxySafetyBanner",
+                    "官府托管 · 零风险代工：装备与材料全程留在本人背包，宗师不接触原件，成品直入本人背包（成交自动扣 5% 摆摊银两税）。",
+                    260, 294, 3440, 64, 36, false, Jade);
+            }
+            else
+            {
+                Label(_body, "ProxySafetyBanner",
+                    "官府托管 · 零风险代工：装备与材料全程留在本人背包，宗师不接触原件，成品直入本人背包（成交自动扣 5% 摆摊银两税）。",
+                    180, 290, 3600, 80, 38, true, Jade);
+            }
 
             Panel(_body, "MyProxyStallPaper", 130, 390, 3700, 310);
             bool isMaster = SkillCraftModels.CanOpenProxyStall(state);
@@ -284,7 +345,18 @@ namespace MmorpgClient.UI.Ugui.Skills
             string myStatus = !isMaster
                 ? "我的代打摊位：铸器或制卷达到【宗师】后自动解锁开摊资格。"
                 : $"我的代打摊位：{(state.ProxyStallOpen ? "营业中" : "未营业")}  |  装备代打费 {_draftForgeFee} 银两  |  技能代制费 {_draftScrollFee} 银两（范围 50–100 银两）";
-            Label(_body, "MyProxyStallInfo", myStatus, 200, 430, 3550, 80, 40, true, isMaster ? Jade : Muted);
+            float myInfoX = 200f;
+            if (isMaster)
+            {
+                var gmBadge = SeasonEconomyUiArt.LoadCraftControl("mastery_badge_grandmaster");
+                if (gmBadge != null)
+                {
+                    var badgeImg = QdaoUguiFactory.CreateImage("MyProxyMasterBadge", _body, 190, 420, 96, 96, gmBadge, false);
+                    badgeImg.preserveAspect = true;
+                    myInfoX = 300f;
+                }
+            }
+            Label(_body, "MyProxyStallInfo", myStatus, myInfoX, 430, 3750f - myInfoX, 80, 40, true, isMaster ? Jade : Muted);
             if (isMaster)
             {
                 bool busy = _client.IsBusy;
@@ -303,12 +375,31 @@ namespace MmorpgClient.UI.Ugui.Skills
             Label(_body, "CityMastersTitle", "全城在营业名匠", 200, 770, 1200, 70, 48, color: Jade);
             var stalls = _client?.ProxyStalls ?? Array.Empty<CraftProxyStallInfo>();
             var list = Scroll(_body, "CityMastersViewport", 190, 855, 3580, 520, Math.Max(520, stalls.Count * 165));
+            var gmRowBadge = SeasonEconomyUiArt.LoadCraftControl("mastery_badge_grandmaster");
+            var sealRowBg = SeasonEconomyUiArt.LoadCraftControl("seal_master_signature");
             for (int i = 0; i < stalls.Count; ++i)
             {
                 var stall = stalls[i];
                 float y = i * 165;
-                Label(list, "MasterLine_" + stall.MasterPlayerId, SkillCraftModels.DescribeProxyStall(stall),
-                    10, y + 25, 2280, 95, 38, true, Ink);
+                float lineX = 10f;
+                if (gmRowBadge != null)
+                {
+                    var badgeImg = QdaoUguiFactory.CreateImage("MasterBadge_" + stall.MasterPlayerId, list, 8, y + 26, 92, 92, gmRowBadge, false);
+                    badgeImg.preserveAspect = true;
+                    lineX = 112f;
+                }
+                if (sealRowBg != null)
+                {
+                    SeasonEconomyUiArt.CreateSlicedOrSimple(list, "MasterSeal_" + stall.MasterPlayerId,
+                        lineX, y + 34, 2290f - lineX, 72, sealRowBg, new Color(0.95f, 0.91f, 0.80f, 0.92f));
+                    Label(list, "MasterLine_" + stall.MasterPlayerId, SkillCraftModels.DescribeProxyStall(stall),
+                        lineX + 68f, y + 36, 2210f - lineX, 68, 34, false, Ink);
+                }
+                else
+                {
+                    Label(list, "MasterLine_" + stall.MasterPlayerId, SkillCraftModels.DescribeProxyStall(stall),
+                        lineX, y + 25, 2290f - lineX, 95, 38, true, Ink);
+                }
                 if (stall.ForgeMasteryTier >= SkillCraftModels.MasterTier && stall.ProxyForgeFeeGold > 0)
                 {
                     Button(list, "ProxyEquip_" + stall.MasterPlayerId, "找他代打装备", 2320, y + 5, 580, () =>
@@ -373,6 +464,27 @@ namespace MmorpgClient.UI.Ugui.Skills
             if (_selectedProxyMasterId == 0 || _client == null) return 0;
             var stall = _client.ProxyStalls.FirstOrDefault(s => s.MasterPlayerId == _selectedProxyMasterId);
             return stall?.ProxyScrollFeeGold ?? 0;
+        }
+
+        private void DrawWalletItem(string name, float x, string iconKey, string text, float width)
+        {
+            var icon = SeasonEconomyUiArt.LoadCraftIcon(iconKey);
+            float textX = x;
+            if (icon != null)
+            {
+                var img = QdaoUguiFactory.CreateImage(name + "Icon", _body, x, 294, 62, 62, icon, false);
+                img.preserveAspect = true;
+                textX = x + 68f;
+            }
+            Label(_body, name + "Text", text, textX, 290, width - (textX - x), 70, 36, color: Ink);
+        }
+
+        private static Sprite ResolveSkillIcon(uint skillId)
+        {
+            var growth = SeasonEconomyUiArt.LoadGrowthSkillIcon(skillId);
+            if (growth != null) return growth;
+            var def = SkillUiRoot.FindPresentation(skillId);
+            return def != null ? QdaoUguiTheme.LoadSprite(def.IconResource) : null;
         }
 
         private static string ResolveSkillName(uint skillId)

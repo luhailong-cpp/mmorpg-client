@@ -1,3 +1,6 @@
+using System;
+using TMPro;
+using UnityEngine;
 using static MmorpgClient.UI.Ugui.Gameplay.EquipmentUiArt;
 
 namespace MmorpgClient.UI.Ugui.Gameplay
@@ -34,23 +37,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             snapshot != null && snapshot.Available && snapshot.CanClaim && snapshot.BatchUnits > 0 &&
             _client != null && !_client.MaterialRewardLoading && !WriteBlocked;
 
-        private void AdjustMaterial(bool crafting, bool add)
+        private void AdjustMaterial(bool crafting, bool add) => AdjustMaterialBy(crafting, add ? 1 : -1);
+
+        private void AdjustMaterialBy(bool crafting, int delta)
         {
             var snapshot = _client?.EquipmentMaterialReward;
             if (!MaterialChoiceEditable(snapshot) || !_materialSelectionReady || snapshot.Revision != _materialRevision ||
-                snapshot.BatchUnits != _materialBatch) return;
+                snapshot.BatchUnits != _materialBatch || delta == 0) return;
             uint selected = crafting ? _materialCraft : _materialStone;
-            if (add)
-            {
-                if ((ulong)_materialCraft + _materialStone >= _materialBatch) return;
-                ++selected;
-            }
-            else
-            {
-                if (selected == 0) return;
-                --selected;
-            }
-            if (crafting) _materialCraft = selected; else _materialStone = selected;
+            uint other = crafting ? _materialStone : _materialCraft;
+            uint maxForThis = other <= _materialBatch ? _materialBatch - other : 0u;
+            long target = (long)selected + delta;
+            if (target < 0L) target = 0L;
+            if (target > maxForThis) target = maxForThis;
+            if ((uint)target == selected) return;
+            if (crafting) _materialCraft = (uint)target; else _materialStone = (uint)target;
             Render();
         }
 
@@ -79,22 +80,66 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 snapshot == null ? "材料奖励尚未同步，请刷新" : !snapshot.Available ? snapshot.UnavailableReason :
                 snapshot.BatchUnits == 0 ? "暂无待领取材料。完成合格的PVE或匹配PVP可获得份额。" :
                 $"本次可分配 {snapshot.BatchUnits} 份 · 待领取共 {snapshot.AvailableUnits} 份";
-            Label(_modalLayer, "MaterialChoiceStatus", status, 810, 335, 2350, 125, 44, true, Muted);
+            Label(_modalLayer, "MaterialChoiceStatus", status, 810, 332, 2350, 108, 42, true, Muted);
             if (snapshot != null && snapshot.Available)
             {
-                string quotaText = snapshot.WeeklyPhaseActive
-                    ? $"本周已获得 {snapshot.EarnedThisWeek}/{snapshot.WeeklyLimit} 份（全绑定）· 未领取份额保留"
-                    : $"首套总池 {snapshot.LifetimeEarned}/{snapshot.LifetimeLimit} 份（无每日限制）· 本批含可交易 {snapshot.BatchTradableUnits} 份";
-                Label(_modalLayer, "MaterialChoiceDaily", quotaText, 810, 465, 2350, 100, 35, true, Muted);
+                bool weekly = snapshot.WeeklyPhaseActive;
+                uint ledgerEarned = weekly ? snapshot.EarnedThisWeek : snapshot.LifetimeEarned;
+                uint ledgerLimit = weekly
+                    ? (snapshot.WeeklyLimit > 0u ? snapshot.WeeklyLimit : 100u)
+                    : (snapshot.LifetimeLimit > 0u ? snapshot.LifetimeLimit : 660u);
+                SeasonEconomyUiArt.DrawPityBar(_modalLayer, "MaterialLedgerBar", 810, 452, 660, 92,
+                    ledgerEarned, ledgerLimit, ledgerEarned >= ledgerLimit);
+
+                string softPillText;
+                string quotaText;
+                if (weekly)
+                {
+                    string remaining = SeasonEconomyUiArt.FormatWeeklyResetRemaining(
+                        snapshot.NextWeekResetAtMs, (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+                    softPillText = string.IsNullOrEmpty(remaining) ? "每周一 05:00 刷新" : "周一 05:00 刷新 · " + remaining;
+                    quotaText = $"本周精进池 {snapshot.EarnedThisWeek}/{ledgerLimit} 份（全自用绑定）\n未领取份额保留，随时可分批自选";
+                }
+                else
+                {
+                    uint batchBound = snapshot.BatchUnits > snapshot.BatchTradableUnits
+                        ? snapshot.BatchUnits - snapshot.BatchTradableUnits : 0u;
+                    uint tradableLimit = snapshot.TradableLifetimeLimit > 0u ? snapshot.TradableLifetimeLimit : 60u;
+                    softPillText = "无每日打卡 · 随时可续";
+                    quotaText = $"首套永久总池 {snapshot.LifetimeEarned}/{ledgerLimit} · 起步可交易 {snapshot.TradableEarnedTotal}/{tradableLimit}\n" +
+                        $"本批含可交易 {snapshot.BatchTradableUnits} 份、仅自用 {batchBound} 份（可交易优先给打造材料）";
+                }
+
+                SeasonEconomyUiArt.CreateSlicedOrSimple(_modalLayer, "MaterialPhasePill", 1490, 458, 540, 80,
+                    SeasonEconomyUiArt.LoadControl("notice_banner_soft"), new Color(0.94f, 0.91f, 0.82f, 0.96f));
+                var pillLabel = Label(_modalLayer, "MaterialPhasePillText", softPillText, 1540, 464, 440, 68, 32, false, Jade);
+                pillLabel.alignment = TextAlignmentOptions.Center;
+                pillLabel.enableAutoSizing = true;
+                pillLabel.fontSizeMin = 22;
+                pillLabel.fontSizeMax = 32;
+
+                float dailyX = 2055f;
+                if (!weekly && snapshot.BatchTradableUnits > 0u)
+                {
+                    var tradableSprite = SeasonEconomyUiArt.LoadIcon("badge_tradable_tag");
+                    if (tradableSprite != null)
+                    {
+                        var tradableImg = QdaoUguiFactory.CreateImage("MaterialTradableBadge", _modalLayer, 2050, 464, 68, 68, tradableSprite, false);
+                        tradableImg.preserveAspect = true;
+                        dailyX = 2130f;
+                    }
+                }
+                Label(_modalLayer, "MaterialChoiceDaily", quotaText, dailyX, 448, 3165f - dailyX, 114, 31, true, Muted);
+
                 RenderMaterialCard(snapshot.CraftingMaterial, true, _materialCraft, 810, editable);
                 RenderMaterialCard(snapshot.EnhancementStone, false, _materialStone, 2130, editable);
             }
             Label(_modalLayer, "MaterialChoiceAllocated", pending ? "已提交材料分配，正在确认结果" :
-                $"已分配 {(ulong)_materialCraft + _materialStone}/{snapshot?.BatchUnits ?? 0}", 1210, 1090, 1700, 80, 48, color: Jade);
+                $"已分配 {(ulong)_materialCraft + _materialStone}/{snapshot?.BatchUnits ?? 0}", 1210, 1094, 1700, 76, 48, color: Jade);
             string reason = pending ? "领取结果确认前，分配已锁定；重新打开仍会恢复原领取。" :
                 !string.IsNullOrEmpty(_notice) ? _notice :
                 snapshot?.Available == true && !snapshot.CanClaim ? snapshot.UnavailableReason :
-                WriteBlocked ? WriteReason : "按需要分配打造材料与强化石，确认后存入人物背包。";
+                WriteBlocked ? WriteReason : "按需要分配打造材料与强化石（绑定与可交易分堆存放，消耗优先扣绑定）。";
             Label(_modalLayer, "MaterialChoiceReason", reason, 810, 1175, 2350, 90, 36, true, Muted);
             Button(_modalLayer, "MaterialChoiceBack", "返回", 790, 1290, 580, CloseModal);
             if (pending)
@@ -108,14 +153,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void RenderMaterialCard(EquipmentCraftMaterial material, bool crafting, uint count, float x, bool editable)
         {
             if (material == null) return;
-            Icon(_modalLayer, new BagItemInfo { ConfigId = material.ConfigId, Name = material.Name, IconKey = material.IconKey }, x + 25, 585, 240);
+            Icon(_modalLayer, new BagItemInfo { ConfigId = material.ConfigId, Name = material.Name, IconKey = material.IconKey }, x + 25, 582, 196);
             string prefix = crafting ? "MaterialCraft" : "MaterialStone";
-            Label(_modalLayer, prefix + "Name", material.Name + " · 持有 " + material.Owned, x + 300, 590, 760, 100, 45, true);
-            Label(_modalLayer, prefix + "Usage", crafting ? "用于装备本体、首次词条和法宝兑换" : "用于四件基础装备的强化", x + 300, 705, 760, 130, 39, true, Muted);
-            Button(_modalLayer, prefix + "Minus", "−", x, 890, 355, () => AdjustMaterial(crafting, false), enabled: editable && count > 0);
-            Label(_modalLayer, prefix + "Count", count.ToString(), x + 425, 915, 260, 100, 60, color: Jade);
-            Button(_modalLayer, prefix + "Plus", "+", x + 720, 890, 355, () => AdjustMaterial(crafting, true),
-                enabled: editable && (ulong)_materialCraft + _materialStone < _materialBatch);
+            Label(_modalLayer, prefix + "Name", material.Name + " · 持有 " + material.Owned, x + 245, 582, 820, 84, 44, true);
+            Label(_modalLayer, prefix + "Usage", crafting ? "用于装备本体、首次词条和法宝兑换" : "用于四件基础装备的强化", x + 245, 672, 820, 108, 37, true, Muted);
+            bool canSub = editable && count > 0;
+            bool canAdd = editable && (ulong)_materialCraft + _materialStone < _materialBatch;
+            Button(_modalLayer, prefix + "Minus5", "−5", x, 792, 355, () => AdjustMaterialBy(crafting, -5), enabled: canSub);
+            Button(_modalLayer, prefix + "Plus5", "+5", x + 720, 792, 355, () => AdjustMaterialBy(crafting, 5), enabled: canAdd);
+            Button(_modalLayer, prefix + "Minus", "−", x, 942, 355, () => AdjustMaterial(crafting, false), enabled: canSub);
+            Label(_modalLayer, prefix + "Count", count.ToString(), x + 425, 962, 260, 100, 60, color: Jade);
+            Button(_modalLayer, prefix + "Plus", "+", x + 720, 942, 355, () => AdjustMaterial(crafting, true), enabled: canAdd);
         }
     }
 }

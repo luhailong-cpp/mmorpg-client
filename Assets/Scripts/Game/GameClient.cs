@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Google.Protobuf;
 using MmorpgClient.Game.Attribute;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.FestivalBeast;
 using MmorpgClient.Game.Pet;
 using MmorpgClient.Game.PetFlip;
 using MmorpgClient.Game.PlayerFeatures;
@@ -189,6 +190,9 @@ namespace MmorpgClient.Game
 
         /// <summary>赛季技能与赛季印网络层（RPC 453–455，走大厅 gate -> scene 路由）。</summary>
         public SeasonClient Season { get; }
+
+        /// <summary>瑞兽迎春限时活动非视觉数据与恢复适配层（RPC 476–478，走大厅 gate -> scene 路由）。</summary>
+        public FestivalBeastClient FestivalBeast { get; }
 
         /// <summary>
         /// 观战网络层(与 Battle 平行的只读状态机,消息号不同互不干扰)。
@@ -407,15 +411,23 @@ namespace MmorpgClient.Game
                 () => Time.realtimeSinceStartup);
             Season = SeasonClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
                 () => Time.realtimeSinceStartup);
-            Battle.OnBattleEnd += _ =>
+            FestivalBeast = FestivalBeastClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
+                () => (long)(Time.realtimeSinceStartup * 1000f));
+            Battle.OnBattleStart += start => FestivalBeast.HandleBattleState(start?.State);
+            Battle.OnTurnResult += turn => FestivalBeast.HandleBattleState(turn?.State, turn);
+            Battle.OnBattleEnd += end =>
             {
                 TrialJournal.HandleBattleSettled();
                 Season.HandleBattleSettled();
+                FestivalBeast.HandleBattleSettled(end);
+                Features?.RequestEquipmentMaterialReward();
             };
             BattleResults.OnRecoveredResult += result =>
             {
                 if (result != null && result.TrialJournalEntryId != 0)
                     TrialJournal.HandleBattleSettled();
+                if (result != null && result.FestivalActivityInstanceId != 0)
+                    FestivalBeast.HandleRecoveredBattleResult(result);
             };
             Battle.OnBattleEndWithoutContext += (end, notified) => BattleResults.HandleEndWithoutContext(end?.BattleId ?? 0, notified);
             Battle.RegionProbe = new RegionProbeClient(battleRoute, () => ClientTransport.Create(_codec), ClientTransport.ConnectRunner);
@@ -441,6 +453,10 @@ namespace MmorpgClient.Game
                 System.IO.Path.Combine(Application.persistentDataPath, "equipment-craft-intents"), gatewayBaseUrl, ownerRevision);
             Features.MaterialRewardRecovery = DurableRequestFileStore.ForOrigin(
                 System.IO.Path.Combine(Application.persistentDataPath, "equipment-material-intents"), gatewayBaseUrl, ownerRevision);
+            FestivalBeast.LaunchRecoveryStore = DurableRequestFileStore.ForOrigin(
+                System.IO.Path.Combine(Application.persistentDataPath, "festival-beast-launch-intents"), gatewayBaseUrl, ownerRevision);
+            FestivalBeast.ClaimRecoveryStore = DurableRequestFileStore.ForOrigin(
+                System.IO.Path.Combine(Application.persistentDataPath, "festival-beast-claim-intents"), gatewayBaseUrl, ownerRevision);
             ZoneTravel = new ZoneTravelClient(this);
             // 落地判定用「在游戏中」+ 传输就绪(IsGateReady)+ (PlayerId, 连接身份);缓存按 (gateway 地址哈希, 玩家) 分键存 PlayerPrefs。
             LandingSync = new LandingSyncClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
@@ -527,6 +543,7 @@ namespace MmorpgClient.Game
             if (InGame) SkillCraft?.TickRecovery();
             if (InGame) Features?.TickMaterialRewardRecovery();
             if (InGame) Features?.TickActivityRewardRecovery();
+            if (InGame) FestivalBeast?.Tick();
             MaybeRefreshToken();
             BattleLink?.Tick(Time.realtimeSinceStartup); // 直连握手期限/重连倒计时/请求超时由主循环驱动
             Battle?.Tick(Time.realtimeSinceStartup); // 排队轮询/准备超时由主循环驱动

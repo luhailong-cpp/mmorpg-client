@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.UI.Ugui.CoreLoop;
+using MmorpgClient.UI.Ugui.TrialJournal;
 
 namespace MmorpgClient.UI.Ugui.Battle
 {
@@ -114,6 +116,12 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>战斗层(参战屏、观战屏或战报回放屏)正在显示；资料窗口据此进入战斗只读状态。</summary>
         public bool IsBattleLayerVisible => _battleOpen || _spectateOpen || _replayOpen;
         internal BattleScreen ActiveBattleScreen => _battleOpen ? _battleScreen : null;
+
+        /// <summary>核心玩法 HUD 的可见单位角标入口；只更新表现，不改战斗状态。</summary>
+        public void SetCoreLoopActorMarkers(ulong telegraphTargetId, ulong protectedGuardActorId)
+        {
+            if (_battleOpen) _battleScreen?.SetCoreLoopActorMarkers(telegraphTargetId, protectedGuardActorId);
+        }
 
         // ── 生命周期 ────────────────────────────────────────
 
@@ -461,7 +469,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 Pet.PetUiRoot.EnsureSpawned();
                 Pet.PetUiRoot.Instance.OpenPage(Pet.PetCultivationPage.EntryPoints);
             });
-            _resultPanel = new BattleResultPanel(_modalResultRoot, OnResultConfirmed, OnRecoveredWatchReplay);
+            _resultPanel = new BattleResultPanel(_modalResultRoot, OnResultConfirmed, OnRecoveredWatchReplay,
+                OnOpenTrialJournalFromResult);
             _challengePopup = new BattleChallengePopup(this, _modalPopupRoot);
 
             _toastText = QdaoUguiFactory.CreateText("Toast", toastRoot,
@@ -1075,6 +1084,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             CloseReplay();
             _spectatePanel?.Hide();
             _reportPanel?.Hide();
+            FestivalBeast.FestivalBeastUiRoot.Instance?.HideBattleSettlement();
             _resultPanel?.Hide();
             _queuePanel?.SetQueueing(false);
             _queuePanel?.Hide();
@@ -1131,6 +1141,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             uint localTeam = _battleScreen?.MyTeamIndex ?? 0;
             if (end != null && InterceptRankedBattleEnd != null && InterceptRankedBattleEnd(end, localTeam))
             {
+                CoreGameplayUiRoot.Instance?.HideBattleSettlement();
                 _resultShowing = true;
                 _recoveredShowingId = 0;
                 _resultPanel?.Hide();
@@ -1140,7 +1151,12 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
             _resultShowing = true;
             _recoveredShowingId = 0; // 现场结算盖过面板上的补弹局:它弹出时已经确认过,不再排回去
-            _resultPanel?.Show(end, localTeam);
+            bool festivalRewardVisible = end != null &&
+                (FestivalBeast.FestivalBeastUiRoot.Instance?.ShowBattleSettlement(_resultPanel?.Root, end) ?? false);
+            bool coreRewardVisible = !festivalRewardVisible && end != null &&
+                (CoreGameplayUiRoot.Instance?.ShowBattleSettlement(_resultPanel?.Root) ?? false);
+            if (festivalRewardVisible) CoreGameplayUiRoot.Instance?.HideBattleSettlement();
+            _resultPanel?.Show(end, localTeam, festivalRewardVisible || coreRewardVisible);
             RefreshModalDim();
             // 现场结算面板展示过,也要确认已读;否则下次落地补查还会把这一局再弹一次(设计 §7 第 5 条)。
             if (end != null) _recovery?.NoteShown(end.BattleId);
@@ -1165,6 +1181,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void OnResultConfirmed()
         {
             _resultShowing = false;
+            CoreGameplayUiRoot.Instance?.HideBattleSettlement();
+            FestivalBeast.FestivalBeastUiRoot.Instance?.HideBattleSettlement();
             _resultPanel?.Hide();
             RefreshModalDim();
             if (_recoveredShowingId != 0)
@@ -1198,6 +1216,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (battleId == 0 || _reports == null) return;
             _resultShowing = false;
             _recoveredShowingId = 0;
+            CoreGameplayUiRoot.Instance?.HideBattleSettlement();
             _resultPanel?.Hide();
             RefreshModalDim();
             if (_reports.FetchReplay(battleId))
@@ -1212,6 +1231,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_client != null && _client.Phase != BattlePhase.None) return;
             if (_recoveredResults.Count == 0) return;
             var result = _recoveredResults.Dequeue();
+            CoreGameplayUiRoot.Instance?.HideBattleSettlement();
+            FestivalBeast.FestivalBeastUiRoot.Instance?.HideBattleSettlement();
             if (InterceptRankedRecoveredResult != null && InterceptRankedRecoveredResult(result))
             {
                 _resultShowing = true;
@@ -1221,12 +1242,33 @@ namespace MmorpgClient.UI.Ugui.Battle
                 return;
             }
             _resultPanel.ShowRecovered(result);
+            if (FestivalBeast.FestivalBeastUiRoot.Instance?.ShowRecoveredBattleSettlement(_resultPanel?.Root, result) == true)
+            {
+                _resultPanel.SetCoreSettlementVisible(true);
+            }
             // 画布已随退出 Play / 换场景销毁时面板弹不出来:这一局没有真正展示,不确认,下次落地补查再交。
             if (!_resultPanel.IsVisible) return;
             _resultShowing = true;
             _recoveredShowingId = result.BattleId;
             RefreshModalDim();
             _recovery?.NoteShown(result.BattleId);
+        }
+
+        /// <summary>核心材料卡快捷领取先按正常结算路径确认并回主城。</summary>
+        public void FinishCoreSettlementForMaterialClaim()
+        {
+            if (!_resultShowing || _resultPanel == null || !_resultPanel.IsVisible) return;
+            OnResultConfirmed();
+        }
+
+        /// <summary>结算页「看试炼志」：先走正常结算确认回场景，再直达对应关卡格。</summary>
+        private void OnOpenTrialJournalFromResult(uint entryId)
+        {
+            if (entryId == 0u) return;
+            if (_client != null && _client.ContinuousBattle) _client.ContinuousBattle = false;
+            OnResultConfirmed();
+            TrialJournalUiRoot.EnsureSpawned();
+            TrialJournalUiRoot.Instance?.Open(focusEntryId: entryId);
         }
 
         // ── HUD ─────────────────────────────────────────────

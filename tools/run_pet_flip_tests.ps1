@@ -47,7 +47,10 @@ if (-not $protobuf) { throw '当前项目没有 Google.Protobuf 引用。' }
 
 $referenceArgs = @($references | ForEach-Object { '-r:"' + $_ + '"' })
 $runtimeSources = @(Get-ChildItem -LiteralPath (Join-Path $ProjectPath 'Assets/Scripts') -Recurse -Filter '*.cs' | ForEach-Object FullName)
-$testSources = @(Join-Path $ProjectPath 'Assets/Tests/EditMode/Tianyong/PetFlipClientTests.cs')
+$testSources = @(
+    (Join-Path $ProjectPath 'Assets/Tests/EditMode/Tianyong/PetFlipClientTests.cs'),
+    (Join-Path $ProjectPath 'Assets/Tests/EditMode/Tianyong/PetFlipUiPresentationTests.cs')
+)
 
 $hashes = @($runtimeSources + $testSources | ForEach-Object { [ordered]@{ path = $_; sha256 = (Get-FileHash -LiteralPath $_ -Algorithm SHA256).Hash } })
 $hashes | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $EvidencePath 'source-hashes.json') -Encoding utf8
@@ -68,14 +71,17 @@ if ($LASTEXITCODE -ne 0) { throw "测试编译失败，退出码 $LASTEXITCODE�
 
 foreach ($path in @($protobuf, $nunit.FullName, $runtime)) { [Reflection.Assembly]::LoadFrom($path) | Out-Null }
 $assembly = [Reflection.Assembly]::LoadFrom($tests)
-$fixture = $assembly.GetType('MmorpgClient.Tests.EditMode.Tianyong.PetFlipClientTests', $true)
+$fixtureNames = @('PetFlipClientTests', 'PetFlipUiPresentationTests')
+
+$results = [Collections.Generic.List[object]]::new()
+foreach ($fixtureName in $fixtureNames) {
+$fixture = $assembly.GetType('MmorpgClient.Tests.EditMode.Tianyong.' + $fixtureName, $true)
 $methods = @($fixture.GetMethods([Reflection.BindingFlags]'Public,NonPublic,Instance'))
 $setups = @($methods | Where-Object { $_.IsDefined([NUnit.Framework.SetUpAttribute], $true) } | Sort-Object MetadataToken)
 $teardowns = @($methods | Where-Object { $_.IsDefined([NUnit.Framework.TearDownAttribute], $true) } | Sort-Object MetadataToken -Descending)
 
-$results = [Collections.Generic.List[object]]::new()
 foreach ($method in $methods) {
-    $name = 'PetFlipClientTests.' + $method.Name
+    $name = $fixtureName + '.' + $method.Name
     if ($Filter -and $name -notmatch $Filter) { continue }
     $cases = @($method.GetCustomAttributes([NUnit.Framework.TestCaseAttribute], $true))
     if (-not $cases.Count) {
@@ -108,6 +114,7 @@ foreach ($method in $methods) {
         }
         $results.Add([pscustomobject]@{ name = $caseName; passed = $null -eq $failure; error = $failure })
     }
+}
 }
 
 $passed = @($results | Where-Object passed).Count

@@ -248,5 +248,71 @@ namespace MmorpgClient.Tests.EditMode.Ranked
             Assert.That(RankClient.SeasonBoard("s1", 1UL).Period, Is.EqualTo("s1"));
             team.Dispose();
         }
+
+        [Test]
+        public void RecoveryPreservesTradableMaterials_And_UsesOwnProgressionFollowsSeasonFlag()
+        {
+            var recovered = _client.BeginSettlementFromRecovery(new PlayerBattleResult
+            {
+                BattleId = 9901UL,
+                SeasonId = 1,
+                MatchMode = (uint)MatchMode.PvpTeam,
+                Outcome = (uint)eBattleOutcome.BattleOutcomeSideAWin,
+                TeamIndex = 0,
+                TotalRounds = 4,
+                MaterialCreditUnitsAdded = 15,
+                MaterialTradableUnitsAdded = 1,
+            });
+            Assert.That(recovered, Is.Not.Null);
+            Assert.That(recovered.MaterialCreditUnitsAdded, Is.EqualTo(15u));
+            Assert.That(recovered.MaterialTradableUnitsAdded, Is.EqualTo(1u), "重登补查结算必须保留可交易份数");
+
+            var freePresetSnapshot = new RankedProfileSnapshot(
+                new RankedSeasonInfo { SeasonId = 2, UsesOwnProgression = false },
+                null, null, null, null, null, null, null, null, 0UL);
+            Assert.That(freePresetSnapshot.UsesOwnProgression, Is.False,
+                "UsesOwnProgression 必须严格遵循服务端字段，不能因 SeasonId!=0 恒为 true");
+
+            var ownProgSnapshot = new RankedProfileSnapshot(
+                new RankedSeasonInfo { SeasonId = 2, UsesOwnProgression = true },
+                null, null, null, null, null, null, null, null, 0UL);
+            Assert.That(ownProgSnapshot.UsesOwnProgression, Is.True);
+        }
+
+        [Test]
+        public void V2TierHints_WinMilestone_ActivePetWarning_And_SurrenderTips()
+        {
+            var season = new RankedSeasonInfo
+            {
+                SeasonId = 1,
+                RuleVersion = 2,
+                TierQingfengCenti = 152000,
+                TierYunzhangCenti = 160000,
+                TierTianshuCenti = 172000,
+                TierWushuangCenti = 185000,
+                MilestoneWinMatches = 6,
+            };
+            var progress = new RankedPlayerSeasonSummary
+            {
+                SeasonId = 1,
+                Qualified = true,
+                RatingCenti = 150000,
+                CurrentTier = RankedTier.Chushi,
+                Wins = 4,
+            };
+            var snap = new RankedProfileSnapshot(season, progress, null, null, null, null, null, null, null, 0UL);
+            Assert.That(snap.RuleVersion, Is.EqualTo(2u));
+            Assert.That(snap.TierQingfengCenti, Is.EqualTo(152000u));
+            Assert.That(snap.MilestoneWinMatches, Is.EqualTo(6u));
+            Assert.That(snap.GetNextTierHint(), Is.EqualTo("距青锋还差 20 分"));
+            Assert.That(snap.GetWinMilestoneHint(), Is.EqualTo("再赢 2 场解锁「锋芒」称号（4/6）"));
+            Assert.That(RankedFormatting.RewardKindName(RankedRewardKind.RankedRewardWinMilestone), Is.EqualTo("锋芒称号"));
+            Assert.That(RankedFormatting.ActivePetWarning(0UL), Does.Contain("未出战灵宠"));
+            Assert.That(RankedFormatting.ActivePetWarning(9001UL), Is.Empty);
+            Assert.That(RankedClient.DescribeTip(new TipInfoMessage { Id = (uint)match_error.KMatchBattleSurrenderTooEarly }),
+                Does.Contain("5"));
+            Assert.That(RankedClient.DescribeTip(new TipInfoMessage { Id = (uint)match_error.KMatchBattleSurrenderCooldown }),
+                Does.Contain("冷却"));
+        }
     }
 }

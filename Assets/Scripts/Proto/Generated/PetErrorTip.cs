@@ -23,7 +23,7 @@ public static partial class PetErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "CixnZW5lcmF0ZWQvY29kZS9wcm90by90aXAvcGV0X2Vycm9yX3RpcC5wcm90",
-          "byrpAwoJcGV0X2Vycm9yEhAKDGtQZXRfZXJyb3JPSxAAEhIKDGtQZXROb3RG",
+          "byqEBAoJcGV0X2Vycm9yEhAKDGtQZXRfZXJyb3JPSxAAEhIKDGtQZXROb3RG",
           "b3VuZBCQywESGQoTa1BldFRhYmxlUm93TWlzc2luZxCRywESEgoMa1BldFNs",
           "b3RGdWxsEJLLARIdChdrUGV0T3duZXJMZXZlbE5vdEVub3VnaBCTywESFwoR",
           "a1BldEFscmVhZHlBY3RpdmUQlMsBEhMKDWtQZXROb3RBY3RpdmUQlcsBEhgK",
@@ -33,8 +33,9 @@ public static partial class PetErrorTipReflection {
           "bWVuc2lvbkNhcEV4Y2VlZGVkEJvLARIbChVrUGV0RGltZW5zaW9uTm90Rm91",
           "bmQQnMsBEhcKEWtQZXRHb2xkTm90RW5vdWdoEJ3LARIUCg5rUGV0Tm9BdXRv",
           "UGxhbhCeywESGQoTa1BldE5vdGhpbmdUb0NoYW5nZRCfywESGgoUa1BldElk",
-          "R2VuZXJhdGVGYWlsZWQQoMsBEhcKEWtQZXROYW1lU2Vuc2l0aXZlEKHLAUIk",
-          "Cg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
+          "R2VuZXJhdGVGYWlsZWQQoMsBEhcKEWtQZXROYW1lU2Vuc2l0aXZlEKHLARIZ",
+          "ChNrUGV0Tm90VHJhbnNmZXJhYmxlEKLLAUIkCg5jb20uZ2FtZS50YWJsZVoS",
+          "Z2VuZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::pet_error), }, null, null));
@@ -63,6 +64,7 @@ public enum pet_error {
   [pbr::OriginalName("kPetNothingToChange")] KPetNothingToChange = 26015,
   [pbr::OriginalName("kPetIdGenerateFailed")] KPetIdGenerateFailed = 26016,
   [pbr::OriginalName("kPetNameSensitive")] KPetNameSensitive = 26017,
+  [pbr::OriginalName("kPetNotTransferable")] KPetNotTransferable = 26018,
 }
 
 #endregion

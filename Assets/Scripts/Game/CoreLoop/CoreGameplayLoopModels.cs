@@ -416,6 +416,22 @@ namespace MmorpgClient.Game.CoreLoop
             return result;
         }
 
+        /// <summary>
+        /// 按服务端权威赛季起点与当前服务器时刻推导轮换周序号（1..8）；
+        /// 当首测未锁定开季时间戳（StartsAtMs == 0）或赛季不可用时返回 false，调用方不得伪造当前周次。
+        /// </summary>
+        public static bool TryResolveAuthoritativeSeasonWeek(global::SeasonStateSnapshot seasonState, out uint week)
+        {
+            week = 0u;
+            if (seasonState == null || !seasonState.Available || seasonState.StartsAtMs == 0ul
+                || seasonState.ServerNowMs < seasonState.StartsAtMs)
+                return false;
+            const ulong weekMs = 7ul * 24ul * 3600ul * 1000ul;
+            ulong index = (seasonState.ServerNowMs - seasonState.StartsAtMs) / weekMs;
+            week = index >= 7ul ? 8u : (uint)(index + 1ul);
+            return true;
+        }
+
         /// <summary>生成首季八周轮换娱乐场两张卡片：护卫救援（PVE 免费人宠）与物法易势（仅 5V5 公平团战免费人宠）。</summary>
         public static IReadOnlyList<RotationCardView> BuildRotationCards(uint activeSeasonWeek = 1u)
         {
