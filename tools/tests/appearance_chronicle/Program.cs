@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Google.Protobuf;
 using MmorpgClient.Game.Appearance;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Net;
+using MmorpgClient.Table;
 
 // 仅替换网络传输；模型、Client、请求/响应类型和消息号全部链接正式源码。
 // 本检查不启动 Unity，也不连接游戏服务器，不等同于 Unity 实点或联机验收。
@@ -49,18 +51,48 @@ internal static class Program
 
     private static void CatalogAndState()
     {
-        Check(AppearanceBiographyCatalog.All.Count == 3, "目录必须恰有三人");
-        var fixtures = new[] { (A, "陆照禾", "第四只碗", 4), (B, "祝停云", "纸也赢过一回", 6),
-            ("09_bamboo_archer_girl", "桑听雨", "没有画的那一页", 3) };
+        // 加载真实导出的 StreamingAssets/Tables/characterappearance.pb，校验 9 人权威配表与热更契约
+        string pbPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory,
+            "../../../../../../Assets/StreamingAssets/Tables/characterappearance.pb"));
+        if (!File.Exists(pbPath))
+            pbPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(),
+                "Assets/StreamingAssets/Tables/characterappearance.pb"));
+        Check(File.Exists(pbPath), "必须存在正式导出的 characterappearance.pb: " + pbPath);
+        byte[] realTableBytes = File.ReadAllBytes(pbPath);
+        CharacterAppearanceTableManager.Instance.LoadFromBytes(realTableBytes);
+
+        Check(AppearanceBiographyCatalog.All.Count == 9, "目录必须恰有九名现役人物");
+        var fixtures = new[]
+        {
+            (A, "陆照禾", "第四只碗", 4),
+            ("01_ice_sword_girl", "霜见雪", "霜阶扫雪", 4),
+            ("02_fire_talisman_boy", "许炽", "焦边朱砂", 4),
+            ("03_lotus_healer_girl", "苏青莲", "药包双结", 4),
+            ("05_celestial_musician_girl", "林知音", "廊下试弦", 4),
+            ("09_bamboo_archer_girl", "桑听雨", "没有画的那一页", 3),
+            (B, "祝停云", "纸也赢过一回", 6),
+            ("15_water_dragon_scholar_boy", "沈澄", "半盏未凉", 4),
+            ("20_star_formation_master_girl", "星璇", "十八星印", 4),
+        };
         foreach (var fixture in fixtures)
         {
-            Check(AppearanceBiographyCatalog.TryGetByRawAppearanceId(fixture.Item1, out var bio), "原始ID目录缺失");
+            Check(AppearanceBiographyCatalog.TryGetByRawAppearanceId(fixture.Item1, out var bio), "原始ID目录缺失: " + fixture.Item1);
             Check(bio.RawAppearanceId == fixture.Item1 && bio.ArchiveName == fixture.Item2 && bio.StoryTitle == fixture.Item3, "人物身份与篇名必须同ID");
             Check(bio.StoryBody.Split(new[] { "\n\n" }, StringSplitOptions.None).Length == fixture.Item4, "原始段落必须保留");
+            Check(!bio.BackgroundSummary.Contains("闻砚生") && !bio.StoryBody.Contains("闻砚生"), "严禁残留已退场人物名");
         }
         foreach (string id in new[] { "QdaoHeadbandBoy", "18_desert_sun_monk_girl", "26_osmanthus_healer",
-            "00_REFERENCE_TOPRIGHT_BOY", A + " ", "01_ice_sword_girl", "17_ghost_script_calligrapher_boy", "", null })
+            "00_REFERENCE_TOPRIGHT_BOY", A + " ", "99_no_biography_probe", "17_ghost_script_calligrapher_boy",
+            "04_mountain_guardian_boy", "08_alchemy_prodigy_boy", "", null })
             Check(!AppearanceBiographyCatalog.TryGetByRawAppearanceId(id, out var missing) && missing == null, "旧别名、已删角色和未设定人物不得借用文案");
+
+        // 热更校验：把某行人物志清空后立刻不可读，不回退到旧硬编码文案
+        var hotReloadData = new CharacterAppearanceTableData();
+        hotReloadData.Data.Add(new CharacterAppearanceTable { Id = 2, AppearanceId = A, Name = "金发带Q道童", Enabled = 1 });
+        CharacterAppearanceTableManager.Instance.LoadFromBytes(hotReloadData.ToByteArray());
+        Check(!AppearanceBiographyCatalog.TryGetByRawAppearanceId(A, out _) && AppearanceBiographyCatalog.All.Count == 0,
+            "表热更清空人物志后必须即时隐藏且不回退旧缓存");
+        CharacterAppearanceTableManager.Instance.LoadFromBytes(realTableBytes);
 
         var state = new AppearancePanelState();
         state.SyncAvailableAppearances(new[] { A, B }, A, A);
@@ -106,7 +138,7 @@ internal static class Program
     private static void BiographyAndPreviewLayers()
     {
         var state = new AppearancePanelState();
-        state.SyncAvailableAppearances(new[] { A, B, "01_ice_sword_girl" }, A, A);
+        state.SyncAvailableAppearances(new[] { A, B, "99_no_biography_probe" }, A, A);
         state.SelectAppearance(B, .42f);
         state.RequestSwitch(B, A, 2, 1);
         Check(state.OpenBiography(.42f) && state.IsBiographyOpen && !state.HasPendingSwitchConfirmation,
@@ -134,7 +166,7 @@ internal static class Program
         state.SelectAppearance(A, .42f);
         Check(!state.HasOverlay && state.ReadingAppearanceId.Length == 0 && state.SavedStoryScrollNormalized == 1,
             "换人物重置当前篇章与阅读位置");
-        state.SelectAppearance("01_ice_sword_girl", .6f);
+        state.SelectAppearance("99_no_biography_probe", .6f);
         Check(!state.OpenBiography(.6f) && !state.OpenStory(.6f) && state.OpenPortraitPreview(.6f),
             "暂无档案仍可预览且不借用小传故事");
         state.ResetForRoleChange();

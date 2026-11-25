@@ -199,14 +199,20 @@ public static class AppearanceUiVerification
 
             if (captureFullSuite)
             {
-                // 验收 1：三位人物分别打开小传、大图预览与故事，核对图文对应及逐层返回
-                var expectedThree = new[]
+                // 验收 1：全部 9 名现役人物分别打开小传、大图预览与故事，核对权威配表图文一一对应、零已退场人物残留及逐层返回
+                var expectedNine = new[]
                 {
                     ("00_reference_topright_boy", "金发带Q道童", "陆照禾", "第四只碗", "回来带葱"),
-                    ("10_crimson_spear_girl", "赤枪少女", "祝停云", "纸也赢过一回", "今天纸赢了"),
+                    ("01_ice_sword_girl", "冰剑少女", "霜见雪", "霜阶扫雪", "别把青石烤裂"),
+                    ("02_fire_talisman_boy", "火符少年", "许炽", "焦边朱砂", "糖栗子"),
+                    ("03_lotus_healer_girl", "莲花医者", "苏青莲", "药包双结", "心就先安了一半"),
+                    ("05_celestial_musician_girl", "天音少女", "林知音", "廊下试弦", "灰雀"),
                     ("09_bamboo_archer_girl", "竹弓少女", "桑听雨", "没有画的那一页", "替我空一页吧"),
+                    ("10_crimson_spear_girl", "赤枪少女", "祝停云", "纸也赢过一回", "沈澄"),
+                    ("15_water_dragon_scholar_boy", "水龙书生", "沈澄", "半盏未凉", "茶凉了"),
+                    ("20_star_formation_master_girl", "星阵宗师", "星璇", "十八星印", "十八枚战法印"),
                 };
-                foreach (var (rawId, origName, archiveName, storyTitle, bodySnippet) in expectedThree)
+                foreach (var (rawId, origName, archiveName, storyTitle, bodySnippet) in expectedNine)
                 {
                     Click("AppearanceOption_" + rawId);
                     AssertTrue(!FindObject("AppearancePortraitMissing").activeSelf, $"正式角色立绘应通过 AcquireCreationPortrait 正常加载：{rawId}");
@@ -215,10 +221,12 @@ public static class AppearanceUiVerification
                     AssertTrue(FindText("AppearanceArchiveTag").text == origName, $"副标应保留原形象称呼：{origName}");
                     AssertTrue(FindText("BiographyIdentity").text.Contains(archiveName), $"人物档案应包含：{archiveName}");
                     if (rawId == "00_reference_topright_boy") Shoot("01-biography-summary-ahe");
+                    if (rawId == "20_star_formation_master_girl") Shoot("02d-detail-xingxuan");
 
                     Click("AppearanceReadStory");
                     AssertTrue(biographyOverlay.activeSelf, $"点击读人物志应打开人物小传层：{rawId}");
                     AssertTrue(FindText("BiographyName").text.Contains(archiveName), $"小传标题应包含：{archiveName}");
+                    if (rawId == "01_ice_sword_girl") Shoot("02e-biography-shuangjianxue");
                     if (rawId == "00_reference_topright_boy")
                     {
                         Shoot("02a-biography-overlay-ahe");
@@ -233,6 +241,7 @@ public static class AppearanceUiVerification
                     AssertTrue(uiRoot.StoryOverlay.activeSelf, $"从小传进入应打开故事阅读层：{rawId}");
                     AssertTrue(FindText("StoryTitle").text == storyTitle, $"故事篇名不匹配：{storyTitle}");
                     AssertTrue(uiRoot.StoryBodyText.text.Contains(bodySnippet), $"故事正文不匹配：{bodySnippet}");
+                    AssertTrue(!uiRoot.StoryBodyText.text.Contains("闻砚生"), $"故事正文不得残留已退场角色名：{rawId}");
                     if (rawId == "00_reference_topright_boy")
                     {
                         Shoot("02c-story-reader-ahe");
@@ -249,7 +258,7 @@ public static class AppearanceUiVerification
                     Click("BiographyBack");
                     AssertTrue(!biographyOverlay.activeSelf, "小传返回应回到主详情");
                 }
-                summary.Add($"[{width}x{height}] Check 1 PASS: 三位人物小传→大图→往事图文一一对应且逐层返回正确");
+                summary.Add($"[{width}x{height}] Check 1 PASS: 全部 9 名现役人物小传→大图→往事图文一一对应、零已退场残留且逐层返回正确");
 
                 // 验收 2 & 3：跳过直接回详情且可重读；读完返回仍选中原人物且列表位置不变
                 uiRoot.ListScroll.verticalNormalizedPosition = 0.34f;
@@ -272,11 +281,11 @@ public static class AppearanceUiVerification
                 Shoot("03-returned-same-character-tingyun");
                 summary.Add($"[{width}x{height}] Check 2 & 3 PASS: 跳过重读、读完返回仍选中祝停云且滚动位置保持 0.34");
 
-                // 验收 4：切到无档案人物不残留上一人的正文，并截图试用倒计时态
-                transport.Snapshot = BuildFixtureInfo(ownedCards: 2, activeTrialId: "01_ice_sword_girl");
+                // 验收 4：切到无档案探针条目不残留上一人的正文，并截图试用倒计时态
+                transport.Snapshot = BuildFixtureInfo(ownedCards: 2, activeTrialId: "01_ice_sword_girl", includeNoBioProbe: true);
                 clock = 128f;
                 client.RequestInfo(force: true);
-                Click("AppearanceOption_01_ice_sword_girl");
+                Click("AppearanceOption_99_no_biography_probe");
                 AssertTrue(!uiRoot.BiographySection.activeSelf, "无档案人物应收起人物背景区块");
                 AssertTrue(string.IsNullOrEmpty(FindText("BiographyBody").text), "无档案人物不得残留上一人的背景");
                 AssertTrue(string.IsNullOrEmpty(uiRoot.StoryBodyText.text), "无档案人物不得残留上一人的故事正文");
@@ -284,7 +293,7 @@ public static class AppearanceUiVerification
                 summary.Add($"[{width}x{height}] Check 4 PASS: 无档案人物收起背景区且零残留");
 
                 // 验收 7：先点切换打开扣卡确认 → 点击「先读人物志」→ 返回 → 再点切换 不会误扣卡
-                transport.Snapshot = BuildFixtureInfo(ownedCards: 2, activeTrialId: "");
+                transport.Snapshot = BuildFixtureInfo(ownedCards: 2, activeTrialId: "", includeNoBioProbe: true);
                 client.RequestInfo(force: true);
                 Click("AppearanceOption_00_reference_topright_boy");
                 Click("AppearanceConfirmSwitch");
@@ -305,7 +314,7 @@ public static class AppearanceUiVerification
                 Click("AppearanceConfirmCancel");
 
                 // 额外核验：无传记人物扣卡确认窗 Tab 焦点跳过隐藏的 ReadBeforeSwitch；缺卡价格未同步时跳过禁用的商城按钮
-                Click("AppearanceOption_01_ice_sword_girl");
+                Click("AppearanceOption_99_no_biography_probe");
                 Click("AppearanceConfirmSwitch");
                 AssertTrue(!FindObject("ReadBeforeSwitch").activeSelf, "无传记人物确认窗应隐藏先读人物志按钮");
                 var confirmVisited = new HashSet<string>();
@@ -473,7 +482,7 @@ public static class AppearanceUiVerification
             AppearanceSeriesTableManager.Instance.LoadFromBytes(File.ReadAllBytes(seriesPbPath));
     }
 
-    private static PlayerAppearanceInfo BuildFixtureInfo(uint ownedCards, string activeTrialId)
+    private static PlayerAppearanceInfo BuildFixtureInfo(uint ownedCards, string activeTrialId, bool includeNoBioProbe = false)
     {
         var info = new PlayerAppearanceInfo
         {
@@ -489,18 +498,19 @@ public static class AppearanceUiVerification
             MallSkuId = 3402u,
             MallPriceFen = 1000ul,
         };
-        (uint id, string rawId, string name, uint sortOrder, bool trialUsed, bool owned, uint seriesId)[] roster =
+        (uint id, string rawId, string name, uint sortOrder, bool trialUsed, bool owned, uint seriesId, bool cardUnlockable)[] roster =
         {
-            (2, "00_reference_topright_boy", "金发带Q道童", 1, false, false, 1u),
-            (3, "01_ice_sword_girl", "冰剑少女", 2, !string.IsNullOrEmpty(activeTrialId), false, 2u),
-            (4, "02_fire_talisman_boy", "火符少年", 3, true, false, 2u),
-            (5, "03_lotus_healer_girl", "莲花医者", 4, false, true, 3u),
-            (7, "05_celestial_musician_girl", "天音少女", 5, false, true, 3u),
-            (8, "09_bamboo_archer_girl", "竹弓少女", 6, false, false, 1u),
-            (9, "10_crimson_spear_girl", "赤枪少女", 7, false, false, 1u),
-            (10, "15_water_dragon_scholar_boy", "水龙书生", 8, false, false, 2u),
+            (2, "00_reference_topright_boy", "金发带Q道童", 1, false, false, 1u, true),
+            (3, "01_ice_sword_girl", "冰剑少女", 2, !string.IsNullOrEmpty(activeTrialId), false, 2u, true),
+            (4, "02_fire_talisman_boy", "火符少年", 3, true, false, 2u, true),
+            (5, "03_lotus_healer_girl", "莲花医者", 4, false, true, 3u, true),
+            (7, "05_celestial_musician_girl", "天音少女", 5, false, true, 3u, true),
+            (8, "09_bamboo_archer_girl", "竹弓少女", 6, false, false, 1u, true),
+            (9, "10_crimson_spear_girl", "赤枪少女", 7, false, false, 1u, true),
+            (10, "15_water_dragon_scholar_boy", "水龙书生", 8, false, false, 2u, true),
+            (11, "20_star_formation_master_girl", "星阵宗师", 9, false, false, 0u, false),
         };
-        foreach (var (id, rawId, name, sortOrder, trialUsed, owned, seriesId) in roster)
+        foreach (var (id, rawId, name, sortOrder, trialUsed, owned, seriesId, cardUnlockable) in roster)
         {
             info.Appearances.Add(new CharacterAppearanceEntry
             {
@@ -510,8 +520,22 @@ public static class AppearanceUiVerification
                 SortOrder = sortOrder,
                 TrialUsed = trialUsed,
                 Owned = owned,
-                CardUnlockable = true,
+                CardUnlockable = cardUnlockable,
                 SeriesId = seriesId,
+            });
+        }
+        if (includeNoBioProbe)
+        {
+            info.Appearances.Add(new CharacterAppearanceEntry
+            {
+                ConfigId = 99,
+                AppearanceId = "99_no_biography_probe",
+                Name = "无档案探针",
+                SortOrder = 99,
+                TrialUsed = false,
+                Owned = false,
+                CardUnlockable = true,
+                SeriesId = 0u,
             });
         }
         var s1 = new CharacterAppearanceSeriesProgress

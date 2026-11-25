@@ -37,6 +37,8 @@
     <Compile Include="../../../Assets/Scripts/Proto/Generated/Message.cs" Link="Generated/Message.cs" />
     <Compile Include="../../../Assets/Scripts/Proto/Generated/Common.cs" Link="Generated/Common.cs" />
     <Compile Include="../../../Assets/Scripts/Proto/Generated/Session.cs" Link="Generated/Session.cs" />
+    <Compile Include="../../../Assets/Scripts/Table/Generated/CharacterappearanceTable.cs" Link="Generated/CharacterappearanceTable.cs" />
+    <Compile Include="../../../Assets/Scripts/Table/Generated/CharacterAppearanceTableManager.cs" Link="Generated/CharacterAppearanceTableManager.cs" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 </Project>

@@ -70,3 +70,49 @@
 - **纯 C# 数据与门禁层**：新增 `AppearanceSeriesModels.cs`（`FilterBySeries`、`FindSeries`、`CountCompletedSeries`、`TryGetUnlockedEpilogue`），并在 `AppearanceBiography.cs` 扩展 `SelectedSeriesId`、`AppearanceOverlayKind.SeriesEpilogue`、`SelectSeries`、`SyncSeriesSelection`、`OpenSeriesEpilogue`、`CloseSeriesEpilogue`，严格按服务端权威 `SeriesProgress.Completed == true` 放行合篇故事。
 - **原生 uGUI 与响应式布局**：新增 `AppearanceUiRoot.Series.cs` 并接入 `AppearanceUiRoot.cs` / `AppearanceUiRoot.Layout.cs` / `AppearanceUiRoot.Reading.cs`，在易容左侧补齐「集齐系列 M/N」、横向可滚「系列筛选栏」、选中系列展开的「系列信息条（印章/铭牌/简介/读合篇）」及「系列合篇阅读层」（支持宽屏 2160×1000 与窄屏 1180×650、字号放大滚动与完整输入隔离）。
 - **美术资源槽位与平滑回退**：`AppearanceUiArt` 预留 `Assets/Resources/UI/Ugui/AppearanceSeriesV1/`（`series_tab_normal/selected`、`series_banner_card`、`series_epilogue_card`、`series_badge_dim/lit`、`series_seal[_<series_key>]_dim/lit`），未导入新图前自动回退到现有皮肤与配色，待 Codex 交付去底透明 PNG 后放入即自动生效。
+
+## 8. 批次二·终章（2026-11-24）：全员 9 人人物志配表化与端到端收口
+
+- **需求与设计分析**：将人物志文案从 `AppearanceBiographyCatalog` 硬编码迁至权威 `CharacterAppearance` 配置表（字段 `10..14`：`archive_name`/`nickname`/`biography_summary`/`story_title`/`story_body`），补齐全部 9 位现役角色档案与往事（陆照禾、霜见雪、许炽、苏青莲、林知音、桑听雨、祝停云、沈澄、星璇），并将祝停云往事中已删角色「闻砚生」替换为现役角色「沈澄」。
+- **思想与防线**：严格遵守「不长期缓存 `*TableManager` 行引用」的热更契约，`AppearanceBiographyCatalog.TryGetByRawAppearanceId` 每次现查 `CharacterAppearanceTableManager.Instance.FindAll()` 并按原始 `appearance_id`（`StringComparer.Ordinal`）精确匹配，绝不经 `ResolveVisualId`；四项核心字段必须同时非空才展示人物志，任意未配置人物志的条目仍自动收起背景区；仅在表尚未加载（`Count == 0`）的隔离测试环境回退至同源内置只读目录。
+- **执行步骤**：同步最新 `characterappearance.pb` 与生成类 → 改造 `AppearanceBiography.cs` → 更新 `AppearanceClientTests.cs` / `tools/tests/appearance_chronicle/` / `AppearanceUiVerification.cs` → 执行 `client_compile_check.ps1`、Unity EditMode 单测、Unity 原生截图验收与离线模型检查；并输出 `AppearanceSeriesV1` 完整切图规格供 ChatGPT 生成后直接落盘自动生效。
+
+---
+
+## 9. 人物收藏系列美术素材规格（`AppearanceSeriesV1`，供 ChatGPT 生成直落 Unity）
+
+客户端代码 `AppearanceUiArt.cs` 与 `AppearanceUiRoot.Series.cs` 已预埋完整资源键与九宫格/三段拉伸规则，目标目录为：
+
+- `Assets/Resources/UI/Ugui/AppearanceSeriesV1/`（当前不存在该目录时自动回退至 `AppearanceChronicleV2/`；按下方文件名落盘并在 Unity 设置对应 Sprite Border 后**零代码修改自动激活**）。
+
+### 9.1 视觉基调与色板（严格同源 `AppearanceChronicleV2` / `team-ui-v2`）
+
+- 风格：国风轻仙侠青玉暖金卷云＋宣纸手账风，干净扁平微质感插画，无写实噪点、无厚重发光、无整屏底景。
+- 严格红线：**全部 PNG 严禁烘焙任何文字、数字、印章汉字、水印**（所有文案均由 TMP 实时绘制）；**控件轮廓外必须为 100% 纯透明 Alpha=0**。
+- 配色锚点（来自 `AppearanceUiArt.cs`）：
+  - 主青玉深色 `#205B46`（DeepJade）、高亮青玉 `#2B6A50`（SeriesLitBg）、墨青正文字 `#304736`（JadeInk）
+  - 宣纸底 `#F7F0E1`（ParchmentCard）、内纸面 `#FBF6EA`（ParchmentInner）、暖金边 `#C9AB70`（ParchmentBorder）、烫金暗色 `#8E651F`（SeriesGoldInk）
+  - 未点亮灰纸 `#E6DEC9`（SeriesDimBg）、未点亮暖灰 `#70634E`（MutedInk）、反白暖米字 `#FFF3D6`（WarmCream）
+
+### 9.2 精确切图清单（11 张必做 + 3 张可选）
+
+| 文件名 | 尺寸 (px) | 拉伸模式 | Unity Sprite Border (L,B,R,T) | 视觉与布局约束 |
+|---|---|---|---|---|
+| `series_tab_normal.png` | `240×64` | 横向三段拉伸 | `32, 14, 32, 14` | 未选中系列筛选标签：米白宣纸 `#F7F0E1` 底 + 细暖金 `#C9AB70` 边，左右端带克制卷云/斜角装饰，中段完全平整可拉伸 |
+| `series_tab_selected.png` | `240×64` | 横向三段拉伸 | `32, 14, 32, 14` | 选中系列筛选标签：深青玉 `#205B46` 底 + 暖金 `#C9AB70` 双线描边，与 `#FFF3D6` 反白字高对比，中段平整 |
+| `series_badge_dim.png` | `220×44` | 横向三段拉伸 | `26, 11, 26, 11` | 未点亮印章名条 / 顶栏统计条底：柔灰米 `#E6DEC9` 底 + 淡褐金细边，中段平整（衬 `#70634E` / `#205B46` 字） |
+| `series_badge_lit.png` | `220×44` | 横向三段拉伸 | `26, 11, 26, 11` | 已点亮印章名条底：翠青玉 `#2B6A50` 底 + 暖金 `#C9AB70` 精致镶边，两端带极小云纹节点（衬 `#FFF3D6` 粗体字） |
+| `series_banner_card.png` | `612×120` | 九宫格 | `36, 24, 36, 24` | 左栏选中系列信息卡：温润宣纸 `#F7F0E1` 底 + 暖金青玉细角饰；左侧 `x=14..82` 为 68×68 印章预留位，内部纸面干净无暗纹干扰小字 |
+| `series_epilogue_card.png` | `1192×528` | 九宫格 | `48, 44, 48, 44` | 合篇故事长正文纸卡：高亮浅宣纸 `#FBF6EA` 底 + 四角精致青玉暖金回纹卷角，中间阅读区保持纯净低对比纸纹（保证 30pt `#304736` 正文清晰易读） |
+| `series_seal_dim.png` | `160×160` | 固定比例 1:1 | `0, 0, 0, 0` | 通用未点亮印章底徽：素石玉灰 `#D8CFBC` 圆形/八角玉佩浮雕轮廓，微凹浅雕无字、低饱和 |
+| `series_seal_lit.png` | `160×160` | 固定比例 1:1 | `0, 0, 0, 0` | 通用已点亮印章底徽：青玉 `#2B6A50` 玉璧 + 暖金 `#C9AB70` 云纹外环 + 中心无字五瓣云星暗纹 |
+| `series_seal_lantern_courtyard_lit.png` | `160×160` | 固定比例 1:1 | `0, 0, 0, 0` | 系列 1「留灯院旧友」专属点亮印章：青玉底 + 暖金外环，中心为暖橘金纸灯笼与青竹叶剪影（无文字） |
+| `series_seal_elemental_blades_lit.png` | `160×160` | 固定比例 1:1 | `0, 0, 0, 0` | 系列 2「水火冰锋」专属点亮印章：青玉金环内三元环绕——冰晶剑芒、朱砂火纹、沧澜水浪（无文字） |
+| `series_seal_lotus_melody_lit.png` | `160×160` | 固定比例 1:1 | `0, 0, 0, 0` | 系列 3「清音济世」专属点亮印章：青玉金环内盛放青莲托起简笔七弦琴弧与音波纹（无文字） |
+| `series_seal_<series_key>_dim.png` *(可选 3 张)* | `160×160` | 固定比例 1:1 | `0, 0, 0, 0` | 上述 3 枚专属印章的低饱和灰石未点亮版；省略时代码自动回退 `series_seal_dim.png` |
+
+### 9.3 Unity 导入参数（所有 PNG 统一）
+
+- `Texture Type`: `Sprite (2D and UI)`，`Sprite Mode`: `Single`，`Pixels Per Unit`: `100`
+- `Alpha Is Transparency`: 勾选，`Generate Mip Maps`: 关闭，`Filter Mode`: `Bilinear`，`Compression`: `None`（与 `AppearanceChronicleV2` 一致）
+- 在 Sprite Editor 填入上表 `Border (L, B, R, T)` 后 Apply 即可，无需改动任何 C# 代码或 Prefab。

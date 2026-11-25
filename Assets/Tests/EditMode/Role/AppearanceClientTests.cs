@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Google.Protobuf;
 using MmorpgClient.Game.Appearance;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Net;
+using MmorpgClient.Table;
 using NUnit.Framework;
+using UnityEngine;
 
 namespace MmorpgClient.Tests.EditMode.Role
 {
@@ -265,48 +268,81 @@ namespace MmorpgClient.Tests.EditMode.Role
         }
 
         [Test]
-        public void BiographyCatalog_MatchesExactThreeRawIdsAndRejectsVisualAliasesAndOthers()
+        public void BiographyCatalog_MatchesAllNineActiveRawIdsHotReloadSafeAndRejectsAliases()
         {
-            Assert.That(AppearanceBiographyCatalog.All.Count, Is.EqualTo(3));
-
-            Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId("00_reference_topright_boy", out var ahe), Is.True);
-            Assert.That(ahe.ArchiveName, Is.EqualTo("陆照禾"));
-            Assert.That(ahe.Nickname, Is.EqualTo("阿禾"));
-            Assert.That(ahe.DisplayArchiveName, Is.EqualTo("陆照禾（阿禾）"));
-            Assert.That(ahe.StoryTitle, Is.EqualTo("第四只碗"));
-            Assert.That(ahe.BackgroundSummary, Does.Contain("留灯院"));
-            Assert.That(ahe.StoryBody, Does.Contain("回来带葱"));
-
-            Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId("10_crimson_spear_girl", out var tingyun), Is.True);
-            Assert.That(tingyun.ArchiveName, Is.EqualTo("祝停云"));
-            Assert.That(tingyun.StoryTitle, Is.EqualTo("纸也赢过一回"));
-            Assert.That(tingyun.BackgroundSummary, Does.Contain("败局册"));
-            Assert.That(tingyun.StoryBody, Does.Contain("今天纸赢了"));
-
-            Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId("09_bamboo_archer_girl", out var tingyu), Is.True);
-            Assert.That(tingyu.ArchiveName, Is.EqualTo("桑听雨"));
-            Assert.That(tingyu.StoryTitle, Is.EqualTo("没有画的那一页"));
-            Assert.That(tingyu.BackgroundSummary, Does.Contain("潮汐鸟谱"));
-            Assert.That(tingyu.StoryBody, Does.Contain("替我空一页吧"));
-
-            // 其余现行与已删除形象不得命中三人传记
-            string[] otherIds =
+            byte[] prevBytes = CharacterAppearanceTableManager.Instance.Container.ToByteArray();
+            try
             {
-                "01_ice_sword_girl", "02_fire_talisman_boy", "03_lotus_healer_girl",
-                "05_celestial_musician_girl", "15_water_dragon_scholar_boy",
-                "04_mountain_guardian_boy", "08_alchemy_prodigy_boy", "17_ghost_script_calligrapher_boy"
-            };
-            foreach (string id in otherIds)
-                Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId(id, out _), Is.False, $"无档案或已删除形象不应命中：{id}");
+                string pbPath = Path.Combine(Application.streamingAssetsPath, "Tables",
+                    CharacterAppearanceTableManager.BinaryFileName);
+                Assert.That(File.Exists(pbPath), Is.True, "正式导出的 characterappearance.pb 应存在");
+                byte[] realBytes = File.ReadAllBytes(pbPath);
+                CharacterAppearanceTableManager.Instance.LoadFromBytes(realBytes);
 
-            // 历史视觉替代 ID 严禁获得这四人的传记
-            string[] retiredVisualAliases =
+                Assert.That(AppearanceBiographyCatalog.All.Count, Is.EqualTo(9));
+
+                var expectedNine = new[]
+                {
+                    ("00_reference_topright_boy", "陆照禾", "阿禾", "第四只碗", "回来带葱"),
+                    ("01_ice_sword_girl", "霜见雪", "", "霜阶扫雪", "别把青石烤裂"),
+                    ("02_fire_talisman_boy", "许炽", "小炽", "焦边朱砂", "糖栗子"),
+                    ("03_lotus_healer_girl", "苏青莲", "", "药包双结", "心就先安了一半"),
+                    ("05_celestial_musician_girl", "林知音", "", "廊下试弦", "灰雀"),
+                    ("09_bamboo_archer_girl", "桑听雨", "", "没有画的那一页", "替我空一页吧"),
+                    ("10_crimson_spear_girl", "祝停云", "", "纸也赢过一回", "今天纸赢了"),
+                    ("15_water_dragon_scholar_boy", "沈澄", "", "半盏未凉", "茶凉了"),
+                    ("20_star_formation_master_girl", "星璇", "", "十八星印", "十八枚战法印"),
+                };
+                foreach (var (rawId, archiveName, nickname, storyTitle, bodySnippet) in expectedNine)
+                {
+                    Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId(rawId, out var bio), Is.True, $"应命中：{rawId}");
+                    Assert.That(bio.ArchiveName, Is.EqualTo(archiveName));
+                    Assert.That(bio.Nickname, Is.EqualTo(nickname));
+                    Assert.That(bio.StoryTitle, Is.EqualTo(storyTitle));
+                    Assert.That(bio.StoryBody, Does.Contain(bodySnippet));
+                    Assert.That(bio.BackgroundSummary, Does.Not.Contain("闻砚生"));
+                    Assert.That(bio.StoryBody, Does.Not.Contain("闻砚生"));
+                }
+                Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId("00_reference_topright_boy", out var ahe), Is.True);
+                Assert.That(ahe.DisplayArchiveName, Is.EqualTo("陆照禾（阿禾）"));
+                Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId("10_crimson_spear_girl", out var tingyun), Is.True);
+                Assert.That(tingyun.StoryBody, Does.Contain("沈澄"));
+
+                // 已删除与未配置形象不得命中人物志
+                string[] otherIds =
+                {
+                    "99_no_biography_probe", "30_han_xiangzi",
+                    "04_mountain_guardian_boy", "08_alchemy_prodigy_boy", "17_ghost_script_calligrapher_boy"
+                };
+                foreach (string id in otherIds)
+                    Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId(id, out _), Is.False, $"无档案或已删除形象不应命中：{id}");
+
+                // 历史视觉替代 ID 严禁获得任何人物志
+                string[] retiredVisualAliases =
+                {
+                    "QdaoHeadbandBoy", "12_iron_saber_flat_top_boy", "18_desert_sun_monk_girl",
+                    "22_lidazui_hair_waiter_saber_boy", "25_lion_drum_guard", "26_osmanthus_healer"
+                };
+                foreach (string alias in retiredVisualAliases)
+                    Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId(alias, out _), Is.False, $"历史视觉替代 ID 不得命中传记：{alias}");
+
+                // 热更契约：加载空人物志的新表快照时，立刻以表快照为准，不回退到旧硬编码文案
+                var reloaded = new CharacterAppearanceTableData();
+                reloaded.Data.Add(new CharacterAppearanceTable
+                {
+                    Id = 2,
+                    AppearanceId = "00_reference_topright_boy",
+                    Name = "金发带Q道童",
+                    Enabled = 1,
+                });
+                CharacterAppearanceTableManager.Instance.LoadFromBytes(reloaded.ToByteArray());
+                Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId("00_reference_topright_boy", out _), Is.False);
+                Assert.That(AppearanceBiographyCatalog.All.Count, Is.EqualTo(0));
+            }
+            finally
             {
-                "QdaoHeadbandBoy", "12_iron_saber_flat_top_boy", "18_desert_sun_monk_girl",
-                "22_lidazui_hair_waiter_saber_boy", "25_lion_drum_guard", "26_osmanthus_healer"
-            };
-            foreach (string alias in retiredVisualAliases)
-                Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId(alias, out _), Is.False, $"历史视觉替代 ID 不得命中传记：{alias}");
+                CharacterAppearanceTableManager.Instance.LoadFromBytes(prevBytes);
+            }
         }
 
         [Test]
@@ -385,15 +421,16 @@ namespace MmorpgClient.Tests.EditMode.Role
         public void PanelState_NoBiographyLeavesNoResidualAndInvalidatedEntryOrDisconnectClosesStory()
         {
             var state = new AppearancePanelState();
-            string[] ids = { "05_celestial_musician_girl", "09_bamboo_archer_girl", "01_ice_sword_girl" };
+            const string noBioId = "99_no_biography_probe";
+            string[] ids = { "05_celestial_musician_girl", "09_bamboo_archer_girl", noBioId };
             state.SyncAvailableAppearances(ids, "05_celestial_musician_girl", "05_celestial_musician_girl");
 
-            // 先选有档案的桑听雨，再切到无档案的冰剑少女：不得残留旧正文
+            // 先选有档案的桑听雨，再切到无档案探针条目：不得残留旧正文
             state.SelectAppearance("09_bamboo_archer_girl", 0.5f);
             Assert.That(state.TryGetSelectedBiography(out var bio), Is.True);
             Assert.That(bio.ArchiveName, Is.EqualTo("桑听雨"));
 
-            state.SelectAppearance("01_ice_sword_girl", 0.5f);
+            state.SelectAppearance(noBioId, 0.5f);
             Assert.That(state.TryGetSelectedBiography(out _), Is.False);
             Assert.That(state.OpenStory(0.5f), Is.False);
             Assert.That(state.IsStoryOpen, Is.False);
@@ -401,24 +438,24 @@ namespace MmorpgClient.Tests.EditMode.Role
             // 打开桑听雨故事后若条目从列表失效，立刻关闭阅读层
             state.SelectAppearance("09_bamboo_archer_girl", 0.5f);
             Assert.That(state.OpenStory(0.5f), Is.True);
-            state.SyncAvailableAppearances(new[] { "05_celestial_musician_girl", "01_ice_sword_girl" },
+            state.SyncAvailableAppearances(new[] { "05_celestial_musician_girl", noBioId },
                 "05_celestial_musician_girl", "05_celestial_musician_girl");
             Assert.That(state.IsStoryOpen, Is.False);
             Assert.That(state.TryGetReadingBiography(out _), Is.False);
 
             // 背包 0 张卡点击未拥有可兑换形象 -> 仅弹缺卡商城引导，不触发确认提交
-            var noCardOutcome = state.RequestSwitch("01_ice_sword_girl", "05_celestial_musician_girl", 0, 1, targetOwned: false, targetCardUnlockable: true);
+            var noCardOutcome = state.RequestSwitch(noBioId, "05_celestial_musician_girl", 0, 1, targetOwned: false, targetCardUnlockable: true);
             Assert.That(noCardOutcome, Is.EqualTo(AppearanceSwitchIntentOutcome.OpenedNoCardGuide));
             Assert.That(state.IsNoCardGuideOpen, Is.True);
             Assert.That(state.TryConsumePendingSwitchConfirm(out _), Is.False);
 
             // 已拥有非当前形象 -> 0 卡直接免费切换，不弹确认/缺卡框
-            var freeOutcome = state.RequestSwitch("01_ice_sword_girl", "05_celestial_musician_girl", 0, 1, targetOwned: true, targetCardUnlockable: false);
+            var freeOutcome = state.RequestSwitch(noBioId, "05_celestial_musician_girl", 0, 1, targetOwned: true, targetCardUnlockable: false);
             Assert.That(freeOutcome, Is.EqualTo(AppearanceSwitchIntentOutcome.ReadyForFreeSwitch));
             Assert.That(state.HasOverlay, Is.False);
 
             // 未拥有且非卡兑换（玩法专属）-> 拒绝扣卡，不弹确认/缺卡框
-            var lockedOutcome = state.RequestSwitch("01_ice_sword_girl", "05_celestial_musician_girl", 5, 1, targetOwned: false, targetCardUnlockable: false);
+            var lockedOutcome = state.RequestSwitch(noBioId, "05_celestial_musician_girl", 5, 1, targetOwned: false, targetCardUnlockable: false);
             Assert.That(lockedOutcome, Is.EqualTo(AppearanceSwitchIntentOutcome.LockedExclusive));
             Assert.That(state.HasOverlay, Is.False);
 
