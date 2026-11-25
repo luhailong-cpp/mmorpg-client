@@ -57,6 +57,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
 
             CoreLoopUiArt.Clear(transform);
             CoreLoopUiArt.Frame(transform, "首领试炼 · 备战", _root.OpenHub);
+            SeasonEconomyUiArt.DrawSeasonLobbyTabs(transform, 0,
+                _root.OpenBossTrials, _root.OpenRotations, _root.OpenFormalPvp);
             CoreLoopUiArt.Text("Intro", transform, 290, 275, 1410, 55,
                 "先读机制，再选反制。单人可携出战灵宠，组队不必凑满五人。", 28,
                 CoreLoopUiArt.Muted, false, true);
@@ -76,8 +78,17 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     SeasonEconomyUiArt.CreateSlicedOrSimple(transform, "BossCard" + i, x, 345, 400, 488, cardSprite, CoreLoopUiArt.Ivory);
                 else
                     CoreLoopUiArt.Card(transform, "BossCard" + i, x, 345, 400, 488, selected);
-                CoreLoopUiArt.Image("BossPortrait" + i, transform, x + 25, 374, 110, 110,
-                    BossIllustrationKey(card.BossTrialKind), new Color(.82f, .9f, .82f, .9f));
+                var bossAvatar = SeasonEconomyUiArt.LoadIcon(SeasonEconomyUiArt.BossAvatarIconKey(card.BossTrialKind));
+                if (bossAvatar != null)
+                {
+                    var portrait = QdaoUguiFactory.CreateImage("BossPortrait" + i, transform, x + 25, 374, 110, 110, bossAvatar, false);
+                    portrait.preserveAspect = true;
+                }
+                else
+                {
+                    CoreLoopUiArt.Image("BossPortrait" + i, transform, x + 25, 374, 110, 110,
+                        BossIllustrationKey(card.BossTrialKind), new Color(.82f, .9f, .82f, .9f));
+                }
                 CoreLoopUiArt.Text("BossName" + i, transform, x + 145, 378, 230, 63,
                     card.BossName, 27, CoreLoopUiArt.DeepJade, true, true);
                 CoreLoopUiArt.Badge(transform, "GuardTag" + i, x + 145, 451, 215,
@@ -136,7 +147,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 _selectedHard ? "困难胜局：基础 10 + 困难绑定加量 5（含至多 1 份可交易）；全队成员均须已解锁困难。"
                     : "普通胜局：基础材料奖励，含至多 1 份可交易。", 23, CoreLoopUiArt.Muted);
             CoreLoopUiArt.Button("EnterTrial", transform, 1740, 834, 420, 80,
-                enterLabel, () => _core.EnterBossTrial(selectedDungeon), canLead, true, 30);
+                enterLabel, () => _core.EnterBossTrial(selectedDungeon), canLead, true, 30, "btn_primary_gold");
             CoreLoopUiArt.Text("PartyStatus", transform, 1740, 919, 420, 35,
                 teamHint, 20, teamReady ? CoreLoopUiArt.Muted : CoreLoopUiArt.Warning,
                 false, false, TextAlignmentOptions.Center);

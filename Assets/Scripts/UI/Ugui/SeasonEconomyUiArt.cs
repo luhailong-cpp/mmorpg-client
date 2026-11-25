@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +29,8 @@ namespace MmorpgClient.UI.Ugui
 
         public static readonly Color GoldHighlight = new Color32(0xC4, 0x8A, 0x2C, 255);
         public static readonly Color GoldText = new Color32(0xFF, 0xF4, 0xD2, 255);
+        /// <summary>浅古金按钮（btn_primary_gold）上的深棕墨高对比字色。</summary>
+        public static readonly Color GoldButtonInk = new Color32(0x3F, 0x26, 0x0B, 255);
         public static readonly Color SoftWarnText = new Color32(0x8E, 0x4B, 0x28, 255);
 
         private static readonly Dictionary<string, Sprite> Cache = new Dictionary<string, Sprite>(StringComparer.Ordinal);
@@ -87,6 +90,16 @@ namespace MmorpgClient.UI.Ugui
             if (sprite != null) Cache[path] = sprite;
             return sprite;
         }
+
+        /// <summary>将首领试炼种类映射为 SeasonEconomyV1 专属 256×256 无字首领头像键。</summary>
+        public static string BossAvatarIconKey(uint bossTrialKind) => bossTrialKind switch
+        {
+            1u => "boss_break_avatar",
+            2u => "boss_break_avatar",
+            3u => "boss_barrier_avatar",
+            4u => "boss_venom_avatar",
+            _ => "boss_break_avatar",
+        };
 
         /// <summary>将战斗公开预告 IntentKind 映射为专属 256×256 无字意图图标键。</summary>
         public static string IntentIconKey(uint intentKind) => intentKind switch
@@ -177,6 +190,30 @@ namespace MmorpgClient.UI.Ugui
         }
 
         /// <summary>
+        /// 应用已通过离线横向三段检验的控件精灵：横向三段（top=bottom=0）按目标高度自动换算 pixelsPerUnitMultiplier，
+        /// 保证任意高度下左右云纹/圆角端帽严格保持原图比例、不挤压不重叠。
+        /// </summary>
+        public static void ApplyHorizontalSlice(Image img, Sprite sprite, float targetHeight)
+        {
+            if (img == null || sprite == null) return;
+            img.sprite = sprite;
+            img.color = Color.white;
+            if (sprite.border.sqrMagnitude > 0f)
+            {
+                img.type = Image.Type.Sliced;
+                img.pixelsPerUnitMultiplier = sprite.border.y == 0f && sprite.border.w == 0f
+                    && targetHeight > 0f && sprite.rect.height > 0f
+                    ? sprite.rect.height / targetHeight
+                    : 1f;
+            }
+            else
+            {
+                img.type = Image.Type.Simple;
+                img.pixelsPerUnitMultiplier = 1f;
+            }
+        }
+
+        /// <summary>
         /// 应用已通过离线横向三段检验的控件精灵（仅设置 Sliced 当 sprite.border 非零）。
         /// </summary>
         public static Image CreateSlicedOrSimple(
@@ -193,15 +230,53 @@ namespace MmorpgClient.UI.Ugui
             var img = QdaoUguiFactory.CreateImage(name, parent, x, y, width, height, sprite, raycast);
             if (sprite != null)
             {
-                img.type = sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
-                img.pixelsPerUnitMultiplier = 1f;
-                img.color = Color.white;
+                ApplyHorizontalSlice(img, sprite, height);
             }
             else
             {
                 img.color = fallback;
             }
             return img;
+        }
+
+        /// <summary>
+        /// 在赛季玩法大厅顶栏左侧空白区（x=290..1014, y=172..238，避开居中标题牌与下方说明条）绘制统一三页签切换条。
+        /// </summary>
+        public static void DrawSeasonLobbyTabs(
+            Transform parent,
+            int activeIndex,
+            Action onBossTrials,
+            Action onRotations,
+            Action onFormalPvp)
+        {
+            var labels = new[] { "首领试炼", "轮换娱乐", "人宠会武" };
+            var actions = new[] { onBossTrials, onRotations, onFormalPvp };
+            const float startX = 290f;
+            const float y = 172f;
+            const float tabW = 232f;
+            const float tabH = 66f;
+            const float gap = 14f;
+            for (int i = 0; i < 3; ++i)
+            {
+                bool active = i == activeIndex;
+                var sprite = LoadControl(active ? "tab_active" : "tab_normal");
+                var button = QdaoUguiFactory.CreateArtButton("SeasonTab_" + i, parent,
+                    startX + i * (tabW + gap), y, tabW, tabH, sprite, out var art);
+                if (sprite != null)
+                    ApplyHorizontalSlice(art, sprite, tabH);
+                else
+                    art.color = active ? QdaoUguiTheme.Html("#285D4D") : QdaoUguiTheme.Html("#F7F1E2");
+                var action = actions[i];
+                if (!active && action != null) button.onClick.AddListener(() => action());
+                var text = QdaoUguiFactory.CreateText("SeasonTabLabel_" + i, button.transform,
+                    24f, 0f, tabW - 48f, tabH, labels[i], 24f,
+                    active ? QdaoUguiTheme.Html("#F7F1E2") : QdaoUguiTheme.Html("#27483C"),
+                    TextAlignmentOptions.Center);
+                text.fontStyle = FontStyles.Bold;
+                text.enableAutoSizing = true;
+                text.fontSizeMin = 16f;
+                text.fontSizeMax = 24f;
+            }
         }
 
         /// <summary>

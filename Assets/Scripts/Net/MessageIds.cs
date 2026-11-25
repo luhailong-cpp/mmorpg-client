@@ -81,7 +81,10 @@ namespace MmorpgClient.Net
         public const uint JubaozhaiGetCommerceOrder =  279; // ClientPlayerJubaozhaiGetCommerceOrder
         public const uint JubaozhaiGetListingDetail =  197; // ClientPlayerJubaozhaiGetListingDetail
         public const uint JubaozhaiGetMarketDepth =  284; // ClientPlayerJubaozhaiGetMarketDepth
+        public const uint JubaozhaiGetMarketReferencePrice =  483; // ClientPlayerJubaozhaiGetMarketReferencePrice
         public const uint JubaozhaiGetMyShelf    =  200; // ClientPlayerJubaozhaiGetMyShelf
+        public const uint JubaozhaiGetPlayerTradeQuota =  484; // ClientPlayerJubaozhaiGetPlayerTradeQuota
+        public const uint JubaozhaiGetSellerCredit =  481; // ClientPlayerJubaozhaiGetSellerCredit
         public const uint JubaozhaiListCommerceOrders =  287; // ClientPlayerJubaozhaiListCommerceOrders
         public const uint JubaozhaiListMarketOrders =  266; // ClientPlayerJubaozhaiListMarketOrders
         public const uint JubaozhaiListOfficialSkus =  277; // ClientPlayerJubaozhaiListOfficialSkus
@@ -89,6 +92,7 @@ namespace MmorpgClient.Net
         public const uint JubaozhaiPlaceAuctionBid =  288; // ClientPlayerJubaozhaiPlaceAuctionBid
         public const uint JubaozhaiPlaceMarketOrder =  282; // ClientPlayerJubaozhaiPlaceMarketOrder
         public const uint JubaozhaiSetFavorite   =  198; // ClientPlayerJubaozhaiSetFavorite
+        public const uint JubaozhaiSubmitSellerReview =  482; // ClientPlayerJubaozhaiSubmitSellerReview
         public const uint KickGuildMember        =  217; // GuildServiceKickGuildMember
         public const uint KickMember             =  202; // ClientPlayerTeamKickMember
         public const uint KickPlayer             =   34; // SceneClientPlayerCommonKickPlayer

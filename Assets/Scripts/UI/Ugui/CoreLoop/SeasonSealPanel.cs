@@ -51,9 +51,9 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             CoreLoopUiArt.Clear(transform);
             CoreLoopUiArt.Frame(transform, "赛季印 · 试炼志", _root.CloseCurrent);
             CoreLoopUiArt.Button("SeasonTab", transform, 300, 251, 245, 48,
-                "赛季印", Show, true, !_showTrialJournal, 23);
+                "赛季印", Show, true, !_showTrialJournal, 23, !_showTrialJournal ? "tab_active" : "tab_normal");
             CoreLoopUiArt.Button("JournalTab", transform, 559, 251, 245, 48,
-                "试炼志", () => _root.OpenTrialJournal(), true, _showTrialJournal, 23);
+                "试炼志", () => _root.OpenTrialJournal(), true, _showTrialJournal, 23, _showTrialJournal ? "tab_active" : "tab_normal");
             if (_showTrialJournal) { DrawTrialJournal(); return; }
             if (snapshot == null || !snapshot.Available)
             {

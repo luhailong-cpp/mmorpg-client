@@ -300,6 +300,9 @@ namespace MmorpgClient.Game.TrialJournal
                 case "boss_trial:hard:venom":
                     target = new TrialJumpTarget(TrialJumpKind.BossTrial, 108u, 2u, "venom", "单人 / 组队均可挑战（需先通任意普通试炼）");
                     return true;
+                case "boss_trial:hard:dual_guard":
+                    target = new TrialJumpTarget(TrialJumpKind.BossTrial, 112u, 2u, "dual_guard", "单人 / 组队均可挑战（仅困难 · 需先通任意普通试炼）");
+                    return true;
                 case "boss_trial:normal:rescue":
                     target = new TrialJumpTarget(TrialJumpKind.BossTrial, 109u, 1u, "rescue", "单人 / 组队均可挑战");
                     return true;
@@ -342,6 +345,10 @@ namespace MmorpgClient.Game.TrialJournal
                     bossMonsterId = 101u;
                     guardMonsterId = 103u;
                     return true;
+                case 105u:
+                    bossMonsterId = 101u;
+                    guardMonsterId = 102u;
+                    return true;
                 case 201u:
                 case 203u:
                     bossMonsterId = 104u;
@@ -357,6 +364,15 @@ namespace MmorpgClient.Game.TrialJournal
                     guardMonsterId = 0u;
                     return false;
             }
+        }
+
+        /// <summary>返回关卡格关联的全部核心护卫怪物表 ID（105 双卫同阵返回 [102, 103]，其余单卫返回 1 项，PVP 返回空）。</summary>
+        public static IReadOnlyList<uint> GetEntryGuardMonsterIds(uint entryId)
+        {
+            if (entryId == 105u) return new[] { 102u, 103u };
+            return TryGetEntryMonsterIds(entryId, out _, out uint guardId) && guardId != 0u
+                ? new[] { guardId }
+                : Array.Empty<uint>();
         }
 
         /// <summary>

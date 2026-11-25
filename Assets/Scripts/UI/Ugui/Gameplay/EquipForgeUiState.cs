@@ -793,11 +793,16 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             return text;
         }
 
-        /// <summary>强化结果的一句话。等级以服务器回的为准;比发出时低 = 失败掉了级。</summary>
+        /// <summary>强化结果的一句话。等级以服务器回的为准;比发出时低 = 失败掉了级;保底档位明确汇报当前保底进度与下一次必成。</summary>
         private static string OutcomeText(EquipEnhanceOutcome outcome, string name, uint levelBefore)
         {
             string level = "+" + Number(outcome.Level);
             if (outcome.Success) return $"强化成功：{name} {level}";
+            if (outcome.PityLimit > 0 && outcome.Level >= levelBefore)
+            {
+                string nextHint = outcome.PityCount + 1 >= outcome.PityLimit ? "（下一次必成）" : string.Empty;
+                return $"强化未突破：{name} 仍为 {level}，保底进度 {Number(outcome.PityCount)}/{Number(outcome.PityLimit)}{nextHint}，消耗已扣除";
+            }
             return outcome.Level < levelBefore
                 ? $"强化未成功：{name} 降为 {level}，消耗已扣除"
                 : $"强化未成功：{name} 仍为 {level}，消耗已扣除";

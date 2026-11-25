@@ -22,6 +22,7 @@ namespace MmorpgClient.Game.CoreLoop
         public uint HardRewardUnits { get; }
         public bool HardUnlocked { get; }
         public string HardLockHint { get; }
+        public bool IsHardOnly => NormalDungeonId == 0u && HardDungeonId != 0u;
 
         public BossTrialCardView(
             uint bossTrialKind,
@@ -130,11 +131,12 @@ namespace MmorpgClient.Game.CoreLoop
         }
     }
 
-    /// <summary>战斗内单条公开预告视图（对应 BattleTelegraphEntry）。</summary>
+    /// <summary>战斗内单条公开预告视图（对应 BattleTelegraphEntry，兼容单目标与 3–5 人裂地双劈多目标）。</summary>
     public sealed class BattleTelegraphView
     {
         public ulong SourceActorId { get; }
         public ulong TargetActorId { get; }
+        public IReadOnlyList<ulong> TargetActorIds { get; }
         public uint ExecuteRound { get; }
         public uint IntentKind { get; }
         public uint Status { get; }
@@ -142,6 +144,7 @@ namespace MmorpgClient.Game.CoreLoop
         public string StatusTag { get; }
         public string DetailText { get; }
         public bool ExecutesThisRound => Status == 2u;
+        public bool IsDualTarget => TargetActorIds != null && TargetActorIds.Count >= 2;
 
         public BattleTelegraphView(
             ulong sourceActorId,
@@ -151,10 +154,17 @@ namespace MmorpgClient.Game.CoreLoop
             uint status,
             string intentTitle,
             string statusTag,
-            string detailText)
+            string detailText,
+            IReadOnlyList<ulong> targetActorIds = null)
         {
             SourceActorId = sourceActorId;
             TargetActorId = targetActorId;
+            if (targetActorIds != null && targetActorIds.Count > 0)
+                TargetActorIds = targetActorIds;
+            else if (targetActorId != 0ul)
+                TargetActorIds = new[] { targetActorId };
+            else
+                TargetActorIds = Array.Empty<ulong>();
             ExecuteRound = executeRound;
             IntentKind = intentKind;
             Status = status;
@@ -164,7 +174,41 @@ namespace MmorpgClient.Game.CoreLoop
         }
     }
 
-    /// <summary>战斗内核心玩法 HUD 派生视图（预告 + 物法易势换势条 + 护卫救援保全目标）。</summary>
+    /// <summary>BATTLE_EVENT_BOSS_MECHANIC(22) 的纯 C# 播报视图（供战斗演出横幅/飘字层直接消费）。</summary>
+    public sealed class BossMechanicBannerView
+    {
+        public uint MechanicKind { get; }
+        public string Title { get; }
+        public string Subtitle { get; }
+        public ulong Value { get; }
+        public bool IsPositiveForPlayer { get; }
+
+        public BossMechanicBannerView(uint mechanicKind, string title, string subtitle, ulong value, bool isPositiveForPlayer)
+        {
+            MechanicKind = mechanicKind;
+            Title = title ?? "";
+            Subtitle = subtitle ?? "";
+            Value = value;
+            IsPositiveForPlayer = isPositiveForPlayer;
+        }
+    }
+
+    /// <summary>首领试炼 V2 结算页战法高光徽章视图（严格派生自 BattleTrialJournalFacts）。</summary>
+    public sealed class BossTrialHighlightBadge
+    {
+        public string Key { get; }
+        public string Title { get; }
+        public string Detail { get; }
+
+        public BossTrialHighlightBadge(string key, string title, string detail)
+        {
+            Key = key ?? "";
+            Title = title ?? "";
+            Detail = detail ?? "";
+        }
+    }
+
+    /// <summary>战斗内核心玩法 HUD 派生视图（预告 + 首领试炼 V2 破绽/蓄势/护势/二阶段 + 物法易势换势条 + 护卫救援保全目标）。</summary>
     public sealed class BattleCoreHudView
     {
         public uint RoundIndex { get; }
@@ -174,10 +218,24 @@ namespace MmorpgClient.Game.CoreLoop
         public string PolarityBannerText { get; }
         public ulong ProtectedGuardActorId { get; }
         public string ProtectedGuardBannerText { get; }
+        public uint BossPhase { get; }
+        public uint BossMomentumStacks { get; }
+        public uint BossStanceType { get; }
+        public uint BossStanceRemainRounds { get; }
+        public uint BossExposedPct { get; }
+        public uint BossExposedUntilRound { get; }
+        public uint BossTrialKind { get; }
+        public uint BattleDifficulty { get; }
+        public string BossPhaseBannerText { get; }
+        public string BossStatusSummaryText { get; }
 
         public bool HasTelegraphs => Telegraphs != null && Telegraphs.Count > 0;
         public bool HasPolarity => ActivePolarity != 0;
         public bool HasProtectedGuard => ProtectedGuardActorId != 0;
+        public bool IsBossTrial => CoreGameplayLoopModels.IsBossTrialKind(BossTrialKind);
+        public bool IsBossPhaseTwo => BossPhase >= 2u;
+        public bool IsBossExposed => BossExposedPct > 0u;
+        public bool HasBossStance => BossStanceType != 0u && BossStanceRemainRounds > 0u;
 
         public BattleCoreHudView(
             uint roundIndex,
@@ -186,7 +244,17 @@ namespace MmorpgClient.Game.CoreLoop
             uint nextPolaritySwitchRound,
             string polarityBannerText,
             ulong protectedGuardActorId,
-            string protectedGuardBannerText)
+            string protectedGuardBannerText,
+            uint bossPhase = 0u,
+            uint bossMomentumStacks = 0u,
+            uint bossStanceType = 0u,
+            uint bossStanceRemainRounds = 0u,
+            uint bossExposedPct = 0u,
+            uint bossExposedUntilRound = 0u,
+            uint bossTrialKind = 0u,
+            uint battleDifficulty = 0u,
+            string bossPhaseBannerText = "",
+            string bossStatusSummaryText = "")
         {
             RoundIndex = roundIndex;
             Telegraphs = telegraphs;
@@ -195,6 +263,16 @@ namespace MmorpgClient.Game.CoreLoop
             PolarityBannerText = polarityBannerText ?? "";
             ProtectedGuardActorId = protectedGuardActorId;
             ProtectedGuardBannerText = protectedGuardBannerText ?? "";
+            BossPhase = bossPhase;
+            BossMomentumStacks = bossMomentumStacks;
+            BossStanceType = bossStanceType;
+            BossStanceRemainRounds = bossStanceRemainRounds;
+            BossExposedPct = bossExposedPct;
+            BossExposedUntilRound = bossExposedUntilRound;
+            BossTrialKind = bossTrialKind;
+            BattleDifficulty = battleDifficulty;
+            BossPhaseBannerText = bossPhaseBannerText ?? "";
+            BossStatusSummaryText = bossStatusSummaryText ?? "";
         }
     }
 
@@ -328,14 +406,20 @@ namespace MmorpgClient.Game.CoreLoop
         public const uint Boss3PoisonHardDungeonId = 108u;
         public const uint GuardRescueDungeonId = 109u;
         public const uint Polarity5v5DungeonId = 110u;
+        public const uint Boss1DualGuardHardDungeonId = 112u;
+        public const uint BossTrialKindDualGuard = 8u;
 
         public const string HardLockDefaultHint = "通关任意一只普通首领试炼后开放困难难度";
+
+        public static bool IsBossTrialKind(uint bossTrialKind) =>
+            (bossTrialKind >= 1u && bossTrialKind <= 4u) || bossTrialKind == BossTrialKindDualGuard;
 
         public static bool IsHardBossTrialDungeon(uint dungeonConfigId) =>
             dungeonConfigId == Boss1RejuvenateHardDungeonId
             || dungeonConfigId == Boss1StanceHardDungeonId
             || dungeonConfigId == Boss2ShieldHardDungeonId
-            || dungeonConfigId == Boss3PoisonHardDungeonId;
+            || dungeonConfigId == Boss3PoisonHardDungeonId
+            || dungeonConfigId == Boss1DualGuardHardDungeonId;
 
         /// <summary>生成 3 只不同机制首领（4 组普通/困难变体，Dungeon 101–108）卡片列表。</summary>
         public static IReadOnlyList<BossTrialCardView> BuildBossTrialCards(global::TrialJournalSnapshot journal)
@@ -347,28 +431,51 @@ namespace MmorpgClient.Game.CoreLoop
                 new BossTrialCardView(
                     1u, Boss1RejuvenateNormalDungeonId, Boss1RejuvenateHardDungeonId,
                     "重甲首领 · 回春阵", "回春护卫",
-                    "首领提前预告慢动作重劈；回春护卫读条为首领高额回血。",
-                    "被点名者防御或由宝宝保护，优先集火或控制回春护卫断疗。",
+                    "群攻主点 100% / 溅射 60%；化解重劈触发破绽 +35%，打断或击杀回春触发 6% 反噬破绽。",
+                    "点名重劈按防御/护盾化劲；优先集火或控断回春护卫，困难模式可用断脉咒压制净化。",
                     10u, 15u, hardUnlocked, lockHint),
                 new BossTrialCardView(
                     2u, Boss1StanceNormalDungeonId, Boss1StanceHardDungeonId,
                     "重甲首领 · 护势阵", "护势护卫",
-                    "首领预告重劈；护势护卫轮流张开物防护势与法防护势。",
-                    "看清护势类型切换物法集火，避免把主力爆发打在免疫护势上。",
+                    "护势联防阵庇护全体敌方（35%/40%），同系直伤触发轻反制叠蓄势；困难按前 2 回合顺势应变。",
+                    "避开当前护势系直伤，或用驱散技能破阵触发「崩势」令首领与护卫同时陷入破绽 +35%。",
                     10u, 15u, hardUnlocked, lockHint),
                 new BossTrialCardView(
                     3u, Boss2ShieldNormalDungeonId, Boss2ShieldHardDungeonId,
                     "玄盾首领", "灵障护卫",
-                    "灵障护卫每两回合蓄盾，未击破护盾将在下回合引发高额反震爆发。",
-                    "利用宝宝碎甲与集火破盾，在护盾引爆前打断节奏。",
+                    "灵障护卫周期蓄盾，首领预告慢速法术重击；主目标聚火高效破盾，化解重击触发破绽。",
+                    "优先主点首领集中破盾，被灵障重击点名时防御或套护罩化劲反打。",
                     10u, 15u, hardUnlocked, lockHint),
                 new BossTrialCardView(
                     4u, Boss3PoisonNormalDungeonId, Boss3PoisonHardDungeonId,
                     "幽毒首领", "玄毒护卫",
-                    "玄毒护卫释放叠毒并封灵限制出手，长线拖延压力持续上升。",
-                    "及时净化叠毒与控场封灵护卫，人宠错峰恢复稳住血线。",
+                    "玄毒护卫封灵吸蓝，首领预告慢速群体玄毒；控断或净化稳血线，半血后转入决战姿态。",
+                    "及时净化减益与破甲，利用控场打断群体玄毒触发破绽窗口集中收割。",
                     10u, 15u, hardUnlocked, lockHint),
             };
+        }
+
+        /// <summary>生成困难专属「重甲首领 · 双卫同阵」（Dungeon 112，boss_trial_kind = 8）第 5 张高难卡片。</summary>
+        public static BossTrialCardView BuildDualGuardBossTrialCard(global::TrialJournalSnapshot journal)
+        {
+            bool hardUnlocked = journal != null && journal.HardBossTrialUnlocked;
+            string lockHint = hardUnlocked ? "" : HardLockDefaultHint;
+            return new BossTrialCardView(
+                BossTrialKindDualGuard, 0u, Boss1DualGuardHardDungeonId,
+                "重甲首领 · 双卫同阵", "回春 + 护势",
+                "仅困难开放：回春与护势双核心护卫（75% 血）同场错峰运转（R1 护势 / R2 重劈 / R3 回春），3–5 人追加破军卫与裂地双劈。",
+                "开局按需先断回春或先崩护势，双卫全灭或首领半血转二阶段决战姿态；胜局 15 份材料并解锁试炼志专属「破阵双绝」徽章。",
+                0u, 15u, hardUnlocked, lockHint);
+        }
+
+        /// <summary>生成首领试炼 V2 完整 5 卡片列表（4 组常规普通/困难 + 第 5 张仅困难双卫同阵，供 V2 UI 使用）。</summary>
+        public static IReadOnlyList<BossTrialCardView> BuildBossTrialCardsV2(global::TrialJournalSnapshot journal)
+        {
+            var baseCards = BuildBossTrialCards(journal);
+            var list = new List<BossTrialCardView>(baseCards.Count + 1);
+            for (int i = 0; i < baseCards.Count; i++) list.Add(baseCards[i]);
+            list.Add(BuildDualGuardBossTrialCard(journal));
+            return list;
         }
 
         /// <summary>生成正式人宠会武 1V1–5V5 五档规模卡片（严格读取服务端开放开关与主力/特殊玩法分类）。</summary>
@@ -464,7 +571,7 @@ namespace MmorpgClient.Game.CoreLoop
             };
         }
 
-        /// <summary>从 BattleStateS2C 派生战斗内公开预告、物法易势横幅与护卫救援保全提示。</summary>
+        /// <summary>从 BattleStateS2C 派生战斗内公开预告、首领试炼 V2 破绽/蓄势/护势/二阶段、物法易势横幅与护卫救援保全提示。</summary>
         public static BattleCoreHudView BuildBattleCoreHud(global::BattleStateS2C state)
         {
             if (state == null)
@@ -480,9 +587,16 @@ namespace MmorpgClient.Game.CoreLoop
                 string detail = !string.IsNullOrEmpty(t.Label)
                     ? t.Label
                     : $"第 {t.ExecuteRound} 回合 · {title}（{statusTag}）";
+                IReadOnlyList<ulong> multiTargets = null;
+                if (t.TargetActorIds != null && t.TargetActorIds.Count > 0)
+                {
+                    var copied = new ulong[t.TargetActorIds.Count];
+                    for (int k = 0; k < t.TargetActorIds.Count; k++) copied[k] = t.TargetActorIds[k];
+                    multiTargets = copied;
+                }
                 telegraphs.Add(new BattleTelegraphView(
                     t.SourceActorId, t.TargetActorId, t.ExecuteRound, t.IntentKind, t.Status,
-                    title, statusTag, detail));
+                    title, statusTag, detail, multiTargets));
             }
 
             string polarityBanner = "";
@@ -500,8 +614,31 @@ namespace MmorpgClient.Game.CoreLoop
             }
 
             string guardBanner = state.ProtectedGuardActorId != 0
-                ? "救援目标：击败首领并保全敌方回春护卫存活"
+                ? "救援目标：8 回合内击败首领并保全友方护卫存活（阵亡即失败）"
                 : "";
+
+            string bossPhaseBanner = "";
+            string bossStatusSummary = "";
+            if (IsBossTrialKind(state.BossTrialKind))
+            {
+                bossPhaseBanner = state.BossPhase >= 2u
+                    ? "二阶段 · 决战姿态（破釜）：首领易伤 +15%，重劈每 2 回合循环"
+                    : "一阶段 · 破阵迎敌（群攻主点 100% / 溅射 60%）";
+                var parts = new List<string>(4);
+                if (state.BossExposedPct > 0u)
+                {
+                    parts.Add(state.BossExposedUntilRound > 0u
+                        ? $"破绽 +{state.BossExposedPct}%（至第 {state.BossExposedUntilRound} 回合末）"
+                        : $"破绽 +{state.BossExposedPct}%");
+                }
+                if (state.BossMomentumStacks > 0u)
+                    parts.Add($"蓄势 {state.BossMomentumStacks}/3（重劈 +{state.BossMomentumStacks * 12u}%）");
+                if (state.BossStanceType == 1u && state.BossStanceRemainRounds > 0u)
+                    parts.Add($"物防联防阵（余 {state.BossStanceRemainRounds} 回合，可驱散崩势）");
+                else if (state.BossStanceType == 2u && state.BossStanceRemainRounds > 0u)
+                    parts.Add($"法防联防阵（余 {state.BossStanceRemainRounds} 回合，可驱散崩势）");
+                bossStatusSummary = parts.Count > 0 ? string.Join("  ·  ", parts) : "";
+            }
 
             return new BattleCoreHudView(
                 state.RoundIndex,
@@ -510,7 +647,17 @@ namespace MmorpgClient.Game.CoreLoop
                 state.NextPolaritySwitchRound,
                 polarityBanner,
                 state.ProtectedGuardActorId,
-                guardBanner);
+                guardBanner,
+                state.BossPhase,
+                state.BossMomentumStacks,
+                state.BossStanceType,
+                state.BossStanceRemainRounds,
+                state.BossExposedPct,
+                state.BossExposedUntilRound,
+                state.BossTrialKind,
+                state.BattleDifficulty,
+                bossPhaseBanner,
+                bossStatusSummary);
         }
 
         public static string TelegraphIntentTitle(uint intentKind) => intentKind switch
@@ -521,8 +668,104 @@ namespace MmorpgClient.Game.CoreLoop
             4u => "法防护势",
             5u => "灵障蓄盾",
             6u => "玄毒封灵",
+            7u => "灵障法术重击",
+            8u => "玄毒群体冲击",
+            9u => "春禧重击",
             _ => "首领蓄力",
         };
+
+        /// <summary>
+        /// 收集本回合适合展示「一键化劲防御」快捷按钮的本人或本人存活出战宠 actor_id 列表：
+        /// 仅当单位仍在 PendingActorIds 且被本回合发动的慢速重劈/法术重击/春禧重击点名时返回。
+        /// </summary>
+        public static IReadOnlyList<ulong> CollectQuickParryDefendActorIds(ulong myPlayerId, global::BattleStateS2C state)
+        {
+            if (myPlayerId == 0ul || state == null || state.Outcome != eBattleOutcome.BattleOutcomeOngoing)
+                return Array.Empty<ulong>();
+            if (state.Telegraphs == null || state.Telegraphs.Count == 0
+                || state.PendingActorIds == null || state.PendingActorIds.Count == 0)
+                return Array.Empty<ulong>();
+
+            var pending = new HashSet<ulong>(state.PendingActorIds);
+            var threatened = new HashSet<ulong>();
+            for (int i = 0; i < state.Telegraphs.Count; i++)
+            {
+                var t = state.Telegraphs[i];
+                if (t == null) continue;
+                bool executingNow = t.Status == 2u || (t.ExecuteRound != 0u && t.ExecuteRound == state.RoundIndex);
+                if (!executingNow) continue;
+                if (t.IntentKind != 1u && t.IntentKind != 7u && t.IntentKind != 9u) continue;
+                if (t.TargetActorIds != null && t.TargetActorIds.Count > 0)
+                {
+                    for (int k = 0; k < t.TargetActorIds.Count; k++)
+                    {
+                        if (t.TargetActorIds[k] != 0ul) threatened.Add(t.TargetActorIds[k]);
+                    }
+                }
+                else if (t.TargetActorId != 0ul)
+                {
+                    threatened.Add(t.TargetActorId);
+                }
+            }
+            if (threatened.Count == 0) return Array.Empty<ulong>();
+
+            var result = new List<ulong>(2);
+            for (int i = 0; i < state.Actors.Count; i++)
+            {
+                var a = state.Actors[i];
+                if (a == null || a.IsDead || a.Fled) continue;
+                bool isOwned = a.ActorId == myPlayerId
+                    || (a.ActorType == eBattleActorType.BattleActorTypePet && a.OwnerPlayerId == myPlayerId);
+                if (!isOwned) continue;
+                if (pending.Contains(a.ActorId) && threatened.Contains(a.ActorId))
+                    result.Add(a.ActorId);
+            }
+            return result;
+        }
+
+        /// <summary>当前技能在目标选择预览时是否应展示首领试炼 V2「聚火 100% / 溅射 60%」角标。</summary>
+        public static bool IsSplashFocusApplicable(global::BattleStateS2C state, uint skillMaxTargets) =>
+            state != null && IsBossTrialKind(state.BossTrialKind) && skillMaxTargets > 1u;
+
+        /// <summary>将 BATTLE_EVENT_BOSS_MECHANIC(22) 转换为 UI 演出横幅与飘字文案。</summary>
+        public static BossMechanicBannerView DescribeBossMechanicEvent(global::BattleEventItem ev)
+        {
+            if (ev == null || ev.EventType != eBattleEventType.BattleEventBossMechanic) return null;
+            return ev.MechanicKind switch
+            {
+                1u => new BossMechanicBannerView(1u, $"化劲破绽 +{ev.Value}%", "成功化解首领慢速重劈，全队爆发窗口开启", ev.Value, true),
+                2u => new BossMechanicBannerView(2u, "断疗反噬 · 破绽 +35%", $"中断回春灵力反噬首领 {ev.Value} 点气血", ev.Value, true),
+                3u => new BossMechanicBannerView(3u, "崩势破盾 · 双破绽 +35%", "驱散或控断护势联防阵，清空首领蓄势", ev.Value, true),
+                4u => new BossMechanicBannerView(4u, "阵脚震荡", ev.Value > 1ul ? $"鼓噪卫阵亡震荡首领 {ev.Value} 点气血并清空蓄势" : "破军卫阵亡削减首领 1 层蓄势", ev.Value, true),
+                5u => new BossMechanicBannerView(5u, "决战姿态 · 破釜", "首领易伤 +15%，慢速重劈加快为每 2 回合循环", ev.Value, false),
+                6u => new BossMechanicBannerView(6u, $"首领蓄势 {ev.Value}/3", $"下一次重劈伤害额外 +{ev.Value * 12ul}%（可驱散）", ev.Value, false),
+                7u => new BossMechanicBannerView(7u, "破军破甲 -20%", "目标防御降低 20%（持续 2 回合，可净化）", ev.Value, false),
+                8u => new BossMechanicBannerView(8u, "回春净益", "困难回春顺手清除了首领 1 项减益状态", ev.Value, false),
+                9u => new BossMechanicBannerView(9u, "断脉气馁 -15%", "回春被断脉咒压制，首领下回合物攻降低 15%", ev.Value, true),
+                _ => new BossMechanicBannerView(ev.MechanicKind, "首领机制触发", "", ev.Value, false),
+            };
+        }
+
+        /// <summary>从终局权威 BattleSettlementData 派生首领试炼 V2 结算战法高光徽章列表。</summary>
+        public static IReadOnlyList<BossTrialHighlightBadge> BuildBossTrialHighlightBadges(global::BattleSettlementData settlement)
+        {
+            if (settlement == null || settlement.TrialFacts == null) return Array.Empty<BossTrialHighlightBadge>();
+            var facts = settlement.TrialFacts;
+            var badges = new List<BossTrialHighlightBadge>(5);
+            if (facts.CleaveParryCount > 0u)
+                badges.Add(new BossTrialHighlightBadge("cleave_parry", $"化劲破招 ×{facts.CleaveParryCount}", "成功化解首领慢速重劈触发破绽窗口"));
+            if (facts.HealInterruptBacklashCount > 0u)
+                badges.Add(new BossTrialHighlightBadge("heal_backlash", $"断疗反噬 ×{facts.HealInterruptBacklashCount}", "控断或击杀回春护卫反噬首领气血"));
+            if (facts.StanceBreakCount > 0u)
+                badges.Add(new BossTrialHighlightBadge("stance_break", $"崩势破盾 ×{facts.StanceBreakCount}", "驱散或控断护势联防阵触发双破绽"));
+            if (facts.AllSelfCleavesParried)
+                badges.Add(new BossTrialHighlightBadge("parry_master", "化劲宗师", "本场被重劈点名 100% 合法化解"));
+            bool won = (settlement.Outcome == eBattleOutcome.BattleOutcomeSideAWin && settlement.PlayerTeamIndex == 0u)
+                || (settlement.Outcome == eBattleOutcome.BattleOutcomeSideBWin && settlement.PlayerTeamIndex == 1u);
+            if (won && facts.InitialHumanCount == 1u && !settlement.Fled)
+                badges.Add(new BossTrialHighlightBadge("solo_clear", "单骑破阵", "单人携宠独立攻克首领试炼"));
+            return badges;
+        }
 
         public static string TelegraphStatusLabel(uint status) => status switch
         {

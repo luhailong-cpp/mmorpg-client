@@ -198,5 +198,28 @@ namespace MmorpgClient.Net.Generated
         public static void GetWithdrawal(IRpcChannel channel, global::Trade.GetWithdrawalRequest request,
             RpcDone<global::Trade.WithdrawalResponse> done)
             => channel.CallMethod(GetWithdrawalMessageId, request, global::Trade.WithdrawalResponse.Parser, done);
+
+        public const uint GetSellerCreditMessageId = 481;
+        /// <summary>
+        /// 卖家店铺信用档案、官方托管成交评价、近 7 日真实成交 p50 与当面交易防骗额度查询。
+        /// </summary>
+        public static void GetSellerCredit(IRpcChannel channel, global::Trade.GetSellerCreditRequest request,
+            RpcDone<global::Trade.SellerCreditResponse> done)
+            => channel.CallMethod(GetSellerCreditMessageId, request, global::Trade.SellerCreditResponse.Parser, done);
+
+        public const uint SubmitSellerReviewMessageId = 482;
+        public static void SubmitSellerReview(IRpcChannel channel, global::Trade.SubmitSellerReviewRequest request,
+            RpcDone<global::Trade.SubmitSellerReviewResponse> done)
+            => channel.CallMethod(SubmitSellerReviewMessageId, request, global::Trade.SubmitSellerReviewResponse.Parser, done);
+
+        public const uint GetMarketReferencePriceMessageId = 483;
+        public static void GetMarketReferencePrice(IRpcChannel channel, global::Trade.GetMarketReferencePriceRequest request,
+            RpcDone<global::Trade.GetMarketReferencePriceResponse> done)
+            => channel.CallMethod(GetMarketReferencePriceMessageId, request, global::Trade.GetMarketReferencePriceResponse.Parser, done);
+
+        public const uint GetPlayerTradeQuotaMessageId = 484;
+        public static void GetPlayerTradeQuota(IRpcChannel channel, global::Trade.GetPlayerTradeQuotaRequest request,
+            RpcDone<global::Trade.GetPlayerTradeQuotaResponse> done)
+            => channel.CallMethod(GetPlayerTradeQuotaMessageId, request, global::Trade.GetPlayerTradeQuotaResponse.Parser, done);
     }
 }

@@ -28,6 +28,12 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(SeasonEconomyUiArt.IntentIconKey(7u), Is.EqualTo("intent_magic_strike"));
             Assert.That(SeasonEconomyUiArt.IntentIconKey(8u), Is.EqualTo("intent_venom_aoe"));
             Assert.That(SeasonEconomyUiArt.IntentIconKey(99u), Is.EqualTo("intent_slow_cleave"));
+
+            Assert.That(SeasonEconomyUiArt.BossAvatarIconKey(1u), Is.EqualTo("boss_break_avatar"));
+            Assert.That(SeasonEconomyUiArt.BossAvatarIconKey(2u), Is.EqualTo("boss_break_avatar"));
+            Assert.That(SeasonEconomyUiArt.BossAvatarIconKey(3u), Is.EqualTo("boss_barrier_avatar"));
+            Assert.That(SeasonEconomyUiArt.BossAvatarIconKey(4u), Is.EqualTo("boss_venom_avatar"));
+            Assert.That(SeasonEconomyUiArt.BossAvatarIconKey(99u), Is.EqualTo("boss_break_avatar"));
         }
 
         [Test]

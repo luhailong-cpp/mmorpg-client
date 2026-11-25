@@ -77,6 +77,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             if (phase != BattlePhase.Queued) _queuePromptDismissed = false;
             CoreLoopUiArt.Clear(transform);
             CoreLoopUiArt.Frame(transform, "正式人宠会武", _root.OpenHub);
+            SeasonEconomyUiArt.DrawSeasonLobbyTabs(transform, 2,
+                _root.OpenBossTrials, _root.OpenRotations, _root.OpenFormalPvp);
             CoreLoopUiArt.Image("OwnProgressionBanner", transform, 280, 260, 2000, 96,
                 "hud-strip", new Color(.83f, .91f, .84f, .95f));
             CoreLoopUiArt.Text("OwnProgression", transform, 315, 276, 1920, 62,
@@ -239,7 +241,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             {
                 bool canQueue = _selectedSize != 0 && phase == BattlePhase.None;
                 CoreLoopUiArt.Button("Queue", transform, 1656, 872, 624, 84,
-                    "开始匹配", StartQueue, canQueue, true, 32);
+                    "开始匹配", StartQueue, canQueue, true, 32, "btn_primary_gold");
             }
         }
 

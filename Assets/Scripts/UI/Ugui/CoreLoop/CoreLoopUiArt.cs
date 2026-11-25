@@ -75,26 +75,50 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         }
 
         internal static Button Button(string name, UnityEngine.Transform parent, float x, float y, float width, float height,
-            string label, Action onClick, bool enabled = true, bool primary = true, float fontSize = 27f)
+            string label, Action onClick, bool enabled = true, bool primary = true, float fontSize = 27f,
+            string controlSpriteKey = null)
         {
             Image art;
-            var sprite = FittingSprite(primary ? "button-primary" : "button-secondary", width, height);
+            string seasonKey = !string.IsNullOrEmpty(controlSpriteKey)
+                ? controlSpriteKey
+                : (primary ? "btn_primary_jade" : "btn_secondary_paper");
+            var sprite = SeasonEconomyUiArt.LoadControl(seasonKey);
+            bool isSeasonControl = sprite != null;
             bool sliced = false;
-            if (sprite == null)
+            if (!isSeasonControl)
             {
-                sprite = Load(primary ? "wide-primary" : "wide-secondary");
-                sliced = sprite != null;
+                sprite = FittingSprite(primary ? "button-primary" : "button-secondary", width, height);
+                if (sprite == null)
+                {
+                    sprite = Load(primary ? "wide-primary" : "wide-secondary");
+                    sliced = sprite != null;
+                }
             }
             var button = QdaoUguiFactory.CreateArtButton(name, parent, x, y, width, height,
                 sprite, out art);
-            art.color = art.sprite == null ? (primary ? Jade : Ivory) : Color.white;
-            if (sliced) art.type = UnityEngine.UI.Image.Type.Sliced;
+            if (isSeasonControl)
+            {
+                SeasonEconomyUiArt.ApplyHorizontalSlice(art, sprite, height);
+            }
+            else
+            {
+                art.color = art.sprite == null ? (primary ? Jade : Ivory) : Color.white;
+                if (sliced) art.type = UnityEngine.UI.Image.Type.Sliced;
+            }
             button.interactable = enabled;
             if (onClick != null) button.onClick.AddListener(() => onClick());
-            var text = Text(name + "Label", button.transform, 8, 0, width - 16, height,
-                label, fontSize, primary ? Ivory : Ink, true, false, TextAlignmentOptions.Center);
+            Color textColor = isSeasonControl && seasonKey == "btn_primary_gold"
+                ? SeasonEconomyUiArt.GoldButtonInk
+                : isSeasonControl && seasonKey == "tab_active"
+                    ? Ivory
+                    : isSeasonControl && (seasonKey == "tab_normal" || seasonKey == "btn_secondary_paper")
+                        ? Ink
+                        : (primary ? Ivory : Ink);
+            float padX = isSeasonControl ? Mathf.Min(24f, width * 0.14f) : 8f;
+            var text = Text(name + "Label", button.transform, padX, 0, width - padX * 2f, height,
+                label, fontSize, textColor, true, false, TextAlignmentOptions.Center);
             text.enableAutoSizing = true;
-            text.fontSizeMin = Mathf.Max(17, fontSize - 8);
+            text.fontSizeMin = Mathf.Max(15, fontSize - 9);
             text.fontSizeMax = fontSize;
             return button;
         }

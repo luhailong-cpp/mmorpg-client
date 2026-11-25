@@ -174,6 +174,15 @@ namespace MmorpgClient.Game.CoreLoop
         public IReadOnlyList<BossTrialCardView> BuildBossTrials() =>
             CoreGameplayLoopModels.BuildBossTrialCards(_trialJournal?.Snapshot);
 
+        public IReadOnlyList<BossTrialCardView> BuildBossTrialsV2() =>
+            CoreGameplayLoopModels.BuildBossTrialCardsV2(_trialJournal?.Snapshot);
+
+        public IReadOnlyList<ulong> CollectMyQuickParryActorIds() =>
+            CoreGameplayLoopModels.CollectQuickParryDefendActorIds(_battle.MyPlayerId, _battle.State);
+
+        public IReadOnlyList<BossTrialHighlightBadge> BuildLastBossTrialHighlights() =>
+            CoreGameplayLoopModels.BuildBossTrialHighlightBadges(_battle.LastBattleEnd?.Settlement);
+
         public IReadOnlyList<PvpScaleSlotView> BuildFormalPvpScales() =>
             CoreGameplayLoopModels.BuildFormalPvpScales(_ranked?.Profile, _matchEntry.CurrentSize);
 

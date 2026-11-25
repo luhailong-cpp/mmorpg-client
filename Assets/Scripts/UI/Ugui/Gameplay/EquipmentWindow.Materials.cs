@@ -146,8 +146,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Button(_modalLayer, "MaterialChoiceRecover", "确认上次结果", 1440, 1290, 760, () => _client.RetryPendingMaterialReward(), enabled: !_client.BusyMaterialReward);
             else
                 Button(_modalLayer, "MaterialChoiceRefresh", "刷新", 1440, 1290, 650, () => _client?.RequestEquipmentMaterialReward(), enabled: !loading && _client != null);
-            Button(_modalLayer, "MaterialChoiceClaim", pending ? "确认结果中" : "确认领取", 2280, 1290, 850, ClaimMaterials,
-                true, editable && _materialSelectionReady && (ulong)_materialCraft + _materialStone == _materialBatch);
+            bool canClaimNow = editable && _materialSelectionReady && (ulong)_materialCraft + _materialStone == _materialBatch;
+            var claimBtn = Button(_modalLayer, "MaterialChoiceClaim", pending ? "确认结果中" : "确认领取", 2280, 1290, 850, ClaimMaterials,
+                true, canClaimNow);
+            if (canClaimNow)
+            {
+                var goldSprite = SeasonEconomyUiArt.LoadControl("btn_primary_gold");
+                var claimImg = claimBtn.GetComponent<UnityEngine.UI.Image>();
+                if (goldSprite != null && claimImg != null)
+                {
+                    SeasonEconomyUiArt.ApplyHorizontalSlice(claimImg, goldSprite, 140f);
+                    var claimText = claimBtn.GetComponentInChildren<TMP_Text>();
+                    if (claimText != null) claimText.color = SeasonEconomyUiArt.GoldButtonInk;
+                }
+            }
         }
 
         private void RenderMaterialCard(EquipmentCraftMaterial material, bool crafting, uint count, float x, bool editable)

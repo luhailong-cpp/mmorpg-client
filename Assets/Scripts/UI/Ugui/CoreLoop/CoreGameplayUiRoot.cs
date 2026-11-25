@@ -280,6 +280,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             game.Battle.OnPhaseChanged += HandleBattlePhaseChanged;
             game.Battle.OnBattleStart += HandleBattleStart;
             game.Battle.OnTurnResult += HandleTurnResult;
+            game.Battle.OnStateUpdated += HandleBattleStateUpdated;
             game.Battle.OnBattleEnd += HandleBattleEnd;
             game.Battle.OnQueueStatus += HandleQueueStatus;
 
@@ -321,6 +322,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     _game.Battle.OnPhaseChanged -= HandleBattlePhaseChanged;
                     _game.Battle.OnBattleStart -= HandleBattleStart;
                     _game.Battle.OnTurnResult -= HandleTurnResult;
+                    _game.Battle.OnStateUpdated -= HandleBattleStateUpdated;
                     _game.Battle.OnBattleEnd -= HandleBattleEnd;
                     _game.Battle.OnQueueStatus -= HandleQueueStatus;
                 }
@@ -379,6 +381,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         private void HandleBattlePhaseChanged(BattlePhase _) { if (HasLiveSession) { SyncVisibility(); RefreshAll(); } }
         private void HandleBattleStart(global::BattleStartS2C _) { if (HasLiveSession) { SyncVisibility(); if (_battleHud != null && _battleHud.IsVisible) _battleHud.Refresh(); } }
         private void HandleTurnResult(global::TurnResultS2C _) { if (HasLiveSession && _battleHud != null && _battleHud.IsVisible) _battleHud.Refresh(); }
+        private void HandleBattleStateUpdated(global::BattleStateS2C _) { if (HasLiveSession) { SyncVisibility(); if (_battleHud != null && _battleHud.IsVisible) _battleHud.Refresh(); } }
         private void HandleBattleEnd(global::BattleEndS2C _)
         {
             if (!HasLiveSession) return;

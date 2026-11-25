@@ -74,7 +74,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             // 底部 3 张说明卡：x = 150 / 705 / 1260, y = 570, w = 510, h = 259
             _legacyRewardCards[0] = (RectTransform)BuildCard(150f, "本季有效场次", out _card1Main, out _card1Sub);
             _legacyRewardCards[1] = (RectTransform)BuildCard(705f, "赛季展示权益（仅展示）", out _card2Main, out _card2Sub);
-            var card3 = BuildCard(1260f, "日常材料自选额度", out _card3Main, out _card3Sub);
+            var card3 = BuildCard(1260f, "材料自选额度", out _card3Main, out _card3Sub);
             _legacyRewardCards[2] = (RectTransform)card3;
 
             _claimMaterialBtn = CreateArtButton("ClaimMaterialBtn", card3, 155f, 194f, 200f, 46f,
@@ -237,20 +237,22 @@ namespace MmorpgClient.UI.Ugui.Ranked
             }
             else if (state.MaterialCreditUnitsAdded > 0)
             {
-                _card3Main.text = $"+{state.MaterialCreditUnitsAdded} 份自选额度";
-                _card3Sub.text = "已计入材料额度账（未自动入包），请走既有「材料自选」领取入包。";
+                _card3Main.text = state.MaterialTradableUnitsAdded > 0
+                    ? $"+{state.MaterialCreditUnitsAdded} 份（含 {state.MaterialTradableUnitsAdded} 可交易）"
+                    : $"+{state.MaterialCreditUnitsAdded} 份自选额度";
+                _card3Sub.text = "已计入材料总账（未自动入包），请走既有「材料自选」领取入包。";
                 _claimMaterialBtn.gameObject.SetActive(true);
             }
             else if (state.MaterialPvpLossIneligible)
             {
-                _card3Main.text = "+0 份（未触发）";
-                _card3Sub.text = "本局未触发材料额度；论剑积分与赛季场次照常记录。";
+                _card3Main.text = "+0 份（未达有效对抗）";
+                _card3Sub.text = "本局未达有效对抗门槛，不扣永久 660 额度；论剑积分与赛季场次照常记录。";
                 _claimMaterialBtn.gameObject.SetActive(true);
             }
             else
             {
-                _card3Main.text = "+0 份（今日额度已满）";
-                _card3Sub.text = "今日共享材料自选额度已达 20 份上限，本局积分与赛季场次照常记录。";
+                _card3Main.text = "+0 份（阶段额度已满）";
+                _card3Sub.text = "当前阶段材料总账已满（首套 660 / 周精进 100），本局积分与赛季场次照常记录。";
                 _claimMaterialBtn.gameObject.SetActive(true);
             }
         }

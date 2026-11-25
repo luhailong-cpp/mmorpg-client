@@ -43,6 +43,9 @@ namespace MmorpgClient.Game.Jubaozhai
         // 只用于快照失效去重，不能代替资产收据；换玩家或连接必须重新观察终态。
         private readonly Dictionary<string, CommerceOrderView> _refreshedTerminalOrders = new();
         private readonly HashSet<string> _refreshedTerminalMarkets = new(StringComparer.Ordinal);
+        private readonly Dictionary<ulong, SellerCreditView> _sellerCredits = new();
+        private readonly Dictionary<string, GetMarketReferencePriceResponse> _marketRefPrices = new(StringComparer.Ordinal);
+        private readonly Dictionary<uint, GetPlayerTradeQuotaResponse> _tradeQuotas = new();
         private object _connection;
         private ulong _player;
         private int _generation;
@@ -52,9 +55,19 @@ namespace MmorpgClient.Game.Jubaozhai
         public string Status { get; private set; } = "";
         public bool HasPendingWrite => _net.PlayerId != 0 && !string.IsNullOrEmpty(_recovery.Load(_net.PlayerId));
         public IReadOnlyDictionary<string, CommerceOrderView> Orders => _orders;
+        public IReadOnlyDictionary<ulong, SellerCreditView> SellerCredits => _sellerCredits;
         public event Action Changed;
         public event Action<IMessage> Response;
         public event Action AssetRefreshRequired;
+
+        private static string MarketRefKey(uint itemConfigId, uint currencyType)
+            => itemConfigId.ToString(CultureInfo.InvariantCulture) + ":" + currencyType.ToString(CultureInfo.InvariantCulture);
+
+        public bool TryGetMarketReferencePrice(uint itemConfigId, uint currencyType, out GetMarketReferencePriceResponse value)
+            => _marketRefPrices.TryGetValue(MarketRefKey(itemConfigId, currencyType), out value);
+
+        public bool TryGetTradeQuota(uint currencyType, out GetPlayerTradeQuotaResponse value)
+            => _tradeQuotas.TryGetValue(currencyType, out value);
 
         public CommerceClient(IBattleTransport net, ICommerceRecoveryStore recovery, Func<object> identity = null)
         {
@@ -75,6 +88,7 @@ namespace MmorpgClient.Game.Jubaozhai
             _connection = current; _player = _net.PlayerId;
             ++_generation; Busy = false; _orders.Clear();
             _refreshedTerminalOrders.Clear(); _refreshedTerminalMarkets.Clear();
+            _sellerCredits.Clear(); _marketRefPrices.Clear(); _tradeQuotas.Clear();
             Status = HasPendingWrite ? "有待确认交易，请恢复原请求。" : "";
             Changed?.Invoke();
         }
@@ -127,6 +141,14 @@ namespace MmorpgClient.Game.Jubaozhai
             else if (response is ListMarketOrdersResponse markets)
                 foreach (var order in markets.Orders) refreshAssets |= ObserveTerminalMarket(order);
             else if (response is AuctionLotResponse lot) refreshAssets = lot.Lot != null;
+            else if (response is SellerCreditResponse credit && credit.Profile != null)
+                _sellerCredits[credit.Profile.SellerPlayerId] = credit.Profile.Clone();
+            else if (response is SubmitSellerReviewResponse review && review.Profile != null)
+                _sellerCredits[review.Profile.SellerPlayerId] = review.Profile.Clone();
+            else if (response is GetMarketReferencePriceResponse p50 && p50.ItemConfigId != 0)
+                _marketRefPrices[MarketRefKey(p50.ItemConfigId, p50.CurrencyType)] = p50.Clone();
+            else if (response is GetPlayerTradeQuotaResponse quota)
+                _tradeQuotas[quota.CurrencyType] = quota.Clone();
             // 通知者读取权威背包与宠物列表，不推导“本次应增加多少”。
             if (refreshAssets) AssetRefreshRequired?.Invoke();
         }
@@ -182,7 +204,8 @@ namespace MmorpgClient.Game.Jubaozhai
                 // 故障和缺少合同的空成功都不能证明未提交，保留原请求继续幂等恢复。
                 bool completeReply = response is CommerceOrderResponse order ? order.Order != null
                     : response is MarketOrderResponse market ? market.Order != null
-                    : response is AuctionLotResponse lot && lot.Lot != null;
+                    : response is AuctionLotResponse lot ? lot.Lot != null
+                    : response is SubmitSellerReviewResponse review && review.Profile != null;
                 bool uncertain = TipFaults.IsFault(tip) || (write && tip == 0 && !completeReply);
                 if (write && !uncertain)
                 {
@@ -231,6 +254,7 @@ namespace MmorpgClient.Game.Jubaozhai
                     case MessageIds.JubaozhaiCreateAuctionLot: Send(method, CreateAuctionLotRequest.Parser.ParseFrom(payload), AuctionLotResponse.Parser, true, saved); break;
                     case MessageIds.JubaozhaiPlaceAuctionBid: Send(method, PlaceAuctionBidRequest.Parser.ParseFrom(payload), AuctionLotResponse.Parser, true, saved); break;
                     case MessageIds.JubaozhaiCancelAuctionLot: Send(method, CancelAuctionLotRequest.Parser.ParseFrom(payload), AuctionLotResponse.Parser, true, saved); break;
+                    case MessageIds.JubaozhaiSubmitSellerReview: Send(method, SubmitSellerReviewRequest.Parser.ParseFrom(payload), SubmitSellerReviewResponse.Parser, true, saved); break;
                     default: SetStatus("交易恢复记录版本不支持，请保留记录并联系支持。"); break;
                 }
             }
@@ -245,7 +269,7 @@ namespace MmorpgClient.Game.Jubaozhai
         public void BuySku(ulong sku, uint quantity) => Send(MessageIds.JubaozhaiCreateOfficialOrder, new CreateOfficialOrderRequest { ClientRequestId = RequestId(), SkuId = sku, Quantity = quantity }, CommerceOrderResponse.Parser, true);
         public void CreateTrade(ulong buyer, TradeAssetSelection seller, TradeAssetSelection wanted) => Send(MessageIds.JubaozhaiCreatePlayerTrade, new CreatePlayerTradeRequest { ClientRequestId = RequestId(), BuyerPlayerId = buyer, SellerAssets = seller.Clone(), BuyerAssets = wanted.Clone() }, CommerceOrderResponse.Parser, true);
         public void ConfirmTrade(string id) => Send(MessageIds.JubaozhaiConfirmPlayerTrade, new ConfirmPlayerTradeRequest { OrderId = id }, CommerceOrderResponse.Parser, true);
-        public void Consign(TradeAssetSelection assets, uint currency, ulong price, ulong durationMs) => Send(MessageIds.JubaozhaiCreateConsignment, new CreateConsignmentRequest { ClientRequestId = RequestId(), Assets = assets.Clone(), CurrencyType = currency, Price = price, DurationMs = durationMs }, CommerceOrderResponse.Parser, true);
+        public void Consign(TradeAssetSelection assets, uint currency, ulong price, ulong durationMs, ulong designatedBuyerPlayerId = 0) => Send(MessageIds.JubaozhaiCreateConsignment, new CreateConsignmentRequest { ClientRequestId = RequestId(), Assets = assets.Clone(), CurrencyType = currency, Price = price, DurationMs = durationMs, DesignatedBuyerPlayerId = designatedBuyerPlayerId }, CommerceOrderResponse.Parser, true);
         public void BuyConsignment(string id) => Send(MessageIds.JubaozhaiBuyConsignment, new BuyConsignmentRequest { ListingId = id, ClientRequestId = RequestId() }, CommerceOrderResponse.Parser, true);
         public void CancelConsignment(string id) => Send(MessageIds.JubaozhaiCancelConsignment, new CancelConsignmentRequest { ListingId = id }, CommerceOrderResponse.Parser, true);
         public void PlaceMarket(uint market, uint config, MarketOrderSide side, uint quantity, ulong price, uint currency) => Send(MessageIds.JubaozhaiPlaceMarketOrder, new PlaceMarketOrderRequest { ClientRequestId = RequestId(), MarketId = market, ItemConfigId = config, Side = side, Quantity = quantity, UnitPrice = price, CurrencyType = currency }, MarketOrderResponse.Parser, true);
@@ -257,6 +281,10 @@ namespace MmorpgClient.Game.Jubaozhai
         public void Bid(string id, ulong amount) => Send(MessageIds.JubaozhaiPlaceAuctionBid, new PlaceAuctionBidRequest { ClientRequestId = RequestId(), LotId = id, Amount = amount }, AuctionLotResponse.Parser, true);
         public void GetLot(string id) => Send(MessageIds.JubaozhaiGetAuctionLot, new GetAuctionLotRequest { LotId = id }, AuctionLotResponse.Parser, false);
         public void CancelLot(string id) => Send(MessageIds.JubaozhaiCancelAuctionLot, new CancelAuctionLotRequest { LotId = id }, AuctionLotResponse.Parser, true);
+        public void GetSellerCredit(ulong sellerPlayerId) => Send(MessageIds.JubaozhaiGetSellerCredit, new GetSellerCreditRequest { SellerPlayerId = sellerPlayerId }, SellerCreditResponse.Parser, false);
+        public void SubmitSellerReview(string orderId, SellerReviewRating rating, string comment = "") => Send(MessageIds.JubaozhaiSubmitSellerReview, new SubmitSellerReviewRequest { OrderId = orderId ?? "", Rating = rating, Comment = comment ?? "" }, SubmitSellerReviewResponse.Parser, true);
+        public void GetMarketReferencePrice(uint itemConfigId, uint currencyType) => Send(MessageIds.JubaozhaiGetMarketReferencePrice, new GetMarketReferencePriceRequest { ItemConfigId = itemConfigId, CurrencyType = currencyType }, GetMarketReferencePriceResponse.Parser, false);
+        public void GetPlayerTradeQuota(uint currencyType = 0) => Send(MessageIds.JubaozhaiGetPlayerTradeQuota, new GetPlayerTradeQuotaRequest { CurrencyType = currencyType }, GetPlayerTradeQuotaResponse.Parser, false);
         public void Dispose() { if (_disposed) return; _disposed = true; ++_generation; _net.Disconnected -= Disconnected; }
     }
 }

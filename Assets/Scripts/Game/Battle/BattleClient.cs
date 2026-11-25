@@ -158,6 +158,8 @@ namespace MmorpgClient.Game.Battle
 
         // 战斗直连(turn-based §22 D74)
         private bool _autoResendPending;     // 自动战斗意愿待直连就绪后补发(值取 AutoBattleLatched)
+        // 本局按单位记忆最近一次成功施放的技能 ID（用于「记忆上回合技能」，战局结束/换局/断线清空）
+        private readonly System.Collections.Generic.Dictionary<ulong, uint> _lastUsedSkillByActor = new();
         private bool _channelFailed;         // 本局直连已判定连不上(Unreachable),等就绪 / 手动重连 / 收尾
         private ulong _statePullBattleId;    // 在途 GetBattleState 所属战斗;0 = 无在途(补拉去重)
         // 补拉遇传输错误后的自动重拉计划(见 MaxStatePullRetries)。计划只对当前这一局有效:
@@ -302,6 +304,8 @@ namespace MmorpgClient.Game.Battle
         public event Action<BattlePhase> OnPhaseChanged;
         public event Action<BattleStartS2C> OnBattleStart;
         public event Action<TurnResultS2C> OnTurnResult;
+        /// <summary>权威状态更新（开战/补拉/重连恢复均触发，即使 Phase 未变，供战斗叠加 HUD 与角标及时同步）。</summary>
+        public event Action<BattleStateS2C> OnStateUpdated;
         public event Action<BattleEndS2C> OnBattleEnd;
         public event Action<Match.ChallengeInviteS2C> OnChallengeInvite;
         public event Action<Match.ChallengeResultS2C> OnChallengeResult;
@@ -935,9 +939,10 @@ namespace MmorpgClient.Game.Battle
                 return false;
             }
 
+            ulong battleId = _battleId;
             var req = new SubmitBattleActionRequest
             {
-                BattleId = _battleId,
+                BattleId = battleId,
                 Action = action,
                 ActorId = actorId == 0 ? MyPlayerId : actorId,
                 RoundIndex = roundIndex != 0 ? roundIndex : State?.RoundIndex ?? 0,
@@ -948,11 +953,52 @@ namespace MmorpgClient.Game.Battle
                     bool success = !HasTip(resp.ErrorMessage);
                     if (!success)
                         OnError?.Invoke(DescribeActionTip("提交行动失败", resp.ErrorMessage));
+                    else if (_battleId == battleId
+                        && action.ActionType == eBattleActionType.BattleActionSkill
+                        && action.SkillTableId != 0)
+                        _lastUsedSkillByActor[req.ActorId] = action.SkillTableId;
                     completed?.Invoke(success);
                     // 成功不改相位:等 NotifyTurnResult 驱动 Resolving
                 },
                 err => { OnError?.Invoke($"提交行动失败:{err}"); completed?.Invoke(false); });
             return true;
+        }
+
+        /// <summary>查询指定单位（0 表示本人）本局最近一次成功提交的技能表 ID，供 UI「记忆上回合技能」高亮。</summary>
+        public uint GetLastUsedSkillId(ulong actorId = 0)
+        {
+            ulong resolved = actorId == 0 ? MyPlayerId : actorId;
+            return _lastUsedSkillByActor.TryGetValue(resolved, out uint skillId) ? skillId : 0u;
+        }
+
+        /// <summary>
+        /// 首领试炼 V2「一键化劲防御」快捷指令（复用既有 SubmitBattleAction，零新协议，V8 归属防线）：
+        /// 仅允许为本人或本人存活出战宠提交防御指令，严禁代他人操作。
+        /// </summary>
+        public bool SubmitQuickParryDefend(ulong actorId = 0, Action<bool> completed = null)
+        {
+            ulong resolved = actorId == 0 ? MyPlayerId : actorId;
+            if (resolved == 0 || State == null || !IsOwnedActiveActor(State, MyPlayerId, resolved))
+            {
+                OnError?.Invoke("只能为本人或本人存活出战灵宠下达一键化劲防御");
+                completed?.Invoke(false);
+                return false;
+            }
+            return SubmitAction(new BattleAction { ActionType = eBattleActionType.BattleActionDefend }, resolved, completed);
+        }
+
+        private static bool IsOwnedActiveActor(BattleStateS2C state, ulong myPlayerId, ulong actorId)
+        {
+            if (state == null || myPlayerId == 0 || actorId == 0) return false;
+            for (int i = 0; i < state.Actors.Count; i++)
+            {
+                var actor = state.Actors[i];
+                if (actor == null || actor.ActorId != actorId) continue;
+                if (actor.IsDead || actor.Fled) return false;
+                return actor.ActorId == myPlayerId
+                    || (actor.ActorType == eBattleActorType.BattleActorTypePet && actor.OwnerPlayerId == myPlayerId);
+            }
+            return false;
         }
 
         /// <summary>
@@ -1168,6 +1214,7 @@ namespace MmorpgClient.Game.Battle
             _channelFailed = false;
             _endPendingBattleId = 0;
             _settleDeadline = 0;          // 上一局等结算包的时限随之作废
+            _lastUsedSkillByActor.Clear();
             ResetStatePullRetry();        // 换局:上一局的自动重拉计划作废
 
             // 排队中收到开战:补发 Preparing 让 UI 收起排队面板(Queued→Preparing→WaitingAction)
@@ -1362,6 +1409,7 @@ namespace MmorpgClient.Game.Battle
             SetPhase(phase);
             RefreshMyAutoState();
             ApplySurrenderVoteState(state.SurrenderVote);
+            OnStateUpdated?.Invoke(state);
         }
 
         private void HandleSurrenderVote(SurrenderVoteS2C ev)
@@ -1523,6 +1571,7 @@ namespace MmorpgClient.Game.Battle
             _channelFailed = false;
             _statePullBattleId = 0;
             _settleDeadline = 0;
+            _lastUsedSkillByActor.Clear();
             ApplySurrenderVoteState(null);
             ResetStatePullRetry();      // 收尾 / 断线:自动重拉计划随本局作废
         }

@@ -481,6 +481,53 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void PityFailureShowsPityProgressAndGuaranteedNextHint()
+        {
+            var sword10 = Weapon(Sword, level: 10, maxLevel: 11, cost: 5000, stones: 5, rate: 1200, failLoss: 0);
+            sword10.EnhanceNext.PityLimit = 20;
+            sword10.EnhanceNext.CurrentPityCount = 0;
+            Load(StandardBag(gold: 50000, stones: 20, sword: sword10), StandardEquipment());
+            _ui.Open(Sword);
+
+            _ui.Enhance();
+            var afterFail1 = Weapon(Sword, level: 10, maxLevel: 11, cost: 5000, stones: 5, rate: 1200, failLoss: 0);
+            afterFail1.EnhancePityCount = 1;
+            afterFail1.EnhanceNext.PityLimit = 20;
+            afterFail1.EnhanceNext.CurrentPityCount = 1;
+            LastEnhance(Sword).Respond(new EnhanceEquipResponse
+            {
+                Bag = StandardBag(gold: 45000, stones: 15, sword: afterFail1),
+                Equipment = StandardEquipment(),
+                Success = false,
+                EnhanceLevel = 10,
+                EnhancePityCount = 1,
+                EnhancePityLimit = 20,
+            });
+            Assert.That(View.StatusText, Is.EqualTo("强化未突破：青铜剑 仍为 +10，保底进度 1/20，消耗已扣除"));
+            Assert.That(View.StatusTone, Is.EqualTo(EquipForgeTone.Failure));
+
+            _now += 2000;
+            _ui.Tick();
+            _ui.Enhance();
+            var afterFail19 = Weapon(Sword, level: 10, maxLevel: 11, cost: 5000, stones: 5, rate: 1200, failLoss: 0);
+            afterFail19.EnhancePityCount = 19;
+            afterFail19.EnhanceNext.PityLimit = 20;
+            afterFail19.EnhanceNext.CurrentPityCount = 19;
+            afterFail19.EnhanceNext.PityGuaranteedNext = true;
+            LastEnhance(Sword).Respond(new EnhanceEquipResponse
+            {
+                Bag = StandardBag(gold: 40000, stones: 10, sword: afterFail19),
+                Equipment = StandardEquipment(),
+                Success = false,
+                EnhanceLevel = 10,
+                EnhancePityCount = 19,
+                EnhancePityLimit = 20,
+            });
+            Assert.That(View.StatusText, Is.EqualTo("强化未突破：青铜剑 仍为 +10，保底进度 19/20（下一次必成），消耗已扣除"));
+            Assert.That(View.StatusTone, Is.EqualTo(EquipForgeTone.Failure));
+        }
+
+        [Test]
         public void ServerRejectionShowsTheReasonAsAnErrorAndAnnouncesNothing()
         {
             LoadBoth();

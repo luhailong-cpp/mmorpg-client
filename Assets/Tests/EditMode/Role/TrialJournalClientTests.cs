@@ -191,6 +191,7 @@ namespace MmorpgClient.Tests.EditMode.Role
                 ("boss_trial:hard:barrier", TrialJumpKind.BossTrial, 106u, 2u),
                 ("boss_trial:normal:venom", TrialJumpKind.BossTrial, 107u, 1u),
                 ("boss_trial:hard:venom", TrialJumpKind.BossTrial, 108u, 2u),
+                ("boss_trial:hard:dual_guard", TrialJumpKind.BossTrial, 112u, 2u),
                 ("boss_trial:normal:rescue", TrialJumpKind.BossTrial, 109u, 1u),
                 ("polarity_5v5:110", TrialJumpKind.Polarity5v5, 110u, 0u),
                 ("ranked_pvp:5", TrialJumpKind.RankedPvp, 5u, 0u),
@@ -210,6 +211,9 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That((b1, g1), Is.EqualTo((101u, 102u)));
             Assert.That(TrialJournalModels.TryGetEntryMonsterIds(102u, out uint b2, out uint g2), Is.True);
             Assert.That((b2, g2), Is.EqualTo((101u, 103u)));
+            Assert.That(TrialJournalModels.TryGetEntryMonsterIds(105u, out uint bDual, out uint gDual), Is.True);
+            Assert.That((bDual, gDual), Is.EqualTo((101u, 102u)));
+            Assert.That(TrialJournalModels.GetEntryGuardMonsterIds(105u), Is.EqualTo(new[] { 102u, 103u }));
             Assert.That(TrialJournalModels.TryGetEntryMonsterIds(201u, out uint b3, out uint g3), Is.True);
             Assert.That((b3, g3), Is.EqualTo((104u, 105u)));
             Assert.That(TrialJournalModels.TryGetEntryMonsterIds(204u, out uint b4, out uint g4), Is.True);

@@ -47,6 +47,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             ValidatePresetSelection(profile);
             CoreLoopUiArt.Clear(transform);
             CoreLoopUiArt.Frame(transform, "首季轮换 · 娱乐场", _root.OpenHub);
+            SeasonEconomyUiArt.DrawSeasonLobbyTabs(transform, 1,
+                _root.OpenBossTrials, _root.OpenRotations, _root.OpenFormalPvp);
             CoreLoopUiArt.Text("Intro", transform, 290, 267, 1940, 55,
                 hasAuthoritativeWeek
                     ? $"本季第 {authoritativeWeek} 周 · 免费人宠仅用于本页娱乐场，不带入正式排位；两种玩法均不计正式评分。"
@@ -113,10 +115,10 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             bool hasPresets = _characterPresetId != 0 && _petPresetId != 0;
             CoreLoopUiArt.Button("EnterRescue", transform, 524, 874, 650, 76,
                 "护卫救援 · 前往试炼", () => _core.EnterGuardRescue(_characterPresetId, _petPresetId),
-                hasPresets, true, 29);
+                hasPresets, true, 29, "btn_primary_gold");
             CoreLoopUiArt.Button("EnterPolarity", transform, 1370, 874, 650, 76,
                 "物法易势 5V5 · 前往匹配", () => _core.EnterPolarity5v5(_characterPresetId, _petPresetId),
-                hasPresets, true, 29);
+                hasPresets, true, 29, "btn_primary_gold");
             if (!hasPresets)
                 CoreLoopUiArt.Text("PresetPending", transform, 295, 835, 1800, 36,
                     "正在同步免费预设，完成后可选人物与宝宝。", 22, CoreLoopUiArt.Warning);

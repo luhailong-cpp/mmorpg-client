@@ -49,9 +49,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var commitImg = commitBtn.GetComponent<Image>();
                 if (goldSprite != null && commitImg != null)
                 {
-                    commitImg.sprite = goldSprite;
-                    commitImg.type = goldSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
-                    commitImg.color = Color.white;
+                    SeasonEconomyUiArt.ApplyHorizontalSlice(commitImg, goldSprite, 140f);
+                    var commitText = commitBtn.GetComponentInChildren<TMPro.TMP_Text>();
+                    if (commitText != null) commitText.color = SeasonEconomyUiArt.GoldButtonInk;
                 }
             }
 
@@ -103,11 +103,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var row = QdaoUguiFactory.CreateRect("EnhancementItem_" + item.ItemId, content, 0, rows.Count * ListRowHeight, 1040, ListRowHeight);
                 rows.Add(row);
                 EquipmentUiArt.Icon(row, item, 0, 8, 128);
+                var tbBadge = SeasonEconomyUiArt.LoadTradeSlice(item.Bound ? "badge_item_bound_b" : "badge_item_tradable_t");
+                if (tbBadge != null)
+                {
+                    var badgeImg = QdaoUguiFactory.CreateImage("EnhancementItemTradeBadge_" + item.ItemId, row, 976, 36, 56, 56, tbBadge, false);
+                    badgeImg.preserveAspect = true;
+                }
                 string name = EquipDisplay.NameWithEnhance(EquipDisplay.ItemNameOr(item.Name, item.ConfigId), item.EnhanceLevel);
-                EquipmentUiArt.Button(row, "EnhancementChoose_" + item.ItemId, name, 148, 0, 892,
+                EquipmentUiArt.Button(row, "EnhancementChoose_" + item.ItemId, name, 148, 0, tbBadge != null ? 816 : 892,
                     () => selectItem?.Invoke(item.ItemId), primary: item.ItemId == selectedId, enabled: selectItem != null);
                 string location = worn.Contains(item.ItemId) ? "已穿戴" : "行囊中";
-                EquipmentUiArt.Label(row, "EnhancementItemLocation", location + " · " + KindName(client, item.EquipKind),
+                string tradeTag = item.Bound ? "绑定 B" : "可交易 T";
+                EquipmentUiArt.Label(row, "EnhancementItemLocation", location + " · " + KindName(client, item.EquipKind) + " · " + tradeTag,
                     162, 140, 862, 30, 28);
             }
 
@@ -152,6 +159,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             EquipmentUiArt.Label(parent, "EnhancementSelectedName", view.Title, 60, 40, 940, 140, 54, true);
             EquipmentUiArt.Label(parent, "EnhancementSelectedLocation", view.LocationText, 60, 192, 940, 62, 42);
             EquipmentUiArt.Icon(parent, item, 260, 300, 540);
+            var selectedBadge = SeasonEconomyUiArt.LoadTradeSlice(item.Bound ? "badge_item_bound_b" : "badge_item_tradable_t");
+            if (selectedBadge != null)
+            {
+                var badge = QdaoUguiFactory.CreateImage("EnhancementSelectedTradeBadge", parent, 60, 266, 84, 84, selectedBadge, false);
+                badge.preserveAspect = true;
+            }
+            string isolationRule = item.Bound
+                ? "绑定装备 B · 如需恢复可交易原胚请使用「解封剥离符」（清空绑定养成，绝不洗白 B 材料）"
+                : "可交易装备 T · 系统默认仅消耗可交易材料，防止误绑";
+            EquipmentUiArt.Label(parent, "EnhancementTradeIsolationRule", isolationRule,
+                60, 932, 940, 62, 28, true, item.Bound ? SeasonEconomyUiArt.SoftWarnText : EquipmentUiArt.Jade);
             bool isMaxEnhanced = item.EnhanceMaxLevel > 0 && item.EnhanceLevel >= item.EnhanceMaxLevel;
             if (isMaxEnhanced)
             {

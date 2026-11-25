@@ -5,6 +5,7 @@ using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.Game.Skills;
 using MmorpgClient.UI.Ugui.Skills;
 using UnityEngine;
+using UnityEngine.UI;
 using static MmorpgClient.UI.Ugui.Gameplay.EquipmentUiArt;
 
 namespace MmorpgClient.UI.Ugui.Gameplay
@@ -395,56 +396,109 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void RenderBindConfirmModal()
         {
-            Label(_modalLayer, "BindConfirmTitle", "转为仅自用二次确认", 750, 200, 2380, 90, 64, color: Danger);
+            Label(_modalLayer, "BindConfirmTitle", "转为仅自用二次确认", 750, 190, 2380, 90, 64, color: Danger);
             var alertBanner = SeasonEconomyUiArt.LoadTradeSlice("diff_alert_banner");
             if (alertBanner != null)
-                SeasonEconomyUiArt.CreateSlicedOrSimple(_modalLayer, "BindConfirmAlertBanner", 760, 294, 2380, 96,
+                SeasonEconomyUiArt.CreateSlicedOrSimple(_modalLayer, "BindConfirmAlertBanner", 760, 286, 2380, 96,
                     alertBanner, new Color(0.98f, 0.90f, 0.84f, 0.95f));
             var badgeT = SeasonEconomyUiArt.LoadTradeSlice("badge_item_tradable_t");
             var badgeB = SeasonEconomyUiArt.LoadTradeSlice("badge_item_bound_b");
             if (badgeT != null && badgeB != null)
             {
-                var tImg = QdaoUguiFactory.CreateImage("BindConfirmFromT", _modalLayer, 1520, 304, 76, 76, badgeT, false);
+                var tImg = QdaoUguiFactory.CreateImage("BindConfirmFromT", _modalLayer, 1520, 296, 76, 76, badgeT, false);
                 tImg.preserveAspect = true;
-                var arrow = Label(_modalLayer, "BindConfirmArrow", "可交易 T  →  永久仅自用 B", 1620, 314, 620, 56, 38, false, Danger);
+                var arrow = Label(_modalLayer, "BindConfirmArrow", "可交易 T  →  永久仅自用 B", 1620, 306, 620, 56, 38, false, Danger);
                 arrow.alignment = TMPro.TextAlignmentOptions.Center;
-                var bImg = QdaoUguiFactory.CreateImage("BindConfirmToB", _modalLayer, 2260, 304, 76, 76, badgeB, false);
+                var bImg = QdaoUguiFactory.CreateImage("BindConfirmToB", _modalLayer, 2260, 296, 76, 76, badgeB, false);
                 bImg.preserveAspect = true;
             }
             Label(_modalLayer, "BindConfirmBody",
-                "当前装备为【可交易】状态；背包内可交易材料不足。\n\n若继续混用绑定重铸砂或绑定定星保底符，该装备将永久变为【仅自用】，此后不可再挂集市或摆摊交易。\n\n请勾选下方确认项后继续。",
-                760, 412, 2380, 400, 44, true, Ink);
+                "当前装备为【可交易 T】状态；系统默认仅消耗可交易材料，当前可交易材料不足。\n\n若主动混用绑定材料（B），该装备将立即转为【绑定仅自用 B】，不可再挂集市或当面交易。",
+                760, 404, 1500, 320, 42, true, Ink);
+
+            // 右侧官方小额「解封剥离符」边界明示卡片（不洗白 B 材料）
+            Panel(_modalLayer, "BindConfirmUnsealCard", 2300, 404, 840, 320);
+            var unsealSprite = SeasonEconomyUiArt.LoadTradeSlice("icon_unseal_talisman");
+            if (unsealSprite != null)
+            {
+                var uImg = QdaoUguiFactory.CreateImage("BindConfirmUnsealIcon", _modalLayer, 2336, 444, 150, 150, unsealSprite, false);
+                uImg.preserveAspect = true;
+            }
+            Label(_modalLayer, "BindConfirmUnsealTitle", "解封剥离符规则", 2506, 434, 600, 58, 40, false, Jade);
+            Label(_modalLayer, "BindConfirmUnsealDesc",
+                "后续如需重新交易，仅可使用「解封剥离符」清空全部绑定养成，仅恢复纯 T 原胚；绝不会将 B 材料或绑定词条洗白为可交易。",
+                2506, 496, 600, 210, 32, true, Muted);
+
             Button(_modalLayer, "BindConfirmToggle",
-                _bindConfirmAcknowledged ? "✓ 我已知晓：装备将永久转为仅自用" : "□ 我已知晓并允许混用绑定材料（装备永久仅自用）",
-                760, 870, 2380, () =>
+                _bindConfirmAcknowledged ? "✓ 我已知晓：混用绑定料后装备转为绑定，后续仅可剥离回纯 T 原胚" : "□ 我已知晓并允许混用绑定材料（装备将变为绑定仅自用）",
+                760, 770, 2380, () =>
                 {
                     _bindConfirmAcknowledged = !_bindConfirmAcknowledged;
                     Render();
                 }, _bindConfirmAcknowledged);
-            Button(_modalLayer, "BindConfirmCancel", "取消", 870, 1250, 700, () =>
+
+            // 错位防手滑布局：左侧取消，右侧「长按 2 秒确认绑定」轨道
+            Button(_modalLayer, "BindConfirmCancel", "返回检查", 820, 1180, 680, () =>
             {
                 _modal = _bindConfirmForReforge ? Modal.Reforge : Modal.None;
                 Render();
             });
-            Button(_modalLayer, "BindConfirmProceed", "确认并重新预览", 2180, 1250, 950, () =>
-            {
-                if (!_bindConfirmAcknowledged) return;
-                if (_bindConfirmForReforge)
+
+            const float holdW = 1040f;
+            const float holdH = 160f;
+            var holdRoot = QdaoUguiFactory.CreateRect("BindConfirmHoldProceed", _modalLayer, 2060, 1170, holdW, holdH);
+            var trackSprite = SeasonEconomyUiArt.LoadTradeSlice("hold_confirm_button_track");
+            var trackImg = holdRoot.gameObject.AddComponent<Image>();
+            trackImg.sprite = trackSprite;
+            trackImg.color = trackSprite != null ? Color.white : new Color(0.84f, 0.72f, 0.52f, 1f);
+            trackImg.type = Image.Type.Simple;
+            trackImg.raycastTarget = true;
+
+            float padX = 28f;
+            float padY = 22f;
+            float innerW = holdW - padX * 2f;
+            float innerH = holdH - padY * 2f;
+            var fillClip = QdaoUguiFactory.CreateRect("HoldProgressClip", holdRoot, padX, padY, 0f, innerH);
+            fillClip.gameObject.AddComponent<RectMask2D>();
+            var fillBar = QdaoUguiFactory.CreateImage("HoldProgressFill", fillClip, 0f, 0f, innerW, innerH, null, false);
+            fillBar.color = new Color(0.76f, 0.30f, 0.20f, 0.72f);
+
+            var holdLabel = Label(holdRoot, "HoldConfirmLabel",
+                _bindConfirmAcknowledged ? "长按 2 秒确认绑定" : "请先勾选上方风险确认",
+                30f, 0f, holdW - 60f, holdH, 42, false, Ink);
+            holdLabel.alignment = TMPro.TextAlignmentOptions.Center;
+
+            var holdBehaviour = holdRoot.gameObject.AddComponent<HoldToConfirmButtonBehaviour>();
+            holdBehaviour.Configure(
+                fillClip,
+                innerW,
+                holdLabel,
+                trackImg,
+                idleLabel: "长按 2 秒确认绑定",
+                disabledLabel: "请先勾选上方风险确认",
+                interactable: _bindConfirmAcknowledged,
+                onCompleted: () =>
                 {
-                    _reforgeAllowBound = true;
-                    _modal = Modal.Reforge;
-                    _craft.SelectReforgeAffix(_polishItemId, _polishSlot, _reforgeTargetAffixId, true);
-                }
-                else
-                {
-                    _polishAllowBound = true;
-                    _modal = Modal.None;
-                    var item = FindItem(_polishItemId);
-                    var slot = item?.FixedAffixSlots.FirstOrDefault(s => s.Slot == _polishSlot);
-                    RequestPolishPreview(item, slot);
-                }
-                Render();
-            }, true, _bindConfirmAcknowledged);
+                    if (!_bindConfirmAcknowledged) return;
+                    if (_bindConfirmForReforge)
+                    {
+                        _reforgeAllowBound = true;
+                        _modal = Modal.Reforge;
+                        _craft.SelectReforgeAffix(_polishItemId, _polishSlot, _reforgeTargetAffixId, true);
+                    }
+                    else
+                    {
+                        _polishAllowBound = true;
+                        _modal = Modal.None;
+                        var item = FindItem(_polishItemId);
+                        var slot = item?.FixedAffixSlots.FirstOrDefault(s => s.Slot == _polishSlot);
+                        RequestPolishPreview(item, slot);
+                    }
+                    Render();
+                });
+
+            Label(_modalLayer, "BindConfirmHoldHint", "按住不松手，进度满 2 秒后执行；松手或移出即刻取消。",
+                2060, 1344, holdW, 56, 30, false, Muted).alignment = TMPro.TextAlignmentOptions.Center;
         }
     }
 }
