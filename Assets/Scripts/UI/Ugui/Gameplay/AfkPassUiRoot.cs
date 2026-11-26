@@ -16,9 +16,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     /// 挂机月卡的宿主(服务端设计 docs/design/afk-monthly-card.md §7)。网络真相全在 <see cref="AfkPassClient"/>;这里只做三件事:
     ///  - 跟着 GameClient 实例创建 / 释放数据层,把入场通知、断线转发给它;快到期 / 已到期提醒用飘字显示;
     ///  - 城内入口按钮「挂机月卡」(经 <see cref="WorldHudNavigation"/> 归进「历练」分类);
-    ///  - 面板:剩余时长、价格与叠加上限、持有灵石、开通 / 续费(两次点击确认,一次双击不算)。
-    ///
-    /// 视觉:这块界面没有效果图,只做功能版。按客户端 AGENTS.md「UI 原图还原验收」,视觉验收是未解决项,不宣称与原图一致。
+    ///  - 面板与离线托管收获简报弹窗:剩余时长、价格与叠加上限、持有灵石、离队自动回主城、战斗剧本直连、开通 / 续费与重登收获简报。
     /// </summary>
     public sealed class AfkPassUiRoot : MonoBehaviour
     {
@@ -112,6 +110,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             shade.raycastTarget = true;
             _window.gameObject.AddComponent<GameplayInputBlocker>();
             var frame = QdaoUguiFactory.CreateCenteredRect("AfkPassFrame", _window, FrameWidth, FrameHeight);
+            bool hasCustomBg = GameplayUiArt.TryLoadAfkTeamArt("afk_pass_panel_bg") != null;
             GameplayUiArt.ApplyOptionalAfkTeamSprite(GameplayUiArt.Art(frame, "main_frame", 0, 0, FrameWidth, FrameHeight), "afk_pass_panel_bg");
             var infoCardSprite = GameplayUiArt.TryLoadAfkTeamArt("afk_pass_info_card");
             if (infoCardSprite != null)
@@ -120,13 +119,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 infoCard.type = infoCardSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
                 infoCard.raycastTarget = false;
             }
-            GameplayUiArt.Text(frame, EntryText, 80, 38, 600, 60, 40);
-            _state = GameplayUiArt.Text(frame, "", 80, 118, 920, 56, 36);
-            _price = GameplayUiArt.Text(frame, "", 80, 182, 920, 44, 26, GameplayUiArt.Muted);
-            _balance = GameplayUiArt.Text(frame, "", 80, 230, 920, 44, 26, GameplayUiArt.Muted);
+            var titleLabel = hasCustomBg
+                ? GameplayUiArt.Text(frame, EntryText, 310, 30, 460, 52, 36, GameplayUiArt.Cream, alignment: TextAlignmentOptions.Center)
+                : GameplayUiArt.Text(frame, EntryText, 80, 38, 600, 60, 40);
+            titleLabel.fontStyle = FontStyles.Bold;
+            float infoX = infoCardSprite != null ? 112f : 80f;
+            float infoW = infoCardSprite != null ? 856f : 920f;
+            _state = GameplayUiArt.Text(frame, "", infoX, 126, infoW, 52, 34);
+            _price = GameplayUiArt.Text(frame, "", infoX, 184, infoW, 42, 25, GameplayUiArt.Muted);
+            _balance = GameplayUiArt.Text(frame, "", infoX, 228, infoW, 42, 25, GameplayUiArt.Muted);
             _benefits = GameplayUiArt.Text(frame,
                 AfkPassModels.HostingDescription + "\n" + AfkPassModels.LightCardBenefitsSummary(null),
-                80, 278, 920, 104, 21, GameplayUiArt.Muted, wrap: true);
+                infoX, 274, infoW, 98, 21, GameplayUiArt.Muted, wrap: true);
 
             // 托管策略区:离队/解散自动回主城安全区 + 战斗剧本直连
             _autoReturnButton = GameplayUiArt.Button(frame, "离队/解散自动回主城：关闭", 80, 390, 460, 62,
@@ -147,7 +151,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 scriptBar.type = scriptBarSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
                 scriptBar.raycastTarget = false;
             }
-            _battleScriptSummary = GameplayUiArt.Text(frame, "组队副本托管剧本：默认出招", 80, 466, 920, 44, 24, AccentJade);
+            float scriptX = scriptBarSprite != null ? 112f : 80f;
+            float scriptW = scriptBarSprite != null ? 856f : 920f;
+            _battleScriptSummary = GameplayUiArt.Text(frame, "组队副本托管剧本：默认出招", scriptX, 464, scriptW, 48, 24, AccentJade);
 
             _status = GameplayUiArt.Text(frame, "", 80, 526, 920, 48, 25, GameplayUiArt.Muted);
             var close = GameplayUiArt.Button(frame, "关闭", 80, 628, 240, 80, HidePanel);
@@ -168,9 +174,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             shade.raycastTarget = true;
             _recapWindow.gameObject.AddComponent<GameplayInputBlocker>();
             var frame = QdaoUguiFactory.CreateCenteredRect("HostedRecapFrame", _recapWindow, RecapWidth, RecapHeight);
+            bool hasCustomRecapBg = GameplayUiArt.TryLoadAfkTeamArt("hosted_recap_bg") != null;
             GameplayUiArt.ApplyOptionalAfkTeamSprite(GameplayUiArt.Art(frame, "main_frame", 0, 0, RecapWidth, RecapHeight), "hosted_recap_bg");
-            GameplayUiArt.Text(frame, "离线托管收获简报", 70, 40, 780, 60, 40, alignment: TextAlignmentOptions.Center);
-            _recapSubtitle = GameplayUiArt.Text(frame, "", 70, 112, 780, 56, 23, GameplayUiArt.Muted,
+            var recapTitle = hasCustomRecapBg
+                ? GameplayUiArt.Text(frame, "离线托管收获简报", 224, 32, 470, 55, 34, GameplayUiArt.Cream, alignment: TextAlignmentOptions.Center)
+                : GameplayUiArt.Text(frame, "离线托管收获简报", 70, 40, 780, 60, 40, alignment: TextAlignmentOptions.Center);
+            recapTitle.fontStyle = FontStyles.Bold;
+            _recapSubtitle = GameplayUiArt.Text(frame, "", 96, 112, 728, 56, 23, GameplayUiArt.Muted,
                 alignment: TextAlignmentOptions.Center, wrap: true);
             _recapBattles = BuildRecapRow(frame, 198, "icon_recap_battle", null);
             _recapExp = BuildRecapRow(frame, 260, "icon_recap_exp", AccentJade);
@@ -414,6 +424,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
             bool settingsReady = _client != null && _client.Ready && _client.SupportsSettings && !_client.SettingsPending && info != null;
             bool autoReturn = _client != null && _client.AutoReturnCityOnTeamEnd;
+            bool hasToggleOnArt = false;
             if (_autoReturnButton != null)
             {
                 _autoReturnButton.interactable = settingsReady;
@@ -422,10 +433,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 {
                     _autoReturnButton.image.sprite = toggleSprite;
                     _autoReturnButton.image.type = toggleSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                    hasToggleOnArt = autoReturn;
                 }
             }
             if (_autoReturnLabel != null)
             {
+                _autoReturnLabel.color = hasToggleOnArt ? GameplayUiArt.Cream : GameplayUiArt.Ink;
                 _autoReturnLabel.text = _client?.SettingsPending == true
                     ? "保存托管设置中…"
                     : autoReturn ? "离队/解散自动回主城：已开启" : "离队/解散自动回主城：已关闭";

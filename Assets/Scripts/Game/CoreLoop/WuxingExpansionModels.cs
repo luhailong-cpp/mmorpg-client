@@ -207,6 +207,7 @@ namespace MmorpgClient.Game.CoreLoop
             if (rules.EnablePolarityRotation) tags.Add("物法易势");
             if (rules.RoundLimitOverride > 0u) tags.Add($"限 {rules.RoundLimitOverride} 回合");
             if (rules.BanControlSkills) tags.Add("禁控直伤");
+            if (rules.SkillBanSlotsPerTeam > 0u) tags.Add($"每方 {rules.SkillBanSlotsPerTeam} 禁招");
             if (rules.AllowPublicSpectate) tags.Add("公开观战");
             return string.Join(" · ", tags);
         }

@@ -52,9 +52,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private readonly List<Button> _hotspots = new();
 
         private GameClient _game;
+        private Canvas _canvas;
+        private RectTransform _safeRoot;
         private RectTransform _hud;
         private CityNpcWindow _window;
         private Button _rosterEntry;
+        private Rect _lastSafePixels;
+        private Rect _lastCanvasPixels;
         private bool _available;
         private bool _spawnedForCity;
         private CityNpcDefinition _approachingNpc;
@@ -81,9 +85,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var canvasObject = new GameObject("CityNpcCanvas", typeof(RectTransform), typeof(Canvas),
                 typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvasObject.transform.SetParent(transform, false);
-            var canvas = canvasObject.GetComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            canvas.sortingOrder = CanvasSortingOrder;
+            _canvas = canvasObject.GetComponent<Canvas>();
+            _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            _canvas.sortingOrder = CanvasSortingOrder;
             var scaler = canvasObject.GetComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(QdaoUguiTheme.DesignWidth, QdaoUguiTheme.DesignHeight);
@@ -92,6 +96,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var design = QdaoUguiFactory.CreateCenteredRect("DesignRoot", canvasObject.transform, 2560, 1080);
             _hud = QdaoUguiFactory.CreateStretch("HudRoot", design, Vector4.zero);
             QdaoUguiFactory.ConfigureHudCanvas(_hud);
+            _safeRoot = QdaoUguiFactory.CreateStretch("CityNpcSafeArea", canvasObject.transform, Vector4.zero);
 
             for (int i = 0; i < CityNpcCatalog.Npcs.Count; ++i)
             {
@@ -104,10 +109,16 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
             // 归元城常驻快捷「归元八友」入口按钮（位于屏幕右下安全区内，不遮挡主 HUD 与小游戏胶囊）
             _rosterEntry = GameplayUiArt.Button(_hud, "归元八友", 2292, 976, 224, 62,
-                () => OpenNpcDialog(CityNpcCatalog.Npcs[0]), false, true, fontSize: 24);
+                () => OpenNpcDialog(CityNpcCatalog.Npcs[0]), true, true, fontSize: 24);
             _rosterEntry.name = "GuiyuanNpcRosterEntry";
+            var rosterBg = Resources.Load<Sprite>(CityNpcWindow.DedicatedArtRoot + "npc_action_btn_primary");
+            if (rosterBg != null && _rosterEntry.image != null)
+            {
+                _rosterEntry.image.sprite = rosterBg;
+                _rosterEntry.image.type = rosterBg.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+            }
 
-            _window = new CityNpcWindow(design);
+            _window = new CityNpcWindow(_safeRoot);
             _window.SelectNpcRequested += npc => OpenNpcDialog(npc);
             _window.WalkToNpcRequested += BeginWalkToNpc;
             _window.ShortcutRequested += DispatchShortcut;
@@ -121,7 +132,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _state.Changed += RefreshWindowIfVisible;
             _state.ToastRequested += ShowToast;
             _hud.gameObject.SetActive(false);
+            ApplySafeArea();
         }
+
+        private void OnEnable() => ApplySafeArea();
 
         private void OnDestroy()
         {
@@ -159,6 +173,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void Update()
         {
             if (_window == null || _hud == null) return;
+            ApplySafeArea();
             BindGame(AppBootstrap.Instance?.GameClient);
 
             bool inGame = _game != null && _game.InGame && _game.IsGateReady && _game.PlayerId != 0;
@@ -194,11 +209,43 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
 #if ENABLE_INPUT_SYSTEM
                 var kb = Keyboard.current;
-                if (kb != null && kb.escapeKey.wasPressedThisFrame) HidePanel();
+                if (kb != null && kb.escapeKey.wasPressedThisFrame)
+                {
+                    if (!_window.DismissModalIfOpen()) HidePanel();
+                }
 #elif ENABLE_LEGACY_INPUT_MANAGER
-                if (Input.GetKeyDown(KeyCode.Escape)) HidePanel();
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    if (!_window.DismissModalIfOpen()) HidePanel();
+                }
 #endif
             }
+        }
+
+        private void ApplySafeArea()
+        {
+            if (_canvas == null || _safeRoot == null) return;
+            var pixels = _canvas.pixelRect;
+            if (pixels.width <= 0f || pixels.height <= 0f) return;
+            var screenSafe = Screen.safeArea;
+            var safe = screenSafe.width > 0f && screenSafe.height > 0f
+                ? Rect.MinMaxRect(
+                    Mathf.Max(pixels.xMin, screenSafe.xMin),
+                    Mathf.Max(pixels.yMin, screenSafe.yMin),
+                    Mathf.Min(pixels.xMax, screenSafe.xMax),
+                    Mathf.Min(pixels.yMax, screenSafe.yMax))
+                : pixels;
+            if (safe.width <= 0f || safe.height <= 0f) safe = pixels;
+            if (pixels == _lastCanvasPixels && safe == _lastSafePixels) return;
+            _lastCanvasPixels = pixels;
+            _lastSafePixels = safe;
+            _safeRoot.anchorMin = new Vector2((safe.xMin - pixels.xMin) / pixels.width,
+                (safe.yMin - pixels.yMin) / pixels.height);
+            _safeRoot.anchorMax = new Vector2((safe.xMax - pixels.xMin) / pixels.width,
+                (safe.yMax - pixels.yMin) / pixels.height);
+            _safeRoot.offsetMin = _safeRoot.offsetMax = Vector2.zero;
+            bool compact = safe.width < 1100f || safe.height < 520f;
+            _window?.SetCompactCloseOnLeft(compact);
         }
 
         private void BindGame(GameClient next)

@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Google.Protobuf.WellKnownTypes;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.CityNpc;
 using MmorpgClient.Game.Team;
 using MmorpgClient.Tests.EditMode.Tianyong;
+using MmorpgClient.UI.Ugui.Gameplay;
 using NUnit.Framework;
 using Teampb;
 
@@ -333,6 +335,97 @@ namespace MmorpgClient.Tests.EditMode.CityNpc
 
             Assert.That(entry.StartNpcEncounter(311u, 1u, 4u), Is.False);
             Assert.That(entry.Status, Does.Contain("单人"));
+        }
+
+        [Test]
+        public void DeliveredGuiyuanNpcArt_All21PngsAndSpriteMetasMatchDesignSpecs()
+        {
+            Assert.That(CityNpcWindow.AllDeliveredUiKeys.Length, Is.EqualTo(13));
+            Assert.That(CityNpcWindow.AllDeliveredNpcKeys.Length, Is.EqualTo(8));
+
+            string projectRoot = FindClientProjectRoot();
+            string artDir = Path.Combine(projectRoot, "Assets", "Resources", "UI", "Ugui", "GuiyuanNpcV1");
+            Assert.That(Directory.Exists(artDir), Is.True, $"Missing art directory: {artDir}");
+            Assert.That(File.Exists(artDir + ".meta"), Is.True, "Missing GuiyuanNpcV1.meta");
+            Assert.That(File.Exists(Path.Combine(artDir, "Npcs") + ".meta"), Is.True, "Missing GuiyuanNpcV1/Npcs.meta");
+
+            var expectedUi = new Dictionary<string, (int W, int H, string Border)>(StringComparer.Ordinal)
+            {
+                ["npc_dialog_panel"]         = (1560, 820, "{x: 64, y: 64, z: 64, w: 64}"),
+                ["npc_name_ribbon"]          = (420,  68,  "{x: 40, y: 0, z: 40, w: 0}"),
+                ["npc_bubble_bg"]            = (460,  110, "{x: 36, y: 24, z: 36, w: 24}"),
+                ["npc_action_btn_primary"]   = (340,  72,  "{x: 36, y: 0, z: 36, w: 0}"),
+                ["npc_action_btn_secondary"] = (300,  64,  "{x: 32, y: 0, z: 32, w: 0}"),
+                ["card_calling_panel"]       = (1240, 720, "{x: 56, y: 56, z: 56, w: 56}"),
+                ["fortune_slip_card"]        = (480,  680, "{x: 0, y: 0, z: 0, w: 0}"),
+                ["icon_sparring_dummy"]      = (128,  128, "{x: 0, y: 0, z: 0, w: 0}"),
+                ["icon_tactical_puzzle"]     = (128,  128, "{x: 0, y: 0, z: 0, w: 0}"),
+                ["icon_character_tale"]      = (128,  128, "{x: 0, y: 0, z: 0, w: 0}"),
+                ["icon_errand_parcel"]       = (128,  128, "{x: 0, y: 0, z: 0, w: 0}"),
+                ["icon_fortune_tube"]        = (128,  128, "{x: 0, y: 0, z: 0, w: 0}"),
+                ["icon_calling_card"]        = (128,  128, "{x: 0, y: 0, z: 0, w: 0}")
+            };
+
+            foreach (string uiKey in CityNpcWindow.AllDeliveredUiKeys)
+            {
+                Assert.That(expectedUi.TryGetValue(uiKey, out var spec), Is.True, $"Unregistered UI key: {uiKey}");
+                string png = Path.Combine(artDir, uiKey + ".png");
+                string meta = png + ".meta";
+                Assert.That(File.Exists(png), Is.True, $"Missing UI png: {png}");
+                Assert.That(File.Exists(meta), Is.True, $"Missing UI meta: {meta}");
+                var (w, h) = ReadPngDimensions(png);
+                Assert.That((w, h), Is.EqualTo((spec.W, spec.H)), $"Dimension mismatch for {uiKey}");
+                string metaText = File.ReadAllText(meta);
+                Assert.That(metaText, Does.Contain("textureType: 8"), $"Not Sprite textureType for {uiKey}");
+                Assert.That(metaText, Does.Contain("alphaIsTransparency: 1"), $"alphaIsTransparency off for {uiKey}");
+                Assert.That(metaText, Does.Contain("spriteBorder: " + spec.Border), $"9-slice mismatch for {uiKey}");
+            }
+
+            foreach (var npc in CityNpcCatalog.Npcs)
+            {
+                string rel = npc.DedicatedSpriteKey.Replace('/', Path.DirectorySeparatorChar) + ".png";
+                string png = Path.Combine(projectRoot, "Assets", "Resources", rel);
+                string meta = png + ".meta";
+                Assert.That(File.Exists(png), Is.True, $"Missing NPC portrait: {png}");
+                Assert.That(File.Exists(meta), Is.True, $"Missing NPC meta: {meta}");
+                var (w, h) = ReadPngDimensions(png);
+                Assert.That((w, h), Is.EqualTo((1024, 1024)), $"Dimension mismatch for {npc.Id}");
+                string metaText = File.ReadAllText(meta);
+                Assert.That(metaText, Does.Contain("textureType: 8"), $"Not Sprite textureType for {npc.Id}");
+                Assert.That(metaText, Does.Contain("spritePivot: {x: 0.5, y: 0.04}"), $"Bottom-center pivot mismatch for {npc.Id}");
+            }
+        }
+
+        private static string FindClientProjectRoot()
+        {
+            string dir = Environment.CurrentDirectory;
+            for (int i = 0; i < 6 && !string.IsNullOrEmpty(dir); ++i)
+            {
+                if (Directory.Exists(Path.Combine(dir, "Assets", "Resources", "UI", "Ugui", "GuiyuanNpcV1")))
+                    return dir;
+                dir = Path.GetDirectoryName(dir);
+            }
+            string fallback = @"d:\luyuan\mmorpg-client";
+            if (Directory.Exists(Path.Combine(fallback, "Assets", "Resources", "UI", "Ugui", "GuiyuanNpcV1")))
+                return fallback;
+            throw new DirectoryNotFoundException("Could not locate mmorpg-client root containing GuiyuanNpcV1 assets.");
+        }
+
+        private static (int Width, int Height) ReadPngDimensions(string path)
+        {
+            byte[] header = new byte[24];
+            using (var fs = File.OpenRead(path))
+            {
+                int read = fs.Read(header, 0, header.Length);
+                Assert.That(read, Is.EqualTo(24), $"Truncated PNG header: {path}");
+            }
+            Assert.That(header[0], Is.EqualTo(0x89));
+            Assert.That(header[1], Is.EqualTo(0x50));
+            Assert.That(header[2], Is.EqualTo(0x4E));
+            Assert.That(header[3], Is.EqualTo(0x47));
+            int w = (header[16] << 24) | (header[17] << 16) | (header[18] << 8) | header[19];
+            int h = (header[20] << 24) | (header[21] << 16) | (header[22] << 8) | header[23];
+            return (w, h);
         }
 
         private static global::AttributePanelInfo MakePanel(

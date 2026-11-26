@@ -9,16 +9,19 @@ namespace MmorpgClient.World.Tianyong
 
     /// <summary>
     /// 归元城 8 位 100% 原创核心 NPC 的大世界表现实体（纯显示、无碰撞体、绝不挡寻路）。
-    /// 优先加载 Codex 交付的专属无字立绘（Resources/UI/Ugui/GuiyuanNpcV1/Npcs/npc_{id}）；
-    /// 专属立绘未落盘前无缝复用项目自有原创形象目录（QdaoBoySpriteAnimator），零第三方版权素材风险。
+    /// 优先加载 Codex 交付的 1024×1024 透明立绘（pivot = (0.5, 0.04) 脚底贴地）与 npc_bubble_bg 气泡底板；
+    /// 缺图时无缝回退项目自有原创形象目录（QdaoBoySpriteAnimator）与文字气泡。
     /// </summary>
     public sealed class GuiyuanCityNpcActor : MonoBehaviour
     {
         public const float HitWorldHeight = 9.4f;
         public const float HitWidthPerHeight = 0.52f;
+        public const string BubbleBgResourceKey = "UI/Ugui/GuiyuanNpcV1/npc_bubble_bg";
         private const float DedicatedVisibleHeight = 8.4f;
 
         private CityNpcDefinition _definition;
+        private GameObject _bubbleRoot;
+        private SpriteRenderer _bubbleBgRenderer;
         private TextMeshPro _bubbleText;
         private float _bubbleHideAt;
 
@@ -72,40 +75,83 @@ namespace MmorpgClient.World.Tianyong
             float spriteHeight = sprite.bounds.size.y > 0.01f ? sprite.bounds.size.y : 1f;
             float scale = DedicatedVisibleHeight / spriteHeight;
             visual.transform.localScale = new Vector3(scale, scale, 1f);
-            visual.transform.localPosition = new Vector3(0f, DedicatedVisibleHeight * 0.5f, 0f);
+
+            // Codex 交付的 8 位 NPC 均为底部居中锚点 (0.5, 0.04)，脚底直接贴合 y=0；
+            // 若未来替换为居中锚点图，则自动补齐半高偏移。
+            float pivotNormY = sprite.rect.height > 1f ? sprite.pivot.y / sprite.rect.height : 0.5f;
+            float localY = pivotNormY < 0.25f ? 0f : DedicatedVisibleHeight * 0.5f;
+            visual.transform.localPosition = new Vector3(0f, localY, 0f);
             WorldLabelBillboard.Attach(visual);
         }
 
         private void CreateBubbleLabel()
         {
-            var bubbleGo = new GameObject("SpeechBubble");
-            bubbleGo.transform.SetParent(transform, false);
-            bubbleGo.transform.localPosition = new Vector3(0f, HitWorldHeight + 1.35f, 0f);
-            _bubbleText = bubbleGo.AddComponent<TextMeshPro>();
-            _bubbleText.fontSize = 3.2f;
+            _bubbleRoot = new GameObject("SpeechBubble");
+            _bubbleRoot.transform.SetParent(transform, false);
+            _bubbleRoot.transform.localPosition = new Vector3(0f, HitWorldHeight + 1.55f, 0f);
+            WorldLabelBillboard.Attach(_bubbleRoot);
+
+            var bgSprite = Resources.Load<Sprite>(BubbleBgResourceKey);
+            if (bgSprite != null)
+            {
+                var bgGo = new GameObject("BubbleBg");
+                bgGo.transform.SetParent(_bubbleRoot.transform, false);
+                bgGo.transform.localPosition = Vector3.zero;
+                _bubbleBgRenderer = bgGo.AddComponent<SpriteRenderer>();
+                _bubbleBgRenderer.sprite = bgSprite;
+                _bubbleBgRenderer.drawMode = bgSprite.border.sqrMagnitude > 0f
+                    ? SpriteDrawMode.Sliced
+                    : SpriteDrawMode.Simple;
+                _bubbleBgRenderer.size = new Vector2(8.8f, 2.2f);
+                _bubbleBgRenderer.sortingOrder = 10;
+            }
+
+            var textGo = new GameObject("BubbleText");
+            textGo.transform.SetParent(_bubbleRoot.transform, false);
+            textGo.transform.localPosition = new Vector3(0f, bgSprite != null ? 0.14f : 0f, -0.02f);
+            _bubbleText = textGo.AddComponent<TextMeshPro>();
+            _bubbleText.fontSize = 2.6f;
             _bubbleText.alignment = TextAlignmentOptions.Center;
-            _bubbleText.color = new Color(1f, 0.96f, 0.82f, 1f);
-            _bubbleText.outlineWidth = 0.2f;
-            _bubbleText.outlineColor = new Color(0.11f, 0.19f, 0.16f, 0.95f);
+            _bubbleText.textWrappingMode = TextWrappingModes.Normal;
+            _bubbleText.rectTransform.sizeDelta = new Vector2(7.6f, 1.55f);
+            _bubbleText.sortingOrder = 11;
             _bubbleText.richText = false;
+            if (bgSprite != null)
+            {
+                _bubbleText.color = new Color(0.15f, 0.23f, 0.19f, 1f);
+                _bubbleText.outlineWidth = 0f;
+            }
+            else
+            {
+                _bubbleText.color = new Color(1f, 0.96f, 0.82f, 1f);
+                _bubbleText.outlineWidth = 0.2f;
+                _bubbleText.outlineColor = new Color(0.11f, 0.19f, 0.16f, 0.95f);
+            }
             _bubbleText.text = "";
-            WorldLabelBillboard.Attach(bubbleGo);
-            bubbleGo.SetActive(false);
+            _bubbleRoot.SetActive(false);
         }
 
         public void ShowBubble(string text, float durationSeconds = 3.2f)
         {
-            if (_bubbleText == null || string.IsNullOrWhiteSpace(text)) return;
-            _bubbleText.text = text.Length > 34 ? text.Substring(0, 34) + "…" : text;
-            _bubbleText.gameObject.SetActive(true);
+            if (_bubbleRoot == null || _bubbleText == null || string.IsNullOrWhiteSpace(text)) return;
+            string clipped = text.Length > 34 ? text.Substring(0, 34) + "…" : text;
+            _bubbleText.text = clipped;
+            if (_bubbleBgRenderer != null && _bubbleBgRenderer.drawMode == SpriteDrawMode.Sliced)
+            {
+                float width = Mathf.Clamp(2.8f + clipped.Length * 0.28f, 5.4f, 9.6f);
+                float height = clipped.Length > 18 ? 2.45f : 1.95f;
+                _bubbleBgRenderer.size = new Vector2(width, height);
+                _bubbleText.rectTransform.sizeDelta = new Vector2(width - 1.1f, height - 0.55f);
+            }
+            _bubbleRoot.SetActive(true);
             _bubbleHideAt = Time.unscaledTime + Mathf.Max(1f, durationSeconds);
         }
 
         private void Update()
         {
-            if (_bubbleText != null && _bubbleText.gameObject.activeSelf && Time.unscaledTime >= _bubbleHideAt)
+            if (_bubbleRoot != null && _bubbleRoot.activeSelf && Time.unscaledTime >= _bubbleHideAt)
             {
-                _bubbleText.gameObject.SetActive(false);
+                _bubbleRoot.SetActive(false);
             }
         }
 

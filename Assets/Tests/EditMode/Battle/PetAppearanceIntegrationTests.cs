@@ -430,6 +430,48 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void CompanionUsesEquippedCosmeticArtKeyAndFallsBackWhenClearedOrMissing()
+        {
+            var net = new FakeBattleTransport();
+            var pets = new PetClient(net);
+            var world = new ActorWorld("PetCompanionCosmeticTestWorld");
+            Own(world.Root.gameObject);
+            var companion = world.Root.gameObject.AddComponent<QdaoPetCompanion>();
+            companion.Bind(world, pets);
+            try
+            {
+                world.SpawnActor(10, ActorKind.Npc, 1, Vector3.zero, Vector3.zero);
+                world.SetLocalPlayer(10);
+                var list = new PetListInfo { ActivePetId = 301 };
+                list.Pets.Add(new PetInfo { PetId = 301, PetTableId = 4, ModelId = 1004 });
+                net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = list });
+                Tick(companion);
+                Assert.That(companion.PetIdentity, Is.EqualTo("legacy-yun-jiu-jiu"));
+
+                // 穿戴灵宠幻化后，大世界跟随灵宠立即切换为幻化资源键
+                list.Pets[0].CosmeticId = 1;
+                list.Pets[0].CosmeticArtKey = "07-cangzhanglin";
+                net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = list });
+                Tick(companion);
+                Assert.That(companion.PetIdentity, Is.EqualTo("07-cangzhanglin"));
+
+                // 缺失或非法幻化资源键安全回退原形
+                list.Pets[0].CosmeticArtKey = "missing-cosmetic-art-key";
+                net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = list });
+                Tick(companion);
+                Assert.That(companion.PetIdentity, Is.EqualTo("legacy-yun-jiu-jiu"));
+
+                // 恢复原形清空幻化后还原基础物种外观
+                list.Pets[0].CosmeticId = 0;
+                list.Pets[0].CosmeticArtKey = "";
+                net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = list });
+                Tick(companion);
+                Assert.That(companion.PetIdentity, Is.EqualTo("legacy-yun-jiu-jiu"));
+            }
+            finally { DestroyFixture(world.Root.gameObject); }
+        }
+
+        [Test]
         public void PetAnimatorCreatesMissingRendererAndReleasesItsClipAcrossDisableAndDestroy()
         {
             int baseline = QdaoActionResources.ResidentClipCount;

@@ -1181,11 +1181,12 @@ namespace MmorpgClient.Game.Battle
         }
 
         /// <summary>
-        /// 论剑 V3 战前 15 秒明牌变阵提交（RPC 504 UpdateBattlePrep，走战斗直连；换赛季印 / 换首发宠 / 锁定出战）。
+        /// 论剑 V3 战前变阵及每方 3 Ban 提交（RPC 504 UpdateBattlePrep，走战斗直连；换赛季印 / 换首发宠 / 禁招提名 / 锁定出战）。
         /// 返回 true 表示请求已发出；false 表示本地拦截（已通过 OnError 提示）。
         /// </summary>
         public bool UpdateBattlePrep(uint selectedSealId = 0u, ulong selectedPetId = 0ul,
-            bool ready = false, Action<bool> completed = null)
+            bool ready = false, Action<bool> completed = null,
+            bool updateBannedSkills = false, System.Collections.Generic.IReadOnlyList<uint> bannedSkillIds = null)
         {
             if (_battleId == 0 || !IsInPrepPhase || IsBattleDecided)
             {
@@ -1207,7 +1208,15 @@ namespace MmorpgClient.Game.Battle
                 SelectedSealId = selectedSealId,
                 SelectedPetId = selectedPetId,
                 Ready = ready,
+                UpdateBannedSkills = updateBannedSkills,
             };
+            if (updateBannedSkills && bannedSkillIds != null)
+            {
+                for (int i = 0; i < bannedSkillIds.Count; i++)
+                {
+                    if (bannedSkillIds[i] != 0u) req.BannedSkillIds.Add(bannedSkillIds[i]);
+                }
+            }
             _net.Call(MessageIds.UpdateBattlePrep, req, UpdateBattlePrepResponse.Parser,
                 resp =>
                 {
@@ -1928,8 +1937,12 @@ namespace MmorpgClient.Game.Battle
         /// 真结束了自有终局包 / 直连 BattleGone 收场。
         /// </summary>
         private static string DescribeActionTip(string what, TipInfoMessage tip)
-            => tip != null && tip.Id == (uint)common_error.KInvalidParameter
+        {
+            if (tip != null && tip.Id == (uint)skill_error.KSkillBannedInBattle)
+                return "该技能本局已被禁用";
+            return tip != null && tip.Id == (uint)common_error.KInvalidParameter
                 ? $"{what}:行动无效(tip={tip.Id})"
                 : DescribeTip(what, tip);
+        }
     }
 }

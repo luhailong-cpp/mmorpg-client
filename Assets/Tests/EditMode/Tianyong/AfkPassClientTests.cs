@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using MmorpgClient.Game.AfkPass;
 using MmorpgClient.Net;
+using MmorpgClient.UI.Ugui.Gameplay;
 using NUnit.Framework;
+using UnityEngine;
 
 namespace MmorpgClient.Tests.EditMode.Tianyong
 {
@@ -358,6 +360,62 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(purchasedCount, Is.EqualTo(1));
             Assert.That(_client.Info.UnlockedLoadoutSlots, Is.EqualTo(6u));
             Assert.That(_client.Info.Stage2TradableEnabled, Is.True);
+        }
+
+        [Test]
+        public void AfkPassTeamArtSlices_All25SpritesLoadWithExpectedBordersAndSizes()
+        {
+            var entry = Resources.Load<Sprite>("UI/Ugui/WorldHud20261022/afkpass");
+            Assert.That(entry, Is.Not.Null, "missing WorldHud20261022/afkpass");
+            Assert.That((int)entry.rect.width, Is.EqualTo(128));
+            Assert.That((int)entry.rect.height, Is.EqualTo(128));
+
+            var sliced = new (string key, int w, int h)[]
+            {
+                ("afk_pass_panel_bg", 1080, 760),
+                ("afk_pass_info_card", 920, 250),
+                ("afk_pass_script_bar", 920, 52),
+                ("afk_pass_toggle_off", 460, 62),
+                ("afk_pass_toggle_on", 460, 62),
+                ("afk_pass_btn_secondary", 260, 62),
+                ("afk_pass_btn_primary", 400, 80),
+                ("hosted_recap_bg", 920, 620),
+                ("hosted_recap_row_bg", 728, 52),
+                ("hosted_recap_btn_secondary", 210, 72),
+                ("hosted_recap_btn_confirm", 302, 72),
+                ("status_hosted_badge", 138, 46),
+                ("team_recall_banner_bg", 660, 84),
+                ("team_recall_btn_accept", 140, 52),
+                ("team_recall_btn_dismiss", 94, 52),
+            };
+            foreach (var (key, w, h) in sliced)
+            {
+                var sp = GameplayUiArt.TryLoadAfkTeamArt(key);
+                Assert.That(sp, Is.Not.Null, $"missing sliced sprite {key}");
+                Assert.That((int)sp.rect.width, Is.EqualTo(w), key);
+                Assert.That((int)sp.rect.height, Is.EqualTo(h), key);
+                Assert.That(sp.border.sqrMagnitude, Is.GreaterThan(0f), $"missing 9-slice border on {key}");
+            }
+
+            var icons = new (string key, int size)[]
+            {
+                ("icon_recap_battle", 64),
+                ("icon_recap_exp", 64),
+                ("icon_recap_silver", 64),
+                ("icon_recap_item", 64),
+                ("icon_team_hosted", 48),
+                ("icon_team_recall", 48),
+                ("icon_formation_column", 48),
+                ("icon_formation_echelon", 48),
+                ("icon_formation_wuxing", 48),
+            };
+            foreach (var (key, size) in icons)
+            {
+                var sp = GameplayUiArt.TryLoadAfkTeamArt(key);
+                Assert.That(sp, Is.Not.Null, $"missing icon sprite {key}");
+                Assert.That((int)sp.rect.width, Is.EqualTo(size), key);
+                Assert.That((int)sp.rect.height, Is.EqualTo(size), key);
+            }
         }
     }
 }

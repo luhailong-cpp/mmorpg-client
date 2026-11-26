@@ -23,7 +23,7 @@ public static partial class SpiritShopErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "CjRnZW5lcmF0ZWQvY29kZS9wcm90by90aXAvc3Bpcml0X3Nob3BfZXJyb3Jf",
-          "dGlwLnByb3RvKvwCChFzcGlyaXRfc2hvcF9lcnJvchIYChRrU3Bpcml0X3No",
+          "dGlwLnByb3RvKtwDChFzcGlyaXRfc2hvcF9lcnJvchIYChRrU3Bpcml0X3No",
           "b3BfZXJyb3JPSxAAEhwKFmtTcGlyaXRTaG9wVW5hdmFpbGFibGUQiKECEh4K",
           "GGtTcGlyaXRTaG9wR29vZHNPZmZTaGVsZhCJoQISHQoXa1NwaXJpdFNob3BQ",
           "cmljZUNoYW5nZWQQiqECEh0KF2tTcGlyaXRTaG9wSW52YWxpZENvdW50EIuh",
@@ -31,8 +31,10 @@ public static partial class SpiritShopErrorTipReflection {
           "b3BHcm91cExpbWl0UmVhY2hlZBCNoQISIgoca1NwaXJpdFNob3BDdXJyZW5j",
           "eU5vdEVub3VnaBCOoQISGAoSa1NwaXJpdFNob3BCYWdGdWxsEI+hAhIXChFr",
           "U3Bpcml0U2hvcEZyb3plbhCQoQISGQoTa1NwaXJpdFNob3BJbkJhdHRsZRCR",
-          "oQISHAoWa1NwaXJpdFNob3BJdGVtQmxvY2tlZBCSoQJCJAoOY29tLmdhbWUu",
-          "dGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
+          "oQISHAoWa1NwaXJpdFNob3BJdGVtQmxvY2tlZBCSoQISIAoaa1NwaXJpdFNo",
+          "b3BOb3RJblNhbGVXaW5kb3cQk6ECEhwKFmtTcGlyaXRTaG9wTGV2ZWxOb3RN",
+          "ZXQQlKECEh4KGGtTcGlyaXRTaG9wSW52YWxpZENob2ljZRCVoQJCJAoOY29t",
+          "LmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::spirit_shop_error), }, null, null));
@@ -54,6 +56,9 @@ public enum spirit_shop_error {
   [pbr::OriginalName("kSpiritShopFrozen")] KSpiritShopFrozen = 37008,
   [pbr::OriginalName("kSpiritShopInBattle")] KSpiritShopInBattle = 37009,
   [pbr::OriginalName("kSpiritShopItemBlocked")] KSpiritShopItemBlocked = 37010,
+  [pbr::OriginalName("kSpiritShopNotInSaleWindow")] KSpiritShopNotInSaleWindow = 37011,
+  [pbr::OriginalName("kSpiritShopLevelNotMet")] KSpiritShopLevelNotMet = 37012,
+  [pbr::OriginalName("kSpiritShopInvalidChoice")] KSpiritShopInvalidChoice = 37013,
 }
 
 #endregion

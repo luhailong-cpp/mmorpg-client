@@ -62,6 +62,7 @@ namespace MmorpgClient.UI.Ugui
         public const string RankedPlayV2ControlsRoot = "UI/Ugui/RankedPlayV2/";
         public const string RankedPlayV4Root = "UI/Ugui/RankedPlayV4/";
         public const string RankedV4TacticalUiRoot = "UI/Ugui/RankedV4Tactical/ui/";
+        public const string BattlePrepSkillBanRoot = "UI/Ugui/BattlePrepSkillBan/";
         public const string GuildFidelityRoot = "UI/Ugui/GuildFidelity20261016/";
 
         // 论剑 V2+V3 统一道家配色（对应 BattleArenaV2V3 layout-contract.json）
@@ -108,6 +109,25 @@ namespace MmorpgClient.UI.Ugui
         public static Sprite LoadTradeV2Slice(string name) => LoadCached(EconomyTradeV2Root + name);
 
         public static Sprite LoadPaymentCashierSlice(string name) => LoadCached(PaymentCashierRoot + name);
+
+        public static Sprite LoadBattlePrepSkillBanSlice(string name) => LoadCached(BattlePrepSkillBanRoot + name);
+
+        public static void ApplySlicedControlSprite(Image image, Sprite sprite, Color fallbackColor)
+        {
+            if (image == null) return;
+            if (sprite != null)
+            {
+                image.sprite = sprite;
+                image.type = Image.Type.Sliced;
+                image.color = Color.white;
+            }
+            else
+            {
+                image.sprite = null;
+                image.type = Image.Type.Simple;
+                image.color = fallbackColor;
+            }
+        }
 
         /// <summary>使用 PaymentCashierV1 9-slice 按钮切图创建收银台/官方商城操作按钮，缺图回退通用按钮。</summary>
         public static Button CreateCashierButton(

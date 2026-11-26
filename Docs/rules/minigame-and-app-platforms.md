@@ -10,6 +10,7 @@
 - 实名认证与未成年人防沉迷：`real-name-anti-addiction.md`
 - 账号注销与 Apple/Google 接入：`account-deletion.md`
 - 改名与 UGC 内容安全：`rename-and-content-safety.md`
+- 零拒审激励视频与双银两系统：`rewarded-ad-system.md`、`docs/planning/rewarded-ad-compliance-and-economy-v1.md`
 - 上线前置手续：`docs/ops/release-checklist.md`（§7）
 
 ---
@@ -75,6 +76,24 @@
 - **客户端绝不采信本地 SDK 支付结果**：
   - 任何 SDK 回调（含 Android `WXPayEntryActivity`）只做通知收口，**绝不作为发货或界面显示“已到账”的依据**；
   - 商店渠道下单前必须绑定服务端下发的订单标识（Apple `appAccountToken` / Google obfuscated account），拿到凭证后调 `SubmitPurchase`，并在每次启动/建连时自动补交未 `finish` 的挂起交易（防付款后杀进程丢单）；二段式渠道统一轮询服务端 `GetPayIntent` 确认终态。
+
+### 4.1 零拒审与防被迫下架硬红线（广告、捐赠与隐私合规，一票否决，2026-11-26 强制）
+
+**“绝不允许因广告、捐赠、支付、隐私或文案导致游戏不过审或被迫下架”是客户端最高一票否决门禁：**
+
+- **严禁站内捐赠与切支付**：客户端内**永久禁止**放置个人收款码、微信/支付宝转账提示、爱发电/Patreon/Ko-fi 等外部赞助链接或非官方打赏按钮；国内无版号前小游戏严禁开启内购充值。
+- **首审纯净态与构建期自动拦截**：
+  - 激励视频服务端总开关首审必须默认 `enabled = 0`；
+  - App 端第三方广告 SDK 必须严格隔离在 `#if MMORPG_ENABLE_APP_AD_SDK`（默认关闭）内，首审构建使用 `NullRewardedAdBridge`；
+  - 出包护栏 `Assets/Editor/RewardedAdBuildGuard.cs` 必须保持启用：未开启广告宏时若检测到 iOS `Info.plist`/`project.pbxproj` 残留 `NSUserTrackingUsageDescription`/`AppTrackingTransparency`/广告 SDK，或 Android `AndroidManifest.xml` 残留广告 SDK/AD_ID，**必须直接失败中断出包**；开启广告宏时强制校验 iOS `NSUserTrackingUsageDescription` 非空且真机冷启动真实弹出系统 ATT 框（拒绝跟踪仍须正常可玩）。
+- **防空按钮与交互合规（Apple 2.1 + 抖音/微信规范）**：
+  - 广告入口按钮仅在「服务端开启 + 宿主支持 + 广告素材已加载就绪 + 配置有效 `adUnitId` + 今日有余量 + 非战斗」全部成立时展示，任一条件不满足必须整块 `SetActive(false)` 彻底隐藏；
+  - 触发播放前的二次确认窗必须包含清晰 `[广告]` 标识及**同等显眼的「观看广告领取」与「关闭」双按钮**；
+  - 小游戏 `MinigameAd.jslib` 必须先判 `tt` 再判 `wx`，同 `adUnitId` 复用单例 `RewardedVideoAd` 且事件仅绑定一次，强制校验 `res && res.isEnded === true` 及 ≥ 1 秒节流，且广告暂停心跳断连后经 `PendingClaim` 自动携同幂等键补领。
+- **零诱导文案红线（防微信流量主处罚与 AdMob IVT 封号）**：
+  - 严禁任何提示玩家点击广告、帮助作者或含糊承诺回报的文案（禁用词包括但不限于：「支持作者」「支持开发」「捐赠」「打赏」「点广告」「点一下」「帮忙点」「收款码」「微信收款」「支付宝收款」「爱发电」「赞助作者」「点击广告」）；
+  - 自动化门禁 `Assets/Tests/EditMode/Role/RewardedAdModelAndComplianceTests.cs` 必须持续通过，严禁删除或绕过禁用词扫描断言。
+- **奖励隔离**：激励视频仅允许展示与领取服务端权威发放的不可交易**绑定银两（`CurrencyLabels.BindGold = 3`）**，严禁诱导用于玩家交易/寄售。
 
 ---
 

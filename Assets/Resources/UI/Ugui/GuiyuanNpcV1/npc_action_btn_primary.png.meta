@@ -3,7 +3,7 @@ guid: 167df3362103eea4582695db48d41975
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3465226128412937107
+      213: 5504056798373275233
     second: npc_action_btn_primary_0
   externalObjects: {}
   serializedVersion: 13
@@ -34,7 +34,7 @@ TextureImporter:
   cubemapConvolution: 0
   seamlessCubemap: 0
   textureFormat: 1
-  maxTextureSize: 2048
+  maxTextureSize: 4096
   textureSettings:
     serializedVersion: 2
     filterMode: 1
@@ -47,7 +47,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -97,15 +97,15 @@ TextureImporter:
         width: 340
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 36, y: 0, z: 36, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d647b8d123b09efc0800000000000000
-      internalID: -3465226128412937107
+      spriteID: a49c5015ae474cd399fac622badb1a74
+      internalID: 5504056798373275233
       vertices: []
       indices: 
       edges: []
@@ -114,7 +114,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: a49c5015ae474cd399fac622badb1a74
     internalID: 0
     vertices: []
     indices: 

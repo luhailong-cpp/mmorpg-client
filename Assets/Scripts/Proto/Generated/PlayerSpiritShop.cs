@@ -29,7 +29,7 @@ public static partial class PlayerSpiritShopReflection {
           "bV9jb3VudBgCIAEoDRINCgVib3VuZBgDIAEoCCKOAQoYU3Bpcml0U2hvcExp",
           "bWl0R3JvdXBWaWV3EhAKCGdyb3VwX2lkGAEgASgNEgwKBG5hbWUYAiABKAkS",
           "EgoKcmVzZXRfa2luZBgDIAEoDRISCgptYXhfd2VpZ2h0GAQgASgNEhMKC3Vz",
-          "ZWRfd2VpZ2h0GAUgASgNEhUKDW5leHRfcmVzZXRfbXMYBiABKAQikQMKE1Nw",
+          "ZWRfd2VpZ2h0GAUgASgNEhUKDW5leHRfcmVzZXRfbXMYBiABKAQijwQKE1Nw",
           "aXJpdFNob3BHb29kc1ZpZXcSEAoIZ29vZHNfaWQYASABKA0SDgoGdGFiX2lk",
           "GAIgASgNEhIKCnNvcnRfb3JkZXIYAyABKA0SDAoEbmFtZRgEIAEoCRITCgtk",
           "ZXNjcmlwdGlvbhgFIAEoCRIQCghpY29uX2tleRgGIAEoCRISCgpiYWRnZV90",
@@ -38,37 +38,41 @@ public static partial class PlayerSpiritShopReflection {
           "GAsgAygLMhQuU3Bpcml0U2hvcEl0ZW1FbnRyeRIYChBsaW1pdF9yZXNldF9r",
           "aW5kGAwgASgNEhMKC2xpbWl0X2NvdW50GA0gASgNEhQKDGJvdWdodF9jb3Vu",
           "dBgOIAEoDRIWCg5saW1pdF9ncm91cF9pZBgPIAEoDRIaChJsaW1pdF9ncm91",
-          "cF93ZWlnaHQYECABKA0SFQoNbmV4dF9yZXNldF9tcxgRIAEoBCLMAQoOU3Bp",
-          "cml0U2hvcEluZm8SFgoOc2VydmVyX3RpbWVfbXMYASABKAQSFQoNc2hvcF9y",
-          "ZXZpc2lvbhgCIAEoBBIXCg9kaWFtb25kX2JhbGFuY2UYAyABKAQSHAoUYmlu",
-          "ZF9kaWFtb25kX2JhbGFuY2UYBCABKAQSLwoMbGltaXRfZ3JvdXBzGAUgAygL",
-          "MhkuU3Bpcml0U2hvcExpbWl0R3JvdXBWaWV3EiMKBWdvb2RzGAYgAygLMhQu",
-          "U3Bpcml0U2hvcEdvb2RzVmlldyIaChhHZXRTcGlyaXRTaG9wSW5mb1JlcXVl",
-          "c3QiYgoZR2V0U3Bpcml0U2hvcEluZm9SZXNwb25zZRImCg1lcnJvcl9tZXNz",
-          "YWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USHQoEaW5mbxgCIAEoCzIPLlNw",
-          "aXJpdFNob3BJbmZvIsIBChlCdXlTcGlyaXRTaG9wR29vZHNSZXF1ZXN0EhkK",
-          "EWNsaWVudF9yZXF1ZXN0X2lkGAEgASgEEhAKCGdvb2RzX2lkGAIgASgNEg0K",
-          "BWNvdW50GAMgASgNEh4KFmV4cGVjdGVkX2N1cnJlbmN5X3R5cGUYBCABKA0S",
-          "GwoTZXhwZWN0ZWRfdW5pdF9wcmljZRgFIAEoBBIsCg5leHBlY3RlZF9pdGVt",
-          "cxgGIAMoCzIULlNwaXJpdFNob3BJdGVtRW50cnkijAEKGkJ1eVNwaXJpdFNo",
-          "b3BHb29kc1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJ",
-          "bmZvTWVzc2FnZRIdCgRpbmZvGAIgASgLMg8uU3Bpcml0U2hvcEluZm8SFQoD",
-          "YmFnGAMgASgLMgguQmFnSW5mbxIQCghyZXBsYXllZBgEIAEoCDLEAQobU2Nl",
-          "bmVTcGlyaXRTaG9wQ2xpZW50UGxheWVyEkoKEUdldFNwaXJpdFNob3BJbmZv",
-          "EhkuR2V0U3Bpcml0U2hvcEluZm9SZXF1ZXN0GhouR2V0U3Bpcml0U2hvcElu",
-          "Zm9SZXNwb25zZRJNChJCdXlTcGlyaXRTaG9wR29vZHMSGi5CdXlTcGlyaXRT",
-          "aG9wR29vZHNSZXF1ZXN0GhsuQnV5U3Bpcml0U2hvcEdvb2RzUmVzcG9uc2Ua",
-          "CoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
+          "cF93ZWlnaHQYECABKA0SFQoNbmV4dF9yZXNldF9tcxgRIAEoBBIVCg1zdGFy",
+          "dF90aW1lX21zGBIgASgEEhMKC2VuZF90aW1lX21zGBMgASgEEhIKCmdyYW50",
+          "X21vZGUYFCABKA0SFgoOb3JpZ2luYWxfcHJpY2UYFSABKAQSEQoJbWluX2xl",
+          "dmVsGBYgASgNEhEKCW1heF9sZXZlbBgXIAEoDSLMAQoOU3Bpcml0U2hvcElu",
+          "Zm8SFgoOc2VydmVyX3RpbWVfbXMYASABKAQSFQoNc2hvcF9yZXZpc2lvbhgC",
+          "IAEoBBIXCg9kaWFtb25kX2JhbGFuY2UYAyABKAQSHAoUYmluZF9kaWFtb25k",
+          "X2JhbGFuY2UYBCABKAQSLwoMbGltaXRfZ3JvdXBzGAUgAygLMhkuU3Bpcml0",
+          "U2hvcExpbWl0R3JvdXBWaWV3EiMKBWdvb2RzGAYgAygLMhQuU3Bpcml0U2hv",
+          "cEdvb2RzVmlldyIaChhHZXRTcGlyaXRTaG9wSW5mb1JlcXVlc3QiYgoZR2V0",
+          "U3Bpcml0U2hvcEluZm9SZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
+          "Mg8uVGlwSW5mb01lc3NhZ2USHQoEaW5mbxgCIAEoCzIPLlNwaXJpdFNob3BJ",
+          "bmZvIt0BChlCdXlTcGlyaXRTaG9wR29vZHNSZXF1ZXN0EhkKEWNsaWVudF9y",
+          "ZXF1ZXN0X2lkGAEgASgEEhAKCGdvb2RzX2lkGAIgASgNEg0KBWNvdW50GAMg",
+          "ASgNEh4KFmV4cGVjdGVkX2N1cnJlbmN5X3R5cGUYBCABKA0SGwoTZXhwZWN0",
+          "ZWRfdW5pdF9wcmljZRgFIAEoBBIsCg5leHBlY3RlZF9pdGVtcxgGIAMoCzIU",
+          "LlNwaXJpdFNob3BJdGVtRW50cnkSGQoRY2hvc2VuX2l0ZW1faW5kZXgYByAB",
+          "KA0ijAEKGkJ1eVNwaXJpdFNob3BHb29kc1Jlc3BvbnNlEiYKDWVycm9yX21l",
+          "c3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIdCgRpbmZvGAIgASgLMg8u",
+          "U3Bpcml0U2hvcEluZm8SFQoDYmFnGAMgASgLMgguQmFnSW5mbxIQCghyZXBs",
+          "YXllZBgEIAEoCDLEAQobU2NlbmVTcGlyaXRTaG9wQ2xpZW50UGxheWVyEkoK",
+          "EUdldFNwaXJpdFNob3BJbmZvEhkuR2V0U3Bpcml0U2hvcEluZm9SZXF1ZXN0",
+          "GhouR2V0U3Bpcml0U2hvcEluZm9SZXNwb25zZRJNChJCdXlTcGlyaXRTaG9w",
+          "R29vZHMSGi5CdXlTcGlyaXRTaG9wR29vZHNSZXF1ZXN0GhsuQnV5U3Bpcml0",
+          "U2hvcEdvb2RzUmVzcG9uc2UaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GED",
+          "YgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::PlayerBagReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::SpiritShopItemEntry), global::SpiritShopItemEntry.Parser, new[]{ "ItemConfigId", "ItemCount", "Bound" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SpiritShopLimitGroupView), global::SpiritShopLimitGroupView.Parser, new[]{ "GroupId", "Name", "ResetKind", "MaxWeight", "UsedWeight", "NextResetMs" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SpiritShopGoodsView), global::SpiritShopGoodsView.Parser, new[]{ "GoodsId", "TabId", "SortOrder", "Name", "Description", "IconKey", "BadgeText", "CurrencyType", "UnitPrice", "MaxBuyPerRequest", "Items", "LimitResetKind", "LimitCount", "BoughtCount", "LimitGroupId", "LimitGroupWeight", "NextResetMs" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SpiritShopGoodsView), global::SpiritShopGoodsView.Parser, new[]{ "GoodsId", "TabId", "SortOrder", "Name", "Description", "IconKey", "BadgeText", "CurrencyType", "UnitPrice", "MaxBuyPerRequest", "Items", "LimitResetKind", "LimitCount", "BoughtCount", "LimitGroupId", "LimitGroupWeight", "NextResetMs", "StartTimeMs", "EndTimeMs", "GrantMode", "OriginalPrice", "MinLevel", "MaxLevel" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SpiritShopInfo), global::SpiritShopInfo.Parser, new[]{ "ServerTimeMs", "ShopRevision", "DiamondBalance", "BindDiamondBalance", "LimitGroups", "Goods" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetSpiritShopInfoRequest), global::GetSpiritShopInfoRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetSpiritShopInfoResponse), global::GetSpiritShopInfoResponse.Parser, new[]{ "ErrorMessage", "Info" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BuySpiritShopGoodsRequest), global::BuySpiritShopGoodsRequest.Parser, new[]{ "ClientRequestId", "GoodsId", "Count", "ExpectedCurrencyType", "ExpectedUnitPrice", "ExpectedItems" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BuySpiritShopGoodsRequest), global::BuySpiritShopGoodsRequest.Parser, new[]{ "ClientRequestId", "GoodsId", "Count", "ExpectedCurrencyType", "ExpectedUnitPrice", "ExpectedItems", "ChosenItemIndex" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BuySpiritShopGoodsResponse), global::BuySpiritShopGoodsResponse.Parser, new[]{ "ErrorMessage", "Info", "Bag", "Replayed" }, null, null, null, null)
         }));
   }
@@ -795,6 +799,12 @@ public sealed partial class SpiritShopGoodsView : pb::IMessage<SpiritShopGoodsVi
     limitGroupId_ = other.limitGroupId_;
     limitGroupWeight_ = other.limitGroupWeight_;
     nextResetMs_ = other.nextResetMs_;
+    startTimeMs_ = other.startTimeMs_;
+    endTimeMs_ = other.endTimeMs_;
+    grantMode_ = other.grantMode_;
+    originalPrice_ = other.originalPrice_;
+    minLevel_ = other.minLevel_;
+    maxLevel_ = other.maxLevel_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1040,6 +1050,96 @@ public sealed partial class SpiritShopGoodsView : pb::IMessage<SpiritShopGoodsVi
     }
   }
 
+  /// <summary>Field number for the "start_time_ms" field.</summary>
+  public const int StartTimeMsFieldNumber = 18;
+  private ulong startTimeMs_;
+  /// <summary>
+  /// 定时开售 UTC 毫秒(0 = 立即开售)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong StartTimeMs {
+    get { return startTimeMs_; }
+    set {
+      startTimeMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "end_time_ms" field.</summary>
+  public const int EndTimeMsFieldNumber = 19;
+  private ulong endTimeMs_;
+  /// <summary>
+  /// 定时下架 UTC 毫秒(0 = 永不下架)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong EndTimeMs {
+    get { return endTimeMs_; }
+    set {
+      endTimeMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "grant_mode" field.</summary>
+  public const int GrantModeFieldNumber = 20;
+  private uint grantMode_;
+  /// <summary>
+  /// 0 = 全部发放(1..4项), 1 = 多选一自选(2..4项任选1项)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint GrantMode {
+    get { return grantMode_; }
+    set {
+      grantMode_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "original_price" field.</summary>
+  public const int OriginalPriceFieldNumber = 21;
+  private ulong originalPrice_;
+  /// <summary>
+  /// 原价划线展示(0 = 无划线; > unit_price 时客户端显示原价划线与折数)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong OriginalPrice {
+    get { return originalPrice_; }
+    set {
+      originalPrice_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "min_level" field.</summary>
+  public const int MinLevelFieldNumber = 22;
+  private uint minLevel_;
+  /// <summary>
+  /// 最低可见/可购有效等级(0 = 不限)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MinLevel {
+    get { return minLevel_; }
+    set {
+      minLevel_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_level" field.</summary>
+  public const int MaxLevelFieldNumber = 23;
+  private uint maxLevel_;
+  /// <summary>
+  /// 最高可见/可购有效等级(0 = 不限)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaxLevel {
+    get { return maxLevel_; }
+    set {
+      maxLevel_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1072,6 +1172,12 @@ public sealed partial class SpiritShopGoodsView : pb::IMessage<SpiritShopGoodsVi
     if (LimitGroupId != other.LimitGroupId) return false;
     if (LimitGroupWeight != other.LimitGroupWeight) return false;
     if (NextResetMs != other.NextResetMs) return false;
+    if (StartTimeMs != other.StartTimeMs) return false;
+    if (EndTimeMs != other.EndTimeMs) return false;
+    if (GrantMode != other.GrantMode) return false;
+    if (OriginalPrice != other.OriginalPrice) return false;
+    if (MinLevel != other.MinLevel) return false;
+    if (MaxLevel != other.MaxLevel) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1096,6 +1202,12 @@ public sealed partial class SpiritShopGoodsView : pb::IMessage<SpiritShopGoodsVi
     if (LimitGroupId != 0) hash ^= LimitGroupId.GetHashCode();
     if (LimitGroupWeight != 0) hash ^= LimitGroupWeight.GetHashCode();
     if (NextResetMs != 0UL) hash ^= NextResetMs.GetHashCode();
+    if (StartTimeMs != 0UL) hash ^= StartTimeMs.GetHashCode();
+    if (EndTimeMs != 0UL) hash ^= EndTimeMs.GetHashCode();
+    if (GrantMode != 0) hash ^= GrantMode.GetHashCode();
+    if (OriginalPrice != 0UL) hash ^= OriginalPrice.GetHashCode();
+    if (MinLevel != 0) hash ^= MinLevel.GetHashCode();
+    if (MaxLevel != 0) hash ^= MaxLevel.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1179,6 +1291,30 @@ public sealed partial class SpiritShopGoodsView : pb::IMessage<SpiritShopGoodsVi
       output.WriteRawTag(136, 1);
       output.WriteUInt64(NextResetMs);
     }
+    if (StartTimeMs != 0UL) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt64(StartTimeMs);
+    }
+    if (EndTimeMs != 0UL) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt64(EndTimeMs);
+    }
+    if (GrantMode != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(GrantMode);
+    }
+    if (OriginalPrice != 0UL) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt64(OriginalPrice);
+    }
+    if (MinLevel != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(MinLevel);
+    }
+    if (MaxLevel != 0) {
+      output.WriteRawTag(184, 1);
+      output.WriteUInt32(MaxLevel);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1254,6 +1390,30 @@ public sealed partial class SpiritShopGoodsView : pb::IMessage<SpiritShopGoodsVi
       output.WriteRawTag(136, 1);
       output.WriteUInt64(NextResetMs);
     }
+    if (StartTimeMs != 0UL) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt64(StartTimeMs);
+    }
+    if (EndTimeMs != 0UL) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt64(EndTimeMs);
+    }
+    if (GrantMode != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(GrantMode);
+    }
+    if (OriginalPrice != 0UL) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt64(OriginalPrice);
+    }
+    if (MinLevel != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(MinLevel);
+    }
+    if (MaxLevel != 0) {
+      output.WriteRawTag(184, 1);
+      output.WriteUInt32(MaxLevel);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1312,6 +1472,24 @@ public sealed partial class SpiritShopGoodsView : pb::IMessage<SpiritShopGoodsVi
     }
     if (NextResetMs != 0UL) {
       size += 2 + pb::CodedOutputStream.ComputeUInt64Size(NextResetMs);
+    }
+    if (StartTimeMs != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(StartTimeMs);
+    }
+    if (EndTimeMs != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(EndTimeMs);
+    }
+    if (GrantMode != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(GrantMode);
+    }
+    if (OriginalPrice != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(OriginalPrice);
+    }
+    if (MinLevel != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(MinLevel);
+    }
+    if (MaxLevel != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(MaxLevel);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1373,6 +1551,24 @@ public sealed partial class SpiritShopGoodsView : pb::IMessage<SpiritShopGoodsVi
     }
     if (other.NextResetMs != 0UL) {
       NextResetMs = other.NextResetMs;
+    }
+    if (other.StartTimeMs != 0UL) {
+      StartTimeMs = other.StartTimeMs;
+    }
+    if (other.EndTimeMs != 0UL) {
+      EndTimeMs = other.EndTimeMs;
+    }
+    if (other.GrantMode != 0) {
+      GrantMode = other.GrantMode;
+    }
+    if (other.OriginalPrice != 0UL) {
+      OriginalPrice = other.OriginalPrice;
+    }
+    if (other.MinLevel != 0) {
+      MinLevel = other.MinLevel;
+    }
+    if (other.MaxLevel != 0) {
+      MaxLevel = other.MaxLevel;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1461,6 +1657,30 @@ public sealed partial class SpiritShopGoodsView : pb::IMessage<SpiritShopGoodsVi
           NextResetMs = input.ReadUInt64();
           break;
         }
+        case 144: {
+          StartTimeMs = input.ReadUInt64();
+          break;
+        }
+        case 152: {
+          EndTimeMs = input.ReadUInt64();
+          break;
+        }
+        case 160: {
+          GrantMode = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          OriginalPrice = input.ReadUInt64();
+          break;
+        }
+        case 176: {
+          MinLevel = input.ReadUInt32();
+          break;
+        }
+        case 184: {
+          MaxLevel = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -1546,6 +1766,30 @@ public sealed partial class SpiritShopGoodsView : pb::IMessage<SpiritShopGoodsVi
         }
         case 136: {
           NextResetMs = input.ReadUInt64();
+          break;
+        }
+        case 144: {
+          StartTimeMs = input.ReadUInt64();
+          break;
+        }
+        case 152: {
+          EndTimeMs = input.ReadUInt64();
+          break;
+        }
+        case 160: {
+          GrantMode = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          OriginalPrice = input.ReadUInt64();
+          break;
+        }
+        case 176: {
+          MinLevel = input.ReadUInt32();
+          break;
+        }
+        case 184: {
+          MaxLevel = input.ReadUInt32();
           break;
         }
       }
@@ -2377,6 +2621,7 @@ public sealed partial class BuySpiritShopGoodsRequest : pb::IMessage<BuySpiritSh
     expectedCurrencyType_ = other.expectedCurrencyType_;
     expectedUnitPrice_ = other.expectedUnitPrice_;
     expectedItems_ = other.expectedItems_.Clone();
+    chosenItemIndex_ = other.chosenItemIndex_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2433,6 +2678,8 @@ public sealed partial class BuySpiritShopGoodsRequest : pb::IMessage<BuySpiritSh
   private uint expectedCurrencyType_;
   /// <summary>
   /// 报价防呆:任意一项与服务端当前配表不一致(热更改价/改内容/改绑定态)均拒绝并回 kSpiritShopPriceChanged。
+  /// grant_mode == 0(全部发放)时 expected_items 为全部 1..4 项且 chosen_item_index 须为 0;
+  /// grant_mode == 1(多选一)时 chosen_item_index 为所选候选项下标(0..items.size()-1), expected_items 仅含所选那 1 项。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2466,6 +2713,18 @@ public sealed partial class BuySpiritShopGoodsRequest : pb::IMessage<BuySpiritSh
     get { return expectedItems_; }
   }
 
+  /// <summary>Field number for the "chosen_item_index" field.</summary>
+  public const int ChosenItemIndexFieldNumber = 7;
+  private uint chosenItemIndex_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ChosenItemIndex {
+    get { return chosenItemIndex_; }
+    set {
+      chosenItemIndex_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2487,6 +2746,7 @@ public sealed partial class BuySpiritShopGoodsRequest : pb::IMessage<BuySpiritSh
     if (ExpectedCurrencyType != other.ExpectedCurrencyType) return false;
     if (ExpectedUnitPrice != other.ExpectedUnitPrice) return false;
     if(!expectedItems_.Equals(other.expectedItems_)) return false;
+    if (ChosenItemIndex != other.ChosenItemIndex) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2500,6 +2760,7 @@ public sealed partial class BuySpiritShopGoodsRequest : pb::IMessage<BuySpiritSh
     if (ExpectedCurrencyType != 0) hash ^= ExpectedCurrencyType.GetHashCode();
     if (ExpectedUnitPrice != 0UL) hash ^= ExpectedUnitPrice.GetHashCode();
     hash ^= expectedItems_.GetHashCode();
+    if (ChosenItemIndex != 0) hash ^= ChosenItemIndex.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2539,6 +2800,10 @@ public sealed partial class BuySpiritShopGoodsRequest : pb::IMessage<BuySpiritSh
       output.WriteUInt64(ExpectedUnitPrice);
     }
     expectedItems_.WriteTo(output, _repeated_expectedItems_codec);
+    if (ChosenItemIndex != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(ChosenItemIndex);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2570,6 +2835,10 @@ public sealed partial class BuySpiritShopGoodsRequest : pb::IMessage<BuySpiritSh
       output.WriteUInt64(ExpectedUnitPrice);
     }
     expectedItems_.WriteTo(ref output, _repeated_expectedItems_codec);
+    if (ChosenItemIndex != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(ChosenItemIndex);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2596,6 +2865,9 @@ public sealed partial class BuySpiritShopGoodsRequest : pb::IMessage<BuySpiritSh
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedUnitPrice);
     }
     size += expectedItems_.CalculateSize(_repeated_expectedItems_codec);
+    if (ChosenItemIndex != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ChosenItemIndex);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -2624,6 +2896,9 @@ public sealed partial class BuySpiritShopGoodsRequest : pb::IMessage<BuySpiritSh
       ExpectedUnitPrice = other.ExpectedUnitPrice;
     }
     expectedItems_.Add(other.expectedItems_);
+    if (other.ChosenItemIndex != 0) {
+      ChosenItemIndex = other.ChosenItemIndex;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -2667,6 +2942,10 @@ public sealed partial class BuySpiritShopGoodsRequest : pb::IMessage<BuySpiritSh
           expectedItems_.AddEntriesFrom(input, _repeated_expectedItems_codec);
           break;
         }
+        case 56: {
+          ChosenItemIndex = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -2708,6 +2987,10 @@ public sealed partial class BuySpiritShopGoodsRequest : pb::IMessage<BuySpiritSh
         }
         case 50: {
           expectedItems_.AddEntriesFrom(ref input, _repeated_expectedItems_codec);
+          break;
+        }
+        case 56: {
+          ChosenItemIndex = input.ReadUInt32();
           break;
         }
       }

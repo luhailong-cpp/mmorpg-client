@@ -637,10 +637,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var unsealIcon = SeasonEconomyUiArt.LoadTradeSlice("icon_unseal_talisman");
             if (unsealIcon != null)
                 QdaoUguiFactory.CreateImage("UnsealIconArt", _modalLayer, 760, 320, 220, 220, unsealIcon, false).preserveAspect = true;
-            string loadoutRef = EquipLoadoutModel.FormatItemLoadoutBadge(_client?.EquipLoadouts, _talismanTargetItemId);
-            string loadoutWarn = string.IsNullOrEmpty(loadoutRef)
+            var loadoutSchemes = EquipLoadoutModel.ReferencedSchemesOf(_client?.EquipLoadouts, _talismanTargetItemId);
+            string loadoutWarn = loadoutSchemes.Count == 0
                 ? string.Empty
-                : $"\n• 注意：该装备当前正被【{loadoutRef}】引用，剥离清空后对应流派方案将失去其强化与词条";
+                : "\n• " + EquipLoadoutModel.FormatItemProtectionWarning(loadoutSchemes, "解封剥离");
             Label(_modalLayer, "UnsealDesc",
                 $"目标装备：{Name(item)}（当前强化 +{item?.EnhanceLevel ?? 0} · 绑定 B）\n\n"
                 + "• 消耗 1 张「解封剥离符」\n"

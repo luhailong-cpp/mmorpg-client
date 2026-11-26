@@ -34,6 +34,7 @@
 - **工作区整洁**：构建产物、日志、临时验证证据统一放在已忽略目录（`Builds/`、`Logs/`、`.codex-artifacts/`）或系统 `%TEMP%`，不在仓库顶层新建杂项目录。
 
 ### 硬禁令
+- ❌ **严禁引入任何可能导致游戏不过审或被迫下架的功能、SDK、外链或文案（一票否决，2026-11-26 强制）**：严禁客户端内置收款码/捐赠/外链切支付/诱导点广告文案；严禁绕过 `RewardedAdBuildGuard`、跳过 `RewardedAdModelAndComplianceTests` 禁用词扫描，或在首审包残留第三方广告 SDK / ATT 隐私声明（详见 [minigame-and-app-platforms.md §4.1](minigame-and-app-platforms.md)）。
 - ❌ **严禁手改生成目录与文件**：`Assets/Scripts/Proto/Generated/`、`Assets/Scripts/Net/Generated/`（含 `Rpc/*Rpc.cs` 与 `TipFaults.cs`）、`Assets/Scripts/Net/MessageIds.cs`、`Assets/Scripts/Table/Generated/`（含 `*Table.cs`、`*TableManager.cs`、`TableLoader.cs`）。
 - ❌ **严禁遗漏或破坏 Unity `.meta`**：`Assets/` 下增删改移文件必须同步维护 `.meta`，不手造冲突 GUID。
 - ❌ **严禁在小游戏可达路径开启线程或阻塞主线程**：禁止 `new Thread`、`Task.Run`、`Task.Delay`、`ThreadPool`、`HttpClient`、原始 `TcpClient` / `Socket`、异步 `File.*Async` 以及 `.Wait()` / `.Result` / `Thread.Sleep`（详见 [minigame-and-app-platforms.md](minigame-and-app-platforms.md)）。

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using MmorpgClient.Game.PlayerFeatures;
 using TMPro;
 using UnityEngine;
@@ -15,8 +16,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     /// </summary>
     public sealed partial class EquipmentWindow
     {
-        private const string EquipLoadoutArtRoot = "UI/Ugui/EquipLoadoutV1/";
-
         private uint _loadoutSelectedSchemeId = 1u;
         private string _loadoutNameDraft = string.Empty;
         private uint _loadoutRoleTagDraft;
@@ -48,7 +47,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void OnEquipLoadoutSwitched(SwitchEquipLoadoutResponse response)
         {
-            _notice = EquipLoadoutModel.BuildSwitchResultNotice(response);
+            _notice = BuildLoadoutSwitchNotice(response);
             _loadoutDraftSynced = false;
             if (response?.Snapshot != null)
             {
@@ -75,9 +74,25 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (IsVisible) Render();
         }
 
+        private static EquipLoadoutSchemeInfo FindLoadoutScheme(EquipLoadoutSnapshot snap, uint schemeId)
+            => snap?.Schemes.FirstOrDefault(s => s != null && s.SchemeId == schemeId);
+
+        private static string BuildLoadoutSwitchNotice(SwitchEquipLoadoutResponse response)
+        {
+            if (response == null) return "装备方案已切换";
+            var scheme = FindLoadoutScheme(response.Snapshot, response.Snapshot?.ActiveSchemeId ?? 0u);
+            var sb = new StringBuilder();
+            sb.Append(scheme != null ? $"已切换至【{EquipLoadoutModel.SchemeDisplayName(scheme)}】" : "装备方案已切换");
+            string missing = EquipLoadoutModel.FormatMissingSlotsNotice(response.MissingSlots, scheme);
+            if (!string.IsNullOrEmpty(missing)) sb.Append("；").Append(missing);
+            if (response.LinkedNotices != null && response.LinkedNotices.Count > 0)
+                sb.Append("；").Append(string.Join("；", response.LinkedNotices));
+            return sb.ToString();
+        }
+
         private void SyncLoadoutDraftFromSnapshot(EquipLoadoutSnapshot snap, uint schemeId)
         {
-            var scheme = EquipLoadoutModel.FindScheme(snap, schemeId);
+            var scheme = FindLoadoutScheme(snap, schemeId);
             if (scheme == null) return;
             _loadoutNameDraft = scheme.Name ?? string.Empty;
             _loadoutRoleTagDraft = scheme.RoleTag;
@@ -86,23 +101,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _loadoutDraftSynced = true;
         }
 
-        private static Sprite LoadEquipLoadoutArt(string key)
-            => string.IsNullOrEmpty(key) ? null : Resources.Load<Sprite>(EquipLoadoutArtRoot + key);
+        private static Sprite LoadEquipLoadoutSprite(string resourceKey)
+            => string.IsNullOrEmpty(resourceKey) ? null : Resources.Load<Sprite>(resourceKey);
 
         private void DrawLoadoutInUseBadge(UnityEngine.Transform parent, ulong itemGuid, float x, float y, float w = 136f, float h = 38f)
         {
-            string badgeText = EquipLoadoutModel.FormatItemLoadoutBadge(_client?.EquipLoadouts, itemGuid);
+            var schemes = EquipLoadoutModel.ReferencedSchemesOf(_client?.EquipLoadouts, itemGuid);
+            string badgeText = EquipLoadoutModel.FormatInUseBadgeText(schemes);
             if (string.IsNullOrEmpty(badgeText)) return;
-            var sprite = LoadEquipLoadoutArt("badge_loadout_in_use");
+            var sprite = LoadEquipLoadoutSprite(EquipLoadoutModel.BadgeInUseKey);
             var img = QdaoUguiFactory.CreateImage("LoadoutInUseBadge", parent, x, y, w, h, sprite, false);
-            if (sprite != null)
-            {
-                SeasonEconomyUiArt.ApplyHorizontalSlice(img, sprite, h);
-            }
-            else
-            {
-                img.color = Jade;
-            }
+            if (sprite != null) SeasonEconomyUiArt.ApplyHorizontalSlice(img, sprite, h);
+            else img.color = Jade;
             var lbl = Label(img.transform, "LoadoutInUseTxt", badgeText, 10f, 0f, w - 20f, h, 22f, false, Cream);
             lbl.alignment = TextAlignmentOptions.Center;
             lbl.enableAutoSizing = true;
@@ -121,7 +131,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
 
             const float mx = 420f, my = 80f, mw = 3126f, mh = 1420f;
-            var bgSprite = LoadEquipLoadoutArt("panel_equip_loadout_main");
+            var bgSprite = LoadEquipLoadoutSprite(EquipLoadoutModel.PanelMainKey);
             if (bgSprite != null)
             {
                 var bg = QdaoUguiFactory.CreateImage("EquipLoadoutMainBg", _modalLayer, mx, my, mw, mh, bgSprite, true);
@@ -156,9 +166,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 bool isSelected = scheme.Unlocked && scheme.SchemeId == _loadoutSelectedSchemeId;
                 bool isActive = scheme.Unlocked && scheme.SchemeId == snap.ActiveSchemeId;
                 string spriteKey = !scheme.Unlocked
-                    ? "tab_loadout_locked"
-                    : (isSelected ? "tab_loadout_active" : "tab_loadout_unlocked");
-                var tabSprite = LoadEquipLoadoutArt(spriteKey);
+                    ? EquipLoadoutModel.TabLockedKey
+                    : (isSelected ? EquipLoadoutModel.TabActiveKey : EquipLoadoutModel.TabUnlockedKey);
+                var tabSprite = LoadEquipLoadoutSprite(spriteKey);
                 float tx = tabStartX + i * (tabW + tabGap);
                 uint capturedId = scheme.SchemeId;
                 bool capturedUnlocked = scheme.Unlocked;
@@ -179,15 +189,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                         Render();
                     }
                 });
-                var tabLbl = Label(tabBtn.transform, "Lbl", EquipLoadoutModel.FormatTabLabel(scheme, isActive),
-                    24f, 0f, tabW - 48f, tabH, 32f, false, isSelected ? Cream : Ink);
+                string tabText = EquipLoadoutModel.FormatTabLabel(scheme, isActive) + (isActive ? " (当前)" : string.Empty);
+                var tabLbl = Label(tabBtn.transform, "Lbl", tabText, 24f, 0f, tabW - 48f, tabH, 32f, false, isSelected ? Cream : Ink);
                 tabLbl.alignment = TextAlignmentOptions.Center;
                 tabLbl.enableAutoSizing = true;
                 tabLbl.fontSizeMin = 20f;
                 tabLbl.fontSizeMax = 32f;
             }
 
-            var currentScheme = EquipLoadoutModel.FindScheme(snap, _loadoutSelectedSchemeId)
+            var currentScheme = FindLoadoutScheme(snap, _loadoutSelectedSchemeId)
                 ?? snap.Schemes.FirstOrDefault(s => s.Unlocked);
             if (currentScheme == null) return;
 
@@ -197,7 +207,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 $"方案装备槽位（共 {currentScheme.Slots.Count} 槽 · 缺失 {currentScheme.MissingCount} 槽）",
                 leftX, leftY, 1380f, 54f, 38f, false, Jade);
 
-            var missingSprite = LoadEquipLoadoutArt("badge_loadout_slot_missing");
+            var missingSprite = LoadEquipLoadoutSprite(EquipLoadoutModel.BadgeSlotMissingKey);
             float cellW = 668f, cellH = 176f, cellGapX = 28f, cellGapY = 20f;
             for (int i = 0; i < currentScheme.Slots.Count && i < 8; ++i)
             {
@@ -226,15 +236,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     Label(card.transform, "EmptyPlus", "—", 48f, 28f, 96f, 100f, 64f, false, Muted);
                 }
 
-                string statusLine = sv.Status switch
-                {
-                    EquipLoadoutSlotStatus.EquipLoadoutSlotEquipped => "已穿戴",
-                    EquipLoadoutSlotStatus.EquipLoadoutSlotInBag => "在背包中",
-                    EquipLoadoutSlotStatus.EquipLoadoutSlotMissingOrStored => "缺失/已存仓（切装跳过）",
-                    _ => "留空（不指定）",
-                };
+                string slotTitle = $"{EquipLoadoutModel.SlotLabel(sv)} · {EquipLoadoutModel.SlotStatusText(sv.Status)}";
                 string itemTitle = sv.Item != null ? Name(sv.Item) : "未指定装备";
-                Label(card.transform, "SlotName", $"{sv.SlotName} · {statusLine}", 174f, 16f, cellW - 190f, 48f, 30f, false,
+                Label(card.transform, "SlotName", slotTitle, 174f, 16f, cellW - 190f, 48f, 30f, false,
                     sv.Status == EquipLoadoutSlotStatus.EquipLoadoutSlotMissingOrStored ? Danger : Jade);
                 Label(card.transform, "ItemName", itemTitle, 174f, 72f, cellW - 190f, 84f, 30f, true, Ink);
             }
@@ -247,7 +251,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Label(_modalLayer, "NameLbl", "方案名称（最多 12 字）：", rightX, leftY + 74f, 420f, 48f, 32f, false, Ink);
             var inputBg = ChoiceRow(_modalLayer, "LoadoutNameBox", "", rightX, leftY + 130f, rightW, 84f, null, enabled: false);
             _loadoutNameInput = QdaoUguiFactory.CreateInputField("LoadoutNameInput", inputBg.transform, 16f, 10f, rightW - 32f, 64f,
-                $"留空默认「{EquipLoadoutModel.DefaultSchemeName(currentScheme.SchemeId)}」", EquipLoadoutModel.MaxSchemeNameChars);
+                $"留空默认「{EquipLoadoutModel.DefaultSchemeName(currentScheme.SchemeId)}」", EquipLoadoutModel.MaxNameCodePoints);
             if (_loadoutNameInput.textComponent != null) _loadoutNameInput.textComponent.richText = false;
             _loadoutNameInput.text = _loadoutNameDraft;
             _loadoutNameInput.onValueChanged.AddListener(v => _loadoutNameDraft = v ?? string.Empty);
@@ -262,7 +266,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     () => { _loadoutRoleTagDraft = capTag; Render(); }, selected: _loadoutRoleTagDraft == t);
             }
 
-            // 联动战法方案选择
             string linkedSkillLabel = FormatLinkedOptionLabel(snap.SkillSchemes, _loadoutLinkedSkillDraft, "战法");
             Label(_modalLayer, "LinkSkillLbl", "联动战法方案：", rightX, leftY + 394f, 320f, 56f, 32f, false, Ink);
             ChoiceRow(_modalLayer, "LinkSkillCycle", linkedSkillLabel, rightX + 330f, leftY + 388f, rightW - 330f, 76f, () =>
@@ -271,7 +274,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Render();
             }, selected: _loadoutLinkedSkillDraft > 0u);
 
-            // 联动属性加点方案选择
             string linkedAttrLabel = FormatLinkedOptionLabel(snap.AttributeSchemes, _loadoutLinkedAttrDraft, "加点");
             Label(_modalLayer, "LinkAttrLbl", "联动加点方案：", rightX, leftY + 492f, 320f, 56f, 32f, false, Ink);
             ChoiceRow(_modalLayer, "LinkAttrCycle", linkedAttrLabel, rightX + 330f, leftY + 486f, rightW - 330f, 76f, () =>
@@ -280,13 +282,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Render();
             }, selected: _loadoutLinkedAttrDraft > 0u);
 
-            // 切方案时同步联动开关
             ChoiceRow(_modalLayer, "ApplyLinkedToggle",
                 (_loadoutApplyLinked ? "[已开启] " : "[未开启] ") + "一键切方案时同步切换已关联的战法与加点方案",
                 rightX, leftY + 592f, rightW, 78f,
                 () => { _loadoutApplyLinked = !_loadoutApplyLinked; Render(); }, selected: _loadoutApplyLinked);
 
-            // 副套强化继承快捷跳转（联动 3410 继承符）
             var targetForInherit = FindItem(_selectedItem) ?? _client?.Equipment?.Items.FirstOrDefault(x => x.EquipProfile > 0);
             Button(_modalLayer, "LoadoutInheritShortcut", "副套强化继承", rightX, leftY + 706f, 480f, () =>
             {
@@ -298,13 +298,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Label(_modalLayer, "LoadoutInlineNotice", errOrNote, leftX, my + 1126f, mw - 240f, 64f, 34f, false,
                 !string.IsNullOrEmpty(_client.EquipLoadoutError) ? Danger : Jade);
 
-            bool busy = _client.BusyEquipLoadout || _client.BusyEquip || WriteBlocked;
+            bool busy = _client.BusyEquipLoadout || _client.BusyEquipLoadoutUnlock || _client.BusyEquip || WriteBlocked;
             Button(_modalLayer, "LoadoutSaveBtn", _client.BusyEquipLoadout ? "保存中…" : "保存当前穿着到此方案",
                 mx + 180f, my + 1218f, 840f, () =>
                 {
-                    string rawName = _loadoutNameInput != null ? _loadoutNameInput.text : _loadoutNameDraft;
+                    string rawName = (_loadoutNameInput != null ? _loadoutNameInput.text : _loadoutNameDraft)?.Trim() ?? string.Empty;
+                    if (!EquipLoadoutModel.ValidateNameDraft(rawName, out string nameErr))
+                    {
+                        _notice = nameErr;
+                        Render();
+                        return;
+                    }
                     _client.SaveEquipLoadout(currentScheme.SchemeId, rawName, _loadoutRoleTagDraft,
-                        captureCurrentEquipped: true, slots: null, _loadoutLinkedSkillDraft, _loadoutLinkedAttrDraft);
+                        captureCurrentEquipped: true, explicitSlots: null, _loadoutLinkedSkillDraft, _loadoutLinkedAttrDraft);
                 }, primary: false, enabled: !busy);
 
             Button(_modalLayer, "LoadoutSwitchBtn", _client.BusyEquipLoadout ? "切换中…" : "一键切换本方案",
@@ -316,7 +322,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_client.HasPendingEquipLoadoutUnlock)
             {
                 Button(_modalLayer, "LoadoutRecoverUnlock", "确认上次解锁", mx + 2100f, my + 1218f, 440f,
-                    () => _client.RetryPendingEquipLoadoutUnlock(), true, !_client.BusyEquipLoadout);
+                    () => _client.RecoverEquipLoadoutUnlock(), true, !_client.BusyEquipLoadout && !_client.BusyEquipLoadoutUnlock);
                 Button(_modalLayer, "LoadoutClose", "关闭", mx + 2580f, my + 1218f, 360f, CloseModal);
             }
             else
@@ -329,7 +335,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             var snap = _client?.EquipLoadouts;
             const float mx = 420f, my = 80f, mw = 3126f, mh = 1420f;
-            var bgSprite = LoadEquipLoadoutArt("panel_equip_loadout_unlock");
+            var bgSprite = LoadEquipLoadoutSprite(EquipLoadoutModel.PanelUnlockKey);
             if (bgSprite != null)
             {
                 var bg = QdaoUguiFactory.CreateImage("EquipLoadoutUnlockBg", _modalLayer, mx, my, mw, mh, bgSprite, true);
@@ -344,19 +350,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Label(_modalLayer, "UnlockTitle", "解锁新装备流派方案位", mx + 920f, my + 56f, 1286f, 86f, 60f, false, Jade)
                 .alignment = TextAlignmentOptions.Center;
 
-            var iconSprite = LoadEquipLoadoutArt("icon_loadout_expand_talisman");
+            var iconSprite = LoadEquipLoadoutSprite(EquipLoadoutModel.ExpandTalismanIconKey);
             if (iconSprite != null)
                 QdaoUguiFactory.CreateImage("ExpandTalismanIcon", _modalLayer, mx + 260f, my + 240f, 320f, 320f, iconSprite, false).preserveAspect = true;
 
             uint nextSlot = (snap?.UnlockedSchemeCount ?? 1u) + 1u;
-            Label(_modalLayer, "UnlockDesc",
-                $"即将解锁【{EquipLoadoutModel.DefaultSchemeName(nextSlot)}】装备流派方案位\n\n" +
-                "• 每套方案独立保存 8 个正式装备槽位引用，支持背包 0 空格原位互换一键切流派\n" +
-                "• 支持联动切换战法方案与属性加点方案，永久保留不过期\n" +
-                "• 仅提供快捷换装便利，不附带任何额外战力属性",
-                mx + 640f, my + 230f, mw - 860f, 350f, 38f, true, Ink);
+            Label(_modalLayer, "UnlockDesc", EquipLoadoutModel.FormatUnlockDescription(nextSlot),
+                mx + 640f, my + 250f, mw - 860f, 310f, 40f, true, Ink);
 
-            // 1..5 方案阶梯展示
             uint unlocked = snap?.UnlockedSchemeCount ?? 1u;
             float stepW = 500f, stepGap = 32f;
             float stepStartX = mx + (mw - (5f * stepW + 4f * stepGap)) * 0.5f;
@@ -368,14 +369,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     selected: s <= unlocked || s == nextSlot, enabled: false);
             }
 
-            string costSummary = EquipLoadoutModel.FormatUnlockCostSummary(snap, _loadoutUseBindDiamondFirst);
-            Label(_modalLayer, "UnlockCostSummary", costSummary, mx + 260f, my + 820f, mw - 520f, 100f, 38f, true, Jade);
+            string costSummary = $"{EquipLoadoutModel.FormatUnlockTalismanLine(snap)}\n{EquipLoadoutModel.FormatUnlockCurrencyLine(snap, _loadoutUseBindDiamondFirst)}";
+            Label(_modalLayer, "UnlockCostSummary", costSummary, mx + 260f, my + 810f, mw - 520f, 116f, 36f, true, Jade);
 
             if (snap != null && snap.NextUnlockAllowBindDiamond && snap.UnlockItemOwned == 0UL)
             {
                 ChoiceRow(_modalLayer, "UnlockBindDiamondToggle",
                     (_loadoutUseBindDiamondFirst ? "[已勾选] " : "[未勾选] ") + "第 2 套优先使用绑定灵石（不足部分用非绑灵石补足）",
-                    mx + 260f, my + 936f, mw - 520f, 80f,
+                    mx + 260f, my + 942f, mw - 520f, 80f,
                     () => { _loadoutUseBindDiamondFirst = !_loadoutUseBindDiamondFirst; Render(); },
                     selected: _loadoutUseBindDiamondFirst);
             }
@@ -384,13 +385,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Label(_modalLayer, "UnlockErr", _client.EquipLoadoutError, mx + 260f, my + 1046f, mw - 520f, 64f, 34f, false, Danger);
 
             bool canUnlock = snap != null && EquipLoadoutModel.CanAffordNextUnlock(snap, _loadoutUseBindDiamondFirst)
-                && !_client.BusyEquipLoadout && !_client.HasPendingEquipLoadoutUnlock;
+                && !_client.BusyEquipLoadout && !_client.BusyEquipLoadoutUnlock && !_client.HasPendingEquipLoadoutUnlock;
             Button(_modalLayer, "UnlockCancel", "返回方案列表", mx + 520f, my + 1200f, 760f, () =>
             {
                 _modal = Modal.EquipLoadout;
                 Render();
             });
-            Button(_modalLayer, "UnlockConfirm", _client?.BusyEquipLoadout == true ? "解锁中…" : $"确认解锁{EquipLoadoutModel.DefaultSchemeName(nextSlot)}",
+            Button(_modalLayer, "UnlockConfirm", _client?.BusyEquipLoadoutUnlock == true ? "解锁中…" : $"确认解锁{EquipLoadoutModel.DefaultSchemeName(nextSlot)}",
                 mx + 1780f, my + 1200f, 820f, () =>
                 {
                     if (canUnlock) _client.UnlockEquipLoadout(_loadoutUseBindDiamondFirst);

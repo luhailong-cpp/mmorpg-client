@@ -121,6 +121,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_cosmeticState.ActiveCategory == WardrobeCategoryTab.Pet) PetClient.Instance?.RequestList();
         }
 
+        private void HandlePetCosmeticEquipped(ulong _, uint __)
+        {
+            // 穿戴或恢复灵宠幻化成功后刷新灵宠列表快照，令大世界跟随灵宠与灵宠面板即时生效。
+            if (!_externalVerificationClient) PetClient.Instance?.RequestList();
+        }
+
         private void OnWardrobeCosmeticsHide(bool wasVisible)
         {
             if (wasVisible && _cosmeticState.ActiveCategory != WardrobeCategoryTab.Character &&

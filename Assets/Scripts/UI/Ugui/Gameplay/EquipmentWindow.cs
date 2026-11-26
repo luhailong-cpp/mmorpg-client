@@ -260,7 +260,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     else if (_client?.HasPendingMaterialReward == true)
                         Button(_body, "EquipmentRecover", "确认领取结果", 3130, 1360, 620, () => _client.RetryPendingMaterialReward(), true, !_client.BusyMaterialReward);
                     else if (_client?.HasPendingEquipLoadoutUnlock == true)
-                        Button(_body, "EquipmentRecover", "确认方案解锁", 3130, 1360, 620, () => _client.RetryPendingEquipLoadoutUnlock(), true, !_client.BusyEquipLoadout);
+                        Button(_body, "EquipmentRecover", "确认方案解锁", 3130, 1360, 620, () => _client.RecoverEquipLoadoutUnlock(), true, !_client.BusyEquipLoadout && !_client.BusyEquipLoadoutUnlock);
                     if (_modal != Modal.None) RenderModal();
                     _surfaceInput.interactable = _modal == Modal.None; _surfaceInput.blocksRaycasts = _modal == Modal.None;
                     _modalLayer.gameObject.SetActive(_modal != Modal.None);

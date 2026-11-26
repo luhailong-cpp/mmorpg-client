@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Google.Protobuf;
 using MmorpgClient.Net;
 using MmorpgClient.Net.Generated;
+using EquipLoadoutModel = MmorpgClient.UI.Ugui.Gameplay.EquipLoadoutModel;
 
 namespace MmorpgClient.Game.PlayerFeatures
 {
@@ -18,6 +19,8 @@ namespace MmorpgClient.Game.PlayerFeatures
         private const long EquipLoadoutMinSendIntervalMs = 800;
 
         private EquipLoadoutSnapshot _equipLoadouts;
+        private readonly List<uint> _lastLoadoutMissingSlots = new List<uint>();
+        private readonly List<string> _lastLoadoutLinkedNotices = new List<string>();
         private UnlockEquipLoadoutRequest _pendingEquipLoadoutUnlock;
         private string _pendingEquipLoadoutUnlockRecord;
         private ulong _equipLoadoutRecoveryPlayer;
@@ -30,8 +33,11 @@ namespace MmorpgClient.Game.PlayerFeatures
         public EquipLoadoutSnapshot EquipLoadouts => _equipLoadouts?.Clone();
         public bool EquipLoadoutsLoading { get; private set; }
         public bool BusyEquipLoadout { get; private set; }
+        public bool BusyEquipLoadoutUnlock { get; private set; }
         public bool HasPendingEquipLoadoutUnlock => _pendingEquipLoadoutUnlock != null || _equipLoadoutRecoveryBlocked;
         public string EquipLoadoutError { get; private set; } = string.Empty;
+        public IReadOnlyList<uint> LastEquipLoadoutMissingSlots => _lastLoadoutMissingSlots;
+        public IReadOnlyList<string> LastEquipLoadoutLinkedNotices => _lastLoadoutLinkedNotices;
 
         public event Action<SwitchEquipLoadoutResponse> OnEquipLoadoutSwitched;
         public event Action<UnlockEquipLoadoutResponse> OnEquipLoadoutUnlocked;
@@ -79,22 +85,26 @@ namespace MmorpgClient.Game.PlayerFeatures
             string name,
             uint roleTag,
             bool captureCurrentEquipped,
-            IReadOnlyList<EquipLoadoutSlotBinding> slots,
-            uint linkedSkillSchemeId,
-            uint linkedAttributeSchemeId)
+            IEnumerable<EquipLoadoutSlotBinding> explicitSlots = null,
+            uint linkedSkillSchemeId = 0,
+            uint linkedAttributeSchemeId = 0)
         {
             if (!PrepareRequest(out var playerId)) return;
-            if (BusyEquipLoadout) return;
+            if (BusyEquipLoadout || BusyEquipLoadoutUnlock) return;
             if (HasPendingEquipLoadoutUnlock) { FailEquipLoadout(EquipLoadoutUnlockPendingText); return; }
             if (_equipLoadouts == null) { FailEquipLoadout("装备方案尚未同步，请先刷新"); return; }
             if (schemeId == 0u || schemeId > _equipLoadouts.UnlockedSchemeCount)
             { FailEquipLoadout("目标方案位尚未解锁"); return; }
             if (!CanSendEquipLoadout()) { FailEquipLoadout("操作过于频繁，请稍候重试"); return; }
 
+            string sanitized = string.IsNullOrWhiteSpace(name) ? string.Empty : name.Trim();
+            if (!EquipLoadoutModel.ValidateNameDraft(sanitized, out string nameErr))
+            { FailEquipLoadout(nameErr); return; }
+
             var request = new SaveEquipLoadoutRequest
             {
                 SchemeId = schemeId,
-                Name = EquipLoadoutModel.SanitizeSchemeName(name),
+                Name = sanitized,
                 RoleTag = roleTag,
                 CaptureCurrentEquipped = captureCurrentEquipped,
                 LinkedSkillSchemeId = linkedSkillSchemeId,
@@ -102,10 +112,10 @@ namespace MmorpgClient.Game.PlayerFeatures
                 StateVersion = _equipLoadouts.StateVersion,
                 RequestId = Guid.NewGuid().ToString("N"),
             };
-            if (!captureCurrentEquipped && slots != null)
+            if (!captureCurrentEquipped && explicitSlots != null)
             {
-                for (int i = 0; i < slots.Count; ++i)
-                    if (slots[i] != null) request.Slots.Add(slots[i].Clone());
+                foreach (var binding in explicitSlots)
+                    if (binding != null) request.Slots.Add(binding.Clone());
             }
 
             int epoch = _epoch, generation = ++_equipLoadoutWriteRequest;
@@ -143,10 +153,10 @@ namespace MmorpgClient.Game.PlayerFeatures
                 });
         }
 
-        public void SwitchEquipLoadout(uint schemeId, bool applyLinkedSchemes)
+        public void SwitchEquipLoadout(uint schemeId, bool applyLinkedSchemes = true)
         {
             if (!PrepareRequest(out var playerId)) return;
-            if (BusyEquipLoadout || BusyEquip) return;
+            if (BusyEquipLoadout || BusyEquipLoadoutUnlock || BusyEquip) return;
             if (HasPendingEquipLoadoutUnlock) { FailEquipLoadout(EquipLoadoutUnlockPendingText); return; }
             if (_equipLoadouts == null) { FailEquipLoadout("装备方案尚未同步，请先刷新"); return; }
             if (schemeId == 0u || schemeId > _equipLoadouts.UnlockedSchemeCount)
@@ -164,6 +174,8 @@ namespace MmorpgClient.Game.PlayerFeatures
             int epoch = _epoch, generation = ++_equipLoadoutWriteRequest;
             BusyEquipLoadout = true;
             EquipLoadoutError = string.Empty;
+            _lastLoadoutMissingSlots.Clear();
+            _lastLoadoutLinkedNotices.Clear();
             _equipLoadoutLastSendMs = _nowMs();
             OnChanged?.Invoke();
             if (!IsCurrent(epoch, playerId) || generation != _equipLoadoutWriteRequest) return;
@@ -193,6 +205,10 @@ namespace MmorpgClient.Game.PlayerFeatures
                         _equipmentReadError = _equipActionError = string.Empty;
                     }
                     if (response.Snapshot != null) _equipLoadouts = response.Snapshot.Clone();
+                    _lastLoadoutMissingSlots.Clear();
+                    _lastLoadoutMissingSlots.AddRange(response.MissingSlots);
+                    _lastLoadoutLinkedNotices.Clear();
+                    _lastLoadoutLinkedNotices.AddRange(response.LinkedNotices);
                     EquipLoadoutError = string.Empty;
                     OnChanged?.Invoke();
                     if (IsCurrent(epoch, playerId)) OnEquipLoadoutSwitched?.Invoke(response);
@@ -211,13 +227,13 @@ namespace MmorpgClient.Game.PlayerFeatures
                 });
         }
 
-        public void UnlockEquipLoadout(bool useBindDiamondFirst)
+        public void UnlockEquipLoadout(bool useBindDiamondFirst = false)
         {
             if (!PrepareRequest(out var playerId)) return;
-            if (BusyEquipLoadout) return;
+            if (BusyEquipLoadout || BusyEquipLoadoutUnlock) return;
             RestoreEquipLoadoutUnlock(playerId);
             if (HasPendingEquipLoadoutUnlock) { FailEquipLoadout(EquipLoadoutUnlockPendingText); return; }
-            if (_equipLoadouts == null || !EquipLoadoutModel.CanUnlockMore(_equipLoadouts))
+            if (_equipLoadouts == null || _equipLoadouts.UnlockedSchemeCount >= Math.Max(1u, _equipLoadouts.MaxSchemeCount))
             { FailEquipLoadout("已达装备流派方案上限或尚未同步"); return; }
             if (!EquipLoadoutModel.CanAffordNextUnlock(_equipLoadouts, useBindDiamondFirst))
             { FailEquipLoadout("灵石不足且背包无装备方案扩容符"); return; }
@@ -246,11 +262,13 @@ namespace MmorpgClient.Game.PlayerFeatures
             SendEquipLoadoutUnlock(playerId);
         }
 
-        public void RetryPendingEquipLoadoutUnlock()
+        public void RecoverEquipLoadoutUnlock()
         {
             if (PrepareRequest(out var playerId) && CanRecoverEquipLoadoutUnlock())
                 SendEquipLoadoutUnlock(playerId);
         }
+
+        public void RetryPendingEquipLoadoutUnlock() => RecoverEquipLoadoutUnlock();
 
         public void TickEquipLoadoutUnlockRecovery()
         {
@@ -271,7 +289,7 @@ namespace MmorpgClient.Game.PlayerFeatures
 
         private bool CanRecoverEquipLoadoutUnlock()
             => _pendingEquipLoadoutUnlock != null && !_equipLoadoutRecoveryBlocked
-            && !BusyEquipLoadout && _nowMs() >= _equipLoadoutRecoveryAtMs && CanSendEquipLoadout();
+            && !BusyEquipLoadout && !BusyEquipLoadoutUnlock && _nowMs() >= _equipLoadoutRecoveryAtMs && CanSendEquipLoadout();
 
         private void RestoreEquipLoadoutUnlock(ulong playerId)
         {
@@ -300,7 +318,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             int epoch = _epoch, generation = ++_equipLoadoutWriteRequest;
             var request = _pendingEquipLoadoutUnlock.Clone();
             string record = _pendingEquipLoadoutUnlockRecord;
-            BusyEquipLoadout = true;
+            BusyEquipLoadoutUnlock = true;
             EquipLoadoutError = string.Empty;
             _equipLoadoutLastSendMs = _nowMs();
             OnChanged?.Invoke();
@@ -311,7 +329,7 @@ namespace MmorpgClient.Game.PlayerFeatures
                 {
                     if (!IsCurrent(epoch, playerId) || generation != _equipLoadoutWriteRequest) return;
                     ++_equipLoadoutWriteRequest;
-                    BusyEquipLoadout = false;
+                    BusyEquipLoadoutUnlock = false;
                     if (response.ClientRequestId != request.ClientRequestId)
                     { DeferEquipLoadoutRecovery("方案解锁回执身份不符，原请求已保留"); return; }
 
@@ -347,7 +365,7 @@ namespace MmorpgClient.Game.PlayerFeatures
                 {
                     if (!IsCurrent(epoch, playerId) || generation != _equipLoadoutWriteRequest) return;
                     ++_equipLoadoutWriteRequest;
-                    BusyEquipLoadout = false;
+                    BusyEquipLoadoutUnlock = false;
                     DeferEquipLoadoutRecovery(EquipLoadoutUnlockPendingText);
                 });
         }
@@ -389,6 +407,8 @@ namespace MmorpgClient.Game.PlayerFeatures
             ++_equipLoadoutReadRequest;
             ++_equipLoadoutWriteRequest;
             _equipLoadouts = null;
+            _lastLoadoutMissingSlots.Clear();
+            _lastLoadoutLinkedNotices.Clear();
             _pendingEquipLoadoutUnlock = null;
             _pendingEquipLoadoutUnlockRecord = null;
             _equipLoadoutRecoveryPlayer = 0;
@@ -397,6 +417,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             _equipLoadoutRecoveryAtMs = 0;
             EquipLoadoutsLoading = false;
             BusyEquipLoadout = false;
+            BusyEquipLoadoutUnlock = false;
             EquipLoadoutError = string.Empty;
         }
     }

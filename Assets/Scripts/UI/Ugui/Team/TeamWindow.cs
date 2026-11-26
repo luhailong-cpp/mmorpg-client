@@ -433,8 +433,11 @@ namespace MmorpgClient.UI.Ugui.Team
                 string presenceText=!role.OnlineStatusKnown?"待同步"
                     :hostedOffline?"托管中"
                     :role.IsOnline?(role.InBattle?"战斗中":"在线"):"离线";
-                Label(row,presenceText,
-                    741,27,95,45,25,originalOnlineState?Color.clear:(role.IsOnline||hostedOffline?Jade:BodyMuted),TextAlignmentOptions.MidlineRight);
+                if(hostedBadge!=null)
+                    Label(row,presenceText,702,29,138,46,24,Cream,TextAlignmentOptions.Center);
+                else
+                    Label(row,presenceText,
+                        741,27,95,45,25,originalOnlineState?Color.clear:(role.IsOnline||hostedOffline?Jade:BodyMuted),TextAlignmentOptions.MidlineRight);
             }
         }
 

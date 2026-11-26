@@ -3,7 +3,7 @@ guid: ae9cd8a9d8e250e4eba2f809d9e2ca0c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4386870463372864832
+      213: 5749225990816821129
     second: npc_guiyuan_constable_0
   externalObjects: {}
   serializedVersion: 13
@@ -34,7 +34,7 @@ TextureImporter:
   cubemapConvolution: 0
   seamlessCubemap: 0
   textureFormat: 1
-  maxTextureSize: 2048
+  maxTextureSize: 4096
   textureSettings:
     serializedVersion: 2
     filterMode: 1
@@ -47,10 +47,10 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 0
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.5, y: 0.04}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
@@ -96,16 +96,16 @@ TextureImporter:
         y: 0
         width: 1024
         height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c2d1036e84be13c0800000000000000
-      internalID: -4386870463372864832
+      spriteID: 7c8c99135aac4f5692ca0507e1b9af54
+      internalID: 5749225990816821129
       vertices: []
       indices: 
       edges: []
@@ -114,7 +114,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 7c8c99135aac4f5692ca0507e1b9af54
     internalID: 0
     vertices: []
     indices: 

@@ -3,7 +3,7 @@ guid: 63afbe676adaff34e9761406d921f1ee
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5382283162910286858
+      213: 5405295126371098271
     second: icon_tactical_puzzle_0
   externalObjects: {}
   serializedVersion: 13
@@ -34,7 +34,7 @@ TextureImporter:
   cubemapConvolution: 0
   seamlessCubemap: 0
   textureFormat: 1
-  maxTextureSize: 2048
+  maxTextureSize: 4096
   textureSettings:
     serializedVersion: 2
     filterMode: 1
@@ -47,7 +47,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -97,15 +97,15 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6fb9a2adaf94e45b0800000000000000
-      internalID: -5382283162910286858
+      spriteID: 7d28bd1621144c988956f03ddcc1da2b
+      internalID: 5405295126371098271
       vertices: []
       indices: 
       edges: []
@@ -114,7 +114,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 7d28bd1621144c988956f03ddcc1da2b
     internalID: 0
     vertices: []
     indices: 

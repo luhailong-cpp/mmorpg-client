@@ -263,7 +263,7 @@ namespace MmorpgClient.UI.Ugui.Team
                 var hostedSprite = GameplayUiArt.TryLoadAfkTeamArt("icon_team_hosted");
                 if (hostedSprite != null)
                 {
-                    var hostedIcon = QdaoUguiFactory.CreateImage("TeamHudHostedIcon_" + role.PlayerId, row, 294, 41, 22, 22, hostedSprite);
+                    var hostedIcon = QdaoUguiFactory.CreateImage("TeamHudHostedIcon_" + role.PlayerId, row, 304, 42, 22, 22, hostedSprite);
                     hostedIcon.preserveAspect = true;
                     hostedIcon.raycastTarget = false;
                 }
@@ -280,6 +280,22 @@ namespace MmorpgClient.UI.Ugui.Team
             icon.preserveAspect = true;
             icon.raycastTarget = false;
             icon.gameObject.SetActive(sprite != null);
+            if (sprite != null)
+            {
+                var label = button.GetComponentInChildren<TMP_Text>(true);
+                if (label != null)
+                {
+                    var btnRect = (RectTransform)button.transform;
+                    float w = btnRect.sizeDelta.x;
+                    float h = btnRect.sizeDelta.y;
+                    var lr = label.rectTransform;
+                    lr.anchorMin = new Vector2(0, 1);
+                    lr.anchorMax = new Vector2(0, 1);
+                    lr.pivot = new Vector2(0, 1);
+                    lr.anchoredPosition = new Vector2(36f, 0f);
+                    lr.sizeDelta = new Vector2(Mathf.Max(40f, w - 44f), h);
+                }
+            }
             return icon;
         }
 

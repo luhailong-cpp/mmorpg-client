@@ -11,15 +11,52 @@ using static MmorpgClient.UI.Ugui.Gameplay.GameplayUiArt;
 namespace MmorpgClient.UI.Ugui.Gameplay
 {
     /// <summary>
-    /// 归元城 8 位原创核心 NPC 交互对话、演武木桩/残局/奇谈、顺路捎物、五行签文与江湖名帖窗口。
-    /// 自动优先加载 Codex 切图目录（UI/Ugui/GuiyuanNpcV1/），缺图时无缝回退至项目通用底板与按钮。
+    /// 归元城 8 位原创核心 NPC 交互对话、演武木桩/残局/奇谈、顺路捎物、灵潮五行签牌与江湖名帖窗口。
+    /// 全量接入 Codex 交付的 8 张 1024×1024 独立立绘与 13 张无字 PNG-32 切图（UI/Ugui/GuiyuanNpcV1/），
+    /// 缺图时安全回退通用底板与自有原创角色图；兼容 2560×1080、1920×1080、1280×480 与安全区/小游戏胶囊避让。
     /// </summary>
     public sealed class CityNpcWindow
     {
         public const string DedicatedArtRoot = "UI/Ugui/GuiyuanNpcV1/";
+        public const float DesignWidth = 1560f;
+        public const float DesignHeight = 896f;
+
+        /// <summary>Codex 交付的 13 张正式 UI 控件切图（全量运行时接线，无闲置资源）。</summary>
+        public static readonly string[] AllDeliveredUiKeys =
+        {
+            "npc_dialog_panel",
+            "npc_name_ribbon",
+            "npc_bubble_bg",
+            "npc_action_btn_primary",
+            "npc_action_btn_secondary",
+            "card_calling_panel",
+            "fortune_slip_card",
+            "icon_sparring_dummy",
+            "icon_tactical_puzzle",
+            "icon_character_tale",
+            "icon_errand_parcel",
+            "icon_fortune_tube",
+            "icon_calling_card"
+        };
+
+        /// <summary>Codex 交付的 8 张 1024×1024 独立全身 NPC 立绘。</summary>
+        public static readonly string[] AllDeliveredNpcKeys =
+        {
+            "Npcs/npc_guiyuan_smith",
+            "Npcs/npc_guiyuan_merchant",
+            "Npcs/npc_guiyuan_sparring",
+            "Npcs/npc_guiyuan_elder",
+            "Npcs/npc_guiyuan_constable",
+            "Npcs/npc_guiyuan_herbalist",
+            "Npcs/npc_guiyuan_ferryman",
+            "Npcs/npc_guiyuan_storyteller"
+        };
 
         public RectTransform Root => _root;
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
+        public bool HasOpenSubModal =>
+            (_fortuneModal != null && _fortuneModal.gameObject.activeSelf) ||
+            (_callingCardModal != null && _callingCardModal.gameObject.activeSelf);
         public CityNpcDefinition CurrentNpc => _currentNpc;
 
         public event Action<CityNpcDefinition> SelectNpcRequested;
@@ -33,20 +70,40 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public event Action CopyCallingCardRequested;
 
         private readonly RectTransform _root;
+        private readonly RectTransform _fittedRoot;
+        private readonly Button _closeButton;
         private readonly Image _portrait;
-        private readonly TMP_Text _npcName;
-        private readonly TMP_Text _npcRole;
+        private readonly TMP_Text _plaqueTitle;
+        private readonly TMP_Text _npcNameRibbonText;
+        private readonly TMP_Text _npcLandmarkText;
         private readonly TMP_Text _characterTag;
         private readonly TMP_Text _greetingBody;
-        private readonly TMP_Text _statusText;
-        private readonly RectTransform _npcRosterContent;
-        private readonly RectTransform _shortcutRow;
         private readonly RectTransform _featureBody;
+        private readonly RectTransform _actionDeckRow;
+        private readonly RectTransform _shortcutRow;
+        private readonly TMP_Text _statusText;
+        private readonly RectTransform _rosterBar;
         private readonly List<Button> _rosterButtons = new();
+
+        // 两个独立原比例二级弹层：480×680 五行签牌 + 1240×720 江湖名帖
+        private readonly RectTransform _fortuneModal;
+        private readonly RectTransform _fortuneCardBody;
+        private readonly RectTransform _callingCardModal;
+        private readonly RectTransform _callingCardBody;
 
         private CityNpcDefinition _currentNpc;
         private bool _useFreePresetForOptional = true;
+        private bool _sparringShowPuzzles;
+        private bool _ferryShowTale;
         private uint _expandedStoryDungeonId;
+        private bool _compactCloseOnLeft;
+
+        // 缓存最近一次渲染上下文，供子页签切换与打开签牌/名帖弹层即时重绘
+        private string _lastAppearanceId = "";
+        private string _lastArchiveName = "";
+        private CityNpcState _lastState;
+        private CharacterCallingCardView _lastCallingCard;
+        private uint _lastActiveTideSceneId;
 
         public CityNpcWindow(UnityEngine.Transform parent)
         {
@@ -57,139 +114,222 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             shade.raycastTarget = true;
             _root.gameObject.AddComponent<GameplayInputBlocker>();
 
-            var frame = QdaoUguiFactory.CreateCenteredRect("CityNpcFrame", _root, 1840, 880);
-            var panelBg = CreateOptionalArt(frame, "npc_dialog_panel", "panel_main", 0, 0, 1840, 880);
+            _fittedRoot = QdaoUguiFactory.CreateCenteredRect("CityNpcFittedRoot", _root, DesignWidth, DesignHeight);
+            var fit = _fittedRoot.gameObject.AddComponent<EquipmentUiFit>();
+            fit.referenceSize = new Vector2(DesignWidth, DesignHeight);
+
+            // 主对话面板：严格按 Codex npc_dialog_panel.png 1560×820 内部几何锚点排布
+            var panelBg = CreateOptionalArt(_fittedRoot, "npc_dialog_panel", "panel_main", 0, 0, 1560, 820, true);
             panelBg.raycastTarget = true;
 
-            Text(frame, "归元城 · 街坊见闻与人物玩法", 48, 22, 680, 48, 34, Ink);
-            Button(frame, "关闭", 1680, 20, 120, 52, Hide, false, true, fontSize: 26);
+            // 顶部玉匾（x=603, y=14, w=354, h=94）
+            _plaqueTitle = Text(_fittedRoot, "归元城 · 街坊见闻", 612, 26, 336, 70, 29, Cream, alignment: TextAlignmentOptions.Center);
 
-            // 左侧：归元城 8 位原创 NPC 快速名录（可一键切换查看或寻路前往）
-            var rosterPanel = CreateOptionalArt(frame, "npc_roster_bg", "panel_sub", 36, 92, 290, 744);
-            rosterPanel.color = new Color(1f, 1f, 1f, 0.92f);
-            Text(rosterPanel.transform, "归元八友", 18, 12, 250, 36, 25, Gold, alignment: TextAlignmentOptions.Center);
-            _npcRosterContent = QdaoUguiFactory.CreateRect("NpcRosterList", rosterPanel.transform, 14, 56, 262, 676);
+            // 关闭按钮（常规右上角；窄横屏/小游戏胶囊避让时切到左上角）
+            _closeButton = DedicatedButton(_fittedRoot, "关闭", 1408, 42, 112, 50, Hide, primary: false, fontSize: 22);
 
-            // 中左：当前 NPC 立绘 + 姓名称谓 + 寻路按钮
-            var portraitPanel = CreateOptionalArt(frame, "npc_portrait_bg", "panel_sub", 344, 92, 360, 744);
-            portraitPanel.color = new Color(1f, 1f, 1f, 0.94f);
-            _portrait = QdaoUguiFactory.CreateImage("NpcPortrait", portraitPanel.transform, 20, 24, 320, 440, null);
+            // 左侧立绘龛（x=69, y=114, w=498, h=616）：8 位 1024×1024 独立全身立绘 + npc_name_ribbon + 寻路按钮
+            _portrait = QdaoUguiFactory.CreateImage("NpcPortrait", _fittedRoot, 88, 126, 460, 444, null);
             _portrait.preserveAspect = true;
             _portrait.raycastTarget = false;
-            CreateOptionalArt(portraitPanel.transform, "npc_name_ribbon", "tab_selected", 24, 480, 312, 58);
-            _npcName = Text(portraitPanel.transform, "", 32, 480, 296, 58, 30, Cream, alignment: TextAlignmentOptions.Center);
-            _npcRole = Text(portraitPanel.transform, "", 24, 548, 312, 64, 22, Muted, true, TextAlignmentOptions.Top);
-            Button(portraitPanel.transform, "自动寻路前往", 44, 642, 272, 62, () =>
+
+            CreateOptionalArt(_fittedRoot, "npc_name_ribbon", "tab_selected", 108, 574, 420, 68, true);
+            _npcNameRibbonText = Text(_fittedRoot, "", 138, 574, 360, 68, 25, Cream, alignment: TextAlignmentOptions.Center);
+            _npcLandmarkText = Text(_fittedRoot, "", 96, 646, 444, 28, 18, Muted, alignment: TextAlignmentOptions.Center);
+            DedicatedButton(_fittedRoot, "自动寻路前往", 178, 676, 280, 48, () =>
             {
                 if (_currentNpc != null) WalkToNpcRequested?.Invoke(_currentNpc);
-            }, false, true, fontSize: 25);
+            }, primary: false, fontSize: 20);
 
-            // 右侧上方：看人下菜碟专属对话 + 快捷系统直达
-            var dialogPanel = CreateOptionalArt(frame, "npc_dialog_sub", "panel_sub", 722, 92, 1082, 264);
-            _characterTag = Text(dialogPanel.transform, "", 26, 14, 1030, 34, 22, Gold);
-            _greetingBody = Text(dialogPanel.transform, "", 26, 54, 1030, 118, 25, Ink, true);
-            _shortcutRow = QdaoUguiFactory.CreateRect("NpcShortcutRow", dialogPanel.transform, 24, 182, 1034, 68);
+            // 右上米白宣纸内框（x=601, y=125, w=872, h=365）：专属身份标签 + 9×8 互动台词 + 专属玩法区
+            _characterTag = Text(_fittedRoot, "", 624, 136, 826, 30, 19, Gold);
+            _greetingBody = Text(_fittedRoot, "", 624, 168, 826, 80, 21, Ink, true);
+            _featureBody = QdaoUguiFactory.CreateRect("NpcFeatureBody", _fittedRoot, 616, 254, 842, 228);
 
-            // 右侧下方：专属玩法交互区（演武木桩/残局/奇谈/顺路捎物/签文/江湖名帖）
-            var featurePanel = CreateOptionalArt(frame, "npc_feature_sub", "panel_sub", 722, 372, 1082, 412);
-            _featureBody = QdaoUguiFactory.CreateRect("NpcFeatureBody", featurePanel.transform, 20, 14, 1042, 384);
+            // 右下玉珠分隔线下方（y=528..748）：主玩法操作按钮行 + 既有系统直达行 + 状态提示行
+            _actionDeckRow = QdaoUguiFactory.CreateRect("NpcActionDeckRow", _fittedRoot, 608, 532, 864, 66);
+            _shortcutRow = QdaoUguiFactory.CreateRect("NpcShortcutRow", _fittedRoot, 608, 608, 864, 60);
+            _statusText = Text(_fittedRoot, "", 612, 678, 856, 56, 19, Muted, true);
+            _statusText.richText = false;
 
-            // 底栏状态提示
-            _statusText = Text(frame, "", 724, 796, 1076, 44, 22, Muted);
+            // 底栏：归元城 8 位原创 NPC 快速切换横条（8 × 188 + 7 × 8 = 1560）
+            _rosterBar = QdaoUguiFactory.CreateRect("NpcRosterBar", _fittedRoot, 0, 834, 1560, 60);
             BuildRosterButtons();
+
+            // 二级弹层 1：480×680 灵潮五行签牌（严格等比不拉伸）
+            _fortuneModal = BuildModalLayer("FortuneSlipModal", out _fortuneCardBody, 520f, 770f);
+
+            // 二级弹层 2：1240×720 人物江湖名帖（原比例展示）
+            _callingCardModal = BuildModalLayer("CallingCardModal", out _callingCardBody, 1240f, 792f);
+        }
+
+        private RectTransform BuildModalLayer(string name, out RectTransform body, float refW, float refH)
+        {
+            var overlay = QdaoUguiFactory.CreateStretch(name, _root, Vector4.zero);
+            overlay.gameObject.SetActive(false);
+            var bg = overlay.gameObject.AddComponent<Image>();
+            bg.color = new Color(0.02f, 0.06f, 0.05f, 0.78f);
+            bg.raycastTarget = true;
+
+            body = QdaoUguiFactory.CreateCenteredRect(name + "Body", overlay, refW, refH);
+            var fit = body.gameObject.AddComponent<EquipmentUiFit>();
+            fit.referenceSize = new Vector2(refW, refH);
+            return overlay;
         }
 
         private void BuildRosterButtons()
         {
-            Clear(_npcRosterContent);
+            Clear(_rosterBar);
             _rosterButtons.Clear();
-            float y = 0f;
+            float x = 0f;
             for (int i = 0; i < CityNpcCatalog.Npcs.Count; ++i)
             {
                 var npc = CityNpcCatalog.Npcs[i];
-                var btn = Button(_npcRosterContent, $"{npc.Name} · {npc.RoleTitle}", 0f, y, 262f, 74f,
-                    () => SelectNpcRequested?.Invoke(npc), false, true, fontSize: 21);
+                var btn = DedicatedButton(_rosterBar, npc.Name, x, 0f, 188f, 58f,
+                    () => SelectNpcRequested?.Invoke(npc), primary: false, fontSize: 21);
                 _rosterButtons.Add(btn);
-                y += 82f;
+                x += 196f;
             }
+        }
+
+        public void SetCompactCloseOnLeft(bool compactOnLeft)
+        {
+            if (_compactCloseOnLeft == compactOnLeft || _closeButton == null) return;
+            _compactCloseOnLeft = compactOnLeft;
+            var rect = (RectTransform)_closeButton.transform;
+            rect.anchoredPosition = compactOnLeft ? new Vector2(40f, -42f) : new Vector2(1408f, -42f);
+        }
+
+        public bool DismissModalIfOpen()
+        {
+            if (_fortuneModal != null && _fortuneModal.gameObject.activeSelf)
+            {
+                _fortuneModal.gameObject.SetActive(false);
+                return true;
+            }
+            if (_callingCardModal != null && _callingCardModal.gameObject.activeSelf)
+            {
+                _callingCardModal.gameObject.SetActive(false);
+                return true;
+            }
+            return false;
         }
 
         public void Show(CityNpcDefinition npc, string activeAppearanceId, string activeCharacterArchiveName,
             CityNpcState state, CharacterCallingCardView callingCard, uint activeTideSceneId, string statusNotice = "")
         {
             _currentNpc = npc ?? CityNpcCatalog.Npcs[0];
+            DismissModalIfOpen();
             _root.gameObject.SetActive(true);
             Refresh(activeAppearanceId, activeCharacterArchiveName, state, callingCard, activeTideSceneId, statusNotice);
         }
 
         public void Hide()
         {
+            DismissModalIfOpen();
             if (_root != null) _root.gameObject.SetActive(false);
+        }
+
+        public void OpenFortuneModal()
+        {
+            if (!IsVisible) return;
+            if (_callingCardModal != null) _callingCardModal.gameObject.SetActive(false);
+            RenderFortuneModal();
+            if (_fortuneModal != null) _fortuneModal.gameObject.SetActive(true);
+        }
+
+        public void OpenCallingCardModal()
+        {
+            if (!IsVisible) return;
+            if (_fortuneModal != null) _fortuneModal.gameObject.SetActive(false);
+            RenderCallingCardModal();
+            if (_callingCardModal != null) _callingCardModal.gameObject.SetActive(true);
         }
 
         public void Refresh(string activeAppearanceId, string activeCharacterArchiveName,
             CityNpcState state, CharacterCallingCardView callingCard, uint activeTideSceneId, string statusNotice = "")
         {
             if (_currentNpc == null || !IsVisible) return;
+            _lastAppearanceId = activeAppearanceId ?? "";
+            _lastArchiveName = activeCharacterArchiveName ?? "";
+            _lastState = state;
+            _lastCallingCard = callingCard;
+            _lastActiveTideSceneId = activeTideSceneId;
 
-            // 高亮左侧名录
+            // 高亮底栏当前选中的归元城 NPC
+            var primarySprite = LoadDedicatedSprite("npc_action_btn_primary") ?? Load("tab_selected");
+            var secondarySprite = LoadDedicatedSprite("npc_action_btn_secondary") ?? Load("button_secondary");
             for (int i = 0; i < _rosterButtons.Count && i < CityNpcCatalog.Npcs.Count; ++i)
             {
                 bool selected = string.Equals(CityNpcCatalog.Npcs[i].Id, _currentNpc.Id, StringComparison.Ordinal);
                 var img = _rosterButtons[i].image;
-                if (img != null) img.sprite = Load(selected ? "tab_selected" : "button_secondary");
+                if (img != null)
+                {
+                    img.sprite = selected ? primarySprite : secondarySprite;
+                    img.type = img.sprite != null && img.sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                }
                 var lbl = _rosterButtons[i].GetComponentInChildren<TMP_Text>();
                 if (lbl != null) lbl.color = selected ? Cream : Ink;
             }
 
-            // 立绘（优先 Codex 专属立绘，缺图回退项目自有原创立绘）
+            // 左侧立绘与称谓缎带（100% 优先加载 Codex 专属透明全身立绘）
             var sprite = Resources.Load<Sprite>(_currentNpc.DedicatedSpriteKey)
                          ?? QdaoCharacterCatalog.LoadPortrait(_currentNpc.FallbackAppearanceId);
             _portrait.sprite = sprite;
             _portrait.enabled = sprite != null;
-            _npcName.text = _currentNpc.Name;
-            _npcRole.text = $"{_currentNpc.RoleTitle}\n常驻：归元城 · {_currentNpc.LandmarkLabel}";
+            _plaqueTitle.text = $"归元城 · {_currentNpc.Name}";
+            _npcNameRibbonText.text = $"{_currentNpc.Name} · {_currentNpc.RoleTitle}";
+            _npcLandmarkText.text = $"常驻：归元城 · {_currentNpc.LandmarkLabel}";
 
-            // 看人下菜碟台词
-            bool matchedChar = _currentNpc.TryGetCharacterGreeting(activeAppearanceId, out string greeting);
-            string charTitle = string.IsNullOrWhiteSpace(activeCharacterArchiveName) ? "当前人物" : activeCharacterArchiveName;
+            // 9×8 看人下菜碟台词
+            bool matchedChar = _currentNpc.TryGetCharacterGreeting(_lastAppearanceId, out string greeting);
+            string charTitle = string.IsNullOrWhiteSpace(_lastArchiveName) ? "当前人物" : _lastArchiveName;
             _characterTag.text = matchedChar
                 ? $"★ 人物专属互动（当前身披：{charTitle}）"
-                : $"归元城见闻（换上不同人物或免费试用可触发不同专属对白）";
+                : "归元城见闻（换上不同人物或免费试用可触发不同专属对白）";
             _greetingBody.text = greeting;
 
-            // 快捷系统直达按钮
+            // 快捷系统直达按钮行（不强迫跑腿，HUD 原入口照常可用）
             Clear(_shortcutRow);
-            float sx = 0f;
-            for (int i = 0; i < _currentNpc.Shortcuts.Count; ++i)
+            int scCount = _currentNpc.Shortcuts.Count;
+            if (scCount > 0)
             {
-                var sc = _currentNpc.Shortcuts[i];
-                Button(_shortcutRow, sc.Label, sx, 4f, 326f, 58f,
-                    () => ShortcutRequested?.Invoke(sc.Kind), false, true, fontSize: 22);
-                sx += 344f;
+                float btnW = scCount >= 3 ? 276f : 310f;
+                float gap = 14f;
+                float sx = 0f;
+                for (int i = 0; i < scCount; ++i)
+                {
+                    var sc = _currentNpc.Shortcuts[i];
+                    DedicatedButton(_shortcutRow, sc.Label, sx, 2f, btnW, 54f,
+                        () => ShortcutRequested?.Invoke(sc.Kind), primary: false, fontSize: 20);
+                    sx += btnW + gap;
+                }
             }
 
-            // 专属玩法交互体
-            RenderFeatureBody(state, callingCard, activeTideSceneId);
-            _statusText.text = string.IsNullOrEmpty(statusNotice) ? (state?.LastBannerNotice ?? "") : statusNotice;
+            RenderFeatureBody();
+            _statusText.text = string.IsNullOrEmpty(statusNotice) ? (_lastState?.LastBannerNotice ?? "") : statusNotice;
+
+            if (_fortuneModal != null && _fortuneModal.gameObject.activeSelf) RenderFortuneModal();
+            if (_callingCardModal != null && _callingCardModal.gameObject.activeSelf) RenderCallingCardModal();
         }
 
-        private void RenderFeatureBody(CityNpcState state, CharacterCallingCardView callingCard, uint activeTideSceneId)
+        private void RenderFeatureBody()
         {
             Clear(_featureBody);
+            Clear(_actionDeckRow);
             switch (_currentNpc.FeatureKind)
             {
                 case CityNpcFeatureKind.SparringAndPuzzles:
-                    RenderSparringAndPuzzles(state);
+                    RenderSparringAndPuzzles();
                     break;
                 case CityNpcFeatureKind.CharacterTale:
-                    RenderCharacterTales(state, _currentNpc.Id);
+                    RenderCharacterTales(_currentNpc.Id);
                     break;
                 case CityNpcFeatureKind.LightErrands:
-                    RenderErrandsAndFerryTale(state);
+                    RenderErrandsAndFerryTale();
                     break;
                 case CityNpcFeatureKind.FortuneAndCallingCard:
-                    RenderFortuneAndCallingCard(state, callingCard, activeTideSceneId);
+                    RenderFortuneAndCallingCard();
                     break;
                 default:
                     RenderAmbientGuidance();
@@ -199,182 +339,370 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void RenderAmbientGuidance()
         {
-            Text(_featureBody, $"【{_currentNpc.Name}的街坊指点】", 12, 12, 980, 38, 26, Gold);
-            Text(_featureBody,
-                "归元城内全系统仍保留快捷栏一键打开，逛街找街坊聊天可触发 9 位原创主角专属彩蛋。\n\n" +
-                "• 找【齐问锋】可打零消耗「演武试招木桩」验加点/战法与「回合残局 3 关」；\n" +
-                "• 找【顾青崖 / 温半夏 / 周行舟】可体验 3 篇不限时「归元人物奇谈」与「顺路捎物」；\n" +
-                "• 找【莫听风】可求「灵潮五行签文」、生成「人物江湖名帖」与设定纯外观「同行之约」。",
-                12, 60, 1010, 290, 23, Ink, true);
+            CreateDedicatedIcon(_featureBody, "icon_sparring_dummy", 4f, 8f, 44f);
+            Text(_featureBody, "【齐问锋 · 演武场】零消耗无损试招木桩（2 档）+ 回合残局考题（3 关，支持免费 3×3 预设）。", 58f, 12f, 774f, 40f, 19, Ink, true);
+
+            CreateDedicatedIcon(_featureBody, "icon_character_tale", 4f, 64f, 44f);
+            Text(_featureBody, "【顾青崖 / 温半夏 / 周行舟】3 篇不限时「归元人物奇谈」与 3 条野外「顺路捎物」，零日常打卡。", 58f, 68f, 774f, 40f, 19, Ink, true);
+
+            CreateDedicatedIcon(_featureBody, "icon_fortune_tube", 4f, 120f, 44f);
+            Text(_featureBody, "【莫听风 · 桥畔茶亭】求取灵潮五行签文（纯视觉吉签）、生成人物「江湖名帖」与设定纯外观「同行之约」。", 58f, 124f, 774f, 44f, 19, Ink, true);
+
+            Text(_actionDeckRow, "提示：点击下方任意归元城街坊可直达互动，或通过下方快捷按钮打开既有系统。", 4f, 16f, 850f, 38f, 19, Muted);
         }
 
-        private void RenderSparringAndPuzzles(CityNpcState state)
+        private void RenderSparringAndPuzzles()
         {
-            Text(_featureBody, "演武试招木桩（强制本人真实养成 · 0 消耗 0 刷取）", 8, 4, 640, 34, 24, Gold);
-            var presetToggleLabel = _useFreePresetForOptional ? "残局模式：借用免费 3×3 预设（点此切换本人）" : "残局模式：使用本人真实养成（点此切换预设）";
-            Button(_featureBody, presetToggleLabel, 632, 0, 404, 42, () =>
+            // 上方双功能切换：演武木桩 / 回合残局 + 预设开关
+            DedicatedButtonWithIcon(_actionDeckRow, "icon_sparring_dummy", "演武木桩 (2)", 0f, 4f, 236f, 56f, () =>
             {
-                _useFreePresetForOptional = !_useFreePresetForOptional;
-                if (_currentNpc != null) SelectNpcRequested?.Invoke(_currentNpc);
-            }, false, true, fontSize: 18);
+                _sparringShowPuzzles = false;
+                RenderFeatureBody();
+            }, primary: !_sparringShowPuzzles, fontSize: 20);
 
-            var list = CityNpcCatalog.FindEncountersForNpc("guiyuan_sparring");
-            float y = 50f;
-            for (int i = 0; i < list.Count; ++i)
+            DedicatedButtonWithIcon(_actionDeckRow, "icon_tactical_puzzle", "回合残局 (3)", 248f, 4f, 236f, 56f, () =>
             {
-                var enc = list[i];
+                _sparringShowPuzzles = true;
+                RenderFeatureBody();
+            }, primary: _sparringShowPuzzles, fontSize: 20);
+
+            if (_sparringShowPuzzles)
+            {
+                string toggleLabel = _useFreePresetForOptional ? "残局：借免费 3×3 预设" : "残局：用本人真实养成";
+                DedicatedButton(_actionDeckRow, toggleLabel, 496f, 4f, 360f, 56f, () =>
+                {
+                    _useFreePresetForOptional = !_useFreePresetForOptional;
+                    RenderFeatureBody();
+                }, primary: false, fontSize: 19);
+            }
+            else
+            {
+                Text(_actionDeckRow, "演武木桩强制校验本人真实加点、战法与灵宠，0 消耗 0 刷取。", 500f, 12f, 360f, 44f, 18, Muted, true);
+            }
+
+            var all = CityNpcCatalog.FindEncountersForNpc("guiyuan_sparring");
+            float y = 6f;
+            for (int i = 0; i < all.Count; ++i)
+            {
+                var enc = all[i];
                 bool isDummy = enc.Category == CityNpcEncounterCategory.PracticeDummy;
-                bool cleared = !isDummy && (state?.IsPuzzleCleared(enc.DungeonConfigId) ?? false);
+                if (_sparringShowPuzzles == isDummy) continue;
+
+                bool cleared = !isDummy && (_lastState?.IsPuzzleCleared(enc.DungeonConfigId) ?? false);
+                string iconKey = isDummy ? "icon_sparring_dummy" : "icon_tactical_puzzle";
+                CreateDedicatedIcon(_featureBody, iconKey, 4f, y + 6f, 46f);
+
                 string badge = isDummy ? "[无损验招]" : (cleared ? $"[已破 · {enc.ClearBadgeName}]" : "[未破阵]");
-                Text(_featureBody, $"{enc.Title}  {badge}", 10, y, 700, 30, 22, cleared ? Gold : Ink);
-                Text(_featureBody, cleared && !string.IsNullOrEmpty(enc.HiddenEpilogueBody) ? enc.HiddenEpilogueBody : enc.StoryIntro,
-                    10, y + 30f, 760, 32, 18, Muted);
+                Text(_featureBody, $"{enc.Title}  {badge}", 60f, y, 580f, 28f, 20, cleared ? Gold : Ink);
+                string desc = cleared && !string.IsNullOrEmpty(enc.HiddenEpilogueBody) ? enc.HiddenEpilogueBody : enc.StoryIntro;
+                Text(_featureBody, desc, 60f, y + 28f, 584f, isDummy ? 56f : 38f, 16, Muted, true);
+
                 string btnLabel = isDummy ? "本人试招" : (_useFreePresetForOptional ? "预设破局" : "本人破局");
-                Button(_featureBody, btnLabel, 800, y + 6f, 226, 52f,
+                DedicatedButton(_featureBody, btnLabel, 658f, y + 8f, 178f, 48f,
                     () => StartEncounterRequested?.Invoke(enc, !isDummy && _useFreePresetForOptional),
-                    isDummy || !cleared, true, fontSize: 21);
-                y += 66f;
+                    primary: isDummy || !cleared, fontSize: 19);
+
+                y += isDummy ? 96f : 72f;
             }
         }
 
-        private void RenderCharacterTales(CityNpcState state, string npcId)
+        private void RenderCharacterTales(string npcId)
         {
             var tales = CityNpcCatalog.FindEncountersForNpc(npcId);
             if (tales.Count == 0) { RenderAmbientGuidance(); return; }
             var tale = tales[0];
-            bool cleared = state?.IsTaleCleared(tale.DungeonConfigId) ?? false;
-            Text(_featureBody, $"{tale.Title}  {(cleared ? $"【已达 · {tale.ClearBadgeName}】" : "【不限时奇谈 · 可跳过对白】")}",
-                10, 8, 1020, 38, 26, Gold);
-            Text(_featureBody, tale.Subtitle, 10, 48, 1020, 30, 20, Muted);
+            bool cleared = _lastState?.IsTaleCleared(tale.DungeonConfigId) ?? false;
+
+            CreateDedicatedIcon(_featureBody, "icon_character_tale", 4f, 4f, 50f);
+            Text(_featureBody, $"{tale.Title}  {(cleared ? $"【已达 · {tale.ClearBadgeName}】" : "【不限时奇谈】")}",
+                64f, 4f, 770f, 30f, 21, Gold);
+            Text(_featureBody, tale.Subtitle, 64f, 34f, 770f, 24f, 17, Muted);
 
             bool showEpilogue = cleared && _expandedStoryDungeonId == tale.DungeonConfigId;
             string bodyText = showEpilogue
-                ? $"【{tale.HiddenEpilogueTitle}】\n{tale.HiddenEpilogueBody}"
+                ? $"【{tale.HiddenEpilogueTitle}】{tale.HiddenEpilogueBody}"
                 : tale.StoryIntro;
-            Text(_featureBody, bodyText, 10, 86, 1020, 206, 23, Ink, true);
+            Text(_featureBody, bodyText, 8f, 66f, 824f, 152f, 19, Ink, true);
 
-            Button(_featureBody, "本人阵容开战", 10, 310, 240, 58,
-                () => StartEncounterRequested?.Invoke(tale, false), !cleared, true, fontSize: 22);
-            Button(_featureBody, "免费预设试演（跳过对白）", 268, 310, 330, 58,
-                () => StartEncounterRequested?.Invoke(tale, true), true, true, fontSize: 21);
+            DedicatedButton(_actionDeckRow, "本人阵容开战", 0f, 4f, 240f, 56f,
+                () => StartEncounterRequested?.Invoke(tale, false), primary: !cleared, fontSize: 20);
+            DedicatedButton(_actionDeckRow, "免费预设试演（跳过对白）", 252f, 4f, 340f, 56f,
+                () => StartEncounterRequested?.Invoke(tale, true), primary: true, fontSize: 19);
             if (cleared)
             {
-                Button(_featureBody, showEpilogue ? "看奇谈引子" : "读隐藏续篇", 616, 310, 220, 58, () =>
+                DedicatedButton(_actionDeckRow, showEpilogue ? "看奇谈引子" : "读隐藏续篇", 604f, 4f, 240f, 56f, () =>
                 {
                     _expandedStoryDungeonId = showEpilogue ? 0u : tale.DungeonConfigId;
-                    if (_currentNpc != null) SelectNpcRequested?.Invoke(_currentNpc);
-                }, false, true, fontSize: 21);
+                    RenderFeatureBody();
+                }, primary: false, fontSize: 20);
             }
         }
 
-        private void RenderErrandsAndFerryTale(CityNpcState state)
+        private void RenderErrandsAndFerryTale()
         {
-            Text(_featureBody, "不限时「顺路捎物」（去野外抓宠/逛灵潮自动送达，绝不催打卡）", 8, 4, 1020, 32, 23, Gold);
-            float y = 42f;
+            DedicatedButtonWithIcon(_actionDeckRow, "icon_errand_parcel", "顺路捎物 (3)", 0f, 4f, 244f, 56f, () =>
+            {
+                _ferryShowTale = false;
+                RenderFeatureBody();
+            }, primary: !_ferryShowTale, fontSize: 20);
+
+            DedicatedButtonWithIcon(_actionDeckRow, "icon_character_tale", "渡口奇谈《月汐渡口》", 256f, 4f, 324f, 56f, () =>
+            {
+                _ferryShowTale = true;
+                RenderFeatureBody();
+            }, primary: _ferryShowTale, fontSize: 20);
+
+            if (_ferryShowTale)
+            {
+                var tales = CityNpcCatalog.FindEncountersForNpc("guiyuan_ferryman");
+                if (tales.Count > 0)
+                {
+                    var tale = tales[0];
+                    bool cleared = _lastState?.IsTaleCleared(tale.DungeonConfigId) ?? false;
+                    CreateDedicatedIcon(_featureBody, "icon_character_tale", 4f, 4f, 48f);
+                    Text(_featureBody, $"{tale.Title} {(cleared ? $"【已达 · {tale.ClearBadgeName}】" : "【3 分钟渡口奇谈】")}",
+                        62f, 6f, 770f, 28f, 20, Gold);
+                    string body = cleared ? $"【{tale.HiddenEpilogueTitle}】{tale.HiddenEpilogueBody}" : tale.StoryIntro;
+                    Text(_featureBody, body, 8f, 58f, 824f, 104f, 18, Ink, true);
+                    DedicatedButton(_featureBody, "本人开战", 8f, 170f, 210f, 50f,
+                        () => StartEncounterRequested?.Invoke(tale, false), primary: false, fontSize: 19);
+                    DedicatedButton(_featureBody, "免费预设试演", 232f, 170f, 240f, 50f,
+                        () => StartEncounterRequested?.Invoke(tale, true), primary: true, fontSize: 19);
+                }
+                return;
+            }
+
+            Text(_actionDeckRow, "永不过期，去对应野外图寻宠或逛灵潮自动送达。", 592f, 14f, 270f, 42f, 17, Muted, true);
+            float y = 4f;
             for (int i = 0; i < CityNpcCatalog.Errands.Count; ++i)
             {
                 var err = CityNpcCatalog.Errands[i];
-                var st = state?.GetErrandStatus(err.Id) ?? CityNpcErrandStatus.Available;
+                var st = _lastState?.GetErrandStatus(err.Id) ?? CityNpcErrandStatus.Available;
+                CreateDedicatedIcon(_featureBody, "icon_errand_parcel", 4f, y + 6f, 44f);
                 string tag = st switch
                 {
-                    CityNpcErrandStatus.Active => $"[进行中 · 前往{err.TargetSceneName}自动送达]",
+                    CityNpcErrandStatus.Active => $"[前往{err.TargetSceneName}自动送达]",
                     CityNpcErrandStatus.ReadyToArchive => "[已送达 · 可归档]",
                     CityNpcErrandStatus.Archived => "[已归档见闻]",
                     _ => "[可接取]"
                 };
-                Text(_featureBody, $"{err.Title}  {tag}", 10, y, 750, 28, 21, st == CityNpcErrandStatus.ReadyToArchive ? Gold : Ink);
-                Text(_featureBody, st == CityNpcErrandStatus.Archived ? err.CompletionNote : err.ParcelDesc, 10, y + 28f, 760, 28, 18, Muted);
+                Text(_featureBody, $"{err.Title}  {tag}", 58f, y, 596f, 26f, 19, st == CityNpcErrandStatus.ReadyToArchive ? Gold : Ink);
+                Text(_featureBody, st == CityNpcErrandStatus.Archived ? err.CompletionNote : err.ParcelDesc,
+                    58f, y + 26f, 596f, 40f, 16, Muted, true);
+
                 if (st == CityNpcErrandStatus.Available)
                 {
-                    Button(_featureBody, "顺路接单", 804, y + 4f, 220, 48f,
-                        () => AcceptErrandRequested?.Invoke(err.Id), false, true, fontSize: 20);
+                    DedicatedButton(_featureBody, "顺路接单", 666f, y + 8f, 170f, 46f,
+                        () => AcceptErrandRequested?.Invoke(err.Id), primary: false, fontSize: 18);
                 }
                 else if (st == CityNpcErrandStatus.ReadyToArchive)
                 {
-                    Button(_featureBody, "归档见闻", 804, y + 4f, 220, 48f,
-                        () => ArchiveErrandRequested?.Invoke(err.Id), true, true, fontSize: 20);
+                    DedicatedButton(_featureBody, "归档见闻", 666f, y + 8f, 170f, 46f,
+                        () => ArchiveErrandRequested?.Invoke(err.Id), primary: true, fontSize: 18);
                 }
                 else if (st == CityNpcErrandStatus.Active)
                 {
-                    Button(_featureBody, "打开灵潮图", 804, y + 4f, 220, 48f,
-                        () => ShortcutRequested?.Invoke(CityNpcShortcutKind.WorldMap), false, true, fontSize: 20);
+                    DedicatedButton(_featureBody, "打开灵潮图", 666f, y + 8f, 170f, 46f,
+                        () => ShortcutRequested?.Invoke(CityNpcShortcutKind.WorldMap), primary: false, fontSize: 18);
                 }
-                y += 66f;
-            }
-
-            // 底部挂接周行舟专属奇谈《月汐渡口》
-            var ferryTales = CityNpcCatalog.FindEncountersForNpc("guiyuan_ferryman");
-            if (ferryTales.Count > 0)
-            {
-                var tale = ferryTales[0];
-                bool cleared = state?.IsTaleCleared(tale.DungeonConfigId) ?? false;
-                Text(_featureBody, $"{tale.Title} {(cleared ? "[已达 · 已解锁续篇]" : "[3 分钟渡口奇谈]")}",
-                    10, 252, 1020, 30, 22, Gold);
-                Text(_featureBody, cleared ? $"【{tale.HiddenEpilogueTitle}】{tale.HiddenEpilogueBody}" : tale.StoryIntro,
-                    10, 282, 650, 96, 18, Ink, true);
-                Button(_featureBody, "本人开战", 680, 294, 166, 56,
-                    () => StartEncounterRequested?.Invoke(tale, false), false, true, fontSize: 20);
-                Button(_featureBody, "预设试演", 858, 294, 166, 56,
-                    () => StartEncounterRequested?.Invoke(tale, true), true, true, fontSize: 20);
+                y += 74f;
             }
         }
 
-        private void RenderFortuneAndCallingCard(CityNpcState state, CharacterCallingCardView card, uint activeTideSceneId)
+        private void RenderFortuneAndCallingCard()
         {
-            // 左半区：灵潮五行签文
-            var fortunePanel = CreateOptionalArt(_featureBody, "fortune_slip_card", "panel_sub", 4, 4, 466, 372);
-            Text(fortunePanel.transform, "灵潮五行签文（纯趣味零战力）", 16, 12, 434, 34, 23, Gold);
-            if (state?.LastFortune is WuxingFortuneResult f)
+            // 上方预览区展示「灵潮五行签文」与「江湖名帖」摘要，下方主按钮一键展开原比例签牌/名帖弹层
+            CreateDedicatedIcon(_featureBody, "icon_fortune_tube", 4f, 8f, 52f);
+            if (_lastState?.LastFortune is WuxingFortuneResult f)
             {
-                Text(fortunePanel.transform, $"{f.ElementName} · {f.SignGrade}", 16, 56, 434, 38, 26, Ink);
-                Text(fortunePanel.transform, $"{f.Verse}\n\n{f.TravelHint}\n\n头顶吉签（30 分钟纯视觉）：{f.OverheadTag}",
-                    16, 102, 434, 190, 20, Muted, true);
+                Text(_featureBody, $"今日五行签：{f.ElementName} · {f.SignGrade}（纯视觉零战力）", 66f, 6f, 766f, 28f, 20, Gold);
+                Text(_featureBody, $"{f.Verse}  {f.OverheadTag}", 66f, 36f, 766f, 46f, 18, Ink, true);
             }
             else
             {
-                string tideTip = activeTideSceneId > 1u
-                    ? $"当期灵潮正涌「{CityNpcCatalog.ResolveMapDisplayName(activeTideSceneId)}」，点击下方求取今日五行吉签。"
+                string tideTip = _lastActiveTideSceneId > 1u
+                    ? $"当期灵潮正涌「{CityNpcCatalog.ResolveMapDisplayName(_lastActiveTideSceneId)}」，点击下方求取今日五行吉签。"
                     : "求取今日五行吉签，附带 30 分钟纯视觉头顶吉签气泡（零数值、不打卡不亏）。";
-                Text(fortunePanel.transform, tideTip, 16, 72, 434, 210, 21, Ink, true);
+                Text(_featureBody, "灵潮五行签文（纯趣味零战力）", 66f, 6f, 766f, 28f, 20, Gold);
+                Text(_featureBody, tideTip, 66f, 36f, 766f, 46f, 18, Muted, true);
             }
-            Button(fortunePanel.transform, "求取今日五行签", 88, 304, 290, 54,
-                () => DrawFortuneRequested?.Invoke(), true, true, fontSize: 22);
 
-            // 右半区：人物「江湖名帖」与纯外观「同行之约」
-            var cardPanel = CreateOptionalArt(_featureBody, "card_calling_panel", "panel_sub", 486, 4, 550, 372);
-            Text(cardPanel.transform, "人物江湖名帖与同行之约", 18, 12, 514, 34, 23, Gold);
-            if (card != null)
+            CreateDedicatedIcon(_featureBody, "icon_calling_card", 4f, 110f, 52f);
+            Text(_featureBody, "人物江湖名帖与纯外观「同行之约」", 66f, 108f, 766f, 28f, 20, Gold);
+            if (_lastCallingCard != null)
             {
-                string seriesText = card.CompletedSeriesBadges.Count > 0 ? string.Join("、", card.CompletedSeriesBadges) : "尚未集齐系列";
-                string honorText = card.SeasonHonorTitles.Count > 0 ? string.Join("、", card.SeasonHonorTitles) : "待解赛季铭牌";
-                string detail =
-                    $"{card.RoleName}（Lv.{card.Level}）｜身披：{card.CharacterArchiveName}\n" +
-                    $"流派气质：{card.BuildStyleTag}｜得意灵宠：{card.ActivePetName}\n" +
-                    $"衣柜收藏：{card.OwnedCharacterCount}/{Math.Max(1, card.TotalCharacterCount)}｜试炼战法印：{card.TrialSealCount} 枚\n" +
-                    $"系列印章：{seriesText}\n" +
-                    $"赛季铭牌：{honorText}\n" +
-                    $"残局：{card.ClearedPuzzleCount}/3｜奇谈：{card.ClearedTaleCount}/3｜顺路见闻：{card.ArchivedErrandCount}/3\n" +
-                    $"同行之约：「{card.CompanionOathPhrase}」";
-                var cardText = Text(cardPanel.transform, detail, 18, 52, 514, 240, 19, Ink, true);
-                cardText.richText = false;
+                string summary =
+                    $"{_lastCallingCard.RoleName}（Lv.{_lastCallingCard.Level}）｜流派：{_lastCallingCard.BuildStyleTag}｜" +
+                    $"衣柜：{_lastCallingCard.OwnedCharacterCount}/{Math.Max(1, _lastCallingCard.TotalCharacterCount)}｜" +
+                    $"战法印：{_lastCallingCard.TrialSealCount} 枚\n同行之约：「{_lastCallingCard.CompanionOathPhrase}」";
+                var sumText = Text(_featureBody, summary, 66f, 138f, 766f, 74f, 18, Ink, true);
+                sumText.richText = false;
             }
-            Button(cardPanel.transform, "换一句同行之约", 18, 304, 246, 54,
-                () => CycleCompanionOathRequested?.Invoke(), false, true, fontSize: 20);
-            Button(cardPanel.transform, "复制江湖名帖", 282, 304, 246, 54,
-                () => CopyCallingCardRequested?.Invoke(), true, true, fontSize: 20);
+
+            DedicatedButtonWithIcon(_actionDeckRow, "icon_fortune_tube", "求取五行签牌", 0f, 4f, 276f, 56f, () =>
+            {
+                DrawFortuneRequested?.Invoke();
+                OpenFortuneModal();
+            }, primary: true, fontSize: 20);
+
+            DedicatedButtonWithIcon(_actionDeckRow, "icon_calling_card", "展开江湖名帖", 290f, 4f, 276f, 56f,
+                OpenCallingCardModal, primary: true, fontSize: 20);
+
+            DedicatedButton(_actionDeckRow, "换一句同行之约", 580f, 4f, 276f, 56f,
+                () => CycleCompanionOathRequested?.Invoke(), primary: false, fontSize: 19);
         }
 
-        private static Image CreateOptionalArt(UnityEngine.Transform parent, string dedicatedKey, string fallbackKey,
-            float x, float y, float w, float h)
+        private void RenderFortuneModal()
         {
-            var dedicated = Resources.Load<Sprite>(DedicatedArtRoot + dedicatedKey);
+            Clear(_fortuneCardBody);
+            // 严格 480×680 等比原尺寸展示，不做九宫格拉伸（遵循 ui/README.md）
+            var cardImg = CreateOptionalArt(_fortuneCardBody, "fortune_slip_card", "panel_main", 20f, 0f, 480f, 680f, allowSlice: false);
+            cardImg.preserveAspect = true;
+            cardImg.raycastTarget = true;
+
+            if (_lastState?.LastFortune is WuxingFortuneResult f)
+            {
+                // 顶部圆形玉徽（cx=240, cy=102, r=43）：显示五行主字（金/木/水/火/土）
+                string elemGlyph = string.IsNullOrEmpty(f.ElementName) ? "吉" : f.ElementName.Substring(0, 1);
+                Text(_fortuneCardBody, elemGlyph, 20f + 190f, 52f, 100f, 100f, 46, Cream, alignment: TextAlignmentOptions.Center);
+
+                // 中间宣纸签辞区（x=114..366, y=184..549）
+                Text(_fortuneCardBody, f.SignGrade, 20f + 114f, 194f, 252f, 44f, 32, Gold, alignment: TextAlignmentOptions.Center);
+                Text(_fortuneCardBody, f.ElementName, 20f + 114f, 244f, 252f, 34f, 23, Ink, alignment: TextAlignmentOptions.Center);
+                Text(_fortuneCardBody, f.Verse, 20f + 118f, 294f, 244f, 110f, 21, Ink, true, TextAlignmentOptions.Center);
+                Text(_fortuneCardBody, f.TravelHint, 20f + 118f, 412f, 244f, 84f, 18, Muted, true, TextAlignmentOptions.Center);
+                Text(_fortuneCardBody, $"头顶吉签（30 分钟纯视觉）\n{f.OverheadTag}",
+                    20f + 118f, 500f, 244f, 54f, 17, Gold, true, TextAlignmentOptions.Center);
+            }
+
+            DedicatedButton(_fortuneCardBody, "重抽今日签", 34f, 696f, 216f, 58f, () =>
+            {
+                DrawFortuneRequested?.Invoke();
+                RenderFortuneModal();
+            }, primary: true, fontSize: 21);
+
+            DedicatedButton(_fortuneCardBody, "收起签牌", 270f, 696f, 216f, 58f,
+                () => _fortuneModal.gameObject.SetActive(false), primary: false, fontSize: 21);
+        }
+
+        private void RenderCallingCardModal()
+        {
+            Clear(_callingCardBody);
+            // 严格按 card_calling_panel.png 1240×720 原布局定位
+            var cardImg = CreateOptionalArt(_callingCardBody, "card_calling_panel", "panel_main", 0f, 0f, 1240f, 720f, allowSlice: true);
+            cardImg.raycastTarget = true;
+
+            // 顶部玉匾（x=384, y=12, w=472, h=84）
+            Text(_callingCardBody, "五行奇谈 · 人物江湖名帖", 392f, 22f, 456f, 64f, 30, Cream, alignment: TextAlignmentOptions.Center);
+
+            var card = _lastCallingCard;
+            if (card != null)
+            {
+                // 左侧角色立绘龛（x=77, y=120, w=322, h=510）
+                var charPortrait = QdaoCharacterCatalog.LoadPortrait(card.AppearanceId);
+                var portraitImg = QdaoUguiFactory.CreateImage("CallingCardPortrait", _callingCardBody, 94f, 136f, 288f, 400f, charPortrait);
+                portraitImg.preserveAspect = true;
+                portraitImg.enabled = charPortrait != null;
+                portraitImg.raycastTarget = false;
+
+                CreateOptionalArt(_callingCardBody, "npc_name_ribbon", "tab_selected", 92f, 548f, 292f, 56f, allowSlice: true);
+                var roleNameText = Text(_callingCardBody, $"{card.RoleName}  Lv.{card.Level}", 112f, 548f, 252f, 56f, 21, Cream, alignment: TextAlignmentOptions.Center);
+                roleNameText.richText = false;
+
+                // 右侧三道横线分栏（paperInset x=453, y=120, w=714, h=502；分隔线 y=236 / 368 / 500）
+                var row1 = Text(_callingCardBody,
+                    $"身披人物：{card.CharacterArchiveName}\n流派气质：{card.BuildStyleTag}   ｜   得意灵宠：{card.ActivePetName}",
+                    482f, 138f, 656f, 86f, 22, Ink, true);
+                row1.richText = false;
+
+                string seriesText = card.CompletedSeriesBadges.Count > 0 ? string.Join("、", card.CompletedSeriesBadges) : "尚未集齐收藏系列";
+                Text(_callingCardBody,
+                    $"衣柜收藏：{card.OwnedCharacterCount}/{Math.Max(1, card.TotalCharacterCount)}   ｜   试炼战法印：{card.TrialSealCount} 枚\n系列印章：{seriesText}",
+                    482f, 254f, 656f, 96f, 21, Ink, true);
+
+                string honorText = card.SeasonHonorTitles.Count > 0 ? string.Join("、", card.SeasonHonorTitles) : "待解锁赛季永久铭牌";
+                Text(_callingCardBody,
+                    $"赛季铭牌：{honorText}\n演武残局：{card.ClearedPuzzleCount}/3   ｜   归元奇谈：{card.ClearedTaleCount}/3   ｜   顺路见闻：{card.ArchivedErrandCount}/3",
+                    482f, 386f, 656f, 98f, 21, Ink, true);
+
+                Text(_callingCardBody, $"同行之约：「{card.CompanionOathPhrase}」",
+                    482f, 522f, 656f, 74f, 24, Gold, true, TextAlignmentOptions.Center);
+            }
+
+            DedicatedButton(_callingCardBody, "换一句同行之约", 210f, 732f, 260f, 56f, () =>
+            {
+                CycleCompanionOathRequested?.Invoke();
+                RenderCallingCardModal();
+            }, primary: false, fontSize: 20);
+
+            DedicatedButton(_callingCardBody, "复制江湖名帖", 490f, 732f, 260f, 56f,
+                () => CopyCallingCardRequested?.Invoke(), primary: true, fontSize: 21);
+
+            DedicatedButton(_callingCardBody, "关闭名帖", 770f, 732f, 260f, 56f,
+                () => _callingCardModal.gameObject.SetActive(false), primary: false, fontSize: 20);
+        }
+
+        private static Sprite LoadDedicatedSprite(string key) =>
+            string.IsNullOrEmpty(key) ? null : Resources.Load<Sprite>(DedicatedArtRoot + key);
+
+        private static Image CreateOptionalArt(UnityEngine.Transform parent, string dedicatedKey, string fallbackKey,
+            float x, float y, float w, float h, bool allowSlice)
+        {
+            var dedicated = LoadDedicatedSprite(dedicatedKey);
             if (dedicated != null)
             {
                 var img = QdaoUguiFactory.CreateImage(dedicatedKey, parent, x, y, w, h, dedicated);
-                img.type = dedicated.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                img.type = allowSlice && dedicated.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
                 return img;
             }
             return Art(parent, fallbackKey, x, y, w, h);
+        }
+
+        private static void CreateDedicatedIcon(UnityEngine.Transform parent, string iconKey, float x, float y, float size)
+        {
+            var sprite = LoadDedicatedSprite(iconKey);
+            if (sprite == null) return;
+            var img = QdaoUguiFactory.CreateImage(iconKey, parent, x, y, size, size, sprite);
+            img.type = Image.Type.Simple;
+            img.preserveAspect = true;
+            img.raycastTarget = false;
+        }
+
+        private static Button DedicatedButton(UnityEngine.Transform parent, string label, float x, float y, float w, float h,
+            Action onClick, bool primary, int fontSize = 20)
+        {
+            var btn = Button(parent, label, x, y, w, h, onClick, primary, true, fontSize: fontSize);
+            var dedicated = LoadDedicatedSprite(primary ? "npc_action_btn_primary" : "npc_action_btn_secondary");
+            if (dedicated != null && btn.image != null)
+            {
+                btn.image.sprite = dedicated;
+                btn.image.type = dedicated.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                var txt = btn.GetComponentInChildren<TMP_Text>();
+                if (txt != null) txt.color = primary ? Cream : Ink;
+            }
+            return btn;
+        }
+
+        private static Button DedicatedButtonWithIcon(UnityEngine.Transform parent, string iconKey, string label,
+            float x, float y, float w, float h, Action onClick, bool primary, int fontSize = 20)
+        {
+            var btn = DedicatedButton(parent, label, x, y, w, h, onClick, primary, fontSize);
+            var iconSprite = LoadDedicatedSprite(iconKey);
+            if (iconSprite != null)
+            {
+                float iconSize = Mathf.Min(36f, h - 14f);
+                var iconImg = QdaoUguiFactory.CreateImage("BtnIcon_" + iconKey, btn.transform, 14f, (h - iconSize) * 0.5f, iconSize, iconSize, iconSprite);
+                iconImg.preserveAspect = true;
+                iconImg.raycastTarget = false;
+                var txt = btn.GetComponentInChildren<TMP_Text>();
+                if (txt != null)
+                {
+                    var rt = txt.rectTransform;
+                    rt.anchoredPosition = new Vector2(iconSize + 20f, 0f);
+                    rt.sizeDelta = new Vector2(Mathf.Max(40f, w - iconSize - 32f), h);
+                }
+            }
+            return btn;
         }
     }
 }

@@ -3,7 +3,7 @@ guid: dcd1e56291ca7374b8b472b65b83e288
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3402277634935823984
+      213: 4833779109330665209
     second: icon_calling_card_0
   externalObjects: {}
   serializedVersion: 13
@@ -34,7 +34,7 @@ TextureImporter:
   cubemapConvolution: 0
   seamlessCubemap: 0
   textureFormat: 1
-  maxTextureSize: 2048
+  maxTextureSize: 4096
   textureSettings:
     serializedVersion: 2
     filterMode: 1
@@ -47,7 +47,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -97,15 +97,15 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 091e46e548ea8c0d0800000000000000
-      internalID: -3402277634935823984
+      spriteID: f3b234678d3a4c5b9b1da3ec274ea0a8
+      internalID: 4833779109330665209
       vertices: []
       indices: 
       edges: []
@@ -114,7 +114,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: f3b234678d3a4c5b9b1da3ec274ea0a8
     internalID: 0
     vertices: []
     indices: 

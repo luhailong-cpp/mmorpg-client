@@ -220,9 +220,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (equipment)
             {
                 foreach (var line in EquipDisplay.LinesOf(item)) lines.Add(new EquipDetailLine(EquipDisplay.FormatLine(line), EquipUiStyle.TierColor(EquipDisplay.TierOf(line.Tier))));
+                foreach (var v1 in EquipmentScreenModel.BagTooltipV1Lines(item)) lines.Add(new EquipDetailLine(v1.Text, V1LineColor(v1.Tone)));
                 foreach (var socket in EquipDisplay.SocketsOf(item)) lines.Add(new EquipDetailLine(EquipDisplay.FormatSocketLine(socket), socket.GemConfigId != 0 && socket.Attr != null ? EquipUiSkin.Green : Muted));
             }
-            else { lines.Add(new EquipDetailLine("持有数量  " + item.Count, Ink)); lines.Add(new EquipDetailLine("叠放上限  " + item.MaxStack, Ink)); }
+            else
+            {
+                lines.Add(new EquipDetailLine("持有数量  " + item.Count, Ink));
+                lines.Add(new EquipDetailLine("叠放上限  " + item.MaxStack, Ink));
+                foreach (var v1 in EquipmentScreenModel.BagTooltipV1Lines(item)) lines.Add(new EquipDetailLine(v1.Text, V1LineColor(v1.Tone)));
+            }
             // 押在还没结算的战斗里的数量(人物背包快照的 held_items):说明这几件为什么暂时交易不了。穿在身上的不在人物背包里,不标。
             string heldLine = worn ? null : EquipBagModel.HeldLine(_bag, item);
             if (heldLine != null) lines.Add(new EquipDetailLine(heldLine, Muted));
@@ -267,9 +273,34 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             else
             {
                 NativeButton(panel, "SellItem", "出售", "bag-button-normal", 1235, 678, 210, 68, null, false, 32);
-                NativeButton(panel, "ItemActionUnavailable", "使用", "bag-button-primary", 1459, 673, 308, 81, null, false, 32, true);
+                if (item.ConfigId == MmorpgClient.UI.Ugui.Skills.SkillCraftModels.SealedSkillBookConfigId &&
+                    item.SealedSkillBook != null && item.ItemId != 0)
+                {
+                    ulong sealedId = item.ItemId;
+                    var craftClient = MmorpgClient.Game.Skills.SkillCraftClient.Instance;
+                    bool canUnsealNow = craftClient != null && !craftClient.IsBusy && !craftClient.HasPendingWrite;
+                    NativeButton(panel, "UnsealSkillBookAction", "开卷", "bag-button-primary", 1459, 673, 308, 81, () =>
+                    {
+                        var client = MmorpgClient.Game.Skills.SkillCraftClient.Instance;
+                        if (client?.State != null) client.UnsealBook(sealedId);
+                        else MmorpgClient.UI.Ugui.Skills.SkillUiRoot.OpenCrafting();
+                    }, canUnsealNow, 36, true);
+                }
+                else
+                {
+                    NativeButton(panel, "ItemActionUnavailable", "使用", "bag-button-primary", 1459, 673, 308, 81, null, false, 32, true);
+                }
             }
         }
+
+        private static Color V1LineColor(EquipmentScreenModel.TooltipLineTone tone) => tone switch
+        {
+            EquipmentScreenModel.TooltipLineTone.Supreme => EquipUiSkin.Gold,
+            EquipmentScreenModel.TooltipLineTone.Precious => EquipUiStyle.TierPink,
+            EquipmentScreenModel.TooltipLineTone.Rare => EquipUiStyle.TierBlue,
+            EquipmentScreenModel.TooltipLineTone.Muted => Muted,
+            _ => Ink,
+        };
 
         private void RenderMissions()
         {

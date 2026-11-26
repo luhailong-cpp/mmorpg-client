@@ -538,6 +538,23 @@ namespace MmorpgClient.UI.Ugui.Battle
                 "返回列表", 18f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
             backBtn.Button.onClick.AddListener(() => { _inspectedReplay = null; RenderFiltered(); });
 
+            if (replay.StartState != null && replay.StartState.BannedSkillIds.Count > 0)
+            {
+                float banY = _rows.Count * (EntryH + EntryGap);
+                var banRow = BattleUiWidgets.CreatePanel("BuildInspectBans", _content,
+                    0f, banY, ListWidth, EntryH, BattleUiStyle.PanelBgLight);
+                var bRect = (RectTransform)banRow.transform;
+                _rows.Add(banRow.gameObject);
+                QdaoUguiFactory.CreateText("InspectBanTitle", bRect, 18f, 14f, ListWidth - 36f, 34f,
+                    $"本局战前禁招（共禁 {replay.StartState.BannedSkillIds.Count} 招 · 双方对称生效）",
+                    19f, QdaoUguiTheme.Cream);
+                QdaoUguiFactory.CreateText("InspectBanDetail", bRect, 18f, 56f, ListWidth - 36f, 44f,
+                    BattleSkillBanModels.FormatTeamBansSummary(
+                        replay.StartState.TeamABannedSkillIds,
+                        replay.StartState.TeamBBannedSkillIds),
+                    17f, QdaoUguiTheme.StatusCream);
+            }
+
             for (int i = 0; i < replay.ActorBuilds.Count; ++i)
             {
                 var build = replay.ActorBuilds[i];

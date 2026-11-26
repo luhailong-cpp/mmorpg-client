@@ -21,6 +21,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         private bool _enablePolarity;
         private uint _roundLimitOverride = 12u; // 0 / 8 / 12 / 20
         private bool _banControlSkills;
+        private bool _enableSkillBan;
         private bool _allowPublicSpectate = true;
         private uint _challengerCharPreset = 101u;
         private uint _challengerPetPreset = 203u;
@@ -68,13 +69,31 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
 
             // 规则开关行
             DrawRuleToggle("FreePreset", 480f, 408f, "公平 3×3 免费模板", _useFreePreset, null,
-                () => { _useFreePreset = !_useFreePreset; Refresh(); });
+                () =>
+                {
+                    _useFreePreset = !_useFreePreset;
+                    if (_useFreePreset) _enableSkillBan = false;
+                    Refresh();
+                });
             DrawRuleToggle("Polarity", 1040f, 408f, "物法易势（每 2 回合交替）", _enablePolarity, "polarity",
                 () => { _enablePolarity = !_enablePolarity; Refresh(); });
             DrawRuleToggle("BanCc", 480f, 482f, "禁控对决（纯拼直伤续航）", _banControlSkills, "ban_cc",
                 () => { _banControlSkills = !_banControlSkills; Refresh(); });
             DrawRuleToggle("Spectate", 1040f, 482f, "允许全服公开观战", _allowPublicSpectate, "spectate",
                 () => { _allowPublicSpectate = !_allowPublicSpectate; Refresh(); });
+            DrawRuleToggle("SkillBan", 1600f, 408f,
+                _useFreePreset ? "战前各禁 3 招（需关闭公平模板）" : "战前各禁 3 招（25 秒盲禁）",
+                !_useFreePreset && _enableSkillBan, null,
+                () =>
+                {
+                    if (_useFreePreset)
+                    {
+                        _root.ShowToast("请先关闭「公平 3×3 免费模板」后再开启战前 3 禁招");
+                        return;
+                    }
+                    _enableSkillBan = !_enableSkillBan;
+                    Refresh();
+                });
 
             // 回合上限白名单：默认 / 8 / 12 / 20（配 duel_rule_blitz 沙漏小图标）
             var blitzIcon = WuxingExpansionsUiArt.LoadDuelRuleIcon("blitz");
@@ -147,6 +166,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             AllowPublicSpectate = _allowPublicSpectate,
             ChallengerCharacterPresetId = _useFreePreset ? _challengerCharPreset : 0u,
             ChallengerPetPresetId = _useFreePreset ? _challengerPetPreset : 0u,
+            SkillBanSlotsPerTeam = (!_useFreePreset && _enableSkillBan) ? 3u : 0u,
         };
 
         private void SubmitChallenge()

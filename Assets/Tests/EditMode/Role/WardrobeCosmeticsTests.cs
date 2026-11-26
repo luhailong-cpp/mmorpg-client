@@ -241,6 +241,8 @@ namespace MmorpgClient.Tests.EditMode.Role
                         return (new EquipPetCosmeticResponse
                         {
                             ErrorMessage = new TipInfoMessage { Id = 0 },
+                            PetId = r.PetId,
+                            EquippedCosmeticId = r.CosmeticId,
                             Info = info,
                         }, null);
                     }
@@ -267,6 +269,8 @@ namespace MmorpgClient.Tests.EditMode.Role
 
             using var client = new AppearanceClient(net, () => conn, () => now, Ids);
             Assert.That(client.IsCosmeticsSupported, Is.True);
+            var equippedEvents = new List<(ulong petId, uint cosmeticId)>();
+            client.PetCosmeticEquipped += (petId, cosmeticId) => equippedEvents.Add((petId, cosmeticId));
 
             // 1. 穿戴灵宠幻化 + 在途锁拒绝二次并发请求
             Assert.That(client.EquipPetCosmetic(7001ul, 1u), Is.True);
@@ -277,6 +281,8 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(client.StatusIsError, Is.False);
             Assert.That(client.Info.EquippedPetCosmetics.Count, Is.EqualTo(1));
             Assert.That(client.Info.EquippedPetCosmetics[0].CosmeticId, Is.EqualTo(1u));
+            Assert.That(equippedEvents.Count, Is.EqualTo(1));
+            Assert.That(equippedEvents[0], Is.EqualTo((7001ul, 1u)));
 
             // 2. 超时应自动触发刷新而非伪造穿戴结果
             now += 2f;
@@ -286,6 +292,7 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(client.StatusIsError, Is.True);
             Assert.That(net.Calls.Count, Is.EqualTo(callsBeforeTimeout + 2));
             Assert.That(net.Calls[net.Calls.Count - 1].msgId, Is.EqualTo(Ids.Get));
+            Assert.That(equippedEvents.Count, Is.EqualTo(1), "超时不得误触发灵宠幻化生效事件");
 
             // 3. 服务端返回 KPetNotFound 时显示中文提示并触发同步
             now += 2f;
@@ -293,6 +300,7 @@ namespace MmorpgClient.Tests.EditMode.Role
             net.Flush();
             Assert.That(client.StatusIsError, Is.True);
             Assert.That(client.Status, Does.Contain("不存在"));
+            Assert.That(equippedEvents.Count, Is.EqualTo(1), "失败回包不得误触发灵宠幻化生效事件");
 
             // 4. 穿戴技能特效与恢复默认
             now += 2f;
