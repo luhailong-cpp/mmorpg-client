@@ -451,5 +451,58 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var legacyItem = new BagItemInfo { ItemId = 9002, ConfigId = 1001, Name = "玄铁剑", EquipKind = 11, EquipLevel = 60 };
             Assert.That(EquipmentScreenModel.BagTooltipV1Lines(legacyItem), Is.Empty);
         }
+
+        [Test]
+        public void UpgradeTierTargetsFilterByProfileKindHigherLevelAndValidCraftChoiceAcceptsPureSilverUpgrade()
+        {
+            var lv1Weapon = new BagItemInfo { ItemId = 101, ConfigId = 3101, Count = 1, EquipProfile = 1, EquipKind = 11, EquipLevel = 1 };
+            var lv80Weapon = new BagItemInfo { ItemId = 102, ConfigId = 3181, Count = 1, EquipProfile = 1, EquipKind = 11, EquipLevel = 80 };
+            var artifact = new BagItemInfo { ItemId = 103, ConfigId = 3301, Count = 1, EquipProfile = 3, EquipKind = 16, EquipLevel = 1 };
+
+            Assert.That(EquipmentScreenModel.CanUpgradeTier(lv1Weapon), Is.True);
+            Assert.That(EquipmentScreenModel.CanUpgradeTier(lv80Weapon), Is.False);
+            Assert.That(EquipmentScreenModel.CanUpgradeTier(artifact), Is.False);
+
+            var rules = new GetEquipmentCraftRulesResponse();
+            rules.Recipes.Add(new EquipmentCraftRecipe { Product = new BagItemInfo { ConfigId = 3101, EquipProfile = 1, EquipKind = 11, EquipLevel = 1 } });
+            rules.Recipes.Add(new EquipmentCraftRecipe { Product = new BagItemInfo { ConfigId = 3161, EquipProfile = 1, EquipKind = 11, EquipLevel = 60 } });
+            rules.Recipes.Add(new EquipmentCraftRecipe { Product = new BagItemInfo { ConfigId = 3131, EquipProfile = 1, EquipKind = 11, EquipLevel = 30 } });
+            rules.Recipes.Add(new EquipmentCraftRecipe { Product = new BagItemInfo { ConfigId = 3132, EquipProfile = 1, EquipKind = 12, EquipLevel = 30 } });
+            rules.Recipes.Add(new EquipmentCraftRecipe { Product = new BagItemInfo { ConfigId = 3231, EquipProfile = 2, EquipKind = 15, EquipLevel = 30 } });
+
+            var targets = EquipmentScreenModel.FindUpgradeTierTargets(lv1Weapon, rules);
+            Assert.That(targets.Select(t => t.ConfigId), Is.EqualTo(new uint[] { 3131, 3161 }));
+            Assert.That(EquipmentScreenModel.PickDefaultUpgradeTarget(targets, 45)?.ConfigId, Is.EqualTo(3131u));
+            Assert.That(EquipmentScreenModel.PickDefaultUpgradeTarget(targets, 70)?.ConfigId, Is.EqualTo(3161u));
+            Assert.That(EquipmentScreenModel.PickDefaultUpgradeTarget(targets, 15)?.ConfigId, Is.EqualTo(3131u));
+
+            Assert.That(MmorpgClient.Game.PlayerFeatures.PlayerFeaturesClient.ValidCraftChoice(new EquipmentCraftChoice
+            {
+                Operation = EquipmentCraftChoice.Types.Operation.UpgradeTier,
+                ItemId = 101,
+                ConfigId = 3131,
+            }), Is.True);
+            Assert.That(MmorpgClient.Game.PlayerFeatures.PlayerFeaturesClient.ValidCraftChoice(new EquipmentCraftChoice
+            {
+                Operation = EquipmentCraftChoice.Types.Operation.UpgradeTier,
+                ItemId = 101,
+                ConfigId = 0,
+            }), Is.False);
+            Assert.That(MmorpgClient.Game.PlayerFeatures.PlayerFeaturesClient.ValidCraftChoice(new EquipmentCraftChoice
+            {
+                Operation = EquipmentCraftChoice.Types.Operation.UpgradeTier,
+                ItemId = 101,
+                ConfigId = 3131,
+                SourceItemId = 202,
+            }), Is.False);
+
+            string summary = EquipmentScreenModel.FormatCraftPreviewSummary(new EquipmentCraftPreview
+            {
+                Available = true,
+                GoldCost = 300,
+                Choice = new EquipmentCraftChoice { Operation = EquipmentCraftChoice.Types.Operation.UpgradeTier, ItemId = 101, ConfigId = 3131 },
+            });
+            Assert.That(summary, Is.EqualTo("银两 300"));
+        }
     }
 }

@@ -333,5 +333,31 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_client.HasPromptableRecap, Is.False);
             Assert.That(LastCall.Id, Is.EqualTo(TestMessageIds.AckRecap), "不足 60 秒且 0 场战斗的瞬时断线应静默确认");
         }
+
+        [Test]
+        public void LightCardBenefitsSummary_ReflectsSlotsAndStage2TradableAndBuyFiresPurchased()
+        {
+            var inactive = Info(0);
+            inactive.UnlockedLoadoutSlots = 3;
+            inactive.Stage2TradableEnabled = false;
+            string inactiveText = AfkPassModels.LightCardBenefitsSummary(inactive);
+            Assert.That(inactiveText, Does.Contain("3→6").And.Contain("零战力"));
+
+            var active = Info(Now + 30 * Day);
+            active.UnlockedLoadoutSlots = 6;
+            active.Stage2TradableEnabled = true;
+            string activeText = AfkPassModels.LightCardBenefitsSummary(active);
+            Assert.That(activeText, Does.Contain("6 格").And.Contain("已激活").And.Contain("零战力"));
+
+            int purchasedCount = 0;
+            _client.Purchased += () => purchasedCount++;
+            _client.HandleSceneEntered();
+            ReplyInfo(inactive);
+            Assert.That(_client.Buy(), Is.True);
+            LastCall.Reply(new global::BuyAfkPassResponse { Info = active });
+            Assert.That(purchasedCount, Is.EqualTo(1));
+            Assert.That(_client.Info.UnlockedLoadoutSlots, Is.EqualTo(6u));
+            Assert.That(_client.Info.Stage2TradableEnabled, Is.True);
+        }
     }
 }

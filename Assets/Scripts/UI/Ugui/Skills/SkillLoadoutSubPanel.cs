@@ -127,21 +127,35 @@ namespace MmorpgClient.UI.Ugui.Skills
             bool canChangeScheme = !_battleLocked && !_saving && !_draft.IsDirty && (_source == null || canWrite);
 
             uint activeId = loadout.ActiveSchemeId;
-            for (uint s = 1u; s <= 3u; s++)
+            uint maxSchemes = loadout.MaxSchemes >= 3u ? Math.Min(loadout.MaxSchemes, 6u) : 6u;
+            uint unlockedSchemes = UnlockedSchemeLimit(loadout);
+            for (uint s = 1u; s <= maxSchemes; s++)
             {
                 uint captured = s;
                 var sc = loadout.FindScheme(s);
                 bool isEditing = s == _draft.SchemeId;
-                string tag = SkillLoadoutView.DescribeRoleTag(isEditing ? _draft.RoleTag : sc?.RoleTag ?? 0u);
-                string label = $"{SchemeNames[s - 1]} · {tag}";
+                bool unlocked = s <= unlockedSchemes;
+                bool hasSaved = sc != null;
+                string label = unlocked ? SchemeNames[s - 1] : $"方案{s}(卡)";
                 var btn = CharacterAttributeVisuals.Button("LoadoutScheme" + s, _contentRoot,
-                    18f + (s - 1u) * 212f, 12f, 200f, 52f, label, isEditing, 25f);
+                    18f + (s - 1u) * 109f, 12f, 104f, 52f, label, isEditing, 19f);
                 SkillPanel.StyleGuildControl(btn, isEditing ? "guild_tab_selected" : "guild_tab_normal",
-                    isEditing ? QdaoRefreshArt.Ivory : Ink, preserveReadOnlyColor: true);
-                btn.SetInteractable(canChangeScheme);
+                    isEditing ? QdaoRefreshArt.Ivory : (unlocked ? Ink : Brown), preserveReadOnlyColor: true);
+                btn.SetInteractable(canChangeScheme || !unlocked);
                 btn.Button.onClick.AddListener(() =>
                 {
-                    if (!canChangeScheme || _battleLocked || _saving || _draft.IsDirty || _draft.SchemeId == captured) return;
+                    if (_battleLocked || _saving || _draft.IsDirty) return;
+                    if (!unlocked)
+                    {
+                        if (hasSaved) _draft.Reset(loadout, captured);
+                        _notice = hasSaved
+                            ? "「仙途轻享卡」已到期：该已存方案已永久保留（只读预览），续卡后即可编辑与启用。"
+                            : "第 4–6 套战法方案需「仙途轻享卡」解锁（纯便利零战力），到期不丢已存方案。";
+                        _noticeError = true;
+                        Rebuild(resetScroll: hasSaved);
+                        return;
+                    }
+                    if (!canChangeScheme || _draft.SchemeId == captured) return;
                     if (CanWrite && activeId != captured)
                     {
                         SubmitSwitch(captured);

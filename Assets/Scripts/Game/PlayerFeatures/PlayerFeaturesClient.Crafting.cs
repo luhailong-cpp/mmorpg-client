@@ -324,7 +324,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         private bool CanSendCraft() => !_craftLastSendMs.HasValue || _nowMs() < _craftLastSendMs.Value
             || _nowMs() - _craftLastSendMs.Value >= CraftMinSendIntervalMs;
 
-        internal static bool ValidCraftChoice(EquipmentCraftChoice choice)
+        public static bool ValidCraftChoice(EquipmentCraftChoice choice)
         {
             if (choice == null) return false;
             return choice.Operation switch

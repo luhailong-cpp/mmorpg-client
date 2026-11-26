@@ -155,5 +155,49 @@ namespace MmorpgClient.Tests.EditMode.Skills
             Assert.That(SkillBookMapper.DescribeTip((uint)skill_error.KSkillProxyFeeInvalid), Does.Contain("50"));
             Assert.That(SkillBookMapper.DescribeTip((uint)equip_error.KEquipProxyMasterUnavailable), Does.Contain("代打摊位"));
         }
+
+        [Test]
+        public void LoadoutSnapshot_MapsLightCardUnlockedSchemesAndPreservesExpiredSchemeFour()
+        {
+            var activeResp = new ListSkillsResponse
+            {
+                ClassId = 1,
+                PlayerLevel = 60,
+                Loadout = new SkillLoadoutSnapshot
+                {
+                    CustomEnabled = true,
+                    ActiveSchemeId = 4,
+                    StateVersion = 2,
+                    UnlockedSchemes = 6,
+                    MaxSchemes = 6,
+                },
+            };
+            activeResp.Loadout.Schemes.Add(new SkillLoadoutSchemeInfo { SchemeId = 4, RoleTag = 1 });
+            var activeSnap = SkillBookMapper.ToSnapshot(activeResp);
+            Assert.That(activeSnap.Loadout.UnlockedSchemes, Is.EqualTo(6u));
+            Assert.That(activeSnap.Loadout.MaxSchemes, Is.EqualTo(6u));
+            Assert.That(activeSnap.Loadout.ActiveSchemeId, Is.EqualTo(4u));
+            Assert.That(activeSnap.Loadout.FindScheme(4)?.RoleTag, Is.EqualTo(1u));
+
+            var expiredResp = new ListSkillsResponse
+            {
+                ClassId = 1,
+                PlayerLevel = 60,
+                Loadout = new SkillLoadoutSnapshot
+                {
+                    CustomEnabled = true,
+                    ActiveSchemeId = 1,
+                    StateVersion = 3,
+                    UnlockedSchemes = 3,
+                    MaxSchemes = 6,
+                },
+            };
+            expiredResp.Loadout.Schemes.Add(new SkillLoadoutSchemeInfo { SchemeId = 1, RoleTag = 0 });
+            expiredResp.Loadout.Schemes.Add(new SkillLoadoutSchemeInfo { SchemeId = 4, RoleTag = 2 });
+            var expiredSnap = SkillBookMapper.ToSnapshot(expiredResp);
+            Assert.That(expiredSnap.Loadout.UnlockedSchemes, Is.EqualTo(3u));
+            Assert.That(expiredSnap.Loadout.MaxSchemes, Is.EqualTo(6u));
+            Assert.That(expiredSnap.Loadout.FindScheme(4)?.RoleTag, Is.EqualTo(2u), "到期后仍须保留第 4 套已存方案供只读展示");
+        }
     }
 }

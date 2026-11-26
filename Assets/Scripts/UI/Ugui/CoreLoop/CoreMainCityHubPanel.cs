@@ -50,7 +50,11 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             var afkClient = AfkPassUiRoot.Instance?.Client;
             _afkStateKnown = afkClient != null && afkClient.Ready && afkClient.Info != null;
             _afkActive = _afkStateKnown && afkClient.Active;
-            var view = _core.BuildMainCityHub(hasAfkPass: _afkActive);
+            uint unlockedLoadoutSlots = afkClient?.Info != null && afkClient.Info.UnlockedLoadoutSlots > 0
+                ? afkClient.Info.UnlockedLoadoutSlots
+                : (_afkActive ? 6u : 3u);
+            bool stage2Tradable = afkClient?.Info?.Stage2TradableEnabled == true || _afkActive;
+            var view = _core.BuildMainCityHub(hasAfkPass: _afkActive, unlockedLoadoutSlots: unlockedLoadoutSlots);
             bool materialReady = _game?.Features?.EquipmentMaterialReward != null;
             var rankedProfile = _game?.Ranked?.Profile;
             var seasonState = _game?.Season?.Snapshot;
@@ -142,9 +146,10 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     slot.Title, 22, CoreLoopUiArt.Ink, true);
                 string subtitle = slot.SlotKey == "convenience_loadouts"
                     ? (_afkStateKnown
-                        ? (_afkActive ? "省心托管已生效；槽位 3→6 预览"
-                            : "离线托管便利与槽位 3→6 预览")
-                        : "省心卡待同步；槽位 3→6 预览")
+                        ? (_afkActive
+                            ? $"托管生效 · 配装槽 {unlockedLoadoutSlots} 格 · 阶段二胜局{(stage2Tradable ? "可交易" : "绑定")}"
+                            : $"离线托管 + 配装槽 3→6 格（当前 {unlockedLoadoutSlots} 格）+ 阶段二可交易")
+                        : "轻享卡状态待同步 · 配装槽 3→6 格 + 阶段二可交易")
                     : slot.Subtitle;
                 CoreLoopUiArt.Text("SpendSubtitle" + i, transform, x + 16, 930, 316, 54,
                     subtitle, 17, CoreLoopUiArt.Muted, false, true);
@@ -192,7 +197,10 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             {
                 case "wardrobe": _root.OpenSpendPreview(slotKey); break;
                 case "season_journal": _root.OpenTrialJournal(); break;
-                case "convenience_loadouts": _root.OpenSpendPreview(slotKey); break;
+                case "convenience_loadouts":
+                    if (AfkPassUiRoot.Instance != null) AfkPassUiRoot.Instance.ShowPanel();
+                    else _root.OpenSpendPreview(slotKey);
+                    break;
                 case "material_market": _root.OpenSpendPreview(slotKey); break;
             }
         }

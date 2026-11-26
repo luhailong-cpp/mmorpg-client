@@ -4,6 +4,7 @@ using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.BattleScripts;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.BattleScripts;
+using MmorpgClient.UI.Ugui.Skills;
 using MmorpgClient.World.Tianyong;
 using TMPro;
 using UnityEngine;
@@ -53,7 +54,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private RectTransform _window;
         private RectTransform _recapWindow;
         private Button _entry, _buy, _autoReturnButton, _battleScriptButton, _recapConfirmButton;
-        private TMP_Text _state, _price, _balance, _status, _buyLabel, _autoReturnLabel, _battleScriptSummary;
+        private TMP_Text _state, _price, _balance, _benefits, _status, _buyLabel, _autoReturnLabel, _battleScriptSummary;
         private TMP_Text _recapSubtitle, _recapBattles, _recapExp, _recapSilver, _recapItems;
         private bool _available;
         private ulong _shownRecapStartedAt;
@@ -115,7 +116,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var infoCardSprite = GameplayUiArt.TryLoadAfkTeamArt("afk_pass_info_card");
             if (infoCardSprite != null)
             {
-                var infoCard = QdaoUguiFactory.CreateImage("AfkPassInfoCard", frame, 80, 114, 920, 250, infoCardSprite);
+                var infoCard = QdaoUguiFactory.CreateImage("AfkPassInfoCard", frame, 80, 114, 920, 268, infoCardSprite);
                 infoCard.type = infoCardSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
                 infoCard.raycastTarget = false;
             }
@@ -123,7 +124,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _state = GameplayUiArt.Text(frame, "", 80, 118, 920, 56, 36);
             _price = GameplayUiArt.Text(frame, "", 80, 182, 920, 44, 26, GameplayUiArt.Muted);
             _balance = GameplayUiArt.Text(frame, "", 80, 230, 920, 44, 26, GameplayUiArt.Muted);
-            GameplayUiArt.Text(frame, AfkPassModels.HostingDescription, 80, 282, 920, 92, 24, GameplayUiArt.Muted, wrap: true);
+            _benefits = GameplayUiArt.Text(frame,
+                AfkPassModels.HostingDescription + "\n" + AfkPassModels.LightCardBenefitsSummary(null),
+                80, 278, 920, 104, 21, GameplayUiArt.Muted, wrap: true);
 
             // 托管策略区:离队/解散自动回主城安全区 + 战斗剧本直连
             _autoReturnButton = GameplayUiArt.Button(frame, "离队/解散自动回主城：关闭", 80, 390, 460, 62,
@@ -390,6 +393,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _price.text = AfkPassModels.NotForSaleText;
                 _balance.text = "";
             }
+            if (_benefits != null)
+            {
+                _benefits.text = AfkPassModels.HostingDescription + "\n" + AfkPassModels.LightCardBenefitsSummary(info);
+            }
             string status = _client?.Status ?? "";
             _status.text = status;
             _status.color = (_client?.StatusIsError ?? false) ? ErrorInk : GameplayUiArt.Muted;
@@ -452,6 +459,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     () => Time.realtimeSinceStartup);
                 _client.Changed += Render;
                 _client.Reminder += HandleReminder;
+                _client.Purchased += HandlePurchased;
                 game.OnSceneEntered += HandleSceneEntered;
                 game.OnDisconnected += HandleDisconnected;
                 // 本组件晚于进场才出现(或 GameClient 中途换了实例)时,入场通知已经错过,自己问一次。
@@ -487,6 +495,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 _client.Changed -= Render;
                 _client.Reminder -= HandleReminder;
+                _client.Purchased -= HandlePurchased;
                 _client.Dispose();
                 _client = null;
             }
@@ -503,6 +512,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _client?.HandleDisconnected();
             HidePanel();
             HideRecap();
+        }
+
+        private void HandlePurchased()
+        {
+            _game?.Attributes?.RequestPanel();
+            _game?.Skills?.Refresh(SkillBookContext.Character());
+            _game?.Features?.RequestEquipmentMaterialReward();
         }
 
         private static void HandleReminder(string text) => BattleUiRoot.Instance?.ShowToast(text);
