@@ -15,6 +15,7 @@ namespace MmorpgClient.Game.Battle
         public uint RemainingHits;
         public uint RemainingTicks;
         public uint Stacks;
+        public uint RawStacks;
         public bool IsShield => RemainingCapacity > 0;
     }
 
@@ -74,6 +75,7 @@ namespace MmorpgClient.Game.Battle
                     RemainingHits = buff.RemainingHits,
                     RemainingTicks = buff.RemainingTicks,
                     Stacks = buff.Stacks > 0 ? buff.Stacks : buff.Layer,
+                    RawStacks = buff.Stacks,
                 });
             }
             summary.TotalShieldCapacity = totalShield;

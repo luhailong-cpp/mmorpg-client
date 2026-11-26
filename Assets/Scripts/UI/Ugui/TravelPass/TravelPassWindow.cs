@@ -28,10 +28,21 @@ namespace MmorpgClient.UI.Ugui.TravelPass
 
         private const float FrameWidth = 1860f;
         private const float FrameHeight = 960f;
+        private const float BannerY = 144f;
+        private const float BannerHeight = 148f;
+        private const float ProgressTrackX = 20f;
+        private const float ProgressTrackY = 105f;
+        private const float ProgressTrackWidth = 1128f;
+        private const float ProgressFillMaxWidth = 1124f;
+        private const float ProgressFillMinWidth = 24f;
         private const float ContentX = 56f;
-        private const float ContentY = 278f;
+        private const float ContentY = 310f;
         private const float ContentWidth = FrameWidth - 112f;
         private const float ContentHeight = 584f;
+        private const float RowMarginX = 22f;
+        private const float RowWidth = ContentWidth - RowMarginX * 2f; // 1704px，与 tier_row_*.png 像素对齐
+        private const float RowColFreeX = 328f;                         // tier_row_*.png 左侧竖线位置
+        private const float RowColPremiumX = 1016f;                     // tier_row_*.png 右侧竖线位置
 
         private static readonly Color DangerInk = QdaoUguiTheme.Html("#A94735");
         private static readonly Color JadeAccent = QdaoUguiTheme.Html("#1F6B52");
@@ -71,59 +82,66 @@ namespace MmorpgClient.UI.Ugui.TravelPass
             _frame = QdaoUguiFactory.CreateCenteredRect("TravelPassFrame", _root, FrameWidth, FrameHeight);
             CreateSkinOrFallbackArt(_frame, "TravelPassFrameBg", "window_frame", "main_frame", 0f, 0f, FrameWidth, FrameHeight);
 
-            var plaque = CreateSkinOrFallbackArt(_frame, "TravelPassTitlePlaque", "title_plate", "title_plate", 56f, -20f, 520f, 110f);
-            _titleText = Text(plaque.transform, "青云游历手记", 28f, 10f, 464f, 84f, 40f, Cream, alignment: TextAlignmentOptions.Center);
+            var plaque = CreateSkinOrFallbackArt(_frame, "TravelPassTitlePlaque", "title_plate", "title_plate", 90f, 20f, 520f, 110f);
+            _titleText = Text(plaque.transform, "青云游历手记", 28f, 12f, 464f, 84f, 40f, Cream, alignment: TextAlignmentOptions.Center);
             _titleText.raycastTarget = false;
 
             // 双余额独立展示：严禁把绑定灵石混算成可解锁额度
-            _diamondText = Text(_frame, "灵石：0", 600f, 24f, 340f, 40f, 28f, Ink);
+            _diamondText = Text(_frame, "灵石：0", 640f, 32f, 360f, 38f, 28f, Ink);
             _diamondText.name = "TravelPassDiamondBalance";
             _diamondText.raycastTarget = false;
 
-            _bindDiamondText = Text(_frame, "绑定灵石：0（仅活动赠送，不抵扣典藏解锁）", 600f, 68f, 700f, 32f, 21f, Muted);
+            _bindDiamondText = Text(_frame, "绑定灵石：0（仅活动赠送，不抵扣典藏解锁）", 640f, 74f, 680f, 32f, 21f, Muted);
             _bindDiamondText.name = "TravelPassBindDiamondBalance";
             _bindDiamondText.raycastTarget = false;
 
-            var refreshBtn = Button(_frame, "刷新", 1564f, 26f, 120f, 66f, () => _client?.RequestState(force: true), fontSize: 25f);
+            var refreshBtn = Button(_frame, "刷新", 1558f, 42f, 120f, 66f, () => _client?.RequestState(force: true), fontSize: 25f);
             refreshBtn.name = RefreshButtonName;
 
-            var closeBtn = Button(_frame, "关闭", 1698f, 26f, 110f, 66f, Hide, fontSize: 25f);
+            var closeBtn = Button(_frame, "关闭", 1692f, 42f, 110f, 66f, Hide, fontSize: 25f);
             closeBtn.name = CloseButtonName;
 
-            // 承诺条与游历进度条
-            var bannerBg = QdaoUguiFactory.CreateImage("TravelPassBanner", _frame, 56f, 114f, ContentWidth, 148f,
-                LoadOptionalSkin("travel_pass_banner") ?? LoadOptionalSkin("hero_banner"));
+            // 承诺条与游历进度条（严格对齐 travel_pass_banner.png 左右分栏线 x=1150）
+            var bannerBg = QdaoUguiFactory.CreateImage("TravelPassBanner", _frame, ContentX, BannerY, ContentWidth, BannerHeight,
+                LoadOptionalSkin("hero_banner") ?? LoadOptionalSkin("travel_pass_banner"));
+            bannerBg.type = bannerBg.sprite != null && bannerBg.sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+            bannerBg.pixelsPerUnitMultiplier = 1f;
             if (bannerBg.sprite == null) bannerBg.color = new Color(0.93f, 0.89f, 0.79f, 0.94f);
             bannerBg.raycastTarget = false;
 
             var promise = Text(bannerBg.transform,
-                "不肝不逼氪承诺：零日常 · 零签到 · 正常游玩自动累计游历点 · 先玩后买随时补领 · 解锁典藏永不过期 · 全部物品绑定仅自用零战力突破",
-                24f, 12f, ContentWidth - 48f, 34f, 22f, JadeAccent);
+                "零日常 · 零签到 · 正常游玩自动累计游历点 · 先玩后买随时补领 · 解锁典藏永不过期 · 绑定仅自用零战力突破",
+                ProgressTrackX, 16f, 1120f, 34f, 19f, JadeAccent);
             promise.fontStyle = FontStyles.Bold;
             promise.raycastTarget = false;
 
             _progressText = Text(bannerBg.transform, "游历点：0 / 300（常规胜 +20 · 高难/竞技胜 +30 · 有效竞技 +15）",
-                24f, 52f, ContentWidth - 620f, 36f, 24f, Ink);
+                ProgressTrackX, 58f, 1120f, 36f, 23f, Ink);
             _progressText.name = "TravelPassProgressLabel";
             _progressText.raycastTarget = false;
 
-            var trackBg = QdaoUguiFactory.CreateImage("TravelPassProgressTrack", bannerBg.transform, 24f, 98f,
-                ContentWidth - 620f, 28f, LoadOptionalSkin("progress_track"));
+            var trackBg = QdaoUguiFactory.CreateImage("TravelPassProgressTrack", bannerBg.transform, ProgressTrackX, ProgressTrackY,
+                ProgressTrackWidth, 28f, LoadOptionalSkin("progress_track"));
+            trackBg.type = trackBg.sprite != null && trackBg.sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+            trackBg.pixelsPerUnitMultiplier = 1f;
             if (trackBg.sprite == null) trackBg.color = new Color(0.76f, 0.72f, 0.62f, 1f);
             trackBg.raycastTarget = false;
 
-            var fillImg = QdaoUguiFactory.CreateImage("TravelPassProgressFill", bannerBg.transform, 26f, 100f,
+            var fillImg = QdaoUguiFactory.CreateImage("TravelPassProgressFill", bannerBg.transform, ProgressTrackX + 2f, ProgressTrackY + 2f,
                 0f, 24f, LoadOptionalSkin("progress_fill"));
+            fillImg.type = fillImg.sprite != null && fillImg.sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+            fillImg.pixelsPerUnitMultiplier = 1f;
             if (fillImg.sprite == null) fillImg.color = JadeAccent;
             fillImg.raycastTarget = false;
+            fillImg.gameObject.SetActive(false);
             _progressFill = fillImg.rectTransform;
 
-            _claimAllButton = Button(bannerBg.transform, "一键领取", ContentWidth - 576f, 56f, 254f, 70f,
+            _claimAllButton = Button(bannerBg.transform, "一键领取", 1174f, 39f, 260f, 70f,
                 HandleClaimAllClicked, primary: true, fontSize: 25f);
             _claimAllButton.name = ClaimAllButtonName;
             _claimAllLabel = _claimAllButton.GetComponentInChildren<TMP_Text>(true);
 
-            _unlockButton = Button(bannerBg.transform, "解锁典藏 (180灵石)", ContentWidth - 306f, 56f, 282f, 70f,
+            _unlockButton = Button(bannerBg.transform, "解锁典藏 (180灵石)", 1448f, 39f, 280f, 70f,
                 OpenUnlockConfirmModal, primary: true, fontSize: 25f);
             _unlockButton.name = UnlockButtonName;
             _unlockLabel = _unlockButton.GetComponentInChildren<TMP_Text>(true);
@@ -131,9 +149,9 @@ namespace MmorpgClient.UI.Ugui.TravelPass
             CreateSkinOrFallbackArt(_frame, "TravelPassContentBg", "content_panel", "content_panel",
                 ContentX, ContentY, ContentWidth, ContentHeight);
             _contentHost = QdaoUguiFactory.CreateRect("TravelPassContentHost", _frame,
-                ContentX + 16f, ContentY + 14f, ContentWidth - 32f, ContentHeight - 28f);
+                ContentX + RowMarginX, ContentY + 18f, RowWidth, ContentHeight - 36f);
 
-            _statusText = Text(_frame, "", 60f, 876f, 1740f, 58f, 25f, Muted);
+            _statusText = Text(_frame, "", 60f, 900f, 1740f, 40f, 22f, Muted);
             _statusText.name = "TravelPassStatus";
             _statusText.raycastTarget = false;
 
@@ -221,8 +239,10 @@ namespace MmorpgClient.UI.Ugui.TravelPass
             _progressText.text = $"游历点：{pts} / {maxPts}（常规胜 +{pvePts} · 高难/竞技胜 +{hardPts} · 有效竞技 +{qualPts}）";
 
             float ratio = maxPts > 0 ? Mathf.Clamp01((float)pts / maxPts) : 0f;
-            float maxFillW = ContentWidth - 624f;
-            _progressFill.sizeDelta = new Vector2(ratio > 0.001f ? Math.Max(8f, maxFillW * ratio) : 0f, 24f);
+            float fillW = ProgressFillMaxWidth * ratio;
+            bool showFill = pts > 0u && fillW > 0.001f;
+            _progressFill.gameObject.SetActive(showFill);
+            _progressFill.sizeDelta = new Vector2(showFill ? Math.Max(ProgressFillMinWidth, fillW) : 0f, 24f);
 
             uint claimable = TravelPassModels.TotalClaimable(snap);
             bool busy = _client?.AnyWritePending ?? false;
@@ -271,8 +291,8 @@ namespace MmorpgClient.UI.Ugui.TravelPass
         private void RebuildBody(global::TravelPassSnapshot snap)
         {
             Clear(_contentHost);
-            float viewW = ContentWidth - 32f;
-            float viewH = ContentHeight - 28f;
+            float viewW = RowWidth;
+            float viewH = ContentHeight - 36f;
 
             if (_client == null || !_client.IsSupported)
             {
@@ -295,13 +315,13 @@ namespace MmorpgClient.UI.Ugui.TravelPass
                 return;
             }
 
-            // 顶部表头
-            var header = QdaoUguiFactory.CreateRect("TravelPassHeaderRow", _contentHost, 0f, 0f, viewW, 42f);
-            Text(header, "档位 / 游历点", 18f, 4f, 210f, 34f, 24f, Ink).raycastTarget = false;
-            Text(header, "免费游历轨（零门槛全员可领）", 248f, 4f, 690f, 34f, 24f, JadeAccent).raycastTarget = false;
-            Text(header, "典藏进阶轨（180灵石 · 先玩后买 · 解锁永不过期 · 零战力突破）", 968f, 4f, 730f, 34f, 24f, GoldAccent).raycastTarget = false;
+            // 顶部表头（三列坐标严格对齐 tier_row_*.png 竖线 x=328、x=1016）
+            var header = QdaoUguiFactory.CreateRect("TravelPassHeaderRow", _contentHost, 0f, 0f, viewW, 38f);
+            Text(header, "档位 / 游历点", 20f, 2f, RowColFreeX - 36f, 34f, 24f, Ink, alignment: TextAlignmentOptions.Center).raycastTarget = false;
+            Text(header, "免费游历轨（零门槛全员可领）", RowColFreeX + 20f, 2f, RowColPremiumX - RowColFreeX - 40f, 34f, 24f, JadeAccent).raycastTarget = false;
+            Text(header, "典藏进阶轨（180灵石 · 先玩后买 · 永不过期 · 零战力突破）", RowColPremiumX + 20f, 2f, viewW - RowColPremiumX - 36f, 34f, 23f, GoldAccent).raycastTarget = false;
 
-            float scrollTop = 46f;
+            float scrollTop = 42f;
             float cosmeticBarH = snap.UnlockedCosmeticKeys.Count > 0 ? 74f : 0f;
             float scrollH = viewH - scrollTop - cosmeticBarH;
 
@@ -319,18 +339,18 @@ namespace MmorpgClient.UI.Ugui.TravelPass
             scroll.scrollSensitivity = 36f;
 
             const float rowH = 92f;
-            const float rowGap = 10f;
-            float y = 4f;
+            const float rowGap = 8f;
+            float y = 2f;
             bool busy = _client.AnyWritePending;
             bool inBattle = _client.InBattle;
 
             for (int i = 0; i < snap.Tiers.Count; ++i)
             {
                 var tier = snap.Tiers[i];
-                DrawTierRow(content, snap, tier, 6f, y, viewW - 12f, rowH, busy, inBattle);
+                DrawTierRow(content, snap, tier, 0f, y, viewW, rowH, busy, inBattle);
                 y += rowH + rowGap;
             }
-            content.sizeDelta = new Vector2(viewW, Math.Max(scrollH, y + 6f));
+            content.sizeDelta = new Vector2(viewW, Math.Max(scrollH, y + 4f));
 
             // 底部纪念外显佩戴栏（头像框/称谓，零战力纯外显，随时切换或卸下）
             if (cosmeticBarH > 0f)
@@ -352,50 +372,84 @@ namespace MmorpgClient.UI.Ugui.TravelPass
         {
             var rowBg = QdaoUguiFactory.CreateImage("TravelPassTier_" + tier.TierIndex, parent, x, y, w, h,
                 LoadOptionalSkin(tier.Reached ? "tier_row_reached" : "tier_row_locked"));
-            if (rowBg.sprite == null) rowBg.color = tier.Reached ? ReachedTint : LockedTint;
+            bool hasRowArt = rowBg.sprite != null;
+            rowBg.type = hasRowArt && rowBg.sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+            rowBg.pixelsPerUnitMultiplier = 1f;
+            if (!hasRowArt) rowBg.color = tier.Reached ? ReachedTint : LockedTint;
             rowBg.raycastTarget = false;
 
-            // 左栏：档位与所需点数
+            // 左栏（0..328）：档位与所需点数
             string tierBadge = $"第 {tier.TierIndex} 档\n{tier.RequiredPoints} 游历点";
-            var badgeTxt = Text(rowBg.transform, tierBadge, 14f, 10f, 200f, h - 20f, 24f,
+            var badgeTxt = Text(rowBg.transform, tierBadge, 20f, 10f, RowColFreeX - 36f, h - 20f, 24f,
                 tier.Reached ? JadeAccent : Muted, alignment: TextAlignmentOptions.Center, wrap: true);
             badgeTxt.fontStyle = tier.Reached ? FontStyles.Bold : FontStyles.Normal;
             badgeTxt.raycastTarget = false;
 
-            // 中栏：免费轨
-            float freeX = 228f, freeW = 716f;
-            var freeBox = QdaoUguiFactory.CreateImage("FreeBox_" + tier.TierIndex, rowBg.transform, freeX, 8f, freeW, h - 16f, null);
-            freeBox.color = new Color(1f, 0.99f, 0.95f, 0.85f);
-            freeBox.raycastTarget = false;
+            // 中栏（328..1016）：免费轨（使用切片原图时不再叠加实心遮挡底框，保留原图竖线与纸面质感）
+            float freeInnerX = RowColFreeX + 20f;
+            float freeInnerW = RowColPremiumX - RowColFreeX - 40f;
+            UnityEngine.Transform freeHost = rowBg.transform;
+            float freeTextX = freeInnerX;
+            float freeBtnX = RowColPremiumX - 164f;
+            if (!hasRowArt)
+            {
+                var freeBox = QdaoUguiFactory.CreateImage("FreeBox_" + tier.TierIndex, rowBg.transform, RowColFreeX + 8f, 8f, RowColPremiumX - RowColFreeX - 16f, h - 16f, null);
+                freeBox.color = new Color(1f, 0.99f, 0.95f, 0.85f);
+                freeBox.raycastTarget = false;
+                freeHost = freeBox.transform;
+                freeTextX = 12f;
+                freeBtnX = (RowColPremiumX - RowColFreeX - 16f) - 156f;
+            }
 
             string freeSummary = TravelPassModels.FormatTrackReward(
                 tier.FreeItemId, tier.FreeItemCount, tier.FreeItemName, tier.FreeGold,
                 tier.FreeCosmeticKey, tier.FreeCosmeticName);
-            Text(freeBox.transform, freeSummary, 16f, 10f, freeW - 178f, h - 36f, 22f, Ink, wrap: true).raycastTarget = false;
+            Text(freeHost, freeSummary, freeTextX, hasRowArt ? 14f : 8f, freeInnerW - 162f, h - 28f, 22f, Ink, wrap: true).raycastTarget = false;
 
             uint capturedTier = tier.TierIndex;
             string freeBtnLabel = tier.FreeClaimed ? "已领取" : tier.FreeCanClaim ? "领取" : "未达成";
-            var freeBtn = Button(freeBox.transform, freeBtnLabel, freeW - 154f, 14f, 140f, 48f,
+            var freeBtn = Button(freeHost, freeBtnLabel, freeBtnX, hasRowArt ? 22f : 14f, 144f, 48f,
                 () => _client?.ClaimReward(capturedTier, false),
                 primary: tier.FreeCanClaim, enabled: tier.FreeCanClaim && !busy && !inBattle, fontSize: 22f);
             freeBtn.name = $"ClaimFreeTier_{tier.TierIndex}";
 
-            // 右栏：典藏轨
-            float premX = 958f, premW = w - premX - 12f;
-            var premBox = QdaoUguiFactory.CreateImage("PremiumBox_" + tier.TierIndex, rowBg.transform, premX, 8f, premW, h - 16f, null);
-            premBox.color = snap.PremiumUnlocked ? PremiumTint : new Color(0.95f, 0.91f, 0.82f, 0.72f);
-            premBox.raycastTarget = false;
+            // 右栏（1016..1704）：典藏轨（典藏首档等含纪念头像框时直接展示真实切图预览）
+            float premInnerX = RowColPremiumX + 20f;
+            float premInnerW = w - RowColPremiumX - 40f;
+            UnityEngine.Transform premHost = rowBg.transform;
+            float premTextX = premInnerX;
+            float premBtnX = w - 164f;
+            if (!hasRowArt)
+            {
+                var premBox = QdaoUguiFactory.CreateImage("PremiumBox_" + tier.TierIndex, rowBg.transform, RowColPremiumX + 8f, 8f, w - RowColPremiumX - 16f, h - 16f, null);
+                premBox.color = snap.PremiumUnlocked ? PremiumTint : new Color(0.95f, 0.91f, 0.82f, 0.72f);
+                premBox.raycastTarget = false;
+                premHost = premBox.transform;
+                premTextX = 12f;
+                premBtnX = (w - RowColPremiumX - 16f) - 156f;
+            }
+
+            float premTextWidth = premInnerW - 162f;
+            Sprite premCosmeticSprite = LoadOptionalSkin(tier.PremiumCosmeticKey);
+            if (premCosmeticSprite != null)
+            {
+                var cosIcon = QdaoUguiFactory.CreateImage("PremiumCosmeticIcon_" + tier.TierIndex, premHost,
+                    premTextX, hasRowArt ? 12f : 4f, 68f, 68f, premCosmeticSprite, false);
+                cosIcon.preserveAspect = true;
+                premTextX += 80f;
+                premTextWidth -= 80f;
+            }
 
             string premSummary = TravelPassModels.FormatTrackReward(
                 tier.PremiumItemId, tier.PremiumItemCount, tier.PremiumItemName, tier.PremiumGold,
                 tier.PremiumCosmeticKey, tier.PremiumCosmeticName);
-            Text(premBox.transform, premSummary, 16f, 10f, premW - 178f, h - 36f, 22f, Ink, wrap: true).raycastTarget = false;
+            Text(premHost, premSummary, premTextX, hasRowArt ? 14f : 8f, premTextWidth, h - 28f, 22f, Ink, wrap: true).raycastTarget = false;
 
             string premBtnLabel = tier.PremiumClaimed ? "已领取"
                 : tier.PremiumCanClaim ? "领取"
                 : !snap.PremiumUnlocked ? (tier.Reached ? "解锁可领" : "典藏专属")
                 : "未达成";
-            var premBtn = Button(premBox.transform, premBtnLabel, premW - 154f, 14f, 140f, 48f,
+            var premBtn = Button(premHost, premBtnLabel, premBtnX, hasRowArt ? 22f : 14f, 144f, 48f,
                 () => _client?.ClaimReward(capturedTier, true),
                 primary: tier.PremiumCanClaim, enabled: tier.PremiumCanClaim && !busy && !inBattle, fontSize: 21f);
             premBtn.name = $"ClaimPremiumTier_{tier.TierIndex}";
@@ -427,8 +481,17 @@ namespace MmorpgClient.UI.Ugui.TravelPass
                     || (slot == TravelPassModels.CosmeticSlotTitle && string.Equals(snap.EquippedTitleKey, key, StringComparison.Ordinal));
                 string displayName = TravelPassModels.ResolveCosmeticName(snap, key);
                 string btnText = equipped ? $"已佩戴：{displayName}（点此卸下）" : $"佩戴：{displayName}";
+                Sprite cosSprite = LoadOptionalSkin(key);
+                float iconOffset = cosSprite != null ? 54f : 0f;
                 float btnW = Math.Min(360f, Math.Max(220f, btnText.Length * 22f + 36f));
-                if (cursorX + btnW > w - 16f) break;
+                if (cursorX + iconOffset + btnW > w - 16f) break;
+
+                if (cosSprite != null)
+                {
+                    var preview = QdaoUguiFactory.CreateImage("CosmeticPreview_" + key, bar.transform, cursorX, 10f, 46f, 46f, cosSprite, false);
+                    preview.preserveAspect = true;
+                    cursorX += iconOffset;
+                }
 
                 uint capturedSlot = slot;
                 string nextKey = equipped ? string.Empty : key;

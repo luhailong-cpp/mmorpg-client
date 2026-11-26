@@ -69,7 +69,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             ExactButton(_frame, "JubaoEstimate", "估价", "estimate", 1418, 131, 149, 62,
                 () => ShowNotice("估价", "估价功能尚未开放，开放后可在此查看商品估价。"), fontSize: 27);
             ExactButton(_frame, "JubaoRules", "规则", "rules", 1573, 131, 148, 62,
-                () => ShowNotice("聚宝斋规则", "寄售、公示、拍卖和货架规则尚未开放。交易规则以正式开放后的说明为准。"), fontSize: 27);
+                () => ShowNotice("万象阁规则", "寄售、公示、拍卖和货架规则尚未开放。交易规则以正式开放后的说明为准。"), fontSize: 27);
             _exactTopCaptions[0]=ExactArt(_topTabs[0].transform,"tab-consignment",69,8,159,36);
             _exactTopCaptions[1]=ExactArt(_topTabs[1].transform,"tab-public",37,9,139,42);
             var clearSearch = Button(_frame, "JubaoClearSearch", "清空搜索", 200, 198, 263, 50,
@@ -110,7 +110,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _selection = Text(_frame, "选择商品后可查看详情", 502, 771, 758, 19, 16, Muted);
             _selection.gameObject.SetActive(false);
             NativeCategoryScroll(_frame, "JubaoStatusScroll", 502, 771, 1224, 26, out var statusContent);
-            _status = Text(statusContent, "聚宝斋尚未开放", 0, 0, 1218, 26, 20, Muted, true, TextAlignmentOptions.Center);
+            _status = Text(statusContent, "万象阁尚未开放", 0, 0, 1218, 26, 20, Muted, true, TextAlignmentOptions.Center);
             State.Changed += StateChanged; Render();
         }
 
@@ -251,7 +251,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             }
             if (!_search.isFocused) _search.SetTextWithoutNotify(State.Search);
             _status.text = State.IsDemo ? "离线演示\n商品与价格均为样例" : State.ServerPaged ? ServerStatusText()
-                : State.ServiceAvailable ? "收藏仅在本次登录保留" : "聚宝斋尚未开放";
+                : State.ServiceAvailable ? "收藏仅在本次登录保留" : "万象阁尚未开放";
             LayoutNativeStatus();
             var page = State.GetPage();
             _pageItems = page.Items;
@@ -357,7 +357,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             NativeArt(_rows, "empty-bubble", 504, 128, 451, 150);
             string title = State.FavoritesOnly ? "当前筛选下暂无收藏" : !string.IsNullOrWhiteSpace(State.Search) ? "未找到符合条件的商品" : JubaozhaiCatalog.EmptyTitle;
             Text(_rows, title, 579, 155, 316, 53, 29, alignment: TextAlignmentOptions.Center);
-            Text(_rows, !State.IsDemo && !State.ServiceAvailable ? "聚宝斋服务尚未连接" : JubaozhaiCatalog.EmptyDescription, 579, 210, 316, 43,
+            Text(_rows, !State.IsDemo && !State.ServiceAvailable ? "万象阁服务尚未连接" : JubaozhaiCatalog.EmptyDescription, 579, 210, 316, 43,
                 27, Muted, alignment: TextAlignmentOptions.Center);
         }
 

@@ -78,7 +78,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
             foreach(var button in root.GetComponentsInChildren<Button>(true))
             {
-                if(button.name.StartsWith("Prep",StringComparison.Ordinal)||button.name.StartsWith("Surrender",StringComparison.Ordinal))
+                if(button.name.StartsWith("Prep",StringComparison.Ordinal)
+                    ||button.name.StartsWith("Surrender",StringComparison.Ordinal)
+                    ||button.name.StartsWith("Summon",StringComparison.Ordinal)
+                    ||button.name.StartsWith("Ping",StringComparison.Ordinal))
                     continue;
                 Button(button,button.name.StartsWith("Cmd_",StringComparison.Ordinal)||button.name.Contains("ConfirmAction")||button.name.Contains("ChannelReconnect"));
             }

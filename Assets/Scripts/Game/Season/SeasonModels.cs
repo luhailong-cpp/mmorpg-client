@@ -320,6 +320,7 @@ namespace MmorpgClient.Game.Season
                 ? snapshot.SeasonName
                 : null;
             string honorTitle = null;
+            string honorBadgeIconKey = null;
             if (snapshot?.Honors != null)
             {
                 for (int i = 0; i < snapshot.Honors.Count; i++)
@@ -329,11 +330,12 @@ namespace MmorpgClient.Game.Season
                     {
                         if (string.IsNullOrWhiteSpace(seasonName)) seasonName = h.SeasonName;
                         honorTitle = h.HonorTitleName;
+                        honorBadgeIconKey = h.HonorBadgeIconKey;
                         break;
                     }
                 }
             }
-            if (string.IsNullOrWhiteSpace(seasonName) || string.IsNullOrWhiteSpace(honorTitle))
+            if (string.IsNullOrWhiteSpace(seasonName) || string.IsNullOrWhiteSpace(honorTitle) || string.IsNullOrWhiteSpace(honorBadgeIconKey))
             {
                 if (ruleLookup != null)
                 {
@@ -348,6 +350,7 @@ namespace MmorpgClient.Game.Season
                     {
                         if (string.IsNullOrWhiteSpace(seasonName)) seasonName = row.Name;
                         if (string.IsNullOrWhiteSpace(honorTitle)) honorTitle = row.HonorTitleName;
+                        if (string.IsNullOrWhiteSpace(honorBadgeIconKey)) honorBadgeIconKey = row.HonorBadgeIconKey;
                     }
                 }
             }
@@ -359,7 +362,8 @@ namespace MmorpgClient.Game.Season
                 end.SeasonSealProgressAfter,
                 end.SeasonSealMaxPoints,
                 end.SeasonHonorNewlyUnlocked,
-                honorTitle ?? string.Empty);
+                honorTitle ?? string.Empty,
+                honorBadgeIconKey ?? string.Empty);
         }
 
         /// <summary>
@@ -479,6 +483,7 @@ namespace MmorpgClient.Game.Season
         public uint MaxPoints { get; }
         public bool HonorNewlyUnlocked { get; }
         public string HonorTitleName { get; }
+        public string HonorBadgeIconKey { get; }
         public bool IsMaxed => MaxPoints > 0u && ProgressAfter >= MaxPoints;
 
         public SeasonSettlementProgressView(
@@ -488,7 +493,8 @@ namespace MmorpgClient.Game.Season
             uint progressAfter,
             uint maxPoints,
             bool honorNewlyUnlocked,
-            string honorTitleName)
+            string honorTitleName,
+            string honorBadgeIconKey = "")
         {
             SeasonId = seasonId;
             SeasonName = seasonName;
@@ -497,6 +503,7 @@ namespace MmorpgClient.Game.Season
             MaxPoints = maxPoints;
             HonorNewlyUnlocked = honorNewlyUnlocked;
             HonorTitleName = honorTitleName;
+            HonorBadgeIconKey = honorBadgeIconKey ?? string.Empty;
         }
     }
 

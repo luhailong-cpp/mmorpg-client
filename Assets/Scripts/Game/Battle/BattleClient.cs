@@ -235,6 +235,31 @@ namespace MmorpgClient.Game.Battle
         /// <summary>本局队内战术标点本地静音开关（仅隐藏本地展示，不影响服务端）。</summary>
         public bool TeamPingsMuted { get; set; }
 
+        /// <summary>论剑 V5 临阵唤灵解锁回合号（正式自养竞技为 2，其余模式为 0）。</summary>
+        public uint SummonPetUnlockRound => State != null ? State.SummonPetUnlockRound : 0u;
+
+        /// <summary>论剑 V5 临阵唤灵本人剩余可用次数（0/1，仅本人可见）。</summary>
+        public uint SelfSummonPetRemaining => State != null ? State.SelfSummonPetRemaining : 0u;
+
+        /// <summary>论剑 V5 临阵唤灵本人当前剩余备选灵宠列表（仅本人可见）。</summary>
+        public System.Collections.Generic.IReadOnlyList<BattlePrepPetOption> SelfStandbyPets =>
+            State != null
+                ? (System.Collections.Generic.IReadOnlyList<BattlePrepPetOption>)State.SelfStandbyPets
+                : Array.Empty<BattlePrepPetOption>();
+
+        /// <summary>本地判定当前是否可点击「临阵唤灵」唤出备选灵宠（服务端仍是最终权威）。</summary>
+        public bool CanSummonStandbyPetNow =>
+            _battleId != 0
+            && Phase == BattlePhase.WaitingAction
+            && !IsBattleDecided
+            && !IsInPrepPhase
+            && IsBattleChannelReady
+            && State != null
+            && State.SummonPetUnlockRound > 0u
+            && State.RoundIndex >= State.SummonPetUnlockRound
+            && State.SelfSummonPetRemaining > 0u
+            && State.SelfStandbyPets.Count > 0;
+
         /// <summary>本地判定当前是否可点击「投降」或「参与表决」（服务端仍是最终权威）。</summary>
         public bool CanSurrenderNow =>
             _battleId != 0
@@ -1017,6 +1042,39 @@ namespace MmorpgClient.Game.Battle
                 return false;
             }
             return SubmitAction(new BattleAction { ActionType = eBattleActionType.BattleActionDefend }, resolved, completed);
+        }
+
+        /// <summary>
+        /// 论剑 V5「临阵唤灵」：第 2 回合起单局限 1 次，由主角消耗本回合行动唤出本人备选灵宠（复用 SubmitBattleAction）。
+        /// </summary>
+        public bool SubmitSummonPet(ulong summonPetId, Action<bool> completed = null)
+        {
+            if (!CanSummonStandbyPetNow || summonPetId == 0)
+            {
+                OnError?.Invoke("当前不可临阵唤灵");
+                completed?.Invoke(false);
+                return false;
+            }
+            bool known = false;
+            for (int i = 0; i < State.SelfStandbyPets.Count; i++)
+            {
+                if (State.SelfStandbyPets[i].PetId == summonPetId)
+                {
+                    known = true;
+                    break;
+                }
+            }
+            if (!known)
+            {
+                OnError?.Invoke("所选备选灵宠不在本局可用列表中");
+                completed?.Invoke(false);
+                return false;
+            }
+            return SubmitAction(new BattleAction
+            {
+                ActionType = eBattleActionType.BattleActionSummonPet,
+                SummonPetId = summonPetId,
+            }, MyPlayerId, completed);
         }
 
         private static bool IsOwnedActiveActor(BattleStateS2C state, ulong myPlayerId, ulong actorId)

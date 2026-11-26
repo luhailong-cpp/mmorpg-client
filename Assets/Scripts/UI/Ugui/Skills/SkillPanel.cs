@@ -24,7 +24,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         private readonly TMP_Text _title, _classLabel, _classInfo, _empty, _description, _condition,
             _balance, _cost, _status, _selectedName;
         private readonly Image _selectedIcon;
-        private readonly UiTextButton _upgrade, _upgradeTen, _refresh, _allocationNavigation, _skillTab, _loadoutTab;
+        private readonly UiTextButton _upgrade, _upgradeTen, _refresh, _skillVfxBtn, _allocationNavigation, _skillTab, _loadoutTab;
         private readonly SkillLoadoutSubPanel _loadoutPanel;
         private bool _loadoutMode;
         private bool _closeOnLeft;
@@ -169,6 +169,14 @@ namespace MmorpgClient.UI.Ugui.Skills
             _cost = Text("Cost", _studyRoot, 620f, 852f, 460f, 46f, "下一级消耗：—", 26f);
             _refresh = CharacterAttributeVisuals.Button("Refresh", _root, 1080f, 846f, 220f, 65f, "刷新");
             _refresh.Button.onClick.AddListener(() => _refreshAction?.Invoke());
+            _skillVfxBtn = CharacterAttributeVisuals.Button("SkillVfx", _studyRoot, 1365f, 879f, 134f, 39f, "技能特效", false, 16f);
+            _skillVfxBtn.Button.onClick.AddListener(() =>
+            {
+                if (_selectedId == 0u || _state?.Context?.IsPet == true) return;
+                Hide();
+                MmorpgClient.UI.Ugui.Gameplay.AppearanceUiRoot.Instance?.OpenSkillEffectCosmetics(_selectedId);
+            });
+            _skillVfxBtn.SetVisible(false);
             _upgrade = CharacterAttributeVisuals.Button("Upgrade", _studyRoot, 1320f, 846f, 260f, 65f, "学习", true);
             _upgrade.Button.onClick.AddListener(() => SubmitUpgrade(1));
             _upgradeTen = CharacterAttributeVisuals.Button("UpgradeTen", _studyRoot, 1600f, 846f, 290f, 65f, "升级10次", true);
@@ -420,6 +428,9 @@ namespace MmorpgClient.UI.Ugui.Skills
             _upgradeTen.SetInteractable(canUpgrade);
             if (_seasonFreeBadge != null) _seasonFreeBadge.gameObject.SetActive(isSeasonalSelected);
             _refresh.SetInteractable(_refreshAction != null && _state?.IsLoading != true && _state?.IsBusy != true && !readOnly);
+            bool showSkillVfx = !pet && !_loadoutMode && _selectedId != 0u && HasSkillVfxCosmetic(_selectedId);
+            _skillVfxBtn.SetVisible(showSkillVfx);
+            _skillVfxBtn.SetInteractable(showSkillVfx && !_battleLocked);
             if (!string.IsNullOrEmpty(_state?.Error)) SetStatus(_state.Error, true);
             else if (_state?.IsLoading == true) SetStatus("正在同步技能…");
             else if (_state?.IsBusy == true) SetStatus("正在提交修习，请稍候…");
@@ -480,6 +491,19 @@ namespace MmorpgClient.UI.Ugui.Skills
             text.richText = false;
             return text;
         }
+        private static bool HasSkillVfxCosmetic(uint skillTableId)
+        {
+            if (skillTableId == 0u) return false;
+            var all = MmorpgClient.Table.SkillVfxCosmeticTableManager.Instance.FindAll();
+            if (all == null) return false;
+            for (int i = 0; i < all.Count; i++)
+            {
+                var row = all[i];
+                if (row != null && row.Enabled != 0u && row.SkillTableId == skillTableId) return true;
+            }
+            return false;
+        }
+
         private static Sprite LoadIcon(SkillDefinition definition) =>
             (string.IsNullOrEmpty(definition.IconResource) ? null : Resources.Load<Sprite>(definition.IconResource)) ??
             SeasonEconomyUiArt.LoadGrowthSkillIcon(definition.id) ??

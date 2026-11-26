@@ -381,8 +381,8 @@ namespace MmorpgClient.Game.Appearance
             return true;
         }
 
-        /// <summary>为指定灵宠实例穿戴或恢复原形（cosmeticId = 0 表示恢复原形；超时自动重查当前穿戴）。</summary>
-        public bool EquipPetCosmetic(ulong petId, uint cosmeticId)
+        /// <summary>为指定灵宠实例穿戴、耗券解锁并穿戴或恢复原形（cosmeticId = 0 表示恢复原形；超时自动重发一次同幂等键并重查当前穿戴）。</summary>
+        public bool EquipPetCosmetic(ulong petId, uint cosmeticId, bool expectFreeEquip = true)
         {
             if (_disposed) return false;
             ObserveConnection();
@@ -398,7 +398,7 @@ namespace MmorpgClient.Game.Appearance
             _nextActionAt = now + MinActionIntervalSeconds;
             ActionPending = true;
             int generation = _generation;
-            SetStatus(cosmeticId == 0u ? "正在恢复灵宠原形…" : "正在穿戴灵宠幻化…", false);
+            SetStatus(cosmeticId == 0u ? "正在恢复灵宠原形…" : (expectFreeEquip ? "正在穿戴灵宠幻化…" : "正在解锁并穿戴灵宠幻化…"), false);
             Changed?.Invoke();
 
             var request = new global::EquipPetCosmeticRequest
@@ -406,36 +406,50 @@ namespace MmorpgClient.Game.Appearance
                 ClientRequestId = requestKey,
                 PetId = petId,
                 CosmeticId = cosmeticId,
+                ExpectFreeEquip = expectFreeEquip,
             };
-            _net.Call(_messageIds.EquipPetCosmetic, request, global::EquipPetCosmeticResponse.Parser,
-                response =>
-                {
-                    if (!IsCurrent(generation)) return;
-                    ActionPending = false;
-                    uint tipId = response.ErrorMessage?.Id ?? 0;
-                    if (tipId != 0)
+            int attempt = 0;
+            bool resent = false;
+            void Send()
+            {
+                int mine = ++attempt;
+                _net.Call(_messageIds.EquipPetCosmetic, request, global::EquipPetCosmeticResponse.Parser,
+                    response =>
                     {
-                        HandleWriteTip("EquipPetCosmetic", tipId);
-                        return;
-                    }
-                    if (response.Info != null) ApplyInfo(response.Info);
-                    SetStatus(response.EquippedCosmeticId == 0u ? "已恢复灵宠原形。" : "已穿戴灵宠幻化。", false);
-                    Changed?.Invoke();
-                },
-                error =>
-                {
-                    if (!IsCurrent(generation)) return;
-                    ActionPending = false;
-                    uint tipId = RpcStatus.TryParseLegacyServerTip(error, out uint parsed) ? parsed : 0;
-                    SetStatus(tipId != 0 ? AppearanceModels.DescribeTip(tipId) : "请求超时，正在重新确认当前穿戴状态…", true);
-                    RequestInfo(force: true);
-                    Changed?.Invoke();
-                });
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        ActionPending = false;
+                        uint tipId = response.ErrorMessage?.Id ?? 0;
+                        if (tipId != 0)
+                        {
+                            HandleWriteTip("EquipPetCosmetic", tipId);
+                            return;
+                        }
+                        if (response.Info != null) ApplyInfo(response.Info);
+                        SetStatus(response.EquippedCosmeticId == 0u ? "已恢复灵宠原形。" : (expectFreeEquip ? "已穿戴灵宠幻化。" : "已永久解锁并穿戴灵宠幻化。"), false);
+                        Changed?.Invoke();
+                    },
+                    error =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        if (!expectFreeEquip && !resent && ClientRequestKeys.ShouldResendOnce(error))
+                        {
+                            resent = true;
+                            Send();
+                            return;
+                        }
+                        ActionPending = false;
+                        uint tipId = RpcStatus.TryParseLegacyServerTip(error, out uint parsed) ? parsed : 0;
+                        SetStatus(tipId != 0 ? AppearanceModels.DescribeTip(tipId) : "请求超时，正在重新确认当前穿戴状态…", true);
+                        RequestInfo(force: true);
+                        Changed?.Invoke();
+                    });
+            }
+            Send();
             return true;
         }
 
-        /// <summary>为指定技能启用或恢复默认特效（cosmeticId = 0 表示恢复默认；超时自动重查当前穿戴）。</summary>
-        public bool EquipSkillVfx(uint skillTableId, uint cosmeticId)
+        /// <summary>为指定技能启用、耗券解锁并启用或恢复默认特效（cosmeticId = 0 表示恢复默认；超时自动重发一次同幂等键并重查当前状态）。</summary>
+        public bool EquipSkillVfx(uint skillTableId, uint cosmeticId, bool expectFreeEquip = true)
         {
             if (_disposed) return false;
             ObserveConnection();
@@ -451,7 +465,7 @@ namespace MmorpgClient.Game.Appearance
             _nextActionAt = now + MinActionIntervalSeconds;
             ActionPending = true;
             int generation = _generation;
-            SetStatus(cosmeticId == 0u ? "正在恢复默认特效…" : "正在启用技能特效…", false);
+            SetStatus(cosmeticId == 0u ? "正在恢复默认特效…" : (expectFreeEquip ? "正在启用技能特效…" : "正在解锁并启用技能特效…"), false);
             Changed?.Invoke();
 
             var request = new global::EquipSkillVfxRequest
@@ -459,31 +473,45 @@ namespace MmorpgClient.Game.Appearance
                 ClientRequestId = requestKey,
                 SkillTableId = skillTableId,
                 CosmeticId = cosmeticId,
+                ExpectFreeEquip = expectFreeEquip,
             };
-            _net.Call(_messageIds.EquipSkillVfx, request, global::EquipSkillVfxResponse.Parser,
-                response =>
-                {
-                    if (!IsCurrent(generation)) return;
-                    ActionPending = false;
-                    uint tipId = response.ErrorMessage?.Id ?? 0;
-                    if (tipId != 0)
+            int attempt = 0;
+            bool resent = false;
+            void Send()
+            {
+                int mine = ++attempt;
+                _net.Call(_messageIds.EquipSkillVfx, request, global::EquipSkillVfxResponse.Parser,
+                    response =>
                     {
-                        HandleWriteTip("EquipSkillVfx", tipId);
-                        return;
-                    }
-                    if (response.Info != null) ApplyInfo(response.Info);
-                    SetStatus(response.EquippedCosmeticId == 0u ? "已恢复技能默认特效。" : "已启用技能特效。", false);
-                    Changed?.Invoke();
-                },
-                error =>
-                {
-                    if (!IsCurrent(generation)) return;
-                    ActionPending = false;
-                    uint tipId = RpcStatus.TryParseLegacyServerTip(error, out uint parsed) ? parsed : 0;
-                    SetStatus(tipId != 0 ? AppearanceModels.DescribeTip(tipId) : "请求超时，正在重新确认当前生效状态…", true);
-                    RequestInfo(force: true);
-                    Changed?.Invoke();
-                });
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        ActionPending = false;
+                        uint tipId = response.ErrorMessage?.Id ?? 0;
+                        if (tipId != 0)
+                        {
+                            HandleWriteTip("EquipSkillVfx", tipId);
+                            return;
+                        }
+                        if (response.Info != null) ApplyInfo(response.Info);
+                        SetStatus(response.EquippedCosmeticId == 0u ? "已恢复技能默认特效。" : (expectFreeEquip ? "已启用技能特效。" : "已永久解锁并启用技能特效。"), false);
+                        Changed?.Invoke();
+                    },
+                    error =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        if (!expectFreeEquip && !resent && ClientRequestKeys.ShouldResendOnce(error))
+                        {
+                            resent = true;
+                            Send();
+                            return;
+                        }
+                        ActionPending = false;
+                        uint tipId = RpcStatus.TryParseLegacyServerTip(error, out uint parsed) ? parsed : 0;
+                        SetStatus(tipId != 0 ? AppearanceModels.DescribeTip(tipId) : "请求超时，正在重新确认当前生效状态…", true);
+                        RequestInfo(force: true);
+                        Changed?.Invoke();
+                    });
+            }
+            Send();
             return true;
         }
 

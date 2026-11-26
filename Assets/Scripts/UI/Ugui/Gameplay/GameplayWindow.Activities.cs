@@ -247,28 +247,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             bool isTravelPass = IsTravelPassActivity(activity);
             bool isAppearance = IsAppearanceShowcaseActivity(activity);
             bool isSpiritShop = IsSpiritShopShowcaseActivity(activity);
-            if (isFestival)
-            {
-                var portrait = Resources.Load<Sprite>("UI/Ugui/FestivalBeastV1/beast_portrait");
-                if (portrait != null)
-                {
-                    var img = QdaoUguiFactory.CreateImage("FestivalPortrait", card, 24, 21, 155, 155, portrait, false);
-                    img.preserveAspect = true;
-                }
-                else if (!string.IsNullOrWhiteSpace(activity.IconKey)) ItemIcon(card, activity.IconKey, 24, 21, 155);
-            }
-            else if (isTravelPass)
-            {
-                var cover = (!string.IsNullOrWhiteSpace(activity.IconKey) ? Resources.Load<Sprite>(activity.IconKey) : null)
-                    ?? Resources.Load<Sprite>("UI/Ugui/TravelPassV1/travel_pass_card_icon");
-                if (cover != null)
-                {
-                    var img = QdaoUguiFactory.CreateImage("TravelPassCardIcon", card, 24, 21, 155, 155, cover, false);
-                    img.preserveAspect = true;
-                }
-                else if (!string.IsNullOrWhiteSpace(activity.IconKey)) ItemIcon(card, activity.IconKey, 24, 21, 155);
-            }
-            else if (!string.IsNullOrWhiteSpace(activity.IconKey)) ItemIcon(card, activity.IconKey, 24, 21, 155);
+            RenderActivityEntryIcon(card, activity, 24, 21, 155);
             NativeText(card, ActivityName(activity), 196, 15, 200, 62, 34);
             string status = isFestival && activity.HasClaimableReward ? "可领神兽"
                 : isTravelPass && activity.HasClaimableReward ? "有奖可领"
@@ -359,10 +338,46 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             NativeText(panel, "节庆分类、提醒与推送尚未开放" + navigationReason, 30, 444, 1145, 24, 17, Muted);
         }
 
+        private static void RenderActivityEntryIcon(UnityEngine.Transform parent, PlayerActivityInfo activity, float x, float y, float size)
+        {
+            if (IsFestivalBeastActivity(activity))
+            {
+                var portrait = Resources.Load<Sprite>("UI/Ugui/FestivalBeastV1/beast_portrait");
+                if (portrait != null)
+                {
+                    var img = QdaoUguiFactory.CreateImage("FestivalPortrait", parent, x, y, size, size, portrait, false);
+                    img.preserveAspect = true;
+                    return;
+                }
+            }
+            else
+            {
+                string dedicatedPath = IsTravelPassActivity(activity) ? "UI/Ugui/TravelPassV1/travel_pass_card_icon"
+                    : IsAppearanceShowcaseActivity(activity) ? "UI/Ugui/TravelPassV1/showcase_appearance_icon"
+                    : IsSpiritShopShowcaseActivity(activity) ? "UI/Ugui/TravelPassV1/showcase_spirit_shop_icon"
+                    : null;
+                if (dedicatedPath != null)
+                {
+                    string objName = IsTravelPassActivity(activity) ? "TravelPassCardIcon"
+                        : IsAppearanceShowcaseActivity(activity) ? "AppearanceShowcaseIcon"
+                        : "SpiritShopShowcaseIcon";
+                    var sprite = (!string.IsNullOrWhiteSpace(activity.IconKey) ? Resources.Load<Sprite>(activity.IconKey) : null)
+                        ?? Resources.Load<Sprite>(dedicatedPath);
+                    if (sprite != null)
+                    {
+                        var img = QdaoUguiFactory.CreateImage(objName, parent, x, y, size, size, sprite, false);
+                        img.preserveAspect = true;
+                        return;
+                    }
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(activity.IconKey)) ItemIcon(parent, activity.IconKey, x, y, size);
+        }
+
         private void RenderActivityDetails(PlayerActivityInfo activity)
         {
             var panel = ActivityPanel(_body, "ActivityDetailsPanel", 526, 164, 1238, 468);
-            ItemIcon(panel, activity.IconKey, 23, 20, 91);
+            RenderActivityEntryIcon(panel, activity, 23, 20, 91);
             NativeText(panel, ActivityName(activity), 133, 18, 745, 55, 36);
             bool favorite = _activityPreferences.Contains(activity.ActivityId, activity.DefinitionKey);
             NativeHit(panel, "FavoriteActivity_" + activity.ActivityId, favorite ? "取消收藏" : "收藏", 905, 22, 143, 49,

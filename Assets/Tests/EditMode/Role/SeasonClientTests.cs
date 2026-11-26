@@ -418,6 +418,11 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(settle.IsMaxed, Is.True);
             Assert.That(settle.HonorNewlyUnlocked, Is.True);
             Assert.That(settle.HonorTitleName, Is.EqualTo("破阵宗师"));
+            Assert.That(settle.HonorBadgeIconKey, Is.EqualTo("UI/SeasonHonors/honor_s1_pozhen"));
+            Assert.That(SeasonModels.NormalizeIconResource("UI/SeasonHonors/honor_s1_pozhen", "UI/SeasonHonors/", 1u),
+                Is.EqualTo("UI/SeasonHonors/honor_s1_pozhen"));
+            Assert.That(SeasonModels.NormalizeIconResource("UI/SeasonHonors/honor_s2_xuanmai", "UI/SeasonHonors/", 2u),
+                Is.EqualTo("UI/SeasonHonors/honor_s2_xuanmai"));
             Assert.That(SeasonModels.BuildSettlementProgressView(new BattleEndS2C(), snap), Is.Null);
 
             // 2. 动态一键推荐流派（含本周推荐高亮与当前佩戴标记）

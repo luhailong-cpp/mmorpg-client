@@ -104,5 +104,28 @@ namespace MmorpgClient.Net.Generated
         public static void ClaimEquipmentMaterialReward(IRpcChannel channel, global::ClaimEquipmentMaterialRewardRequest request,
             RpcDone<global::ClaimEquipmentMaterialRewardResponse> done)
             => channel.CallMethod(ClaimEquipmentMaterialRewardMessageId, request, global::ClaimEquipmentMaterialRewardResponse.Parser, done);
+
+        public const uint GetEquipLoadoutsMessageId = 536;
+        /// <summary>
+        /// ── 装备流派方案预设（method index 14..17，严禁重排）──
+        /// </summary>
+        public static void GetEquipLoadouts(IRpcChannel channel, global::GetEquipLoadoutsRequest request,
+            RpcDone<global::GetEquipLoadoutsResponse> done)
+            => channel.CallMethod(GetEquipLoadoutsMessageId, request, global::GetEquipLoadoutsResponse.Parser, done);
+
+        public const uint SaveEquipLoadoutMessageId = 537;
+        public static void SaveEquipLoadout(IRpcChannel channel, global::SaveEquipLoadoutRequest request,
+            RpcDone<global::SaveEquipLoadoutResponse> done)
+            => channel.CallMethod(SaveEquipLoadoutMessageId, request, global::SaveEquipLoadoutResponse.Parser, done);
+
+        public const uint SwitchEquipLoadoutMessageId = 538;
+        public static void SwitchEquipLoadout(IRpcChannel channel, global::SwitchEquipLoadoutRequest request,
+            RpcDone<global::SwitchEquipLoadoutResponse> done)
+            => channel.CallMethod(SwitchEquipLoadoutMessageId, request, global::SwitchEquipLoadoutResponse.Parser, done);
+
+        public const uint UnlockEquipLoadoutMessageId = 539;
+        public static void UnlockEquipLoadout(IRpcChannel channel, global::UnlockEquipLoadoutRequest request,
+            RpcDone<global::UnlockEquipLoadoutResponse> done)
+            => channel.CallMethod(UnlockEquipLoadoutMessageId, request, global::UnlockEquipLoadoutResponse.Parser, done);
     }
 }

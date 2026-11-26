@@ -345,9 +345,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var bajing = WorldMapOverviewModels.FindHabitat(2u);
             var yuexi = WorldMapOverviewModels.FindHabitat(3u);
             var biyuan = WorldMapOverviewModels.FindHabitat(5u);
-            Assert.That(bajing.HasValue && bajing.Value.DungeonConfigId == 202u, Is.True);
-            Assert.That(yuexi.HasValue && yuexi.Value.DungeonConfigId == 203u, Is.True);
-            Assert.That(biyuan.HasValue && biyuan.Value.DungeonConfigId == 205u, Is.True);
+            Assert.That(bajing.HasValue && bajing.Value.DungeonConfigId == 202u && bajing.Value.TideDungeonConfigId == 212u, Is.True);
+            Assert.That(yuexi.HasValue && yuexi.Value.DungeonConfigId == 203u && yuexi.Value.TideDungeonConfigId == 213u, Is.True);
+            Assert.That(biyuan.HasValue && biyuan.Value.DungeonConfigId == 205u && biyuan.Value.TideDungeonConfigId == 215u, Is.True);
             Assert.That(WorldMapOverviewModels.FormatHabitatSummary(2u), Does.Contain("云鹤"));
             Assert.That(WorldMapOverviewModels.FormatHabitatSummary(3u), Does.Contain("金猊"));
             Assert.That(WorldMapOverviewModels.FormatHabitatSummary(5u), Does.Contain("玄潮龟"));
@@ -355,8 +355,18 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var tideOverview = new WorldMapOverviewSnapshot(
                 1u, 1000UL, 1000UL, System.Array.Empty<WorldMapOverviewItem>(),
                 new WorldTideSnapshotModel(true, 3600UL, 3u, 30001UL, 1u, 0UL, 2_400_000UL, 3_600_000UL), 3u);
-            Assert.That(WorldMapOverviewModels.FormatWildHabitatHeadline(tideOverview, 3u), Does.Contain("灵潮中"));
-            Assert.That(WorldMapOverviewModels.FormatWildHabitatHeadline(tideOverview, 2u), Does.Not.Contain("灵潮中"));
+            Assert.That(WorldMapOverviewModels.IsTideActiveOnScene(tideOverview, 3u, 1000UL), Is.True);
+            Assert.That(WorldMapOverviewModels.IsTideActiveOnScene(tideOverview, 3u, 2_400_000UL), Is.False);
+            Assert.That(WorldMapOverviewModels.IsTideActiveOnScene(tideOverview, 2u, 1000UL), Is.False);
+            Assert.That(WorldMapOverviewModels.ResolveActiveHabitatDungeonId(tideOverview, 3u, 1000UL), Is.EqualTo(213u));
+            Assert.That(WorldMapOverviewModels.ResolveActiveHabitatDungeonId(tideOverview, 3u, 2_400_000UL), Is.EqualTo(203u));
+            Assert.That(WorldMapOverviewModels.ResolveActiveHabitatDungeonId(tideOverview, 2u, 1000UL), Is.EqualTo(202u));
+            Assert.That(WorldMapOverviewModels.FormatWildHabitatHeadline(tideOverview, 3u, 1000UL), Does.Contain("灵潮珍兽现身"));
+            Assert.That(WorldMapOverviewModels.FormatWildHabitatActionLabel(tideOverview, 3u, 1000UL), Is.EqualTo("寻潮遇兽"));
+            Assert.That(WorldMapOverviewModels.FormatWildHabitatActionLabel(tideOverview, 2u, 1000UL), Is.EqualTo("寻宠遇敌"));
+            Assert.That(WorldMapOverviewModels.FormatHabitatSummary(3u, tideOverview, 1000UL), Does.Contain("苍嶂麟"));
+            Assert.That(WorldMapOverviewModels.FormatDrawerHabitatSummary(tideOverview, 2u, 1000UL), Does.Contain("岚铎仙"));
+            Assert.That(WorldMapOverviewModels.FormatWildHabitatHeadline(tideOverview, 2u, 1000UL), Does.Not.Contain("灵潮"));
 
             // 抽屉在选中野外开放图（八景岛 2）时应展示可捕灵宠摘要。
             CurrentMapCatalog.ReloadDeliveries();

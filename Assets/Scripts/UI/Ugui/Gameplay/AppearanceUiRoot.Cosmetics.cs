@@ -442,18 +442,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 return;
             }
 
+            bool spiritShopSupported = MmorpgClient.UI.Ugui.SpiritShop.SpiritShopUiRoot.Instance?.Client?.IsSupported == true;
             WardrobePetTargetOption selectedPet = null;
             WardrobeSkillTargetOption selectedSkill = null;
             if (isPet)
             {
                 RebuildPetTargets(info);
                 selectedPet = _cosmeticState.SyncPetTarget(_petTargetBuffer, PetClient.Instance?.Pets?.ActivePetId ?? 0ul);
-                _currentCosmeticRowViews = WardrobeCosmeticModels.BuildPetRows(info, selectedPet, isSellableSku);
+                _currentCosmeticRowViews = WardrobeCosmeticModels.BuildPetRows(info, selectedPet, isSellableSku, spiritShopSupported);
             }
             else
             {
                 RebuildSkillTargets(info);
-                _currentCosmeticRowViews = WardrobeCosmeticModels.BuildSkillEffectRows(info, _cosmeticState.FilterSkillTableId, isSellableSku);
+                _currentCosmeticRowViews = WardrobeCosmeticModels.BuildSkillEffectRows(info, _cosmeticState.FilterSkillTableId, isSellableSku, spiritShopSupported);
             }
 
             var selectedRow = _cosmeticState.SyncSelectedRow(cat, _currentCosmeticRowViews);
@@ -836,13 +837,24 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     HidePanel();
                     JubaozhaiUiRoot.Instance?.OpenOfficialMallSubTab(OfficialShopTab.PermanentWardrobe);
                 }
+                else if (action.Kind == WardrobePrimaryActionKind.OpenSpiritShopVoucher)
+                {
+                    HidePanel();
+                    MmorpgClient.UI.Ugui.SpiritShop.SpiritShopUiRoot.Instance?.OpenTab(
+                        MmorpgClient.Game.SpiritShop.SpiritShopModels.TabAppearanceAndConvenience,
+                        action.SpiritShopGoodsId);
+                }
+                else if (action.Kind == WardrobePrimaryActionKind.UnlockWithVoucher && targetPet != null)
+                {
+                    _client.EquipPetCosmetic(targetPet.PetId, selected.ConfigId, expectFreeEquip: false);
+                }
                 else if (action.Kind == WardrobePrimaryActionKind.RestoreDefault && targetPet != null)
                 {
-                    _client.EquipPetCosmetic(targetPet.PetId, 0u);
+                    _client.EquipPetCosmetic(targetPet.PetId, 0u, expectFreeEquip: true);
                 }
                 else if (action.Kind == WardrobePrimaryActionKind.EquipCosmetic && targetPet != null)
                 {
-                    _client.EquipPetCosmetic(targetPet.PetId, selected.ConfigId);
+                    _client.EquipPetCosmetic(targetPet.PetId, selected.ConfigId, expectFreeEquip: true);
                 }
             }
             else if (_cosmeticState.ActiveCategory == WardrobeCategoryTab.SkillEffect)
@@ -856,13 +868,24 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     HidePanel();
                     JubaozhaiUiRoot.Instance?.OpenOfficialMallSubTab(OfficialShopTab.PermanentWardrobe);
                 }
+                else if (action.Kind == WardrobePrimaryActionKind.OpenSpiritShopVoucher)
+                {
+                    HidePanel();
+                    MmorpgClient.UI.Ugui.SpiritShop.SpiritShopUiRoot.Instance?.OpenTab(
+                        MmorpgClient.Game.SpiritShop.SpiritShopModels.TabAppearanceAndConvenience,
+                        action.SpiritShopGoodsId);
+                }
+                else if (action.Kind == WardrobePrimaryActionKind.UnlockWithVoucher)
+                {
+                    _client.EquipSkillVfx(selected.SkillTableId, selected.ConfigId, expectFreeEquip: false);
+                }
                 else if (action.Kind == WardrobePrimaryActionKind.RestoreDefault)
                 {
-                    _client.EquipSkillVfx(selected.SkillTableId, 0u);
+                    _client.EquipSkillVfx(selected.SkillTableId, 0u, expectFreeEquip: true);
                 }
                 else if (action.Kind == WardrobePrimaryActionKind.EquipCosmetic)
                 {
-                    _client.EquipSkillVfx(selected.SkillTableId, selected.ConfigId);
+                    _client.EquipSkillVfx(selected.SkillTableId, selected.ConfigId, expectFreeEquip: true);
                 }
             }
         }

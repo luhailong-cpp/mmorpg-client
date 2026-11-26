@@ -120,16 +120,27 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
         private void Bind(GameClient game)
         {
             if (_game == game) return;
+            Unbind();
             _game = game;
             _client = game?.SpiritShop;
+            if (_client != null) _client.Purchased += OnSpiritShopPurchased;
             _window?.Bind(_client);
         }
 
         private void Unbind()
         {
+            if (_client != null) _client.Purchased -= OnSpiritShopPurchased;
             _game = null;
             _client = null;
             _window?.Bind(null);
+        }
+
+        private void OnSpiritShopPurchased(global::SpiritShopGoodsView goods, uint count)
+        {
+            if (goods != null && goods.TabId == SpiritShopModels.TabAppearanceAndConvenience)
+            {
+                AppearanceUiRoot.Instance?.Client?.RequestInfo(force: true);
+            }
         }
     }
 }

@@ -177,7 +177,7 @@ namespace MmorpgClient.Tests.EditMode.Role
                 Assert.That(meta, Does.Contain("spriteBorder: {x: 0, y: 0, z: 0, w: 0}"), icon);
             }
 
-            foreach (string sid in new[] { "12020.png", "12021.png", "12022.png" })
+            foreach (string sid in new[] { "12020.png", "12021.png", "12022.png", "10026.png", "10041.png", "11009.png", "11016.png", "12009.png", "12019.png" })
             {
                 string pngPath = Path.Combine(skillsRoot, sid);
                 string metaPath = pngPath + ".meta";
@@ -186,6 +186,26 @@ namespace MmorpgClient.Tests.EditMode.Role
                 string meta = File.ReadAllText(metaPath);
                 Assert.That(meta, Does.Contain("textureType: 8"), sid);
                 Assert.That(meta, Does.Contain("spriteMode: 1"), sid);
+            }
+
+            string itemIconsRoot = Path.Combine(assetsRoot, "Resources", "UI", "Icons");
+            foreach (string itemFile in new[] { "item_reforge_sand.png", "item_bound_artifact_voucher.png" })
+            {
+                string pngPath = Path.Combine(itemIconsRoot, itemFile);
+                string metaPath = pngPath + ".meta";
+                Assert.That(File.Exists(pngPath), Is.True, $"Missing UI/Icons PNG: {itemFile}");
+                Assert.That(File.Exists(metaPath), Is.True, $"Missing UI/Icons meta: {itemFile}.meta");
+                byte[] header = new byte[26];
+                using (var fs = File.OpenRead(pngPath))
+                    Assert.That(fs.Read(header, 0, header.Length), Is.EqualTo(header.Length), itemFile);
+                int w = (header[16] << 24) | (header[17] << 16) | (header[18] << 8) | header[19];
+                int h = (header[20] << 24) | (header[21] << 16) | (header[22] << 8) | header[23];
+                Assert.That(w, Is.EqualTo(512), itemFile);
+                Assert.That(h, Is.EqualTo(512), itemFile);
+                Assert.That(header[25], Is.EqualTo((byte)6), $"{itemFile} must be transparent RGBA PNG");
+                string meta = File.ReadAllText(metaPath);
+                Assert.That(meta, Does.Contain("textureType: 8"), itemFile);
+                Assert.That(meta, Does.Contain("spriteMode: 1"), itemFile);
             }
         }
 
@@ -263,6 +283,53 @@ namespace MmorpgClient.Tests.EditMode.Role
                 Assert.That(seenGuids.Add(guidLine), Is.True, $"Duplicate GUID {guidLine} on {rel}");
             }
             Assert.That(seenGuids.Count, Is.EqualTo(26));
+        }
+
+        [Test]
+        public void BossTrialWeeklyAffixAssets_All5IconsAndMetasMatchContract()
+        {
+            string cwd = Directory.GetCurrentDirectory();
+            string resourcesRoot = Directory.Exists(Path.Combine(cwd, "Assets", "Resources"))
+                ? Path.Combine(cwd, "Assets", "Resources")
+                : Path.Combine(cwd, "mmorpg-client", "Assets", "Resources");
+
+            string[] elements = { "metal", "wood", "water", "fire", "earth" };
+            var seenGuids = new HashSet<string>();
+            foreach (string el in elements)
+            {
+                string rel = $"UI/Ugui/CoreLoopV2/icon_weekly_affix_{el}.png";
+                string pngPath = Path.Combine(resourcesRoot, rel.Replace('/', Path.DirectorySeparatorChar));
+                string metaPath = pngPath + ".meta";
+                Assert.That(File.Exists(pngPath), Is.True, $"Missing WeeklyAffix PNG: {rel}");
+                Assert.That(File.Exists(metaPath), Is.True, $"Missing WeeklyAffix meta: {rel}.meta");
+
+                byte[] header = new byte[26];
+                using (var fs = File.OpenRead(pngPath))
+                    Assert.That(fs.Read(header, 0, header.Length), Is.EqualTo(header.Length), rel);
+                int w = (header[16] << 24) | (header[17] << 16) | (header[18] << 8) | header[19];
+                int h = (header[20] << 24) | (header[21] << 16) | (header[22] << 8) | header[23];
+                Assert.That(w, Is.EqualTo(64), $"{rel} width");
+                Assert.That(h, Is.EqualTo(64), $"{rel} height");
+                Assert.That(header[25], Is.EqualTo((byte)6), $"{rel} must be RGBA PNG-32");
+
+                string meta = File.ReadAllText(metaPath);
+                Assert.That(meta, Does.Contain("enableMipMap: 0"), rel);
+                Assert.That(meta, Does.Contain("filterMode: 1"), rel);
+                Assert.That(meta, Does.Contain("wrapU: 1"), rel);
+                Assert.That(meta, Does.Contain("alphaIsTransparency: 1"), rel);
+                Assert.That(meta, Does.Contain("textureType: 8"), rel);
+                Assert.That(meta, Does.Contain("spriteMode: 1"), rel);
+                Assert.That(meta, Does.Contain("spriteBorder: {x: 0, y: 0, z: 0, w: 0}"), rel);
+
+                string guidLine = null;
+                foreach (string line in File.ReadAllLines(metaPath))
+                {
+                    if (line.StartsWith("guid: ")) { guidLine = line.Substring(6).Trim(); break; }
+                }
+                Assert.That(guidLine, Is.Not.Null.And.Not.Empty, rel);
+                Assert.That(seenGuids.Add(guidLine), Is.True, $"Duplicate GUID {guidLine} on {rel}");
+            }
+            Assert.That(seenGuids.Count, Is.EqualTo(5));
         }
     }
 }

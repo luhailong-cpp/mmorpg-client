@@ -313,7 +313,7 @@ namespace MmorpgClient.World.Tianyong
                 return;
             }
             GUI.Box(new Rect(16f, 16f, 400f, 142f),
-                "天墉城离线测试\nWASD / 鼠标左键移动，滚轮缩放\nF1 主城  F2 年货  F3 瑞雪  F4 灯会\nF5 切换已完成角色");
+                "归元城离线测试\nWASD / 鼠标左键移动，滚轮缩放\nF1 主城  F2 年货  F3 瑞雪  F4 灯会\nF5 切换已完成角色");
         }
 
         private void DrawSingleMapControls()

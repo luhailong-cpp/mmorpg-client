@@ -31,7 +31,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             var background = design.gameObject.AddComponent<Image>();
             background.color = new Color(.08f, .20f, .16f);
             background.raycastTarget = false;
-            _entry = JubaozhaiArt.Button(design, "JubaoPreviewOpen", "离线演示 · 聚宝斋 [U]", 916, 464, 728, 120,
+            _entry = JubaozhaiArt.Button(design, "JubaoPreviewOpen", "离线演示 · 万象阁 [U]", 916, 464, 728, 120,
                 () => Window.Show(), true, fontSize: 38);
             Window = new JubaozhaiWindow(design);
             Window.State.LoadDemo();

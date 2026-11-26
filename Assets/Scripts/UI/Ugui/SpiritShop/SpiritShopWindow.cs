@@ -141,7 +141,7 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             modalDim.raycastTarget = true;
 
             var modalFrame = QdaoUguiFactory.CreateCenteredRect("SpiritShopConfirmFrame", _confirmOverlay, 960f, 540f);
-            Art(modalFrame, "main_frame", 0f, 0f, 960f, 540f);
+            CreateSkinOrFallbackArt(modalFrame, "SpiritShopConfirmBg", "ui/window_frame", "main_frame", 0f, 0f, 960f, 540f);
 
             _confirmTitle = Text(modalFrame, "确认购买", 56f, 34f, 848f, 54f, 36f, Ink, alignment: TextAlignmentOptions.Center);
             _confirmTitle.raycastTarget = false;
@@ -378,7 +378,8 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             float barX = 20f, barY = 52f, barW = w - 40f, barH = 24f;
             Sprite barBg = LoadOptionalSkin("ui/quota_bar_bg");
             var bgImg = QdaoUguiFactory.CreateImage("QuotaBarBg", banner.transform, barX, barY, barW, barH, barBg);
-            if (barBg == null) bgImg.color = new Color(0.78f, 0.74f, 0.64f, 1f);
+            if (barBg != null && barBg.border.sqrMagnitude > 0f) bgImg.type = Image.Type.Sliced;
+            else if (barBg == null) bgImg.color = new Color(0.78f, 0.74f, 0.64f, 1f);
             bgImg.raycastTarget = false;
 
             float ratio = group.MaxWeight > 0 ? Mathf.Clamp01((float)group.UsedWeight / group.MaxWeight) : 0f;
@@ -386,17 +387,20 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             {
                 Sprite barFill = LoadOptionalSkin("ui/quota_bar_fill");
                 var fillImg = QdaoUguiFactory.CreateImage("QuotaBarFill", banner.transform, barX + 2f, barY + 2f,
-                    Math.Max(8f, (barW - 4f) * ratio), barH - 4f, barFill);
-                if (barFill == null) fillImg.color = new Color(0.20f, 0.56f, 0.42f, 1f);
+                    Math.Max(32f, (barW - 4f) * ratio), barH - 4f, barFill);
+                if (barFill != null && barFill.border.sqrMagnitude > 0f) fillImg.type = Image.Type.Sliced;
+                else if (barFill == null) fillImg.color = new Color(0.20f, 0.56f, 0.42f, 1f);
                 fillImg.raycastTarget = false;
             }
         }
 
         private void DrawAfkPassAggregateCard(RectTransform parent, float x, float y, float w)
         {
-            var card = QdaoUguiFactory.CreateImage("SpiritShopAfkPassBanner", parent, x, y, w, 112f,
-                LoadOptionalSkin("ui/card_bg_featured") ?? Load("pet_card_normal"));
-            card.color = FocusTint;
+            Sprite customBg = LoadOptionalSkin("ui/card_bg_featured");
+            Sprite bgSprite = customBg ?? Load("pet_card_normal");
+            var card = QdaoUguiFactory.CreateImage("SpiritShopAfkPassBanner", parent, x, y, w, 112f, bgSprite);
+            card.color = customBg != null ? Color.white : FocusTint;
+            if (bgSprite != null && bgSprite.border.sqrMagnitude > 0f) card.type = Image.Type.Sliced;
             card.raycastTarget = false;
 
             var nameTxt = Text(card.transform, "仙途轻享卡（挂机月卡） · 300 灵石", 24f, 14f, w - 340f, 40f, 28f, Ink);
@@ -423,10 +427,11 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             float h)
         {
             bool focused = goods.GoodsId == _focusedGoodsId;
-            Sprite bgSprite = LoadOptionalSkin(focused ? "ui/card_bg_featured" : "ui/card_bg_normal") ?? Load("pet_card_normal");
+            Sprite customBg = LoadOptionalSkin(focused ? "ui/card_bg_featured" : "ui/card_bg_normal");
+            Sprite bgSprite = customBg ?? Load("pet_card_normal");
             var card = QdaoUguiFactory.CreateImage("SpiritShopCard_" + goods.GoodsId.ToString(CultureInfo.InvariantCulture),
                 parent, x, y, w, h, bgSprite);
-            card.color = focused ? FocusTint : CardTint;
+            card.color = customBg != null ? Color.white : (focused ? FocusTint : CardTint);
             if (bgSprite != null && bgSprite.border.sqrMagnitude > 0f) card.type = Image.Type.Sliced;
             card.raycastTarget = false;
 
@@ -624,6 +629,11 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
                 var card = QdaoUguiTheme.LoadSprite("UI/Ugui/AppearanceChronicleV2/item_appearance_card")
                     ?? QdaoUguiTheme.LoadSprite("UI/Icons/item_appearance_card");
                 if (card != null) return card;
+            }
+            if (firstItemId == SpiritShopModels.ItemRenameCard)
+            {
+                var rename = QdaoUguiTheme.LoadSprite("UI/Icons/item_rename_card");
+                if (rename != null) return rename;
             }
             return Load("icon_scroll");
         }

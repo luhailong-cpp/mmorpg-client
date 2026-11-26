@@ -165,7 +165,15 @@ namespace MmorpgClient.UI.Ugui.Skills
             Place(_condition.rectTransform,1305,695,314,48);Font(_condition,12,SkillsMuted,true);Place(_balance.rectTransform,1305,744,314,22);Font(_balance,12,SkillsInk,true);Place(_cost.rectTransform,1305,768,314,22);Font(_cost,12,SkillsInk,true);
             Button(_upgrade,1305,794.296875f,152,48,19);Button(_upgradeTen,1467,794.296875f,152,48,19);CharacterAttributeVisuals.Skin(_upgradeTen.Plate,"button_secondary");_upgradeTen.Label.color=SkillsInk;
             if(_seasonFreeBadge!=null)Place(_seasonFreeBadge,1372,796,180,44);
-            Button(_refresh,1509,879.296875f,110,39,16);Place(_status.rectTransform,41,879.296875f,1425,39);Font(_status,13,null,true);
+            Button(_refresh,1509,879.296875f,110,39,16);
+            bool showSkillVfx = _skillVfxBtn != null && _skillVfxBtn.Rect.gameObject.activeSelf;
+            if (showSkillVfx)
+            {
+                Button(_skillVfxBtn, 1365, 879.296875f, 134, 39, 16);
+                CharacterAttributeVisuals.Skin(_skillVfxBtn.Plate, "button_secondary");
+                _skillVfxBtn.Label.color = SkillsInk;
+            }
+            Place(_status.rectTransform,41,879.296875f,showSkillVfx ? 1310 : 1425,39);Font(_status,13,null,true);
             string[] tabs={"AttributeTab","AllocationTab","SkillTab"};for(int i=0;i<tabs.Length;i++)
             {
                 var rect=Find(tabs[i]);if(rect==null)continue;

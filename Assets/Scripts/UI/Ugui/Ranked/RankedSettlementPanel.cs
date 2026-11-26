@@ -91,23 +91,31 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 "guild_button_secondary", "刷新确认", 19f, JadeDark, out _, out _);
             _refreshRatingBtn.onClick.AddListener(() => RefreshRatingRequested?.Invoke());
 
-            // 论剑 V4 左侧破势终结印章（终结对手 >=3 连胜时显示，预绑 RankedPlayV4/streak_break_stamp）
-            _streakBreakPlate = QdaoUguiFactory.CreateImage("StreakBreakStamp", _root, 150f, 382f, 324f, 68f, null, false);
+            // 论剑 V4 左侧破势终结印章（原尺寸 280×68 宣纸金框底图，高对比深墨叠字，终结对手 >=3 连胜时显示）
+            _streakBreakPlate = QdaoUguiFactory.CreateImage("StreakBreakStamp", _root, 172f, 382f, 280f, 68f, null, false);
             var streakBreakSprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset("streak_break_stamp");
-            if (streakBreakSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(_streakBreakPlate, streakBreakSprite, SeasonEconomyUiArt.BattleArenaAmber);
+            bool hasStreakBreakArt = streakBreakSprite != null;
+            if (hasStreakBreakArt) SeasonEconomyUiArt.ApplyFixedControlSprite(_streakBreakPlate, streakBreakSprite, SeasonEconomyUiArt.BattleArenaAmber);
             else _streakBreakPlate.color = SeasonEconomyUiArt.BattleArenaAmber;
-            _streakBreakText = CreateLabel("StreakBreakText", _streakBreakPlate.transform, 10f, 0f, 304f, 68f,
-                string.Empty, 20f, GoldCream, TextAlignmentOptions.Center, bold: true);
+            _streakBreakText = CreateLabel("StreakBreakText", _streakBreakPlate.transform, 14f, 0f, 252f, 68f,
+                string.Empty, 19f, hasStreakBreakArt ? JadeDark : GoldCream, TextAlignmentOptions.Center, bold: true);
+            _streakBreakText.enableAutoSizing = true;
+            _streakBreakText.fontSizeMin = 15f;
+            _streakBreakText.fontSizeMax = 19f;
             _streakBreakPlate.gameObject.SetActive(false);
 
             // 论剑 V4 右侧战术复盘高光卡（与中部段位卡等高齐平 [1446, 292, 324, 250]）
             var highlightPanel = CreateGuildArt("SettlementHighlightCard", _root, 1446f, 292f, 324f, 250f, "guild_row_self");
             _highlightCard = highlightPanel.rectTransform;
-            _highlightIcon = QdaoUguiFactory.CreateImage("HighlightIcon", _highlightCard, 18f, 18f, 64f, 64f, null, false);
+            _highlightIcon = QdaoUguiFactory.CreateImage("HighlightIcon", _highlightCard, 16f, 16f, 68f, 68f, null, false);
             _highlightIcon.preserveAspect = true;
+            _highlightIcon.color = Color.white;
             _highlightIcon.gameObject.SetActive(false);
             _highlightTitle = CreateLabel("HighlightTitle", _highlightCard, 92f, 24f, 214f, 52f,
                 "本局复盘", 26f, JadeDark, TextAlignmentOptions.MidlineLeft, bold: true);
+            _highlightTitle.enableAutoSizing = true;
+            _highlightTitle.fontSizeMin = 20f;
+            _highlightTitle.fontSizeMax = 26f;
             _highlightStatsText = CreateLabel("HighlightStats", _highlightCard, 20f, 92f, 284f, 146f,
                 string.Empty, 19f, InkSecondary, TextAlignmentOptions.TopLeft, wrap: true);
             _highlightCard.gameObject.SetActive(false);

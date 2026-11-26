@@ -680,7 +680,7 @@ namespace MmorpgClient.Game.Guild
     {
         public static string LeylineName(uint leylineId) => leylineId switch
         {
-            1 => "八仙岛 · 灵脉",
+            1 => "八景岛 · 灵脉",
             2 => "碧渊水宫 · 灵脉",
             3 => "月汐湾 · 灵脉",
             _ => "未占灵脉",
@@ -688,8 +688,8 @@ namespace MmorpgClient.Game.Guild
 
         public static string SceneName(uint sceneConfigId) => sceneConfigId switch
         {
-            1 => "天墉城（安全区）",
-            2 => "八仙岛",
+            1 => "归元城（安全区）",
+            2 => "八景岛",
             3 => "月汐湾",
             5 => "碧渊水宫",
             _ => sceneConfigId == 0 ? "行踪不明" : "野外区域#" + sceneConfigId.ToString(CultureInfo.InvariantCulture),
@@ -772,11 +772,11 @@ namespace MmorpgClient.Game.Guild
                 guild_error.KGuildWarSameGuild => "不能对本帮同道发起帮战或追杀令。",
                 guild_error.KGuildWarTargetPeaceMode => "对方当前处于和平免战模式，无法发起帮战。",
                 guild_error.KGuildWarSelfPeaceMode => "你当前处于和平免战模式，请先切换为战意模式。",
-                guild_error.KGuildWarPeaceCooldown => "脱战满 60 秒后方可切换和平免战（或返回天墉城立即生效）。",
+                guild_error.KGuildWarPeaceCooldown => "脱战满 60 秒后方可切换和平免战（或返回归元城立即生效）。",
                 guild_error.KGuildWarTargetProtected => "对方处于战后 10 秒保护期，请稍后再试。",
                 guild_error.KGuildWarTargetInBattle => "目标刚刚进入激战，你可以选择实时观战或换个目标。",
                 guild_error.KGuildWarTargetOffline => "目标当前离线，暂无法迎战。",
-                guild_error.KGuildWarSafeZone => "天墉城主城为永久安全区，不可强制点战。",
+                guild_error.KGuildWarSafeZone => "归元城主城为永久安全区，不可强制点战。",
                 guild_error.KGuildWarTeamInvalid => "队伍成员状态不符合帮战要求（需全员同帮、达级且未开免战）。",
                 guild_error.KGuildWarTeamSizeExceedsRoadLimit => "野外普通路段人数差受限，请前往灵脉战区集结或调整队伍人数。",
                 guild_error.KGuildWarLeylineNotFound => "指定灵脉不存在，请刷新战况。",

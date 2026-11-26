@@ -48,8 +48,8 @@ namespace MmorpgClient.World.Tianyong
         public static readonly IReadOnlyList<FestivalRegionDefinition> Regions = new[]
         {
             new FestivalRegionDefinition(2, "penglai", "蓬莱岛", "中秋月夜", new Vector3(220f, 0f, 170f)),
-            new FestivalRegionDefinition(3, "donghai", "东海渔村", "元宵灯会", new Vector3(200f, 0f, 180f)),
-            new FestivalRegionDefinition(4, "lanxian", "揽仙镇", "春节迎新", new Vector3(200f, 0f, 180f)),
+            new FestivalRegionDefinition(3, "donghai", "月汐湾", "元宵灯会", new Vector3(200f, 0f, 180f)),
+            new FestivalRegionDefinition(4, "lanxian", "青石渡", "春节迎新", new Vector3(200f, 0f, 180f)),
         };
         public const string GroundName = "FestivalRegionGround";
         public static FestivalRegionDefinition Find(uint sceneConfigId)

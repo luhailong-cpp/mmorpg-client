@@ -66,5 +66,47 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(body, Does.Contain("余2次"));
             Assert.That(body, Does.Contain("×3层"));
         }
+
+        [Test]
+        public void FormatUnitStatusBodyShowsExactZeroAndStackedGrowingAuraBonuses()
+        {
+            var actor = new BattleActorState { ActorId = 101, MaxHealth = 5000 };
+            actor.Buffs.Add(new BattleBuffEntry
+            {
+                BuffId = 10,
+                BuffTableId = 120230,
+                SourceSkillId = 12023,
+                Layer = 1,
+                Stacks = 0,
+            });
+            actor.Buffs.Add(new BattleBuffEntry
+            {
+                BuffId = 11,
+                BuffTableId = 120240,
+                SourceSkillId = 12024,
+                Layer = 1,
+                Stacks = 12,
+            });
+
+            var summary = BattleUnitStatusInspector.Inspect(actor, id => id switch
+            {
+                12023 => "承锋蓄势",
+                12024 => "循隙破甲",
+                _ => null,
+            });
+
+            Assert.That(summary.Buffs[0].RawStacks, Is.EqualTo(0u));
+            Assert.That(summary.Buffs[1].RawStacks, Is.EqualTo(12u));
+
+            string body = BattleScreen.FormatUnitStatusBody(actor, summary, buffId => buffId switch
+            {
+                120230 => new BuffTable { Id = 120230, BattleOp = 25, ModifierStat = 25, Ratio = 0.01, StackLimit = 300, InfiniteDuration = 1 },
+                120240 => new BuffTable { Id = 120240, BattleOp = 25, ModifierStat = 26, Ratio = 0.01, StackLimit = 50, InfiniteDuration = 1 },
+                _ => null,
+            });
+
+            Assert.That(body, Does.Contain("承锋蓄势  0/300层（待触发）  至战斗结束"));
+            Assert.That(body, Does.Contain("循隙破甲  ×12/50层 · 无视防御+12%  至战斗结束"));
+        }
     }
 }

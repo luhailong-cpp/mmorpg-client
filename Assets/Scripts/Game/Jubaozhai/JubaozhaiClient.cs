@@ -20,12 +20,12 @@ namespace MmorpgClient.Game.Jubaozhai
     /// </summary>
     public sealed class JubaozhaiClient : IDisposable
     {
-        public const string RecoveryMessage = "聚宝斋请求状态尚未确认，请重新登录角色后再试。";
-        public const string LoadingMessage = "正在读取聚宝斋，请稍候…";
+        public const string RecoveryMessage = "万象阁请求状态尚未确认，请重新登录角色后再试。";
+        public const string LoadingMessage = "正在读取万象阁，请稍候…";
         public const string BusyMessage = "请稍候再试";
         public const string AuctionDisabledMessage = "拍卖尚未开放";
-        public const string NotInGameMessage = "请进入角色后再打开聚宝斋。";
-        public const string TransportFailureMessage = "聚宝斋请求未完成，请稍后重试。";
+        public const string NotInGameMessage = "请进入角色后再打开万象阁。";
+        public const string TransportFailureMessage = "万象阁请求未完成，请稍后重试。";
         // 与 GameClient.Call 超时分支 onError("rpc timeout") 的文字逐字一致;两边改动必须同步。
         public const string TimeoutError = "rpc timeout";
 
@@ -138,7 +138,7 @@ namespace MmorpgClient.Game.Jubaozhai
         public static string DescribeTip(uint tipId) => tipId switch
         {
             (uint)trade_error.KTradeListingNotFound => "商品已下架或不存在，请刷新列表。",
-            (uint)trade_error.KTradeHomeZoneUnknown => "角色所属区服尚未确认，暂时无法使用聚宝斋，请联系管理员。",
+            (uint)trade_error.KTradeHomeZoneUnknown => "角色所属区服尚未确认，暂时无法使用万象阁，请联系管理员。",
             (uint)trade_error.KTradeFavoriteLimitReached => "收藏数量已达上限，请先取消部分收藏。",
             (uint)trade_error.KTradeFeatureDisabled => "该功能尚未开放。",
             (uint)trade_error.KTradeOrderNotFound => "订单不存在或当前角色无权查看。",
@@ -154,8 +154,8 @@ namespace MmorpgClient.Game.Jubaozhai
             (uint)trade_error.KTradeManualReview => "该交易正在核查，请保留订单记录。",
             (uint)trade_error.KTradeAssetNotTradable => "所选资产当前不可交易。",
             (uint)common_error.KInvalidParameter => "请求参数有误，请调整筛选条件后重试。",
-            (uint)common_error.KServiceUnavailable => "聚宝斋服务暂时不可用，请稍后重试。",
-            _ => $"聚宝斋暂未完成请求（{tipId}），请稍后重试。"
+            (uint)common_error.KServiceUnavailable => "万象阁服务暂时不可用，请稍后重试。",
+            _ => $"万象阁暂未完成请求（{tipId}），请稍后重试。"
         };
 
         private void OnFavoriteRequested(string id, bool favorite)

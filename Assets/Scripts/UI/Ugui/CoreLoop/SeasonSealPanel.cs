@@ -285,10 +285,11 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 var h = snapshot.Honors[i];
                 if (h == null) continue;
                 float x = 320f + i * 480f;
-                SeasonV1UiArt.CreateFixedIcon(transform, "HonorBadge_" + h.SeasonId,
+                var badgeImg = SeasonV1UiArt.CreateFixedIcon(transform, "HonorBadge_" + h.SeasonId,
                     x, y + 48f, 64f, 64f,
                     SeasonV1UiArt.LoadHonorBadgeIcon(h.SeasonId, h.HonorBadgeIconKey),
                     h.Unlocked ? CoreLoopUiArt.Gold : CoreLoopUiArt.Muted);
+                if (!h.Unlocked) badgeImg.color = new Color(0.72f, 0.72f, 0.72f, 0.52f);
                 string statusText = h.Unlocked
                     ? $"「{h.HonorTitleName}」已解锁"
                     : $"进度 {h.ProgressPoints}/{h.MaxPoints}";

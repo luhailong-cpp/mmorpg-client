@@ -213,7 +213,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             return sceneConfigId switch
             {
                 1 => "归元城",
-                2 => "八仙岛",
+                2 => "八景岛",
                 3 => "月汐湾",
                 5 => "碧渊水宫",
                 _ => FindDestination(_destinations, sceneConfigId)?.Name ?? ""

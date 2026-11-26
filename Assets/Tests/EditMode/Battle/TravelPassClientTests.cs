@@ -292,5 +292,94 @@ namespace MmorpgClient.Tests.EditMode.Battle
             StringAssert.Contains("银两×3000", formatted);
             StringAssert.Contains("头像框·青云游历头像框(零战力)", formatted);
         }
+
+        [Test]
+        public void AllSixtyFiveDeliveredUiSlices_LoadCleanlyWithExpectedBorders()
+        {
+            // Order: (resource path under Resources/, border Left, Bottom, Right, Top)
+            var expected = new (string path, float l, float b, float r, float t)[]
+            {
+                // TournamentV3 (29)
+                ("UI/Ugui/TournamentV3/d/warmup-btn", 32, 0, 32, 0),
+                ("UI/Ugui/TournamentV3/d/warmup-badge", 24, 0, 24, 0),
+                ("UI/Ugui/TournamentV3/e/predict-panel", 56, 56, 56, 56),
+                ("UI/Ugui/TournamentV3/e/predict-pick", 14, 0, 14, 0),
+                ("UI/Ugui/TournamentV3/e/predict-hit", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/e/predict-miss", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/f/mvp-seal", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/f/mvp-card-bg", 48, 48, 48, 48),
+                ("UI/Ugui/TournamentV3/g/bronze-banner", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-01-sword", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-02-taiji", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-03-furnace", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-04-lotus", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-05-crane", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-06-thunder", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-07-bagua", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-08-cauldron", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/h/ban-seal", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/i/highlights-panel", 56, 56, 56, 56),
+                ("UI/Ugui/TournamentV3/j/honor-01-debut", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/j/honor-02-streak", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/j/honor-03-unbeaten", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/j/honor-04-comeback", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/j/honor-05-sweep", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/j/honor-06-champion", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/titles/d-warmup-title", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/titles/e-predict-title", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/titles/g-emblem-title", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/titles/i-highlights-title", 0, 0, 0, 0),
+                // RankedPlayV4 (12)
+                ("UI/Ugui/RankedPlayV4/ping_bar_base", 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/streak_banner_base", 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/streak_break_stamp", 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/ping_focus", 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/ping_control", 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/ping_protect", 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/ping_dispel", 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/highlight_focus", 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/highlight_control", 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/highlight_support", 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/highlight_guard", 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/highlight_comeback", 0, 0, 0, 0),
+                // SpiritShopV1 + item_rename_card (16)
+                ("UI/Ugui/SpiritShopV1/ui/window_frame", 80, 80, 80, 80),
+                ("UI/Ugui/SpiritShopV1/ui/title_plate", 72, 0, 72, 0),
+                ("UI/Ugui/SpiritShopV1/ui/content_panel", 48, 48, 48, 48),
+                ("UI/Ugui/SpiritShopV1/ui/tab_active", 44, 0, 44, 0),
+                ("UI/Ugui/SpiritShopV1/ui/tab_inactive", 44, 0, 44, 0),
+                ("UI/Ugui/SpiritShopV1/ui/card_bg_normal", 44, 28, 44, 28),
+                ("UI/Ugui/SpiritShopV1/ui/card_bg_featured", 44, 28, 44, 28),
+                ("UI/Ugui/SpiritShopV1/ui/btn_recharge_gold", 36, 0, 36, 0),
+                ("UI/Ugui/SpiritShopV1/ui/btn_buy_primary", 36, 0, 36, 0),
+                ("UI/Ugui/SpiritShopV1/ui/quota_bar_bg", 16, 0, 16, 0),
+                ("UI/Ugui/SpiritShopV1/ui/quota_bar_fill", 16, 0, 16, 0),
+                ("UI/Ugui/SpiritShopV1/ui/hud_entry_spirit_shop", 0, 0, 0, 0),
+                ("UI/Ugui/SpiritShopV1/pack_starter_60", 0, 0, 0, 0),
+                ("UI/Ugui/SpiritShopV1/pack_starter_180", 0, 0, 0, 0),
+                ("UI/Ugui/SpiritShopV1/pack_starter_300", 0, 0, 0, 0),
+                ("UI/Icons/item_rename_card", 0, 0, 0, 0),
+                // TravelPassV1 (12 — 与 D:\work\image\designs\travel-pass-v1 正式交付包逐文件同哈希)
+                ("UI/Ugui/TravelPassV1/window_frame", 72, 72, 72, 72),
+                ("UI/Ugui/TravelPassV1/title_plate", 80, 24, 80, 24),
+                ("UI/Ugui/TravelPassV1/content_panel", 36, 36, 36, 36),
+                ("UI/Ugui/TravelPassV1/travel_pass_banner", 0, 0, 0, 0),
+                ("UI/Ugui/TravelPassV1/progress_track", 14, 6, 14, 6),
+                ("UI/Ugui/TravelPassV1/progress_fill", 12, 4, 12, 4),
+                ("UI/Ugui/TravelPassV1/tier_row_reached", 24, 24, 24, 24),
+                ("UI/Ugui/TravelPassV1/tier_row_locked", 24, 24, 24, 24),
+                ("UI/Ugui/TravelPassV1/travel_pass_card_icon", 0, 0, 0, 0),
+                ("UI/Ugui/TravelPassV1/showcase_appearance_icon", 0, 0, 0, 0),
+                ("UI/Ugui/TravelPassV1/showcase_spirit_shop_icon", 0, 0, 0, 0),
+                ("UI/Ugui/TravelPassV1/frame_travel_qingyun_s1", 0, 0, 0, 0),
+            };
+            Assert.AreEqual(69, expected.Length);
+            foreach (var (path, l, b, r, t) in expected)
+            {
+                var sp = UnityEngine.Resources.Load<UnityEngine.Sprite>(path);
+                Assert.IsNotNull(sp, "missing UI-65 sprite: " + path);
+                Assert.AreEqual(new UnityEngine.Vector4(l, b, r, t), sp.border, "unexpected spriteBorder: " + path);
+            }
+        }
     }
 }

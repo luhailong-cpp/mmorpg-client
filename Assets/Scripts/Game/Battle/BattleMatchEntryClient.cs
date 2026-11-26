@@ -218,6 +218,30 @@ namespace MmorpgClient.Game.Battle
             return _battle.Phase != BattlePhase.None;
         }
 
+        /// <summary>发起归元城原创 NPC 玩法对局（Dungeon 301–302 演武木桩、311–313 回合残局、321–323 人物奇谈；限单人 PVE_SOLO）。</summary>
+        public bool StartNpcEncounter(uint dungeonConfigId, uint characterPresetId = 0, uint petPresetId = 0)
+        {
+            if (dungeonConfigId == 0)
+            {
+                ShowStatus("当前演武或奇谈副本配置无效。");
+                return false;
+            }
+            // 在 CanStart 之前先拦截组队态，避免队员收到“请由队长发起全队战斗”的误导提示。
+            if (_team.HasFreshView && _team.HasTeam)
+            {
+                ShowStatus("归元城演武、残局与人物奇谈为单人体验，请先离队或暂离后再试。");
+                return false;
+            }
+            if (!CanStart()) return false;
+            if (!ConsumeLocalQuota(MessageIds.JoinQueue)) return false;
+            _battle.JoinQueue(Match.MatchMode.PveSolo, dungeonConfigId, 0u, characterPresetId, petPresetId, 0u);
+            string label = dungeonConfigId >= 301u && dungeonConfigId <= 309u ? "正在进入演武木桩试招…"
+                : dungeonConfigId >= 311u && dungeonConfigId <= 319u ? "正在开启演武回合残局…"
+                : "正在进入归元奇谈见闻…";
+            ShowSoloStatus(label);
+            return _battle.Phase != BattlePhase.None;
+        }
+
         private static bool ContainsSize(IReadOnlyCollection<uint> sizes, uint targetSize)
         {
             foreach (uint size in sizes)

@@ -26,6 +26,8 @@ namespace MmorpgClient.Game.Appearance
         EquipCosmetic = 1,
         RestoreDefault = 2,
         OpenPermanentWardrobeMall = 3,
+        UnlockWithVoucher = 4,
+        OpenSpiritShopVoucher = 5,
     }
 
     /// <summary>衣柜灵宠页目标灵宠快照（只读纯数据）。</summary>
@@ -99,11 +101,16 @@ namespace MmorpgClient.Game.Appearance
         public ulong MallSkuId { get; }
         public string AcquireHint { get; }
         public string Description { get; }
+        public uint CardItemId { get; }
+        public uint CardItemCount { get; }
+        public uint OwnedCardCount { get; }
+        public uint SpiritShopGoodsId { get; }
 
         public bool IsBaseDefault => ConfigId == 0u;
         public bool IsOwned => State == WardrobeCosmeticRowState.BaseDefault
             || State == WardrobeCosmeticRowState.Equipped
             || State == WardrobeCosmeticRowState.Owned;
+        public bool CanUnlockWithHeldVoucher => !IsOwned && CardItemId != 0u && CardItemCount > 0u && OwnedCardCount >= CardItemCount;
 
         public WardrobeCosmeticRowView(
             WardrobeCategoryTab category,
@@ -122,7 +129,11 @@ namespace MmorpgClient.Game.Appearance
             string stateLabel,
             ulong mallSkuId,
             string acquireHint,
-            string description)
+            string description,
+            uint cardItemId = 0u,
+            uint cardItemCount = 0u,
+            uint ownedCardCount = 0u,
+            uint spiritShopGoodsId = 0u)
         {
             Category = category;
             ConfigId = configId;
@@ -141,6 +152,10 @@ namespace MmorpgClient.Game.Appearance
             MallSkuId = mallSkuId;
             AcquireHint = acquireHint ?? string.Empty;
             Description = description ?? string.Empty;
+            CardItemId = cardItemId;
+            CardItemCount = cardItemCount;
+            OwnedCardCount = ownedCardCount;
+            SpiritShopGoodsId = spiritShopGoodsId;
         }
     }
 
@@ -152,19 +167,22 @@ namespace MmorpgClient.Game.Appearance
         public bool Interactable { get; }
         public ulong MallSkuId { get; }
         public string DetailHint { get; }
+        public uint SpiritShopGoodsId { get; }
 
         public WardrobePrimaryAction(
             WardrobePrimaryActionKind kind,
             string label,
             bool interactable,
             ulong mallSkuId = 0ul,
-            string detailHint = "")
+            string detailHint = "",
+            uint spiritShopGoodsId = 0u)
         {
             Kind = kind;
             Label = label ?? string.Empty;
             Interactable = interactable;
             MallSkuId = mallSkuId;
             DetailHint = detailHint ?? string.Empty;
+            SpiritShopGoodsId = spiritShopGoodsId;
         }
     }
 
@@ -214,7 +232,8 @@ namespace MmorpgClient.Game.Appearance
         public static List<WardrobeCosmeticRowView> BuildPetRows(
             global::PlayerAppearanceInfo info,
             WardrobePetTargetOption targetPet,
-            Func<ulong, bool> isSellableMallSku)
+            Func<ulong, bool> isSellableMallSku,
+            bool isSpiritShopSupported = false)
         {
             var rows = new List<WardrobeCosmeticRowView>();
             if (info == null) return rows;
@@ -253,15 +272,21 @@ namespace MmorpgClient.Game.Appearance
                     continue;
 
                 bool isEquipped = targetPet != null && equippedId == entry.ConfigId && entry.Owned;
-                bool sellable = !entry.Owned && entry.MallSkuId != 0ul && (isSellableMallSku?.Invoke(entry.MallSkuId) == true);
+                bool canVoucherUnlock = !entry.Owned && entry.CardItemId != 0u && entry.CardItemCount > 0u
+                    && entry.OwnedCardCount >= entry.CardItemCount;
+                bool spiritShopSellable = !entry.Owned && entry.CardItemId != 0u && entry.CardItemCount > 0u
+                    && entry.SpiritShopGoodsId != 0u && isSpiritShopSupported;
+                bool mallSellable = !entry.Owned && entry.MallSkuId != 0ul && (isSellableMallSku?.Invoke(entry.MallSkuId) == true);
+                bool purchasable = canVoucherUnlock || spiritShopSellable || mallSellable;
                 WardrobeCosmeticRowState state = isEquipped ? WardrobeCosmeticRowState.Equipped
                     : entry.Owned ? WardrobeCosmeticRowState.Owned
-                    : sellable ? WardrobeCosmeticRowState.LockedPurchasable
+                    : purchasable ? WardrobeCosmeticRowState.LockedPurchasable
                     : WardrobeCosmeticRowState.LockedUnavailable;
                 string badge = state switch
                 {
                     WardrobeCosmeticRowState.Equipped => "当前生效",
                     WardrobeCosmeticRowState.Owned => "已拥有",
+                    _ when canVoucherUnlock => "可解锁",
                     _ => "未拥有",
                 };
                 rows.Add(new WardrobeCosmeticRowView(
@@ -281,7 +306,11 @@ namespace MmorpgClient.Game.Appearance
                     stateLabel: badge,
                     mallSkuId: entry.MallSkuId,
                     acquireHint: entry.AcquireHint,
-                    description: string.IsNullOrWhiteSpace(entry.Desc) ? "幻化仅改变外观。" : entry.Desc));
+                    description: string.IsNullOrWhiteSpace(entry.Desc) ? "幻化仅改变外观。" : entry.Desc,
+                    cardItemId: entry.CardItemId,
+                    cardItemCount: entry.CardItemCount,
+                    ownedCardCount: entry.OwnedCardCount,
+                    spiritShopGoodsId: entry.SpiritShopGoodsId));
             }
             return rows;
         }
@@ -289,7 +318,8 @@ namespace MmorpgClient.Game.Appearance
         public static List<WardrobeCosmeticRowView> BuildSkillEffectRows(
             global::PlayerAppearanceInfo info,
             uint filterSkillTableId,
-            Func<ulong, bool> isSellableMallSku)
+            Func<ulong, bool> isSellableMallSku,
+            bool isSpiritShopSupported = false)
         {
             var rows = new List<WardrobeCosmeticRowView>();
             if (info == null) return rows;
@@ -329,15 +359,21 @@ namespace MmorpgClient.Game.Appearance
 
                 uint skillEquipped = FindEquippedSkillVfxId(info, entry.SkillTableId);
                 bool isEquipped = entry.Owned && skillEquipped == entry.ConfigId;
-                bool sellable = !entry.Owned && entry.MallSkuId != 0ul && (isSellableMallSku?.Invoke(entry.MallSkuId) == true);
+                bool canVoucherUnlock = !entry.Owned && entry.CardItemId != 0u && entry.CardItemCount > 0u
+                    && entry.OwnedCardCount >= entry.CardItemCount;
+                bool spiritShopSellable = !entry.Owned && entry.CardItemId != 0u && entry.CardItemCount > 0u
+                    && entry.SpiritShopGoodsId != 0u && isSpiritShopSupported;
+                bool mallSellable = !entry.Owned && entry.MallSkuId != 0ul && (isSellableMallSku?.Invoke(entry.MallSkuId) == true);
+                bool purchasable = canVoucherUnlock || spiritShopSellable || mallSellable;
                 WardrobeCosmeticRowState state = isEquipped ? WardrobeCosmeticRowState.Equipped
                     : entry.Owned ? WardrobeCosmeticRowState.Owned
-                    : sellable ? WardrobeCosmeticRowState.LockedPurchasable
+                    : purchasable ? WardrobeCosmeticRowState.LockedPurchasable
                     : WardrobeCosmeticRowState.LockedUnavailable;
                 string badge = state switch
                 {
                     WardrobeCosmeticRowState.Equipped => "当前生效",
                     WardrobeCosmeticRowState.Owned => "已拥有",
+                    _ when canVoucherUnlock => "可解锁",
                     _ => "未拥有",
                 };
                 rows.Add(new WardrobeCosmeticRowView(
@@ -357,7 +393,11 @@ namespace MmorpgClient.Game.Appearance
                     stateLabel: badge,
                     mallSkuId: entry.MallSkuId,
                     acquireHint: entry.AcquireHint,
-                    description: string.IsNullOrWhiteSpace(entry.Desc) ? "特效仅改变战斗画面。" : entry.Desc));
+                    description: string.IsNullOrWhiteSpace(entry.Desc) ? "特效仅改变战斗画面。" : entry.Desc,
+                    cardItemId: entry.CardItemId,
+                    cardItemCount: entry.CardItemCount,
+                    ownedCardCount: entry.OwnedCardCount,
+                    spiritShopGoodsId: entry.SpiritShopGoodsId));
             }
             return rows;
         }
@@ -378,6 +418,28 @@ namespace MmorpgClient.Game.Appearance
 
             if (selected.State == WardrobeCosmeticRowState.LockedPurchasable)
             {
+                if (selected.CanUnlockWithHeldVoucher)
+                {
+                    if (targetPet == null)
+                        return new WardrobePrimaryAction(WardrobePrimaryActionKind.NoneDisabled, "暂无灵宠", false, detailHint: "拥有灵宠后即可解锁并穿戴幻化。");
+                    return new WardrobePrimaryAction(
+                        WardrobePrimaryActionKind.UnlockWithVoucher,
+                        $"解锁并穿戴（耗{selected.CardItemCount}张符）",
+                        canSubmit,
+                        detailHint: $"背包持有 {selected.OwnedCardCount} 张灵宠幻化符，消耗 {selected.CardItemCount} 张永久解锁并穿戴。");
+                }
+                if (selected.SpiritShopGoodsId != 0u)
+                {
+                    string hint = string.IsNullOrWhiteSpace(selected.AcquireHint)
+                        ? "前往灵石百宝阁购买「灵宠幻化符」后即可永久解锁。"
+                        : selected.AcquireHint;
+                    return new WardrobePrimaryAction(
+                        WardrobePrimaryActionKind.OpenSpiritShopVoucher,
+                        "前往百宝阁购买",
+                        canSubmit,
+                        detailHint: hint,
+                        spiritShopGoodsId: selected.SpiritShopGoodsId);
+                }
                 return new WardrobePrimaryAction(
                     WardrobePrimaryActionKind.OpenPermanentWardrobeMall,
                     "前往永久衣柜",
@@ -424,6 +486,28 @@ namespace MmorpgClient.Game.Appearance
 
             if (selected.State == WardrobeCosmeticRowState.LockedPurchasable)
             {
+                if (selected.CanUnlockWithHeldVoucher)
+                {
+                    if (targetSkill != null && !targetSkill.Usable)
+                        return new WardrobePrimaryAction(WardrobePrimaryActionKind.NoneDisabled, "条件不足", false, detailHint: "需先习得对应可用技能后方可解锁启用。");
+                    return new WardrobePrimaryAction(
+                        WardrobePrimaryActionKind.UnlockWithVoucher,
+                        $"解锁并启用（耗{selected.CardItemCount}张卷）",
+                        canSubmit,
+                        detailHint: $"背包持有 {selected.OwnedCardCount} 张技能特效卷，消耗 {selected.CardItemCount} 张永久解锁并启用。");
+                }
+                if (selected.SpiritShopGoodsId != 0u)
+                {
+                    string hint = string.IsNullOrWhiteSpace(selected.AcquireHint)
+                        ? "前往灵石百宝阁购买「技能特效卷」后即可永久解锁。"
+                        : selected.AcquireHint;
+                    return new WardrobePrimaryAction(
+                        WardrobePrimaryActionKind.OpenSpiritShopVoucher,
+                        "前往百宝阁购买",
+                        canSubmit,
+                        detailHint: hint,
+                        spiritShopGoodsId: selected.SpiritShopGoodsId);
+                }
                 return new WardrobePrimaryAction(
                     WardrobePrimaryActionKind.OpenPermanentWardrobeMall,
                     "前往永久衣柜",

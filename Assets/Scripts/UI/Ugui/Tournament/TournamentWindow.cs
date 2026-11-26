@@ -985,7 +985,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     {
                         _model.OpenWarmupModal(sq, teamSize);
                         SyncModalVisual(overview, _lastBusy);
-                    }, primaryFallback: false, interactable: !isBusy, fontSize: 19f);
+                    }, primaryFallback: true, interactable: !isBusy, fontSize: 19f);
             }
 
             if (unlockedDraft)
@@ -2603,12 +2603,12 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 ForceCloseModalVisual();
             });
 
-            // 零积分演练状态胶囊（v3-d-warmup-badge 无字底皮）
+            // 零积分演练状态胶囊（v3-d-warmup-badge 无字深玉底皮，配浅金字防低对比度）
             var badgeSprite = TournamentArtCatalog.Load("v3-d-warmup-badge");
             if (badgeSprite != null)
             {
                 var bImg = QdaoUguiFactory.CreateImage("WarmBadge", _modalContent, 52f, 74f, 140f, 32f, badgeSprite, false);
-                TournamentArtCatalog.Label("Txt", bImg.transform, 4f, 0f, 132f, 32f, "零积分演练", 13f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
+                TournamentArtCatalog.Label("Txt", bImg.transform, 4f, 0f, 132f, 32f, "零积分演练", 13f, TournamentArtCatalog.PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
             }
             else
             {

@@ -190,6 +190,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 #endif
         }
         public void HidePanel() { if (_window?.Root != null) _window.Hide(); _equipmentWindow?.Hide(); }
+        public void OpenBag() => Open(GameplayPage.Bag);
         public void OpenMissions() => Open(GameplayPage.Missions);
 
         public void OpenMission(uint scope, uint missionId)

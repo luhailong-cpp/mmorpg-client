@@ -239,7 +239,7 @@ namespace MmorpgClient.UI.Ugui.Skills
                 var ids = activeScroll.SkillTableIds;
                 if (_selectedSkillId == 0 || !ids.Contains(_selectedSkillId))
                     _selectedSkillId = ids.FirstOrDefault();
-                var skillList = Scroll(_body, "ScrollSkillsViewport", 950, 525, 1500, 430, Math.Max(430, ((ids.Count + 2) / 3) * 155));
+                var skillList = Scroll(_body, "ScrollSkillsViewport", 950, 525, 1500, 335, Math.Max(335, ((ids.Count + 2) / 3) * 155));
                 for (int i = 0; i < ids.Count; ++i)
                 {
                     uint skillId = ids[i];
@@ -265,6 +265,16 @@ namespace MmorpgClient.UI.Ugui.Skills
                             btnLabel.sizeDelta = new Vector2(336f, 140f);
                         }
                     }
+                }
+
+                string selectedSkillSummary = ResolveSkillSummary(_selectedSkillId);
+                if (!string.IsNullOrEmpty(selectedSkillSummary))
+                {
+                    var descLbl = Label(_body, "ScrollSelectedSkillDesc", selectedSkillSummary,
+                        960, 868, 1480, 96, 28, true, Ink);
+                    descLbl.enableAutoSizing = true;
+                    descLbl.fontSizeMin = 20f;
+                    descLbl.fontSizeMax = 28f;
                 }
 
                 ulong proxyFee = SelectedScrollProxyFee();
@@ -545,15 +555,35 @@ namespace MmorpgClient.UI.Ugui.Skills
         {
             var growth = SeasonEconomyUiArt.LoadGrowthSkillIcon(skillId);
             if (growth != null) return growth;
+            // 优先取 UI/Skills/{id} 正式 512x512 图标（含卷 2/3/4/5/6），缺省再回退本地图鉴原型画芯。
+            var direct = skillId != 0u ? QdaoUguiTheme.LoadSprite("UI/Skills/" + skillId) : null;
+            if (direct != null) return direct;
             var def = SkillUiRoot.FindPresentation(skillId);
-            return (def != null ? QdaoUguiTheme.LoadSprite(def.IconResource) : null)
-                ?? (skillId != 0u ? QdaoUguiTheme.LoadSprite("UI/Skills/" + skillId) : null);
+            return def != null ? QdaoUguiTheme.LoadSprite(def.IconResource) : null;
         }
 
         private static string ResolveSkillName(uint skillId)
         {
             var def = SkillUiRoot.FindPresentation(skillId);
             return !string.IsNullOrWhiteSpace(def?.name) ? def.name : $"技能 · {skillId}";
+        }
+
+        private static string ResolveSkillSummary(uint skillId)
+        {
+            if (skillId == 0u) return string.Empty;
+            var row = MmorpgClient.Table.SkillTableManager.Instance.FindById(skillId);
+            string desc = !string.IsNullOrWhiteSpace(row?.Description)
+                ? row.Description
+                : SkillUiRoot.FindPresentation(skillId)?.description;
+            if (string.IsNullOrWhiteSpace(desc)) return string.Empty;
+            string scope = row == null ? string.Empty : row.CasterMask switch
+            {
+                1u => "【人物专属】",
+                2u => "【灵宠专属】",
+                3u => "【人宠共用】",
+                _ => string.Empty,
+            };
+            return scope + desc;
         }
 
         public void Dispose()

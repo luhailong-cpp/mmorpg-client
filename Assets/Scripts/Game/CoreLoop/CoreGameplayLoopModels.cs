@@ -1169,7 +1169,7 @@ namespace MmorpgClient.Game.CoreLoop
                         s.TotalRounds >= 12u
                             ? $"鏖战至「战意渐盛」阶段拿下胜利（{s.TotalRounds} 回合）"
                             : $"人宠协同配合拿下正式对局胜利（{s.TotalRounds} 回合）",
-                        "趁手感火热继续上分，或前往打造页/聚宝斋进一步优化装备词条。");
+                        "趁手感火热继续上分，或前往打造页/万象阁进一步优化装备词条。");
                 }
                 if (draw)
                 {
@@ -1324,7 +1324,7 @@ namespace MmorpgClient.Game.CoreLoop
                     zeroStatGuarantee: true),
                 new SmallSpendSlotView(
                     "material_market",
-                    "聚宝斋 · 材料次要来源",
+                    "万象阁 · 材料次要来源",
                     "玩家间自由交易可交易打造材料与百炼石，不扣减永久 660 免费奖励",
                     "玩家流通",
                     paymentEnabled,

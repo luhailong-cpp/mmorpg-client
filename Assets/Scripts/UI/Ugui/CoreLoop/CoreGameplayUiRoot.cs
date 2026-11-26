@@ -204,7 +204,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             CoreLoopUiArt.Image("MarketPreviewPlate", _marketPreviewBanner, 430f, 24f,
                 1700f, 56f, null, new Color(0.94f, 0.91f, 0.81f, 0.95f));
             CoreLoopUiArt.Text("MarketPreviewText", _marketPreviewBanner, 455f, 28f,
-                1650f, 46f, "聚宝斋 · 可交易材料玩家间流通，不扣减永久 660 免费额度",
+                1650f, 46f, "万象阁 · 可交易材料玩家间流通，不扣减永久 660 免费额度",
                 25f, CoreLoopUiArt.DeepJade, true, false, TextAlignmentOptions.Center);
             _marketPreviewBanner.gameObject.SetActive(false);
             ApplySafeArea();

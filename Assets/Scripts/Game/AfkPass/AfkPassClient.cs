@@ -100,7 +100,7 @@ namespace MmorpgClient.Game.AfkPass
         {
             (uint)afk_pass_error.KAfkPassPriceChanged => "挂机月卡价格已变化，请刷新后再试。",
             (uint)afk_pass_error.KAfkPassCurrencyNotEnough => currencyType == 1
-                ? "灵石不足，无法开通挂机月卡。可在聚宝斋充值灵石。"
+                ? "灵石不足，无法开通挂机月卡。可在万象阁充值灵石。"
                 : $"{CurrencyName(currencyType)}不足，无法开通挂机月卡。",
             (uint)afk_pass_error.KAfkPassStackLimit => "挂机月卡剩余时长已达上限，暂不能续费。",
             (uint)afk_pass_error.KAfkPassFrozen => "角色当前状态不能开通挂机月卡，请稍后再试。",

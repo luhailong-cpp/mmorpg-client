@@ -486,7 +486,7 @@ namespace MmorpgClient.Game.Guild
                     Status = !resp.TargetOnline
                         ? "目标当前暂未露面（离线）。"
                         : resp.InSafeZone
-                            ? "目标正藏身天墉城安全区。"
+                            ? "目标正藏身归元城安全区。"
                             : $"目标正在【{GuildWarText.SceneName(resp.SceneConfigId)} · {resp.ChannelNo}线】出没！";
                     Changed?.Invoke();
                 },

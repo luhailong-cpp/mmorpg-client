@@ -23,7 +23,7 @@ public static partial class EquipErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvZXF1aXBfZXJyb3JfdGlwLnBy",
-          "b3RvKpIHCgtlcXVpcF9lcnJvchISCg5rRXF1aXBfZXJyb3JPSxAAEhgKEmtF",
+          "b3RvKqkJCgtlcXVpcF9lcnJvchISCg5rRXF1aXBfZXJyb3JPSxAAEhgKEmtF",
           "cXVpcEl0ZW1Ob3RGb3VuZBDg2gESGAoSa0VxdWlwTm90RXF1aXBtZW50EOHa",
           "ARIaChRrRXF1aXBMZXZlbE5vdEVub3VnaBDi2gESGQoTa0VxdWlwQ2xhc3NN",
           "aXNtYXRjaBDj2gESEgoMa0VxdWlwTm9TbG90EOTaARIXChFrRXF1aXBOb3RF",
@@ -43,8 +43,14 @@ public static partial class EquipErrorTipReflection {
           "dWlwQWZmaXhSZWZvcmdlU2FtZRD62gESHwoZa0VxdWlwQmluZENvbmZpcm1S",
           "ZXF1aXJlZBD72gESHQoXa0VxdWlwUG9saXNoUGl0eUNoYW5nZWQQ/NoBEh4K",
           "GGtFcXVpcENyYWZ0R29sZE5vdEVub3VnaBD92gESIgoca0VxdWlwUHJveHlN",
-          "YXN0ZXJVbmF2YWlsYWJsZRD+2gFCJAoOY29tLmdhbWUudGFibGVaEmdlbmVy",
-          "YXRlZC9wYi90YWJsZWIGcHJvdG8z"));
+          "YXN0ZXJVbmF2YWlsYWJsZRD+2gESIAoaa0VxdWlwTG9hZG91dFNjaGVtZUlu",
+          "dmFsaWQQ/9oBEh4KGGtFcXVpcExvYWRvdXRNYXhVbmxvY2tlZBCA2wESIQob",
+          "a0VxdWlwTG9hZG91dFZlcnNpb25DaGFuZ2VkEIHbARIjCh1rRXF1aXBMb2Fk",
+          "b3V0RGlhbW9uZE5vdEVub3VnaBCC2wESHgoYa0VxdWlwTG9hZG91dE5hbWVJ",
+          "bnZhbGlkEIPbARIgChprRXF1aXBMb2Fkb3V0RHVwbGljYXRlSXRlbRCE2wES",
+          "Igoca0VxdWlwTG9hZG91dFNsb3RVbmF2YWlsYWJsZRCF2wESJQofa0VxdWlw",
+          "TG9hZG91dFVubG9ja0NvdW50Q2hhbmdlZBCG2wFCJAoOY29tLmdhbWUudGFi",
+          "bGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::equip_error), }, null, null));
@@ -86,6 +92,14 @@ public enum equip_error {
   [pbr::OriginalName("kEquipPolishPityChanged")] KEquipPolishPityChanged = 28028,
   [pbr::OriginalName("kEquipCraftGoldNotEnough")] KEquipCraftGoldNotEnough = 28029,
   [pbr::OriginalName("kEquipProxyMasterUnavailable")] KEquipProxyMasterUnavailable = 28030,
+  [pbr::OriginalName("kEquipLoadoutSchemeInvalid")] KEquipLoadoutSchemeInvalid = 28031,
+  [pbr::OriginalName("kEquipLoadoutMaxUnlocked")] KEquipLoadoutMaxUnlocked = 28032,
+  [pbr::OriginalName("kEquipLoadoutVersionChanged")] KEquipLoadoutVersionChanged = 28033,
+  [pbr::OriginalName("kEquipLoadoutDiamondNotEnough")] KEquipLoadoutDiamondNotEnough = 28034,
+  [pbr::OriginalName("kEquipLoadoutNameInvalid")] KEquipLoadoutNameInvalid = 28035,
+  [pbr::OriginalName("kEquipLoadoutDuplicateItem")] KEquipLoadoutDuplicateItem = 28036,
+  [pbr::OriginalName("kEquipLoadoutSlotUnavailable")] KEquipLoadoutSlotUnavailable = 28037,
+  [pbr::OriginalName("kEquipLoadoutUnlockCountChanged")] KEquipLoadoutUnlockCountChanged = 28038,
 }
 
 #endregion

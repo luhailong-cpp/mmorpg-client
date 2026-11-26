@@ -164,23 +164,27 @@ namespace MmorpgClient.Game.WorldTravel
         }
     }
 
-    /// <summary>单张野外地图的灵宠栖息地生态摘要（与权威 Dungeon 202/203/205 对齐，纯数据无 Unity 依赖）。</summary>
+    /// <summary>单张野外地图的灵宠栖息地生态摘要（常态 Dungeon 202/203/205 + 灵潮珍兽潮 Dungeon 212/213/215，纯数据无 Unity 依赖）。</summary>
     public readonly struct WorldMapHabitatInfo
     {
         public uint SceneConfigId { get; }
         public uint DungeonConfigId { get; }
+        public uint TideDungeonConfigId { get; }
         public string HabitatName { get; }
         public string BiomeTag { get; }
         public string PetSummary { get; }
+        public string TidePetSummary { get; }
 
-        public WorldMapHabitatInfo(uint sceneConfigId, uint dungeonConfigId, string habitatName,
-            string biomeTag, string petSummary)
+        public WorldMapHabitatInfo(uint sceneConfigId, uint dungeonConfigId, uint tideDungeonConfigId,
+            string habitatName, string biomeTag, string petSummary, string tidePetSummary)
         {
             SceneConfigId = sceneConfigId;
             DungeonConfigId = dungeonConfigId;
+            TideDungeonConfigId = tideDungeonConfigId;
             HabitatName = habitatName ?? "";
             BiomeTag = biomeTag ?? "";
             PetSummary = petSummary ?? "";
+            TidePetSummary = tidePetSummary ?? "";
         }
     }
 
@@ -364,30 +368,74 @@ namespace MmorpgClient.Game.WorldTravel
             switch (sceneConfigId)
             {
                 case 2u:
-                    return new WorldMapHabitatInfo(2u, 202u, "八景岛 · 灵宠栖息地", "仙风灵禽", "云鹤（10级）、竹风狸、霞角鹿");
+                    return new WorldMapHabitatInfo(2u, 202u, 212u, "八景岛 · 灵宠栖息地", "仙风灵禽",
+                        "云鹤（10级）、竹风狸、霞角鹿", "岚铎仙（珍稀）、砚羽灵、绯耳灵");
                 case 3u:
-                    return new WorldMapHabitatInfo(3u, 203u, "月汐湾 · 灵宠栖息地", "海潮猛兽", "金猊（10级）、灵狐、符小虎");
+                    return new WorldMapHabitatInfo(3u, 203u, 213u, "月汐湾 · 灵宠栖息地", "海潮猛兽",
+                        "金猊（10级）、灵狐、符小虎", "苍嶂麟（珍稀）、赤砂魁、烛翎");
                 case 5u:
-                    return new WorldMapHabitatInfo(5u, 205u, "碧渊水宫 · 灵宠栖息地", "玄水水灵", "玄潮龟、汐螺、露华灵");
+                    return new WorldMapHabitatInfo(5u, 205u, 215u, "碧渊水宫 · 灵宠栖息地", "玄水水灵",
+                        "玄潮龟、汐螺、露华灵", "月弦师（珍稀）、霜团貂、绛铃");
                 default:
                     return null;
             }
         }
 
-        /// <summary>格式化地图抽屉与野外浮条展示的可捕灵宠摘要；非野外栖息地图返回空串。</summary>
-        public static string FormatHabitatSummary(uint sceneConfigId)
+        /// <summary>判定指定野外地图此刻是否处于灵潮珍兽潮激活窗口（考虑 EndsAtMs 到点自动退出）。</summary>
+        public static bool IsTideActiveOnScene(WorldMapOverviewSnapshot overview, uint sceneConfigId, ulong serverNowMs = 0UL)
         {
-            var habitat = FindHabitat(sceneConfigId);
-            return habitat.HasValue ? "可捕灵宠：" + habitat.Value.PetSummary : "";
+            var tide = overview?.Tide;
+            if (tide == null || !tide.Active || sceneConfigId == 0u || tide.SceneConfigId != sceneConfigId) return false;
+            if (tide.EndsAtMs == 0UL) return true;
+            ulong nowMs = serverNowMs > 0UL ? serverNowMs
+                : (overview.ServerTimeMs > 0UL ? overview.ServerTimeMs : overview.UpdatedAtMs);
+            return nowMs < tide.EndsAtMs;
         }
 
-        /// <summary>格式化当前野外地图栖息地 HUD 标题（灵潮期间自动附带灵潮提示）。</summary>
-        public static string FormatWildHabitatHeadline(WorldMapOverviewSnapshot overview, uint currentSceneConfigId)
+        /// <summary>解析玩家当前野外地图应发起的栖息地副本 ID（灵潮期返回 212/213/215，常态返回 202/203/205，主城返回 0）。</summary>
+        public static uint ResolveActiveHabitatDungeonId(WorldMapOverviewSnapshot overview, uint sceneConfigId, ulong serverNowMs = 0UL)
+        {
+            var habitat = FindHabitat(sceneConfigId);
+            if (!habitat.HasValue) return 0u;
+            return IsTideActiveOnScene(overview, sceneConfigId, serverNowMs)
+                ? habitat.Value.TideDungeonConfigId
+                : habitat.Value.DungeonConfigId;
+        }
+
+        /// <summary>格式化野外 HUD 浮条展示的可捕灵宠摘要；传入总览且处于灵潮期时切为灵潮珍兽提示。</summary>
+        public static string FormatHabitatSummary(uint sceneConfigId, WorldMapOverviewSnapshot overview = null, ulong serverNowMs = 0UL)
+        {
+            var habitat = FindHabitat(sceneConfigId);
+            if (!habitat.HasValue) return "";
+            return IsTideActiveOnScene(overview, sceneConfigId, serverNowMs)
+                ? "灵潮珍兽（高捕获率）：" + habitat.Value.TidePetSummary
+                : "可捕灵宠：" + habitat.Value.PetSummary;
+        }
+
+        /// <summary>格式化大地图抽屉详情中的栖息地生态摘要（灵潮期高亮当前可遇珍兽，平时预告灵潮限定珍兽）。</summary>
+        public static string FormatDrawerHabitatSummary(WorldMapOverviewSnapshot overview, uint sceneConfigId, ulong serverNowMs = 0UL)
+        {
+            var habitat = FindHabitat(sceneConfigId);
+            if (!habitat.HasValue) return "";
+            return IsTideActiveOnScene(overview, sceneConfigId, serverNowMs)
+                ? "灵潮珍兽（当前可遇）：" + habitat.Value.TidePetSummary
+                : "可捕灵宠：" + habitat.Value.PetSummary + " · 灵潮限定：" + habitat.Value.TidePetSummary;
+        }
+
+        /// <summary>格式化当前野外地图栖息地 HUD 标题（灵潮期间突出展示珍兽现身）。</summary>
+        public static string FormatWildHabitatHeadline(WorldMapOverviewSnapshot overview, uint currentSceneConfigId, ulong serverNowMs = 0UL)
         {
             var habitat = FindHabitat(currentSceneConfigId);
             if (!habitat.HasValue) return "";
-            bool isTide = overview?.Tide != null && overview.Tide.Active && overview.Tide.SceneConfigId == currentSceneConfigId;
-            return isTide ? habitat.Value.HabitatName + " · 灵潮中" : habitat.Value.HabitatName;
+            return IsTideActiveOnScene(overview, currentSceneConfigId, serverNowMs)
+                ? habitat.Value.HabitatName + " · 灵潮珍兽现身"
+                : habitat.Value.HabitatName;
+        }
+
+        /// <summary>格式化野外 HUD 浮条主行动按钮文案（灵潮期「寻潮遇兽」，常态「寻宠遇敌」）。</summary>
+        public static string FormatWildHabitatActionLabel(WorldMapOverviewSnapshot overview, uint currentSceneConfigId, ulong serverNowMs = 0UL)
+        {
+            return IsTideActiveOnScene(overview, currentSceneConfigId, serverNowMs) ? "寻潮遇兽" : "寻宠遇敌";
         }
 
         private static long RemainingSecondsCeil(ulong targetMs, ulong nowMs)

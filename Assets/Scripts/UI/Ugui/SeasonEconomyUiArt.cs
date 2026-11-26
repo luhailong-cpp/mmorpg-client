@@ -61,6 +61,7 @@ namespace MmorpgClient.UI.Ugui
         public const string RankedV3GuildFidelityUiRoot = "UI/Ugui/RankedV3GuildFidelity/ui/";
         public const string RankedPlayV2ControlsRoot = "UI/Ugui/RankedPlayV2/";
         public const string RankedPlayV4Root = "UI/Ugui/RankedPlayV4/";
+        public const string RankedV4TacticalUiRoot = "UI/Ugui/RankedV4Tactical/ui/";
         public const string GuildFidelityRoot = "UI/Ugui/GuildFidelity20261016/";
 
         // 论剑 V2+V3 统一道家配色（对应 BattleArenaV2V3 layout-contract.json）
@@ -164,8 +165,11 @@ namespace MmorpgClient.UI.Ugui
         /// <summary>加载 Ranked Play V2 独立透明无字控件（escalation-badge-base / fangmang-progress-track / four-skill-detail-card-base）。</summary>
         public static Sprite LoadRankedPlayV2Control(string name) => LoadCached(RankedPlayV2ControlsRoot + name);
 
-        /// <summary>加载 Ranked Play V4 独立透明无字控件与图标（待 Codex 交付 PNG 后自动生效，缺图返回 null 安全回退）。</summary>
+        /// <summary>加载 Ranked Play V4 独立透明无字控件与图标（12 张透明 PNG 来自 image@51c33ee740a，缺图返回 null 安全回退）。</summary>
         public static Sprite LoadRankedPlayV4Asset(string name) => LoadCached(RankedPlayV4Root + name);
+
+        /// <summary>加载论剑 V5 临阵唤灵无字透明控件（来自 Codex 交付 1471b83 ranked-play-v4-tactical-ui-20261125/ui/）。</summary>
+        public static Sprite LoadRankedV4TacticalControl(string name) => LoadCached(RankedV4TacticalUiRoot + name);
 
         /// <summary>加载已验收的帮会原图同源道家 Q 版通用控件（与 ranked-play-v2-ui-20261125/assets 逐字节一致）。</summary>
         public static Sprite LoadGuildFidelityAsset(string name) => LoadCached(GuildFidelityRoot + name);

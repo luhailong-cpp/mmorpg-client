@@ -396,7 +396,7 @@ public static class AppearanceUiVerification
                     $"阅读过程不得产生写请求：switch={transport.SwitchCalls}, trial={transport.StartTrialCalls}, cancel={transport.CancelTrialCalls}");
                 summary.Add($"[{width}x{height}] Check 8 PASS: 全程阅读写请求计数=0 (Switch=0, Trial=0, Cancel=0)");
 
-                // 验收 9：人物收藏系列 11 张正式切图加载与 Border 核验、未集齐禁读合篇、集齐点亮专属印章与打开合篇阅读（零写请求）
+                // 验收 9：人物收藏系列 14 张正式切图加载与 Border 核验、未集齐专属灰印章与禁读合篇、集齐点亮专属印章与打开合篇阅读（零写请求）
                 var expectedSeriesAssets = new[]
                 {
                     ("series_tab_normal", new Vector4(46f, 0f, 46f, 0f)),
@@ -407,6 +407,9 @@ public static class AppearanceUiVerification
                     ("series_epilogue_card", new Vector4(120f, 112f, 120f, 112f)),
                     ("series_seal_dim", Vector4.zero),
                     ("series_seal_lit", Vector4.zero),
+                    ("series_seal_lantern_courtyard_dim", Vector4.zero),
+                    ("series_seal_elemental_blades_dim", Vector4.zero),
+                    ("series_seal_lotus_melody_dim", Vector4.zero),
                     ("series_seal_lantern_courtyard_lit", Vector4.zero),
                     ("series_seal_elemental_blades_lit", Vector4.zero),
                     ("series_seal_lotus_melody_lit", Vector4.zero),
@@ -434,8 +437,10 @@ public static class AppearanceUiVerification
                 var bannerTitleRect = (RectTransform)FindObject("SeriesBannerTitle").transform;
                 AssertTrue(bannerSealRect.anchoredPosition.x + bannerSealRect.sizeDelta.x < bannerTitleRect.anchoredPosition.x,
                     "信息条左侧 68x68 印章不得与系列标题重叠");
-                AssertTrue(!FindObject("SeriesSealFallbackBg").activeSelf && FindObject("SeriesSealIcon").GetComponent<Image>().enabled,
-                    "接入正式切图后未点亮系列必须显示 series_seal_dim 图标而非灰方块占位");
+                var lanternSealImg = FindObject("SeriesSealIcon").GetComponent<Image>();
+                AssertTrue(!FindObject("SeriesSealFallbackBg").activeSelf && lanternSealImg.enabled
+                    && lanternSealImg.sprite != null && lanternSealImg.sprite.name.StartsWith("series_seal_lantern_courtyard_dim", StringComparison.Ordinal),
+                    $"未点亮留灯院旧友应优先显示专属灰印章 series_seal_lantern_courtyard_dim，实际={lanternSealImg.sprite?.name}");
                 AssertTrue(!FindButton("AppearanceReadSeriesEpilogue").interactable, "未集齐系列时读合篇按钮必须不可点");
                 Shoot("08-series-incomplete-lantern");
 

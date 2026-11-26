@@ -45,12 +45,12 @@ namespace MmorpgClient.Game.Jubaozhai
     /// <summary>Final category and school copy from jubaozhai-ui/copy.zh-CN.json.</summary>
     public static class JubaozhaiCatalog
     {
-        public const string Title = "聚宝斋";
+        public const string Title = "万象阁";
         public const string SearchPlaceholder = "请输入名称或编号";
         public const string EmptyTitle = "当前类别暂无商品";
         public const string EmptyDescription = "再去别处逛逛吧";
         public const string DemoNotice = "离线演示 · 商品与数值均为界面样例";
-        public const string ServiceUnavailableMessage = "聚宝斋服务尚未连接";
+        public const string ServiceUnavailableMessage = "万象阁服务尚未连接";
         public const string ContactUnavailableMessage = "联系卖家服务尚未接入";
         public const string PurchaseUnavailableMessage = "交易服务尚未接入，暂不可购买";
 
@@ -487,7 +487,7 @@ namespace MmorpgClient.Game.Jubaozhai
                         Level = levels[i], Price = 1280m + categoryIndex * 320m + i * 680m,
                         IconKey = $"{iconPrefixes[categoryIndex]}_{i + 1:00}",
                         Summary = category == JubaozhaiCategory.Character ? $"{schools[i]} · {levels[i]}级" : $"{subcategory} · {levels[i]}级",
-                        Details = "离线演示商品，仅用于检查聚宝斋界面、筛选和分页；编号、属性、价格与剩余时间均为样例。",
+                        Details = "离线演示商品，仅用于检查万象阁界面、筛选和分页；编号、属性、价格与剩余时间均为样例。",
                         ExpiresAtUnixSeconds = now + (6 - i) * 86400 + (15 - i * 3) * 3600,
                         Tab = JubaozhaiTab.Consignment, Section = JubaozhaiSection.Consignment
                     };

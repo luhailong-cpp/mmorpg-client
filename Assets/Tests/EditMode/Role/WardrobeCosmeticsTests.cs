@@ -346,5 +346,66 @@ namespace MmorpgClient.Tests.EditMode.Role
             net.TriggerDisconnect();
             Assert.That(commerce.HasSellableOfficialSku(8801ul), Is.False);
         }
+
+        [Test]
+        public void Models_VoucherUnlockAndSpiritShopRedirectActionsResolveCorrectly()
+        {
+            var info = new PlayerAppearanceInfo();
+            info.PetCosmetics.Add(new PetCosmeticEntry
+            {
+                ConfigId = 1,
+                Name = "苍嶂麟",
+                VisualArtKey = "07-cangzhanglin",
+                Owned = false,
+                CardItemId = 3411,
+                CardItemCount = 1,
+                OwnedCardCount = 1,
+                SpiritShopGoodsId = 303,
+                AcquireHint = "百宝阁购「灵宠幻化符」解锁（120灵石）",
+            });
+            info.PetCosmetics.Add(new PetCosmeticEntry
+            {
+                ConfigId = 2,
+                Name = "绯耳灵",
+                VisualArtKey = "14-feierling",
+                Owned = false,
+                CardItemId = 3411,
+                CardItemCount = 1,
+                OwnedCardCount = 0,
+                SpiritShopGoodsId = 303,
+                AcquireHint = "百宝阁购「灵宠幻化符」解锁（120灵石）",
+            });
+            info.PetCosmetics.Add(new PetCosmeticEntry
+            {
+                ConfigId = 3,
+                Name = "月弦师",
+                VisualArtKey = "12-yuexianshi",
+                Owned = false,
+                CardItemId = 0,
+                CardItemCount = 0,
+                OwnedCardCount = 0,
+                SpiritShopGoodsId = 0,
+                AcquireHint = "赛季荣誉或活动专属解锁",
+            });
+
+            var petA = new WardrobePetTargetOption(7001, 12, 1012, "灵宠甲", "07-cangzhanglin", 0);
+            var rows = WardrobeCosmeticModels.BuildPetRows(info, petA, _ => false, isSpiritShopSupported: true);
+            Assert.That(rows.Count, Is.EqualTo(4));
+
+            var actHasVoucher = WardrobeCosmeticModels.ResolvePetPrimaryAction(rows[1], petA, canSubmit: true, busy: false, previewOnly: false);
+            Assert.That(actHasVoucher.Kind, Is.EqualTo(WardrobePrimaryActionKind.UnlockWithVoucher));
+            Assert.That(actHasVoucher.Interactable, Is.True);
+            Assert.That(actHasVoucher.Label, Does.Contain("解锁并穿戴"));
+
+            var actNeedShop = WardrobeCosmeticModels.ResolvePetPrimaryAction(rows[2], petA, canSubmit: true, busy: false, previewOnly: false);
+            Assert.That(actNeedShop.Kind, Is.EqualTo(WardrobePrimaryActionKind.OpenSpiritShopVoucher));
+            Assert.That(actNeedShop.Interactable, Is.True);
+            Assert.That(actNeedShop.SpiritShopGoodsId, Is.EqualTo(303u));
+
+            var actExclusive = WardrobeCosmeticModels.ResolvePetPrimaryAction(rows[3], petA, canSubmit: true, busy: false, previewOnly: false);
+            Assert.That(actExclusive.Kind, Is.EqualTo(WardrobePrimaryActionKind.NoneDisabled));
+            Assert.That(actExclusive.Interactable, Is.False);
+            Assert.That(actExclusive.DetailHint, Does.Contain("赛季荣誉"));
+        }
     }
 }

@@ -235,7 +235,9 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                         ? SeasonEconomyUiArt.LoadBossTrialV2Icon("icon_exposed")
                         : hud.BossMomentumStacks > 0u
                             ? SeasonEconomyUiArt.LoadBossTrialV2Icon("icon_momentum")
-                            : null;
+                            : hud.HasBossWeeklyAffix
+                                ? CoreLoopUiArt.LoadV2("icon_weekly_affix_" + hud.BossWeeklyAffix.ElementKey)
+                                : null;
                     float statusTextX = statusX + 14f;
                     if (statusIcon != null)
                     {

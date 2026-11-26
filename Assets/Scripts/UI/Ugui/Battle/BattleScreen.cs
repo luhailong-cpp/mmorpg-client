@@ -116,8 +116,19 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly TMP_Text _timerText;
         private float _safeTopOffsetDesign = -1f;
         public static readonly Rect SurrenderButtonRect = new Rect(40f, 576f, 220f, 56f);
+        public static readonly Rect SummonButtonRect = new Rect(40f, 652f, 220f, 64f);
+        public static readonly Rect SummonDrawerRect = new Rect(760f, 690f, 1040f, 270f);
         public static readonly Rect PrepPanelRect = new Rect(300f, 680f, 1960f, 370f);
         private readonly UiTextButton _surrenderButton;
+        private readonly UiTextButton _summonButton;
+        private readonly RectTransform _summonDrawer;
+        private readonly UiTextButton _summonConfirmButton;
+        private readonly PrepPetSlotView[] _summonPetSlots = new PrepPetSlotView[5];
+        private readonly ulong[] _summonPetIds = new ulong[5];
+        private ulong _summonSelectedPetId;
+        private ulong _summonTrackedBattleId;
+        private bool _summonEverAvailable;
+        private bool _summonRequestPending;
         private readonly RectTransform _surrenderConfirmStrip;
         private readonly TMP_Text _surrenderConfirmText;
         private readonly RectTransform _surrenderVoteStrip;
@@ -269,6 +280,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private eBattleOutcome _shownOutcome = eBattleOutcome.BattleOutcomeOngoing;
         // 论剑 V4 队内快捷战术标点浮条与连胜势旗标（多人同队对局可见，缺图时安全回退程序底色）
         private RectTransform _pingBarRoot;
+        private bool _hasPingBarArt;
         private readonly UiTextButton[] _pingKindButtons = new UiTextButton[4];
         private UiTextButton _pingMuteButton;
         private TMP_Text _pingArmedHint;
@@ -868,11 +880,12 @@ namespace MmorpgClient.UI.Ugui.Battle
             _spectatorPrepText.raycastTarget = false;
             _spectatorPrepBanner.gameObject.SetActive(false);
 
-            // 论剑 V4 队内快捷战术标点浮条（[40, 868, 420, 84]，预绑 RankedPlayV4/ping_bar_base + 4 枚图标，缺图安全回退）
+            // 论剑 V4 队内快捷战术标点浮条（[40, 868, 420, 84]，原尺寸 420×84 碧玉浮条 + 4 枚 96×96 无字图标，缺图安全回退）
             var pingBarBg = BattleUiWidgets.CreatePanel("TacticalPingBar", _hudRoot, 40f, 868f, 420f, 84f,
                 SeasonEconomyUiArt.BattleArenaPaper, raycastTarget: true);
             var pingBarSprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset("ping_bar_base");
-            if (pingBarSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(pingBarBg, pingBarSprite, SeasonEconomyUiArt.BattleArenaPaper);
+            _hasPingBarArt = pingBarSprite != null;
+            if (_hasPingBarArt) SeasonEconomyUiArt.ApplyFixedControlSprite(pingBarBg, pingBarSprite, SeasonEconomyUiArt.BattleArenaPaper);
             else BattleRoundCounter.ApplyNineSlice(pingBarBg, "panel_9slice");
             _pingBarRoot = pingBarBg.rectTransform;
             var pingKinds = new[]
@@ -885,23 +898,34 @@ namespace MmorpgClient.UI.Ugui.Battle
             for (int i = 0; i < pingKinds.Length; i++)
             {
                 var capturedKind = pingKinds[i];
+                float btnX = _hasPingBarArt ? (32f + i * 72f) : (12f + i * 78f);
+                float btnY = _hasPingBarArt ? 10f : 12f;
+                float btnW = _hasPingBarArt ? 68f : 72f;
+                float btnH = _hasPingBarArt ? 64f : 60f;
                 var btn = BattleUiWidgets.CreateTextButton($"PingBtn_{i}", _pingBarRoot,
-                    12f + i * 78f, 12f, 72f, 60f, RankedFormatting.PingDisplayName(capturedKind), 20f,
-                    SeasonEconomyUiArt.BattleArenaJade, QdaoUguiTheme.Cream);
+                    btnX, btnY, btnW, btnH, RankedFormatting.PingDisplayName(capturedKind), 20f,
+                    _hasPingBarArt ? Color.clear : SeasonEconomyUiArt.BattleArenaJade, QdaoUguiTheme.Cream);
                 var iconSprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset(RankedFormatting.PingAssetKey(capturedKind));
                 if (iconSprite != null)
                 {
-                    var iconImg = QdaoUguiFactory.CreateImage("Icon", btn.Rect, 20f, 4f, 32f, 32f, iconSprite, false);
+                    var iconImg = QdaoUguiFactory.CreateImage("Icon", btn.Rect, (btnW - 42f) * 0.5f, 2f, 42f, 42f, iconSprite, false);
                     iconImg.preserveAspect = true;
-                    btn.Label.rectTransform.anchoredPosition = new Vector2(0f, -34f);
-                    btn.Label.rectTransform.sizeDelta = new Vector2(72f, 24f);
-                    btn.Label.fontSize = 15f;
+                    iconImg.color = Color.white;
+                    btn.Label.rectTransform.anchoredPosition = new Vector2(0f, -44f);
+                    btn.Label.rectTransform.sizeDelta = new Vector2(btnW, 20f);
+                    btn.Label.fontSize = 14f;
+                    btn.Label.fontStyle = FontStyles.Bold;
                 }
                 btn.Button.onClick.AddListener(() => OnPingButtonClicked(capturedKind));
                 _pingKindButtons[i] = btn;
             }
             _pingMuteButton = BattleUiWidgets.CreateTextButton("PingMuteBtn", _pingBarRoot,
-                332f, 12f, 76f, 60f, "屏蔽", 18f, SeasonEconomyUiArt.BattleArenaDisabled, QdaoUguiTheme.Cream);
+                _hasPingBarArt ? 320f : 332f, _hasPingBarArt ? 14f : 12f,
+                _hasPingBarArt ? 66f : 76f, _hasPingBarArt ? 56f : 60f,
+                "屏蔽", _hasPingBarArt ? 16f : 18f,
+                _hasPingBarArt ? SeasonEconomyUiArt.BattleArenaPaper : SeasonEconomyUiArt.BattleArenaDisabled,
+                _hasPingBarArt ? SeasonEconomyUiArt.BattleArenaInk : QdaoUguiTheme.Cream);
+            _pingMuteButton.Label.fontStyle = FontStyles.Bold;
             _pingMuteButton.Button.onClick.AddListener(OnPingMuteClicked);
             _pingArmedHint = QdaoUguiFactory.CreateText("PingArmedHint", _pingBarRoot, 0f, -26f, 420f, 24f,
                 string.Empty, 17f, SeasonEconomyUiArt.BattleArenaAmber, TextAlignmentOptions.MidlineLeft);
@@ -910,16 +934,19 @@ namespace MmorpgClient.UI.Ugui.Battle
             _pingArmedHint.gameObject.SetActive(false);
             _pingBarRoot.gameObject.SetActive(false);
 
-            // 论剑 V4 连胜势旗标（>=3 连胜时在战前变阵与开局展示，预绑 RankedPlayV4/streak_banner_base）
-            var streakBg = BattleUiWidgets.CreatePanel("WinStreakBanner", _hudRoot, 190f, 96f, 320f, 64f,
+            // 论剑 V4 连胜势旗标（原尺寸 320×64，置于记录键右侧、倒计时环左侧，避让顶栏与胶囊安全区）
+            var streakBg = BattleUiWidgets.CreatePanel("WinStreakBanner", _hudRoot, 548f, 24f, 320f, 64f,
                 SeasonEconomyUiArt.BattleArenaAmber, raycastTarget: false);
             var streakSprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset("streak_banner_base");
             if (streakSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(streakBg, streakSprite, SeasonEconomyUiArt.BattleArenaAmber);
             else BattleRoundCounter.ApplyNineSlice(streakBg, "panel_9slice");
             _winStreakBanner = streakBg.rectTransform;
             _winStreakBannerText = QdaoUguiFactory.CreateText("WinStreakBannerText", _winStreakBanner,
-                14f, 0f, 292f, 64f, string.Empty, 22f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
+                16f, 0f, 288f, 64f, string.Empty, 22f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
             _winStreakBannerText.fontStyle = FontStyles.Bold;
+            _winStreakBannerText.enableAutoSizing = true;
+            _winStreakBannerText.fontSizeMin = 17f;
+            _winStreakBannerText.fontSizeMax = 22f;
             _winStreakBannerText.raycastTarget = false;
             _winStreakBanner.gameObject.SetActive(false);
 
@@ -1513,6 +1540,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _phaseText.rectTransform.anchoredPosition = new Vector2(40f, -(98f + offset));
             if (_spectatorPrepBanner != null)
                 _spectatorPrepBanner.anchoredPosition = new Vector2(920f, -(122f + offset));
+            if (_winStreakBanner != null)
+                _winStreakBanner.anchoredPosition = new Vector2(548f, -(24f + offset));
             _pendingText.rectTransform.anchoredPosition = new Vector2(PendingTextRect.x,
                 -(PendingTextRect.y + offset));
             float partyOffset = offset;
@@ -1810,7 +1839,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 if (index >= rowCount) continue;
                 var buff = summary.Buffs.Count == 0 ? null : summary.Buffs[index];
                 row.Source.text = buff?.SourceName ?? "当前无生效状态";
-                row.Rounds.text = buff == null ? string.Empty : buff.RemainRounds > 0 ? $"{buff.RemainRounds} 回合" : "—";
+                row.Rounds.text = buff == null ? string.Empty : FormatBuffDuration(buff);
                 row.Effect.text = buff == null ? string.Empty : FormatBuffEffects(buff);
                 float height = Mathf.Max(rowHeight, Mathf.Ceil(row.Effect.GetPreferredValues(row.Effect.text, 198f, 0f).y) + 6f);
                 row.Root.anchoredPosition = new Vector2(0f, -tableHeight);
@@ -1824,10 +1853,33 @@ namespace MmorpgClient.UI.Ugui.Battle
                 Mathf.Max(_statusScroll.viewport.rect.height, tableHeight));
         }
 
-        private static string FormatBuffEffects(BattleUnitBuffDetail buff)
+        private const uint BattleOpGrowingAura = 25u;
+
+        private static string GrowingModifierLabel(uint modifierStat) => modifierStat switch
+        {
+            5u => "伤害",
+            17u => "施盾容量",
+            18u => "物理直伤",
+            19u => "法术直伤",
+            20u => "防御",
+            25u => "直接伤害",
+            26u => "无视防御",
+            27u => "持续伤害",
+            28u => "全控抵抗",
+            _ => string.Empty,
+        };
+
+        private static string FormatBuffDuration(BattleUnitBuffDetail buff, System.Func<uint, BuffTable> resolveBuff = null)
+        {
+            if (buff.RemainRounds > 0) return $"{buff.RemainRounds} 回合";
+            var row = (resolveBuff ?? BuffTableManager.Instance.FindById)(buff.BuffTableId);
+            return row != null && row.InfiniteDuration != 0 ? "至战斗结束" : "—";
+        }
+
+        private static string FormatBuffEffects(BattleUnitBuffDetail buff, System.Func<uint, BuffTable> resolveBuff = null)
         {
             var fields = new List<string>(4);
-            var row = BuffTableManager.Instance.FindById(buff.BuffTableId);
+            var row = (resolveBuff ?? BuffTableManager.Instance.FindById)(buff.BuffTableId);
             uint stackLimit = row?.StackLimit ?? 0u;
             if (buff.IsShield) fields.Add($"护盾余量 {buff.RemainingCapacity:N0}");
             if (buff.RemainingHits > 0) fields.Add($"抵挡余{buff.RemainingHits}次");
@@ -1836,11 +1888,32 @@ namespace MmorpgClient.UI.Ugui.Battle
                 bool isReviveMark = row != null && row.Tag.TryGetValue("Revive", out bool revive) && revive;
                 fields.Add(isReviveMark ? $"回生印余{buff.RemainingTicks}次" : $"持续效果余{buff.RemainingTicks}次");
             }
-            if (buff.Stacks > 0) fields.Add(stackLimit > 1 ? $"×{buff.Stacks}/{stackLimit}层" : $"×{buff.Stacks}层");
+            if (row != null && row.BattleOp == BattleOpGrowingAura)
+            {
+                // 成长光环严格使用权威 stacks（未触发为 0 层，绝不把 layer=1 误显为 1 层）。
+                uint stacks = buff.RawStacks;
+                if (stacks == 0u)
+                {
+                    fields.Add(stackLimit > 1 ? $"0/{stackLimit}层（待触发）" : "0层（待触发）");
+                }
+                else
+                {
+                    fields.Add(stackLimit > 1 ? $"×{stacks}/{stackLimit}层" : $"×{stacks}层");
+                    int pct = (int)System.Math.Round(row.Ratio * stacks * 100.0, System.MidpointRounding.AwayFromZero);
+                    string statLabel = GrowingModifierLabel(row.ModifierStat);
+                    if (pct > 0 && !string.IsNullOrEmpty(statLabel))
+                        fields.Add($"{statLabel}+{pct}%");
+                }
+            }
+            else if (buff.Stacks > 0)
+            {
+                fields.Add(stackLimit > 1 ? $"×{buff.Stacks}/{stackLimit}层" : $"×{buff.Stacks}层");
+            }
             return string.Join(" · ", fields);
         }
 
-        public static string FormatUnitStatusBody(BattleActorState actor, BattleUnitStatusSummary summary)
+        public static string FormatUnitStatusBody(BattleActorState actor, BattleUnitStatusSummary summary,
+            System.Func<uint, BuffTable> resolveBuff = null)
         {
             if (actor == null || summary == null) return string.Empty;
             var sb = new System.Text.StringBuilder(192);
@@ -1859,9 +1932,17 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 var b = summary.Buffs[i];
                 sb.Append($"\n• {b.SourceName}");
-                string effects = FormatBuffEffects(b);
+                string effects = FormatBuffEffects(b, resolveBuff);
                 if (!string.IsNullOrEmpty(effects)) sb.Append($"  {effects}");
-                if (b.RemainRounds > 0) sb.Append($"  剩{b.RemainRounds}回合");
+                if (b.RemainRounds > 0)
+                {
+                    sb.Append($"  剩{b.RemainRounds}回合");
+                }
+                else
+                {
+                    var row = (resolveBuff ?? BuffTableManager.Instance.FindById)(b.BuffTableId);
+                    if (row != null && row.InfiniteDuration != 0) sb.Append("  至战斗结束");
+                }
             }
             return sb.ToString();
         }
@@ -2150,6 +2231,28 @@ namespace MmorpgClient.UI.Ugui.Battle
             var order = BattleHudLogic.ResolveActionOrder(_state?.Actors, plan.ActionOrder);
             _orderBar.SetOrder(order, ResolveTile);
             _logPanel.Append($"—— 第 {result.RoundIndex} 回合 ——");
+            for (int i = 0; i < result.Events.Count; i++)
+            {
+                var ev = result.Events[i];
+                if (ev.EventType != eBattleEventType.BattleEventSummonPet) continue;
+                string summonPetName = null;
+                if (result.State != null)
+                {
+                    for (int a = 0; a < result.State.Actors.Count; a++)
+                    {
+                        if (result.State.Actors[a].ActorId == ev.TargetId && !string.IsNullOrEmpty(result.State.Actors[a].Name))
+                        {
+                            summonPetName = result.State.Actors[a].Name;
+                            break;
+                        }
+                    }
+                }
+                if (string.IsNullOrEmpty(summonPetName))
+                {
+                    summonPetName = "备选灵宠";
+                }
+                _logPanel.Append($"{ResolveName(ev.SourceId)} 临阵唤灵，唤出 {summonPetName}！");
+            }
 
             if (fixedReplaySpeed.HasValue)
             {
@@ -2469,6 +2572,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _commandRing.SetAutoKeysInteractable(true);
             RefreshQuickParryUi(channelReady);
             RefreshSurrenderUi();
+            RefreshSummonUi();
 
             if (me == null) SetHint(string.Empty);
             else if (me.IsDead) SetHint("你已阵亡,等待战斗结束…");
@@ -2533,7 +2637,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                         myTeamPlayers++;
                 }
             }
-            bool show = !IsReadOnly && _state != null && _state.Outcome == eBattleOutcome.BattleOutcomeOngoing && myTeamPlayers >= 2;
+            bool prepBlocking = _prepState != null && _prepState.Active;
+            bool show = !IsReadOnly && !prepBlocking && _state != null && _state.Outcome == eBattleOutcome.BattleOutcomeOngoing && myTeamPlayers >= 2;
             _pingBarRoot.gameObject.SetActive(show);
             if (!show)
             {
@@ -2551,17 +2656,20 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 if (_pingKindButtons[i] == null) continue;
                 bool armed = _armedPingKind == kinds[i];
-                _pingKindButtons[i].Plate.color = armed
-                    ? SeasonEconomyUiArt.BattleArenaVermilion
-                    : SeasonEconomyUiArt.BattleArenaJade;
+                _pingKindButtons[i].Plate.color = _hasPingBarArt
+                    ? (armed ? new Color(0.85f, 0.56f, 0.16f, 0.45f) : Color.clear)
+                    : (armed ? SeasonEconomyUiArt.BattleArenaVermilion : SeasonEconomyUiArt.BattleArenaJade);
             }
             bool muted = _owner?.Client?.TeamPingsMuted == true;
             if (_pingMuteButton != null)
             {
                 _pingMuteButton.Label.text = muted ? "已静音" : "屏蔽";
+                _pingMuteButton.Label.color = (_hasPingBarArt && !muted)
+                    ? SeasonEconomyUiArt.BattleArenaInk
+                    : QdaoUguiTheme.Cream;
                 _pingMuteButton.Plate.color = muted
                     ? SeasonEconomyUiArt.BattleArenaAmber
-                    : SeasonEconomyUiArt.BattleArenaDisabled;
+                    : (_hasPingBarArt ? SeasonEconomyUiArt.BattleArenaPaper : SeasonEconomyUiArt.BattleArenaDisabled);
             }
             if (_pingArmedHint != null)
             {
@@ -3193,6 +3301,187 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
             if (!canSurrender && _surrenderConfirmStrip != null)
                 _surrenderConfirmStrip.gameObject.SetActive(false);
+        }
+
+        private void RefreshSummonUi()
+        {
+            if (_summonButton == null) return;
+            ulong battleId = _state?.BattleId ?? 0UL;
+            if (battleId != _summonTrackedBattleId)
+            {
+                _summonTrackedBattleId = battleId;
+                _summonEverAvailable = false;
+                _summonSelectedPetId = 0UL;
+                _summonRequestPending = false;
+                if (_summonDrawer != null) _summonDrawer.gameObject.SetActive(false);
+            }
+
+            bool inPrep = _prepState != null && _prepState.Active;
+            if (IsReadOnly || _state == null || _state.SummonPetUnlockRound == 0u || inPrep
+                || _phase == BattlePhase.Ended || _phase == BattlePhase.None)
+            {
+                _summonButton.SetVisible(false);
+                if (_summonDrawer != null) _summonDrawer.gameObject.SetActive(false);
+                return;
+            }
+
+            if (_state.SelfSummonPetRemaining > 0u && _state.SelfStandbyPets.Count > 0)
+                _summonEverAvailable = true;
+
+            if (!_summonEverAvailable)
+            {
+                _summonButton.SetVisible(false);
+                if (_summonDrawer != null) _summonDrawer.gameObject.SetActive(false);
+                return;
+            }
+
+            var client = _owner?.Client;
+            var myHero = FindActor(_myId);
+            bool myHeroOperable = myHero != null && !myHero.IsDead && !myHero.Fled && !myHero.IsAuto
+                && !_submittedActors.Contains(_myId) && !_playing && _phase == BattlePhase.WaitingAction;
+            bool remaining = _state.SelfSummonPetRemaining > 0u && _state.SelfStandbyPets.Count > 0;
+            bool unlocked = _state.RoundIndex >= _state.SummonPetUnlockRound;
+            bool canSummon = client != null && client.CanSummonStandbyPetNow && myHeroOperable && !_summonRequestPending;
+
+            _summonButton.SetVisible(true);
+            var btnSprite = SeasonEconomyUiArt.LoadRankedV4TacticalControl(
+                canSummon ? "summon-btn-normal" : "summon-btn-disabled");
+            if (btnSprite != null)
+                SeasonEconomyUiArt.ApplyFixedControlSprite(_summonButton.Plate, btnSprite,
+                    canSummon ? SeasonEconomyUiArt.BattleArenaPaper : SeasonEconomyUiArt.BattleArenaDisabled);
+
+            if (!remaining)
+                _summonButton.SetText("唤灵已用 0/1");
+            else if (!unlocked)
+                _summonButton.SetText($"R{_state.SummonPetUnlockRound} 解锁唤灵");
+            else if (_summonRequestPending)
+                _summonButton.SetText("正在唤灵…");
+            else
+                _summonButton.SetText("临阵唤灵 1/1");
+
+            _summonButton.Label.color = canSummon
+                ? SeasonEconomyUiArt.BattleArenaInk
+                : QdaoUguiTheme.Html("#F2EFE6");
+            _summonButton.SetInteractable(canSummon);
+
+            if (!canSummon && _summonDrawer != null)
+                _summonDrawer.gameObject.SetActive(false);
+            else if (_summonDrawer != null && _summonDrawer.gameObject.activeSelf)
+                RefreshSummonDrawerCards();
+        }
+
+        private void OnSummonButtonClicked()
+        {
+            if (_summonDrawer == null || _state == null || _owner?.Client == null || !_owner.Client.CanSummonStandbyPetNow)
+                return;
+            bool show = !_summonDrawer.gameObject.activeSelf;
+            if (show)
+            {
+                _skillPanel.gameObject.SetActive(false);
+                _itemPanel.gameObject.SetActive(false);
+                if (_surrenderConfirmStrip != null) _surrenderConfirmStrip.gameObject.SetActive(false);
+                if (_summonSelectedPetId == 0UL && _state.SelfStandbyPets.Count > 0)
+                    _summonSelectedPetId = _state.SelfStandbyPets[0].PetId;
+                RefreshSummonDrawerCards();
+            }
+            _summonDrawer.gameObject.SetActive(show);
+        }
+
+        private void OnSummonPetCardClicked(int slotIndex)
+        {
+            if (slotIndex < 0 || slotIndex >= _summonPetIds.Length) return;
+            ulong petId = _summonPetIds[slotIndex];
+            if (petId == 0UL) return;
+            _summonSelectedPetId = petId;
+            RefreshSummonDrawerCards();
+        }
+
+        private void RefreshSummonDrawerCards()
+        {
+            if (_state == null) return;
+            var normalSprite = SeasonEconomyUiArt.LoadRankedV4TacticalControl("summon-pet-card-normal");
+            var selectedSprite = SeasonEconomyUiArt.LoadRankedV4TacticalControl("summon-pet-card-selected");
+            Color selName = QdaoUguiTheme.Html("#FFF4DC");
+            Color selStats = QdaoUguiTheme.Html("#FFF1CD");
+            Color normName = QdaoUguiTheme.Html("#173522");
+            Color normStats = QdaoUguiTheme.Html("#765C3E");
+
+            bool selectedStillValid = false;
+            int count = Mathf.Min(_summonPetSlots.Length, _state.SelfStandbyPets.Count);
+            for (int i = 0; i < count; i++)
+            {
+                if (_state.SelfStandbyPets[i].PetId == _summonSelectedPetId)
+                {
+                    selectedStillValid = true;
+                    break;
+                }
+            }
+            if (!selectedStillValid)
+                _summonSelectedPetId = count > 0 ? _state.SelfStandbyPets[0].PetId : 0UL;
+
+            for (int i = 0; i < _summonPetSlots.Length; i++)
+            {
+                var slot = _summonPetSlots[i];
+                if (i < count)
+                {
+                    var opt = _state.SelfStandbyPets[i];
+                    _summonPetIds[i] = opt.PetId;
+                    bool selected = opt.PetId == _summonSelectedPetId;
+                    SeasonEconomyUiArt.ApplyFixedControlSprite(slot.Button.Plate,
+                        selected ? selectedSprite : normalSprite,
+                        selected ? SeasonEconomyUiArt.BattleArenaJade : SeasonEconomyUiArt.BattleArenaPaper);
+                    var petEntry = QdaoPetCatalog.Resolve(opt.PetTableId);
+                    var portrait = petEntry != null ? QdaoPetCatalog.LoadPortrait(petEntry.id) : null;
+                    slot.Portrait.sprite = portrait;
+                    slot.Portrait.gameObject.SetActive(portrait != null);
+                    slot.FallbackPlaque.gameObject.SetActive(portrait == null);
+                    slot.NameText.text = string.IsNullOrEmpty(opt.PetName) ? $"灵宠 #{opt.PetTableId}" : opt.PetName;
+                    slot.NameText.color = selected ? selName : normName;
+                    slot.StatsText.text = $"Lv.{opt.Level} · 速{opt.Speed}";
+                    slot.StatsText.color = selected ? selStats : normStats;
+                    slot.Button.SetInteractable(!_summonRequestPending);
+                    slot.Button.SetVisible(true);
+                }
+                else
+                {
+                    _summonPetIds[i] = 0UL;
+                    slot.Button.SetVisible(false);
+                }
+            }
+            if (_summonConfirmButton != null)
+                _summonConfirmButton.SetInteractable(_summonSelectedPetId != 0UL && !_summonRequestPending);
+        }
+
+        private void OnConfirmSummonPetClicked()
+        {
+            var client = _owner?.Client;
+            if (client == null || _state == null || _summonSelectedPetId == 0UL || _summonRequestPending)
+                return;
+            ulong battleId = _state.BattleId;
+            uint round = _lastRound;
+            ulong heroId = _myId;
+            ulong chosenPetId = _summonSelectedPetId;
+            _summonRequestPending = true;
+            _submittedActors.Add(heroId);
+            if (_summonDrawer != null) _summonDrawer.gameObject.SetActive(false);
+
+            if (!client.SubmitSummonPet(chosenPetId, success =>
+            {
+                if (_state?.BattleId != battleId || _lastRound != round) return;
+                _summonRequestPending = false;
+                if (!success) _submittedActors.Remove(heroId);
+                SelectNextActorIfNeeded();
+                RefreshActionBar();
+            }))
+            {
+                _summonRequestPending = false;
+                _submittedActors.Remove(heroId);
+                RefreshActionBar();
+                return;
+            }
+            ExitTargetMode();
+            SelectNextActorIfNeeded();
+            RefreshActionBar();
         }
 
         private void OnSurrenderClicked()

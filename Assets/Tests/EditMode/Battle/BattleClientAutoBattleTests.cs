@@ -661,5 +661,62 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_client.CurrentTeamPings, Is.Empty);
             Assert.That(pingEventCount, Is.GreaterThanOrEqualTo(4));
         }
+
+        [Test]
+        public void RankedV5_MidBattleSummonPet_EligibilityValidationAndSubmitFlow()
+        {
+            // 1. 第 1 回合未到解锁回合(2)，不可唤灵
+            var r1State = new BattleStateS2C
+            {
+                BattleId = TheBattleId,
+                RoundIndex = 1u,
+                Outcome = eBattleOutcome.BattleOutcomeOngoing,
+                SummonPetUnlockRound = 2u,
+                SelfSummonPetRemaining = 1u,
+            };
+            r1State.Actors.Add(new BattleActorState { ActorId = MyId, ActorType = eBattleActorType.BattleActorTypePlayer, TeamIndex = 0u });
+            r1State.Actors.Add(new BattleActorState { ActorId = EnemyId, ActorType = eBattleActorType.BattleActorTypePlayer, TeamIndex = 1u });
+            r1State.PendingActorIds.Add(MyId);
+            r1State.SelfStandbyPets.Add(new BattlePrepPetOption { PetId = 90002UL, PetTableId = 2u, PetName = "石灵", Level = 30u, Speed = 140UL });
+            _net.PushNotify(MessageIds.NotifyBattleStart, new BattleStartS2C { BattleId = TheBattleId, State = r1State });
+
+            Assert.That(_client.SummonPetUnlockRound, Is.EqualTo(2u));
+            Assert.That(_client.SelfSummonPetRemaining, Is.EqualTo(1u));
+            Assert.That(_client.SelfStandbyPets, Has.Count.EqualTo(1));
+            Assert.That(_client.CanSummonStandbyPetNow, Is.False);
+            Assert.That(_client.SubmitSummonPet(90002UL), Is.False);
+            Assert.That(_net.CallsOf(MessageIds.SubmitBattleAction), Is.Empty);
+
+            // 2. 推进至第 2 回合：播片期不可唤灵，播完 AckTurnPlayed 后解锁；非法 petId 本地拦下，合法 petId 经 SubmitBattleAction 上行
+            var r2State = r1State.Clone();
+            r2State.RoundIndex = 2u;
+            _net.PushNotify(MessageIds.NotifyTurnResult, new TurnResultS2C { BattleId = TheBattleId, RoundIndex = 1u, State = r2State });
+            Assert.That(_client.CanSummonStandbyPetNow, Is.False);
+            _client.AckTurnPlayed();
+            Assert.That(_client.CanSummonStandbyPetNow, Is.True);
+            Assert.That(_client.SubmitSummonPet(99999UL), Is.False);
+            Assert.That(_net.CallsOf(MessageIds.SubmitBattleAction), Is.Empty);
+
+            bool? submitOk = null;
+            Assert.That(_client.SubmitSummonPet(90002UL, ok => submitOk = ok), Is.True);
+            var calls = _net.CallsOf(MessageIds.SubmitBattleAction);
+            Assert.That(calls, Has.Count.EqualTo(1));
+            var sent = (SubmitBattleActionRequest)calls[0].Request;
+            Assert.That(sent.ActorId, Is.EqualTo(MyId));
+            Assert.That(sent.Action.ActionType, Is.EqualTo(eBattleActionType.BattleActionSummonPet));
+            Assert.That(sent.Action.SummonPetId, Is.EqualTo(90002UL));
+            calls[0].Respond(new SubmitBattleActionResponse());
+            Assert.That(submitOk, Is.True);
+
+            // 3. 唤灵生效后下回合剩余次数为 0 -> 播完后亦保持不可再唤
+            var r3State = r2State.Clone();
+            r3State.RoundIndex = 3u;
+            r3State.SelfSummonPetRemaining = 0u;
+            r3State.SelfStandbyPets.Clear();
+            _net.PushNotify(MessageIds.NotifyTurnResult, new TurnResultS2C { BattleId = TheBattleId, RoundIndex = 2u, State = r3State });
+            _client.AckTurnPlayed();
+            Assert.That(_client.SelfSummonPetRemaining, Is.EqualTo(0u));
+            Assert.That(_client.CanSummonStandbyPetNow, Is.False);
+        }
     }
 }

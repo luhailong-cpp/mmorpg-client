@@ -403,5 +403,57 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(disconn.RedeemButtonEnabled, Is.False);
             Assert.That(disconn.PermanentLitSeals, Is.EqualTo(18u));
         }
+
+        [Test]
+        public void TrialJournalV2AndEquipLoadoutV1Sprites_AllLoadCleanly()
+        {
+            var tjExpected = new (string key, UnityEngine.Vector4 border)[]
+            {
+                ("main_frame", new UnityEngine.Vector4(180f, 160f, 180f, 150f)),
+                ("title_plate", UnityEngine.Vector4.zero),
+                ("close_btn", UnityEngine.Vector4.zero),
+                ("rail_tab_idle", new UnityEngine.Vector4(18f, 18f, 18f, 18f)),
+                ("rail_tab_selected", new UnityEngine.Vector4(18f, 18f, 18f, 18f)),
+                ("metric_card", new UnityEngine.Vector4(20f, 20f, 20f, 20f)),
+                ("section_plate", new UnityEngine.Vector4(64f, 0f, 64f, 0f)),
+                ("entry_row_idle", new UnityEngine.Vector4(22f, 22f, 22f, 22f)),
+                ("entry_row_selected", new UnityEngine.Vector4(24f, 24f, 24f, 24f)),
+                ("portrait_frame", UnityEngine.Vector4.zero),
+                ("seal_medallion_dim", UnityEngine.Vector4.zero),
+                ("seal_medallion_lit", UnityEngine.Vector4.zero),
+                ("artifact_tray", new UnityEngine.Vector4(20f, 20f, 20f, 20f)),
+                ("artifact_slot_idle", new UnityEngine.Vector4(14f, 14f, 14f, 14f)),
+                ("artifact_slot_selected", new UnityEngine.Vector4(14f, 14f, 14f, 14f)),
+                ("grandmaster_pedestal", UnityEngine.Vector4.zero),
+                ("btn_primary", new UnityEngine.Vector4(44f, 16f, 44f, 16f)),
+                ("btn_secondary", new UnityEngine.Vector4(40f, 16f, 40f, 16f)),
+                ("modal_panel", new UnityEngine.Vector4(28f, 28f, 28f, 28f)),
+                ("battle_result_hint_bar", new UnityEngine.Vector4(22f, 22f, 22f, 22f)),
+            };
+            foreach (var (key, border) in tjExpected)
+            {
+                var sp = UnityEngine.Resources.Load<UnityEngine.Sprite>("UI/Ugui/TrialJournalV2/" + key);
+                Assert.That(sp, Is.Not.Null, "missing TrialJournalV2 sprite: " + key);
+                Assert.That(sp.border, Is.EqualTo(border), "unexpected border for TrialJournalV2/" + key);
+            }
+
+            var elExpected = new (string key, UnityEngine.Vector4 border)[]
+            {
+                ("panel_equip_loadout_main", UnityEngine.Vector4.zero),
+                ("panel_equip_loadout_unlock", UnityEngine.Vector4.zero),
+                ("icon_loadout_expand_talisman", UnityEngine.Vector4.zero),
+                ("tab_loadout_active", new UnityEngine.Vector4(32f, 0f, 32f, 0f)),
+                ("tab_loadout_unlocked", new UnityEngine.Vector4(32f, 0f, 32f, 0f)),
+                ("tab_loadout_locked", new UnityEngine.Vector4(32f, 0f, 32f, 0f)),
+                ("badge_loadout_in_use", new UnityEngine.Vector4(16f, 0f, 16f, 0f)),
+                ("badge_loadout_slot_missing", UnityEngine.Vector4.zero),
+            };
+            foreach (var (key, border) in elExpected)
+            {
+                var sp = UnityEngine.Resources.Load<UnityEngine.Sprite>("UI/Ugui/EquipLoadoutV1/" + key);
+                Assert.That(sp, Is.Not.Null, "missing EquipLoadoutV1 sprite: " + key);
+                Assert.That(sp.border, Is.EqualTo(border), "unexpected border for EquipLoadoutV1/" + key);
+            }
+        }
     }
 }

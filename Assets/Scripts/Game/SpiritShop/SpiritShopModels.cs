@@ -168,6 +168,8 @@ namespace MmorpgClient.Game.SpiritShop
         public const uint GoodsCelestialInk = 202;
         public const uint GoodsAppearanceCard = 301;
         public const uint GoodsRenameCard = 302;
+        public const uint GoodsPetMorphCard = 303;
+        public const uint GoodsSkillVfxCard = 304;
 
         public const uint ItemCraftMaterial = 3001;
         public const uint ItemRefineStone = 3002;
@@ -175,6 +177,8 @@ namespace MmorpgClient.Game.SpiritShop
         public const uint ItemAppearanceCard = 3402;
         public const uint ItemStarGuaranteeCharm = 3405;
         public const uint ItemCelestialInk = 3408;
+        public const uint ItemPetMorphCard = 3411;
+        public const uint ItemSkillVfxCard = 3412;
 
         public const uint StarterLimitGroupId = 1;
         public const uint MaxBuyPerRequestHardCap = 99;
@@ -339,6 +343,8 @@ namespace MmorpgClient.Game.SpiritShop
                 ItemAppearanceCard => "角色形象卡",
                 ItemStarGuaranteeCharm => "定星保底符",
                 ItemCelestialInk => "天工秘墨",
+                ItemPetMorphCard => "灵宠幻化符",
+                ItemSkillVfxCard => "技能特效卷",
                 _ => $"道具#{itemConfigId}",
             };
         }

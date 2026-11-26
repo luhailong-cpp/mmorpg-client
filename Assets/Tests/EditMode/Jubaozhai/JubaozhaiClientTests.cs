@@ -234,7 +234,7 @@ namespace MmorpgClient.Tests.EditMode.Jubaozhai
         [Test]
         public void UnknownTipFallsBackToNumberedMessage()
         {
-            Assert.That(JubaozhaiClient.DescribeTip(99999), Does.Contain("聚宝斋暂未完成请求"));
+            Assert.That(JubaozhaiClient.DescribeTip(99999), Does.Contain("万象阁暂未完成请求"));
             Assert.That(JubaozhaiClient.DescribeTip(99999), Does.Contain("99999"));
             Assert.That(JubaozhaiClient.DescribeTip((uint)trade_error.KTradeFavoriteLimitReached), Does.Contain("上限"));
         }

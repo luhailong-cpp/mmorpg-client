@@ -271,7 +271,7 @@ namespace MmorpgClient.UI.Ugui.Guild
                 string heading = _client.FeatureUnavailable ? "全天帮战服务待开启" : _client.OverviewLoading ? "正在同步帮会争锋战况…" : "暂无帮战战况快照";
                 string desc = !string.IsNullOrEmpty(_client.LastError)
                     ? _client.LastError
-                    : "无匹配池 0 秒直打 · 八仙岛 / 碧渊水宫 / 月汐湾三灵脉争夺 · 四档周战功宝箱与江湖追杀令。";
+                    : "无匹配池 0 秒直打 · 八景岛 / 碧渊水宫 / 月汐湾三灵脉争夺 · 四档周战功宝箱与江湖追杀令。";
                 Label(_body, "GuildWarEmptyTitle", heading, 510f, 164f, 780f, 44f, 30f, TitleJade);
                 Label(_body, "GuildWarEmptyDesc", desc, 510f, 220f, 780f, 108f, 22f, BodyInk, wrap: true);
                 ActionButton(_body, "GuildWarEmptyRetry", "重新同步战况", 510f, 344f, 240f, 56f,
@@ -562,7 +562,7 @@ namespace MmorpgClient.UI.Ugui.Guild
                 Card(_body, "BountyRow_" + i, 0f, ry, 1636f, 114f);
                 Art(_body, "BountyBadge_" + i, "badge_bounty_target", 18f, ry + 17f, 80f, 80f, true);
                 string locText = !b.TargetOnline ? "暂未露面"
-                    : b.TargetInSafeZone ? "藏身天墉城安全区"
+                    : b.TargetInSafeZone ? "藏身归元城安全区"
                     : b.LastSceneConfigId != 0 ? $"{GuildWarText.SceneName(b.LastSceneConfigId)} · {b.LastChannelNo}线" : "点击右侧追踪行踪";
                 Label(_body, "BountyTitle_" + i,
                     $"[{b.TargetGuildName}] {b.TargetName} · {GuildWarText.BountyStatusLabel(b.Status)} · 赏金 {b.RewardSilver} 银两（发布：{b.IssuerGuildName}）",
@@ -697,13 +697,13 @@ namespace MmorpgClient.UI.Ugui.Guild
             Art(_body, "FieldHudTagBg", "tag_exclusive_bg", 356f, 22f, 180f, 46f);
             Label(_body, "FieldHudTagText", "帮战限定", 364f, 24f, 164f, 42f, 21f, LightText, align: TextAlignmentOptions.Center);
             Label(_body, "FieldHudRules",
-                "野外三图（八仙岛 / 碧渊水宫 / 月汐湾）路上任意异帮点选直打；天墉城永久安全区；第 12 回合起触发「决胜煞气」防拖局。",
+                "野外三图（八景岛 / 碧渊水宫 / 月汐湾）路上任意异帮点选直打；归元城永久安全区；第 12 回合起触发「决胜煞气」防拖局。",
                 356f, 76f, 1240f, 54f, 21f, BodyInk, wrap: true);
 
             var targets = _client.FieldTargets;
             if (targets == null || targets.Count == 0)
             {
-                Label(_body, "NoFieldTargets", "当前视野内暂无扫描到的异帮玩家（进入八仙岛 / 碧渊水宫 / 月汐湾后由场景自动巡检同步）。",
+                Label(_body, "NoFieldTargets", "当前视野内暂无扫描到的异帮玩家（进入八景岛 / 碧渊水宫 / 月汐湾后由场景自动巡检同步）。",
                     24f, 240f, 1580f, 52f, 23f, LabelBrown, align: TextAlignmentOptions.Center);
                 return;
             }

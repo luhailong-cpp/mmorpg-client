@@ -71,7 +71,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _root.gameObject.AddComponent<GameplayInputBlocker>();
             _frame = QdaoUguiFactory.CreateRect("CommerceFrame", _root, 180, 60, 2200, 960);
             GameplayUiArt.Art(_frame, "main_frame", 0, 0, 2200, 960);
-            GameplayUiArt.Text(_frame, "聚宝斋 · 全球交易", 36, 16, 1100, 60, 36);
+            GameplayUiArt.Text(_frame, "万象阁 · 全球交易", 36, 16, 1100, 60, 36);
             GameplayUiArt.Button(_frame, "关闭", 1990, 20, 160, 58, Hide);
             string[] tabs = { "官方商城", "寄售", "竞拍", "材料市场", "我的订单", "上架与交易", "珍宝阁(RMB)" };
             for (int i = 0; i < tabs.Length; i++)

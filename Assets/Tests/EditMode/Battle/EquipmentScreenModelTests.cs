@@ -504,5 +504,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
             });
             Assert.That(summary, Is.EqualTo("银两 300"));
         }
+
+        [Test]
+        public void IconKeyMapsReforgeSandAndBoundArtifactVoucherToFormalIcons()
+        {
+            Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3403 }), Is.EqualTo("UI/Icons/item_reforge_sand"));
+            Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3404 }), Is.EqualTo("UI/Icons/item_bound_artifact_voucher"));
+            Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3405 }), Is.EqualTo("UI/Ugui/CraftQualitySkill/Icons/item_star_guarantee_charm"));
+            Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3410 }), Is.EqualTo("UI/Ugui/EconomyTradeV2/icon_inherit_talisman"));
+        }
     }
 }

@@ -382,7 +382,7 @@ namespace MmorpgClient.Tests.EditMode.Guild
                 BannerHonor = new GuildWarBannerHonorView { OccupiedLeylineId = 2 },
                 Dividend = new GuildWarDividendView { ClaimableCount = 3, ClaimedThisWeek = 2, WeeklyCap = 12, GuildProducedThisWeek = 9, GuildWeeklyCap = 24, MinPersonalMerit = 30 },
             };
-            resp.Leylines.Add(new GuildWarLeylineView { LeylineId = 1, Name = "八仙岛 · 灵脉", SceneConfigId = 2, OwnerGuildId = 10001, OwnerGuildName = "青云阁", BannerHp = 820, BannerMaxHp = 1000, ActiveBattleCount = 2, FeaturedWatchBattleId = 900101, IsGoldLeyline = true, GarrisonCount = 4 });
+            resp.Leylines.Add(new GuildWarLeylineView { LeylineId = 1, Name = "八景岛 · 灵脉", SceneConfigId = 2, OwnerGuildId = 10001, OwnerGuildName = "青云阁", BannerHp = 820, BannerMaxHp = 1000, ActiveBattleCount = 2, FeaturedWatchBattleId = 900101, IsGoldLeyline = true, GarrisonCount = 4 });
             resp.Leylines.Add(new GuildWarLeylineView { LeylineId = 2, Name = "碧渊水宫 · 灵脉", SceneConfigId = 5, OwnerGuildId = 10002, OwnerGuildName = "沧澜盟", BannerHp = 380, BannerMaxHp = 1000, UnderSiege = true, ActiveBattleCount = 1, FeaturedWatchBattleId = 900102, GarrisonCount = 5 });
             resp.Leylines.Add(new GuildWarLeylineView { LeylineId = 3, Name = "月汐湾 · 灵脉", SceneConfigId = 3, OwnerGuildId = 10003, OwnerGuildName = "归墟堂", BannerHp = 600, BannerMaxHp = 1000, ShieldUntilMs = 1_795_431_150_000UL, GarrisonCount = 3 });
             resp.Milestones.Add(new GuildWarMilestoneView { MilestoneId = 1, RequiredMerit = 300, GuildMerit = 1420, Claimed = true, Claimable = false });

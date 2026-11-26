@@ -270,9 +270,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void DescribeTip_UsesConfiguredCurrencyNameForNonDiamond()
         {
             uint insufficient = (uint)afk_pass_error.KAfkPassCurrencyNotEnough;
-            Assert.That(AfkPassModels.DescribeTip(insufficient), Does.Contain("灵石").And.Contain("聚宝斋"));
+            Assert.That(AfkPassModels.DescribeTip(insufficient), Does.Contain("灵石").And.Contain("万象阁"));
             Assert.That(AfkPassModels.DescribeTip(insufficient, 0), Does.Contain("银两").And.Not.Contain("灵石"));
-            Assert.That(AfkPassModels.DescribeTip(insufficient, 2), Does.Contain("绑定灵石").And.Not.Contain("聚宝斋"));
+            Assert.That(AfkPassModels.DescribeTip(insufficient, 2), Does.Contain("绑定灵石").And.Not.Contain("万象阁"));
         }
 
         [Test]

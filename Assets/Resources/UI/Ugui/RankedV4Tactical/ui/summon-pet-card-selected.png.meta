@@ -1,0 +1,32 @@
+fileFormatVersion: 2
+guid: e18c69be26217cbe9e349e5bbfb39184
+TextureImporter:
+  serializedVersion: 13
+  mipmaps:
+    enableMipMap: 0
+  sRGBTexture: 1
+  isReadable: 0
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  alphaIsTransparency: 1
+  alphaSource: 1
+  textureType: 8
+  spriteMode: 1
+  spritePixelsToUnits: 100
+  spriteMeshType: 0
+  spriteExtrude: 1
+  spriteAlignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  maxTextureSize: 2048
+  textureCompression: 0
+  userData: RankedV4Tactical summon-pet-card-selected.png; all text is separate TextMeshPro
+  assetBundleName:
+  assetBundleVariant:

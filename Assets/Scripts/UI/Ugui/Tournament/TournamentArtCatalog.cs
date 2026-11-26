@@ -218,6 +218,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             {
                 3403u => "重铸砂",
                 3406u => "悟道残页",
+                3407u => "绝学残卷",
                 20u => "灵兽口粮",
                 _ => $"道具 #{itemId}",
             };
@@ -225,8 +226,9 @@ namespace MmorpgClient.UI.Ugui.Tournament
 
         public static Sprite ResolveItemIcon(uint itemId) => itemId switch
         {
-            3403u => Load("icon-pill"),
-            3406u => Load("icon-scroll"),
+            3403u => QdaoUguiTheme.LoadSprite("UI/Icons/item_reforge_sand") ?? Load("icon-pill"),
+            3406u => QdaoUguiTheme.LoadSprite("UI/Ugui/CraftQualitySkill/Icons/item_enlightenment_page") ?? Load("icon-scroll"),
+            3407u => QdaoUguiTheme.LoadSprite("UI/Ugui/CraftQualitySkill/Icons/item_rare_scroll_fragment") ?? Load("icon-scroll"),
             20u => Load("icon-talisman"),
             _ => Load("icon-chest"),
         };

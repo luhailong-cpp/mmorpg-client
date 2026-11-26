@@ -65,7 +65,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             var design = QdaoUguiFactory.CreateCenteredRect("DesignRoot", canvasObject.transform, 2560, 1080);
             _hud = QdaoUguiFactory.CreateStretch("HudRoot", design, Vector4.zero);
             QdaoUguiFactory.ConfigureHudCanvas(_hud);
-            var entry = GameplayUiArt.Button(_hud, "聚宝斋 [U]", EntryX, EntryY,
+            var entry = GameplayUiArt.Button(_hud, "万象阁 [U]", EntryX, EntryY,
                 BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, Toggle, true, fontSize: 32);
             entry.name = "JubaozhaiEntry";
             WorldHudNavigation.Register(WorldHudEntry.Trade, (RectTransform)entry.transform, entry, entry.GetComponentInChildren<TMP_Text>());

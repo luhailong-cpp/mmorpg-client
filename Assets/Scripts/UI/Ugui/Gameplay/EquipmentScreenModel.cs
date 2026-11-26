@@ -369,6 +369,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 if (item.ConfigId == 3001) return IconRoot + "material_crafting";
                 if (item.ConfigId == 3002) return IconRoot + "material_enhancement";
+                if (item.ConfigId == 3403) return "UI/Icons/item_reforge_sand";
+                if (item.ConfigId == 3404) return "UI/Icons/item_bound_artifact_voucher";
                 if (item.ConfigId == 3405) return CraftIconRoot + "item_star_guarantee_charm";
                 if (item.ConfigId == 3406) return CraftIconRoot + "item_enlightenment_page";
                 if (item.ConfigId == 3407) return CraftIconRoot + "item_rare_scroll_fragment";

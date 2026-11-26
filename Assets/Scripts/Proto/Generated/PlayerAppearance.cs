@@ -52,79 +52,85 @@ public static partial class PlayerAppearanceReflection {
           "Y3MYFCADKAsyFi5Ta2lsbFZmeENvc21ldGljRW50cnkSRwoSZXF1aXBwZWRf",
           "c2tpbGxfdmZ4GBUgAygLMisuUGxheWVyQXBwZWFyYW5jZUluZm8uRXF1aXBw",
           "ZWRTa2lsbFZmeEVudHJ5GjcKFUVxdWlwcGVkU2tpbGxWZnhFbnRyeRILCgNr",
-          "ZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBIvcBChBQZXRDb3NtZXRpY0Vu",
+          "ZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBIt4CChBQZXRDb3NtZXRpY0Vu",
           "dHJ5EhEKCWNvbmZpZ19pZBgBIAEoDRIUCgxjb3NtZXRpY19rZXkYAiABKAkS",
           "DAoEbmFtZRgDIAEoCRIbChN0YXJnZXRfcGV0X3RhYmxlX2lkGAQgASgNEhsK",
           "E3Zpc3VhbF9wZXRfdGFibGVfaWQYBSABKA0SFgoOdmlzdWFsX2FydF9rZXkY",
           "BiABKAkSEgoKc29ydF9vcmRlchgHIAEoDRINCgVvd25lZBgIIAEoCBITCgtt",
           "YWxsX3NrdV9pZBgJIAEoBBIUCgxhY3F1aXJlX2hpbnQYCiABKAkSDAoEZGVz",
-          "YxgLIAEoCSI6ChNQZXRFcXVpcHBlZENvc21ldGljEg4KBnBldF9pZBgBIAEo",
-          "BBITCgtjb3NtZXRpY19pZBgCIAEoDSKRAgoVU2tpbGxWZnhDb3NtZXRpY0Vu",
-          "dHJ5EhEKCWNvbmZpZ19pZBgBIAEoDRIPCgd2Znhfa2V5GAIgASgJEgwKBG5h",
-          "bWUYAyABKAkSFgoOc2tpbGxfdGFibGVfaWQYBCABKA0SDQoFZnhfaWQYBSAB",
-          "KAkSGAoQcHJvamVjdGlsZV9meF9pZBgGIAEoCRIXCg90ZWxlZ3JhcGhfZnhf",
-          "aWQYByABKAkSEAoIdGludF9oZXgYCCABKAkSEgoKc29ydF9vcmRlchgJIAEo",
-          "DRINCgVvd25lZBgKIAEoCBITCgttYWxsX3NrdV9pZBgLIAEoBBIUCgxhY3F1",
-          "aXJlX2hpbnQYDCABKAkSDAoEZGVzYxgNIAEoCSJZChdFcXVpcFBldENvc21l",
-          "dGljUmVxdWVzdBIZChFjbGllbnRfcmVxdWVzdF9pZBgBIAEoBBIOCgZwZXRf",
-          "aWQYAiABKAQSEwoLY29zbWV0aWNfaWQYAyABKA0ipwEKGEVxdWlwUGV0Q29z",
-          "bWV0aWNSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
-          "b01lc3NhZ2USIwoEaW5mbxgCIAEoCzIVLlBsYXllckFwcGVhcmFuY2VJbmZv",
-          "Eg4KBnBldF9pZBgDIAEoBBIcChRlcXVpcHBlZF9jb3NtZXRpY19pZBgEIAEo",
-          "DRIQCghyZXBsYXllZBgFIAEoCCJeChRFcXVpcFNraWxsVmZ4UmVxdWVzdBIZ",
-          "ChFjbGllbnRfcmVxdWVzdF9pZBgBIAEoBBIWCg5za2lsbF90YWJsZV9pZBgC",
-          "IAEoDRITCgtjb3NtZXRpY19pZBgDIAEoDSKsAQoVRXF1aXBTa2lsbFZmeFJl",
-          "c3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2Fn",
-          "ZRIjCgRpbmZvGAIgASgLMhUuUGxheWVyQXBwZWFyYW5jZUluZm8SFgoOc2tp",
-          "bGxfdGFibGVfaWQYAyABKA0SHAoUZXF1aXBwZWRfY29zbWV0aWNfaWQYBCAB",
-          "KA0SEAoIcmVwbGF5ZWQYBSABKAgiGgoYR2V0QXBwZWFyYW5jZUluZm9SZXF1",
-          "ZXN0ImgKGUdldEFwcGVhcmFuY2VJbmZvUmVzcG9uc2USJgoNZXJyb3JfbWVz",
-          "c2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiMKBGluZm8YAiABKAsyFS5Q",
-          "bGF5ZXJBcHBlYXJhbmNlSW5mbyJnChdTd2l0Y2hBcHBlYXJhbmNlUmVxdWVz",
-          "dBIZChFjbGllbnRfcmVxdWVzdF9pZBgBIAEoBBIVCg1hcHBlYXJhbmNlX2lk",
-          "GAIgASgJEhoKEmV4cGVjdF9mcmVlX3N3aXRjaBgDIAEoCCJ5ChhTd2l0Y2hB",
-          "cHBlYXJhbmNlUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRp",
-          "cEluZm9NZXNzYWdlEiMKBGluZm8YAiABKAsyFS5QbGF5ZXJBcHBlYXJhbmNl",
-          "SW5mbxIQCghyZXBsYXllZBgDIAEoCCJPChtTdGFydEFwcGVhcmFuY2VUcmlh",
-          "bFJlcXVlc3QSGQoRY2xpZW50X3JlcXVlc3RfaWQYASABKAQSFQoNYXBwZWFy",
-          "YW5jZV9pZBgCIAEoCSJ9ChxTdGFydEFwcGVhcmFuY2VUcmlhbFJlc3BvbnNl",
-          "EiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIjCgRp",
-          "bmZvGAIgASgLMhUuUGxheWVyQXBwZWFyYW5jZUluZm8SEAoIcmVwbGF5ZWQY",
-          "AyABKAgiHgocQ2FuY2VsQXBwZWFyYW5jZVRyaWFsUmVxdWVzdCJsCh1DYW5j",
-          "ZWxBcHBlYXJhbmNlVHJpYWxSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEg",
-          "ASgLMg8uVGlwSW5mb01lc3NhZ2USIwoEaW5mbxgCIAEoCzIVLlBsYXllckFw",
-          "cGVhcmFuY2VJbmZvIoEBChlBY3RvckFwcGVhcmFuY2VDaGFuZ2VkUzJDEg4K",
-          "BmVudGl0eRgBIAEoBBIRCglwbGF5ZXJfaWQYAiABKAQSFQoNYXBwZWFyYW5j",
-          "ZV9pZBgDIAEoCRIQCghpc190cmlhbBgEIAEoCBIYChB0cmlhbF9leHBpcmVz",
-          "X2F0GAUgASgEIlMKFUFwcGVhcmFuY2VTdGF0ZU5vdGlmeRIjCgRpbmZvGAEg",
-          "ASgLMhUuUGxheWVyQXBwZWFyYW5jZUluZm8SFQoNdHJpYWxfZXhwaXJlZBgC",
-          "IAEoCDL/BAobU2NlbmVBcHBlYXJhbmNlQ2xpZW50UGxheWVyEkoKEUdldEFw",
-          "cGVhcmFuY2VJbmZvEhkuR2V0QXBwZWFyYW5jZUluZm9SZXF1ZXN0GhouR2V0",
-          "QXBwZWFyYW5jZUluZm9SZXNwb25zZRJHChBTd2l0Y2hBcHBlYXJhbmNlEhgu",
-          "U3dpdGNoQXBwZWFyYW5jZVJlcXVlc3QaGS5Td2l0Y2hBcHBlYXJhbmNlUmVz",
-          "cG9uc2USUwoUU3RhcnRBcHBlYXJhbmNlVHJpYWwSHC5TdGFydEFwcGVhcmFu",
-          "Y2VUcmlhbFJlcXVlc3QaHS5TdGFydEFwcGVhcmFuY2VUcmlhbFJlc3BvbnNl",
-          "ElYKFUNhbmNlbEFwcGVhcmFuY2VUcmlhbBIdLkNhbmNlbEFwcGVhcmFuY2VU",
-          "cmlhbFJlcXVlc3QaHi5DYW5jZWxBcHBlYXJhbmNlVHJpYWxSZXNwb25zZRJJ",
-          "ChxOb3RpZnlBY3RvckFwcGVhcmFuY2VDaGFuZ2VkEhouQWN0b3JBcHBlYXJh",
-          "bmNlQ2hhbmdlZFMyQxoGLkVtcHR5IgWImcgBAhI+ChVOb3RpZnlBcHBlYXJh",
-          "bmNlU3RhdGUSFi5BcHBlYXJhbmNlU3RhdGVOb3RpZnkaBi5FbXB0eSIFiJnI",
-          "AQISRwoQRXF1aXBQZXRDb3NtZXRpYxIYLkVxdWlwUGV0Q29zbWV0aWNSZXF1",
-          "ZXN0GhkuRXF1aXBQZXRDb3NtZXRpY1Jlc3BvbnNlEj4KDUVxdWlwU2tpbGxW",
-          "ZngSFS5FcXVpcFNraWxsVmZ4UmVxdWVzdBoWLkVxdWlwU2tpbGxWZnhSZXNw",
-          "b25zZRoKgKjDAQGIqMMBAUIOWgVzY2VuZYABAZjUYQNiBnByb3RvMw=="));
+          "YxgLIAEoCRIUCgxjYXJkX2l0ZW1faWQYDCABKA0SFwoPY2FyZF9pdGVtX2Nv",
+          "dW50GA0gASgNEhgKEG93bmVkX2NhcmRfY291bnQYDiABKA0SHAoUc3Bpcml0",
+          "X3Nob3BfZ29vZHNfaWQYDyABKA0iOgoTUGV0RXF1aXBwZWRDb3NtZXRpYxIO",
+          "CgZwZXRfaWQYASABKAQSEwoLY29zbWV0aWNfaWQYAiABKA0i+AIKFVNraWxs",
+          "VmZ4Q29zbWV0aWNFbnRyeRIRCgljb25maWdfaWQYASABKA0SDwoHdmZ4X2tl",
+          "eRgCIAEoCRIMCgRuYW1lGAMgASgJEhYKDnNraWxsX3RhYmxlX2lkGAQgASgN",
+          "Eg0KBWZ4X2lkGAUgASgJEhgKEHByb2plY3RpbGVfZnhfaWQYBiABKAkSFwoP",
+          "dGVsZWdyYXBoX2Z4X2lkGAcgASgJEhAKCHRpbnRfaGV4GAggASgJEhIKCnNv",
+          "cnRfb3JkZXIYCSABKA0SDQoFb3duZWQYCiABKAgSEwoLbWFsbF9za3VfaWQY",
+          "CyABKAQSFAoMYWNxdWlyZV9oaW50GAwgASgJEgwKBGRlc2MYDSABKAkSFAoM",
+          "Y2FyZF9pdGVtX2lkGA4gASgNEhcKD2NhcmRfaXRlbV9jb3VudBgPIAEoDRIY",
+          "ChBvd25lZF9jYXJkX2NvdW50GBAgASgNEhwKFHNwaXJpdF9zaG9wX2dvb2Rz",
+          "X2lkGBEgASgNInQKF0VxdWlwUGV0Q29zbWV0aWNSZXF1ZXN0EhkKEWNsaWVu",
+          "dF9yZXF1ZXN0X2lkGAEgASgEEg4KBnBldF9pZBgCIAEoBBITCgtjb3NtZXRp",
+          "Y19pZBgDIAEoDRIZChFleHBlY3RfZnJlZV9lcXVpcBgEIAEoCCKnAQoYRXF1",
+          "aXBQZXRDb3NtZXRpY1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
+          "Dy5UaXBJbmZvTWVzc2FnZRIjCgRpbmZvGAIgASgLMhUuUGxheWVyQXBwZWFy",
+          "YW5jZUluZm8SDgoGcGV0X2lkGAMgASgEEhwKFGVxdWlwcGVkX2Nvc21ldGlj",
+          "X2lkGAQgASgNEhAKCHJlcGxheWVkGAUgASgIInkKFEVxdWlwU2tpbGxWZnhS",
+          "ZXF1ZXN0EhkKEWNsaWVudF9yZXF1ZXN0X2lkGAEgASgEEhYKDnNraWxsX3Rh",
+          "YmxlX2lkGAIgASgNEhMKC2Nvc21ldGljX2lkGAMgASgNEhkKEWV4cGVjdF9m",
+          "cmVlX2VxdWlwGAQgASgIIqwBChVFcXVpcFNraWxsVmZ4UmVzcG9uc2USJgoN",
+          "ZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiMKBGluZm8Y",
+          "AiABKAsyFS5QbGF5ZXJBcHBlYXJhbmNlSW5mbxIWCg5za2lsbF90YWJsZV9p",
+          "ZBgDIAEoDRIcChRlcXVpcHBlZF9jb3NtZXRpY19pZBgEIAEoDRIQCghyZXBs",
+          "YXllZBgFIAEoCCIaChhHZXRBcHBlYXJhbmNlSW5mb1JlcXVlc3QiaAoZR2V0",
+          "QXBwZWFyYW5jZUluZm9SZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
+          "Mg8uVGlwSW5mb01lc3NhZ2USIwoEaW5mbxgCIAEoCzIVLlBsYXllckFwcGVh",
+          "cmFuY2VJbmZvImcKF1N3aXRjaEFwcGVhcmFuY2VSZXF1ZXN0EhkKEWNsaWVu",
+          "dF9yZXF1ZXN0X2lkGAEgASgEEhUKDWFwcGVhcmFuY2VfaWQYAiABKAkSGgoS",
+          "ZXhwZWN0X2ZyZWVfc3dpdGNoGAMgASgIInkKGFN3aXRjaEFwcGVhcmFuY2VS",
+          "ZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3Nh",
+          "Z2USIwoEaW5mbxgCIAEoCzIVLlBsYXllckFwcGVhcmFuY2VJbmZvEhAKCHJl",
+          "cGxheWVkGAMgASgIIk8KG1N0YXJ0QXBwZWFyYW5jZVRyaWFsUmVxdWVzdBIZ",
+          "ChFjbGllbnRfcmVxdWVzdF9pZBgBIAEoBBIVCg1hcHBlYXJhbmNlX2lkGAIg",
+          "ASgJIn0KHFN0YXJ0QXBwZWFyYW5jZVRyaWFsUmVzcG9uc2USJgoNZXJyb3Jf",
+          "bWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiMKBGluZm8YAiABKAsy",
+          "FS5QbGF5ZXJBcHBlYXJhbmNlSW5mbxIQCghyZXBsYXllZBgDIAEoCCIeChxD",
+          "YW5jZWxBcHBlYXJhbmNlVHJpYWxSZXF1ZXN0ImwKHUNhbmNlbEFwcGVhcmFu",
+          "Y2VUcmlhbFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJ",
+          "bmZvTWVzc2FnZRIjCgRpbmZvGAIgASgLMhUuUGxheWVyQXBwZWFyYW5jZUlu",
+          "Zm8igQEKGUFjdG9yQXBwZWFyYW5jZUNoYW5nZWRTMkMSDgoGZW50aXR5GAEg",
+          "ASgEEhEKCXBsYXllcl9pZBgCIAEoBBIVCg1hcHBlYXJhbmNlX2lkGAMgASgJ",
+          "EhAKCGlzX3RyaWFsGAQgASgIEhgKEHRyaWFsX2V4cGlyZXNfYXQYBSABKAQi",
+          "UwoVQXBwZWFyYW5jZVN0YXRlTm90aWZ5EiMKBGluZm8YASABKAsyFS5QbGF5",
+          "ZXJBcHBlYXJhbmNlSW5mbxIVCg10cmlhbF9leHBpcmVkGAIgASgIMv8EChtT",
+          "Y2VuZUFwcGVhcmFuY2VDbGllbnRQbGF5ZXISSgoRR2V0QXBwZWFyYW5jZUlu",
+          "Zm8SGS5HZXRBcHBlYXJhbmNlSW5mb1JlcXVlc3QaGi5HZXRBcHBlYXJhbmNl",
+          "SW5mb1Jlc3BvbnNlEkcKEFN3aXRjaEFwcGVhcmFuY2USGC5Td2l0Y2hBcHBl",
+          "YXJhbmNlUmVxdWVzdBoZLlN3aXRjaEFwcGVhcmFuY2VSZXNwb25zZRJTChRT",
+          "dGFydEFwcGVhcmFuY2VUcmlhbBIcLlN0YXJ0QXBwZWFyYW5jZVRyaWFsUmVx",
+          "dWVzdBodLlN0YXJ0QXBwZWFyYW5jZVRyaWFsUmVzcG9uc2USVgoVQ2FuY2Vs",
+          "QXBwZWFyYW5jZVRyaWFsEh0uQ2FuY2VsQXBwZWFyYW5jZVRyaWFsUmVxdWVz",
+          "dBoeLkNhbmNlbEFwcGVhcmFuY2VUcmlhbFJlc3BvbnNlEkkKHE5vdGlmeUFj",
+          "dG9yQXBwZWFyYW5jZUNoYW5nZWQSGi5BY3RvckFwcGVhcmFuY2VDaGFuZ2Vk",
+          "UzJDGgYuRW1wdHkiBYiZyAECEj4KFU5vdGlmeUFwcGVhcmFuY2VTdGF0ZRIW",
+          "LkFwcGVhcmFuY2VTdGF0ZU5vdGlmeRoGLkVtcHR5IgWImcgBAhJHChBFcXVp",
+          "cFBldENvc21ldGljEhguRXF1aXBQZXRDb3NtZXRpY1JlcXVlc3QaGS5FcXVp",
+          "cFBldENvc21ldGljUmVzcG9uc2USPgoNRXF1aXBTa2lsbFZmeBIVLkVxdWlw",
+          "U2tpbGxWZnhSZXF1ZXN0GhYuRXF1aXBTa2lsbFZmeFJlc3BvbnNlGgqAqMMB",
+          "AYiowwEBQg5aBXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::CharacterAppearanceEntry), global::CharacterAppearanceEntry.Parser, new[]{ "ConfigId", "AppearanceId", "Name", "SortOrder", "TrialUsed", "Owned", "CardUnlockable", "SeriesId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::CharacterAppearanceSeriesProgress), global::CharacterAppearanceSeriesProgress.Parser, new[]{ "SeriesId", "SeriesKey", "Name", "SortOrder", "OwnedCount", "TotalCount", "Completed", "CompletionBadgeName", "EpilogueTitle", "MemberAppearanceIds" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerAppearanceInfo), global::PlayerAppearanceInfo.Parser, new[]{ "PermanentAppearanceId", "ActiveAppearanceId", "TrialAppearanceId", "TrialExpiresAt", "ServerNow", "CardItemId", "CardItemCount", "OwnedCardCount", "TrialDurationSeconds", "MallSkuId", "MallPriceFen", "TrialUsedBits", "Appearances", "OwnedBits", "SeriesProgress", "PetCosmeticOwnedBits", "PetCosmetics", "EquippedPetCosmetics", "SkillVfxOwnedBits", "SkillVfxCosmetics", "EquippedSkillVfx" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PetCosmeticEntry), global::PetCosmeticEntry.Parser, new[]{ "ConfigId", "CosmeticKey", "Name", "TargetPetTableId", "VisualPetTableId", "VisualArtKey", "SortOrder", "Owned", "MallSkuId", "AcquireHint", "Desc" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PetCosmeticEntry), global::PetCosmeticEntry.Parser, new[]{ "ConfigId", "CosmeticKey", "Name", "TargetPetTableId", "VisualPetTableId", "VisualArtKey", "SortOrder", "Owned", "MallSkuId", "AcquireHint", "Desc", "CardItemId", "CardItemCount", "OwnedCardCount", "SpiritShopGoodsId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PetEquippedCosmetic), global::PetEquippedCosmetic.Parser, new[]{ "PetId", "CosmeticId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SkillVfxCosmeticEntry), global::SkillVfxCosmeticEntry.Parser, new[]{ "ConfigId", "VfxKey", "Name", "SkillTableId", "FxId", "ProjectileFxId", "TelegraphFxId", "TintHex", "SortOrder", "Owned", "MallSkuId", "AcquireHint", "Desc" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipPetCosmeticRequest), global::EquipPetCosmeticRequest.Parser, new[]{ "ClientRequestId", "PetId", "CosmeticId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SkillVfxCosmeticEntry), global::SkillVfxCosmeticEntry.Parser, new[]{ "ConfigId", "VfxKey", "Name", "SkillTableId", "FxId", "ProjectileFxId", "TelegraphFxId", "TintHex", "SortOrder", "Owned", "MallSkuId", "AcquireHint", "Desc", "CardItemId", "CardItemCount", "OwnedCardCount", "SpiritShopGoodsId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipPetCosmeticRequest), global::EquipPetCosmeticRequest.Parser, new[]{ "ClientRequestId", "PetId", "CosmeticId", "ExpectFreeEquip" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipPetCosmeticResponse), global::EquipPetCosmeticResponse.Parser, new[]{ "ErrorMessage", "Info", "PetId", "EquippedCosmeticId", "Replayed" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipSkillVfxRequest), global::EquipSkillVfxRequest.Parser, new[]{ "ClientRequestId", "SkillTableId", "CosmeticId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipSkillVfxRequest), global::EquipSkillVfxRequest.Parser, new[]{ "ClientRequestId", "SkillTableId", "CosmeticId", "ExpectFreeEquip" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipSkillVfxResponse), global::EquipSkillVfxResponse.Parser, new[]{ "ErrorMessage", "Info", "SkillTableId", "EquippedCosmeticId", "Replayed" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetAppearanceInfoRequest), global::GetAppearanceInfoRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetAppearanceInfoResponse), global::GetAppearanceInfoResponse.Parser, new[]{ "ErrorMessage", "Info" }, null, null, null, null),
@@ -2160,6 +2166,10 @@ public sealed partial class PetCosmeticEntry : pb::IMessage<PetCosmeticEntry>
     mallSkuId_ = other.mallSkuId_;
     acquireHint_ = other.acquireHint_;
     desc_ = other.desc_;
+    cardItemId_ = other.cardItemId_;
+    cardItemCount_ = other.cardItemCount_;
+    ownedCardCount_ = other.ownedCardCount_;
+    spiritShopGoodsId_ = other.spiritShopGoodsId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2334,6 +2344,66 @@ public sealed partial class PetCosmeticEntry : pb::IMessage<PetCosmeticEntry>
     }
   }
 
+  /// <summary>Field number for the "card_item_id" field.</summary>
+  public const int CardItemIdFieldNumber = 12;
+  private uint cardItemId_;
+  /// <summary>
+  /// 解锁券道具 ID(0 = 仅专属获取;非 0 = 允许耗券永久解锁)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CardItemId {
+    get { return cardItemId_; }
+    set {
+      cardItemId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "card_item_count" field.</summary>
+  public const int CardItemCountFieldNumber = 13;
+  private uint cardItemCount_;
+  /// <summary>
+  /// 每次解锁消耗券张数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CardItemCount {
+    get { return cardItemCount_; }
+    set {
+      cardItemCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "owned_card_count" field.</summary>
+  public const int OwnedCardCountFieldNumber = 14;
+  private uint ownedCardCount_;
+  /// <summary>
+  /// 玩家背包当前可用解锁券张数(已扣预留)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint OwnedCardCount {
+    get { return ownedCardCount_; }
+    set {
+      ownedCardCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "spirit_shop_goods_id" field.</summary>
+  public const int SpiritShopGoodsIdFieldNumber = 15;
+  private uint spiritShopGoodsId_;
+  /// <summary>
+  /// 灵石百宝阁快捷跳转商品 ID(0 = 非百宝阁售卖)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SpiritShopGoodsId {
+    get { return spiritShopGoodsId_; }
+    set {
+      spiritShopGoodsId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2360,6 +2430,10 @@ public sealed partial class PetCosmeticEntry : pb::IMessage<PetCosmeticEntry>
     if (MallSkuId != other.MallSkuId) return false;
     if (AcquireHint != other.AcquireHint) return false;
     if (Desc != other.Desc) return false;
+    if (CardItemId != other.CardItemId) return false;
+    if (CardItemCount != other.CardItemCount) return false;
+    if (OwnedCardCount != other.OwnedCardCount) return false;
+    if (SpiritShopGoodsId != other.SpiritShopGoodsId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2378,6 +2452,10 @@ public sealed partial class PetCosmeticEntry : pb::IMessage<PetCosmeticEntry>
     if (MallSkuId != 0UL) hash ^= MallSkuId.GetHashCode();
     if (AcquireHint.Length != 0) hash ^= AcquireHint.GetHashCode();
     if (Desc.Length != 0) hash ^= Desc.GetHashCode();
+    if (CardItemId != 0) hash ^= CardItemId.GetHashCode();
+    if (CardItemCount != 0) hash ^= CardItemCount.GetHashCode();
+    if (OwnedCardCount != 0) hash ^= OwnedCardCount.GetHashCode();
+    if (SpiritShopGoodsId != 0) hash ^= SpiritShopGoodsId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2440,6 +2518,22 @@ public sealed partial class PetCosmeticEntry : pb::IMessage<PetCosmeticEntry>
       output.WriteRawTag(90);
       output.WriteString(Desc);
     }
+    if (CardItemId != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(CardItemId);
+    }
+    if (CardItemCount != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(CardItemCount);
+    }
+    if (OwnedCardCount != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(OwnedCardCount);
+    }
+    if (SpiritShopGoodsId != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(SpiritShopGoodsId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2494,6 +2588,22 @@ public sealed partial class PetCosmeticEntry : pb::IMessage<PetCosmeticEntry>
       output.WriteRawTag(90);
       output.WriteString(Desc);
     }
+    if (CardItemId != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(CardItemId);
+    }
+    if (CardItemCount != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(CardItemCount);
+    }
+    if (OwnedCardCount != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(OwnedCardCount);
+    }
+    if (SpiritShopGoodsId != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(SpiritShopGoodsId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2536,6 +2646,18 @@ public sealed partial class PetCosmeticEntry : pb::IMessage<PetCosmeticEntry>
     }
     if (Desc.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Desc);
+    }
+    if (CardItemId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CardItemId);
+    }
+    if (CardItemCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CardItemCount);
+    }
+    if (OwnedCardCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(OwnedCardCount);
+    }
+    if (SpiritShopGoodsId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SpiritShopGoodsId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2581,6 +2703,18 @@ public sealed partial class PetCosmeticEntry : pb::IMessage<PetCosmeticEntry>
     }
     if (other.Desc.Length != 0) {
       Desc = other.Desc;
+    }
+    if (other.CardItemId != 0) {
+      CardItemId = other.CardItemId;
+    }
+    if (other.CardItemCount != 0) {
+      CardItemCount = other.CardItemCount;
+    }
+    if (other.OwnedCardCount != 0) {
+      OwnedCardCount = other.OwnedCardCount;
+    }
+    if (other.SpiritShopGoodsId != 0) {
+      SpiritShopGoodsId = other.SpiritShopGoodsId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2645,6 +2779,22 @@ public sealed partial class PetCosmeticEntry : pb::IMessage<PetCosmeticEntry>
           Desc = input.ReadString();
           break;
         }
+        case 96: {
+          CardItemId = input.ReadUInt32();
+          break;
+        }
+        case 104: {
+          CardItemCount = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          OwnedCardCount = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          SpiritShopGoodsId = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -2706,6 +2856,22 @@ public sealed partial class PetCosmeticEntry : pb::IMessage<PetCosmeticEntry>
         }
         case 90: {
           Desc = input.ReadString();
+          break;
+        }
+        case 96: {
+          CardItemId = input.ReadUInt32();
+          break;
+        }
+        case 104: {
+          CardItemCount = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          OwnedCardCount = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          SpiritShopGoodsId = input.ReadUInt32();
           break;
         }
       }
@@ -3010,6 +3176,10 @@ public sealed partial class SkillVfxCosmeticEntry : pb::IMessage<SkillVfxCosmeti
     mallSkuId_ = other.mallSkuId_;
     acquireHint_ = other.acquireHint_;
     desc_ = other.desc_;
+    cardItemId_ = other.cardItemId_;
+    cardItemCount_ = other.cardItemCount_;
+    ownedCardCount_ = other.ownedCardCount_;
+    spiritShopGoodsId_ = other.spiritShopGoodsId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -3214,6 +3384,66 @@ public sealed partial class SkillVfxCosmeticEntry : pb::IMessage<SkillVfxCosmeti
     }
   }
 
+  /// <summary>Field number for the "card_item_id" field.</summary>
+  public const int CardItemIdFieldNumber = 14;
+  private uint cardItemId_;
+  /// <summary>
+  /// 解锁券道具 ID(0 = 仅专属获取;非 0 = 允许耗券永久解锁)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CardItemId {
+    get { return cardItemId_; }
+    set {
+      cardItemId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "card_item_count" field.</summary>
+  public const int CardItemCountFieldNumber = 15;
+  private uint cardItemCount_;
+  /// <summary>
+  /// 每次解锁消耗券张数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CardItemCount {
+    get { return cardItemCount_; }
+    set {
+      cardItemCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "owned_card_count" field.</summary>
+  public const int OwnedCardCountFieldNumber = 16;
+  private uint ownedCardCount_;
+  /// <summary>
+  /// 玩家背包当前可用解锁券张数(已扣预留)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint OwnedCardCount {
+    get { return ownedCardCount_; }
+    set {
+      ownedCardCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "spirit_shop_goods_id" field.</summary>
+  public const int SpiritShopGoodsIdFieldNumber = 17;
+  private uint spiritShopGoodsId_;
+  /// <summary>
+  /// 灵石百宝阁快捷跳转商品 ID(0 = 非百宝阁售卖)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SpiritShopGoodsId {
+    get { return spiritShopGoodsId_; }
+    set {
+      spiritShopGoodsId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -3242,6 +3472,10 @@ public sealed partial class SkillVfxCosmeticEntry : pb::IMessage<SkillVfxCosmeti
     if (MallSkuId != other.MallSkuId) return false;
     if (AcquireHint != other.AcquireHint) return false;
     if (Desc != other.Desc) return false;
+    if (CardItemId != other.CardItemId) return false;
+    if (CardItemCount != other.CardItemCount) return false;
+    if (OwnedCardCount != other.OwnedCardCount) return false;
+    if (SpiritShopGoodsId != other.SpiritShopGoodsId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -3262,6 +3496,10 @@ public sealed partial class SkillVfxCosmeticEntry : pb::IMessage<SkillVfxCosmeti
     if (MallSkuId != 0UL) hash ^= MallSkuId.GetHashCode();
     if (AcquireHint.Length != 0) hash ^= AcquireHint.GetHashCode();
     if (Desc.Length != 0) hash ^= Desc.GetHashCode();
+    if (CardItemId != 0) hash ^= CardItemId.GetHashCode();
+    if (CardItemCount != 0) hash ^= CardItemCount.GetHashCode();
+    if (OwnedCardCount != 0) hash ^= OwnedCardCount.GetHashCode();
+    if (SpiritShopGoodsId != 0) hash ^= SpiritShopGoodsId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -3332,6 +3570,22 @@ public sealed partial class SkillVfxCosmeticEntry : pb::IMessage<SkillVfxCosmeti
       output.WriteRawTag(106);
       output.WriteString(Desc);
     }
+    if (CardItemId != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(CardItemId);
+    }
+    if (CardItemCount != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(CardItemCount);
+    }
+    if (OwnedCardCount != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(OwnedCardCount);
+    }
+    if (SpiritShopGoodsId != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(SpiritShopGoodsId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3394,6 +3648,22 @@ public sealed partial class SkillVfxCosmeticEntry : pb::IMessage<SkillVfxCosmeti
       output.WriteRawTag(106);
       output.WriteString(Desc);
     }
+    if (CardItemId != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(CardItemId);
+    }
+    if (CardItemCount != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(CardItemCount);
+    }
+    if (OwnedCardCount != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(OwnedCardCount);
+    }
+    if (SpiritShopGoodsId != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(SpiritShopGoodsId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -3442,6 +3712,18 @@ public sealed partial class SkillVfxCosmeticEntry : pb::IMessage<SkillVfxCosmeti
     }
     if (Desc.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Desc);
+    }
+    if (CardItemId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CardItemId);
+    }
+    if (CardItemCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CardItemCount);
+    }
+    if (OwnedCardCount != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(OwnedCardCount);
+    }
+    if (SpiritShopGoodsId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(SpiritShopGoodsId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -3493,6 +3775,18 @@ public sealed partial class SkillVfxCosmeticEntry : pb::IMessage<SkillVfxCosmeti
     }
     if (other.Desc.Length != 0) {
       Desc = other.Desc;
+    }
+    if (other.CardItemId != 0) {
+      CardItemId = other.CardItemId;
+    }
+    if (other.CardItemCount != 0) {
+      CardItemCount = other.CardItemCount;
+    }
+    if (other.OwnedCardCount != 0) {
+      OwnedCardCount = other.OwnedCardCount;
+    }
+    if (other.SpiritShopGoodsId != 0) {
+      SpiritShopGoodsId = other.SpiritShopGoodsId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -3563,6 +3857,22 @@ public sealed partial class SkillVfxCosmeticEntry : pb::IMessage<SkillVfxCosmeti
         }
         case 106: {
           Desc = input.ReadString();
+          break;
+        }
+        case 112: {
+          CardItemId = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          CardItemCount = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          OwnedCardCount = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          SpiritShopGoodsId = input.ReadUInt32();
           break;
         }
       }
@@ -3636,6 +3946,22 @@ public sealed partial class SkillVfxCosmeticEntry : pb::IMessage<SkillVfxCosmeti
           Desc = input.ReadString();
           break;
         }
+        case 112: {
+          CardItemId = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          CardItemCount = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          OwnedCardCount = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          SpiritShopGoodsId = input.ReadUInt32();
+          break;
+        }
       }
     }
   }
@@ -3644,7 +3970,7 @@ public sealed partial class SkillVfxCosmeticEntry : pb::IMessage<SkillVfxCosmeti
 }
 
 /// <summary>
-/// 为指定灵宠实例穿戴或清除幻化外观（cosmetic_id = 0 表示恢复原形；纯幂等收敛）。
+/// 为指定灵宠实例穿戴或清除幻化外观（cosmetic_id = 0 表示恢复原形；未拥有且 expect_free_equip=false 且配表开放券解锁时原子耗券解锁并穿戴）。
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class EquipPetCosmeticRequest : pb::IMessage<EquipPetCosmeticRequest>
@@ -3684,6 +4010,7 @@ public sealed partial class EquipPetCosmeticRequest : pb::IMessage<EquipPetCosme
     clientRequestId_ = other.clientRequestId_;
     petId_ = other.petId_;
     cosmeticId_ = other.cosmeticId_;
+    expectFreeEquip_ = other.expectFreeEquip_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -3738,6 +4065,21 @@ public sealed partial class EquipPetCosmeticRequest : pb::IMessage<EquipPetCosme
     }
   }
 
+  /// <summary>Field number for the "expect_free_equip" field.</summary>
+  public const int ExpectFreeEquipFieldNumber = 4;
+  private bool expectFreeEquip_;
+  /// <summary>
+  /// true = 仅限已拥有免费穿戴(未拥有拒回,绝不误扣券); false = 允许耗券解锁并穿戴
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool ExpectFreeEquip {
+    get { return expectFreeEquip_; }
+    set {
+      expectFreeEquip_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -3756,6 +4098,7 @@ public sealed partial class EquipPetCosmeticRequest : pb::IMessage<EquipPetCosme
     if (ClientRequestId != other.ClientRequestId) return false;
     if (PetId != other.PetId) return false;
     if (CosmeticId != other.CosmeticId) return false;
+    if (ExpectFreeEquip != other.ExpectFreeEquip) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -3766,6 +4109,7 @@ public sealed partial class EquipPetCosmeticRequest : pb::IMessage<EquipPetCosme
     if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
     if (PetId != 0UL) hash ^= PetId.GetHashCode();
     if (CosmeticId != 0) hash ^= CosmeticId.GetHashCode();
+    if (ExpectFreeEquip != false) hash ^= ExpectFreeEquip.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -3796,6 +4140,10 @@ public sealed partial class EquipPetCosmeticRequest : pb::IMessage<EquipPetCosme
       output.WriteRawTag(24);
       output.WriteUInt32(CosmeticId);
     }
+    if (ExpectFreeEquip != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(ExpectFreeEquip);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3818,6 +4166,10 @@ public sealed partial class EquipPetCosmeticRequest : pb::IMessage<EquipPetCosme
       output.WriteRawTag(24);
       output.WriteUInt32(CosmeticId);
     }
+    if (ExpectFreeEquip != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(ExpectFreeEquip);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -3836,6 +4188,9 @@ public sealed partial class EquipPetCosmeticRequest : pb::IMessage<EquipPetCosme
     }
     if (CosmeticId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CosmeticId);
+    }
+    if (ExpectFreeEquip != false) {
+      size += 1 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -3857,6 +4212,9 @@ public sealed partial class EquipPetCosmeticRequest : pb::IMessage<EquipPetCosme
     }
     if (other.CosmeticId != 0) {
       CosmeticId = other.CosmeticId;
+    }
+    if (other.ExpectFreeEquip != false) {
+      ExpectFreeEquip = other.ExpectFreeEquip;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -3889,6 +4247,10 @@ public sealed partial class EquipPetCosmeticRequest : pb::IMessage<EquipPetCosme
           CosmeticId = input.ReadUInt32();
           break;
         }
+        case 32: {
+          ExpectFreeEquip = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -3918,6 +4280,10 @@ public sealed partial class EquipPetCosmeticRequest : pb::IMessage<EquipPetCosme
         }
         case 24: {
           CosmeticId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          ExpectFreeEquip = input.ReadBool();
           break;
         }
       }
@@ -4292,7 +4658,7 @@ public sealed partial class EquipPetCosmeticResponse : pb::IMessage<EquipPetCosm
 }
 
 /// <summary>
-/// 为指定技能启用或恢复默认特效（cosmetic_id = 0 表示恢复默认；纯幂等收敛）。
+/// 为指定技能启用或恢复默认特效（cosmetic_id = 0 表示恢复默认；未拥有且 expect_free_equip=false 且配表开放券解锁时原子耗券解锁并穿戴）。
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class EquipSkillVfxRequest : pb::IMessage<EquipSkillVfxRequest>
@@ -4332,6 +4698,7 @@ public sealed partial class EquipSkillVfxRequest : pb::IMessage<EquipSkillVfxReq
     clientRequestId_ = other.clientRequestId_;
     skillTableId_ = other.skillTableId_;
     cosmeticId_ = other.cosmeticId_;
+    expectFreeEquip_ = other.expectFreeEquip_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -4386,6 +4753,21 @@ public sealed partial class EquipSkillVfxRequest : pb::IMessage<EquipSkillVfxReq
     }
   }
 
+  /// <summary>Field number for the "expect_free_equip" field.</summary>
+  public const int ExpectFreeEquipFieldNumber = 4;
+  private bool expectFreeEquip_;
+  /// <summary>
+  /// true = 仅限已拥有免费启用(未拥有拒回,绝不误扣券); false = 允许耗券解锁并启用
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool ExpectFreeEquip {
+    get { return expectFreeEquip_; }
+    set {
+      expectFreeEquip_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -4404,6 +4786,7 @@ public sealed partial class EquipSkillVfxRequest : pb::IMessage<EquipSkillVfxReq
     if (ClientRequestId != other.ClientRequestId) return false;
     if (SkillTableId != other.SkillTableId) return false;
     if (CosmeticId != other.CosmeticId) return false;
+    if (ExpectFreeEquip != other.ExpectFreeEquip) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -4414,6 +4797,7 @@ public sealed partial class EquipSkillVfxRequest : pb::IMessage<EquipSkillVfxReq
     if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
     if (SkillTableId != 0) hash ^= SkillTableId.GetHashCode();
     if (CosmeticId != 0) hash ^= CosmeticId.GetHashCode();
+    if (ExpectFreeEquip != false) hash ^= ExpectFreeEquip.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -4444,6 +4828,10 @@ public sealed partial class EquipSkillVfxRequest : pb::IMessage<EquipSkillVfxReq
       output.WriteRawTag(24);
       output.WriteUInt32(CosmeticId);
     }
+    if (ExpectFreeEquip != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(ExpectFreeEquip);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -4466,6 +4854,10 @@ public sealed partial class EquipSkillVfxRequest : pb::IMessage<EquipSkillVfxReq
       output.WriteRawTag(24);
       output.WriteUInt32(CosmeticId);
     }
+    if (ExpectFreeEquip != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(ExpectFreeEquip);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -4484,6 +4876,9 @@ public sealed partial class EquipSkillVfxRequest : pb::IMessage<EquipSkillVfxReq
     }
     if (CosmeticId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CosmeticId);
+    }
+    if (ExpectFreeEquip != false) {
+      size += 1 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -4505,6 +4900,9 @@ public sealed partial class EquipSkillVfxRequest : pb::IMessage<EquipSkillVfxReq
     }
     if (other.CosmeticId != 0) {
       CosmeticId = other.CosmeticId;
+    }
+    if (other.ExpectFreeEquip != false) {
+      ExpectFreeEquip = other.ExpectFreeEquip;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -4537,6 +4935,10 @@ public sealed partial class EquipSkillVfxRequest : pb::IMessage<EquipSkillVfxReq
           CosmeticId = input.ReadUInt32();
           break;
         }
+        case 32: {
+          ExpectFreeEquip = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -4566,6 +4968,10 @@ public sealed partial class EquipSkillVfxRequest : pb::IMessage<EquipSkillVfxReq
         }
         case 24: {
           CosmeticId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          ExpectFreeEquip = input.ReadBool();
           break;
         }
       }

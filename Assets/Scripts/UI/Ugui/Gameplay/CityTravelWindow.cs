@@ -308,7 +308,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             string badges = WorldMapOverviewModels.FormatDestinationBadges(_overview, _selected.SceneConfigId);
             _name.text = string.IsNullOrEmpty(badges) ? selectedName : selectedName + "  [" + badges + "]";
             string habitatSummary = _selected.OnlineAvailable
-                ? WorldMapOverviewModels.FormatHabitatSummary(_selected.SceneConfigId) : "";
+                ? WorldMapOverviewModels.FormatDrawerHabitatSummary(
+                    _overview, _selected.SceneConfigId, WorldMapOverviewModels.EstimateServerNowMs(_overview, _overviewAgeSeconds))
+                : "";
             _description.text = string.IsNullOrEmpty(habitatSummary)
                 ? _selected.Description
                 : string.IsNullOrEmpty(_selected.Description)

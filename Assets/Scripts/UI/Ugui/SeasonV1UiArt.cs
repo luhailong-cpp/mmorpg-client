@@ -47,10 +47,18 @@ namespace MmorpgClient.UI.Ugui
             return LoadCached(path);
         }
 
-        /// <summary>加载本季零数值永久纪念徽章图标；Codex 专属图标未落位前自动回落至赛季玉印图标。</summary>
+        /// <summary>加载本季零数值永久纪念徽章图标（优先使用表/快照 iconKey，缺省按赛季号映射正式徽章，无图回落玉印）。</summary>
         public static Sprite LoadHonorBadgeIcon(uint seasonId, string iconKey = null)
         {
-            string path = SeasonModels.NormalizeIconResource(iconKey, HonorIconsPrefix, seasonId);
+            string effectiveKey = !string.IsNullOrWhiteSpace(iconKey)
+                ? iconKey
+                : seasonId switch
+                {
+                    1u => HonorIconsPrefix + "honor_s1_pozhen",
+                    2u => HonorIconsPrefix + "honor_s2_xuanmai",
+                    _ => null,
+                };
+            string path = SeasonModels.NormalizeIconResource(effectiveKey, HonorIconsPrefix, seasonId);
             return LoadCached(path) ?? LoadHudSealIcon();
         }
 

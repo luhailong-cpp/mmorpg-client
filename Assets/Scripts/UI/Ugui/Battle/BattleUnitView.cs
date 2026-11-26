@@ -399,16 +399,17 @@ namespace MmorpgClient.UI.Ugui.Battle
             _targetFocusLabel.raycastTarget = false;
             _targetFocusPlate.gameObject.SetActive(false);
 
-            _tacticalPingPlate = BattleUiWidgets.CreatePanel("TacticalPingPlate", _plate, barX + 12f, 4f, BarWidth - 24f, 26f,
-                SeasonEconomyUiArt.BattleArenaJade, false);
+            _tacticalPingPlate = BattleUiWidgets.CreatePanel("TacticalPingPlate", _plate,
+                barX + (BarWidth - 88f) * 0.5f + 10f, 4f, 84f, 26f, SeasonEconomyUiArt.BattleArenaPaper, false);
             _tacticalPingPlate.raycastTarget = false;
             _tacticalPingIcon = QdaoUguiFactory.CreateImage("TacticalPingIcon", _tacticalPingPlate.transform,
-                4f, 3f, 20f, 20f, null);
+                -14f, -6f, 38f, 38f, null);
             _tacticalPingIcon.preserveAspect = true;
+            _tacticalPingIcon.color = Color.white;
             _tacticalPingIcon.raycastTarget = false;
             _tacticalPingIcon.gameObject.SetActive(false);
             _tacticalPingLabel = QdaoUguiFactory.CreateText("TacticalPingLabel", _tacticalPingPlate.transform,
-                4f, 0f, BarWidth - 32f, 26f, string.Empty, 15f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
+                24f, 0f, 58f, 26f, string.Empty, 15f, SeasonEconomyUiArt.BattleArenaInk, TextAlignmentOptions.Center);
             _tacticalPingLabel.fontStyle = FontStyles.Bold;
             _tacticalPingLabel.raycastTarget = false;
             _tacticalPingPlate.gameObject.SetActive(false);
@@ -450,7 +451,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_targetFocusPlate != null) _targetFocusPlate.rectTransform.anchoredPosition =
                 new Vector2(_targetFocusPlate.rectTransform.anchoredPosition.x, -(hpY - 58f));
             if (_tacticalPingPlate != null) _tacticalPingPlate.rectTransform.anchoredPosition =
-                new Vector2(_tacticalPingPlate.rectTransform.anchoredPosition.x, -(hpY - 86f));
+                new Vector2(_tacticalPingPlate.rectTransform.anchoredPosition.x, -(hpY - 92f));
         }
 
         public void SetCoreMarkers(bool telegraphTarget, bool protectedGuard, string targetLabel = null)
@@ -498,22 +499,27 @@ namespace MmorpgClient.UI.Ugui.Battle
             _tacticalPingPlate.gameObject.SetActive(show);
             if (!show) return;
             _tacticalPingLabel.text = label;
-            _tacticalPingPlate.color = kind switch
-            {
-                BattlePingKind.BattlePingFocus => SeasonEconomyUiArt.BattleArenaVermilion,
-                BattlePingKind.BattlePingControl => SeasonEconomyUiArt.SkillControlColor,
-                BattlePingKind.BattlePingProtect => SeasonEconomyUiArt.BattleArenaJade,
-                BattlePingKind.BattlePingDispel => SeasonEconomyUiArt.BattleArenaAmber,
-                _ => SeasonEconomyUiArt.BattleArenaJade,
-            };
+            var sprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset(RankedFormatting.PingAssetKey(kind));
+            bool hasSprite = sprite != null;
+            _tacticalPingPlate.color = hasSprite
+                ? SeasonEconomyUiArt.BattleArenaPaper
+                : kind switch
+                {
+                    BattlePingKind.BattlePingFocus => SeasonEconomyUiArt.BattleArenaVermilion,
+                    BattlePingKind.BattlePingControl => SeasonEconomyUiArt.SkillControlColor,
+                    BattlePingKind.BattlePingProtect => SeasonEconomyUiArt.BattleArenaJade,
+                    BattlePingKind.BattlePingDispel => SeasonEconomyUiArt.BattleArenaAmber,
+                    _ => SeasonEconomyUiArt.BattleArenaJade,
+                };
+            _tacticalPingLabel.color = hasSprite ? SeasonEconomyUiArt.BattleArenaInk : QdaoUguiTheme.Cream;
             if (_tacticalPingIcon != null)
             {
-                var sprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset(RankedFormatting.PingAssetKey(kind));
                 _tacticalPingIcon.sprite = sprite;
-                _tacticalPingIcon.gameObject.SetActive(sprite != null);
+                _tacticalPingIcon.color = Color.white;
+                _tacticalPingIcon.gameObject.SetActive(hasSprite);
                 var labelRt = _tacticalPingLabel.rectTransform;
-                labelRt.anchoredPosition = new Vector2(sprite != null ? 24f : 4f, 0f);
-                labelRt.sizeDelta = new Vector2(sprite != null ? BarWidth - 52f : BarWidth - 32f, 26f);
+                labelRt.anchoredPosition = new Vector2(hasSprite ? 24f : 4f, 0f);
+                labelRt.sizeDelta = new Vector2(hasSprite ? 58f : 76f, 26f);
             }
         }
 
@@ -1712,7 +1718,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 if (index >= MaxBuffIcons) break;
                 if (buff == null) continue;
                 float x = index * (BuffIconSize + 3f);
-                var sprite = BattleArtCatalog.LoadBuffIcon(buff.BuffTableId);
+                var sprite = BattleArtCatalog.LoadBuffIcon(buff.BuffTableId) ?? ResolveSourceSkillBuffIcon(buff.SourceSkillId);
                 GameObject go;
                 if (sprite != null)
                 {
@@ -1729,16 +1735,30 @@ namespace MmorpgClient.UI.Ugui.Battle
                         buff.BuffTableId.ToString(), 12f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
                     go = plate.gameObject;
                 }
-                uint stacks = buff.Stacks > 0 ? buff.Stacks : buff.Layer;
-                if (stacks > 1)
+                var buffRow = MmorpgClient.Table.BuffTableManager.Instance.FindById(buff.BuffTableId);
+                bool isGrowingAura = buffRow != null && buffRow.BattleOp == 25u;
+                uint stacks = isGrowingAura ? buff.Stacks : (buff.Stacks > 0 ? buff.Stacks : buff.Layer);
+                if ((isGrowingAura && stacks > 0) || stacks > 1)
                 {
-                    QdaoUguiFactory.CreateText("Layer", go.transform, BuffIconSize - 14f, BuffIconSize - 14f, 14f, 14f,
-                        stacks.ToString(), 11f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
+                    var badge = QdaoUguiFactory.CreateText("Layer", go.transform, BuffIconSize - 22f, BuffIconSize - 14f, 22f, 14f,
+                        stacks.ToString(), 11f, QdaoUguiTheme.Cream, TextAlignmentOptions.BottomRight);
+                    badge.enableAutoSizing = true;
+                    badge.fontSizeMin = 8f;
+                    badge.fontSizeMax = 11f;
                 }
                 _buffIcons.Add(go);
                 index++;
             }
             RefreshBuffHitArea();
+        }
+
+        private static Sprite ResolveSourceSkillBuffIcon(uint sourceSkillId)
+        {
+            if (sourceSkillId == 0u) return null;
+            var def = Skills.SkillUiRoot.FindPresentation(sourceSkillId);
+            return (def != null && !string.IsNullOrEmpty(def.IconResource) ? QdaoUguiTheme.LoadSprite(def.IconResource) : null)
+                ?? QdaoUguiTheme.LoadSprite("UI/Skills/" + sourceSkillId)
+                ?? SeasonEconomyUiArt.LoadGrowthSkillIcon(sourceSkillId);
         }
 
         private void RefreshBuffHitArea()

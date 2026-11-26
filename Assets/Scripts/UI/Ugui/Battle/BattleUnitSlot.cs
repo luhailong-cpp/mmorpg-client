@@ -178,7 +178,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             foreach (var buff in state.Buffs)
             {
                 sb.Append(" B").Append(buff.BuffTableId);
-                if (buff.Layer > 1) sb.Append('x').Append(buff.Layer);
+                uint stacks = buff.Stacks > 0 ? buff.Stacks : buff.Layer;
+                if (stacks > 1) sb.Append('x').Append(stacks);
                 sb.Append(buff.RemainRounds > 0 ? $"({buff.RemainRounds}回)" : "(∞)");
             }
             return sb.ToString();
