@@ -9,7 +9,7 @@
 
 0. **新电脑 / 新 AI Agent 环境必先安装必装 Skills**（`mattpocock/skills`、`DietrichGebert/ponytail` 及精选 ≥2 万 Star 代码工程 Skills），清单与安装命令见 → [Docs/rules/required-skills.md](Docs/rules/required-skills.md)
 1. 阅读 `AGENTS.md`（已通过导入文件自动加载的无需重复读取）及本次任务涉及的 `Docs/rules/*.md` 分章细则；**任何功能、网络、SDK、UI 与资源改动都必须同时满足「抖音/微信小游戏 + iOS/Android App 游戏」双形态硬约束**（见 [Docs/rules/minigame-and-app-platforms.md](Docs/rules/minigame-and-app-platforms.md)）
-2. 阅读 [Docs/ClientProtocolCompatibility.md](Docs/ClientProtocolCompatibility.md) 相关章节与 `Docs/` 下对应界面/系统文档；涉及跨端契约时同步核对同级服务端仓 `docs/design/<模块>.md`
+2. 阅读 [Docs/ClientProtocolCompatibility.md](Docs/ClientProtocolCompatibility.md) 相关章节与 `Docs/` 下对应界面/系统文档；涉及跨端契约或玩法策划时同步核对同级服务端仓 `docs/planning/<玩法>.md`（策划）、`docs/planning/ui-handoff/<主题>.md`（UI 交接）或 `docs/design/<模块>.md`（技术设计；路径迁移表见服务端仓 `docs/planning/MIGRATION-MAP.md`）
 3. 执行 `git status -sb` 与 `git log -20 --oneline` —— 核对既有未提交改动与近期演进，严禁覆盖或回退他人工作
 
 先确认任务范围、既有改动、跨端契约与双形态平台约束；没读懂或缺少设计/协议事实源就不盲目动手。
@@ -23,7 +23,7 @@
 | 协议、配表与跨端不变量 | 生成物边界、3 步同步、`double` 坐标与 `uint64` 位宽、永久 ID 禁排禁拆、Tip 单轴、`*TableManager` 只存 `id` 禁存行引用、查表判空与位图容错、`RpcGuard` 限流熔断与幂等键 | [Docs/rules/proto-and-tables.md](Docs/rules/proto-and-tables.md) |
 | 命名与权限边界 | 见名知意+带单位、分层命名（`*Client` / `*Model` / `*Window`）、中文协作+英文诊断日志、`.meta` 守护与硬禁令 | [Docs/rules/naming-and-boundaries.md](Docs/rules/naming-and-boundaries.md) |
 | 工程设计与生命周期 | SRP 三层解耦（纯 C# `*Model` 脱离 `UnityEngine`）、**系统/模块间 Actor/事件消息通信（不可变消息、禁过度拆内部函数）**、KISS/YAGNI、**实例与布局分层**、**连接唯一所有权+对称退订+回调先验存活与会话代次** | [Docs/rules/engineering-principles.md](Docs/rules/engineering-principles.md) |
-| AI 协作与模型档位 | Claude 改代码 vs Codex 跑编译/生成/测试、无运行证据禁称已验证、草稿 `git merge-file` 安全写回、强制高低档模型切换、设计方案强制落盘 `.md` | [Docs/rules/ai-workflow.md](Docs/rules/ai-workflow.md) |
+| AI 协作与模型档位 | Claude 改代码 vs Gemini 跑编译/生成/测试、Codex 仅负责作图、无运行证据禁称已验证、草稿 `git merge-file` 安全写回、强制高低档模型切换、设计方案强制落盘 `.md` | [Docs/rules/ai-workflow.md](Docs/rules/ai-workflow.md) |
 
 ---
 
@@ -55,7 +55,7 @@
   - **连接与回调生命周期**：连接所有权只归 `GameClient` / `BattleDirectLink`；UI 订阅事件必须在 `OnDisable` / `OnDestroy` 对称退订；异步回调先判 `UnityEngine.Object` 存活与 `(PlayerId, 连接代次)` 一致再改状态。
   - **命名第一原则**：所有命名清晰准确并标明单位（`Ms` / `Sec` / `Bytes`），拒绝模糊缩写与泛化名（详见 → [Docs/rules/naming-and-boundaries.md](Docs/rules/naming-and-boundaries.md)）。
   - 发现已知问题或设计缺陷当场修复，不拖延到“以后再修”。
-- **分工约定**：只负责客户端业务代码时，协议生成、编译检查与冒烟验证可交由 Codex 执行；无实际运行证据不得声称“编译通过 / 测试绿”。
+- **分工约定**：只负责客户端业务代码时，协议生成、编译检查与冒烟验证可交由 Gemini 执行；**Codex 仅负责作图（UI / 美术素材 / 视觉精修）**，不参与编码、分析、编译、协议生成、测试、压测与运维收尾；无实际运行证据不得声称“编译通过 / 测试绿”。
 
 ## 门禁命令与禁止手改目录
 
@@ -141,9 +141,10 @@ pwsh -File tools/run_move_test.ps1
   2. **账号注销（App Store 5.1.1(v) / Play / 国内硬规）**：游戏内必须提供真注销闭环（披露删除/保留范围 + 7 天冷静期 + 当场重新认证；**iOS Apple 账号注销必须重新授权上传 `authorization_code` 供服务端调 `/auth/revoke` 撤销令牌**），完整处理 `blockers` 拦截、冷静期撤销弹窗与注销完成首次告知。
   3. **UGC 内容安全**：所有玩家可填文本（角色/帮会/宠物/方案名、帮会公告、聊天）均须经服务端 `content_guard`（本地词库 + 微信 `msgSecCheck` / 抖音 `antidirt` / App 商业审核）通过后生效，新增客户端可输入 `string` 字段必须同步接入服务端审核契约。
 
-## AI 协作与模型档位规定（负责人确认于 2026-11-20）
+## AI 协作与模型档位规定（负责人确认于 2026-11-20，2026-11-25 修订）
 
-- **写/修改代码，以及需求分析、设计分析、思想分析、漏洞分析、步骤分析、执行步骤，必须使用各软件当时的最高档模型**，不得在低档模型上执行：Claude Code 用 `Fable 5.2 Max`，Gemini 用 `Gemini 4 Neon Extra`，Codex 用 `GPT 6.2 Astral Ultra`。
-- **设计方案强制落盘 `.md`（2026-11-21 定）**：以后编写设计方案时，Claude Code（及其他 AI Agent）写好设计后必须将**需求分析、设计分析、思想分析、漏洞分析、步骤分析、执行步骤**及完整方案保存到 `Docs/design/<主题>.md`（或 `Docs/` 下对应模块设计文档），不得只留在对话中。
-- **仅编译、协议生成、跑测试与冒烟使用低档模型**：Gemini 用 `Carbon Medium`，Codex 用 `6.1 Sol Ultra`，Claude Code 用 `Opus 5 High`；遇到需要改代码或需做上述分析/步骤设计的报错先保留原文停下，切回最高档模型再处理。
+- **写/修改代码，以及需求分析、设计分析、思想分析、漏洞分析、步骤分析、执行步骤，必须使用各软件当时的最高档模型**，不得在低档模型上执行：Claude Code 用 `Fable 5.2 Max`，Gemini 用 `Gemini 4 Neon Extra`。
+- **设计方案强制落盘 `.md` 与异机作图交接（2026-11-21 定，2026-11-25 补充）**：以后编写策划/技术设计方案时，Claude Code（及其他 AI Agent）写好设计后必须将**需求分析、设计分析、思想分析、漏洞分析、步骤分析、执行步骤**及完整方案保存到 `Docs/design/<主题>.md`（或 `Docs/` 下对应模块设计文档），不得只留在对话中；玩法接入完毕须确认逻辑、服务端/客户端代码与 UI 接入全部闭环，确实还能扩展得更好玩才继续扩展（**不要硬扩展，没可玩性不要扩展**）；**需要让 Codex 做新 UI 时必须告知负责人，写完 `.md` 后必须在回复中直接给出可直接复制给 Codex 的纯功能作图信息**（另一台电脑 Codex 拿不到任何本地文件，严禁只给 `.md` 路径），且**只告诉 Codex 做什么 UI，不要告诉 GPT / Codex 要定什么风格**（严禁写任何画风、风格词、材质词或色号/配色，严禁抄旧文档/旧代码配色词，只写要做什么 UI、用途、尺寸、文件名、透明底 PNG-32、文字留空规则、是否可拉伸/留白与落盘目录）。
+- **仅编译、协议生成、跑测试与冒烟使用低档模型**：Gemini 用 `Carbon Medium`，Claude Code 用 `Opus 5 High`；遇到需要改代码或需做上述分析/步骤设计的报错先保留原文停下，切回最高档模型再处理。
+- **Codex 职责限定**：Codex 仅负责作图（UI / 美术素材 / 视觉精修），不参与编码、分析、编译、协议生成、测试、压测与运维收尾。
 - 完整协作分工、草稿副本 `git merge-file` 安全写回与交付门禁见 → [Docs/rules/ai-workflow.md](Docs/rules/ai-workflow.md)。

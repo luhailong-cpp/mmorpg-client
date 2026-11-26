@@ -38,6 +38,9 @@ namespace MmorpgClient.UI.Ugui.Team
         public const string LabelAway = "暂离";
         public const string LabelRejoin = "归队";
         public const string InputHint = "正在跟随队长，点「暂离」后可以自己走。";
+        public const string RecallBannerName = "TeamFollowRecallBanner";
+        public const string RecallAcceptName = "TeamFollowRecallAccept";
+        public const float RecallBannerDurationSeconds = 12f;
         /// <summary>跟随中玩家反复点地面时,提示最多这么久弹一次。</summary>
         public const float HintIntervalSeconds = 3f;
 
@@ -47,6 +50,10 @@ namespace MmorpgClient.UI.Ugui.Team
         private TMP_Text _toggleLabel;
         private GameObject _stateBadge;
         private TMP_Text _stateBadgeLabel;
+        private GameObject _recallBanner;
+        private TMP_Text _recallBannerText;
+        private float _recallBannerExpiresAt;
+        private TeamClient _boundTeamClient;
         private TeamFollowStatus _shownStatus = TeamFollowStatus.None;
         private ProtagonistPresentationMode _shownStateBadgeMode = ProtagonistPresentationMode.Free;
         private MmorpgClient.Game.GameClient _boundGameClient;
@@ -87,6 +94,7 @@ namespace MmorpgClient.UI.Ugui.Team
             WorldHudNavigation.Register(WorldHudEntry.TeamFollow,
                 (RectTransform)_toggle.transform, _toggle, _toggleLabel);
             BuildStateBadge();
+            BuildRecallBanner(design);
             _hud.gameObject.SetActive(false);
             _follow.InputRejected += ShowInputHint;
             // 联机验收排障:环境变量 MMORPG_FOLLOW_TRACE=1 时把跟随驱动的诊断行写进播放器日志([follow] 前缀)。
@@ -101,6 +109,7 @@ namespace MmorpgClient.UI.Ugui.Team
             // TeamUiRoot 跟着 GameClient 实例重建 TeamClient;换会话的那一帧这里可能还拿着旧的,
             // 但此时新会话还没进游戏,_available 为假,不会据旧视图发声明。
             var client = TeamUiRoot.Instance?.Client;
+            BindTeamClient(client);
             bool inGame = game != null && game.InGame && game.IsGateReady;
             BindGameState(inGame ? game : null);
             _available = inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
@@ -111,6 +120,7 @@ namespace MmorpgClient.UI.Ugui.Team
             // allowed 只看「是否已进游戏且不在战斗」,不与 trusted 绑在一起:托管重连接回时服务器先推 driven=true,
             // 队伍快照尚未拉回也能立刻显示「正在跟随」并允许点「暂离」撤回。
             _follow.Tick(game, trusted ? client.Snapshot : null, _available, Time.realtimeSinceStartup);
+            RefreshRecallBanner();
 
             var status = _follow.Status;
             _toggle.interactable = CanToggleAway;
@@ -160,6 +170,79 @@ namespace MmorpgClient.UI.Ugui.Team
             _stateBadge.SetActive(false);
         }
 
+        private void BuildRecallBanner(RectTransform design)
+        {
+            var rect = QdaoUguiFactory.CreateRect(RecallBannerName, design, (2560f - 660f) * 0.5f, 148f, 660f, 84f);
+            var bg = rect.gameObject.AddComponent<Image>();
+            bg.sprite = GameplayUiArt.Load("hud_panel");
+            if (bg.sprite != null && bg.sprite.border.sqrMagnitude > 0f) bg.type = Image.Type.Sliced;
+            bg.color = new Color(0.11f, 0.20f, 0.16f, 0.94f);
+            _recallBannerText = QdaoUguiFactory.CreateText("RecallText", rect, 22f, 16f, 360f, 52f,
+                "队长发起了集合召集，是否立即归队？", 22f, QdaoUguiTheme.Cream, TextAlignmentOptions.MidlineLeft);
+            var accept = GameplayUiArt.Button(rect, "立即归队", 394f, 16f, 140f, 52f, AcceptLeaderRecall, true, fontSize: 22);
+            accept.name = RecallAcceptName;
+            var dismiss = GameplayUiArt.Button(rect, "稍后", 546f, 16f, 94f, 52f, DismissLeaderRecall, false, fontSize: 22);
+            dismiss.name = "TeamFollowRecallDismiss";
+            _recallBanner = rect.gameObject;
+            _recallBanner.SetActive(false);
+        }
+
+        private void BindTeamClient(TeamClient client)
+        {
+            if (ReferenceEquals(_boundTeamClient, client)) return;
+            UnbindTeamClient();
+            if (client == null) return;
+            _boundTeamClient = client;
+            _boundTeamClient.LeaderRecalled += HandleLeaderRecalled;
+        }
+
+        private void UnbindTeamClient()
+        {
+            if (_boundTeamClient == null) return;
+            _boundTeamClient.LeaderRecalled -= HandleLeaderRecalled;
+            _boundTeamClient = null;
+            DismissLeaderRecall();
+        }
+
+        private void HandleLeaderRecalled(ulong teamId, ulong leaderId)
+        {
+            if (!_available) return;
+            if (_follow.Status == TeamFollowStatus.Following)
+            {
+                BattleUiRoot.Instance?.ShowToast("队长发起了集合召集");
+                return;
+            }
+            if (_recallBanner == null) return;
+            if (_recallBannerText != null)
+                _recallBannerText.text = "队长发起了集合召集，是否立即归队？";
+            _recallBannerExpiresAt = Time.realtimeSinceStartup + RecallBannerDurationSeconds;
+            _recallBanner.SetActive(true);
+        }
+
+        private void AcceptLeaderRecall()
+        {
+            DismissLeaderRecall();
+            if (!_available) return;
+            _follow.SetAway(false);
+            BattleUiRoot.Instance?.ShowToast("已请求归队跟随队长");
+        }
+
+        private void DismissLeaderRecall()
+        {
+            _recallBannerExpiresAt = 0f;
+            if (_recallBanner != null && _recallBanner.activeSelf) _recallBanner.SetActive(false);
+        }
+
+        private void RefreshRecallBanner()
+        {
+            if (_recallBanner == null || !_recallBanner.activeSelf) return;
+            if (!_available || _follow.Status == TeamFollowStatus.Following || _follow.Status == TeamFollowStatus.None ||
+                Time.realtimeSinceStartup >= _recallBannerExpiresAt)
+            {
+                DismissLeaderRecall();
+            }
+        }
+
         private void BindGameState(MmorpgClient.Game.GameClient game)
         {
             if (ReferenceEquals(_boundGameClient, game)) return;
@@ -207,11 +290,13 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void OnDisable()
         {
+            UnbindTeamClient();
             UnbindGameState();
         }
 
         private void OnDestroy()
         {
+            UnbindTeamClient();
             UnbindGameState();
             _follow.InputRejected -= ShowInputHint;
             _follow.Release();

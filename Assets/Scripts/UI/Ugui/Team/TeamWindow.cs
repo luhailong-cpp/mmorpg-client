@@ -419,11 +419,15 @@ namespace MmorpgClient.UI.Ugui.Team
                     var kick=Control(row,kicking?"处理中":"请离",624,32,76,40,()=>ConfirmKick(id),
                         enabled:CanManage,size:kicking?16:21);kick.name="Kick_"+id;
                 }
-                bool originalOnlineState=role.OnlineStatusKnown&&(!role.IsOnline||!role.InBattle);
+                bool hostedOffline=role.OnlineStatusKnown&&!role.IsOnline&&role.IsHosted;
+                bool originalOnlineState=role.OnlineStatusKnown&&!hostedOffline&&(!role.IsOnline||!role.InBattle);
                 if(originalOnlineState)ExactArt(row,role.IsOnline?"status-online":"status-offline",702,29,138,46);
-                else if(role.OnlineStatusKnown)Art(row,role.IsOnline?"status_online":"status_offline",710,38,23,23,true);
-                Label(row,!role.OnlineStatusKnown?"待同步":role.IsOnline?(role.InBattle?"战斗中":"在线"):"离线",
-                    741,27,95,45,25,originalOnlineState?Color.clear:role.IsOnline?BodyInk:BodyMuted,TextAlignmentOptions.MidlineRight);
+                else if(role.OnlineStatusKnown)Art(row,role.IsOnline||hostedOffline?"status_online":"status_offline",710,38,23,23,true);
+                string presenceText=!role.OnlineStatusKnown?"待同步"
+                    :hostedOffline?"托管中"
+                    :role.IsOnline?(role.InBattle?"战斗中":"在线"):"离线";
+                Label(row,presenceText,
+                    741,27,95,45,25,originalOnlineState?Color.clear:(role.IsOnline||hostedOffline?Jade:BodyMuted),TextAlignmentOptions.MidlineRight);
             }
         }
 

@@ -24,42 +24,547 @@ public static partial class PlayerAfkPassReflection {
         string.Concat(
           "CiFwcm90by9zY2VuZS9wbGF5ZXJfYWZrX3Bhc3MucHJvdG8aG3Byb3RvL2Ri",
           "L3Byb3RvX29wdGlvbi5wcm90bxobcHJvdG8vY29tbW9uL2Jhc2UvdGlwLnBy",
-          "b3RvIsABCgtBZmtQYXNzSW5mbxISCgpleHBpcmVzX2F0GAEgASgEEhIKCnNl",
-          "cnZlcl9ub3cYAiABKAQSGwoTcHJpY2VfY3VycmVuY3lfdHlwZRgDIAEoDRIN",
-          "CgVwcmljZRgEIAEoBBITCgtwZXJpb2RfZGF5cxgFIAEoDRIaChJtYXhfcmVt",
-          "YWluaW5nX2RheXMYBiABKA0SGwoTcmVtaW5kX2JlZm9yZV9ob3VycxgHIAEo",
-          "DRIPCgdiYWxhbmNlGAggASgEIhMKEUdldEFma1Bhc3NSZXF1ZXN0IlgKEkdl",
-          "dEFma1Bhc3NSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
-          "SW5mb01lc3NhZ2USGgoEaW5mbxgCIAEoCzIMLkFma1Bhc3NJbmZvImYKEUJ1",
-          "eUFma1Bhc3NSZXF1ZXN0EhkKEWNsaWVudF9yZXF1ZXN0X2lkGAEgASgEEh4K",
-          "FmV4cGVjdGVkX2N1cnJlbmN5X3R5cGUYAiABKA0SFgoOZXhwZWN0ZWRfcHJp",
-          "Y2UYAyABKAQiagoSQnV5QWZrUGFzc1Jlc3BvbnNlEiYKDWVycm9yX21lc3Nh",
-          "Z2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIaCgRpbmZvGAIgASgLMgwuQWZr",
-          "UGFzc0luZm8SEAoIcmVwbGF5ZWQYAyABKAgiMAoTR21TZXRBZmtQYXNzUmVx",
-          "dWVzdBIZChFyZW1haW5pbmdfc2Vjb25kcxgBIAEoDSJaChRHbVNldEFma1Bh",
-          "c3NSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01l",
-          "c3NhZ2USGgoEaW5mbxgCIAEoCzIMLkFma1Bhc3NJbmZvMtEBChhTY2VuZUFm",
-          "a1Bhc3NDbGllbnRQbGF5ZXISNQoKR2V0QWZrUGFzcxISLkdldEFma1Bhc3NS",
-          "ZXF1ZXN0GhMuR2V0QWZrUGFzc1Jlc3BvbnNlEjUKCkJ1eUFma1Bhc3MSEi5C",
-          "dXlBZmtQYXNzUmVxdWVzdBoTLkJ1eUFma1Bhc3NSZXNwb25zZRI7CgxHbVNl",
-          "dEFma1Bhc3MSFC5HbVNldEFma1Bhc3NSZXF1ZXN0GhUuR21TZXRBZmtQYXNz",
-          "UmVzcG9uc2UaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
+          "b3RvIrcBChJIb3N0ZWRSZWNhcFN1bW1hcnkSEgoKc3RhcnRlZF9hdBgBIAEo",
+          "BBIQCghlbmRlZF9hdBgCIAEoBBIUCgxiYXR0bGVfY291bnQYAyABKA0SEQoJ",
+          "d2luX2NvdW50GAQgASgNEhIKCmV4cF9nYWluZWQYBSABKAQSFQoNc2lsdmVy",
+          "X2dhaW5lZBgGIAEoBBISCgppdGVtX2NvdW50GAcgASgNEhMKC3BlbmRpbmdf",
+          "YWNrGAggASgIIpECCgtBZmtQYXNzSW5mbxISCgpleHBpcmVzX2F0GAEgASgE",
+          "EhIKCnNlcnZlcl9ub3cYAiABKAQSGwoTcHJpY2VfY3VycmVuY3lfdHlwZRgD",
+          "IAEoDRINCgVwcmljZRgEIAEoBBITCgtwZXJpb2RfZGF5cxgFIAEoDRIaChJt",
+          "YXhfcmVtYWluaW5nX2RheXMYBiABKA0SGwoTcmVtaW5kX2JlZm9yZV9ob3Vy",
+          "cxgHIAEoDRIPCgdiYWxhbmNlGAggASgEEiQKHGF1dG9fcmV0dXJuX2NpdHlf",
+          "b25fdGVhbV9lbmQYCSABKAgSKQoMaG9zdGVkX3JlY2FwGAogASgLMhMuSG9z",
+          "dGVkUmVjYXBTdW1tYXJ5IhMKEUdldEFma1Bhc3NSZXF1ZXN0IlgKEkdldEFm",
+          "a1Bhc3NSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
+          "b01lc3NhZ2USGgoEaW5mbxgCIAEoCzIMLkFma1Bhc3NJbmZvImYKEUJ1eUFm",
+          "a1Bhc3NSZXF1ZXN0EhkKEWNsaWVudF9yZXF1ZXN0X2lkGAEgASgEEh4KFmV4",
+          "cGVjdGVkX2N1cnJlbmN5X3R5cGUYAiABKA0SFgoOZXhwZWN0ZWRfcHJpY2UY",
+          "AyABKAQiagoSQnV5QWZrUGFzc1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
+          "ASABKAsyDy5UaXBJbmZvTWVzc2FnZRIaCgRpbmZvGAIgASgLMgwuQWZrUGFz",
+          "c0luZm8SEAoIcmVwbGF5ZWQYAyABKAgiMAoTR21TZXRBZmtQYXNzUmVxdWVz",
+          "dBIZChFyZW1haW5pbmdfc2Vjb25kcxgBIAEoDSJaChRHbVNldEFma1Bhc3NS",
+          "ZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3Nh",
+          "Z2USGgoEaW5mbxgCIAEoCzIMLkFma1Bhc3NJbmZvIkEKGVNldEFma1Bhc3NT",
+          "ZXR0aW5nc1JlcXVlc3QSJAocYXV0b19yZXR1cm5fY2l0eV9vbl90ZWFtX2Vu",
+          "ZBgBIAEoCCJgChpTZXRBZmtQYXNzU2V0dGluZ3NSZXNwb25zZRImCg1lcnJv",
+          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USGgoEaW5mbxgCIAEo",
+          "CzIMLkFma1Bhc3NJbmZvIisKFUFja0hvc3RlZFJlY2FwUmVxdWVzdBISCgpz",
+          "dGFydGVkX2F0GAEgASgEIlwKFkFja0hvc3RlZFJlY2FwUmVzcG9uc2USJgoN",
+          "ZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhoKBGluZm8Y",
+          "AiABKAsyDC5BZmtQYXNzSW5mbzLjAgoYU2NlbmVBZmtQYXNzQ2xpZW50UGxh",
+          "eWVyEjUKCkdldEFma1Bhc3MSEi5HZXRBZmtQYXNzUmVxdWVzdBoTLkdldEFm",
+          "a1Bhc3NSZXNwb25zZRI1CgpCdXlBZmtQYXNzEhIuQnV5QWZrUGFzc1JlcXVl",
+          "c3QaEy5CdXlBZmtQYXNzUmVzcG9uc2USOwoMR21TZXRBZmtQYXNzEhQuR21T",
+          "ZXRBZmtQYXNzUmVxdWVzdBoVLkdtU2V0QWZrUGFzc1Jlc3BvbnNlEk0KElNl",
+          "dEFma1Bhc3NTZXR0aW5ncxIaLlNldEFma1Bhc3NTZXR0aW5nc1JlcXVlc3Qa",
+          "Gy5TZXRBZmtQYXNzU2V0dGluZ3NSZXNwb25zZRJBCg5BY2tIb3N0ZWRSZWNh",
+          "cBIWLkFja0hvc3RlZFJlY2FwUmVxdWVzdBoXLkFja0hvc3RlZFJlY2FwUmVz",
+          "cG9uc2UaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::AfkPassInfo), global::AfkPassInfo.Parser, new[]{ "ExpiresAt", "ServerNow", "PriceCurrencyType", "Price", "PeriodDays", "MaxRemainingDays", "RemindBeforeHours", "Balance" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::HostedRecapSummary), global::HostedRecapSummary.Parser, new[]{ "StartedAt", "EndedAt", "BattleCount", "WinCount", "ExpGained", "SilverGained", "ItemCount", "PendingAck" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::AfkPassInfo), global::AfkPassInfo.Parser, new[]{ "ExpiresAt", "ServerNow", "PriceCurrencyType", "Price", "PeriodDays", "MaxRemainingDays", "RemindBeforeHours", "Balance", "AutoReturnCityOnTeamEnd", "HostedRecap" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetAfkPassRequest), global::GetAfkPassRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetAfkPassResponse), global::GetAfkPassResponse.Parser, new[]{ "ErrorMessage", "Info" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BuyAfkPassRequest), global::BuyAfkPassRequest.Parser, new[]{ "ClientRequestId", "ExpectedCurrencyType", "ExpectedPrice" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BuyAfkPassResponse), global::BuyAfkPassResponse.Parser, new[]{ "ErrorMessage", "Info", "Replayed" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GmSetAfkPassRequest), global::GmSetAfkPassRequest.Parser, new[]{ "RemainingSeconds" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::GmSetAfkPassResponse), global::GmSetAfkPassResponse.Parser, new[]{ "ErrorMessage", "Info" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::GmSetAfkPassResponse), global::GmSetAfkPassResponse.Parser, new[]{ "ErrorMessage", "Info" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SetAfkPassSettingsRequest), global::SetAfkPassSettingsRequest.Parser, new[]{ "AutoReturnCityOnTeamEnd" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SetAfkPassSettingsResponse), global::SetAfkPassSettingsResponse.Parser, new[]{ "ErrorMessage", "Info" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::AckHostedRecapRequest), global::AckHostedRecapRequest.Parser, new[]{ "StartedAt" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::AckHostedRecapResponse), global::AckHostedRecapResponse.Parser, new[]{ "ErrorMessage", "Info" }, null, null, null, null)
         }));
   }
   #endregion
 
 }
 #region Messages
+/// <summary>
+/// 最近一次离线托管收获简报(只汇总真实结算入账收益,不额外发放产出)。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class HostedRecapSummary : pb::IMessage<HostedRecapSummary>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<HostedRecapSummary> _parser = new pb::MessageParser<HostedRecapSummary>(() => new HostedRecapSummary());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<HostedRecapSummary> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[0]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public HostedRecapSummary() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public HostedRecapSummary(HostedRecapSummary other) : this() {
+    startedAt_ = other.startedAt_;
+    endedAt_ = other.endedAt_;
+    battleCount_ = other.battleCount_;
+    winCount_ = other.winCount_;
+    expGained_ = other.expGained_;
+    silverGained_ = other.silverGained_;
+    itemCount_ = other.itemCount_;
+    pendingAck_ = other.pendingAck_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public HostedRecapSummary Clone() {
+    return new HostedRecapSummary(this);
+  }
+
+  /// <summary>Field number for the "started_at" field.</summary>
+  public const int StartedAtFieldNumber = 1;
+  private ulong startedAt_;
+  /// <summary>
+  /// 托管开始 Unix 秒;0 = 无记录
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong StartedAt {
+    get { return startedAt_; }
+    set {
+      startedAt_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "ended_at" field.</summary>
+  public const int EndedAtFieldNumber = 2;
+  private ulong endedAt_;
+  /// <summary>
+  /// 托管结束 Unix 秒;0 = 仍在托管中
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong EndedAt {
+    get { return endedAt_; }
+    set {
+      endedAt_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "battle_count" field.</summary>
+  public const int BattleCountFieldNumber = 3;
+  private uint battleCount_;
+  /// <summary>
+  /// 结算总场次
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BattleCount {
+    get { return battleCount_; }
+    set {
+      battleCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "win_count" field.</summary>
+  public const int WinCountFieldNumber = 4;
+  private uint winCount_;
+  /// <summary>
+  /// 胜利场次
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint WinCount {
+    get { return winCount_; }
+    set {
+      winCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "exp_gained" field.</summary>
+  public const int ExpGainedFieldNumber = 5;
+  private ulong expGained_;
+  /// <summary>
+  /// 实际入账经验
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ExpGained {
+    get { return expGained_; }
+    set {
+      expGained_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "silver_gained" field.</summary>
+  public const int SilverGainedFieldNumber = 6;
+  private ulong silverGained_;
+  /// <summary>
+  /// 实际入账银两
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong SilverGained {
+    get { return silverGained_; }
+    set {
+      silverGained_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "item_count" field.</summary>
+  public const int ItemCountFieldNumber = 7;
+  private uint itemCount_;
+  /// <summary>
+  /// 实际入账物品总件数(含溢出转邮件)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ItemCount {
+    get { return itemCount_; }
+    set {
+      itemCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pending_ack" field.</summary>
+  public const int PendingAckFieldNumber = 8;
+  private bool pendingAck_;
+  /// <summary>
+  /// true = 待客户端弹窗展示并确认
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool PendingAck {
+    get { return pendingAck_; }
+    set {
+      pendingAck_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as HostedRecapSummary);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(HostedRecapSummary other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (StartedAt != other.StartedAt) return false;
+    if (EndedAt != other.EndedAt) return false;
+    if (BattleCount != other.BattleCount) return false;
+    if (WinCount != other.WinCount) return false;
+    if (ExpGained != other.ExpGained) return false;
+    if (SilverGained != other.SilverGained) return false;
+    if (ItemCount != other.ItemCount) return false;
+    if (PendingAck != other.PendingAck) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (StartedAt != 0UL) hash ^= StartedAt.GetHashCode();
+    if (EndedAt != 0UL) hash ^= EndedAt.GetHashCode();
+    if (BattleCount != 0) hash ^= BattleCount.GetHashCode();
+    if (WinCount != 0) hash ^= WinCount.GetHashCode();
+    if (ExpGained != 0UL) hash ^= ExpGained.GetHashCode();
+    if (SilverGained != 0UL) hash ^= SilverGained.GetHashCode();
+    if (ItemCount != 0) hash ^= ItemCount.GetHashCode();
+    if (PendingAck != false) hash ^= PendingAck.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (StartedAt != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(StartedAt);
+    }
+    if (EndedAt != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(EndedAt);
+    }
+    if (BattleCount != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(BattleCount);
+    }
+    if (WinCount != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(WinCount);
+    }
+    if (ExpGained != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(ExpGained);
+    }
+    if (SilverGained != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(SilverGained);
+    }
+    if (ItemCount != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(ItemCount);
+    }
+    if (PendingAck != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(PendingAck);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (StartedAt != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(StartedAt);
+    }
+    if (EndedAt != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(EndedAt);
+    }
+    if (BattleCount != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(BattleCount);
+    }
+    if (WinCount != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(WinCount);
+    }
+    if (ExpGained != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(ExpGained);
+    }
+    if (SilverGained != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(SilverGained);
+    }
+    if (ItemCount != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(ItemCount);
+    }
+    if (PendingAck != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(PendingAck);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (StartedAt != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(StartedAt);
+    }
+    if (EndedAt != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(EndedAt);
+    }
+    if (BattleCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BattleCount);
+    }
+    if (WinCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WinCount);
+    }
+    if (ExpGained != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpGained);
+    }
+    if (SilverGained != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(SilverGained);
+    }
+    if (ItemCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ItemCount);
+    }
+    if (PendingAck != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(HostedRecapSummary other) {
+    if (other == null) {
+      return;
+    }
+    if (other.StartedAt != 0UL) {
+      StartedAt = other.StartedAt;
+    }
+    if (other.EndedAt != 0UL) {
+      EndedAt = other.EndedAt;
+    }
+    if (other.BattleCount != 0) {
+      BattleCount = other.BattleCount;
+    }
+    if (other.WinCount != 0) {
+      WinCount = other.WinCount;
+    }
+    if (other.ExpGained != 0UL) {
+      ExpGained = other.ExpGained;
+    }
+    if (other.SilverGained != 0UL) {
+      SilverGained = other.SilverGained;
+    }
+    if (other.ItemCount != 0) {
+      ItemCount = other.ItemCount;
+    }
+    if (other.PendingAck != false) {
+      PendingAck = other.PendingAck;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          StartedAt = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          EndedAt = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          BattleCount = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          WinCount = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          ExpGained = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          SilverGained = input.ReadUInt64();
+          break;
+        }
+        case 56: {
+          ItemCount = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          PendingAck = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          StartedAt = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          EndedAt = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          BattleCount = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          WinCount = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          ExpGained = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          SilverGained = input.ReadUInt64();
+          break;
+        }
+        case 56: {
+          ItemCount = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          PendingAck = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
 /// <summary>
 /// 月卡此刻的状态与售价。所有时间都是服务器墙钟的 Unix 秒。
 /// </summary>
@@ -78,7 +583,7 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[0]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[1]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -106,6 +611,8 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     maxRemainingDays_ = other.maxRemainingDays_;
     remindBeforeHours_ = other.remindBeforeHours_;
     balance_ = other.balance_;
+    autoReturnCityOnTeamEnd_ = other.autoReturnCityOnTeamEnd_;
+    hostedRecap_ = other.hostedRecap_ != null ? other.hostedRecap_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -235,6 +742,36 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     }
   }
 
+  /// <summary>Field number for the "auto_return_city_on_team_end" field.</summary>
+  public const int AutoReturnCityOnTeamEndFieldNumber = 9;
+  private bool autoReturnCityOnTeamEnd_;
+  /// <summary>
+  /// 离线托管期间离队 / 解散时是否自动回默认主城安全区
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool AutoReturnCityOnTeamEnd {
+    get { return autoReturnCityOnTeamEnd_; }
+    set {
+      autoReturnCityOnTeamEnd_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "hosted_recap" field.</summary>
+  public const int HostedRecapFieldNumber = 10;
+  private global::HostedRecapSummary hostedRecap_;
+  /// <summary>
+  /// 最近一次待确认的离线托管收获简报(无记录时不填)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::HostedRecapSummary HostedRecap {
+    get { return hostedRecap_; }
+    set {
+      hostedRecap_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -258,6 +795,8 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     if (MaxRemainingDays != other.MaxRemainingDays) return false;
     if (RemindBeforeHours != other.RemindBeforeHours) return false;
     if (Balance != other.Balance) return false;
+    if (AutoReturnCityOnTeamEnd != other.AutoReturnCityOnTeamEnd) return false;
+    if (!object.Equals(HostedRecap, other.HostedRecap)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -273,6 +812,8 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     if (MaxRemainingDays != 0) hash ^= MaxRemainingDays.GetHashCode();
     if (RemindBeforeHours != 0) hash ^= RemindBeforeHours.GetHashCode();
     if (Balance != 0UL) hash ^= Balance.GetHashCode();
+    if (AutoReturnCityOnTeamEnd != false) hash ^= AutoReturnCityOnTeamEnd.GetHashCode();
+    if (hostedRecap_ != null) hash ^= HostedRecap.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -323,6 +864,14 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
       output.WriteRawTag(64);
       output.WriteUInt64(Balance);
     }
+    if (AutoReturnCityOnTeamEnd != false) {
+      output.WriteRawTag(72);
+      output.WriteBool(AutoReturnCityOnTeamEnd);
+    }
+    if (hostedRecap_ != null) {
+      output.WriteRawTag(82);
+      output.WriteMessage(HostedRecap);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -365,6 +914,14 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
       output.WriteRawTag(64);
       output.WriteUInt64(Balance);
     }
+    if (AutoReturnCityOnTeamEnd != false) {
+      output.WriteRawTag(72);
+      output.WriteBool(AutoReturnCityOnTeamEnd);
+    }
+    if (hostedRecap_ != null) {
+      output.WriteRawTag(82);
+      output.WriteMessage(HostedRecap);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -398,6 +955,12 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     }
     if (Balance != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Balance);
+    }
+    if (AutoReturnCityOnTeamEnd != false) {
+      size += 1 + 1;
+    }
+    if (hostedRecap_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(HostedRecap);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -434,6 +997,15 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     }
     if (other.Balance != 0UL) {
       Balance = other.Balance;
+    }
+    if (other.AutoReturnCityOnTeamEnd != false) {
+      AutoReturnCityOnTeamEnd = other.AutoReturnCityOnTeamEnd;
+    }
+    if (other.hostedRecap_ != null) {
+      if (hostedRecap_ == null) {
+        HostedRecap = new global::HostedRecapSummary();
+      }
+      HostedRecap.MergeFrom(other.HostedRecap);
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -484,6 +1056,17 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
         }
         case 64: {
           Balance = input.ReadUInt64();
+          break;
+        }
+        case 72: {
+          AutoReturnCityOnTeamEnd = input.ReadBool();
+          break;
+        }
+        case 82: {
+          if (hostedRecap_ == null) {
+            HostedRecap = new global::HostedRecapSummary();
+          }
+          input.ReadMessage(HostedRecap);
           break;
         }
       }
@@ -537,6 +1120,17 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
           Balance = input.ReadUInt64();
           break;
         }
+        case 72: {
+          AutoReturnCityOnTeamEnd = input.ReadBool();
+          break;
+        }
+        case 82: {
+          if (hostedRecap_ == null) {
+            HostedRecap = new global::HostedRecapSummary();
+          }
+          input.ReadMessage(HostedRecap);
+          break;
+        }
       }
     }
   }
@@ -559,7 +1153,7 @@ public sealed partial class GetAfkPassRequest : pb::IMessage<GetAfkPassRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[1]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[2]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -720,7 +1314,7 @@ public sealed partial class GetAfkPassResponse : pb::IMessage<GetAfkPassResponse
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[2]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[3]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -980,7 +1574,7 @@ public sealed partial class BuyAfkPassRequest : pb::IMessage<BuyAfkPassRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[3]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[4]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1252,7 +1846,7 @@ public sealed partial class BuyAfkPassResponse : pb::IMessage<BuyAfkPassResponse
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[4]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1552,7 +2146,7 @@ public sealed partial class GmSetAfkPassRequest : pb::IMessage<GmSetAfkPassReque
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[5]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1750,7 +2344,7 @@ public sealed partial class GmSetAfkPassResponse : pb::IMessage<GmSetAfkPassResp
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[6]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[7]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1900,6 +2494,914 @@ public sealed partial class GmSetAfkPassResponse : pb::IMessage<GmSetAfkPassResp
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(GmSetAfkPassResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.info_ != null) {
+      if (info_ == null) {
+        Info = new global::AfkPassInfo();
+      }
+      Info.MergeFrom(other.Info);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (info_ == null) {
+            Info = new global::AfkPassInfo();
+          }
+          input.ReadMessage(Info);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (info_ == null) {
+            Info = new global::AfkPassInfo();
+          }
+          input.ReadMessage(Info);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 修改离线托管偏好设置(可重放,无资产扣费)。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SetAfkPassSettingsRequest : pb::IMessage<SetAfkPassSettingsRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SetAfkPassSettingsRequest> _parser = new pb::MessageParser<SetAfkPassSettingsRequest>(() => new SetAfkPassSettingsRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SetAfkPassSettingsRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[8]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SetAfkPassSettingsRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SetAfkPassSettingsRequest(SetAfkPassSettingsRequest other) : this() {
+    autoReturnCityOnTeamEnd_ = other.autoReturnCityOnTeamEnd_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SetAfkPassSettingsRequest Clone() {
+    return new SetAfkPassSettingsRequest(this);
+  }
+
+  /// <summary>Field number for the "auto_return_city_on_team_end" field.</summary>
+  public const int AutoReturnCityOnTeamEndFieldNumber = 1;
+  private bool autoReturnCityOnTeamEnd_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool AutoReturnCityOnTeamEnd {
+    get { return autoReturnCityOnTeamEnd_; }
+    set {
+      autoReturnCityOnTeamEnd_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SetAfkPassSettingsRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SetAfkPassSettingsRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (AutoReturnCityOnTeamEnd != other.AutoReturnCityOnTeamEnd) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (AutoReturnCityOnTeamEnd != false) hash ^= AutoReturnCityOnTeamEnd.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (AutoReturnCityOnTeamEnd != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(AutoReturnCityOnTeamEnd);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (AutoReturnCityOnTeamEnd != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(AutoReturnCityOnTeamEnd);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (AutoReturnCityOnTeamEnd != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SetAfkPassSettingsRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.AutoReturnCityOnTeamEnd != false) {
+      AutoReturnCityOnTeamEnd = other.AutoReturnCityOnTeamEnd;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          AutoReturnCityOnTeamEnd = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          AutoReturnCityOnTeamEnd = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SetAfkPassSettingsResponse : pb::IMessage<SetAfkPassSettingsResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SetAfkPassSettingsResponse> _parser = new pb::MessageParser<SetAfkPassSettingsResponse>(() => new SetAfkPassSettingsResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SetAfkPassSettingsResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[9]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SetAfkPassSettingsResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SetAfkPassSettingsResponse(SetAfkPassSettingsResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    info_ = other.info_ != null ? other.info_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SetAfkPassSettingsResponse Clone() {
+    return new SetAfkPassSettingsResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "info" field.</summary>
+  public const int InfoFieldNumber = 2;
+  private global::AfkPassInfo info_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::AfkPassInfo Info {
+    get { return info_; }
+    set {
+      info_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SetAfkPassSettingsResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SetAfkPassSettingsResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (!object.Equals(Info, other.Info)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (info_ != null) hash ^= Info.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (info_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(Info);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (info_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(Info);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (info_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Info);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SetAfkPassSettingsResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.info_ != null) {
+      if (info_ == null) {
+        Info = new global::AfkPassInfo();
+      }
+      Info.MergeFrom(other.Info);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (info_ == null) {
+            Info = new global::AfkPassInfo();
+          }
+          input.ReadMessage(Info);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (info_ == null) {
+            Info = new global::AfkPassInfo();
+          }
+          input.ReadMessage(Info);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 确认已阅离线托管收获简报(按 started_at 幂等清零,避免误清后续新会话)。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class AckHostedRecapRequest : pb::IMessage<AckHostedRecapRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<AckHostedRecapRequest> _parser = new pb::MessageParser<AckHostedRecapRequest>(() => new AckHostedRecapRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<AckHostedRecapRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[10]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public AckHostedRecapRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public AckHostedRecapRequest(AckHostedRecapRequest other) : this() {
+    startedAt_ = other.startedAt_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public AckHostedRecapRequest Clone() {
+    return new AckHostedRecapRequest(this);
+  }
+
+  /// <summary>Field number for the "started_at" field.</summary>
+  public const int StartedAtFieldNumber = 1;
+  private ulong startedAt_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong StartedAt {
+    get { return startedAt_; }
+    set {
+      startedAt_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as AckHostedRecapRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(AckHostedRecapRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (StartedAt != other.StartedAt) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (StartedAt != 0UL) hash ^= StartedAt.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (StartedAt != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(StartedAt);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (StartedAt != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(StartedAt);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (StartedAt != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(StartedAt);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(AckHostedRecapRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.StartedAt != 0UL) {
+      StartedAt = other.StartedAt;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          StartedAt = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          StartedAt = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class AckHostedRecapResponse : pb::IMessage<AckHostedRecapResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<AckHostedRecapResponse> _parser = new pb::MessageParser<AckHostedRecapResponse>(() => new AckHostedRecapResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<AckHostedRecapResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[11]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public AckHostedRecapResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public AckHostedRecapResponse(AckHostedRecapResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    info_ = other.info_ != null ? other.info_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public AckHostedRecapResponse Clone() {
+    return new AckHostedRecapResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "info" field.</summary>
+  public const int InfoFieldNumber = 2;
+  private global::AfkPassInfo info_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::AfkPassInfo Info {
+    get { return info_; }
+    set {
+      info_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as AckHostedRecapResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(AckHostedRecapResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (!object.Equals(Info, other.Info)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (info_ != null) hash ^= Info.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (info_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(Info);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (info_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(Info);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (info_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Info);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(AckHostedRecapResponse other) {
     if (other == null) {
       return;
     }

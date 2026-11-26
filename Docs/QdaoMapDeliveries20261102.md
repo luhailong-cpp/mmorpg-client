@@ -114,7 +114,7 @@ walkmask.txt保持Base64、MSB优先、从北向南行优先编码；长度为ce
 - EditMode测试遍历catalog每套外观：Android（及WebGL、iOS加入时）平台覆盖为压缩格式、单边≤4096、显存估算≤16MB。交了超标的图测试直接失败，不等真机闪退。
 - 尺寸上限同改为4096：`CurrentMapCatalog`（layoutPixels≤8192）、`tools/import_festival_maps.py`（layout 8192与网格`max(columns, rows) * 1024 <= 8192`）、`CurrentMapTileImporter`（8192）。
 - `tools/tests/map_runtime_transition`补预载、过期丢弃、失败重试与遮罩撤除时机的用例。
-- 验证交Codex：Unity编译与EditMode；真机用一台低端Android，以Memory Profiler看切图峰值，记录从收到79到地图提交的耗时；WebGL记一次峰值。720高的低端屏在最远缩放时贴图约缩小1.5倍，无mipmap可能轻微闪烁，真机顺带看。
+- 验证交 Gemini：Unity编译与EditMode；真机用一台低端Android，以Memory Profiler看切图峰值，记录从收到79到地图提交的耗时；WebGL记一次峰值。720高的低端屏在最远缩放时贴图约缩小1.5倍，无mipmap可能轻微闪烁，真机顺带看。
 - 落码前用脚本核一次layout与分片逐像素一致（按上文artStatus，layout应由已验收分片拼成）。
 
 **5. 跨仓影响**

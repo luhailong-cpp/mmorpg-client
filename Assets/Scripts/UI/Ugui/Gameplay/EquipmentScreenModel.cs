@@ -334,6 +334,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 if (item.ConfigId == 3406) return CraftIconRoot + "item_enlightenment_page";
                 if (item.ConfigId == 3407) return CraftIconRoot + "item_rare_scroll_fragment";
                 if (item.ConfigId == 3408) return CraftIconRoot + "item_celestial_ink";
+                if (item.ConfigId == 3409) return SeasonEconomyUiArt.EconomyTradeRoot + "icon_unseal_talisman";
+                if (item.ConfigId == 3410) return SeasonEconomyUiArt.EconomyTradeV2Root + "icon_inherit_talisman";
                 return IsIcon(item.IconKey, "reward_choice") ? IconRoot + "reward_choice" : null;
             }
             if (item.EquipProfile == 1)

@@ -18,6 +18,7 @@ namespace MmorpgClient.UI.Ugui
         public const string ControlsRoot = "UI/Ugui/SeasonV1/";
         public const string SealIconsPrefix = "UI/SeasonSeals/";
         public const string SkillIconsPrefix = "UI/Skills/";
+        public const string HonorIconsPrefix = "UI/SeasonHonors/";
 
         public static readonly Color BadgeIvoryText = new Color32(0xFF, 0xF5, 0xDC, 255);
         public static readonly Color JadeHighlight = new Color32(0x1D, 0x5B, 0x47, 255);
@@ -44,6 +45,13 @@ namespace MmorpgClient.UI.Ugui
         {
             string path = SeasonModels.NormalizeIconResource(iconKey, SkillIconsPrefix, skillId);
             return LoadCached(path);
+        }
+
+        /// <summary>加载本季零数值永久纪念徽章图标；Codex 专属图标未落位前自动回落至赛季玉印图标。</summary>
+        public static Sprite LoadHonorBadgeIcon(uint seasonId, string iconKey = null)
+        {
+            string path = SeasonModels.NormalizeIconResource(iconKey, HonorIconsPrefix, seasonId);
+            return LoadCached(path) ?? LoadHudSealIcon();
         }
 
         /// <summary>创建支持横向三段拉伸的赛季专属切片图像（无图时回退纯色）。</summary>

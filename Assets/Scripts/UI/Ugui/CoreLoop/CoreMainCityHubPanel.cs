@@ -91,12 +91,19 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 "查看赛季印", _root.OpenSeasonSeal, true, false, 18);
 
             // 右侧四项紧凑核心入口（x=2168..2528, y=210..636；位于 WorldSideHud 1704..2144 右侧，中部完全透空）
-            DrawEntry("BossTrial", 210, "首领试炼", "1–5 人 · 看懂机制再出手", _root.OpenBossTrials);
-            DrawEntry("FormalPvp", 318, "人宠会武", "本人真实养成 · 正式排位", _root.OpenFormalPvp);
-            DrawEntry("SeasonRotation", 426, "首季轮换", "免费人宠 · 轻松换玩法", _root.OpenRotations);
-            DrawEntry("EquipmentPets", 534, "装备／灵宠", "养成与配装 · 随时继续", _root.OpenEquipment);
+            DrawEntry("BossTrial", 210, "首领试炼", "1–5 人 · 看懂机制再出手", "icon_hub_boss", _root.OpenBossTrials);
+            DrawEntry("FormalPvp", 318, "人宠会武", "本人真实养成 · 正式排位", "icon_hub_pvp", _root.OpenFormalPvp);
+            DrawEntry("SeasonRotation", 426, "首季轮换", "免费人宠 · 轻松换玩法", "icon_hub_rotation", _root.OpenRotations);
+            DrawEntry("EquipmentPets", 534, "装备／灵宠", "养成与配装 · 随时继续", "icon_hub_equip_pet", _root.OpenEquipment);
             CoreLoopUiArt.Button("OpenPets", transform, 2434, 588, 82, 34,
                 "灵宠", _root.OpenPets, true, false, 18);
+            DrawEntry("WuxingTower", 642, "五行幻境", "十层肉鸽符印 · 免费阵法", "icon_hub_rotation", _root.OpenWuxingTower);
+            CoreLoopUiArt.Button("OpenCustomDuel", transform, 2434, 696, 82, 34,
+                "切磋坊", () => _root.OpenCustomDuel(), true, false, 16);
+            CoreLoopUiArt.Button("OpenWuxingFormations", transform, 2178, 744, 170, 38,
+                "五行阵法", _root.OpenWuxingFormations, true, false, 18);
+            CoreLoopUiArt.Button("OpenCustomDuelWide", transform, 2358, 744, 170, 38,
+                "道友切磋坊", () => _root.OpenCustomDuel(), true, false, 18);
 
             // 右下四个低打扰零卖数值预留位（x=1100..2528, y=884..1038；位于 WorldSideHud 底边 848 之下）
             CoreLoopUiArt.Badge(transform, "SpendHeaderBadge", 2216, 836, 312,
@@ -135,14 +142,18 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 value, 24, CoreLoopUiArt.DeepJade, true, true);
         }
 
-        private void DrawEntry(string key, float y, string title, string subtitle, System.Action open)
+        private void DrawEntry(string key, float y, string title, string subtitle, string iconKey, System.Action open)
         {
             const float x = 2168f;
             const float width = 360f;
             const float height = 96f;
             CoreLoopUiArt.Card(transform, key + "Card", x, y, width, height);
-            CoreLoopUiArt.Image(key + "Icon", transform, x + 14, y + 18, 58, 58,
-                "badge", new Color(.82f, .9f, .82f, .8f));
+            var icon = CoreLoopUiArt.LoadV2(iconKey);
+            if (icon != null)
+                SeasonV1UiArt.CreateFixedIcon(transform, key + "Icon", x + 15, y + 20, 56, 56, icon, Color.clear);
+            else
+                CoreLoopUiArt.Image(key + "Icon", transform, x + 14, y + 18, 58, 58,
+                    "badge", new Color(.82f, .9f, .82f, .8f));
             CoreLoopUiArt.Text(key + "Title", transform, x + 82, y + 12, 184, 38,
                 title, 26, CoreLoopUiArt.DeepJade, true);
             CoreLoopUiArt.Text(key + "Summary", transform, x + 82, y + 50, 184, 36,

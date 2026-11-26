@@ -12,15 +12,25 @@ namespace MmorpgClient.Game.AfkPass
     {
         public uint Get { get; }
         public uint Buy { get; }
+        public uint SetSettings { get; }
+        public uint AckRecap { get; }
         public bool IsSupported => Get != 0 && Buy != 0 && Get != Buy;
+        public bool SupportsSettings => SetSettings != 0;
+        public bool SupportsRecapAck => AckRecap != 0;
 
-        public AfkPassMessageIds(uint get, uint buy)
+        public AfkPassMessageIds(uint get, uint buy) : this(get, buy, 0, 0) { }
+
+        public AfkPassMessageIds(uint get, uint buy, uint setSettings, uint ackRecap)
         {
             Get = get;
             Buy = buy;
+            SetSettings = setSettings;
+            AckRecap = ackRecap;
         }
 
-        public static AfkPassMessageIds Generated => new AfkPassMessageIds(MessageIds.GetAfkPass, MessageIds.BuyAfkPass);
+        public static AfkPassMessageIds Generated => new AfkPassMessageIds(
+            MessageIds.GetAfkPass, MessageIds.BuyAfkPass,
+            MessageIds.SetAfkPassSettings, MessageIds.AckHostedRecap);
     }
 
     /// <summary>挂机月卡的展示规则。纯函数,不碰网络与 Unity,EditMode 测试直接调。</summary>
@@ -93,6 +103,16 @@ namespace MmorpgClient.Game.AfkPass
         /// <summary>这个拒绝说明手里的报价已经过时:要重新查一次。</summary>
         public static bool TipMeansStale(uint tipId) =>
             tipId == (uint)afk_pass_error.KAfkPassPriceChanged || tipId == (uint)afk_pass_error.KAfkPassStackLimit;
+
+        /// <summary>低于该托管时长且 0 场战斗的瞬时断线不弹收获简报(静默确认),避免短断线打扰。</summary>
+        public const ulong RecapAutoShowMinDurationSeconds = 60;
+
+        public static ulong RecapDurationSeconds(global::HostedRecapSummary recap) =>
+            recap != null && recap.EndedAt > recap.StartedAt ? recap.EndedAt - recap.StartedAt : 0;
+
+        public static bool ShouldPromptRecap(global::HostedRecapSummary recap) =>
+            recap != null && recap.PendingAck && recap.StartedAt != 0
+            && (recap.BattleCount > 0 || RecapDurationSeconds(recap) >= RecapAutoShowMinDurationSeconds);
     }
 
     /// <summary>
@@ -153,6 +173,8 @@ namespace MmorpgClient.Game.AfkPass
         public global::AfkPassInfo Info { get; private set; }
         public bool InfoPending { get; private set; }
         public bool BuyPending { get; private set; }
+        public bool SettingsPending { get; private set; }
+        public bool AckPending { get; private set; }
         /// <summary>一次开通的结果不明之后为 true:请求可能已经成交,真实断线重连、重新取得权威状态之前不再发开通。</summary>
         public bool RequiresReconnect { get; private set; }
         /// <summary>状态行:开通进度 / 结论、查询失败、本地拒绝。"" = 没有要说的。</summary>
@@ -160,7 +182,15 @@ namespace MmorpgClient.Game.AfkPass
         public bool StatusIsError { get; private set; }
 
         public bool IsSupported => _messageIds.IsSupported;
+        public bool SupportsSettings => _messageIds.SupportsSettings;
+        public bool SupportsRecapAck => _messageIds.SupportsRecapAck;
         public bool Ready => IsSupported && !_disposed && _net.IsReady && _net.PlayerId != 0;
+        public bool AutoReturnCityOnTeamEnd => Info?.AutoReturnCityOnTeamEnd ?? false;
+        public global::HostedRecapSummary PendingRecap =>
+            Info?.HostedRecap != null && Info.HostedRecap.PendingAck && Info.HostedRecap.StartedAt != 0
+                ? Info.HostedRecap
+                : null;
+        public bool HasPromptableRecap => AfkPassModels.ShouldPromptRecap(PendingRecap);
 
         /// <summary>推算的服务器当前时刻(Unix 秒);没有任何结论时为 0。</summary>
         public ulong ServerNowSec
@@ -199,6 +229,8 @@ namespace MmorpgClient.Game.AfkPass
             ++_generation;
             InfoPending = false;
             BuyPending = false;
+            SettingsPending = false;
+            AckPending = false;
         }
 
         // ── 查询 ────────────────────────────────────────────────────────────
@@ -349,6 +381,79 @@ namespace MmorpgClient.Game.AfkPass
             return true;
         }
 
+        // ── 托管设置与收获简报确认 ───────────────────────────────────────────
+
+        /// <summary>切换离线托管期间离队 / 解散自动回默认主城安全区偏好。</summary>
+        public bool SetAutoReturnCity(bool enabled)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (!IsSupported || !_messageIds.SupportsSettings) return RejectLocally(UnsupportedMessage);
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (SettingsPending) return false;
+            SettingsPending = true;
+            int generation = _generation;
+            SetStatus("正在保存托管设置…", false);
+            Changed?.Invoke();
+            _net.Call(_messageIds.SetSettings,
+                new global::SetAfkPassSettingsRequest { AutoReturnCityOnTeamEnd = enabled },
+                global::SetAfkPassSettingsResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    SettingsPending = false;
+                    uint tipId = response.ErrorMessage?.Id ?? 0;
+                    if (tipId != 0)
+                    {
+                        SetStatus(AfkPassModels.DescribeTip(tipId), true);
+                        Changed?.Invoke();
+                        return;
+                    }
+                    if (response.Info != null) ApplyInfo(response.Info);
+                    SetStatus(enabled ? "已开启：托管离队后自动回主城安全区。" : "已关闭：托管离队后留在原地。", false);
+                    Changed?.Invoke();
+                },
+                error =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    SettingsPending = false;
+                    SetStatus("托管设置保存失败，请稍后重试。", true);
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
+        /// <summary>确认已阅离线托管收获简报(按 started_at 幂等清零)。</summary>
+        public bool AckHostedRecap(ulong startedAt = 0, bool silent = false)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (!IsSupported || !_messageIds.SupportsRecapAck || !Ready || AckPending) return false;
+            ulong targetStart = startedAt != 0 ? startedAt : (PendingRecap?.StartedAt ?? 0);
+            if (targetStart == 0) return false;
+            AckPending = true;
+            int generation = _generation;
+            if (!silent) Changed?.Invoke();
+            _net.Call(_messageIds.AckRecap,
+                new global::AckHostedRecapRequest { StartedAt = targetStart },
+                global::AckHostedRecapResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    AckPending = false;
+                    if ((response.ErrorMessage?.Id ?? 0) == 0 && response.Info != null)
+                        ApplyInfo(response.Info);
+                    Changed?.Invoke();
+                },
+                error =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    AckPending = false;
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
         // ── 宿主转发 ────────────────────────────────────────────────────────
 
         /// <summary>进了一个场景:登录(或重连)之后第一次进场时问一次,用于剩余天数与快到期提醒。之后换场景不再问。</summary>
@@ -391,6 +496,9 @@ namespace MmorpgClient.Game.AfkPass
             Info = info;
             _infoReceivedAt = _clock();
             CheckReminders();
+            // 不足 1 分钟且 0 场战斗的瞬时断线简报静默确认,避免反复弹窗打扰。
+            if (PendingRecap != null && !HasPromptableRecap && _messageIds.SupportsRecapAck && !AckPending && Ready)
+                AckHostedRecap(PendingRecap.StartedAt, silent: true);
         }
 
         private void CheckReminders()
@@ -433,6 +541,8 @@ namespace MmorpgClient.Game.AfkPass
             Info = null;
             InfoPending = false;
             BuyPending = false;
+            SettingsPending = false;
+            AckPending = false;
             RequiresReconnect = false;
             _infoQueued = false;
             _sawActive = false;

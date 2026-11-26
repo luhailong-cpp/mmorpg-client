@@ -100,6 +100,9 @@ namespace MmorpgClient.UI.Ugui.PetFlip
         public const string LoadFailedSubtext = "请重试，或先返回历练";
         public const string UnsavedRecordNoticeText = "本机纪录未保存";
         public const string PerfectRunBadgeText = "一气呵成";
+        public const string SwitchConfigButtonText = "切换难度 / 玩法";
+        public const string SpiritEyeArmedHintText = "灵目就绪：点一张背面暗牌免费窥看。";
+        public const string SpiritEyePeekingHintText = "灵目已窥：点任一未配对牌盖回并开一手。";
 
         private static readonly string[] PetMatchFlavorQuotes =
         {
@@ -108,7 +111,9 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             "桂灯童提灯：桂香引路，再接再厉！",
             "竹风狸轻跃：穿竹过风，眼明手快！",
             "玄潮龟点头：稳中求胜，水到渠成！",
-            "霞角鹿踏云：霞光映双影，好记性！"
+            "霞角鹿踏云：霞光映双影，好记性！",
+            "绛铃清响：金铃一振，双影同心！",
+            "岚铎仙拂袖：山岚散尽，灵眸如炬！"
         };
 
         /// <summary>返回指定灵宠配对成功时的一句道家 Q 版趣味小语。</summary>
@@ -132,13 +137,16 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 3 => "三连贯珠！",
                 4 => "四连灵犀！",
                 5 => "五连天成！",
-                _ => "六连一气呵成！"
+                6 => "六连一气呵成！",
+                7 => "七连登峰！",
+                _ => "八连一气呵成！"
             };
         }
 
         /// <summary>
-        /// 逻辑枚举 <see cref="SpiritPetCardPattern"/> (0..5) 与客户端 <c>QdaoPetCatalog</c> 身份的固定映射，
-        /// 对齐 <c>designs/pet-memory-ui-v1/README.md</c>；不关联玩家真实养成宝宝实例。
+        /// 逻辑枚举 <see cref="SpiritPetCardPattern"/> (0..7) 与客户端 <c>QdaoPetCatalog</c> 身份的固定映射，
+        /// A..F 对齐 <c>designs/pet-memory-ui-v1/README.md</c>，G..H 为进阶 16 张模式追加的两只现役灵宠；
+        /// 不关联玩家真实养成宝宝实例。
         /// </summary>
         public static readonly string[] PatternToPetCatalogId =
         {
@@ -147,7 +155,9 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             "04-guideng",      // C -> 桂灯童
             "08-zhufengli",    // D -> 竹风狸
             "10-xuanchaogui",  // E -> 玄潮龟
-            "11-xiajiaolu"     // F -> 霞角鹿
+            "11-xiajiaolu",    // F -> 霞角鹿
+            "02-jiangling",    // G -> 绛铃（进阶 16 张）
+            "15-landuoxian"    // H -> 岚铎仙（进阶 16 张）
         };
 
         public static string GetPetCatalogId(SpiritPetCardPattern pattern)
@@ -158,13 +168,74 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 : string.Empty;
         }
 
+        public static string FormatDifficultyLabel(PetFlipDifficulty difficulty)
+            => difficulty == PetFlipDifficulty.Advanced16 ? "进阶 · 16张" : "轻松 · 12张";
+
+        public static string FormatDifficultyPill(PetFlipDifficulty difficulty)
+            => difficulty == PetFlipDifficulty.Advanced16 ? "八对灵宠" : "六对灵宠";
+
+        public static string FormatModeLabel(PetFlipGameMode mode)
+        {
+            return mode switch
+            {
+                PetFlipGameMode.DailyChallenge => "今日灵签",
+                PetFlipGameMode.SpiritEye => "灵目趣味",
+                _ => "经典自由"
+            };
+        }
+
+        public static string FormatDailyDateLabel(int dateKey)
+        {
+            if (dateKey < 19700101)
+                return "今日灵签";
+
+            int month = (dateKey / 100) % 100;
+            int day = dateKey % 100;
+            if (month < 1 || month > 12 || day < 1 || day > 31)
+                return "今日灵签";
+
+            return $"{month.ToString(CultureInfo.InvariantCulture)}月{day.ToString(CultureInfo.InvariantCulture)}日灵签";
+        }
+
+        public static string FormatBestTitle(PetFlipGameMode mode)
+            => mode == PetFlipGameMode.DailyChallenge ? "今日最佳" : "本机最佳";
+
+        public static string FormatEntryDescription(PetFlipDifficulty difficulty, PetFlipGameMode mode)
+        {
+            string pairWord = difficulty == PetFlipDifficulty.Advanced16 ? "八对" : "六对";
+            switch (mode)
+            {
+                case PetFlipGameMode.DailyChallenge:
+                    return $"今日全员同盘，找出{pairWord}相同灵宠，可反复刷新今日最佳。";
+                case PetFlipGameMode.SpiritEye:
+                    return $"每局赠送 1 次灵目窥牌（看暗牌不计次），找出{pairWord}相同灵宠。";
+                default:
+                    return difficulty == PetFlipDifficulty.Relaxed12
+                        ? EntryDescriptionText
+                        : "每次翻两张，找出八对相同灵宠。翻错也可以继续。";
+            }
+        }
+
         /// <summary>
-        /// 校验 6 种灵宠牌面及必备框体资源是否齐全且无重复占位图。
+        /// 校验 6 种或 8 种灵宠牌面及必备框体资源是否齐全且无重复占位图。
         /// 缺任一头像、缺名称或两个图案复用同一贴图/精灵对象时返回 false，阻止正式开局。
         /// </summary>
         public static bool ValidateAssets(
             bool hasCoreUiSprites,
             IReadOnlyList<PetFlipFaceDescriptor> faces,
+            out string failureReason)
+        {
+            int expectedCount = faces != null && faces.Count == PetFlipConstants.MaxPairCount
+                ? PetFlipConstants.MaxPairCount
+                : PetFlipConstants.PairCount;
+            return ValidateAssets(hasCoreUiSprites, faces, expectedCount, out failureReason);
+        }
+
+        /// <summary>按指定最少对数（6 或 8）严格校验灵宠头像、名称与防同图占位。</summary>
+        public static bool ValidateAssets(
+            bool hasCoreUiSprites,
+            IReadOnlyList<PetFlipFaceDescriptor> faces,
+            int expectedPairCount,
             out string failureReason)
         {
             if (!hasCoreUiSprites)
@@ -173,7 +244,13 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 return false;
             }
 
-            if (faces == null || faces.Count != PetFlipConstants.PairCount)
+            if (expectedPairCount != PetFlipConstants.PairCount && expectedPairCount != PetFlipConstants.MaxPairCount)
+            {
+                failureReason = "invalid_face_count";
+                return false;
+            }
+
+            if (faces == null || faces.Count != expectedPairCount)
             {
                 failureReason = "invalid_face_count";
                 return false;
@@ -185,7 +262,8 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             for (int i = 0; i < faces.Count; i++)
             {
                 PetFlipFaceDescriptor face = faces[i];
-                if (!seenPatterns.Add(face.Pattern))
+                int patternIdx = (int)face.Pattern;
+                if (patternIdx < 0 || patternIdx >= expectedPairCount || !seenPatterns.Add(face.Pattern))
                 {
                     failureReason = "duplicate_pattern";
                     return false;
@@ -238,13 +316,28 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             => height > width && width > 0f && height > 0f;
 
         /// <summary>
-        /// 返回槽位 <paramref name="slotIndex"/> (0..11) 在横屏(4列×3行)或窄竖屏(3列×4行)下的设计像素矩形。
+        /// 返回槽位 <paramref name="slotIndex"/> 在横屏或窄竖屏下的设计像素矩形：
+        /// - 轻松 12 张：横屏 4列×3行，竖屏 3列×4行（保持 V1 精调坐标）；
+        /// - 进阶 16 张：横竖屏均为 4列×4行。
         /// 改变屏幕方向只重排几何位置，保持槽位编号与对应牌面身份不变。
         /// </summary>
-        public static PetFlipPixelRect GetCardSlotRect(int slotIndex, bool isPortrait)
+        public static PetFlipPixelRect GetCardSlotRect(
+            int slotIndex,
+            bool isPortrait,
+            PetFlipDifficulty difficulty = PetFlipDifficulty.Relaxed12)
         {
-            if (slotIndex < 0 || slotIndex >= PetFlipConstants.BoardCardCount)
-                throw new ArgumentOutOfRangeException(nameof(slotIndex), slotIndex, "槽位索引必须在 0..11 之间。");
+            int cardCount = PetFlipConstants.GetCardCount(difficulty);
+            if (slotIndex < 0 || slotIndex >= cardCount)
+                throw new ArgumentOutOfRangeException(nameof(slotIndex), slotIndex, $"槽位索引必须在 0..{cardCount - 1} 之间。");
+
+            if (difficulty == PetFlipDifficulty.Advanced16)
+            {
+                int col = slotIndex % 4;
+                int row = slotIndex / 4;
+                return isPortrait
+                    ? new PetFlipPixelRect(157f + col * 186f, 314f + row * 222f, 152f, 198f)
+                    : new PetFlipPixelRect(671f + col * 164f, 217f + row * 115f, 88f, 108f);
+            }
 
             if (isPortrait)
             {
@@ -260,11 +353,27 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             }
         }
 
-        /// <summary>完成页 6 只灵宠圆形头像展示位（横屏 6×1，窄竖屏 3×2）。</summary>
-        public static PetFlipPixelRect GetCompletionMedallionRect(int patternIndex, bool isPortrait)
+        /// <summary>完成页灵宠圆形头像展示位（轻松 6 只：横 6×1 / 竖 3×2；进阶 8 只：横 8×1 / 竖 4×2）。</summary>
+        public static PetFlipPixelRect GetCompletionMedallionRect(
+            int patternIndex,
+            bool isPortrait,
+            PetFlipDifficulty difficulty = PetFlipDifficulty.Relaxed12)
         {
-            if (patternIndex < 0 || patternIndex >= PetFlipConstants.PairCount)
+            int pairCount = PetFlipConstants.GetPairCount(difficulty);
+            if (patternIndex < 0 || patternIndex >= pairCount)
                 throw new ArgumentOutOfRangeException(nameof(patternIndex));
+
+            if (difficulty == PetFlipDifficulty.Advanced16)
+            {
+                if (isPortrait)
+                {
+                    int col = patternIndex % 4;
+                    int row = patternIndex / 4;
+                    return new PetFlipPixelRect(157f + col * 190f, 532f + row * 224f, 140f, 140f);
+                }
+
+                return new PetFlipPixelRect(377f + patternIndex * 152f, 368f, 104f, 104f);
+            }
 
             if (isPortrait)
             {
@@ -284,13 +393,13 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             return record.BestFlipCount.Value.ToString(CultureInfo.InvariantCulture) + " 次";
         }
 
-        public static string FormatPairCounter(int matchedPairCount)
-            => $"已配 {matchedPairCount.ToString(CultureInfo.InvariantCulture)}/{PetFlipConstants.PairCount.ToString(CultureInfo.InvariantCulture)} 对";
+        public static string FormatPairCounter(int matchedPairCount, int totalPairCount = PetFlipConstants.PairCount)
+            => $"已配 {matchedPairCount.ToString(CultureInfo.InvariantCulture)}/{totalPairCount.ToString(CultureInfo.InvariantCulture)} 对";
 
         public static string FormatFlipCounter(int flipCount)
             => "翻牌次数 " + flipCount.ToString(CultureInfo.InvariantCulture);
 
-        public static string FormatBoardHint(PetFlipSnapshot snapshot, bool isPortrait)
+        public static string FormatBoardHint(PetFlipSnapshot snapshot, bool isPortrait, bool spiritEyeArmed = false)
         {
             if (snapshot == null)
                 return isPortrait ? PortraitDefaultHintText : BoardDefaultHintText;
@@ -300,6 +409,12 @@ namespace MmorpgClient.UI.Ugui.PetFlip
 
             if (snapshot.HandState == PetFlipHandState.MismatchShowing)
                 return isPortrait ? MismatchHintText : "点任一未配对的牌\n继续翻";
+
+            if (snapshot.HandState == PetFlipHandState.SpiritEyePeeking)
+                return isPortrait ? SpiritEyePeekingHintText : "灵目已窥\n点任一未配对牌继续";
+
+            if (spiritEyeArmed && snapshot.CanUseSpiritEye)
+                return isPortrait ? SpiritEyeArmedHintText : "灵目就绪\n点一张暗牌免费窥看";
 
             if (snapshot.HandState == PetFlipHandState.WaitingFirstCard && snapshot.LastMatchedPattern.HasValue)
             {
@@ -319,24 +434,26 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             if (result == null)
                 return "六对灵宠，全部配齐！";
 
+            string pairWord = result.MatchedPairCount >= PetFlipConstants.AdvancedPairCount ? "八对" : "六对";
+            string bestLabel = FormatBestTitle(result.Mode);
             string flips = result.FlipCount.ToString(CultureInfo.InvariantCulture);
             string best = result.BestFlipCount.ToString(CultureInfo.InvariantCulture);
 
             switch (result.Comparison)
             {
                 case PetFlipRecordComparison.FirstRecord:
-                    return $"六对齐了！首次纪录{flips}次。";
+                    return $"{pairWord}齐了！首次纪录{flips}次。";
                 case PetFlipRecordComparison.NewBest:
                 {
                     int delta = result.PreviousBestFlipCount.HasValue
                         ? Math.Max(1, result.PreviousBestFlipCount.Value - result.FlipCount)
                         : 1;
-                    return $"刷新本机最佳！比上次少{delta.ToString(CultureInfo.InvariantCulture)}次。";
+                    return $"刷新{bestLabel}！比上次少{delta.ToString(CultureInfo.InvariantCulture)}次。";
                 }
                 case PetFlipRecordComparison.TiedBest:
-                    return $"追平本机最佳，{flips}次。";
+                    return $"追平{bestLabel}，{flips}次。";
                 default:
-                    return $"六对齐了！本局{flips}次，本机最佳{best}次。";
+                    return $"{pairWord}齐了！本局{flips}次，{bestLabel}{best}次。";
             }
         }
 
@@ -345,7 +462,8 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             if (result == null)
                 return string.Empty;
 
-            string baseText = $"本局 {result.FlipCount.ToString(CultureInfo.InvariantCulture)} 次  ·  本机最佳 {result.BestFlipCount.ToString(CultureInfo.InvariantCulture)} 次";
+            string bestLabel = FormatBestTitle(result.Mode);
+            string baseText = $"本局 {result.FlipCount.ToString(CultureInfo.InvariantCulture)} 次  ·  {bestLabel} {result.BestFlipCount.ToString(CultureInfo.InvariantCulture)} 次";
             if (result.IsPerfectRun)
                 return baseText + "  ·  " + PerfectRunBadgeText;
             if (result.MaxStreak >= 2)
@@ -362,8 +480,11 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 || (snapshot.CompletionResult != null && snapshot.CompletionResult.IsRecordUnsaved);
         }
 
-        /// <summary>构造不依赖色相的可访问卡牌对象名称，已配对牌必含“已配”。</summary>
-        public static string FormatCardAccessibleName(PetFlipCardSnapshot card, string petDisplayName)
+        /// <summary>构造不依赖色相的可访问卡牌对象名称，已配对牌必含“已配”，灵目窥看含“灵目”。</summary>
+        public static string FormatCardAccessibleName(
+            PetFlipCardSnapshot card,
+            string petDisplayName,
+            bool isSpiritEyePeek = false)
         {
             string slot = card.SlotIndex.ToString(CultureInfo.InvariantCulture);
             string name = string.IsNullOrWhiteSpace(petDisplayName) ? "灵宠" : petDisplayName;
@@ -372,7 +493,9 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 case PetFlipCardState.Matched:
                     return $"PetFlipCard_{slot}_{name}_已配";
                 case PetFlipCardState.FaceUp:
-                    return $"PetFlipCard_{slot}_{name}_翻开";
+                    return isSpiritEyePeek
+                        ? $"PetFlipCard_{slot}_{name}_灵目"
+                        : $"PetFlipCard_{slot}_{name}_翻开";
                 default:
                     return $"PetFlipCard_{slot}_背面";
             }

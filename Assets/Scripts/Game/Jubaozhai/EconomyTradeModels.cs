@@ -528,4 +528,181 @@ namespace MmorpgClient.Game.Jubaozhai
                 : "商城内不展示第三方扫码外链图标；创建订单后将按当前发行平台调起官方合规收银台。";
         }
     }
+
+    public enum RmbConsignmentSubTab
+    {
+        All = 0,
+        PublicNotice = 1,
+        DesignatedOnly = 2,
+        Publish = 3,
+        Income = 4,
+    }
+
+    public readonly struct RmbIncomeSummary
+    {
+        public readonly ulong WithdrawableFen;
+        public readonly ulong ReservedFen;
+        public readonly ulong DisputeFrozenFen;
+        public readonly string FirstDisputeCaseId;
+
+        public RmbIncomeSummary(ulong withdrawableFen, ulong reservedFen, ulong disputeFrozenFen, string firstDisputeCaseId)
+        {
+            WithdrawableFen = withdrawableFen;
+            ReservedFen = reservedFen;
+            DisputeFrozenFen = disputeFrozenFen;
+            FirstDisputeCaseId = firstDisputeCaseId ?? string.Empty;
+        }
+    }
+
+    /// <summary>珍宝阁(RMB)寄售筛选与卖家收益汇总纯 C# 推导模型（与 EconomyTradeV2 预览 01/02 对齐，零 Unity 依赖）。</summary>
+    public static class RmbConsignmentViewModel
+    {
+        public static readonly string[] SubTabTitles =
+        {
+            "全服寄售",
+            "公示中",
+            "指定买家专属",
+            "上架寄售",
+            "我的收益与提现",
+        };
+
+        public static bool IsUniqueValuable(RmbConsignmentView item)
+        {
+            if (item == null) return false;
+            return string.Equals(item.AssetKind, "CHARACTER", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(item.AssetKind, "PET", StringComparison.OrdinalIgnoreCase)
+                || item.PriceFen > MarketP50DisplayModel.QuickNoticeMaxFen;
+        }
+
+        public static bool IsInNoticePhase(RmbConsignmentView item)
+        {
+            if (item == null) return false;
+            string phase = item.Phase ?? string.Empty;
+            string state = item.State ?? string.Empty;
+            return phase.IndexOf("NOTICE", StringComparison.OrdinalIgnoreCase) >= 0
+                || state.IndexOf("NOTICE", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        public static List<RmbConsignmentView> FilterListings(IReadOnlyList<RmbConsignmentView> source, RmbConsignmentSubTab tab)
+        {
+            var result = new List<RmbConsignmentView>();
+            if (source == null) return result;
+            for (int i = 0; i < source.Count; i++)
+            {
+                var item = source[i];
+                if (item == null) continue;
+                if (tab == RmbConsignmentSubTab.PublicNotice && !IsInNoticePhase(item)) continue;
+                if (tab == RmbConsignmentSubTab.DesignatedOnly && !item.DesignatedOnly) continue;
+                result.Add(item);
+            }
+            return result;
+        }
+
+        public static RmbIncomeSummary SummarizeIncomes(IReadOnlyList<RmbSellerIncome> incomes)
+        {
+            ulong withdrawable = 0UL;
+            ulong reserved = 0UL;
+            ulong frozen = 0UL;
+            string firstCase = string.Empty;
+            if (incomes != null)
+            {
+                for (int i = 0; i < incomes.Count; i++)
+                {
+                    var inc = incomes[i];
+                    if (inc == null) continue;
+                    reserved += inc.ReservedFen;
+                    frozen += inc.DisputeFrozenFen;
+                    if (inc.DisputeFrozenFen > 0UL && string.IsNullOrEmpty(firstCase))
+                        firstCase = inc.DisputeCaseId ?? string.Empty;
+                    ulong unavailable = inc.PaidFen + inc.ReservedFen + inc.DisputeFrozenFen;
+                    if (inc.NetFen > unavailable) withdrawable += inc.NetFen - unavailable;
+                }
+            }
+            return new RmbIncomeSummary(withdrawable, reserved, frozen, firstCase);
+        }
+
+        public static string FormatIncomeRowStatus(RmbSellerIncome inc)
+        {
+            if (inc == null) return "未知";
+            if (inc.DisputeFrozenFen > 0UL) return "争议冻结";
+            if (inc.ReservedFen > 0UL) return "结算期预留";
+            ulong unavailable = inc.PaidFen + inc.ReservedFen + inc.DisputeFrozenFen;
+            return inc.NetFen > unavailable ? "可提现" : "已结清";
+        }
+    }
+
+    public readonly struct MarketWishlistAlert
+    {
+        public readonly bool HasTarget;
+        public readonly ulong TargetPrice;
+        public readonly bool HasValidP50;
+        public readonly ulong CurrentP50;
+        public readonly bool BelowOrAtTarget;
+
+        public MarketWishlistAlert(bool hasTarget, ulong targetPrice, bool hasValidP50, ulong currentP50, bool belowOrAtTarget)
+        {
+            HasTarget = hasTarget;
+            TargetPrice = targetPrice;
+            HasValidP50 = hasValidP50;
+            CurrentP50 = currentP50;
+            BelowOrAtTarget = belowOrAtTarget;
+        }
+    }
+
+    /// <summary>集市心愿单与到价飞鸽提醒纯 C# 模型：仅在服务端近 7 日 p50 样本充足（≥10 笔）且 ≤ 目标价时触发到价提醒。</summary>
+    public sealed class MarketWishlistModel
+    {
+        private readonly Dictionary<string, ulong> _targets = new Dictionary<string, ulong>(StringComparer.Ordinal);
+
+        public static string KeyOf(uint itemConfigId, uint currencyType)
+            => itemConfigId.ToString(CultureInfo.InvariantCulture) + ":" + currencyType.ToString(CultureInfo.InvariantCulture);
+
+        public void SetTarget(uint itemConfigId, uint currencyType, ulong targetPrice)
+        {
+            string key = KeyOf(itemConfigId, currencyType);
+            if (itemConfigId == 0u || targetPrice == 0UL) _targets.Remove(key);
+            else _targets[key] = targetPrice;
+        }
+
+        public void RemoveTarget(uint itemConfigId, uint currencyType) => _targets.Remove(KeyOf(itemConfigId, currencyType));
+
+        public void Clear() => _targets.Clear();
+
+        public bool TryGetTarget(uint itemConfigId, uint currencyType, out ulong targetPrice)
+            => _targets.TryGetValue(KeyOf(itemConfigId, currencyType), out targetPrice);
+
+        public MarketWishlistAlert Evaluate(uint itemConfigId, uint currencyType, GetMarketReferencePriceResponse p50)
+        {
+            bool hasTarget = TryGetTarget(itemConfigId, currencyType, out ulong target);
+            bool validP50 = p50 != null && !p50.InsufficientSample
+                && p50.SampleCount >= MarketP50DisplayModel.MinValidSamples && p50.MedianUnitPrice > 0UL;
+            ulong median = validP50 ? p50.MedianUnitPrice : 0UL;
+            bool hit = hasTarget && validP50 && median <= target;
+            return new MarketWishlistAlert(hasTarget, target, validP50, median, hit);
+        }
+
+        public string Serialize()
+        {
+            if (_targets.Count == 0) return string.Empty;
+            var parts = new List<string>(_targets.Count);
+            foreach (var kv in _targets)
+                parts.Add(kv.Key + "=" + kv.Value.ToString(CultureInfo.InvariantCulture));
+            return string.Join(";", parts);
+        }
+
+        public void LoadSerialized(string raw)
+        {
+            _targets.Clear();
+            if (string.IsNullOrWhiteSpace(raw)) return;
+            var parts = raw.Split(';');
+            for (int i = 0; i < parts.Length; i++)
+            {
+                int eq = parts[i].IndexOf('=');
+                if (eq <= 0 || eq >= parts[i].Length - 1) continue;
+                string key = parts[i].Substring(0, eq).Trim();
+                if (ulong.TryParse(parts[i].Substring(eq + 1).Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out ulong price) && price > 0UL)
+                    _targets[key] = price;
+            }
+        }
+    }
 }

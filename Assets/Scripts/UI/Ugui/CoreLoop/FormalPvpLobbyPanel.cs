@@ -297,8 +297,14 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                         { petSummary = "出战宝宝 · " + pets.Pets[i].Name; break; }
                 }
             }
-            var seal = SeasonModels.FindEquippedSeal(_game.Season?.Snapshot);
-            string sealSummary = seal != null ? "赛季印 · " + seal.Name : "赛季印待同步";
+            var seasonSnap = _game.Season?.Snapshot;
+            var seal = SeasonModels.FindEquippedSeal(seasonSnap);
+            string affixName = seasonSnap?.WeeklyAffix != null && !string.IsNullOrWhiteSpace(seasonSnap.WeeklyAffix.Name)
+                ? seasonSnap.WeeklyAffix.Name
+                : SeasonModels.DescribeWeeklyAffixShort(seasonSnap?.WeeklyAffix?.AffixId ?? 0u);
+            string sealSummary = seal != null
+                ? (string.IsNullOrEmpty(affixName) ? "赛季印 · " + seal.Name : $"赛季印 · {seal.Name} | {affixName}")
+                : "赛季印待同步";
             DrawSummary("Equipment", 305, equipSummary, _root.OpenEquipment);
             DrawSummary("Pet", 970, petSummary, _root.OpenPets, missingActivePet);
             DrawSummary("Seal", 1635, sealSummary, _root.OpenSeasonSeal);

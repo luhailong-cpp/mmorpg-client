@@ -399,12 +399,12 @@ public static class AppearanceUiVerification
                 // 验收 9：人物收藏系列 11 张正式切图加载与 Border 核验、未集齐禁读合篇、集齐点亮专属印章与打开合篇阅读（零写请求）
                 var expectedSeriesAssets = new[]
                 {
-                    ("series_tab_normal", new Vector4(60f, 0f, 60f, 0f)),
-                    ("series_tab_selected", new Vector4(60f, 0f, 60f, 0f)),
-                    ("series_badge_dim", new Vector4(55f, 0f, 55f, 0f)),
-                    ("series_badge_lit", new Vector4(55f, 0f, 55f, 0f)),
-                    ("series_banner_card", Vector4.zero),
-                    ("series_epilogue_card", Vector4.zero),
+                    ("series_tab_normal", new Vector4(46f, 0f, 46f, 0f)),
+                    ("series_tab_selected", new Vector4(46f, 0f, 46f, 0f)),
+                    ("series_badge_dim", new Vector4(35f, 0f, 35f, 0f)),
+                    ("series_badge_lit", new Vector4(35f, 0f, 35f, 0f)),
+                    ("series_banner_card", new Vector4(48f, 44f, 48f, 44f)),
+                    ("series_epilogue_card", new Vector4(120f, 112f, 120f, 112f)),
                     ("series_seal_dim", Vector4.zero),
                     ("series_seal_lit", Vector4.zero),
                     ("series_seal_lantern_courtyard_lit", Vector4.zero),

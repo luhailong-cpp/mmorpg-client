@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.CoreLoop;
+using MmorpgClient.Game.Season;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +25,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private const float PanelW = 860f;
         private const float PanelH = 900f;
 
-        private const float ListTop = 148f;
+        private const float ListTop = 186f;
         private const float ListBottomMargin = 92f;
         private const float ListWidth = PanelW - 60f;
         private const float ListHeight = PanelH - ListTop - ListBottomMargin;
@@ -39,12 +41,25 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly RectTransform _root;
         private readonly UiTextButton _refreshButton;
         private readonly UiTextButton _closeButton;
+        private readonly TMP_Text _statsText;
+        private readonly UiTextButton _filterAllButton;
+        private readonly UiTextButton _filterWinButton;
+        private readonly UiTextButton _filterLoseButton;
+        private readonly UiTextButton _filterModeButton;
+        private readonly UiTextButton _bookmarksToggleButton;
         private readonly RectTransform _content;
         private readonly ScrollRect _scroll;
         private readonly TMP_Text _emptyText;
         private readonly TMP_Text _statusText;
         private readonly List<GameObject> _rows = new List<GameObject>();
         private readonly List<(UiTextButton Button, bool HasReplay)> _watchButtons = new List<(UiTextButton, bool)>();
+        private readonly List<Match.BattleReportSummary> _allReports = new List<Match.BattleReportSummary>();
+        private readonly List<Match.MatchMode> _availableModes = new List<Match.MatchMode>();
+        private ulong _myPlayerId;
+        private BattleReportVerdictFilter _verdictFilter = BattleReportVerdictFilter.All;
+        private Match.MatchMode _modeFilter = Match.MatchMode.Unspecified;
+        private bool _showingBookmarks;
+        private BattleReplay _inspectedReplay;
 
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
 
@@ -63,12 +78,39 @@ namespace MmorpgClient.UI.Ugui.Battle
                 "×", 28f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
             _closeButton.Button.onClick.AddListener(Hide);
 
-            _refreshButton = BattleUiWidgets.CreateTextButton("Refresh", _root, 30f, 74f, 180f, 56f,
-                "刷新战报", 22f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
+            _refreshButton = BattleUiWidgets.CreateTextButton("Refresh", _root, 30f, 78f, 152f, 46f,
+                "刷新战报", 20f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
             _refreshButton.Button.onClick.AddListener(RefreshList);
 
-            QdaoUguiFactory.CreateText("Hint", _root, 226f, 84f, PanelW - 256f, 36f,
+            _statsText = QdaoUguiFactory.CreateText("StatsSummary", _root, 196f, 82f, PanelW - 226f, 38f,
                 "保留最近 100 场 PVP 对局，点击「看回放」复盘", 18f, QdaoUguiTheme.StatusCream);
+            _statsText.overflowMode = TextOverflowModes.Ellipsis;
+
+            _filterAllButton = BattleUiWidgets.CreateTextButton("FilterAll", _root, 30f, 134f, 96f, 40f,
+                "√ 全部", 18f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
+            _filterAllButton.Button.onClick.AddListener(() => SetVerdictFilter(BattleReportVerdictFilter.All));
+
+            _filterWinButton = BattleUiWidgets.CreateTextButton("FilterWin", _root, 134f, 134f, 96f, 40f,
+                "胜局", 18f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _filterWinButton.Button.onClick.AddListener(() => SetVerdictFilter(BattleReportVerdictFilter.Win));
+
+            _filterLoseButton = BattleUiWidgets.CreateTextButton("FilterLose", _root, 238f, 134f, 96f, 40f,
+                "败局", 18f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _filterLoseButton.Button.onClick.AddListener(() => SetVerdictFilter(BattleReportVerdictFilter.Lose));
+
+            _filterModeButton = BattleUiWidgets.CreateTextButton("FilterMode", _root, 348f, 134f, 224f, 40f,
+                "模式：全部", 18f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _filterModeButton.Button.onClick.AddListener(CycleModeFilter);
+
+            _bookmarksToggleButton = BattleUiWidgets.CreateTextButton("BookmarksToggle", _root, 586f, 134f, 210f, 40f,
+                "配装收藏夹", 18f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _bookmarksToggleButton.Button.onClick.AddListener(() =>
+            {
+                _showingBookmarks = !_showingBookmarks;
+                _inspectedReplay = null;
+                if (_showingBookmarks) SeasonClient.Instance?.RequestState();
+                RenderFiltered();
+            });
 
             var viewport = QdaoUguiFactory.CreateRect("Viewport", _root, 30f, ListTop, ListWidth, ListHeight);
             viewport.gameObject.AddComponent<RectMask2D>();
@@ -144,13 +186,95 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         public void ApplyList(IReadOnlyList<Match.BattleReportSummary> reports, ulong myPlayerId)
         {
-            ClearRows();
+            _myPlayerId = myPlayerId;
+            _allReports.Clear();
+            _availableModes.Clear();
+            var seenModes = new HashSet<Match.MatchMode>();
             int count = reports?.Count ?? 0;
             for (int i = 0; i < count; i++)
             {
                 var summary = reports[i];
                 if (summary == null || summary.BattleId == 0) continue;
-                BuildRow(summary, _rows.Count, myPlayerId);
+                _allReports.Add(summary);
+                if (summary.Mode != Match.MatchMode.Unspecified && seenModes.Add(summary.Mode))
+                    _availableModes.Add(summary.Mode);
+            }
+            if (_modeFilter != Match.MatchMode.Unspecified && !seenModes.Contains(_modeFilter))
+                _modeFilter = Match.MatchMode.Unspecified;
+
+            UpdateStatsHeader();
+            RenderFiltered();
+        }
+
+        public void SetVerdictFilter(BattleReportVerdictFilter filter)
+        {
+            _verdictFilter = filter;
+            RenderFiltered();
+        }
+
+        public void SetModeFilter(Match.MatchMode mode)
+        {
+            _modeFilter = mode;
+            RenderFiltered();
+        }
+
+        private void CycleModeFilter()
+        {
+            if (_availableModes.Count == 0)
+            {
+                SetModeFilter(Match.MatchMode.Unspecified);
+                return;
+            }
+            if (_modeFilter == Match.MatchMode.Unspecified)
+            {
+                SetModeFilter(_availableModes[0]);
+                return;
+            }
+            int idx = _availableModes.IndexOf(_modeFilter);
+            SetModeFilter(idx >= 0 && idx + 1 < _availableModes.Count
+                ? _availableModes[idx + 1]
+                : Match.MatchMode.Unspecified);
+        }
+
+        private void UpdateStatsHeader()
+        {
+            if (_statsText == null) return;
+            var stats = BattleReplayAnalyzer.ComputeListStats(_allReports, _myPlayerId);
+            if (stats.Total == 0)
+            {
+                _statsText.text = "保留最近 100 场 PVP 对局，点击「看回放」复盘";
+                return;
+            }
+            string streak = stats.CurrentStreak >= 2
+                ? $" · {stats.CurrentStreak}连胜"
+                : stats.CurrentStreak <= -2
+                    ? $" · {-stats.CurrentStreak}连败"
+                    : string.Empty;
+            string drawPart = stats.Draws > 0 ? $" {stats.Draws}平" : string.Empty;
+            _statsText.text = $"近 {stats.Total} 场 · 胜率 {stats.WinRatePercent}% · {stats.Wins}胜 {stats.Losses}负{drawPart}{streak}";
+        }
+
+        private void RenderFiltered()
+        {
+            ClearRows();
+            if (_bookmarksToggleButton != null)
+                _bookmarksToggleButton.SetText(_showingBookmarks ? "√ 返回战报" : "配装收藏夹");
+
+            if (_inspectedReplay != null)
+            {
+                RenderInspectedBuilds(_inspectedReplay);
+            }
+            else if (_showingBookmarks)
+            {
+                RenderBookmarksView();
+            }
+            else
+            {
+                var visible = BattleReplayAnalyzer.FilterReports(_allReports, _myPlayerId, _verdictFilter, _modeFilter);
+                for (int i = 0; i < visible.Count; i++)
+                {
+                    BuildRow(visible[i], _rows.Count, _myPlayerId);
+                }
             }
 
             float contentH = Mathf.Max(ListHeight, _rows.Count * (EntryH + EntryGap));
@@ -159,8 +283,21 @@ namespace MmorpgClient.UI.Ugui.Battle
             _content.anchoredPosition = Vector2.zero;
             _scroll.verticalNormalizedPosition = 1f;
 
+            _filterAllButton?.SetText(_verdictFilter == BattleReportVerdictFilter.All ? "√ 全部" : "全部");
+            _filterWinButton?.SetText(_verdictFilter == BattleReportVerdictFilter.Win ? "√ 胜局" : "胜局");
+            _filterLoseButton?.SetText(_verdictFilter == BattleReportVerdictFilter.Lose ? "√ 败局" : "败局");
+            _filterModeButton?.SetText(_modeFilter == Match.MatchMode.Unspecified
+                ? "模式：全部"
+                : $"模式：{BattleReportClient.ModeName(_modeFilter)}");
+
+            bool filtered = _verdictFilter != BattleReportVerdictFilter.All || _modeFilter != Match.MatchMode.Unspecified;
+            _emptyText.text = _allReports.Count == 0 ? "暂无 PVP 战报" : "当前筛选条件下暂无战报";
             _emptyText.gameObject.SetActive(_rows.Count == 0);
-            SetStatus(_rows.Count == 0 ? string.Empty : $"共 {_rows.Count} 场战报");
+            SetStatus(_allReports.Count == 0
+                ? string.Empty
+                : filtered
+                    ? $"已筛选 {_rows.Count} / {_allReports.Count} 场战报"
+                    : $"共 {_rows.Count} 场战报");
             RefreshInteractable();
             BattleFidelityArt.ApplyPanel(_root);
         }
@@ -235,8 +372,15 @@ namespace MmorpgClient.UI.Ugui.Battle
                 BattleReportVerdict.Lose => BattleUiStyle.DamageText,
                 _ => QdaoUguiTheme.MutedBrown,
             };
+            string stampKey = verdict switch
+            {
+                BattleReportVerdict.Win => BattleReportUiArt.StampWin,
+                BattleReportVerdict.Lose => BattleReportUiArt.StampLose,
+                _ => BattleReportUiArt.StampDraw,
+            };
             var badgeBg = BattleUiWidgets.CreatePanel("VerdictBadge", rowRect,
                 14f, 28f, 60f, 60f, badgeColor, raycastTarget: false);
+            BattleReportUiArt.ApplyOptional(badgeBg, stampKey, badgeColor);
             var badgeText = QdaoUguiFactory.CreateText("VerdictText", badgeBg.transform,
                 0f, 0f, 60f, 60f, VerdictLabel(verdict), 28f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
             badgeText.fontStyle = FontStyles.Bold;
@@ -257,6 +401,19 @@ namespace MmorpgClient.UI.Ugui.Battle
             BuildClassIcons(rowRect, summary, textX, 76f, textW);
 
             bool hasReplay = summary.HasReplay;
+            var buildButton = BattleUiWidgets.CreateTextButton("InspectBuild", rowRect,
+                ListWidth - 294f, 30f, 124f, 56f,
+                "看配装", 18f,
+                hasReplay ? BattleUiStyle.ButtonPlate : BattleUiStyle.ButtonPlate,
+                BattleUiStyle.ButtonText);
+            buildButton.SetInteractable(hasReplay);
+            if (hasReplay)
+            {
+                ulong battleId = summary.BattleId;
+                buildButton.Button.onClick.AddListener(() => OnInspectBuildClicked(battleId));
+            }
+            _watchButtons.Add((buildButton, hasReplay));
+
             var watchButton = BattleUiWidgets.CreateTextButton("WatchReplay", rowRect,
                 ListWidth - 160f, 30f, 144f, 56f,
                 hasReplay ? "看回放" : "无回放", 20f,
@@ -322,6 +479,125 @@ namespace MmorpgClient.UI.Ugui.Battle
                 SetStatus("正在加载战报回放…");
             }
             RefreshInteractable();
+        }
+
+        private void OnInspectBuildClicked(ulong battleId)
+        {
+            var reports = _owner?.Reports;
+            if (reports == null) { SetStatus("战报模块未就绪"); return; }
+            if (reports.FetchReplay(battleId, replay =>
+            {
+                _inspectedReplay = replay;
+                _showingBookmarks = false;
+                RenderFiltered();
+            }))
+            {
+                SetStatus("正在加载该局公开配装摘要…");
+            }
+            RefreshInteractable();
+        }
+
+        private void RenderInspectedBuilds(BattleReplay replay)
+        {
+            var headerRow = BattleUiWidgets.CreatePanel("BuildInspectHead", _content,
+                0f, 0f, ListWidth, EntryH, BattleUiStyle.PanelBgLight);
+            var hRect = (RectTransform)headerRow.transform;
+            _rows.Add(headerRow.gameObject);
+            QdaoUguiFactory.CreateText("InspectTitle", hRect, 18f, 14f, ListWidth - 200f, 38f,
+                $"对局 #{replay.BattleId} 公开脱敏配装（共 {replay.ActorBuilds.Count} 人）", 21f, QdaoUguiTheme.Cream);
+            QdaoUguiFactory.CreateText("InspectSub", hRect, 18f, 58f, ListWidth - 200f, 34f,
+                "仅展示公开阵法、五行、赛季印与出战灵宠，不含私密属性与背包", 16f, QdaoUguiTheme.StatusCream);
+            var backBtn = BattleUiWidgets.CreateTextButton("BackToReports", hRect, ListWidth - 168f, 30f, 152f, 54f,
+                "返回列表", 18f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            backBtn.Button.onClick.AddListener(() => { _inspectedReplay = null; RenderFiltered(); });
+
+            for (int i = 0; i < replay.ActorBuilds.Count; ++i)
+            {
+                var build = replay.ActorBuilds[i];
+                if (build == null) continue;
+                float y = _rows.Count * (EntryH + EntryGap);
+                var row = BattleUiWidgets.CreatePanel($"Build_{build.PlayerId}_{i}", _content,
+                    0f, y, ListWidth, EntryH, BattleUiStyle.PanelBgLight);
+                var rRect = (RectTransform)row.transform;
+                _rows.Add(row.gameObject);
+
+                string teamTag = build.TeamIndex == 0u ? "[A队]" : "[B队]";
+                QdaoUguiFactory.CreateText("BuildHead", rRect, 18f, 14f, ListWidth - 200f, 34f,
+                    $"{teamTag} {WuxingExpansionModels.FormatBuildSummary(build)}", 18f, QdaoUguiTheme.Cream);
+                QdaoUguiFactory.CreateText("BuildSkills", rRect, 18f, 56f, ListWidth - 200f, 44f,
+                    $"技能数：{build.SkillTableIds.Count} · 幻境符印：{build.WuxingSigilIds.Count} 枚", 16f, QdaoUguiTheme.StatusCream);
+
+                var captured = build;
+                ulong battleId = replay.BattleId;
+                var saveBtn = BattleUiWidgets.CreateTextButton("SaveBookmark", rRect, ListWidth - 168f, 30f, 152f, 54f,
+                    "一键收藏", 18f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
+                saveBtn.Button.onClick.AddListener(() =>
+                {
+                    var season = SeasonClient.Instance;
+                    if (season == null) { SetStatus("赛季模块未就绪"); return; }
+                    var bm = new global::SavedBattleBuildBookmarkView
+                    {
+                        Title = string.IsNullOrWhiteSpace(captured.Name) ? $"战报#{battleId}" : $"{captured.Name}的配装",
+                        SourceBattleId = battleId,
+                        SourcePlayerId = captured.PlayerId,
+                        SourcePlayerName = captured.Name ?? string.Empty,
+                        ClassId = captured.ClassId,
+                        FormationId = captured.FormationId,
+                        SeasonSealId = captured.SeasonSealId,
+                        ActivePetTableId = captured.ActivePetTableId,
+                        ActivePetName = captured.ActivePetName ?? string.Empty,
+                    };
+                    for (int s = 0; s < captured.SkillTableIds.Count; ++s) bm.SkillTableIds.Add(captured.SkillTableIds[s]);
+                    for (int g = 0; g < captured.WuxingSigilIds.Count; ++g) bm.WuxingSigilIds.Add(captured.WuxingSigilIds[g]);
+                    season.SaveBattleBuildBookmark(bm);
+                    SetStatus($"已提交收藏：{bm.Title}");
+                });
+            }
+            SetStatus($"正在查看战报 #{replay.BattleId} 的公开配装");
+        }
+
+        private void RenderBookmarksView()
+        {
+            var season = SeasonClient.Instance;
+            var builds = season?.SavedBuilds;
+            int count = builds?.Count ?? 0;
+            for (int i = 0; i < count; ++i)
+            {
+                var bm = builds[i];
+                if (bm == null) continue;
+                float y = _rows.Count * (EntryH + EntryGap);
+                var row = BattleUiWidgets.CreatePanel($"Bm_{bm.BookmarkId}", _content,
+                    0f, y, ListWidth, EntryH, BattleUiStyle.PanelBgLight);
+                var rRect = (RectTransform)row.transform;
+                _rows.Add(row.gameObject);
+
+                QdaoUguiFactory.CreateText("BmTitle", rRect, 18f, 12f, ListWidth - 340f, 34f,
+                    $"{bm.Title} · {WuxingExpansionModels.FormationName(bm.FormationId)}", 19f, QdaoUguiTheme.Cream);
+                string detail = $"来源：{bm.SourcePlayerName} · 印#{bm.SeasonSealId} · 宠：{bm.ActivePetName}";
+                QdaoUguiFactory.CreateText("BmDetail", rRect, 18f, 52f, ListWidth - 340f, 44f,
+                    detail, 16f, QdaoUguiTheme.StatusCream);
+
+                uint formId = bm.FormationId;
+                uint sealId = bm.SeasonSealId;
+                ulong bmId = bm.BookmarkId;
+                var applyBtn = BattleUiWidgets.CreateTextButton("ApplyBm", rRect, ListWidth - 310f, 30f, 154f, 54f,
+                    "套用阵/印", 17f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
+                applyBtn.Button.onClick.AddListener(() =>
+                {
+                    if (season == null) return;
+                    if (formId <= 5u) season.EquipFormation(formId);
+                    else if (sealId > 0u) season.EquipSeal(sealId);
+                    SetStatus($"已应用配装阵法：{WuxingExpansionModels.FormationName(formId)}");
+                });
+                var delBtn = BattleUiWidgets.CreateTextButton("DelBm", rRect, ListWidth - 144f, 30f, 128f, 54f,
+                    "删除", 17f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+                delBtn.Button.onClick.AddListener(() =>
+                {
+                    season?.DeleteBattleBuildBookmark(bmId);
+                    SetStatus("已请求删除收藏配装，请稍候刷新");
+                });
+            }
+            SetStatus($"配装收藏夹：{count} / {WuxingExpansionModels.MaxSavedBuildBookmarks}");
         }
 
         private void ClearRows()

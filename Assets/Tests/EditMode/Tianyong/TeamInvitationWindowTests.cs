@@ -81,6 +81,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             float now = 1f;
             var transport = new TeamFakeTransport { PlayerId = 11 };
             var client = new TeamClient(transport, clock: () => now);
+            var navigationBefore = WorldHudNavigation.Instance;
             var liveObject = new GameObject("LiveTeamInvitationCooldownTest");
             var live = liveObject.AddComponent<TeamUiRoot>();
             var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
@@ -123,6 +124,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             {
                 Object.DestroyImmediate(liveObject);
                 client.Dispose();
+                if (WorldHudNavigation.Instance != null && WorldHudNavigation.Instance != navigationBefore)
+                    Object.DestroyImmediate(WorldHudNavigation.Instance.gameObject);
             }
         }
 
@@ -133,6 +136,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             float now = 1f;
             var transport = new TeamFakeTransport { PlayerId = 11 };
             var client = new TeamClient(transport, clock: () => now);
+            var navigationBefore = WorldHudNavigation.Instance;
             var liveObject = new GameObject("LiveTeamCreationCooldownTest");
             var live = liveObject.AddComponent<TeamUiRoot>();
             var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
@@ -181,6 +185,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             {
                 Object.DestroyImmediate(liveObject);
                 client.Dispose();
+                if (WorldHudNavigation.Instance != null && WorldHudNavigation.Instance != navigationBefore)
+                    Object.DestroyImmediate(WorldHudNavigation.Instance.gameObject);
             }
         }
 

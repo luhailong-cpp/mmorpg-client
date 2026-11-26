@@ -136,8 +136,8 @@ namespace MmorpgClient.Game.Battle
             return true;
         }
 
-        /// <summary>取一局战报的回放并解码。单飞;命中本地缓存时直接交付。返回 false 表示未发起(忙或参数无效)。</summary>
-        public bool FetchReplay(ulong battleId)
+        /// <summary>取一局战报的回放并解码。单飞;命中本地缓存时直接交付。传入 onReady 时仅回调不触发自动播放。</summary>
+        public bool FetchReplay(ulong battleId, Action<BattleReplay> onReady = null)
         {
             if (_disposed || battleId == 0) return false;
             ObserveSession();
@@ -145,7 +145,8 @@ namespace MmorpgClient.Game.Battle
 
             if (TryGetCachedReplay(battleId, out var cached))
             {
-                OnReplayLoaded?.Invoke(cached);
+                if (onReady != null) onReady(cached);
+                else OnReplayLoaded?.Invoke(cached);
                 return true;
             }
 
@@ -200,7 +201,8 @@ namespace MmorpgClient.Game.Battle
                     }
 
                     CacheReplay(battleId, decoded.Replay);
-                    OnReplayLoaded?.Invoke(decoded.Replay);
+                    if (onReady != null) onReady(decoded.Replay);
+                    else OnReplayLoaded?.Invoke(decoded.Replay);
                 },
                 err =>
                 {
@@ -275,6 +277,7 @@ namespace MmorpgClient.Game.Battle
             Match.MatchMode.PvpChallenge => true,
             Match.MatchMode.PvpTeam => true,
             Match.MatchMode.Polarity5V5 => true,
+            Match.MatchMode.GuildWarPvp => true,
             Match.MatchMode.SeasonTournament => true,
             _ => false,
         };
@@ -294,6 +297,8 @@ namespace MmorpgClient.Game.Battle
             Match.MatchMode._5V5 => "PVP 5v5",
             Match.MatchMode.PvpTeam => "PVP 组队",
             Match.MatchMode.Polarity5V5 => "物法易势 5v5",
+            Match.MatchMode.GuildWarPvp => "帮战直打",
+            Match.MatchMode.GuildWarSiege => "帮战踢馆",
             Match.MatchMode.SeasonTournament => "赛季锦标赛",
             Match.MatchMode.PvpChallenge => "切磋 PK",
             Match.MatchMode.PveSolo => "PVE 单人",

@@ -604,10 +604,10 @@ namespace MmorpgClient.Tests.EditMode.Battle
         // ── hit_kind / 新枚举值过线格式 ──
 
         [Test]
-        public void ResistCode_IsFifteen_AndOutsideTheCodesThePlanKnows()
+        public void ResistCodeMatchesTheProtocolAndRetainsBuffMetadata()
         {
             Assert.AreEqual(ResistCode, (int)eBattleEventType.BattleEventResist);
-            Assert.Less(BattleEventCodes.Mana, ResistCode); // 分拍认识的最大码是 MANA = 14
+            Assert.AreEqual(ResistCode, BattleEventCodes.Resist);
 
             var input = TurnEventInput.From(new BattleEventItem
             {
@@ -637,19 +637,21 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.AreEqual(Shape(Build(untagged)), Shape(Build(Stream(true))));
 
             // 将来服务端再加 hit_kind / 事件类型:proto3 枚举按数值原样保留,解析与分拍都不抛
+            const eBattleHitKind futureHitKind = (eBattleHitKind)4096;
+            const eBattleEventType futureEventType = (eBattleEventType)4096;
             var future = new Round(A, B)
                 .BeginGroup()
                 .Attack(A, B)
-                .Damage(A, B, 100, 900, (eBattleHitKind)9);
+                .Damage(A, B, 100, 900, futureHitKind);
             future.Result.Events.Add(new BattleEventItem
             {
-                EventType = (eBattleEventType)16, SourceId = B, TargetId = A, GroupId = 1, Value = 7,
+                EventType = futureEventType, SourceId = B, TargetId = A, GroupId = 1, Value = 7,
             });
             future.BeginGroup().Attack(B, A).Damage(B, A, 10, 990);
 
             var parsed = TurnResultS2C.Parser.ParseFrom(future.Result.ToByteArray());
-            Assert.AreEqual((eBattleHitKind)9, parsed.Events[1].HitKind);
-            Assert.AreEqual(16, (int)parsed.Events[2].EventType);
+            Assert.AreEqual(futureHitKind, parsed.Events[1].HitKind);
+            Assert.AreEqual(futureEventType, parsed.Events[2].EventType);
             TurnPlan plan = null;
             Assert.DoesNotThrow(() => plan = TurnPlan.Build(parsed, myTeam: 0));
             CollectionAssert.AreEqual(new[] { BeatKind.Attack, BeatKind.Attack }, KindsOf(plan));

@@ -301,10 +301,16 @@ namespace MmorpgClient.UI.Ugui.Skills
                     {
                         Button(_body, "CraftTargetedRareBtn", "定向制书（100%必出）", 960, 1250, 820,
                             () => _client?.CraftRareTargeted(activeScroll.ScrollId, _selectedSkillId, _selectedProxyMasterId), true, canRare);
-                        Button(_body, "RareMallShortcutBtn", "官方商城补秘墨", 1810, 1250, 630, () =>
+                        Button(_body, "RareMallShortcutBtn", "百宝阁补秘墨", 1810, 1250, 630, () =>
                         {
                             Hide();
-                            Jubaozhai.JubaozhaiUiRoot.Instance?.OpenOfficialMall();
+                            var spiritRoot = MmorpgClient.UI.Ugui.SpiritShop.SpiritShopUiRoot.Instance;
+                            if (spiritRoot?.Client?.IsSupported == true)
+                                spiritRoot.OpenTab(
+                                    MmorpgClient.Game.SpiritShop.SpiritShopModels.TabAdvancement,
+                                    MmorpgClient.Game.SpiritShop.SpiritShopModels.GoodsCelestialInk);
+                            else
+                                Jubaozhai.JubaozhaiUiRoot.Instance?.OpenOfficialMall();
                         }, false, true);
                     }
                     else
@@ -378,7 +384,8 @@ namespace MmorpgClient.UI.Ugui.Skills
             float myInfoX = 200f;
             if (isMaster)
             {
-                var gmBadge = SeasonEconomyUiArt.LoadCraftControl("mastery_badge_grandmaster");
+                var gmBadge = SeasonEconomyUiArt.LoadTradeV2Slice("icon_master_seal")
+                    ?? SeasonEconomyUiArt.LoadCraftControl("mastery_badge_grandmaster");
                 if (gmBadge != null)
                 {
                     var badgeImg = QdaoUguiFactory.CreateImage("MyProxyMasterBadge", _body, 190, 420, 96, 96, gmBadge, false);
@@ -402,10 +409,11 @@ namespace MmorpgClient.UI.Ugui.Skills
             }
 
             Panel(_body, "CityMastersPaper", 130, 730, 3700, 680);
-            Label(_body, "CityMastersTitle", "全城在营业名匠", 200, 770, 1200, 70, 48, color: Jade);
+            Label(_body, "CityMastersTitle", "全城在营业名匠（委托前核对代工费用与 5% 官方税）", 200, 770, 2200, 70, 46, color: Jade);
             var stalls = _client?.ProxyStalls ?? Array.Empty<CraftProxyStallInfo>();
             var list = Scroll(_body, "CityMastersViewport", 190, 855, 3580, 520, Math.Max(520, stalls.Count * 165));
-            var gmRowBadge = SeasonEconomyUiArt.LoadCraftControl("mastery_badge_grandmaster");
+            var gmRowBadge = SeasonEconomyUiArt.LoadTradeV2Slice("icon_master_seal")
+                ?? SeasonEconomyUiArt.LoadCraftControl("mastery_badge_grandmaster");
             var sealRowBg = SeasonEconomyUiArt.LoadCraftControl("seal_master_signature");
             for (int i = 0; i < stalls.Count; ++i)
             {

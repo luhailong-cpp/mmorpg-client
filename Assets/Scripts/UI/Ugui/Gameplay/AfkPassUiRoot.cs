@@ -1,7 +1,9 @@
 using MmorpgClient.Game;
 using MmorpgClient.Game.AfkPass;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.BattleScripts;
 using MmorpgClient.UI.Ugui.Battle;
+using MmorpgClient.UI.Ugui.BattleScripts;
 using MmorpgClient.World.Tianyong;
 using TMPro;
 using UnityEngine;
@@ -29,22 +31,32 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public const string EntryName = "AfkPassEntry";
         public const string BuyButtonName = "AfkPassBuy";
         public const string CloseButtonName = "AfkPassClose";
+        public const string AutoReturnToggleName = "AfkPassAutoReturnToggle";
+        public const string OpenBattleScriptButtonName = "AfkPassOpenBattleScript";
+        public const string RecapWindowName = "HostedRecapWindow";
+        public const string RecapConfirmButtonName = "HostedRecapConfirm";
         public const string EntryText = "挂机月卡";
         /// <summary>第一次点击之后多久内的第二次点击算确认;超时要重新点。</summary>
         public const float ConfirmWindowSeconds = 5f;
         /// <summary>第一次点击之后至少过这么久,第二次点击才算确认:一次双击不该扣钱。</summary>
         public const float ConfirmMinIntervalSeconds = 0.4f;
 
-        private const float FrameWidth = 1080, FrameHeight = 640;
+        private const float FrameWidth = 1080, FrameHeight = 760;
+        private const float RecapWidth = 920, RecapHeight = 620;
         private static readonly Color ErrorInk = QdaoUguiTheme.Html("#9A442D");
+        private static readonly Color AccentJade = QdaoUguiTheme.Html("#1F6F52");
 
         private GameClient _game;
         private AfkPassClient _client;
+        private BattleScriptClient _boundBattleScripts;
         private RectTransform _hud;
         private RectTransform _window;
-        private Button _entry, _buy;
-        private TMP_Text _state, _price, _balance, _status, _buyLabel;
+        private RectTransform _recapWindow;
+        private Button _entry, _buy, _autoReturnButton, _battleScriptButton, _recapConfirmButton;
+        private TMP_Text _state, _price, _balance, _status, _buyLabel, _autoReturnLabel, _battleScriptSummary;
+        private TMP_Text _recapSubtitle, _recapBattles, _recapExp, _recapSilver, _recapItems;
         private bool _available;
+        private ulong _shownRecapStartedAt;
         private float _armedAt = float.NegativeInfinity;
         private uint _armedCurrency;
         private ulong _armedPrice;
@@ -87,6 +99,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             WorldHudNavigation.Register(WorldHudEntry.AfkPass, (RectTransform)_entry.transform, _entry,
                 _entry.GetComponentInChildren<TMP_Text>(true));
             BuildWindow(design);
+            BuildRecapWindow(design);
             _hud.gameObject.SetActive(false);
         }
 
@@ -99,24 +112,64 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _window.gameObject.AddComponent<GameplayInputBlocker>();
             var frame = QdaoUguiFactory.CreateCenteredRect("AfkPassFrame", _window, FrameWidth, FrameHeight);
             GameplayUiArt.Art(frame, "main_frame", 0, 0, FrameWidth, FrameHeight);
-            GameplayUiArt.Text(frame, EntryText, 80, 44, 600, 64, 40);
-            _state = GameplayUiArt.Text(frame, "", 80, 136, 920, 60, 36);
-            _price = GameplayUiArt.Text(frame, "", 80, 206, 920, 48, 28, GameplayUiArt.Muted);
-            _balance = GameplayUiArt.Text(frame, "", 80, 260, 920, 48, 28, GameplayUiArt.Muted);
-            GameplayUiArt.Text(frame, AfkPassModels.HostingDescription, 80, 320, 920, 120, 26, GameplayUiArt.Muted, wrap: true);
-            _status = GameplayUiArt.Text(frame, "", 80, 452, 920, 48, 26, GameplayUiArt.Muted);
-            var close = GameplayUiArt.Button(frame, "关闭", 80, 524, 240, 80, HidePanel);
+            GameplayUiArt.Text(frame, EntryText, 80, 38, 600, 60, 40);
+            _state = GameplayUiArt.Text(frame, "", 80, 118, 920, 56, 36);
+            _price = GameplayUiArt.Text(frame, "", 80, 182, 920, 44, 26, GameplayUiArt.Muted);
+            _balance = GameplayUiArt.Text(frame, "", 80, 230, 920, 44, 26, GameplayUiArt.Muted);
+            GameplayUiArt.Text(frame, AfkPassModels.HostingDescription, 80, 282, 920, 92, 24, GameplayUiArt.Muted, wrap: true);
+
+            // 托管策略区:离队/解散自动回主城安全区 + 战斗剧本直连
+            _autoReturnButton = GameplayUiArt.Button(frame, "离队/解散自动回主城：关闭", 80, 390, 460, 62,
+                HandleAutoReturnToggle, false, fontSize: 24);
+            _autoReturnButton.name = AutoReturnToggleName;
+            _autoReturnLabel = _autoReturnButton.GetComponentInChildren<TMP_Text>(true);
+
+            _battleScriptButton = GameplayUiArt.Button(frame, "配置托管剧本", 564, 390, 260, 62,
+                OpenBattleScriptPanel, false, fontSize: 24);
+            _battleScriptButton.name = OpenBattleScriptButtonName;
+
+            _battleScriptSummary = GameplayUiArt.Text(frame, "组队副本托管剧本：默认出招", 80, 466, 920, 44, 24, AccentJade);
+
+            _status = GameplayUiArt.Text(frame, "", 80, 526, 920, 48, 25, GameplayUiArt.Muted);
+            var close = GameplayUiArt.Button(frame, "关闭", 80, 628, 240, 80, HidePanel);
             close.name = CloseButtonName;
-            _buy = GameplayUiArt.Button(frame, "开通", 600, 524, 400, 80, HandleBuyClicked, true);
+            _buy = GameplayUiArt.Button(frame, "开通", 600, 628, 400, 80, HandleBuyClicked, true);
             _buy.name = BuyButtonName;
             _buyLabel = _buy.GetComponentInChildren<TMP_Text>(true);
             _window.gameObject.SetActive(false);
+        }
+
+        private void BuildRecapWindow(RectTransform design)
+        {
+            _recapWindow = QdaoUguiFactory.CreateStretch(RecapWindowName, design, Vector4.zero);
+            var shade = _recapWindow.gameObject.AddComponent<Image>();
+            shade.color = new Color(.025f, .10f, .08f, .72f);
+            shade.raycastTarget = true;
+            _recapWindow.gameObject.AddComponent<GameplayInputBlocker>();
+            var frame = QdaoUguiFactory.CreateCenteredRect("HostedRecapFrame", _recapWindow, RecapWidth, RecapHeight);
+            GameplayUiArt.Art(frame, "main_frame", 0, 0, RecapWidth, RecapHeight);
+            GameplayUiArt.Text(frame, "离线托管收获简报", 70, 40, 780, 60, 40, alignment: TextAlignmentOptions.Center);
+            _recapSubtitle = GameplayUiArt.Text(frame, "", 70, 112, 780, 56, 23, GameplayUiArt.Muted,
+                alignment: TextAlignmentOptions.Center, wrap: true);
+            _recapBattles = GameplayUiArt.Text(frame, "", 96, 198, 728, 52, 28);
+            _recapExp = GameplayUiArt.Text(frame, "", 96, 260, 728, 52, 28, AccentJade);
+            _recapSilver = GameplayUiArt.Text(frame, "", 96, 322, 728, 52, 28, AccentJade);
+            _recapItems = GameplayUiArt.Text(frame, "", 96, 384, 728, 52, 28);
+
+            var scriptBtn = GameplayUiArt.Button(frame, "配置剧本", 70, 496, 210, 72, OpenBattleScriptFromRecap, false, fontSize: 25);
+            scriptBtn.name = "HostedRecapBattleScript";
+            var passBtn = GameplayUiArt.Button(frame, "挂机月卡", 304, 496, 210, 72, OpenPassFromRecap, false, fontSize: 25);
+            passBtn.name = "HostedRecapOpenPass";
+            _recapConfirmButton = GameplayUiArt.Button(frame, "收下确认", 548, 496, 302, 72, ConfirmRecap, true, fontSize: 28);
+            _recapConfirmButton.name = RecapConfirmButtonName;
+            _recapWindow.gameObject.SetActive(false);
         }
 
         private void Update()
         {
             if (_window == null || _hud == null) { Unbind(); return; }
             Bind(AppBootstrap.Instance?.GameClient);
+            BindBattleScripts(BattleScriptUiRoot.Instance?.Client);
             bool battleLayer = BattleUiRoot.Instance?.IsBattleLayerVisible ?? false;
             _available = _game != null && _game.InGame && _game.IsGateReady && !battleLayer && (_client?.IsSupported ?? false);
             _client?.Tick();
@@ -124,8 +177,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (!_available)
             {
                 HidePanel();
+                HideRecap();
                 return;
             }
+            MaybeShowPendingRecap();
             if (!IsPanelVisible) return;
             UpdateStateText();
             if (_confirmShown && Time.unscaledTime - _armedAt > ConfirmWindowSeconds) Render();   // 确认时限到了:收回按钮文字
@@ -150,9 +205,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (!_available || _window == null) return;
             CityPanelRegistry.HideOthers(this);
+            HideRecap();
             _armedAt = float.NegativeInfinity;
             _window.gameObject.SetActive(true);
             _client?.RequestInfo();   // 打开时问一次:余额与剩余时长以服务端此刻为准
+            var scripts = BattleScriptUiRoot.Instance?.Client;
+            if (scripts != null && scripts.List == null && !scripts.Busy) scripts.Refresh();
             Render();
         }
 
@@ -160,6 +218,89 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             _armedAt = float.NegativeInfinity;
             if (_window != null) _window.gameObject.SetActive(false);
+        }
+
+        private void HideRecap()
+        {
+            if (_recapWindow != null) _recapWindow.gameObject.SetActive(false);
+        }
+
+        private void MaybeShowPendingRecap()
+        {
+            if (_recapWindow == null || _recapWindow.gameObject.activeSelf || IsPanelVisible) return;
+            var recap = _client?.PendingRecap;
+            if (recap == null || !_client.HasPromptableRecap || recap.StartedAt == _shownRecapStartedAt) return;
+            _shownRecapStartedAt = recap.StartedAt;
+            RenderRecap(recap);
+            _recapWindow.gameObject.SetActive(true);
+        }
+
+        private void RenderRecap(global::HostedRecapSummary recap)
+        {
+            if (recap == null || _recapWindow == null) return;
+            ulong duration = AfkPassModels.RecapDurationSeconds(recap);
+            _recapSubtitle.text = $"离线托管时长：{AfkPassModels.FormatDuration(duration)}（仅汇总实际结算收益，无额外产出）";
+            _recapBattles.text = $"完成战斗：{recap.BattleCount} 场（胜利 {recap.WinCount} 场）";
+            _recapExp.text = $"获得经验：+{recap.ExpGained}";
+            _recapSilver.text = $"获得银两：+{recap.SilverGained}";
+            _recapItems.text = $"获得物品：{recap.ItemCount} 件";
+        }
+
+        private void ConfirmRecap()
+        {
+            ulong startedAt = _client?.PendingRecap?.StartedAt ?? _shownRecapStartedAt;
+            HideRecap();
+            if (startedAt != 0) _client?.AckHostedRecap(startedAt);
+        }
+
+        private void OpenBattleScriptFromRecap()
+        {
+            ConfirmRecap();
+            BattleScriptUiRoot.Instance?.Toggle();
+        }
+
+        private void OpenPassFromRecap()
+        {
+            ConfirmRecap();
+            ShowPanel();
+        }
+
+        private void HandleAutoReturnToggle()
+        {
+            if (_client == null || _client.SettingsPending) return;
+            _client.SetAutoReturnCity(!_client.AutoReturnCityOnTeamEnd);
+        }
+
+        private void OpenBattleScriptPanel()
+        {
+            HidePanel();
+            BattleScriptUiRoot.Instance?.Toggle();
+        }
+
+        private string DescribeHostedBattleScript()
+        {
+            var scripts = BattleScriptUiRoot.Instance?.Client;
+            if (scripts == null) return "组队副本托管剧本：未连接";
+            var list = scripts.List;
+            if (list == null) return scripts.Busy ? "组队副本托管剧本：读取中…" : "组队副本托管剧本：点击右侧查看与配置";
+            var entry = scripts.ChoiceFor((uint)Match.MatchMode.PveTeam, 0)
+                ?? scripts.ChoiceFor((uint)Match.MatchMode.PveSolo, 0);
+            if (entry == null) return "组队副本托管剧本：默认出招（未选用自定义剧本）";
+            if (entry.OfficialScriptId != 0)
+            {
+                foreach (var official in list.OfficialScripts)
+                    if (official.ScriptId == entry.OfficialScriptId)
+                        return $"组队副本托管剧本：官方 · {BattleScriptClient.DisplayName(official)}";
+                return $"组队副本托管剧本：官方剧本 #{entry.OfficialScriptId}";
+            }
+            if (entry.PlayerScriptId != 0)
+            {
+                foreach (var own in list.MyScripts)
+                    if (own.ScriptId == entry.PlayerScriptId)
+                        return $"组队副本托管剧本：自订 · {BattleScriptClient.DisplayName(own.Content)}";
+                return $"组队副本托管剧本：自订剧本 #{entry.PlayerScriptId}";
+            }
+            return "组队副本托管剧本：默认出招";
         }
 
         private void HandleBuyClicked()
@@ -219,6 +360,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _buyLabel.text = pending ? $"{action}中…"
                 : _confirmShown ? $"确认{action}（{info.Price} {AfkPassModels.CurrencyName(info.PriceCurrencyType)}）"
                 : action;
+
+            bool settingsReady = _client != null && _client.Ready && _client.SupportsSettings && !_client.SettingsPending && info != null;
+            if (_autoReturnButton != null) _autoReturnButton.interactable = settingsReady;
+            if (_autoReturnLabel != null)
+            {
+                bool autoReturn = _client != null && _client.AutoReturnCityOnTeamEnd;
+                _autoReturnLabel.text = _client?.SettingsPending == true
+                    ? "保存托管设置中…"
+                    : autoReturn ? "离队/解散自动回主城：已开启" : "离队/解散自动回主城：已关闭";
+            }
+            if (_battleScriptButton != null) _battleScriptButton.interactable = _available && BattleScriptUiRoot.Instance != null;
+            if (_battleScriptSummary != null) _battleScriptSummary.text = DescribeHostedBattleScript();
         }
 
         // 只写状态行的文字(倒计时),不碰别的控件。
@@ -254,8 +407,23 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Render();
         }
 
+        private void BindBattleScripts(BattleScriptClient client)
+        {
+            if (ReferenceEquals(_boundBattleScripts, client)) return;
+            if (_boundBattleScripts != null) _boundBattleScripts.Changed -= HandleBattleScriptsChanged;
+            _boundBattleScripts = client;
+            if (_boundBattleScripts != null) _boundBattleScripts.Changed += HandleBattleScriptsChanged;
+        }
+
+        private void HandleBattleScriptsChanged()
+        {
+            if (IsPanelVisible && _battleScriptSummary != null)
+                _battleScriptSummary.text = DescribeHostedBattleScript();
+        }
+
         private void Unbind()
         {
+            BindBattleScripts(null);
             if (_game != null)
             {
                 _game.OnSceneEntered -= HandleSceneEntered;
@@ -269,15 +437,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _client.Dispose();
                 _client = null;
             }
+            _shownRecapStartedAt = 0;
             HidePanel();
+            HideRecap();
         }
 
         private void HandleSceneEntered(SceneInfoComp scene) => _client?.HandleSceneEntered();
 
         private void HandleDisconnected()
         {
+            _shownRecapStartedAt = 0;
             _client?.HandleDisconnected();
             HidePanel();
+            HideRecap();
         }
 
         private static void HandleReminder(string text) => BattleUiRoot.Instance?.ShowToast(text);

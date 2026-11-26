@@ -249,6 +249,8 @@ namespace MmorpgClient.Net
                 case MessageIds.TransferLeader:
                 case MessageIds.DisbandTeam:
                 case MessageIds.StartTeamMatch:
+                case MessageIds.SetTeamFormation:
+                case MessageIds.RecallTeamMembers:
                     return "team";
 
                 case MessageIds.JoinQueue:
@@ -261,6 +263,26 @@ namespace MmorpgClient.Net
                 case MessageIds.RequestBattleTicket:
                 case MessageIds.GetNetworkProbePlan:
                 case MessageIds.CommitNetworkProbe:
+                case MatchServiceRpc.GetTournamentOverviewMessageId:
+                case MatchServiceRpc.CreateTournamentSquadMessageId:
+                case MatchServiceRpc.InviteTournamentMemberMessageId:
+                case MatchServiceRpc.RespondTournamentInviteMessageId:
+                case MatchServiceRpc.LeaveTournamentSquadMessageId:
+                case MatchServiceRpc.UpdateTournamentLineupMessageId:
+                case MatchServiceRpc.RegisterTournamentSquadMessageId:
+                case MatchServiceRpc.ListTournamentStandingsMessageId:
+                case MatchServiceRpc.StartTournamentMatchMessageId:
+                case MatchServiceRpc.CheerTournamentSquadMessageId:
+                case MatchServiceRpc.ClaimTournamentRewardMessageId:
+                case MatchServiceRpc.SaluteTournamentChampionMessageId:
+                case MatchServiceRpc.SendTournamentSpectateCheerMessageId:
+                case MatchServiceRpc.GetTournamentSpectateCheerMessageId:
+                case MatchServiceRpc.UpdateTournamentSquadEmblemMessageId:
+                case MatchServiceRpc.StartTournamentWarmupMessageId:
+                case MatchServiceRpc.PredictTournamentMatchMessageId:
+                case MatchServiceRpc.GetTournamentPredictionBoardMessageId:
+                case MatchServiceRpc.BanTournamentLeylineMessageId:
+                case MatchServiceRpc.GetTournamentHighlightsMessageId:
                     return "match";
 
                 case MessageIds.SubmitBattleAction:
@@ -269,6 +291,7 @@ namespace MmorpgClient.Net
                 case MessageIds.SetAutoBattle:
                 case MessageIds.SurrenderBattle:
                 case MessageIds.UpdateBattlePrep:
+                case MessageIds.SendBattlePing:
                     return "battle";
 
                 case MessageIds.RankGetRankPage:
@@ -302,6 +325,16 @@ namespace MmorpgClient.Net
                 case MessageIds.GetGuildActivities:
                 case MessageIds.StartGuildTrial:
                 case MessageIds.RespondGuildTrialInvite:
+                case GuildServiceRpc.GetGuildWarOverviewMessageId:
+                case GuildServiceRpc.SetGuildWarStanceMessageId:
+                case GuildServiceRpc.RegisterGuildWarGarrisonMessageId:
+                case GuildServiceRpc.StartGuildWarBattleMessageId:
+                case GuildServiceRpc.ClaimGuildWarMilestoneMessageId:
+                case GuildServiceRpc.ClaimGuildWarDividendMessageId:
+                case GuildServiceRpc.PostGuildWarBountyMessageId:
+                case GuildServiceRpc.TrackGuildWarBountyMessageId:
+                case GuildServiceRpc.GetGuildWarBattleResultMessageId:
+                case GuildServiceRpc.InspectFieldWarTargetsMessageId:
                     return "guild";
 
                 case MessageIds.MailListMails:
@@ -358,6 +391,7 @@ namespace MmorpgClient.Net
                 case MessageIds.GetPetEntries:
                 case MessageIds.PreviewPetEntries:
                 case MessageIds.SavePetEntries:
+                case MessageIds.SwitchPetEntryPreset:
                     return "pet";
 
                 case MessageIds.GetMysteryMerchantInfo:
@@ -366,12 +400,32 @@ namespace MmorpgClient.Net
 
                 case MessageIds.GetAfkPass:
                 case MessageIds.BuyAfkPass:
+                case MessageIds.SetAfkPassSettings:
+                case MessageIds.AckHostedRecap:
                     return "afk_pass";
+
+                case SceneSeasonClientPlayerRpc.GetSeasonStateMessageId:
+                case SceneSeasonClientPlayerRpc.EquipSeasonSealMessageId:
+                case SceneSeasonClientPlayerRpc.CatchupSeasonSealMessageId:
+                case SceneSeasonClientPlayerRpc.EquipWuxingFormationMessageId:
+                case SceneSeasonClientPlayerRpc.GetWuxingTowerStateMessageId:
+                case SceneSeasonClientPlayerRpc.StartWuxingTowerRunMessageId:
+                case SceneSeasonClientPlayerRpc.PickWuxingTowerSigilMessageId:
+                case SceneSeasonClientPlayerRpc.AbandonWuxingTowerRunMessageId:
+                case SceneSeasonClientPlayerRpc.SaveBattleBuildBookmarkMessageId:
+                case SceneSeasonClientPlayerRpc.DeleteBattleBuildBookmarkMessageId:
+                    return "season";
+
+                case MessageIds.GetSpiritShopInfo:
+                case MessageIds.BuySpiritShopGoods:
+                    return "spirit_shop";
 
                 case MessageIds.GetAppearanceInfo:
                 case MessageIds.SwitchAppearance:
                 case MessageIds.StartAppearanceTrial:
                 case MessageIds.CancelAppearanceTrial:
+                case SceneAppearanceClientPlayerRpc.EquipPetCosmeticMessageId:
+                case SceneAppearanceClientPlayerRpc.EquipSkillVfxMessageId:
                     return "appearance";
 
                 case MessageIds.GetBag:
@@ -381,16 +435,36 @@ namespace MmorpgClient.Net
                 case MessageIds.InlayGem:
                 case MessageIds.EnhanceEquip:
                 case MessageIds.RemoveGem:
+                case SceneBagClientPlayerRpc.GetEquipmentCraftRulesMessageId:
+                case SceneBagClientPlayerRpc.PreviewEquipmentCraftMessageId:
+                case SceneBagClientPlayerRpc.CommitEquipmentCraftMessageId:
+                case SceneBagClientPlayerRpc.GetEquipmentMaterialRewardMessageId:
+                case SceneBagClientPlayerRpc.ClaimEquipmentMaterialRewardMessageId:
                     return "scene_bag";
 
                 case MessageIds.ListSkills:
                 case MessageIds.ReleaseSkill:
                 case MessageIds.UpgradeSkill:
+                case MessageIds.SaveSkillLoadout:
+                case MessageIds.SwitchSkillLoadout:
                     return "scene_skill";
 
                 case MessageIds.GetActivityList:
                 case MessageIds.GetMissionList:
+                case SceneActivityClientPlayerRpc.ClaimActivityVitalityRewardMessageId:
+                case SceneActivityClientPlayerRpc.GetFestivalBeastDetailMessageId:
+                case SceneActivityClientPlayerRpc.StartFestivalBeastChallengeMessageId:
+                case SceneActivityClientPlayerRpc.ClaimFestivalBeastRewardMessageId:
+                case SceneActivityClientPlayerRpc.GetTravelPassStateMessageId:
+                case SceneActivityClientPlayerRpc.UnlockTravelPassPremiumMessageId:
+                case SceneActivityClientPlayerRpc.ClaimTravelPassRewardMessageId:
+                case SceneActivityClientPlayerRpc.EquipTravelPassCosmeticMessageId:
                     return "scene_activity";
+
+                case SceneTrialJournalClientPlayerRpc.GetTrialJournalMessageId:
+                case SceneTrialJournalClientPlayerRpc.ClaimTrialJournalMilestoneMessageId:
+                case SceneTrialJournalClientPlayerRpc.RedeemBoundArtifactVoucherMessageId:
+                    return "trial_journal";
 
                 case MessageIds.SceneInfoC2S:
                 case MessageIds.TeleportRequest:

@@ -479,7 +479,8 @@ namespace MmorpgClient.Game.Battle
         /// 怪物数量跟参战人数走(每人一整组)。0 = 该副本的人数上限;其余模式传 0。
         /// </param>
         public void JoinQueue(Match.MatchMode mode, uint battleConfigId, uint teamSize = 0,
-                              uint characterPresetId = 0, uint petPresetId = 0, uint rankedRuleVersion = 0)
+                              uint characterPresetId = 0, uint petPresetId = 0, uint rankedRuleVersion = 0,
+                              bool isWuxingTower = false)
         {
             RestoreQueueIntent();
             if (Phase != BattlePhase.None)
@@ -496,7 +497,7 @@ namespace MmorpgClient.Game.Battle
             _lastQueuePetPresetId = petPresetId;
             _lastQueueRankedRuleVersion = rankedRuleVersion;
             _lastQueueStatus = null;
-            _hasQueueMemory = true;
+            _hasQueueMemory = !isWuxingTower;
             _endAckPending = false;
 
             // 先进 Queued 再发请求:失败响应回退 None;若开战抢先到达
@@ -515,6 +516,7 @@ namespace MmorpgClient.Game.Battle
                 CharacterPresetId = characterPresetId,
                 PetPresetId = petPresetId,
                 RankedRuleVersion = rankedRuleVersion,
+                IsWuxingTower = isWuxingTower,
                 RequestId = Guid.NewGuid().ToString("D"),
             };
             int generation = ++_queueGeneration;
@@ -864,21 +866,22 @@ namespace MmorpgClient.Game.Battle
             _nextQueuePollAt = _now;
         }
 
-        // ── 契约方法:切磋(场景发起 PK) ───────────────────
+        // ── 契约方法:切磋(场景发起 PK / 道友切磋坊自定义规则) ───────────────────
 
-        public void ChallengePlayer(ulong targetPlayerId)
+        public void ChallengePlayer(ulong targetPlayerId, global::CustomDuelRules customRules = null)
         {
-            if (RegionProbe != null) { RegionProbe.Prepare(plan => { _globalQueue = plan.Length > 0; SendChallengePlayer(targetPlayerId); }, error => OnError?.Invoke(error)); return; }
-            SendChallengePlayer(targetPlayerId);
+            if (RegionProbe != null) { RegionProbe.Prepare(plan => { _globalQueue = plan.Length > 0; SendChallengePlayer(targetPlayerId, customRules); }, error => OnError?.Invoke(error)); return; }
+            SendChallengePlayer(targetPlayerId, customRules);
         }
 
-        private void SendChallengePlayer(ulong targetPlayerId)
+        private void SendChallengePlayer(ulong targetPlayerId, global::CustomDuelRules customRules)
         {
             var req = new Match.ChallengePlayerRequest
             {
                 PlayerId = MyPlayerId,
                 TargetPlayerId = targetPlayerId,
                 BattleConfigId = 0, // 0 = 默认切磋规则(match_service.proto)
+                CustomRules = customRules?.Clone(),
             };
             _net.Call(MessageIds.ChallengePlayer, req, Match.ChallengePlayerResponse.Parser,
                 resp =>
@@ -893,19 +896,23 @@ namespace MmorpgClient.Game.Battle
                 err => OnError?.Invoke($"发起切磋失败:{err}"));
         }
 
-        public void RespondChallenge(ulong challengeId, bool accept)
+        public void RespondChallenge(ulong challengeId, bool accept,
+            uint responderCharacterPresetId = 0u, uint responderPetPresetId = 0u)
         {
-            if (accept && RegionProbe != null) { RegionProbe.Prepare(plan => { _globalQueue = plan.Length > 0; SendRespondChallenge(challengeId, true); }, error => OnError?.Invoke(error)); return; }
-            SendRespondChallenge(challengeId, accept);
+            if (accept && RegionProbe != null) { RegionProbe.Prepare(plan => { _globalQueue = plan.Length > 0; SendRespondChallenge(challengeId, true, responderCharacterPresetId, responderPetPresetId); }, error => OnError?.Invoke(error)); return; }
+            SendRespondChallenge(challengeId, accept, responderCharacterPresetId, responderPetPresetId);
         }
 
-        private void SendRespondChallenge(ulong challengeId, bool accept)
+        private void SendRespondChallenge(ulong challengeId, bool accept,
+            uint responderCharacterPresetId, uint responderPetPresetId)
         {
             var req = new Match.RespondChallengeRequest
             {
                 PlayerId = MyPlayerId,
                 ChallengeId = challengeId,
                 Accept = accept,
+                ResponderCharacterPresetId = responderCharacterPresetId,
+                ResponderPetPresetId = responderPetPresetId,
             };
             _net.Call(MessageIds.RespondChallenge, req, Match.RespondChallengeResponse.Parser,
                 resp =>

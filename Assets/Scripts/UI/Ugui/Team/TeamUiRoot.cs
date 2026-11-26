@@ -232,6 +232,25 @@ namespace MmorpgClient.UI.Ugui.Team
             _window.RequestLeaveConfirmation(Permitted);
         }
 
+        public bool RecallCoolingDown => _client?.RecallCoolingDown ?? false;
+        public float RecallCooldownRemainingSeconds => _client?.RecallCooldownRemainingSeconds ?? 0f;
+
+        /// <summary>队长一键召集全体在线队员归队(15s 服务端团队冷却)。</summary>
+        public void RecallTeamMembers()
+        {
+            if (!HasView || !_available || _client == null || !_client.HasFreshView || !_client.ServiceAvailable) return;
+            if (!_client.IsLeader || _client.Busy) return;
+            _client.RecallMembers();
+        }
+
+        /// <summary>队长按 长蛇 -> 雁行 -> 五行 顺序切换跑图跟随队形。</summary>
+        public void CycleTeamFormation()
+        {
+            if (!HasView || !_available || _client == null || !_client.HasFreshView || !_client.ServiceAvailable) return;
+            if (!_client.IsLeader || _client.Busy) return;
+            _client.SetFormation(TeamViewMapper.NextFormation(_client.Snapshot.FollowFormation));
+        }
+
         public void OpenInviteForPlayer(ulong playerId)
         {
             if (!HasView || !_available || playerId == 0 || playerId == _playerId) return;

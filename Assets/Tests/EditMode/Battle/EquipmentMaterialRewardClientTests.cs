@@ -167,6 +167,35 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void AccountQuotaSyncShowsFriendlyHintAndRetriesTheSameClaim()
+        {
+            Claim();
+            var original = Request.Clone();
+            string record = _store.Load(Player);
+            var snapshot = Snapshot();
+            snapshot.BatchTradableUnits = 1u;
+            Claims.Last().Respond(new ClaimEquipmentMaterialRewardResponse
+            {
+                ClientRequestId = original.ClientRequestId,
+                Outcome = ClaimEquipmentMaterialRewardResponse.Types.Outcome.Unknown,
+                ErrorMessage = new TipInfoMessage { Id = (uint)common_error.KServiceUnavailable },
+                Snapshot = snapshot,
+            });
+
+            Assert.That(_client.MaterialRewardError, Is.EqualTo("正在核验账号可交易额度，请稍后刷新再领"));
+            Assert.That(_client.HasPendingMaterialReward, Is.True);
+            Assert.That(_store.Load(Player), Is.EqualTo(record));
+            Assert.That(_claimed, Is.Empty);
+
+            Later();
+            _client.RetryPendingMaterialReward();
+            Assert.That(Request, Is.EqualTo(original));
+            Claims.Last().Respond(Receipt());
+            Assert.That(_client.MaterialRewardError, Is.Empty);
+            Assert.That(_claimed, Has.Count.EqualTo(1));
+        }
+
+        [Test]
         public void AppliedWithoutDurabilityUpdatesWholeSnapshotButRetainsFrozenIntent()
         {
             Claim(); string record = _store.Load(Player); var response = Receipt(false);

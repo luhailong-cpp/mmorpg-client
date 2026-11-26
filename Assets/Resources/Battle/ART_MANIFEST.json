@@ -312,17 +312,17 @@
         0.5,
         0.5
       ],
-      "loop": true,
-      "desc": "首领试炼V2破绽裂纹环:暖金碎甲裂纹环绕受破绽敌方脚底"
+      "loop": false,
+      "desc": "首领试炼V2破绽碎甲爆裂:暖金碎甲裂纹于受破绽首领胸口播放一次,中心锚点[0.5,0.5]"
     },
     {
       "path": "Fx/boss_stance_break_strip.png",
       "kind": "fx_strip",
-      "width": 5120,
-      "height": 512,
-      "frames": 10,
-      "cell_width": 512,
-      "cell_height": 512,
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
       "fps_hint": 12,
       "pivot": [
         0.5,
@@ -334,11 +334,11 @@
     {
       "path": "Fx/boss_phase2_enrage_strip.png",
       "kind": "fx_strip",
-      "width": 5120,
-      "height": 512,
-      "frames": 10,
-      "cell_width": 512,
-      "cell_height": 512,
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
       "fps_hint": 12,
       "pivot": [
         0.5,
@@ -346,6 +346,38 @@
       ],
       "loop": false,
       "desc": "首领试炼V2决战姿态切换:绯金气浪自脚底升腾冲天"
+    },
+    {
+      "path": "Fx/mirror_copy_cast_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 12,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": false,
+      "desc": "玄镜映法第一拍，玄镜符印从敌方目标汲取招式"
+    },
+    {
+      "path": "Fx/mirror_cast_ring_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 12,
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "loop": false,
+      "desc": "复制施法者脚下的镜像阵，供玄镜映法、反戈一击和法术反击复用"
     }
   ],
   "ui": [

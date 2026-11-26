@@ -75,8 +75,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             bool editable = MaterialChoiceEditable(snapshot);
             Label(_modalLayer, "EquipmentMaterialsTitle", "材料自选", 1100, 210, 1800, 100, 66, color: Jade);
-            string status = pending ? "正在确认上次材料领取，请勿重复领取" : loading ? "正在读取可分配份额…" :
-                !string.IsNullOrEmpty(_client?.MaterialRewardError) ? _client.MaterialRewardError :
+            string status = !string.IsNullOrEmpty(_client?.MaterialRewardError) ? _client.MaterialRewardError :
+                pending ? "正在确认上次材料领取，请勿重复领取" : loading ? "正在读取可分配份额…" :
                 snapshot == null ? "材料奖励尚未同步，请刷新" : !snapshot.Available ? snapshot.UnavailableReason :
                 snapshot.BatchUnits == 0 ? "暂无待领取材料。完成合格的PVE或匹配PVP可获得份额。" :
                 $"本次可分配 {snapshot.BatchUnits} 份 · 待领取共 {snapshot.AvailableUnits} 份";
@@ -86,11 +86,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 bool weekly = snapshot.WeeklyPhaseActive;
                 uint ledgerEarned = weekly ? snapshot.EarnedThisWeek : snapshot.LifetimeEarned;
                 uint ledgerLimit = weekly
-                    ? (snapshot.WeeklyLimit > 0u ? snapshot.WeeklyLimit : 100u)
+                    ? (snapshot.WeeklyLimit > 0u ? snapshot.WeeklyLimit : 150u)
                     : (snapshot.LifetimeLimit > 0u ? snapshot.LifetimeLimit : 660u);
                 SeasonEconomyUiArt.DrawPityBar(_modalLayer, "MaterialLedgerBar", 810, 452, 660, 92,
                     ledgerEarned, ledgerLimit, ledgerEarned >= ledgerLimit);
 
+                uint batchTradable = Math.Min(snapshot.BatchUnits, snapshot.BatchTradableUnits);
+                uint batchBound = snapshot.BatchUnits - batchTradable;
+                string batchSplit = $"本批可交易 {batchTradable} 份、绑定 {batchBound} 份（可交易优先给打造材料）";
                 string softPillText;
                 string quotaText;
                 if (weekly)
@@ -98,16 +101,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     string remaining = SeasonEconomyUiArt.FormatWeeklyResetRemaining(
                         snapshot.NextWeekResetAtMs, (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
                     softPillText = string.IsNullOrEmpty(remaining) ? "每周一 05:00 刷新" : "周一 05:00 刷新 · " + remaining;
-                    quotaText = $"本周精进池 {snapshot.EarnedThisWeek}/{ledgerLimit} 份（全自用绑定）\n未领取份额保留，随时可分批自选";
+                    quotaText = $"本周精进池 {ledgerEarned}/{ledgerLimit} 份 · 仙途轻享卡可解锁胜局可交易产出\n" + batchSplit;
                 }
                 else
                 {
-                    uint batchBound = snapshot.BatchUnits > snapshot.BatchTradableUnits
-                        ? snapshot.BatchUnits - snapshot.BatchTradableUnits : 0u;
                     uint tradableLimit = snapshot.TradableLifetimeLimit > 0u ? snapshot.TradableLifetimeLimit : 60u;
                     softPillText = "无每日打卡 · 随时可续";
-                    quotaText = $"首套永久总池 {snapshot.LifetimeEarned}/{ledgerLimit} · 起步可交易 {snapshot.TradableEarnedTotal}/{tradableLimit}\n" +
-                        $"本批含可交易 {snapshot.BatchTradableUnits} 份、仅自用 {batchBound} 份（可交易优先给打造材料）";
+                    quotaText = $"首套永久总池 {ledgerEarned}/{ledgerLimit} · 账号共享可交易 {snapshot.TradableEarnedTotal}/{tradableLimit}\n" + batchSplit;
                 }
 
                 SeasonEconomyUiArt.CreateSlicedOrSimple(_modalLayer, "MaterialPhasePill", 1490, 458, 540, 80,
@@ -119,7 +119,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 pillLabel.fontSizeMax = 32;
 
                 float dailyX = 2055f;
-                if (!weekly && snapshot.BatchTradableUnits > 0u)
+                if (batchTradable > 0u)
                 {
                     var tradableSprite = SeasonEconomyUiArt.LoadIcon("badge_tradable_tag");
                     if (tradableSprite != null)
@@ -139,7 +139,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             string reason = pending ? "领取结果确认前，分配已锁定；重新打开仍会恢复原领取。" :
                 !string.IsNullOrEmpty(_notice) ? _notice :
                 snapshot?.Available == true && !snapshot.CanClaim ? snapshot.UnavailableReason :
-                WriteBlocked ? WriteReason : "按需要分配打造材料与强化石（绑定与可交易分堆存放，消耗优先扣绑定）。";
+                WriteBlocked ? WriteReason : "按需要分配打造材料与强化石（绑定与可交易分堆存放，消耗优先扣绑定）。" +
+                (snapshot?.WeeklyPhaseActive == true ? "未领取份额保留，可分批自选。" : string.Empty);
             Label(_modalLayer, "MaterialChoiceReason", reason, 810, 1175, 2350, 90, 36, true, Muted);
             Button(_modalLayer, "MaterialChoiceBack", "返回", 790, 1290, 580, CloseModal);
             if (pending)

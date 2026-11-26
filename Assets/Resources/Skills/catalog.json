@@ -1083,6 +1083,24 @@
       "description": "常驻提高自身物伤；初阶提升5%，技能等级越高提升越多。",
       "iconPath": "icons/1408.png",
       "iconBrief": "收拢的青羽双刃与旋转风核"
+    },
+    {
+      "id": 10041,
+      "name": "玄镜映法",
+      "category": "主动",
+      "type": "active",
+      "actionTags": 8,
+      "originLabel": "人物主动",
+      "abilityKind": 1,
+      "unlockLevel": 1,
+      "maxRank": 10,
+      "targetTeam": "enemy",
+      "maxTargets": 1,
+      "cooldownRounds": 3,
+      "manaPercent": 0.1,
+      "description": "指定一名敌人，优先复制其本回合选定的可复制主动技能。若未选此类技能，则从其已学的可复制主动技能中随机抽取一招。以自身属性与玄镜映法重数立即释放，伤害及效果数值按85%结算，复制招式不额外耗蓝。首领不可选为目标。",
+      "iconPath": "icons/10041.png",
+      "iconResource": "UI/Skills/10041"
     }
   ]
 }

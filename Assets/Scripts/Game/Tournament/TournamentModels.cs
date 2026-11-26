@@ -147,15 +147,128 @@ namespace MmorpgClient.Game.Tournament
             return $"BO{bestOf} {match.WinsA}:{match.WinsB}";
         }
 
+        public static string MatchPhaseDisplayName(TournamentMatchPhase phase) => phase switch
+        {
+            TournamentMatchPhase.Qualifier => "海选赛",
+            TournamentMatchPhase.Knockout => "淘汰赛",
+            TournamentMatchPhase.Warmup => "热身演练",
+            _ => "赛程",
+        };
+
+        /// <summary>V3 官方预设 8 枚道家战队纹章元数据（严格白名单 1..8，零玩家自由上传图片）。</summary>
+        public readonly struct TournamentEmblemInfo
+        {
+            public uint Id { get; }
+            public string Name { get; }
+            public string Glyph { get; }
+            public string SpriteKey { get; }
+
+            public TournamentEmblemInfo(uint id, string name, string glyph, string spriteKey)
+            {
+                Id = id;
+                Name = name;
+                Glyph = glyph;
+                SpriteKey = spriteKey;
+            }
+        }
+
+        public static readonly TournamentEmblemInfo[] AllEmblems =
+        {
+            new TournamentEmblemInfo(1u, "青剑", "剑", "v3-g-emblem-01"),
+            new TournamentEmblemInfo(2u, "太极", "极", "v3-g-emblem-02"),
+            new TournamentEmblemInfo(3u, "丹炉", "炉", "v3-g-emblem-03"),
+            new TournamentEmblemInfo(4u, "青莲", "莲", "v3-g-emblem-04"),
+            new TournamentEmblemInfo(5u, "玄鹤", "鹤", "v3-g-emblem-05"),
+            new TournamentEmblemInfo(6u, "雷印", "雷", "v3-g-emblem-06"),
+            new TournamentEmblemInfo(7u, "八卦", "卦", "v3-g-emblem-07"),
+            new TournamentEmblemInfo(8u, "云鼎", "鼎", "v3-g-emblem-08"),
+        };
+
+        public static uint NormalizeEmblemId(uint emblemId) =>
+            emblemId >= 1u && emblemId <= (uint)AllEmblems.Length ? emblemId : 1u;
+
+        public static TournamentEmblemInfo GetEmblemInfo(uint emblemId) =>
+            AllEmblems[NormalizeEmblemId(emblemId) - 1u];
+
+        public static string PredictionResultDisplayName(uint resultState) => resultState switch
+        {
+            1u => "猜中",
+            2u => "未中",
+            _ => "待结算",
+        };
+
+        /// <summary>V4 模块 J：战队单赛季纯荣誉铭牌元数据（6 枚，对应 honor_bits bit0..5，零战力加成）。</summary>
+        public readonly struct TournamentHonorInfo
+        {
+            public int BitIndex { get; }
+            public uint BitMask { get; }
+            public string Name { get; }
+            public string ShortGlyph { get; }
+            public string ConditionDesc { get; }
+            public string SpriteKey { get; }
+
+            public TournamentHonorInfo(int bitIndex, string name, string shortGlyph, string conditionDesc, string spriteKey)
+            {
+                BitIndex = bitIndex;
+                BitMask = 1u << bitIndex;
+                Name = name;
+                ShortGlyph = shortGlyph;
+                ConditionDesc = conditionDesc;
+                SpriteKey = spriteKey;
+            }
+        }
+
+        public static readonly TournamentHonorInfo[] AllHonors =
+        {
+            new TournamentHonorInfo(0, "问道初成", "初", "本季海选完赛达标", "v4-j-honor-01"),
+            new TournamentHonorInfo(1, "连胜破竹", "胜", "本季海选累计 3 胜及以上", "v4-j-honor-02"),
+            new TournamentHonorInfo(2, "不败金身", "稳", "本季海选完赛 ≥3 场且 0 负", "v4-j-honor-03"),
+            new TournamentHonorInfo(3, "逆转乾坤", "逆", "赢下打满 3 局的 BO3 淘汰赛", "v4-j-honor-04"),
+            new TournamentHonorInfo(4, "零封强敌", "封", "淘汰赛 BO3 以 2:0 零封对手", "v4-j-honor-05"),
+            new TournamentHonorInfo(5, "问鼎群仙", "鼎", "夺得本赛季全服总冠军", "v4-j-honor-06"),
+        };
+
+        public static bool HasHonorBit(uint honorBits, int bitIndex) =>
+            bitIndex >= 0 && bitIndex < AllHonors.Length && (honorBits & (1u << bitIndex)) != 0u;
+
+        public static int CountUnlockedHonors(uint honorBits)
+        {
+            int count = 0;
+            for (int i = 0; i < AllHonors.Length; i++)
+            {
+                if ((honorBits & AllHonors[i].BitMask) != 0u) count++;
+            }
+            return count;
+        }
+
+        public static string HighlightTagDisplayName(TournamentHighlightTag tag) => tag switch
+        {
+            TournamentHighlightTag.Final => "总决赛巅峰局",
+            TournamentHighlightTag.Bo3Thriller => "决胜三局激战",
+            TournamentHighlightTag.ThirdPlace => "季军争夺战",
+            TournamentHighlightTag.HighMvp => "高光问鼎局",
+            _ => "本季名局",
+        };
+
+        public static string FormatMvpMetrics(TournamentMatchView match)
+        {
+            if (match == null || match.MvpPlayerId == 0UL) return string.Empty;
+            return string.Format(CultureInfo.InvariantCulture,
+                "战功 {0} · 输出 {1:N0} · 治疗 {2:N0} · 硬控 {3} 次",
+                match.MvpScore, match.MvpDamage, match.MvpHealing, match.MvpControls);
+        }
+
         public static string RewardTierDisplayName(TournamentRewardTierKind tier) => tier switch
         {
             TournamentRewardTierKind.TournamentRewardTierChampion => "全服总冠军",
             TournamentRewardTierKind.TournamentRewardTierRunnerUp => "全服亚军",
+            TournamentRewardTierKind.TournamentRewardTierThirdPlace => "全服季军",
             TournamentRewardTierKind.TournamentRewardTierTop4 => "全服四强",
             TournamentRewardTierKind.TournamentRewardTierTop8 => "全服八强",
             TournamentRewardTierKind.TournamentRewardTierTop16 => "全服十六强",
             TournamentRewardTierKind.TournamentRewardTierParticipant => "参赛保底",
             TournamentRewardTierKind.TournamentRewardTierCheer => "免费助威命中",
+            TournamentRewardTierKind.TournamentRewardTierPrediction => "神机问道纪念",
             _ => "赛季奖励",
         };
 
@@ -181,6 +294,13 @@ namespace MmorpgClient.Game.Tournament
                 16u => "十六强赛",
                 _ => $"第 {roundIndex} 轮",
             };
+        }
+
+        public static string KnockoutMatchTitle(uint knockoutTeamCount, TournamentMatchView match)
+        {
+            if (match == null) return "淘汰赛";
+            if (match.IsThirdPlace) return "季军争夺战";
+            return KnockoutRoundTitle(knockoutTeamCount, match.RoundIndex);
         }
 
         /// <summary>将剩余毫秒数格式化为中文倒计时（不依赖本机系统时钟）。</summary>
@@ -702,6 +822,137 @@ namespace MmorpgClient.Game.Tournament
                 ServerTimeMs,
                 Page,
                 PageSize);
+        }
+
+        /// <summary>V3：服务端确认免费竞猜后同步更新对阵树节点选中态与双方预测票数。</summary>
+        public TournamentStandingsSnapshot WithMatchPrediction(
+            ulong matchId, ulong predictedSquadId, uint predictCountA, uint predictCountB)
+        {
+            if (matchId == 0UL || KnockoutBracket.Count == 0) return this;
+            var nextBracket = new List<TournamentMatchView>(KnockoutBracket.Count);
+            for (int i = 0; i < KnockoutBracket.Count; i++)
+            {
+                var m = KnockoutBracket[i].Clone();
+                if (m.MatchId == matchId)
+                {
+                    m.MyPredictedSquadId = predictedSquadId;
+                    m.PredictCountA = predictCountA;
+                    m.PredictCountB = predictCountB;
+                }
+                nextBracket.Add(m);
+            }
+            return new TournamentStandingsSnapshot(
+                Season?.Clone(),
+                Standings,
+                MySquad?.Clone(),
+                TotalSquads,
+                nextBracket,
+                ServerTimeMs,
+                Page,
+                PageSize);
+        }
+
+        /// <summary>V4 模块 H：服务端确认 BO3 灵脉禁选后同步更新对阵树中的对应对局快照。</summary>
+        public TournamentStandingsSnapshot WithUpdatedMatch(TournamentMatchView updated)
+        {
+            if (updated == null || updated.MatchId == 0UL || KnockoutBracket.Count == 0) return this;
+            var nextBracket = new List<TournamentMatchView>(KnockoutBracket.Count);
+            for (int i = 0; i < KnockoutBracket.Count; i++)
+            {
+                var cur = KnockoutBracket[i];
+                nextBracket.Add(cur != null && cur.MatchId == updated.MatchId ? updated.Clone() : cur.Clone());
+            }
+            return new TournamentStandingsSnapshot(
+                Season?.Clone(),
+                Standings,
+                MySquad?.Clone(),
+                TotalSquads,
+                nextBracket,
+                ServerTimeMs,
+                Page,
+                PageSize);
+        }
+    }
+
+    /// <summary>V4 模块 I GetTournamentHighlights 的不可变只读快照（《本季名局录》Top 10）。</summary>
+    public sealed class TournamentHighlightsSnapshot
+    {
+        public uint SeasonId { get; }
+        public IReadOnlyList<TournamentHighlightEntry> Highlights { get; }
+        public ulong ServerTimeMs { get; }
+
+        public TournamentHighlightsSnapshot(
+            uint seasonId,
+            IReadOnlyList<TournamentHighlightEntry> highlights,
+            ulong serverTimeMs)
+        {
+            SeasonId = seasonId;
+            Highlights = highlights ?? Array.Empty<TournamentHighlightEntry>();
+            ServerTimeMs = serverTimeMs;
+        }
+
+        public static TournamentHighlightsSnapshot FromResponse(GetTournamentHighlightsResponse resp)
+        {
+            if (resp == null) return null;
+            var list = new List<TournamentHighlightEntry>(resp.Highlights.Count);
+            for (int i = 0; i < resp.Highlights.Count; i++)
+            {
+                if (resp.Highlights[i] != null) list.Add(resp.Highlights[i].Clone());
+            }
+            return new TournamentHighlightsSnapshot(resp.SeasonId, list, resp.ServerTimeMs);
+        }
+    }
+
+    /// <summary>V3 模块 E GetTournamentPredictionBoard 的不可变只读快照（《神机问道榜》）。</summary>
+    public sealed class TournamentPredictionBoardSnapshot
+    {
+        public uint SeasonId { get; }
+        public uint MinHitsForReward { get; }
+        public uint MyHitCount { get; }
+        public uint MyTotalPoints { get; }
+        public uint MyRank { get; }
+        public IReadOnlyList<TournamentPredictionEntryView> MyPredictions { get; }
+        public IReadOnlyList<TournamentPredictionRankEntry> TopPredictors { get; }
+        public ulong ServerTimeMs { get; }
+
+        public TournamentPredictionBoardSnapshot(
+            uint seasonId,
+            uint minHitsForReward,
+            uint myHitCount,
+            uint myTotalPoints,
+            uint myRank,
+            IReadOnlyList<TournamentPredictionEntryView> myPredictions,
+            IReadOnlyList<TournamentPredictionRankEntry> topPredictors,
+            ulong serverTimeMs)
+        {
+            SeasonId = seasonId;
+            MinHitsForReward = minHitsForReward;
+            MyHitCount = myHitCount;
+            MyTotalPoints = myTotalPoints;
+            MyRank = myRank;
+            MyPredictions = myPredictions ?? Array.Empty<TournamentPredictionEntryView>();
+            TopPredictors = topPredictors ?? Array.Empty<TournamentPredictionRankEntry>();
+            ServerTimeMs = serverTimeMs;
+        }
+
+        public static TournamentPredictionBoardSnapshot FromResponse(GetTournamentPredictionBoardResponse resp)
+        {
+            if (resp == null) return null;
+            var mine = new List<TournamentPredictionEntryView>(resp.MyPredictions.Count);
+            for (int i = 0; i < resp.MyPredictions.Count; i++)
+                if (resp.MyPredictions[i] != null) mine.Add(resp.MyPredictions[i].Clone());
+            var top = new List<TournamentPredictionRankEntry>(resp.TopPredictors.Count);
+            for (int i = 0; i < resp.TopPredictors.Count; i++)
+                if (resp.TopPredictors[i] != null) top.Add(resp.TopPredictors[i].Clone());
+            return new TournamentPredictionBoardSnapshot(
+                resp.SeasonId,
+                resp.MinHitsForReward,
+                resp.MyHitCount,
+                resp.MyTotalPoints,
+                resp.MyRank,
+                mine,
+                top,
+                resp.ServerTimeMs);
         }
     }
 }

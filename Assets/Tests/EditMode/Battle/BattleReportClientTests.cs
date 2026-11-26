@@ -274,6 +274,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
         {
             var pvp = new PlayerBattleResult { BattleId = 10, MatchMode = (uint)Match.MatchMode._1V1, Outcome = (uint)eBattleOutcome.BattleOutcomeSideAWin };
             var challenge = new PlayerBattleResult { BattleId = 11, MatchMode = (uint)Match.MatchMode.PvpChallenge, Outcome = (uint)eBattleOutcome.BattleOutcomeDraw };
+            var guildWarPvp = new PlayerBattleResult { BattleId = 15, MatchMode = (uint)Match.MatchMode.GuildWarPvp, Outcome = (uint)eBattleOutcome.BattleOutcomeSideAWin };
+            var guildWarSiege = new PlayerBattleResult { BattleId = 16, MatchMode = (uint)Match.MatchMode.GuildWarSiege, Outcome = (uint)eBattleOutcome.BattleOutcomeSideAWin };
             var tournament = new PlayerBattleResult { BattleId = 14, MatchMode = (uint)Match.MatchMode.SeasonTournament, Outcome = (uint)eBattleOutcome.BattleOutcomeSideAWin };
             var pve = new PlayerBattleResult { BattleId = 12, MatchMode = (uint)Match.MatchMode.PveSolo, Outcome = (uint)eBattleOutcome.BattleOutcomeSideAWin };
             var voided = new PlayerBattleResult { BattleId = 13, MatchMode = (uint)Match.MatchMode._1V1, Outcome = (uint)eBattleOutcome.BattleOutcomeVoid };
@@ -281,7 +283,11 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             Assert.IsTrue(BattleReportClient.CanWatchReplayFromRecovered(pvp));
             Assert.IsTrue(BattleReportClient.CanWatchReplayFromRecovered(challenge));
+            Assert.IsTrue(BattleReportClient.CanWatchReplayFromRecovered(guildWarPvp));
+            Assert.IsFalse(BattleReportClient.CanWatchReplayFromRecovered(guildWarSiege));
             Assert.IsTrue(BattleReportClient.CanWatchReplayFromRecovered(tournament));
+            Assert.AreEqual("帮战直打", BattleReportClient.ModeName(Match.MatchMode.GuildWarPvp));
+            Assert.AreEqual("帮战踢馆", BattleReportClient.ModeName(Match.MatchMode.GuildWarSiege));
             Assert.AreEqual("赛季锦标赛", BattleReportClient.ModeName(Match.MatchMode.SeasonTournament));
             Assert.IsFalse(BattleReportClient.CanWatchReplayFromRecovered(pve));
             Assert.IsFalse(BattleReportClient.CanWatchReplayFromRecovered(voided));
@@ -316,6 +322,30 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.AreEqual("丹心", BattleReportClient.ClassName(3));
             Assert.AreEqual("逐风", BattleReportClient.ClassName(4));
             Assert.AreEqual("职业#99", BattleReportClient.ClassName(99));
+        }
+
+        [Test]
+        public void BattleReportV2SpritesAndBorders_AllTenLoadCleanly()
+        {
+            var expected = new (string key, UnityEngine.Vector4 border)[]
+            {
+                (MmorpgClient.UI.Ugui.Battle.BattleReportUiArt.StampWin, UnityEngine.Vector4.zero),
+                (MmorpgClient.UI.Ugui.Battle.BattleReportUiArt.StampLose, UnityEngine.Vector4.zero),
+                (MmorpgClient.UI.Ugui.Battle.BattleReportUiArt.StampDraw, UnityEngine.Vector4.zero),
+                (MmorpgClient.UI.Ugui.Battle.BattleReportUiArt.BadgeMvp, UnityEngine.Vector4.zero),
+                (MmorpgClient.UI.Ugui.Battle.BattleReportUiArt.IconHighlightKill, UnityEngine.Vector4.zero),
+                (MmorpgClient.UI.Ugui.Battle.BattleReportUiArt.IconHighlightBurst, UnityEngine.Vector4.zero),
+                (MmorpgClient.UI.Ugui.Battle.BattleReportUiArt.IconHighlightHeal, UnityEngine.Vector4.zero),
+                (MmorpgClient.UI.Ugui.Battle.BattleReportUiArt.IconStatsChart, UnityEngine.Vector4.zero),
+                (MmorpgClient.UI.Ugui.Battle.BattleReportUiArt.BarDamageFill, new UnityEngine.Vector4(12f, 0f, 12f, 0f)),
+                (MmorpgClient.UI.Ugui.Battle.BattleReportUiArt.BarHealFill, new UnityEngine.Vector4(12f, 0f, 12f, 0f)),
+            };
+            foreach (var (key, border) in expected)
+            {
+                var sp = MmorpgClient.UI.Ugui.Battle.BattleReportUiArt.TryLoad(key);
+                Assert.IsNotNull(sp, "missing BattleReportV2 sprite: " + key);
+                Assert.AreEqual(border, sp.border, "unexpected spriteBorder for BattleReportV2/" + key);
+            }
         }
     }
 }

@@ -23,6 +23,18 @@ namespace MmorpgClient.UI.Ugui
         public const string CraftQualityRoot = "UI/Ugui/CraftQualitySkill/";
         public const string CraftIconsRoot = "UI/Ugui/CraftQualitySkill/Icons/";
         public const string EconomyTradeRoot = "UI/Ugui/EconomyTradeV1/";
+        public const string EconomyTradeV2Root = "UI/Ugui/EconomyTradeV2/";
+        public static readonly string[] EconomyTradeV2AssetKeys =
+        {
+            "badge_designated_only",
+            "badge_notice_48h",
+            "badge_notice_fast",
+            "icon_inherit_talisman",
+            "icon_master_seal",
+            "icon_wishlist_dove",
+            "panel_08_zhenbaoge_rmb",
+            "panel_09_equip_inherit",
+        };
         public const string BossTrialV2IconsRoot = "UI/Ugui/Battle/BossTrialV2/";
         public const string TrialJournalBadgesRoot = "UI/Ugui/TrialJournal/Badges/";
         public const string BattleArenaV2V3AssetsRoot = "UI/Ugui/BattleArenaV2V3/assets/";
@@ -71,6 +83,8 @@ namespace MmorpgClient.UI.Ugui
         public static Sprite LoadCraftIcon(string name) => LoadCached(CraftIconsRoot + name);
 
         public static Sprite LoadTradeSlice(string name) => LoadCached(EconomyTradeRoot + name);
+
+        public static Sprite LoadTradeV2Slice(string name) => LoadCached(EconomyTradeV2Root + name);
 
         public static Sprite LoadBossTrialV2Icon(string name) => LoadCached(BossTrialV2IconsRoot + name);
 

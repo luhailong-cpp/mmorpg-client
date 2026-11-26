@@ -262,5 +262,70 @@ namespace MmorpgClient.Tests.EditMode.Tournament
             Assert.That(TournamentUiModel.ClassifyTipRecovery((uint)match_error.KMatchTournamentAlreadySalutedToday).AutoRefreshOverviewOnce, Is.True);
             Assert.That(TournamentUiModel.ClassifyTipRecovery((uint)match_error.KMatchTournamentNoChampionToSalute).AutoRefreshOverviewOnce, Is.True);
         }
+
+        [Test]
+        public void V3_EmblemsWarmupPredictionMvpAndThirdPlace_FormattingAndGuards()
+        {
+            // 1. 8 枚官方道家战旗规范化与目录完整
+            Assert.That(TournamentFormatting.AllEmblems.Length, Is.EqualTo(8));
+            Assert.That(TournamentFormatting.NormalizeEmblemId(0u), Is.EqualTo(1u));
+            Assert.That(TournamentFormatting.NormalizeEmblemId(99u), Is.EqualTo(1u));
+            Assert.That(TournamentFormatting.GetEmblemInfo(8u).Name, Is.EqualTo("云鼎"));
+            Assert.That(TournamentFormatting.GetEmblemInfo(8u).SpriteKey, Is.EqualTo("v3-g-emblem-08"));
+
+            // 2. 奖励档位与场次标题（季军争夺战 / 神机问道纪念 / 热身演练）
+            Assert.That(TournamentFormatting.RewardTierDisplayName(TournamentRewardTierKind.TournamentRewardTierThirdPlace), Is.EqualTo("全服季军"));
+            Assert.That(TournamentFormatting.RewardTierDisplayName(TournamentRewardTierKind.TournamentRewardTierPrediction), Is.EqualTo("神机问道纪念"));
+            Assert.That(TournamentFormatting.MatchPhaseDisplayName(TournamentMatchPhase.Warmup), Is.EqualTo("热身演练"));
+
+            var thirdMatch = new TournamentMatchView
+            {
+                MatchId = 9901UL,
+                Phase = TournamentMatchPhase.Knockout,
+                RoundIndex = 2u,
+                SlotIndex = 1u,
+                IsThirdPlace = true,
+                SquadAId = 5001UL,
+                SquadBId = 6001UL,
+                State = TournamentMatchState.WaitingOpponent,
+                MvpPlayerId = 1001UL,
+                MvpPlayerName = "问鼎剑仙",
+                MvpScore = 980u,
+                MvpDamage = 45000UL,
+                MvpHealing = 12000UL,
+                MvpControls = 4u,
+            };
+            Assert.That(TournamentFormatting.KnockoutMatchTitle(4u, thirdMatch), Is.EqualTo("季军争夺战"));
+            Assert.That(TournamentFormatting.FormatMvpMetrics(thirdMatch), Does.Contain("980").And.Contain("45,000").And.Contain("4 次"));
+
+            // 3. 免费竞猜资格仅放行未开战且双队齐备的淘汰赛
+            Assert.That(TournamentUiModel.CanPredictMatch(thirdMatch), Is.True);
+            thirdMatch.State = TournamentMatchState.InBattle;
+            Assert.That(TournamentUiModel.CanPredictMatch(thirdMatch), Is.False);
+
+            // 4. 热身约战入口仅在报名/海选期且队长满首发人数时开放
+            var sq = MakeSquad(TournamentSquadState.Draft, memberCount: 3u);
+            Assert.That(TournamentUiModel.CanStartWarmup(MakeOverview(TournamentStage.Registration, sq), 1001UL), Is.True);
+            Assert.That(TournamentUiModel.CanStartWarmup(MakeOverview(TournamentStage.Registration, sq), 1002UL), Is.False);
+            Assert.That(TournamentUiModel.CanStartWarmup(MakeOverview(TournamentStage.Knockout, sq), 1001UL), Is.False);
+
+            // 5. V3 弹窗生命周期与 Tip 恢复
+            var model = new TournamentUiModel();
+            model.OpenSelectEmblemModal(5u);
+            Assert.That(model.ActiveModal, Is.EqualTo(TournamentModalKind.SelectEmblem));
+            Assert.That(model.SelectedEmblemDraft, Is.EqualTo(5u));
+            model.OpenWarmupModal(sq, 3u);
+            Assert.That(model.ActiveModal, Is.EqualTo(TournamentModalKind.WarmupSpar));
+            Assert.That(model.LineupDraft.Count, Is.EqualTo(3));
+            model.OpenMvpHighlightModal(thirdMatch);
+            Assert.That(model.ActiveModal, Is.EqualTo(TournamentModalKind.MvpHighlight));
+            Assert.That(model.InspectedMvpMatch.MvpPlayerId, Is.EqualTo(1001UL));
+            model.CloseModal();
+            Assert.That(model.InspectedMvpMatch, Is.Null);
+
+            Assert.That(TournamentUiModel.ClassifyTipRecovery((uint)match_error.KMatchTournamentEmblemInvalid).KeepCreateModalInline, Is.True);
+            Assert.That(TournamentUiModel.ClassifyTipRecovery((uint)match_error.KMatchTournamentPredictionClosed).AutoRefreshOverviewOnce, Is.True);
+            Assert.That(TournamentUiModel.ClassifyTipRecovery((uint)match_error.KMatchTournamentWarmupUnavailable).AutoRefreshOverviewOnce, Is.True);
+        }
     }
 }

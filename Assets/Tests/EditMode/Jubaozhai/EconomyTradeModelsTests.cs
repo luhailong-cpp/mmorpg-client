@@ -302,6 +302,107 @@ namespace MmorpgClient.Tests.EditMode.Jubaozhai
             }
         }
 
+        [Test]
+        public void AllEightEconomyTradeV2SlicesAndMetasLoadCleanly()
+        {
+            string assetsDir = ResolveAssetsDirectory();
+            string root = Path.Combine(assetsDir, "Resources", "UI", "Ugui", "EconomyTradeV2");
+            var expected = new (string Key, int Width, int Height)[]
+            {
+                ("badge_designated_only", 200, 64),
+                ("badge_notice_48h", 220, 64),
+                ("badge_notice_fast", 220, 64),
+                ("icon_inherit_talisman", 512, 512),
+                ("icon_master_seal", 160, 160),
+                ("icon_wishlist_dove", 160, 160),
+                ("panel_08_zhenbaoge_rmb", 1932, 814),
+                ("panel_09_equip_inherit", 1932, 814),
+            };
+            Assert.That(MmorpgClient.UI.Ugui.SeasonEconomyUiArt.EconomyTradeV2AssetKeys.Length, Is.EqualTo(8));
+            foreach (var (key, w, h) in expected)
+            {
+                Assert.That(File.Exists(Path.Combine(root, key + ".png")), Is.True, "Missing EconomyTradeV2 PNG: " + key);
+                Assert.That(File.Exists(Path.Combine(root, key + ".png.meta")), Is.True, "Missing EconomyTradeV2 meta: " + key);
+                var sprite = MmorpgClient.UI.Ugui.SeasonEconomyUiArt.LoadTradeV2Slice(key);
+                Assert.That(sprite != null && sprite.texture != null, Is.True, "Failed to load EconomyTradeV2 sprite: " + key);
+                Assert.That(sprite.texture.width, Is.EqualTo(w), key + " width");
+                Assert.That(sprite.texture.height, Is.EqualTo(h), key + " height");
+                Assert.That(sprite.border, Is.EqualTo(UnityEngine.Vector4.zero), key + " border");
+            }
+        }
+
+        [Test]
+        public void RmbConsignmentViewModelFiltersTabsAndSummarizesDisputeFrozenIncomes()
+        {
+            var listings = new[]
+            {
+                new RmbConsignmentView { ListingId = 1, AssetKind = "ITEM", PriceFen = 2800, Phase = "SALE", DesignatedOnly = false },
+                new RmbConsignmentView { ListingId = 2, AssetKind = "PET", PriceFen = 68800, Phase = "NOTICE", DesignatedOnly = true },
+                new RmbConsignmentView { ListingId = 3, AssetKind = "ITEM", PriceFen = 28600, Phase = "NOTICE", DesignatedOnly = false },
+            };
+
+            Assert.That(RmbConsignmentViewModel.FilterListings(listings, RmbConsignmentSubTab.All).Count, Is.EqualTo(3));
+            Assert.That(RmbConsignmentViewModel.FilterListings(listings, RmbConsignmentSubTab.PublicNotice).Count, Is.EqualTo(2));
+            var designated = RmbConsignmentViewModel.FilterListings(listings, RmbConsignmentSubTab.DesignatedOnly);
+            Assert.That(designated.Count, Is.EqualTo(1));
+            Assert.That(designated[0].ListingId, Is.EqualTo(2UL));
+            Assert.That(RmbConsignmentViewModel.IsUniqueValuable(listings[0]), Is.False);
+            Assert.That(RmbConsignmentViewModel.IsUniqueValuable(listings[1]), Is.True);
+            Assert.That(RmbConsignmentViewModel.IsUniqueValuable(listings[2]), Is.True);
+
+            var incomes = new[]
+            {
+                new RmbSellerIncome { OrderId = "ZBG-1", NetFen = 38600, PaidFen = 0, ReservedFen = 0, DisputeFrozenFen = 0 },
+                new RmbSellerIncome { OrderId = "ZBG-2", NetFen = 12000, PaidFen = 0, ReservedFen = 12000, DisputeFrozenFen = 0 },
+                new RmbSellerIncome { OrderId = "ZBG-3", NetFen = 9800, PaidFen = 0, ReservedFen = 0, DisputeFrozenFen = 9800, DisputeCaseId = "DISP-20261125" },
+            };
+            var summary = RmbConsignmentViewModel.SummarizeIncomes(incomes);
+            Assert.That(summary.WithdrawableFen, Is.EqualTo(38600UL));
+            Assert.That(summary.ReservedFen, Is.EqualTo(12000UL));
+            Assert.That(summary.DisputeFrozenFen, Is.EqualTo(9800UL));
+            Assert.That(summary.FirstDisputeCaseId, Is.EqualTo("DISP-20261125"));
+            Assert.That(RmbConsignmentViewModel.FormatIncomeRowStatus(incomes[0]), Is.EqualTo("可提现"));
+            Assert.That(RmbConsignmentViewModel.FormatIncomeRowStatus(incomes[1]), Is.EqualTo("结算期预留"));
+            Assert.That(RmbConsignmentViewModel.FormatIncomeRowStatus(incomes[2]), Is.EqualTo("争议冻结"));
+        }
+
+        [Test]
+        public void MarketWishlistHonorsSampleThresholdAndRoundTripsSerialization()
+        {
+            var wishlist = new MarketWishlistModel();
+            wishlist.SetTarget(3002u, 0u, 24000UL);
+
+            // 样本不足 10 笔时绝不误报到价提醒
+            var lowSample = wishlist.Evaluate(3002u, 0u, new GetMarketReferencePriceResponse
+            {
+                ItemConfigId = 3002u, CurrencyType = 0u, MedianUnitPrice = 20000UL, SampleCount = 9u, InsufficientSample = false,
+            });
+            Assert.That(lowSample.HasTarget, Is.True);
+            Assert.That(lowSample.HasValidP50, Is.False);
+            Assert.That(lowSample.BelowOrAtTarget, Is.False);
+
+            // 样本充足且 p50 <= 心愿价时触发到价提醒
+            var hit = wishlist.Evaluate(3002u, 0u, new GetMarketReferencePriceResponse
+            {
+                ItemConfigId = 3002u, CurrencyType = 0u, MedianUnitPrice = 23500UL, SampleCount = 18u, InsufficientSample = false,
+            });
+            Assert.That(hit.HasValidP50, Is.True);
+            Assert.That(hit.BelowOrAtTarget, Is.True);
+
+            // 序列化与反序列化保持一致
+            string encoded = wishlist.Serialize();
+            var reloaded = new MarketWishlistModel();
+            reloaded.LoadSerialized(encoded);
+            Assert.That(reloaded.TryGetTarget(3002u, 0u, out ulong restored), Is.True);
+            Assert.That(restored, Is.EqualTo(24000UL));
+
+            // 3409/3410 道具图标映射校验
+            Assert.That(MmorpgClient.UI.Ugui.Gameplay.EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3409u }),
+                Does.EndWith("icon_unseal_talisman"));
+            Assert.That(MmorpgClient.UI.Ugui.Gameplay.EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3410u }),
+                Does.EndWith("icon_inherit_talisman"));
+        }
+
         private static string ResolveAssetsDirectory()
         {
             string[] candidates =

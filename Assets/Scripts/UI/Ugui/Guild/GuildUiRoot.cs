@@ -25,18 +25,30 @@ namespace MmorpgClient.UI.Ugui.Guild
         public static GuildUiRoot Instance { get; private set; }
         public GuildWindow Window => _window;
         public GuildClient Client => _client;
+        public GuildWarWindow WarWindow => _warWindow;
+        public GuildWarClient WarClient => _warClient;
+        public GuildWarFieldHud FieldHud => _fieldHud;
+        public bool IsActiveGuildWarBattle(ulong battleId) =>
+            battleId != 0 && _warClient != null &&
+            (_warClient.LastLaunchedBattleId == battleId || _warClient.Overview?.ActiveBattleId == battleId);
         public const float EntryX = 68, EntryY = 600;
+        private const float FieldInspectIntervalSec = 3f;
         private GameClient _game;
         private GuildClient _client;
+        private GuildWarClient _warClient;
         // 落地恢复的接线(LandingSyncBindings.BindGuild):随 _client 一起建、在它销毁之前解除;
         // Toggle / HidePanel / 换角复位都不碰它(GuildClient.Reset 不清钩子)。
         private System.IDisposable _guildSync;
         private GuildWindow _window;
+        private GuildWarWindow _warWindow;
+        private GuildWarFieldHud _fieldHud;
         private RectTransform _hud;
         private ulong _player;
         private bool _available;
         // 上一帧战斗层是否显示;由显示变为不显示的那一帧 = 一场战斗刚结束。
         private bool _inBattle;
+        private float _nextFieldInspectSec;
+        private uint _lastObservedSceneConfigId;
         private bool _destroyed;
         private bool HasView => !_destroyed && _window?.Root != null && _hud != null;
 
@@ -101,6 +113,20 @@ namespace MmorpgClient.UI.Ugui.Guild
             // 同道历练(B6b):选人框发出邀请(建房),邀请框 / 卡片按钮应答(同意、婉拒、发起人取消)。
             _window.TrialRequested += (id, members) => { if (_available) _client?.StartTrial(id, members); };
             _window.TrialInviteResponded += (lobby, accept) => { if (_available) _client?.RespondTrialInvite(lobby, accept); };
+            _warWindow = new GuildWarWindow(design);
+            _window.GuildWarRequested += OpenGuildWar;
+            _warWindow.BackToGuildRequested += () => { if (_available) { _window.Show(); RefreshOrQueue(); } };
+            _warWindow.OpenGuildShopRequested += () => { if (_available) { _window.Show(GuildPage.Shop); RefreshOrQueue(); } };
+            _warWindow.WatchBattleRequested += WatchBattle;
+            _warWindow.TravelToSceneRequested += TravelToScene;
+            _warWindow.ReplayBattleRequested += battleId =>
+            {
+                if (battleId == 0) return;
+                BattleReportClient.Instance?.FetchReplay(battleId);
+            };
+            _fieldHud = new GuildWarFieldHud(_hud);
+            _fieldHud.OpenWarWindowRequested += OpenGuildWar;
+            _fieldHud.WatchBattleRequested += WatchBattle;
             _hud.gameObject.SetActive(false);
         }
         private void Update()
@@ -110,34 +136,54 @@ namespace MmorpgClient.UI.Ugui.Guild
             if (_game != game)
             {
                 _guildSync?.Dispose(); _guildSync = null;
-                if (_client != null) { _client.Changed -= Changed; _client.AssetsChanged -= OnAssetsChanged; _client.Dispose(); }
+                if (_client != null) { _client.Changed -= Changed; _client.AssetsChanged -= OnAssetsChanged; _client.WarUpdated -= OnWarUpdated; _client.Dispose(); }
+                if (_warClient != null) { _warClient.Changed -= OnWarClientChanged; _warClient.Dispose(); _warClient = null; }
                 _game = game;
                 _client = game == null ? null : new GuildClient(new GameClientBattleTransport(game), () => game.GateConnectionIdentity,
                     economyRecovery: DurableRequestFileStore.ForOrigin(
                         System.IO.Path.Combine(Application.persistentDataPath, "guild-economy-intents-v1"),
                         AppBootstrap.Instance.Session.GatewayBaseUrl, () => game.OwnerRevision));
+                _warClient = game == null ? null : new GuildWarClient(new GameClientBattleTransport(game), () => game.GateConnectionIdentity);
                 if (_client != null) {
                     _client.PrepareMatchNetwork=(ready,failed)=>game.Battle.RegionProbe.Prepare(_=>ready(),failed);
-                    _client.Changed += Changed; _client.AssetsChanged += OnAssetsChanged;
+                    _client.Changed += Changed; _client.AssetsChanged += OnAssetsChanged; _client.WarUpdated += OnWarUpdated;
                     if (game.LandingSync != null) _guildSync = LandingSyncBindings.BindGuild(game.LandingSync, _client);
                 }
+                if (_warClient != null) _warClient.Changed += OnWarClientChanged;
                 _window.ResetSession(); _window.SetClient(_client);
+                _warWindow?.SetContext(_warClient, _client?.Info?.GuildId ?? 0UL, _client?.IsOfficerOrLeader ?? false);
+                _fieldHud?.SetContext(_warClient, _client?.Info?.GuildId ?? 0UL, game?.CurrentSceneConfigId ?? 0u);
             }
             _client?.ObserveConnection();
+            _warClient?.ObserveConnection();
             bool inGame = game != null && game.InGame && game.IsGateReady;
             ulong player = inGame ? game.PlayerId : 0;
             if (_player != player)
-            { _player = player; _window.ResetSession(); _client?.Reset(); _window.SetClient(_client); }
+            {
+                _player = player; _window.ResetSession(); _client?.Reset(); _window.SetClient(_client);
+                _warClient?.Reset(); _warWindow?.Hide(); _warWindow?.DismissAlert();
+                _warWindow?.SetContext(_warClient, 0UL, false);
+                _fieldHud?.SetContext(_warClient, 0UL, 0u);
+                _nextFieldInspectSec = 0f; _lastObservedSceneConfigId = 0u;
+            }
             bool inBattle = BattleUiRoot.Instance?.IsBattleLayerVisible ?? false;
             // 战斗层刚收起 = 一场战斗刚结束。打的若是同道历练,活动快照里还留着"历练进行中 / 已开启":结算推送可能丢、
             // 也可能晚到,让客户端把这份快照标成过时,下次进活动页自动重拉(没有在途历练时它什么也不做)。
-            if (_inBattle && !inBattle) _client?.NoteBattleEnded();
+            if (_inBattle && !inBattle)
+            {
+                _client?.NoteBattleEnded();
+                if (_warClient != null && _warClient.LastLaunchedBattleId != 0)
+                    _warClient.QueryBattleResult(_warClient.LastLaunchedBattleId);
+            }
             _inBattle = inBattle;
             _available = inGame && !inBattle;
             _hud.gameObject.SetActive(_available);
             // 开战(收到 NotifyBattleStart 后战斗层显示)由战斗界面接管:本窗口连同邀请框 / 选人框在这里关掉。
             // 战斗中到达的历练邀请不弹,标志留在 GuildClient 里(有时限,见 TrialInvitePending)。
             if (!_available) { HidePanel(); return; }
+            _warClient?.Tick();
+            _warWindow?.Tick(Time.unscaledTime);
+            UpdateFieldWarPresence(game);
             OpenPendingTrialInvite();
             // NotifyGuildChanged 只置排队标志;真正的拉取在这里按帧消费,一帧最多发一个请求,
             // 不让每条推送都触发一次全量 Refresh。窗口关着不拉推送排的重拉,Toggle() 打开时已有 Refresh()。
@@ -147,20 +193,28 @@ namespace MmorpgClient.UI.Ugui.Guild
             if (_window.IsVisible) { _client?.DrainQueued(_window.ShowingApplications, _window.ShowingActivities); _window.Tick(); }
             else _client?.DrainSyncQueued();
             bool typing = IsTyping();
-            if (!_window.IsVisible && GameplayInputGate.IsKeyboardBlocked) return;
+            if (!_window.IsVisible && (_warWindow == null || !_warWindow.IsVisible) && GameplayInputGate.IsKeyboardBlocked) return;
 #if ENABLE_INPUT_SYSTEM
             var keys = Keyboard.current;
             if (keys == null) return;
-            if (keys.escapeKey.wasPressedThisFrame) _window.Back();
+            if (keys.escapeKey.wasPressedThisFrame) { if (_warWindow != null && _warWindow.IsVisible) _warWindow.Hide(); else _window.Back(); }
             else if (!typing && keys.gKey.wasPressedThisFrame) Toggle();
 #elif ENABLE_LEGACY_INPUT_MANAGER
-            if (Input.GetKeyDown(KeyCode.Escape)) _window.Back();
+            if (Input.GetKeyDown(KeyCode.Escape)) { if (_warWindow != null && _warWindow.IsVisible) _warWindow.Hide(); else _window.Back(); }
             else if (!typing && Input.GetKeyDown(KeyCode.G)) Toggle();
 #endif
+        }
+        public void OpenGuildWar()
+        {
+            if (!HasView || !_available || _warWindow == null) return;
+            _window.Hide();
+            _warWindow.SetContext(_warClient, _client?.Info?.GuildId ?? 0UL, _client?.IsOfficerOrLeader ?? false);
+            _warWindow.Show(GuildWarPage.Main);
         }
         public void Toggle()
         {
             if (!HasView) return;
+            if (_warWindow != null && _warWindow.IsVisible) { HidePanel(); return; }
             if (_window.IsVisible) { HidePanel(); return; }
             if (!_available) return;
             CityPanelRegistry.HideOthers(this);
@@ -201,8 +255,116 @@ namespace MmorpgClient.UI.Ugui.Guild
             _client.QueueActivities();
         }
         private static bool IsTyping() => CityPanelRegistry.IsTyping();
-        public void HidePanel() { if (_window?.Root != null) _window.Hide(); }
-        private void Changed() { if (HasView) _window.SetClient(_client); else UnbindClient(); }
+        public void HidePanel()
+        {
+            if (_window?.Root != null) _window.Hide();
+            if (_warWindow?.Root != null) _warWindow.Hide();
+        }
+        private void Changed()
+        {
+            if (HasView)
+            {
+                _window.SetClient(_client);
+                ulong gid = _client?.Info?.GuildId ?? 0UL;
+                _warWindow?.SetContext(_warClient, gid, _client?.IsOfficerOrLeader ?? false);
+                _fieldHud?.UpdateScene(_game?.CurrentSceneConfigId ?? 0u, gid);
+                if (gid != 0 && _warClient != null && _warClient.Overview == null && !_warClient.OverviewLoading)
+                    _warClient.RefreshOverview();
+            }
+            else UnbindClient();
+        }
+        private void OnWarUpdated()
+        {
+            if (_warClient == null || _warClient.OverviewLoading) return;
+            if ((_warWindow != null && _warWindow.IsVisible) || GuildWarFieldHud.IsWildWarScene(_game?.CurrentSceneConfigId ?? 0u))
+                _warClient.RefreshOverview();
+        }
+        private void OnWarClientChanged()
+        {
+            _window?.SetWarOverview(_warClient?.Overview);
+        }
+        private void WatchBattle(ulong battleId)
+        {
+            if (battleId == 0) return;
+            (_game?.Spectate ?? SpectateClient.Instance)?.WatchBattle(battleId);
+        }
+        private void TravelToScene(uint sceneConfigId, ulong sceneId)
+        {
+            if (_game == null || !_available || sceneConfigId == 0) return;
+            _warWindow?.Hide();
+            StartCoroutine(_game.EnterScene(sceneConfigId, sceneId,
+                () => { _nextFieldInspectSec = 0f; },
+                _ => { }));
+        }
+        private void UpdateFieldWarPresence(GameClient game)
+        {
+            if (game == null || _warClient == null) return;
+            uint sceneConf = game.CurrentSceneConfigId;
+            ulong gid = _client?.Info?.GuildId ?? 0UL;
+            if (sceneConf != _lastObservedSceneConfigId)
+            {
+                _lastObservedSceneConfigId = sceneConf;
+                _nextFieldInspectSec = 0f;
+            }
+            _fieldHud?.UpdateScene(sceneConf, gid);
+            if (gid == 0 || !GuildWarFieldHud.IsWildWarScene(sceneConf)) return;
+
+            float now = Time.unscaledTime;
+            if (now >= _nextFieldInspectSec && game.World != null)
+            {
+                _nextFieldInspectSec = now + FieldInspectIntervalSec;
+                var ids = new System.Collections.Generic.List<ulong>(GuildWarClient.MaxFieldInspectPlayers);
+                foreach (var kv in game.World.Actors)
+                {
+                    var actor = kv.Value;
+                    if (actor == null || actor.Kind != MmorpgClient.World.ActorKind.Player) continue;
+                    if (actor.PlayerId == 0 || actor.PlayerId == _player) continue;
+                    ids.Add(actor.PlayerId);
+                    if (ids.Count >= GuildWarClient.MaxFieldInspectPlayers) break;
+                }
+                if (ids.Count > 0) _warClient.InspectFieldWarTargets(ids);
+            }
+            TryPickWildActor(game);
+        }
+        private void TryPickWildActor(GameClient game)
+        {
+            if (_fieldHud == null || game?.World == null) return;
+            if ((_window != null && _window.IsVisible) || (_warWindow != null && _warWindow.IsVisible)) return;
+            bool clicked = false;
+            Vector2 pointerPos = Vector2.zero;
+#if ENABLE_INPUT_SYSTEM
+            var mouse = Mouse.current;
+            if (mouse != null && mouse.leftButton.wasPressedThisFrame)
+            {
+                clicked = true;
+                pointerPos = mouse.position.ReadValue();
+            }
+#elif ENABLE_LEGACY_INPUT_MANAGER
+            if (Input.GetMouseButtonDown(0))
+            {
+                clicked = true;
+                pointerPos = Input.mousePosition;
+            }
+#endif
+            if (!clicked) return;
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+            var cam = Camera.main;
+            if (cam == null) return;
+            Ray ray = cam.ScreenPointToRay(pointerPos);
+            if (!Physics.Raycast(ray, out RaycastHit hit, 120f)) return;
+            var hitTr = hit.transform;
+            foreach (var kv in game.World.Actors)
+            {
+                var actor = kv.Value;
+                if (actor == null || actor.Kind != MmorpgClient.World.ActorKind.Player || actor.Go == null) continue;
+                if (actor.PlayerId == 0 || actor.PlayerId == _player) continue;
+                if (hitTr == actor.Go.transform || hitTr.IsChildOf(actor.Go.transform))
+                {
+                    _fieldHud.SelectFieldTarget(actor.PlayerId);
+                    return;
+                }
+            }
+        }
         /// <summary>
         /// 捐献扣了货币 / 兑换发了物品:scene 没有余额推送,重拉一次背包(沿用玩家当前看的那个背包类型)。
         /// 背包客户端不在(未进场)就什么也不做,下次打开背包自然会拉。
@@ -215,7 +377,10 @@ namespace MmorpgClient.UI.Ugui.Guild
         private void UnbindClient()
         {
             _guildSync?.Dispose(); _guildSync = null;
-            if (_client != null) { _client.Changed -= Changed; _client.AssetsChanged -= OnAssetsChanged; _client.Dispose(); }
+            if (_client != null) { _client.Changed -= Changed; _client.AssetsChanged -= OnAssetsChanged; _client.WarUpdated -= OnWarUpdated; _client.Dispose(); }
+            if (_warClient != null) { _warClient.Changed -= OnWarClientChanged; _warClient.Dispose(); _warClient = null; }
+            _warWindow?.SetContext(null, 0UL, false);
+            _fieldHud?.SetContext(null, 0UL, 0u);
             _client = null; _game = null; _player = 0; _available = _inBattle = false;
         }
         private void OnDisable() { UnbindClient(); HidePanel(); }
@@ -223,7 +388,10 @@ namespace MmorpgClient.UI.Ugui.Guild
         {
             _destroyed = true;
             CityPanelRegistry.Unregister(this);
-            UnbindClient(); HidePanel(); _window = null;
+            UnbindClient(); HidePanel();
+            _warWindow?.Dispose(); _warWindow = null;
+            _fieldHud?.Dispose(); _fieldHud = null;
+            _window = null;
             if (Instance == this) Instance = null;
         }
     }

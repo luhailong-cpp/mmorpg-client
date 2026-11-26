@@ -111,6 +111,41 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 "v2-title-intermission" => "UI/Ugui/TournamentV2/titles/a-intermission-title",
                 "v2-title-salute" => "UI/Ugui/TournamentV2/titles/b-salute-title",
                 "v2-title-cheer" => "UI/Ugui/TournamentV2/titles/c-cheer-title",
+                // V3 Module D（赛前零积分热身约战）
+                "v3-d-warmup-btn" => "UI/Ugui/TournamentV3/d/warmup-btn",
+                "v3-d-warmup-badge" => "UI/Ugui/TournamentV3/d/warmup-badge",
+                // V3 Module E（淘汰赛神机问道免费竞猜）
+                "v3-e-predict-panel" => "UI/Ugui/TournamentV3/e/predict-panel",
+                "v3-e-predict-pick" => "UI/Ugui/TournamentV3/e/predict-pick",
+                "v3-e-predict-hit" => "UI/Ugui/TournamentV3/e/predict-hit",
+                "v3-e-predict-miss" => "UI/Ugui/TournamentV3/e/predict-miss",
+                // V3 Module F（淘汰赛问鼎之星 MVP 与高光战报卡）
+                "v3-f-mvp-seal" => "UI/Ugui/TournamentV3/f/mvp-seal",
+                "v3-f-mvp-card-bg" => "UI/Ugui/TournamentV3/f/mvp-card-bg",
+                // V3 Module G（季军争夺战牌匾 + 8 枚官方预设道家战旗纹章）
+                "v3-g-bronze-banner" => "UI/Ugui/TournamentV3/g/bronze-banner",
+                "v3-g-emblem-01" => "UI/Ugui/TournamentV3/g/emblem-01-sword",
+                "v3-g-emblem-02" => "UI/Ugui/TournamentV3/g/emblem-02-taiji",
+                "v3-g-emblem-03" => "UI/Ugui/TournamentV3/g/emblem-03-furnace",
+                "v3-g-emblem-04" => "UI/Ugui/TournamentV3/g/emblem-04-lotus",
+                "v3-g-emblem-05" => "UI/Ugui/TournamentV3/g/emblem-05-crane",
+                "v3-g-emblem-06" => "UI/Ugui/TournamentV3/g/emblem-06-thunder",
+                "v3-g-emblem-07" => "UI/Ugui/TournamentV3/g/emblem-07-bagua",
+                "v3-g-emblem-08" => "UI/Ugui/TournamentV3/g/emblem-08-cauldron",
+                // V3 原生毛笔弹窗题字（加载成功时严禁叠字）
+                "v3-title-warmup" => "UI/Ugui/TournamentV3/titles/d-warmup-title",
+                "v3-title-predict" => "UI/Ugui/TournamentV3/titles/e-predict-title",
+                "v3-title-emblem" => "UI/Ugui/TournamentV3/titles/g-emblem-title",
+                // V4 Module H/I/J（BO3 灵脉禁选、本季名局录、6 枚赛季荣耀铭牌）
+                "v4-h-ban-seal" => "UI/Ugui/TournamentV3/h/ban-seal",
+                "v4-i-highlights-panel" => "UI/Ugui/TournamentV3/i/highlights-panel",
+                "v4-title-highlights" => "UI/Ugui/TournamentV3/titles/i-highlights-title",
+                "v4-j-honor-01" => "UI/Ugui/TournamentV3/j/honor-01-debut",
+                "v4-j-honor-02" => "UI/Ugui/TournamentV3/j/honor-02-streak",
+                "v4-j-honor-03" => "UI/Ugui/TournamentV3/j/honor-03-unbeaten",
+                "v4-j-honor-04" => "UI/Ugui/TournamentV3/j/honor-04-comeback",
+                "v4-j-honor-05" => "UI/Ugui/TournamentV3/j/honor-05-sweep",
+                "v4-j-honor-06" => "UI/Ugui/TournamentV3/j/honor-06-champion",
                 _ => key,
             };
             var sprite = Resources.Load<Sprite>(path);
@@ -352,6 +387,65 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 var f = QdaoUguiFactory.CreateImage("Frame", root, 0f, 0f, size, size, frame, false);
                 f.preserveAspect = true;
             }
+        }
+
+        /// <summary>V3 模块 G：绘制官方预设道家战队纹章（已导图时直显透明 PNG；缺图时优雅降级为道家玉金字章）。</summary>
+        public static RectTransform EmblemBadge(string name, Transform parent, float x, float y, float size, uint emblemId)
+        {
+            var info = MmorpgClient.Game.Tournament.TournamentFormatting.GetEmblemInfo(emblemId);
+            var sprite = Load(info.SpriteKey);
+            if (sprite != null)
+            {
+                var img = QdaoUguiFactory.CreateImage(name, parent, x, y, size, size, sprite, false);
+                img.preserveAspect = true;
+                return img.rectTransform;
+            }
+            var card = BorderedCard(name, parent, x, y, size, size, JadeSoft, Gold, Mathf.Max(1.2f, size * 0.04f));
+            Label("Glyph", card, 0f, 0f, size, size, info.Glyph, Mathf.Max(12f, size * 0.52f),
+                JadeDeep, TextAlignmentOptions.Center, bold: true);
+            return card;
+        }
+
+        /// <summary>V4 模块 J：绘制赛季纯荣誉铭牌徽章（已导图时直显 PNG，未解锁态半透明灰化，缺图时降级为玉金字章）。</summary>
+        public static RectTransform HonorBadge(string name, Transform parent, float x, float y, float size,
+            MmorpgClient.Game.Tournament.TournamentFormatting.TournamentHonorInfo info, bool unlocked)
+        {
+            var sprite = Load(info.SpriteKey);
+            if (sprite != null)
+            {
+                var img = QdaoUguiFactory.CreateImage(name, parent, x, y, size, size, sprite, false);
+                img.preserveAspect = true;
+                img.color = unlocked ? Color.white : new Color(0.55f, 0.55f, 0.55f, 0.42f);
+                return img.rectTransform;
+            }
+            var card = BorderedCard(name, parent, x, y, size, size,
+                unlocked ? GoldTagBg : TagGrayBg,
+                unlocked ? Gold : Line,
+                Mathf.Max(1.2f, size * 0.04f));
+            Label("Glyph", card, 0f, 0f, size, size, info.ShortGlyph, Mathf.Max(12f, size * 0.48f),
+                unlocked ? GoldTagText : Muted, TextAlignmentOptions.Center, bold: unlocked);
+            return card;
+        }
+
+        /// <summary>V3 皮肤按钮（加载到新切片时贴图，缺图时回退道家标准样式）。</summary>
+        public static Button V3SkinnedButton(string name, Transform parent, float x, float y, float w, float h,
+            string spriteKey, string labelText, Action onClick, bool primaryFallback = false,
+            bool interactable = true, float fontSize = 18f)
+        {
+            var sprite = Load(spriteKey);
+            if (sprite == null)
+                return ArtButton(name, parent, x, y, w, h, labelText, onClick, primary: primaryFallback, interactable: interactable, fontSize: fontSize);
+            var btn = QdaoUguiFactory.CreateArtButton(name, parent, x, y, w, h, sprite, out var img);
+            img.type = Image.Type.Simple;
+            img.preserveAspect = false;
+            btn.interactable = interactable;
+            if (onClick != null) btn.onClick.AddListener(() => onClick());
+            var txt = Label(name + "_Label", btn.transform, 8f, 0f, w - 16f, h, labelText,
+                fontSize, primaryFallback ? PrimaryBtnText : JadeDeep, TextAlignmentOptions.Center, bold: true);
+            txt.enableAutoSizing = true;
+            txt.fontSizeMin = Mathf.Max(11f, fontSize - 6f);
+            txt.fontSizeMax = fontSize;
+            return btn;
         }
 
         public static ScrollRect CreateScrollView(string name, Transform parent, float x, float y, float w, float h,

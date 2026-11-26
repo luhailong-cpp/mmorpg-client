@@ -6,6 +6,7 @@ namespace MmorpgClient.Net
 {
     public static class MessageIds
     {
+        public const uint AckHostedRecap         =  523; // SceneAfkPassClientPlayerAckHostedRecap
         public const uint AllocateAttributePoints =  168; // SceneAttributeClientPlayerAllocateAttributePoints
         public const uint AllocatePetPoints      =  186; // ScenePetClientPlayerAllocatePetPoints
         public const uint ApplyJoinGuild         =  218; // GuildServiceApplyJoinGuild
@@ -17,6 +18,7 @@ namespace MmorpgClient.Net
         public const uint BuyGuildShopGoods      =  233; // GuildServiceBuyGuildShopGoods
         public const uint BuyMysteryMerchantGoods =  315; // SceneMysteryMerchantClientPlayerBuyMysteryMerchantGoods
         public const uint BuyPet                 =  403; // ScenePetClientPlayerBuyPet
+        public const uint BuySpiritShopGoods     =  510; // SceneSpiritShopClientPlayerBuySpiritShopGoods
         public const uint CancelAppearanceTrial  =  445; // SceneAppearanceClientPlayerCancelAppearanceTrial
         public const uint CancelGuildApplication =  219; // GuildServiceCancelGuildApplication
         public const uint CancelQueue            =  148; // MatchServiceCancelQueue
@@ -36,7 +38,9 @@ namespace MmorpgClient.Net
         public const uint EnterGame              =   26; // ClientPlayerLoginEnterGame
         public const uint EnterScene             =   63; // SceneSceneClientPlayerEnterScene
         public const uint EquipItem              =  249; // SceneBagClientPlayerEquipItem
+        public const uint EquipPetCosmetic       =  530; // SceneAppearanceClientPlayerEquipPetCosmetic
         public const uint EquipSeasonSeal        =  454; // SceneSeasonClientPlayerEquipSeasonSeal
+        public const uint EquipSkillVfx          =  531; // SceneAppearanceClientPlayerEquipSkillVfx
         public const uint GetActivityList        =  190; // SceneActivityClientPlayerGetActivityList
         public const uint GetAfkPass             =  430; // SceneAfkPassClientPlayerGetAfkPass
         public const uint GetAppearanceInfo      =  442; // SceneAppearanceClientPlayerGetAppearanceInfo
@@ -59,6 +63,7 @@ namespace MmorpgClient.Net
         public const uint GetPlayerGuild         =   35; // GuildServiceGetPlayerGuild
         public const uint GetQueueStatus         =  153; // MatchServiceGetQueueStatus
         public const uint GetSeasonState         =  453; // SceneSeasonClientPlayerGetSeasonState
+        public const uint GetSpiritShopInfo      =  509; // SceneSpiritShopClientPlayerGetSpiritShopInfo
         public const uint GetSyncDigest          =  253; // SceneSceneClientPlayerGetSyncDigest
         public const uint GmGrantPet             =  187; // ScenePetClientPlayerGmGrantPet
         public const uint GmSetPlayerLevel       =  175; // SceneAttributeClientPlayerGmSetPlayerLevel
@@ -127,6 +132,7 @@ namespace MmorpgClient.Net
         public const uint NotifyAttributePanelChanged =  170; // SceneAttributeClientPlayerNotifyAttributePanelChanged
         public const uint NotifyBattleAssigned   =  177; // BattleClientPlayerNotifyBattleAssigned
         public const uint NotifyBattleEnd        =  150; // BattleClientPlayerNotifyBattleEnd
+        public const uint NotifyBattlePing       =  533; // BattleClientPlayerNotifyBattlePing
         public const uint NotifyBattlePrepUpdate =  505; // BattleClientPlayerNotifyBattlePrepUpdate
         public const uint NotifyBattleReconnect  =  144; // BattleClientPlayerNotifyBattleReconnect
         public const uint NotifyBattleStart      =  143; // BattleClientPlayerNotifyBattleStart
@@ -154,6 +160,7 @@ namespace MmorpgClient.Net
         public const uint RankGetRankAround      =  272; // ClientPlayerRankGetRankAround
         public const uint RankGetRankPage        =  292; // ClientPlayerRankGetRankPage
         public const uint RecallPet              =  185; // ScenePetClientPlayerRecallPet
+        public const uint RecallTeamMembers      =  525; // ClientPlayerTeamRecallTeamMembers
         public const uint RedirectToGate         =  124; // SceneClientPlayerCommonRedirectToGate
         public const uint RefreshToken           =  127; // ClientPlayerLoginRefreshToken
         public const uint ReleaseSkill           =   84; // SceneSkillClientPlayerReleaseSkill
@@ -171,9 +178,12 @@ namespace MmorpgClient.Net
         public const uint SavePetEntries         =  412; // ScenePetClientPlayerSavePetEntries
         public const uint SaveSkillLoadout       =  502; // SceneSkillClientPlayerSaveSkillLoadout
         public const uint SceneInfoC2S           =   43; // SceneSceneClientPlayerSceneInfoC2S
+        public const uint SendBattlePing         =  532; // BattleClientPlayerSendBattlePing
+        public const uint SetAfkPassSettings     =  522; // SceneAfkPassClientPlayerSetAfkPassSettings
         public const uint SetAutoBattle          =  162; // BattleClientPlayerSetAutoBattle
         public const uint SetGuildAnnouncement   =   39; // GuildServiceSetAnnouncement
         public const uint SetGuildMemberRole     =   19; // GuildServiceSetGuildMemberRole
+        public const uint SetTeamFormation       =  524; // ClientPlayerTeamSetTeamFormation
         public const uint SortBag                =  192; // SceneBagClientPlayerSortBag
         public const uint StartAppearanceTrial   =  444; // SceneAppearanceClientPlayerStartAppearanceTrial
         public const uint StartGuildTrial        =  242; // GuildServiceStartGuildTrial

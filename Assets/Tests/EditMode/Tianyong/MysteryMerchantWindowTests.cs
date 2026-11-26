@@ -424,6 +424,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test]
         public void OpeningSkillBook_ClosesMerchantInsteadOfLeavingItAboveTheSkillPanel()
         {
+            var navigationBefore = WorldHudNavigation.Instance;
+            var skillBefore = MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Instance;
+            var merchantBefore = MysteryMerchantUiRoot.Instance;
             var merchantObject = new GameObject("MerchantHostTest");
             merchantObject.transform.SetParent(_root.transform, false);
             var merchant = merchantObject.AddComponent<MysteryMerchantUiRoot>();
@@ -439,11 +442,26 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             if (MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Instance == null)
                 typeof(MmorpgClient.UI.Ugui.Skills.SkillUiRoot).GetMethod("Awake", flags).Invoke(skills, null);
 
-            MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Open();
+            try
+            {
+                MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Open();
 
-            Assert.That(skills.IsVisible, Is.True);
-            Assert.That(merchant.Window.IsVisible, Is.False,
-                "商人画布在技能面板之上，打开技能必须收起商店，才能看到并操作技能面板。");
+                Assert.That(skills.IsVisible, Is.True);
+                Assert.That(merchant.Window.IsVisible, Is.False,
+                    "商人画布在技能面板之上，打开技能必须收起商店，才能看到并操作技能面板。");
+            }
+            finally
+            {
+                if (MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Instance != null &&
+                    MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Instance != skillBefore)
+                    Object.DestroyImmediate(MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Instance.gameObject);
+                if (MysteryMerchantUiRoot.Instance != null &&
+                    MysteryMerchantUiRoot.Instance != merchantBefore)
+                    Object.DestroyImmediate(MysteryMerchantUiRoot.Instance.gameObject);
+                if (WorldHudNavigation.Instance != null &&
+                    WorldHudNavigation.Instance != navigationBefore)
+                    Object.DestroyImmediate(WorldHudNavigation.Instance.gameObject);
+            }
         }
 
         [Test]

@@ -53,119 +53,135 @@ namespace Teampb {
             "IAEoDSKUAQoaQ29uZmlybVJhbmtlZFByZXNldFJlcXVlc3QSGAoQZXhwZWN0",
             "ZWRfdGVhbV9pZBgBIAEoBBIbChNjaGFyYWN0ZXJfcHJlc2V0X2lkGAIgASgN",
             "EhUKDXBldF9wcmVzZXRfaWQYAyABKA0SFAoMcnVsZV92ZXJzaW9uGAQgASgN",
-            "EhIKCnJlcXVlc3RfaWQYBSABKAkihQEKDFRlYW1SZXNwb25zZRImCg1lcnJv",
-            "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USHgoEdGVhbRgCIAEo",
-            "CzIQLnRlYW1wYi5UZWFtVmlldxItCgxtYXRjaF9pbnRlbnQYAyABKAsyFy50",
-            "ZWFtcGIuVGVhbU1hdGNoSW50ZW50IkcKD1RlYW1NYXRjaEludGVudBISCgpy",
-            "ZXF1ZXN0X2lkGAEgASgJEhEKCWJhdHRsZV9pZBgCIAEoBBINCgVzdGF0ZRgD",
-            "IAEoDSKIAQoVTGlzdE15SW52aXRlc1Jlc3BvbnNlEiYKDWVycm9yX21lc3Nh",
-            "Z2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIvCgdpbnZpdGVzGAIgAygLMh4u",
-            "dGVhbXBiLlRlYW1JbmNvbWluZ0ludml0ZVZpZXcSFgoOc2VydmVyX3RpbWVf",
-            "bXMYAyABKAQi1QIKDlRlYW1NZW1iZXJWaWV3EhEKCXBsYXllcl9pZBgBIAEo",
-            "BBIMCgRuYW1lGAIgASgJEg0KBWxldmVsGAMgASgNEhAKCGNsYXNzX2lkGAQg",
-            "ASgNEg4KBmdlbmRlchgFIAEoDRIRCglpc19sZWFkZXIYBiABKAgSEQoJaXNf",
-            "b25saW5lGAcgASgIEhEKCWluX2JhdHRsZRgIIAEoCBIPCgd6b25lX2lkGAkg",
-            "ASgNEhAKCGpvaW5fc2VxGAogASgNEhUKDWFwcGVhcmFuY2VfaWQYCyABKAkS",
-            "IgoacmFua2VkX2NoYXJhY3Rlcl9wcmVzZXRfaWQYDCABKA0SHAoUcmFua2Vk",
-            "X3BldF9wcmVzZXRfaWQYDSABKA0SGwoTcmFua2VkX3J1bGVfdmVyc2lvbhgO",
-            "IAEoDRIfChdyYW5rZWRfcHJlc2V0X2NvbmZpcm1lZBgPIAEoCCJqChNUZWFt",
-            "QXBwbGljYXRpb25WaWV3EiYKBnBsYXllchgBIAEoCzIWLnRlYW1wYi5UZWFt",
-            "TWVtYmVyVmlldxIVCg1hcHBsaWVkX2F0X21zGAIgASgEEhQKDGV4cGlyZV9h",
-            "dF9tcxgDIAEoBCJXChZUZWFtT3V0Z29pbmdJbnZpdGVWaWV3EicKB2ludml0",
-            "ZWUYASABKAsyFi50ZWFtcGIuVGVhbU1lbWJlclZpZXcSFAoMZXhwaXJlX2F0",
-            "X21zGAIgASgEIqIBChZUZWFtSW5jb21pbmdJbnZpdGVWaWV3Eg8KB3RlYW1f",
-            "aWQYASABKAQSJwoHaW52aXRlchgCIAEoCzIWLnRlYW1wYi5UZWFtTWVtYmVy",
-            "VmlldxIRCglsZWFkZXJfaWQYAyABKAQSFAoMbWVtYmVyX2NvdW50GAQgASgN",
-            "Eg8KB3pvbmVfaWQYBSABKA0SFAoMZXhwaXJlX2F0X21zGAYgASgEIoYFCghU",
-            "ZWFtVmlldxIPCgd0ZWFtX2lkGAEgASgEEhEKCWxlYWRlcl9pZBgCIAEoBBIQ",
-            "CghjYXBhY2l0eRgDIAEoDRIPCgd6b25lX2lkGAQgASgNEg8KB3ZlcnNpb24Y",
-            "BSABKAQSGAoQbWVtYmVyc2hpcF9lcG9jaBgGIAEoBBIrCgttYXRjaF9zdGF0",
-            "ZRgHIAEoDjIWLnRlYW1wYi5UZWFtTWF0Y2hTdGF0ZRInCgdtZW1iZXJzGAgg",
-            "AygLMhYudGVhbXBiLlRlYW1NZW1iZXJWaWV3EjEKDGFwcGxpY2F0aW9ucxgJ",
-            "IAMoCzIbLnRlYW1wYi5UZWFtQXBwbGljYXRpb25WaWV3EjcKD3BlbmRpbmdf",
-            "aW52aXRlcxgKIAMoCzIeLnRlYW1wYi5UZWFtT3V0Z29pbmdJbnZpdGVWaWV3",
-            "EhkKEWFwcGxpY2F0aW9uX2NvdW50GAsgASgNEhYKDnNlcnZlcl90aW1lX21z",
-            "GAwgASgEEhkKEW1hdGNoX3RhcmdldF9zaXplGA0gASgNEhoKEm1hdGNoX3F1",
-            "ZXVlZF9hdF9tcxgOIAEoBBIeChZtYXRjaF9iYXR0bGVfY29uZmlnX2lkGA8g",
-            "ASgNEhwKFG1hdGNoX2ZpbGxfc3VwcG9ydGVkGBAgASgIEiQKCm1hdGNoX21v",
-            "ZGUYESABKA4yEC5tYXRjaC5NYXRjaE1vZGUSGwoTcHZwX21hdGNoX3N1cHBv",
-            "cnRlZBgSIAEoCBIkChxyYW5rZWRfcHJlc2V0c19hbGxfY29uZmlybWVkGBMg",
-            "ASgIEhgKEHJhbmtlZF9zZWFzb25faWQYFCABKA0SGwoTcmFua2VkX3J1bGVf",
-            "dmVyc2lvbhgVIAEoDSKLAQoPVGVhbVNuYXBzaG90UzJDEh4KBHRlYW0YASAB",
-            "KAsyEC50ZWFtcGIuVGVhbVZpZXcSKAoGcmVhc29uGAIgASgOMhgudGVhbXBi",
-            "LlRlYW1DaGFuZ2VSZWFzb24SEAoIYWN0b3JfaWQYAyABKAQSHAoDdGlwGAQg",
-            "ASgLMg8uVGlwSW5mb01lc3NhZ2UiVwoNVGVhbUludml0ZVMyQxIuCgZpbnZp",
-            "dGUYASABKAsyHi50ZWFtcGIuVGVhbUluY29taW5nSW52aXRlVmlldxIWCg5z",
-            "ZXJ2ZXJfdGltZV9tcxgCIAEoBCJWCgxUZWFtRXZlbnRTMkMSIwoEdHlwZRgB",
-            "IAEoDjIVLnRlYW1wYi5UZWFtRXZlbnRUeXBlEg8KB3RlYW1faWQYAiABKAQS",
-            "EAoIYWN0b3JfaWQYAyABKAQi0AIKClRlYW1SZWNvcmQSDwoHdGVhbV9pZBgB",
-            "IAEoBBIRCglsZWFkZXJfaWQYAiABKAQSDwoHem9uZV9pZBgDIAEoDRIVCg1j",
-            "cmVhdGVkX2F0X21zGAQgASgEEikKB21lbWJlcnMYBSADKAsyGC50ZWFtcGIu",
-            "VGVhbU1lbWJlclJlY29yZBIzCgxhcHBsaWNhdGlvbnMYBiADKAsyHS50ZWFt",
-            "cGIuVGVhbUFwcGxpY2F0aW9uUmVjb3JkEikKB2ludml0ZXMYByADKAsyGC50",
-            "ZWFtcGIuVGVhbUludml0ZVJlY29yZBIVCg1uZXh0X2pvaW5fc2VxGAggASgN",
-            "EhgKEG1hdGNoX2xvY2tfdG9rZW4YCSABKAkSHwoXbWF0Y2hfbG9ja19leHBp",
-            "cmVfYXRfbXMYCiABKAQSGQoRbWF0Y2hfbG9ja19yb3N0ZXIYCyADKAQi3gEK",
-            "EFRlYW1NZW1iZXJSZWNvcmQSEQoJcGxheWVyX2lkGAEgASgEEg8KB3pvbmVf",
-            "aWQYAiABKA0SFAoMam9pbmVkX2F0X21zGAMgASgEEhAKCGpvaW5fc2VxGAQg",
-            "ASgNEiIKGnJhbmtlZF9jaGFyYWN0ZXJfcHJlc2V0X2lkGAUgASgNEhwKFHJh",
-            "bmtlZF9wZXRfcHJlc2V0X2lkGAYgASgNEhsKE3JhbmtlZF9ydWxlX3ZlcnNp",
-            "b24YByABKA0SHwoXcmFua2VkX3ByZXNldF9jb25maXJtZWQYCCABKAgiaAoV",
-            "VGVhbUFwcGxpY2F0aW9uUmVjb3JkEhEKCXBsYXllcl9pZBgBIAEoBBIPCgd6",
-            "b25lX2lkGAIgASgNEhUKDWFwcGxpZWRfYXRfbXMYAyABKAQSFAoMZXhwaXJl",
-            "X2F0X21zGAQgASgEIngKEFRlYW1JbnZpdGVSZWNvcmQSEgoKaW52aXRlZV9p",
-            "ZBgBIAEoBBISCgppbnZpdGVyX2lkGAIgASgEEg8KB3pvbmVfaWQYAyABKA0S",
-            "FQoNaW52aXRlZF9hdF9tcxgEIAEoBBIUCgxleHBpcmVfYXRfbXMYBSABKAQq",
-            "ZwoOVGVhbU1hdGNoU3RhdGUSGQoVVEVBTV9NQVRDSF9TVEFURV9JRExFEAAS",
-            "HQoZVEVBTV9NQVRDSF9TVEFURV9TVEFSVElORxABEhsKF1RFQU1fTUFUQ0hf",
-            "U1RBVEVfUVVFVUVEEAIqzwUKEFRlYW1DaGFuZ2VSZWFzb24SIgoeVEVBTV9D",
-            "SEFOR0VfUkVBU09OX1VOU1BFQ0lGSUVEEAASHgoaVEVBTV9DSEFOR0VfUkVB",
-            "U09OX0NSRUFURUQQARIkCiBURUFNX0NIQU5HRV9SRUFTT05fTUVNQkVSX0pP",
-            "SU5FRBACEiIKHlRFQU1fQ0hBTkdFX1JFQVNPTl9NRU1CRVJfTEVGVBADEiQK",
-            "IFRFQU1fQ0hBTkdFX1JFQVNPTl9NRU1CRVJfS0lDS0VEEAQSKQolVEVBTV9D",
-            "SEFOR0VfUkVBU09OX0xFQURFUl9UUkFOU0ZFUlJFRBAFEjEKLVRFQU1fQ0hB",
-            "TkdFX1JFQVNPTl9MRUFERVJfT0ZGTElORV9UUkFOU0ZFUlJFRBAGEiAKHFRF",
-            "QU1fQ0hBTkdFX1JFQVNPTl9ESVNCQU5ERUQQBxIqCiZURUFNX0NIQU5HRV9S",
-            "RUFTT05fQVBQTElDQVRJT05fQ0hBTkdFRBAIEiUKIVRFQU1fQ0hBTkdFX1JF",
-            "QVNPTl9JTlZJVEVfQ0hBTkdFRBAJEiQKIFRFQU1fQ0hBTkdFX1JFQVNPTl9N",
-            "RU1CRVJfT05MSU5FEAoSJAogVEVBTV9DSEFOR0VfUkVBU09OX01BVENIX1NU",
-            "QVJURUQQCxIiCh5URUFNX0NIQU5HRV9SRUFTT05fTUFUQ0hfRU5ERUQQDBIj",
-            "Ch9URUFNX0NIQU5HRV9SRUFTT05fTUFUQ0hfRkFJTEVEEA0SHQoZVEVBTV9D",
-            "SEFOR0VfUkVBU09OX0hFQUxFRBAOEiMKH1RFQU1fQ0hBTkdFX1JFQVNPTl9N",
-            "QVRDSF9RVUVVRUQQDxIrCidURUFNX0NIQU5HRV9SRUFTT05fTUFUQ0hfUVVF",
-            "VUVfQ0FOQ0VMRUQQEBIuCipURUFNX0NIQU5HRV9SRUFTT05fUkFOS0VEX1BS",
-            "RVNFVF9DT05GSVJNRUQQESp+Cg1UZWFtRXZlbnRUeXBlEh8KG1RFQU1fRVZF",
-            "TlRfVFlQRV9VTlNQRUNJRklFRBAAEigKJFRFQU1fRVZFTlRfVFlQRV9BUFBM",
-            "SUNBVElPTl9SRUpFQ1RFRBABEiIKHlRFQU1fRVZFTlRfVFlQRV9JTlZJVEVf",
-            "UkVWT0tFRBACMuMIChBDbGllbnRQbGF5ZXJUZWFtEj8KCkNyZWF0ZVRlYW0S",
-            "GS50ZWFtcGIuQ3JlYXRlVGVhbVJlcXVlc3QaFC50ZWFtcGIuVGVhbVJlc3Bv",
-            "bnNlIgASPQoJR2V0TXlUZWFtEhgudGVhbXBiLkdldE15VGVhbVJlcXVlc3Qa",
-            "FC50ZWFtcGIuVGVhbVJlc3BvbnNlIgASRQoNQXBwbHlKb2luVGVhbRIcLnRl",
-            "YW1wYi5BcHBseUpvaW5UZWFtUmVxdWVzdBoULnRlYW1wYi5UZWFtUmVzcG9u",
-            "c2UiABJNChFIYW5kbGVBcHBsaWNhdGlvbhIgLnRlYW1wYi5IYW5kbGVBcHBs",
-            "aWNhdGlvblJlcXVlc3QaFC50ZWFtcGIuVGVhbVJlc3BvbnNlIgASQwoMSW52",
-            "aXRlVG9UZWFtEhsudGVhbXBiLkludml0ZVRvVGVhbVJlcXVlc3QaFC50ZWFt",
-            "cGIuVGVhbVJlc3BvbnNlIgASRQoNUmVzcG9uZEludml0ZRIcLnRlYW1wYi5S",
-            "ZXNwb25kSW52aXRlUmVxdWVzdBoULnRlYW1wYi5UZWFtUmVzcG9uc2UiABJO",
-            "Cg1MaXN0TXlJbnZpdGVzEhwudGVhbXBiLkxpc3RNeUludml0ZXNSZXF1ZXN0",
-            "Gh0udGVhbXBiLkxpc3RNeUludml0ZXNSZXNwb25zZSIAEj0KCUxlYXZlVGVh",
-            "bRIYLnRlYW1wYi5MZWF2ZVRlYW1SZXF1ZXN0GhQudGVhbXBiLlRlYW1SZXNw",
-            "b25zZSIAEj8KCktpY2tNZW1iZXISGS50ZWFtcGIuS2lja01lbWJlclJlcXVl",
-            "c3QaFC50ZWFtcGIuVGVhbVJlc3BvbnNlIgASRwoOVHJhbnNmZXJMZWFkZXIS",
-            "HS50ZWFtcGIuVHJhbnNmZXJMZWFkZXJSZXF1ZXN0GhQudGVhbXBiLlRlYW1S",
-            "ZXNwb25zZSIAEkEKC0Rpc2JhbmRUZWFtEhoudGVhbXBiLkRpc2JhbmRUZWFt",
-            "UmVxdWVzdBoULnRlYW1wYi5UZWFtUmVzcG9uc2UiABJHCg5TdGFydFRlYW1N",
-            "YXRjaBIdLnRlYW1wYi5TdGFydFRlYW1NYXRjaFJlcXVlc3QaFC50ZWFtcGIu",
-            "VGVhbVJlc3BvbnNlIgASPAoSTm90aWZ5VGVhbVNuYXBzaG90EhcudGVhbXBi",
-            "LlRlYW1TbmFwc2hvdFMyQxoGLkVtcHR5IgWImcgBAhI4ChBOb3RpZnlUZWFt",
-            "SW52aXRlEhUudGVhbXBiLlRlYW1JbnZpdGVTMkMaBi5FbXB0eSIFiJnIAQIS",
-            "NgoPTm90aWZ5VGVhbUV2ZW50EhQudGVhbXBiLlRlYW1FdmVudFMyQxoGLkVt",
-            "cHR5IgWImcgBAhJRChNDb25maXJtUmFua2VkUHJlc2V0EiIudGVhbXBiLkNv",
-            "bmZpcm1SYW5rZWRQcmVzZXRSZXF1ZXN0GhQudGVhbXBiLlRlYW1SZXNwb25z",
-            "ZSIAGgWIqMMBAUINWgR0ZWFtgAEAmNRhD2IGcHJvdG8z"));
+            "EhIKCnJlcXVlc3RfaWQYBSABKAkifAoXU2V0VGVhbUZvcm1hdGlvblJlcXVl",
+            "c3QSGAoQZXhwZWN0ZWRfdGVhbV9pZBgBIAEoBBIzCglmb3JtYXRpb24YAiAB",
+            "KA4yIC50ZWFtcGIuVGVhbUZvbGxvd0Zvcm1hdGlvblN0eWxlEhIKCnJlcXVl",
+            "c3RfaWQYAyABKAkiSAoYUmVjYWxsVGVhbU1lbWJlcnNSZXF1ZXN0EhgKEGV4",
+            "cGVjdGVkX3RlYW1faWQYASABKAQSEgoKcmVxdWVzdF9pZBgCIAEoCSKFAQoM",
+            "VGVhbVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
+            "TWVzc2FnZRIeCgR0ZWFtGAIgASgLMhAudGVhbXBiLlRlYW1WaWV3Ei0KDG1h",
+            "dGNoX2ludGVudBgDIAEoCzIXLnRlYW1wYi5UZWFtTWF0Y2hJbnRlbnQiRwoP",
+            "VGVhbU1hdGNoSW50ZW50EhIKCnJlcXVlc3RfaWQYASABKAkSEQoJYmF0dGxl",
+            "X2lkGAIgASgEEg0KBXN0YXRlGAMgASgNIogBChVMaXN0TXlJbnZpdGVzUmVz",
+            "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
+            "Ei8KB2ludml0ZXMYAiADKAsyHi50ZWFtcGIuVGVhbUluY29taW5nSW52aXRl",
+            "VmlldxIWCg5zZXJ2ZXJfdGltZV9tcxgDIAEoBCLoAgoOVGVhbU1lbWJlclZp",
+            "ZXcSEQoJcGxheWVyX2lkGAEgASgEEgwKBG5hbWUYAiABKAkSDQoFbGV2ZWwY",
+            "AyABKA0SEAoIY2xhc3NfaWQYBCABKA0SDgoGZ2VuZGVyGAUgASgNEhEKCWlz",
+            "X2xlYWRlchgGIAEoCBIRCglpc19vbmxpbmUYByABKAgSEQoJaW5fYmF0dGxl",
+            "GAggASgIEg8KB3pvbmVfaWQYCSABKA0SEAoIam9pbl9zZXEYCiABKA0SFQoN",
+            "YXBwZWFyYW5jZV9pZBgLIAEoCRIiChpyYW5rZWRfY2hhcmFjdGVyX3ByZXNl",
+            "dF9pZBgMIAEoDRIcChRyYW5rZWRfcGV0X3ByZXNldF9pZBgNIAEoDRIbChNy",
+            "YW5rZWRfcnVsZV92ZXJzaW9uGA4gASgNEh8KF3JhbmtlZF9wcmVzZXRfY29u",
+            "ZmlybWVkGA8gASgIEhEKCWlzX2hvc3RlZBgQIAEoCCJqChNUZWFtQXBwbGlj",
+            "YXRpb25WaWV3EiYKBnBsYXllchgBIAEoCzIWLnRlYW1wYi5UZWFtTWVtYmVy",
+            "VmlldxIVCg1hcHBsaWVkX2F0X21zGAIgASgEEhQKDGV4cGlyZV9hdF9tcxgD",
+            "IAEoBCJXChZUZWFtT3V0Z29pbmdJbnZpdGVWaWV3EicKB2ludml0ZWUYASAB",
+            "KAsyFi50ZWFtcGIuVGVhbU1lbWJlclZpZXcSFAoMZXhwaXJlX2F0X21zGAIg",
+            "ASgEIqIBChZUZWFtSW5jb21pbmdJbnZpdGVWaWV3Eg8KB3RlYW1faWQYASAB",
+            "KAQSJwoHaW52aXRlchgCIAEoCzIWLnRlYW1wYi5UZWFtTWVtYmVyVmlldxIR",
+            "CglsZWFkZXJfaWQYAyABKAQSFAoMbWVtYmVyX2NvdW50GAQgASgNEg8KB3pv",
+            "bmVfaWQYBSABKA0SFAoMZXhwaXJlX2F0X21zGAYgASgEIsIFCghUZWFtVmll",
+            "dxIPCgd0ZWFtX2lkGAEgASgEEhEKCWxlYWRlcl9pZBgCIAEoBBIQCghjYXBh",
+            "Y2l0eRgDIAEoDRIPCgd6b25lX2lkGAQgASgNEg8KB3ZlcnNpb24YBSABKAQS",
+            "GAoQbWVtYmVyc2hpcF9lcG9jaBgGIAEoBBIrCgttYXRjaF9zdGF0ZRgHIAEo",
+            "DjIWLnRlYW1wYi5UZWFtTWF0Y2hTdGF0ZRInCgdtZW1iZXJzGAggAygLMhYu",
+            "dGVhbXBiLlRlYW1NZW1iZXJWaWV3EjEKDGFwcGxpY2F0aW9ucxgJIAMoCzIb",
+            "LnRlYW1wYi5UZWFtQXBwbGljYXRpb25WaWV3EjcKD3BlbmRpbmdfaW52aXRl",
+            "cxgKIAMoCzIeLnRlYW1wYi5UZWFtT3V0Z29pbmdJbnZpdGVWaWV3EhkKEWFw",
+            "cGxpY2F0aW9uX2NvdW50GAsgASgNEhYKDnNlcnZlcl90aW1lX21zGAwgASgE",
+            "EhkKEW1hdGNoX3RhcmdldF9zaXplGA0gASgNEhoKEm1hdGNoX3F1ZXVlZF9h",
+            "dF9tcxgOIAEoBBIeChZtYXRjaF9iYXR0bGVfY29uZmlnX2lkGA8gASgNEhwK",
+            "FG1hdGNoX2ZpbGxfc3VwcG9ydGVkGBAgASgIEiQKCm1hdGNoX21vZGUYESAB",
+            "KA4yEC5tYXRjaC5NYXRjaE1vZGUSGwoTcHZwX21hdGNoX3N1cHBvcnRlZBgS",
+            "IAEoCBIkChxyYW5rZWRfcHJlc2V0c19hbGxfY29uZmlybWVkGBMgASgIEhgK",
+            "EHJhbmtlZF9zZWFzb25faWQYFCABKA0SGwoTcmFua2VkX3J1bGVfdmVyc2lv",
+            "bhgVIAEoDRI6ChBmb2xsb3dfZm9ybWF0aW9uGBYgASgOMiAudGVhbXBiLlRl",
+            "YW1Gb2xsb3dGb3JtYXRpb25TdHlsZSKLAQoPVGVhbVNuYXBzaG90UzJDEh4K",
+            "BHRlYW0YASABKAsyEC50ZWFtcGIuVGVhbVZpZXcSKAoGcmVhc29uGAIgASgO",
+            "MhgudGVhbXBiLlRlYW1DaGFuZ2VSZWFzb24SEAoIYWN0b3JfaWQYAyABKAQS",
+            "HAoDdGlwGAQgASgLMg8uVGlwSW5mb01lc3NhZ2UiVwoNVGVhbUludml0ZVMy",
+            "QxIuCgZpbnZpdGUYASABKAsyHi50ZWFtcGIuVGVhbUluY29taW5nSW52aXRl",
+            "VmlldxIWCg5zZXJ2ZXJfdGltZV9tcxgCIAEoBCJWCgxUZWFtRXZlbnRTMkMS",
+            "IwoEdHlwZRgBIAEoDjIVLnRlYW1wYi5UZWFtRXZlbnRUeXBlEg8KB3RlYW1f",
+            "aWQYAiABKAQSEAoIYWN0b3JfaWQYAyABKAQipwMKClRlYW1SZWNvcmQSDwoH",
+            "dGVhbV9pZBgBIAEoBBIRCglsZWFkZXJfaWQYAiABKAQSDwoHem9uZV9pZBgD",
+            "IAEoDRIVCg1jcmVhdGVkX2F0X21zGAQgASgEEikKB21lbWJlcnMYBSADKAsy",
+            "GC50ZWFtcGIuVGVhbU1lbWJlclJlY29yZBIzCgxhcHBsaWNhdGlvbnMYBiAD",
+            "KAsyHS50ZWFtcGIuVGVhbUFwcGxpY2F0aW9uUmVjb3JkEikKB2ludml0ZXMY",
+            "ByADKAsyGC50ZWFtcGIuVGVhbUludml0ZVJlY29yZBIVCg1uZXh0X2pvaW5f",
+            "c2VxGAggASgNEhgKEG1hdGNoX2xvY2tfdG9rZW4YCSABKAkSHwoXbWF0Y2hf",
+            "bG9ja19leHBpcmVfYXRfbXMYCiABKAQSGQoRbWF0Y2hfbG9ja19yb3N0ZXIY",
+            "CyADKAQSOgoQZm9sbG93X2Zvcm1hdGlvbhgMIAEoDjIgLnRlYW1wYi5UZWFt",
+            "Rm9sbG93Rm9ybWF0aW9uU3R5bGUSGQoRbGFzdF9yZWNhbGxfYXRfbXMYDSAB",
+            "KAQi3gEKEFRlYW1NZW1iZXJSZWNvcmQSEQoJcGxheWVyX2lkGAEgASgEEg8K",
+            "B3pvbmVfaWQYAiABKA0SFAoMam9pbmVkX2F0X21zGAMgASgEEhAKCGpvaW5f",
+            "c2VxGAQgASgNEiIKGnJhbmtlZF9jaGFyYWN0ZXJfcHJlc2V0X2lkGAUgASgN",
+            "EhwKFHJhbmtlZF9wZXRfcHJlc2V0X2lkGAYgASgNEhsKE3JhbmtlZF9ydWxl",
+            "X3ZlcnNpb24YByABKA0SHwoXcmFua2VkX3ByZXNldF9jb25maXJtZWQYCCAB",
+            "KAgiaAoVVGVhbUFwcGxpY2F0aW9uUmVjb3JkEhEKCXBsYXllcl9pZBgBIAEo",
+            "BBIPCgd6b25lX2lkGAIgASgNEhUKDWFwcGxpZWRfYXRfbXMYAyABKAQSFAoM",
+            "ZXhwaXJlX2F0X21zGAQgASgEIngKEFRlYW1JbnZpdGVSZWNvcmQSEgoKaW52",
+            "aXRlZV9pZBgBIAEoBBISCgppbnZpdGVyX2lkGAIgASgEEg8KB3pvbmVfaWQY",
+            "AyABKA0SFQoNaW52aXRlZF9hdF9tcxgEIAEoBBIUCgxleHBpcmVfYXRfbXMY",
+            "BSABKAQqgQEKGFRlYW1Gb2xsb3dGb3JtYXRpb25TdHlsZRIgChxURUFNX0ZP",
+            "TExPV19GT1JNQVRJT05fQ09MVU1OEAASIQodVEVBTV9GT0xMT1dfRk9STUFU",
+            "SU9OX0VDSEVMT04QARIgChxURUFNX0ZPTExPV19GT1JNQVRJT05fV1VYSU5H",
+            "EAIqZwoOVGVhbU1hdGNoU3RhdGUSGQoVVEVBTV9NQVRDSF9TVEFURV9JRExF",
+            "EAASHQoZVEVBTV9NQVRDSF9TVEFURV9TVEFSVElORxABEhsKF1RFQU1fTUFU",
+            "Q0hfU1RBVEVfUVVFVUVEEAIq+QUKEFRlYW1DaGFuZ2VSZWFzb24SIgoeVEVB",
+            "TV9DSEFOR0VfUkVBU09OX1VOU1BFQ0lGSUVEEAASHgoaVEVBTV9DSEFOR0Vf",
+            "UkVBU09OX0NSRUFURUQQARIkCiBURUFNX0NIQU5HRV9SRUFTT05fTUVNQkVS",
+            "X0pPSU5FRBACEiIKHlRFQU1fQ0hBTkdFX1JFQVNPTl9NRU1CRVJfTEVGVBAD",
+            "EiQKIFRFQU1fQ0hBTkdFX1JFQVNPTl9NRU1CRVJfS0lDS0VEEAQSKQolVEVB",
+            "TV9DSEFOR0VfUkVBU09OX0xFQURFUl9UUkFOU0ZFUlJFRBAFEjEKLVRFQU1f",
+            "Q0hBTkdFX1JFQVNPTl9MRUFERVJfT0ZGTElORV9UUkFOU0ZFUlJFRBAGEiAK",
+            "HFRFQU1fQ0hBTkdFX1JFQVNPTl9ESVNCQU5ERUQQBxIqCiZURUFNX0NIQU5H",
+            "RV9SRUFTT05fQVBQTElDQVRJT05fQ0hBTkdFRBAIEiUKIVRFQU1fQ0hBTkdF",
+            "X1JFQVNPTl9JTlZJVEVfQ0hBTkdFRBAJEiQKIFRFQU1fQ0hBTkdFX1JFQVNP",
+            "Tl9NRU1CRVJfT05MSU5FEAoSJAogVEVBTV9DSEFOR0VfUkVBU09OX01BVENI",
+            "X1NUQVJURUQQCxIiCh5URUFNX0NIQU5HRV9SRUFTT05fTUFUQ0hfRU5ERUQQ",
+            "DBIjCh9URUFNX0NIQU5HRV9SRUFTT05fTUFUQ0hfRkFJTEVEEA0SHQoZVEVB",
+            "TV9DSEFOR0VfUkVBU09OX0hFQUxFRBAOEiMKH1RFQU1fQ0hBTkdFX1JFQVNP",
+            "Tl9NQVRDSF9RVUVVRUQQDxIrCidURUFNX0NIQU5HRV9SRUFTT05fTUFUQ0hf",
+            "UVVFVUVfQ0FOQ0VMRUQQEBIuCipURUFNX0NIQU5HRV9SRUFTT05fUkFOS0VE",
+            "X1BSRVNFVF9DT05GSVJNRUQQERIoCiRURUFNX0NIQU5HRV9SRUFTT05fRk9S",
+            "TUFUSU9OX0NIQU5HRUQQEiqhAQoNVGVhbUV2ZW50VHlwZRIfChtURUFNX0VW",
+            "RU5UX1RZUEVfVU5TUEVDSUZJRUQQABIoCiRURUFNX0VWRU5UX1RZUEVfQVBQ",
+            "TElDQVRJT05fUkVKRUNURUQQARIiCh5URUFNX0VWRU5UX1RZUEVfSU5WSVRF",
+            "X1JFVk9LRUQQAhIhCh1URUFNX0VWRU5UX1RZUEVfTEVBREVSX1JFQ0FMTBAD",
+            "Mv8JChBDbGllbnRQbGF5ZXJUZWFtEj8KCkNyZWF0ZVRlYW0SGS50ZWFtcGIu",
+            "Q3JlYXRlVGVhbVJlcXVlc3QaFC50ZWFtcGIuVGVhbVJlc3BvbnNlIgASPQoJ",
+            "R2V0TXlUZWFtEhgudGVhbXBiLkdldE15VGVhbVJlcXVlc3QaFC50ZWFtcGIu",
+            "VGVhbVJlc3BvbnNlIgASRQoNQXBwbHlKb2luVGVhbRIcLnRlYW1wYi5BcHBs",
+            "eUpvaW5UZWFtUmVxdWVzdBoULnRlYW1wYi5UZWFtUmVzcG9uc2UiABJNChFI",
+            "YW5kbGVBcHBsaWNhdGlvbhIgLnRlYW1wYi5IYW5kbGVBcHBsaWNhdGlvblJl",
+            "cXVlc3QaFC50ZWFtcGIuVGVhbVJlc3BvbnNlIgASQwoMSW52aXRlVG9UZWFt",
+            "EhsudGVhbXBiLkludml0ZVRvVGVhbVJlcXVlc3QaFC50ZWFtcGIuVGVhbVJl",
+            "c3BvbnNlIgASRQoNUmVzcG9uZEludml0ZRIcLnRlYW1wYi5SZXNwb25kSW52",
+            "aXRlUmVxdWVzdBoULnRlYW1wYi5UZWFtUmVzcG9uc2UiABJOCg1MaXN0TXlJ",
+            "bnZpdGVzEhwudGVhbXBiLkxpc3RNeUludml0ZXNSZXF1ZXN0Gh0udGVhbXBi",
+            "Lkxpc3RNeUludml0ZXNSZXNwb25zZSIAEj0KCUxlYXZlVGVhbRIYLnRlYW1w",
+            "Yi5MZWF2ZVRlYW1SZXF1ZXN0GhQudGVhbXBiLlRlYW1SZXNwb25zZSIAEj8K",
+            "CktpY2tNZW1iZXISGS50ZWFtcGIuS2lja01lbWJlclJlcXVlc3QaFC50ZWFt",
+            "cGIuVGVhbVJlc3BvbnNlIgASRwoOVHJhbnNmZXJMZWFkZXISHS50ZWFtcGIu",
+            "VHJhbnNmZXJMZWFkZXJSZXF1ZXN0GhQudGVhbXBiLlRlYW1SZXNwb25zZSIA",
+            "EkEKC0Rpc2JhbmRUZWFtEhoudGVhbXBiLkRpc2JhbmRUZWFtUmVxdWVzdBoU",
+            "LnRlYW1wYi5UZWFtUmVzcG9uc2UiABJHCg5TdGFydFRlYW1NYXRjaBIdLnRl",
+            "YW1wYi5TdGFydFRlYW1NYXRjaFJlcXVlc3QaFC50ZWFtcGIuVGVhbVJlc3Bv",
+            "bnNlIgASPAoSTm90aWZ5VGVhbVNuYXBzaG90EhcudGVhbXBiLlRlYW1TbmFw",
+            "c2hvdFMyQxoGLkVtcHR5IgWImcgBAhI4ChBOb3RpZnlUZWFtSW52aXRlEhUu",
+            "dGVhbXBiLlRlYW1JbnZpdGVTMkMaBi5FbXB0eSIFiJnIAQISNgoPTm90aWZ5",
+            "VGVhbUV2ZW50EhQudGVhbXBiLlRlYW1FdmVudFMyQxoGLkVtcHR5IgWImcgB",
+            "AhJRChNDb25maXJtUmFua2VkUHJlc2V0EiIudGVhbXBiLkNvbmZpcm1SYW5r",
+            "ZWRQcmVzZXRSZXF1ZXN0GhQudGVhbXBiLlRlYW1SZXNwb25zZSIAEksKEFNl",
+            "dFRlYW1Gb3JtYXRpb24SHy50ZWFtcGIuU2V0VGVhbUZvcm1hdGlvblJlcXVl",
+            "c3QaFC50ZWFtcGIuVGVhbVJlc3BvbnNlIgASTQoRUmVjYWxsVGVhbU1lbWJl",
+            "cnMSIC50ZWFtcGIuUmVjYWxsVGVhbU1lbWJlcnNSZXF1ZXN0GhQudGVhbXBi",
+            "LlRlYW1SZXNwb25zZSIAGgWIqMMBAUINWgR0ZWFtgAEAmNRhD2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, global::Match.MatchServiceReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Teampb.TeamMatchState), typeof(global::Teampb.TeamChangeReason), typeof(global::Teampb.TeamEventType), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Teampb.TeamFollowFormationStyle), typeof(global::Teampb.TeamMatchState), typeof(global::Teampb.TeamChangeReason), typeof(global::Teampb.TeamEventType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.CreateTeamRequest), global::Teampb.CreateTeamRequest.Parser, new[]{ "RequestId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.GetMyTeamRequest), global::Teampb.GetMyTeamRequest.Parser, new[]{ "NotifyOnline", "MatchRequestId", "Regroup" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.ApplyJoinTeamRequest), global::Teampb.ApplyJoinTeamRequest.Parser, new[]{ "TargetPlayerId", "RequestId" }, null, null, null, null),
@@ -179,18 +195,20 @@ namespace Teampb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.DisbandTeamRequest), global::Teampb.DisbandTeamRequest.Parser, new[]{ "ExpectedTeamId", "RequestId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.StartTeamMatchRequest), global::Teampb.StartTeamMatchRequest.Parser, new[]{ "BattleConfigId", "ExpectedTeamId", "RequestId", "TargetTeamSize", "MatchMode", "RankedRuleVersion" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.ConfirmRankedPresetRequest), global::Teampb.ConfirmRankedPresetRequest.Parser, new[]{ "ExpectedTeamId", "CharacterPresetId", "PetPresetId", "RuleVersion", "RequestId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.SetTeamFormationRequest), global::Teampb.SetTeamFormationRequest.Parser, new[]{ "ExpectedTeamId", "Formation", "RequestId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.RecallTeamMembersRequest), global::Teampb.RecallTeamMembersRequest.Parser, new[]{ "ExpectedTeamId", "RequestId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamResponse), global::Teampb.TeamResponse.Parser, new[]{ "ErrorMessage", "Team", "MatchIntent" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamMatchIntent), global::Teampb.TeamMatchIntent.Parser, new[]{ "RequestId", "BattleId", "State" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.ListMyInvitesResponse), global::Teampb.ListMyInvitesResponse.Parser, new[]{ "ErrorMessage", "Invites", "ServerTimeMs" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamMemberView), global::Teampb.TeamMemberView.Parser, new[]{ "PlayerId", "Name", "Level", "ClassId", "Gender", "IsLeader", "IsOnline", "InBattle", "ZoneId", "JoinSeq", "AppearanceId", "RankedCharacterPresetId", "RankedPetPresetId", "RankedRuleVersion", "RankedPresetConfirmed" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamMemberView), global::Teampb.TeamMemberView.Parser, new[]{ "PlayerId", "Name", "Level", "ClassId", "Gender", "IsLeader", "IsOnline", "InBattle", "ZoneId", "JoinSeq", "AppearanceId", "RankedCharacterPresetId", "RankedPetPresetId", "RankedRuleVersion", "RankedPresetConfirmed", "IsHosted" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamApplicationView), global::Teampb.TeamApplicationView.Parser, new[]{ "Player", "AppliedAtMs", "ExpireAtMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamOutgoingInviteView), global::Teampb.TeamOutgoingInviteView.Parser, new[]{ "Invitee", "ExpireAtMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamIncomingInviteView), global::Teampb.TeamIncomingInviteView.Parser, new[]{ "TeamId", "Inviter", "LeaderId", "MemberCount", "ZoneId", "ExpireAtMs" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamView), global::Teampb.TeamView.Parser, new[]{ "TeamId", "LeaderId", "Capacity", "ZoneId", "Version", "MembershipEpoch", "MatchState", "Members", "Applications", "PendingInvites", "ApplicationCount", "ServerTimeMs", "MatchTargetSize", "MatchQueuedAtMs", "MatchBattleConfigId", "MatchFillSupported", "MatchMode", "PvpMatchSupported", "RankedPresetsAllConfirmed", "RankedSeasonId", "RankedRuleVersion" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamView), global::Teampb.TeamView.Parser, new[]{ "TeamId", "LeaderId", "Capacity", "ZoneId", "Version", "MembershipEpoch", "MatchState", "Members", "Applications", "PendingInvites", "ApplicationCount", "ServerTimeMs", "MatchTargetSize", "MatchQueuedAtMs", "MatchBattleConfigId", "MatchFillSupported", "MatchMode", "PvpMatchSupported", "RankedPresetsAllConfirmed", "RankedSeasonId", "RankedRuleVersion", "FollowFormation" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamSnapshotS2C), global::Teampb.TeamSnapshotS2C.Parser, new[]{ "Team", "Reason", "ActorId", "Tip" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamInviteS2C), global::Teampb.TeamInviteS2C.Parser, new[]{ "Invite", "ServerTimeMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamEventS2C), global::Teampb.TeamEventS2C.Parser, new[]{ "Type", "TeamId", "ActorId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamRecord), global::Teampb.TeamRecord.Parser, new[]{ "TeamId", "LeaderId", "ZoneId", "CreatedAtMs", "Members", "Applications", "Invites", "NextJoinSeq", "MatchLockToken", "MatchLockExpireAtMs", "MatchLockRoster" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamRecord), global::Teampb.TeamRecord.Parser, new[]{ "TeamId", "LeaderId", "ZoneId", "CreatedAtMs", "Members", "Applications", "Invites", "NextJoinSeq", "MatchLockToken", "MatchLockExpireAtMs", "MatchLockRoster", "FollowFormation", "LastRecallAtMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamMemberRecord), global::Teampb.TeamMemberRecord.Parser, new[]{ "PlayerId", "ZoneId", "JoinedAtMs", "JoinSeq", "RankedCharacterPresetId", "RankedPetPresetId", "RankedRuleVersion", "RankedPresetConfirmed" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamApplicationRecord), global::Teampb.TeamApplicationRecord.Parser, new[]{ "PlayerId", "ZoneId", "AppliedAtMs", "ExpireAtMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamInviteRecord), global::Teampb.TeamInviteRecord.Parser, new[]{ "InviteeId", "InviterId", "ZoneId", "InvitedAtMs", "ExpireAtMs" }, null, null, null, null)
@@ -200,6 +218,24 @@ namespace Teampb {
 
   }
   #region Enums
+  /// <summary>
+  /// 跑图组队跟随阵型样式:默认 0 为长蛇纵队(与既有行为完全一致)。
+  /// </summary>
+  public enum TeamFollowFormationStyle {
+    /// <summary>
+    /// 长蛇纵队
+    /// </summary>
+    [pbr::OriginalName("TEAM_FOLLOW_FORMATION_COLUMN")] TeamFollowFormationColumn = 0,
+    /// <summary>
+    /// 雁行两翼
+    /// </summary>
+    [pbr::OriginalName("TEAM_FOLLOW_FORMATION_ECHELON")] TeamFollowFormationEchelon = 1,
+    /// <summary>
+    /// 五行聚阵
+    /// </summary>
+    [pbr::OriginalName("TEAM_FOLLOW_FORMATION_WUXING")] TeamFollowFormationWuxing = 2,
+  }
+
   public enum TeamMatchState {
     [pbr::OriginalName("TEAM_MATCH_STATE_IDLE")] Idle = 0,
     /// <summary>
@@ -265,6 +301,10 @@ namespace Teampb {
     /// 队员确认排位预设;actor_id = 确认者
     /// </summary>
     [pbr::OriginalName("TEAM_CHANGE_REASON_RANKED_PRESET_CONFIRMED")] RankedPresetConfirmed = 17,
+    /// <summary>
+    /// 队长切换跑图跟随队形;actor_id = 队长
+    /// </summary>
+    [pbr::OriginalName("TEAM_CHANGE_REASON_FORMATION_CHANGED")] FormationChanged = 18,
   }
 
   public enum TeamEventType {
@@ -277,6 +317,10 @@ namespace Teampb {
     /// 发给被邀请人:队伍解散/满员导致邀请失效
     /// </summary>
     [pbr::OriginalName("TEAM_EVENT_TYPE_INVITE_REVOKED")] InviteRevoked = 2,
+    /// <summary>
+    /// 发给在线队员:队长发起一键召集归队(actor_id = 队长)
+    /// </summary>
+    [pbr::OriginalName("TEAM_EVENT_TYPE_LEADER_RECALL")] LeaderRecall = 3,
   }
 
   #endregion
@@ -3792,6 +3836,513 @@ namespace Teampb {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class SetTeamFormationRequest : pb::IMessage<SetTeamFormationRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SetTeamFormationRequest> _parser = new pb::MessageParser<SetTeamFormationRequest>(() => new SetTeamFormationRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SetTeamFormationRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[13]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SetTeamFormationRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SetTeamFormationRequest(SetTeamFormationRequest other) : this() {
+      expectedTeamId_ = other.expectedTeamId_;
+      formation_ = other.formation_;
+      requestId_ = other.requestId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SetTeamFormationRequest Clone() {
+      return new SetTeamFormationRequest(this);
+    }
+
+    /// <summary>Field number for the "expected_team_id" field.</summary>
+    public const int ExpectedTeamIdFieldNumber = 1;
+    private ulong expectedTeamId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong ExpectedTeamId {
+      get { return expectedTeamId_; }
+      set {
+        expectedTeamId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "formation" field.</summary>
+    public const int FormationFieldNumber = 2;
+    private global::Teampb.TeamFollowFormationStyle formation_ = global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Teampb.TeamFollowFormationStyle Formation {
+      get { return formation_; }
+      set {
+        formation_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 3;
+    private string requestId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SetTeamFormationRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SetTeamFormationRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ExpectedTeamId != other.ExpectedTeamId) return false;
+      if (Formation != other.Formation) return false;
+      if (RequestId != other.RequestId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ExpectedTeamId != 0UL) hash ^= ExpectedTeamId.GetHashCode();
+      if (Formation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) hash ^= Formation.GetHashCode();
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (ExpectedTeamId != 0UL) {
+        output.WriteRawTag(8);
+        output.WriteUInt64(ExpectedTeamId);
+      }
+      if (Formation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) Formation);
+      }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (ExpectedTeamId != 0UL) {
+        output.WriteRawTag(8);
+        output.WriteUInt64(ExpectedTeamId);
+      }
+      if (Formation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) Formation);
+      }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (ExpectedTeamId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedTeamId);
+      }
+      if (Formation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Formation);
+      }
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SetTeamFormationRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ExpectedTeamId != 0UL) {
+        ExpectedTeamId = other.ExpectedTeamId;
+      }
+      if (other.Formation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) {
+        Formation = other.Formation;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            ExpectedTeamId = input.ReadUInt64();
+            break;
+          }
+          case 16: {
+            Formation = (global::Teampb.TeamFollowFormationStyle) input.ReadEnum();
+            break;
+          }
+          case 26: {
+            RequestId = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            ExpectedTeamId = input.ReadUInt64();
+            break;
+          }
+          case 16: {
+            Formation = (global::Teampb.TeamFollowFormationStyle) input.ReadEnum();
+            break;
+          }
+          case 26: {
+            RequestId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class RecallTeamMembersRequest : pb::IMessage<RecallTeamMembersRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<RecallTeamMembersRequest> _parser = new pb::MessageParser<RecallTeamMembersRequest>(() => new RecallTeamMembersRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<RecallTeamMembersRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[14]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public RecallTeamMembersRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public RecallTeamMembersRequest(RecallTeamMembersRequest other) : this() {
+      expectedTeamId_ = other.expectedTeamId_;
+      requestId_ = other.requestId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public RecallTeamMembersRequest Clone() {
+      return new RecallTeamMembersRequest(this);
+    }
+
+    /// <summary>Field number for the "expected_team_id" field.</summary>
+    public const int ExpectedTeamIdFieldNumber = 1;
+    private ulong expectedTeamId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong ExpectedTeamId {
+      get { return expectedTeamId_; }
+      set {
+        expectedTeamId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 2;
+    private string requestId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as RecallTeamMembersRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(RecallTeamMembersRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ExpectedTeamId != other.ExpectedTeamId) return false;
+      if (RequestId != other.RequestId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ExpectedTeamId != 0UL) hash ^= ExpectedTeamId.GetHashCode();
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (ExpectedTeamId != 0UL) {
+        output.WriteRawTag(8);
+        output.WriteUInt64(ExpectedTeamId);
+      }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(RequestId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (ExpectedTeamId != 0UL) {
+        output.WriteRawTag(8);
+        output.WriteUInt64(ExpectedTeamId);
+      }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(RequestId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (ExpectedTeamId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedTeamId);
+      }
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(RecallTeamMembersRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ExpectedTeamId != 0UL) {
+        ExpectedTeamId = other.ExpectedTeamId;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            ExpectedTeamId = input.ReadUInt64();
+            break;
+          }
+          case 18: {
+            RequestId = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            ExpectedTeamId = input.ReadUInt64();
+            break;
+          }
+          case 18: {
+            RequestId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class TeamResponse : pb::IMessage<TeamResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3806,7 +4357,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[13]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4115,7 +4666,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[14]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4392,7 +4943,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[15]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4665,7 +5216,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[16]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4700,6 +5251,7 @@ namespace Teampb {
       rankedPetPresetId_ = other.rankedPetPresetId_;
       rankedRuleVersion_ = other.rankedRuleVersion_;
       rankedPresetConfirmed_ = other.rankedPresetConfirmed_;
+      isHosted_ = other.isHosted_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4928,6 +5480,21 @@ namespace Teampb {
       }
     }
 
+    /// <summary>Field number for the "is_hosted" field.</summary>
+    public const int IsHostedFieldNumber = 16;
+    private bool isHosted_;
+    /// <summary>
+    /// 读时由 player:hosted:{&lt;id>} 算:仅在不在线且处于离线托管中时为 true
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool IsHosted {
+      get { return isHosted_; }
+      set {
+        isHosted_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -4958,6 +5525,7 @@ namespace Teampb {
       if (RankedPetPresetId != other.RankedPetPresetId) return false;
       if (RankedRuleVersion != other.RankedRuleVersion) return false;
       if (RankedPresetConfirmed != other.RankedPresetConfirmed) return false;
+      if (IsHosted != other.IsHosted) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -4980,6 +5548,7 @@ namespace Teampb {
       if (RankedPetPresetId != 0) hash ^= RankedPetPresetId.GetHashCode();
       if (RankedRuleVersion != 0) hash ^= RankedRuleVersion.GetHashCode();
       if (RankedPresetConfirmed != false) hash ^= RankedPresetConfirmed.GetHashCode();
+      if (IsHosted != false) hash ^= IsHosted.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5058,6 +5627,10 @@ namespace Teampb {
         output.WriteRawTag(120);
         output.WriteBool(RankedPresetConfirmed);
       }
+      if (IsHosted != false) {
+        output.WriteRawTag(128, 1);
+        output.WriteBool(IsHosted);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -5128,6 +5701,10 @@ namespace Teampb {
         output.WriteRawTag(120);
         output.WriteBool(RankedPresetConfirmed);
       }
+      if (IsHosted != false) {
+        output.WriteRawTag(128, 1);
+        output.WriteBool(IsHosted);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -5182,6 +5759,9 @@ namespace Teampb {
       }
       if (RankedPresetConfirmed != false) {
         size += 1 + 1;
+      }
+      if (IsHosted != false) {
+        size += 2 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -5239,6 +5819,9 @@ namespace Teampb {
       }
       if (other.RankedPresetConfirmed != false) {
         RankedPresetConfirmed = other.RankedPresetConfirmed;
+      }
+      if (other.IsHosted != false) {
+        IsHosted = other.IsHosted;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -5317,6 +5900,10 @@ namespace Teampb {
           }
           case 120: {
             RankedPresetConfirmed = input.ReadBool();
+            break;
+          }
+          case 128: {
+            IsHosted = input.ReadBool();
             break;
           }
         }
@@ -5398,6 +5985,10 @@ namespace Teampb {
             RankedPresetConfirmed = input.ReadBool();
             break;
           }
+          case 128: {
+            IsHosted = input.ReadBool();
+            break;
+          }
         }
       }
     }
@@ -5420,7 +6011,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[17]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5704,7 +6295,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[18]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[20]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5951,7 +6542,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[19]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[21]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6343,7 +6934,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[20]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[22]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6384,6 +6975,7 @@ namespace Teampb {
       rankedPresetsAllConfirmed_ = other.rankedPresetsAllConfirmed_;
       rankedSeasonId_ = other.rankedSeasonId_;
       rankedRuleVersion_ = other.rankedRuleVersion_;
+      followFormation_ = other.followFormation_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -6693,6 +7285,21 @@ namespace Teampb {
       }
     }
 
+    /// <summary>Field number for the "follow_formation" field.</summary>
+    public const int FollowFormationFieldNumber = 22;
+    private global::Teampb.TeamFollowFormationStyle followFormation_ = global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn;
+    /// <summary>
+    /// 跑图跟随队形样式(存储于 TeamRecord,跨场景 / 跨节点保持一致)。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Teampb.TeamFollowFormationStyle FollowFormation {
+      get { return followFormation_; }
+      set {
+        followFormation_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -6729,6 +7336,7 @@ namespace Teampb {
       if (RankedPresetsAllConfirmed != other.RankedPresetsAllConfirmed) return false;
       if (RankedSeasonId != other.RankedSeasonId) return false;
       if (RankedRuleVersion != other.RankedRuleVersion) return false;
+      if (FollowFormation != other.FollowFormation) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -6757,6 +7365,7 @@ namespace Teampb {
       if (RankedPresetsAllConfirmed != false) hash ^= RankedPresetsAllConfirmed.GetHashCode();
       if (RankedSeasonId != 0) hash ^= RankedSeasonId.GetHashCode();
       if (RankedRuleVersion != 0) hash ^= RankedRuleVersion.GetHashCode();
+      if (FollowFormation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) hash ^= FollowFormation.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -6850,6 +7459,10 @@ namespace Teampb {
         output.WriteRawTag(168, 1);
         output.WriteUInt32(RankedRuleVersion);
       }
+      if (FollowFormation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) {
+        output.WriteRawTag(176, 1);
+        output.WriteEnum((int) FollowFormation);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -6935,6 +7548,10 @@ namespace Teampb {
         output.WriteRawTag(168, 1);
         output.WriteUInt32(RankedRuleVersion);
       }
+      if (FollowFormation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) {
+        output.WriteRawTag(176, 1);
+        output.WriteEnum((int) FollowFormation);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -7001,6 +7618,9 @@ namespace Teampb {
       }
       if (RankedRuleVersion != 0) {
         size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RankedRuleVersion);
+      }
+      if (FollowFormation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) {
+        size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) FollowFormation);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -7070,6 +7690,9 @@ namespace Teampb {
       }
       if (other.RankedRuleVersion != 0) {
         RankedRuleVersion = other.RankedRuleVersion;
+      }
+      if (other.FollowFormation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) {
+        FollowFormation = other.FollowFormation;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -7172,6 +7795,10 @@ namespace Teampb {
           }
           case 168: {
             RankedRuleVersion = input.ReadUInt32();
+            break;
+          }
+          case 176: {
+            FollowFormation = (global::Teampb.TeamFollowFormationStyle) input.ReadEnum();
             break;
           }
         }
@@ -7277,6 +7904,10 @@ namespace Teampb {
             RankedRuleVersion = input.ReadUInt32();
             break;
           }
+          case 176: {
+            FollowFormation = (global::Teampb.TeamFollowFormationStyle) input.ReadEnum();
+            break;
+          }
         }
       }
     }
@@ -7299,7 +7930,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[21]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[23]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7632,7 +8263,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[22]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[24]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7879,7 +8510,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[23]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[25]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8151,7 +8782,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[24]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[26]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8182,6 +8813,8 @@ namespace Teampb {
       matchLockToken_ = other.matchLockToken_;
       matchLockExpireAtMs_ = other.matchLockExpireAtMs_;
       matchLockRoster_ = other.matchLockRoster_.Clone();
+      followFormation_ = other.followFormation_;
+      lastRecallAtMs_ = other.lastRecallAtMs_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -8331,6 +8964,36 @@ namespace Teampb {
       get { return matchLockRoster_; }
     }
 
+    /// <summary>Field number for the "follow_formation" field.</summary>
+    public const int FollowFormationFieldNumber = 12;
+    private global::Teampb.TeamFollowFormationStyle followFormation_ = global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn;
+    /// <summary>
+    /// 跑图跟随队形样式(默认 0 = 长蛇纵队)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Teampb.TeamFollowFormationStyle FollowFormation {
+      get { return followFormation_; }
+      set {
+        followFormation_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "last_recall_at_ms" field.</summary>
+    public const int LastRecallAtMsFieldNumber = 13;
+    private ulong lastRecallAtMs_;
+    /// <summary>
+    /// 最近一次队长一键召集时刻(SQL 时钟毫秒,跨副本一致限流)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong LastRecallAtMs {
+      get { return lastRecallAtMs_; }
+      set {
+        lastRecallAtMs_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -8357,6 +9020,8 @@ namespace Teampb {
       if (MatchLockToken != other.MatchLockToken) return false;
       if (MatchLockExpireAtMs != other.MatchLockExpireAtMs) return false;
       if(!matchLockRoster_.Equals(other.matchLockRoster_)) return false;
+      if (FollowFormation != other.FollowFormation) return false;
+      if (LastRecallAtMs != other.LastRecallAtMs) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -8375,6 +9040,8 @@ namespace Teampb {
       if (MatchLockToken.Length != 0) hash ^= MatchLockToken.GetHashCode();
       if (MatchLockExpireAtMs != 0UL) hash ^= MatchLockExpireAtMs.GetHashCode();
       hash ^= matchLockRoster_.GetHashCode();
+      if (FollowFormation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) hash ^= FollowFormation.GetHashCode();
+      if (LastRecallAtMs != 0UL) hash ^= LastRecallAtMs.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -8425,6 +9092,14 @@ namespace Teampb {
         output.WriteUInt64(MatchLockExpireAtMs);
       }
       matchLockRoster_.WriteTo(output, _repeated_matchLockRoster_codec);
+      if (FollowFormation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) {
+        output.WriteRawTag(96);
+        output.WriteEnum((int) FollowFormation);
+      }
+      if (LastRecallAtMs != 0UL) {
+        output.WriteRawTag(104);
+        output.WriteUInt64(LastRecallAtMs);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -8467,6 +9142,14 @@ namespace Teampb {
         output.WriteUInt64(MatchLockExpireAtMs);
       }
       matchLockRoster_.WriteTo(ref output, _repeated_matchLockRoster_codec);
+      if (FollowFormation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) {
+        output.WriteRawTag(96);
+        output.WriteEnum((int) FollowFormation);
+      }
+      if (LastRecallAtMs != 0UL) {
+        output.WriteRawTag(104);
+        output.WriteUInt64(LastRecallAtMs);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -8502,6 +9185,12 @@ namespace Teampb {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MatchLockExpireAtMs);
       }
       size += matchLockRoster_.CalculateSize(_repeated_matchLockRoster_codec);
+      if (FollowFormation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) FollowFormation);
+      }
+      if (LastRecallAtMs != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(LastRecallAtMs);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -8539,6 +9228,12 @@ namespace Teampb {
         MatchLockExpireAtMs = other.MatchLockExpireAtMs;
       }
       matchLockRoster_.Add(other.matchLockRoster_);
+      if (other.FollowFormation != global::Teampb.TeamFollowFormationStyle.TeamFollowFormationColumn) {
+        FollowFormation = other.FollowFormation;
+      }
+      if (other.LastRecallAtMs != 0UL) {
+        LastRecallAtMs = other.LastRecallAtMs;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -8601,6 +9296,14 @@ namespace Teampb {
           case 90:
           case 88: {
             matchLockRoster_.AddEntriesFrom(input, _repeated_matchLockRoster_codec);
+            break;
+          }
+          case 96: {
+            FollowFormation = (global::Teampb.TeamFollowFormationStyle) input.ReadEnum();
+            break;
+          }
+          case 104: {
+            LastRecallAtMs = input.ReadUInt64();
             break;
           }
         }
@@ -8667,6 +9370,14 @@ namespace Teampb {
             matchLockRoster_.AddEntriesFrom(ref input, _repeated_matchLockRoster_codec);
             break;
           }
+          case 96: {
+            FollowFormation = (global::Teampb.TeamFollowFormationStyle) input.ReadEnum();
+            break;
+          }
+          case 104: {
+            LastRecallAtMs = input.ReadUInt64();
+            break;
+          }
         }
       }
     }
@@ -8689,7 +9400,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[25]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[27]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9146,7 +9857,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[26]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[28]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9455,7 +10166,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[27]; }
+      get { return global::Teampb.TeamReflection.Descriptor.MessageTypes[29]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

@@ -51,8 +51,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var product = _craftOwnedMode ? owned.FirstOrDefault(i => i.ItemId == _selectedItem) :
                 preview?.Choice?.ConfigId == _recipeConfig ? preview.Result : recipes.FirstOrDefault(r => r.Product.ConfigId == _recipeConfig)?.Product;
             Label(_body, "CraftPreviewTitle", _craftOwnedMode ? "首次安装词条" : "本体预览", 1740, 375, 620, 90, 60, color: Jade);
-            var craftMasterySprite = SeasonEconomyUiArt.LoadCraftControl(
-                SeasonEconomyUiArt.MasteryBadgeKey(rules?.ForgeMastery?.Tier ?? 1u));
+            uint masteryTier = rules?.ForgeMastery?.Tier ?? 1u;
+            var craftMasterySprite = (masteryTier >= 3u ? SeasonEconomyUiArt.LoadTradeV2Slice("icon_master_seal") : null)
+                ?? SeasonEconomyUiArt.LoadCraftControl(SeasonEconomyUiArt.MasteryBadgeKey(masteryTier));
             float craftMasteryX = 2400f;
             if (craftMasterySprite != null)
             {
@@ -100,11 +101,25 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void RenderMaterialCost(UnityEngine.Transform parent, EquipmentCraftPreview preview, float x, float y, float width)
         {
             var material = preview?.Material;
+            bool shortStarterMaterial = material != null && material.Available < material.Count
+                && (material.ConfigId == MmorpgClient.Game.SpiritShop.SpiritShopModels.ItemCraftMaterial
+                    || material.ConfigId == MmorpgClient.Game.SpiritShop.SpiritShopModels.ItemRefineStone);
             string text = material == null ? "选择后读取当前材料消耗与资格" :
                 $"{material.Name}  需要 {material.Count} · 持有 {material.Owned} · 可用 {material.Available}" +
                 (material.Available < material.Count ? $"\n缺少 {material.Count - material.Available}" : "");
             if (preview != null && !preview.Available) text += "\n" + UnavailableText(preview);
-            Label(parent, "EquipmentMaterialCost", text, x, y, width, 145, 38, true, preview?.Available == true ? Jade : Muted);
+            float labelWidth = shortStarterMaterial && width > 560f ? width - 430f : width;
+            Label(parent, "EquipmentMaterialCost", text, x, y, labelWidth, 145, 38, true, preview?.Available == true ? Jade : Muted);
+            if (shortStarterMaterial && width > 560f)
+            {
+                Button(parent, "CraftingStarterPackBtn", "百宝阁提速包", x + width - 410f, y + 12f, 400f, () =>
+                {
+                    Hide();
+                    MmorpgClient.UI.Ugui.SpiritShop.SpiritShopUiRoot.Instance?.OpenTab(
+                        MmorpgClient.Game.SpiritShop.SpiritShopModels.TabStarterPacks,
+                        MmorpgClient.Game.SpiritShop.SpiritShopModels.GoodsStarterPack60);
+                });
+            }
         }
 
         private static string UnavailableText(EquipmentCraftPreview preview)

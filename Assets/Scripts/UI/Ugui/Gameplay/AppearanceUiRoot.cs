@@ -776,10 +776,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void HandleOpenMallClicked()
         {
-            if (_corePreviewOnly || _state.IsReadOnlyOverlay || _client?.Info == null || !_client.Ready ||
-                _client.Info.MallSkuId == 0 || _client.Info.MallPriceFen == 0) return;
+            var shopRoot = MmorpgClient.UI.Ugui.SpiritShop.SpiritShopUiRoot.Instance;
+            bool spiritSupported = shopRoot?.Client?.IsSupported == true;
+            if (_corePreviewOnly || _state.IsReadOnlyOverlay || _client?.Info == null || !_client.Ready)
+                return;
+            if (!spiritSupported && (_client.Info.MallSkuId == 0 || _client.Info.MallPriceFen == 0))
+                return;
             HidePanel();
-            JubaozhaiUiRoot.Instance?.OpenOfficialMall();
+            if (spiritSupported)
+                shopRoot.OpenTab(MmorpgClient.Game.SpiritShop.SpiritShopModels.TabAppearanceAndConvenience,
+                    MmorpgClient.Game.SpiritShop.SpiritShopModels.GoodsAppearanceCard);
+            else
+                JubaozhaiUiRoot.Instance?.OpenOfficialMall();
         }
 
         private void HandleStartTrialClicked()
@@ -1134,7 +1142,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _cardInfoLine2.text = $"消耗 {requiredCards} 张永久解锁新形象（保留原形象，已拥有免费切换）";
             _buyMallLabel.text = $"商城购买 {priceText}";
             _buyMallBtn.interactable = _client.Ready && !_client.RequiresReconnect &&
-                info.MallSkuId != 0 && info.MallPriceFen > 0;
+                ((info.MallSkuId != 0 && info.MallPriceFen > 0)
+                    || (MmorpgClient.UI.Ugui.SpiritShop.SpiritShopUiRoot.Instance?.Client?.IsSupported == true));
 
             _cancelTrialBtn.interactable = _client.Ready && !_client.ActionPending && !_state.HasOverlay;
             _lastCountdownSeconds = ulong.MaxValue;

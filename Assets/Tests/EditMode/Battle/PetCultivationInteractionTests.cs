@@ -405,6 +405,36 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void EntryTagChoosesOnlyActiveSlotAndRetriesTheSameRequest()
+        {
+            PublishEntries();
+            Click("EntryPresetTag"); Click("EntryUseTag3");
+            var initial = _net.CallsOf(MessageIds.SwitchPetEntryPreset).Single();
+            var request = (SwitchPetEntryPresetRequest)initial.Request;
+            Assert.That(request.SlotId, Is.EqualTo(1)); Assert.That(request.Tag, Is.EqualTo(3));
+            Assert.That(Button("EntryPreset2").interactable, Is.False);
+            Assert.That(Button("EntryClearAll").interactable, Is.False);
+            initial.FailWith("timeout");
+            Assert.That(Button("EntryPreset2").interactable, Is.False);
+            Assert.That(Text("EntryPresetTagText").text, Is.EqualTo("重试确认方案"));
+            Click("EntryPresetTag");
+            Assert.That(_net.CallsOf(MessageIds.SwitchPetEntryPreset).Last().Request, Is.EqualTo(request));
+        }
+
+        [Test]
+        public void ClearChecksSavedAllocationAndDiscardCannotRaceBattle()
+        {
+            PublishEntries(0); Click("EntryPlus503");
+            Assert.That(_panel.HasDraft, Is.True);
+            Assert.That(Button("EntryClearAll").interactable, Is.False);
+            Click("EntryPreset2");
+            _inBattle = true;
+            Button("DiscardAndLeave").onClick.Invoke();
+            Assert.That(_net.CallsOf(MessageIds.SwitchPetEntryPreset), Is.Empty);
+            Assert.That(_panel.HasDraft, Is.True);
+        }
+
+        [Test]
         public void EntryPresetsClearAllAndFiveTierAscensionDialogUseServerAuthority()
         {
             PublishEntries(2, 1);
@@ -428,6 +458,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(switchReq.SlotId, Is.EqualTo(2u));
             Assert.That(switchReq.Tag, Is.EqualTo(PetClient.KeepPresetTag));
             var switched = entries.Clone(); switched.StateVersion = 2; switched.ActivePresetSlot = 2; switched.LastRequestId = switchReq.RequestId;
+            switched.Presets[1].UsedPoints = 2;
             switchCall.Respond(new SwitchPetEntryPresetResponse { RequestId = switchReq.RequestId, Entries = switched });
 
             // UI-2: 一键清零提交空 Target
@@ -436,19 +467,35 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var clearReq = (SavePetEntriesRequest)clearCall.Request;
             Assert.That(clearReq.Target, Is.Empty);
             var cleared = switched.Clone(); cleared.StateVersion = 3; cleared.Entries[0].Allocated = 0; cleared.LastRequestId = clearReq.RequestId;
+            cleared.RemainingPoints = cleared.TotalPoints; cleared.Presets[1].UsedPoints = 0;
             clearCall.Respond(new SavePetEntriesResponse { RequestId = clearReq.RequestId, Entries = cleared });
+            Assert.That(Button("EntryClearAll").interactable, Is.False);
 
             // UI-3: 打开灵阶突破确认窗并提交
+            Click("EntryPlus503");
             Click("PetAscendTier");
             Assert.That(Text("PetAscendNextName").text, Does.Contain("圣兽"));
+            Assert.That(Text("PetAscendReqGold").text, Does.Contain("20 → 28"));
+            Assert.That(Button("PetAscendConfirm").interactable, Is.False);
+            Button("PetAscendConfirm").onClick.Invoke();
+            Assert.That(_net.CallsOf(MessageIds.AscendPetTier), Is.Empty);
+            Click("PetAscendCancel"); Click("EntryRestore"); Click("PetAscendTier");
             Click("PetAscendConfirm");
             var ascendCall = _net.CallsOf(MessageIds.AscendPetTier).Last();
             var ascendReq = (AscendPetTierRequest)ascendCall.Request;
             Assert.That(ascendReq.ExpectedTier, Is.EqualTo(4u));
             var upgradedList = _list.Clone();
             upgradedList.Pets[0].CultivationTier = 5; upgradedList.Pets[0].CultivationTierName = "圣兽"; upgradedList.Pets[0].NextTier = null;
+            upgradedList.Pets[0].Entries = cleared.Clone(); upgradedList.Pets[0].Entries.StateVersion = 4;
+            upgradedList.Pets[0].Entries.TotalPoints = upgradedList.Pets[0].Entries.RemainingPoints = 28;
             ascendCall.Respond(new AscendPetTierResponse { ClientRequestId = ascendReq.ClientRequestId, NewTier = 5, Pets = upgradedList });
             Assert.That(_client.Pets.Pets[0].CultivationTier, Is.EqualTo(5u));
+            Click("Tab属性");
+            Assert.That(Button("PetOverviewAscend").interactable, Is.False);
+            Assert.That(Text("PetOverviewAscendText").text, Is.EqualTo("已达巅峰 · 圣兽（条目预算 +8）"));
+            Click("PetBadgeExplain");
+            Assert.That(Button("PetBadgeOpenAscend").interactable, Is.False);
+            Assert.That(Text("PetBadgeOpenAscendText").text, Is.EqualTo("已达巅峰 · 圣兽（条目预算 +8）"));
         }
     }
 }

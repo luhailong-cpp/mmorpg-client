@@ -13,16 +13,22 @@ namespace MmorpgClient.Game.Appearance
         public uint StartTrial { get; }
         public uint CancelTrial { get; }
         public uint NotifyState { get; }
+        public uint EquipPetCosmetic { get; }
+        public uint EquipSkillVfx { get; }
 
         public bool IsSupported => Get != 0 && Switch != 0 && StartTrial != 0 && CancelTrial != 0;
+        public bool IsCosmeticsSupported => IsSupported && EquipPetCosmetic != 0 && EquipSkillVfx != 0;
 
-        public AppearanceMessageIds(uint get, uint @switch, uint startTrial, uint cancelTrial, uint notifyState)
+        public AppearanceMessageIds(uint get, uint @switch, uint startTrial, uint cancelTrial, uint notifyState,
+            uint equipPetCosmetic = 0, uint equipSkillVfx = 0)
         {
             Get = get;
             Switch = @switch;
             StartTrial = startTrial;
             CancelTrial = cancelTrial;
             NotifyState = notifyState;
+            EquipPetCosmetic = equipPetCosmetic;
+            EquipSkillVfx = equipSkillVfx;
         }
 
         public static AppearanceMessageIds Generated => new AppearanceMessageIds(
@@ -30,7 +36,9 @@ namespace MmorpgClient.Game.Appearance
             MessageIds.SwitchAppearance,
             MessageIds.StartAppearanceTrial,
             MessageIds.CancelAppearanceTrial,
-            MessageIds.NotifyAppearanceState);
+            MessageIds.NotifyAppearanceState,
+            MessageIds.EquipPetCosmetic,
+            MessageIds.EquipSkillVfx);
     }
 
     /// <summary>角色形象系统的纯规则与文案函数（不引用 UnityEngine，EditMode 测试直接调用）。</summary>
@@ -82,7 +90,8 @@ namespace MmorpgClient.Game.Appearance
             (uint)appearance_error.KAppearanceUnavailable => "角色形象服务暂时不可用，请稍后再试。",
             (uint)appearance_error.KAppearanceNotCardUnlockable => "该角色形象需通过专属玩法或活动解锁，暂不可使用形象卡兑换。",
             (uint)appearance_error.KAppearanceAlreadyOwned => "已拥有该角色形象，可直接免费切换，无需试用。",
-            (uint)appearance_error.KAppearanceNotOwned => "尚未拥有该角色形象，请先解锁后再切换。",
+            (uint)appearance_error.KAppearanceNotOwned => "尚未拥有该外观，请先获取后再穿戴。",
+            (uint)pet_error.KPetNotFound => "目标灵宠不存在或已离队，请刷新后重试。",
             (uint)common_error.KRateLimitExceeded => "操作太快了，请稍候再试。",
             (uint)common_error.KServiceUnavailable => "服务暂时不可用，请稍后再试。",
             (uint)common_error.KInvalidParameter => "请求参数无效，请刷新页面后再试。",
@@ -137,6 +146,7 @@ namespace MmorpgClient.Game.Appearance
         public bool StatusIsError { get; private set; }
 
         public bool IsSupported => _messageIds.IsSupported;
+        public bool IsCosmeticsSupported => _messageIds.IsCosmeticsSupported;
         public bool Ready => IsSupported && !_disposed && _net.IsReady && _net.PlayerId != 0;
 
         public ulong ServerNowSec
@@ -366,6 +376,112 @@ namespace MmorpgClient.Game.Appearance
                     ActionPending = false;
                     uint tipId = RpcStatus.TryParseLegacyServerTip(error, out uint parsed) ? parsed : 0;
                     SetStatus(tipId != 0 ? AppearanceModels.DescribeTip(tipId) : InfoUnavailableMessage, true);
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
+        /// <summary>为指定灵宠实例穿戴或恢复原形（cosmeticId = 0 表示恢复原形；超时自动重查当前穿戴）。</summary>
+        public bool EquipPetCosmetic(ulong petId, uint cosmeticId)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (!IsCosmeticsSupported) return RejectLocally("当前服务器暂未开放灵宠幻化。");
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (RequiresReconnect) return RejectLocally(RecoveryMessage);
+            if (ActionPending) return false;
+            if (petId == 0ul) return RejectLocally("请选择有效的灵宠。");
+            float now = _clock();
+            if (now < _nextActionAt) return RejectLocally(TooFastMessage);
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey)) return RejectLocally(ClientRequestKeys.UnavailableText);
+
+            _nextActionAt = now + MinActionIntervalSeconds;
+            ActionPending = true;
+            int generation = _generation;
+            SetStatus(cosmeticId == 0u ? "正在恢复灵宠原形…" : "正在穿戴灵宠幻化…", false);
+            Changed?.Invoke();
+
+            var request = new global::EquipPetCosmeticRequest
+            {
+                ClientRequestId = requestKey,
+                PetId = petId,
+                CosmeticId = cosmeticId,
+            };
+            _net.Call(_messageIds.EquipPetCosmetic, request, global::EquipPetCosmeticResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    uint tipId = response.ErrorMessage?.Id ?? 0;
+                    if (tipId != 0)
+                    {
+                        HandleWriteTip("EquipPetCosmetic", tipId);
+                        return;
+                    }
+                    if (response.Info != null) ApplyInfo(response.Info);
+                    SetStatus(response.EquippedCosmeticId == 0u ? "已恢复灵宠原形。" : "已穿戴灵宠幻化。", false);
+                    Changed?.Invoke();
+                },
+                error =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    uint tipId = RpcStatus.TryParseLegacyServerTip(error, out uint parsed) ? parsed : 0;
+                    SetStatus(tipId != 0 ? AppearanceModels.DescribeTip(tipId) : "请求超时，正在重新确认当前穿戴状态…", true);
+                    RequestInfo(force: true);
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
+        /// <summary>为指定技能启用或恢复默认特效（cosmeticId = 0 表示恢复默认；超时自动重查当前穿戴）。</summary>
+        public bool EquipSkillVfx(uint skillTableId, uint cosmeticId)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (!IsCosmeticsSupported) return RejectLocally("当前服务器暂未开放技能特效。");
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (RequiresReconnect) return RejectLocally(RecoveryMessage);
+            if (ActionPending) return false;
+            if (skillTableId == 0u) return RejectLocally("请选择有效的适用技能。");
+            float now = _clock();
+            if (now < _nextActionAt) return RejectLocally(TooFastMessage);
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey)) return RejectLocally(ClientRequestKeys.UnavailableText);
+
+            _nextActionAt = now + MinActionIntervalSeconds;
+            ActionPending = true;
+            int generation = _generation;
+            SetStatus(cosmeticId == 0u ? "正在恢复默认特效…" : "正在启用技能特效…", false);
+            Changed?.Invoke();
+
+            var request = new global::EquipSkillVfxRequest
+            {
+                ClientRequestId = requestKey,
+                SkillTableId = skillTableId,
+                CosmeticId = cosmeticId,
+            };
+            _net.Call(_messageIds.EquipSkillVfx, request, global::EquipSkillVfxResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    uint tipId = response.ErrorMessage?.Id ?? 0;
+                    if (tipId != 0)
+                    {
+                        HandleWriteTip("EquipSkillVfx", tipId);
+                        return;
+                    }
+                    if (response.Info != null) ApplyInfo(response.Info);
+                    SetStatus(response.EquippedCosmeticId == 0u ? "已恢复技能默认特效。" : "已启用技能特效。", false);
+                    Changed?.Invoke();
+                },
+                error =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    uint tipId = RpcStatus.TryParseLegacyServerTip(error, out uint parsed) ? parsed : 0;
+                    SetStatus(tipId != 0 ? AppearanceModels.DescribeTip(tipId) : "请求超时，正在重新确认当前生效状态…", true);
+                    RequestInfo(force: true);
                     Changed?.Invoke();
                 });
             return true;

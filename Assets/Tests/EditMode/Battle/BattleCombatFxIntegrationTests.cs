@@ -124,6 +124,81 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void MirrorCopyPlaysAtTheSourceEnemyBeforeTheCopiedSkillAndCasterRing()
+        {
+            var plan = TurnPlan.Build(new[]
+            {
+                new TurnEventInput { Type = BattleEventCodes.Skill, SourceId = 1, TargetId = 2,
+                    SkillId = TurnPlan.MirrorCopySkillId, GroupId = 7 },
+                new TurnEventInput { Type = BattleEventCodes.Skill, SourceId = 1, TargetId = 3, SkillId = 1201,
+                    HitKind = eBattleHitKind.BattleHitMirror, GroupId = 7 },
+                new TurnEventInput { Type = BattleEventCodes.Damage, SourceId = 1, TargetId = 3,
+                    Value = 100, HealthAfter = 900, GroupId = 7 },
+            });
+            var log = new List<string>();
+            _presenter.OnLog += log.Add;
+            _presenter.Play(plan);
+            Advance(_views[1].ActionEventDelaySeconds("cast") + .05f);
+
+            var pull = ActiveFx.Single(image => image.name.StartsWith("Fx_mirror_copy_cast_"));
+            Assert.That(Vector2.Distance(VisualAnchor(pull, new Vector2(.5f, .5f)), _views[2].ChestPosition), Is.LessThan(.05f));
+            Assert.That(ActiveFx.Any(image => image.name.StartsWith("Fx_mirror_cast_ring_")), Is.False);
+            Assert.That(log, Does.Contain("1 施放 玄镜映法"));
+            Assert.That(_damageTicks, Is.Empty);
+
+            Advance(plan.Beats[0].DurationSeconds);
+            var ring = ActiveFx.Single(image => image.name.StartsWith("Fx_mirror_cast_ring_"));
+            Assert.That(Vector2.Distance(VisualAnchor(ring, new Vector2(.5f, .1f)), _views[1].FootPosition), Is.LessThan(.05f));
+            Assert.That(ActiveFx.Any(image => image.name.StartsWith("Fx_xuanfu_luoyao_projectile_")), Is.True);
+            Assert.That(log, Does.Contain("1 复制施放【玄符落曜】"));
+            Assert.That(_damageTicks, Is.Empty);
+
+            Advance(plan.Beats[1].DurationSeconds + .5f);
+            Assert.That(_views[2].CurrentHealth, Is.EqualTo(1000));
+            Assert.That(_views[3].CurrentHealth, Is.EqualTo(900));
+            Assert.That(_damageTicks.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void MissingMirrorCopyStripStillPresentsResistanceAndFinishesOnce()
+        {
+            var presentation = BattleArtCatalog.ResolveSkillFx(TurnPlan.MirrorCopySkillId, false);
+            Assert.That(presentation.FxId, Is.EqualTo("mirror_copy_cast"));
+            string key = $"{BattleArtCatalog.FxRoot}/{presentation.FxId}_strip|0|{.5f:0.##},{.5f:0.##}";
+            var strips = (Dictionary<string, StripAnim>)typeof(BattleArtCatalog)
+                .GetField("s_strips", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
+            bool hadStrip = strips.TryGetValue(key, out var savedStrip);
+            strips[key] = null;
+            try
+            {
+                var plan = TurnPlan.Build(new[]
+                {
+                    new TurnEventInput { Type = BattleEventCodes.Skill, SourceId = 1, TargetId = 2,
+                        SkillId = TurnPlan.MirrorCopySkillId },
+                    new TurnEventInput { Type = BattleEventCodes.Resist, SourceId = 1, TargetId = 2, BuffId = 100410 },
+                });
+                var log = new List<string>();
+                int finished = 0;
+                _presenter.OnLog += log.Add;
+                _presenter.OnFinished += () => finished++;
+
+                Assert.That(BattleArtCatalog.LoadFx(presentation.FxId), Is.Null);
+                _presenter.Play(plan);
+                Advance(plan.TotalSeconds + 1f);
+
+                Assert.That(log.Count(line => line == "2 不可复制/免疫"), Is.EqualTo(1));
+                Assert.That(_views[2].CurrentHealth, Is.EqualTo(1000));
+                Assert.That(_presenter.Fx.ActiveCount, Is.Zero);
+                Assert.That(finished, Is.EqualTo(1));
+            }
+            finally
+            {
+                if (hadStrip) strips[key] = savedStrip;
+                else strips.Remove(key);
+            }
+        }
+
+        [Test]
         public void ClearingAFlightCancelsItsArrivalAndRecyclesTheImage()
         {
             int arrived = 0;

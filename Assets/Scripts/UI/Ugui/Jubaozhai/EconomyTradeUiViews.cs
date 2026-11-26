@@ -24,10 +24,10 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private static readonly Color CinnabarText = QdaoUguiTheme.Html("#8E2B1D");
         private static readonly Color AmberText = QdaoUguiTheme.Html("#6B460B");
 
-        /// <summary>在容器背景安全叠加固定比例无字面板艺术图（不拉伸变形），再由前景卡片承载高对比文字。</summary>
+        /// <summary>在容器背景安全叠加固定比例无字面板艺术图（不拉伸变形），优先 V1 切片并兼容 EconomyTradeV2 切片。</summary>
         public static void DrawPanelBackdrop(RectTransform parent, string sliceName, float alpha = 0.26f)
         {
-            var sprite = SeasonEconomyUiArt.LoadTradeSlice(sliceName);
+            var sprite = SeasonEconomyUiArt.LoadTradeSlice(sliceName) ?? SeasonEconomyUiArt.LoadTradeV2Slice(sliceName);
             if (sprite == null) return;
             var img = QdaoUguiFactory.CreateImage("Backdrop_" + sliceName, parent, 0f, 0f, parent.rect.width > 10f ? parent.rect.width : 2120f,
                 parent.rect.height > 10f ? parent.rect.height : 660f, sprite, false);
@@ -107,17 +107,24 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 + "• 月卡解锁市场可交易产出与轻度离线便利\n"
                 + "• 官方小额直售仅提供外观、匠心配套与限量绑定追赶\n"
                 + "• 严守平台合规：商城不展示扫码或第三方支付图标",
-                24f, 122f, 650f, 240f, 22f, GameplayUiArt.Ink, wrap: true);
+                24f, 116f, 650f, 184f, 21f, GameplayUiArt.Ink, wrap: true);
 
             var talisman = SeasonEconomyUiArt.LoadTradeSlice("icon_unseal_talisman");
+            var inheritTalisman = SeasonEconomyUiArt.LoadTradeV2Slice("icon_inherit_talisman");
             if (talisman != null)
             {
-                var icon = QdaoUguiFactory.CreateImage("ShopTalismanPreview", left, 24f, 368f, 96f, 96f, talisman, false);
+                var icon = QdaoUguiFactory.CreateImage("ShopTalismanPreview", left, 24f, 308f, 88f, 88f, talisman, false);
                 icon.preserveAspect = true;
-                GameplayUiArt.Text(left, "匠心配套亮点：解封剥离符\n清空绑定养成，仅恢复纯 T 原胚，绝不洗白 B 材料。",
-                    132f, 372f, 540f, 92f, 20f, GameplayUiArt.Muted, wrap: true);
             }
-            GameplayUiArt.Button(left, "管理 / 购买仙途轻享卡", 24f, 446f, 380f, 48f, onOpenLightCard, primary: true, fontSize: 22f);
+            if (inheritTalisman != null)
+            {
+                var icon2 = QdaoUguiFactory.CreateImage("ShopInheritPreview", left, 120f, 308f, 88f, 88f, inheritTalisman, false);
+                icon2.preserveAspect = true;
+            }
+            GameplayUiArt.Text(left, "匠心配套亮点：解封剥离符 / 流派副套继承符\n解封仅恢复纯 T 原胚不洗白 B 料；继承无损转移高强至副套并转绑定。",
+                (talisman != null || inheritTalisman != null) ? 218f : 24f, 312f,
+                (talisman != null || inheritTalisman != null) ? 458f : 650f, 92f, 19f, GameplayUiArt.Muted, wrap: true);
+            GameplayUiArt.Button(left, "管理 / 购买仙途轻享卡", 24f, 434f, 380f, 48f, onOpenLightCard, primary: true, fontSize: 22f);
 
             // 右侧官方在售商品列表（按子页签筛选；若该分栏暂无专属 SKU 则展示全部在售并标注所属分栏，绝不隐藏真实服务端商品）
             var right = CreateCard(body, "OfficialSkuPanel", 748f, 74f, 1348f, 504f);
@@ -285,6 +292,50 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             GameplayUiArt.Button(body, "刷新 p50", 1784f, 14f, 290f, 54f, onRefreshP50, fontSize: 22f);
         }
 
+        /// <summary>集市心愿单与到价飞鸽提醒条（使用 EconomyTradeV2 icon_wishlist_dove，仅在 p50 样本充足且 ≤ 心愿价时高亮提醒）。</summary>
+        public static void RenderMarketWishlistStrip(
+            RectTransform body,
+            string itemTitle,
+            uint currencyType,
+            MarketWishlistAlert alert,
+            Action<ulong> onSetTarget,
+            Action onClearTarget)
+        {
+            var cardBg = alert.BelowOrAtTarget ? new Color(0.84f, 0.91f, 0.85f, 0.94f) : IvoryScrim;
+            var card = CreateCard(body, "MarketWishlistCard", 24f, 344f, 2050f, 68f, cardBg);
+            var doveSprite = SeasonEconomyUiArt.LoadTradeV2Slice("icon_wishlist_dove");
+            float leftX = 16f;
+            if (doveSprite != null)
+            {
+                var doveImg = QdaoUguiFactory.CreateImage("WishlistDoveIcon", card, 14f, 6f, 56f, 56f, doveSprite, false);
+                doveImg.preserveAspect = true;
+                leftX = 80f;
+            }
+            string statusLine;
+            if (alert.BelowOrAtTarget)
+                statusLine = $"【已跌破心愿价】{itemTitle} · 心愿目标价 {EconomyFormat.FormatCurrency(alert.TargetPrice, currencyType)} · 当前 p50 {EconomyFormat.FormatCurrency(alert.CurrentP50, currencyType)}";
+            else if (alert.HasTarget)
+                statusLine = $"集市心愿单：{itemTitle} 目标价 {EconomyFormat.FormatCurrency(alert.TargetPrice, currencyType)}"
+                    + (alert.HasValidP50 ? $"（当前 p50 {EconomyFormat.FormatCurrency(alert.CurrentP50, currencyType)}）" : "（样本满 10 笔后自动比对到价）");
+            else
+                statusLine = "集市心愿单与到价飞鸽提醒：设置心愿目标价，当服务端近 7 日 p50 跌破或等于目标价时立即提醒。";
+
+            GameplayUiArt.Text(card, statusLine, leftX, 14f, 1180f - leftX, 42f, 21f,
+                alert.BelowOrAtTarget ? JadeTint : GameplayUiArt.Ink);
+
+            var field = QdaoUguiFactory.CreateInputField("WishlistTargetInput", card, 1210f, 10f, 330f, 48f, "心愿目标价(银两)", 16);
+            field.textComponent.richText = false;
+            if (alert.HasTarget) field.SetTextWithoutNotify(alert.TargetPrice.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            GameplayUiArt.Button(card, "设心愿价", 1560f, 10f, 230f, 48f, () =>
+            {
+                if (ulong.TryParse((field.text ?? string.Empty).Trim(), System.Globalization.NumberStyles.None,
+                    System.Globalization.CultureInfo.InvariantCulture, out ulong price) && price > 0UL)
+                    onSetTarget?.Invoke(price);
+            }, primary: true, fontSize: 21f);
+            var clearBtn = GameplayUiArt.Button(card, "清除", 1810f, 10f, 210f, 48f, () => onClearTarget?.Invoke(), fontSize: 21f);
+            clearBtn.interactable = alert.HasTarget;
+        }
+
         /// <summary>游戏内当面交易防骗主窗 + 条款变更强确认态（左右双列「我付出 / 我得到」+ 额度条 + 差异横幅 + 两步锁定确认）。</summary>
         public static void RenderFaceToFaceOrder(
             RectTransform body,
@@ -403,116 +454,236 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 20f, 100f, w - 40f, Math.Max(80f, h - 112f), 22f, GameplayUiArt.Ink, wrap: true);
         }
 
-        /// <summary>珍宝阁(RMB)寄售浏览页：展示分层公示（0–2h / 48h）、定向专属标、卖家信用入口与购买/撤回。</summary>
+        private static readonly Color SelectedRowTint = new Color(0.84f, 0.91f, 0.85f, 0.92f);
+        private static readonly Color TableHeaderTint = new Color(0.92f, 0.88f, 0.78f, 0.94f);
+
+        /// <summary>珍宝阁(RMB)五分栏页签条（与 EconomyTradeV2 预览 01/02 对齐）。</summary>
+        public static void RenderRmbSubTabs(
+            RectTransform body,
+            RmbConsignmentSubTab activeSubTab,
+            Action<RmbConsignmentSubTab> onSelectSubTab)
+        {
+            float[] widths = { 360f, 340f, 400f, 380f, 440f };
+            float x = 24f;
+            for (int i = 0; i < RmbConsignmentViewModel.SubTabTitles.Length; i++)
+            {
+                var tab = (RmbConsignmentSubTab)i;
+                GameplayUiArt.Button(body, RmbConsignmentViewModel.SubTabTitles[i],
+                    x, 4f, widths[i], 50f, () => onSelectSubTab?.Invoke(tab),
+                    primary: tab == activeSubTab, fontSize: 22f);
+                x += widths[i] + 24f;
+            }
+        }
+
+        /// <summary>珍宝阁(RMB)寄售浏览页（对齐 EconomyTradeV2 预览 01：panel_08 + 三种无字底签 + 卖家信用 + 选中行底部购买条）。</summary>
         public static void RenderRmbListings(
             RectTransform body,
             IReadOnlyList<RmbConsignmentView> listings,
+            RmbConsignmentSubTab activeSubTab,
+            ulong selectedListingId,
             ulong myPlayerId,
-            Action onOpenIncomes,
-            Action onOpenPublish,
+            IReadOnlyDictionary<ulong, SellerCreditView> sellerCredits,
+            Action<RmbConsignmentSubTab> onSelectSubTab,
+            Action<ulong> onSelectListing,
             Action<ulong> onViewSellerCredit,
             Action<RmbConsignmentView> onBuy,
             Action<RmbConsignmentView> onCancel,
             Action<Button> registerWriteButton)
         {
-            DrawPanelBackdrop(body, "panel_05_market_order", 0.20f);
-            GameplayUiArt.Text(body, "珍宝阁（人民币官方托管寄售）· 资金与公示期由官方担保，禁止站外微信裸转", 24f, 6f, 1340f, 44f, 23f, JadeTint);
-            GameplayUiArt.Button(body, "我的收益与提现", 1380f, 4f, 340f, 50f, onOpenIncomes, fontSize: 22f);
-            GameplayUiArt.Button(body, "上架RMB寄售/定向单", 1740f, 4f, 360f, 50f, onOpenPublish, primary: true, fontSize: 22f);
+            DrawPanelBackdrop(body, "panel_08_zhenbaoge_rmb", 0.34f);
+            RenderRmbSubTabs(body, activeSubTab, onSelectSubTab);
 
-            if (listings == null || listings.Count == 0)
+            var filtered = RmbConsignmentViewModel.FilterListings(listings, activeSubTab);
+            var header = CreateCard(body, "RmbTableHeader", 24f, 64f, 2056f, 44f, TableHeaderTint);
+            GameplayUiArt.Text(header, "寄售物品", 24f, 4f, 520f, 36f, 22f, JadeTint);
+            GameplayUiArt.Text(header, "寄售价格", 560f, 4f, 240f, 36f, 22f, JadeTint);
+            GameplayUiArt.Text(header, "公示规则", 820f, 4f, 520f, 36f, 22f, JadeTint);
+            GameplayUiArt.Text(header, "卖家信用", 1380f, 4f, 640f, 36f, 22f, JadeTint);
+
+            if (filtered.Count == 0)
             {
-                GameplayUiArt.Text(body, "当前暂无人民币官方托管寄售单；点击右上「上架RMB寄售/定向单」可按当前所选资产上架。", 24f, 84f, 1980f, 60f, 24f, GameplayUiArt.Muted);
+                string emptyHint = activeSubTab == RmbConsignmentSubTab.DesignatedOnly
+                    ? "当前暂无指定买家专属的人民币托管寄售单。"
+                    : (activeSubTab == RmbConsignmentSubTab.PublicNotice
+                        ? "当前暂无处于公示期的人民币托管寄售单。"
+                        : "当前暂无人民币官方托管寄售单；点击上方「上架寄售」可按当前所选资产上架。");
+                GameplayUiArt.Text(body, emptyHint, 24f, 134f, 1980f, 60f, 24f, GameplayUiArt.Muted);
                 return;
             }
-            int maxRows = Math.Min(listings.Count, 7);
+
+            RmbConsignmentView selectedItem = null;
+            int maxRows = Math.Min(filtered.Count, 5);
             for (int i = 0; i < maxRows; i++)
             {
-                var item = listings[i].Clone();
-                float y = 70f + i * 70f;
-                bool uniqueValuable = item.AssetKind == "CHARACTER" || item.AssetKind == "PET" || item.PriceFen > MarketP50DisplayModel.QuickNoticeMaxFen;
-                string notice = MarketP50DisplayModel.DescribeNoticeTier(uniqueValuable, item.PriceFen);
-                string designatedTag = item.DesignatedOnly ? " · 【指定买家定向单】" : "";
-                string line = $"#{item.ListingId} · {item.Title} · {EconomyFormat.FormatMoney(item.PriceFen, "CNY")} · {notice} · {item.Phase}/{item.State}{designatedTag}";
-                GameplayUiArt.Text(body, line, 24f, y, 1340f, 54f, 22f);
-                if (item.SellerPlayerId != 0UL)
+                if (filtered[i].ListingId == selectedListingId) { selectedItem = filtered[i].Clone(); break; }
+            }
+            if (selectedItem == null) selectedItem = filtered[0].Clone();
+
+            for (int i = 0; i < maxRows; i++)
+            {
+                var item = filtered[i].Clone();
+                bool isSelected = item.ListingId == selectedItem.ListingId;
+                float y = 114f + i * 74f;
+                var row = CreateCard(body, $"RmbRow_{i}", 24f, y, 2056f, 68f, isSelected ? SelectedRowTint : IvoryScrim);
+                var rowSelectBtn = row.gameObject.AddComponent<Button>();
+                rowSelectBtn.transition = Selectable.Transition.None;
+                row.GetComponent<Image>().raycastTarget = true;
+                ulong lid = item.ListingId;
+                rowSelectBtn.onClick.AddListener(() => onSelectListing?.Invoke(lid));
+
+                string kindLabel = string.Equals(item.AssetKind, "PET", StringComparison.OrdinalIgnoreCase)
+                    ? "宠物" : (string.Equals(item.AssetKind, "CHARACTER", StringComparison.OrdinalIgnoreCase) ? "角色" : "装备/道具");
+                GameplayUiArt.Text(row, $"{(isSelected ? "✓ " : "")}{item.Title}", 20f, 6f, 520f, 32f, 23f, isSelected ? JadeTint : GameplayUiArt.Ink);
+                GameplayUiArt.Text(row, $"#{item.ListingId} · {kindLabel} · {item.Phase}/{item.State}", 20f, 38f, 520f, 26f, 17f, GameplayUiArt.Muted);
+
+                GameplayUiArt.Text(row, EconomyFormat.FormatMoney(item.PriceFen, "CNY"), 560f, 14f, 240f, 40f, 25f, JadeTint);
+
+                bool uniqueValuable = RmbConsignmentViewModel.IsUniqueValuable(item);
+                var noticeBadge = SeasonEconomyUiArt.LoadTradeV2Slice(uniqueValuable ? "badge_notice_48h" : "badge_notice_fast");
+                if (noticeBadge != null)
                 {
-                    ulong sid = item.SellerPlayerId;
-                    GameplayUiArt.Button(body, "卖家信用", 1380f, y, 220f, 52f, () => onViewSellerCredit(sid), fontSize: 21f);
-                }
-                if (item.SellerPlayerId == myPlayerId)
-                {
-                    var cancelBtn = GameplayUiArt.Button(body, "撤回上架", 1620f, y, 360f, 52f, () => onCancel(item), fontSize: 22f);
-                    registerWriteButton?.Invoke(cancelBtn);
+                    var badgeImg = QdaoUguiFactory.CreateImage($"RmbNoticeBadge_{i}", row, 820f, item.DesignatedOnly ? 2f : 12f, 240f, 38f, noticeBadge, false);
+                    badgeImg.preserveAspect = true;
+                    var badgeLbl = GameplayUiArt.Text(badgeImg.transform, uniqueValuable ? "48小时全服公示" : "0–2小时快速公示",
+                        8f, 0f, 224f, 38f, 16f, uniqueValuable ? GameplayUiArt.Ink : GameplayUiArt.Cream);
+                    badgeLbl.alignment = TextAlignmentOptions.Center;
                 }
                 else
                 {
-                    var buyBtn = GameplayUiArt.Button(body, "官方担保购买", 1620f, y, 360f, 52f, () => onBuy(item), primary: true, fontSize: 22f);
-                    registerWriteButton?.Invoke(buyBtn);
+                    GameplayUiArt.Text(row, MarketP50DisplayModel.DescribeNoticeTier(uniqueValuable, item.PriceFen), 820f, 16f, 320f, 36f, 19f);
                 }
-            }
-        }
 
-        /// <summary>卖家 RMB 托管收益与提现页：若存在争议冻结，用朱砂警示横幅明文高亮工单号与冻结金额。</summary>
-        public static void RenderRmbSellerIncomes(
-            RectTransform body,
-            IReadOnlyList<RmbSellerIncome> incomes,
-            Action<ulong> onWithdrawFen,
-            Action onBackListings,
-            Action<Button> registerWriteButton)
-        {
-            DrawPanelBackdrop(body, "panel_04_credit_alerts", 0.18f);
-            GameplayUiArt.Text(body, "我的 RMB 托管收益与提现（争议冻结期间对应金额自动锁止提现）", 24f, 6f, 1680f, 44f, 24f, JadeTint);
-            GameplayUiArt.Button(body, "返回寄售列表", 1740f, 4f, 340f, 50f, onBackListings, fontSize: 22f);
-
-            ulong totalFrozen = 0UL;
-            string frozenCase = "";
-            if (incomes != null)
-            {
-                for (int i = 0; i < incomes.Count; i++)
+                if (item.DesignatedOnly)
                 {
-                    totalFrozen += incomes[i].DisputeFrozenFen;
-                    if (incomes[i].DisputeFrozenFen > 0UL && string.IsNullOrEmpty(frozenCase))
-                        frozenCase = incomes[i].DisputeCaseId;
+                    var desigBadge = SeasonEconomyUiArt.LoadTradeV2Slice("badge_designated_only");
+                    if (desigBadge != null)
+                    {
+                        var desigImg = QdaoUguiFactory.CreateImage($"RmbDesignatedBadge_{i}", row, 840f, 36f, 200f, 30f, desigBadge, false);
+                        desigImg.preserveAspect = true;
+                        var desigLbl = GameplayUiArt.Text(desigImg.transform, "指定买家专属", 6f, 0f, 188f, 30f, 15f, GameplayUiArt.Cream);
+                        desigLbl.alignment = TextAlignmentOptions.Center;
+                    }
+                    else
+                    {
+                        GameplayUiArt.Text(row, "【指定买家专属】", 1070f, 16f, 240f, 36f, 19f, CinnabarText);
+                    }
+                }
+
+                float creditX = 1380f;
+                SellerCreditView cachedCredit = null;
+                if (item.SellerPlayerId != 0UL && sellerCredits != null)
+                    sellerCredits.TryGetValue(item.SellerPlayerId, out cachedCredit);
+                if (cachedCredit != null)
+                {
+                    var cModel = SellerCreditDisplayModel.FromProto(cachedCredit);
+                    var tierSprite = SeasonEconomyUiArt.LoadTradeSlice(cModel.TierBadgeKey);
+                    if (tierSprite != null)
+                    {
+                        var tImg = QdaoUguiFactory.CreateImage($"RmbSellerTier_{i}", row, creditX, 12f, 44f, 44f, tierSprite, false);
+                        tImg.preserveAspect = true;
+                        creditX += 52f;
+                    }
+                    GameplayUiArt.Text(row, $"{cModel.StarText} · {cModel.TierLabel}", creditX, 16f, 340f, 36f, 21f, JadeTint);
+                }
+                else
+                {
+                    GameplayUiArt.Text(row, $"卖家 #{item.SellerPlayerId}", creditX, 16f, 340f, 36f, 21f, GameplayUiArt.Ink);
+                }
+                if (item.SellerPlayerId != 0UL)
+                {
+                    ulong sid = item.SellerPlayerId;
+                    GameplayUiArt.Button(row, "查信用", 1830f, 10f, 200f, 48f, () => onViewSellerCredit?.Invoke(sid), fontSize: 20f);
                 }
             }
 
-            float listTop = 64f;
-            if (totalFrozen > 0UL)
+            // 底部选中行确认购买 / 撤回条（与预览 01 底部操作条对齐）
+            var footer = CreateCard(body, "RmbFooterBar", 24f, 492f, 2056f, 76f, TableHeaderTint);
+            GameplayUiArt.Text(footer,
+                $"已选：{selectedItem.Title}（#{selectedItem.ListingId}）    {EconomyFormat.FormatMoney(selectedItem.PriceFen, "CNY")}    · 资金与公示期由官方托管担保",
+                24f, 16f, 1540f, 44f, 23f, JadeTint);
+            if (selectedItem.SellerPlayerId == myPlayerId)
             {
-                DrawAlertBanner(body, "RmbDisputeFrozenBanner", 24f, 60f, 2056f, 76f,
-                    $"存在核查争议冻结金额：{EconomyFormat.FormatMoney(totalFrozen, "CNY")}（工单：{frozenCase}）；争议结案前该部分资金不可提现。",
-                    highDanger: true);
-                listTop = 148f;
-            }
-
-            if (incomes == null || incomes.Count == 0)
-            {
-                GameplayUiArt.Text(body, "暂无 RMB 托管收益记录。", 24f, listTop + 16f, 1600f, 50f, 24f, GameplayUiArt.Muted);
+                var cancelBtn = GameplayUiArt.Button(footer, "撤回上架", 1640f, 12f, 380f, 52f, () => onCancel?.Invoke(selectedItem), fontSize: 23f);
+                registerWriteButton?.Invoke(cancelBtn);
             }
             else
             {
-                int maxRows = Math.Min(incomes.Count, totalFrozen > 0UL ? 4 : 5);
+                var buyBtn = GameplayUiArt.Button(footer, "官方担保购买", 1640f, 12f, 380f, 52f, () => onBuy?.Invoke(selectedItem), primary: true, fontSize: 23f);
+                registerWriteButton?.Invoke(buyBtn);
+            }
+        }
+
+        /// <summary>卖家 RMB 托管收益与提现页（对齐 EconomyTradeV2 预览 02：三列汇总 + 朱砂争议冻结横幅 + 订单明细表 + 提现栏）。</summary>
+        public static void RenderRmbSellerIncomes(
+            RectTransform body,
+            IReadOnlyList<RmbSellerIncome> incomes,
+            Action<RmbConsignmentSubTab> onSelectSubTab,
+            Action<ulong> onWithdrawFen,
+            Action<Button> registerWriteButton)
+        {
+            DrawPanelBackdrop(body, "panel_08_zhenbaoge_rmb", 0.30f);
+            RenderRmbSubTabs(body, RmbConsignmentSubTab.Income, onSelectSubTab);
+
+            var summary = RmbConsignmentViewModel.SummarizeIncomes(incomes);
+            var sumCard = CreateCard(body, "RmbIncomeSummary", 24f, 64f, 2056f, 84f, IvoryScrim);
+            var col0 = CreateCard(sumCard, "RmbSumWithdrawable", 0f, 0f, 685f, 84f, SelectedRowTint);
+            GameplayUiArt.Text(col0, "可提现余额", 24f, 8f, 637f, 28f, 20f, JadeTint).alignment = TextAlignmentOptions.Center;
+            GameplayUiArt.Text(col0, EconomyFormat.FormatMoney(summary.WithdrawableFen, "CNY"), 24f, 38f, 637f, 40f, 28f, JadeTint).alignment = TextAlignmentOptions.Center;
+
+            GameplayUiArt.Text(sumCard, "结算期预留", 695f, 8f, 665f, 28f, 20f, GameplayUiArt.Ink).alignment = TextAlignmentOptions.Center;
+            GameplayUiArt.Text(sumCard, EconomyFormat.FormatMoney(summary.ReservedFen, "CNY"), 695f, 38f, 665f, 40f, 28f, GameplayUiArt.Ink).alignment = TextAlignmentOptions.Center;
+
+            GameplayUiArt.Text(sumCard, "争议冻结", 1370f, 8f, 665f, 28f, 20f, summary.DisputeFrozenFen > 0UL ? CinnabarText : GameplayUiArt.Muted).alignment = TextAlignmentOptions.Center;
+            GameplayUiArt.Text(sumCard, EconomyFormat.FormatMoney(summary.DisputeFrozenFen, "CNY"), 1370f, 38f, 665f, 40f, 28f, summary.DisputeFrozenFen > 0UL ? CinnabarText : GameplayUiArt.Muted).alignment = TextAlignmentOptions.Center;
+
+            float tableTop = 158f;
+            if (summary.DisputeFrozenFen > 0UL)
+            {
+                string casePart = string.IsNullOrEmpty(summary.FirstDisputeCaseId) ? "" : $"（工单 #{summary.FirstDisputeCaseId}）";
+                DrawAlertBanner(body, "RmbDisputeFrozenBanner", 24f, 156f, 2056f, 66f,
+                    $"存在核查争议冻结金额：{EconomyFormat.FormatMoney(summary.DisputeFrozenFen, "CNY")}{casePart}，争议结案前该部分资金自动锁止提现",
+                    highDanger: true);
+                tableTop = 230f;
+            }
+
+            var hdr = CreateCard(body, "RmbIncomeHeader", 24f, tableTop, 2056f, 40f, TableHeaderTint);
+            GameplayUiArt.Text(hdr, "订单编号", 24f, 4f, 520f, 32f, 20f, JadeTint);
+            GameplayUiArt.Text(hdr, "净收益", 580f, 4f, 340f, 32f, 20f, JadeTint);
+            GameplayUiArt.Text(hdr, "已提现 / 预留 / 冻结", 940f, 4f, 680f, 32f, 20f, JadeTint);
+            GameplayUiArt.Text(hdr, "结算状态", 1680f, 4f, 340f, 32f, 20f, JadeTint);
+
+            float rowsTop = tableTop + 44f;
+            if (incomes == null || incomes.Count == 0)
+            {
+                GameplayUiArt.Text(body, "暂无 RMB 托管收益记录。", 24f, rowsTop + 12f, 1600f, 46f, 23f, GameplayUiArt.Muted);
+            }
+            else
+            {
+                int maxRows = Math.Min(incomes.Count, summary.DisputeFrozenFen > 0UL ? 3 : 4);
                 for (int i = 0; i < maxRows; i++)
                 {
                     var inc = incomes[i];
-                    string frozenPart = inc.DisputeFrozenFen > 0UL
-                        ? $" · 争议冻结 {EconomyFormat.FormatMoney(inc.DisputeFrozenFen, "CNY")}({inc.DisputeCaseId})"
-                        : "";
-                    string rowText = $"订单 {inc.OrderId} · 净收益 {EconomyFormat.FormatMoney(inc.NetFen, "CNY")} · 已提 {EconomyFormat.FormatMoney(inc.PaidFen, "CNY")} · 预留 {EconomyFormat.FormatMoney(inc.ReservedFen, "CNY")}{frozenPart}";
-                    GameplayUiArt.Text(body, rowText, 24f, listTop + i * 58f, 2040f, 48f, 21f,
-                        inc.DisputeFrozenFen > 0UL ? CinnabarText : GameplayUiArt.Ink);
+                    var row = CreateCard(body, $"RmbIncomeRow_{i}", 24f, rowsTop + i * 52f, 2056f, 48f, IvoryScrim);
+                    string statusText = RmbConsignmentViewModel.FormatIncomeRowStatus(inc);
+                    Color statusColor = inc.DisputeFrozenFen > 0UL ? CinnabarText : (statusText == "可提现" ? JadeTint : GameplayUiArt.Ink);
+                    GameplayUiArt.Text(row, inc.OrderId, 24f, 8f, 520f, 34f, 21f, GameplayUiArt.Ink);
+                    GameplayUiArt.Text(row, EconomyFormat.FormatMoney(inc.NetFen, "CNY"), 580f, 8f, 340f, 34f, 21f, JadeTint);
+                    string detail = $"已提 {EconomyFormat.FormatMoney(inc.PaidFen, "CNY")} · 预留 {EconomyFormat.FormatMoney(inc.ReservedFen, "CNY")}"
+                        + (inc.DisputeFrozenFen > 0UL ? $" · 冻结 {EconomyFormat.FormatMoney(inc.DisputeFrozenFen, "CNY")}({inc.DisputeCaseId})" : "");
+                    GameplayUiArt.Text(row, detail, 940f, 8f, 700f, 34f, 20f, inc.DisputeFrozenFen > 0UL ? CinnabarText : GameplayUiArt.Muted);
+                    GameplayUiArt.Text(row, statusText, 1680f, 8f, 340f, 34f, 21f, statusColor);
                 }
             }
 
-            GameplayUiArt.Text(body, "申请提现金额（单位：分，例如 1000 表示 10.00 元）：", 24f, 456f, 880f, 38f, 22f);
-            var amtField = QdaoUguiFactory.CreateInputField("WithdrawFen", body, 24f, 498f, 520f, 54f, "输入提现金额(分)", 20);
+            var wdBar = CreateCard(body, "RmbWithdrawBar", 24f, 498f, 2056f, 74f, TableHeaderTint);
+            GameplayUiArt.Text(wdBar, "提现申请 · 提现金额（分，100分=1元）：", 24f, 16f, 640f, 40f, 22f, JadeTint);
+            var amtField = QdaoUguiFactory.CreateInputField("WithdrawFen", wdBar, 680f, 10f, 560f, 54f, "请输入提现金额（分）", 20);
             amtField.textComponent.richText = false;
-            var wdBtn = GameplayUiArt.Button(body, "申请官方提现", 574f, 498f, 360f, 54f, () =>
+            var wdBtn = GameplayUiArt.Button(wdBar, "申请官方提现", 1640f, 10f, 380f, 54f, () =>
             {
                 if (ulong.TryParse((amtField.text ?? "").Trim(), out ulong fen) && fen > 0UL)
-                    onWithdrawFen(fen);
-            }, primary: true, fontSize: 22f);
+                    onWithdrawFen?.Invoke(fen);
+            }, primary: true, fontSize: 23f);
             registerWriteButton?.Invoke(wdBtn);
         }
     }

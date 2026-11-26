@@ -196,5 +196,27 @@ namespace MmorpgClient.Net.Generated
                 handler(message);
             });
         }
+
+        public const uint SendBattlePingMessageId = 532;
+        /// <summary>
+        /// ---- 论剑 V4 队内一键战术标点(docs/planning/ranked-play-v4-team-tactics-and-highlights.md):零文字同队战术信号 ----
+        /// </summary>
+        public static void SendBattlePing(IRpcChannel channel, global::SendBattlePingRequest request,
+            RpcDone<global::SendBattlePingResponse> done)
+            => channel.CallMethod(SendBattlePingMessageId, request, global::SendBattlePingResponse.Parser, done);
+
+        public const uint NotifyBattlePingMessageId = 533;
+        public static void OnNotifyBattlePing(IRpcChannel channel, Action<global::BattlePingS2C> handler,
+            Action<InvalidProtocolBufferException> onMalformed = null)
+        {
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
+            channel.RegisterNotify(NotifyBattlePingMessageId, mc =>
+            {
+                global::BattlePingS2C message;
+                try { message = global::BattlePingS2C.Parser.ParseFrom(mc.SerializedMessage); }
+                catch (InvalidProtocolBufferException ex) { onMalformed?.Invoke(ex); return; }
+                handler(message);
+            });
+        }
     }
 }

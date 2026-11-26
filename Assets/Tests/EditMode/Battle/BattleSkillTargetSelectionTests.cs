@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.Battle.Presentation;
 using MmorpgClient.Net;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.Tweening;
@@ -79,6 +80,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         [SetUp]
         public void SetUp()
         {
+            MmorpgClient.Game.Skills.SkillBookClient.Instance?.Dispose();
             _canvas = new GameObject("BattleSkillTargetSelectionTests", typeof(RectTransform), typeof(Canvas));
             ((RectTransform)_canvas.transform).sizeDelta = new Vector2(2560, 1080);
             var ownerObject = new GameObject("InactiveBattleOwner");
@@ -326,6 +328,42 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void MirrorCopyRejectsBossClicksAndExplainsWhy()
+        {
+            var boss = _state.Actors.Single(actor => actor.ActorId == EnemyId);
+            boss.IsBoss = true;
+            _screen.ApplyState(_state);
+            Pick(TurnPlan.MirrorCopySkillId);
+
+            var labels = _canvas.GetComponentsInChildren<TMPro.TMP_Text>();
+            Assert.That(labels.Single(label => label.name == "TargetHint").text,
+                Is.EqualTo("请为【玄镜映法】选择敌方目标（首领不可复制）"));
+            Assert.That(labels.Single(label => label.name == "TargetFocusLabel").text, Is.EqualTo("首领不可复制"));
+            AssertHighlight(SlotHighlight.None, MyId, AllyId, PetId, EnemyId, DeadId, FledId);
+            ClickUnit(EnemyId);
+            Assert.That(IsVisible("ConfirmAction"), Is.False);
+            Assert.That(_transport.CallsOf(MessageIds.SubmitBattleAction), Is.Empty);
+
+            Pick(EnemySkill);
+            AssertHighlight(SlotHighlight.Targetable, EnemyId);
+            Assert.That(_canvas.GetComponentsInChildren<TMPro.TMP_Text>()
+                .Any(label => label.name == "TargetFocusLabel"), Is.False);
+        }
+
+        [Test]
+        public void MirrorCopySubmitsAgainstANonBossEnemy()
+        {
+            Pick(TurnPlan.MirrorCopySkillId);
+            AssertHighlight(SlotHighlight.Targetable, EnemyId);
+            AssertHighlight(SlotHighlight.None, MyId, AllyId, PetId, DeadId, FledId);
+            ClickUnit(AllyId);
+            Assert.That(IsVisible("ConfirmAction"), Is.False);
+            ClickUnit(EnemyId);
+            Click("ConfirmAction");
+            AssertSubmitted(TurnPlan.MirrorCopySkillId, EnemyId);
+        }
+
+        [Test]
         public void AllySkillIncludesSelfTeammateAndPetAndRejectsEnemyClicks()
         {
             Pick(AllySkill);
@@ -531,7 +569,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             state.Actors.Add(Actor(EnemyId, 1, eBattleActorType.BattleActorTypeMonster));
             state.Actors.Add(Actor(DeadId, 1, eBattleActorType.BattleActorTypeMonster));
             state.Actors.Add(Actor(FledId, 1, eBattleActorType.BattleActorTypeMonster));
-            state.Actors[0].SkillTableIds.Add(new[] { EnemySkill, SelfSkill, AllySkill, UnknownSkill });
+            state.Actors[0].SkillTableIds.Add(new[] { EnemySkill, SelfSkill, AllySkill, UnknownSkill, TurnPlan.MirrorCopySkillId });
             state.Actors[4].IsDead = true;
             state.Actors[5].Fled = true;
             return state;

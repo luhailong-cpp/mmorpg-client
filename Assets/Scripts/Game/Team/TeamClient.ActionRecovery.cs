@@ -168,6 +168,8 @@ namespace MmorpgClient.Game.Team
                 case TeamAction.Transfer when message == MessageIds.TransferLeader: return TransferLeaderRequest.Parser.ParseFrom(bytes);
                 case TeamAction.Disband when message == MessageIds.DisbandTeam: return DisbandTeamRequest.Parser.ParseFrom(bytes);
                 case TeamAction.ConfirmRankedPreset when message == ClientPlayerTeamRpc.ConfirmRankedPresetMessageId: return ConfirmRankedPresetRequest.Parser.ParseFrom(bytes);
+                case TeamAction.SetFormation when message == MessageIds.SetTeamFormation: return SetTeamFormationRequest.Parser.ParseFrom(bytes);
+                case TeamAction.RecallMembers when message == MessageIds.RecallTeamMembers: return RecallTeamMembersRequest.Parser.ParseFrom(bytes);
                 default: throw new InvalidOperationException("未知组队恢复操作");
             }
         }

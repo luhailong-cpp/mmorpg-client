@@ -195,6 +195,16 @@ namespace MmorpgClient.Game.CoreLoop
         public BattleCoreHudView BuildBattleHud() =>
             CoreGameplayLoopModels.BuildBattleCoreHud(_battle.State);
 
+        /// <summary>返回本周首领试炼周常五行词缀预览（优先锚定服务端材料周历 WeekStartsAtMs，战中以权威 BattleStateS2C 为准）。</summary>
+        public BossTrialWeeklyAffixView BuildCurrentBossTrialWeeklyAffix(ulong? nowMsOverride = null)
+        {
+            ulong nowMs = nowMsOverride ?? (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            var reward = _features?.EquipmentMaterialReward;
+            ulong weekStart = reward != null ? reward.WeekStartsAtMs : 0ul;
+            ulong nextReset = reward != null ? reward.NextWeekResetAtMs : 0ul;
+            return BossTrialWeeklyAffixCatalog.ForTimestamp(nowMs, weekStart, nextReset);
+        }
+
         public CoreSettlementRewardView BuildLastSettlementReward() =>
             CoreGameplayLoopModels.BuildSettlementRewardView(_battle.LastBattleEnd, _features?.EquipmentMaterialReward);
 

@@ -34,7 +34,7 @@ public static partial class PlayerAppearanceReflection {
           "c29ydF9vcmRlchgEIAEoDRITCgtvd25lZF9jb3VudBgFIAEoDRITCgt0b3Rh",
           "bF9jb3VudBgGIAEoDRIRCgljb21wbGV0ZWQYByABKAgSHQoVY29tcGxldGlv",
           "bl9iYWRnZV9uYW1lGAggASgJEhYKDmVwaWxvZ3VlX3RpdGxlGAkgASgJEh0K",
-          "FW1lbWJlcl9hcHBlYXJhbmNlX2lkcxgKIAMoCSLQAwoUUGxheWVyQXBwZWFy",
+          "FW1lbWJlcl9hcHBlYXJhbmNlX2lkcxgKIAMoCSKmBgoUUGxheWVyQXBwZWFy",
           "YW5jZUluZm8SHwoXcGVybWFuZW50X2FwcGVhcmFuY2VfaWQYASABKAkSHAoU",
           "YWN0aXZlX2FwcGVhcmFuY2VfaWQYAiABKAkSGwoTdHJpYWxfYXBwZWFyYW5j",
           "ZV9pZBgDIAEoCRIYChB0cmlhbF9leHBpcmVzX2F0GAQgASgEEhIKCnNlcnZl",
@@ -45,45 +45,87 @@ public static partial class PlayerAppearanceReflection {
           "GAwgASgMEi4KC2FwcGVhcmFuY2VzGA0gAygLMhkuQ2hhcmFjdGVyQXBwZWFy",
           "YW5jZUVudHJ5EhIKCm93bmVkX2JpdHMYDiABKAwSOwoPc2VyaWVzX3Byb2dy",
           "ZXNzGA8gAygLMiIuQ2hhcmFjdGVyQXBwZWFyYW5jZVNlcmllc1Byb2dyZXNz",
-          "IhoKGEdldEFwcGVhcmFuY2VJbmZvUmVxdWVzdCJoChlHZXRBcHBlYXJhbmNl",
-          "SW5mb1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
-          "TWVzc2FnZRIjCgRpbmZvGAIgASgLMhUuUGxheWVyQXBwZWFyYW5jZUluZm8i",
-          "ZwoXU3dpdGNoQXBwZWFyYW5jZVJlcXVlc3QSGQoRY2xpZW50X3JlcXVlc3Rf",
-          "aWQYASABKAQSFQoNYXBwZWFyYW5jZV9pZBgCIAEoCRIaChJleHBlY3RfZnJl",
-          "ZV9zd2l0Y2gYAyABKAgieQoYU3dpdGNoQXBwZWFyYW5jZVJlc3BvbnNlEiYK",
-          "DWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIjCgRpbmZv",
-          "GAIgASgLMhUuUGxheWVyQXBwZWFyYW5jZUluZm8SEAoIcmVwbGF5ZWQYAyAB",
-          "KAgiTwobU3RhcnRBcHBlYXJhbmNlVHJpYWxSZXF1ZXN0EhkKEWNsaWVudF9y",
-          "ZXF1ZXN0X2lkGAEgASgEEhUKDWFwcGVhcmFuY2VfaWQYAiABKAkifQocU3Rh",
-          "cnRBcHBlYXJhbmNlVHJpYWxSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEg",
+          "Eh8KF3BldF9jb3NtZXRpY19vd25lZF9iaXRzGBAgASgMEigKDXBldF9jb3Nt",
+          "ZXRpY3MYESADKAsyES5QZXRDb3NtZXRpY0VudHJ5EjQKFmVxdWlwcGVkX3Bl",
+          "dF9jb3NtZXRpY3MYEiADKAsyFC5QZXRFcXVpcHBlZENvc21ldGljEhwKFHNr",
+          "aWxsX3ZmeF9vd25lZF9iaXRzGBMgASgMEjMKE3NraWxsX3ZmeF9jb3NtZXRp",
+          "Y3MYFCADKAsyFi5Ta2lsbFZmeENvc21ldGljRW50cnkSRwoSZXF1aXBwZWRf",
+          "c2tpbGxfdmZ4GBUgAygLMisuUGxheWVyQXBwZWFyYW5jZUluZm8uRXF1aXBw",
+          "ZWRTa2lsbFZmeEVudHJ5GjcKFUVxdWlwcGVkU2tpbGxWZnhFbnRyeRILCgNr",
+          "ZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBIvcBChBQZXRDb3NtZXRpY0Vu",
+          "dHJ5EhEKCWNvbmZpZ19pZBgBIAEoDRIUCgxjb3NtZXRpY19rZXkYAiABKAkS",
+          "DAoEbmFtZRgDIAEoCRIbChN0YXJnZXRfcGV0X3RhYmxlX2lkGAQgASgNEhsK",
+          "E3Zpc3VhbF9wZXRfdGFibGVfaWQYBSABKA0SFgoOdmlzdWFsX2FydF9rZXkY",
+          "BiABKAkSEgoKc29ydF9vcmRlchgHIAEoDRINCgVvd25lZBgIIAEoCBITCgtt",
+          "YWxsX3NrdV9pZBgJIAEoBBIUCgxhY3F1aXJlX2hpbnQYCiABKAkSDAoEZGVz",
+          "YxgLIAEoCSI6ChNQZXRFcXVpcHBlZENvc21ldGljEg4KBnBldF9pZBgBIAEo",
+          "BBITCgtjb3NtZXRpY19pZBgCIAEoDSKRAgoVU2tpbGxWZnhDb3NtZXRpY0Vu",
+          "dHJ5EhEKCWNvbmZpZ19pZBgBIAEoDRIPCgd2Znhfa2V5GAIgASgJEgwKBG5h",
+          "bWUYAyABKAkSFgoOc2tpbGxfdGFibGVfaWQYBCABKA0SDQoFZnhfaWQYBSAB",
+          "KAkSGAoQcHJvamVjdGlsZV9meF9pZBgGIAEoCRIXCg90ZWxlZ3JhcGhfZnhf",
+          "aWQYByABKAkSEAoIdGludF9oZXgYCCABKAkSEgoKc29ydF9vcmRlchgJIAEo",
+          "DRINCgVvd25lZBgKIAEoCBITCgttYWxsX3NrdV9pZBgLIAEoBBIUCgxhY3F1",
+          "aXJlX2hpbnQYDCABKAkSDAoEZGVzYxgNIAEoCSJZChdFcXVpcFBldENvc21l",
+          "dGljUmVxdWVzdBIZChFjbGllbnRfcmVxdWVzdF9pZBgBIAEoBBIOCgZwZXRf",
+          "aWQYAiABKAQSEwoLY29zbWV0aWNfaWQYAyABKA0ipwEKGEVxdWlwUGV0Q29z",
+          "bWV0aWNSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
+          "b01lc3NhZ2USIwoEaW5mbxgCIAEoCzIVLlBsYXllckFwcGVhcmFuY2VJbmZv",
+          "Eg4KBnBldF9pZBgDIAEoBBIcChRlcXVpcHBlZF9jb3NtZXRpY19pZBgEIAEo",
+          "DRIQCghyZXBsYXllZBgFIAEoCCJeChRFcXVpcFNraWxsVmZ4UmVxdWVzdBIZ",
+          "ChFjbGllbnRfcmVxdWVzdF9pZBgBIAEoBBIWCg5za2lsbF90YWJsZV9pZBgC",
+          "IAEoDRITCgtjb3NtZXRpY19pZBgDIAEoDSKsAQoVRXF1aXBTa2lsbFZmeFJl",
+          "c3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2Fn",
+          "ZRIjCgRpbmZvGAIgASgLMhUuUGxheWVyQXBwZWFyYW5jZUluZm8SFgoOc2tp",
+          "bGxfdGFibGVfaWQYAyABKA0SHAoUZXF1aXBwZWRfY29zbWV0aWNfaWQYBCAB",
+          "KA0SEAoIcmVwbGF5ZWQYBSABKAgiGgoYR2V0QXBwZWFyYW5jZUluZm9SZXF1",
+          "ZXN0ImgKGUdldEFwcGVhcmFuY2VJbmZvUmVzcG9uc2USJgoNZXJyb3JfbWVz",
+          "c2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiMKBGluZm8YAiABKAsyFS5Q",
+          "bGF5ZXJBcHBlYXJhbmNlSW5mbyJnChdTd2l0Y2hBcHBlYXJhbmNlUmVxdWVz",
+          "dBIZChFjbGllbnRfcmVxdWVzdF9pZBgBIAEoBBIVCg1hcHBlYXJhbmNlX2lk",
+          "GAIgASgJEhoKEmV4cGVjdF9mcmVlX3N3aXRjaBgDIAEoCCJ5ChhTd2l0Y2hB",
+          "cHBlYXJhbmNlUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRp",
+          "cEluZm9NZXNzYWdlEiMKBGluZm8YAiABKAsyFS5QbGF5ZXJBcHBlYXJhbmNl",
+          "SW5mbxIQCghyZXBsYXllZBgDIAEoCCJPChtTdGFydEFwcGVhcmFuY2VUcmlh",
+          "bFJlcXVlc3QSGQoRY2xpZW50X3JlcXVlc3RfaWQYASABKAQSFQoNYXBwZWFy",
+          "YW5jZV9pZBgCIAEoCSJ9ChxTdGFydEFwcGVhcmFuY2VUcmlhbFJlc3BvbnNl",
+          "EiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIjCgRp",
+          "bmZvGAIgASgLMhUuUGxheWVyQXBwZWFyYW5jZUluZm8SEAoIcmVwbGF5ZWQY",
+          "AyABKAgiHgocQ2FuY2VsQXBwZWFyYW5jZVRyaWFsUmVxdWVzdCJsCh1DYW5j",
+          "ZWxBcHBlYXJhbmNlVHJpYWxSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEg",
           "ASgLMg8uVGlwSW5mb01lc3NhZ2USIwoEaW5mbxgCIAEoCzIVLlBsYXllckFw",
-          "cGVhcmFuY2VJbmZvEhAKCHJlcGxheWVkGAMgASgIIh4KHENhbmNlbEFwcGVh",
-          "cmFuY2VUcmlhbFJlcXVlc3QibAodQ2FuY2VsQXBwZWFyYW5jZVRyaWFsUmVz",
-          "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
-          "EiMKBGluZm8YAiABKAsyFS5QbGF5ZXJBcHBlYXJhbmNlSW5mbyKBAQoZQWN0",
-          "b3JBcHBlYXJhbmNlQ2hhbmdlZFMyQxIOCgZlbnRpdHkYASABKAQSEQoJcGxh",
-          "eWVyX2lkGAIgASgEEhUKDWFwcGVhcmFuY2VfaWQYAyABKAkSEAoIaXNfdHJp",
-          "YWwYBCABKAgSGAoQdHJpYWxfZXhwaXJlc19hdBgFIAEoBCJTChVBcHBlYXJh",
-          "bmNlU3RhdGVOb3RpZnkSIwoEaW5mbxgBIAEoCzIVLlBsYXllckFwcGVhcmFu",
-          "Y2VJbmZvEhUKDXRyaWFsX2V4cGlyZWQYAiABKAgy9gMKG1NjZW5lQXBwZWFy",
-          "YW5jZUNsaWVudFBsYXllchJKChFHZXRBcHBlYXJhbmNlSW5mbxIZLkdldEFw",
-          "cGVhcmFuY2VJbmZvUmVxdWVzdBoaLkdldEFwcGVhcmFuY2VJbmZvUmVzcG9u",
-          "c2USRwoQU3dpdGNoQXBwZWFyYW5jZRIYLlN3aXRjaEFwcGVhcmFuY2VSZXF1",
-          "ZXN0GhkuU3dpdGNoQXBwZWFyYW5jZVJlc3BvbnNlElMKFFN0YXJ0QXBwZWFy",
-          "YW5jZVRyaWFsEhwuU3RhcnRBcHBlYXJhbmNlVHJpYWxSZXF1ZXN0Gh0uU3Rh",
-          "cnRBcHBlYXJhbmNlVHJpYWxSZXNwb25zZRJWChVDYW5jZWxBcHBlYXJhbmNl",
-          "VHJpYWwSHS5DYW5jZWxBcHBlYXJhbmNlVHJpYWxSZXF1ZXN0Gh4uQ2FuY2Vs",
-          "QXBwZWFyYW5jZVRyaWFsUmVzcG9uc2USSQocTm90aWZ5QWN0b3JBcHBlYXJh",
-          "bmNlQ2hhbmdlZBIaLkFjdG9yQXBwZWFyYW5jZUNoYW5nZWRTMkMaBi5FbXB0",
-          "eSIFiJnIAQISPgoVTm90aWZ5QXBwZWFyYW5jZVN0YXRlEhYuQXBwZWFyYW5j",
-          "ZVN0YXRlTm90aWZ5GgYuRW1wdHkiBYiZyAECGgqAqMMBAYiowwEBQg5aBXNj",
-          "ZW5lgAEBmNRhA2IGcHJvdG8z"));
+          "cGVhcmFuY2VJbmZvIoEBChlBY3RvckFwcGVhcmFuY2VDaGFuZ2VkUzJDEg4K",
+          "BmVudGl0eRgBIAEoBBIRCglwbGF5ZXJfaWQYAiABKAQSFQoNYXBwZWFyYW5j",
+          "ZV9pZBgDIAEoCRIQCghpc190cmlhbBgEIAEoCBIYChB0cmlhbF9leHBpcmVz",
+          "X2F0GAUgASgEIlMKFUFwcGVhcmFuY2VTdGF0ZU5vdGlmeRIjCgRpbmZvGAEg",
+          "ASgLMhUuUGxheWVyQXBwZWFyYW5jZUluZm8SFQoNdHJpYWxfZXhwaXJlZBgC",
+          "IAEoCDL/BAobU2NlbmVBcHBlYXJhbmNlQ2xpZW50UGxheWVyEkoKEUdldEFw",
+          "cGVhcmFuY2VJbmZvEhkuR2V0QXBwZWFyYW5jZUluZm9SZXF1ZXN0GhouR2V0",
+          "QXBwZWFyYW5jZUluZm9SZXNwb25zZRJHChBTd2l0Y2hBcHBlYXJhbmNlEhgu",
+          "U3dpdGNoQXBwZWFyYW5jZVJlcXVlc3QaGS5Td2l0Y2hBcHBlYXJhbmNlUmVz",
+          "cG9uc2USUwoUU3RhcnRBcHBlYXJhbmNlVHJpYWwSHC5TdGFydEFwcGVhcmFu",
+          "Y2VUcmlhbFJlcXVlc3QaHS5TdGFydEFwcGVhcmFuY2VUcmlhbFJlc3BvbnNl",
+          "ElYKFUNhbmNlbEFwcGVhcmFuY2VUcmlhbBIdLkNhbmNlbEFwcGVhcmFuY2VU",
+          "cmlhbFJlcXVlc3QaHi5DYW5jZWxBcHBlYXJhbmNlVHJpYWxSZXNwb25zZRJJ",
+          "ChxOb3RpZnlBY3RvckFwcGVhcmFuY2VDaGFuZ2VkEhouQWN0b3JBcHBlYXJh",
+          "bmNlQ2hhbmdlZFMyQxoGLkVtcHR5IgWImcgBAhI+ChVOb3RpZnlBcHBlYXJh",
+          "bmNlU3RhdGUSFi5BcHBlYXJhbmNlU3RhdGVOb3RpZnkaBi5FbXB0eSIFiJnI",
+          "AQISRwoQRXF1aXBQZXRDb3NtZXRpYxIYLkVxdWlwUGV0Q29zbWV0aWNSZXF1",
+          "ZXN0GhkuRXF1aXBQZXRDb3NtZXRpY1Jlc3BvbnNlEj4KDUVxdWlwU2tpbGxW",
+          "ZngSFS5FcXVpcFNraWxsVmZ4UmVxdWVzdBoWLkVxdWlwU2tpbGxWZnhSZXNw",
+          "b25zZRoKgKjDAQGIqMMBAUIOWgVzY2VuZYABAZjUYQNiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::CharacterAppearanceEntry), global::CharacterAppearanceEntry.Parser, new[]{ "ConfigId", "AppearanceId", "Name", "SortOrder", "TrialUsed", "Owned", "CardUnlockable", "SeriesId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::CharacterAppearanceSeriesProgress), global::CharacterAppearanceSeriesProgress.Parser, new[]{ "SeriesId", "SeriesKey", "Name", "SortOrder", "OwnedCount", "TotalCount", "Completed", "CompletionBadgeName", "EpilogueTitle", "MemberAppearanceIds" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerAppearanceInfo), global::PlayerAppearanceInfo.Parser, new[]{ "PermanentAppearanceId", "ActiveAppearanceId", "TrialAppearanceId", "TrialExpiresAt", "ServerNow", "CardItemId", "CardItemCount", "OwnedCardCount", "TrialDurationSeconds", "MallSkuId", "MallPriceFen", "TrialUsedBits", "Appearances", "OwnedBits", "SeriesProgress" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerAppearanceInfo), global::PlayerAppearanceInfo.Parser, new[]{ "PermanentAppearanceId", "ActiveAppearanceId", "TrialAppearanceId", "TrialExpiresAt", "ServerNow", "CardItemId", "CardItemCount", "OwnedCardCount", "TrialDurationSeconds", "MallSkuId", "MallPriceFen", "TrialUsedBits", "Appearances", "OwnedBits", "SeriesProgress", "PetCosmeticOwnedBits", "PetCosmetics", "EquippedPetCosmetics", "SkillVfxOwnedBits", "SkillVfxCosmetics", "EquippedSkillVfx" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PetCosmeticEntry), global::PetCosmeticEntry.Parser, new[]{ "ConfigId", "CosmeticKey", "Name", "TargetPetTableId", "VisualPetTableId", "VisualArtKey", "SortOrder", "Owned", "MallSkuId", "AcquireHint", "Desc" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PetEquippedCosmetic), global::PetEquippedCosmetic.Parser, new[]{ "PetId", "CosmeticId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SkillVfxCosmeticEntry), global::SkillVfxCosmeticEntry.Parser, new[]{ "ConfigId", "VfxKey", "Name", "SkillTableId", "FxId", "ProjectileFxId", "TelegraphFxId", "TintHex", "SortOrder", "Owned", "MallSkuId", "AcquireHint", "Desc" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipPetCosmeticRequest), global::EquipPetCosmeticRequest.Parser, new[]{ "ClientRequestId", "PetId", "CosmeticId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipPetCosmeticResponse), global::EquipPetCosmeticResponse.Parser, new[]{ "ErrorMessage", "Info", "PetId", "EquippedCosmeticId", "Replayed" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipSkillVfxRequest), global::EquipSkillVfxRequest.Parser, new[]{ "ClientRequestId", "SkillTableId", "CosmeticId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipSkillVfxResponse), global::EquipSkillVfxResponse.Parser, new[]{ "ErrorMessage", "Info", "SkillTableId", "EquippedCosmeticId", "Replayed" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetAppearanceInfoRequest), global::GetAppearanceInfoRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetAppearanceInfoResponse), global::GetAppearanceInfoResponse.Parser, new[]{ "ErrorMessage", "Info" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SwitchAppearanceRequest), global::SwitchAppearanceRequest.Parser, new[]{ "ClientRequestId", "AppearanceId", "ExpectFreeSwitch" }, null, null, null, null),
@@ -1184,6 +1226,12 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
     appearances_ = other.appearances_.Clone();
     ownedBits_ = other.ownedBits_;
     seriesProgress_ = other.seriesProgress_.Clone();
+    petCosmeticOwnedBits_ = other.petCosmeticOwnedBits_;
+    petCosmetics_ = other.petCosmetics_.Clone();
+    equippedPetCosmetics_ = other.equippedPetCosmetics_.Clone();
+    skillVfxOwnedBits_ = other.skillVfxOwnedBits_;
+    skillVfxCosmetics_ = other.skillVfxCosmetics_.Clone();
+    equippedSkillVfx_ = other.equippedSkillVfx_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1416,6 +1464,92 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
     get { return seriesProgress_; }
   }
 
+  /// <summary>Field number for the "pet_cosmetic_owned_bits" field.</summary>
+  public const int PetCosmeticOwnedBitsFieldNumber = 16;
+  private pb::ByteString petCosmeticOwnedBits_ = pb::ByteString.Empty;
+  /// <summary>
+  /// 已永久拥有的灵宠幻化位图(低位在前,与 PetCosmetic bit_index 对应)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pb::ByteString PetCosmeticOwnedBits {
+    get { return petCosmeticOwnedBits_; }
+    set {
+      petCosmeticOwnedBits_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "pet_cosmetics" field.</summary>
+  public const int PetCosmeticsFieldNumber = 17;
+  private static readonly pb::FieldCodec<global::PetCosmeticEntry> _repeated_petCosmetics_codec
+      = pb::FieldCodec.ForMessage(138, global::PetCosmeticEntry.Parser);
+  private readonly pbc::RepeatedField<global::PetCosmeticEntry> petCosmetics_ = new pbc::RepeatedField<global::PetCosmeticEntry>();
+  /// <summary>
+  /// 当前开放的灵宠幻化目录(按 sort_order 升序,纯外观零数值)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::PetCosmeticEntry> PetCosmetics {
+    get { return petCosmetics_; }
+  }
+
+  /// <summary>Field number for the "equipped_pet_cosmetics" field.</summary>
+  public const int EquippedPetCosmeticsFieldNumber = 18;
+  private static readonly pb::FieldCodec<global::PetEquippedCosmetic> _repeated_equippedPetCosmetics_codec
+      = pb::FieldCodec.ForMessage(146, global::PetEquippedCosmetic.Parser);
+  private readonly pbc::RepeatedField<global::PetEquippedCosmetic> equippedPetCosmetics_ = new pbc::RepeatedField<global::PetEquippedCosmetic>();
+  /// <summary>
+  /// 当前玩家各灵宠实例实际穿戴的幻化映射
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::PetEquippedCosmetic> EquippedPetCosmetics {
+    get { return equippedPetCosmetics_; }
+  }
+
+  /// <summary>Field number for the "skill_vfx_owned_bits" field.</summary>
+  public const int SkillVfxOwnedBitsFieldNumber = 19;
+  private pb::ByteString skillVfxOwnedBits_ = pb::ByteString.Empty;
+  /// <summary>
+  /// 已永久拥有的技能特效位图(低位在前,与 SkillVfxCosmetic bit_index 对应)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pb::ByteString SkillVfxOwnedBits {
+    get { return skillVfxOwnedBits_; }
+    set {
+      skillVfxOwnedBits_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "skill_vfx_cosmetics" field.</summary>
+  public const int SkillVfxCosmeticsFieldNumber = 20;
+  private static readonly pb::FieldCodec<global::SkillVfxCosmeticEntry> _repeated_skillVfxCosmetics_codec
+      = pb::FieldCodec.ForMessage(162, global::SkillVfxCosmeticEntry.Parser);
+  private readonly pbc::RepeatedField<global::SkillVfxCosmeticEntry> skillVfxCosmetics_ = new pbc::RepeatedField<global::SkillVfxCosmeticEntry>();
+  /// <summary>
+  /// 当前开放的技能特效目录(按 sort_order 升序,纯画面零数值)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::SkillVfxCosmeticEntry> SkillVfxCosmetics {
+    get { return skillVfxCosmetics_; }
+  }
+
+  /// <summary>Field number for the "equipped_skill_vfx" field.</summary>
+  public const int EquippedSkillVfxFieldNumber = 21;
+  private static readonly pbc::MapField<uint, uint>.Codec _map_equippedSkillVfx_codec
+      = new pbc::MapField<uint, uint>.Codec(pb::FieldCodec.ForUInt32(8, 0), pb::FieldCodec.ForUInt32(16, 0), 170);
+  private readonly pbc::MapField<uint, uint> equippedSkillVfx_ = new pbc::MapField<uint, uint>();
+  /// <summary>
+  /// 当前实际生效的技能特效映射(skill_table_id -> SkillVfxCosmetic.id)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::MapField<uint, uint> EquippedSkillVfx {
+    get { return equippedSkillVfx_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1446,6 +1580,12 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
     if(!appearances_.Equals(other.appearances_)) return false;
     if (OwnedBits != other.OwnedBits) return false;
     if(!seriesProgress_.Equals(other.seriesProgress_)) return false;
+    if (PetCosmeticOwnedBits != other.PetCosmeticOwnedBits) return false;
+    if(!petCosmetics_.Equals(other.petCosmetics_)) return false;
+    if(!equippedPetCosmetics_.Equals(other.equippedPetCosmetics_)) return false;
+    if (SkillVfxOwnedBits != other.SkillVfxOwnedBits) return false;
+    if(!skillVfxCosmetics_.Equals(other.skillVfxCosmetics_)) return false;
+    if (!EquippedSkillVfx.Equals(other.EquippedSkillVfx)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1468,6 +1608,12 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
     hash ^= appearances_.GetHashCode();
     if (OwnedBits.Length != 0) hash ^= OwnedBits.GetHashCode();
     hash ^= seriesProgress_.GetHashCode();
+    if (PetCosmeticOwnedBits.Length != 0) hash ^= PetCosmeticOwnedBits.GetHashCode();
+    hash ^= petCosmetics_.GetHashCode();
+    hash ^= equippedPetCosmetics_.GetHashCode();
+    if (SkillVfxOwnedBits.Length != 0) hash ^= SkillVfxOwnedBits.GetHashCode();
+    hash ^= skillVfxCosmetics_.GetHashCode();
+    hash ^= EquippedSkillVfx.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1540,6 +1686,18 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
       output.WriteBytes(OwnedBits);
     }
     seriesProgress_.WriteTo(output, _repeated_seriesProgress_codec);
+    if (PetCosmeticOwnedBits.Length != 0) {
+      output.WriteRawTag(130, 1);
+      output.WriteBytes(PetCosmeticOwnedBits);
+    }
+    petCosmetics_.WriteTo(output, _repeated_petCosmetics_codec);
+    equippedPetCosmetics_.WriteTo(output, _repeated_equippedPetCosmetics_codec);
+    if (SkillVfxOwnedBits.Length != 0) {
+      output.WriteRawTag(154, 1);
+      output.WriteBytes(SkillVfxOwnedBits);
+    }
+    skillVfxCosmetics_.WriteTo(output, _repeated_skillVfxCosmetics_codec);
+    equippedSkillVfx_.WriteTo(output, _map_equippedSkillVfx_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1604,6 +1762,18 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
       output.WriteBytes(OwnedBits);
     }
     seriesProgress_.WriteTo(ref output, _repeated_seriesProgress_codec);
+    if (PetCosmeticOwnedBits.Length != 0) {
+      output.WriteRawTag(130, 1);
+      output.WriteBytes(PetCosmeticOwnedBits);
+    }
+    petCosmetics_.WriteTo(ref output, _repeated_petCosmetics_codec);
+    equippedPetCosmetics_.WriteTo(ref output, _repeated_equippedPetCosmetics_codec);
+    if (SkillVfxOwnedBits.Length != 0) {
+      output.WriteRawTag(154, 1);
+      output.WriteBytes(SkillVfxOwnedBits);
+    }
+    skillVfxCosmetics_.WriteTo(ref output, _repeated_skillVfxCosmetics_codec);
+    equippedSkillVfx_.WriteTo(ref output, _map_equippedSkillVfx_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1655,6 +1825,16 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
       size += 1 + pb::CodedOutputStream.ComputeBytesSize(OwnedBits);
     }
     size += seriesProgress_.CalculateSize(_repeated_seriesProgress_codec);
+    if (PetCosmeticOwnedBits.Length != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeBytesSize(PetCosmeticOwnedBits);
+    }
+    size += petCosmetics_.CalculateSize(_repeated_petCosmetics_codec);
+    size += equippedPetCosmetics_.CalculateSize(_repeated_equippedPetCosmetics_codec);
+    if (SkillVfxOwnedBits.Length != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeBytesSize(SkillVfxOwnedBits);
+    }
+    size += skillVfxCosmetics_.CalculateSize(_repeated_skillVfxCosmetics_codec);
+    size += equippedSkillVfx_.CalculateSize(_map_equippedSkillVfx_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -1708,6 +1888,16 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
       OwnedBits = other.OwnedBits;
     }
     seriesProgress_.Add(other.seriesProgress_);
+    if (other.PetCosmeticOwnedBits.Length != 0) {
+      PetCosmeticOwnedBits = other.PetCosmeticOwnedBits;
+    }
+    petCosmetics_.Add(other.petCosmetics_);
+    equippedPetCosmetics_.Add(other.equippedPetCosmetics_);
+    if (other.SkillVfxOwnedBits.Length != 0) {
+      SkillVfxOwnedBits = other.SkillVfxOwnedBits;
+    }
+    skillVfxCosmetics_.Add(other.skillVfxCosmetics_);
+    equippedSkillVfx_.MergeFrom(other.equippedSkillVfx_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -1785,6 +1975,30 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
         }
         case 122: {
           seriesProgress_.AddEntriesFrom(input, _repeated_seriesProgress_codec);
+          break;
+        }
+        case 130: {
+          PetCosmeticOwnedBits = input.ReadBytes();
+          break;
+        }
+        case 138: {
+          petCosmetics_.AddEntriesFrom(input, _repeated_petCosmetics_codec);
+          break;
+        }
+        case 146: {
+          equippedPetCosmetics_.AddEntriesFrom(input, _repeated_equippedPetCosmetics_codec);
+          break;
+        }
+        case 154: {
+          SkillVfxOwnedBits = input.ReadBytes();
+          break;
+        }
+        case 162: {
+          skillVfxCosmetics_.AddEntriesFrom(input, _repeated_skillVfxCosmetics_codec);
+          break;
+        }
+        case 170: {
+          equippedSkillVfx_.AddEntriesFrom(input, _map_equippedSkillVfx_codec);
           break;
         }
       }
@@ -1866,6 +2080,2858 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
           seriesProgress_.AddEntriesFrom(ref input, _repeated_seriesProgress_codec);
           break;
         }
+        case 130: {
+          PetCosmeticOwnedBits = input.ReadBytes();
+          break;
+        }
+        case 138: {
+          petCosmetics_.AddEntriesFrom(ref input, _repeated_petCosmetics_codec);
+          break;
+        }
+        case 146: {
+          equippedPetCosmetics_.AddEntriesFrom(ref input, _repeated_equippedPetCosmetics_codec);
+          break;
+        }
+        case 154: {
+          SkillVfxOwnedBits = input.ReadBytes();
+          break;
+        }
+        case 162: {
+          skillVfxCosmetics_.AddEntriesFrom(ref input, _repeated_skillVfxCosmetics_codec);
+          break;
+        }
+        case 170: {
+          equippedSkillVfx_.AddEntriesFrom(ref input, _map_equippedSkillVfx_codec);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 灵宠幻化目录项（纯外观表现，零战斗/成长属性）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class PetCosmeticEntry : pb::IMessage<PetCosmeticEntry>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<PetCosmeticEntry> _parser = new pb::MessageParser<PetCosmeticEntry>(() => new PetCosmeticEntry());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<PetCosmeticEntry> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[3]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public PetCosmeticEntry() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public PetCosmeticEntry(PetCosmeticEntry other) : this() {
+    configId_ = other.configId_;
+    cosmeticKey_ = other.cosmeticKey_;
+    name_ = other.name_;
+    targetPetTableId_ = other.targetPetTableId_;
+    visualPetTableId_ = other.visualPetTableId_;
+    visualArtKey_ = other.visualArtKey_;
+    sortOrder_ = other.sortOrder_;
+    owned_ = other.owned_;
+    mallSkuId_ = other.mallSkuId_;
+    acquireHint_ = other.acquireHint_;
+    desc_ = other.desc_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public PetCosmeticEntry Clone() {
+    return new PetCosmeticEntry(this);
+  }
+
+  /// <summary>Field number for the "config_id" field.</summary>
+  public const int ConfigIdFieldNumber = 1;
+  private uint configId_;
+  /// <summary>
+  /// PetCosmetic.id(永久主键)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ConfigId {
+    get { return configId_; }
+    set {
+      configId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "cosmetic_key" field.</summary>
+  public const int CosmeticKeyFieldNumber = 2;
+  private string cosmeticKey_ = "";
+  /// <summary>
+  /// 稳定外观标识键
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string CosmeticKey {
+    get { return cosmeticKey_; }
+    set {
+      cosmeticKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "name" field.</summary>
+  public const int NameFieldNumber = 3;
+  private string name_ = "";
+  /// <summary>
+  /// 中文展示名
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Name {
+    get { return name_; }
+    set {
+      name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "target_pet_table_id" field.</summary>
+  public const int TargetPetTableIdFieldNumber = 4;
+  private uint targetPetTableId_;
+  /// <summary>
+  /// 适用灵宠种类 ID(0 = 通用)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TargetPetTableId {
+    get { return targetPetTableId_; }
+    set {
+      targetPetTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "visual_pet_table_id" field.</summary>
+  public const int VisualPetTableIdFieldNumber = 5;
+  private uint visualPetTableId_;
+  /// <summary>
+  /// 表现复用灵宠种类 ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint VisualPetTableId {
+    get { return visualPetTableId_; }
+    set {
+      visualPetTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "visual_art_key" field.</summary>
+  public const int VisualArtKeyFieldNumber = 6;
+  private string visualArtKey_ = "";
+  /// <summary>
+  /// 客户端外观资源键
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string VisualArtKey {
+    get { return visualArtKey_; }
+    set {
+      visualArtKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "sort_order" field.</summary>
+  public const int SortOrderFieldNumber = 7;
+  private uint sortOrder_;
+  /// <summary>
+  /// 展示排序(升序)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SortOrder {
+    get { return sortOrder_; }
+    set {
+      sortOrder_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "owned" field.</summary>
+  public const int OwnedFieldNumber = 8;
+  private bool owned_;
+  /// <summary>
+  /// 是否已永久拥有
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Owned {
+    get { return owned_; }
+    set {
+      owned_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "mall_sku_id" field.</summary>
+  public const int MallSkuIdFieldNumber = 9;
+  private ulong mallSkuId_;
+  /// <summary>
+  /// 官方商城永久衣柜对应 SKU ID(0 = 非直售/未上架)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong MallSkuId {
+    get { return mallSkuId_; }
+    set {
+      mallSkuId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "acquire_hint" field.</summary>
+  public const int AcquireHintFieldNumber = 10;
+  private string acquireHint_ = "";
+  /// <summary>
+  /// 未拥有且未上架时展示的取得条件
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string AcquireHint {
+    get { return acquireHint_; }
+    set {
+      acquireHint_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "desc" field.</summary>
+  public const int DescFieldNumber = 11;
+  private string desc_ = "";
+  /// <summary>
+  /// 外观简述
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Desc {
+    get { return desc_; }
+    set {
+      desc_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as PetCosmeticEntry);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(PetCosmeticEntry other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ConfigId != other.ConfigId) return false;
+    if (CosmeticKey != other.CosmeticKey) return false;
+    if (Name != other.Name) return false;
+    if (TargetPetTableId != other.TargetPetTableId) return false;
+    if (VisualPetTableId != other.VisualPetTableId) return false;
+    if (VisualArtKey != other.VisualArtKey) return false;
+    if (SortOrder != other.SortOrder) return false;
+    if (Owned != other.Owned) return false;
+    if (MallSkuId != other.MallSkuId) return false;
+    if (AcquireHint != other.AcquireHint) return false;
+    if (Desc != other.Desc) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ConfigId != 0) hash ^= ConfigId.GetHashCode();
+    if (CosmeticKey.Length != 0) hash ^= CosmeticKey.GetHashCode();
+    if (Name.Length != 0) hash ^= Name.GetHashCode();
+    if (TargetPetTableId != 0) hash ^= TargetPetTableId.GetHashCode();
+    if (VisualPetTableId != 0) hash ^= VisualPetTableId.GetHashCode();
+    if (VisualArtKey.Length != 0) hash ^= VisualArtKey.GetHashCode();
+    if (SortOrder != 0) hash ^= SortOrder.GetHashCode();
+    if (Owned != false) hash ^= Owned.GetHashCode();
+    if (MallSkuId != 0UL) hash ^= MallSkuId.GetHashCode();
+    if (AcquireHint.Length != 0) hash ^= AcquireHint.GetHashCode();
+    if (Desc.Length != 0) hash ^= Desc.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ConfigId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ConfigId);
+    }
+    if (CosmeticKey.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(CosmeticKey);
+    }
+    if (Name.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(Name);
+    }
+    if (TargetPetTableId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(TargetPetTableId);
+    }
+    if (VisualPetTableId != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(VisualPetTableId);
+    }
+    if (VisualArtKey.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(VisualArtKey);
+    }
+    if (SortOrder != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(SortOrder);
+    }
+    if (Owned != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(Owned);
+    }
+    if (MallSkuId != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(MallSkuId);
+    }
+    if (AcquireHint.Length != 0) {
+      output.WriteRawTag(82);
+      output.WriteString(AcquireHint);
+    }
+    if (Desc.Length != 0) {
+      output.WriteRawTag(90);
+      output.WriteString(Desc);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ConfigId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ConfigId);
+    }
+    if (CosmeticKey.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(CosmeticKey);
+    }
+    if (Name.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(Name);
+    }
+    if (TargetPetTableId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(TargetPetTableId);
+    }
+    if (VisualPetTableId != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(VisualPetTableId);
+    }
+    if (VisualArtKey.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(VisualArtKey);
+    }
+    if (SortOrder != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(SortOrder);
+    }
+    if (Owned != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(Owned);
+    }
+    if (MallSkuId != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(MallSkuId);
+    }
+    if (AcquireHint.Length != 0) {
+      output.WriteRawTag(82);
+      output.WriteString(AcquireHint);
+    }
+    if (Desc.Length != 0) {
+      output.WriteRawTag(90);
+      output.WriteString(Desc);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ConfigId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ConfigId);
+    }
+    if (CosmeticKey.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(CosmeticKey);
+    }
+    if (Name.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+    }
+    if (TargetPetTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetPetTableId);
+    }
+    if (VisualPetTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(VisualPetTableId);
+    }
+    if (VisualArtKey.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(VisualArtKey);
+    }
+    if (SortOrder != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SortOrder);
+    }
+    if (Owned != false) {
+      size += 1 + 1;
+    }
+    if (MallSkuId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MallSkuId);
+    }
+    if (AcquireHint.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(AcquireHint);
+    }
+    if (Desc.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Desc);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(PetCosmeticEntry other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ConfigId != 0) {
+      ConfigId = other.ConfigId;
+    }
+    if (other.CosmeticKey.Length != 0) {
+      CosmeticKey = other.CosmeticKey;
+    }
+    if (other.Name.Length != 0) {
+      Name = other.Name;
+    }
+    if (other.TargetPetTableId != 0) {
+      TargetPetTableId = other.TargetPetTableId;
+    }
+    if (other.VisualPetTableId != 0) {
+      VisualPetTableId = other.VisualPetTableId;
+    }
+    if (other.VisualArtKey.Length != 0) {
+      VisualArtKey = other.VisualArtKey;
+    }
+    if (other.SortOrder != 0) {
+      SortOrder = other.SortOrder;
+    }
+    if (other.Owned != false) {
+      Owned = other.Owned;
+    }
+    if (other.MallSkuId != 0UL) {
+      MallSkuId = other.MallSkuId;
+    }
+    if (other.AcquireHint.Length != 0) {
+      AcquireHint = other.AcquireHint;
+    }
+    if (other.Desc.Length != 0) {
+      Desc = other.Desc;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ConfigId = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          CosmeticKey = input.ReadString();
+          break;
+        }
+        case 26: {
+          Name = input.ReadString();
+          break;
+        }
+        case 32: {
+          TargetPetTableId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          VisualPetTableId = input.ReadUInt32();
+          break;
+        }
+        case 50: {
+          VisualArtKey = input.ReadString();
+          break;
+        }
+        case 56: {
+          SortOrder = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          Owned = input.ReadBool();
+          break;
+        }
+        case 72: {
+          MallSkuId = input.ReadUInt64();
+          break;
+        }
+        case 82: {
+          AcquireHint = input.ReadString();
+          break;
+        }
+        case 90: {
+          Desc = input.ReadString();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ConfigId = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          CosmeticKey = input.ReadString();
+          break;
+        }
+        case 26: {
+          Name = input.ReadString();
+          break;
+        }
+        case 32: {
+          TargetPetTableId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          VisualPetTableId = input.ReadUInt32();
+          break;
+        }
+        case 50: {
+          VisualArtKey = input.ReadString();
+          break;
+        }
+        case 56: {
+          SortOrder = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          Owned = input.ReadBool();
+          break;
+        }
+        case 72: {
+          MallSkuId = input.ReadUInt64();
+          break;
+        }
+        case 82: {
+          AcquireHint = input.ReadString();
+          break;
+        }
+        case 90: {
+          Desc = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 单只灵宠实例当前的权威幻化穿戴状态。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class PetEquippedCosmetic : pb::IMessage<PetEquippedCosmetic>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<PetEquippedCosmetic> _parser = new pb::MessageParser<PetEquippedCosmetic>(() => new PetEquippedCosmetic());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<PetEquippedCosmetic> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[4]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public PetEquippedCosmetic() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public PetEquippedCosmetic(PetEquippedCosmetic other) : this() {
+    petId_ = other.petId_;
+    cosmeticId_ = other.cosmeticId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public PetEquippedCosmetic Clone() {
+    return new PetEquippedCosmetic(this);
+  }
+
+  /// <summary>Field number for the "pet_id" field.</summary>
+  public const int PetIdFieldNumber = 1;
+  private ulong petId_;
+  /// <summary>
+  /// 灵宠实例永久 ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PetId {
+    get { return petId_; }
+    set {
+      petId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "cosmetic_id" field.</summary>
+  public const int CosmeticIdFieldNumber = 2;
+  private uint cosmeticId_;
+  /// <summary>
+  /// 当前生效的 PetCosmetic.id(0 = 原形)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CosmeticId {
+    get { return cosmeticId_; }
+    set {
+      cosmeticId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as PetEquippedCosmetic);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(PetEquippedCosmetic other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PetId != other.PetId) return false;
+    if (CosmeticId != other.CosmeticId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PetId != 0UL) hash ^= PetId.GetHashCode();
+    if (CosmeticId != 0) hash ^= CosmeticId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (PetId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(PetId);
+    }
+    if (CosmeticId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(CosmeticId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (PetId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(PetId);
+    }
+    if (CosmeticId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(CosmeticId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (PetId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PetId);
+    }
+    if (CosmeticId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CosmeticId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(PetEquippedCosmetic other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PetId != 0UL) {
+      PetId = other.PetId;
+    }
+    if (other.CosmeticId != 0) {
+      CosmeticId = other.CosmeticId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PetId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          CosmeticId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          PetId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          CosmeticId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 技能特效目录项（纯战斗画面表现，零数值/机制变更）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SkillVfxCosmeticEntry : pb::IMessage<SkillVfxCosmeticEntry>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SkillVfxCosmeticEntry> _parser = new pb::MessageParser<SkillVfxCosmeticEntry>(() => new SkillVfxCosmeticEntry());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SkillVfxCosmeticEntry> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[5]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SkillVfxCosmeticEntry() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SkillVfxCosmeticEntry(SkillVfxCosmeticEntry other) : this() {
+    configId_ = other.configId_;
+    vfxKey_ = other.vfxKey_;
+    name_ = other.name_;
+    skillTableId_ = other.skillTableId_;
+    fxId_ = other.fxId_;
+    projectileFxId_ = other.projectileFxId_;
+    telegraphFxId_ = other.telegraphFxId_;
+    tintHex_ = other.tintHex_;
+    sortOrder_ = other.sortOrder_;
+    owned_ = other.owned_;
+    mallSkuId_ = other.mallSkuId_;
+    acquireHint_ = other.acquireHint_;
+    desc_ = other.desc_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SkillVfxCosmeticEntry Clone() {
+    return new SkillVfxCosmeticEntry(this);
+  }
+
+  /// <summary>Field number for the "config_id" field.</summary>
+  public const int ConfigIdFieldNumber = 1;
+  private uint configId_;
+  /// <summary>
+  /// SkillVfxCosmetic.id(永久主键)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ConfigId {
+    get { return configId_; }
+    set {
+      configId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "vfx_key" field.</summary>
+  public const int VfxKeyFieldNumber = 2;
+  private string vfxKey_ = "";
+  /// <summary>
+  /// 稳定特效标识键
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string VfxKey {
+    get { return vfxKey_; }
+    set {
+      vfxKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "name" field.</summary>
+  public const int NameFieldNumber = 3;
+  private string name_ = "";
+  /// <summary>
+  /// 中文展示名
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Name {
+    get { return name_; }
+    set {
+      name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "skill_table_id" field.</summary>
+  public const int SkillTableIdFieldNumber = 4;
+  private uint skillTableId_;
+  /// <summary>
+  /// 适用技能 ID(Skill.id)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SkillTableId {
+    get { return skillTableId_; }
+    set {
+      skillTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "fx_id" field.</summary>
+  public const int FxIdFieldNumber = 5;
+  private string fxId_ = "";
+  /// <summary>
+  /// 主特效帧条 ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string FxId {
+    get { return fxId_; }
+    set {
+      fxId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "projectile_fx_id" field.</summary>
+  public const int ProjectileFxIdFieldNumber = 6;
+  private string projectileFxId_ = "";
+  /// <summary>
+  /// 可选飞行段帧条 ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string ProjectileFxId {
+    get { return projectileFxId_; }
+    set {
+      projectileFxId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "telegraph_fx_id" field.</summary>
+  public const int TelegraphFxIdFieldNumber = 7;
+  private string telegraphFxId_ = "";
+  /// <summary>
+  /// 可选预示段帧条 ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string TelegraphFxId {
+    get { return telegraphFxId_; }
+    set {
+      telegraphFxId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "tint_hex" field.</summary>
+  public const int TintHexFieldNumber = 8;
+  private string tintHex_ = "";
+  /// <summary>
+  /// 可选色调覆盖(#RRGGBB)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string TintHex {
+    get { return tintHex_; }
+    set {
+      tintHex_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "sort_order" field.</summary>
+  public const int SortOrderFieldNumber = 9;
+  private uint sortOrder_;
+  /// <summary>
+  /// 展示排序(升序)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SortOrder {
+    get { return sortOrder_; }
+    set {
+      sortOrder_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "owned" field.</summary>
+  public const int OwnedFieldNumber = 10;
+  private bool owned_;
+  /// <summary>
+  /// 是否已永久拥有
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Owned {
+    get { return owned_; }
+    set {
+      owned_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "mall_sku_id" field.</summary>
+  public const int MallSkuIdFieldNumber = 11;
+  private ulong mallSkuId_;
+  /// <summary>
+  /// 官方商城永久衣柜对应 SKU ID(0 = 非直售/未上架)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong MallSkuId {
+    get { return mallSkuId_; }
+    set {
+      mallSkuId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "acquire_hint" field.</summary>
+  public const int AcquireHintFieldNumber = 12;
+  private string acquireHint_ = "";
+  /// <summary>
+  /// 未拥有且未上架时展示的取得条件
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string AcquireHint {
+    get { return acquireHint_; }
+    set {
+      acquireHint_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "desc" field.</summary>
+  public const int DescFieldNumber = 13;
+  private string desc_ = "";
+  /// <summary>
+  /// 特效简述
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Desc {
+    get { return desc_; }
+    set {
+      desc_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SkillVfxCosmeticEntry);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SkillVfxCosmeticEntry other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ConfigId != other.ConfigId) return false;
+    if (VfxKey != other.VfxKey) return false;
+    if (Name != other.Name) return false;
+    if (SkillTableId != other.SkillTableId) return false;
+    if (FxId != other.FxId) return false;
+    if (ProjectileFxId != other.ProjectileFxId) return false;
+    if (TelegraphFxId != other.TelegraphFxId) return false;
+    if (TintHex != other.TintHex) return false;
+    if (SortOrder != other.SortOrder) return false;
+    if (Owned != other.Owned) return false;
+    if (MallSkuId != other.MallSkuId) return false;
+    if (AcquireHint != other.AcquireHint) return false;
+    if (Desc != other.Desc) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ConfigId != 0) hash ^= ConfigId.GetHashCode();
+    if (VfxKey.Length != 0) hash ^= VfxKey.GetHashCode();
+    if (Name.Length != 0) hash ^= Name.GetHashCode();
+    if (SkillTableId != 0) hash ^= SkillTableId.GetHashCode();
+    if (FxId.Length != 0) hash ^= FxId.GetHashCode();
+    if (ProjectileFxId.Length != 0) hash ^= ProjectileFxId.GetHashCode();
+    if (TelegraphFxId.Length != 0) hash ^= TelegraphFxId.GetHashCode();
+    if (TintHex.Length != 0) hash ^= TintHex.GetHashCode();
+    if (SortOrder != 0) hash ^= SortOrder.GetHashCode();
+    if (Owned != false) hash ^= Owned.GetHashCode();
+    if (MallSkuId != 0UL) hash ^= MallSkuId.GetHashCode();
+    if (AcquireHint.Length != 0) hash ^= AcquireHint.GetHashCode();
+    if (Desc.Length != 0) hash ^= Desc.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ConfigId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ConfigId);
+    }
+    if (VfxKey.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(VfxKey);
+    }
+    if (Name.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(Name);
+    }
+    if (SkillTableId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(SkillTableId);
+    }
+    if (FxId.Length != 0) {
+      output.WriteRawTag(42);
+      output.WriteString(FxId);
+    }
+    if (ProjectileFxId.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(ProjectileFxId);
+    }
+    if (TelegraphFxId.Length != 0) {
+      output.WriteRawTag(58);
+      output.WriteString(TelegraphFxId);
+    }
+    if (TintHex.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(TintHex);
+    }
+    if (SortOrder != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(SortOrder);
+    }
+    if (Owned != false) {
+      output.WriteRawTag(80);
+      output.WriteBool(Owned);
+    }
+    if (MallSkuId != 0UL) {
+      output.WriteRawTag(88);
+      output.WriteUInt64(MallSkuId);
+    }
+    if (AcquireHint.Length != 0) {
+      output.WriteRawTag(98);
+      output.WriteString(AcquireHint);
+    }
+    if (Desc.Length != 0) {
+      output.WriteRawTag(106);
+      output.WriteString(Desc);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ConfigId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ConfigId);
+    }
+    if (VfxKey.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(VfxKey);
+    }
+    if (Name.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(Name);
+    }
+    if (SkillTableId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(SkillTableId);
+    }
+    if (FxId.Length != 0) {
+      output.WriteRawTag(42);
+      output.WriteString(FxId);
+    }
+    if (ProjectileFxId.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(ProjectileFxId);
+    }
+    if (TelegraphFxId.Length != 0) {
+      output.WriteRawTag(58);
+      output.WriteString(TelegraphFxId);
+    }
+    if (TintHex.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(TintHex);
+    }
+    if (SortOrder != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(SortOrder);
+    }
+    if (Owned != false) {
+      output.WriteRawTag(80);
+      output.WriteBool(Owned);
+    }
+    if (MallSkuId != 0UL) {
+      output.WriteRawTag(88);
+      output.WriteUInt64(MallSkuId);
+    }
+    if (AcquireHint.Length != 0) {
+      output.WriteRawTag(98);
+      output.WriteString(AcquireHint);
+    }
+    if (Desc.Length != 0) {
+      output.WriteRawTag(106);
+      output.WriteString(Desc);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ConfigId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ConfigId);
+    }
+    if (VfxKey.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(VfxKey);
+    }
+    if (Name.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+    }
+    if (SkillTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SkillTableId);
+    }
+    if (FxId.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(FxId);
+    }
+    if (ProjectileFxId.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(ProjectileFxId);
+    }
+    if (TelegraphFxId.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(TelegraphFxId);
+    }
+    if (TintHex.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(TintHex);
+    }
+    if (SortOrder != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SortOrder);
+    }
+    if (Owned != false) {
+      size += 1 + 1;
+    }
+    if (MallSkuId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MallSkuId);
+    }
+    if (AcquireHint.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(AcquireHint);
+    }
+    if (Desc.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Desc);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SkillVfxCosmeticEntry other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ConfigId != 0) {
+      ConfigId = other.ConfigId;
+    }
+    if (other.VfxKey.Length != 0) {
+      VfxKey = other.VfxKey;
+    }
+    if (other.Name.Length != 0) {
+      Name = other.Name;
+    }
+    if (other.SkillTableId != 0) {
+      SkillTableId = other.SkillTableId;
+    }
+    if (other.FxId.Length != 0) {
+      FxId = other.FxId;
+    }
+    if (other.ProjectileFxId.Length != 0) {
+      ProjectileFxId = other.ProjectileFxId;
+    }
+    if (other.TelegraphFxId.Length != 0) {
+      TelegraphFxId = other.TelegraphFxId;
+    }
+    if (other.TintHex.Length != 0) {
+      TintHex = other.TintHex;
+    }
+    if (other.SortOrder != 0) {
+      SortOrder = other.SortOrder;
+    }
+    if (other.Owned != false) {
+      Owned = other.Owned;
+    }
+    if (other.MallSkuId != 0UL) {
+      MallSkuId = other.MallSkuId;
+    }
+    if (other.AcquireHint.Length != 0) {
+      AcquireHint = other.AcquireHint;
+    }
+    if (other.Desc.Length != 0) {
+      Desc = other.Desc;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ConfigId = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          VfxKey = input.ReadString();
+          break;
+        }
+        case 26: {
+          Name = input.ReadString();
+          break;
+        }
+        case 32: {
+          SkillTableId = input.ReadUInt32();
+          break;
+        }
+        case 42: {
+          FxId = input.ReadString();
+          break;
+        }
+        case 50: {
+          ProjectileFxId = input.ReadString();
+          break;
+        }
+        case 58: {
+          TelegraphFxId = input.ReadString();
+          break;
+        }
+        case 66: {
+          TintHex = input.ReadString();
+          break;
+        }
+        case 72: {
+          SortOrder = input.ReadUInt32();
+          break;
+        }
+        case 80: {
+          Owned = input.ReadBool();
+          break;
+        }
+        case 88: {
+          MallSkuId = input.ReadUInt64();
+          break;
+        }
+        case 98: {
+          AcquireHint = input.ReadString();
+          break;
+        }
+        case 106: {
+          Desc = input.ReadString();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ConfigId = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          VfxKey = input.ReadString();
+          break;
+        }
+        case 26: {
+          Name = input.ReadString();
+          break;
+        }
+        case 32: {
+          SkillTableId = input.ReadUInt32();
+          break;
+        }
+        case 42: {
+          FxId = input.ReadString();
+          break;
+        }
+        case 50: {
+          ProjectileFxId = input.ReadString();
+          break;
+        }
+        case 58: {
+          TelegraphFxId = input.ReadString();
+          break;
+        }
+        case 66: {
+          TintHex = input.ReadString();
+          break;
+        }
+        case 72: {
+          SortOrder = input.ReadUInt32();
+          break;
+        }
+        case 80: {
+          Owned = input.ReadBool();
+          break;
+        }
+        case 88: {
+          MallSkuId = input.ReadUInt64();
+          break;
+        }
+        case 98: {
+          AcquireHint = input.ReadString();
+          break;
+        }
+        case 106: {
+          Desc = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 为指定灵宠实例穿戴或清除幻化外观（cosmetic_id = 0 表示恢复原形；纯幂等收敛）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class EquipPetCosmeticRequest : pb::IMessage<EquipPetCosmeticRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<EquipPetCosmeticRequest> _parser = new pb::MessageParser<EquipPetCosmeticRequest>(() => new EquipPetCosmeticRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<EquipPetCosmeticRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[6]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipPetCosmeticRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipPetCosmeticRequest(EquipPetCosmeticRequest other) : this() {
+    clientRequestId_ = other.clientRequestId_;
+    petId_ = other.petId_;
+    cosmeticId_ = other.cosmeticId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipPetCosmeticRequest Clone() {
+    return new EquipPetCosmeticRequest(this);
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 1;
+  private ulong clientRequestId_;
+  /// <summary>
+  /// 必须非 0
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pet_id" field.</summary>
+  public const int PetIdFieldNumber = 2;
+  private ulong petId_;
+  /// <summary>
+  /// 目标灵宠实例永久 ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PetId {
+    get { return petId_; }
+    set {
+      petId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "cosmetic_id" field.</summary>
+  public const int CosmeticIdFieldNumber = 3;
+  private uint cosmeticId_;
+  /// <summary>
+  /// 目标 PetCosmetic.id；0 = 恢复原形
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CosmeticId {
+    get { return cosmeticId_; }
+    set {
+      cosmeticId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as EquipPetCosmeticRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(EquipPetCosmeticRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ClientRequestId != other.ClientRequestId) return false;
+    if (PetId != other.PetId) return false;
+    if (CosmeticId != other.CosmeticId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
+    if (PetId != 0UL) hash ^= PetId.GetHashCode();
+    if (CosmeticId != 0) hash ^= CosmeticId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (PetId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(PetId);
+    }
+    if (CosmeticId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(CosmeticId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (PetId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(PetId);
+    }
+    if (CosmeticId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(CosmeticId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ClientRequestId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
+    }
+    if (PetId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PetId);
+    }
+    if (CosmeticId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CosmeticId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(EquipPetCosmeticRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ClientRequestId != 0UL) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    if (other.PetId != 0UL) {
+      PetId = other.PetId;
+    }
+    if (other.CosmeticId != 0) {
+      CosmeticId = other.CosmeticId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          PetId = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          CosmeticId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          PetId = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          CosmeticId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class EquipPetCosmeticResponse : pb::IMessage<EquipPetCosmeticResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<EquipPetCosmeticResponse> _parser = new pb::MessageParser<EquipPetCosmeticResponse>(() => new EquipPetCosmeticResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<EquipPetCosmeticResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[7]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipPetCosmeticResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipPetCosmeticResponse(EquipPetCosmeticResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    info_ = other.info_ != null ? other.info_.Clone() : null;
+    petId_ = other.petId_;
+    equippedCosmeticId_ = other.equippedCosmeticId_;
+    replayed_ = other.replayed_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipPetCosmeticResponse Clone() {
+    return new EquipPetCosmeticResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "info" field.</summary>
+  public const int InfoFieldNumber = 2;
+  private global::PlayerAppearanceInfo info_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::PlayerAppearanceInfo Info {
+    get { return info_; }
+    set {
+      info_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pet_id" field.</summary>
+  public const int PetIdFieldNumber = 3;
+  private ulong petId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PetId {
+    get { return petId_; }
+    set {
+      petId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "equipped_cosmetic_id" field.</summary>
+  public const int EquippedCosmeticIdFieldNumber = 4;
+  private uint equippedCosmeticId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EquippedCosmeticId {
+    get { return equippedCosmeticId_; }
+    set {
+      equippedCosmeticId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "replayed" field.</summary>
+  public const int ReplayedFieldNumber = 5;
+  private bool replayed_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Replayed {
+    get { return replayed_; }
+    set {
+      replayed_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as EquipPetCosmeticResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(EquipPetCosmeticResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (!object.Equals(Info, other.Info)) return false;
+    if (PetId != other.PetId) return false;
+    if (EquippedCosmeticId != other.EquippedCosmeticId) return false;
+    if (Replayed != other.Replayed) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (info_ != null) hash ^= Info.GetHashCode();
+    if (PetId != 0UL) hash ^= PetId.GetHashCode();
+    if (EquippedCosmeticId != 0) hash ^= EquippedCosmeticId.GetHashCode();
+    if (Replayed != false) hash ^= Replayed.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (info_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(Info);
+    }
+    if (PetId != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(PetId);
+    }
+    if (EquippedCosmeticId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(EquippedCosmeticId);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(40);
+      output.WriteBool(Replayed);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (info_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(Info);
+    }
+    if (PetId != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(PetId);
+    }
+    if (EquippedCosmeticId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(EquippedCosmeticId);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(40);
+      output.WriteBool(Replayed);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (info_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Info);
+    }
+    if (PetId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PetId);
+    }
+    if (EquippedCosmeticId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(EquippedCosmeticId);
+    }
+    if (Replayed != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(EquipPetCosmeticResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.info_ != null) {
+      if (info_ == null) {
+        Info = new global::PlayerAppearanceInfo();
+      }
+      Info.MergeFrom(other.Info);
+    }
+    if (other.PetId != 0UL) {
+      PetId = other.PetId;
+    }
+    if (other.EquippedCosmeticId != 0) {
+      EquippedCosmeticId = other.EquippedCosmeticId;
+    }
+    if (other.Replayed != false) {
+      Replayed = other.Replayed;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (info_ == null) {
+            Info = new global::PlayerAppearanceInfo();
+          }
+          input.ReadMessage(Info);
+          break;
+        }
+        case 24: {
+          PetId = input.ReadUInt64();
+          break;
+        }
+        case 32: {
+          EquippedCosmeticId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          Replayed = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (info_ == null) {
+            Info = new global::PlayerAppearanceInfo();
+          }
+          input.ReadMessage(Info);
+          break;
+        }
+        case 24: {
+          PetId = input.ReadUInt64();
+          break;
+        }
+        case 32: {
+          EquippedCosmeticId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          Replayed = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 为指定技能启用或恢复默认特效（cosmetic_id = 0 表示恢复默认；纯幂等收敛）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class EquipSkillVfxRequest : pb::IMessage<EquipSkillVfxRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<EquipSkillVfxRequest> _parser = new pb::MessageParser<EquipSkillVfxRequest>(() => new EquipSkillVfxRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<EquipSkillVfxRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[8]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipSkillVfxRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipSkillVfxRequest(EquipSkillVfxRequest other) : this() {
+    clientRequestId_ = other.clientRequestId_;
+    skillTableId_ = other.skillTableId_;
+    cosmeticId_ = other.cosmeticId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipSkillVfxRequest Clone() {
+    return new EquipSkillVfxRequest(this);
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 1;
+  private ulong clientRequestId_;
+  /// <summary>
+  /// 必须非 0
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "skill_table_id" field.</summary>
+  public const int SkillTableIdFieldNumber = 2;
+  private uint skillTableId_;
+  /// <summary>
+  /// 目标技能 ID(Skill.id)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SkillTableId {
+    get { return skillTableId_; }
+    set {
+      skillTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "cosmetic_id" field.</summary>
+  public const int CosmeticIdFieldNumber = 3;
+  private uint cosmeticId_;
+  /// <summary>
+  /// 目标 SkillVfxCosmetic.id；0 = 恢复默认
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CosmeticId {
+    get { return cosmeticId_; }
+    set {
+      cosmeticId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as EquipSkillVfxRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(EquipSkillVfxRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ClientRequestId != other.ClientRequestId) return false;
+    if (SkillTableId != other.SkillTableId) return false;
+    if (CosmeticId != other.CosmeticId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
+    if (SkillTableId != 0) hash ^= SkillTableId.GetHashCode();
+    if (CosmeticId != 0) hash ^= CosmeticId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (SkillTableId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(SkillTableId);
+    }
+    if (CosmeticId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(CosmeticId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (SkillTableId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(SkillTableId);
+    }
+    if (CosmeticId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(CosmeticId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ClientRequestId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
+    }
+    if (SkillTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SkillTableId);
+    }
+    if (CosmeticId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CosmeticId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(EquipSkillVfxRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ClientRequestId != 0UL) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    if (other.SkillTableId != 0) {
+      SkillTableId = other.SkillTableId;
+    }
+    if (other.CosmeticId != 0) {
+      CosmeticId = other.CosmeticId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          SkillTableId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          CosmeticId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          SkillTableId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          CosmeticId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class EquipSkillVfxResponse : pb::IMessage<EquipSkillVfxResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<EquipSkillVfxResponse> _parser = new pb::MessageParser<EquipSkillVfxResponse>(() => new EquipSkillVfxResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<EquipSkillVfxResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[9]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipSkillVfxResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipSkillVfxResponse(EquipSkillVfxResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    info_ = other.info_ != null ? other.info_.Clone() : null;
+    skillTableId_ = other.skillTableId_;
+    equippedCosmeticId_ = other.equippedCosmeticId_;
+    replayed_ = other.replayed_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipSkillVfxResponse Clone() {
+    return new EquipSkillVfxResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "info" field.</summary>
+  public const int InfoFieldNumber = 2;
+  private global::PlayerAppearanceInfo info_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::PlayerAppearanceInfo Info {
+    get { return info_; }
+    set {
+      info_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "skill_table_id" field.</summary>
+  public const int SkillTableIdFieldNumber = 3;
+  private uint skillTableId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SkillTableId {
+    get { return skillTableId_; }
+    set {
+      skillTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "equipped_cosmetic_id" field.</summary>
+  public const int EquippedCosmeticIdFieldNumber = 4;
+  private uint equippedCosmeticId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EquippedCosmeticId {
+    get { return equippedCosmeticId_; }
+    set {
+      equippedCosmeticId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "replayed" field.</summary>
+  public const int ReplayedFieldNumber = 5;
+  private bool replayed_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Replayed {
+    get { return replayed_; }
+    set {
+      replayed_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as EquipSkillVfxResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(EquipSkillVfxResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (!object.Equals(Info, other.Info)) return false;
+    if (SkillTableId != other.SkillTableId) return false;
+    if (EquippedCosmeticId != other.EquippedCosmeticId) return false;
+    if (Replayed != other.Replayed) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (info_ != null) hash ^= Info.GetHashCode();
+    if (SkillTableId != 0) hash ^= SkillTableId.GetHashCode();
+    if (EquippedCosmeticId != 0) hash ^= EquippedCosmeticId.GetHashCode();
+    if (Replayed != false) hash ^= Replayed.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (info_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(Info);
+    }
+    if (SkillTableId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(SkillTableId);
+    }
+    if (EquippedCosmeticId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(EquippedCosmeticId);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(40);
+      output.WriteBool(Replayed);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (info_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(Info);
+    }
+    if (SkillTableId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(SkillTableId);
+    }
+    if (EquippedCosmeticId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(EquippedCosmeticId);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(40);
+      output.WriteBool(Replayed);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (info_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Info);
+    }
+    if (SkillTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SkillTableId);
+    }
+    if (EquippedCosmeticId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(EquippedCosmeticId);
+    }
+    if (Replayed != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(EquipSkillVfxResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.info_ != null) {
+      if (info_ == null) {
+        Info = new global::PlayerAppearanceInfo();
+      }
+      Info.MergeFrom(other.Info);
+    }
+    if (other.SkillTableId != 0) {
+      SkillTableId = other.SkillTableId;
+    }
+    if (other.EquippedCosmeticId != 0) {
+      EquippedCosmeticId = other.EquippedCosmeticId;
+    }
+    if (other.Replayed != false) {
+      Replayed = other.Replayed;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (info_ == null) {
+            Info = new global::PlayerAppearanceInfo();
+          }
+          input.ReadMessage(Info);
+          break;
+        }
+        case 24: {
+          SkillTableId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          EquippedCosmeticId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          Replayed = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (info_ == null) {
+            Info = new global::PlayerAppearanceInfo();
+          }
+          input.ReadMessage(Info);
+          break;
+        }
+        case 24: {
+          SkillTableId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          EquippedCosmeticId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          Replayed = input.ReadBool();
+          break;
+        }
       }
     }
   }
@@ -1888,7 +4954,7 @@ public sealed partial class GetAppearanceInfoRequest : pb::IMessage<GetAppearanc
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[3]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[10]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2049,7 +5115,7 @@ public sealed partial class GetAppearanceInfoResponse : pb::IMessage<GetAppearan
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[4]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2305,7 +5371,7 @@ public sealed partial class SwitchAppearanceRequest : pb::IMessage<SwitchAppeara
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[5]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2586,7 +5652,7 @@ public sealed partial class SwitchAppearanceResponse : pb::IMessage<SwitchAppear
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[6]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[13]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2879,7 +5945,7 @@ public sealed partial class StartAppearanceTrialRequest : pb::IMessage<StartAppe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[7]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[14]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3120,7 +6186,7 @@ public sealed partial class StartAppearanceTrialResponse : pb::IMessage<StartApp
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[8]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[15]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3413,7 +6479,7 @@ public sealed partial class CancelAppearanceTrialRequest : pb::IMessage<CancelAp
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[9]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[16]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3574,7 +6640,7 @@ public sealed partial class CancelAppearanceTrialResponse : pb::IMessage<CancelA
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[10]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[17]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3830,7 +6896,7 @@ public sealed partial class ActorAppearanceChangedS2C : pb::IMessage<ActorAppear
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[11]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[18]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4194,7 +7260,7 @@ public sealed partial class AppearanceStateNotify : pb::IMessage<AppearanceState
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[12]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[19]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

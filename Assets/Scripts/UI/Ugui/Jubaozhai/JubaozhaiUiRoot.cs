@@ -149,10 +149,26 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         /// <summary>快捷跳转到聚宝斋官方商城页签（供角色形象切换面板购买 10 元角色形象卡使用）。</summary>
         public void OpenOfficialMall()
         {
+            OpenOfficialMallSubTab(OfficialShopTab.LightCard);
+        }
+
+        /// <summary>快捷跳转到聚宝斋官方商城指定子页签（如衣柜灵宠/特效直跳「永久衣柜」）。</summary>
+        public void OpenOfficialMallSubTab(OfficialShopTab subTab)
+        {
             if (!HasView || !_available) return;
             CityPanelRegistry.HideOthers(this);
             _window.Hide();
-            _commerceWindow.ShowTab(0);
+            _commerceWindow.ShowOfficialShopSubTab((int)subTab);
+        }
+
+        /// <summary>查询服务端官方商城是否已返回该 SKU 且当前有可售库存。</summary>
+        public bool HasSellableOfficialSku(ulong skuId) => _commerce != null && _commerce.HasSellableOfficialSku(skuId);
+
+        /// <summary>在衣柜打开时按需同步官方商城在售 SKU 列表（不弹出商城窗）。</summary>
+        public void RequestOfficialSkusRefresh()
+        {
+            if (!_available || _commerce == null || _commerce.Busy || _commerce.RequiresReconnect) return;
+            _commerce.ListSkus(0ul);
         }
         private void OnPaymentSettled(string _) => RefreshAssets();
         private void RefreshAssets()

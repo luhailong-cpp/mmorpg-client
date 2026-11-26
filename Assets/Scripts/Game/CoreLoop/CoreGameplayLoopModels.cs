@@ -226,7 +226,134 @@ namespace MmorpgClient.Game.CoreLoop
         }
     }
 
-    /// <summary>战斗内核心玩法 HUD 派生视图（预告 + 首领试炼 V2 破绽/蓄势/护势/二阶段 + 物法易势换势条 + 护卫救援保全目标）。</summary>
+    /// <summary>首领试炼「周常五行词缀」只读展示视图（纯 C# 零 UnityEngine 依赖；战前按服务端周历预览，战中严格读取 BattleStateS2C.BossWeeklyAffixId）。</summary>
+    public sealed class BossTrialWeeklyAffixView
+    {
+        public uint AffixId { get; }
+        public string ElementKey { get; }
+        public string ElementTag { get; }
+        public string Title { get; }
+        public string BoonText { get; }
+        public string ChallengeText { get; }
+        public string RecommendedLoadoutHint { get; }
+        public string ShortChipText { get; }
+        public string ResetCountdownText { get; }
+
+        public BossTrialWeeklyAffixView(
+            uint affixId,
+            string elementKey,
+            string elementTag,
+            string title,
+            string boonText,
+            string challengeText,
+            string recommendedLoadoutHint,
+            string shortChipText,
+            string resetCountdownText = "")
+        {
+            AffixId = affixId;
+            ElementKey = elementKey ?? "";
+            ElementTag = elementTag ?? "";
+            Title = title ?? "";
+            BoonText = boonText ?? "";
+            ChallengeText = challengeText ?? "";
+            RecommendedLoadoutHint = recommendedLoadoutHint ?? "";
+            ShortChipText = shortChipText ?? "";
+            ResetCountdownText = resetCountdownText ?? "";
+        }
+    }
+
+    /// <summary>首领试炼周常五行词缀纯目录与 UTC+8 周一 05:00 确定性映射（与 C++/Java 双服逐毫秒一致）。</summary>
+    public static class BossTrialWeeklyAffixCatalog
+    {
+        public const ulong DayMs = 86_400_000UL;
+        public const ulong WeekMs = 7UL * DayMs;
+        public const ulong FirstMonday05Utc8Ms = 3UL * DayMs + 21UL * 3_600_000UL;
+        public const uint MaxAffixId = 5u;
+
+        public static uint AffixIdForTimestamp(ulong nowMs)
+        {
+            if (nowMs < FirstMonday05Utc8Ms) return 0u;
+            ulong weekIndex = (nowMs - FirstMonday05Utc8Ms) / WeekMs;
+            return (uint)((weekIndex % MaxAffixId) + 1UL);
+        }
+
+        public static ulong NextWeekResetAtMs(ulong nowMs)
+        {
+            if (nowMs < FirstMonday05Utc8Ms) return FirstMonday05Utc8Ms;
+            ulong weekIndex = (nowMs - FirstMonday05Utc8Ms) / WeekMs;
+            return FirstMonday05Utc8Ms + (weekIndex + 1UL) * WeekMs;
+        }
+
+        public static string FormatResetCountdown(ulong nowMs, ulong nextResetMs)
+        {
+            if (nextResetMs <= nowMs) return "即将轮换";
+            ulong remainSec = (nextResetMs - nowMs) / 1000UL;
+            ulong days = remainSec / 86400UL;
+            ulong hours = (remainSec % 86400UL) / 3600UL;
+            if (days > 0UL) return $"{days}天{hours}小时后轮换";
+            ulong mins = (remainSec % 3600UL) / 60UL;
+            return hours > 0UL ? $"{hours}小时{mins}分后轮换" : $"{Math.Max(1UL, mins)}分钟后轮换";
+        }
+
+        public static BossTrialWeeklyAffixView Describe(uint affixId, ulong nowMs = 0ul, ulong explicitNextResetMs = 0ul)
+        {
+            if (affixId < 1u || affixId > MaxAffixId) return null;
+            string countdown = "";
+            if (nowMs >= FirstMonday05Utc8Ms)
+            {
+                ulong nextReset = explicitNextResetMs > nowMs ? explicitNextResetMs : NextWeekResetAtMs(nowMs);
+                countdown = FormatResetCountdown(nowMs, nextReset);
+            }
+            return affixId switch
+            {
+                1u => new BossTrialWeeklyAffixView(
+                    1u, "metal", "金", "金 · 锋芒破阵周",
+                    "攻破绽暴击 +15% · 主目标聚火 +10%",
+                    "敌方开局获 8% 金甲护盾",
+                    "破绽爆发/破甲方案 + 单点破盾宠",
+                    "周常【金·锋芒破阵】破绽暴+15%/主点+10% · 敌开局8%盾",
+                    countdown),
+                2u => new BossTrialWeeklyAffixView(
+                    2u, "wood", "木", "木 · 灵脉涤尘周",
+                    "驱散/净化回 12% 法力 · 全队两回合 +10% 伤害",
+                    "首领第 2/5/8 回合末未受控且未断疗时回 4% 血",
+                    "驱散 A34 / 断脉 A35 方案 + 净化灵宠",
+                    "周常【木·灵脉涤尘】驱散回蓝12%/全伤+10% · 首领周期回血",
+                    countdown),
+                3u => new BossTrialWeeklyAffixView(
+                    3u, "water", "水", "水 · 蓄势聚灵周",
+                    "明牌蓄力技与毒火伤害 +20% · 对应技能耗蓝 -20%",
+                    "首领偶数回合末未被控锁时额外 +1 层蓄势",
+                    "蓄力爆发(E01/E02)/毒火方案 + 驱散副手",
+                    "周常【水·蓄势聚灵】蓄力/毒火+20%省蓝20% · 首领偶回蓄势",
+                    countdown),
+                4u => new BossTrialWeeklyAffixView(
+                    4u, "fire", "火", "火 · 烈焰连携周",
+                    "灵宠直攻/人物追击 +18% · 打破绽附 3% 灼伤(封顶1200)",
+                    "首领 <=60% 气血提前进入二阶段破釜",
+                    "猛攻/连击灵宠方案 + 追击爆发方案",
+                    "周常【火·烈焰连携】宠/追击+18%破绽灼伤 · 首领60%破釜",
+                    countdown),
+                5u => new BossTrialWeeklyAffixView(
+                    5u, "earth", "土", "土 · 守御反震周",
+                    "化劲破绽赐全队 8% 护盾 · 下回合全伤 +12%",
+                    "首领慢重劈与强法重击基础伤害 +12%",
+                    "守御/双罩/反震方案 + 护主铁壁宠",
+                    "周常【土·守御反震】化劲赐全队8%盾/+12%伤 · 重劈+12%",
+                    countdown),
+                _ => null,
+            };
+        }
+
+        public static BossTrialWeeklyAffixView ForTimestamp(ulong nowMs, ulong explicitWeekStartMs = 0ul, ulong explicitNextResetMs = 0ul)
+        {
+            ulong anchorMs = explicitWeekStartMs >= FirstMonday05Utc8Ms ? explicitWeekStartMs : nowMs;
+            uint id = AffixIdForTimestamp(anchorMs);
+            return Describe(id, nowMs, explicitNextResetMs);
+        }
+    }
+
+    /// <summary>战斗内核心玩法 HUD 派生视图（预告 + 首领试炼 V2 破绽/蓄势/护势/二阶段/周常词缀 + 物法易势换势条 + 护卫救援保全目标）。</summary>
     public sealed class BattleCoreHudView
     {
         public uint RoundIndex { get; }
@@ -246,6 +373,8 @@ namespace MmorpgClient.Game.CoreLoop
         public uint BattleDifficulty { get; }
         public string BossPhaseBannerText { get; }
         public string BossStatusSummaryText { get; }
+        public uint BossWeeklyAffixId { get; }
+        public BossTrialWeeklyAffixView BossWeeklyAffix { get; }
 
         public bool HasTelegraphs => Telegraphs != null && Telegraphs.Count > 0;
         public bool HasPolarity => ActivePolarity != 0;
@@ -254,6 +383,7 @@ namespace MmorpgClient.Game.CoreLoop
         public bool IsBossPhaseTwo => BossPhase >= 2u;
         public bool IsBossExposed => BossExposedPct > 0u;
         public bool HasBossStance => BossStanceType != 0u && BossStanceRemainRounds > 0u;
+        public bool HasBossWeeklyAffix => BossWeeklyAffix != null && BossWeeklyAffixId != 0u;
 
         public BattleCoreHudView(
             uint roundIndex,
@@ -272,7 +402,8 @@ namespace MmorpgClient.Game.CoreLoop
             uint bossTrialKind = 0u,
             uint battleDifficulty = 0u,
             string bossPhaseBannerText = "",
-            string bossStatusSummaryText = "")
+            string bossStatusSummaryText = "",
+            uint bossWeeklyAffixId = 0u)
         {
             RoundIndex = roundIndex;
             Telegraphs = telegraphs;
@@ -291,6 +422,8 @@ namespace MmorpgClient.Game.CoreLoop
             BattleDifficulty = battleDifficulty;
             BossPhaseBannerText = bossPhaseBannerText ?? "";
             BossStatusSummaryText = bossStatusSummaryText ?? "";
+            BossWeeklyAffixId = bossWeeklyAffixId;
+            BossWeeklyAffix = BossTrialWeeklyAffixCatalog.Describe(bossWeeklyAffixId);
         }
     }
 
@@ -675,7 +808,8 @@ namespace MmorpgClient.Game.CoreLoop
                 state.BossTrialKind,
                 state.BattleDifficulty,
                 bossPhaseBanner,
-                bossStatusSummary);
+                bossStatusSummary,
+                state.BossWeeklyAffixId);
         }
 
         public static string TelegraphIntentTitle(uint intentKind) => intentKind switch
@@ -767,6 +901,9 @@ namespace MmorpgClient.Game.CoreLoop
                 7u => new BossMechanicBannerView(7u, "破军破甲 -20%", "目标防御降低 20%（持续 2 回合，可净化）", ev.Value, false),
                 8u => new BossMechanicBannerView(8u, "回春净益", "困难回春顺手清除了首领 1 项减益状态", ev.Value, false),
                 9u => new BossMechanicBannerView(9u, "断脉气馁 -15%", "回春被断脉咒压制，首领下回合物攻降低 15%", ev.Value, true),
+                10u => new BossMechanicBannerView(10u, "周常五行词缀生效",
+                    ev.Value > 0ul ? $"触发本周首领试炼五行机制（效果 +{ev.Value}）" : "触发本周首领试炼五行机制",
+                    ev.Value, true),
                 _ => new BossMechanicBannerView(ev.MechanicKind, "首领机制触发", "", ev.Value, false),
             };
         }
@@ -1097,11 +1234,11 @@ namespace MmorpgClient.Game.CoreLoop
             }
             else if (total == 0u)
             {
-                headline = weeklyActive
-                    ? $"本周精进绑定额度已达上限（{earnedWeek}/{weeklyLimit}）"
-                    : (lifetimeEarned >= lifetimeLimit
-                        ? $"首套永久材料额度已满（{lifetimeEarned}/{lifetimeLimit}）"
-                        : "本局无材料额度新增");
+                headline = "本局无材料额度新增";
+                if (weeklyActive && earnedWeek >= weeklyLimit)
+                    headline = $"本周精进材料额度已达上限（{earnedWeek}/{weeklyLimit}）";
+                else if (!weeklyActive && lifetimeEarned >= lifetimeLimit)
+                    headline = $"首套永久材料额度已满（{lifetimeEarned}/{lifetimeLimit}）";
                 detail = "正式评分、试炼志与赛季印进度不受材料封顶影响。";
             }
             else
@@ -1137,14 +1274,14 @@ namespace MmorpgClient.Game.CoreLoop
             if (materialLedger != null && materialLedger.WeeklyPhaseActive)
             {
                 uint weekLimit = materialLedger.WeeklyLimit != 0 ? materialLedger.WeeklyLimit : 150u;
-                matLabel = "周精进绑定材料";
+                matLabel = "周精进材料";
                 matValue = $"{materialLedger.EarnedThisWeek}/{weekLimit}（待领 {claimable}）";
             }
             else
             {
                 uint lifeLimit = materialLedger != null && materialLedger.LifetimeLimit != 0 ? materialLedger.LifetimeLimit : 660u;
                 uint lifeEarned = materialLedger?.LifetimeEarned ?? 0u;
-                matLabel = "永久首套材料";
+                matLabel = "永久首套材料 · 账号可交易";
                 matValue = $"{lifeEarned}/{lifeLimit}（待领 {claimable}）";
             }
 

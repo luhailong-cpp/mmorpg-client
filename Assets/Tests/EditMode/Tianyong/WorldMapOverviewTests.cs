@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Reflection;
 using MmorpgClient.Game.MysteryMerchant;
 using MmorpgClient.Game.WorldTravel;
 using MmorpgClient.Net;
@@ -199,6 +201,62 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void CityTravelHudBadge_DismissesCurrentRoundAndReturnsNextRound()
+        {
+            var previousHudNavigation = WorldHudNavigation.Instance;
+            var host = new GameObject("CityTravelHudBadgeTest");
+            var transport = new SceneChannelFakeTransport();
+            using var client = new SceneChannelClient(transport, () => transport.Identity, () => 100, () => 1);
+            try
+            {
+                var root = host.AddComponent<CityTravelUiRoot>();
+                const BindingFlags privateInstance = BindingFlags.Instance | BindingFlags.NonPublic;
+                if (root.Window == null) typeof(CityTravelUiRoot).GetMethod("Awake", privateInstance).Invoke(root, null);
+                typeof(CityTravelUiRoot).GetMethod("BindChannelClient", privateInstance).Invoke(root, new object[] { client });
+                var badge = host.GetComponentsInChildren<UnityEngine.UI.Image>(true)
+                    .Single(image => image.name == "WorldMapEntryTideBadge");
+                Assert.That(badge.transform.parent.name, Is.EqualTo("CityTravelEntry"));
+                Assert.That(badge.sprite.name, Is.EqualTo("hud_tide_dot"));
+                Assert.That(badge.raycastTarget, Is.False);
+                Assert.That(badge.gameObject.activeSelf, Is.False);
+
+                PushTide(3600, true);
+                Assert.That(badge.gameObject.activeSelf, Is.True);
+                root.MarkCurrentTideSeen();
+                Assert.That(badge.gameObject.activeSelf, Is.False);
+                PushTide(3600, true);
+                Assert.That(badge.gameObject.activeSelf, Is.False);
+                PushTide(7200, true);
+                Assert.That(badge.gameObject.activeSelf, Is.True);
+                PushTide(7200, false);
+                Assert.That(badge.gameObject.activeSelf, Is.False);
+                PushTide(10800, true);
+                transport.Disconnect();
+                Assert.That(badge.gameObject.activeSelf, Is.False);
+            }
+            finally
+            {
+                Object.DestroyImmediate(host);
+                if (previousHudNavigation == null && WorldHudNavigation.Instance != null)
+                    Object.DestroyImmediate(WorldHudNavigation.Instance.gameObject);
+            }
+
+            void PushTide(ulong roundId, bool active)
+            {
+                var message = new SceneInfoS2C
+                {
+                    WorldMapOverview = new global::WorldMapOverview
+                    {
+                        ZoneId = 1,
+                        Tide = new global::WorldTideSnapshot { RoundId = roundId, SceneConfigId = 5, Active = active },
+                    },
+                };
+                message.SceneInfo.Add(new SceneInfoComp { SceneId = 100, SceneConfigId = 1 });
+                transport.Push(MessageIds.NotifySceneInfo, message);
+            }
+        }
+
+        [Test]
         public void CityTravelWindowAndMerchantWindow_RenderOverviewBadgesAndCrossMapTravelLabel()
         {
             CurrentMapCatalog.ReloadDeliveries();
@@ -238,6 +296,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                     Ready = true,
                 };
                 merchantWindow.SetView(crossMapView);
+                merchantWindow.Show();
                 Assert.That(MysteryMerchantWindow.DescribeHeadline(crossMapView), Is.EqualTo("正在 碧渊水宫 · 2线 · 12:34 后离开"));
                 Assert.That(MysteryMerchantWindow.DescribeEmpty(crossMapView), Does.Contain("碧渊水宫 · 2线"));
                 var sameMapView = crossMapView;

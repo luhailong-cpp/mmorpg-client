@@ -12,6 +12,8 @@ using MmorpgClient.Game.Ranked;
 using MmorpgClient.Game.Tournament;
 using MmorpgClient.Game.Role;
 using MmorpgClient.Game.Season;
+using MmorpgClient.Game.SpiritShop;
+using MmorpgClient.Game.TravelPass;
 using MmorpgClient.Game.TrialJournal;
 using MmorpgClient.Game.Skills;
 using MmorpgClient.Game.Sync;
@@ -190,6 +192,12 @@ namespace MmorpgClient.Game
 
         /// <summary>赛季技能与赛季印网络层（RPC 453–455，走大厅 gate -> scene 路由）。</summary>
         public SeasonClient Season { get; }
+
+        /// <summary>官方灵石百宝阁 V1 网络层（RPC 509–510，走大厅 gate -> scene 路由）。</summary>
+        public SpiritShopClient SpiritShop { get; }
+
+        /// <summary>青云游历手记网络层（RPC 526–529，走大厅 gate -> scene 路由）。</summary>
+        public TravelPassClient TravelPass { get; }
 
         /// <summary>瑞兽迎春限时活动非视觉数据与恢复适配层（RPC 476–478，走大厅 gate -> scene 路由）。</summary>
         public FestivalBeastClient FestivalBeast { get; }
@@ -411,6 +419,28 @@ namespace MmorpgClient.Game
                 () => Time.realtimeSinceStartup);
             Season = SeasonClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
                 () => Time.realtimeSinceStartup);
+            SpiritShop = new SpiritShopClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
+                () => Time.realtimeSinceStartup);
+            SpiritShop.BagReceived += bag =>
+            {
+                if (bag != null && !Features.TryApplyExternalCharacterBag(bag) && InGame && IsGateReady)
+                    Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
+            };
+            TravelPass = new TravelPassClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
+                () => Time.realtimeSinceStartup);
+            TravelPass.BagReceived += bag =>
+            {
+                if (bag != null && !Features.TryApplyExternalCharacterBag(bag) && InGame && IsGateReady)
+                    Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
+            };
+            TravelPass.PremiumUnlocked += () =>
+            {
+                if (InGame && IsGateReady) Features?.RequestActivities();
+            };
+            TravelPass.RewardClaimed += _ =>
+            {
+                if (InGame && IsGateReady) Features?.RequestActivities();
+            };
             FestivalBeast = FestivalBeastClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
                 () => (long)(Time.realtimeSinceStartup * 1000f));
             Battle.OnBattleStart += start => FestivalBeast.HandleBattleState(start?.State);
@@ -419,6 +449,7 @@ namespace MmorpgClient.Game
             {
                 TrialJournal.HandleBattleSettled();
                 Season.HandleBattleSettled();
+                TravelPass.HandleBattleSettled();
                 FestivalBeast.HandleBattleSettled(end);
                 Features?.RequestEquipmentMaterialReward();
             };
@@ -428,6 +459,8 @@ namespace MmorpgClient.Game
                     TrialJournal.HandleBattleSettled();
                 if (result != null && result.FestivalActivityInstanceId != 0)
                     FestivalBeast.HandleRecoveredBattleResult(result);
+                if (result != null)
+                    TravelPass.HandleBattleSettled();
             };
             Battle.OnBattleEndWithoutContext += (end, notified) => BattleResults.HandleEndWithoutContext(end?.BattleId ?? 0, notified);
             Battle.RegionProbe = new RegionProbeClient(battleRoute, () => ClientTransport.Create(_codec), ClientTransport.ConnectRunner);
@@ -569,6 +602,18 @@ namespace MmorpgClient.Game
             Tournament?.ObserveConnection(); // 群仙问道赛会话边界观察（切号/换 Gate 自动作废旧回调）
             TrialJournal?.Tick(); // 五行试炼志:快照节流队列与会话边界观察
             Season?.Tick(); // 赛季印与赛季技能:快照节流队列与会话边界观察
+            bool inBattleOrSpectate = (Battle != null && Battle.HasActiveBattle)
+                || (Spectate != null && Spectate.Phase != SpectatePhase.None);
+            if (SpiritShop != null)
+            {
+                SpiritShop.InBattle = inBattleOrSpectate;
+                SpiritShop.Tick();
+            }
+            if (TravelPass != null)
+            {
+                TravelPass.InBattle = inBattleOrSpectate;
+                TravelPass.Tick();
+            }
             if (InGame) Features?.TickEquipmentCraftRecovery();
             if (InGame) SkillCraft?.TickRecovery();
             if (InGame) Features?.TickMaterialRewardRecovery();
@@ -2567,6 +2612,8 @@ namespace MmorpgClient.Game
                 _sceneAppearances.Clear();
                 TrialJournal?.HandleSceneEntered();
                 Season?.HandleSceneEntered();
+                SpiritShop?.HandleSceneEntered();
+                TravelPass?.HandleSceneEntered();
                 OnSceneEntered?.Invoke(ev.SceneInfo);
             });
 

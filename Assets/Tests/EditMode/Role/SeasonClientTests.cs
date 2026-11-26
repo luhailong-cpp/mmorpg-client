@@ -359,5 +359,86 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(client.Snapshot?.ProgressPoints, Is.EqualTo(12u));
             Assert.That(client.StatusIsError, Is.False);
         }
+
+        [Test]
+        public void SeasonV2Models_BuildSettlementDeltaPresetsWeeklyAffixAndHonors()
+        {
+            var snap = new SeasonStateSnapshot
+            {
+                Available = true,
+                SeasonId = 1u,
+                SeasonName = "破阵之季",
+                EquippedSealId = 101u,
+                ProgressPoints = 12u,
+                MaxPoints = 12u,
+                WeeklyAffix = new SeasonWeeklyAffixView
+                {
+                    WeekIndex = 1u,
+                    AffixId = 1u,
+                    Name = "护盾过载周",
+                    Description = "全员对称：双方技能护盾 +15%",
+                },
+            };
+            snap.WeeklyAffix.RecommendedSealIds.Add(101u);
+            snap.WeeklyAffix.RecommendedSealIds.Add(102u);
+            snap.Seals.Add(new SeasonSealOption { SealId = 101u, Name = "破阵锐印", EffectId = 1u, Equipped = true });
+            snap.Seals.Add(new SeasonSealOption { SealId = 103u, Name = "固阵守印", EffectId = 6u });
+            snap.Seals.Add(new SeasonSealOption { SealId = 104u, Name = "聚息援印", EffectId = 7u });
+            snap.SeasonSkills.Add(new SeasonSkillSummary { SkillTableId = 15001u, Name = "破阵裂锋", TargetTeam = 1u });
+            snap.SeasonSkills.Add(new SeasonSkillSummary { SkillTableId = 15002u, Name = "破阵灵雷", TargetTeam = 1u });
+            snap.SeasonSkills.Add(new SeasonSkillSummary { SkillTableId = 15003u, Name = "固阵灵障", TargetTeam = 2u });
+            snap.SeasonSkills.Add(new SeasonSkillSummary { SkillTableId = 15004u, Name = "破阵蓄势", TargetTeam = 2u });
+            snap.Honors.Add(new SeasonHonorView
+            {
+                SeasonId = 1u,
+                SeasonName = "破阵之季",
+                HonorTitleName = "破阵宗师",
+                HonorBadgeIconKey = "UI/SeasonHonors/honor_s1_pozhen",
+                ProgressPoints = 12u,
+                MaxPoints = 12u,
+                Unlocked = true,
+                IsCurrentSeason = true,
+            });
+
+            // 1. 结算进度增量与首次解锁永久零数值纪念称谓
+            var battleEnd = new BattleEndS2C
+            {
+                SeasonId = 1u,
+                SeasonSealPointsAdded = 2u,
+                SeasonSealProgressAfter = 12u,
+                SeasonSealMaxPoints = 12u,
+                SeasonHonorNewlyUnlocked = true,
+            };
+            var settle = SeasonModels.BuildSettlementProgressView(battleEnd, snap);
+            Assert.That(settle, Is.Not.Null);
+            Assert.That(settle.SeasonName, Is.EqualTo("破阵之季"));
+            Assert.That(settle.PointsAdded, Is.EqualTo(2u));
+            Assert.That(settle.ProgressAfter, Is.EqualTo(12u));
+            Assert.That(settle.MaxPoints, Is.EqualTo(12u));
+            Assert.That(settle.IsMaxed, Is.True);
+            Assert.That(settle.HonorNewlyUnlocked, Is.True);
+            Assert.That(settle.HonorTitleName, Is.EqualTo("破阵宗师"));
+            Assert.That(SeasonModels.BuildSettlementProgressView(new BattleEndS2C(), snap), Is.Null);
+
+            // 2. 动态一键推荐流派（含本周推荐高亮与当前佩戴标记）
+            var presets = SeasonModels.BuildRecommendedLoadouts(snap);
+            Assert.That(presets.Count, Is.EqualTo(3));
+            Assert.That(presets[0].SealId, Is.EqualTo(101u));
+            Assert.That(presets[0].RecommendedThisWeek, Is.True);
+            Assert.That(presets[0].IsCurrentlyEquipped, Is.True);
+            Assert.That(presets[0].PairedSkillsSummary, Is.EqualTo("破阵裂锋 + 破阵灵雷"));
+            Assert.That(presets[1].SealId, Is.EqualTo(103u));
+            Assert.That(presets[1].RecommendedThisWeek, Is.False);
+            Assert.That(presets[2].SealId, Is.EqualTo(104u));
+
+            // 3. 战斗周词缀文案与荣誉统计
+            Assert.That(SeasonModels.DescribeWeeklyAffixShort(1u), Is.EqualTo("护盾过载周"));
+            Assert.That(SeasonModels.DescribeWeeklyAffixShort(2u), Is.EqualTo("灵息充盈周"));
+            Assert.That(SeasonModels.DescribeWeeklyAffixShort(3u), Is.EqualTo("先机守势周"));
+            Assert.That(SeasonModels.DescribeWeeklyAffixShort(4u), Is.EqualTo("锋芒竞速周"));
+            Assert.That(SeasonModels.DescribeWeeklyAffixShort(0u), Is.Empty);
+            Assert.That(SeasonModels.CountUnlockedHonors(snap), Is.EqualTo(1));
+            Assert.That(SeasonModels.FindCurrentHonor(snap)?.HonorTitleName, Is.EqualTo("破阵宗师"));
+        }
     }
 }

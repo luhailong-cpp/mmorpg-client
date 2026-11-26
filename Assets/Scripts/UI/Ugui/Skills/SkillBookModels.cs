@@ -67,6 +67,95 @@ namespace MmorpgClient.UI.Ugui.Skills
         };
     }
 
+    /// <summary>仅管理未提交的装配预览；槽位上限与互斥组来自技能书快照。</summary>
+    public sealed class SkillLoadoutDraft
+    {
+        public enum Change { SlotsFull, Added, Removed, Replaced }
+
+        private readonly List<uint> _passive = new();
+        private readonly List<uint> _pursuit = new();
+        private readonly List<uint> _opening = new();
+
+        public uint SchemeId { get; private set; } = 1;
+        public ulong StateVersion { get; private set; }
+        public uint RoleTag { get; private set; }
+        public bool IsDirty { get; private set; }
+        public IReadOnlyList<uint> Passive => _passive;
+        public IReadOnlyList<uint> Pursuit => _pursuit;
+        public IReadOnlyList<uint> Opening => _opening;
+
+        public static bool IsConfigurable(SkillDefinition definition) =>
+            definition?.abilityKind is 2u or 3u or 4u;
+
+        public void Reset(SkillLoadoutView loadout, uint schemeId)
+        {
+            SchemeId = schemeId;
+            StateVersion = loadout?.StateVersion ?? 0;
+            IsDirty = false;
+            _passive.Clear();
+            _pursuit.Clear();
+            _opening.Clear();
+            var scheme = loadout?.FindScheme(schemeId);
+            RoleTag = scheme?.RoleTag ?? 0;
+            if (scheme == null) return;
+            _passive.AddRange(scheme.PassiveSkillIds);
+            _pursuit.AddRange(scheme.PursuitSkillIds);
+            _opening.AddRange(scheme.OpeningSkillIds);
+        }
+
+        public void SetRoleTag(uint roleTag)
+        {
+            if (RoleTag == roleTag) return;
+            RoleTag = roleTag;
+            IsDirty = true;
+        }
+
+        public bool Contains(uint skillId) =>
+            _passive.Contains(skillId) || _pursuit.Contains(skillId) || _opening.Contains(skillId);
+
+        public uint GetConflict(SkillBookSnapshot snapshot, SkillEntryState entry)
+        {
+            uint group = entry.Definition.exclusiveGroup;
+            if (group == 0) return 0;
+            foreach (var list in new[] { _opening, _passive, _pursuit })
+                foreach (uint skillId in list)
+                    if (skillId != entry.Id && snapshot.Find(skillId)?.Definition?.exclusiveGroup == group)
+                        return skillId;
+            return 0;
+        }
+
+        public bool Remove(uint skillId)
+        {
+            if (!_opening.Remove(skillId) && !_passive.Remove(skillId) && !_pursuit.Remove(skillId)) return false;
+            IsDirty = true;
+            return true;
+        }
+
+        public Change Toggle(SkillBookSnapshot snapshot, SkillEntryState entry, out uint replacedSkillId)
+        {
+            replacedSkillId = 0;
+            if (Remove(entry.Id)) return Change.Removed;
+
+            var kind = entry.Definition.abilityKind;
+            var slots = kind == 4u ? _opening : kind == 3u ? _pursuit : _passive;
+            var loadout = snapshot.Loadout;
+            uint limit = kind == 4u ? loadout.MaxOpeningSlots : kind == 3u ? loadout.MaxPursuitSlots : loadout.MaxPassiveSlots;
+            uint conflict = GetConflict(snapshot, entry);
+            int replaceIndex = conflict == 0 ? -1 : slots.IndexOf(conflict);
+            if (replaceIndex < 0 && (uint)slots.Count >= limit) return Change.SlotsFull;
+
+            if (replaceIndex >= 0) slots[replaceIndex] = entry.Id;
+            else
+            {
+                if (conflict != 0) Remove(conflict);
+                slots.Add(entry.Id);
+            }
+            IsDirty = true;
+            replacedSkillId = conflict;
+            return conflict == 0 ? Change.Added : Change.Replaced;
+        }
+    }
+
     /// <summary>纯展示状态。默认断线；本地图鉴不能充当已学习技能或钱包。</summary>
     public sealed class SkillBookViewState
     {

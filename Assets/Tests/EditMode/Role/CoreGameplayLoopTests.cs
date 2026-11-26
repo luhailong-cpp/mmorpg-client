@@ -157,6 +157,7 @@ namespace MmorpgClient.Tests.EditMode.Role
                 new SeasonStateSnapshot { Available = true, ProgressPoints = 30, MaxPoints = 100 },
                 new TrialJournalSnapshot(),
                 paymentEnabled: false);
+            Assert.That(hub.MaterialProgressLabel, Is.EqualTo("永久首套材料 · 账号可交易"));
             Assert.That(hub.MaterialProgressValue, Is.EqualTo("120/660（待领 20）"));
             Assert.That(hub.SmallSpendSlots.Count, Is.EqualTo(4));
             foreach (var slot in hub.SmallSpendSlots)
@@ -168,12 +169,29 @@ namespace MmorpgClient.Tests.EditMode.Role
                 new SeasonStateSnapshot { Available = true, ProgressPoints = 30, MaxPoints = 100 },
                 new TrialJournalSnapshot(),
                 paymentEnabled: false);
+            Assert.That(weeklyHub.MaterialProgressLabel, Is.EqualTo("周精进材料"));
             Assert.That(weeklyHub.MaterialProgressValue, Is.EqualTo("45/150（待领 15）"));
             var weeklyCappedView = CoreGameplayLoopModels.BuildSettlementRewardView(
                 new BattleEndS2C { MaterialCreditUnitsAdded = 0u },
                 new EquipmentMaterialRewardSnapshot { WeeklyPhaseActive = true, EarnedThisWeek = 150u });
             Assert.That(weeklyCappedView.WeeklyLimit, Is.EqualTo(150u));
-            Assert.That(weeklyCappedView.Headline, Does.Contain("150/150"));
+            Assert.That(weeklyCappedView.Headline, Is.EqualTo("本周精进材料额度已达上限（150/150）"));
+        }
+
+        [Test]
+        public void WeeklySettlementUsesTheActualTradableAndBoundAmounts()
+        {
+            var ledger = new EquipmentMaterialRewardSnapshot { WeeklyPhaseActive = true, EarnedThisWeek = 45u };
+            var view = CoreGameplayLoopModels.BuildSettlementRewardView(
+                new BattleEndS2C { MaterialCreditUnitsAdded = 15u, MaterialTradableUnitsAdded = 1u }, ledger);
+
+            Assert.That(view.WeeklyPhaseActive, Is.True);
+            Assert.That(view.TradableUnitsAdded, Is.EqualTo(1u));
+            Assert.That(view.BoundUnitsAdded, Is.EqualTo(14u));
+            Assert.That(view.DetailNote, Does.Contain("1 份可交易、14 份仅自用"));
+
+            var noAward = CoreGameplayLoopModels.BuildSettlementRewardView(new BattleEndS2C(), ledger);
+            Assert.That(noAward.Headline, Is.EqualTo("本局无材料额度新增"));
         }
 
         [Test]
@@ -621,6 +639,59 @@ namespace MmorpgClient.Tests.EditMode.Role
                 },
             });
             Assert.That(regularMob, Is.Null);
+        }
+
+        [Test]
+        public void BossTrialWeeklyAffix_RotationCatalogAndHudWiring()
+        {
+            Assert.That(BossTrialWeeklyAffixCatalog.AffixIdForTimestamp(0UL), Is.EqualTo(0u));
+            for (ulong w = 0; w < 6; w++)
+            {
+                ulong ts = BossTrialWeeklyAffixCatalog.FirstMonday05Utc8Ms + w * BossTrialWeeklyAffixCatalog.WeekMs + 12345UL;
+                uint expected = (uint)((w % 5UL) + 1UL);
+                Assert.That(BossTrialWeeklyAffixCatalog.AffixIdForTimestamp(ts), Is.EqualTo(expected));
+                var view = BossTrialWeeklyAffixCatalog.ForTimestamp(ts);
+                Assert.That(view, Is.Not.Null);
+                Assert.That(view.AffixId, Is.EqualTo(expected));
+                Assert.That(view.Title, Is.Not.Empty);
+                Assert.That(view.BoonText, Is.Not.Empty);
+                Assert.That(view.ChallengeText, Is.Not.Empty);
+                Assert.That(view.RecommendedLoadoutHint, Is.Not.Empty);
+                Assert.That(view.ShortChipText, Is.Not.Empty);
+                Assert.That(view.ResetCountdownText, Is.Not.Empty);
+            }
+
+            var hud = CoreGameplayLoopModels.BuildBattleCoreHud(new BattleStateS2C
+            {
+                BattleId = 9001UL,
+                RoundIndex = 2u,
+                BossTrialKind = 2u,
+                BossPhase = 1u,
+                BossWeeklyAffixId = 2u,
+            });
+            Assert.That(hud.IsBossTrial, Is.True);
+            Assert.That(hud.HasBossWeeklyAffix, Is.True);
+            Assert.That(hud.BossWeeklyAffixId, Is.EqualTo(2u));
+            Assert.That(hud.BossWeeklyAffix.Title, Does.Contain("木"));
+            Assert.That(hud.BossWeeklyAffix.BoonText, Does.Contain("驱散"));
+
+            var noAffixHud = CoreGameplayLoopModels.BuildBattleCoreHud(new BattleStateS2C
+            {
+                BattleId = 9002UL,
+                RoundIndex = 1u,
+                BossTrialKind = 5u,
+                BossWeeklyAffixId = 0u,
+            });
+            Assert.That(noAffixHud.HasBossWeeklyAffix, Is.False);
+
+            var banner = CoreGameplayLoopModels.DescribeBossMechanicEvent(new BattleEventItem
+            {
+                EventType = eBattleEventType.BattleEventBossMechanic,
+                MechanicKind = 10u,
+                Value = 120UL,
+            });
+            Assert.That(banner, Is.Not.Null);
+            Assert.That(banner.Title, Does.Contain("周常五行"));
         }
     }
 }

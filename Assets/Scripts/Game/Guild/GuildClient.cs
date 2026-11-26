@@ -139,6 +139,8 @@ namespace MmorpgClient.Game.Guild
         /// 已离帮后才结算的那一笔也会触发(推送按"关于我"判,不要求仍在该帮)。
         /// </summary>
         public event Action AssetsChanged;
+        /// <summary>收到 GUILD_CHANGE_KIND_WAR_UPDATED 时通知帮战模块按需刷新，不触发全量 GetPlayerGuild。</summary>
+        public event Action WarUpdated;
         /// <summary>
         /// 升级按钮能否点:只看职位与是否满级。资金够不够交给服务端判 —— 别的长老刚花过钱时,
         /// 本地 Info.Funds 可能是旧值,按它收起按钮会让"其实够"的人点不了。
@@ -480,6 +482,11 @@ namespace MmorpgClient.Game.Guild
             if (mine)
             {
                 if (change.Kind == GuildChangeKind.ApplicationReceived) ApplicantsQueued = true;
+                else if (change.Kind == GuildChangeKind.WarUpdated)
+                {
+                    WarUpdated?.Invoke();
+                    return;
+                }
                 else if (change.Kind == GuildChangeKind.ActivityChanged)
                 {
                     // 活动进度变了(本档期首次达阈值;历练邀请房间有人同意 / 拒绝 / 开战 / 结算):只重拉活动视图,不排 GetPlayerGuild。

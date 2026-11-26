@@ -1,6 +1,6 @@
 # 战斗剧本面板(BattleScriptUI)
 
-> 2026-11-12。服务端设计见服务端仓 `docs/design/battle-script.md`(§7 客户端协议)。**代码已写完,未编译、未在 Unity 里跑过**,待 Codex 按下面「验证」执行。
+> 2026-11-12。服务端设计见服务端仓 `docs/design/battle-script.md`(§7 客户端协议)。**代码已写完,未编译、未在 Unity 里跑过**,待 Gemini 按下面「验证」执行。
 
 ## 做了什么
 
@@ -32,7 +32,7 @@ pwsh -File tools/gen_proto.ps1 -ProtoRoot D:/luyuan/xuanming-server-mmo-cpp
 
 核对 `Assets/Scripts/Proto/Generated/` 出现 `MatchErrorTip.cs`(含 `KMatchBattleScript*` 8 个码),`BattleScript.cs`、`MatchService.cs` 与服务端当前协议一致;`Assets/Scripts/Net/Generated/Rpc/MatchServiceRpc.cs` 有 `ListBattleScripts / SubmitBattleScript / DeleteBattleScript / SetBattleScriptLoadout` 四个消息号常量(由服务端 protogen 写入)。
 
-## 验证(交 Codex)
+## 验证(交 Gemini)
 
 1. `tools/client_compile_check.ps1` 离线编译检查通过。
 2. EditMode:`MmorpgClient.Tests.EditMode.BattleScripts` 全绿;另跑一遍 `UiShutdownTests` 等全量 EditMode,确认新面板与互斥改动没有打红别的用例。

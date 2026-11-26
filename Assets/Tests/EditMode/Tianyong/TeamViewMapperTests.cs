@@ -287,6 +287,37 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(TeamViewMapper.DisplayName(new TeamRole { PlayerId = 42, Name = "青衫" }), Is.EqualTo("青衫"));
         }
 
+        [Test]
+        public void HostedFlagAndFollowFormationMapAndCycleCleanly()
+        {
+            var view = new TeamView
+            {
+                TeamId = 777,
+                LeaderId = 10,
+                Version = 2,
+                MembershipEpoch = 1,
+                FollowFormation = TeamFollowFormationStyle.TeamFollowFormationWuxing,
+            };
+            view.Members.Add(new TeamMemberView { PlayerId = 10, JoinSeq = 1, IsOnline = true, IsHosted = true });
+            view.Members.Add(new TeamMemberView { PlayerId = 11, JoinSeq = 2, IsOnline = false, IsHosted = true });
+            view.Members.Add(new TeamMemberView { PlayerId = 12, JoinSeq = 3, IsOnline = false, IsHosted = false });
+
+            var snapshot = TeamViewMapper.ToSnapshot(view, 10);
+            Assert.That(snapshot.FollowFormation, Is.EqualTo(TeamFollowFormationStyle.TeamFollowFormationWuxing));
+            Assert.That(snapshot.Clone().FollowFormation, Is.EqualTo(TeamFollowFormationStyle.TeamFollowFormationWuxing));
+            Assert.That(snapshot.Members[0].IsHosted, Is.False, "在线成员即使残留 hosted 标记也不能标为托管中");
+            Assert.That(snapshot.Members[1].IsHosted, Is.True);
+            Assert.That(snapshot.Members[2].IsHosted, Is.False);
+
+            Assert.That(TeamViewMapper.NextFormation(TeamFollowFormationStyle.TeamFollowFormationColumn),
+                Is.EqualTo(TeamFollowFormationStyle.TeamFollowFormationEchelon));
+            Assert.That(TeamViewMapper.NextFormation(TeamFollowFormationStyle.TeamFollowFormationEchelon),
+                Is.EqualTo(TeamFollowFormationStyle.TeamFollowFormationWuxing));
+            Assert.That(TeamViewMapper.NextFormation(TeamFollowFormationStyle.TeamFollowFormationWuxing),
+                Is.EqualTo(TeamFollowFormationStyle.TeamFollowFormationColumn));
+            Assert.That(TeamViewMapper.FormatFormationName(TeamFollowFormationStyle.TeamFollowFormationWuxing), Is.EqualTo("五行聚阵"));
+        }
+
         private static TeamMemberView Member(ulong playerId, uint joinSeq = 0) =>
             new TeamMemberView { PlayerId = playerId, ClassId = 1, Gender = 1, IsOnline = true, JoinSeq = joinSeq };
 

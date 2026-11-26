@@ -268,5 +268,41 @@ namespace MmorpgClient.Net.Generated
         public static void GetTournamentSpectateCheer(IRpcChannel channel, global::Match.GetTournamentSpectateCheerRequest request,
             RpcDone<global::Match.GetTournamentSpectateCheerResponse> done)
             => channel.CallMethod(GetTournamentSpectateCheerMessageId, request, global::Match.GetTournamentSpectateCheerResponse.Parser, done);
+
+        public const uint UpdateTournamentSquadEmblemMessageId = 511;
+        /// <summary>
+        /// ---- 全服赛季战队锦标赛《群仙问道赛》V3(docs/planning/season-team-tournament-v3.md):请求只认会话本人 ----
+        /// </summary>
+        public static void UpdateTournamentSquadEmblem(IRpcChannel channel, global::Match.UpdateTournamentSquadEmblemRequest request,
+            RpcDone<global::Match.UpdateTournamentSquadEmblemResponse> done)
+            => channel.CallMethod(UpdateTournamentSquadEmblemMessageId, request, global::Match.UpdateTournamentSquadEmblemResponse.Parser, done);
+
+        public const uint StartTournamentWarmupMessageId = 512;
+        public static void StartTournamentWarmup(IRpcChannel channel, global::Match.StartTournamentWarmupRequest request,
+            RpcDone<global::Match.StartTournamentWarmupResponse> done)
+            => channel.CallMethod(StartTournamentWarmupMessageId, request, global::Match.StartTournamentWarmupResponse.Parser, done);
+
+        public const uint PredictTournamentMatchMessageId = 513;
+        public static void PredictTournamentMatch(IRpcChannel channel, global::Match.PredictTournamentMatchRequest request,
+            RpcDone<global::Match.PredictTournamentMatchResponse> done)
+            => channel.CallMethod(PredictTournamentMatchMessageId, request, global::Match.PredictTournamentMatchResponse.Parser, done);
+
+        public const uint GetTournamentPredictionBoardMessageId = 514;
+        public static void GetTournamentPredictionBoard(IRpcChannel channel, global::Match.GetTournamentPredictionBoardRequest request,
+            RpcDone<global::Match.GetTournamentPredictionBoardResponse> done)
+            => channel.CallMethod(GetTournamentPredictionBoardMessageId, request, global::Match.GetTournamentPredictionBoardResponse.Parser, done);
+
+        public const uint BanTournamentLeylineMessageId = 534;
+        /// <summary>
+        /// ---- 全服赛季战队锦标赛《群仙问道赛》V4(docs/planning/season-team-tournament-v4.md):请求只认会话本人 ----
+        /// </summary>
+        public static void BanTournamentLeyline(IRpcChannel channel, global::Match.BanTournamentLeylineRequest request,
+            RpcDone<global::Match.BanTournamentLeylineResponse> done)
+            => channel.CallMethod(BanTournamentLeylineMessageId, request, global::Match.BanTournamentLeylineResponse.Parser, done);
+
+        public const uint GetTournamentHighlightsMessageId = 535;
+        public static void GetTournamentHighlights(IRpcChannel channel, global::Match.GetTournamentHighlightsRequest request,
+            RpcDone<global::Match.GetTournamentHighlightsResponse> done)
+            => channel.CallMethod(GetTournamentHighlightsMessageId, request, global::Match.GetTournamentHighlightsResponse.Parser, done);
     }
 }

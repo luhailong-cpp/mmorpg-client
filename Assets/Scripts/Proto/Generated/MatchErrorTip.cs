@@ -23,7 +23,7 @@ public static partial class MatchErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvbWF0Y2hfZXJyb3JfdGlwLnBy",
-          "b3RvKuwPCgttYXRjaF9lcnJvchISCg5rTWF0Y2hfZXJyb3JPSxAAEhMKDmtN",
+          "b3RvKo0RCgttYXRjaF9lcnJvchISCg5rTWF0Y2hfZXJyb3JPSxAAEhMKDmtN",
           "YXRjaEluQmF0dGxlEIB9EhgKE2tNYXRjaEFscmVhZHlRdWV1ZWQQgX0SFgoR",
           "a01hdGNoTW9kZU5vdE9wZW4Qgn0SIAoba01hdGNoVGVhbVNpemVOb3RDb25m",
           "aWd1cmVkEIN9EhMKDmtNYXRjaEludGVybmFsEIR9EhkKFGtNYXRjaFRpY2tl",
@@ -68,8 +68,11 @@ public static partial class MatchErrorTipReflection {
           "eVNhbHV0ZWRUb2RheRC4fRInCiJrTWF0Y2hUb3VybmFtZW50Tm9DaGFtcGlv",
           "blRvU2FsdXRlELl9EioKJWtNYXRjaFRvdXJuYW1lbnRTcGVjdGF0ZUNoZWVy",
           "Q29vbGRvd24Qun0SKQoka01hdGNoVG91cm5hbWVudFNwZWN0YXRlQ2hlZXJJ",
-          "bnZhbGlkELt9QiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFi",
-          "bGViBnByb3RvMw=="));
+          "bnZhbGlkELt9EiIKHWtNYXRjaFRvdXJuYW1lbnRFbWJsZW1JbnZhbGlkELx9",
+          "EiUKIGtNYXRjaFRvdXJuYW1lbnRQcmVkaWN0aW9uQ2xvc2VkEL19EiwKJ2tN",
+          "YXRjaFRvdXJuYW1lbnRQcmVkaWN0aW9uVGFyZ2V0SW52YWxpZBC+fRImCiFr",
+          "TWF0Y2hUb3VybmFtZW50V2FybXVwVW5hdmFpbGFibGUQv31CJAoOY29tLmdh",
+          "bWUudGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::match_error), }, null, null));
@@ -140,6 +143,10 @@ public enum match_error {
   [pbr::OriginalName("kMatchTournamentNoChampionToSalute")] KMatchTournamentNoChampionToSalute = 16057,
   [pbr::OriginalName("kMatchTournamentSpectateCheerCooldown")] KMatchTournamentSpectateCheerCooldown = 16058,
   [pbr::OriginalName("kMatchTournamentSpectateCheerInvalid")] KMatchTournamentSpectateCheerInvalid = 16059,
+  [pbr::OriginalName("kMatchTournamentEmblemInvalid")] KMatchTournamentEmblemInvalid = 16060,
+  [pbr::OriginalName("kMatchTournamentPredictionClosed")] KMatchTournamentPredictionClosed = 16061,
+  [pbr::OriginalName("kMatchTournamentPredictionTargetInvalid")] KMatchTournamentPredictionTargetInvalid = 16062,
+  [pbr::OriginalName("kMatchTournamentWarmupUnavailable")] KMatchTournamentWarmupUnavailable = 16063,
 }
 
 #endregion

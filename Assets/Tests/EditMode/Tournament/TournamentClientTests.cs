@@ -314,5 +314,113 @@ namespace MmorpgClient.Tests.EditMode.Tournament
             _client.ClearSpectateCheer();
             Assert.That(_client.SpectateCheer, Is.Null);
         }
+
+        [Test]
+        public void V3_EmblemWarmupPredictionAndBoard_UpdateStateAndClearOnReset()
+        {
+            // 先建立赛季与我的战队
+            Assert.That(_client.RequestOverview(includeHistory: true), Is.True);
+            var sq = new TournamentSquadView
+            {
+                SquadId = 5001UL,
+                SeasonId = 1u,
+                Name = "青云剑宗",
+                CaptainPlayerId = 1001UL,
+                State = TournamentSquadState.Registered,
+                MemberCount = 3u,
+                EmblemId = 1u,
+            };
+            _net.Calls[0].Reply(new GetTournamentOverviewResponse
+            {
+                CurrentSeason = new TournamentSeasonView { SeasonId = 1u, Stage = TournamentStage.Qualifier, Enabled = true, BattleTeamSize = 3u },
+                MySquad = sq,
+                ServerTimeMs = 200_000UL,
+            });
+
+            // 1. 模块 G：建队携带 emblemId 本地校验 + 更换战旗 RPC
+            Assert.That(_client.CreateSquad("非法旗队", 99u), Is.False, "非法 emblemId=99 本地拦截");
+            Assert.That(_client.UpdateSquadEmblem(0u), Is.False, "非法 emblemId=0 本地拦截");
+            _now += 2f;
+            Assert.That(_client.UpdateSquadEmblem(6u), Is.True);
+            Assert.That(_net.Calls[1].MessageId, Is.EqualTo(MatchServiceRpc.UpdateTournamentSquadEmblemMessageId));
+            var updatedSq = sq.Clone();
+            updatedSq.EmblemId = 6u;
+            _net.Calls[1].Reply(new UpdateTournamentSquadEmblemResponse { Squad = updatedSq });
+            Assert.That(_client.Overview.MySquad.EmblemId, Is.EqualTo(6u));
+
+            // 2. 模块 D：热身约战（定向 + 自选火炽灵脉）触发开战事件
+            ulong launched = 0UL;
+            _client.MatchBattleLaunched += bid => launched = bid;
+            _now += 2f;
+            Assert.That(_client.StartWarmup(6001UL, TournamentLeylineElement.TournamentLeylineFire, new ulong[] { 1001UL, 1002UL, 1003UL }), Is.True);
+            Assert.That(_net.Calls[2].MessageId, Is.EqualTo(MatchServiceRpc.StartTournamentWarmupMessageId));
+            var warmReq = (StartTournamentWarmupRequest)_net.Calls[2].Request;
+            Assert.That(warmReq.TargetSquadId, Is.EqualTo(6001UL));
+            Assert.That(warmReq.LeylineElement, Is.EqualTo(TournamentLeylineElement.TournamentLeylineFire));
+            _net.Calls[2].Reply(new StartTournamentWarmupResponse
+            {
+                BattleId = 88801UL,
+                Match = new TournamentMatchView { MatchId = 9001UL, Phase = TournamentMatchPhase.Warmup, BattleId = 88801UL },
+            });
+            Assert.That(launched, Is.EqualTo(88801UL));
+
+            // 3. 模块 E：拉取对阵树后提交免费预测，立即同步对阵节点选中态与票数
+            _now += 2f;
+            Assert.That(_client.RequestStandings(1u, 1u, 20u), Is.True);
+            var stResp = new ListTournamentStandingsResponse { Season = _client.Overview.Season.Clone(), TotalSquads = 4u };
+            stResp.KnockoutBracket.Add(new TournamentMatchView
+            {
+                MatchId = 7001UL,
+                Phase = TournamentMatchPhase.Knockout,
+                RoundIndex = 2u,
+                SlotIndex = 1u,
+                IsThirdPlace = true,
+                SquadAId = 5001UL,
+                SquadBId = 6001UL,
+                State = TournamentMatchState.WaitingOpponent,
+            });
+            _net.Calls[3].Reply(stResp);
+
+            _now += 2f;
+            Assert.That(_client.PredictMatch(7001UL, 5001UL), Is.True);
+            Assert.That(_net.Calls[4].MessageId, Is.EqualTo(MatchServiceRpc.PredictTournamentMatchMessageId));
+            _net.Calls[4].Reply(new PredictTournamentMatchResponse
+            {
+                MatchId = 7001UL,
+                PredictedSquadId = 5001UL,
+                PredictCountA = 12u,
+                PredictCountB = 5u,
+            });
+            Assert.That(_client.Standings.KnockoutBracket[0].MyPredictedSquadId, Is.EqualTo(5001UL));
+            Assert.That(_client.Standings.KnockoutBracket[0].PredictCountA, Is.EqualTo(12u));
+            Assert.That(_client.Standings.KnockoutBracket[0].PredictCountB, Is.EqualTo(5u));
+
+            // 4. 模块 E：拉取《神机问道榜》并在 Reset() 时清理干净
+            _now += 2f;
+            Assert.That(_client.RequestPredictionBoard(1u), Is.True);
+            Assert.That(_net.Calls[5].MessageId, Is.EqualTo(MatchServiceRpc.GetTournamentPredictionBoardMessageId));
+            var boardResp = new GetTournamentPredictionBoardResponse
+            {
+                SeasonId = 1u,
+                MinHitsForReward = 2u,
+                MyHitCount = 3u,
+                MyTotalPoints = 9u,
+                MyRank = 1u,
+            };
+            boardResp.TopPredictors.Add(new TournamentPredictionRankEntry { Rank = 1u, PlayerId = 1001UL, PlayerName = "神机道长", HitCount = 3u, TotalPredictions = 4u, TotalPoints = 9u });
+            _net.Calls[5].Reply(boardResp);
+            Assert.That(_client.PredictionBoard, Is.Not.Null);
+            Assert.That(_client.PredictionBoard.MyTotalPoints, Is.EqualTo(9u));
+            Assert.That(_client.PredictionBoard.TopPredictors.Count, Is.EqualTo(1));
+
+            // 5. 4 个 V3 Tip 描述完整映射
+            Assert.That(TournamentClient.DescribeTip(new TipInfoMessage { Id = (uint)match_error.KMatchTournamentEmblemInvalid }), Does.Contain("战旗"));
+            Assert.That(TournamentClient.DescribeTip(new TipInfoMessage { Id = (uint)match_error.KMatchTournamentPredictionClosed }), Does.Contain("封盘"));
+            Assert.That(TournamentClient.DescribeTip(new TipInfoMessage { Id = (uint)match_error.KMatchTournamentPredictionTargetInvalid }), Does.Contain("对阵双方"));
+            Assert.That(TournamentClient.DescribeTip(new TipInfoMessage { Id = (uint)match_error.KMatchTournamentWarmupUnavailable }), Does.Contain("热身"));
+
+            _client.Reset();
+            Assert.That(_client.PredictionBoard, Is.Null);
+        }
     }
 }

@@ -21,7 +21,8 @@ namespace MmorpgClient.UI.Ugui
         PetFlip, // 灵宠翻牌休闲小游戏(PetFlipUiRoot);落在「历练」
         Tournament, // 全服赛季战队锦标赛《群仙问道赛》V1(TournamentUiRoot);落在「历练」
         SkillCraft, // 率土式分卷宗技能制书与未学书架(SkillUiRoot.OpenCrafting);落在「修行」
-        ProxyCraft // 主城西市名匠代打摊位(SkillUiRoot.OpenProxyStalls);落在「交易」
+        ProxyCraft, // 主城西市名匠代打摊位(SkillUiRoot.OpenProxyStalls);落在「交易」
+        SpiritShop // 官方灵石百宝阁 V1(SpiritShopUiRoot);落在「交易」
     }
 
     /// <summary>
@@ -506,7 +507,7 @@ namespace MmorpgClient.UI.Ugui
         {
             WorldHudEntry.Role or WorldHudEntry.Pet or WorldHudEntry.Skills or WorldHudEntry.Appearance or WorldHudEntry.SkillCraft => WorldHudCategory.Cultivation,
             WorldHudEntry.Team or WorldHudEntry.Guild or WorldHudEntry.Social or WorldHudEntry.Mail => WorldHudCategory.Social,
-            WorldHudEntry.Trade or WorldHudEntry.ProxyCraft => WorldHudCategory.Trade,
+            WorldHudEntry.Trade or WorldHudEntry.ProxyCraft or WorldHudEntry.SpiritShop => WorldHudCategory.Trade,
             _ => WorldHudCategory.Adventure
         };
 
@@ -535,6 +536,10 @@ namespace MmorpgClient.UI.Ugui
             if (id == WorldHudEntry.ProxyCraft)
                 return SeasonEconomyUiArt.LoadCraftControl("mastery_badge_grandmaster")
                     ?? QdaoUguiTheme.RequireSprite("UI/Ugui/RefreshV8/round_badge_taiji");
+            if (id == WorldHudEntry.SpiritShop)
+                return Resources.Load<Sprite>("UI/Ugui/SpiritShopV1/ui/hud_entry_spirit_shop")
+                    ?? SeasonEconomyUiArt.LoadTradeSlice("badge_item_tradable_t")
+                    ?? QdaoUguiTheme.RequireSprite("UI/Ugui/RefreshV8/round_badge_taiji");
 
             var path = NewArt + id.ToString().ToLowerInvariant();
             return LoadIcon(path, "UI/Ugui/RefreshV8/round_badge_taiji");
@@ -556,6 +561,7 @@ namespace MmorpgClient.UI.Ugui
             WorldHudEntry.Tournament => "全服战队赛",
             WorldHudEntry.SkillCraft => "道籍拓印",
             WorldHudEntry.ProxyCraft => "官府托管",
+            WorldHudEntry.SpiritShop => "官方直售",
             _ => string.Empty
         };
 

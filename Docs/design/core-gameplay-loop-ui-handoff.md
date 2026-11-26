@@ -87,7 +87,7 @@
 ### 6.2 逐屏 UI 设计与交互细节
 
 #### 屏 1：主城总览 HUD（`CoreMainCityHubPanel`）
-- **布局原则**：东方志怪清雅水墨/玉青质感，低密度、无弹窗轰炸；顶部条必须避开 `Screen.safeArea` 与小游戏右上角胶囊。
+- **布局原则**：低密度、无弹窗轰炸、屏幕中央留空不挡大世界；顶部条必须避开 `Screen.safeArea` 与小游戏右上角胶囊。
 - **顶部「3 个核心数字条」**（来自 `MainCityHubView`）：
   1. `MaterialProgressLabel` + `MaterialProgressValue`（如 `永久首套材料 · 120/660（待领 20）`，阶段二自动切换 `周精进绑定材料 · 30/150`）；`ClaimableMaterialUnits > 0` 时右侧挂柔和「去自选领取」胶囊按钮（不用刺眼抖动红点）。
   2. `FormalPvpLabel` + `FormalPvpValue`（如 `青锋 · 1540 分`）。
@@ -138,14 +138,14 @@
 #### 屏 5：战斗内核心 HUD 叠加层（`BattleCoreHudOverlay`）
 - **数据源**：每次 `Battle.OnBattleStart` / `Battle.OnTurnResult` 时调用 `core.BuildBattleHud()`：
   - **公开预告浮条（`HasTelegraphs == true`）**：在顶部安全区下方展示 1–2 行紧凑预告牌（如 `[本回合发动] 重甲首领 -> 慢动作重劈（目标：主角）`、`[即将发动] 回春护卫 -> 回春治疗`）；若目标单位在场上可见，在目标头顶挂红色锁定小图标；若 `Status == 4` 显示「已受控打断」灰绿态反馈。
-  - **物法易势横幅（`HasPolarity == true`）**：顶部居中显示 `hud.PolarityBannerText`（物势用暖金剑徽、法势用青蓝符徽，清晰标出下次换势回合号，交指令前可见）。
-  - **护卫救援目标牌（`HasProtectedGuard == true`）**：顶部显示 `hud.ProtectedGuardBannerText`，并在 `ProtectedGuardActorId` 单位血条上方挂金色盾牌「须保全」角标。
+  - **物法易势横幅（`HasPolarity == true`）**：顶部居中显示 `hud.PolarityBannerText`（区分物势/法势两种视觉状态，清晰标出下次换势回合号，交指令前可见）。
+  - **护卫救援目标牌（`HasProtectedGuard == true`）**：顶部显示 `hud.ProtectedGuardBannerText`，并在 `ProtectedGuardActorId` 单位血条上方挂「须保全」标记。
 - **宝宝三分类选招提示**：攻击 / 障碍 / 辅助为三个同级选招页签，底部小字固定提示「每回合人物与宝宝各行动 1 次，宝宝三分类合计施放 1 招」。
 
 #### 屏 6：结算奖励拆解块（`CoreSettlementRewardSection`）与赛季印抽屉（`SeasonSealPanel`）
 - **通用结算材料卡**（绑定 `core.BuildLastSettlementReward()`）：
   - 正常获得材料：主行显示 `view.Headline`（例如 `材料自选额度 +15（基础 10 + 加量 5）`），副行显示 `view.DetailNote`（明确拆出可交易与仅自用份数），并附阶段进度条（阶段一 `lifetime_earned/660` + `可交易 tradable_earned_total/60`；阶段二 `本周绑定 earned_this_week/150`）与「去自选领取（待领 {ClaimableUnits}）」快捷按钮。
-  - **PVP 反挂机未达标（`view.PvpLossIneligible == true`）**：用琥珀色说明卡高亮显示 `view.Headline` 与 `view.DetailNote`，明确写清「需满 3 回合、至少 2 回合手动且有有效贡献；本次不扣除永久 660 额度」。
+  - **PVP 反挂机未达标（`view.PvpLossIneligible == true`）**：用醒目提示条展示 `view.Headline` 与 `view.DetailNote`，明确写清「需满 3 回合、至少 2 回合手动且有有效贡献；本次不扣除永久 660 额度」。
 - **赛季印与赛季技能抽屉**（绑定 `GameClient.Season`）：
   - 展示 `Snapshot.SeasonName`、当前装配赛季印（`SeasonModels.FindEquippedSeal`）、气血/防御轻加成百分比（`SeasonModels.FormatBpsPercent`）、4 个当季免费赛季技能只读卡片（无需升级），底部提供「免费切换赛季印」（`Season.EquipSeal`）与「一键追赶至满进度」（`Season.CatchupSeal`，显示服务端报价并走幂等保护）。
 
@@ -186,19 +186,19 @@
   - `CoreGameplayLoopClient.BuildLastBossTrialHighlights()` → `IReadOnlyList<BossTrialHighlightBadge>`。
   - `CoreGameplayLoopClient.BuildLastTacticalReview()` → `BattleTacticalReviewView`（字段：`bool IsVictory`、`string ModeTag`、`string ReasonHeadline`、`string NextMoveTip`、`bool HasContent`），完全派生自服务端 `BattleEndS2C` + `BattleSettlementData` + `BattleTrialJournalFacts`，覆盖首领试炼胜/败根因、护卫救援、物法易势 5V5、正式人宠会武体面认输与反挂机门槛。
 
-### 7.2 建议 Codex 补齐的高价值美术资产（统一道家 Q 版玉青/宣纸/暖金风格，输出至 `Assets/Resources/UI/Ugui/CoreLoopV2/` 并配 `.meta`）
-1. **结算复盘与高光精绘（接入 `CoreSettlementRewardSection.cs`）**：
-   - `review_strip_win.png`（820×56，九宫格，青玉宣纸金边）
-   - `review_strip_loss.png`（820×56，九宫格，暖琥珀策书底）
-   - `icon_tactical_review.png`（64×64，兵书/算筹徽标）
-   - `highlight_strip_gold.png`（820×40，九宫格，金色战法高光底带）
-2. **首领试炼 V2 专属演出与双卫头像（接入 `BossTrialPrepPanel.cs`、`BattleCoreHudOverlay.cs`、`BattleScreen.cs`）**：
-   - `boss_dual_guard_avatar.png`（256×256，重甲双卫同阵独立首领头像，替换目前对 `boss_break_avatar` 的复用）
-   - `badge_hard_only_seal.png`（128×44，朱砂金印「仅限困难」徽章）
-   - `banner_boss_phase2.png`（540×56，九宫格，赤金燃战二阶段横幅底）
-   - `banner_boss_exposed.png`（540×56，九宫格，碎盾青金「破绽窗口」正面机制横幅底）
-   - `badge_quick_parry.png`（64×64，化劲金盾小标，用于「⚠ 点名预警 · 一键化劲防御」按钮）
-3. **PVP 终局加速 & 主城 4 入口专属玉牌图标（接入 `BattleCoreHudOverlay.cs`、`CoreMainCityHubPanel.cs`）**：
-   - `banner_escalation_fire.png`（420×44，九宫格，第 12 回合「战意渐盛」赤金焰纹条）
-   - `icon_hub_boss.png`、`icon_hub_pvp.png`、`icon_hub_rotation.png`、`icon_hub_equip_pet.png`（各 96×96，主城 4 大主入口专属图标）
+### 7.2 需补齐的 UI 资产清单（输出至 `Assets/Resources/UI/Ugui/CoreLoopV2/` 并配 `.meta`；本表只定功能、尺寸与切片要求，不限定美术风格与配色）
+1. **结算复盘与战法高光（接入 `CoreSettlementRewardSection.cs`）**：
+   - `review_strip_win.png`（820×56，九宫格，胜局战后复盘横条底板）
+   - `review_strip_loss.png`（820×56，九宫格，败局/平局战后复盘横条底板）
+   - `icon_tactical_review.png`（64×64，透明底，战后复盘图标）
+   - `highlight_strip_gold.png`（820×40，九宫格，「本场战法高光」横带底板）
+2. **首领试炼 V2 双卫同阵与战中演出（接入 `BossTrialPrepPanel.cs`、`BattleCoreHudOverlay.cs`、`BattleScreen.cs`）**：
+   - `boss_dual_guard_avatar.png`（256×256，透明底，「双卫同阵」首领头像，替换目前对 `boss_break_avatar` 的复用）
+   - `badge_hard_only_seal.png`（128×44，透明底，「仅限困难」角标）
+   - `banner_boss_phase2.png`（540×56，九宫格，首领「二阶段 · 破釜决战」战中提示横幅底板）
+   - `banner_boss_exposed.png`（540×56，九宫格，首领「破绽窗口 / 正面机制触发」战中播报横幅底板）
+   - `badge_quick_parry.png`（64×64，透明底，战斗内「一键化劲防御」按钮图标）
+3. **PVP 终局加速 & 主城 4 大主入口图标（接入 `BattleCoreHudOverlay.cs`、`CoreMainCityHubPanel.cs`）**：
+   - `banner_escalation_fire.png`（420×44，九宫格，PVP 第 12 回合起「战意渐盛」状态横幅底板）
+   - `icon_hub_boss.png`、`icon_hub_pvp.png`、`icon_hub_rotation.png`、`icon_hub_equip_pet.png`（各 96×96，透明底，主城 4 个主玩法入口图标：首领试炼 / 人宠会武 / 首季轮换 / 装备灵宠）
 

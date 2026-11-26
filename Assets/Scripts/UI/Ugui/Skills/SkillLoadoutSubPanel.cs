@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using MmorpgClient.UI.Ugui.Attribute;
-using MmorpgClient.UI.Ugui.Battle;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,105 +14,96 @@ namespace MmorpgClient.UI.Ugui.Skills
     /// </summary>
     public sealed class SkillLoadoutSubPanel
     {
-        private static readonly Color Ink = QdaoUguiTheme.Html("#304736");
-        private static readonly Color Muted = QdaoUguiTheme.Html("#70634E");
-        private static readonly Color Warn = QdaoUguiTheme.Html("#9E3828");
-        private static readonly Color CardBg = QdaoUguiTheme.Html("#FFF7E7");
-        private static readonly Color CardActiveBg = QdaoUguiTheme.Html("#DFE9D3");
-        private static readonly Color CardConflictBg = QdaoUguiTheme.Html("#F7E5DF");
+        private static readonly Color Ink = QdaoUguiTheme.Html("#201D16");
+        private static readonly Color Brown = QdaoUguiTheme.Html("#513722");
+        private static readonly Color JadeInk = QdaoUguiTheme.Html("#103B29");
+        private static readonly Color Rule = QdaoUguiTheme.Html("#CCBA95");
+        private static readonly Color Warn = QdaoUguiTheme.Html("#893827");
+        private const float TableWidth = 1324f;
+        private const float ListHeight = 326f;
+        private const float RowHeight = 55f;
+        private static readonly string[] SchemeNames = { "方案一", "方案二", "方案三" };
 
         private readonly RectTransform _root;
         private readonly RectTransform _contentRoot;
         private readonly Func<ISkillLoadoutSource> _getSource;
-        private readonly Action _onCloseToStudy;
-        private readonly Action<string, bool> _setParentStatus;
+        private readonly SkillLoadoutDraft _draft = new();
 
         private SkillBookViewState _state;
+        private ISkillLoadoutSource _source;
+        private ScrollRect _poolScroll;
         private bool _battleLocked;
         private bool _saving;
-        private uint _editingSchemeId = 1u;
-        private ulong _syncedStateVersion;
-        private bool _draftDirty;
-        private uint _draftRoleTag;
-        private readonly List<uint> _draftOpening = new();
-        private readonly List<uint> _draftPassive = new();
-        private readonly List<uint> _draftPursuit = new();
+        private bool _hasDraftSnapshot;
+        private int _operation;
         private string _notice;
         private bool _noticeError;
 
-        public bool IsVisible => _root.gameObject.activeSelf;
-        public uint EditingSchemeId => _editingSchemeId;
-
-        public SkillLoadoutSubPanel(
-            UnityEngine.Transform parent,
-            Func<ISkillLoadoutSource> getSource,
-            Action onCloseToStudy,
-            Action<string, bool> setParentStatus)
+        public SkillLoadoutSubPanel(UnityEngine.Transform parent, Func<ISkillLoadoutSource> getSource)
         {
             _getSource = getSource;
-            _onCloseToStudy = onCloseToStudy;
-            _setParentStatus = setParentStatus;
-
-            var bg = BattleUiWidgets.CreatePanel("SkillLoadoutPanel", parent, 266f, 88f, 1360f, 764f,
-                QdaoUguiTheme.Html("#FBF5E6"), true);
-            var outline = bg.gameObject.AddComponent<Outline>();
-            outline.effectColor = QdaoUguiTheme.Html("#CAB991");
-            outline.effectDistance = new Vector2(1f, -1f);
-            _root = bg.rectTransform;
+            _root = QdaoUguiFactory.CreateRect("SkillLoadoutPanel", parent, 150f, 92f, 1360f, 764f);
             _contentRoot = QdaoUguiFactory.CreateRect("LoadoutContent", _root, 0f, 0f, 1360f, 764f);
-            _root.gameObject.SetActive(false);
-        }
-
-        public void Show(SkillBookViewState state, bool battleLocked)
-        {
-            _root.gameObject.SetActive(true);
-            _root.SetAsLastSibling();
-            _notice = null;
-            _noticeError = false;
-            Apply(state, battleLocked, forceSyncFromServer: true);
+            Hide();
         }
 
         public void Hide() => _root.gameObject.SetActive(false);
 
-        public void Apply(SkillBookViewState state, bool battleLocked, bool forceSyncFromServer = false)
+        public void Reset()
+        {
+            Hide();
+            ResetSession();
+        }
+
+        private void ResetSession()
+        {
+            _operation++;
+            _saving = false;
+            _hasDraftSnapshot = false;
+            _draft.Reset(null, 1);
+            _notice = null;
+            _noticeError = false;
+        }
+
+        public void Apply(SkillBookViewState state, bool battleLocked, bool visible)
         {
             _state = state;
             _battleLocked = battleLocked;
             var loadout = state?.Snapshot?.Loadout;
-            if (loadout != null && (forceSyncFromServer || !_draftDirty || _syncedStateVersion != loadout.StateVersion))
+            var source = _getSource?.Invoke();
+            if (!ReferenceEquals(_source, source) || (loadout == null && _hasDraftSnapshot))
             {
-                if (forceSyncFromServer)
-                    _editingSchemeId = loadout.ActiveSchemeId >= 1u && loadout.ActiveSchemeId <= 3u ? loadout.ActiveSchemeId : 1u;
-                SyncDraftFromScheme(loadout, _editingSchemeId);
+                ResetSession();
+                _source = source;
             }
-            if (IsVisible) Rebuild();
+
+            bool versionChanged = loadout != null && (!_hasDraftSnapshot || _draft.StateVersion != loadout.StateVersion);
+            if (versionChanged)
+            {
+                bool changedDraft = _draft.IsDirty && !_saving;
+                _draft.Reset(loadout, ActiveSchemeId(loadout));
+                _hasDraftSnapshot = true;
+                if (changedDraft)
+                {
+                    _notice = "服务器方案已更新，已重新载入当前装配。";
+                    _noticeError = true;
+                }
+            }
+            _root.gameObject.SetActive(visible);
+            if (visible) Rebuild(resetScroll: versionChanged);
         }
 
         private bool CanWrite =>
             !_battleLocked && !_saving &&
-            _state != null && _state.IsConnected && !_state.IsReadOnly && !_state.IsLoading && !_state.IsBusy &&
-            _state.Snapshot?.Loadout != null && _getSource?.Invoke() != null;
+            _state?.Context?.IsPet == false && _state.IsConnected && !_state.IsReadOnly && !_state.IsLoading && !_state.IsBusy &&
+            _state.Snapshot?.Loadout != null && _source != null && ReferenceEquals(_source, _getSource?.Invoke());
 
-        private void SyncDraftFromScheme(SkillLoadoutView loadout, uint schemeId)
-        {
-            _editingSchemeId = schemeId >= 1u && schemeId <= 3u ? schemeId : 1u;
-            _syncedStateVersion = loadout?.StateVersion ?? 0UL;
-            _draftDirty = false;
-            _draftOpening.Clear();
-            _draftPassive.Clear();
-            _draftPursuit.Clear();
-            var scheme = loadout?.FindScheme(_editingSchemeId);
-            _draftRoleTag = scheme?.RoleTag ?? 0u;
-            if (scheme != null)
-            {
-                _draftOpening.AddRange(scheme.OpeningSkillIds);
-                _draftPassive.AddRange(scheme.PassiveSkillIds);
-                _draftPursuit.AddRange(scheme.PursuitSkillIds);
-            }
-        }
+        private static uint ActiveSchemeId(SkillLoadoutView loadout) =>
+            loadout.ActiveSchemeId is >= 1u and <= 3u ? loadout.ActiveSchemeId : 1u;
 
-        private void Rebuild()
+        private void Rebuild(bool resetScroll = false)
         {
+            float poolOffset = !resetScroll && _poolScroll != null ? _poolScroll.content.anchoredPosition.y : 0;
             for (int i = _contentRoot.childCount - 1; i >= 0; --i)
             {
                 var child = _contentRoot.GetChild(i).gameObject;
@@ -124,89 +114,97 @@ namespace MmorpgClient.UI.Ugui.Skills
 
             var snapshot = _state?.Snapshot;
             var loadout = snapshot?.Loadout;
-            if (snapshot == null || loadout == null)
-            {
-                CreateText("LoadoutEmpty", _contentRoot, 40f, 280f, 1280f, 80f,
-                    "战法构筑数据尚未同步，请返回技能页刷新重试。", 24f, Muted, TextAlignmentOptions.Center);
-                var backOnly = CharacterAttributeVisuals.Button("LoadoutBackBtn", _contentRoot, 570f, 380f, 220f, 52f, "返回技能修习", false, 20f);
-                backOnly.Button.onClick.AddListener(() => _onCloseToStudy?.Invoke());
-                return;
-            }
+            if (loadout == null) return;
+            bool canWrite = CanWrite;
+            bool canChangeScheme = !_battleLocked && !_saving && !_draft.IsDirty && (_source == null || canWrite);
 
-            // 1. 顶栏：3 套流派方案切换胶囊 + 用途标签 + 启用按钮 + 返回修习
             uint activeId = loadout.ActiveSchemeId;
             for (uint s = 1u; s <= 3u; s++)
             {
                 uint captured = s;
                 var sc = loadout.FindScheme(s);
-                string tag = SkillLoadoutView.DescribeRoleTag(sc?.RoleTag ?? 0u);
-                bool isEditing = s == _editingSchemeId;
-                bool isActive = s == activeId;
-                string label = $"{(isActive ? "★ " : "")}方案{s} · {tag}";
+                bool isEditing = s == _draft.SchemeId;
+                string tag = SkillLoadoutView.DescribeRoleTag(isEditing ? _draft.RoleTag : sc?.RoleTag ?? 0u);
+                string label = $"{SchemeNames[s - 1]} · {tag}";
                 var btn = CharacterAttributeVisuals.Button("LoadoutScheme" + s, _contentRoot,
-                    18f + (s - 1u) * 212f, 14f, 200f, 46f, label, isEditing, 18f);
+                    18f + (s - 1u) * 212f, 12f, 200f, 52f, label, isEditing, 25f);
+                SkillPanel.StyleGuildControl(btn, isEditing ? "guild_tab_selected" : "guild_tab_normal",
+                    isEditing ? QdaoRefreshArt.Ivory : Ink, preserveReadOnlyColor: true);
+                btn.SetInteractable(canChangeScheme);
                 btn.Button.onClick.AddListener(() =>
                 {
-                    if (_editingSchemeId == captured) return;
+                    if (!canChangeScheme || _battleLocked || _saving || _draft.IsDirty || _draft.SchemeId == captured) return;
+                    if (CanWrite && activeId != captured)
+                    {
+                        SubmitSwitch(captured);
+                        return;
+                    }
                     _notice = null;
                     _noticeError = false;
-                    SyncDraftFromScheme(loadout, captured);
+                    _draft.Reset(loadout, captured);
+                    Rebuild(resetScroll: true);
+                });
+            }
+
+            CreateText("LoadoutRoleTitle", _contentRoot, 682f, 15f, 104f, 44f, "方案用途", 23f, Brown);
+            for (uint role = 0; role <= 3; role++)
+            {
+                uint captured = role;
+                bool selected = role == _draft.RoleTag;
+                var tagBtn = CharacterAttributeVisuals.Button("LoadoutRoleTag" + role, _contentRoot,
+                    790f + role * 107f, 15f, 100f, 46f, SkillLoadoutView.DescribeRoleTag(role), false, 22f);
+                SkillPanel.StyleGuildControl(tagBtn, "guild_tab_normal", selected ? JadeInk : Ink, preserveReadOnlyColor: true);
+                if (selected)
+                {
+                    tagBtn.Label.rectTransform.offsetMin += new Vector2(14f, 0f);
+                    AddSelectedMark(tagBtn.Rect, 8f, 15f, 16f);
+                }
+                tagBtn.SetInteractable(canWrite);
+                tagBtn.Button.onClick.AddListener(() =>
+                {
+                    if (!CanWrite || _draft.RoleTag == captured) return;
+                    _draft.SetRoleTag(captured);
+                    _notice = "用途已调整，保存后生效。";
+                    _noticeError = false;
                     Rebuild();
                 });
             }
 
-            var tagBtn = CharacterAttributeVisuals.Button("LoadoutRoleTag", _contentRoot, 662f, 14f, 186f, 46f,
-                $"标签：{SkillLoadoutView.DescribeRoleTag(_draftRoleTag)} ▸", false, 18f);
-            tagBtn.SetInteractable(CanWrite);
-            tagBtn.Button.onClick.AddListener(() =>
-            {
-                if (!CanWrite) return;
-                _draftRoleTag = (_draftRoleTag + 1u) % 4u;
-                _draftDirty = true;
-                _notice = $"方案{_editingSchemeId}标签已调整为「{SkillLoadoutView.DescribeRoleTag(_draftRoleTag)}」，请保存生效。";
-                _noticeError = false;
-                Rebuild();
-            });
+            string modeHint = loadout.CustomEnabled
+                ? $"当前启用 · {SchemeNames[ActiveSchemeId(loadout) - 1]}"
+                : "当前生效 · 全部已学非主动战法";
+            CreateText("LoadoutSubHeader", _contentRoot, 22f, 73f, 1320f, 29f,
+                modeHint + (_draft.IsDirty ? "     有未保存改动" : string.Empty), 22f, JadeInk);
 
-            bool canQuickSwitch = CanWrite && !_draftDirty && _editingSchemeId != activeId;
-            var switchBtn = CharacterAttributeVisuals.Button("LoadoutSwitchBtn", _contentRoot, 860f, 14f, 224f, 46f,
-                _editingSchemeId == activeId ? "当前已启用" : $"直接启用方案{_editingSchemeId}", canQuickSwitch, 18f);
-            switchBtn.SetInteractable(canQuickSwitch);
-            switchBtn.Button.onClick.AddListener(SubmitSwitch);
-
-            var backBtn = CharacterAttributeVisuals.Button("LoadoutBackBtn", _contentRoot, 1170f, 14f, 172f, 46f, "返回技能修习", false, 18f);
-            backBtn.Button.onClick.AddListener(() => _onCloseToStudy?.Invoke());
-
-            string modeHint = !loadout.CustomEnabled
-                ? "当前未开启自定义方案（已学非主动战法默认全部生效）；保存任意方案后即切换为自定义构筑。"
-                : $"当前启用：方案{activeId}  ·  正在编辑：方案{_editingSchemeId}{(_draftDirty ? "（有未保存改动）" : "")}  ·  槽位上限：开场 {loadout.MaxOpeningSlots} / 被动 {loadout.MaxPassiveSlots} / 追击 {loadout.MaxPursuitSlots}";
-            CreateText("LoadoutSubHeader", _contentRoot, 20f, 68f, 1320f, 26f, modeHint, 15f, Muted);
-
-            // 2. 中栏：5 个装配槽位卡（开场 ×1、被动 ×3、追击 ×1）
-            int openingCap = Math.Max(1, (int)loadout.MaxOpeningSlots);
-            int passiveCap = Math.Max(1, (int)loadout.MaxPassiveSlots);
-            int pursuitCap = Math.Max(1, (int)loadout.MaxPursuitSlots);
+            int openingCap = (int)loadout.MaxOpeningSlots;
+            int passiveCap = (int)loadout.MaxPassiveSlots;
+            int pursuitCap = (int)loadout.MaxPursuitSlots;
             int totalSlots = openingCap + passiveCap + pursuitCap;
-            float slotGap = 14f;
-            float slotW = Mathf.Floor((1324f - slotGap * (totalSlots - 1)) / totalSlots);
+            var slots = CreateGuildImage("LoadoutSlotGroup", _contentRoot, 18f, 110f, TableWidth, 164f,
+                "guild_announcement", QdaoUguiTheme.Html("#F0E7D7")).rectTransform;
+            float slotW = (TableWidth - 24f) / Mathf.Max(1, totalSlots);
             int col = 0;
             for (int i = 0; i < openingCap; i++)
-                BuildSlotCard(snapshot, "开场槽", 4u, i, _draftOpening, 18f + col++ * (slotW + slotGap), 104f, slotW, 174f);
+                BuildSlotCard(snapshot, "开场槽", 4u, i, _draft.Opening, slots, col++, slotW);
             for (int i = 0; i < passiveCap; i++)
-                BuildSlotCard(snapshot, $"被动槽 {i + 1}", 2u, i, _draftPassive, 18f + col++ * (slotW + slotGap), 104f, slotW, 174f);
+                BuildSlotCard(snapshot, $"被动槽 {i + 1}", 2u, i, _draft.Passive, slots, col++, slotW);
             for (int i = 0; i < pursuitCap; i++)
-                BuildSlotCard(snapshot, "追击槽", 3u, i, _draftPursuit, 18f + col++ * (slotW + slotGap), 104f, slotW, 174f);
+                BuildSlotCard(snapshot, "追击槽", 3u, i, _draft.Pursuit, slots, col++, slotW);
 
-            // 3. 下栏：已学非主动战法池（可点击装入/替换互斥组/卸下）
-            CreateText("LoadoutPoolHeading", _contentRoot, 20f, 290f, 1320f, 28f,
-                "已学非主动战法（点击装入对应槽位；同专精互斥组战法将自动替换）", 17f, Ink, TextAlignmentOptions.MidlineLeft, bold: true);
+            CreateText("LoadoutPoolHeading", _contentRoot, 23f, 290f, 170f, 40f, "已学战法", 31f, JadeInk, bold: true);
+            AddRule("LoadoutPoolRule", _contentRoot, 180f, 310f, 1162f, 1f);
+            var header = CreateGuildImage("LoadoutPoolHeader", _contentRoot, 18f, 336f, TableWidth, 40f,
+                "guild_table_header", QdaoUguiTheme.Html("#E5D8BE"));
+            CreateText("SkillHeader", header.transform, 114f, 0f, 344f, 40f, "战法", 23f, Brown);
+            CreateText("DetailsHeader", header.transform, 500f, 0f, 384f, 40f, "类型与策略", 23f, Brown);
+            CreateText("ActionHeader", header.transform, 928f, 0f, 366f, 40f, "装配状态", 23f, Brown);
 
-            var viewport = QdaoUguiFactory.CreateRect("LoadoutPoolViewport", _contentRoot, 18f, 322f, 1324f, 366f);
+            var viewport = QdaoUguiFactory.CreateRect("LoadoutPoolViewport", _contentRoot, 18f, 376f, TableWidth, ListHeight);
             viewport.gameObject.AddComponent<RectMask2D>();
             var vpBg = viewport.gameObject.AddComponent<Image>();
-            vpBg.color = new Color(0.95f, 0.92f, 0.84f, 0.55f);
-            var poolContent = QdaoUguiFactory.CreateRect("LoadoutPoolContent", viewport, 0f, 0f, 1324f, 366f);
-            var scroll = viewport.gameObject.AddComponent<ScrollRect>();
+            vpBg.color = new Color(1f, 1f, 1f, 0.001f);
+            var poolContent = QdaoUguiFactory.CreateRect("LoadoutPoolContent", viewport, 0f, 0f, TableWidth, ListHeight);
+            var scroll = _poolScroll = viewport.gameObject.AddComponent<ScrollRect>();
             scroll.viewport = viewport;
             scroll.content = poolContent;
             scroll.horizontal = false;
@@ -217,241 +215,190 @@ namespace MmorpgClient.UI.Ugui.Skills
             var candidates = CollectLearnedNonActiveSkills(snapshot);
             if (candidates.Count == 0)
             {
-                CreateText("LoadoutPoolEmpty", poolContent, 20f, 130f, 1284f, 60f,
-                    "暂无已学习的被动、追击或开场战法，请先在技能页修习或前往制卷解锁。", 20f, Muted, TextAlignmentOptions.Center);
-                poolContent.sizeDelta = new Vector2(1324f, 366f);
+                CreateText("LoadoutPoolEmpty", poolContent, 20f, 116f, 1284f, 60f,
+                    "暂无已学战法", 24f, Brown, TextAlignmentOptions.Center);
             }
             else
             {
-                const int cols = 2;
-                const float cellW = 648f, cellH = 74f, gapX = 16f, gapY = 10f;
-                int rows = (candidates.Count + cols - 1) / cols;
-                poolContent.sizeDelta = new Vector2(1324f, Mathf.Max(366f, rows * (cellH + gapY) + 12f));
+                poolContent.sizeDelta = new Vector2(TableWidth, Mathf.Max(ListHeight, candidates.Count * RowHeight));
                 for (int i = 0; i < candidates.Count; i++)
                 {
                     var entry = candidates[i];
                     var def = entry.Definition;
-                    uint slotKind = ResolveSlotKind(def);
-                    bool inDraft = ContainsInDraft(entry.Id);
-                    uint conflictId = !inDraft && def.exclusiveGroup > 0 ? FindExclusiveConflict(snapshot, def.exclusiveGroup, entry.Id) : 0u;
-                    float cx = 6f + (i % cols) * (cellW + gapX);
-                    float cy = 6f + (i / cols) * (cellH + gapY);
+                    uint slotKind = def.abilityKind;
+                    bool inDraft = _draft.Contains(entry.Id);
+                    uint conflictId = inDraft ? 0u : _draft.GetConflict(snapshot, entry);
+                    var plate = CreateGuildImage("LoadoutPool_" + entry.Id, poolContent, 0f, i * RowHeight,
+                        TableWidth, RowHeight, inDraft ? "guild_row_self" : "guild_row_normal",
+                        QdaoUguiTheme.Html(inDraft ? "#DDE5D4" : "#F0E8DB"));
+                    var foreground = inDraft ? JadeInk : Ink;
 
-                    var plate = BattleUiWidgets.CreatePanel("LoadoutPool_" + entry.Id, poolContent, cx, cy, cellW, cellH,
-                        inDraft ? CardActiveBg : conflictId != 0 ? CardConflictBg : CardBg, true);
-                    var border = plate.gameObject.AddComponent<Outline>();
-                    border.effectColor = inDraft ? QdaoUguiTheme.Html("#4B8064") : conflictId != 0 ? Warn : QdaoUguiTheme.Html("#D1C6A6");
-                    border.effectDistance = new Vector2(1f, -1f);
+                    AddCardAction(plate, canWrite, () => ToggleSkillInDraft(snapshot, entry));
 
-                    var btn = plate.gameObject.AddComponent<Button>();
-                    btn.targetGraphic = plate;
-                    btn.interactable = CanWrite;
-                    var capturedEntry = entry;
-                    btn.onClick.AddListener(() => ToggleSkillInDraft(snapshot, loadout, capturedEntry, slotKind));
-
-                    var icon = QdaoUguiFactory.CreateImage("Icon", plate.transform, 10f, 11f, 52f, 52f, ResolveSkillIcon(def));
+                    if (inDraft) AddSelectedMark(plate.transform, 18f, 15f, 25f);
+                    var icon = QdaoUguiFactory.CreateImage("Icon", plate.transform, 57f, 4f, 46f, 46f, ResolveSkillIcon(def));
                     icon.preserveAspect = true;
                     icon.raycastTarget = false;
 
                     string kindTag = SlotKindLabel(slotKind);
-                    string exTag = def.exclusiveGroup > 0 ? $" · 互斥组#{def.exclusiveGroup}" : string.Empty;
-                    string title = $"{def.name}  Lv.{entry.Rank}";
-                    CreateText("Title", plate.transform, 72f, 8f, 390f, 30f, title, 19f, Ink, TextAlignmentOptions.MidlineLeft, bold: true);
-                    CreateText("Meta", plate.transform, 72f, 40f, 410f, 24f,
-                        $"{kindTag}{exTag}{(entry.Equipped ? " · 服务器已装配" : "")}", 14f, conflictId != 0 ? Warn : Muted);
+                    string exTag = def.exclusiveGroup > 0 ? " · 专精互斥" : string.Empty;
+                    string targetTag = string.IsNullOrEmpty(def.SecondaryTargetLabel) ? string.Empty : " · " + def.SecondaryTargetLabel;
+                    CreateText("Title", plate.transform, 114f, 0f, 344f, RowHeight, $"{def.name}   {entry.Rank}级", 25f, foreground, bold: true);
+                    CreateText("Meta", plate.transform, 500f, 0f, 384f, RowHeight,
+                        $"{kindTag}{targetTag}{exTag}", 22f, conflictId != 0 ? Warn : foreground);
 
-                    string actionText = inDraft ? "已装入（点卸下）"
-                        : conflictId != 0 ? "互斥（点替换）"
-                        : "点击装入";
-                    CreateText("Action", plate.transform, 488f, 18f, 148f, 38f, actionText, 15f,
-                        inDraft ? QdaoUguiTheme.Html("#205B46") : conflictId != 0 ? Warn : Muted, TextAlignmentOptions.MidlineRight, bold: true);
+                    string actionText = !canWrite ? (inDraft ? "已在方案内" : string.Empty) : inDraft ? "卸下"
+                        : conflictId != 0 ? "点击替换" : "点击装入";
+                    if (entry.Equipped)
+                        CreateText("Equipped", plate.transform, 928f, 0f, 152f, RowHeight, "已装配", 22f, JadeInk);
+                    CreateText("Action", plate.transform, 1090f, 0f, 204f, RowHeight, actionText, 22f,
+                        conflictId != 0 ? Warn : foreground, TextAlignmentOptions.MidlineRight);
                 }
             }
+            poolContent.anchoredPosition = new Vector2(0, Mathf.Clamp(poolOffset, 0, poolContent.sizeDelta.y - ListHeight));
 
-            // 4. 底栏：状态提示 + 重置草稿 + 保存并启用
-            string footerMsg = _battleLocked ? "战斗中只读查看，不可修改或切换战法构筑。"
+            string footerMsg = _battleLocked ? "战斗中仅可查看战法装配。"
                 : _saving ? "正在提交战法构筑，等待服务器确认…"
-                : !string.IsNullOrEmpty(_notice) ? _notice
-                : "主动技能无需装配全部可用；被动/追击/开场按当前启用方案生效。";
-            CreateText("LoadoutFooterNotice", _contentRoot, 20f, 706f, 850f, 44f, footerMsg, 16f,
-                _noticeError || _battleLocked ? Warn : Muted, TextAlignmentOptions.MidlineLeft);
+                : _notice ?? (_draft.IsDirty ? "保存或重置草稿后可切换方案。" : string.Empty);
+            CreateText("LoadoutFooterNotice", _contentRoot, 23f, 709f, 850f, 48f, footerMsg, 22f,
+                _noticeError || _battleLocked ? Warn : Ink);
 
-            var resetBtn = CharacterAttributeVisuals.Button("LoadoutResetBtn", _contentRoot, 892f, 700f, 196f, 50f, "重置草稿", false, 19f);
-            resetBtn.SetInteractable(CanWrite && _draftDirty);
+            var resetBtn = CharacterAttributeVisuals.Button("LoadoutResetBtn", _contentRoot, 892f, 712f, 196f, 49f, "重置草稿", false, 24f);
+            SkillPanel.StyleGuildControl(resetBtn, "guild_button_secondary", Ink);
+            resetBtn.SetInteractable(canWrite && _draft.IsDirty);
             resetBtn.Button.onClick.AddListener(() =>
             {
-                SyncDraftFromScheme(loadout, _editingSchemeId);
-                _notice = "已恢复服务器当前方案草稿。";
+                if (!CanWrite) return;
+                _draft.Reset(loadout, _draft.SchemeId);
+                _notice = "已恢复所选方案的已保存装配。";
                 _noticeError = false;
                 Rebuild();
             });
 
-            var saveBtn = CharacterAttributeVisuals.Button("LoadoutSaveBtn", _contentRoot, 1102f, 700f, 240f, 50f, "保存并启用", true, 19f);
-            saveBtn.SetInteractable(CanWrite);
+            var saveBtn = CharacterAttributeVisuals.Button("LoadoutSaveBtn", _contentRoot, 1102f, 710f, 240f, 53f, "保存并启用", true, 25f);
+            SkillPanel.StyleGuildControl(saveBtn, canWrite ? "guild_button_primary" : "guild_button_secondary",
+                canWrite ? QdaoRefreshArt.Ivory : Brown, preserveReadOnlyColor: true);
+            saveBtn.SetInteractable(canWrite);
             saveBtn.Button.onClick.AddListener(SubmitSave);
         }
 
         private void BuildSlotCard(SkillBookSnapshot snapshot, string slotTitle, uint slotKind, int slotIndex,
-            List<uint> list, float x, float y, float w, float h)
+            IReadOnlyList<uint> list, RectTransform parent, int column, float width)
         {
             uint skillId = slotIndex < list.Count ? list[slotIndex] : 0u;
             var entry = skillId != 0u ? snapshot.Find(skillId) : null;
             var def = entry?.Definition;
-            bool filled = def != null;
-
-            var plate = BattleUiWidgets.CreatePanel($"LoadoutSlot_{slotKind}_{slotIndex}", _contentRoot, x, y, w, h,
-                filled ? CardActiveBg : CardBg, true);
-            var border = plate.gameObject.AddComponent<Outline>();
-            border.effectColor = filled ? QdaoUguiTheme.Html("#4B8064") : QdaoUguiTheme.Html("#CAB991");
-            border.effectDistance = new Vector2(1f, -1f);
-
-            var btn = plate.gameObject.AddComponent<Button>();
-            btn.targetGraphic = plate;
-            btn.interactable = CanWrite && filled;
-            btn.onClick.AddListener(() =>
+            bool filled = skillId != 0;
+            string skillName = def?.name ?? $"战法 #{skillId}";
+            float x = 12f + column * width;
+            if (column > 0) AddRule("SlotRule" + column, parent, x, 12f, 1f, 140f);
+            var plate = QdaoUguiFactory.CreateImage($"LoadoutSlot_{slotKind}_{slotIndex}", parent, x, 4f, width, 154f, null);
+            plate.color = new Color(1f, 1f, 1f, 0.001f);
+            AddCardAction(plate, CanWrite && filled, () =>
             {
-                if (!CanWrite || slotIndex >= list.Count) return;
-                uint removed = list[slotIndex];
-                list.RemoveAt(slotIndex);
-                _draftDirty = true;
-                var removedName = snapshot.Find(removed)?.Definition?.name ?? $"战法#{removed}";
-                _notice = $"已从{slotTitle}卸下「{removedName}」，点「保存并启用」生效。";
+                if (!CanWrite || !_draft.Remove(skillId)) return;
+                _notice = $"已从{slotTitle}卸下「{skillName}」，保存后生效。";
                 _noticeError = false;
                 Rebuild();
             });
 
-            CreateText("SlotKind", plate.transform, 10f, 8f, w - 20f, 24f, slotTitle, 15f, Muted, TextAlignmentOptions.Center, bold: true);
+            CreateText("SlotKind", plate.transform, 10f, 8f, width - 20f, 30f, slotTitle, 23f, Brown, TextAlignmentOptions.Center);
             if (filled)
             {
-                var icon = QdaoUguiFactory.CreateImage("SlotIcon", plate.transform, (w - 64f) * 0.5f, 38f, 64f, 64f, ResolveSkillIcon(def));
+                var icon = QdaoUguiFactory.CreateImage("SlotIcon", plate.transform,
+                    (width - 60f) * 0.5f, 40f, 60f, 60f, ResolveSkillIcon(def));
                 icon.preserveAspect = true;
                 icon.raycastTarget = false;
-                CreateText("SlotName", plate.transform, 8f, 108f, w - 16f, 28f, def.name, 17f, Ink, TextAlignmentOptions.Center, bold: true);
-                string sub = def.exclusiveGroup > 0 ? $"互斥组#{def.exclusiveGroup} · 点卸下" : "点击卸下";
-                CreateText("SlotSub", plate.transform, 8f, 138f, w - 16f, 24f, sub, 13f, Muted, TextAlignmentOptions.Center);
+                CreateText("SlotName", plate.transform, 8f, 101f, width - 16f, 27f, skillName, 24f, JadeInk, TextAlignmentOptions.Center, bold: true);
+                string sub = def?.exclusiveGroup > 0 ? "专精互斥" : string.Empty;
+                if (CanWrite) sub = sub.Length == 0 ? "点击卸下" : sub + " · 点击卸下";
+                CreateText("SlotSub", plate.transform, 8f, 129f, width - 16f, 24f, sub, 18f, Brown, TextAlignmentOptions.Center);
             }
             else
             {
-                CreateText("SlotEmpty", plate.transform, 10f, 76f, w - 20f, 54f, "空槽\n下方点选装入", 15f, Muted, TextAlignmentOptions.Center);
+                CreateText("SlotEmpty", plate.transform, 10f, 64f, width - 20f, 50f, "空槽", 23f, Brown, TextAlignmentOptions.Center);
             }
         }
 
-        private void ToggleSkillInDraft(SkillBookSnapshot snapshot, SkillLoadoutView loadout, SkillEntryState entry, uint slotKind)
+        private static Image CreateGuildImage(string name, UnityEngine.Transform parent, float x, float y, float w, float h,
+            string art, Color fallback)
         {
-            if (!CanWrite || entry?.Definition == null) return;
-            var list = slotKind == 4u ? _draftOpening : slotKind == 3u ? _draftPursuit : _draftPassive;
-            int max = (int)(slotKind == 4u ? loadout.MaxOpeningSlots : slotKind == 3u ? loadout.MaxPursuitSlots : loadout.MaxPassiveSlots);
-            if (max <= 0) max = slotKind == 2u ? 3 : 1;
+            var image = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, null);
+            SeasonEconomyUiArt.ApplyFixedControlSprite(image, SeasonEconomyUiArt.LoadGuildFidelityAsset(art), fallback);
+            return image;
+        }
 
-            if (list.Remove(entry.Id))
+        private static void AddRule(string name, UnityEngine.Transform parent, float x, float y, float w, float h)
+        {
+            var image = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, null);
+            image.color = Rule;
+        }
+
+        internal static void AddSelectedMark(UnityEngine.Transform parent, float x, float y, float size)
+        {
+            var sprite = SeasonEconomyUiArt.LoadGuildFidelityAsset("guild_self_mark");
+            if (sprite != null) QdaoUguiFactory.CreateImage("SelectedMark", parent, x, y, size, size, sprite);
+        }
+
+        private void ToggleSkillInDraft(SkillBookSnapshot snapshot, SkillEntryState entry)
+        {
+            if (!CanWrite) return;
+            var change = _draft.Toggle(snapshot, entry, out uint conflictId);
+            string name = entry.Definition.name;
+            var previous = snapshot.Find(conflictId)?.Definition?.name;
+            _notice = change switch
             {
-                _draftDirty = true;
-                _notice = $"已卸下「{entry.Definition.name}」。";
-                _noticeError = false;
-                Rebuild();
-                return;
-            }
-
-            // 若与草稿中已有战法同属专精互斥组，自动替换并高亮提示
-            if (entry.Definition.exclusiveGroup > 0)
-            {
-                uint conflict = FindExclusiveConflict(snapshot, entry.Definition.exclusiveGroup, entry.Id);
-                if (conflict != 0u)
-                {
-                    RemoveFromAllDraftSlots(conflict);
-                    string oldName = snapshot.Find(conflict)?.Definition?.name ?? $"战法#{conflict}";
-                    if (list.Count < max)
-                    {
-                        list.Add(entry.Id);
-                        _draftDirty = true;
-                        _notice = $"专精互斥组#{entry.Definition.exclusiveGroup}：已替换「{oldName}」→「{entry.Definition.name}」，请保存生效。";
-                        _noticeError = false;
-                        Rebuild();
-                        return;
-                    }
-                }
-            }
-
-            if (list.Count >= max)
-            {
-                _notice = $"{SlotKindLabel(slotKind)}槽已满（上限 {max}），请先点击上方槽位卸下再装入。";
-                _noticeError = true;
-                Rebuild();
-                return;
-            }
-
-            list.Add(entry.Id);
-            _draftDirty = true;
-            _notice = $"已装入「{entry.Definition.name}」，点「保存并启用」提交服务器。";
-            _noticeError = false;
+                SkillLoadoutDraft.Change.Removed => $"已卸下「{name}」。",
+                SkillLoadoutDraft.Change.Replaced => $"已将「{previous}」替换为「{name}」，保存后生效。",
+                SkillLoadoutDraft.Change.Added => $"已装入「{name}」，保存后生效。",
+                _ => $"{SlotKindLabel(entry.Definition.abilityKind)}槽已满，请先卸下一项战法。",
+            };
+            _noticeError = change == SkillLoadoutDraft.Change.SlotsFull;
             Rebuild();
         }
 
         private void SubmitSave()
         {
             if (!CanWrite) return;
-            var source = _getSource?.Invoke();
-            if (source == null) return;
+            int operation = BeginWrite();
+            _source.SaveLoadout(_draft.SchemeId, _draft.RoleTag,
+                new List<uint>(_draft.Passive), new List<uint>(_draft.Pursuit), new List<uint>(_draft.Opening),
+                (ok, message) => CompleteWrite(operation, ok, message, "战法方案已保存并启用。"));
+        }
+
+        private void SubmitSwitch(uint schemeId)
+        {
+            if (!CanWrite || _draft.IsDirty) return;
+            int operation = BeginWrite();
+            _source.SwitchLoadout(schemeId,
+                (ok, message) => CompleteWrite(operation, ok, message, $"已启用{SchemeNames[schemeId - 1]}。"));
+        }
+
+        private int BeginWrite()
+        {
             _saving = true;
-            _notice = "正在保存并启用流派方案…";
-            _noticeError = false;
             Rebuild();
-            source.SaveLoadout(_editingSchemeId, _draftRoleTag,
-                new List<uint>(_draftPassive), new List<uint>(_draftPursuit), new List<uint>(_draftOpening),
-                (ok, msg) =>
-                {
-                    _saving = false;
-                    if (ok) _draftDirty = false;
-                    _notice = msg;
-                    _noticeError = !ok;
-                    _setParentStatus?.Invoke(msg, !ok);
-                    if (IsVisible) Rebuild();
-                });
+            return ++_operation;
         }
 
-        private void SubmitSwitch()
+        private void CompleteWrite(int operation, bool ok, string message, string successMessage)
         {
-            if (!CanWrite || _draftDirty) return;
-            var source = _getSource?.Invoke();
-            if (source == null) return;
-            _saving = true;
-            _notice = $"正在切换启用方案{_editingSchemeId}…";
-            _noticeError = false;
-            Rebuild();
-            source.SwitchLoadout(_editingSchemeId, (ok, msg) =>
-            {
-                _saving = false;
-                _notice = msg;
-                _noticeError = !ok;
-                _setParentStatus?.Invoke(msg, !ok);
-                if (IsVisible) Rebuild();
-            });
+            if (_root == null || operation != _operation || !ReferenceEquals(_source, _getSource?.Invoke())) return;
+            _saving = false;
+            var loadout = _state?.Snapshot?.Loadout;
+            if (ok && loadout != null) _draft.Reset(loadout, ActiveSchemeId(loadout));
+            _notice = message ?? (ok ? successMessage : "战法操作未确认，请刷新技能信息。");
+            _noticeError = !ok;
+            if (_root.gameObject.activeSelf) Rebuild(resetScroll: ok);
         }
 
-        private bool ContainsInDraft(uint skillId) =>
-            _draftOpening.Contains(skillId) || _draftPassive.Contains(skillId) || _draftPursuit.Contains(skillId);
-
-        private void RemoveFromAllDraftSlots(uint skillId)
+        private static void AddCardAction(Image plate, bool enabled, Action activate)
         {
-            _draftOpening.Remove(skillId);
-            _draftPassive.Remove(skillId);
-            _draftPursuit.Remove(skillId);
-        }
-
-        private uint FindExclusiveConflict(SkillBookSnapshot snapshot, uint exclusiveGroup, uint excludeSkillId)
-        {
-            if (exclusiveGroup == 0 || snapshot == null) return 0u;
-            foreach (var list in new[] { _draftOpening, _draftPassive, _draftPursuit })
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    uint id = list[i];
-                    if (id == excludeSkillId) continue;
-                    var def = snapshot.Find(id)?.Definition;
-                    if (def != null && def.exclusiveGroup == exclusiveGroup) return id;
-                }
-            }
-            return 0u;
+            if (!enabled) return;
+            plate.raycastTarget = true;
+            var button = plate.gameObject.AddComponent<Button>();
+            button.targetGraphic = plate;
+            button.onClick.AddListener(() => activate());
         }
 
         private static List<SkillEntryState> CollectLearnedNonActiveSkills(SkillBookSnapshot snapshot)
@@ -460,16 +407,10 @@ namespace MmorpgClient.UI.Ugui.Skills
             foreach (var e in snapshot.Entries)
             {
                 if (e?.Definition == null || e.Rank == 0) continue;
-                if (IsConfigurableNonActive(e.Definition)) result.Add(e);
+                if (SkillLoadoutDraft.IsConfigurable(e.Definition)) result.Add(e);
             }
             return result;
         }
-
-        private static bool IsConfigurableNonActive(SkillDefinition def) =>
-            def != null && (def.abilityKind == 2u || def.abilityKind == 3u || def.abilityKind == 4u || (def.abilityKind == 0u && def.IsPassive));
-
-        private static uint ResolveSlotKind(SkillDefinition def) =>
-            def.abilityKind == 4u ? 4u : def.abilityKind == 3u ? 3u : 2u;
 
         private static string SlotKindLabel(uint slotKind) => slotKind switch
         {
@@ -479,8 +420,8 @@ namespace MmorpgClient.UI.Ugui.Skills
         };
 
         private static Sprite ResolveSkillIcon(SkillDefinition def) =>
-            (string.IsNullOrEmpty(def.IconResource) ? null : Resources.Load<Sprite>(def.IconResource)) ??
-            SeasonEconomyUiArt.LoadGrowthSkillIcon(def.id) ??
+            (string.IsNullOrEmpty(def?.IconResource) ? null : Resources.Load<Sprite>(def.IconResource)) ??
+            (def == null ? null : SeasonEconomyUiArt.LoadGrowthSkillIcon(def.id)) ??
             QdaoUguiTheme.LoadSprite("UI/Ugui/GameplayV1/icon_scroll");
 
         private static TMP_Text CreateText(string name, UnityEngine.Transform parent, float x, float y,
@@ -488,7 +429,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             TextAlignmentOptions align = TextAlignmentOptions.MidlineLeft, bool bold = false)
         {
             var t = QdaoUguiFactory.CreateText(name, parent, x, y, w, h, value, size, color, align);
-            t.font = bold ? QdaoUguiTheme.ResolveFont() : QdaoUguiTypography.ResolveBodyFont();
+            t.font = QdaoUguiTheme.ResolveFont();
             t.fontStyle = bold ? FontStyles.Bold : FontStyles.Normal;
             t.richText = false;
             t.raycastTarget = false;

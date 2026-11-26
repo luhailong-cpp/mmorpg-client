@@ -40,6 +40,7 @@ namespace MmorpgClient.Game.Team
             snapshot.RankedPresetsAllConfirmed = view.RankedPresetsAllConfirmed;
             snapshot.RankedSeasonId = view.RankedSeasonId;
             snapshot.RankedRuleVersion = view.RankedRuleVersion;
+            snapshot.FollowFormation = view.FollowFormation;
             snapshot.MatchQueued = view.MatchState == TeamBackfillProtocol.QueuedState;
             if (snapshot.MatchQueued)
             {
@@ -99,6 +100,7 @@ namespace MmorpgClient.Game.Team
                 IsLeader = member.IsLeader,
                 // 类默认值是 true,这里必须用服务端的值覆盖。
                 IsOnline = member.IsOnline,
+                IsHosted = !member.IsOnline && member.IsHosted,
                 InBattle = member.InBattle,
                 ZoneId = member.ZoneId,
                 JoinSeq = member.JoinSeq,
@@ -168,5 +170,26 @@ namespace MmorpgClient.Game.Team
             if (role.PlayerId != 0) return $"道友 {role.PlayerId}";
             return "无名道友";
         }
+
+        public static string FormatFormationName(TeamFollowFormationStyle style) => style switch
+        {
+            TeamFollowFormationStyle.TeamFollowFormationEchelon => "雁行两翼",
+            TeamFollowFormationStyle.TeamFollowFormationWuxing => "五行聚阵",
+            _ => "长蛇纵队",
+        };
+
+        public static string FormatFormationShortName(TeamFollowFormationStyle style) => style switch
+        {
+            TeamFollowFormationStyle.TeamFollowFormationEchelon => "雁行",
+            TeamFollowFormationStyle.TeamFollowFormationWuxing => "五行",
+            _ => "长蛇",
+        };
+
+        public static TeamFollowFormationStyle NextFormation(TeamFollowFormationStyle current) => current switch
+        {
+            TeamFollowFormationStyle.TeamFollowFormationColumn => TeamFollowFormationStyle.TeamFollowFormationEchelon,
+            TeamFollowFormationStyle.TeamFollowFormationEchelon => TeamFollowFormationStyle.TeamFollowFormationWuxing,
+            _ => TeamFollowFormationStyle.TeamFollowFormationColumn,
+        };
     }
 }

@@ -46,6 +46,7 @@ namespace MmorpgClient.Game.Jubaozhai
         private readonly Dictionary<ulong, SellerCreditView> _sellerCredits = new();
         private readonly Dictionary<string, GetMarketReferencePriceResponse> _marketRefPrices = new(StringComparer.Ordinal);
         private readonly Dictionary<uint, GetPlayerTradeQuotaResponse> _tradeQuotas = new();
+        private readonly Dictionary<ulong, OfficialSkuView> _officialSkusById = new();
         private object _connection;
         private ulong _player;
         private int _generation;
@@ -69,6 +70,9 @@ namespace MmorpgClient.Game.Jubaozhai
         public bool TryGetTradeQuota(uint currencyType, out GetPlayerTradeQuotaResponse value)
             => _tradeQuotas.TryGetValue(currencyType, out value);
 
+        public bool HasSellableOfficialSku(ulong skuId)
+            => skuId != 0ul && _officialSkusById.TryGetValue(skuId, out var sku) && sku != null && sku.Available > 0;
+
         public CommerceClient(IBattleTransport net, ICommerceRecoveryStore recovery, Func<object> identity = null)
         {
             _net = net ?? throw new ArgumentNullException(nameof(net));
@@ -88,7 +92,7 @@ namespace MmorpgClient.Game.Jubaozhai
             _connection = current; _player = _net.PlayerId;
             ++_generation; Busy = false; _orders.Clear();
             _refreshedTerminalOrders.Clear(); _refreshedTerminalMarkets.Clear();
-            _sellerCredits.Clear(); _marketRefPrices.Clear(); _tradeQuotas.Clear();
+            _sellerCredits.Clear(); _marketRefPrices.Clear(); _tradeQuotas.Clear(); _officialSkusById.Clear();
             Status = HasPendingWrite ? "有待确认交易，请恢复原请求。" : "";
             Changed?.Invoke();
         }
@@ -96,6 +100,7 @@ namespace MmorpgClient.Game.Jubaozhai
         private void Disconnected()
         {
             ++_generation; Busy = false; RequiresReconnect = true;
+            _officialSkusById.Clear();
             Status = "连接已断开；交易记录已保留，重连后可恢复。";
             Changed?.Invoke();
         }
@@ -149,6 +154,14 @@ namespace MmorpgClient.Game.Jubaozhai
                 _marketRefPrices[MarketRefKey(p50.ItemConfigId, p50.CurrencyType)] = p50.Clone();
             else if (response is GetPlayerTradeQuotaResponse quota)
                 _tradeQuotas[quota.CurrencyType] = quota.Clone();
+            else if (response is ListOfficialSkusResponse officialSkus)
+            {
+                for (int i = 0; i < officialSkus.Skus.Count; i++)
+                {
+                    var sku = officialSkus.Skus[i];
+                    if (sku != null && sku.SkuId != 0ul) _officialSkusById[sku.SkuId] = sku.Clone();
+                }
+            }
             // 通知者读取权威背包与宠物列表，不推导“本次应增加多少”。
             if (refreshAssets) AssetRefreshRequired?.Invoke();
         }

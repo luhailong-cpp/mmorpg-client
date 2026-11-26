@@ -43,6 +43,13 @@ namespace MmorpgClient.Game.Season
         public event Action<SeasonSealCatchupEvent> SealCatchupCompleted;
 
         public global::SeasonStateSnapshot Snapshot { get; private set; }
+        public global::WuxingTowerStateSnapshot TowerSnapshot { get; private set; }
+        public bool TowerStatePending { get; private set; }
+        public uint EquippedFormationId => Snapshot?.EquippedFormationId ?? 0u;
+        public System.Collections.Generic.IReadOnlyList<global::SavedBattleBuildBookmarkView> SavedBuilds =>
+            Snapshot != null
+                ? (System.Collections.Generic.IReadOnlyList<global::SavedBattleBuildBookmarkView>)Snapshot.SavedBuilds
+                : System.Array.Empty<global::SavedBattleBuildBookmarkView>();
         public bool StatePending { get; private set; }
         public bool ActionPending { get; private set; }
         public bool RequiresReconnect { get; private set; }
@@ -261,7 +268,275 @@ namespace MmorpgClient.Game.Season
         {
             if (_disposed) return;
             ObserveConnection();
-            if (Ready) RequestState(force: true);
+            if (Ready)
+            {
+                RequestState(force: true);
+                if (TowerSnapshot != null && TowerSnapshot.RunActive)
+                    RequestWuxingTowerState(force: true);
+            }
+        }
+
+        public bool EquipFormation(uint formationId)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (_messageIds.EquipWuxingFormation == 0u) return RejectLocally(UnsupportedMessage);
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (ActionPending) return false;
+            if (formationId > 5u) return RejectLocally("无效的五行阵法编号。");
+            float now = _clock();
+            if (now < _nextActionAt) return RejectLocally(TooFastMessage);
+
+            _nextActionAt = now + MinActionIntervalSeconds;
+            ActionPending = true;
+            int generation = _generation;
+            SetStatus("正在布设五行阵法…", false);
+            Changed?.Invoke();
+
+            var req = new global::EquipWuxingFormationRequest { FormationId = formationId };
+            _net.Call(_messageIds.EquipWuxingFormation, req, global::EquipWuxingFormationResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    if (response.State != null) ApplySnapshot(response.State);
+                    uint tipId = response.ErrorMessage?.Id ?? 0u;
+                    if (tipId != 0u) { HandleWriteTip("EquipWuxingFormation", tipId); return; }
+                    string done = formationId == 0u ? "已卸下当前五行阵法。" : "已免费切换五行阵法。";
+                    SetStatus(done, false);
+                    Notice?.Invoke(done);
+                    Changed?.Invoke();
+                },
+                error =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    SetStatus(StateUnavailableMessage, true);
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
+        public void RequestWuxingTowerState(bool force = false)
+        {
+            if (_disposed || _messageIds.GetWuxingTowerState == 0u) return;
+            ObserveConnection();
+            if (!Ready || (TowerStatePending && !force)) return;
+            TowerStatePending = true;
+            int generation = _generation;
+            Changed?.Invoke();
+            _net.Call(_messageIds.GetWuxingTowerState, new global::GetWuxingTowerStateRequest(),
+                global::GetWuxingTowerStateResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    TowerStatePending = false;
+                    uint tipId = response.ErrorMessage?.Id ?? 0u;
+                    if (tipId == 0u && response.State != null)
+                        ApplyTowerSnapshot(response.State);
+                    else if (tipId != 0u)
+                        SetInfoStatus(SeasonModels.DescribeTip(tipId), true);
+                    Changed?.Invoke();
+                },
+                _ =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    TowerStatePending = false;
+                    SetInfoStatus("暂时无法获取五行幻境状态。", true);
+                    Changed?.Invoke();
+                });
+        }
+
+        public bool StartWuxingTowerRun()
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (_messageIds.StartWuxingTowerRun == 0u) return RejectLocally(UnsupportedMessage);
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (ActionPending) return false;
+
+            ActionPending = true;
+            int generation = _generation;
+            SetStatus("正在开启新一轮五行幻境…", false);
+            Changed?.Invoke();
+            _net.Call(_messageIds.StartWuxingTowerRun, new global::StartWuxingTowerRunRequest(),
+                global::StartWuxingTowerRunResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    if (response.State != null) ApplyTowerSnapshot(response.State);
+                    uint tipId = response.ErrorMessage?.Id ?? 0u;
+                    if (tipId != 0u) { HandleWriteTip("StartWuxingTowerRun", tipId); return; }
+                    SetStatus("已开启五行幻境，可从第 1 层起挑战！", false);
+                    Notice?.Invoke("已开启五行幻境");
+                    Changed?.Invoke();
+                },
+                _ =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    SetStatus("开启五行幻境失败，请稍后重试。", true);
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
+        public bool PickWuxingTowerSigil(uint sigilId)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (_messageIds.PickWuxingTowerSigil == 0u) return RejectLocally(UnsupportedMessage);
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (ActionPending || TowerSnapshot == null || !TowerSnapshot.RunActive) return false;
+
+            ActionPending = true;
+            int generation = _generation;
+            var req = new global::PickWuxingTowerSigilRequest
+            {
+                ExpectedRunId = TowerSnapshot.RunId,
+                SigilId = sigilId,
+            };
+            SetStatus("正在铭刻局内五行符印…", false);
+            Changed?.Invoke();
+            _net.Call(_messageIds.PickWuxingTowerSigil, req, global::PickWuxingTowerSigilResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    if (response.State != null) ApplyTowerSnapshot(response.State);
+                    uint tipId = response.ErrorMessage?.Id ?? 0u;
+                    if (tipId != 0u) { HandleWriteTip("PickWuxingTowerSigil", tipId); return; }
+                    SetStatus("已选定五行符印，准备挑战下一层！", false);
+                    Notice?.Invoke("五行符印已生效");
+                    Changed?.Invoke();
+                },
+                _ =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    SetStatus("选取符印失败，请稍后重试。", true);
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
+        public bool AbandonWuxingTowerRun()
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (_messageIds.AbandonWuxingTowerRun == 0u) return RejectLocally(UnsupportedMessage);
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (ActionPending || TowerSnapshot == null) return false;
+
+            ActionPending = true;
+            int generation = _generation;
+            var req = new global::AbandonWuxingTowerRunRequest { ExpectedRunId = TowerSnapshot.RunId };
+            Changed?.Invoke();
+            _net.Call(_messageIds.AbandonWuxingTowerRun, req, global::AbandonWuxingTowerRunResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    if (response.State != null) ApplyTowerSnapshot(response.State);
+                    uint tipId = response.ErrorMessage?.Id ?? 0u;
+                    if (tipId != 0u) { HandleWriteTip("AbandonWuxingTowerRun", tipId); return; }
+                    SetStatus("已结束本轮幻境（本周首通记录保留）。", false);
+                    Notice?.Invoke("已放弃本轮幻境");
+                    Changed?.Invoke();
+                },
+                _ =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    SetStatus("操作失败，请稍后重试。", true);
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
+        public bool SaveBattleBuildBookmark(global::SavedBattleBuildBookmarkView bookmark)
+        {
+            if (_disposed || bookmark == null) return false;
+            ObserveConnection();
+            if (_messageIds.SaveBattleBuildBookmark == 0u) return RejectLocally(UnsupportedMessage);
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (ActionPending) return false;
+
+            ActionPending = true;
+            int generation = _generation;
+            var req = new global::SaveBattleBuildBookmarkRequest { Bookmark = bookmark.Clone() };
+            Changed?.Invoke();
+            _net.Call(_messageIds.SaveBattleBuildBookmark, req, global::SaveBattleBuildBookmarkResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    uint tipId = response.ErrorMessage?.Id ?? 0u;
+                    if (tipId != 0u) { HandleWriteTip("SaveBattleBuildBookmark", tipId); return; }
+                    ReplaceSavedBookmarks(response.AllBookmarks);
+                    SetStatus("已收藏该道友公开配装。", false);
+                    Notice?.Invoke("配装已收藏");
+                    Changed?.Invoke();
+                },
+                _ =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    SetStatus("收藏配装失败，请稍后重试。", true);
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
+        public bool DeleteBattleBuildBookmark(ulong bookmarkId)
+        {
+            if (_disposed || bookmarkId == 0ul) return false;
+            ObserveConnection();
+            if (_messageIds.DeleteBattleBuildBookmark == 0u) return RejectLocally(UnsupportedMessage);
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (ActionPending) return false;
+
+            ActionPending = true;
+            int generation = _generation;
+            var req = new global::DeleteBattleBuildBookmarkRequest { BookmarkId = bookmarkId };
+            Changed?.Invoke();
+            _net.Call(_messageIds.DeleteBattleBuildBookmark, req, global::DeleteBattleBuildBookmarkResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    uint tipId = response.ErrorMessage?.Id ?? 0u;
+                    if (tipId != 0u) { HandleWriteTip("DeleteBattleBuildBookmark", tipId); return; }
+                    ReplaceSavedBookmarks(response.AllBookmarks);
+                    SetStatus("已删除该配装收藏。", false);
+                    Changed?.Invoke();
+                },
+                _ =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    SetStatus("删除配装收藏失败。", true);
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
+        private void ApplyTowerSnapshot(global::WuxingTowerStateSnapshot incoming)
+        {
+            if (incoming == null) return;
+            if (TowerSnapshot != null && incoming.WeekKey == TowerSnapshot.WeekKey && incoming.Revision < TowerSnapshot.Revision)
+                return;
+            TowerSnapshot = incoming.Clone();
+        }
+
+        private void ReplaceSavedBookmarks(Google.Protobuf.Collections.RepeatedField<global::SavedBattleBuildBookmarkView> all)
+        {
+            if (all == null) return;
+            if (Snapshot == null) Snapshot = new global::SeasonStateSnapshot();
+            Snapshot.SavedBuilds.Clear();
+            for (int i = 0; i < all.Count; ++i)
+                Snapshot.SavedBuilds.Add(all[i].Clone());
         }
 
         public void HandleDisconnected()
@@ -367,6 +642,8 @@ namespace MmorpgClient.Game.Season
         {
             ++_generation;
             Snapshot = null;
+            TowerSnapshot = null;
+            TowerStatePending = false;
             StatePending = false;
             ActionPending = false;
             RequiresReconnect = false;

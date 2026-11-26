@@ -69,6 +69,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         private FormalPvpLobbyPanel _formalPvp;
         private SeasonRotationPanel _rotations;
         private SeasonSealPanel _seasonSeal;
+        private WuxingTowerPanel _wuxingTower;
+        private CustomDuelChallengePanel _customDuel;
         private BattleCoreHudOverlay _battleHud;
         private CoreSettlementRewardSection _battleSettlement;
         private CoreSettlementRewardSection _rankedSettlement;
@@ -255,6 +257,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             _formalPvp = CreatePanel<FormalPvpLobbyPanel>("FormalPvpLobbyPanel", _windowDesign);
             _rotations = CreatePanel<SeasonRotationPanel>("SeasonRotationPanel", _windowDesign);
             _seasonSeal = CreatePanel<SeasonSealPanel>("SeasonSealPanel", _windowDesign);
+            _wuxingTower = CreatePanel<WuxingTowerPanel>("WuxingTowerPanel", _windowDesign);
+            _customDuel = CreatePanel<CustomDuelChallengePanel>("CustomDuelChallengePanel", _windowDesign);
             _battleHud = CreatePanel<BattleCoreHudOverlay>("BattleCoreHudOverlay", _battleDesign);
             BuildSpendPreview();
             _mainCity.Initialize(this, _core, game);
@@ -262,6 +266,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             _formalPvp.Initialize(this, _core, game);
             _rotations.Initialize(this, _core, game);
             _seasonSeal.Initialize(this, _core, game);
+            _wuxingTower.Initialize(this, _core, game);
+            _customDuel.Initialize(this, game);
             _battleHud.Initialize(this, _core, game);
 
             _core.Changed += RefreshAll;
@@ -342,6 +348,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             DestroyPanel(ref _formalPvp);
             DestroyPanel(ref _rotations);
             DestroyPanel(ref _seasonSeal);
+            DestroyPanel(ref _wuxingTower);
+            DestroyPanel(ref _customDuel);
             DestroyPanel(ref _battleHud);
             DestroyPanel(ref _battleSettlement);
             DestroyPanel(ref _rankedSettlement);
@@ -374,6 +382,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             if (_formalPvp != null && _formalPvp.IsVisible) _formalPvp.Refresh();
             if (_rotations != null && _rotations.IsVisible) _rotations.Refresh();
             if (_seasonSeal != null && _seasonSeal.IsVisible) _seasonSeal.Refresh();
+            if (_wuxingTower != null && _wuxingTower.IsVisible) _wuxingTower.Refresh();
+            if (_customDuel != null && _customDuel.IsVisible) _customDuel.Refresh();
             if (_battleHud != null && _battleHud.IsVisible) _battleHud.Refresh();
             if (_battleSettlement != null && _battleSettlement.IsVisible) _battleSettlement.Refresh();
             if (_rankedSettlement != null && _rankedSettlement.IsVisible) _rankedSettlement.Refresh();
@@ -483,6 +493,33 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             HideWindows();
             _windowLayer.gameObject.SetActive(true);
             _seasonSeal.Show();
+        }
+
+        public void OpenWuxingFormations()
+        {
+            if (!CanOpenWorldPanel || _seasonSeal == null) return;
+            CityPanelRegistry.HideOthers(this);
+            HideWindows();
+            _windowLayer.gameObject.SetActive(true);
+            _seasonSeal.ShowFormations();
+        }
+
+        public void OpenWuxingTower()
+        {
+            if (!CanOpenWorldPanel || _wuxingTower == null) return;
+            CityPanelRegistry.HideOthers(this);
+            HideWindows();
+            _windowLayer.gameObject.SetActive(true);
+            _wuxingTower.Show();
+        }
+
+        public void OpenCustomDuel(ulong presetTargetPlayerId = 0ul)
+        {
+            if (!CanOpenWorldPanel || _customDuel == null) return;
+            CityPanelRegistry.HideOthers(this);
+            HideWindows();
+            _windowLayer.gameObject.SetActive(true);
+            _customDuel.Show(presetTargetPlayerId);
         }
 
         public void OpenTrialJournal()
@@ -672,6 +709,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 return;
             }
             if (_seasonSeal != null && _seasonSeal.IsVisible) { _seasonSeal.Hide(); SyncWindowLayer(); return; }
+            if (_wuxingTower != null && _wuxingTower.IsVisible) { _wuxingTower.Hide(); SyncWindowLayer(); return; }
+            if (_customDuel != null && _customDuel.IsVisible) { _customDuel.Hide(); SyncWindowLayer(); return; }
             HideWindows();
         }
 
@@ -682,6 +721,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             _formalPvp?.Hide();
             _rotations?.Hide();
             _seasonSeal?.Hide();
+            _wuxingTower?.Hide();
+            _customDuel?.Hide();
             if (_spendPreview != null) _spendPreview.gameObject.SetActive(false);
             if (_windowLayer != null) _windowLayer.gameObject.SetActive(false);
         }
@@ -691,7 +732,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             if (_windowLayer == null) return;
             _windowLayer.gameObject.SetActive((_bossTrials?.IsVisible ?? false) ||
                 (_formalPvp?.IsVisible ?? false) || (_rotations?.IsVisible ?? false) ||
-                (_seasonSeal?.IsVisible ?? false) ||
+                (_seasonSeal?.IsVisible ?? false) || (_wuxingTower?.IsVisible ?? false) ||
+                (_customDuel?.IsVisible ?? false) ||
                 (_spendPreview != null && _spendPreview.gameObject.activeSelf));
         }
 

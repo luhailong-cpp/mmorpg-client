@@ -166,7 +166,13 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 _model.StandingsPage = page;
                 _client?.RequestStandings(seasonId, page, TournamentUiModel.DefaultPageSize);
             };
-            _window.CreateSquadSubmitted += name => SubmitMutation(() => _client?.CreateSquad(name) == true);
+            _window.CreateSquadSubmitted += (name, emblemId) => SubmitMutation(() => _client?.CreateSquad(name, emblemId) == true);
+            _window.UpdateEmblemSubmitted += emblemId => SubmitMutation(() => _client?.UpdateSquadEmblem(emblemId) == true);
+            _window.StartWarmupSubmitted += (targetSq, leyline, lineup) => SubmitMutation(() => _client?.StartWarmup(targetSq, leyline, lineup) == true);
+            _window.PredictMatchClicked += (matchId, squadId) => SubmitMutation(() => _client?.PredictMatch(matchId, squadId) == true);
+            _window.RequestPredictionBoardRequested += seasonId => _client?.RequestPredictionBoard(seasonId);
+            _window.BanLeylineSubmitted += (matchId, leyline) => SubmitMutation(() => _client?.BanLeyline(matchId, leyline) == true);
+            _window.RequestHighlightsRequested += seasonId => _client?.RequestHighlights(seasonId);
             _window.InviteMemberSubmitted += pid => SubmitMutation(() => _client?.InviteMember(pid) == true);
             _window.RespondInviteClicked += (sid, accept) => SubmitMutation(() => _client?.RespondInvite(sid, accept) == true);
             _window.LeaveOrKickClicked += pid => SubmitMutation(() => _client?.LeaveOrKick(pid) == true);
@@ -349,12 +355,15 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         _model.CloseModal();
                         _window?.ShowToast(_client.LastError, isError: true, now);
                     }
-                    else if (recovery.KeepCreateModalInline && _model.ActiveModal == TournamentModalKind.CreateSquad)
+                    else if (recovery.KeepCreateModalInline
+                        && (_model.ActiveModal == TournamentModalKind.CreateSquad || _model.ActiveModal == TournamentModalKind.SelectEmblem))
                     {
                         _model.ModalInlineError = _client.LastError;
                     }
                     else if (recovery.KeepLineupModalInline
-                        && (_model.ActiveModal == TournamentModalKind.ConfirmLineup || _model.ActiveModal == TournamentModalKind.IntermissionSwap))
+                        && (_model.ActiveModal == TournamentModalKind.ConfirmLineup
+                            || _model.ActiveModal == TournamentModalKind.IntermissionSwap
+                            || _model.ActiveModal == TournamentModalKind.WarmupSpar))
                     {
                         _model.ModalInlineError = _client.LastError;
                     }
@@ -444,7 +453,9 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 _client?.Status,
                 Time.realtimeSinceStartup,
                 inviteCandidates,
-                inviteStatus);
+                inviteStatus,
+                _client?.PredictionBoard,
+                _client?.Highlights);
         }
 
         private void RebindInviteDirectory(GameClient game)

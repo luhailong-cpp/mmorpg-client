@@ -14,7 +14,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         private const ulong Now = 1_800_000_000;
         private const ulong Day = 86400;
         // 只用于内存传输测试;不代表线上服务器的协议分配。
-        private static readonly AfkPassMessageIds TestMessageIds = new AfkPassMessageIds(65011, 65012);
+        private static readonly AfkPassMessageIds TestMessageIds = new AfkPassMessageIds(65011, 65012, 65013, 65014);
 
         private float _now;
         private SceneChannelFakeTransport _net;
@@ -273,6 +273,65 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(AfkPassModels.DescribeTip(insufficient), Does.Contain("灵石").And.Contain("聚宝斋"));
             Assert.That(AfkPassModels.DescribeTip(insufficient, 0), Does.Contain("银两").And.Not.Contain("灵石"));
             Assert.That(AfkPassModels.DescribeTip(insufficient, 2), Does.Contain("绑定灵石").And.Not.Contain("聚宝斋"));
+        }
+
+        [Test]
+        public void SetAutoReturnCity_AndHostedRecapAckFlowWork()
+        {
+            var info = Info(Now + 10 * Day);
+            info.AutoReturnCityOnTeamEnd = false;
+            info.HostedRecap = new global::HostedRecapSummary
+            {
+                StartedAt = Now - 1800,
+                EndedAt = Now,
+                BattleCount = 4,
+                WinCount = 3,
+                ExpGained = 5200,
+                SilverGained = 9000,
+                ItemCount = 6,
+                PendingAck = true,
+            };
+
+            _client.HandleSceneEntered();
+            ReplyInfo(info);
+            Assert.That(_client.AutoReturnCityOnTeamEnd, Is.False);
+            Assert.That(_client.PendingRecap, Is.Not.Null);
+            Assert.That(_client.HasPromptableRecap, Is.True);
+
+            // 开启离队自动回主城
+            Assert.That(_client.SetAutoReturnCity(true), Is.True);
+            Assert.That(LastCall.Id, Is.EqualTo(TestMessageIds.SetSettings));
+            var updated = info.Clone();
+            updated.AutoReturnCityOnTeamEnd = true;
+            LastCall.Reply(new global::SetAfkPassSettingsResponse { Info = updated });
+            Assert.That(_client.AutoReturnCityOnTeamEnd, Is.True);
+
+            // 确认收获简报
+            Assert.That(_client.AckHostedRecap(info.HostedRecap.StartedAt), Is.True);
+            Assert.That(LastCall.Id, Is.EqualTo(TestMessageIds.AckRecap));
+            var cleared = updated.Clone();
+            cleared.HostedRecap = null;
+            LastCall.Reply(new global::AckHostedRecapResponse { Info = cleared });
+            Assert.That(_client.PendingRecap, Is.Null);
+            Assert.That(_client.HasPromptableRecap, Is.False);
+        }
+
+        [Test]
+        public void ShortZeroBattleRecap_IsAutoAckedSilentlyWithoutPrompt()
+        {
+            var info = Info(Now + 10 * Day);
+            info.HostedRecap = new global::HostedRecapSummary
+            {
+                StartedAt = Now - 15,
+                EndedAt = Now,
+                BattleCount = 0,
+                PendingAck = true,
+            };
+            _client.HandleSceneEntered();
+            ReplyInfo(info);
+
+            Assert.That(_client.HasPromptableRecap, Is.False);
+            Assert.That(LastCall.Id, Is.EqualTo(TestMessageIds.AckRecap), "不足 60 秒且 0 场战斗的瞬时断线应静默确认");
         }
     }
 }

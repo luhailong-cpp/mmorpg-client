@@ -16,10 +16,10 @@ namespace MmorpgClient.UI.Ugui.Skills
             public uint Id;
             public UiTextButton Button;
             public Image Icon;
-            public RectTransform SeasonCornerBadge;
+            public RectTransform SeasonCornerBadge, EquippedBadge;
             public TMP_Text Name, Rank, Kind, Mana, Target;
         }
-        private readonly RectTransform _root, _content, _descriptionContent, _seasonFreeBadge;
+        private readonly RectTransform _root, _studyRoot, _content, _descriptionContent, _seasonFreeBadge;
         private readonly ScrollRect _scroll, _descriptionScroll;
         private readonly TMP_Text _title, _classLabel, _classInfo, _empty, _description, _condition,
             _balance, _cost, _status, _selectedName;
@@ -27,6 +27,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         private readonly UiTextButton _upgrade, _upgradeTen, _refresh, _allocationNavigation, _skillTab, _loadoutTab;
         private readonly SkillLoadoutSubPanel _loadoutPanel;
         private bool _loadoutMode;
+        private bool _closeOnLeft;
         private readonly bool _canNavigate;
         private readonly UiTextButton[] _filters = new UiTextButton[6];
         private readonly UiTextButton[] _classes = new UiTextButton[4];
@@ -57,7 +58,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             {
                 AttributeUiRoot.EnsureSpawned();
                 AttributeUiRoot.Instance?.OpenSkillDetails(id);
-            }, () => owner.Source as ISkillLoadoutSource ?? MmorpgClient.Game.Skills.SkillBookClient.Instance) { }
+            }, () => owner.Source as ISkillLoadoutSource) { }
 
         /// <summary>无单例构造供离线预览使用；回调与生产网络完全分离。</summary>
         public SkillPanel(UnityEngine.Transform parent, Action refresh, Action<uint, uint, uint> upgrade,
@@ -83,14 +84,15 @@ namespace MmorpgClient.UI.Ugui.Skills
             closeButton.Label.gameObject.SetActive(false);
             closeButton.Button.onClick.AddListener(() => { Hide(); close?.Invoke(); });
             CharacterAttributeVisuals.Panel("CloseTassel", _root, 2052f, 24f, 32f, 80f, "close_tassel");
+            _studyRoot = QdaoUguiFactory.CreateRect("SkillStudyContent", _root, 0, 0, 1660, 940);
 
-            _classLabel = Text("Class", _root, 105f, 68f, 1740f, 50f, "技能信息未同步", 32f);
-            _classInfo = Text("ClassInfo", _root, 105f, 125f, 810f, 50f, string.Empty, 27f);
+            _classLabel = Text("Class", _studyRoot, 105f, 68f, 1740f, 50f, "技能信息未同步", 32f);
+            _classInfo = Text("ClassInfo", _studyRoot, 105f, 125f, 810f, 50f, string.Empty, 27f);
             string[] classNames = { "破军", "玄霄", "丹心", "逐风" };
             for (int i = 0; i < _classes.Length; i++)
             {
                 uint classId = (uint)i + 1;
-                var button = CharacterAttributeVisuals.Button("PreviewClass" + classId, _root,
+                var button = CharacterAttributeVisuals.Button("PreviewClass" + classId, _studyRoot,
                     105f + i * 168f, 124f, 154f, 54f, classNames[i], false, 28f);
                 button.Button.onClick.AddListener(() => previewClass?.Invoke(classId));
                 button.SetInteractable(previewClass != null);
@@ -99,7 +101,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             for (int i = 0; i < _filters.Length; i++)
             {
                 int captured = i;
-                _filters[i] = CharacterAttributeVisuals.Button("Filter" + i, _root,
+                _filters[i] = CharacterAttributeVisuals.Button("Filter" + i, _studyRoot,
                     985f + i * 184f, 120f, 172f, 60f, FilterNames[i], i == 0, 29f);
                 _filters[i].Button.onClick.AddListener(() =>
                 {
@@ -108,13 +110,13 @@ namespace MmorpgClient.UI.Ugui.Skills
                     Rebuild();
                 });
             }
-            Text("NameHeader", _root, 238f, 183f, 400f, 42f, "技能名称", 27f);
-            Text("RankHeader", _root, 693f, 183f, 180f, 42f, "等级", 27f);
-            Text("KindHeader", _root, 938f, 183f, 180f, 42f, "类型", 27f);
-            Text("ManaHeader", _root, 1198f, 183f, 360f, 42f, "法力 / 冷却", 27f);
-            Text("TargetHeader", _root, 1663f, 183f, 230f, 42f, "作用目标", 27f);
+            Text("NameHeader", _studyRoot, 238f, 183f, 400f, 42f, "技能名称", 27f);
+            Text("RankHeader", _studyRoot, 693f, 183f, 180f, 42f, "等级", 27f);
+            Text("KindHeader", _studyRoot, 938f, 183f, 180f, 42f, "类型", 27f);
+            Text("ManaHeader", _studyRoot, 1198f, 183f, 360f, 42f, "法力 / 冷却", 27f);
+            Text("TargetHeader", _studyRoot, 1663f, 183f, 230f, 42f, "作用目标", 27f);
 
-            var viewport = QdaoUguiFactory.CreateRect("SkillListViewport", _root, 100f, 228f, 1800f, ListHeight);
+            var viewport = QdaoUguiFactory.CreateRect("SkillListViewport", _studyRoot, 100f, 228f, 1800f, ListHeight);
             viewport.gameObject.AddComponent<RectMask2D>();
             var hit = viewport.gameObject.AddComponent<Image>();
             hit.color = new Color(1f, 1f, 1f, 0.001f);
@@ -127,12 +129,12 @@ namespace MmorpgClient.UI.Ugui.Skills
             _scroll.vertical = true;
             _scroll.movementType = ScrollRect.MovementType.Clamped;
             _scroll.scrollSensitivity = 38f;
-            AddScrollbar(_root, _scroll, "SkillListScrollbar", 1907f, 228f, ListHeight);
+            AddScrollbar(_studyRoot, _scroll, "SkillListScrollbar", 1907f, 228f, ListHeight);
             _empty = Text("Empty", viewport, 110f, 132f, 1580f, 126f,
                 "技能信息未同步", 31f, QdaoRefreshArt.Ink, TextAlignmentOptions.Center);
             _empty.textWrappingMode = TextWrappingModes.Normal;
 
-            _selectedIcon = QdaoUguiFactory.CreateImage("SelectedIcon", _root, 105f, 687f, 112f, 112f, null);
+            _selectedIcon = QdaoUguiFactory.CreateImage("SelectedIcon", _studyRoot, 105f, 687f, 112f, 112f, null);
             _selectedIcon.preserveAspect = true;
             var supportDetails = _selectedIcon.gameObject.AddComponent<Button>();
             supportDetails.targetGraphic = _selectedIcon;
@@ -142,10 +144,10 @@ namespace MmorpgClient.UI.Ugui.Skills
                 if (_state?.Context?.IsPet == false && (_selectedId == CharacterSupportModel.HealingSkillId ||
                     _selectedId == CharacterSupportModel.ShieldSkillId)) _openSupportDetail?.Invoke(_selectedId);
             });
-            _selectedName = Text("SelectedName", _root, 242f, 678f, 442f, 50f, "选择一个技能", 32f);
-            _condition = Text("Condition", _root, 242f, 731f, 450f, 76f, string.Empty, 25f);
+            _selectedName = Text("SelectedName", _studyRoot, 242f, 678f, 442f, 50f, "选择一个技能", 32f);
+            _condition = Text("Condition", _studyRoot, 242f, 731f, 450f, 76f, string.Empty, 25f);
             _condition.textWrappingMode = TextWrappingModes.Normal;
-            var detailViewport = QdaoUguiFactory.CreateRect("DescriptionViewport", _root, 720f, 678f, 1160f, 126f);
+            var detailViewport = QdaoUguiFactory.CreateRect("DescriptionViewport", _studyRoot, 720f, 678f, 1160f, 126f);
             detailViewport.gameObject.AddComponent<RectMask2D>();
             var detailHit = detailViewport.gameObject.AddComponent<Image>();
             detailHit.color = new Color(1f, 1f, 1f, .001f);
@@ -160,18 +162,18 @@ namespace MmorpgClient.UI.Ugui.Skills
             _descriptionScroll.horizontal = false;
             _descriptionScroll.movementType = ScrollRect.MovementType.Clamped;
             _descriptionScroll.scrollSensitivity = 30f;
-            AddScrollbar(_root, _descriptionScroll, "DescriptionScrollbar", 1890f, 678f, 126f);
+            AddScrollbar(_studyRoot, _descriptionScroll, "DescriptionScrollbar", 1890f, 678f, 126f);
 
             _status = Text("Status", _root, 105f, 810f, 1790f, 34f, string.Empty, 24f);
-            _balance = Text("Balance", _root, 105f, 852f, 520f, 46f, "金币：—", 27f);
-            _cost = Text("Cost", _root, 620f, 852f, 460f, 46f, "下一级消耗：—", 26f);
+            _balance = Text("Balance", _studyRoot, 105f, 852f, 520f, 46f, "金币：—", 27f);
+            _cost = Text("Cost", _studyRoot, 620f, 852f, 460f, 46f, "下一级消耗：—", 26f);
             _refresh = CharacterAttributeVisuals.Button("Refresh", _root, 1080f, 846f, 220f, 65f, "刷新");
             _refresh.Button.onClick.AddListener(() => _refreshAction?.Invoke());
-            _upgrade = CharacterAttributeVisuals.Button("Upgrade", _root, 1320f, 846f, 260f, 65f, "学习", true);
+            _upgrade = CharacterAttributeVisuals.Button("Upgrade", _studyRoot, 1320f, 846f, 260f, 65f, "学习", true);
             _upgrade.Button.onClick.AddListener(() => SubmitUpgrade(1));
-            _upgradeTen = CharacterAttributeVisuals.Button("UpgradeTen", _root, 1600f, 846f, 290f, 65f, "升级10次", true);
+            _upgradeTen = CharacterAttributeVisuals.Button("UpgradeTen", _studyRoot, 1600f, 846f, 290f, 65f, "升级10次", true);
             _upgradeTen.Button.onClick.AddListener(() => SubmitUpgrade(10));
-            _seasonFreeBadge = SeasonV1UiArt.CreateBadgePill(_root, "SeasonFreeDetailBadge",
+            _seasonFreeBadge = SeasonV1UiArt.CreateBadgePill(_studyRoot, "SeasonFreeDetailBadge",
                 1320f, 852f, 240f, 52f, "season_badge_free", "本季免费", 22f,
                 QdaoUguiTheme.Html("#285D4D"), SeasonV1UiArt.BadgeIvoryText);
             _seasonFreeBadge.gameObject.SetActive(false);
@@ -185,8 +187,8 @@ namespace MmorpgClient.UI.Ugui.Skills
             _skillTab.Button.onClick.AddListener(() => { if (_loadoutMode) SetLoadoutMode(false); });
             _skillTab.SetInteractable(false);
             _loadoutTab = CharacterAttributeVisuals.Button("LoadoutTab", _root, 1170f, 25f, 126f, 40f, "战法装配", false, 18f);
-            _loadoutTab.Button.onClick.AddListener(ToggleLoadoutMode);
-            _loadoutPanel = new SkillLoadoutSubPanel(_root, getLoadoutSource, () => SetLoadoutMode(false), SetStatus);
+            _loadoutTab.Button.onClick.AddListener(() => SetLoadoutMode(true));
+            _loadoutPanel = new SkillLoadoutSubPanel(_root, getLoadoutSource);
             Hide();
             Apply(null);
         }
@@ -195,19 +197,27 @@ namespace MmorpgClient.UI.Ugui.Skills
         public void Hide()
         {
             _loadoutMode = false;
+            _studyRoot.gameObject.SetActive(true);
             _loadoutPanel?.Hide();
             _root.gameObject.SetActive(false);
         }
-        private void ToggleLoadoutMode() => SetLoadoutMode(!_loadoutMode);
+        private bool HasLoadout => _state?.Context?.IsPet == false && _state.Snapshot?.Loadout != null;
+
         public void SetLoadoutMode(bool enabled)
         {
-            if (_state?.Context?.IsPet == true) enabled = false;
-            _loadoutMode = enabled;
-            _skillTab?.SetInteractable(_loadoutMode);
-            if (_loadoutMode) _loadoutPanel.Show(_state, _battleLocked);
-            else _loadoutPanel.Hide();
+            bool showLoadout = enabled && HasLoadout;
+            if (_loadoutMode == showLoadout) return;
+            _loadoutMode = showLoadout;
             Rebuild();
         }
+
+        internal void SetCloseOnLeft(bool enabled)
+        {
+            if (_closeOnLeft == enabled) return;
+            _closeOnLeft = enabled;
+            PlaceClose();
+        }
+
         public void SetBattleLocked(bool locked)
         {
             if (_battleLocked == locked) return;
@@ -233,11 +243,10 @@ namespace MmorpgClient.UI.Ugui.Skills
                 _selectedId = 0;
                 _filter = 0;
                 _loadoutMode = false;
-                _loadoutPanel?.Hide();
+                _loadoutPanel.Reset();
                 _scroll.verticalNormalizedPosition = 1f;
                 _descriptionScroll.verticalNormalizedPosition = 1f;
             }
-            if (_lastIsPet && _loadoutMode) { _loadoutMode = false; _loadoutPanel?.Hide(); }
             Rebuild();
         }
         public void SetStatus(string message, bool error = false)
@@ -264,6 +273,10 @@ namespace MmorpgClient.UI.Ugui.Skills
             row.Icon.preserveAspect = true;
             row.SeasonCornerBadge = SeasonV1UiArt.CreateSeasonCornerBadge(row.Icon.transform, "SeasonCornerBadge", 30f, 2f, 20f);
             row.SeasonCornerBadge.gameObject.SetActive(false);
+            var equippedBadge = CharacterAttributeVisuals.Panel("EquippedBadge", row.Button.Rect, 658f, 16f, 78f, 28f, "stat_field");
+            row.EquippedBadge = equippedBadge.rectTransform;
+            Text("EquippedLabel", equippedBadge.transform, 0, 0, 78, 28, "已装配", 15,
+                QdaoUguiTheme.Html("#205B46"), TextAlignmentOptions.Center).raycastTarget = false;
             row.Name = Text("Name", row.Button.Rect, 138f, 2f, 440f, 78f, string.Empty, 29f);
             row.Rank = Text("Rank", row.Button.Rect, 593f, 2f, 224f, 78f, string.Empty, 27f);
             row.Kind = Text("Kind", row.Button.Rect, 838f, 2f, 215f, 78f, string.Empty, 27f);
@@ -303,6 +316,12 @@ namespace MmorpgClient.UI.Ugui.Skills
             var snapshot = _state?.Snapshot;
             bool readOnly = _state == null || _state.IsReadOnly;
             bool pet = _state?.Context?.IsPet == true;
+            if (!HasLoadout) _loadoutMode = false;
+            _studyRoot.gameObject.SetActive(!_loadoutMode);
+            _skillTab.SetText(HasLoadout ? "技能修习" : "技能");
+            _skillTab.SetInteractable(HasLoadout);
+            _loadoutTab.SetVisible(HasLoadout);
+            _loadoutTab.SetInteractable(HasLoadout);
             bool hasObstacle = snapshot?.Entries.Exists(entry => entry?.Definition?.IsObstacle == true) == true;
             bool hasSupport = snapshot?.Entries.Exists(entry => entry?.Definition?.IsSupport == true) == true;
             bool hasSeasonal = !pet && snapshot?.Entries.Exists(entry => entry != null && entry.IsSeasonal) == true;
@@ -339,6 +358,7 @@ namespace MmorpgClient.UI.Ugui.Skills
                 row.Icon.enabled = row.Icon.sprite != null;
                 row.Icon.color = !readOnly && entry.Rank == 0 ? new Color(.72f, .72f, .72f, 1f) : Color.white;
                 if (row.SeasonCornerBadge != null) row.SeasonCornerBadge.gameObject.SetActive(entry.IsSeasonal);
+                row.EquippedBadge.gameObject.SetActive(ShowEquipped(entry, pet));
                 row.Name.text = (entry.Id == _selectedId ? "✓ " : string.Empty) + definition.name;
                 row.Rank.text = readOnly ? "未同步" : entry.Rank == 0 ? "未学习" :
                     definition.maxRank > 0 ? $"{Math.Min(entry.Rank, definition.maxRank)}/{definition.maxRank}" : entry.Rank.ToString(); // 存储重数可能高于本版本上限(回滚窗口),按上限显示,与服务端「按本版本上限生效」一致;修习请求仍带存储重数
@@ -408,14 +428,16 @@ namespace MmorpgClient.UI.Ugui.Skills
             else if (_battleLocked) SetStatus("战斗中仅可查看，技能修习已锁定。");
             else SetStatus(_state?.Message ?? string.Empty);
             ApplyFidelityLayout();
-            _loadoutPanel?.Apply(_state, _battleLocked);
+            _loadoutPanel.Apply(_state, _battleLocked, _loadoutMode);
         }
+        private static bool ShowEquipped(SkillEntryState entry, bool pet) =>
+            !pet && entry.Equipped && SkillLoadoutDraft.IsConfigurable(entry.Definition);
+
         private static string FormatRowMeta(SkillEntryState entry, SkillDefinition def)
         {
             string meta = entry.IsSeasonal ? "本季免费 · " + def.KindLabel : def.KindLabel;
-            if (entry.Equipped) meta += " · 已装配";
             if (!string.IsNullOrEmpty(def.SecondaryTargetLabel)) meta += " · " + def.SecondaryTargetLabel;
-            if (def.exclusiveGroup > 0) meta += $" · 专精互斥组#{def.exclusiveGroup}";
+            if (def.exclusiveGroup > 0) meta += " · 专精互斥";
             return meta;
         }
         private string Condition(SkillDefinition skill, SkillEntryState entry, bool readOnly)

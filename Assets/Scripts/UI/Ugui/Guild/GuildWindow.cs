@@ -44,6 +44,8 @@ namespace MmorpgClient.UI.Ugui.Guild
         /// 房间 id 是按钮 / 邀请框画出来那一刻看到的那个,不是点击那一刻视图里的。
         /// </summary>
         public event Action<ulong, bool> TrialInviteResponded;
+        /// <summary>帮会全天帮战 V2 入口按钮点击事件。</summary>
+        public event Action GuildWarRequested;
         public RectTransform Root => _root;
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public bool ModalVisible => _modal != null && _modal.gameObject.activeSelf;
@@ -62,8 +64,10 @@ namespace MmorpgClient.UI.Ugui.Guild
         private readonly Image[] _tabMarkers = new Image[6];
         private readonly Image[] _exactTabCaptions = new Image[6];
         private readonly Button _refresh;
+        private readonly Button _openGuildWar;
         private RectTransform _modal;
         private GuildClient _client;
+        private GuildWarOverviewSnapshot _warOverview;
         private GameObject _returnFocus, _modalReturnFocus;
         private int _memberPage;
         private bool _onlineOnly;
@@ -127,6 +131,9 @@ namespace MmorpgClient.UI.Ugui.Guild
                 if(originalCaption != null) _exactTabCaptions[i] = ExactArt(_tabs[i].transform, originalCaption, (257-captionWidth)*.5f, 10, captionWidth, 42);
                 else { var caption=_tabs[i].GetComponentInChildren<TMP_Text>();caption.fontSize=32;caption.fontStyle=FontStyles.Bold; }
             }
+            _openGuildWar = GuildWarUiArt.ActionButton(_frame, "OpenGuildWar", "帮会争锋", 1516, 28, 238, 52,
+                () => GuildWarRequested?.Invoke(), danger: true, fontSize: 24);
+            _openGuildWar.gameObject.SetActive(false);
             NamedButton(_frame, "CloseGuild", "", 1782, 25, 83, 78, Hide, key: "guild_close");
             _rail = QdaoUguiFactory.CreateRect("GuildIdentity", _frame, 183, 171, 544, 595);
             _body = QdaoUguiFactory.CreateRect("GuildContent", _frame, 795, 175, 957, 503);
@@ -210,9 +217,14 @@ namespace MmorpgClient.UI.Ugui.Guild
             _returnFocus = null;
         }
         public void Back() { if (ModalVisible) CloseModal(); else Hide(); }
+        public void SetWarOverview(GuildWarOverviewSnapshot warOverview)
+        {
+            _warOverview = warOverview;
+            if (IsVisible && Page == GuildPage.Overview) Render();
+        }
         public void ResetSession()
         {
-            Hide(); _client = null; _guildId = 0;
+            Hide(); _client = null; _warOverview = null; _guildId = 0;
             Page = GuildPage.Overview; _memberPage = 0; _onlineOnly = false; _memberSearch = "";
             _showApplications = false; _applicationPage = 0;
             _shopCategory = 1; _shopPage = 0; _autoDonations = _autoShop = _autoActivities = false;
@@ -232,6 +244,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             _summary.text = _client?.Info == null ? "结一方同道 · 守一盏人间灯" :
                 GuildClient.FormatAmount(MyContributionBalance(_client.Info)) + " / " + GuildClient.FormatAmount(MyContributionTotal(_client.Info));
             _refresh.interactable = !Busy;
+            if (_openGuildWar != null) _openGuildWar.gameObject.SetActive(_client?.Info != null);
             _refresh.GetComponentInChildren<TMP_Text>().text = _client?.HasPendingEconomyWrite == true ? "恢复原请求" : "刷新";
             for (int i = 0; i < _tabs.Length; i++)
             {
@@ -328,6 +341,18 @@ namespace MmorpgClient.UI.Ugui.Guild
             crest.name = "GuildCrest";
             crest.type = Image.Type.Simple;
             crest.raycastTarget = false;
+            // 若已拉取帮战 V2 战况，在帮旗旁叠挂动态灵脉镇守与本周功臣徽牌（不改变原帮会测试的既有控件坐标）。
+            var honor = _warOverview?.BannerHonor;
+            if (honor != null && (honor.OccupiedLeylineId != 0 || honor.WeeklyMvps.Count > 0))
+            {
+                string honorTag = honor.OccupiedLeylineId != 0
+                    ? "镇守·" + GuildWarText.LeylineName(honor.OccupiedLeylineId)
+                    : "争锋功臣";
+                if (honor.WeeklyMvps.Count > 0) honorTag += " | " + string.Join("·", honor.WeeklyMvps);
+                GuildWarUiArt.Art(_rail, "GuildBannerHonorBg", "tag_exclusive_bg", 16f, 146f, 232f, 34f);
+                GuildWarUiArt.Label(_rail, "GuildBannerHonorText", honorTag, 22f, 148f, 220f, 30f, 15f,
+                    GuildWarUiArt.LightText, align: TextAlignmentOptions.Center);
+            }
             var info = _client?.Info;
             var name = FidelityLabel(_rail, "GuildName", info?.Name ?? "静候同道", 268, 12, 258, 78, 37, Ink, true);
             name.enableAutoSizing = true; name.fontSizeMin = 20; name.fontSizeMax = 37;
@@ -757,6 +782,12 @@ namespace MmorpgClient.UI.Ugui.Guild
                 uint id = item.GoodsId;
                 GuildField(_body, "GuildShopCard_" + id, x, y, 484, 218);
                 GuildIcon(_body, icon, x + 20, y + 20, 72);
+                if (IsGuildWarExclusiveGoods(id))
+                {
+                    GuildWarUiArt.Art(_body, "GuildShopWarTag_" + id, "tag_exclusive_bg", x + 332f, y + 8f, 140f, 34f);
+                    GuildWarUiArt.Label(_body, "GuildShopWarTagText_" + id, "帮战限定", x + 336f, y + 10f, 132f, 30f, 17f,
+                        GuildWarUiArt.LightText, align: TextAlignmentOptions.Center);
+                }
                 // 单行正文框高 ≥ 46(见 RenderDonate 上方注释)。纵向 8..56 / 56..102 / 102..148 / 154..200,
                 // 底边 200 < 卡高 218;帮贡与限购两行右缘 x+290,不压 x+300 起的兑换键。
                 Text(_body, item.Name, x + 108, y + 8, 356, 48, 30);
@@ -790,6 +821,9 @@ namespace MmorpgClient.UI.Ugui.Guild
             return GuildClient.ShopResultText(order);
         }
         /// <summary>限购文案:未解锁先说等级,再按周期说用量。</summary>
+        private static bool IsGuildWarExclusiveGoods(uint goodsId) =>
+            goodsId == 105u || goodsId == 205u || goodsId == 206u || goodsId == 304u || goodsId == 305u;
+
         public static string ShopLimitText(GuildShopGoodsView item)
         {
             if (!item.Unlocked) return "帮会 Lv." + item.RequiredGuildLevel + " 解锁";

@@ -38,5 +38,22 @@ namespace MmorpgClient.Net.Generated
         public static void GmSetAfkPass(IRpcChannel channel, global::GmSetAfkPassRequest request,
             RpcDone<global::GmSetAfkPassResponse> done)
             => channel.CallMethod(GmSetAfkPassMessageId, request, global::GmSetAfkPassResponse.Parser, done);
+
+        public const uint SetAfkPassSettingsMessageId = 522;
+        /// <summary>
+        /// ── 以下只许在末尾追加:生成的 CallMethod 按 method index 分发 ──
+        /// 修改离线托管偏好设置(例如离队 / 解散自动回主城安全区)。
+        /// </summary>
+        public static void SetAfkPassSettings(IRpcChannel channel, global::SetAfkPassSettingsRequest request,
+            RpcDone<global::SetAfkPassSettingsResponse> done)
+            => channel.CallMethod(SetAfkPassSettingsMessageId, request, global::SetAfkPassSettingsResponse.Parser, done);
+
+        public const uint AckHostedRecapMessageId = 523;
+        /// <summary>
+        /// 确认已阅离线托管收获简报。
+        /// </summary>
+        public static void AckHostedRecap(IRpcChannel channel, global::AckHostedRecapRequest request,
+            RpcDone<global::AckHostedRecapResponse> done)
+            => channel.CallMethod(AckHostedRecapMessageId, request, global::AckHostedRecapResponse.Parser, done);
     }
 }

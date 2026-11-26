@@ -720,11 +720,233 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             SpiritPetCardPattern[] dayA1 = PetFlipDeckFactory.CreateDailySeededDeck(2026, 11, 25);
             SpiritPetCardPattern[] dayA2 = PetFlipDeckFactory.CreateDailySeededDeck(2026, 11, 25);
             SpiritPetCardPattern[] dayB = PetFlipDeckFactory.CreateDailySeededDeck(2026, 11, 26);
+            SpiritPetCardPattern[] dayA16 = PetFlipDeckFactory.CreateDailySeededDeck(2026, 11, 25, PetFlipDifficulty.Advanced16);
 
-            PetFlipDeckFactory.ValidateDeck(dayA1);
-            PetFlipDeckFactory.ValidateDeck(dayB);
+            PetFlipDeckFactory.ValidateDeck(dayA1, PetFlipDifficulty.Relaxed12);
+            PetFlipDeckFactory.ValidateDeck(dayB, PetFlipDifficulty.Relaxed12);
+            PetFlipDeckFactory.ValidateDeck(dayA16, PetFlipDifficulty.Advanced16);
             Assert.That(dayA1, Is.EqualTo(dayA2));
             Assert.That(string.Join(",", dayA1), Is.Not.EqualTo(string.Join(",", dayB)));
+        }
+
+        // ── V2：进阶 16 张、今日灵签、灵目趣味与多桶本机最佳 ──────────────────
+
+        private static SpiritPetCardPattern[] CreateAcceptanceDeck16() => new[]
+        {
+            SpiritPetCardPattern.A, SpiritPetCardPattern.B, SpiritPetCardPattern.C, SpiritPetCardPattern.D,
+            SpiritPetCardPattern.E, SpiritPetCardPattern.F, SpiritPetCardPattern.G, SpiritPetCardPattern.H,
+            SpiritPetCardPattern.A, SpiritPetCardPattern.B, SpiritPetCardPattern.C, SpiritPetCardPattern.D,
+            SpiritPetCardPattern.E, SpiritPetCardPattern.F, SpiritPetCardPattern.G, SpiritPetCardPattern.H
+        };
+
+        [Test]
+        public void Advanced16Difficulty_FullRunPerfectScoreIndependentRecordAndMidRoundConfigLock()
+        {
+            var store = new InMemoryPetFlipBestRecordStore("1|7");
+            using var client = PetFlipClient.CreateForTesting(
+                store,
+                diff => diff == PetFlipDifficulty.Advanced16 ? CreateAcceptanceDeck16() : CreateAcceptanceDeck());
+            client.NotifySessionRestored(DefaultPlayerId, DefaultZoneId);
+
+            // 旧 V1 轻松经典纪录 7 次自动兼容加载。
+            Assert.That(client.GetSnapshot().LocalRecord.BestFlipCount, Is.EqualTo(7));
+
+            // 切至进阶 16 张经典：独立分桶当前暂无纪录。
+            PetFlipActionResult cfg = client.SelectConfiguration(PetFlipDifficulty.Advanced16, PetFlipGameMode.Classic);
+            Assert.That(cfg.Outcome, Is.EqualTo(PetFlipActionOutcome.ConfigurationChanged));
+            Assert.That(cfg.Snapshot.Difficulty, Is.EqualTo(PetFlipDifficulty.Advanced16));
+            Assert.That(cfg.Snapshot.TotalPairCount, Is.EqualTo(8));
+            Assert.That(cfg.Snapshot.LocalRecord.HasBestRecord, Is.False);
+
+            PetFlipActionResult started = client.StartOrResume();
+            Assert.That(started.Outcome, Is.EqualTo(PetFlipActionOutcome.StartedNewRound));
+            Assert.That(started.Snapshot.Cards.Count, Is.EqualTo(16));
+            Assert.That(client.FlipCard(16).RejectReason, Is.EqualTo(PetFlipRejectReason.InvalidSlotIndex));
+
+            // 盘中严禁换档或回入口洗牌。
+            Assert.That(client.SelectConfiguration(PetFlipDifficulty.Relaxed12, PetFlipGameMode.Classic).RejectReason,
+                Is.EqualTo(PetFlipRejectReason.RoundNotCompleted));
+            Assert.That(client.ReturnToEntryAfterCompletion().RejectReason,
+                Is.EqualTo(PetFlipRejectReason.RoundNotCompleted));
+
+            // 8 次零失误配齐全部 8 对。
+            PetFlipActionResult finalStep = null;
+            for (int p = 0; p < 8; p++)
+            {
+                Assert.That(client.FlipCard(p).Accepted, Is.True);
+                finalStep = client.FlipCard(p + 8);
+            }
+
+            Assert.That(finalStep.Outcome, Is.EqualTo(PetFlipActionOutcome.RoundCompleted));
+            Assert.That(finalStep.Snapshot.CompletionResult.FlipCount, Is.EqualTo(8));
+            Assert.That(finalStep.Snapshot.CompletionResult.MatchedPairCount, Is.EqualTo(8));
+            Assert.That(finalStep.Snapshot.CompletionResult.IsPerfectRun, Is.True);
+            Assert.That(finalStep.Snapshot.CompletionResult.MaxStreak, Is.EqualTo(8));
+            Assert.That(finalStep.Snapshot.CompletionResult.Comparison, Is.EqualTo(PetFlipRecordComparison.FirstRecord));
+            Assert.That(store.RawValue, Is.EqualTo("2|0:0=7,1:0=8"));
+
+            // 终局后切换回轻松经典：清掉已完成盘回入口，并读出轻松经典原纪录 7 次。
+            PetFlipActionResult back = client.SelectConfiguration(PetFlipDifficulty.Relaxed12, PetFlipGameMode.Classic);
+            Assert.That(back.Outcome, Is.EqualTo(PetFlipActionOutcome.ConfigurationChanged));
+            Assert.That(back.Snapshot.HasBoard, Is.False);
+            Assert.That(back.Snapshot.LocalRecord.BestFlipCount, Is.EqualTo(7));
+
+            // 重启新实例从 V2 存档完整恢复双桶纪录。
+            using var reloaded = PetFlipClient.CreateForTesting(store, CreateAcceptanceDeck);
+            reloaded.NotifySessionRestored(DefaultPlayerId, DefaultZoneId);
+            Assert.That(reloaded.GetSnapshot().LocalRecord.BestFlipCount, Is.EqualTo(7));
+            reloaded.SelectConfiguration(PetFlipDifficulty.Advanced16, PetFlipGameMode.Classic);
+            Assert.That(reloaded.GetSnapshot().LocalRecord.BestFlipCount, Is.EqualTo(8));
+        }
+
+        [Test]
+        public void DailyChallengeMode_DealsSameDeckSameDayResetsBestNextDayAndIsolatesBuckets()
+        {
+            var store = new InMemoryPetFlipBestRecordStore();
+            DateTime fakeToday = new DateTime(2026, 11, 25);
+            using var client = PetFlipClient.CreateForTesting(store, () => fakeToday, new Random(42));
+            client.NotifySessionRestored(DefaultPlayerId, DefaultZoneId);
+
+            client.SelectConfiguration(PetFlipDifficulty.Relaxed12, PetFlipGameMode.DailyChallenge);
+            Assert.That(client.GetSnapshot().DailyDateKey, Is.EqualTo(20261125));
+            Assert.That(client.GetSnapshot().LocalRecord.HasBestRecord, Is.False);
+
+            // 同日开第一局并探测完整牌序后通关。
+            client.StartOrResume();
+            SpiritPetCardPattern[] day1Round1 = ProbeAndCompleteCurrentBoard(client);
+            Assert.That(client.GetSnapshot().CompletionResult.Comparison, Is.EqualTo(PetFlipRecordComparison.FirstRecord));
+            Assert.That(store.RawValue, Does.Contain("0:1=").And.Contain("@20261125"));
+
+            // 同日再玩一局：牌序必须完全一致。
+            client.StartNewRound();
+            SpiritPetCardPattern[] day1Round2 = ProbeAndCompleteCurrentBoard(client);
+            Assert.That(day1Round2, Is.EqualTo(day1Round1));
+
+            // 跨日后回到入口：今日最佳自动重置为暂无纪录，新开盘为新日期牌序。
+            fakeToday = new DateTime(2026, 11, 26);
+            client.ReturnToEntryAfterCompletion();
+            PetFlipSnapshot nextDayEntry = client.GetSnapshot();
+            Assert.That(nextDayEntry.DailyDateKey, Is.EqualTo(20261126));
+            Assert.That(nextDayEntry.LocalRecord.HasBestRecord, Is.False);
+            Assert.That(nextDayEntry.LocalRecord.PersistenceStatus, Is.EqualTo(PetFlipRecordPersistenceStatus.NoRecord));
+
+            client.StartOrResume();
+            SpiritPetCardPattern[] day2Round1 = ProbeAndCompleteCurrentBoard(client);
+            Assert.That(string.Join(",", day2Round1), Is.Not.EqualTo(string.Join(",", day1Round1)));
+            Assert.That(client.GetSnapshot().CompletionResult.Comparison, Is.EqualTo(PetFlipRecordComparison.FirstRecord));
+            Assert.That(store.RawValue, Does.Contain("@20261126"));
+        }
+
+        [Test]
+        public void SpiritEyeMode_FreePeekZeroFlipsPreservesStreakCoversOnNextClickAndRejectsInvalidStates()
+        {
+            var store = new InMemoryPetFlipBestRecordStore();
+            using var client = PetFlipClient.CreateForTesting(store, _ => CreateAcceptanceDeck());
+            client.NotifySessionRestored(DefaultPlayerId, DefaultZoneId);
+
+            // 经典模式拒绝灵目窥牌。
+            client.StartOrResume();
+            Assert.That(client.UseSpiritEyePeek(0).RejectReason, Is.EqualTo(PetFlipRejectReason.SpiritEyeUnavailable));
+            CompleteAcceptanceDeckInSixFlips(client);
+
+            // 切至灵目趣味模式开局。
+            client.SelectConfiguration(PetFlipDifficulty.Relaxed12, PetFlipGameMode.SpiritEye);
+            PetFlipActionResult start = client.StartOrResume();
+            Assert.That(start.Snapshot.RemainingSpiritEyeCharges, Is.EqualTo(1));
+            Assert.That(start.Snapshot.CanUseSpiritEye, Is.True);
+
+            // 先配成 1 对建立连击，再验证本手已翻第一张时拒绝灵目。
+            client.FlipCard(0);
+            Assert.That(client.UseSpiritEyePeek(1).RejectReason, Is.EqualTo(PetFlipRejectReason.SpiritEyeUnavailable));
+            Assert.That(client.FlipCard(6).Outcome, Is.EqualTo(PetFlipActionOutcome.PairMatched));
+            Assert.That(client.GetSnapshot().CurrentStreak, Is.EqualTo(1));
+
+            // 触发免费灵目窥看位置 1：不计次、不断连击、停留亮起不自动盖回。
+            PetFlipActionResult peek = client.UseSpiritEyePeek(1);
+            Assert.That(peek.Outcome, Is.EqualTo(PetFlipActionOutcome.SpiritEyePeeked));
+            Assert.That(peek.FlippedPattern, Is.EqualTo(SpiritPetCardPattern.B));
+            Assert.That(peek.Snapshot.FlipCount, Is.EqualTo(1));
+            Assert.That(peek.Snapshot.CurrentStreak, Is.EqualTo(1));
+            Assert.That(peek.Snapshot.RemainingSpiritEyeCharges, Is.EqualTo(0));
+            Assert.That(peek.Snapshot.HandState, Is.EqualTo(PetFlipHandState.SpiritEyePeeking));
+            Assert.That(peek.Snapshot.Cards[1].State, Is.EqualTo(PetFlipCardState.FaceUp));
+            Assert.That(peek.Snapshot.Cards[1].VisiblePattern, Is.EqualTo(SpiritPetCardPattern.B));
+
+            // 次数耗尽再次触发灵目被拒。
+            Assert.That(client.UseSpiritEyePeek(2).RejectReason, Is.EqualTo(PetFlipRejectReason.SpiritEyeUnavailable));
+
+            // 暂关面板再续盘：灵目亮起态完整保留。
+            client.Pause(PetFlipInterruptFlags.PanelClosed);
+            PetFlipSnapshot resumed = client.StartOrResume().Snapshot;
+            Assert.That(resumed.HandState, Is.EqualTo(PetFlipHandState.SpiritEyePeeking));
+            Assert.That(resumed.Cards[1].State, Is.EqualTo(PetFlipCardState.FaceUp));
+
+            // 下一次直接点击刚窥看的位置 1：先盖回再作为新一手第 1 张翻开，次数仍为 1。
+            PetFlipActionResult nextFirst = client.FlipCard(1);
+            Assert.That(nextFirst.Outcome, Is.EqualTo(PetFlipActionOutcome.SpiritEyeClearedAndFirstCardFlipped));
+            Assert.That(nextFirst.CoveredFirstSlotIndex, Is.EqualTo(1));
+            Assert.That(nextFirst.FlippedSlotIndex, Is.EqualTo(1));
+            Assert.That(nextFirst.Snapshot.FlipCount, Is.EqualTo(1));
+            Assert.That(nextFirst.Snapshot.HandState, Is.EqualTo(PetFlipHandState.WaitingSecondCard));
+
+            // 配中位置 7：连击延续到 2，翻牌次数为 2。
+            PetFlipActionResult match2 = client.FlipCard(7);
+            Assert.That(match2.Outcome, Is.EqualTo(PetFlipActionOutcome.PairMatched));
+            Assert.That(match2.Snapshot.FlipCount, Is.EqualTo(2));
+            Assert.That(match2.Snapshot.CurrentStreak, Is.EqualTo(2));
+        }
+
+        [TestCase("2|")]
+        [TestCase("2|9:0=6")]
+        [TestCase("2|0:9=6")]
+        [TestCase("2|1:0=7")]
+        [TestCase("2|0:0=6@20261125")]
+        [TestCase("2|0:1=6@2026")]
+        [TestCase("2|0:0=6,0:0=7")]
+        public void V2RecordCodec_RejectsCorruptedPayloads(string badPayload)
+        {
+            Assert.That(PetFlipBestRecordCodec.TryDecodeTable(badPayload, out _), Is.False);
+        }
+
+        private static SpiritPetCardPattern[] ProbeAndCompleteCurrentBoard(PetFlipClient client)
+        {
+            PetFlipSnapshot init = client.GetSnapshot();
+            int cardCount = init.Cards.Count;
+            int pairCount = init.TotalPairCount;
+            var revealed = new SpiritPetCardPattern[cardCount];
+
+            for (int i = 0; i < cardCount; i += 2)
+            {
+                PetFlipActionResult a = client.FlipCard(i);
+                Assert.That(a.Accepted, Is.True);
+                revealed[i] = a.FlippedPattern.Value;
+
+                PetFlipActionResult b = client.FlipCard(i + 1);
+                Assert.That(b.Accepted, Is.True);
+                revealed[i + 1] = b.FlippedPattern.Value;
+            }
+
+            for (int p = 0; p < pairCount; p++)
+            {
+                var slots = new List<int>(2);
+                PetFlipSnapshot snap = client.GetSnapshot();
+                for (int i = 0; i < cardCount; i++)
+                {
+                    if (!snap.Cards[i].IsMatched && revealed[i] == (SpiritPetCardPattern)p)
+                        slots.Add(i);
+                }
+
+                if (slots.Count == 2)
+                {
+                    Assert.That(client.FlipCard(slots[0]).Accepted, Is.True);
+                    PetFlipActionResult r = client.FlipCard(slots[1]);
+                    Assert.That(r.Outcome,
+                        Is.EqualTo(PetFlipActionOutcome.PairMatched).Or.EqualTo(PetFlipActionOutcome.RoundCompleted));
+                }
+            }
+
+            Assert.That(client.GetSnapshot().Phase, Is.EqualTo(PetFlipRoundPhase.Completed));
+            return revealed;
         }
 
         private sealed class ThrowingBestRecordStore : IPetFlipBestRecordStore

@@ -931,13 +931,14 @@ namespace MmorpgClient.UI.Ugui.Battle
             _queuePanel?.Hide();
 
             _replayPlayer = new BattleReplayPlayer(replay);
+            var analysis = BattleReplayAnalyzer.Analyze(replay);
             ulong myId = _reports?.PlayerId ?? _client?.MyPlayerId ?? 0;
             uint viewerTeam = _replayPlayer.ResolveViewerTeam(myId);
             var startState = _replayPlayer.SeekToRound(1);
 
             _replayOpen = true;
             _battleLayerGo.SetActive(true);
-            _battleScreen.OpenReplay(startState, myId, viewerTeam, FormatReplayHeader(_replayPlayer), _replayPlayer.TableVersionWarning);
+            _battleScreen.OpenReplay(startState, myId, viewerTeam, FormatReplayHeader(_replayPlayer), _replayPlayer.TableVersionWarning, analysis);
             if (!string.IsNullOrEmpty(_replayPlayer.TableVersionWarning))
                 ShowToast(_replayPlayer.TableVersionWarning);
             SyncReplayHud();

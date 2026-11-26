@@ -62,5 +62,18 @@ namespace MmorpgClient.Net.Generated
                 handler(message);
             });
         }
+
+        public const uint EquipPetCosmeticMessageId = 530;
+        /// <summary>
+        /// ── 以下只许在末尾追加:生成的 CallMethod 按 method index 分发 ──
+        /// </summary>
+        public static void EquipPetCosmetic(IRpcChannel channel, global::EquipPetCosmeticRequest request,
+            RpcDone<global::EquipPetCosmeticResponse> done)
+            => channel.CallMethod(EquipPetCosmeticMessageId, request, global::EquipPetCosmeticResponse.Parser, done);
+
+        public const uint EquipSkillVfxMessageId = 531;
+        public static void EquipSkillVfx(IRpcChannel channel, global::EquipSkillVfxRequest request,
+            RpcDone<global::EquipSkillVfxResponse> done)
+            => channel.CallMethod(EquipSkillVfxMessageId, request, global::EquipSkillVfxResponse.Parser, done);
     }
 }

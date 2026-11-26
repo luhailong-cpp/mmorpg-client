@@ -26,7 +26,7 @@ public static partial class PlayerBattleResultCompReflection {
           "X2NvbXAucHJvdG8iQwoaUGxheWVyQmF0dGxlUmVzdWx0Q3VycmVuY3kSFQoN",
           "Y3VycmVuY3lfdHlwZRgBIAEoDRIOCgZhbW91bnQYAiABKAQiPgoWUGxheWVy",
           "QmF0dGxlUmVzdWx0SXRlbRIVCg1pdGVtX3RhYmxlX2lkGAEgASgNEg0KBWNv",
-          "dW50GAIgASgEIusHChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
+          "dW50GAIgASgEIosJChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
           "cRgBIAEoBBIRCgliYXR0bGVfaWQYAiABKAQSDwoHb3V0Y29tZRgDIAEoDRIS",
           "Cgp0ZWFtX2luZGV4GAQgASgNEg8KB2lzX2RlYWQYBSABKAgSDAoEZmxlZBgG",
           "IAEoCBIUCgx0b3RhbF9yb3VuZHMYByABKA0SFgoOZmluaXNoZWRfYXRfbXMY",
@@ -48,16 +48,19 @@ public static partial class PlayerBattleResultCompReflection {
           "X2FmdGVyGB4gASgNEh4KFmZlc3RpdmFsX3JlcXVpcmVkX3dpbnMYHyABKA0S",
           "HwoXZmVzdGl2YWxfbmV3bHlfZWxpZ2libGUYICABKAgSJgoebWF0ZXJpYWxf",
           "YXZhaWxhYmxlX3VuaXRzX2FmdGVyGCEgASgEEikKIW1hdGVyaWFsX2Vhcm5h",
-          "YmxlX3JlbWFpbmluZ19hZnRlchgiIAEoDSJXChZQbGF5ZXJCYXR0bGVSZXN1",
-          "bHRDb21wEhcKD2xhc3RfcmVzdWx0X3NlcRgBIAEoBBIkCgdlbnRyaWVzGAIg",
-          "AygLMhMuUGxheWVyQmF0dGxlUmVzdWx0QhJaEGNvbW1vbi9jb21wb25lbnRi",
-          "BnByb3RvMw=="));
+          "YmxlX3JlbWFpbmluZ19hZnRlchgiIAEoDRIgChhzZWFzb25fc2VhbF9wb2lu",
+          "dHNfYWRkZWQYIyABKA0SIgoac2Vhc29uX3NlYWxfcHJvZ3Jlc3NfYWZ0ZXIY",
+          "JCABKA0SHgoWc2Vhc29uX3NlYWxfbWF4X3BvaW50cxglIAEoDRIjChtzZWFz",
+          "b25faG9ub3JfbmV3bHlfdW5sb2NrZWQYJiABKAgSEwoLc3VycmVuZGVyZWQY",
+          "JyABKAgiVwoWUGxheWVyQmF0dGxlUmVzdWx0Q29tcBIXCg9sYXN0X3Jlc3Vs",
+          "dF9zZXEYASABKAQSJAoHZW50cmllcxgCIAMoCzITLlBsYXllckJhdHRsZVJl",
+          "c3VsdEISWhBjb21tb24vY29tcG9uZW50YgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultCurrency), global::PlayerBattleResultCurrency.Parser, new[]{ "CurrencyType", "Amount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultItem), global::PlayerBattleResultItem.Parser, new[]{ "ItemTableId", "Count" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed", "ExpGain", "MaterialCreditUnitsAdded", "SeasonId", "TrialJournalEntryId", "TrialNewlyLitSealIds", "TrialNewSoloBest", "TrialNewCoopBest", "MaterialTradableUnitsAdded", "MaterialPvpLossIneligible", "FestivalActivityInstanceId", "FestivalRewardIdentity", "FestivalWinsBefore", "FestivalWinsAfter", "FestivalRequiredWins", "FestivalNewlyEligible", "MaterialAvailableUnitsAfter", "MaterialEarnableRemainingAfter" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed", "ExpGain", "MaterialCreditUnitsAdded", "SeasonId", "TrialJournalEntryId", "TrialNewlyLitSealIds", "TrialNewSoloBest", "TrialNewCoopBest", "MaterialTradableUnitsAdded", "MaterialPvpLossIneligible", "FestivalActivityInstanceId", "FestivalRewardIdentity", "FestivalWinsBefore", "FestivalWinsAfter", "FestivalRequiredWins", "FestivalNewlyEligible", "MaterialAvailableUnitsAfter", "MaterialEarnableRemainingAfter", "SeasonSealPointsAdded", "SeasonSealProgressAfter", "SeasonSealMaxPoints", "SeasonHonorNewlyUnlocked", "Surrendered" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultComp), global::PlayerBattleResultComp.Parser, new[]{ "LastResultSeq", "Entries" }, null, null, null, null)
         }));
   }
@@ -619,6 +622,11 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     festivalNewlyEligible_ = other.festivalNewlyEligible_;
     materialAvailableUnitsAfter_ = other.materialAvailableUnitsAfter_;
     materialEarnableRemainingAfter_ = other.materialEarnableRemainingAfter_;
+    seasonSealPointsAdded_ = other.seasonSealPointsAdded_;
+    seasonSealProgressAfter_ = other.seasonSealProgressAfter_;
+    seasonSealMaxPoints_ = other.seasonSealMaxPoints_;
+    seasonHonorNewlyUnlocked_ = other.seasonHonorNewlyUnlocked_;
+    surrendered_ = other.surrendered_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1111,6 +1119,72 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
   }
 
+  /// <summary>Field number for the "season_seal_points_added" field.</summary>
+  public const int SeasonSealPointsAddedFieldNumber = 35;
+  private uint seasonSealPointsAdded_;
+  /// <summary>
+  /// 单槽赛季印本局结算增量（非赛季合格局全 0/false）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SeasonSealPointsAdded {
+    get { return seasonSealPointsAdded_; }
+    set {
+      seasonSealPointsAdded_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "season_seal_progress_after" field.</summary>
+  public const int SeasonSealProgressAfterFieldNumber = 36;
+  private uint seasonSealProgressAfter_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SeasonSealProgressAfter {
+    get { return seasonSealProgressAfter_; }
+    set {
+      seasonSealProgressAfter_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "season_seal_max_points" field.</summary>
+  public const int SeasonSealMaxPointsFieldNumber = 37;
+  private uint seasonSealMaxPoints_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SeasonSealMaxPoints {
+    get { return seasonSealMaxPoints_; }
+    set {
+      seasonSealMaxPoints_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "season_honor_newly_unlocked" field.</summary>
+  public const int SeasonHonorNewlyUnlockedFieldNumber = 38;
+  private bool seasonHonorNewlyUnlocked_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool SeasonHonorNewlyUnlocked {
+    get { return seasonHonorNewlyUnlocked_; }
+    set {
+      seasonHonorNewlyUnlocked_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "surrendered" field.</summary>
+  public const int SurrenderedFieldNumber = 39;
+  private bool surrendered_;
+  /// <summary>
+  /// true = 本方通过 PVP 延迟投降结束本局（重登补弹与现场结算同口径展示「体面认输」）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Surrendered {
+    get { return surrendered_; }
+    set {
+      surrendered_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1160,6 +1234,11 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (FestivalNewlyEligible != other.FestivalNewlyEligible) return false;
     if (MaterialAvailableUnitsAfter != other.MaterialAvailableUnitsAfter) return false;
     if (MaterialEarnableRemainingAfter != other.MaterialEarnableRemainingAfter) return false;
+    if (SeasonSealPointsAdded != other.SeasonSealPointsAdded) return false;
+    if (SeasonSealProgressAfter != other.SeasonSealProgressAfter) return false;
+    if (SeasonSealMaxPoints != other.SeasonSealMaxPoints) return false;
+    if (SeasonHonorNewlyUnlocked != other.SeasonHonorNewlyUnlocked) return false;
+    if (Surrendered != other.Surrendered) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1201,6 +1280,11 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (FestivalNewlyEligible != false) hash ^= FestivalNewlyEligible.GetHashCode();
     if (MaterialAvailableUnitsAfter != 0UL) hash ^= MaterialAvailableUnitsAfter.GetHashCode();
     if (MaterialEarnableRemainingAfter != 0) hash ^= MaterialEarnableRemainingAfter.GetHashCode();
+    if (SeasonSealPointsAdded != 0) hash ^= SeasonSealPointsAdded.GetHashCode();
+    if (SeasonSealProgressAfter != 0) hash ^= SeasonSealProgressAfter.GetHashCode();
+    if (SeasonSealMaxPoints != 0) hash ^= SeasonSealMaxPoints.GetHashCode();
+    if (SeasonHonorNewlyUnlocked != false) hash ^= SeasonHonorNewlyUnlocked.GetHashCode();
+    if (Surrendered != false) hash ^= Surrendered.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1343,6 +1427,26 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(144, 2);
       output.WriteUInt32(MaterialEarnableRemainingAfter);
     }
+    if (SeasonSealPointsAdded != 0) {
+      output.WriteRawTag(152, 2);
+      output.WriteUInt32(SeasonSealPointsAdded);
+    }
+    if (SeasonSealProgressAfter != 0) {
+      output.WriteRawTag(160, 2);
+      output.WriteUInt32(SeasonSealProgressAfter);
+    }
+    if (SeasonSealMaxPoints != 0) {
+      output.WriteRawTag(168, 2);
+      output.WriteUInt32(SeasonSealMaxPoints);
+    }
+    if (SeasonHonorNewlyUnlocked != false) {
+      output.WriteRawTag(176, 2);
+      output.WriteBool(SeasonHonorNewlyUnlocked);
+    }
+    if (Surrendered != false) {
+      output.WriteRawTag(184, 2);
+      output.WriteBool(Surrendered);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1477,6 +1581,26 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(144, 2);
       output.WriteUInt32(MaterialEarnableRemainingAfter);
     }
+    if (SeasonSealPointsAdded != 0) {
+      output.WriteRawTag(152, 2);
+      output.WriteUInt32(SeasonSealPointsAdded);
+    }
+    if (SeasonSealProgressAfter != 0) {
+      output.WriteRawTag(160, 2);
+      output.WriteUInt32(SeasonSealProgressAfter);
+    }
+    if (SeasonSealMaxPoints != 0) {
+      output.WriteRawTag(168, 2);
+      output.WriteUInt32(SeasonSealMaxPoints);
+    }
+    if (SeasonHonorNewlyUnlocked != false) {
+      output.WriteRawTag(176, 2);
+      output.WriteBool(SeasonHonorNewlyUnlocked);
+    }
+    if (Surrendered != false) {
+      output.WriteRawTag(184, 2);
+      output.WriteBool(Surrendered);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1580,6 +1704,21 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (MaterialEarnableRemainingAfter != 0) {
       size += 2 + pb::CodedOutputStream.ComputeUInt32Size(MaterialEarnableRemainingAfter);
+    }
+    if (SeasonSealPointsAdded != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(SeasonSealPointsAdded);
+    }
+    if (SeasonSealProgressAfter != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(SeasonSealProgressAfter);
+    }
+    if (SeasonSealMaxPoints != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(SeasonSealMaxPoints);
+    }
+    if (SeasonHonorNewlyUnlocked != false) {
+      size += 2 + 1;
+    }
+    if (Surrendered != false) {
+      size += 2 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1686,6 +1825,21 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (other.MaterialEarnableRemainingAfter != 0) {
       MaterialEarnableRemainingAfter = other.MaterialEarnableRemainingAfter;
+    }
+    if (other.SeasonSealPointsAdded != 0) {
+      SeasonSealPointsAdded = other.SeasonSealPointsAdded;
+    }
+    if (other.SeasonSealProgressAfter != 0) {
+      SeasonSealProgressAfter = other.SeasonSealProgressAfter;
+    }
+    if (other.SeasonSealMaxPoints != 0) {
+      SeasonSealMaxPoints = other.SeasonSealMaxPoints;
+    }
+    if (other.SeasonHonorNewlyUnlocked != false) {
+      SeasonHonorNewlyUnlocked = other.SeasonHonorNewlyUnlocked;
+    }
+    if (other.Surrendered != false) {
+      Surrendered = other.Surrendered;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1843,6 +1997,26 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
           MaterialEarnableRemainingAfter = input.ReadUInt32();
           break;
         }
+        case 280: {
+          SeasonSealPointsAdded = input.ReadUInt32();
+          break;
+        }
+        case 288: {
+          SeasonSealProgressAfter = input.ReadUInt32();
+          break;
+        }
+        case 296: {
+          SeasonSealMaxPoints = input.ReadUInt32();
+          break;
+        }
+        case 304: {
+          SeasonHonorNewlyUnlocked = input.ReadBool();
+          break;
+        }
+        case 312: {
+          Surrendered = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -1997,6 +2171,26 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
         }
         case 272: {
           MaterialEarnableRemainingAfter = input.ReadUInt32();
+          break;
+        }
+        case 280: {
+          SeasonSealPointsAdded = input.ReadUInt32();
+          break;
+        }
+        case 288: {
+          SeasonSealProgressAfter = input.ReadUInt32();
+          break;
+        }
+        case 296: {
+          SeasonSealMaxPoints = input.ReadUInt32();
+          break;
+        }
+        case 304: {
+          SeasonHonorNewlyUnlocked = input.ReadBool();
+          break;
+        }
+        case 312: {
+          Surrendered = input.ReadBool();
           break;
         }
       }

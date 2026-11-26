@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace MmorpgClient.UI.Ugui.CoreLoop
 {
-    /// <summary>由四组权威卡片渲染三只首领与普通、困难入口。</summary>
+    /// <summary>根据权威试炼卡片渲染首领和对应难度入口。</summary>
     public sealed class BossTrialPrepPanel : MonoBehaviour
     {
         private CoreGameplayUiRoot _root;
@@ -63,9 +63,37 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             CoreLoopUiArt.Frame(transform, "首领试炼 · 备战", _root.OpenHub);
             SeasonEconomyUiArt.DrawSeasonLobbyTabs(transform, 0,
                 _root.OpenBossTrials, _root.OpenRotations, _root.OpenFormalPvp);
-            CoreLoopUiArt.Text("Intro", transform, 290, 275, 1410, 55,
-                "先读机制，再选反制。单人可携出战灵宠，组队不必凑满五人。", 28,
-                CoreLoopUiArt.Muted, false, true);
+            var weeklyAffix = _core.BuildCurrentBossTrialWeeklyAffix();
+            if (weeklyAffix != null)
+            {
+                CoreLoopUiArt.Image("WeeklyAffixBar", transform, 286, 260, 1434, 78, "hud-strip",
+                    new Color(.96f, .93f, .84f, .94f), raycast: false);
+                var affixIcon = CoreLoopUiArt.LoadV2("icon_weekly_affix_" + weeklyAffix.ElementKey);
+                float textX = 304f;
+                if (affixIcon != null)
+                {
+                    var img = QdaoUguiFactory.CreateImage("WeeklyAffixIcon", transform, 298, 273, 52, 52, affixIcon, false);
+                    img.preserveAspect = true;
+                    textX = 360f;
+                }
+                string resetSuffix = string.IsNullOrEmpty(weeklyAffix.ResetCountdownText)
+                    ? "与既有 10/15 份奖励池共享"
+                    : $"{weeklyAffix.ResetCountdownText} · 与既有 10/15 份奖励池共享";
+                var affixHead = CoreLoopUiArt.Text("WeeklyAffixHead", transform, textX, 264, 1708f - textX, 32,
+                    $"本周首领试炼五行词缀 · 【{weeklyAffix.Title}】  （{resetSuffix}）",
+                    21, CoreLoopUiArt.DeepJade, true, false);
+                affixHead.enableAutoSizing = true; affixHead.fontSizeMin = 14f; affixHead.fontSizeMax = 21f;
+                var affixBody = CoreLoopUiArt.Text("WeeklyAffixBody", transform, textX, 298, 1708f - textX, 34,
+                    $"正向：{weeklyAffix.BoonText}  |  考验：{weeklyAffix.ChallengeText}  |  推荐：{weeklyAffix.RecommendedLoadoutHint}",
+                    18, CoreLoopUiArt.Ink, false, false);
+                affixBody.enableAutoSizing = true; affixBody.fontSizeMin = 13f; affixBody.fontSizeMax = 18f;
+            }
+            else
+            {
+                CoreLoopUiArt.Text("Intro", transform, 290, 275, 1410, 55,
+                    "先读机制，再选反制。单人可携出战灵宠，组队不必凑满五人。", 28,
+                    CoreLoopUiArt.Muted, false, true);
+            }
             int claimable = _game?.TrialJournal?.ClaimableMilestoneCount ?? 0;
             string journalLabel = claimable > 0 ? $"五行试炼志 · 可领 {claimable} 项" : "五行试炼志";
             CoreLoopUiArt.Button("OpenTrialJournal", transform, 1740, 268, 420, 56,
@@ -90,10 +118,10 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     SeasonEconomyUiArt.CreateSlicedOrSimple(transform, "BossCard" + i, x, 345, cardW, 488, cardSprite, CoreLoopUiArt.Ivory);
                 else
                     CoreLoopUiArt.Card(transform, "BossCard" + i, x, 345, cardW, 488, selected);
-                var bossAvatar = SeasonEconomyUiArt.LoadIcon(SeasonEconomyUiArt.BossAvatarIconKey(card.BossTrialKind))
-                    ?? (card.BossTrialKind == CoreGameplayLoopModels.BossTrialKindDualGuard
-                        ? SeasonEconomyUiArt.LoadIcon("boss_break_avatar")
-                        : null);
+                bool isDualGuard = card.BossTrialKind == CoreGameplayLoopModels.BossTrialKindDualGuard;
+                var bossAvatar = (isDualGuard ? CoreLoopUiArt.LoadV2("boss_dual_guard_avatar") : null)
+                    ?? SeasonEconomyUiArt.LoadIcon(SeasonEconomyUiArt.BossAvatarIconKey(card.BossTrialKind))
+                    ?? (isDualGuard ? SeasonEconomyUiArt.LoadIcon("boss_break_avatar") : null);
                 if (bossAvatar != null)
                 {
                     var portrait = QdaoUguiFactory.CreateImage("BossPortrait" + i, transform, x + 22, 374, 106, 106, bossAvatar, false);
@@ -104,7 +132,16 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     CoreLoopUiArt.Image("BossPortrait" + i, transform, x + 22, 374, 106, 106,
                         BossIllustrationKey(card.BossTrialKind), new Color(.82f, .9f, .82f, .9f));
                 }
-                CoreLoopUiArt.Text("BossName" + i, transform, x + 136, 376, cardW - 150f, 64,
+                var hardOnlySeal = isDualGuard && card.IsHardOnly ? CoreLoopUiArt.LoadV2("badge_hard_only_seal") : null;
+                if (hardOnlySeal != null)
+                {
+                    var seal = QdaoUguiFactory.CreateImage("HardOnlySeal" + i, transform, x + cardW - 113f, 352, 96, 33,
+                        hardOnlySeal, false);
+                    seal.preserveAspect = true;
+                }
+                float nameY = hardOnlySeal != null ? 385f : 376f;
+                float nameH = hardOnlySeal != null ? 62f : 64f;
+                CoreLoopUiArt.Text("BossName" + i, transform, x + 136, nameY, cardW - 150f, nameH,
                     card.BossName, compactFive ? 24 : 27, CoreLoopUiArt.DeepJade, true, true);
                 CoreLoopUiArt.Badge(transform, "GuardTag" + i, x + 136, 448, cardW - 154f,
                     card.GuardTag, CoreLoopUiArt.Ink);

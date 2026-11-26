@@ -27,6 +27,13 @@
       "flight_seconds": 0.5,
       "align_projectile_to_path": true,
       "target_at_feet": false
+    },
+    {
+      "skill_id": 10041,
+      "fx_id": "mirror_copy_cast",
+      "action": "cast",
+      "hit_frame": 3,
+      "target_at_feet": false
     }
   ]
 }

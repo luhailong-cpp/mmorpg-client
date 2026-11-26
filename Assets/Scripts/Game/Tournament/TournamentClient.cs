@@ -36,6 +36,8 @@ namespace MmorpgClient.Game.Tournament
 
         private bool _overviewLoading;
         private bool _standingsLoading;
+        private bool _predictionBoardLoading;
+        private bool _highlightsLoading;
         private bool _mutating;
         private bool _cheerLoading;
         private bool _cheerSending;
@@ -43,10 +45,12 @@ namespace MmorpgClient.Game.Tournament
         public ulong PlayerId => _net.PlayerId;
         public TournamentOverviewSnapshot Overview { get; private set; }
         public TournamentStandingsSnapshot Standings { get; private set; }
+        public TournamentPredictionBoardSnapshot PredictionBoard { get; private set; }
+        public TournamentHighlightsSnapshot Highlights { get; private set; }
         public TournamentSpectateCheerSnapshot SpectateCheer { get; private set; }
         public ulong LastLaunchedBattleId { get; private set; }
 
-        public bool IsLoading => _overviewLoading || _standingsLoading;
+        public bool IsLoading => _overviewLoading || _standingsLoading || _predictionBoardLoading || _highlightsLoading;
         public bool IsMutating => _mutating;
         public bool IsBusy => IsLoading || IsMutating;
         public bool IsSpectateCheerSending => _cheerSending;
@@ -114,10 +118,14 @@ namespace MmorpgClient.Game.Tournament
             ++_generation;
             Overview = null;
             Standings = null;
+            PredictionBoard = null;
+            Highlights = null;
             SpectateCheer = null;
             LastLaunchedBattleId = 0UL;
             _overviewLoading = false;
             _standingsLoading = false;
+            _predictionBoardLoading = false;
+            _highlightsLoading = false;
             _mutating = false;
             _cheerLoading = false;
             _cheerSending = false;
@@ -180,8 +188,8 @@ namespace MmorpgClient.Game.Tournament
             return true;
         }
 
-        /// <summary>RPC 466：创建本赛季固定战队（2–12 字符，由服务端审校并同季去重）。</summary>
-        public bool CreateSquad(string squadName)
+        /// <summary>RPC 466：创建本赛季固定战队（2–12 字符 + 可选 1..8 道家战旗，由服务端审校并同季去重）。</summary>
+        public bool CreateSquad(string squadName, uint emblemId = 1u)
         {
             string trimmed = (squadName ?? string.Empty).Trim();
             if (string.IsNullOrEmpty(trimmed))
@@ -189,11 +197,17 @@ namespace MmorpgClient.Game.Tournament
                 FailLocal("请输入 2 至 12 字战队名称。");
                 return false;
             }
+            uint effEmblem = emblemId == 0u ? 1u : emblemId;
+            if (effEmblem > 8u)
+            {
+                FailLocal("所选道家战旗编号无效，请重新择选。");
+                return false;
+            }
             if (!BeginMutation(MatchServiceRpc.CreateTournamentSquadMessageId, "正在创建战队…", out int gen, out ulong player))
                 return false;
 
             _net.Call(MatchServiceRpc.CreateTournamentSquadMessageId,
-                new CreateTournamentSquadRequest { SquadName = trimmed },
+                new CreateTournamentSquadRequest { SquadName = trimmed, EmblemId = effEmblem },
                 CreateTournamentSquadResponse.Parser,
                 resp =>
                 {
@@ -708,6 +722,249 @@ namespace MmorpgClient.Game.Tournament
             return true;
         }
 
+        /// <summary>V3 模块 G：队长更换战队官方预设道家战旗（严格白名单 1..8，零免费上传）。</summary>
+        public bool UpdateSquadEmblem(uint emblemId)
+        {
+            if (emblemId < 1u || emblemId > 8u)
+            {
+                FailLocal("所选道家战旗编号无效，请重新择选。");
+                return false;
+            }
+            if (!BeginMutation(MatchServiceRpc.UpdateTournamentSquadEmblemMessageId, "正在更换战队战旗…", out int gen, out ulong player))
+                return false;
+
+            _net.Call(MatchServiceRpc.UpdateTournamentSquadEmblemMessageId,
+                new UpdateTournamentSquadEmblemRequest { EmblemId = emblemId },
+                UpdateTournamentSquadEmblemResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _mutating = false;
+                    if (HasTip(resp?.ErrorMessage))
+                    {
+                        FailServer(resp.ErrorMessage);
+                        return;
+                    }
+                    if (Overview != null && resp?.Squad != null)
+                        Overview = Overview.WithSquad(resp.Squad);
+                    LastError = string.Empty;
+                    Status = "战队战旗已更换。";
+                    Changed?.Invoke();
+                },
+                err =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _mutating = false;
+                    FailTransport("更换战队战旗失败", err);
+                });
+            return true;
+        }
+
+        /// <summary>V3 模块 D：发起赛前零积分热身约战（随机池 targetSquadId=0 或定向约战，可选 0..5 演练灵脉，绝不计入海选积分与场次）。</summary>
+        public bool StartWarmup(
+            ulong targetSquadId = 0UL,
+            TournamentLeylineElement leylineElement = TournamentLeylineElement.TournamentLeylineUnspecified,
+            IReadOnlyList<ulong> lineupPlayerIds = null)
+        {
+            if (!BeginMutation(MatchServiceRpc.StartTournamentWarmupMessageId, "正在发起零积分热身约战…", out int gen, out ulong player))
+                return false;
+
+            var req = new StartTournamentWarmupRequest
+            {
+                TargetSquadId = targetSquadId,
+                LeylineElement = leylineElement,
+            };
+            if (lineupPlayerIds != null)
+            {
+                for (int i = 0; i < lineupPlayerIds.Count; i++) req.LineupPlayerIds.Add(lineupPlayerIds[i]);
+            }
+
+            _net.Call(MatchServiceRpc.StartTournamentWarmupMessageId,
+                req,
+                StartTournamentWarmupResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _mutating = false;
+                    if (HasTip(resp?.ErrorMessage))
+                    {
+                        FailServer(resp.ErrorMessage);
+                        return;
+                    }
+                    LastError = string.Empty;
+                    if (resp != null && resp.BattleId != 0UL)
+                    {
+                        LastLaunchedBattleId = resp.BattleId;
+                        Status = "热身对手已就绪，正在进入零积分演武场…";
+                        Changed?.Invoke();
+                        MatchBattleLaunched?.Invoke(resp.BattleId);
+                        return;
+                    }
+                    Status = targetSquadId != 0UL
+                        ? $"已向战队 #{targetSquadId} 发起零积分热身约战，等待对方应战…"
+                        : "已进入零积分热身池，等待同道应战…";
+                    Changed?.Invoke();
+                },
+                err =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _mutating = false;
+                    FailTransport("发起热身约战失败", err);
+                });
+            return true;
+        }
+
+        /// <summary>V3 模块 E：淘汰赛零消耗免费竞猜胜者（开赛前可自由修改，绝不扣任何货币或道具）。</summary>
+        public bool PredictMatch(ulong matchId, ulong predictedSquadId)
+        {
+            if (matchId == 0UL || predictedSquadId == 0UL)
+            {
+                FailLocal("请选择有效的淘汰赛对局与战队。");
+                return false;
+            }
+            if (!BeginMutation(MatchServiceRpc.PredictTournamentMatchMessageId, "正在提交免费预测…", out int gen, out ulong player))
+                return false;
+
+            _net.Call(MatchServiceRpc.PredictTournamentMatchMessageId,
+                new PredictTournamentMatchRequest { MatchId = matchId, PredictedSquadId = predictedSquadId },
+                PredictTournamentMatchResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _mutating = false;
+                    if (HasTip(resp?.ErrorMessage))
+                    {
+                        FailServer(resp.ErrorMessage);
+                        return;
+                    }
+                    if (Standings != null && resp != null)
+                    {
+                        ulong mid = resp.MatchId != 0UL ? resp.MatchId : matchId;
+                        ulong pid = resp.PredictedSquadId != 0UL ? resp.PredictedSquadId : predictedSquadId;
+                        Standings = Standings.WithMatchPrediction(mid, pid, resp.PredictCountA, resp.PredictCountB);
+                    }
+                    LastError = string.Empty;
+                    Status = "免费预测已记录，静待赛果揭晓。";
+                    Changed?.Invoke();
+                },
+                err =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _mutating = false;
+                    FailTransport("提交免费预测失败", err);
+                });
+            return true;
+        }
+
+        /// <summary>V3 模块 E：拉取《神机问道榜》全服免费预测榜单与个人预测记录。</summary>
+        public bool RequestPredictionBoard(uint seasonId = 0u)
+        {
+            if (!BeginQuery(MatchServiceRpc.GetTournamentPredictionBoardMessageId, ref _predictionBoardLoading,
+                    "正在拉取神机问道榜…", out int gen, out ulong player))
+                return false;
+
+            _net.Call(MatchServiceRpc.GetTournamentPredictionBoardMessageId,
+                new GetTournamentPredictionBoardRequest { SeasonId = seasonId },
+                GetTournamentPredictionBoardResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _predictionBoardLoading = false;
+                    if (HasTip(resp?.ErrorMessage))
+                    {
+                        FailServer(resp.ErrorMessage);
+                        return;
+                    }
+                    PredictionBoard = TournamentPredictionBoardSnapshot.FromResponse(resp);
+                    LastError = string.Empty;
+                    Status = string.Empty;
+                    Changed?.Invoke();
+                },
+                err =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _predictionBoardLoading = false;
+                    FailTransport("拉取神机问道榜失败", err);
+                });
+            return true;
+        }
+
+        /// <summary>V4 模块 H：BO3 淘汰赛首局开战前，双方队长各禁 1 条五行灵脉并立即同步服务端重算后的 3 局序列。</summary>
+        public bool BanLeyline(ulong matchId, TournamentLeylineElement leyline)
+        {
+            if (matchId == 0UL || leyline == TournamentLeylineElement.TournamentLeylineUnspecified)
+            {
+                FailLocal("请选择有效的淘汰赛对局与五行灵脉。");
+                return false;
+            }
+            if (!BeginMutation(MatchServiceRpc.BanTournamentLeylineMessageId, "正在提交灵脉禁选…", out int gen, out ulong player))
+                return false;
+
+            _net.Call(MatchServiceRpc.BanTournamentLeylineMessageId,
+                new BanTournamentLeylineRequest { MatchId = matchId, LeylineElement = leyline },
+                BanTournamentLeylineResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _mutating = false;
+                    if (HasTip(resp?.ErrorMessage))
+                    {
+                        FailServer(resp.ErrorMessage);
+                        return;
+                    }
+                    if (resp?.Match != null)
+                    {
+                        if (Overview?.MyActiveMatch != null && Overview.MyActiveMatch.MatchId == resp.Match.MatchId)
+                            Overview = Overview.WithActiveMatch(resp.Match);
+                        if (Standings != null)
+                            Standings = Standings.WithUpdatedMatch(resp.Match);
+                    }
+                    LastError = string.Empty;
+                    Status = $"已禁选{TournamentFormatting.GetLeylineInfo(leyline).FullName}，BO3 灵脉序列已更新。";
+                    Changed?.Invoke();
+                },
+                err =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _mutating = false;
+                    FailTransport("提交灵脉禁选失败", err);
+                });
+            return true;
+        }
+
+        /// <summary>V4 模块 I：拉取指定赛季《本季名局录》Top 10 精选公开淘汰赛。</summary>
+        public bool RequestHighlights(uint seasonId = 0u)
+        {
+            if (!BeginQuery(MatchServiceRpc.GetTournamentHighlightsMessageId, ref _highlightsLoading,
+                    "正在拉取本季名局录…", out int gen, out ulong player))
+                return false;
+
+            _net.Call(MatchServiceRpc.GetTournamentHighlightsMessageId,
+                new GetTournamentHighlightsRequest { SeasonId = seasonId },
+                GetTournamentHighlightsResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _highlightsLoading = false;
+                    if (HasTip(resp?.ErrorMessage))
+                    {
+                        FailServer(resp.ErrorMessage);
+                        return;
+                    }
+                    Highlights = TournamentHighlightsSnapshot.FromResponse(resp);
+                    LastError = string.Empty;
+                    Status = string.Empty;
+                    Changed?.Invoke();
+                },
+                err =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _highlightsLoading = false;
+                    FailTransport("拉取本季名局录失败", err);
+                });
+            return true;
+        }
+
         public static string DescribeTip(TipInfoMessage tip)
         {
             if (tip == null || tip.Id == 0) return string.Empty;
@@ -751,6 +1008,14 @@ namespace MmorpgClient.Game.Tournament
                     return "喝彩过于频繁，请稍候片刻再为道友加油。";
                 case (uint)match_error.KMatchTournamentSpectateCheerInvalid:
                     return "当前对局不支持该喝彩选项，请稍后重试。";
+                case (uint)match_error.KMatchTournamentEmblemInvalid:
+                    return "所选道家战旗编号无效，请重新择选。";
+                case (uint)match_error.KMatchTournamentPredictionClosed:
+                    return "该场淘汰赛已开战或已封盘，暂不可更改预测。";
+                case (uint)match_error.KMatchTournamentPredictionTargetInvalid:
+                    return "预测目标须为本场对阵双方之一。";
+                case (uint)match_error.KMatchTournamentWarmupUnavailable:
+                    return "当前阶段暂不支持热身约战，请确认处于报名或海选期且人数达标。";
                 case (uint)common_error.KRateLimitExceeded:
                     return "操作过于频繁，请稍后再试。";
                 case (uint)common_error.KServiceUnavailable:

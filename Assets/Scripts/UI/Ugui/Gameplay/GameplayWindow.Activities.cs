@@ -14,6 +14,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public event Action ActivityChallengeRequested;
         public event Action ActivityContestRequested;
         public event Action FestivalBeastRequested;
+        public event Action TravelPassRequested;
+        public event Action AppearanceShowcaseRequested;
+        public event Action SpiritShopShowcaseRequested;
         private readonly ActivityPreferences _activityPreferences;
         private int _activityCategory = -1, _activityRewardFilter;
         private bool _activityRewardBusy;
@@ -74,6 +77,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private static bool IsFestivalBeastActivity(PlayerActivityInfo activity)
             => activity != null && activity.EntryKind == PlayerActivityEntryKind.PlayerActivityEntryFestivalBeast;
 
+        private static bool IsTravelPassActivity(PlayerActivityInfo activity)
+            => activity != null && activity.EntryKind == PlayerActivityEntryKind.PlayerActivityEntryTravelPass;
+
+        private static bool IsAppearanceShowcaseActivity(PlayerActivityInfo activity)
+            => activity != null && activity.EntryKind == PlayerActivityEntryKind.PlayerActivityEntryAppearanceShowcase;
+
+        private static bool IsSpiritShopShowcaseActivity(PlayerActivityInfo activity)
+            => activity != null && activity.EntryKind == PlayerActivityEntryKind.PlayerActivityEntrySpiritShopShowcase;
+
         private string ActivityReason(PlayerActivityInfo activity, PlayerMissionInfo mission)
         {
             if (IsFestivalBeastActivity(activity))
@@ -82,6 +94,23 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 if (activity.HasClaimableReward) return "已达成 3 胜资格，点击免费领取春禧兽";
                 if (!string.IsNullOrWhiteSpace(activity.UnavailableReason)) return activity.UnavailableReason;
                 return (int)activity.Status == 2 ? "单人携宠免费挑战，累计 3 胜领春禧兽" : "查看活动排期与领取状态";
+            }
+            if (IsTravelPassActivity(activity))
+            {
+                if (!ActivitySnapshotUsable) return _activityLoading ? "正在同步活动安排…" : "请刷新活动后重试";
+                if (activity.HasClaimableReward) return "已有游历档位奖励可领取，点击查看手记";
+                if (!string.IsNullOrWhiteSpace(activity.UnavailableReason)) return activity.UnavailableReason;
+                return "零日常零签到，正常游玩自动累计游历点，先玩后买";
+            }
+            if (IsAppearanceShowcaseActivity(activity))
+            {
+                if (!ActivitySnapshotUsable) return _activityLoading ? "正在同步活动安排…" : "请刷新活动后重试";
+                return "免费试穿角色形象 1 小时与阅读人物故事，绝不强买";
+            }
+            if (IsSpiritShopShowcaseActivity(activity))
+            {
+                if (!ActivitySnapshotUsable) return _activityLoading ? "正在同步活动安排…" : "请刷新活动后重试";
+                return "按需查看绑定仅自用便利道具与保底符，绝不强制";
             }
             if (!string.IsNullOrEmpty(_missionError)) return _missionError;
             if (_missionActionBusy) return "正在处理任务，请稍候…";
@@ -97,6 +126,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private bool CanUseActivity(PlayerActivityInfo activity, PlayerMissionInfo mission)
         {
             if (IsFestivalBeastActivity(activity)) return ActivitySnapshotUsable && FestivalBeastRequested != null;
+            if (IsTravelPassActivity(activity)) return ActivitySnapshotUsable && TravelPassRequested != null;
+            if (IsAppearanceShowcaseActivity(activity)) return ActivitySnapshotUsable && AppearanceShowcaseRequested != null;
+            if (IsSpiritShopShowcaseActivity(activity)) return ActivitySnapshotUsable && SpiritShopShowcaseRequested != null;
             return ActivitySnapshotUsable &&
                 !_missionActionBusy && !_missionLoading && string.IsNullOrEmpty(_missionError) && _missions != null &&
                 (mission != null || ((int)activity.EntryKind == 1 && activity.MissionId != 0 && activity.CanParticipate &&
@@ -113,6 +145,27 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 if (!ActivitySnapshotUsable) return;
                 _selectedActivity = activityId;
                 FestivalBeastRequested?.Invoke();
+                return;
+            }
+            if (IsTravelPassActivity(activity))
+            {
+                if (!ActivitySnapshotUsable) return;
+                _selectedActivity = activityId;
+                TravelPassRequested?.Invoke();
+                return;
+            }
+            if (IsAppearanceShowcaseActivity(activity))
+            {
+                if (!ActivitySnapshotUsable) return;
+                _selectedActivity = activityId;
+                AppearanceShowcaseRequested?.Invoke();
+                return;
+            }
+            if (IsSpiritShopShowcaseActivity(activity))
+            {
+                if (!ActivitySnapshotUsable) return;
+                _selectedActivity = activityId;
+                SpiritShopShowcaseRequested?.Invoke();
                 return;
             }
             var mission = ActivityMission(activity);
@@ -191,6 +244,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var card = QdaoUguiFactory.CreateRect("Activity_" + activity.ActivityId, parent, x, y, 410, 495);
             NativeArt(card, "activity-card", 0, 0, 410, 495);
             bool isFestival = IsFestivalBeastActivity(activity);
+            bool isTravelPass = IsTravelPassActivity(activity);
+            bool isAppearance = IsAppearanceShowcaseActivity(activity);
+            bool isSpiritShop = IsSpiritShopShowcaseActivity(activity);
             if (isFestival)
             {
                 var portrait = Resources.Load<Sprite>("UI/Ugui/FestivalBeastV1/beast_portrait");
@@ -201,9 +257,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 }
                 else if (!string.IsNullOrWhiteSpace(activity.IconKey)) ItemIcon(card, activity.IconKey, 24, 21, 155);
             }
+            else if (isTravelPass)
+            {
+                var cover = (!string.IsNullOrWhiteSpace(activity.IconKey) ? Resources.Load<Sprite>(activity.IconKey) : null)
+                    ?? Resources.Load<Sprite>("UI/Ugui/TravelPassV1/travel_pass_card_icon");
+                if (cover != null)
+                {
+                    var img = QdaoUguiFactory.CreateImage("TravelPassCardIcon", card, 24, 21, 155, 155, cover, false);
+                    img.preserveAspect = true;
+                }
+                else if (!string.IsNullOrWhiteSpace(activity.IconKey)) ItemIcon(card, activity.IconKey, 24, 21, 155);
+            }
             else if (!string.IsNullOrWhiteSpace(activity.IconKey)) ItemIcon(card, activity.IconKey, 24, 21, 155);
             NativeText(card, ActivityName(activity), 196, 15, 200, 62, 34);
-            string status = isFestival && activity.HasClaimableReward ? "可领神兽" : (int)activity.Status == 0 ? "未排期" : ActivityStatus(activity.Status);
+            string status = isFestival && activity.HasClaimableReward ? "可领神兽"
+                : isTravelPass && activity.HasClaimableReward ? "有奖可领"
+                : (int)activity.Status == 0 ? "未排期" : ActivityStatus(activity.Status);
             string badge = (int)activity.Category == 2 ? "activity-badge-blue" : (int)activity.Category == 3 ? "activity-badge-pink" : "activity-badge-green";
             NativeArt(card, badge, 200, 80, 115, 40);
             NativeText(card, status, 200, 80, 115, 40, 22, Cream, TextAlignmentOptions.Center);
@@ -235,6 +304,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             string actionText = isFestival
                 ? (activity.HasClaimableReward ? "领取神兽" : (int)activity.Status == 2 ? "前往挑战" : "查看活动")
+                : isTravelPass ? (activity.HasClaimableReward ? "领取奖励" : "查看手记")
+                : isAppearance ? "免费试穿"
+                : isSpiritShop ? "前往看看"
                 : (_missionActionBusy ? "处理中…" : mission != null ? "查看任务" : "前往参与");
             NativeButton(card, "ActivityAction_" + activity.ActivityId, actionText,
                 "activity-button", 41, 412, 327, 66, () => UseActivity(activity.ActivityId), CanUseActivity(activity, mission), 32, true);
@@ -305,7 +377,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             NativeParagraph(panel, details, 33, 120, 1166, 230, 26);
             var mission = ActivityMission(activity);
             NativeText(panel, ActivityReason(activity, mission), 33, 369, 836, 39, 24, Muted);
-            NativeButton(panel, "ActivityDetailAction_" + activity.ActivityId, mission != null ? "查看任务" : "前往", "activity-button", 971, 371, 228, 62,
+            string detailAction = IsTravelPassActivity(activity) ? (activity.HasClaimableReward ? "领取奖励" : "查看手记")
+                : IsAppearanceShowcaseActivity(activity) ? "免费试穿"
+                : IsSpiritShopShowcaseActivity(activity) ? "前往看看"
+                : mission != null ? "查看任务" : "前往";
+            NativeButton(panel, "ActivityDetailAction_" + activity.ActivityId, detailAction, "activity-button", 971, 371, 228, 62,
                 () => UseActivity(activity.ActivityId), CanUseActivity(activity, mission), 29, true);
             if (!_activityPreferences.CanSave || string.IsNullOrWhiteSpace(activity.DefinitionKey))
                 NativeText(panel, !_activityPreferences.CanSave ? "角色身份未同步，收藏不可用" : "活动稳定身份未配置，收藏不可用", 33, 418, 886, 31, 20, Muted);

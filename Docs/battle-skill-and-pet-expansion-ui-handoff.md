@@ -1,6 +1,6 @@
 # 《五行奇谈》战斗战法扩展（A+B）与宝宝/战法构筑（C+D）Gemini UI 与验证交接规范
 
-> **对应服务端设计**：[battle-skill-and-pet-cultivation-expansion.md](../../xuanming-server-mmo-cpp/docs/design/battle-skill-and-pet-cultivation-expansion.md)  
+> **对应服务端设计**：[battle-skill-and-pet-cultivation-expansion.md](../../xuanming-server-mmo-cpp/docs/planning/battle-skill-and-pet-cultivation-expansion.md)  
 > **已落盘范围**：
 > - 权威服务端 `xuanming-server-mmo-cpp`：表 Schema、`Skill.xlsx`（A40 定名「太清灵盾」+ 24 新技）、`Buff.xlsx`（+30 新 Buff）、`SkillScrollCraft.xlsx`（+3 新卷宗 4/5/6）、`PetTier.xlsx`（5 阶飞升参数）、`Pet.xlsx`（部分常规宠种 2/3 阶分化）、`Tip.xlsx`（+10 Tip）、`MessageLimiter.xlsx`（已追加 500..503）、Protobuf 契约、战斗引擎（策略选人 + 蓄力 + 专精 + 追击封控 + 连击破绽 + 净心护阵）、场景服（宝宝条目 3 方案 + 五阶突破 + 人物战法 3 套构筑方案）及 C++ 单测；负责人已执行 `.\dev.bat gen`（产出 `500..503` 消息号与全部表/Proto）。
 > - 客户端纯 C# 逻辑层 `mmorpg-client`：`PetClient.cs`、`PetClient.Entries.cs`、`SkillBookModels.cs`、`SkillBookMapper.cs`、`SkillBookClient.cs`、`SkillUiRoot.cs`、`CharacterSupportWindow.cs`、`BattleUnitStatusInspector.cs`、`tools/gen_messageids.ps1` 及 EditMode 单测；负责人已执行 `.\gen.bat client`（已生成 `MessageIds` 500..503 及全部 C# Proto/RPC）。
@@ -50,8 +50,8 @@ pwsh -NoProfile -File tools/client_compile_check.ps1 -ShowErrors 30
 ### UI-1（扩展包 A+B 战内可读性）：战斗单位头顶「持久护盾条 + 蓄力标记」与「点击单位/Buff 状态详情弹窗」
 - **权威 API**：`MmorpgClient.Game.Battle.BattleUnitStatusInspector.Inspect(BattleActorState actor, Func<uint, string> resolveSkillName)`
 - **消费字段**：
-  - `summary.TotalShieldCapacity` / `summary.ShieldRatio`：在 `BattleUnitView` 血条上方叠一层青金色**持久护盾条**（容量为 0 时隐藏，替换/补足当前仅有受击飘字的缺口）。
-  - `summary.IsCharging` / `summary.ChargingSkillName`：为正在蓄力（E01 蓄锋破阵 / E02 蓄雷天刑）的敌我单位头顶挂一个醒目**「蓄力中 · {ChargingSkillName}」**脉冲徽标（可复用 `BattleUnitView` 的头顶预告挂点），提示对手“本回合可打断/驱散/开盾”。
+  - `summary.TotalShieldCapacity` / `summary.ShieldRatio`：在 `BattleUnitView` 血条上方叠加一层**持久护盾条**（容量为 0 时隐藏，按 `ShieldRatio` 显示长度）。
+  - `summary.IsCharging` / `summary.ChargingSkillName`：为正在蓄力（E01 蓄锋破阵 / E02 蓄雷天刑）的敌我单位头顶显示**「蓄力中 · {ChargingSkillName}」**状态标记，提示双方当前处于蓄力窗口。
   - `summary.Buffs`：在战斗内新增轻触/点击单位名牌或 Buff 行弹出的**状态详情小卡**（非选目标模式或长按/点击 Buff 栏触发，兼容触控无 Hover），逐条列出每个 Buff 的来源名、剩余回合 `RemainRounds`、护盾剩余容量 `RemainingCapacity`、剩余次数 `RemainingHits`（含 E08 净心护阵与 B05/B06）、回生印余次 `RemainingTicks`、叠层 `Stacks`（含 E07 连击破绽 `x/5`）。
 
 ### UI-2（扩展包 C-1）：宝宝条目页顶部「3 套方案一键切换条 + 用途标签 + 一键清零」
@@ -78,19 +78,19 @@ pwsh -NoProfile -File tools/client_compile_check.ps1 -ShowErrors 30
   - 读：`snapshot.Loadout`（`SkillLoadoutView`：`CustomEnabled`、`ActiveSchemeId`、`MaxPassiveSlots=3`、`MaxPursuitSlots=1`、`MaxOpeningSlots=1`、`Schemes` 1..3、`SkillLoadoutView.DescribeRoleTag(roleTag)`）；
   - 目录行新增只读字段：`entry.Equipped`（已装配徽章）、`entry.Definition.SecondaryTargetLabel`（策略技详情页显示「副目标：气血最低」等标签）、`entry.Definition.exclusiveGroup`（`> 0` 时提示「专精互斥组」）；
   - 写：`((ISkillLoadoutSource)SkillBookClient.Instance).SaveLoadout(schemeId, roleTag, passiveIds, pursuitIds, openingIds, cb)` 与 `SwitchLoadout(schemeId, cb)`。
-- **布局建议**：
+- **功能结构**：
   - 仅角色技能书（`!context.IsPet`）顶部新增「战法装配」切换页签（宝宝技能页不显示）；
-  - 上栏放「方案一 / 方案二 / 方案三」一键切换胶囊 + 用途标签选择（默认/输出/控场/辅助）；
-  - 中栏展示 **开场槽 ×1 / 被动槽 ×3 / 追击槽 ×1** 槽位卡片（点击移除，下方已学非主动列表点击装入；装入同 `exclusiveGroup` 战法时前端高亮提示冲突或自动替换后点「保存并启用」）；
+  - 上栏放「方案一 / 方案二 / 方案三」一键切换按钮 + 用途标签选择（默认/输出/控场/辅助）；
+  - 中栏展示 **开场槽 ×1 / 被动槽 ×3 / 追击槽 ×1** 槽位（点击移除，下方已学非主动列表点击装入；装入同 `exclusiveGroup` 战法时提示互斥或替换旧项后点「保存并启用」）；
   - 战斗中只读锁定保存与切换按钮，仅允许查看当前装配方案。
 
 ---
 
-## 三、配套美术图标增补清单（缺图自动回落占位，不阻塞编译与联调）
+## 三、需要增补的资源清单（仅列用途与资源键，不指定美术风格，缺图回落占位不阻断编译）
 
-1. **新技能图标（24 张，沿用 `Assets/Resources/UI/Skills/{id}.png` 与三尺寸画芯规范）**：
+1. **新技能图标（24 张，路径 `Assets/Resources/UI/Skills/{id}.png`）**：
    - 策略定向 16 招：`10101..10114`（S01–S14）、`11101..11102`（SP01–SP02）；
    - 率土构筑 8 招：`10115..10116`（E01–E02）、`12101..12102`（E03–E04）、`13101..13102`（E05–E06）、`14101..14102`（E07–E08）。
-   - A40（`10040`）已正式定名为 **「太清灵盾」**，若原图或标签带旧文字需同步替换为「太清灵盾」。
-2. **新卷宗页签图标（可选，复用 `CraftQualitySkill` 既有底板）**：卷宗 `4 兵谋定向卷`、`5 奇策战法卷`、`6 奇策绝学卷`。
-3. **战内蓄力状态徽标**：1 张无字头顶蓄力光环/徽标贴图（缺图回退程序化金红文字徽标）。
+   - A40（`10040`）已正式定名为 **「太清灵盾」**，如有旧文字标签同步替换为「太清灵盾」。
+2. **新卷宗页签资源（可选，可复用现有卷宗页签）**：卷宗 `4 兵谋定向卷`、`5 奇策战法卷`、`6 奇策绝学卷`。
+3. **战内蓄力状态图标（1 张）**：无字图标（缺图时仅显示文字「蓄力中」）。

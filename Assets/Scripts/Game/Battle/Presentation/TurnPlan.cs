@@ -25,6 +25,7 @@ namespace MmorpgClient.Game.Battle.Presentation
         public const int Miss = 12;
         public const int Block = 13;
         public const int Mana = 14;
+        public const int Resist = 15;
         public const int Capture = 16;
         public const int Revive = 17;
         public const int MaxHealth = 18;
@@ -85,6 +86,7 @@ namespace MmorpgClient.Game.Battle.Presentation
         MaxHealth,
         PetRetreat,
         Shield,
+        Resist,
     }
 
     /// <summary>
@@ -95,7 +97,9 @@ namespace MmorpgClient.Game.Battle.Presentation
         public int Type;
         public ulong SourceId;
         public ulong TargetId;
+        public ulong PrimaryTargetId => TargetId;
         public uint SkillId;
+        public eBattleHitKind HitKind;
         public uint BuffId;
         public uint ItemId;
         public long Value;
@@ -131,6 +135,7 @@ namespace MmorpgClient.Game.Battle.Presentation
                 SourceId = ev.SourceId,
                 TargetId = ev.TargetId,
                 SkillId = ev.SkillTableId,
+                HitKind = ev.HitKind,
                 BuffId = ev.BuffTableId,
                 ItemId = ev.ItemTableId,
                 // proto value 为 uint64 无符号;MANA "负为消耗"的语义由 MergeMana 按 source==target 推断
@@ -196,6 +201,8 @@ namespace MmorpgClient.Game.Battle.Presentation
         public BeatKind Kind;
         public readonly List<BeatTarget> Targets = new List<BeatTarget>();
         public uint SkillId;
+        public eBattleHitKind HitKind;
+        public ulong PrimaryTargetId;
         public uint BuffId;
         public uint ItemId;
         public float DurationSeconds;
@@ -261,6 +268,7 @@ namespace MmorpgClient.Game.Battle.Presentation
     /// </summary>
     public sealed class TurnPlan
     {
+        public const uint MirrorCopySkillId = 10041;
         public const float AttackSeconds = 0.9f;
         public const float CastSeconds = 1.4f;
         public const float DeathSeconds = 1.2f;
@@ -403,7 +411,7 @@ namespace MmorpgClient.Game.Battle.Presentation
                         current = NewBeat(plan, isSkill ? BeatKind.Cast : BeatKind.Attack, ev.SourceId,
                             isSkill ? CastSeconds : AttackSeconds, ev, i, isMine);
                         current.SkillId = ev.SkillId;
-                        // 老引擎可能把首个目标直接写在 ATTACK/SKILL 上但没有 DAMAGE;不据此造目标,等结算事件
+                        // 只为演出保留指向，实际结果仍由独立结算事件提供。
                         break;
                     }
 
@@ -484,6 +492,16 @@ namespace MmorpgClient.Game.Battle.Presentation
                             current.BuffId = ev.BuffId;
                             AddTarget(current, ev, effect);
                         }
+                        break;
+                    }
+
+                    case BattleEventCodes.Resist:
+                    {
+                        // 玄镜映法失败是一拍可见结果。普通 Buff 免疫维持原有演出。
+                        if (current?.Kind == BeatKind.Cast && current.SkillId == MirrorCopySkillId &&
+                            current.ActorId == ev.SourceId && current.PrimaryTargetId == ev.TargetId &&
+                            ev.TargetId != 0 && CanMergeSupport(current, ev, anyGroup))
+                            AddTarget(current, ev, TargetEffect.Resist);
                         break;
                     }
 
@@ -642,6 +660,8 @@ namespace MmorpgClient.Game.Battle.Presentation
             {
                 Kind = kind,
                 ActorId = actorId,
+                HitKind = ev.HitKind,
+                PrimaryTargetId = ev.PrimaryTargetId,
                 DurationSeconds = seconds,
                 GroupId = ev.GroupId,
                 FirstEventIndex = eventIndex,

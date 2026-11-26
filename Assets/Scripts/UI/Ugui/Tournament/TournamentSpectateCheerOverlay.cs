@@ -42,6 +42,9 @@ namespace MmorpgClient.UI.Ugui.Tournament
         private readonly RectTransform _safeRoot;
         private readonly RectTransform _topBanner;
         private readonly TMP_Text _topScoreLabel;
+        private readonly Image _topEmblemA;
+        private readonly Image _topEmblemB;
+        private readonly RectTransform _topWarmupBadge;
         private readonly Image _topLeylineIcon;
         private readonly Button _topLeylineBtn;
         private readonly RectTransform _leylineTooltip;
@@ -96,21 +99,47 @@ namespace MmorpgClient.UI.Ugui.Tournament
 
             // ── 顶部紧凑赛况与五行灵脉横幅（居中偏上，避开左回合数、中央计时环与右上 140px 小游戏胶囊） ──
             _topBanner = TournamentArtCatalog.BorderedCard("TopTournamentBanner", _safeRoot,
-                (DesignW - 620f) * 0.5f, 118f, 620f, 44f,
+                (DesignW - 720f) * 0.5f, 118f, 720f, 44f,
                 new Color(0.97f, 0.94f, 0.87f, 0.94f), TournamentArtCatalog.Gold, 1.5f);
             _topBanner.anchorMin = new Vector2(0.5f, 1f);
             _topBanner.anchorMax = new Vector2(0.5f, 1f);
             _topBanner.pivot = new Vector2(0.5f, 1f);
             _topBanner.anchoredPosition = new Vector2(0f, -118f);
-            _topBanner.sizeDelta = new Vector2(620f, 44f);
+            _topBanner.sizeDelta = new Vector2(720f, 44f);
 
-            _topScoreLabel = TournamentArtCatalog.Label("TopScore", _topBanner, 16f, 4f, 496f, 36f,
-                string.Empty, 18f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.MidlineLeft, bold: true);
+            _topEmblemA = QdaoUguiFactory.CreateImage("TopEmblemA", _topBanner, 10f, 6f, 32f, 32f, null, false);
+            _topEmblemA.preserveAspect = true;
+            _topEmblemA.gameObject.SetActive(false);
+
+            _topScoreLabel = TournamentArtCatalog.Label("TopScore", _topBanner, 48f, 4f, 412f, 36f,
+                string.Empty, 17f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
             _topScoreLabel.enableAutoSizing = true;
-            _topScoreLabel.fontSizeMin = 13f;
-            _topScoreLabel.fontSizeMax = 18f;
+            _topScoreLabel.fontSizeMin = 12f;
+            _topScoreLabel.fontSizeMax = 17f;
 
-            var leyBtnGo = QdaoUguiFactory.CreateRect("TopLeylineBtn", _topBanner, 520f, 4f, 92f, 36f);
+            _topEmblemB = QdaoUguiFactory.CreateImage("TopEmblemB", _topBanner, 464f, 6f, 32f, 32f, null, false);
+            _topEmblemB.preserveAspect = true;
+            _topEmblemB.gameObject.SetActive(false);
+
+            var warmBadgeSprite = TournamentArtCatalog.Load("v3-d-warmup-badge");
+            if (warmBadgeSprite != null)
+            {
+                var wb = QdaoUguiFactory.CreateImage("TopWarmupBadge", _topBanner, 502f, 6f, 114f, 32f, warmBadgeSprite, false);
+                wb.preserveAspect = false;
+                TournamentArtCatalog.Label("Txt", wb.transform, 4f, 0f, 106f, 32f, "零积分演练", 12f,
+                    TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
+                _topWarmupBadge = wb.rectTransform;
+            }
+            else
+            {
+                _topWarmupBadge = TournamentArtCatalog.BorderedCard("TopWarmupBadge", _topBanner, 502f, 6f, 114f, 32f,
+                    TournamentArtCatalog.JadeSoft, TournamentArtCatalog.Jade, 1.2f);
+                TournamentArtCatalog.Label("Txt", _topWarmupBadge, 4f, 0f, 106f, 32f, "零积分演练", 12f,
+                    TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
+            }
+            _topWarmupBadge.gameObject.SetActive(false);
+
+            var leyBtnGo = QdaoUguiFactory.CreateRect("TopLeylineBtn", _topBanner, 622f, 4f, 92f, 36f);
             var leyBtnImg = leyBtnGo.gameObject.AddComponent<Image>();
             leyBtnImg.color = TournamentArtCatalog.GoldTagBg;
             leyBtnImg.raycastTarget = true;
@@ -374,10 +403,22 @@ namespace MmorpgClient.UI.Ugui.Tournament
             if (ctx == null) return;
             string a = !string.IsNullOrEmpty(ctx.SquadAName) ? ctx.SquadAName : "甲队";
             string b = !string.IsNullOrEmpty(ctx.SquadBName) ? ctx.SquadBName : "乙队";
-            string boTag = ctx.BestOf >= 3
-                ? $"BO{ctx.BestOf} {ctx.WinsA}:{ctx.WinsB} · 第 {Math.Max(1u, ctx.GameIndex)} 局"
-                : "淘汰赛";
+            string boTag = ctx.IsWarmup
+                ? "热身演练"
+                : (ctx.IsThirdPlace
+                    ? (ctx.BestOf >= 3 ? $"季军战 BO{ctx.BestOf} {ctx.WinsA}:{ctx.WinsB}" : "季军争夺战")
+                    : (ctx.BestOf >= 3
+                        ? $"BO{ctx.BestOf} {ctx.WinsA}:{ctx.WinsB} · 第 {Math.Max(1u, ctx.GameIndex)} 局"
+                        : "淘汰赛"));
             _topScoreLabel.text = $"{a}  [{boTag}]  {b}";
+
+            var embA = ctx.SquadAEmblemId > 0u ? TournamentArtCatalog.Load(TournamentFormatting.GetEmblemInfo(ctx.SquadAEmblemId).SpriteKey) : null;
+            _topEmblemA.sprite = embA;
+            _topEmblemA.gameObject.SetActive(embA != null);
+            var embB = ctx.SquadBEmblemId > 0u ? TournamentArtCatalog.Load(TournamentFormatting.GetEmblemInfo(ctx.SquadBEmblemId).SpriteKey) : null;
+            _topEmblemB.sprite = embB;
+            _topEmblemB.gameObject.SetActive(embB != null);
+            if (_topWarmupBadge != null) _topWarmupBadge.gameObject.SetActive(ctx.IsWarmup);
 
             var info = TournamentFormatting.GetLeylineInfo(ctx.LeylineElement);
             bool hasLeyline = ctx.LeylineElement != TournamentLeylineElement.TournamentLeylineUnspecified;

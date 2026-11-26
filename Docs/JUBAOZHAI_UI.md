@@ -24,7 +24,7 @@
 
 未开放项（入口保留，点击只提示或显示空页）：购买、联系卖家、估价、规则说明；拍卖分区（服务端回 `TradeFeatureDisabled`，显示空页与“拍卖尚未开放”）；上架、下架、支付与资产移动；按区筛选（`zone_filter` 仅全服市场生效，客户端暂不提供）；游戏币类目页签。详情打开不代表成交。
 
-协议与消息号由脚本生成（Codex 执行）：`pwsh -File tools/gen_proto.ps1 -ProtoRoot E:\work\xuanming-server-mmo`、`pwsh -File tools/gen_messageids.ps1 -ProtoRoot E:\work\xuanming-server-mmo`。前置：服务端已导表生成 `generated/code/proto/tip/trade_error_tip.proto`，且 `proto/message_id.txt` 已分配 `ClientPlayerJubaozhai*` 编号。
+协议与消息号由脚本生成（Gemini 执行）：`pwsh -File tools/gen_proto.ps1 -ProtoRoot E:\work\xuanming-server-mmo`、`pwsh -File tools/gen_messageids.ps1 -ProtoRoot E:\work\xuanming-server-mmo`。前置：服务端已导表生成 `generated/code/proto/tip/trade_error_tip.proto`，且 `proto/message_id.txt` 已分配 `ClientPlayerJubaozhai*` 编号。
 
 ## 资源与验证
 - 独立 PNG/Sprite：`Assets/Resources/UI/Ugui/JubaozhaiV1/`。

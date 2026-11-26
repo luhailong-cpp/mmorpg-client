@@ -17,7 +17,7 @@ namespace MmorpgClient.Net.Generated
     {
         public const uint GetActivityListMessageId = 190;
         /// <summary>
-        /// 目录只读取 MissionTable.mission_type=2 及限时瑞兽迎春入口；无运营时间配置时一律未排期（永久未领资格仍展示）。
+        /// 目录读取 MissionTable.mission_type=2、限时瑞兽迎春、游历手记及低打扰免费体验种草入口。
         /// </summary>
         public static void GetActivityList(IRpcChannel channel, global::GetActivityListRequest request,
             RpcDone<global::GetActivityListResponse> done)
@@ -54,5 +54,37 @@ namespace MmorpgClient.Net.Generated
         public static void ClaimFestivalBeastReward(IRpcChannel channel, global::ClaimFestivalBeastRewardRequest request,
             RpcDone<global::ClaimFestivalBeastRewardResponse> done)
             => channel.CallMethod(ClaimFestivalBeastRewardMessageId, request, global::ClaimFestivalBeastRewardResponse.Parser, done);
+
+        public const uint GetTravelPassStateMessageId = 526;
+        /// <summary>
+        /// 查询游历手记双轨进度、档位领取状态、双余额与纪念外观佩戴状态。纯读取。
+        /// </summary>
+        public static void GetTravelPassState(IRpcChannel channel, global::GetTravelPassStateRequest request,
+            RpcDone<global::GetTravelPassStateResponse> done)
+            => channel.CallMethod(GetTravelPassStateMessageId, request, global::GetTravelPassStateResponse.Parser, done);
+
+        public const uint UnlockTravelPassPremiumMessageId = 527;
+        /// <summary>
+        /// 使用真实充值灵石解锁本期游历手记典藏轨（强制非 0 幂等键 + 报价防呆，解锁后永不过期）。
+        /// </summary>
+        public static void UnlockTravelPassPremium(IRpcChannel channel, global::UnlockTravelPassPremiumRequest request,
+            RpcDone<global::UnlockTravelPassPremiumResponse> done)
+            => channel.CallMethod(UnlockTravelPassPremiumMessageId, request, global::UnlockTravelPassPremiumResponse.Parser, done);
+
+        public const uint ClaimTravelPassRewardMessageId = 528;
+        /// <summary>
+        /// 领取游历手记单档或一键领取全部当前可领免费/典藏档位奖励（全部物品强制 bound=true）。
+        /// </summary>
+        public static void ClaimTravelPassReward(IRpcChannel channel, global::ClaimTravelPassRewardRequest request,
+            RpcDone<global::ClaimTravelPassRewardResponse> done)
+            => channel.CallMethod(ClaimTravelPassRewardMessageId, request, global::ClaimTravelPassRewardResponse.Parser, done);
+
+        public const uint EquipTravelPassCosmeticMessageId = 529;
+        /// <summary>
+        /// 零消耗切换佩戴或卸下已解锁的游历纪念头像框/称谓（零战力纯外显）。
+        /// </summary>
+        public static void EquipTravelPassCosmetic(IRpcChannel channel, global::EquipTravelPassCosmeticRequest request,
+            RpcDone<global::EquipTravelPassCosmeticResponse> done)
+            => channel.CallMethod(EquipTravelPassCosmeticMessageId, request, global::EquipTravelPassCosmeticResponse.Parser, done);
     }
 }

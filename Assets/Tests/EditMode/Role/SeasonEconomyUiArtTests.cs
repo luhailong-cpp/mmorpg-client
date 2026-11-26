@@ -188,5 +188,81 @@ namespace MmorpgClient.Tests.EditMode.Role
                 Assert.That(meta, Does.Contain("spriteMode: 1"), sid);
             }
         }
+
+        [Test]
+        public void BossTrialV2Assets_All26RuntimeTexturesAndMetasMatchContract()
+        {
+            string cwd = Directory.GetCurrentDirectory();
+            string resourcesRoot = Directory.Exists(Path.Combine(cwd, "Assets", "Resources"))
+                ? Path.Combine(cwd, "Assets", "Resources")
+                : Path.Combine(cwd, "mmorpg-client", "Assets", "Resources");
+
+            var expected = new (string RelPath, int Width, int Height, bool IsSprite)[]
+            {
+                ("Battle/Monsters/109/idle_E_strip.png", 2048, 256, false),
+                ("Battle/Monsters/109/attack_E_strip.png", 2048, 256, false),
+                ("Battle/Monsters/109/hit_E_strip.png", 2048, 256, false),
+                ("Battle/Monsters/109/die_E_strip.png", 2048, 256, false),
+                ("Battle/Monsters/109/portrait.png", 256, 256, false),
+                ("Battle/Monsters/110/idle_E_strip.png", 2048, 256, false),
+                ("Battle/Monsters/110/attack_E_strip.png", 2048, 256, false),
+                ("Battle/Monsters/110/hit_E_strip.png", 2048, 256, false),
+                ("Battle/Monsters/110/die_E_strip.png", 2048, 256, false),
+                ("Battle/Monsters/110/portrait.png", 256, 256, false),
+                ("Battle/Fx/boss_exposed_crack_strip.png", 2048, 256, false),
+                ("Battle/Fx/boss_stance_break_strip.png", 3072, 384, false),
+                ("Battle/Fx/boss_phase2_enrage_strip.png", 3072, 384, false),
+                ("UI/Ugui/SeasonEconomyV1/Icons/boss_avatar_dual_guard.png", 256, 256, true),
+                ("UI/Ugui/Battle/BossTrialV2/icon_exposed.png", 64, 64, true),
+                ("UI/Ugui/Battle/BossTrialV2/icon_momentum.png", 64, 64, true),
+                ("UI/Ugui/Battle/BossTrialV2/icon_sunder.png", 64, 64, true),
+                ("UI/Ugui/Battle/BossTrialV2/icon_dishearten.png", 64, 64, true),
+                ("UI/Ugui/Battle/BossTrialV2/icon_focus.png", 64, 64, true),
+                ("UI/Ugui/Battle/BossTrialV2/icon_splash.png", 64, 64, true),
+                ("UI/Ugui/TrialJournal/Badges/badge_trial_dual_guard.png", 128, 128, true),
+                ("UI/Ugui/TrialJournal/Badges/badge_trial_sword.png", 128, 128, true),
+                ("UI/Ugui/TrialJournal/Badges/badge_trial_master.png", 128, 128, true),
+                ("UI/Ugui/TrialJournal/Badges/badge_trial_three_bosses.png", 128, 128, true),
+                ("UI/Ugui/TrialJournal/Badges/badge_trial_grandmaster.png", 128, 128, true),
+                ("UI/Ugui/TrialJournal/Badges/badge_season_s1_trial.png", 128, 128, true),
+            };
+
+            var seenGuids = new HashSet<string>();
+            foreach (var (rel, wantW, wantH, isSprite) in expected)
+            {
+                string pngPath = Path.Combine(resourcesRoot, rel.Replace('/', Path.DirectorySeparatorChar));
+                string metaPath = pngPath + ".meta";
+                Assert.That(File.Exists(pngPath), Is.True, $"Missing BossTrialV2 PNG: {rel}");
+                Assert.That(File.Exists(metaPath), Is.True, $"Missing BossTrialV2 meta: {rel}.meta");
+
+                byte[] header = new byte[26];
+                using (var fs = File.OpenRead(pngPath))
+                    Assert.That(fs.Read(header, 0, header.Length), Is.EqualTo(header.Length), rel);
+                int w = (header[16] << 24) | (header[17] << 16) | (header[18] << 8) | header[19];
+                int h = (header[20] << 24) | (header[21] << 16) | (header[22] << 8) | header[23];
+                byte colorType = header[25];
+                Assert.That(w, Is.EqualTo(wantW), $"{rel} width");
+                Assert.That(h, Is.EqualTo(wantH), $"{rel} height");
+                Assert.That(colorType, Is.EqualTo((byte)6), $"{rel} must be RGBA PNG (colorType=6)");
+
+                string meta = File.ReadAllText(metaPath);
+                Assert.That(meta, Does.Contain("enableMipMap: 0"), rel);
+                Assert.That(meta, Does.Contain("filterMode: 1"), rel);
+                Assert.That(meta, Does.Contain("wrapU: 1"), rel);
+                Assert.That(meta, Does.Contain("alphaIsTransparency: 1"), rel);
+                Assert.That(meta, Does.Contain(isSprite ? "textureType: 8" : "textureType: 0"), rel);
+                Assert.That(meta, Does.Contain(isSprite ? "spriteMode: 1" : "spriteMode: 0"), rel);
+                if (isSprite) Assert.That(meta, Does.Contain("spriteBorder: {x: 0, y: 0, z: 0, w: 0}"), rel);
+
+                string guidLine = null;
+                foreach (string line in File.ReadAllLines(metaPath))
+                {
+                    if (line.StartsWith("guid: ")) { guidLine = line.Substring(6).Trim(); break; }
+                }
+                Assert.That(guidLine, Is.Not.Null.And.Not.Empty, rel);
+                Assert.That(seenGuids.Add(guidLine), Is.True, $"Duplicate GUID {guidLine} on {rel}");
+            }
+            Assert.That(seenGuids.Count, Is.EqualTo(26));
+        }
     }
 }

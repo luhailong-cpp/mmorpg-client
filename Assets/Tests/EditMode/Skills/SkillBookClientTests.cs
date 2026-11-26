@@ -55,6 +55,51 @@ namespace MmorpgClient.Tests.EditMode.Skills
         }
 
         [Test]
+        public void LoadoutSwitchRetriesKeepTheOriginalSchemeAndRequestId()
+        {
+            var book = Book(1000);
+            book.Loadout = new SkillLoadoutSnapshot { StateVersion = 1, ActiveSchemeId = 1 };
+            LoadBook(book);
+            _client.SwitchLoadout(2);
+            var original = (SwitchSkillLoadoutRequest)_net.LastRequest;
+            _net.Fail("请求超时");
+
+            bool? result = null;
+            _client.SwitchLoadout(3, (ok, _) => result = ok);
+            Assert.That(result, Is.False);
+            Assert.That(_net.Calls.Count, Is.EqualTo(2));
+
+            _client.SwitchLoadout(2);
+            var retry = (SwitchSkillLoadoutRequest)_net.LastRequest;
+            Assert.That(retry.SchemeId, Is.EqualTo(2u));
+            Assert.That(retry.RequestId, Is.EqualTo(original.RequestId));
+        }
+
+        [Test]
+        public void LoadoutSaveRetriesKeepSelectionsAndRefreshReconcilesTheExactRequest()
+        {
+            var book = Book(1000);
+            book.Loadout = new SkillLoadoutSnapshot { StateVersion = 1, ActiveSchemeId = 1 };
+            LoadBook(book);
+            _client.SaveLoadout(1, 0, new uint[] { 12101 }, null, null);
+            var original = (SaveSkillLoadoutRequest)_net.LastRequest;
+            _net.Fail("请求超时");
+
+            _client.SaveLoadout(1, 0, new uint[] { 12102 }, null, null);
+            Assert.That(_net.Calls.Count, Is.EqualTo(2), "不同的装配正文不能重发旧请求");
+
+            _client.Refresh(SkillBookContext.Character());
+            book.Loadout.LastRequestId = original.RequestId;
+            book.Loadout.StateVersion = 2;
+            _net.Reply(book);
+            _client.SaveLoadout(1, 0, new uint[] { 12102 }, null, null);
+            var next = (SaveSkillLoadoutRequest)_net.LastRequest;
+            Assert.That(next.RequestId, Is.Not.EqualTo(original.RequestId));
+            Assert.That(next.StateVersion, Is.EqualTo(2u));
+            Assert.That(next.PassiveSkillIds, Is.EqualTo(new uint[] { 12102 }));
+        }
+
+        [Test]
         public void BattleLockPreservesReadableRanksAndBlocksUpgradeUntilBattleEnds()
         {
             _client.Dispose();

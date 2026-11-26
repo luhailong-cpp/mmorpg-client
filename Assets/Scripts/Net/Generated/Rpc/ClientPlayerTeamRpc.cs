@@ -127,5 +127,21 @@ namespace MmorpgClient.Net.Generated
         public static void ConfirmRankedPreset(IRpcChannel channel, global::Teampb.ConfirmRankedPresetRequest request,
             RpcDone<global::Teampb.TeamResponse> done)
             => channel.CallMethod(ConfirmRankedPresetMessageId, request, global::Teampb.TeamResponse.Parser, done);
+
+        public const uint SetTeamFormationMessageId = 524;
+        /// <summary>
+        /// 队长切换跑图五行跟随队形(仅追加在末尾,不改变既有方法号)。
+        /// </summary>
+        public static void SetTeamFormation(IRpcChannel channel, global::Teampb.SetTeamFormationRequest request,
+            RpcDone<global::Teampb.TeamResponse> done)
+            => channel.CallMethod(SetTeamFormationMessageId, request, global::Teampb.TeamResponse.Parser, done);
+
+        public const uint RecallTeamMembersMessageId = 525;
+        /// <summary>
+        /// 队长一键召集队员归队(仅追加在末尾,受团队级服务端冷却约束)。
+        /// </summary>
+        public static void RecallTeamMembers(IRpcChannel channel, global::Teampb.RecallTeamMembersRequest request,
+            RpcDone<global::Teampb.TeamResponse> done)
+            => channel.CallMethod(RecallTeamMembersMessageId, request, global::Teampb.TeamResponse.Parser, done);
     }
 }

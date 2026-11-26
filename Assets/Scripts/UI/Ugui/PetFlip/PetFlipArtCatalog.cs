@@ -82,12 +82,16 @@ namespace MmorpgClient.UI.Ugui.PetFlip
         public static readonly Color NamePlateBorder = new Color32(188, 143, 77, 215);
         public static readonly Color CircleGoldBorder = new Color32(192, 150, 72, 255);
         public static readonly Color CirclePaperFill = new Color32(251, 240, 216, 255);
+        public static readonly Color PillSelectedFill = new Color32(43, 102, 74, 245);
+        public static readonly Color PillSelectedBorder = new Color32(214, 174, 96, 255);
+        public static readonly Color SpiritEyePeekTint = new Color32(232, 252, 238, 255);
 
         private static readonly Dictionary<string, Sprite> SpriteCache = new Dictionary<string, Sprite>(StringComparer.Ordinal);
         private static Sprite _circleMaskSprite;
         private static Sprite _circleRingSprite;
         private static Sprite _roundedNoteSprite;
         private static Sprite _roundedLabelSprite;
+        private static Sprite _selectedPillSprite;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetCaches()
@@ -97,6 +101,7 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             _circleRingSprite = null;
             _roundedNoteSprite = null;
             _roundedLabelSprite = null;
+            _selectedPillSprite = null;
         }
 
         public static Sprite LoadUiSprite(string key)
@@ -126,7 +131,7 @@ namespace MmorpgClient.UI.Ugui.PetFlip
         }
 
         /// <summary>
-        /// 尝试加载并完整校验翻牌所需的全部核心框体、牌背/牌框、已配标记与 6 只灵宠权威头像及名称。
+        /// 尝试加载并完整校验翻牌所需的全部核心框体、牌背/牌框、已配标记与 8 只灵宠权威头像及名称（轻松用 A..F，进阶用 A..H）。
         /// </summary>
         public static bool TryLoadAndValidate(out PetFlipResolvedAssets resolved, out string failureReason)
         {
@@ -146,10 +151,10 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 && cardFront != null
                 && matchedMark != null;
 
-            var descriptors = new PetFlipFaceDescriptor[PetFlipConstants.PairCount];
-            var faces = new PetFlipResolvedFace[PetFlipConstants.PairCount];
+            var descriptors = new PetFlipFaceDescriptor[PetFlipConstants.MaxPairCount];
+            var faces = new PetFlipResolvedFace[PetFlipConstants.MaxPairCount];
 
-            for (int i = 0; i < PetFlipConstants.PairCount; i++)
+            for (int i = 0; i < PetFlipConstants.MaxPairCount; i++)
             {
                 var pattern = (SpiritPetCardPattern)i;
                 string petId = PetFlipUiPresentation.GetPetCatalogId(pattern);
@@ -162,7 +167,7 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 faces[i] = new PetFlipResolvedFace(pattern, petId, displayName, portrait);
             }
 
-            if (!PetFlipUiPresentation.ValidateAssets(hasCoreUi, descriptors, out failureReason))
+            if (!PetFlipUiPresentation.ValidateAssets(hasCoreUi, descriptors, PetFlipConstants.MaxPairCount, out failureReason))
                 return false;
 
             resolved = new PetFlipResolvedAssets(
@@ -249,6 +254,14 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             if (_roundedLabelSprite != null) return _roundedLabelSprite;
             _roundedLabelSprite = CreateRoundedBoxSprite("PetFlip_RoundedLabel", 48, 8f, 1.5f, NamePlateFill, NamePlateBorder);
             return _roundedLabelSprite;
+        }
+
+        /// <summary>难度/玩法选中胶囊底图（玉绿漆底 + 暖金边，9-slice；待 Codex V2 视觉定稿可无感替换）。</summary>
+        public static Sprite GetSelectedPillSprite()
+        {
+            if (_selectedPillSprite != null) return _selectedPillSprite;
+            _selectedPillSprite = CreateRoundedBoxSprite("PetFlip_SelectedPill", 48, 12f, 2f, PillSelectedFill, PillSelectedBorder);
+            return _selectedPillSprite;
         }
 
         private static Sprite CreateRoundedBoxSprite(

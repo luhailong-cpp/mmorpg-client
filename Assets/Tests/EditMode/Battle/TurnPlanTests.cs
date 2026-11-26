@@ -16,6 +16,64 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private const ulong A = 11, B = 22, C = 33, D = 44;
         private const float Eps = 1e-4f;
 
+        [TestCase(0u)]
+        [TestCase(9u)]
+        public void MirrorCopyAndCopiedSkillRemainTwoCastBeats(uint groupId)
+        {
+            var result = new TurnResultS2C();
+            result.Events.Add(new BattleEventItem { EventType = eBattleEventType.BattleEventSkill, SourceId = A,
+                TargetId = B, SkillTableId = TurnPlan.MirrorCopySkillId, GroupId = groupId });
+            result.Events.Add(new BattleEventItem { EventType = eBattleEventType.BattleEventMana, SourceId = A,
+                TargetId = A, TargetManaAfter = 90, ManaDelta = -10, GroupId = groupId });
+            result.Events.Add(new BattleEventItem { EventType = eBattleEventType.BattleEventSkill, SourceId = A,
+                TargetId = C, SkillTableId = 1201, HitKind = eBattleHitKind.BattleHitMirror, GroupId = groupId });
+            result.Events.Add(new BattleEventItem { EventType = eBattleEventType.BattleEventDamage, SourceId = A,
+                TargetId = C, Value = 15, HitKind = eBattleHitKind.BattleHitMirror, GroupId = groupId });
+
+            var plan = TurnPlan.Build(result, 0);
+
+            Assert.That(plan.Beats.Count, Is.EqualTo(2));
+            var copy = plan.Beats[0];
+            Assert.That(copy.Kind, Is.EqualTo(BeatKind.Cast));
+            Assert.That(copy.SkillId, Is.EqualTo(TurnPlan.MirrorCopySkillId));
+            Assert.That(copy.HitKind, Is.EqualTo(eBattleHitKind.BattleHitNormal));
+            Assert.That(copy.PrimaryTargetId, Is.EqualTo(B));
+            Assert.That(copy.ActorManaDelta, Is.EqualTo(-10));
+            Assert.That(copy.Targets, Is.Empty);
+            var mirror = plan.Beats[1];
+            Assert.That(mirror.Kind, Is.EqualTo(BeatKind.Cast));
+            Assert.That(mirror.SkillId, Is.EqualTo(1201));
+            Assert.That(mirror.HitKind, Is.EqualTo(eBattleHitKind.BattleHitMirror));
+            Assert.That(mirror.PrimaryTargetId, Is.EqualTo(C));
+            Assert.That(mirror.HasActorManaAfter, Is.False);
+            Assert.That(mirror.Targets[0].Effect, Is.EqualTo(TargetEffect.Damage));
+        }
+
+        [TestCase(0u)]
+        [TestCase(9u)]
+        public void MirrorCopyResistBelongsToTheMatchingCastWithoutCreatingDamage(uint groupId)
+        {
+            var result = new TurnResultS2C();
+            result.Events.Add(new BattleEventItem { EventType = eBattleEventType.BattleEventSkill, SourceId = A,
+                TargetId = B, SkillTableId = TurnPlan.MirrorCopySkillId, GroupId = groupId });
+            result.Events.Add(new BattleEventItem { EventType = eBattleEventType.BattleEventResist, SourceId = A,
+                TargetId = C, BuffTableId = 55, GroupId = groupId });
+            result.Events.Add(new BattleEventItem { EventType = eBattleEventType.BattleEventResist, SourceId = A,
+                TargetId = B, BuffTableId = 100410, GroupId = groupId });
+
+            var plan = TurnPlan.Build(result, 0);
+
+            Assert.That(plan.Beats.Count, Is.EqualTo(1));
+            var cast = plan.Beats[0];
+            Assert.That(cast.Kind, Is.EqualTo(BeatKind.Cast));
+            Assert.That(cast.PrimaryTargetId, Is.EqualTo(B));
+            Assert.That(cast.Targets.Count, Is.EqualTo(1));
+            Assert.That(cast.Targets[0].ActorId, Is.EqualTo(B));
+            Assert.That(cast.Targets[0].Effect, Is.EqualTo(TargetEffect.Resist));
+            Assert.That(cast.Targets[0].BuffId, Is.EqualTo(100410));
+            Assert.That(cast.Targets[0].HasHealthAfter, Is.False);
+        }
+
         [Test]
         public void RevivalRunsAfterDeathWithoutOverlappingTheDeathCallback()
         {

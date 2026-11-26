@@ -29,5 +29,43 @@ namespace MmorpgClient.Net.Generated
         public static void CatchupSeasonSeal(IRpcChannel channel, global::CatchupSeasonSealRequest request,
             RpcDone<global::CatchupSeasonSealResponse> done)
             => channel.CallMethod(CatchupSeasonSealMessageId, request, global::CatchupSeasonSealResponse.Parser, done);
+
+        public const uint EquipWuxingFormationMessageId = 515;
+        /// <summary>
+        /// ── 以下只许在末尾追加：生成的 CallMethod 按 method index 分发 ──
+        /// </summary>
+        public static void EquipWuxingFormation(IRpcChannel channel, global::EquipWuxingFormationRequest request,
+            RpcDone<global::EquipWuxingFormationResponse> done)
+            => channel.CallMethod(EquipWuxingFormationMessageId, request, global::EquipWuxingFormationResponse.Parser, done);
+
+        public const uint GetWuxingTowerStateMessageId = 516;
+        public static void GetWuxingTowerState(IRpcChannel channel, global::GetWuxingTowerStateRequest request,
+            RpcDone<global::GetWuxingTowerStateResponse> done)
+            => channel.CallMethod(GetWuxingTowerStateMessageId, request, global::GetWuxingTowerStateResponse.Parser, done);
+
+        public const uint StartWuxingTowerRunMessageId = 517;
+        public static void StartWuxingTowerRun(IRpcChannel channel, global::StartWuxingTowerRunRequest request,
+            RpcDone<global::StartWuxingTowerRunResponse> done)
+            => channel.CallMethod(StartWuxingTowerRunMessageId, request, global::StartWuxingTowerRunResponse.Parser, done);
+
+        public const uint PickWuxingTowerSigilMessageId = 518;
+        public static void PickWuxingTowerSigil(IRpcChannel channel, global::PickWuxingTowerSigilRequest request,
+            RpcDone<global::PickWuxingTowerSigilResponse> done)
+            => channel.CallMethod(PickWuxingTowerSigilMessageId, request, global::PickWuxingTowerSigilResponse.Parser, done);
+
+        public const uint AbandonWuxingTowerRunMessageId = 519;
+        public static void AbandonWuxingTowerRun(IRpcChannel channel, global::AbandonWuxingTowerRunRequest request,
+            RpcDone<global::AbandonWuxingTowerRunResponse> done)
+            => channel.CallMethod(AbandonWuxingTowerRunMessageId, request, global::AbandonWuxingTowerRunResponse.Parser, done);
+
+        public const uint SaveBattleBuildBookmarkMessageId = 520;
+        public static void SaveBattleBuildBookmark(IRpcChannel channel, global::SaveBattleBuildBookmarkRequest request,
+            RpcDone<global::SaveBattleBuildBookmarkResponse> done)
+            => channel.CallMethod(SaveBattleBuildBookmarkMessageId, request, global::SaveBattleBuildBookmarkResponse.Parser, done);
+
+        public const uint DeleteBattleBuildBookmarkMessageId = 521;
+        public static void DeleteBattleBuildBookmark(IRpcChannel channel, global::DeleteBattleBuildBookmarkRequest request,
+            RpcDone<global::DeleteBattleBuildBookmarkResponse> done)
+            => channel.CallMethod(DeleteBattleBuildBookmarkMessageId, request, global::DeleteBattleBuildBookmarkResponse.Parser, done);
     }
 }

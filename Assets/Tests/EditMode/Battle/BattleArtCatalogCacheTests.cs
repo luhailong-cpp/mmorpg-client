@@ -188,12 +188,12 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 }
             }
 
-            // 2. 三条首领机制特效条（含 5120x512 不被缩成 4096 的 10 帧校验）
+            // 2. 三条首领机制特效条（boss-trial-v2-runtime 统一 8 帧规格：2048x256 / 3072x384）
             var expectedFx = new (string Id, int Frames, int Cell, int Width)[]
             {
                 ("boss_exposed_crack", 8, 256, 2048),
-                ("boss_stance_break", 10, 512, 5120),
-                ("boss_phase2_enrage", 10, 512, 5120),
+                ("boss_stance_break", 8, 384, 3072),
+                ("boss_phase2_enrage", 8, 384, 3072),
             };
             foreach (var (fxId, frames, cell, width) in expectedFx)
             {
@@ -218,11 +218,22 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 Assert.That(sprite.border, Is.EqualTo(Vector4.zero), icon);
             }
 
-            var dualBadge = SeasonEconomyUiArt.LoadTrialJournalBadge("badge_trial_dual_guard");
-            Assert.That(dualBadge != null && dualBadge.texture != null, Is.True, "缺少 badge_trial_dual_guard");
-            Assert.That(dualBadge.texture.width, Is.EqualTo(128));
-            Assert.That(dualBadge.texture.height, Is.EqualTo(128));
-            Assert.That(dualBadge.border, Is.EqualTo(Vector4.zero));
+            foreach (string badgeKey in new[]
+            {
+                "badge_trial_dual_guard",
+                "badge_season_s1_trial",
+                "badge_trial_grandmaster",
+                "badge_trial_master",
+                "badge_trial_sword",
+                "badge_trial_three_bosses",
+            })
+            {
+                var badge = SeasonEconomyUiArt.LoadTrialJournalBadge(badgeKey);
+                Assert.That(badge != null && badge.texture != null, Is.True, "缺少 " + badgeKey);
+                Assert.That(badge.texture.width, Is.EqualTo(128), badgeKey);
+                Assert.That(badge.texture.height, Is.EqualTo(128), badgeKey);
+                Assert.That(badge.border, Is.EqualTo(Vector4.zero), badgeKey);
+            }
 
             var dualAvatar = SeasonEconomyUiArt.LoadIcon(SeasonEconomyUiArt.BossAvatarIconKey(8u));
             Assert.That(dualAvatar != null && dualAvatar.texture != null, Is.True, "缺少 boss_avatar_dual_guard");

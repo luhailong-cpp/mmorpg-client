@@ -35,10 +35,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private SceneChannelClient _channelClient;
         private RectTransform _hud;
         private Button _entry;
+        private GameObject _tideHudBadge;
         private CityTravelWindow _window;
         private string _status = "";
         private bool _wasAvailable;
+        private bool _overviewBootstrapped;
         private ulong _dismissedTideRoundId;
+        private double _nextTideBannerRefreshSeconds;
+        private double _nextHudOverviewRefreshSeconds;
         // 跨区传送：在途的目标区服，以及发起时的连接标识（底层不再等待时据此判断连接是否还是原来那条）。
         // “此刻人在哪个区”不在这里记：那是连接层的事实，读 GameClient.CurrentZoneId（见下面的 CurrentZoneId）。
         // 以前这里自记过一份，只在“请求在途且入场通知来自新连接”时更新；窗口先收场、换服通知后到的时序下
@@ -78,10 +82,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, Toggle, true, fontSize: 32);
             _entry.name = "CityTravelEntry";
             WorldHudNavigation.Register(WorldHudEntry.Map, (RectTransform)_entry.transform, _entry, _entry.GetComponentInChildren<TMP_Text>());
+            // 导航注册会先重排地图按钮并替换旧图标，角标挂在重排后的按钮右上角。
+            var tideBadge = QdaoUguiFactory.CreateImage("WorldMapEntryTideBadge", _entry.transform, 0, 0, 26, 26,
+                QdaoUguiTheme.RequireSprite("UI/Ugui/WorldMapV2/hud_tide_dot"));
+            tideBadge.rectTransform.anchorMin = tideBadge.rectTransform.anchorMax = tideBadge.rectTransform.pivot = Vector2.one;
+            tideBadge.rectTransform.anchoredPosition = new Vector2(-6, -4);
+            tideBadge.raycastTarget = false;
+            tideBadge.preserveAspect = true;
+            _tideHudBadge = tideBadge.gameObject;
+            _tideHudBadge.SetActive(false);
             _window = new CityTravelWindow(design);
             _window.SetDestinations(CreateDestinations());
             _window.AppearanceTravelRequested += RequestTravel;
             _window.AppearanceZoneTravelRequested += RequestZoneTravel;
+            _window.TideQuickTravelRequested += HandleTideQuickTravelRequested;
             _hud.gameObject.SetActive(false);
         }
 
@@ -96,6 +110,28 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             bool available = inGame && CanTravelNow();
             _hud.gameObject.SetActive(inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false));
             _entry.interactable = available && !_request.IsPending;
+            RefreshTideHudBadge();
+            double nowSeconds = Time.realtimeSinceStartupAsDouble;
+            if (inGame && _channelClient != null)
+            {
+                // 入场首次拿到分线目录后自动拉一次总览，并在后台每 60 秒轻刷新一次，让 HUD「地图」灵潮角标在新一轮灵潮开启时无需手动开图也能亮起。
+                if (!_overviewBootstrapped && _channelClient.HasDirectory)
+                {
+                    _overviewBootstrapped = true;
+                    _nextHudOverviewRefreshSeconds = nowSeconds + 60d;
+                    _channelClient.RequestOverview(force: true);
+                }
+                else if (_overviewBootstrapped && !_window.IsVisible && nowSeconds >= _nextHudOverviewRefreshSeconds)
+                {
+                    _nextHudOverviewRefreshSeconds = nowSeconds + 60d;
+                    _channelClient.RequestOverview();
+                }
+            }
+            if (_window.IsVisible && nowSeconds >= _nextTideBannerRefreshSeconds)
+            {
+                _window.RefreshTideBanner(OverviewAgeSeconds);
+                _nextTideBannerRefreshSeconds = nowSeconds + 1d;
+            }
             if (_request.Tick(Time.realtimeSinceStartup))
             {
                 _pendingZoneId = 0;
@@ -161,8 +197,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _channelClient?.RequestOverview();
             _window.SetZones(BuildZones());
             _window.SetDestinations(CreateDestinations());
-            _window.SetOverview(_channelClient?.Overview);
+            _window.SetOverview(CurrentOverview, OverviewAgeSeconds);
             _window.Show(CurrentScene, _app.WorldMap?.Appearance ?? "normal");
+            _nextTideBannerRefreshSeconds = Time.realtimeSinceStartupAsDouble + 1d;
             Refresh();
         }
 
@@ -178,6 +215,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             var tide = _channelClient?.Overview?.Tide;
             if (tide != null && tide.Active && tide.RoundId != 0UL) _dismissedTideRoundId = tide.RoundId;
+            RefreshTideHudBadge();
+        }
+
+        private void RefreshTideHudBadge()
+        {
+            if (_tideHudBadge == null) return;
+            bool visible = ShouldShowTideHudBadge;
+            if (_tideHudBadge.activeSelf != visible) _tideHudBadge.SetActive(visible);
+        }
+
+        private void HandleTideQuickTravelRequested()
+        {
+            if (RequestQuickTravelToTide(out string error)) return;
+            _status = error;
+            Refresh();
         }
 
         /// <summary>一键直达当前进行中的灵潮地图推荐聚人线（复用正式换图状态机）。</summary>
@@ -412,6 +464,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _pendingZoneId = 0;
             _gateAtRequest = null;
             _dismissedTideRoundId = 0UL;
+            _overviewBootstrapped = false;
+            _nextHudOverviewRefreshSeconds = 0d;
             _status = "";
             HidePanel();
             _game = game;
@@ -492,6 +546,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _pendingZoneId = 0;
             _gateAtRequest = null;
             _dismissedTideRoundId = 0UL;
+            _overviewBootstrapped = false;
+            _nextHudOverviewRefreshSeconds = 0d;
             _status = "";
             HidePanel();
             Refresh();
@@ -512,20 +568,26 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_channelClient != null) _channelClient.Changed -= HandleChannelClientChanged;
             _channelClient = client;
             if (_channelClient != null) _channelClient.Changed += HandleChannelClientChanged;
-            if (_window != null) _window.SetOverview(_channelClient?.Overview);
+            if (_window != null) _window.SetOverview(CurrentOverview, OverviewAgeSeconds);
+            RefreshTideHudBadge();
         }
 
         private void HandleChannelClientChanged()
         {
             if (_window != null && _window.IsVisible)
             {
-                _window.SetOverview(_channelClient?.Overview);
+                _window.SetOverview(CurrentOverview, OverviewAgeSeconds);
+                _nextTideBannerRefreshSeconds = Time.realtimeSinceStartupAsDouble + 1d;
+                MarkCurrentTideSeen();
+                return;
             }
+            RefreshTideHudBadge();
         }
 
         private void OnDestroy()
         {
             CityPanelRegistry.Unregister(this);
+            if (_window != null) _window.TideQuickTravelRequested -= HandleTideQuickTravelRequested;
             BindChannelClient(null);
             Bind(null);
             if (Instance == this) Instance = null;

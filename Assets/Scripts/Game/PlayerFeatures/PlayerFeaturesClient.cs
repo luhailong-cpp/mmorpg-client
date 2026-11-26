@@ -235,6 +235,24 @@ namespace MmorpgClient.Game.PlayerFeatures
                 });
         }
 
+        /// <summary>由其他直购模块在同回包带回全量人物背包时原地刷新快照，免去额外拉包。</summary>
+        public bool TryApplyExternalCharacterBag(BagInfo bag)
+        {
+            if (_disposed || !ValidBag(bag, CharacterBagType) || BusyEquip || _net == null || !_net.IsReady || _net.PlayerId == 0)
+                return false;
+            if (!ReferenceEquals(_observedConnection, _connectionIdentity()))
+                return false;
+            if (_snapshotPlayerId != 0 && _snapshotPlayerId != _net.PlayerId)
+                return false;
+            _snapshotPlayerId = _net.PlayerId;
+            ++_bagRequest;
+            _bags[CharacterBagType] = bag;
+            BagLoading = false;
+            BagError = string.Empty;
+            OnChanged?.Invoke();
+            return true;
+        }
+
         /// <summary>
         /// 拉取装备栏(= GetBag(bag_type = 2))。与 <see cref="RequestBag"/> 各走各的序号:
         /// 不改 <see cref="RequestedBagType"/>,不清人物背包快照,也不作废它的在途请求。

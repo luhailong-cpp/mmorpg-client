@@ -1,4 +1,5 @@
 using System.Linq;
+using MmorpgClient.Game.WorldTravel;
 using MmorpgClient.UI.Ugui;
 using MmorpgClient.UI.Ugui.Gameplay;
 using MmorpgClient.World.CurrentMaps;
@@ -241,6 +242,144 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(options.activeSelf, Is.True);
             Assert.That(calls, Is.Zero, "尚未开放的试炼入口不会假冒换景或发出错误传送");
         }
+
+        [Test]
+        public void TideBanner_UsesSnapshotAgeAndOnlyRaisesAvailableQuickTravel()
+        {
+            int quickTravelRequests = 0;
+            _window.TideQuickTravelRequested += () => quickTravelRequests++;
+            _window.Show(1, "normal");
+            var banner = FindRect(_root.transform, "WorldMapTideBanner");
+            var quickTravel = FindButton("WorldMapTideQuickTravel");
+            Assert.That(banner.gameObject.activeInHierarchy, Is.False);
+
+            _window.SetOverview(TideOverview(true), 10f);
+            Assert.That(banner.gameObject.activeInHierarchy, Is.True);
+            Assert.That(FindText("WorldMapTideHeadline"), Is.EqualTo("灵潮涌动 · 碧渊水宫"));
+            Assert.That(FindText("WorldMapTideCountdown"), Is.EqualTo("剩余 34:50"));
+            Assert.That(quickTravel.interactable, Is.True);
+            quickTravel.onClick.Invoke();
+            _window.RefreshTideBanner(11f);
+            Assert.That(FindText("WorldMapTideCountdown"), Is.EqualTo("剩余 34:49"));
+
+            _window.SetState(1, "normal", true, "正在传送");
+            Assert.That(quickTravel.interactable, Is.False);
+            quickTravel.onClick.Invoke();
+            _window.SetState(1, "normal", false, "");
+            _window.SetOverview(TideOverview(false));
+            Assert.That(banner.gameObject.activeInHierarchy, Is.True);
+            Assert.That(FindText("WorldMapTideHeadline"), Is.EqualTo("灵潮休歇"));
+            Assert.That(FindText("WorldMapTideCountdown"), Is.EqualTo("下轮倒计时 18:20"));
+            Assert.That(quickTravel.gameObject.activeInHierarchy, Is.False);
+            quickTravel.onClick.Invoke();
+
+            _window.SetOverview(TideOverview(null));
+            Assert.That(banner.gameObject.activeInHierarchy, Is.False);
+            Assert.That(quickTravelRequests, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void MapPins_OnlyCoverOnlineLandmarksAndOpenTheTravelDrawer()
+        {
+            _window.Show(1, "normal");
+            _window.SetOverview(TideOverview(true));
+            var onlinePins = _window.Root.GetComponentsInChildren<Button>(false)
+                .Where(button => button.name.StartsWith("WorldMapPin_")).Select(button => button.name).ToArray();
+            var expected = new[] { "WorldMapPin_1", "WorldMapPin_2", "WorldMapPin_5" };
+            if (CurrentMapCatalog.FindForOnline(3)?.CanTravelOnline == true)
+                expected = expected.Append("WorldMapPin_3").ToArray();
+            Assert.That(onlinePins, Is.EquivalentTo(expected));
+
+            Click("WorldMapPin_5");
+            Assert.That(FindRect(_root.transform, "WorldTravelOptions").gameObject.activeInHierarchy, Is.True);
+            Assert.That(_window.SelectedSceneConfigId, Is.EqualTo(5));
+
+            var pin = FindButton("WorldMapPin_5").transform;
+            var badges = new[] { "WorldMapPinHeat", "WorldMapPinTide", "WorldMapPinHotspot", "WorldMapPinMerchant" };
+            foreach (string badge in badges)
+                Assert.That(FindRect(pin, badge).gameObject.activeInHierarchy, Is.True, badge);
+            _window.SetOverview(TideOverview(null));
+            foreach (string badge in badges)
+                Assert.That(FindRect(pin, badge).gameObject.activeInHierarchy, Is.False, badge);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void YuexiBayPin_FollowsCatalogOnlineAvailability(bool clientOnly)
+        {
+            string sha = new string('b', 64);
+            CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog
+            {
+                schemaVersion = 2,
+                maps = new[]
+                {
+                    new MapDeliveryRegistration
+                    {
+                        key = "yuexi-bay", name = "月汐湾", sceneId = 3, revision = "pin-policy-test",
+                        clientOnly = clientOnly, defaultAppearance = "spring", appearances = new[]
+                        {
+                            new MapAppearanceDelivery
+                            {
+                                id = "spring", artStatus = "formal_art_delivery", layoutSha256 = sha,
+                                resourceRoot = MapDeliveryContract.ResourceRoot + "yuexi-bay/pin-policy-test/spring/" + sha + "/"
+                            }
+                        }
+                    }
+                }
+            });
+            _window.SetDestinations(CityTravelUiRoot.CreateDestinations());
+            _window.Show(1, "normal");
+            var pin = _root.GetComponentsInChildren<Button>(false).SingleOrDefault(button => button.name == "WorldMapPin_3");
+            if (clientOnly)
+                Assert.That(pin, Is.Null);
+            else
+                Assert.That(pin?.interactable, Is.True);
+        }
+
+        [Test]
+        public void DrawerTabs_ShowOnlyTheirOwnDestinationsAndGalleryCannotTravel()
+        {
+            _window.Show(1, "normal");
+            Click("OpenCityTravelOptions");
+            var all = CityTravelUiRoot.CreateDestinations();
+            AssertVisibleDestinations(CityTravelUiRoot.FilterOnlineDestinations(all));
+
+            Click("WorldMapGalleryTab");
+            AssertVisibleDestinations(CityTravelUiRoot.FilterGalleryDestinations(all));
+            Assert.That(_window.TravelEnabled, Is.False);
+            Assert.That(FindButton("TravelZoneCycle").gameObject.activeInHierarchy, Is.False);
+
+            Click("WorldMapTravelTab");
+            AssertVisibleDestinations(CityTravelUiRoot.FilterOnlineDestinations(all));
+            Assert.That(CityTravelUiRoot.FilterOnlineDestinations(all).Any(d => d.SceneConfigId == _window.SelectedSceneConfigId), Is.True);
+        }
+
+        private static WorldMapOverviewSnapshot TideOverview(bool? active)
+        {
+            ulong nowMs = active == false ? 6_100_000UL : 3_900_000UL;
+            WorldTideSnapshotModel tide = active.HasValue
+                ? new WorldTideSnapshotModel(active.Value, 3600UL, 5u, 50001UL, 1u, 3_600_000UL, 6_000_000UL, 7_200_000UL)
+                : null;
+            return new WorldMapOverviewSnapshot(1, nowMs, nowMs, new[]
+            {
+                new WorldMapOverviewItem(1, 12, 1, global::WorldMapHeatLevel.Crowded, 10001, 1, false, false),
+                new WorldMapOverviewItem(2, 0, 1, global::WorldMapHeatLevel.Quiet, 20001, 1, false, false),
+                new WorldMapOverviewItem(5, 3, 1, global::WorldMapHeatLevel.Active, 50001, 1, active == true, true),
+            }, tide, 5u);
+        }
+
+        private void AssertVisibleDestinations(CityTravelDestination[] expected)
+        {
+            var actual = _root.GetComponentsInChildren<Button>(false)
+                .Where(button => button.name.StartsWith("CityDestination_")).Select(button => button.name);
+            Assert.That(actual, Is.EquivalentTo(expected.Select(destination => "CityDestination_" + destination.SceneConfigId)));
+        }
+
+        private static RectTransform FindRect(UnityEngine.Transform root, string name) =>
+            root.GetComponentsInChildren<RectTransform>(true).Single(rect => rect.name == name);
+
+        private string FindText(string name) =>
+            _root.GetComponentsInChildren<TMP_Text>(true).Single(text => text.name == name).text;
 
         private void Click(string name) => FindButton(name).onClick.Invoke();
 

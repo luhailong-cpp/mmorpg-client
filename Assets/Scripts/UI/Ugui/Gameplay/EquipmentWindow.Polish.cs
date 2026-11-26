@@ -246,8 +246,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 RequestPolishPreview(current, selectedSlot);
             }
 
+            bool hasCharm = EquipmentScreenModel.OwnedCount(_client?.CharacterBag, _client?.Equipment,
+                MmorpgClient.Game.SpiritShop.SpiritShopModels.ItemStarGuaranteeCharm) > 0;
+            float charmBtnWidth = hasCharm ? 1420f : 960f;
             var charmBtn = Button(_body, "PolishCharmToggle", _polishUseCharm ? "✓ 已选：定星保底符（必出极品）" : "使用定星保底符（仅自用 · 必出极品）",
-                2330, 690, 1420, () =>
+                2330, 690, charmBtnWidth, () =>
                 {
                     if (_craft.Busy || _craft.Pending) return;
                     _polishUseCharm = !_polishUseCharm;
@@ -260,6 +263,16 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 var charmImg = QdaoUguiFactory.CreateImage("PolishCharmIcon", charmBtn.transform, 52, 26, 88, 88, charmIcon, false);
                 charmImg.preserveAspect = true;
+            }
+            if (!hasCharm)
+            {
+                Button(_body, "PolishBuyCharmShortcut", "百宝阁补符", 3310, 690, 440, () =>
+                {
+                    Hide();
+                    MmorpgClient.UI.Ugui.SpiritShop.SpiritShopUiRoot.Instance?.OpenTab(
+                        MmorpgClient.Game.SpiritShop.SpiritShopModels.TabAdvancement,
+                        MmorpgClient.Game.SpiritShop.SpiritShopModels.GoodsStarGuaranteeCharm);
+                });
             }
 
             var forgeMasters = ActiveForgeMasters();
@@ -534,6 +547,16 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _talismanTargetItemId = targetItemId;
             _inheritSourceItemId = 0;
             _craft.ClearSelection();
+            var target = FindItem(targetItemId);
+            var firstSource = OwnedEquipment().FirstOrDefault(src =>
+                target != null && src.ItemId != target.ItemId &&
+                src.EquipKind == target.EquipKind && src.EquipProfile == target.EquipProfile &&
+                src.EquipLevel == target.EquipLevel && src.EnhanceLevel > target.EnhanceLevel);
+            if (firstSource != null)
+            {
+                _inheritSourceItemId = firstSource.ItemId;
+                _craft.SelectInheritEnhance(_talismanTargetItemId, _inheritSourceItemId);
+            }
             _modal = Modal.InheritEnhance;
             Render();
         }
@@ -559,7 +582,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             uint needStone = item?.EnhanceNext?.MaterialCount ?? 0;
             Label(_modalLayer, "EnhanceBindBody",
                 $"当前装备「{Name(item)}」为【可交易 T】；背包中可交易强化石不足（当前可用 {tradableStone} / 需求 {needStone}）。\n\n"
-                + "系统默认锁死仅消耗可交易石。若确认混用绑定强化石，强化后装备将立即转为【绑定仅自用 B】；日后如需重新交易，只能使用「解封剥离符」清空全部绑定养成并恢复纯 T 原胚。",
+                + "系统默认只消耗可交易石。无论强化成功或失败，只要消耗绑定石，装备即立刻转为【绑定仅自用 B】。日后如需重新交易，只能使用「解封剥离符」清空全部绑定养成并恢复纯 T 原胚。",
                 760, 412, 2380, 320, 42, true, Ink);
 
             Button(_modalLayer, "EnhanceBindToggle",
@@ -637,16 +660,130 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void RenderInheritEnhanceModal()
         {
             var target = FindItem(_talismanTargetItemId);
-            Label(_modalLayer, "InheritTitle", "流派副套继承符 · 强化等级无损继承", 750, 195, 2380, 90, 60, color: Jade);
-            Label(_modalLayer, "InheritBanner",
-                $"目标副套：{Name(target)}（当前 +{target?.EnhanceLevel ?? 0}）  |  继承后目标副套转为仅自用绑定，源装备保持原样不降级",
-                750, 296, 2380, 80, 36, true, Jade);
-
             var sources = OwnedEquipment().Where(src =>
                 target != null && src.ItemId != target.ItemId &&
                 src.EquipKind == target.EquipKind && src.EquipProfile == target.EquipProfile &&
                 src.EquipLevel == target.EquipLevel && src.EnhanceLevel > target.EnhanceLevel).ToList();
 
+            var selectedSource = sources.FirstOrDefault(s => s.ItemId == _inheritSourceItemId);
+            if (selectedSource == null && sources.Count > 0)
+            {
+                selectedSource = sources[0];
+                _inheritSourceItemId = selectedSource.ItemId;
+                if (_craft.Choice?.Operation != EquipmentCraftChoice.Types.Operation.InheritEnhance
+                    || _craft.Choice.ItemId != _talismanTargetItemId
+                    || _craft.Choice.SourceItemId != _inheritSourceItemId)
+                {
+                    _craft.SelectInheritEnhance(_talismanTargetItemId, _inheritSourceItemId);
+                }
+            }
+
+            var preview = _craft.Preview;
+            var panelSprite = SeasonEconomyUiArt.LoadTradeV2Slice("panel_09_equip_inherit");
+            var talismanSprite = SeasonEconomyUiArt.LoadTradeV2Slice("icon_inherit_talisman");
+            bool canCommit = _craft.CanCommit && !WriteBlocked
+                && preview?.Choice?.Operation == EquipmentCraftChoice.Types.Operation.InheritEnhance
+                && preview.Choice.ItemId == _talismanTargetItemId
+                && preview.Choice.SourceItemId == _inheritSourceItemId;
+
+            if (panelSprite != null)
+            {
+                // 按 MANIFEST 1932×814 原图画布等比映射至模态层 (340, 130, 3280, 1382)，保持原图槽位与按钮对齐
+                const float x0 = 340f, y0 = 130f, w = 3280f, h = 1382f, s = w / 1932f;
+                var frameImg = QdaoUguiFactory.CreateImage("InheritPanel09Art", _modalLayer, x0, y0, w, h, panelSprite, false);
+                frameImg.preserveAspect = true;
+
+                var titleLbl = Label(_modalLayer, "InheritTitle", "流派副套继承",
+                    x0 + 680f * s, y0 + 22f * s, 572f * s, 74f * s, 56f, false, Cream);
+                titleLbl.alignment = TMPro.TextAlignmentOptions.Center;
+
+                // 右侧关闭按钮热区对齐原图 (1736, 162)
+                var closeHotspot = QdaoUguiFactory.CreateRect("InheritCloseHotspot", _modalLayer,
+                    x0 + 1692f * s, y0 + 118f * s, 88f * s, 88f * s);
+                var closeImg = closeHotspot.gameObject.AddComponent<Image>();
+                closeImg.color = new Color(1f, 1f, 1f, 0f);
+                var closeBtn = closeHotspot.gameObject.AddComponent<Button>();
+                closeBtn.transition = Selectable.Transition.None;
+                closeBtn.onClick.AddListener(CloseModal);
+
+                // 左槽：源装备（中心 494, 356）
+                Label(_modalLayer, "InheritSrcHeading", "源装备", x0 + 304f * s, y0 + 190f * s, 260f * s, 44f * s, 40f, false, Jade);
+                if (sources.Count > 1)
+                {
+                    int curIdx = Math.Max(0, sources.FindIndex(sItem => sItem.ItemId == _inheritSourceItemId));
+                    Button(_modalLayer, "InheritSrcCycle", $"切换源装备 ({curIdx + 1}/{sources.Count})",
+                        x0 + 470f * s, y0 + 186f * s, 240f * s, () =>
+                        {
+                            if (_craft.Busy || _craft.Pending) return;
+                            var next = sources[(curIdx + 1) % sources.Count];
+                            _inheritSourceItemId = next.ItemId;
+                            _craft.SelectInheritEnhance(_talismanTargetItemId, _inheritSourceItemId);
+                            Render();
+                        }, false, !_craft.Busy && !_craft.Pending);
+                }
+                if (selectedSource != null)
+                {
+                    Icon(_modalLayer, selectedSource, x0 + 422f * s, y0 + 284f * s, 144f * s);
+                    string srcPity = selectedSource.EnhanceNext?.PityLimit > 0
+                        ? $"保底 {selectedSource.EnhancePityCount}/{selectedSource.EnhanceNext.PityLimit}"
+                        : (selectedSource.Bound ? "绑定" : "可交易");
+                    Label(_modalLayer, "InheritSrcFooter", $"{Name(selectedSource)} +{selectedSource.EnhanceLevel}  ·  {srcPity}",
+                        x0 + 278f * s, y0 + 476f * s, 434f * s, 48f * s, 32f, false, Ink);
+                }
+                else
+                {
+                    var emptyLbl = Label(_modalLayer, "InheritSrcEmpty", "无更高强化\n同部位源装备",
+                        x0 + 360f * s, y0 + 312f * s, 270f * s, 100f * s, 32f, true, Muted);
+                    emptyLbl.alignment = TMPro.TextAlignmentOptions.Center;
+                }
+
+                // 中央符箓消耗槽（中心 966, 390）
+                if (talismanSprite != null)
+                {
+                    var tImg = QdaoUguiFactory.CreateImage("InheritTalismanIcon", _modalLayer,
+                        x0 + 912f * s, y0 + 336f * s, 108f * s, 108f * s, talismanSprite, false);
+                    tImg.preserveAspect = true;
+                }
+                ulong ownedTalisman = preview?.Material?.Available
+                    ?? (ulong)EquipmentScreenModel.OwnedCount(_client?.CharacterBag, _client?.Equipment, 3410u);
+                string consumeText = $"消耗道具\n流派副套继承符 ×1（持有 {ownedTalisman}）";
+                if (preview != null && !preview.Available && preview.UnavailableTip != 0)
+                    consumeText += "\n" + PlayerFeaturesClient.DescribeEquipTip("不可继承", new TipInfoMessage { Id = preview.UnavailableTip });
+                var midLbl = Label(_modalLayer, "InheritConsumableLabel", consumeText,
+                    x0 + 756f * s, y0 + 452f * s, 420f * s, 100f * s, 28f, true,
+                    preview?.Available == true ? Ink : Danger);
+                midLbl.alignment = TMPro.TextAlignmentOptions.Center;
+
+                // 右槽：目标副套（中心 1420, 356）
+                Label(_modalLayer, "InheritDstHeading", "目标副套", x0 + 1230f * s, y0 + 190f * s, 340f * s, 44f * s, 40f, false, Jade);
+                if (target != null)
+                {
+                    Icon(_modalLayer, target, x0 + 1348f * s, y0 + 284f * s, 144f * s);
+                    uint dstAfter = selectedSource != null ? selectedSource.EnhanceLevel : target.EnhanceLevel;
+                    uint dstPity = selectedSource != null ? selectedSource.EnhancePityCount : target.EnhancePityCount;
+                    uint dstPityLimit = selectedSource?.EnhanceNext?.PityLimit ?? target.EnhanceNext?.PityLimit ?? 0u;
+                    string dstPityText = dstPityLimit > 0 ? $"保底 {dstPity}/{dstPityLimit}" : "永久绑定(B)";
+                    Label(_modalLayer, "InheritDstFooter", $"{Name(target)} +{target.EnhanceLevel} → +{dstAfter}  ·  {dstPityText}",
+                        x0 + 1204f * s, y0 + 476f * s, 434f * s, 48f * s, 32f, false, Ink);
+                }
+
+                // 底部永久绑定警示区 (x=259..1673, y=557..640，避让左侧锁形图标)
+                Label(_modalLayer, "InheritBoundWarning",
+                    "源装备保持不变；\n目标副套装备将永久转为仅自用绑定（B），防止复制可交易高强装",
+                    x0 + 392f * s, y0 + 564f * s, 1250f * s, 72f * s, 32f, true, Danger);
+
+                // 右下双按钮 (y=655..717)
+                Button(_modalLayer, "InheritCancel", "取消", x0 + 1068f * s, y0 + 650f * s, 240f * s, CloseModal);
+                Button(_modalLayer, "InheritCommit", _craft.Busy ? "继承中…" : "确认继承",
+                    x0 + 1336f * s, y0 + 650f * s, 332f * s, () => { if (canCommit) _craft.Commit(); }, true, canCommit);
+                return;
+            }
+
+            // 兜底纯代码排版（仅当 panel_09_equip_inherit 资源缺失时生效）
+            Label(_modalLayer, "InheritTitle", "流派副套继承符 · 强化等级无损继承", 750, 195, 2380, 90, 60, color: Jade);
+            Label(_modalLayer, "InheritBanner",
+                $"目标副套：{Name(target)}（当前 +{target?.EnhanceLevel ?? 0}）  |  继承后目标副套转为仅自用绑定，源装备保持原样不降级",
+                750, 296, 2380, 80, 36, true, Jade);
             var list = Scroll(_modalLayer, "InheritSourceList", 750, 396, 1260, 740, Math.Max(740, sources.Count * 155));
             for (int i = 0; i < sources.Count; i++)
             {
@@ -662,8 +799,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             if (sources.Count == 0)
                 Label(list, "InheritSourceEmpty", "当前没有同部位同等级且强化更高的源装备。", 24, 48, 1180, 120, 40, true, Muted);
-
-            var preview = _craft.Preview;
             string previewText = _inheritSourceItemId == 0
                 ? "请先在左侧选择一件强化等级更高的同部位装备作为源装备。"
                 : EquipmentScreenModel.FormatCraftPreviewSummary(preview);
@@ -671,11 +806,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 previewText += "\n" + PlayerFeaturesClient.DescribeEquipTip("不可继承", new TipInfoMessage { Id = preview.UnavailableTip });
             Label(_modalLayer, "InheritPreview", previewText, 2060, 420, 1080, 560, 38, true,
                 preview?.Available == true ? Jade : Danger);
-
-            bool canCommit = _craft.CanCommit && !WriteBlocked
-                && preview?.Choice?.Operation == EquipmentCraftChoice.Types.Operation.InheritEnhance
-                && preview.Choice.ItemId == _talismanTargetItemId
-                && preview.Choice.SourceItemId == _inheritSourceItemId;
             Button(_modalLayer, "InheritCancel", "取消", 860, 1240, 720, CloseModal);
             Button(_modalLayer, "InheritCommit", _craft.Busy ? "继承中…" : "确认消耗继承符", 2160, 1240, 960,
                 () => { if (canCommit) _craft.Commit(); }, true, canCommit);

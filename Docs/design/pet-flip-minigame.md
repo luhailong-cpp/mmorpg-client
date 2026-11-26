@@ -413,7 +413,7 @@
 | `window-frame-portrait.png` | 1024×1536 | `7641c2a58604f8b6e8897f0e32f47c0978fa433d6dac883cfcaf8afb0947eaaa` | 窄竖屏窗体无字底图 |
 | `card-back.png` | 870×1158 | `55c37fd6bd8988321391d102a7ea24fbac30382675f065f596d327dfa2e43553` | 12 张暗牌共用牌背与入口图标 |
 | `card-front.png` | 870×1158 | `10f0af1c857cdf4a44cd0b07a43e6a5eb9cc6f69742697a599098c5abf7927fa` | 明牌共用空白肖像框 |
-| `matched-mark.png` | 72×72 | `5d4c8a27e078ffec1f34fe96a8a4b4c8cf2cbc4ba959d0ce7d9c89f58932d887` | 已配对玉绿金边勾标 |
+| `matched-mark.png` | 72×72 | `5d4c8a27e078ffec1f34fe96a8a4b4c8cf2cbc4ba959d0ce7d9c89f58932d887` | 已配对状态标记 |
 | `button-primary.png` | 300×90 | `9f6245d2ca5fec91fcdfdf32ca76abbbe9a8c721f533847af78ac71d54f14e30` | 主按钮备用素材 |
 | `button-secondary.png` | 292×90 | `c18540a95a2e37739aae2b15575985a77c9e02d6af45187d51b6f54259c70bf2` | 副按钮备用素材 |
 
@@ -439,16 +439,30 @@
 - **妙手连珠连击与完美通关评价**：
   - `PetFlipBoardModel` / `PetFlipSnapshot` / `PetFlipActionResult` / `PetFlipCompletionResult` 新增 `CurrentStreak`、`MaxStreak`、`LastMatchedPattern`、`IsPerfectRun`（6 次零失误）；暂停/断线续盘保留连击，失配立即清零 `CurrentStreak`，新开盘归零。
   - 配对轻弹动画振幅随连击微幅递增（`0.08`→`0.13` 封顶，`RealtimeTween` unscaled 时间），不改变逻辑同步落定语义。
-- **6 只灵宠专属道家配对小语**：
+- **6 只灵宠专属配对小语**：
   - 每次配对成功在既有提示位展示对应灵宠一句短语（2 连及以上叠加“二连妙手 / 三连贯珠 / … / 六连一气呵成”）；提示优先级严格为 `断线 > 失配 > 配对连击与小语 > 默认提示`，不覆盖 V1 失配文案规范。
   - 终局次行汇总：完美 6 次附“一气呵成”，非完美但最高连配 ≥ 2 附“最高 N 连配”，四类主结果反馈文案保持原样。
 - **纯本地跨平台确定性日期种子洗牌**：
   - 新增 `PetFlipDeckFactory.CreateDailySeededDeck(int year, int month, int day)`（FNV-1a 稳定哈希），为后续 V2“今日灵签”每日同盘挑战提供即用底座；正式开局默认仍走随机洗牌。
 
-### 9.2 后续 V2 如需升级，交由另一台 Codex 产出的美术清单
-1. **主城入口专用图标（可选）**：`WorldHud20261022/petflip.png`（84×84 RGBA 透明，统一道家 Q 版主城图标画风，替换当前复用的 `card-back.png`）。
-2. **16 张（8 对）进阶难度与“今日灵签”模式 UI（如开启 V2）**：
-   - 入口页顶部/中部的两档难度（12 张 / 16 张）与模式（自由翻牌 / 今日灵签）切换胶囊样式及横屏 `1922×818` / 竖屏 `1024×1536` 坐标预览；
-   - 16 张 4×4 牌盘横竖屏预览图（确保触控点击面积与名称可读）；
-   - 第 7、8 只灵宠头像目录 ID 映射确认（复用 `QdaoPetCatalog` 已有保留灵宠，如 `02-jiangling` 绛铃、`15-landuoxian` 岚铎仙）；
-   - （可选）128×128 透明朱红“一气呵成”完美通关印章 PNG。
+### 9.2 V2 全量扩展（A + B + C）代码落地记录（2026-11-26）
+
+在严格坚守“纯本地免费休闲、零服务端 RPC、零数值奖励、零每日红点、盘中禁止重洗”的前提下，已完成 V2（A+B+C）全套规则逻辑、多桶本机持久化、功能版 uGUI 接入及单元测试：
+
+- **A. 玩感反馈增强**：8 只灵宠专属配对小语、最高 8 连“妙手连珠”称赞与递增轻弹反馈、零失误“一气呵成”完美通关评价（轻松 6 次 / 进阶 8 次）。
+- **B. 双档难度**：
+  - `PetFlipDifficulty.Relaxed12`：12 张 6 对（`A..F`，横屏 4×3 / 竖屏 3×4，沿用 V1 原坐标）。
+  - `PetFlipDifficulty.Advanced16`：16 张 8 对（`A..H`，横竖屏均为 4×4；新增 `G -> 02-jiangling 绛铃`、`H -> 15-landuoxian 岚铎仙`，均从客户端 `QdaoPetCatalog` 实图加载校验）。
+- **C. 三种玩法模式与多桶持久化**：
+  - `PetFlipGameMode.Classic`（经典自由）：每局随机洗牌。
+  - `PetFlipGameMode.DailyChallenge`（今日灵签）：按本地公历日期 `yyyyMMdd` 与难度走跨平台确定性 FNV-1a 洗牌，同日同盘，独立记录今日最佳并在次日自动重置为“暂无纪录”。
+  - `PetFlipGameMode.SpiritEye`（灵目趣味）：每局免费附赠 1 次 `UseSpiritEyePeek(slotIndex)`（窥看 1 张暗牌，不计翻牌次数、不打断连击、不自动倒计时盖回，下一次点击任一未配对牌先盖回再作为新一手第 1 张翻开）。
+  - **V2 存档编码**：仅存在 `(Relaxed12, Classic)` 时继续输出 V1 `1|<flips>`（100% 向后兼容）；存在多桶或今日灵签时输出 `2|<diff>:<mode>=<flips>[@<yyyyMMdd>],...`，任意字段损坏按暂无纪录兜底，保存失败不影响继续游玩。
+  - **盘中锁配置**：`SelectConfiguration(difficulty, mode)` 与 `ReturnToEntryAfterCompletion()` 仅允许在 `Idle` 或 `Completed` 阶段执行，盘中未完成时一律返回 `RoundNotCompleted`。
+
+### 9.3 交由另一台 Codex 产出的 V2 UI 资产需求清单（`designs/pet-memory-ui-v2/`，仅定义功能与规格，不干预美术风格）
+1. **主城入口专用图标**：`WorldHud20261022/petflip.png`（84×84 RGBA 透明，替换当前复用的 `card-back.png`）。
+2. **入口页双排选择胶囊素材（无字 9-slice 底图）**：`assets/pill-normal.png`、`assets/pill-selected.png`（适配 190×42 / 340×54，选中与未选中需清晰区分，配套横屏 `1922×818` 与竖屏 `1024×1536` 入口预览）。
+3. **进阶 16 张（4×4）盘面与终局 8 头像预览**：横屏 `1922×818` 与竖屏 `1024×1536` 预览图 + 新增 2 只灵宠头像交付副本（`portraits/02-jiangling.png` 绛铃、`portraits/15-landuoxian.png` 岚铎仙）。
+4. **灵目模式与完美通关组件**：`assets/spirit-eye-icon.png`（64×64 灵目功能图标）、`assets/card-spirit-peek-frame.png`（870×1158 灵目窥看态卡牌叠框，需一眼区别于普通明牌与已配对牌）、`assets/stamp-perfect.png`（128×128 透明完美通关徽章/印章）。
+5. **当前客户端 UI 状态诚实标注**：客户端代码已用 V1 原图 + 程序化圆角胶囊实现 V2 全量可交互功能版布局（待 Codex 提交 `pet-memory-ui-v2` 切片后零逻辑改动换皮替换）。

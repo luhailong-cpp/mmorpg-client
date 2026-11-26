@@ -36,13 +36,15 @@ namespace MmorpgClient.UI.Ugui.Battle
                 if(rect.name=="PaintedWindowFrame")rect.gameObject.SetActive(false);
             foreach(var label in root.GetComponentsInChildren<TMP_Text>(true))
             {
+                if(label.name=="VerdictText"||label.name=="MvpBadgeText"||label.name=="HighlightPillText")continue;
                 label.font=label.name.EndsWith("Title",StringComparison.Ordinal)?QdaoUguiTheme.ResolveFont():QdaoUguiTypography.ResolveBodyFont();
                 label.fontStyle=FontStyles.Normal;label.color=label.name=="Title"?Ink:Muted;
             }
             foreach(var button in root.GetComponentsInChildren<Button>(true))
-                Button(button,button.name.Contains("Join")||button.name.Contains("WatchRandom")||button.name.Contains("Confirm")||
+                Button(button,button.name.Contains("Join")||button.name.Contains("WatchRandom")||button.name.Contains("WatchReplay")||
+                    button.name.Contains("Refresh")||button.name.Contains("Confirm")||
                     button.name.Contains("CancelQueue")||button.GetComponentInChildren<TMP_Text>(true)?.text.StartsWith("√",StringComparison.Ordinal)==true);
-            if(root.name=="BattleQueuePanel"||root.name=="SpectatePanel")
+            if(root.name=="BattleQueuePanel"||root.name=="SpectatePanel"||root.name=="BattleReportPanel"||root.name=="ReplayStatsPanel")
             {
                 var title=root.Find("Title")?.GetComponent<TMP_Text>();
                 if(root.Find("FidelityTitlePlate")==null)

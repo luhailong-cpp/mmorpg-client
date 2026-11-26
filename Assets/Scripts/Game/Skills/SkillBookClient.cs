@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Net;
 using MmorpgClient.Net.Generated;
@@ -255,6 +256,14 @@ namespace MmorpgClient.Game.Skills
                 if (openingSkillIds != null) req.OpeningSkillIds.AddRange(openingSkillIds);
                 _pendingSaveLoadout = req;
             }
+            else if (_pendingSaveLoadout.SchemeId != schemeId || _pendingSaveLoadout.RoleTag != roleTag ||
+                !_pendingSaveLoadout.PassiveSkillIds.SequenceEqual(passiveSkillIds ?? Array.Empty<uint>()) ||
+                !_pendingSaveLoadout.PursuitSkillIds.SequenceEqual(pursuitSkillIds ?? Array.Empty<uint>()) ||
+                !_pendingSaveLoadout.OpeningSkillIds.SequenceEqual(openingSkillIds ?? Array.Empty<uint>()))
+            {
+                completed?.Invoke(false, "上一次战法装配保存尚未确认，请按原方案重试或刷新查看。");
+                return;
+            }
             var sent = _pendingSaveLoadout.Clone();
             var stamp = Capture();
             _activeWrite = stamp.Id;
@@ -273,7 +282,7 @@ namespace MmorpgClient.Game.Skills
                 if (!status.IsOk || response == null)
                 {
                     string err = "战法装配结果未确认:" + DescribeFailure(status) + ",可重试或刷新查看";
-                    PublishError(context, err);
+                    if (context.Matches(State?.Context)) PublishError(context, err);
                     completed?.Invoke(false, err);
                     return;
                 }
@@ -283,6 +292,11 @@ namespace MmorpgClient.Game.Skills
                 string message = rejected
                     ? SkillBookMapper.DescribeTip("保存战法装配失败", response.ErrorMessage)
                     : $"已保存并启用流派方案 {sent.SchemeId}";
+                if (!context.Matches(State?.Context))
+                {
+                    completed?.Invoke(exact, exact ? null : message);
+                    return;
+                }
                 if (response.State != null && !HasTip(response.State.ErrorMessage))
                 {
                     ApplyBook(context, response.State, message);
@@ -329,6 +343,11 @@ namespace MmorpgClient.Game.Skills
                     RequestId = Guid.NewGuid().ToString("N"),
                 };
             }
+            else if (_pendingSwitchLoadout.SchemeId != schemeId)
+            {
+                completed?.Invoke(false, "上一次方案切换尚未确认，请按原方案重试或刷新查看。");
+                return;
+            }
             var sent = _pendingSwitchLoadout.Clone();
             var stamp = Capture();
             _activeWrite = stamp.Id;
@@ -347,7 +366,7 @@ namespace MmorpgClient.Game.Skills
                 if (!status.IsOk || response == null)
                 {
                     string err = "切换战法流派结果未确认:" + DescribeFailure(status) + ",可重试或刷新查看";
-                    PublishError(context, err);
+                    if (context.Matches(State?.Context)) PublishError(context, err);
                     completed?.Invoke(false, err);
                     return;
                 }
@@ -357,6 +376,11 @@ namespace MmorpgClient.Game.Skills
                 string message = rejected
                     ? SkillBookMapper.DescribeTip("切换战法流派失败", response.ErrorMessage)
                     : $"已切换至流派方案 {sent.SchemeId}";
+                if (!context.Matches(State?.Context))
+                {
+                    completed?.Invoke(exact, exact ? null : message);
+                    return;
+                }
                 if (response.State != null && !HasTip(response.State.ErrorMessage))
                 {
                     ApplyBook(context, response.State, message);
@@ -414,6 +438,12 @@ namespace MmorpgClient.Game.Skills
                 return;
             }
             var snapshot = SkillBookMapper.ToSnapshot(response, _presentation);
+            if (!context.IsPet && !string.IsNullOrEmpty(snapshot.Loadout?.LastRequestId))
+            {
+                string requestId = snapshot.Loadout.LastRequestId;
+                if (_pendingSaveLoadout?.RequestId == requestId) _pendingSaveLoadout = null;
+                if (_pendingSwitchLoadout?.RequestId == requestId) _pendingSwitchLoadout = null;
+            }
             CachePresentation(response, snapshot);
             if (context.IsPet) snapshot.Title = (context.DisplayName ?? "宝宝") + "的技能";
             Publish(new Ui.SkillBookViewState

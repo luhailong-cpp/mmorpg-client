@@ -89,7 +89,11 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 {
                     string sqName = !string.IsNullOrEmpty(champSeason.ChampionSquadName)
                         ? champSeason.ChampionSquadName : $"战队 #{champSeason.ChampionSquadId}";
-                    _plaqueText.text = $"S{champSeason.SeasonId}总冠军·{sqName}";
+                    string embName = TournamentFormatting.GetEmblemInfo(champSeason.ChampionEmblemId).Name;
+                    string mvpSuffix = champSeason.FinalMvpPlayerId != 0UL && !string.IsNullOrEmpty(champSeason.FinalMvpPlayerName)
+                        ? $"\n问鼎之星 · {champSeason.FinalMvpPlayerName}"
+                        : string.Empty;
+                    _plaqueText.text = $"S{champSeason.SeasonId}总冠军·[{embName}]{sqName}{mvpSuffix}";
                 }
             }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MmorpgClient.UI.Ugui.Skills;
 using MmorpgClient.UI.Ugui.Tweening;
 using UnityEngine;
 using MmorpgClient.Game.Battle.Presentation;
@@ -33,6 +34,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public const float MultiTargetFxSize = 380f;
         /// <summary>多段攻击每段错开的秒数。</summary>
         public const float MultiHitStagger = 0.12f;
+        private const string MirrorRingFxId = "mirror_cast_ring";
 
         public event Action OnFinished;
         public event Action OnAborted;
@@ -155,9 +157,13 @@ namespace MmorpgClient.UI.Ugui.Battle
                 float impact = action != null && actor != null ? actor.ActionEventDelaySeconds(action) : 0f;
                 if (action == "cast" && actor != null)
                 {
-                    bool hasDamage = beat.Targets.Exists(target => target.Effect == TargetEffect.Damage ||
-                        target.Effect == TargetEffect.Miss || target.Effect == TargetEffect.Block);
-                    if (hasDamage)
+                    if (IsMirrorCast(beat))
+                    {
+                        var ring = BattleArtCatalog.LoadFx(MirrorRingFxId);
+                        if (ring != null)
+                            beat.DurationSeconds = Mathf.Max(beat.DurationSeconds, impact + ring.DurationSeconds + .03f);
+                    }
+                    if (UsesCastImpact(beat))
                     {
                         var presentation = BattleArtCatalog.ResolveSkillFx(beat.SkillId, false);
                         float lead = !string.IsNullOrEmpty(presentation.ProjectileFxId) ? presentation.FlightSeconds :
@@ -351,8 +357,14 @@ namespace MmorpgClient.UI.Ugui.Battle
                     PlayAttack(beat, actor);
                     break;
                 case BeatKind.Cast:
-                    PlayCast(beat, actor, $"施放 技能{beat.SkillId}");
+                {
+                    string skillName = SkillUiRoot.FindPresentation(beat.SkillId)?.name ?? SkillCatalog.Name(beat.SkillId);
+                    if (IsMirrorCast(beat))
+                        PlayCast(beat, actor, $"复制施放【{skillName}】", $"【复制】{skillName}");
+                    else
+                        PlayCast(beat, actor, $"施放 {skillName}");
                     break;
+                }
                 case BeatKind.Item:
                     PlayCast(beat, actor, $"使用 道具{beat.ItemId}");
                     break;
@@ -442,7 +454,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _ => null,
             };
             if (!string.IsNullOrEmpty(fxId))
-                view.SpawnFx(fxId, beat.MechanicKind != 5u, beat.MechanicKind == 5u ? 420f : 340f);
+                view.SpawnFx(fxId, atFeet: false, beat.MechanicKind == 5u ? 420f : 340f);
             Color tint = banner.IsPositiveForPlayer
                 ? new Color(1f, 0.86f, 0.36f, 1f)
                 : new Color(1f, 0.42f, 0.34f, 1f);
@@ -471,7 +483,15 @@ namespace MmorpgClient.UI.Ugui.Battle
             });
         }
 
-        private void PlayCast(Beat beat, BattleUnitView actor, string verb)
+        private static bool IsMirrorCopyCast(Beat beat) => beat.Kind == BeatKind.Cast && beat.SkillId == TurnPlan.MirrorCopySkillId;
+
+        private static bool IsMirrorCast(Beat beat) => beat.Kind == BeatKind.Cast && beat.HitKind == eBattleHitKind.BattleHitMirror;
+
+        private static bool UsesCastImpact(Beat beat) => IsMirrorCopyCast(beat) || IsMirrorCast(beat) ||
+            beat.Targets.Exists(target => target.Effect == TargetEffect.Damage ||
+                target.Effect == TargetEffect.Miss || target.Effect == TargetEffect.Block);
+
+        private void PlayCast(Beat beat, BattleUnitView actor, string verb, string mirrorLabel = null)
         {
             Log($"{Name(beat.ActorId)} {verb}");
             if (actor == null)
@@ -483,7 +503,18 @@ namespace MmorpgClient.UI.Ugui.Battle
             bool mirror = !actor.FacingEast;
             actor.PlayCast(() =>
             {
-                var targets = DistinctTargetViews(beat);
+                if (mirrorLabel != null)
+                {
+                    Fx.Play(MirrorRingFxId, actor.FootPosition, SingleTargetFxSize * Mathf.Max(0.6f, actor.Scale));
+                    actor.SpawnFloatText(mirrorLabel, new Color(0.84f, 0.95f, 0.91f), true);
+                }
+                var targets = IsMirrorCopyCast(beat) ? new List<BattleUnitView>() : DistinctTargetViews(beat);
+                // 玄镜映法成功时没有目标结算。镜像辅助技也可能只有后续独立的护盾等事件。
+                if (targets.Count == 0 && (IsMirrorCopyCast(beat) || mirrorLabel != null) && beat.PrimaryTargetId != 0)
+                {
+                    var primary = _resolveView(beat.PrimaryTargetId);
+                    if (primary != null) targets.Add(primary);
+                }
                 if (targets.Count == 0)
                 {
                     ApplyOutcomes(beat);
@@ -497,12 +528,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     ApplyOutcomes(beat);
                 };
                 float size = targets.Count > 1 ? MultiTargetFxSize : SingleTargetFxSize;
-                bool anyDamage = false;
-                foreach (var t in beat.Targets)
-                {
-                    if (t.Effect == TargetEffect.Damage || t.Effect == TargetEffect.Miss || t.Effect == TargetEffect.Block) { anyDamage = true; break; }
-                }
-                if (!anyDamage)
+                if (!UsesCastImpact(beat))
                 {
                     // 纯治疗/上 buff 技能:目标特效由 ApplyOutcomes 各自铺(heal_ring/buff_rise),不再叠攻击特效
                     applyOnce();
@@ -631,6 +657,11 @@ namespace MmorpgClient.UI.Ugui.Battle
                         view?.PlayDodge();
                         view?.ShowNumber(0, NumberKind.Miss, groupX, delay);
                         Log($"{Name(target.ActorId)} 闪避");
+                        break;
+                    case TargetEffect.Resist:
+                        const string resistLabel = "不可复制/免疫";
+                        view?.SpawnFloatText(resistLabel, BattleUiStyle.WarnText, false);
+                        Log($"{Name(target.ActorId)} {resistLabel}");
                         break;
                     case TargetEffect.Heal:
                         view?.SpawnFx("heal_ring", true, 320f);

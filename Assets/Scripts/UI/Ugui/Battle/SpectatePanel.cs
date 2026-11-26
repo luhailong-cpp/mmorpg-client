@@ -169,6 +169,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 case Match.MatchMode._1V1: return "PVP 1v1";
                 case Match.MatchMode._3V3: return "PVP 3v3";
                 case Match.MatchMode._5V5: return "PVP 5v5";
+                case Match.MatchMode.GuildWarPvp: return "帮战直打";
+                case Match.MatchMode.GuildWarSiege: return "帮战踢馆";
                 case Match.MatchMode.PvpChallenge: return "切磋 PK";
                 default: return $"模式{(int)mode}";
             }

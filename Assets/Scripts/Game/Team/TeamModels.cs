@@ -19,6 +19,8 @@ namespace MmorpgClient.Game.Team
         public string CharacterId;
         public bool IsLeader;
         public bool IsOnline = true;
+        // 离线托管中(不在线且服务端存在托管在场心跳)。
+        public bool IsHosted;
         // Chat history identifies a sender but does not prove current presence.
         public bool OnlineStatusKnown = true;
         public bool InBattle;
@@ -62,6 +64,8 @@ namespace MmorpgClient.Game.Team
         public bool RankedPresetsAllConfirmed;
         public uint RankedSeasonId;
         public uint RankedRuleVersion;
+        // 跑图跟随阵型样式(长蛇 / 雁行 / 五行)。
+        public Teampb.TeamFollowFormationStyle FollowFormation;
         public uint ApplicationCount;
         public ulong ServerTimeMs;
         public List<TeamRole> Members = new List<TeamRole>();
@@ -82,6 +86,7 @@ namespace MmorpgClient.Game.Team
                 MatchMode = MatchMode, PvpMatchSupported = PvpMatchSupported,
                 RankedPresetsAllConfirmed = RankedPresetsAllConfirmed,
                 RankedSeasonId = RankedSeasonId, RankedRuleVersion = RankedRuleVersion,
+                FollowFormation = FollowFormation,
                 Members = CloneRoles(Members), Applications = CloneRoles(Applications),
                 PendingInvites = CloneRoles(PendingInvites), Approved = CloneRoles(Approved)
             };
@@ -120,7 +125,8 @@ namespace MmorpgClient.Game.Team
     public enum TeamAction
     {
         None, Refresh, ListInvites, Create, Apply, Decide, Invite, RespondInvite,
-        Leave, Kick, Transfer, Disband, StartMatch, ConfirmRankedPreset
+        Leave, Kick, Transfer, Disband, StartMatch, ConfirmRankedPreset,
+        SetFormation, RecallMembers
     }
 
     /// <summary>新视图相对当前视图的先后:Accept 应用;Stale 丢弃;Conflict 同 epoch 换了队,丢弃并重拉。</summary>

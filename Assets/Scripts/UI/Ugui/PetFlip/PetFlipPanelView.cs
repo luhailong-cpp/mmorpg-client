@@ -49,11 +49,22 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             public TMP_Text NameText;
         }
 
+        private sealed class PillButtonView
+        {
+            public RectTransform Root;
+            public Button Button;
+            public Image Background;
+            public TMP_Text Label;
+        }
+
         public event Action StartClicked;
         public event Action PlayAgainClicked;
         public event Action RetryLoadClicked;
         public event Action CloseClicked;
         public event Action<int> CardSlotClicked;
+        public event Action<int> SpiritEyeSlotClicked;
+        public event Action<PetFlipDifficulty, PetFlipGameMode> ConfigurationSelected;
+        public event Action ReturnToEntryClicked;
 
         public RectTransform FrameRoot { get; }
         public bool IsPortrait { get; private set; }
@@ -84,21 +95,26 @@ namespace MmorpgClient.UI.Ugui.PetFlip
         private readonly TMP_Text _entryBestValue;
         private readonly TMP_Text _entryBestSub;
         private readonly TMP_Text _entryHelpText;
+        private readonly PillButtonView[] _difficultyPills = new PillButtonView[2];
+        private readonly PillButtonView[] _modePills = new PillButtonView[3];
 
         private readonly GameObject _boardRoot;
         private readonly RectTransform _boardLeftNote;
+        private readonly TMP_Text _boardRulesFoot;
         private readonly RectTransform _boardRightNote;
+        private readonly TMP_Text _boardBestTitle;
         private readonly TMP_Text _boardBestValue;
         private readonly TMP_Text _boardHintText;
         private readonly TMP_Text _boardUnsavedText;
         private readonly TMP_Text _portraitHintText;
-        private readonly CardSlotView[] _cardSlots = new CardSlotView[PetFlipConstants.BoardCardCount];
+        private readonly CardSlotView[] _cardSlots = new CardSlotView[PetFlipConstants.MaxBoardCardCount];
 
         private readonly GameObject _completeRoot;
         private readonly TMP_Text _completeHeadline;
         private readonly TMP_Text _completeSummary;
         private readonly TMP_Text _completeUnsavedText;
-        private readonly MedallionView[] _medallions = new MedallionView[PetFlipConstants.PairCount];
+        private readonly PillButtonView _switchConfigButton;
+        private readonly MedallionView[] _medallions = new MedallionView[PetFlipConstants.MaxPairCount];
 
         private readonly GameObject _statusRoot;
         private readonly RectTransform _statusNote;
@@ -109,6 +125,12 @@ namespace MmorpgClient.UI.Ugui.PetFlip
         private readonly List<RealtimeTweener> _activeTweens = new List<RealtimeTweener>();
         private float _inputLockedUntilUnscaledTime;
         private PetFlipResolvedAssets _assets;
+        private PetFlipDifficulty _layoutDifficulty = PetFlipDifficulty.Relaxed12;
+        private PetFlipDifficulty _selectedDifficulty = PetFlipDifficulty.Relaxed12;
+        private PetFlipGameMode _selectedMode = PetFlipGameMode.Classic;
+        private ulong _lastRenderedRoundId;
+        private bool _spiritEyeArmed;
+        private PetFlipSnapshot _lastSnapshot;
 
         public PetFlipPanelView(RectTransform fittedParent)
         {
@@ -144,6 +166,18 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             _entryBestSub = CreateCenteredLabel("Sub", _entryRightNote, PetFlipUiPresentation.EntryCountRuleText, 21f, PetFlipArtCatalog.JadeText, bold: false);
             _entryHelpText = CreateCenteredLabel("EntryHelp", _entryRoot.transform, PetFlipUiPresentation.EntryHelpText, 24f, PetFlipArtCatalog.JadeText, bold: false, wrap: true);
 
+            _difficultyPills[0] = CreatePillButton("DiffRelaxed12", _entryRoot.transform, PetFlipUiPresentation.FormatDifficultyLabel(PetFlipDifficulty.Relaxed12),
+                () => ConfigurationSelected?.Invoke(PetFlipDifficulty.Relaxed12, _selectedMode));
+            _difficultyPills[1] = CreatePillButton("DiffAdvanced16", _entryRoot.transform, PetFlipUiPresentation.FormatDifficultyLabel(PetFlipDifficulty.Advanced16),
+                () => ConfigurationSelected?.Invoke(PetFlipDifficulty.Advanced16, _selectedMode));
+
+            _modePills[0] = CreatePillButton("ModeClassic", _entryRoot.transform, PetFlipUiPresentation.FormatModeLabel(PetFlipGameMode.Classic),
+                () => ConfigurationSelected?.Invoke(_selectedDifficulty, PetFlipGameMode.Classic));
+            _modePills[1] = CreatePillButton("ModeDaily", _entryRoot.transform, PetFlipUiPresentation.FormatModeLabel(PetFlipGameMode.DailyChallenge),
+                () => ConfigurationSelected?.Invoke(_selectedDifficulty, PetFlipGameMode.DailyChallenge));
+            _modePills[2] = CreatePillButton("ModeSpiritEye", _entryRoot.transform, PetFlipUiPresentation.FormatModeLabel(PetFlipGameMode.SpiritEye),
+                () => ConfigurationSelected?.Invoke(_selectedDifficulty, PetFlipGameMode.SpiritEye));
+
             // 2. 牌盘页
             _boardRoot = CreateLayer("BoardPage", FrameRoot);
             _boardLeftNote = CreateNoteCard("BoardRulesNote", _boardRoot.transform);
@@ -151,12 +185,12 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             Place(boardRulesTitle.rectTransform, 20f, 17f, 230f, 52f);
             var boardRulesBody = CreateCenteredLabel("Body", _boardLeftNote, "翻开两张相同灵宠\n就能配成一对", 23f, PetFlipArtCatalog.JadeText, bold: false, wrap: true);
             Place(boardRulesBody.rectTransform, 18f, 80f, 234f, 100f);
-            var boardRulesFoot = CreateCenteredLabel("Foot", _boardLeftNote, PetFlipUiPresentation.BoardNoLimitText, 20f, PetFlipArtCatalog.GoldText, bold: false);
-            Place(boardRulesFoot.rectTransform, 20f, 191f, 230f, 43f);
+            _boardRulesFoot = CreateCenteredLabel("Foot", _boardLeftNote, PetFlipUiPresentation.BoardNoLimitText, 20f, PetFlipArtCatalog.GoldText, bold: false);
+            Place(_boardRulesFoot.rectTransform, 20f, 191f, 230f, 43f);
 
             _boardRightNote = CreateNoteCard("BoardBestNote", _boardRoot.transform);
-            var boardBestTitle = CreateCenteredLabel("Title", _boardRightNote, "本机最佳", 31f, PetFlipArtCatalog.JadeText, bold: true);
-            Place(boardBestTitle.rectTransform, 20f, 17f, 230f, 52f);
+            _boardBestTitle = CreateCenteredLabel("Title", _boardRightNote, "本机最佳", 31f, PetFlipArtCatalog.JadeText, bold: true);
+            Place(_boardBestTitle.rectTransform, 20f, 17f, 230f, 52f);
             _boardBestValue = CreateCenteredLabel("Value", _boardRightNote, PetFlipUiPresentation.NoRecordText, 42f, PetFlipArtCatalog.GoldText, bold: true);
             Place(_boardBestValue.rectTransform, 16f, 82f, 238f, 70f);
             _boardHintText = CreateCenteredLabel("Hint", _boardRightNote, PetFlipUiPresentation.BoardDefaultHintText, 20f, PetFlipArtCatalog.JadeText, bold: false, wrap: true);
@@ -173,7 +207,7 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             _portraitHintText.fontSizeMin = 18f;
             _portraitHintText.fontSizeMax = 25f;
 
-            for (int i = 0; i < PetFlipConstants.BoardCardCount; i++)
+            for (int i = 0; i < PetFlipConstants.MaxBoardCardCount; i++)
                 _cardSlots[i] = BuildCardSlot(_boardRoot.transform, i);
 
             // 3. 完成结果页
@@ -182,8 +216,10 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             _completeSummary = CreateCenteredLabel("Summary", _completeRoot.transform, string.Empty, 31f, PetFlipArtCatalog.GoldText, bold: true);
             _completeUnsavedText = CreateCenteredLabel("CompleteUnsaved", _completeRoot.transform, PetFlipUiPresentation.UnsavedRecordNoticeText, 24f, PetFlipArtCatalog.WarnText, bold: true);
             _completeUnsavedText.gameObject.SetActive(false);
+            _switchConfigButton = CreatePillButton("SwitchConfigButton", _completeRoot.transform, PetFlipUiPresentation.SwitchConfigButtonText,
+                () => ReturnToEntryClicked?.Invoke());
 
-            for (int i = 0; i < PetFlipConstants.PairCount; i++)
+            for (int i = 0; i < PetFlipConstants.MaxPairCount; i++)
                 _medallions[i] = BuildMedallion(_completeRoot.transform, i);
 
             // 4. 资源加载中 / 加载失败页
@@ -246,18 +282,23 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 Place((RectTransform)_secondaryButton.transform, 538f, 1388f, 310f, 83f);
                 _secondaryLabel.fontSize = 29f;
 
-                // 入口页竖排
-                Place(_entryPreviewCardBack.rectTransform, 395f, 310f, 234f, 314f);
-                Place(_entryLeftNote, 142f, 654f, 740f, 220f);
-                Place(_entryLeftTitle.rectTransform, 24f, 22f, 692f, 52f);
-                Place(_entryLeftBody.rectTransform, 32f, 84f, 676f, 114f);
-                Place(_entryRightNote, 142f, 904f, 740f, 216f);
-                Place(_entryBestTitle.rectTransform, 24f, 20f, 692f, 48f);
-                Place(_entryBestValue.rectTransform, 24f, 74f, 692f, 76f);
-                Place(_entryBestSub.rectTransform, 24f, 156f, 692f, 42f);
-                Place(_entryHelpText.rectTransform, 112f, 1152f, 800f, 108f);
+                // 入口页竖排（含 V2 难度/模式选择胶囊）
+                Place(_entryPreviewCardBack.rectTransform, 424f, 292f, 176f, 236f);
+                Place(_difficultyPills[0].Root, 152f, 546f, 340f, 54f);
+                Place(_difficultyPills[1].Root, 532f, 546f, 340f, 54f);
+                Place(_modePills[0].Root, 152f, 612f, 228f, 54f);
+                Place(_modePills[1].Root, 398f, 612f, 228f, 54f);
+                Place(_modePills[2].Root, 644f, 612f, 228f, 54f);
+                Place(_entryLeftNote, 142f, 684f, 740f, 196f);
+                Place(_entryLeftTitle.rectTransform, 24f, 18f, 692f, 48f);
+                Place(_entryLeftBody.rectTransform, 32f, 74f, 676f, 108f);
+                Place(_entryRightNote, 142f, 898f, 740f, 196f);
+                Place(_entryBestTitle.rectTransform, 24f, 16f, 692f, 46f);
+                Place(_entryBestValue.rectTransform, 24f, 66f, 692f, 72f);
+                Place(_entryBestSub.rectTransform, 24f, 144f, 692f, 40f);
+                Place(_entryHelpText.rectTransform, 112f, 1112f, 800f, 96f);
 
-                // 牌盘页：3列×4行，隐藏横屏左右便签，显示底部竖屏提示条
+                // 牌盘页：隐藏横屏左右便签，显示底部竖屏提示条
                 _boardLeftNote.gameObject.SetActive(false);
                 _boardRightNote.gameObject.SetActive(false);
                 _portraitHintText.gameObject.SetActive(true);
@@ -268,7 +309,8 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 _completeHeadline.fontSize = 42f;
                 Place(_completeSummary.rectTransform, 112f, 1020f, 800f, 72f);
                 _completeSummary.fontSize = 34f;
-                Place(_completeUnsavedText.rectTransform, 112f, 1106f, 800f, 56f);
+                Place(_completeUnsavedText.rectTransform, 112f, 1106f, 800f, 52f);
+                Place(_switchConfigButton.Root, 352f, 1188f, 320f, 58f);
 
                 // 加载/失败页竖排
                 Place(_statusNote, 132f, 470f, 760f, 440f);
@@ -292,18 +334,23 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 Place((RectTransform)_secondaryButton.transform, 985f, 688f, 292f, 90f);
                 _secondaryLabel.fontSize = 28f;
 
-                // 入口页横排（严格对齐 build.ps1）
+                // 入口页横排（居中预留 V2 难度/模式双排胶囊，与左右便签零重叠）
                 Place(_entryLeftNote, 286f, 293f, 295f, 238f);
                 Place(_entryLeftTitle.rectTransform, 20f, 19f, 255f, 56f);
                 Place(_entryLeftBody.rectTransform, 18f, 82f, 259f, 134f);
-                Place(_entryPreviewCardBack.rectTransform, 854f, 231f, 214f, 287f);
+                Place(_entryPreviewCardBack.rectTransform, 868f, 216f, 186f, 248f);
+                Place(_difficultyPills[0].Root, 763f, 476f, 190f, 42f);
+                Place(_difficultyPills[1].Root, 969f, 476f, 190f, 42f);
+                Place(_modePills[0].Root, 677f, 526f, 180f, 42f);
+                Place(_modePills[1].Root, 871f, 526f, 180f, 42f);
+                Place(_modePills[2].Root, 1065f, 526f, 180f, 42f);
                 Place(_entryRightNote, 1347f, 293f, 295f, 238f);
                 Place(_entryBestTitle.rectTransform, 22f, 23f, 250f, 53f);
                 Place(_entryBestValue.rectTransform, 22f, 87f, 250f, 75f);
                 Place(_entryBestSub.rectTransform, 22f, 169f, 250f, 42f);
-                Place(_entryHelpText.rectTransform, 480f, 570f, 962f, 56f);
+                Place(_entryHelpText.rectTransform, 480f, 580f, 962f, 52f);
 
-                // 牌盘页：4列×3行 + 左右便签
+                // 牌盘页：左右便签
                 _boardLeftNote.gameObject.SetActive(true);
                 _boardRightNote.gameObject.SetActive(true);
                 Place(_boardLeftNote, 256f, 310f, 270f, 254f);
@@ -313,9 +360,10 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 // 完成页横排
                 Place(_completeHeadline.rectTransform, 320f, 238f, 1282f, 78f);
                 _completeHeadline.fontSize = 42f;
-                Place(_completeSummary.rectTransform, 420f, 548f, 1082f, 62f);
+                Place(_completeSummary.rectTransform, 420f, 540f, 1082f, 58f);
                 _completeSummary.fontSize = 31f;
-                Place(_completeUnsavedText.rectTransform, 511f, 610f, 900f, 44f);
+                Place(_completeUnsavedText.rectTransform, 511f, 596f, 900f, 38f);
+                Place(_switchConfigButton.Root, 831f, 636f, 260f, 42f);
 
                 // 加载/失败页横排
                 Place(_statusNote, 575f, 250f, 774f, 376f);
@@ -324,18 +372,53 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 Place(_statusSubtext.rectTransform, 85f, 224f, 602f, 55f);
             }
 
-            // 12 张卡牌槽位按当前方向排布
-            for (int i = 0; i < _cardSlots.Length; i++)
-                ApplyCardSlotGeometry(_cardSlots[i], PetFlipUiPresentation.GetCardSlotRect(i, isPortrait));
+            float pillFont = isPortrait ? 24f : 19f;
+            for (int i = 0; i < _difficultyPills.Length; i++) _difficultyPills[i].Label.fontSizeMax = pillFont;
+            for (int i = 0; i < _modePills.Length; i++) _modePills[i].Label.fontSizeMax = pillFont;
+            _switchConfigButton.Label.fontSizeMax = isPortrait ? 25f : 20f;
 
-            // 完成页 6 只灵宠头像排布
+            ApplyBoardAndMedallionGeometry();
+        }
+
+        private void ApplyBoardAndMedallionGeometry()
+        {
+            int activeCards = PetFlipConstants.GetCardCount(_layoutDifficulty);
+            for (int i = 0; i < _cardSlots.Length; i++)
+            {
+                if (i < activeCards)
+                    ApplyCardSlotGeometry(_cardSlots[i], PetFlipUiPresentation.GetCardSlotRect(i, IsPortrait, _layoutDifficulty));
+            }
+
+            int activePairs = PetFlipConstants.GetPairCount(_layoutDifficulty);
             for (int i = 0; i < _medallions.Length; i++)
-                ApplyMedallionGeometry(_medallions[i], PetFlipUiPresentation.GetCompletionMedallionRect(i, isPortrait));
+            {
+                if (i < activePairs)
+                    ApplyMedallionGeometry(_medallions[i], PetFlipUiPresentation.GetCompletionMedallionRect(i, IsPortrait, _layoutDifficulty));
+            }
         }
 
         /// <summary>依据不可变规则快照与资源加载状态整体刷新页面，不修改任何业务逻辑。</summary>
         public void Render(PetFlipSnapshot snapshot, PetFlipAssetLoadState assetState)
         {
+            _lastSnapshot = snapshot;
+            if (snapshot != null)
+            {
+                _selectedDifficulty = snapshot.Difficulty;
+                _selectedMode = snapshot.Mode;
+
+                if (snapshot.Difficulty != _layoutDifficulty)
+                {
+                    _layoutDifficulty = snapshot.Difficulty;
+                    ApplyBoardAndMedallionGeometry();
+                }
+
+                if (snapshot.RoundId != _lastRenderedRoundId || !snapshot.CanUseSpiritEye)
+                {
+                    _lastRenderedRoundId = snapshot.RoundId;
+                    _spiritEyeArmed = false;
+                }
+            }
+
             CurrentPage = PetFlipUiPresentation.ResolvePage(snapshot, assetState);
 
             _entryRoot.SetActive(CurrentPage == PetFlipUiPage.Entry);
@@ -368,11 +451,7 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                     break;
 
                 case PetFlipUiPage.Entry:
-                    _leftPillText.text = "六对灵宠";
-                    _rightPillText.text = "不限时间";
-                    _entryBestValue.text = PetFlipUiPresentation.FormatBestText(snapshot?.LocalRecord);
-                    bool canStart = snapshot != null && snapshot.HasActiveSession && !snapshot.ShouldCollapsePanel;
-                    SetPrimaryAction(PetFlipUiPresentation.StartButtonText, interactive: canStart);
+                    RenderEntry(snapshot);
                     break;
 
                 case PetFlipUiPage.Board:
@@ -383,6 +462,36 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                     RenderComplete(snapshot);
                     break;
             }
+        }
+
+        private void RenderEntry(PetFlipSnapshot snapshot)
+        {
+            PetFlipDifficulty diff = snapshot != null ? snapshot.Difficulty : PetFlipDifficulty.Relaxed12;
+            PetFlipGameMode mode = snapshot != null ? snapshot.Mode : PetFlipGameMode.Classic;
+            bool canConfig = snapshot != null && snapshot.CanChangeConfiguration;
+
+            _leftPillText.text = PetFlipUiPresentation.FormatDifficultyPill(diff);
+            _rightPillText.text = mode == PetFlipGameMode.DailyChallenge
+                ? PetFlipUiPresentation.FormatDailyDateLabel(snapshot.DailyDateKey)
+                : PetFlipUiPresentation.FormatModeLabel(mode);
+            _entryLeftBody.text = PetFlipUiPresentation.FormatEntryDescription(diff, mode);
+            _entryBestTitle.text = PetFlipUiPresentation.FormatBestTitle(mode);
+            _entryBestValue.text = PetFlipUiPresentation.FormatBestText(snapshot?.LocalRecord);
+
+            UpdatePillState(_difficultyPills[0], PetFlipUiPresentation.FormatDifficultyLabel(PetFlipDifficulty.Relaxed12),
+                diff == PetFlipDifficulty.Relaxed12, canConfig);
+            UpdatePillState(_difficultyPills[1], PetFlipUiPresentation.FormatDifficultyLabel(PetFlipDifficulty.Advanced16),
+                diff == PetFlipDifficulty.Advanced16, canConfig);
+
+            UpdatePillState(_modePills[0], PetFlipUiPresentation.FormatModeLabel(PetFlipGameMode.Classic),
+                mode == PetFlipGameMode.Classic, canConfig);
+            UpdatePillState(_modePills[1], PetFlipUiPresentation.FormatModeLabel(PetFlipGameMode.DailyChallenge),
+                mode == PetFlipGameMode.DailyChallenge, canConfig);
+            UpdatePillState(_modePills[2], PetFlipUiPresentation.FormatModeLabel(PetFlipGameMode.SpiritEye),
+                mode == PetFlipGameMode.SpiritEye, canConfig);
+
+            bool canStart = snapshot != null && snapshot.HasActiveSession && !snapshot.ShouldCollapsePanel;
+            SetPrimaryAction(PetFlipUiPresentation.StartButtonText, interactive: canStart);
         }
 
         /// <summary>
@@ -398,6 +507,8 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             {
                 case PetFlipActionOutcome.FirstCardFlipped:
                 case PetFlipActionOutcome.MismatchClearedAndFirstCardFlipped:
+                case PetFlipActionOutcome.SpiritEyePeeked:
+                case PetFlipActionOutcome.SpiritEyeClearedAndFirstCardFlipped:
                 case PetFlipActionOutcome.PairMismatched:
                     if (action.FlippedSlotIndex >= 0 && action.FlippedSlotIndex < _cardSlots.Length)
                     {
@@ -417,13 +528,14 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             }
         }
 
-        /// <summary>取消全部进行中动画、复位牌面缩放并释放输入锁（关闭/暂停/销毁/方向切换时必调）。</summary>
+        /// <summary>取消全部进行中动画、复位牌面缩放、退出灵目待选态并释放输入锁（关闭/暂停/销毁/方向切换时必调）。</summary>
         public void CancelAnimations()
         {
             for (int i = 0; i < _activeTweens.Count; i++)
                 _activeTweens[i]?.Kill();
             _activeTweens.Clear();
             _inputLockedUntilUnscaledTime = 0f;
+            _spiritEyeArmed = false;
 
             for (int i = 0; i < _cardSlots.Length; i++)
             {
@@ -437,21 +549,46 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             if (snapshot == null)
                 return;
 
-            _leftPillText.text = PetFlipUiPresentation.FormatPairCounter(snapshot.MatchedPairCount);
+            _leftPillText.text = PetFlipUiPresentation.FormatPairCounter(snapshot.MatchedPairCount, snapshot.TotalPairCount);
             _rightPillText.text = PetFlipUiPresentation.FormatFlipCounter(snapshot.FlipCount);
+            _boardBestTitle.text = PetFlipUiPresentation.FormatBestTitle(snapshot.Mode);
             _boardBestValue.text = PetFlipUiPresentation.FormatBestText(snapshot.LocalRecord);
+            _boardRulesFoot.text = snapshot.Mode == PetFlipGameMode.DailyChallenge
+                ? PetFlipUiPresentation.FormatDailyDateLabel(snapshot.DailyDateKey)
+                : (snapshot.Mode == PetFlipGameMode.SpiritEye ? "免费灵目 · 不限时" : PetFlipUiPresentation.BoardNoLimitText);
 
             bool showUnsaved = PetFlipUiPresentation.ShouldShowUnsavedNotice(snapshot);
-            _boardHintText.text = PetFlipUiPresentation.FormatBoardHint(snapshot, isPortrait: false);
+            _boardHintText.text = PetFlipUiPresentation.FormatBoardHint(snapshot, isPortrait: false, spiritEyeArmed: _spiritEyeArmed);
             _boardUnsavedText.gameObject.SetActive(showUnsaved);
 
-            string portraitHint = PetFlipUiPresentation.FormatBoardHint(snapshot, isPortrait: true);
+            string portraitHint = PetFlipUiPresentation.FormatBoardHint(snapshot, isPortrait: true, spiritEyeArmed: _spiritEyeArmed);
             _portraitHintText.text = showUnsaved
                 ? portraitHint + "  ·  " + PetFlipUiPresentation.UnsavedRecordNoticeText
                 : portraitHint;
 
-            // 局中底部左牌严格只作“本局不限时”说明牌，不接点击（盘中禁止重新洗牌）。
-            SetPrimaryAction(PetFlipUiPresentation.BoardNoLimitText, interactive: false);
+            // 经典/今日灵签底部左牌严格只作“本局不限时”不可点击说明牌；灵目模式复用该牌为免费窥牌开关。
+            if (snapshot.Mode == PetFlipGameMode.SpiritEye)
+            {
+                if (snapshot.CanUseSpiritEye)
+                {
+                    string spiritLabel = _spiritEyeArmed
+                        ? "取消灵目·点暗牌"
+                        : $"灵目窥牌 ({snapshot.RemainingSpiritEyeCharges})";
+                    SetPrimaryAction(spiritLabel, interactive: true);
+                }
+                else if (snapshot.HandState == PetFlipHandState.SpiritEyePeeking)
+                {
+                    SetPrimaryAction("灵目窥看中", interactive: false);
+                }
+                else
+                {
+                    SetPrimaryAction("灵目已用 · 不限时", interactive: false);
+                }
+            }
+            else
+            {
+                SetPrimaryAction(PetFlipUiPresentation.BoardNoLimitText, interactive: false);
+            }
 
             for (int i = 0; i < _cardSlots.Length; i++)
             {
@@ -465,12 +602,15 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 view.Root.gameObject.SetActive(true);
                 PetFlipCardSnapshot card = snapshot.Cards[i];
                 bool isFaceUp = card.IsFaceUp && card.VisiblePattern.HasValue;
+                bool isSpiritPeek = snapshot.HandState == PetFlipHandState.SpiritEyePeeking
+                    && i == snapshot.FirstSelectedSlotIndex;
                 PetFlipResolvedFace face = isFaceUp && _assets != null
                     ? _assets.GetFace(card.VisiblePattern.Value)
                     : null;
 
                 view.BackImage.gameObject.SetActive(!isFaceUp);
                 view.FrontGroup.gameObject.SetActive(isFaceUp);
+                view.FrontFrame.color = isSpiritPeek ? PetFlipArtCatalog.SpiritEyePeekTint : Color.white;
                 if (isFaceUp && face != null)
                 {
                     view.PortraitImage.sprite = face.Portrait;
@@ -479,7 +619,7 @@ namespace MmorpgClient.UI.Ugui.PetFlip
 
                 view.MatchedMarkImage.gameObject.SetActive(card.IsMatched);
                 view.Button.interactable = card.IsClickable;
-                view.Root.gameObject.name = PetFlipUiPresentation.FormatCardAccessibleName(card, face?.DisplayName);
+                view.Root.gameObject.name = PetFlipUiPresentation.FormatCardAccessibleName(card, face?.DisplayName, isSpiritPeek);
             }
         }
 
@@ -490,12 +630,17 @@ namespace MmorpgClient.UI.Ugui.PetFlip
 
             PetFlipCompletionResult result = snapshot.CompletionResult;
             int flips = result != null ? result.FlipCount : snapshot.FlipCount;
-            _leftPillText.text = PetFlipUiPresentation.FormatPairCounter(PetFlipConstants.PairCount);
+            int totalPairs = snapshot.TotalPairCount;
+            _leftPillText.text = PetFlipUiPresentation.FormatPairCounter(totalPairs, totalPairs);
             _rightPillText.text = PetFlipUiPresentation.FormatFlipCounter(flips);
 
             _completeHeadline.text = PetFlipUiPresentation.FormatCompletionHeadline(result);
             _completeSummary.text = PetFlipUiPresentation.FormatCompletionSummary(result);
             _completeUnsavedText.gameObject.SetActive(PetFlipUiPresentation.ShouldShowUnsavedNotice(snapshot));
+            _switchConfigButton.Button.interactable = snapshot.CanChangeConfiguration;
+
+            for (int i = 0; i < _medallions.Length; i++)
+                _medallions[i].Root.gameObject.SetActive(i < totalPairs);
 
             SetPrimaryAction(PetFlipUiPresentation.PlayAgainButtonText, interactive: snapshot.CanStartNewRound);
         }
@@ -517,6 +662,13 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 case PetFlipUiPage.Entry:
                     StartClicked?.Invoke();
                     break;
+                case PetFlipUiPage.Board:
+                    if (_lastSnapshot != null && _lastSnapshot.CanUseSpiritEye)
+                    {
+                        _spiritEyeArmed = !_spiritEyeArmed;
+                        RenderBoard(_lastSnapshot);
+                    }
+                    break;
                 case PetFlipUiPage.Complete:
                     PlayAgainClicked?.Invoke();
                     break;
@@ -531,6 +683,13 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             // 动画过渡窗内忽略连点穿透，不排队缓存。
             if (Time.unscaledTime < _inputLockedUntilUnscaledTime)
                 return;
+
+            if (_spiritEyeArmed && _lastSnapshot != null && _lastSnapshot.CanUseSpiritEye)
+            {
+                _spiritEyeArmed = false;
+                SpiritEyeSlotClicked?.Invoke(slotIndex);
+                return;
+            }
 
             CardSlotClicked?.Invoke(slotIndex);
         }
@@ -794,6 +953,46 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             lr.offsetMax = new Vector2(-12f, 0f);
             label = labelObj;
             return button;
+        }
+
+        private static PillButtonView CreatePillButton(string name, Transform parent, string text, Action onClick)
+        {
+            var rect = QdaoUguiFactory.CreateRect(name, parent, 0f, 0f, 180f, 42f);
+            var bg = rect.gameObject.AddComponent<Image>();
+            bg.sprite = PetFlipArtCatalog.GetRoundedLabelSprite();
+            bg.type = Image.Type.Sliced;
+            bg.raycastTarget = true;
+
+            var button = rect.gameObject.AddComponent<Button>();
+            button.targetGraphic = bg;
+            button.transition = Selectable.Transition.ColorTint;
+            button.navigation = new Navigation { mode = Navigation.Mode.Automatic };
+            if (onClick != null)
+                button.onClick.AddListener(() => onClick());
+
+            var label = CreateCenteredLabel("Label", rect, text, 19f, PetFlipArtCatalog.JadeText, bold: true);
+            label.enableAutoSizing = true;
+            label.fontSizeMin = 13f;
+            label.fontSizeMax = 24f;
+            var lr = label.rectTransform;
+            lr.anchorMin = Vector2.zero;
+            lr.anchorMax = Vector2.one;
+            lr.offsetMin = new Vector2(8f, 2f);
+            lr.offsetMax = new Vector2(-8f, -2f);
+
+            return new PillButtonView { Root = rect, Button = button, Background = bg, Label = label };
+        }
+
+        private static void UpdatePillState(PillButtonView pill, string baseLabel, bool selected, bool interactable)
+        {
+            if (pill == null) return;
+            pill.Background.sprite = selected
+                ? PetFlipArtCatalog.GetSelectedPillSprite()
+                : PetFlipArtCatalog.GetRoundedLabelSprite();
+            pill.Label.color = selected ? PetFlipArtCatalog.PaperText : PetFlipArtCatalog.JadeText;
+            // 非色相勾选前缀，确保色觉障碍玩家同样清晰辨识当前选中档位/模式。
+            pill.Label.text = selected ? "✓ " + baseLabel : baseLabel;
+            pill.Button.interactable = interactable;
         }
 
         private static void Place(RectTransform rect, float x, float y, float width, float height)

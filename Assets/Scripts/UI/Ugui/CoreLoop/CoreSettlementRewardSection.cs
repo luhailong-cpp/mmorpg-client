@@ -1,15 +1,17 @@
 using MmorpgClient.Game;
 using MmorpgClient.Game.CoreLoop;
+using MmorpgClient.Game.Season;
 using TMPro;
 using UnityEngine;
 
 namespace MmorpgClient.UI.Ugui.CoreLoop
 {
-    /// <summary>可嵌入既有结算窗口的材料拆解块；全部数值取自核心循环只读视图。</summary>
+    /// <summary>可嵌入既有结算窗口的材料拆解与赛季印进度反馈块；全部数值取自权威结算只读视图。</summary>
     public sealed class CoreSettlementRewardSection : MonoBehaviour
     {
         private CoreGameplayUiRoot _root;
         private CoreGameplayLoopClient _core;
+        private GameClient _game;
 
         public bool IsVisible => gameObject.activeSelf;
 
@@ -17,6 +19,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         {
             _root = root;
             _core = core;
+            _game = game;
             Refresh();
             Hide();
         }
@@ -37,7 +40,10 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             bool hasHighlights = highlights != null && highlights.Count > 0;
             var review = _core.BuildLastTacticalReview();
             bool hasReview = review != null && review.HasContent;
-            float baseH = 180f + (hasHighlights ? 38f : 0f) + (hasReview ? 52f : 0f);
+            var seasonProgress = SeasonModels.BuildSettlementProgressView(_game?.Battle?.LastBattleEnd, _game?.Season?.Snapshot);
+            bool hasSeason = seasonProgress != null;
+            float seasonH = hasSeason ? (seasonProgress.HonorNewlyUnlocked ? 58f : 42f) : 0f;
+            float baseH = 180f + (hasSeason ? seasonH + 4f : 0f) + (hasHighlights ? 40f : 0f) + (hasReview ? 56f : 0f);
             float scale = Mathf.Min(width / 820f, height / baseH);
             float offsetX = (width - 820f * scale) * .5f;
             float offsetY = (height - baseH * scale) * .5f;
@@ -80,8 +86,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             DrawAmount(body, "Bound", 562, "绑定", view.BoundUnitsAdded);
 
             string progress = view.WeeklyPhaseActive
-                ? $"周精进绑定 {view.EarnedThisWeek}/{view.WeeklyLimit}"
-                : $"永久首套 {view.LifetimeEarned}/{view.LifetimeLimit} · 可交易 {view.TradableEarnedTotal}/{view.TradableLifetimeLimit}";
+                ? $"周精进材料 {view.EarnedThisWeek}/{view.WeeklyLimit}"
+                : $"永久首套 {view.LifetimeEarned}/{view.LifetimeLimit} · 账号可交易 {view.TradableEarnedTotal}/{view.TradableLifetimeLimit}";
             CoreLoopUiArt.Text("Progress", body, 22, 141, 575, 22,
                 progress, 17, CoreLoopUiArt.Muted);
             CoreLoopUiArt.Image("ProgressTrack", body, 22, 166, 575, 7,
@@ -96,6 +102,42 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 "自选领取 " + view.ClaimableUnits, _root.OpenMaterialClaim,
                 view.ClaimableUnits > 0, false, 18);
 
+            float cursorY = 184f;
+            if (hasSeason)
+            {
+                bool gained = seasonProgress.PointsAdded > 0u;
+                Color bg = seasonProgress.HonorNewlyUnlocked
+                    ? new Color(.97f, .92f, .76f, .98f)
+                    : new Color(.90f, .96f, .92f, .96f);
+                CoreLoopUiArt.Image("SeasonSealSettlementBack", body, 0, cursorY, 820, seasonH, "hud-strip", bg);
+                CoreLoopUiArt.Image("SeasonSealSettlementAccent", body, 0, cursorY, 6, seasonH, null,
+                    seasonProgress.HonorNewlyUnlocked ? SeasonEconomyUiArt.GoldHighlight : CoreLoopUiArt.Jade);
+                string sealLine = gained
+                    ? $"{seasonProgress.SeasonName} · 赛季印进度 +{seasonProgress.PointsAdded}（{seasonProgress.ProgressAfter}/{seasonProgress.MaxPoints}）"
+                    : $"{seasonProgress.SeasonName} · 本季赛季印已满（{seasonProgress.ProgressAfter}/{seasonProgress.MaxPoints}），可随时免费切印";
+                var sealLbl = CoreLoopUiArt.Text("SeasonSealSettlementLine", body, 16, cursorY + 3f, 610, 22,
+                    sealLine, 17, CoreLoopUiArt.DeepJade, true, false, TextAlignmentOptions.MidlineLeft);
+                sealLbl.enableAutoSizing = true; sealLbl.fontSizeMin = 12f; sealLbl.fontSizeMax = 17f;
+
+                float sealRatio = SeasonEconomyUiArt.ComputeProgressRatio(seasonProgress.ProgressAfter, seasonProgress.MaxPoints);
+                CoreLoopUiArt.Image("SeasonSealTrack", body, 16, cursorY + 28f, 600, 7, null, new Color(.74f, .80f, .72f, .92f));
+                if (sealRatio > 0f)
+                    CoreLoopUiArt.Image("SeasonSealFill", body, 16, cursorY + 28f, 600f * sealRatio, 7, null, CoreLoopUiArt.Jade);
+
+                if (seasonProgress.HonorNewlyUnlocked)
+                {
+                    string titleTag = string.IsNullOrWhiteSpace(seasonProgress.HonorTitleName)
+                        ? "已永久解锁本季零数值纪念徽章与称谓"
+                        : $"已永久解锁零数值纪念称谓「{seasonProgress.HonorTitleName}」";
+                    CoreLoopUiArt.Text("SeasonHonorUnlockLine", body, 16, cursorY + 37f, 610, 19,
+                        titleTag, 15, SeasonEconomyUiArt.GoldHighlight, true, false, TextAlignmentOptions.MidlineLeft);
+                }
+
+                CoreLoopUiArt.Button("OpenSeasonSealFromSettlement", body, 636, cursorY + (seasonH - 32f) * 0.5f, 168, 32,
+                    "查看赛季印", _root.OpenSeasonSeal, true, false, 16);
+                cursorY += seasonH + 4f;
+            }
+
             if (hasHighlights)
             {
                 var sb = new System.Text.StringBuilder("本场战法高光：");
@@ -105,33 +147,60 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     if (i > 0) sb.Append(" · ");
                     sb.Append(highlights[i].Title);
                 }
-                CoreLoopUiArt.Image("BossTrialHighlightBack", body, 0, 184, 820, 34,
-                    "hud-strip", new Color(.98f, .93f, .76f, .95f));
-                var hlText = CoreLoopUiArt.Text("BossTrialHighlightText", body, 14, 185, 792, 32,
-                    sb.ToString(), 17, SeasonEconomyUiArt.GoldHighlight, true, false, TextAlignmentOptions.MidlineLeft);
+                var highlightSprite = CoreLoopUiArt.LoadV2("highlight_strip_gold");
+                var highlightFallback = new Color(.98f, .93f, .76f, .95f);
+                if (highlightSprite != null)
+                    SeasonEconomyUiArt.CreateSlicedOrSimple(body, "BossTrialHighlightBack", 0, cursorY, 820, 36,
+                        highlightSprite, highlightFallback);
+                else
+                    CoreLoopUiArt.Image("BossTrialHighlightBack", body, 0, cursorY, 820, 36, "hud-strip", highlightFallback);
+                float highlightPad = highlightSprite != null ? 38f : 14f;
+                Color highlightInk = highlightSprite != null ? CoreLoopUiArt.Ink : SeasonEconomyUiArt.GoldHighlight;
+                var hlText = CoreLoopUiArt.Text("BossTrialHighlightText", body, highlightPad, cursorY + 2f, 820f - highlightPad * 2f, 32,
+                    sb.ToString(), 17, highlightInk, true, false, TextAlignmentOptions.MidlineLeft);
                 hlText.enableAutoSizing = true;
                 hlText.fontSizeMin = 13f;
                 hlText.fontSizeMax = 17f;
+                cursorY += 40f;
             }
 
             if (hasReview)
             {
-                float reviewY = hasHighlights ? 222f : 184f;
+                float reviewY = cursorY;
                 Color reviewBg = review.IsVictory
                     ? new Color(.91f, .96f, .92f, .96f)
                     : new Color(.97f, .93f, .86f, .96f);
                 Color reviewAccent = review.IsVictory ? CoreLoopUiArt.DeepJade : CoreLoopUiArt.Warning;
-                CoreLoopUiArt.Image("TacticalReviewBack", body, 0, reviewY, 820, 48, "hud-strip", reviewBg);
-                CoreLoopUiArt.Image("TacticalReviewAccent", body, 0, reviewY, 6, 48, null, reviewAccent);
+                var reviewSprite = CoreLoopUiArt.LoadV2(review.IsVictory ? "review_strip_win" : "review_strip_loss");
+                if (reviewSprite != null)
+                    SeasonEconomyUiArt.CreateSlicedOrSimple(body, "TacticalReviewBack", 0, reviewY, 820, 52, reviewSprite, reviewBg);
+                else
+                {
+                    CoreLoopUiArt.Image("TacticalReviewBack", body, 0, reviewY, 820, 52, "hud-strip", reviewBg);
+                    CoreLoopUiArt.Image("TacticalReviewAccent", body, 0, reviewY, 6, 52, null, reviewAccent);
+                }
+
+                // 避让九宫格左右金色云纹端帽（约 30px）与上下金框（约 6px）
+                float reviewTextX = reviewSprite != null ? 34f : 14f;
+                var reviewIconSprite = CoreLoopUiArt.LoadV2("icon_tactical_review");
+                if (reviewIconSprite != null)
+                {
+                    float iconX = reviewSprite != null ? 32f : 14f;
+                    var reviewIcon = QdaoUguiFactory.CreateImage("TacticalReviewIcon", body, iconX, reviewY + 10, 32, 32,
+                        reviewIconSprite, false);
+                    reviewIcon.preserveAspect = true;
+                    reviewTextX = iconX + 38f;
+                }
+                float reviewTextW = (reviewSprite != null ? 786f : 810f) - reviewTextX;
                 string reasonLine = string.IsNullOrEmpty(review.ModeTag)
                     ? $"胜负复盘：{review.ReasonHeadline}"
                     : $"[{review.ModeTag}] 复盘：{review.ReasonHeadline}";
-                var reasonText = CoreLoopUiArt.Text("TacticalReviewReason", body, 14, reviewY + 2, 796, 22,
+                var reasonText = CoreLoopUiArt.Text("TacticalReviewReason", body, reviewTextX, reviewY + 6, reviewTextW, 20,
                     reasonLine, 16, reviewAccent, true, false, TextAlignmentOptions.MidlineLeft);
                 reasonText.enableAutoSizing = true;
                 reasonText.fontSizeMin = 12f;
                 reasonText.fontSizeMax = 16f;
-                var nextText = CoreLoopUiArt.Text("TacticalReviewNext", body, 14, reviewY + 24, 796, 22,
+                var nextText = CoreLoopUiArt.Text("TacticalReviewNext", body, reviewTextX, reviewY + 26, reviewTextW, 20,
                     "下一手建议：" + review.NextMoveTip, 15, CoreLoopUiArt.Ink, false, false, TextAlignmentOptions.MidlineLeft);
                 nextText.enableAutoSizing = true;
                 nextText.fontSizeMin = 11f;

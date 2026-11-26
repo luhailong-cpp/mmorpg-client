@@ -29,6 +29,12 @@ namespace MmorpgClient.Game.Tournament
         ConfirmLock = 4,
         IntermissionSwap = 5,
         SaluteChampion = 6,
+        WarmupSpar = 7,
+        PredictionBoard = 8,
+        SelectEmblem = 9,
+        MvpHighlight = 10,
+        BanLeyline = 11,
+        HighlightsHall = 12,
     }
 
     public enum TournamentInviteQuickSource
@@ -157,6 +163,12 @@ namespace MmorpgClient.Game.Tournament
         public bool LineupModalIsForMatchStart { get; private set; }
         public TournamentLeylineElement SelectedLeylineInspect { get; set; } = TournamentLeylineElement.TournamentLeylineUnspecified;
         public uint SaluteTargetSeasonId { get; private set; }
+        public uint SelectedCreateEmblemId { get; set; } = 1u;
+        public uint SelectedEmblemDraft { get; set; } = 1u;
+        public string WarmupTargetSquadIdDraft { get; set; } = string.Empty;
+        public TournamentLeylineElement WarmupLeylineDraft { get; set; } = TournamentLeylineElement.TournamentLeylineUnspecified;
+        public TournamentMatchView InspectedMvpMatch { get; private set; }
+        public TournamentMatchView BanTargetMatch { get; private set; }
 
         public string CreateNameDraft { get; set; } = string.Empty;
         public string InvitePlayerIdDraft { get; set; } = string.Empty;
@@ -237,6 +249,51 @@ namespace MmorpgClient.Game.Tournament
         public void OpenCreateModal()
         {
             ActiveModal = TournamentModalKind.CreateSquad;
+            SelectedCreateEmblemId = TournamentFormatting.NormalizeEmblemId(SelectedCreateEmblemId);
+            ModalInlineError = string.Empty;
+        }
+
+        public void OpenSelectEmblemModal(uint currentEmblemId)
+        {
+            ActiveModal = TournamentModalKind.SelectEmblem;
+            SelectedEmblemDraft = TournamentFormatting.NormalizeEmblemId(currentEmblemId);
+            ModalInlineError = string.Empty;
+        }
+
+        public void OpenWarmupModal(TournamentSquadView squad, uint battleTeamSize)
+        {
+            ActiveModal = TournamentModalKind.WarmupSpar;
+            WarmupTargetSquadIdDraft = string.Empty;
+            WarmupLeylineDraft = TournamentLeylineElement.TournamentLeylineUnspecified;
+            ModalInlineError = string.Empty;
+            SeedLineupDraft(squad, battleTeamSize);
+        }
+
+        public void OpenPredictionBoardModal()
+        {
+            ActiveModal = TournamentModalKind.PredictionBoard;
+            ModalInlineError = string.Empty;
+        }
+
+        public void OpenMvpHighlightModal(TournamentMatchView match)
+        {
+            if (match == null || match.MvpPlayerId == 0UL) return;
+            ActiveModal = TournamentModalKind.MvpHighlight;
+            InspectedMvpMatch = match.Clone();
+            ModalInlineError = string.Empty;
+        }
+
+        public void OpenBanLeylineModal(TournamentMatchView match)
+        {
+            if (match == null || match.MatchId == 0UL) return;
+            ActiveModal = TournamentModalKind.BanLeyline;
+            BanTargetMatch = match.Clone();
+            ModalInlineError = string.Empty;
+        }
+
+        public void OpenHighlightsModal()
+        {
+            ActiveModal = TournamentModalKind.HighlightsHall;
             ModalInlineError = string.Empty;
         }
 
@@ -322,6 +379,8 @@ namespace MmorpgClient.Game.Tournament
             PendingMatchId = 0UL;
             LineupModalIsForMatchStart = false;
             SaluteTargetSeasonId = 0u;
+            InspectedMvpMatch = null;
+            BanTargetMatch = null;
             ModalInlineError = string.Empty;
         }
 
@@ -518,6 +577,7 @@ namespace MmorpgClient.Game.Tournament
                 case (uint)match_error.KMatchTournamentNotOpen:
                     return new TournamentTipRecovery(false, false, false, true);
                 case (uint)match_error.KMatchTournamentSquadNameInvalid:
+                case (uint)match_error.KMatchTournamentEmblemInvalid:
                     return new TournamentTipRecovery(true, false, false, false);
                 case (uint)match_error.KMatchTournamentLineupInvalid:
                     return new TournamentTipRecovery(false, true, false, false);
@@ -534,6 +594,9 @@ namespace MmorpgClient.Game.Tournament
                 case (uint)match_error.KMatchTournamentRewardUnavailable:
                 case (uint)match_error.KMatchTournamentAlreadySalutedToday:
                 case (uint)match_error.KMatchTournamentNoChampionToSalute:
+                case (uint)match_error.KMatchTournamentPredictionClosed:
+                case (uint)match_error.KMatchTournamentPredictionTargetInvalid:
+                case (uint)match_error.KMatchTournamentWarmupUnavailable:
                     return new TournamentTipRecovery(false, false, true, false);
                 default:
                     return new TournamentTipRecovery(false, false, false, false);
@@ -549,6 +612,41 @@ namespace MmorpgClient.Game.Tournament
             if (match.PublicReplayAvailable) return true;
             if (mySquad == null || match.State != TournamentMatchState.Finished) return false;
             return match.SquadAId == mySquad.SquadId || match.SquadBId == mySquad.SquadId;
+        }
+
+        /// <summary>V3 模块 E：仅未开战且对阵双方已确定的淘汰赛对局允许提交/修改免费竞猜。</summary>
+        public static bool CanPredictMatch(TournamentMatchView match)
+        {
+            if (match == null || match.Phase != TournamentMatchPhase.Knockout) return false;
+            if (match.SquadAId == 0UL || match.SquadBId == 0UL) return false;
+            return match.State == TournamentMatchState.WaitingOpponent || match.State == TournamentMatchState.Ready;
+        }
+
+        /// <summary>V3 模块 D：仅报名期或海选期、满首发人数且由队长发起零积分热身约战。</summary>
+        public static bool CanStartWarmup(TournamentOverviewSnapshot overview, ulong playerId)
+        {
+            if (overview == null || !overview.HasSeason || !overview.IsEnabled || !overview.HasSquad) return false;
+            if (!overview.IsCaptain(playerId)) return false;
+            var stage = overview.Season.Stage;
+            if (stage != TournamentStage.Registration && stage != TournamentStage.Qualifier) return false;
+            uint need = overview.Season.BattleTeamSize == 0u ? 3u : overview.Season.BattleTeamSize;
+            return overview.MySquad.MemberCount >= need;
+        }
+
+        /// <summary>V4 模块 H：仅 BO3 淘汰赛首局开战前（0:0 且 WAITING/READY），且当前玩家为参战两队队长之一时允许禁选灵脉。</summary>
+        public static bool CanBanLeyline(TournamentMatchView match, TournamentOverviewSnapshot overview, ulong playerId)
+        {
+            if (match == null || overview == null || !overview.HasSeason || !overview.IsEnabled || !overview.HasSquad)
+                return false;
+            if (overview.Season.Stage != TournamentStage.Knockout) return false;
+            if (!overview.IsCaptain(playerId)) return false;
+            if (match.Phase != TournamentMatchPhase.Knockout || match.BestOf < 3u) return false;
+            if (match.WinsA > 0u || match.WinsB > 0u) return false;
+            if (match.SquadAId == 0UL || match.SquadBId == 0UL) return false;
+            if (match.State != TournamentMatchState.WaitingOpponent && match.State != TournamentMatchState.Ready)
+                return false;
+            ulong mySq = overview.MySquad.SquadId;
+            return mySq == match.SquadAId || mySq == match.SquadBId;
         }
 
         /// <summary>解析该场可播放的最新一局战报 battle_id（兼容 BO3 多局与 BO1 单局）。</summary>

@@ -200,6 +200,13 @@ namespace MmorpgClient.Game.PlayerFeatures
                             return;
                         }
                     }
+                    if (response.Outcome == ClaimEquipmentMaterialRewardResponse.Types.Outcome.Unknown
+                        && response.ErrorMessage?.Id == (uint)common_error.KServiceUnavailable
+                        && response.Snapshot?.Available == true)
+                    {
+                        DeferMaterialRecovery("正在核验账号可交易额度，请稍后刷新再领");
+                        return;
+                    }
                     DeferMaterialRecovery(applied ? "材料已受理，正在确认持久化；原请求已保留"
                         : "材料领取结果尚未确认；请恢复原请求");
                 },

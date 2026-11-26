@@ -17,12 +17,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         private CanvasGroup _targetGroup;
         private CanvasGroup _selfGroup;
         private RectTransform _self;
+        private bool _allowInput;
 
-        public void Bind(RectTransform target, CanvasGroup targetGroup, CanvasGroup selfGroup)
+        public void Bind(RectTransform target, CanvasGroup targetGroup, CanvasGroup selfGroup, bool allowInput = false)
         {
             _target = target;
             _targetGroup = targetGroup;
             _selfGroup = selfGroup;
+            _allowInput = allowInput;
             _self = transform as RectTransform;
             Sync();
         }
@@ -40,7 +42,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
             _self.anchoredPosition = _target.anchoredPosition;
             _self.localScale = _target.localScale;
-            if (_selfGroup != null && _targetGroup != null) _selfGroup.alpha = _targetGroup.alpha;
+            if (_selfGroup != null && _targetGroup != null)
+            {
+                _selfGroup.alpha = _targetGroup.alpha;
+                bool canReceiveInput = _allowInput && _targetGroup.alpha > 0.01f && _targetGroup.blocksRaycasts;
+                if (_selfGroup.blocksRaycasts != canReceiveInput) _selfGroup.blocksRaycasts = canReceiveInput;
+                if (_selfGroup.interactable != canReceiveInput) _selfGroup.interactable = canReceiveInput;
+            }
         }
     }
 }

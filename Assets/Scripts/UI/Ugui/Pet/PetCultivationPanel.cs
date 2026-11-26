@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MmorpgClient.Game.Pet;
+using MmorpgClient.UI.Ugui.Guild;
 using MmorpgClient.UI.Ugui.Skills;
 using MmorpgClient.World;
 using UnityEngine;
@@ -17,16 +18,17 @@ namespace MmorpgClient.UI.Ugui.Pet
     /// </summary>
     public sealed partial class PetCultivationPanel : IDisposable
     {
-        private static readonly Color Ink = new Color32(52, 72, 59, 255);
-        private static readonly Color Muted = new Color32(101, 88, 64, 255);
-        private static readonly Color Green = new Color32(30, 96, 76, 255);
-        private static readonly Color Cream = new Color32(251, 242, 215, 255);
+        private static readonly Color Ink = new Color32(42, 35, 27, 255);
+        private static readonly Color Muted = new Color32(91, 74, 53, 255);
+        private static readonly Color Green = new Color32(14, 64, 43, 255);
+        private static readonly Color Cream = new Color32(255, 241, 205, 255);
         private static readonly Color Blue = new Color32(33, 92, 148, 255);
         private readonly Func<PetClient> _getClient;
         private readonly Func<ISkillBookSource> _getSkills;
         private readonly Func<bool> _battleLocked;
         private readonly Action _openMore;
         private readonly RectTransform _root;
+        private RectTransform _body;
         private readonly Dictionary<uint, uint> _draft = new();
         private readonly Dictionary<uint, uint> _baseline = new();
         private readonly List<StatRow> _statRows = new();
@@ -47,6 +49,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         private Button _save, _discard, _more, _ascendEntry;
         private RectTransform _leaveDialog;
         private Action _afterDiscard;
+        private Func<bool> _canDiscard;
 
         private sealed class StatRow
         {
@@ -105,7 +108,11 @@ namespace MmorpgClient.UI.Ugui.Pet
         public void Hide()
         {
             _leaveDialog?.gameObject.SetActive(false);
+            _entryTagDialog?.gameObject.SetActive(false);
+            _afterDiscard = null;
+            _canDiscard = null;
             _ascendVisible = false;
+            _ascendError = null;
             _ascendDialog?.gameObject.SetActive(false);
             _root.gameObject.SetActive(false);
         }
@@ -116,17 +123,27 @@ namespace MmorpgClient.UI.Ugui.Pet
             // PetClient clears its authority on disconnect; an idle disconnect need not change Busy.
             if (_list != null && _client?.HasList != true) ApplyList(null);
             if (!IsVisible) return;
-            SetViewport(Screen.width, Screen.height);
+            var safeArea = Screen.safeArea;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            float capsuleTop = Screen.height - 80f * Mathf.Min(Screen.width / 1920f, Screen.height / 1080f);
+            safeArea.yMax = Mathf.Min(safeArea.yMax, capsuleTop);
+#endif
+            SetViewport(Screen.width, Screen.height, safeArea);
             RefreshFields();
         }
 
         public void SetViewport(float width, float height)
+            => SetViewport(width, height, new UnityEngine.Rect(0, 0, width, height));
+
+        private void SetViewport(float width, float height, UnityEngine.Rect safeArea)
         {
             if (width <= 0 || height <= 0) return;
-            float logicalWidth = Mathf.Clamp(1080 * width / height, 1920, 2560);
+            if (safeArea.width <= 0 || safeArea.height <= 0) safeArea = new UnityEngine.Rect(0, 0, width, height);
+            float logicalWidth = Mathf.Clamp(1080 * safeArea.width / safeArea.height, 1920, 2560);
             var canvas = _root.GetComponentInParent<Canvas>();
             float canvasScale = canvas == null ? 1 : Mathf.Max(.001f, canvas.rootCanvas.scaleFactor);
-            float desiredScale = Mathf.Min(width / logicalWidth, height / 1080);
+            float desiredScale = Mathf.Min(safeArea.width / logicalWidth, safeArea.height / 1080);
+            _root.anchoredPosition = (safeArea.center - new Vector2(width / 2, height / 2)) / canvasScale;
             _root.localScale = UnityEngine.Vector3.one * desiredScale / canvasScale;
             if (Mathf.Abs(_width - logicalWidth) < .5f) return;
             _width = logicalWidth;
@@ -143,6 +160,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 _client = client;
                 _list = client?.Pets;
                 _draft.Clear(); _baseline.Clear(); _allocationPending = false; ClearEntryDraft(); _entrySaving = false;
+                _ascendPending = false; _ascendVisible = false; _ascendError = null;
                 ++_allocationAttempt; _deferredList = null;
                 if (_client != null) { _client.OnList += ApplyList; _client.OnBusyChanged += BusyChanged; _client.OnError += Error; }
             }
@@ -159,7 +177,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         {
             if (list == null)
             {
-                ++_allocationAttempt; _allocationPending = false; _deferredList = null; _entrySaving = false;
+                ++_allocationAttempt; _allocationPending = false; _deferredList = null; _entrySaving = false; _ascendPending = false;
             }
             else if (_allocationPending)
             {
@@ -215,11 +233,12 @@ namespace MmorpgClient.UI.Ugui.Pet
                 if (_page == PetCultivationPage.Skills) RefreshSkills(); });
         }
 
-        private void Navigate(Action action)
+        private void Navigate(Action action, Func<bool> canDiscard = null)
         {
             if (_client?.Busy == true || SkillState?.IsBusy == true) { _message = "正在等待服务器确认，请稍候。"; RefreshFields(); return; }
             if (!HasDraft) { action(); return; }
             _afterDiscard = action;
+            _canDiscard = canDiscard;
             BuildLeaveDialog();
         }
 
@@ -231,9 +250,20 @@ namespace MmorpgClient.UI.Ugui.Pet
             var box = Art("PetDraftBox", _leaveDialog, (_width - 680) / 2, 360, 680, 300, "window_frame");
             Label("DraftQuestion", box.rectTransform, 55, 40, 570, 95, "尚有未保存的加点\n返回继续分配，或放弃本次草稿。", 28, Ink, TextAnchor.MiddleCenter);
             ActionButton("KeepDraft", box.rectTransform, 55, 180, 250, 65, "继续分配", true,
-                () => _leaveDialog.gameObject.SetActive(false));
+                () => { _leaveDialog.gameObject.SetActive(false); _afterDiscard = null; _canDiscard = null; });
             ActionButton("DiscardAndLeave", box.rectTransform, 350, 180, 275, 65, "放弃并离开", false,
-                () => { _draft.Clear(); ClearEntryDraft(); _leaveDialog.gameObject.SetActive(false); var next = _afterDiscard; _afterDiscard = null; next?.Invoke(); });
+                () =>
+                {
+                    _leaveDialog.gameObject.SetActive(false);
+                    var next = _afterDiscard;
+                    bool canDiscard = _canDiscard?.Invoke() != false;
+                    _afterDiscard = null;
+                    _canDiscard = null;
+                    if (next == null || !canDiscard) return;
+                    _draft.Clear();
+                    ClearEntryDraft();
+                    next.Invoke();
+                });
         }
 
         private void Render()
@@ -241,48 +271,50 @@ namespace MmorpgClient.UI.Ugui.Pet
             if (_disposed) return;
             for (int i = _root.childCount - 1; i >= 0; --i) DestroyUi(_root.GetChild(i).gameObject);
             _statRows.Clear(); _leaveDialog = null; _remaining = _budget = null; _save = _discard = _more = _ascendEntry = null;
-            _entryClearAll = _entryTagButton = null; _entryPresetButtons.Clear(); _ascendConfirm = null;
+            _afterDiscard = null; _canDiscard = null;
+            _entryClearAll = _entryTagButton = null; _entryPresetButtons.Clear(); _entryTagDialog = _entryDetailDialog = null;
+            _ascendConfirm = null; _ascendHint = null; _ascendDialog = _badgeDialog = null;
             _skillUpgrade = _skillUpgradeTen = null;
             float t = Mathf.InverseLerp(1920, 2560, _width);
-            float margin = Mathf.Lerp(76, 133, t), leftW = Mathf.Lerp(392, 535, t), leftX = margin + 39;
-            float contentX = leftX + leftW + 25, tabsX = _width - margin - 150, contentW = tabsX - contentX - 19;
-            Art("CultivationFrame", _root, margin, 94, _width - 2 * margin, 921, "window_frame", true);
-            Art("CultivationTitlePlate", _root, (_width - 650) / 2, 54, 650, 110, "title_plate");
-            Art("CultivationTaiji", _root, (_width - 56) / 2, 23, 56, 56, "round_badge_taiji");
-            Label("CultivationTitle", _root, (_width - 650) / 2, 76, 650, 60, "宝宝培养", 46, Cream, TextAnchor.MiddleCenter);
-            ActionButton("CultivationClose", _root, _width - margin - 77, 106, 61, 72, "", false, RequestClose, "close-jade");
-            Art("PetRosterPanel", _root, leftX, 178, leftW, 706, "application_card");
-            Art("PetRosterHeading", _root, leftX - 9, 154, 282, 48, "section_plate");
-            Label("PetRosterHeadingText", _root, leftX - 9, 157, 242, 40, "我的宝宝", 28, Cream, TextAnchor.MiddleCenter);
-            Art("PetContentPanel", _root, contentX, 178, contentW, 706, "application_card");
+            float margin = Mathf.Lerp(10, 72, t);
+            float shellW = _width - 2 * margin, scaleX = shellW / 1932f;
+            float leftX = margin + 162 * scaleX, leftW = 584 * scaleX;
+            float contentX = margin + 763 * scaleX, contentW = 1004 * scaleX;
+            Art("CultivationFrame", _root, margin, 18, shellW, 986, "guild_empty_shell");
+            Art("CultivationFrameInput", _root, margin + 125 * scaleX, 88, 1660 * scaleX, 883, "shell-close-hit", true);
+            Label("CultivationTitle", _root, (_width - 520) / 2, 58, 520, 63, "宝宝培养", 47, Cream, TextAnchor.MiddleCenter);
+            ActionButton("CultivationClose", _root, margin + 1780 * scaleX, 43, 86 * scaleX, 99, "", false, RequestClose, "shell-close-hit");
+            _body = Rect("CultivationBody", _root, 0, 24, _width, 1000);
+            Label("PetRosterHeadingText", _root, leftX + 26, 214, leftW - 52, 43, "我的宝宝", 33, Green);
+            GuildUiArt.Line(_root, "PetRosterHeadingRule", leftX + 179, 239, leftW - 205);
             BuildRoster(leftX, leftW);
             string[] tabs = { "属性", "加点", "技能", "条目点" };
             for (int i = 0; i < tabs.Length; ++i)
             {
                 var page = (PetCultivationPage)i;
-                ActionButton("Tab" + tabs[i], _root, tabsX, 218 + i * 95, 116, 63, tabs[i], _page == page,
+                ActionButton("Tab" + tabs[i], _root, margin + (187 + i * 290) * scaleX, 136, 278 * scaleX, 53, tabs[i], _page == page,
                     () => { if (BattleLocked) SelectPage(page); else Navigate(() => SelectPage(page)); },
-                    _page == page ? "mail_tab_selected" : "mail_tab_normal", 27);
+                    _page == page ? "mail_tab_selected" : "mail_tab_normal", 31);
             }
             if (_openMore != null)
             {
                 float btnW = Mathf.Floor((leftW - 28f) / 3f);
-                _more = ActionButton("PetMore", _root, leftX + 6, 915, btnW, 60, "更多培养", false,
+                _more = ActionButton("PetMore", _root, leftX + 6, 902, btnW, 54, "更多培养", false,
                     () => { if (!BattleLocked) Navigate(() => { Hide(); _openMore(); }); }, null, 22);
-                ActionButton("PetBadgeExplain", _root, leftX + 14 + btnW, 915, btnW, 60, "五阶徽章", false,
+                ActionButton("PetBadgeExplain", _root, leftX + 14 + btnW, 902, btnW, 54, "五阶徽章", false,
                     () => { _badgesVisible = true; BuildBadges(); }, null, 22);
-                _ascendEntry = ActionButton("PetAscendTier", _root, leftX + 22 + btnW * 2f, 915, btnW, 60, "灵阶突破", true,
-                    () => { _ascendVisible = true; BuildAscendDialog(); }, null, 22);
+                _ascendEntry = ActionButton("PetAscendTier", _root, leftX + 22 + btnW * 2f, 902, btnW, 54,
+                    Selected?.CultivationTier >= 5 ? "已达巅峰" : "灵阶突破", HasNextTier(Selected), OpenAscendDialog, null, 22);
             }
             else
             {
                 float btnW = Mathf.Floor((leftW - 24f) * 0.5f);
-                ActionButton("PetBadgeExplain", _root, leftX + 8, 915, btnW, 60, "徽章说明", false,
+                ActionButton("PetBadgeExplain", _root, leftX + 8, 902, btnW, 54, "徽章说明", false,
                     () => { _badgesVisible = true; BuildBadges(); }, null, 24);
-                _ascendEntry = ActionButton("PetAscendTier", _root, leftX + 16 + btnW, 915, btnW, 60, "灵阶突破", true,
-                    () => { _ascendVisible = true; BuildAscendDialog(); }, null, 24);
+                _ascendEntry = ActionButton("PetAscendTier", _root, leftX + 16 + btnW, 902, btnW, 54,
+                    Selected?.CultivationTier >= 5 ? "已达巅峰" : "灵阶突破", HasNextTier(Selected), OpenAscendDialog, null, 24);
             }
-            _status = Label("PetCultivationStatus", _root, contentX + 24, 886, contentW - 48, 28, "", 20, Muted);
+            _status = Label("PetCultivationStatus", _root, contentX + 24, 870, contentW - 48, 28, "", 22, Muted);
             switch (_page)
             {
                 case PetCultivationPage.EntryPoints: BuildEntryPoints(contentX, contentW); break;
@@ -297,39 +329,41 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void BuildRoster(float x, float width)
         {
-            var viewport = Scroll("PetRoster", _root, x + 15, 218, width - 30, 640, out var content);
+            Scroll("PetRoster", _root, x + 15, 264, width - 30, 612, out var content);
             int count = _list?.Pets.Count ?? 0;
-            content.sizeDelta = new Vector2(width - 30, Mathf.Max(640, count * 139 - 15));
+            content.sizeDelta = new Vector2(width - 30, Mathf.Max(612, count * 121));
             if (count == 0)
                 Label("PetRosterEmpty", content, 20, 170, width - 70, 150,
                     _client?.ListRequestPending == true ? "正在同步宝宝信息…" : "暂无宝宝\n获得宝宝后可在此培养", 26, Muted, TextAnchor.MiddleCenter);
             for (int i = 0; i < count; ++i)
             {
                 var pet = _list.Pets[i]; bool selected = pet.PetId == _selectedPetId;
-                var button = ActionButton("PetItem" + i, content, 0, i * 139, width - 30, 124, "", selected,
+                var button = ActionButton("PetItem" + i, content, 0, i * 121, width - 30, 120, "", selected,
                     () => SelectPet(pet.PetId), selected ? "pet_card_selected" : "mail_row_normal");
                 var parent = (RectTransform)button.transform;
-                var portrait = Art("PetPortrait" + i, parent, 29, 16, 88, 88, "round_badge_taiji");
+                if (selected) Art("PetSelectedMark" + i, parent, 12, 47, 25, 25, "guild_self_mark").preserveAspect = true;
+                var portrait = Art("PetPortrait" + i, parent, 49, 16, 88, 88, "round_badge_taiji");
                 portrait.sprite = Portrait(pet); portrait.preserveAspect = true;
-                Art("PetPortraitRing" + i, parent, 24, 11, 98, 98, string.IsNullOrEmpty(pet.CultivationArtKey) ? "portrait_frame" : "ring-" + pet.CultivationArtKey);
-                Label("PetName" + i, parent, 136, 19, width - 180, 48, pet.Name, 34, selected ? Cream : Ink);
-                Label("PetLevel" + i, parent, 136, 73, width - 255, 34, $"{pet.Level}级 · {(string.IsNullOrEmpty(pet.CultivationTierName) ? "—" : pet.CultivationTierName)}", 20, selected ? Cream : Muted);
+                Art("PetPortraitRing" + i, parent, 44, 11, 98, 98, string.IsNullOrEmpty(pet.CultivationArtKey) ? "portrait_frame" : "ring-" + pet.CultivationArtKey);
+                Label("PetName" + i, parent, 159, 15, width - 206, 48, pet.Name, 34, selected ? Green : Ink);
+                Label("PetLevel" + i, parent, 159, 66, width - 278, 37, $"{pet.Level}级 · {(string.IsNullOrEmpty(pet.CultivationTierName) ? "—" : pet.CultivationTierName)}", 23, Ink);
                 Label("PetState" + i, parent, width - 138, 73, 90, 34, pet.IsActive ? "出战" : "休息", 20,
-                    selected ? Cream : Green, TextAnchor.MiddleRight);
+                    pet.IsActive ? Green : Muted, TextAnchor.MiddleRight);
+                GuildUiArt.Line(parent, "PetRosterRule" + i, 3, 119, width - 36);
             }
         }
 
         private void BuildFourStats(float x, float width)
         {
-            Label("FourStatsTitle", _root, x + 30, 196, 220, 48, "四维加点", 31, Ink);
-            _remaining = Label("FourStatsRemaining", _root, x + 258, 196, 360, 48, "剩余属性点 —", 29, Green);
-            _budget = Label("FourStatsBudget", _root, x + width - 460, 205, 428, 34, "", 21, Muted, TextAnchor.MiddleRight);
+            Label("FourStatsTitle", _body, x + 30, 196, 220, 48, "四维加点", 31, Ink);
+            _remaining = Label("FourStatsRemaining", _body, x + 258, 196, 360, 48, "剩余属性点 —", 29, Green);
+            _budget = Label("FourStatsBudget", _body, x + width - 460, 205, 428, 34, "", 21, Muted, TextAnchor.MiddleRight);
             float rowX = x + 22, rowW = width - 44, current = rowW * .35f, increment = rowW * .59f, after = rowW * .85f;
-            Label("FourStatsNameHeader", _root, rowX + 55, 275, 180, 36, "属性", 23, Muted);
-            Label("FourStatsCurrentHeader", _root, rowX + current - 90, 275, 180, 36, "当前投入", 23, Muted, TextAnchor.MiddleCenter);
-            Label("FourStatsIncrementHeader", _root, rowX + increment - 90, 275, 180, 36, "本次新增", 23, Muted, TextAnchor.MiddleCenter);
-            Label("FourStatsAfterHeader", _root, rowX + after - 90, 275, 180, 36, "调整后", 23, Muted, TextAnchor.MiddleCenter);
-            var viewport = Scroll("FourStats", _root, rowX, 325, rowW, 465, out var content);
+            Label("FourStatsNameHeader", _body, rowX + 55, 275, 180, 36, "属性", 23, Muted);
+            Label("FourStatsCurrentHeader", _body, rowX + current - 90, 275, 180, 36, "当前投入", 23, Muted, TextAnchor.MiddleCenter);
+            Label("FourStatsIncrementHeader", _body, rowX + increment - 90, 275, 180, 36, "本次新增", 23, Muted, TextAnchor.MiddleCenter);
+            Label("FourStatsAfterHeader", _body, rowX + after - 90, 275, 180, 36, "调整后", 23, Muted, TextAnchor.MiddleCenter);
+            var viewport = Scroll("FourStats", _body, rowX, 325, rowW, 465, out var content);
             int count = Selected?.Dimensions.Count ?? 0;
             content.sizeDelta = new Vector2(rowW, Mathf.Max(465, count * 110));
             for (int i = 0; i < count; ++i)
@@ -349,9 +383,9 @@ namespace MmorpgClient.UI.Ugui.Pet
                 row.After = Label("FourStatAfter" + i, plate, after - 48, 25, 96, 46, "", 26, Ink, TextAnchor.MiddleCenter);
             }
             if (count == 0) Label("FourStatsEmpty", content, 20, 150, rowW - 40, 90, Selected == null ? "请先选择宝宝" : "暂无可分配维度", 28, Muted, TextAnchor.MiddleCenter);
-            Label("FourStatsHelp", _root, x + 24, 806, width - 48, 42, "减号仅撤回本次尚未保存的新增属性点。", 21, Muted);
-            _save = ActionButton("Confirm", _root, x + width - 479, 915, 215, 60, "保存加点", true, Save);
-            _discard = ActionButton("Discard", _root, x + width - 246, 915, 224, 60, "恢复当前分配", false,
+            Label("FourStatsHelp", _body, x + 24, 806, width - 48, 42, "减号仅撤回本次尚未保存的新增属性点。", 21, Muted);
+            _save = ActionButton("Confirm", _body, x + width - 479, 878, 215, 54, "保存加点", true, Save);
+            _discard = ActionButton("Discard", _body, x + width - 246, 878, 224, 54, "恢复当前分配", false,
                 () => { if (!CanWrite) return; _draft.Clear(); _message = "已恢复当前分配，未发送保存请求。"; RefreshFields(); }, null, 26);
         }
 
@@ -408,7 +442,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             if (_save != null) _save.interactable = _page == PetCultivationPage.FourStats && CanWrite && _draft.Count != 0;
             if (_discard != null) _discard.interactable = _page == PetCultivationPage.FourStats && CanWrite && _draft.Count != 0;
             if (_more != null) _more.interactable = !BattleLocked;
-            if (_ascendEntry != null) _ascendEntry.interactable = Selected != null;
+            if (_ascendEntry != null) _ascendEntry.interactable = HasNextTier(Selected);
             RefreshAscendDialogButtons();
             var skillEntry = SkillState?.Snapshot?.Find(_selectedSkillId);
             bool canLearn = !BattleLocked && SkillBookViewState.CanUpgrade(SkillState, skillEntry);
@@ -423,27 +457,27 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void BuildUnavailableEntries(float x, float width)
         {
-            Label("EntryPointsTitle", _root, x + 30, 197, 120, 45, "条目点", 28, Ink);
-            Label("EntryPointsBudget", _root, x + 155, 198, width - 190, 45, "总点数 —       已用 —       剩余 —", 26, Ink);
+            Label("EntryPointsTitle", _body, x + 30, 197, 120, 45, "条目点", 28, Ink);
+            Label("EntryPointsBudget", _body, x + 155, 198, width - 190, 45, "总点数 —       已用 —       剩余 —", 26, Ink);
             string[] categories = { "全部", "输出", "障碍", "辅助" };
             float catW = (width - 98) / 4;
             for (int i = 0; i < categories.Length; i++)
             {
                 int index = i;
-                ActionButton("EntryFilter" + i, _root, x + 24 + i * (catW + 16), 253, catW, 47, categories[i], i == _entryCategory,
+                ActionButton("EntryFilter" + i, _body, x + 24 + i * (catW + 16), 253, catW, 47, categories[i], i == _entryCategory,
                     () => { _entryCategory = index; Render(); }, i == _entryCategory ? "mail_tab_selected" : "mail_tab_normal", 24);
             }
             float rowX = x + 22, rowW = width - 44, current = rowW * .41f, adjust = rowW * .64f, detail = rowW * .91f;
-            Label("EntryDirectionHeader", _root, rowX + 79, 318, 250, 36, "分配方向", 22, Muted);
-            Label("EntryCurrentHeader", _root, rowX + current - 80, 318, 160, 36, "当前投入", 22, Muted, TextAnchor.MiddleCenter);
-            Label("EntryDraftHeader", _root, rowX + adjust - 80, 318, 160, 36, "调整后", 22, Muted, TextAnchor.MiddleCenter);
+            Label("EntryDirectionHeader", _body, rowX + 79, 318, 250, 36, "分配方向", 22, Muted);
+            Label("EntryCurrentHeader", _body, rowX + current - 80, 318, 160, 36, "当前投入", 22, Muted, TextAnchor.MiddleCenter);
+            Label("EntryDraftHeader", _body, rowX + adjust - 80, 318, 160, 36, "调整后", 22, Muted, TextAnchor.MiddleCenter);
             string[] names = { "物理伤害", "法术伤害", "封物命中", "混乱命中", "治疗效果", "护盾容量" };
             string[] icons = { "physical", "magic", "seal", "confusion", "healing", "shield" };
             int visible = 0;
             for (int i = 0; i < names.Length; ++i)
             {
                 if (_entryCategory != 0 && i / 2 + 1 != _entryCategory) continue;
-                var row = Art("EntryRow" + i, _root, rowX, 359 + visible++ * 81, rowW, 72, "mail_row_normal").rectTransform;
+                var row = Art("EntryRow" + i, _body, rowX, 359 + visible++ * 81, rowW, 72, "mail_row_normal").rectTransform;
                 Art("EntryIcon" + i, row, 19, 13, 46, 46, "row_" + icons[i]);
                 Label("EntryName" + i, row, 79, 14, current - 150, 44, names[i], 28, Ink);
                 Label("EntryCurrent" + i, row, current - 45, 15, 90, 44, "—", 24, Ink, TextAnchor.MiddleCenter);
@@ -454,39 +488,42 @@ namespace MmorpgClient.UI.Ugui.Pet
                 ActionButton("EntryDetail" + i, row, detail - 49, 13, 98, 46, "详情", false,
                     () => { _message = "条目点尚未同步；请刷新宝宝列表获取服务器总点数、收益和上限。"; RefreshFields(); }, null, 21);
             }
-            Label("EntryHelp", _root, x + 24, 839, width - 48, 40, "各方向共用条目点；未投入也可使用已学技能。", 20, Muted);
-            _save = ActionButton("EntrySave", _root, x + width - 479, 915, 215, 60, "保存分配", true, null); _save.interactable = false;
-            _discard = ActionButton("EntryRestore", _root, x + width - 246, 915, 224, 60, "恢复当前分配", false, null, null, 26); _discard.interactable = false;
+            Label("EntryHelp", _body, x + 24, 839, width - 48, 40, "各方向共用条目点；未投入也可使用已学技能。", 20, Muted);
+            _save = ActionButton("EntrySave", _body, x + width - 479, 878, 215, 54, "保存分配", true, null); _save.interactable = false;
+            _discard = ActionButton("EntryRestore", _body, x + width - 246, 878, 224, 54, "恢复当前分配", false, null, null, 26); _discard.interactable = false;
         }
 
         private void BuildAttributes(float x, float width)
         {
             var pet = Selected;
-            Label("PetOverviewTitle", _root, x + 30, 197, width - 60, 48, pet?.Name ?? "宝宝属性", 32, Ink);
+            Label("PetOverviewTitle", _body, x + 30, 193, width - 60, 48, pet?.Name ?? "宝宝属性", 36, Green);
+            GuildUiArt.Line(_body, "PetOverviewHeadingRule", x + 208, 222, width - 249);
             var d = pet?.Derived;
             string[] names = { "气血", "法力", "物理攻击", "法术攻击", "防御", "速度" };
             string[] values = d == null ? Enumerable.Repeat("—", 6).ToArray() : new[] {
                 $"{d.Health}/{d.MaxHealth}", $"{d.Mana}/{d.MaxMana}", d.PhysicalAttack.ToString(), d.MagicAttack.ToString(), d.Defense.ToString(), d.Speed.ToString() };
             for (int i = 0; i < names.Length; i++)
             {
-                var row = Art("PetOverview" + i, _root, x + 24, 270 + i * 80, width - 48, 68, "mail_row_normal").rectTransform;
+                var row = Art("PetOverview" + i, _body, x + 24, 270 + i * 71, width - 48, 71, "mail_row_normal").rectTransform;
                 Label("PetOverviewLabel" + i, row, 40, 12, 260, 44, names[i], 28, Ink);
-                Label("PetOverviewValue" + i, row, width - 450, 12, 350, 44, values[i], 28, Green, TextAnchor.MiddleRight);
+                Label("PetOverviewValue" + i, row, width - 450, 12, 350, 44, values[i], 28, Ink, TextAnchor.MiddleRight);
+                GuildUiArt.Line(row, "PetOverviewRule" + i, 4, 70, width - 56);
             }
-            Label("PetOverviewGrowth", _root, x + 30, 772, width - 290, 44,
+            bool isMaxTier = pet?.CultivationTier >= 5;
+            float buttonWidth = isMaxTier ? 370 : 216;
+            Label("PetOverviewGrowth", _body, x + 30, 734, width - 72 - buttonWidth, 44,
                 pet == null ? "等级 —   成长率 —" : $"等级 {pet.Level}   成长率 {pet.Growth / 100f:0.##}%   灵阶：{(string.IsNullOrEmpty(pet.CultivationTierName) ? "—" : pet.CultivationTierName)}",
-                24, Muted);
-            string tierHint = pet == null ? "" : pet.NextTier == null || pet.NextTier.NextTier == 0
-                ? "已达巅峰 · 圣兽（+8 条目预算）"
-                : $"下阶：{pet.NextTier.NextTierName}（+{pet.NextTier.BonusEntryPoints} 条目预算 · 需 {pet.NextTier.MinPetLevel} 级）";
-            Label("PetOverviewTierHint", _root, x + 30, 818, width - 290, 36, tierHint, 21, Green);
+                25, Ink);
             if (pet != null)
             {
-                var btn = ActionButton("PetOverviewAscend", _root, x + width - 246, 784, 216, 60,
-                    pet.NextTier == null || pet.NextTier.NextTier == 0 ? "查看灵阶" : "灵阶突破",
-                    pet.NextTier?.CanAscend == true,
-                    () => { _ascendVisible = true; BuildAscendDialog(); }, null, 24);
-                btn.interactable = true;
+                bool hasNextTier = HasNextTier(pet);
+                string tierHint = hasNextTier
+                    ? $"下阶：{pet.NextTier.NextTierName}（需 {pet.NextTier.MinPetLevel} 级）"
+                    : isMaxTier ? "" : "灵阶突破条件尚未同步。";
+                Label("PetOverviewTierHint", _body, x + 30, 779, width - 290, 36, tierHint, 23, Green);
+                var btn = ActionButton("PetOverviewAscend", _body, x + width - 30 - buttonWidth, 746, buttonWidth, 60,
+                    isMaxTier ? MaxTierLabel : "灵阶突破", pet.NextTier?.CanAscend == true, OpenAscendDialog, null, 24);
+                btn.interactable = hasNextTier;
             }
         }
 
@@ -502,13 +539,28 @@ namespace MmorpgClient.UI.Ugui.Pet
             => QdaoUguiFactory.CreateRect(name, parent, x, y, w, h);
         private static Image Art(string name, UnityEngine.Transform parent, float x, float y, float w, float h, string key, bool raycast = false)
         {
-            var image = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, CharacterPetArt.Get(key), raycast);
+            string guildKey = key switch
+            {
+                "button_primary" => "guild_button_primary",
+                "button_secondary" => "guild_button_secondary",
+                "mail_tab_selected" => "guild_tab_selected",
+                "mail_tab_normal" => "guild_tab_normal",
+                "mail_row_normal" => "guild_row_normal",
+                "pet_card_selected" => "guild_row_self",
+                "close-jade" => "guild_close",
+                _ when key.StartsWith("guild_", StringComparison.Ordinal) => key,
+                _ => null,
+            };
+            var sprite = guildKey == null ? null : Resources.Load<Sprite>(GuildUiArt.FidelityRoot + guildKey);
+            var image = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, sprite ?? CharacterPetArt.Get(key), raycast);
+            if (key == "shell-close-hit") image.color = Color.clear;
             image.type = image.sprite != null && image.sprite.border.sqrMagnitude > 0 ? Image.Type.Sliced : Image.Type.Simple;
             // render.ps1 scales the slice borders separately from the stretchable centers.
             float borderScale = key == "application_card" ? .85f : key == "mail_row_normal" ? (h >= 120 && h <= 125 ? 1 : .85f) :
                 key == "mail_tab_normal" || key == "mail_tab_selected" ? (h <= 49 ? .78f : .9f) :
                 key == "button_primary" || key == "button_secondary" ? (h <= 46 ? .67f : .9f) : 1;
             image.pixelsPerUnitMultiplier = 1 / borderScale;
+            if (key == "close-jade") image.preserveAspect = true;
             return image;
         }
         private static Text Label(string name, UnityEngine.Transform parent, float x, float y, float w, float h, string value,

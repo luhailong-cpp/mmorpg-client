@@ -105,6 +105,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 FestivalBeast.FestivalBeastUiRoot.EnsureSpawned();
                 FestivalBeast.FestivalBeastUiRoot.Instance?.OpenMainWindow();
             };
+            _window.TravelPassRequested += () =>
+            {
+                HidePanel();
+                TravelPass.TravelPassUiRoot.EnsureSpawned();
+                TravelPass.TravelPassUiRoot.Instance?.OpenWindow();
+            };
+            _window.AppearanceShowcaseRequested += () =>
+            {
+                HidePanel();
+                AppearanceUiRoot.Instance?.ShowPanel();
+            };
+            _window.SpiritShopShowcaseRequested += () =>
+            {
+                HidePanel();
+                SpiritShop.SpiritShopUiRoot.Instance?.ShowPanel();
+            };
             // 面板长在背包窗口里:窗口关掉(含换角色 / 断线时的 ResetSession)它跟着关。
             _window.Closed += _forge.Close;
             // 强化结果的兜底提示(面板关了也照样来)。背包页正在屏幕上:写进它的状态行,下一次装备操作开始时由 Changed 收起;
@@ -131,7 +147,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 if (_client != null) _client.OnChanged -= Changed;
                 _window.ResetSession();
-                _equipmentWindow.Hide();
+                _equipmentWindow?.Hide();
                 _client = game?.Features;
                 _window.SetMissionTracking(_client?.MissionTracking);
                 if (_client != null) _client.OnChanged += Changed;
@@ -139,8 +155,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             bool inGame = game != null && game.InGame && game.IsGateReady;
             if (_playerId != (inGame ? game.PlayerId : 0))
-            { _window.ResetSession(); _equipmentWindow.Hide(); _playerId = inGame ? game.PlayerId : 0; sessionChanged = true; }
-            _equipmentWindow.Bind(_client, AttributeClient.Instance);
+            { _window.ResetSession(); _equipmentWindow?.Hide(); _playerId = inGame ? game.PlayerId : 0; sessionChanged = true; }
+            _equipmentWindow?.Bind(_client, AttributeClient.Instance);
             if (sessionChanged) Changed();
             // 装备 tooltip 的等级要求标红用:属性面板拉到过才有等级,没有就是 0(不标红)。值没变时窗口不重画。
             _window.SetCharacterLevel(AttributeClient.Instance?.Panel?.Level ?? 0);
@@ -152,9 +168,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (!wasAvailable) _client.RequestTemporary();
             // 发包间隔按时间走完,数据层不为它发通知:面板开着时每帧看一眼,冷却结束才重画。
             _forge.Tick();
-            _equipmentWindow.Tick();
+            _equipmentWindow?.Tick();
             // The equipment window owns Escape/Tab and modal focus while visible.
-            if (_equipmentWindow.IsVisible) return;
+            if (_equipmentWindow?.IsVisible == true) return;
             // 子弹窗独占键盘；Esc 由弹窗自己的输入组件处理，避免同一按键把背包一起关掉。
             if (_window.EquipmentModalOwnsKeyboard) return;
             if (CityPanelRegistry.IsTyping()) return;
@@ -217,7 +233,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (!HasView || !_available) return;
             PrepareOpen();
-            _equipmentWindow.Hide();
+            _equipmentWindow?.Hide();
             Changed(); _window.Show(page);
             if (page == GameplayPage.Bag) AttributeClient.Instance?.RequestPanel();
         }

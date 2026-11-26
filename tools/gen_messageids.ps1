@@ -258,6 +258,8 @@ $whitelist = @{
     "BattleClientPlayerNotifyBattleAssigned"       = "NotifyBattleAssigned"
     "BattleClientPlayerUpdateBattlePrep"           = "UpdateBattlePrep"
     "BattleClientPlayerNotifyBattlePrepUpdate"     = "NotifyBattlePrepUpdate"
+    "BattleClientPlayerSendBattlePing"             = "SendBattlePing"
+    "BattleClientPlayerNotifyBattlePing"           = "NotifyBattlePing"
     "MatchServiceRequestBattleTicket"              = "RequestBattleTicket"
 
     # 组队(proto/team/team.proto, service ClientPlayerTeam;docs/design/team-system.md §H.1)。
@@ -271,6 +273,8 @@ $whitelist = @{
     # 服务端尚未分配时生成 0,由 AfkPassMessageIds.IsSupported 显示未开放。
     "SceneAfkPassClientPlayerGetAfkPass"           = "GetAfkPass"
     "SceneAfkPassClientPlayerBuyAfkPass"           = "BuyAfkPass"
+    "SceneAfkPassClientPlayerSetAfkPassSettings"   = "SetAfkPassSettings"
+    "SceneAfkPassClientPlayerAckHostedRecap"       = "AckHostedRecap"
     # 角色形象切换与 1 小时免费试用(proto/scene/player_appearance.proto;docs/design/character-appearance-switch.md)。
     "SceneAppearanceClientPlayerGetAppearanceInfo"            = "GetAppearanceInfo"
     "SceneAppearanceClientPlayerSwitchAppearance"             = "SwitchAppearance"
@@ -278,10 +282,15 @@ $whitelist = @{
     "SceneAppearanceClientPlayerCancelAppearanceTrial"        = "CancelAppearanceTrial"
     "SceneAppearanceClientPlayerNotifyActorAppearanceChanged" = "NotifyActorAppearanceChanged"
     "SceneAppearanceClientPlayerNotifyAppearanceState"        = "NotifyAppearanceState"
+    "SceneAppearanceClientPlayerEquipPetCosmetic"             = "EquipPetCosmetic"
+    "SceneAppearanceClientPlayerEquipSkillVfx"                = "EquipSkillVfx"
     # 赛季技能与单槽赛季印（proto/scene/player_season.proto;docs/design/season-skills-and-seal-design.md）。
     "SceneSeasonClientPlayerGetSeasonState"                   = "GetSeasonState"
     "SceneSeasonClientPlayerEquipSeasonSeal"                  = "EquipSeasonSeal"
     "SceneSeasonClientPlayerCatchupSeasonSeal"                = "CatchupSeasonSeal"
+    # 官方灵石百宝阁 V1（proto/scene/player_spirit_shop.proto;docs/design/spirit-shop-and-starter-packs-v1.md）。
+    "SceneSpiritShopClientPlayerGetSpiritShopInfo"            = "GetSpiritShopInfo"
+    "SceneSpiritShopClientPlayerBuySpiritShopGoods"           = "BuySpiritShopGoods"
     "ClientPlayerTeamCreateTeam"                   = "CreateTeam"
     "ClientPlayerTeamGetMyTeam"                    = "GetMyTeam"
     "ClientPlayerTeamApplyJoinTeam"                = "ApplyJoinTeam"
@@ -297,6 +306,8 @@ $whitelist = @{
     "ClientPlayerTeamNotifyTeamSnapshot"           = "NotifyTeamSnapshot"
     "ClientPlayerTeamNotifyTeamInvite"             = "NotifyTeamInvite"
     "ClientPlayerTeamNotifyTeamEvent"              = "NotifyTeamEvent"
+    "ClientPlayerTeamSetTeamFormation"             = "SetTeamFormation"
+    "ClientPlayerTeamRecallTeamMembers"            = "RecallTeamMembers"
 }
 
 $optionalUnsupportedMethods = @(
@@ -305,15 +316,23 @@ $optionalUnsupportedMethods = @(
     'SceneMysteryMerchantClientPlayerNotifyMysteryMerchant',
     'SceneAfkPassClientPlayerGetAfkPass',
     'SceneAfkPassClientPlayerBuyAfkPass',
+    'SceneAfkPassClientPlayerSetAfkPassSettings',
+    'SceneAfkPassClientPlayerAckHostedRecap',
+    'ClientPlayerTeamSetTeamFormation',
+    'ClientPlayerTeamRecallTeamMembers',
     'SceneAppearanceClientPlayerGetAppearanceInfo',
     'SceneAppearanceClientPlayerSwitchAppearance',
     'SceneAppearanceClientPlayerStartAppearanceTrial',
     'SceneAppearanceClientPlayerCancelAppearanceTrial',
     'SceneAppearanceClientPlayerNotifyActorAppearanceChanged',
     'SceneAppearanceClientPlayerNotifyAppearanceState',
+    'SceneAppearanceClientPlayerEquipPetCosmetic',
+    'SceneAppearanceClientPlayerEquipSkillVfx',
     'SceneSeasonClientPlayerGetSeasonState',
     'SceneSeasonClientPlayerEquipSeasonSeal',
-    'SceneSeasonClientPlayerCatchupSeasonSeal'
+    'SceneSeasonClientPlayerCatchupSeasonSeal',
+    'SceneSpiritShopClientPlayerGetSpiritShopInfo',
+    'SceneSpiritShopClientPlayerBuySpiritShopGoods'
 )
 $idByMethod = @{}
 foreach ($line in Get-Content -LiteralPath $source) {

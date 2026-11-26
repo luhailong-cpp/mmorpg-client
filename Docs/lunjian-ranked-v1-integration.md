@@ -1,6 +1,6 @@
 # 论剑排位首发 V1 —— Unity 客户端接入与联调接口清单
 
-> 对应主仓设计：[ranked-play-season-ui-candidate.md](../../xuanming-server-mmo-cpp/docs/design/ranked-play-season-ui-candidate.md)、[ranked-play-v1-implementation.md](../../xuanming-server-mmo-cpp/docs/design/ranked-play-v1-implementation.md)
+> 对应主仓设计：[ranked-play-season-ui-candidate.md](../../xuanming-server-mmo-cpp/docs/planning/ranked-play-season-ui-candidate.md)、[ranked-play-v1-implementation.md](../../xuanming-server-mmo-cpp/docs/planning/ranked-play-v1-implementation.md)
 > UI 美术源包：`D:\work\image\designs\lunjian-ui-v1\`（严格采用 47 张无字 PNG，已剔除 `ui-window.png` 与 `button-primary-cloud.png`）
 
 ## 1. 客户端绑定与适配位置

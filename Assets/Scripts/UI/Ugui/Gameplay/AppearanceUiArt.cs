@@ -28,6 +28,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         public const string StyleRoot = "UI/Ugui/AppearanceChronicleV2/";
         public const string SeriesStyleRoot = "UI/Ugui/AppearanceSeriesV1/";
+        public const string WardrobeCosmeticsRoot = "UI/Ugui/WardrobeCosmetics/";
 
         public static readonly Color JadeInk = QdaoUguiTheme.Html("#304736");
         public static readonly Color DeepJade = QdaoUguiTheme.Html("#205B46");
@@ -56,6 +57,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (string.IsNullOrWhiteSpace(key)) return null;
             return LoadSprite(SeriesStyleRoot + key) ?? LoadSprite(StyleRoot + key);
+        }
+
+        /// <summary>加载衣柜灵宠幻化与技能特效交付的无字 RGBA 切片（Assets/Resources/UI/Ugui/WardrobeCosmetics/）。</summary>
+        public static Sprite LoadWardrobeCosmetic(string key)
+        {
+            if (string.IsNullOrWhiteSpace(key)) return null;
+            return LoadSprite(WardrobeCosmeticsRoot + key);
         }
 
         /// <summary>加载系列印章图：优先专属系列印章，缺省回退通用点亮/灰态印章。</summary>

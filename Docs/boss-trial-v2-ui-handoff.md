@@ -93,16 +93,16 @@
 
 ## 五、美术与 VFX 资源增补清单（路径沿用 `BattleArtCatalog` 契约，缺图自动回退不报错）
 
-| 资源用途 | 建议资源路径（`Assets/Resources/...`） | 规格 / 风格要求 | 缺图降级 |
+| 资源用途 | 建议资源路径（`Assets/Resources/...`） | 规格 / 内容要求（风格严格沿用项目既有美术，不另定画风） | 缺图降级 |
 |---|---|---|---|
-| 策应卫·破军（Monster `109`）立绘/帧条 | `Battle/Monsters/109/{idle,attack,hit,die}_E_strip.png` | 东方志怪重戟轻甲武卫，铁青+暗红破甲纹 | 自动回退程序化剪影/复用护卫剪影 |
-| 策应卫·鼓噪（Monster `110`）立绘/帧条 | `Battle/Monsters/110/{idle,attack,hit,die}_E_strip.png` | 东方志怪战鼓旗手，赤金鼓面+云纹战旗 | 自动回退程序化剪影 |
-| 双卫同阵卡片图标（`boss_trial_kind = 8`） | `UI/Ugui/SeasonEconomy/Icons/boss_avatar_dual_guard.png` | 重甲首领居中、两侧回春青莲+护势玄盾双徽 | 回退既有重甲首领头像 |
-| 「破绽」裂纹特效条 | `Battle/Fx/boss_exposed_crack_strip.png` | 8 帧 256×256 暖金裂纹光环，持续环绕受破绽敌方 | 回退金色脚底光圈 |
-| 「崩势破盾」碎阵特效条 | `Battle/Fx/boss_stance_break_strip.png` | 10 帧 512×512 阵法瓦解爆裂波纹 | 回退通用驱散波纹 |
-| 「决战姿态」阶段切换光效 | `Battle/Fx/boss_phase2_enrage_strip.png` | 10 帧 512×512 绯金气浪冲天 | 回退红金横幅渐入 |
-| 状态小图标（破绽/蓄势/破甲/气馁/聚火） | `UI/Ugui/Battle/BossTrialV2/icon_{exposed,momentum,sunder,dishearten,focus,splash}.png` | 64×64 透明底扁平国风徽记 | 回退文字胶囊芯片 |
-| 「破阵双绝」试炼志徽章（`badge_trial_dual_guard`） | `UI/Ugui/TrialJournal/Badges/badge_trial_dual_guard.png` | 128×128 玉青镶金双剑交错纹章 | 回退通用里程碑徽章 |
+| 策应卫·破军（Monster `109`）立绘/帧条 | `Battle/Monsters/109/{idle,attack,hit,die}_E_strip.png`、`portrait.png` | 持重戟/战斧的破甲护卫；单格 256×256 水平方格帧条，透明底无文字 | 自动回退程序化剪影/复用映射视觉 |
+| 策应卫·鼓噪（Monster `110`）立绘/帧条 | `Battle/Monsters/110/{idle,attack,hit,die}_E_strip.png`、`portrait.png` | 持战鼓/旗帜的鼓噪护卫；单格 256×256 水平方格帧条，透明底无文字 | 自动回退程序化剪影/复用映射视觉 |
+| 双卫同阵卡片头像（`boss_trial_kind = 8`） | `UI/Ugui/SeasonEconomyV1/Icons/boss_avatar_dual_guard.png` | 256×256 透明底无文字；首领居中，两侧带回春与护势双阵标识 | 回退既有 `boss_break_avatar` |
+| 「破绽」碎甲裂纹特效条 | `Battle/Fx/boss_exposed_crack_strip.png` | 8 帧水平方格条（2048×256，单格 256×256），透明底无文字；破绽裂纹爆发 | 仅飘字/横幅提示 |
+| 「崩势破盾」碎阵特效条 | `Battle/Fx/boss_stance_break_strip.png` | 8 帧水平方格条（3072×384，单格 384×384），透明底无文字；护盾/阵法破碎冲击 | 仅飘字/横幅提示 |
+| 「决战姿态」阶段切换特效条 | `Battle/Fx/boss_phase2_enrage_strip.png` | 8 帧水平方格条（3072×384，单格 384×384），透明底无文字；二阶段爆发光效 | 仅红金横幅渐入 |
+| 战斗状态小图标（破绽/蓄势/破甲/气馁/聚火/溅射） | `UI/Ugui/Battle/BossTrialV2/icon_{exposed,momentum,sunder,dishearten,focus,splash}.png` | 64×64 透明底无文字，对应 6 种状态含义 | 回退文字胶囊芯片 |
+| 「破阵双绝」试炼志徽章（`badge_trial_dual_guard`） | `UI/Ugui/TrialJournal/Badges/badge_trial_dual_guard.png` | 128×128 透明底无文字，双卫试炼荣誉徽章 | 回退无图标样式 |
 
 ---
 

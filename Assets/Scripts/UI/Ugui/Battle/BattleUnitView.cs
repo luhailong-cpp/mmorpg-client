@@ -163,6 +163,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         public BattleUnitStatusSummary LastStatusSummary { get; private set; }
         private readonly RectTransform _plate;
         private readonly CanvasGroup _plateGroup;
+        private readonly Button _buffStatusButton;
+        private readonly Image _chargeIcon;
         private readonly RectTransform _hpBgRect;
         private readonly RectTransform _mpBgRect;
         private readonly TMP_Text _name;
@@ -206,7 +208,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private BattleActorState _lastState;
 
         public BattleUnitView(BattleUiRoot owner, UnityEngine.Transform parent, ulong actorId,
-            bool isSelf, bool teamIsMine, int slot, Action<ulong> onClicked, UnityEngine.Transform plateParent = null)
+            bool isSelf, bool teamIsMine, int slot, Action<ulong> onClicked, UnityEngine.Transform plateParent = null,
+            Action<ulong> onNameClicked = null, Action<ulong> onBuffsClicked = null)
         {
             _owner = owner;
             _parent = parent;
@@ -265,20 +268,19 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _plate.pivot = _root.pivot;
                 _plate.anchoredPosition = _root.anchoredPosition;
                 _plateGroup = _plate.gameObject.AddComponent<CanvasGroup>();
-                _plateGroup.blocksRaycasts = false;
-                _plateGroup.interactable = false;
                 var follower = _plate.gameObject.AddComponent<BattlePlateFollower>();
-                follower.Bind(_root, _group, _plateGroup);
+                follower.Bind(_root, _group, _plateGroup, onNameClicked != null || onBuffsClicked != null);
             }
 
             // 头顶 HP/MP 细条(y 由 LayoutOverhead 按立绘可见顶点定)
             float barX = RootWidth * 0.5f - BarWidth * 0.5f;
             var hpBg = BattleUiWidgets.CreatePanel("HpBg", _plate, barX, 36f, BarWidth, HpBarHeight, BattleUiStyle.BarBg, false);
             _hpBgRect = hpBg.rectTransform;
-            var shieldBg = BattleUiWidgets.CreatePanel("ShieldBg", _plate, barX, 29f, BarWidth, ShieldBarHeight, BattleUiStyle.BarBg, false);
+            var shieldBg = BattleUiWidgets.CreatePanel("ShieldBg", _plate, barX, 29f, BarWidth, ShieldBarHeight,
+                QdaoUguiTheme.Html("#9E804E"), false);
             _shieldBgRect = shieldBg.rectTransform;
             var shieldFill = BattleUiWidgets.CreatePanel("ShieldFill", shieldBg.transform, 1f, 1f, 0f, ShieldBarHeight - 2f,
-                QdaoUguiTheme.Html("#5CE1D3"), false);
+                QdaoUguiTheme.Html("#59C5B3"), false);
             _shieldFillRect = shieldFill.rectTransform;
             shieldBg.gameObject.SetActive(false);
             _hpGhost = BattleUiWidgets.CreatePanel("HpGhost", hpBg.transform, 1f, 1f, BarWidth - 2f, HpBarHeight - 2f,
@@ -293,17 +295,28 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             // buff 图标行(条上方,左对齐)与蓄力脉冲徽标(Buff 行上方)
             _buffRow = QdaoUguiFactory.CreateRect("Buffs", _plate, barX, 4f, BarWidth + 60f, BuffIconSize + 2f);
+            if (onBuffsClicked != null)
+            {
+                _buffStatusButton = QdaoUguiFactory.CreateHitButton("InspectBuffs", _buffRow, -4f, -8f, 44f, 44f);
+                _buffStatusButton.onClick.AddListener(() => onBuffsClicked(ActorId));
+                _buffStatusButton.gameObject.SetActive(false);
+            }
+            if (onNameClicked != null)
+            {
+                var nameHit = QdaoUguiFactory.CreateHitButton("InspectName", _plate,
+                    NameAnchor.x, -NameAnchor.y - 5f, 220f, 44f);
+                nameHit.onClick.AddListener(() => onNameClicked(ActorId));
+            }
             _chargePlate = BattleUiWidgets.CreatePanel("ChargingBadge", _plate, RootWidth * 0.5f - 88f, -24f, 176f, 24f,
                 new Color(0.56f, 0.15f, 0.13f, 0.94f), false);
             _chargePlate.raycastTarget = false;
-            var chargeIcon = SeasonEconomyUiArt.LoadBossTrialV2Icon("icon_charging");
-            float chargeTextX = chargeIcon != null ? 24f : 4f;
-            if (chargeIcon != null)
-            {
-                var cImg = QdaoUguiFactory.CreateImage("ChargingIcon", _chargePlate.transform, 4f, 3f, 18f, 18f, chargeIcon);
-                cImg.preserveAspect = true;
-                cImg.raycastTarget = false;
-            }
+            var chargeIcon = Resources.Load<Sprite>("UI/Ugui/Battle/Build/charge_badge")
+                ?? SeasonEconomyUiArt.LoadBossTrialV2Icon("icon_charging");
+            _chargeIcon = QdaoUguiFactory.CreateImage("ChargingIcon", _chargePlate.transform, 4f, 3f, 18f, 18f,
+                chargeIcon ?? BattleArtCatalog.RingSprite);
+            _chargeIcon.preserveAspect = true;
+            _chargeIcon.color = chargeIcon != null ? Color.white : QdaoUguiTheme.Html("#EAC075");
+            const float chargeTextX = 24f;
             _chargeLabel = QdaoUguiFactory.CreateText("ChargingLabel", _chargePlate.transform,
                 chargeTextX, 0f, 176f - chargeTextX - 4f, 24f, string.Empty, 13f, QdaoUguiTheme.Html("#FFE6A0"), TextAlignmentOptions.Center);
             _chargeLabel.fontStyle = FontStyles.Bold;
@@ -313,7 +326,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _chargeLabel.raycastTarget = false;
             _chargePlate.gameObject.SetActive(false);
 
-            // 名字随名牌层固定在脚下，触摸由立绘上的 Hit 按钮处理。
+            // 名字固定在脚下，触控区与立绘的出手切换区独立。
             _name = QdaoUguiFactory.CreateText("Name", _plate, NameAnchor.x, -NameAnchor.y, 220f, 34f, string.Empty, 24f,
                 NameColor(false), TextAlignmentOptions.Center);
             _name.fontStyle = FontStyles.Bold;
@@ -431,7 +444,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_coreGuardMarker != null) _coreGuardMarker.gameObject.SetActive(_coreGuardMarked && !IsDead && !Fled);
         }
 
-        public void SetTargetFocusTag(string label, bool isPrimaryFocus)
+        public void SetTargetFocusTag(string label, bool isPrimaryFocus, bool showFocusIcon = true)
         {
             if (_targetFocusPlate == null || _targetFocusLabel == null) return;
             bool show = !string.IsNullOrEmpty(label) && !IsDead && !Fled;
@@ -442,7 +455,9 @@ namespace MmorpgClient.UI.Ugui.Battle
             _targetFocusPlate.color = isPrimaryFocus ? new Color(0.58f, 0.41f, 0.08f, 0.94f) : new Color(0.20f, 0.23f, 0.27f, 0.88f);
             if (_targetFocusIcon != null)
             {
-                var focusIcon = SeasonEconomyUiArt.LoadBossTrialV2Icon(isPrimaryFocus ? "icon_focus" : "icon_splash");
+                var focusIcon = showFocusIcon
+                    ? SeasonEconomyUiArt.LoadBossTrialV2Icon(isPrimaryFocus ? "icon_focus" : "icon_splash")
+                    : null;
                 _targetFocusIcon.sprite = focusIcon;
                 _targetFocusIcon.gameObject.SetActive(focusIcon != null);
                 var labelRt = _targetFocusLabel.rectTransform;
@@ -1067,6 +1082,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 go = plate.gameObject;
             }
             _buffIcons.Add(go);
+            RefreshBuffHitArea();
             var rect = (RectTransform)go.transform;
             rect.localScale = UnityEngine.Vector3.zero;
             RealtimeTween.To(0f, 1f, BattleTempo.Scale(0.28f)).SetEase(RealtimeEase.BackOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
@@ -1638,12 +1654,12 @@ namespace MmorpgClient.UI.Ugui.Battle
                 if (go != null) UnityEngine.Object.Destroy(go);
             }
             _buffIcons.Clear();
-            if (_buffRow == null || state.Buffs == null) return;
 
             int index = 0;
             foreach (var buff in state.Buffs)
             {
                 if (index >= MaxBuffIcons) break;
+                if (buff == null) continue;
                 float x = index * (BuffIconSize + 3f);
                 var sprite = BattleArtCatalog.LoadBuffIcon(buff.BuffTableId);
                 GameObject go;
@@ -1671,6 +1687,23 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _buffIcons.Add(go);
                 index++;
             }
+            RefreshBuffHitArea();
+        }
+
+        private void RefreshBuffHitArea()
+        {
+            if (_buffStatusButton == null) return;
+            _buffStatusButton.gameObject.SetActive(_buffIcons.Count > 0);
+            ((RectTransform)_buffStatusButton.transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,
+                Mathf.Max(44f, _buffIcons.Count * (BuffIconSize + 3f) + 5f));
+        }
+
+        public void UpdateChargeBadge(float alpha)
+        {
+            if (_chargeIcon == null || !_chargePlate.gameObject.activeSelf) return;
+            Color tint = _chargeIcon.color;
+            tint.a = alpha;
+            _chargeIcon.color = tint;
         }
 
         private void RefreshStatusOverlay(BattleActorState state)

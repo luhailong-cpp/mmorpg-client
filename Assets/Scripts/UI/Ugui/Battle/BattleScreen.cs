@@ -6,8 +6,10 @@ using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Battle.Presentation;
 using MmorpgClient.Game.CoreLoop;
 using MmorpgClient.Table;
+using MmorpgClient.UI.Ugui.CoreLoop;
 using MmorpgClient.UI.Ugui.Tweening;
 using MmorpgClient.World;
+using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
 namespace MmorpgClient.UI.Ugui.Battle
@@ -47,6 +49,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static readonly Rect ReplaySkipRect = new Rect(1220f, BattleStage.HudBottomBand, 136f, 56f);
         public static readonly Rect ReplayJumpInputRect = new Rect(1380f, BattleStage.HudBottomBand, 110f, 56f);
         public static readonly Rect ReplayJumpRect = new Rect(1500f, BattleStage.HudBottomBand, 110f, 56f);
+        public static readonly Rect ReplayStatsRect = new Rect(1628f, BattleStage.HudBottomBand, 160f, 56f);
         /// <summary>
         /// 目标提示/确认/取消条:贴在 BattleStage.HudBottomBand(992,按视频我方玩家排 slot0 脚底 948.6 + 名字 40 定)之下,
         /// 不压我方后排;高 56 → 底边 1048,再往下 1048..1080 是底部提示文字(HintRect)。
@@ -99,6 +102,8 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         // HUD
         private readonly BattleRoundCounter _roundCounter;
+        private readonly RectTransform _guildWarFrenzyRoot;
+        private readonly TMP_Text _guildWarFrenzyText;
         private readonly BattleLogPanel _logPanel;
         private readonly BattleActionOrderBar _orderBar;
         private readonly BattlePartyCards _partyCards;
@@ -132,6 +137,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly RectTransform _replayJumpInputPlate;
         private readonly TMP_InputField _replayJumpInput;
         private readonly UiTextButton _replayJumpButton;
+        private readonly UiTextButton _replayStatsButton;
+        private readonly BattleReplayOverlay _replayOverlay;
 
         // 目标选择 / 确认
         private readonly TMP_Text _targetHintText;
@@ -210,9 +217,15 @@ namespace MmorpgClient.UI.Ugui.Battle
         private float _prepPulseOriginTime;
 
         // 单位状态详情小卡（触控/点击单位打开，消费 BattleUnitStatusInspector 只读投影）
-        private readonly Image _statusPopup;
+        private readonly RectTransform _statusPopup;
         private readonly TMP_Text _statusPopupTitle;
-        private readonly TMP_Text _statusPopupBody;
+        private readonly TMP_Text _statusHealth;
+        private readonly TMP_Text _statusMana;
+        private readonly TMP_Text _statusShield;
+        private readonly TMP_Text _statusCharge;
+        private readonly RectTransform _statusBuffContent;
+        private readonly ScrollRect _statusScroll;
+        private readonly List<(RectTransform Root, TMP_Text Source, TMP_Text Rounds, TMP_Text Effect)> _statusBuffRows = new();
         private ulong _inspectedActorId;
 
         // 战斗直连提示(turn-based §22 D74)
@@ -289,7 +302,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _world = CreateLayer("World", nestedCanvas: false, raycaster: false);
             _stageRoot = CreateLayer("Stage", nestedCanvas: true, raycaster: true, parent: _world);
             _fxLayer = CreateLayer("Fx", nestedCanvas: true, raycaster: false, parent: _world);
-            _plateLayer = CreateLayer("Plates", nestedCanvas: true, raycaster: false, parent: _world);
+            _plateLayer = CreateLayer("Plates", nestedCanvas: true, raycaster: true, parent: _world);
             _numberLayer = CreateLayer("Numbers", nestedCanvas: true, raycaster: false, parent: _world);
             _overlayLayer = CreateLayer("Overlay", nestedCanvas: false, raycaster: false);
             _hudRoot = CreateLayer("Hud", nestedCanvas: false, raycaster: false);
@@ -305,6 +318,19 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             // ── 左上:回合 + 战斗记录 + 相位/未行动(左列,避开顶部预告条与敌方后排的头顶条) ──
             _roundCounter = new BattleRoundCounter(_hudRoot, RoundCounterX, RoundCounterY);
+            _guildWarFrenzyRoot = QdaoUguiFactory.CreateRect("GuildWarFrenzyBadge", _hudRoot,
+                RoundCounterX + BattleRoundCounter.Width + 14f, RoundCounterY + 4f, 340f, 62f);
+            var frenzyBg = _guildWarFrenzyRoot.gameObject.AddComponent<Image>();
+            frenzyBg.color = new Color(0.38f, 0.09f, 0.07f, 0.88f);
+            frenzyBg.raycastTarget = false;
+            var frenzyIcon = QdaoUguiFactory.CreateImage("Icon", _guildWarFrenzyRoot, 6f, 5f, 52f, 52f,
+                Guild.GuildWarUiArt.Load("badge_frenzy_round12"));
+            frenzyIcon.preserveAspect = true;
+            frenzyIcon.raycastTarget = false;
+            _guildWarFrenzyText = QdaoUguiFactory.CreateText("Text", _guildWarFrenzyRoot, 64f, 0f, 270f, 62f,
+                string.Empty, 20f, Guild.GuildWarUiArt.LightText, TextAlignmentOptions.MidlineLeft);
+            _guildWarFrenzyText.raycastTarget = false;
+            _guildWarFrenzyRoot.gameObject.SetActive(false);
             _logPanel = new BattleLogPanel(_hudRoot, LogButtonRect.x, LogButtonRect.y);
             _phaseText = QdaoUguiFactory.CreateText("Phase", _hudRoot, 40f, 98f, 620f, 36f,
                 string.Empty, 24f, BattleUiStyle.WarnText, TextAlignmentOptions.MidlineLeft);
@@ -445,6 +471,15 @@ namespace MmorpgClient.UI.Ugui.Battle
                 0f, 0f, ReplayJumpInputRect.width, ReplayJumpInputRect.height, "回合", 4);
             _replayJumpInput.contentType = TMP_InputField.ContentType.IntegerNumber;
             _replayJumpButton = CreateReplayButton("ReplayJump", ReplayJumpRect, "跳转", BattleUiStyle.ButtonPlate, OnReplayJumpClicked);
+            _replayStatsButton = CreateReplayButton("ReplayStats", ReplayStatsRect, "数据复盘", BattleUiStyle.ButtonPlateAccent, () => _replayOverlay?.ToggleStats());
+            var statsIconSprite = BattleReportUiArt.TryLoad(BattleReportUiArt.IconStatsChart);
+            if (statsIconSprite != null)
+            {
+                var statsIcon = QdaoUguiFactory.CreateImage("StatsIcon", _replayStatsButton.Rect, 10f, 12f, 32f, 32f, statsIconSprite, raycastTarget: false);
+                statsIcon.preserveAspect = true;
+                _replayStatsButton.Label.rectTransform.offsetMin = new Vector2(36f, 0f);
+            }
+            _replayOverlay = new BattleReplayOverlay(_hudRoot, round => _owner?.RequestReplayJumpRound(round));
             SetReplayControlsVisible(false);
 
             // ── 战斗直连提示横幅 + 重新连接(顶部预告条之下;默认隐藏,Tick 按 BattleClient 状态切档) ──
@@ -539,6 +574,19 @@ namespace MmorpgClient.UI.Ugui.Battle
             _quickParryButton = BattleUiWidgets.CreateTextButton("QuickParryBtn", _hudRoot, 1660f, 926f, 320f, 54f,
                 "一键化劲防御", 22f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
             BattleRoundCounter.ApplyNineSlice(_quickParryButton.Plate, "button_9slice");
+            var quickParrySprite = CoreLoopUiArt.LoadV2("badge_quick_parry");
+            if (quickParrySprite != null)
+            {
+                var icon = QdaoUguiFactory.CreateImage("QuickParryBadge", _quickParryButton.Rect,
+                    14f, 13f, 28f, 28f, quickParrySprite, false);
+                icon.preserveAspect = true;
+                var label = _quickParryButton.Label;
+                label.rectTransform.anchoredPosition = new Vector2(50f, 0f);
+                label.rectTransform.sizeDelta = new Vector2(258f, 54f);
+                label.enableAutoSizing = true;
+                label.fontSizeMin = 16f;
+                label.fontSizeMax = 22f;
+            }
             _quickParryButton.Button.onClick.AddListener(OnQuickParryClicked);
             _quickParryButton.SetVisible(false);
 
@@ -811,27 +859,86 @@ namespace MmorpgClient.UI.Ugui.Battle
             _spectatorPrepText.raycastTarget = false;
             _spectatorPrepBanner.gameObject.SetActive(false);
 
-            _statusPopup = BattleUiWidgets.CreatePanel("UnitStatusPopup", _hudRoot, 36f, 224f, 468f, 326f,
-                new Color(0.11f, 0.14f, 0.16f, 0.94f), true);
-            BattleRoundCounter.ApplyNineSlice(_statusPopup, "panel_9slice");
-            _statusPopupTitle = QdaoUguiFactory.CreateText("UnitStatusTitle", _statusPopup.transform,
-                18f, 12f, 384f, 32f, string.Empty, 20f, QdaoUguiTheme.Html("#FFE6A0"), TextAlignmentOptions.MidlineLeft);
+            BattleFidelityArt.ApplyHud(_hudRoot);
+            _statusPopup = QdaoUguiFactory.CreateStretch("UnitStatusPopup", _hudRoot, Vector4.zero);
+            var statusDismiss = QdaoUguiFactory.CreateHitButton("DismissStatus", _statusPopup,
+                0f, 0f, QdaoUguiTheme.DesignWidth, QdaoUguiTheme.DesignHeight);
+            statusDismiss.onClick.AddListener(HideUnitStatusPopup);
+            const float cardWidth = 760f;
+            const float cardHeight = 540f;
+            var statusCard = BattleUiWidgets.CreatePanel("StatusCard", _statusPopup,
+                (QdaoUguiTheme.DesignWidth - cardWidth) / 2f, (QdaoUguiTheme.DesignHeight - cardHeight) / 2f,
+                cardWidth, cardHeight, SeasonEconomyUiArt.BattleArenaPaper, true);
+            SeasonEconomyUiArt.ApplyFixedControlSprite(statusCard,
+                Resources.Load<Sprite>("UI/Ugui/NewPlayReview/Controls/card"), SeasonEconomyUiArt.BattleArenaPaper);
+            if (statusCard.sprite != null && statusCard.sprite.border != Vector4.zero)
+                statusCard.type = Image.Type.Sliced;
+            var statusHeading = BattleUiWidgets.CreatePanel("StatusHeading", statusCard.transform,
+                180f, -7f, 400f, 76f, SeasonEconomyUiArt.BattleArenaJade, false);
+            SeasonEconomyUiArt.ApplyFixedControlSprite(statusHeading,
+                SeasonEconomyUiArt.LoadGuildFidelityAsset("guild_button_primary"), SeasonEconomyUiArt.BattleArenaJade);
+            _statusPopupTitle = QdaoUguiFactory.CreateText("UnitStatusTitle", statusHeading.transform,
+                42f, 2f, 316f, 70f, string.Empty, 34f, SeasonEconomyUiArt.GoldText, TextAlignmentOptions.Center);
+            _statusPopupTitle.richText = false;
             _statusPopupTitle.fontStyle = FontStyles.Bold;
             _statusPopupTitle.enableAutoSizing = true;
-            _statusPopupTitle.fontSizeMin = 14f;
-            _statusPopupTitle.fontSizeMax = 20f;
-            var statusClose = BattleUiWidgets.CreateTextButton("UnitStatusClose", _statusPopup.transform,
-                412f, 10f, 44f, 36f, "×", 22f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _statusPopupTitle.fontSizeMin = 23f;
+            _statusPopupTitle.fontSizeMax = 34f;
+            var statusClose = BattleUiWidgets.CreateTextButton("UnitStatusClose", statusCard.transform,
+                684f, 9f, 64f, 64f, "×", 32f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            var closeArt = SeasonEconomyUiArt.LoadGuildFidelityAsset("guild_close");
+            if (closeArt != null)
+            {
+                SeasonEconomyUiArt.ApplyFixedControlSprite(statusClose.Plate, closeArt, BattleUiStyle.ButtonPlate);
+                statusClose.Label.gameObject.SetActive(false);
+            }
             statusClose.Button.onClick.AddListener(HideUnitStatusPopup);
-            _statusPopupBody = BattleUiWidgets.CreateWrappedText("UnitStatusBody", _statusPopup.transform,
-                18f, 52f, 432f, 260f, string.Empty, 16f, QdaoUguiTheme.Cream);
-            _statusPopupBody.overflowMode = TextOverflowModes.Ellipsis;
+
+            _statusHealth = CreateStatusField(statusCard.transform, "气血", 80f);
+            _statusMana = CreateStatusField(statusCard.transform, "法力", 118f);
+            _statusShield = CreateStatusField(statusCard.transform, "持久护盾", 156f);
+            _statusCharge = CreateStatusField(statusCard.transform, "蓄力", 194f);
+            var statusTableHead = BattleUiWidgets.CreatePanel("StatusTableHead", statusCard.transform,
+                24f, 244f, 712f, 44f, QdaoUguiTheme.Html("#E5D7BD"), false);
+            SeasonEconomyUiArt.ApplyFixedControlSprite(statusTableHead,
+                SeasonEconomyUiArt.LoadGuildFidelityAsset("guild_table_header"), QdaoUguiTheme.Html("#E5D7BD"));
+            QdaoUguiFactory.CreateText("SourceHeading", statusTableHead.transform,
+                19f, 0f, 231f, 44f, "状态来源", 28f, QdaoUguiTheme.Html("#5A3C26")).fontStyle = FontStyles.Bold;
+            QdaoUguiFactory.CreateText("RoundsHeading", statusTableHead.transform,
+                260f, 0f, 224f, 44f, "剩余回合", 28f, QdaoUguiTheme.Html("#5A3C26"), TextAlignmentOptions.Center)
+                .fontStyle = FontStyles.Bold;
+            QdaoUguiFactory.CreateText("EffectHeading", statusTableHead.transform,
+                500f, 0f, 202f, 44f, "护盾与余次", 28f, QdaoUguiTheme.Html("#5A3C26")).fontStyle = FontStyles.Bold;
+            var viewport = BattleUiWidgets.CreatePanel("StatusViewport", statusCard.transform,
+                24f, 288f, 712f, 227f, Color.clear, true).rectTransform;
+            viewport.gameObject.AddComponent<RectMask2D>();
+            _statusBuffContent = QdaoUguiFactory.CreateRect("UnitStatusBody", viewport, 0f, 0f, 712f, 227f);
+            _statusScroll = viewport.gameObject.AddComponent<ScrollRect>();
+            _statusScroll.viewport = viewport;
+            _statusScroll.content = _statusBuffContent;
+            _statusScroll.horizontal = false;
+            _statusScroll.movementType = ScrollRect.MovementType.Clamped;
+            _statusScroll.scrollSensitivity = 48f;
             _statusPopup.gameObject.SetActive(false);
 
             _skillPanel.gameObject.SetActive(false);
             _itemPanel.gameObject.SetActive(false);
-            BattleFidelityArt.ApplyHud(_hudRoot);
             _root.gameObject.SetActive(false);
+        }
+
+        private static TMP_Text CreateStatusField(UnityEngine.Transform parent, string label, float y)
+        {
+            Color ink = QdaoUguiTheme.Html("#17382A");
+            QdaoUguiFactory.CreateText(label, parent, 43f, y, 135f, 38f, label, 27f, QdaoUguiTheme.Html("#614328"));
+            BattleUiWidgets.CreatePanel("StatusDivider", parent, 43f, y + 36f, 671f, 1f,
+                QdaoUguiTheme.Html("#CCB794"), false);
+            var value = QdaoUguiFactory.CreateText("StatusValue", parent, 195f, y, 519f, 38f, string.Empty, 28f, ink);
+            value.richText = false;
+            value.fontStyle = FontStyles.Bold;
+            value.enableAutoSizing = true;
+            value.fontSizeMin = 20f;
+            value.fontSizeMax = 28f;
+            return value;
         }
 
         /// <summary>
@@ -870,10 +977,15 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// 只播不发,隐藏命令环、计时环与直连横幅;展示底部回放控制条。
         /// </summary>
         public void OpenReplay(BattleStateS2C state, ulong myPlayerId, uint viewerTeamIndex, string headerInfo, string noticeText)
+            => OpenReplay(state, myPlayerId, viewerTeamIndex, headerInfo, noticeText, null);
+
+        public void OpenReplay(BattleStateS2C state, ulong myPlayerId, uint viewerTeamIndex, string headerInfo, string noticeText, BattleReplayAnalysis analysis)
         {
+            _replayOverlay?.Bind(analysis);
             OpenInternal(state, myPlayerId, spectate: false, replay: true, observerCount: 0, viewerTeamIndex: viewerTeamIndex);
             if (_spectateText != null) _spectateText.text = headerInfo ?? "战报回放";
             if (!string.IsNullOrEmpty(noticeText)) SetHint(noticeText);
+            _replayStatsButton?.SetInteractable(analysis != null && analysis.Actors.Count > 0);
             SetTimer(-1, 0f);
         }
 
@@ -933,6 +1045,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _coreProtectedGuardActorId = 0;
             _surrenderRequestPending = false;
             _surrenderButton?.SetVisible(false);
+            if (_guildWarFrenzyRoot != null) _guildWarFrenzyRoot.gameObject.SetActive(false);
             if (_surrenderConfirmStrip != null) _surrenderConfirmStrip.gameObject.SetActive(false);
             if (_surrenderVoteStrip != null) _surrenderVoteStrip.gameObject.SetActive(false);
             _quickParryButton?.SetVisible(false);
@@ -960,6 +1073,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _notReadySince = -1f;
             ApplyChannelBanner(BattleChannelBanner.Hidden);
             RefreshSpectateHeader();
+            _replayOverlay?.Clear();
             SetReplayControlsVisible(false);
             _root.gameObject.SetActive(false);
             BattleArtCatalog.ReleaseTransientBattleCaches();
@@ -1032,9 +1146,25 @@ namespace MmorpgClient.UI.Ugui.Battle
         private uint CurrentRoundLimit()
         {
             if (_state != null && _state.RoundLimit > 0u) return _state.RoundLimit;
+            if (_state != null && (Guild.GuildUiRoot.Instance?.IsActiveGuildWarBattle(_state.BattleId) ?? false)) return 20u;
             if (!(FestivalBeast.FestivalBeastUiRoot.Instance?.IsActiveFestivalBeastBattle ?? false)) return 0u;
             uint configured = Game.FestivalBeast.FestivalBeastClient.Instance?.Detail?.RoundLimit ?? 0u;
             return configured == 0u ? 12u : configured;
+        }
+
+        private void UpdateGuildWarFrenzyBadge(BattleStateS2C state)
+        {
+            if (_guildWarFrenzyRoot == null) return;
+            bool isWar = state != null && (Guild.GuildUiRoot.Instance?.IsActiveGuildWarBattle(state.BattleId) ?? false);
+            if (!isWar || state.RoundIndex < 12u)
+            {
+                _guildWarFrenzyRoot.gameObject.SetActive(false);
+                return;
+            }
+            uint stacks = state.RoundIndex - 11u;
+            uint pct = stacks * 15u;
+            _guildWarFrenzyText.text = $"决胜煞气 ×{stacks} (+{pct}%伤/-{pct}%疗)";
+            _guildWarFrenzyRoot.gameObject.SetActive(true);
         }
 
         public void OnPhaseChanged(BattlePhase phase)
@@ -1100,6 +1230,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             _roundCounter.SetRound(state.RoundIndex, state.RoundIndex != _roundCounter.Round && _roundCounter.Round != 0,
                 roundLimit: CurrentRoundLimit());
+            UpdateGuildWarFrenzyBadge(state);
             _partyCards.Refresh(BattleHudLogic.PartyCardOrder(state.Actors, _myId, _myTeam, BattlePartyCards.MaxCards), ResolveTile);
 
             // 新回合开始:重置本地已提交标记。目标选择只对选的那一回合有效:直连断线期间服务端可能已替本人
@@ -1156,7 +1287,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                     depthSlot = p.depthSlot;
                 }
                 bool pet = BattleStage.IsPetPlacement(actor, placement);
-                var view = new BattleUnitView(_owner, _stageRoot, actor.ActorId, actor.ActorId == _myId && _myId != 0, mine, slot, OnUnitClicked, _plateLayer)
+                var view = new BattleUnitView(_owner, _stageRoot, actor.ActorId, actor.ActorId == _myId && _myId != 0,
+                    mine, slot, OnUnitClicked, _plateLayer, OnUnitStatusClicked, ToggleUnitStatusPopup)
                 {
                     Fx = _presenter.Fx,
                     Numbers = _presenter.Numbers,
@@ -1182,6 +1314,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         public void Tick()
         {
             if (!IsOpen) return;
+            float pulseAlpha = 0.85f + 0.15f * Mathf.Sin(Time.unscaledTime * 5f);
+            foreach (var view in _views) view.UpdateChargeBadge(pulseAlpha);
             ApplyTopSafety();
             // 直连状态没有「掉线恢复中」事件(IBattleChannel 只报就绪 / 终结),每帧轮询才能及时置灰;
             // 放在播放分支之前:回合播放中直连断开 / 恢复,横幅照样更新
@@ -1438,12 +1572,18 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void OnSkillPicked(uint skillTableId)
         {
             if (!CanAct()) return;
-            if (Skills.SkillUiRoot.FindPresentation(skillTableId) == null && MmorpgClient.Game.Skills.SkillBookClient.Instance != null)
+            var definition = Skills.SkillUiRoot.FindPresentation(skillTableId);
+            bool isMirrorCopy = skillTableId == TurnPlan.MirrorCopySkillId;
+            if (!isMirrorCopy && definition == null && MmorpgClient.Game.Skills.SkillBookClient.Instance != null)
             { EnsureSkillCatalog(); SetHint("技能信息正在同步，请稍后再选择"); return; }
             _skillPanel.gameObject.SetActive(false);
             _pending = PendingKind.Skill;
             _pendingSkillId = skillTableId;
-            var definition = Skills.SkillUiRoot.FindPresentation(skillTableId);
+            if (isMirrorCopy)
+            {
+                EnterTargetMode("请为【玄镜映法】选择敌方目标（首领不可复制）");
+                return;
+            }
             bool self = string.Equals(definition?.targetTeam, "self", System.StringComparison.OrdinalIgnoreCase);
             var name = definition?.name ?? $"技能{skillTableId}";
             EnterTargetMode(self ? $"【{name}】作用于自身，请确认行动" : $"请为【{name}】选择目标");
@@ -1503,12 +1643,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 var clickedActor = FindActor(actorId);
                 bool canSwitchActing = !IsReadOnly && !_playing && _phase == BattlePhase.WaitingAction &&
                     IsControlled(clickedActor) && _actingId != actorId;
-                if (canSwitchActing)
-                {
-                    SelectActingActor(actorId);
-                    HideUnitStatusPopup();
-                    return;
-                }
+                if (canSwitchActing) SelectActingActor(actorId);
                 ToggleUnitStatusPopup(actorId);
                 return;
             }
@@ -1532,6 +1667,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             _statusPopup.gameObject.SetActive(true);
             _statusPopup.transform.SetAsLastSibling();
             RefreshUnitStatusPopup();
+            _statusScroll.verticalNormalizedPosition = 1f;
+        }
+
+        private void OnUnitStatusClicked(ulong actorId)
+        {
+            if (_pending == PendingKind.None) ToggleUnitStatusPopup(actorId);
+            else OnUnitClicked(actorId);
         }
 
         private void HideUnitStatusPopup()
@@ -1548,10 +1690,79 @@ namespace MmorpgClient.UI.Ugui.Battle
             var summary = BattleUnitStatusInspector.Inspect(actor,
                 skillId => Skills.SkillUiRoot.FindPresentation(skillId)?.name);
             string actorName = ResolveName(_inspectedActorId);
-            _statusPopupTitle.text = summary.IsCharging
-                ? $"{actorName} · 蓄力：{summary.ChargingSkillName}"
-                : $"{actorName} · 状态详情";
-            _statusPopupBody.text = FormatUnitStatusBody(actor, summary);
+            _statusPopupTitle.text = $"{actorName} · 状态详情";
+            _statusHealth.text = $"{actor.Attributes?.Health ?? 0UL:N0} / {actor.MaxHealth:N0}";
+            _statusMana.text = $"{actor.Attributes?.Mana ?? 0UL:N0} / {actor.MaxMana:N0}";
+            _statusShield.text = summary.TotalShieldCapacity.ToString("N0");
+            _statusCharge.text = summary.IsCharging ? $"蓄力中 · {summary.ChargingSkillName}" : "未蓄力";
+            RefreshStatusRows(summary);
+        }
+
+        private void RefreshStatusRows(BattleUnitStatusSummary summary)
+        {
+            const float rowHeight = 58f;
+            int rowCount = Mathf.Max(summary.Buffs.Count, 1);
+            while (_statusBuffRows.Count < rowCount)
+            {
+                int index = _statusBuffRows.Count;
+                var row = BattleUiWidgets.CreatePanel("StatusBuffRow", _statusBuffContent, 0f, index * rowHeight,
+                    712f, rowHeight, SeasonEconomyUiArt.BattleArenaPaper, false);
+                SeasonEconomyUiArt.ApplyFixedControlSprite(row,
+                    SeasonEconomyUiArt.LoadGuildFidelityAsset("guild_row_normal"), SeasonEconomyUiArt.BattleArenaPaper);
+                Color ink = QdaoUguiTheme.Html("#17382A");
+                var source = QdaoUguiFactory.CreateText("BuffSource", row.transform,
+                    19f, 0f, 229f, rowHeight, string.Empty, 29f, ink);
+                source.richText = false;
+                source.fontStyle = FontStyles.Bold;
+                source.enableAutoSizing = true;
+                source.fontSizeMin = 21f;
+                source.fontSizeMax = 29f;
+                var rounds = QdaoUguiFactory.CreateText("BuffRounds", row.transform,
+                    260f, 0f, 224f, rowHeight, string.Empty, 27f, ink, TextAlignmentOptions.Center);
+                var effect = BattleUiWidgets.CreateWrappedText("BuffEffect", row.transform,
+                    500f, 3f, 198f, rowHeight - 6f, string.Empty, 23f, ink);
+                effect.alignment = TextAlignmentOptions.MidlineLeft;
+                effect.enableAutoSizing = true;
+                effect.fontSizeMin = 17f;
+                effect.fontSizeMax = 23f;
+                _statusBuffRows.Add((row.rectTransform, source, rounds, effect));
+            }
+            float tableHeight = 0f;
+            for (int index = 0; index < _statusBuffRows.Count; index++)
+            {
+                var row = _statusBuffRows[index];
+                row.Root.gameObject.SetActive(index < rowCount);
+                if (index >= rowCount) continue;
+                var buff = summary.Buffs.Count == 0 ? null : summary.Buffs[index];
+                row.Source.text = buff?.SourceName ?? "当前无生效状态";
+                row.Rounds.text = buff == null ? string.Empty : buff.RemainRounds > 0 ? $"{buff.RemainRounds} 回合" : "—";
+                row.Effect.text = buff == null ? string.Empty : FormatBuffEffects(buff);
+                float height = Mathf.Max(rowHeight, Mathf.Ceil(row.Effect.GetPreferredValues(row.Effect.text, 198f, 0f).y) + 6f);
+                row.Root.anchoredPosition = new Vector2(0f, -tableHeight);
+                row.Root.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+                row.Source.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+                row.Rounds.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+                row.Effect.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height - 6f);
+                tableHeight += height;
+            }
+            _statusBuffContent.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
+                Mathf.Max(_statusScroll.viewport.rect.height, tableHeight));
+        }
+
+        private static string FormatBuffEffects(BattleUnitBuffDetail buff)
+        {
+            var fields = new List<string>(4);
+            var row = BuffTableManager.Instance.FindById(buff.BuffTableId);
+            uint stackLimit = row?.StackLimit ?? 0u;
+            if (buff.IsShield) fields.Add($"护盾余量 {buff.RemainingCapacity:N0}");
+            if (buff.RemainingHits > 0) fields.Add($"抵挡余{buff.RemainingHits}次");
+            if (buff.RemainingTicks > 0)
+            {
+                bool isReviveMark = row != null && row.Tag.TryGetValue("Revive", out bool revive) && revive;
+                fields.Add(isReviveMark ? $"回生印余{buff.RemainingTicks}次" : $"持续效果余{buff.RemainingTicks}次");
+            }
+            if (buff.Stacks > 0) fields.Add(stackLimit > 1 ? $"×{buff.Stacks}/{stackLimit}层" : $"×{buff.Stacks}层");
+            return string.Join(" · ", fields);
         }
 
         public static string FormatUnitStatusBody(BattleActorState actor, BattleUnitStatusSummary summary)
@@ -1561,8 +1772,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             ulong hp = actor.Attributes?.Health ?? 0UL;
             ulong mp = actor.Attributes?.Mana ?? 0UL;
             sb.Append($"气血 {hp}/{actor.MaxHealth}   法力 {mp}/{actor.MaxMana}");
-            if (summary.TotalShieldCapacity > 0UL) sb.Append($"\n持久护盾：{summary.TotalShieldCapacity}");
-            if (summary.IsCharging) sb.Append($"\n蓄力中：{summary.ChargingSkillName}（可打断 / 驱散 / 护盾应对）");
+            sb.Append($"\n持久护盾：{summary.TotalShieldCapacity}");
+            sb.Append(summary.IsCharging ? $"\n蓄力中：{summary.ChargingSkillName}" : "\n蓄力：未蓄力");
             if (summary.Buffs.Count == 0)
             {
                 sb.Append("\n\n当前无生效状态");
@@ -1573,22 +1784,23 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 var b = summary.Buffs[i];
                 sb.Append($"\n• {b.SourceName}");
-                if (b.Stacks > 1) sb.Append($" ×{b.Stacks}层");
-                if (b.RemainingCapacity > 0UL) sb.Append($" 盾{b.RemainingCapacity}");
-                if (b.RemainingHits > 0) sb.Append($" 余{b.RemainingHits}次");
-                if (b.RemainingTicks > 0) sb.Append($" 余{b.RemainingTicks}跳");
-                if (b.RemainRounds > 0) sb.Append($" ({b.RemainRounds}回合)");
+                string effects = FormatBuffEffects(b);
+                if (!string.IsNullOrEmpty(effects)) sb.Append($"  {effects}");
+                if (b.RemainRounds > 0) sb.Append($"  剩{b.RemainRounds}回合");
             }
             return sb.ToString();
         }
+
+        private bool IsSelectingMirrorCopy => _pending == PendingKind.Skill && _pendingSkillId == TurnPlan.MirrorCopySkillId;
 
         private bool IsTargetable(BattleUnitView view)
         {
             if (view == null || _pending == PendingKind.None) return false;
             if (_pending == PendingKind.RecallPet) return CanRecallPet(FindActor(view.ActorId));
             if (_pending == PendingKind.Capture) return CanCapture(FindActor(view.ActorId));
+            if (IsSelectingMirrorCopy && view.LastState?.IsBoss == true) return false;
             // 这里只过滤可见目标；最终施放资格和战斗规则仍由业务与服务端校验。
-            var targetTeam = _pending == PendingKind.Attack ? "enemy" :
+            var targetTeam = _pending == PendingKind.Attack || IsSelectingMirrorCopy ? "enemy" :
                 _pending == PendingKind.Skill ? Skills.SkillUiRoot.FindPresentation(_pendingSkillId)?.targetTeam : null;
             bool allowDead = _pending == PendingKind.Skill &&
                 Skills.SkillUiRoot.FindPresentation(_pendingSkillId)?.allowDeadTarget == true;
@@ -1616,7 +1828,11 @@ namespace MmorpgClient.UI.Ugui.Battle
                 bool targetable = IsTargetable(view);
                 view.SetHighlight(!ready || !targetable ? SlotHighlight.None :
                     view.ActorId == _selectedTargetId ? SlotHighlight.Selected : SlotHighlight.Targetable);
-                if (splashFocus && targetable && view.TeamIndex != _myTeam)
+                if (ready && IsSelectingMirrorCopy && view.TeamIndex != _myTeam && view.LastState?.IsBoss == true)
+                {
+                    view.SetTargetFocusTag("首领不可复制", false, showFocusIcon: false);
+                }
+                else if (splashFocus && targetable && view.TeamIndex != _myTeam)
                 {
                     if (view.ActorId == _selectedTargetId)
                         view.SetTargetFocusTag("聚火 100%", true);
@@ -2849,6 +3065,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _replaySkipButton?.SetVisible(visible);
             if (_replayJumpInputPlate != null) _replayJumpInputPlate.gameObject.SetActive(visible);
             _replayJumpButton?.SetVisible(visible);
+            _replayStatsButton?.SetVisible(visible);
+            _replayOverlay?.SetVisible(visible);
         }
 
         private void OnReplayJumpClicked()

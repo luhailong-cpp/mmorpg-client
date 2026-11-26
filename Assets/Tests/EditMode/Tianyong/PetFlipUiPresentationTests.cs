@@ -225,5 +225,93 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(PetFlipUiPresentation.FormatCompletionSummary(perfectResult), Is.EqualTo("本局 6 次  ·  本机最佳 6 次  ·  一气呵成"));
             Assert.That(PetFlipUiPresentation.FormatCompletionSummary(streakResult), Is.EqualTo("本局 8 次  ·  本机最佳 6 次  ·  最高 3 连配"));
         }
+
+        [Test]
+        public void V2EightPetMappingValidationAndModeFormatting_WorkCleanly()
+        {
+            Assert.That(PetFlipUiPresentation.GetPetCatalogId(SpiritPetCardPattern.G), Is.EqualTo("02-jiangling"));
+            Assert.That(PetFlipUiPresentation.GetPetCatalogId(SpiritPetCardPattern.H), Is.EqualTo("15-landuoxian"));
+
+            string[] eightNames = { "烛翎", "霜团貂", "桂灯童", "竹风狸", "玄潮龟", "霞角鹿", "绛铃", "岚铎仙" };
+            var eightFaces = new List<PetFlipFaceDescriptor>(PetFlipConstants.MaxPairCount);
+            for (int i = 0; i < PetFlipConstants.MaxPairCount; i++)
+            {
+                var p = (SpiritPetCardPattern)i;
+                Assert.That(string.IsNullOrWhiteSpace(PetFlipUiPresentation.GetPetMatchFlavorText(p)), Is.False);
+                eightFaces.Add(new PetFlipFaceDescriptor(p, PetFlipUiPresentation.GetPetCatalogId(p), eightNames[i], new object()));
+            }
+
+            Assert.That(PetFlipUiPresentation.ValidateAssets(true, eightFaces, PetFlipConstants.MaxPairCount, out string okReason), Is.True);
+            Assert.That(okReason, Is.Null);
+            Assert.That(PetFlipUiPresentation.ValidateAssets(true, CreateValidFaces(), PetFlipConstants.MaxPairCount, out string shortReason), Is.False);
+            Assert.That(shortReason, Is.EqualTo("invalid_face_count"));
+
+            Assert.That(PetFlipUiPresentation.FormatStreakBadge(7), Is.EqualTo("七连登峰！"));
+            Assert.That(PetFlipUiPresentation.FormatStreakBadge(8), Is.EqualTo("八连一气呵成！"));
+            Assert.That(PetFlipUiPresentation.FormatDailyDateLabel(20261125), Is.EqualTo("11月25日灵签"));
+            Assert.That(PetFlipUiPresentation.FormatPairCounter(5, 8), Is.EqualTo("已配 5/8 对"));
+
+            var advDaily = new PetFlipCompletionResult(
+                5, 8, 8, null, 8,
+                PetFlipRecordComparison.FirstRecord,
+                PetFlipRecordPersistenceStatus.Saved,
+                maxStreak: 8,
+                difficulty: PetFlipDifficulty.Advanced16,
+                mode: PetFlipGameMode.DailyChallenge);
+            Assert.That(PetFlipUiPresentation.FormatCompletionHeadline(advDaily), Is.EqualTo("八对齐了！首次纪录8次。"));
+            Assert.That(PetFlipUiPresentation.FormatCompletionSummary(advDaily), Is.EqualTo("本局 8 次  ·  今日最佳 8 次  ·  一气呵成"));
+
+            var peekCard = new PetFlipCardSnapshot(3, PetFlipCardState.FaceUp, SpiritPetCardPattern.D, true);
+            Assert.That(PetFlipUiPresentation.FormatCardAccessibleName(peekCard, "竹风狸", isSpiritEyePeek: true), Does.Contain("灵目"));
+        }
+
+        [TestCase(false, 1922f, 818f)]
+        [TestCase(true, 1024f, 1536f)]
+        public void V2Advanced16Layout_AllSixteenSlotsAndEightMedallionsAreNonOverlappingAndInBounds(
+            bool isPortrait,
+            float canvasWidth,
+            float canvasHeight)
+        {
+            var slotRects = new PetFlipPixelRect[PetFlipConstants.AdvancedBoardCardCount];
+            var leftNote = new PetFlipPixelRect(256f, 310f, 270f, 254f);
+            var rightNote = new PetFlipPixelRect(1393f, 310f, 270f, 254f);
+
+            for (int i = 0; i < PetFlipConstants.AdvancedBoardCardCount; i++)
+            {
+                PetFlipPixelRect r = PetFlipUiPresentation.GetCardSlotRect(i, isPortrait, PetFlipDifficulty.Advanced16);
+                slotRects[i] = r;
+                Assert.That(r.X, Is.GreaterThanOrEqualTo(0f));
+                Assert.That(r.Y, Is.GreaterThanOrEqualTo(0f));
+                Assert.That(r.X + r.Width, Is.LessThanOrEqualTo(canvasWidth));
+                Assert.That(r.Y + r.Height, Is.LessThanOrEqualTo(canvasHeight));
+                if (!isPortrait)
+                {
+                    Assert.That(Overlaps(r, leftNote), Is.False, $"进阶槽位 {i} 与左侧便签重叠");
+                    Assert.That(Overlaps(r, rightNote), Is.False, $"进阶槽位 {i} 与右侧便签重叠");
+                }
+            }
+
+            for (int a = 0; a < slotRects.Length; a++)
+            {
+                for (int b = a + 1; b < slotRects.Length; b++)
+                    Assert.That(Overlaps(slotRects[a], slotRects[b]), Is.False, $"进阶槽位 {a} 与 {b} 重叠");
+            }
+
+            var medalRects = new PetFlipPixelRect[PetFlipConstants.AdvancedPairCount];
+            for (int i = 0; i < PetFlipConstants.AdvancedPairCount; i++)
+            {
+                PetFlipPixelRect m = PetFlipUiPresentation.GetCompletionMedallionRect(i, isPortrait, PetFlipDifficulty.Advanced16);
+                medalRects[i] = m;
+                Assert.That(m.X, Is.GreaterThanOrEqualTo(0f));
+                Assert.That(m.X + m.Width, Is.LessThanOrEqualTo(canvasWidth));
+                Assert.That(m.Y + m.Height, Is.LessThanOrEqualTo(canvasHeight));
+            }
+
+            for (int a = 0; a < medalRects.Length; a++)
+            {
+                for (int b = a + 1; b < medalRects.Length; b++)
+                    Assert.That(Overlaps(medalRects[a], medalRects[b]), Is.False, $"进阶终局头像 {a} 与 {b} 重叠");
+            }
+        }
     }
 }

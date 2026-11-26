@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace MmorpgClient.Game.PetFlip
 {
@@ -7,7 +8,7 @@ namespace MmorpgClient.Game.PetFlip
     ///
     /// 职责：
     /// 1. 管理当前进程内唯一活跃盘面（挂接在长寿命 <see cref="GameClient"/> 上，面板销毁重建不丢盘、不开多盘）；
-    /// 2. 驱动本机设备级最佳次数的读取、比较、持久化与保存失败降级状态；
+    /// 2. 支持轻松 12 张（6 对）/ 进阶 16 张（8 对）与经典自由 / 今日灵签 / 灵目趣味模式，各分桶独立持久化本机最佳；
     /// 3. 协调暂关面板、切后台、临时断线、明确登出、换角色、切服以及战斗/观战/加载/强制弹窗优先收起；
     /// 4. 通过 <c>viewToken</c>、<c>expectedRoundId</c> 与同步状态机防御重复点击、迟到回调与面板重建。
     /// </summary>
@@ -17,12 +18,22 @@ namespace MmorpgClient.Game.PetFlip
         public static PetFlipClient Instance { get; private set; }
 
         private readonly IPetFlipBestRecordStore _store;
-        private readonly Func<SpiritPetCardPattern[]> _deckGenerator;
+        private readonly Func<PetFlipDifficulty, SpiritPetCardPattern[]> _deckGeneratorOverride;
         private readonly Random _random;
+        private readonly Func<DateTime> _localDateProvider;
 
-        private int? _bestFlipCount;
-        private int? _persistedBestFlipCount;
-        private PetFlipRecordPersistenceStatus _recordPersistenceStatus;
+        private readonly Dictionary<PetFlipRecordBucketKey, PetFlipStoredBestEntry> _bestRecords =
+            new Dictionary<PetFlipRecordBucketKey, PetFlipStoredBestEntry>();
+        private readonly Dictionary<PetFlipRecordBucketKey, PetFlipStoredBestEntry> _persistedRecords =
+            new Dictionary<PetFlipRecordBucketKey, PetFlipStoredBestEntry>();
+        private readonly Dictionary<PetFlipRecordBucketKey, PetFlipRecordPersistenceStatus> _bucketStatuses =
+            new Dictionary<PetFlipRecordBucketKey, PetFlipRecordPersistenceStatus>();
+
+        private PetFlipDifficulty _selectedDifficulty = PetFlipDifficulty.Relaxed12;
+        private PetFlipGameMode _selectedMode = PetFlipGameMode.Classic;
+        private PetFlipDifficulty _boardDifficulty = PetFlipDifficulty.Relaxed12;
+        private PetFlipGameMode _boardMode = PetFlipGameMode.Classic;
+        private int _boardDailyDateKey;
 
         private PetFlipSessionKey _currentSession;
         private PetFlipSessionKey _boardOwnerSession;
@@ -41,28 +52,30 @@ namespace MmorpgClient.Game.PetFlip
         private Action<PetFlipSnapshot> _activeViewCallback;
         private bool _isDisposed;
 
-        /// <summary>任意可见盘面、次数、暂停态、会话或本机记录变化时触发（载荷为不可变快照）。</summary>
+        /// <summary>任意可见盘面、次数、暂停态、会话、难度/模式配置或本机记录变化时触发（载荷为不可变快照）。</summary>
         public event Action<PetFlipSnapshot> OnSnapshotChanged;
 
-        /// <summary>配齐 6 对完成一局时触发，每局严格只触发一次。</summary>
+        /// <summary>配齐当前盘全部对子（轻松 6 对 / 进阶 8 对）完成一局时触发，每局严格只触发一次。</summary>
         public event Action<PetFlipCompletionResult> OnRoundCompleted;
 
         public bool IsDisposed => _isDisposed;
 
-        /// <summary>正式构造函数：始终使用随机洗牌；store 为空时退回到纯内存存储。</summary>
+        /// <summary>正式构造函数：经典/灵目走随机洗牌，今日灵签按本地公历日期确定性洗牌；store 为空时退回到纯内存存储。</summary>
         public PetFlipClient(IPetFlipBestRecordStore store = null, Random random = null)
-            : this(store, random, null)
+            : this(store, random, null, null)
         {
         }
 
         private PetFlipClient(
             IPetFlipBestRecordStore store,
             Random random,
-            Func<SpiritPetCardPattern[]> deckGeneratorOverride)
+            Func<PetFlipDifficulty, SpiritPetCardPattern[]> deckGeneratorOverride,
+            Func<DateTime> localDateProvider)
         {
             _store = store ?? new InMemoryPetFlipBestRecordStore();
             _random = random ?? new Random();
-            _deckGenerator = deckGeneratorOverride ?? (() => PetFlipDeckFactory.CreateShuffledDeck(_random));
+            _deckGeneratorOverride = deckGeneratorOverride;
+            _localDateProvider = localDateProvider ?? (() => DateTime.Today);
 
             LoadInitialBestRecord();
         }
@@ -75,7 +88,7 @@ namespace MmorpgClient.Game.PetFlip
             return client;
         }
 
-        /// <summary>仅用于自动化测试：注入固定或可控牌组生成器，不污染静态单例。</summary>
+        /// <summary>仅用于自动化测试：注入固定或可控 12 张牌组生成器，不污染静态单例。</summary>
         public static PetFlipClient CreateForTesting(
             IPetFlipBestRecordStore store,
             Func<SpiritPetCardPattern[]> deckGenerator)
@@ -83,7 +96,32 @@ namespace MmorpgClient.Game.PetFlip
             if (deckGenerator == null)
                 throw new ArgumentNullException(nameof(deckGenerator));
 
-            return new PetFlipClient(store, null, deckGenerator);
+            return new PetFlipClient(store, null, _ => deckGenerator(), null);
+        }
+
+        /// <summary>仅用于自动化测试：按难度注入可控牌组生成器与可控本地日期源，不污染静态单例。</summary>
+        public static PetFlipClient CreateForTesting(
+            IPetFlipBestRecordStore store,
+            Func<PetFlipDifficulty, SpiritPetCardPattern[]> deckGenerator,
+            Func<DateTime> localDateProvider = null,
+            Random random = null)
+        {
+            if (deckGenerator == null)
+                throw new ArgumentNullException(nameof(deckGenerator));
+
+            return new PetFlipClient(store, random, deckGenerator, localDateProvider);
+        }
+
+        /// <summary>仅用于自动化测试：沿用正式随机/今日灵签洗牌规则，但注入可控本地日期源与随机数种子。</summary>
+        public static PetFlipClient CreateForTesting(
+            IPetFlipBestRecordStore store,
+            Func<DateTime> localDateProvider,
+            Random random = null)
+        {
+            if (localDateProvider == null)
+                throw new ArgumentNullException(nameof(localDateProvider));
+
+            return new PetFlipClient(store, random, null, localDateProvider);
         }
 
         // ── 面板视图绑定（防面板重建泄漏与迟到回调） ────────────────────────
@@ -135,6 +173,114 @@ namespace MmorpgClient.Game.PetFlip
 
         /// <summary>获取当前完整不可变盘面、次数、终局结果与本机纪录状态。</summary>
         public PetFlipSnapshot GetSnapshot() => BuildSnapshot();
+
+        /// <summary>
+        /// 选择难度（轻松 12 张 / 进阶 16 张）与玩法模式（经典自由 / 今日灵签 / 灵目趣味）。
+        /// 仅允许在未开局（Idle）或终局（Completed）时切换，盘中禁止换档洗牌；
+        /// 若从终局切换到不同配置，则清理旧终局回到入口等待玩家点击“开始翻牌”。
+        /// </summary>
+        public PetFlipActionResult SelectConfiguration(
+            PetFlipDifficulty difficulty,
+            PetFlipGameMode mode,
+            ulong? viewToken = null)
+        {
+            if (TryRejectCommonGuard(viewToken, out PetFlipRejectReason guardReject))
+                return PetFlipActionResult.Rejected(guardReject, BuildSnapshot());
+
+            if (!IsValidDifficulty(difficulty) || !IsValidMode(mode))
+                return PetFlipActionResult.Rejected(PetFlipRejectReason.InvalidSlotIndex, BuildSnapshot());
+
+            if (_board != null && !_board.IsCompleted)
+                return PetFlipActionResult.Rejected(PetFlipRejectReason.RoundNotCompleted, BuildSnapshot());
+
+            bool changed = _selectedDifficulty != difficulty || _selectedMode != mode;
+            if (!changed && _board == null)
+                return PetFlipActionResult.Lifecycle(PetFlipActionOutcome.ConfigurationChanged, BuildSnapshot());
+
+            _selectedDifficulty = difficulty;
+            _selectedMode = mode;
+            if (_board != null && _board.IsCompleted)
+                ClearBoardStateOnly();
+
+            _revision++;
+            PetFlipSnapshot snapshot = BuildSnapshot();
+            EmitSnapshotChanged(snapshot);
+            return PetFlipActionResult.Lifecycle(PetFlipActionOutcome.ConfigurationChanged, snapshot);
+        }
+
+        /// <summary>
+        /// 在本局完成后回到入口页以便更换难度或玩法模式；盘中未完成时拒绝（不提供盘中重洗）。
+        /// </summary>
+        public PetFlipActionResult ReturnToEntryAfterCompletion(ulong? viewToken = null)
+        {
+            if (TryRejectCommonGuard(viewToken, out PetFlipRejectReason guardReject))
+                return PetFlipActionResult.Rejected(guardReject, BuildSnapshot());
+
+            if (_board != null && !_board.IsCompleted)
+                return PetFlipActionResult.Rejected(PetFlipRejectReason.RoundNotCompleted, BuildSnapshot());
+
+            if (_board == null)
+                return PetFlipActionResult.Lifecycle(PetFlipActionOutcome.ConfigurationChanged, BuildSnapshot());
+
+            ClearBoardStateOnly();
+            _revision++;
+            PetFlipSnapshot snapshot = BuildSnapshot();
+            EmitSnapshotChanged(snapshot);
+            return PetFlipActionResult.Lifecycle(PetFlipActionOutcome.ConfigurationChanged, snapshot);
+        }
+
+        /// <summary>
+        /// 灵目模式免费窥看 1 张背面暗牌：消耗 1 次灵目次数，不计翻牌次数、不打断连击、不自动倒计时盖回；
+        /// 下一次正常点击任一未配对牌时先盖回再作为新一手第 1 张翻开。
+        /// </summary>
+        public PetFlipActionResult UseSpiritEyePeek(int slotIndex, ulong? expectedRoundId = null, ulong? viewToken = null)
+        {
+            if (TryRejectCommonGuard(viewToken, out PetFlipRejectReason guardReject))
+                return PetFlipActionResult.Rejected(guardReject, BuildSnapshot());
+
+            PetFlipInterruptFlags activeInterrupts = EffectiveInterrupts;
+            if ((activeInterrupts & PetFlipConstants.EntryBlockedMask) != 0)
+                return PetFlipActionResult.Rejected(PetFlipRejectReason.BlockedByInterrupt, BuildSnapshot());
+
+            if (!_currentSession.IsValid)
+                return PetFlipActionResult.Rejected(PetFlipRejectReason.NoActiveSession, BuildSnapshot());
+
+            if (_board == null)
+                return PetFlipActionResult.Rejected(PetFlipRejectReason.NoActiveRound, BuildSnapshot());
+
+            if (expectedRoundId.HasValue && expectedRoundId.Value != _roundId)
+                return PetFlipActionResult.Rejected(PetFlipRejectReason.StaleRound, BuildSnapshot());
+
+            if (activeInterrupts != PetFlipInterruptFlags.None)
+                return PetFlipActionResult.Rejected(PetFlipRejectReason.GamePaused, BuildSnapshot());
+
+            if (_board.IsCompleted)
+                return PetFlipActionResult.Rejected(PetFlipRejectReason.RoundAlreadyCompleted, BuildSnapshot());
+
+            if (_boardMode != PetFlipGameMode.SpiritEye)
+                return PetFlipActionResult.Rejected(PetFlipRejectReason.SpiritEyeUnavailable, BuildSnapshot());
+
+            PetFlipBoardStepResult step = _board.UseSpiritEyePeek(slotIndex);
+            if (!step.Accepted)
+                return PetFlipActionResult.Rejected(step.RejectReason, BuildSnapshot());
+
+            _revision++;
+            PetFlipSnapshot snapshot = BuildSnapshot();
+            EmitSnapshotChanged(snapshot);
+
+            return new PetFlipActionResult(
+                step.Outcome,
+                PetFlipRejectReason.None,
+                snapshot,
+                step.FlippedSlotIndex,
+                step.FirstHandSlotIndex,
+                step.SecondHandSlotIndex,
+                step.CoveredFirstSlotIndex,
+                step.CoveredSecondSlotIndex,
+                step.FlippedPattern,
+                step.MatchedPattern,
+                _board.CurrentStreak);
+        }
 
         /// <summary>
         /// 开始或恢复一局：
@@ -528,10 +674,52 @@ namespace MmorpgClient.Game.PetFlip
             return false;
         }
 
+        private static bool IsValidDifficulty(PetFlipDifficulty difficulty)
+            => difficulty == PetFlipDifficulty.Relaxed12 || difficulty == PetFlipDifficulty.Advanced16;
+
+        private static bool IsValidMode(PetFlipGameMode mode)
+            => mode == PetFlipGameMode.Classic
+            || mode == PetFlipGameMode.DailyChallenge
+            || mode == PetFlipGameMode.SpiritEye;
+
+        private DateTime GetTodayLocalDate()
+            => (_localDateProvider?.Invoke() ?? DateTime.Today).Date;
+
+        private static int ToDateKey(DateTime date)
+            => date.Year * 10000 + date.Month * 100 + date.Day;
+
         private void DealFreshBoard()
         {
-            SpiritPetCardPattern[] deck = _deckGenerator();
-            _board = new PetFlipBoardModel(deck);
+            PetFlipDifficulty difficulty = _selectedDifficulty;
+            PetFlipGameMode mode = _selectedMode;
+            int dailyDateKey = 0;
+            SpiritPetCardPattern[] deck;
+
+            if (_deckGeneratorOverride != null)
+            {
+                deck = _deckGeneratorOverride(difficulty);
+                if (mode == PetFlipGameMode.DailyChallenge)
+                    dailyDateKey = ToDateKey(GetTodayLocalDate());
+            }
+            else if (mode == PetFlipGameMode.DailyChallenge)
+            {
+                DateTime today = GetTodayLocalDate();
+                dailyDateKey = ToDateKey(today);
+                deck = PetFlipDeckFactory.CreateDailySeededDeck(today.Year, today.Month, today.Day, difficulty);
+            }
+            else
+            {
+                deck = PetFlipDeckFactory.CreateShuffledDeck(_random, difficulty);
+            }
+
+            int spiritEyeCharges = mode == PetFlipGameMode.SpiritEye
+                ? PetFlipConstants.InitialSpiritEyeCharges
+                : 0;
+
+            _board = new PetFlipBoardModel(deck, difficulty, spiritEyeCharges);
+            _boardDifficulty = difficulty;
+            _boardMode = mode;
+            _boardDailyDateKey = dailyDateKey;
             _roundId = ++_nextRoundId;
             _boardOwnerSession = _currentSession;
             _completionResult = null;
@@ -541,77 +729,102 @@ namespace MmorpgClient.Game.PetFlip
         {
             _board = null;
             _boardOwnerSession = default;
+            _boardDailyDateKey = 0;
             _completionResult = null;
             _roundId = 0;
         }
 
         private void LoadInitialBestRecord()
         {
+            _bestRecords.Clear();
+            _persistedRecords.Clear();
+            _bucketStatuses.Clear();
+
             try
             {
                 if (_store.TryReadRaw(out string rawValue)
-                    && PetFlipBestRecordCodec.TryDecode(rawValue, out int bestFlips))
+                    && PetFlipBestRecordCodec.TryDecodeTable(
+                        rawValue,
+                        out Dictionary<PetFlipRecordBucketKey, PetFlipStoredBestEntry> decoded))
                 {
-                    _bestFlipCount = bestFlips;
-                    _persistedBestFlipCount = bestFlips;
-                    _recordPersistenceStatus = PetFlipRecordPersistenceStatus.Saved;
-                    return;
+                    foreach (KeyValuePair<PetFlipRecordBucketKey, PetFlipStoredBestEntry> pair in decoded)
+                    {
+                        _bestRecords[pair.Key] = pair.Value;
+                        _persistedRecords[pair.Key] = pair.Value;
+                        _bucketStatuses[pair.Key] = PetFlipRecordPersistenceStatus.Saved;
+                    }
                 }
             }
             catch (Exception)
             {
                 // 存储读取异常按暂无纪录兜底，不阻止游玩。
+                _bestRecords.Clear();
+                _persistedRecords.Clear();
+                _bucketStatuses.Clear();
             }
-
-            _bestFlipCount = null;
-            _persistedBestFlipCount = null;
-            _recordPersistenceStatus = PetFlipRecordPersistenceStatus.NoRecord;
         }
 
         private PetFlipCompletionResult SettleCompletedRoundOnce()
         {
             int flips = _board.FlipCount;
-            int? previousBest = _bestFlipCount;
+            var bucket = new PetFlipRecordBucketKey(_boardDifficulty, _boardMode);
+            int activeDateKey = _boardMode == PetFlipGameMode.DailyChallenge ? _boardDailyDateKey : 0;
+
+            int? previousBest = null;
+            if (_bestRecords.TryGetValue(bucket, out PetFlipStoredBestEntry existing)
+                && (_boardMode != PetFlipGameMode.DailyChallenge || existing.DateKey == activeDateKey))
+            {
+                previousBest = existing.BestFlipCount;
+            }
+
             PetFlipRecordComparison comparison;
+            int currentBest;
 
             if (!previousBest.HasValue)
             {
                 comparison = PetFlipRecordComparison.FirstRecord;
-                _bestFlipCount = flips;
-                PersistNewBest(flips);
+                currentBest = flips;
+                _bestRecords[bucket] = new PetFlipStoredBestEntry(flips, activeDateKey);
+                PersistRecords(bucket);
             }
             else if (flips < previousBest.Value)
             {
                 comparison = PetFlipRecordComparison.NewBest;
-                _bestFlipCount = flips;
-                PersistNewBest(flips);
+                currentBest = flips;
+                _bestRecords[bucket] = new PetFlipStoredBestEntry(flips, activeDateKey);
+                PersistRecords(bucket);
             }
             else if (flips == previousBest.Value)
             {
                 comparison = PetFlipRecordComparison.TiedBest;
+                currentBest = previousBest.Value;
             }
             else
             {
                 comparison = PetFlipRecordComparison.NormalCompletion;
+                currentBest = previousBest.Value;
             }
 
+            PetFlipLocalRecordSnapshot recordSnapshot = BuildLocalRecordSnapshot(bucket, activeDateKey);
             return new PetFlipCompletionResult(
                 _roundId,
                 flips,
                 _board.MatchedPairCount,
                 previousBest,
-                _bestFlipCount.Value,
+                currentBest,
                 comparison,
-                _recordPersistenceStatus,
-                _board.MaxStreak);
+                recordSnapshot.PersistenceStatus,
+                _board.MaxStreak,
+                _boardDifficulty,
+                _boardMode);
         }
 
-        private void PersistNewBest(int newBestFlips)
+        private void PersistRecords(PetFlipRecordBucketKey updatedBucket)
         {
             bool saved;
             try
             {
-                string encoded = PetFlipBestRecordCodec.Encode(newBestFlips);
+                string encoded = PetFlipBestRecordCodec.EncodeTable(_bestRecords);
                 saved = _store.TryWriteRaw(encoded);
             }
             catch (Exception)
@@ -621,13 +834,53 @@ namespace MmorpgClient.Game.PetFlip
 
             if (saved)
             {
-                _persistedBestFlipCount = newBestFlips;
-                _recordPersistenceStatus = PetFlipRecordPersistenceStatus.Saved;
+                _persistedRecords.Clear();
+                foreach (KeyValuePair<PetFlipRecordBucketKey, PetFlipStoredBestEntry> pair in _bestRecords)
+                {
+                    _persistedRecords[pair.Key] = pair.Value;
+                    _bucketStatuses[pair.Key] = PetFlipRecordPersistenceStatus.Saved;
+                }
             }
             else
             {
-                _recordPersistenceStatus = PetFlipRecordPersistenceStatus.Unsaved;
+                _bucketStatuses[updatedBucket] = PetFlipRecordPersistenceStatus.Unsaved;
             }
+        }
+
+        private PetFlipLocalRecordSnapshot BuildLocalRecordSnapshot(PetFlipRecordBucketKey bucket, int activeDateKey)
+        {
+            int? bestFlips = null;
+            if (_bestRecords.TryGetValue(bucket, out PetFlipStoredBestEntry bestEntry)
+                && (bucket.Mode != PetFlipGameMode.DailyChallenge || bestEntry.DateKey == activeDateKey))
+            {
+                bestFlips = bestEntry.BestFlipCount;
+            }
+
+            int? persistedFlips = null;
+            if (_persistedRecords.TryGetValue(bucket, out PetFlipStoredBestEntry persistedEntry)
+                && (bucket.Mode != PetFlipGameMode.DailyChallenge || persistedEntry.DateKey == activeDateKey))
+            {
+                persistedFlips = persistedEntry.BestFlipCount;
+            }
+
+            PetFlipRecordPersistenceStatus status;
+            if (!bestFlips.HasValue)
+            {
+                status = PetFlipRecordPersistenceStatus.NoRecord;
+            }
+            else if (_bucketStatuses.TryGetValue(bucket, out PetFlipRecordPersistenceStatus trackedStatus)
+                && trackedStatus != PetFlipRecordPersistenceStatus.NoRecord)
+            {
+                status = trackedStatus;
+            }
+            else
+            {
+                status = persistedFlips.HasValue && persistedFlips.Value == bestFlips.Value
+                    ? PetFlipRecordPersistenceStatus.Saved
+                    : PetFlipRecordPersistenceStatus.Unsaved;
+            }
+
+            return new PetFlipLocalRecordSnapshot(bestFlips, persistedFlips, status);
         }
 
         private PetFlipSnapshot BuildSnapshot()
@@ -641,13 +894,15 @@ namespace MmorpgClient.Game.PetFlip
                 && activeInterrupts == PetFlipInterruptFlags.None
                 && hasActiveSession;
 
-            var localRecord = new PetFlipLocalRecordSnapshot(
-                _bestFlipCount,
-                _persistedBestFlipCount,
-                _recordPersistenceStatus);
-
             if (_board == null)
             {
+                int idleDateKey = _selectedMode == PetFlipGameMode.DailyChallenge
+                    ? ToDateKey(GetTodayLocalDate())
+                    : 0;
+                PetFlipLocalRecordSnapshot idleRecord = BuildLocalRecordSnapshot(
+                    new PetFlipRecordBucketKey(_selectedDifficulty, _selectedMode),
+                    idleDateKey);
+
                 return new PetFlipSnapshot(
                     _revision,
                     0,
@@ -661,9 +916,21 @@ namespace MmorpgClient.Game.PetFlip
                     -1,
                     -1,
                     Array.Empty<PetFlipCardSnapshot>(),
-                    localRecord,
-                    null);
+                    idleRecord,
+                    null,
+                    0,
+                    0,
+                    null,
+                    _selectedDifficulty,
+                    _selectedMode,
+                    idleDateKey,
+                    0);
             }
+
+            int boardDateKey = _boardMode == PetFlipGameMode.DailyChallenge ? _boardDailyDateKey : 0;
+            PetFlipLocalRecordSnapshot boardRecord = BuildLocalRecordSnapshot(
+                new PetFlipRecordBucketKey(_boardDifficulty, _boardMode),
+                boardDateKey);
 
             return new PetFlipSnapshot(
                 _revision,
@@ -678,11 +945,15 @@ namespace MmorpgClient.Game.PetFlip
                 _board.FirstSelectedSlotIndex,
                 _board.SecondSelectedSlotIndex,
                 _board.BuildCardSnapshots(boardInteractive),
-                localRecord,
+                boardRecord,
                 _completionResult,
                 _board.CurrentStreak,
                 _board.MaxStreak,
-                _board.LastMatchedPattern);
+                _board.LastMatchedPattern,
+                _boardDifficulty,
+                _boardMode,
+                boardDateKey,
+                _board.RemainingSpiritEyeCharges);
         }
 
         private PetFlipRoundPhase DerivePhase(PetFlipInterruptFlags activeInterrupts)

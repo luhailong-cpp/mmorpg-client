@@ -12,19 +12,21 @@ namespace MmorpgClient.UI.Ugui.Team
     /// <summary>共用世界栏中的轻量队伍视图；只读现有队伍真值，动作回到原组队及跟随宿主。</summary>
     public sealed class TeamHudPanel : IDisposable
     {
-        public const string SummonUnavailableReason = "召集暂不可用：尚未定义全员召集规则。";
+        public const string SummonUnavailableReason = "仅队长可一键召集队员或切换跑图阵型。";
+        private static readonly Color HostedJade = QdaoUguiTheme.Html("#1F6F52");
         private const float RowHeight = 76;
         private const float ListHeight = 270;
         private const float RowWidth = 396;
         private readonly RectTransform _root, _rows;
-        private readonly TMP_Text _summary, _status, _followStatus;
-        private readonly Button _list, _leave, _summon, _follow;
+        private readonly TMP_Text _summary, _status, _followStatus, _summonLabel, _formationLabel, _footerHint;
+        private readonly Button _list, _leave, _summon, _follow, _formation;
         private readonly TMP_Text _followLabel;
         private readonly ScrollRect _scroll;
         private TeamUiRoot _owner;
         private TeamUiState _state;
         private bool _fresh, _disposed;
         private TeamFollowStatus _shownFollow = (TeamFollowStatus)(-1);
+        private int _shownRecallSec = -1;
 
         public RectTransform Root => _root;
 
@@ -71,14 +73,18 @@ namespace MmorpgClient.UI.Ugui.Team
 
             _list = Control("列表", "TeamHudList", 0, 414, 132, OpenList);
             _leave = Control("离队", "TeamHudLeave", 142, 414, 132, Leave);
-            _summon = Control("召集", "TeamHudSummon", 284, 414, 132, null, true);
+            _summon = Control("召集", "TeamHudSummon", 284, 414, 132, Summon, true);
+            _summonLabel = _summon.GetComponentInChildren<TMP_Text>(true);
             _summon.interactable = false;
             _follow = Control(TeamFollowUiRoot.LabelAway, "TeamHudFollow", 0, 474, 132, ToggleFollow);
             _followLabel = _follow.GetComponentInChildren<TMP_Text>(true);
-            _followStatus = Label("", "TeamHudFollowStatus", _root, 146, 476, 268, 42, 20, GameplayUiArt.Muted);
-            var reason = Label(SummonUnavailableReason, "TeamHudSummonReason", _root, 8, 532, 400, 45, 18, GameplayUiArt.Muted);
-            reason.textWrappingMode = TextWrappingModes.Normal;
-            reason.alignment = TextAlignmentOptions.TopLeft;
+            _formation = Control("阵·长蛇", "TeamHudFormation", 142, 474, 132, CycleFormation);
+            _formationLabel = _formation.GetComponentInChildren<TMP_Text>(true);
+            _formation.interactable = false;
+            _followStatus = Label("", "TeamHudFollowStatus", _root, 282, 476, 134, 42, 18, GameplayUiArt.Muted);
+            _footerHint = Label(SummonUnavailableReason, "TeamHudSummonReason", _root, 8, 532, 400, 45, 18, GameplayUiArt.Muted);
+            _footerHint.textWrappingMode = TextWrappingModes.Normal;
+            _footerHint.alignment = TextAlignmentOptions.TopLeft;
             Render();
         }
 
@@ -114,7 +120,15 @@ namespace MmorpgClient.UI.Ugui.Team
             if (_owner != null)
             {
                 bool fresh = _owner.Client != null && _owner.Client.HasFreshView;
-                if (_fresh != fresh) { _fresh = fresh; Render(); }
+                bool freshChanged = _fresh != fresh;
+                int recallSec = Mathf.CeilToInt(_owner.RecallCooldownRemainingSeconds);
+                if (freshChanged || _shownRecallSec != recallSec)
+                {
+                    _fresh = fresh;
+                    _shownRecallSec = recallSec;
+                    UpdateLeaderControls();
+                    if (freshChanged) Render();
+                }
             }
             RenderFollow();
         }
@@ -127,6 +141,36 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private bool CanLeave => _state != null && _state.HasLoaded && _state.HasTeam &&
             _fresh && _state.ServiceAvailable && !_state.IsBusy && !_state.MatchStarting;
+
+        private bool CanLeaderControl => _owner != null && _state != null && _state.HasLoaded && _state.HasTeam &&
+            _state.IsLeader && _fresh && _state.ServiceAvailable && !_state.IsBusy;
+
+        private bool CanSummon => CanLeaderControl && !(_owner?.RecallCoolingDown ?? true);
+
+        private void UpdateLeaderControls()
+        {
+            bool hasTeam = _state != null && _state.HasLoaded && _state.HasTeam;
+            int recallSec = _owner != null ? Mathf.CeilToInt(_owner.RecallCooldownRemainingSeconds) : 0;
+            _shownRecallSec = recallSec;
+            _summon.interactable = CanSummon;
+            if (_summonLabel != null)
+                _summonLabel.text = recallSec > 0 ? $"召集 {recallSec}s" : "召集";
+            _formation.interactable = CanLeaderControl;
+            if (_formationLabel != null)
+                _formationLabel.text = hasTeam
+                    ? "阵·" + TeamViewMapper.FormatFormationShortName(_state.Snapshot.FollowFormation)
+                    : "阵型";
+            if (_footerHint != null)
+            {
+                _footerHint.text = !hasTeam
+                    ? SummonUnavailableReason
+                    : CanLeaderControl
+                        ? $"当前阵型：{TeamViewMapper.FormatFormationName(_state.Snapshot.FollowFormation)} · 点击可切换或一键召集"
+                        : !_state.IsLeader && _owner != null && _fresh && _state.ServiceAvailable
+                            ? $"当前阵型：{TeamViewMapper.FormatFormationName(_state.Snapshot.FollowFormation)}（队长控制）"
+                            : SummonUnavailableReason;
+            }
+        }
 
         private void Render()
         {
@@ -143,7 +187,7 @@ namespace MmorpgClient.UI.Ugui.Team
             // 大窗也是查看失败原因与重新同步的入口；业务服务不可用不应封死只读导航。
             _list.interactable = _owner != null;
             _leave.interactable = CanLeave;
-            _summon.interactable = false;
+            UpdateLeaderControls();
             int rowCount = 0;
             if (hasTeam)
             {
@@ -198,9 +242,14 @@ namespace MmorpgClient.UI.Ugui.Team
             bool self = role.PlayerId == snapshot.LocalPlayerId;
             Label(leader ? (self ? "队长·自己" : "队长") : self ? "自己" : "队员", "TeamHudRole_" + role.PlayerId,
                 row, 296, 6, 90, 30, 18, GameplayUiArt.Ink, TextAlignmentOptions.MidlineRight);
-            string presence = !role.OnlineStatusKnown ? "状态未知" : !role.IsOnline ? "离线" : role.InBattle ? "战斗中" : "在线";
+            string presence = !role.OnlineStatusKnown ? "状态未知"
+                : !role.IsOnline ? (role.IsHosted ? "托管中" : "离线")
+                : role.InBattle ? "战斗中" : "在线";
+            Color presenceColor = !role.OnlineStatusKnown ? GameplayUiArt.Muted
+                : role.IsOnline ? GameplayUiArt.Ink
+                : role.IsHosted ? HostedJade : GameplayUiArt.Muted;
             Label(presence, "TeamHudPresence_" + role.PlayerId, row, 296, 39, 90, 28, 18,
-                role.OnlineStatusKnown && role.IsOnline ? GameplayUiArt.Ink : GameplayUiArt.Muted, TextAlignmentOptions.MidlineRight);
+                presenceColor, TextAlignmentOptions.MidlineRight);
         }
 
         private void Portrait(RectTransform row, TeamRole role)
@@ -244,14 +293,16 @@ namespace MmorpgClient.UI.Ugui.Team
             _followLabel.text = status == TeamFollowStatus.Away ? TeamFollowUiRoot.LabelRejoin : TeamFollowUiRoot.LabelAway;
             _followStatus.text = status switch
             {
-                TeamFollowStatus.Following => "正在跟随队长",
-                TeamFollowStatus.Away => "已暂离 · 可以自己走",
-                TeamFollowStatus.LeaderOutOfSight => "队长暂时不在视野内",
-                _ => _state?.IsLeader == true ? "你是队长，无需跟随" : "跟随暂不可用"
+                TeamFollowStatus.Following => "跟随中",
+                TeamFollowStatus.Away => "已暂离",
+                TeamFollowStatus.LeaderOutOfSight => "寻队长中",
+                _ => _state?.IsLeader == true ? "队长带队" : "未跟随"
             };
         }
 
         private void OpenList() => _owner?.OpenTeamList();
+        private void Summon() { if (CanSummon) _owner?.RecallTeamMembers(); }
+        private void CycleFormation() { if (CanLeaderControl) _owner?.CycleTeamFormation(); }
 
         /// <summary>暂离随时可点(撤回跟随声明)；归队会重新声明、由服务端把人带回队长身后，必须有新鲜视图及可用服务。</summary>
         public static bool CanToggleFollow(TeamFollowStatus status, bool fresh, bool serviceAvailable) => status switch

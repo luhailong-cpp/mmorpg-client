@@ -1683,6 +1683,58 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(TeamClient.DescribeTip(Tip(team_error.KTeamRatingGapTooLarge)), Is.EqualTo(TeamClient.PvpRatingGapMessage));
         }
 
+        [Test]
+        public void SetFormationAndRecallMembers_RespectLeaderCooldownAndEmitRecallEvent()
+        {
+            Loaded();
+
+            // 队长切换阵型到雁行两翼
+            Assert.That(_client.SetFormation(TeamFollowFormationStyle.TeamFollowFormationEchelon), Is.True);
+            Assert.That(LastId, Is.EqualTo(MessageIds.SetTeamFormation));
+            var req = LastRequest<SetTeamFormationRequest>();
+            Assert.That(req.ExpectedTeamId, Is.EqualTo(100UL));
+            Assert.That(req.Formation, Is.EqualTo(TeamFollowFormationStyle.TeamFollowFormationEchelon));
+            Assert.That(req.RequestId, Is.Not.Empty);
+            var formedView = LeaderView(2);
+            formedView.FollowFormation = TeamFollowFormationStyle.TeamFollowFormationEchelon;
+            _net.Reply(new TeamResponse { Team = formedView });
+            Assert.That(_client.Snapshot.FollowFormation, Is.EqualTo(TeamFollowFormationStyle.TeamFollowFormationEchelon));
+
+            // 队长发起一键召集并进入 15 秒本地冷却
+            _now += 0.5f;
+            Assert.That(_client.RecallMembers(), Is.True);
+            Assert.That(LastId, Is.EqualTo(MessageIds.RecallTeamMembers));
+            _net.Reply(new TeamResponse { Team = LeaderView(3) });
+            Assert.That(_client.RecallCooldownRemainingSeconds, Is.GreaterThan(14f));
+            _now += 1f;
+            AssertRejected(() => _client.RecallMembers(), "召集冷却中，请稍候再试。");
+
+            // 冷却满后再次可发
+            _now += TeamClient.RecallCooldownSeconds;
+            Assert.That(_client.RecallMembers(), Is.True);
+            _net.Reply(new TeamResponse { Team = LeaderView(4) });
+
+            // 队员收到 LEADER_RECALL 事件触发 LeaderRecalled 回调,自己发的不触发
+            ulong recalledTeam = 0, recalledLeader = 0;
+            _client.LeaderRecalled += (tid, lid) => { recalledTeam = tid; recalledLeader = lid; };
+            _net.Push(MessageIds.NotifyTeamEvent, new TeamEventS2C
+            {
+                Type = TeamEventType.LeaderRecall,
+                TeamId = 100,
+                ActorId = _net.PlayerId,
+            });
+            Assert.That(recalledTeam, Is.Zero);
+
+            _net.Push(MessageIds.NotifyTeamEvent, new TeamEventS2C
+            {
+                Type = TeamEventType.LeaderRecall,
+                TeamId = 100,
+                ActorId = 999,
+            });
+            Assert.That(recalledTeam, Is.EqualTo(100UL));
+            Assert.That(recalledLeader, Is.EqualTo(999UL));
+        }
+
         private void Loaded(TeamView view = null)
         {
             _now += 0.5f;

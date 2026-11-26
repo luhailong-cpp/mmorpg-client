@@ -126,6 +126,19 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 Assert.AreEqual(100, content.childCount);
                 Assert.AreEqual($"Report_{hundred[0].BattleId}", content.GetChild(0).name);
                 Assert.AreEqual($"Report_{hundred[99].BattleId}", content.GetChild(99).name);
+
+                // 顶部胜率总览与胜负/模式筛选（默认全量，筛选后保持服务端原序）
+                var statsSummary = root.Find("StatsSummary")?.GetComponent<TMP_Text>();
+                Assert.NotNull(statsSummary);
+                StringAssert.Contains("近 100 场", statsSummary.text);
+                StringAssert.Contains("胜率 100%", statsSummary.text);
+
+                panel.SetVerdictFilter(BattleReportVerdictFilter.Lose);
+                Assert.AreEqual(0, content.childCount);
+                Assert.IsTrue(empty.gameObject.activeSelf);
+
+                panel.SetVerdictFilter(BattleReportVerdictFilter.All);
+                Assert.AreEqual(100, content.childCount);
             }
             finally
             {

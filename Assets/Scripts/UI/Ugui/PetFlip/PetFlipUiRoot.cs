@@ -162,6 +162,9 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             _view.RetryLoadClicked += HandleRetryLoadClicked;
             _view.CloseClicked += HidePanel;
             _view.CardSlotClicked += HandleCardSlotClicked;
+            _view.SpiritEyeSlotClicked += HandleSpiritEyeSlotClicked;
+            _view.ConfigurationSelected += HandleConfigurationSelected;
+            _view.ReturnToEntryClicked += HandleReturnToEntryClicked;
 
             _window.gameObject.SetActive(false);
         }
@@ -336,6 +339,39 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             PetFlipActionResult result = _client.FlipCard(slotIndex, expectedRoundId: currentRoundId, viewToken: _viewToken);
             if (result.Accepted)
                 _view?.PlayVisualFeedback(result);
+        }
+
+        private void HandleSpiritEyeSlotClicked(int slotIndex)
+        {
+            if (_client == null || _assetState != PetFlipAssetLoadState.Ready)
+                return;
+
+            ulong currentRoundId = _client.GetSnapshot().RoundId;
+            PetFlipActionResult result = _client.UseSpiritEyePeek(slotIndex, expectedRoundId: currentRoundId, viewToken: _viewToken);
+            if (result.Accepted)
+                _view?.PlayVisualFeedback(result);
+            else
+                RenderCurrent();
+        }
+
+        private void HandleConfigurationSelected(PetFlipDifficulty difficulty, PetFlipGameMode mode)
+        {
+            if (_client == null || _assetState != PetFlipAssetLoadState.Ready)
+                return;
+
+            PetFlipActionResult result = _client.SelectConfiguration(difficulty, mode, viewToken: _viewToken);
+            if (!result.Accepted)
+                RenderCurrent();
+        }
+
+        private void HandleReturnToEntryClicked()
+        {
+            if (_client == null || _assetState != PetFlipAssetLoadState.Ready)
+                return;
+
+            PetFlipActionResult result = _client.ReturnToEntryAfterCompletion(viewToken: _viewToken);
+            if (!result.Accepted)
+                RenderCurrent();
         }
 
         private void HandleSnapshotChanged(PetFlipSnapshot snapshot)

@@ -48,6 +48,8 @@ namespace MmorpgClient.Game.Team
         /// <summary>后台读连续下游故障达到此阈值后打开客户端熔断，暂停后台重试 <see cref="ReadBreakerOpenSeconds"/> 秒（1008 限流不计入）。</summary>
         public const int    ReadBreakerFailureThreshold = 3;
         public const float  ReadBreakerOpenSeconds      = 15f;
+        /// <summary>队长一键召集全队的本地冷却显示时长(与服务端 go/match RecallCooldownMs = 15s 对齐)。</summary>
+        public const float  RecallCooldownSeconds       = 15f;
         // data/MessageLimiter.xlsx:GetMyTeam / ListMyInvites 每秒 5 次,其余 10 个写操作每秒 3 次。
         private const int ReadQuota = 5;
         private const int WriteQuota = 3;
@@ -84,6 +86,7 @@ namespace MmorpgClient.Game.Team
         // 下一次 GetMyTeam 是否带 regroup(请求归队):RequestRegroup 置位,真正发出后清零;Reset 清掉(新会话进场时服务端自己会跟随)。
         private bool _regroupQueued;
         private float _lastSendAt;
+        private float _nextSendAt;
         private float _lastRefreshAt;
         // 读失败后的退避:此刻之前 DrainQueued 不补发排队的读(探针也算),避免服务端故障时每 0.4 秒打一次。
         private float _readRetryAt;
@@ -153,10 +156,13 @@ namespace MmorpgClient.Game.Team
         // 已结束的那一次补位排队的身份(队伍 + 入队时刻);0 = 没有。见 ConsumeBackfillQueue。
         private ulong _consumedQueueTeamId;
         private ulong _consumedQueueAtMs;
+        private float _recallAvailableAt = float.NegativeInfinity;
         /// <summary>Read-only action pacing for the UI; each action keeps its own Send quota.</summary>
         public bool InvitationCoolingDown => WriteCoolingDown(MessageIds.InviteToTeam);
         public bool CreationCoolingDown => WriteCoolingDown(MessageIds.CreateTeam);
         public bool StartMatchCoolingDown => WriteCoolingDown(MessageIds.StartTeamMatch);
+        public float RecallCooldownRemainingSeconds => Math.Max(0f, _recallAvailableAt - _clock());
+        public bool RecallCoolingDown => RecallCooldownRemainingSeconds > 0f || WriteCoolingDown(MessageIds.RecallTeamMembers);
 
         private bool WriteCoolingDown(uint messageId)
         {
@@ -171,6 +177,8 @@ namespace MmorpgClient.Game.Team
         /// 每条推送至多触发一次。
         /// </summary>
         public event Action<string, bool> BackfillNotice;
+        /// <summary>队长一键召集推送(teamId, leaderPlayerId):供 TeamFollowUiRoot 给暂离队员弹归队提示条。</summary>
+        public event Action<ulong, ulong> LeaderRecalled;
 
         /// <summary>
         /// 落地恢复的读取确认钩子(服务端 docs/design/landing-recovery-sync-digest.md §4.3,由 LandingSyncBindings.BindTeam 设置)。
@@ -204,7 +212,7 @@ namespace MmorpgClient.Game.Team
                 circuitFailureThreshold: ReadBreakerFailureThreshold,
                 circuitOpenSeconds: ReadBreakerOpenSeconds);
 
-            _lastSendAt = _lastRefreshAt = _readRetryAt = float.NegativeInfinity;
+            _lastSendAt = _nextSendAt = _lastRefreshAt = _readRetryAt = float.NegativeInfinity;
             Invites = _invites.AsReadOnly();
             Snapshot = TeamViewMapper.ToSnapshot(null, PlayerId);
             RefreshQueued = InvitesQueued = _notifyOnlineQueued = true;
@@ -241,7 +249,7 @@ namespace MmorpgClient.Game.Team
             RefreshQueued = InvitesQueued = _notifyOnlineQueued = true;
             _regroupQueued = false;
             // _lastSendAt / 限流窗口不清:限流按连接算;仅复位组队域熔断。
-            _lastRefreshAt = _readRetryAt = float.NegativeInfinity;
+            _lastRefreshAt = _readRetryAt = _recallAvailableAt = float.NegativeInfinity;
             _guard.RecordServiceSuccess(MessageIds.GetMyTeam);
             Status = RequiresReconnect ? RecoveryMessage : Suspended ? SuspendedMessage : ConnectingMessage;
             Changed?.Invoke();
@@ -398,6 +406,27 @@ namespace MmorpgClient.Game.Team
                 },
                 TeamResponse.Parser, false,
                 reply => FinishWrite(TeamAction.ConfirmRankedPreset, 0, reply, "论剑战法预设已确认。"));
+
+        /// <summary>队长切换跑图跟随队形(长蛇 / 雁行 / 五行)。</summary>
+        public bool SetFormation(TeamFollowFormationStyle formation) =>
+            MessageIds.SetTeamFormation != 0 &&
+            Send(TeamAction.SetFormation, 0, MessageIds.SetTeamFormation,
+                new SetTeamFormationRequest { ExpectedTeamId = Snapshot.TeamId, Formation = formation },
+                TeamResponse.Parser, false,
+                reply => FinishWrite(TeamAction.SetFormation, 0, reply,
+                    $"已切换跑图队形：{TeamViewMapper.FormatFormationName(formation)}。"));
+
+        /// <summary>队长一键召集队员归队(服务端 15 秒团队冷却)。</summary>
+        public bool RecallMembers() =>
+            MessageIds.RecallTeamMembers != 0 &&
+            Send(TeamAction.RecallMembers, 0, MessageIds.RecallTeamMembers,
+                new RecallTeamMembersRequest { ExpectedTeamId = Snapshot.TeamId },
+                TeamResponse.Parser, false,
+                reply =>
+                {
+                    if (Ok(reply.ErrorMessage)) _recallAvailableAt = _clock() + RecallCooldownSeconds;
+                    FinishWrite(TeamAction.RecallMembers, 0, reply, "已向全体在线队员发送归队召集。");
+                });
 
         /// <param name="targetTeamSize">0 为直接开局；目标人数更大时等待补位，必须由服务端明确声明支持。</param>
         public bool StartMatch(uint battleConfigId, uint targetTeamSize = 0, Match.MatchMode matchMode = Match.MatchMode.PveTeam,
@@ -857,6 +886,9 @@ namespace MmorpgClient.Game.Team
                     Status = string.Empty;
                     HighlightPlayerId = 0;
                     break;
+                case TeamChangeReason.FormationChanged:
+                    Status = $"队形已切换为「{TeamViewMapper.FormatFormationName(Snapshot.FollowFormation)}」。";
+                    break;
                 case TeamBackfillProtocol.MatchQueuedReason:
                     Status = MatchQueued
                         ? QueueDescription(Snapshot)
@@ -919,6 +951,14 @@ namespace MmorpgClient.Game.Team
                     if (RemoveInvite(message.TeamId))
                     {
                         Status = "一条组队邀请已失效。";
+                        Changed?.Invoke();
+                    }
+                    break;
+                case TeamEventType.LeaderRecall:
+                    if (message.ActorId != PlayerId)
+                    {
+                        Status = "队长发起了集合召集，可立即归队。";
+                        LeaderRecalled?.Invoke(message.TeamId, message.ActorId);
                         Changed?.Invoke();
                     }
                     break;
@@ -1066,9 +1106,8 @@ namespace MmorpgClient.Game.Team
 
         private void Reject(string message) { Status = message; Changed?.Invoke(); }
 
-        // 等价于 now - _lastSendAt < MinSendIntervalSeconds。写成"下次可发时刻"是为了让
-        // 恰好相隔 0.4 秒的两次发送不被 float 减法的舍入误判为过快(例如 1.4f - 1f 略小于 0.4f)。
-        private bool TooSoon(float now) => now < _lastSendAt + MinSendIntervalSeconds;
+        // 缓存float32字段类型的下次可发时刻，避免内联相加在Mono评估栈上以双精度进行比较而误判恰好相隔0.4秒的发送。
+        private bool TooSoon(float now) => now < _nextSendAt;
 
         /// <summary>
         /// 动作自身的本地前置条件(A.6);返回 null 表示通过,否则是拒绝文案。
@@ -1116,6 +1155,13 @@ namespace MmorpgClient.Game.Team
                 case TeamAction.ConfirmRankedPreset:
                     if (!HasTeam) return "你当前不在队伍中。";
                     return MatchStarting ? MatchLockedMessage : null;
+                case TeamAction.SetFormation:
+                    if (!HasTeam) return "你当前不在队伍中。";
+                    return !IsLeader ? "只有队长可以切换跑图队形。" : null;
+                case TeamAction.RecallMembers:
+                    if (!HasTeam) return "你当前不在队伍中。";
+                    if (!IsLeader) return "只有队长可以发起召集。";
+                    return RecallCooldownRemainingSeconds > 0f ? "召集冷却中，请稍候再试。" : null;
                 case TeamAction.StartMatch:
                     if (!HasFreshView) return "队伍信息已过期，请先刷新。";
                     if (!IsLeader) return "只有队长可以开始战斗。";
@@ -1164,6 +1210,8 @@ namespace MmorpgClient.Game.Team
                 case TeamAction.Transfer: return "正在转让队长…";
                 case TeamAction.Disband: return "正在解散队伍…";
                 case TeamAction.ConfirmRankedPreset: return "正在确认论剑战法预设…";
+                case TeamAction.SetFormation: return "正在切换跑图队形…";
+                case TeamAction.RecallMembers: return "正在向队员发送召集…";
                 case TeamAction.StartMatch: return "正在发起队伍战斗…";
                 default: return string.Empty;
             }
@@ -1220,6 +1268,7 @@ namespace MmorpgClient.Game.Team
             var snapshotAtSend = Snapshot;
             Busy = true; PendingAction = action; PendingTarget = target;
             _lastSendAt = now;
+            _nextSendAt = now + MinSendIntervalSeconds;
             RecordSend(messageId, read, now);
             if (action == TeamAction.Refresh)
             {

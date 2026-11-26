@@ -90,6 +90,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private const float ListWidth = CardWidth * Columns + CardGap * (Columns - 1);
         private const float ListHeight = CardHeight * Rows + CardGap * (Rows - 1);
         private const float FooterY = 798;
+        private const string WorldMapArtRoot = "UI/Ugui/WorldMapV2/";
 
         // 折扣角标用醒目的朱红(与线路面板的「爆满」同色);错误行与背包 / 任务窗同色。
         private static readonly Color DiscountInk = QdaoUguiTheme.Html("#C23B22");
@@ -114,7 +115,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public uint ArmedGoodsId => _armedQuote.GoodsId;
 
         private readonly RectTransform _root, _list;
-        private readonly TMP_Text _headline, _status, _balance, _pageLabel;
+        private readonly Image _frameArt, _titleArt, _shelfArt, _crossMapSeal;
+        private readonly TMP_Text _title, _headline, _status, _balance, _pageLabel;
         private readonly Button _previous, _next, _travel;
         private readonly TMP_Text _travelLabel;
         private readonly Func<float> _clock;
@@ -138,13 +140,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             shade.raycastTarget = true;
             _root.gameObject.AddComponent<GameplayInputBlocker>();
             var frame = QdaoUguiFactory.CreateCenteredRect("MysteryMerchantFrame", _root, FrameWidth, FrameHeight);
-            Art(frame, "main_frame", 0, 0, FrameWidth, FrameHeight);
-            Art(frame, "title_plate", 62, -21, 480, 114);
-            Text(frame, TitleText, 100, -7, 400, 84, 49, Cream, alignment: TextAlignmentOptions.Center);
+            _frameArt = Art(frame, "main_frame", 0, 0, FrameWidth, FrameHeight);
+            _titleArt = Art(frame, "title_plate", 62, -21, 480, 114);
+            _title = Text(frame, TitleText, 100, -7, 400, 84, 49, Cream, alignment: TextAlignmentOptions.Center);
             _headline = Text(frame, "", 604, 40, 1060, 58, 30, Muted);
             _headline.name = "MysteryMerchantHeadline";
 
-            Art(frame, "content_panel", 56, 150, FrameWidth - 112, 632);
+            _shelfArt = Art(frame, "content_panel", 56, 150, FrameWidth - 112, 632);
+            _crossMapSeal = QdaoUguiFactory.CreateImage("MysteryMerchantCrossMapSeal", frame,
+                (FrameWidth - 116) / 2, ListY + ListHeight / 2 - 98, 116, 116,
+                QdaoUguiTheme.RequireSprite(WorldMapArtRoot + "seal_merchant"));
+            _crossMapSeal.preserveAspect = true;
+            _crossMapSeal.gameObject.SetActive(false);
             _list = QdaoUguiFactory.CreateRect("MysteryMerchantShelf", frame, ListX, ListY, ListWidth, ListHeight);
 
             // 底栏是固定槽位:状态行、余额、翻页、前往、关闭;渲染只改它们的文字与可用性,不重建。
@@ -334,6 +341,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
             // 「前往」只在商人在别的线时出现,它与翻页控件占同一段底栏(那时没有货架,不需要翻页)。
             bool elsewhere = _view.Presence == MysteryMerchantPresence.Elsewhere;
+            bool crossMap = elsewhere && !string.IsNullOrEmpty(_view.TargetMapName);
+            if (_crossMapSeal.gameObject.activeSelf != crossMap)
+            {
+                SetShellArt(_frameArt, crossMap, "world_map_paper_panel", "main_frame");
+                SetShellArt(_titleArt, crossMap, "merchant_title_plate", "title_plate");
+                SetShellArt(_shelfArt, crossMap, "merchant_shelf_panel", "content_panel");
+                _title.rectTransform.anchoredPosition = new Vector2(100, crossMap ? 15 : 7);
+                _crossMapSeal.gameObject.SetActive(crossMap);
+            }
             _travel.gameObject.SetActive(elsewhere);
             if (elsewhere)
             {
@@ -357,7 +373,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Clear(_list);
                 if (count == 0)
                 {
-                    var empty = Text(_list, DescribeEmpty(_view), 0, (ListHeight - 80) / 2, ListWidth, 80, 36, Muted,
+                    float emptyY = (ListHeight - 80) / 2 + (crossMap ? 72 : 0);
+                    var empty = Text(_list, DescribeEmpty(_view), 0, emptyY, ListWidth, 80, 36, Muted,
                         alignment: TextAlignmentOptions.Center);
                     empty.name = EmptyLabelName;
                 }
@@ -376,6 +393,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _status.text = status;
             _status.color = isError ? ErrorInk : Muted;
             RefreshHeadline();
+        }
+
+        private static void SetShellArt(Image image, bool crossMap, string mapAsset, string shopAsset)
+        {
+            image.sprite = crossMap ? QdaoUguiTheme.RequireSprite(WorldMapArtRoot + mapAsset) : Load(shopAsset);
+            image.type = image.sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
         }
 
         /// <summary>

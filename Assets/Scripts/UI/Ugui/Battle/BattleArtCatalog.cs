@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MmorpgClient.Game.Battle.Presentation;
 using UnityEngine;
 using MmorpgClient.World;
 
@@ -604,6 +605,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
             if (isAttack || skillId == 0)
                 return new SkillPresentation { SkillId = skillId, FxId = "slash_arc", Action = "attack", HitFrame = 3 };
+            if (skillId == TurnPlan.MirrorCopySkillId)
+                return new SkillPresentation { SkillId = skillId, FxId = "mirror_copy_cast", Action = "cast", HitFrame = 3 };
 
             string[] cycle = { "fire_burst", "ice_shard", "lightning_strike" };
             return new SkillPresentation

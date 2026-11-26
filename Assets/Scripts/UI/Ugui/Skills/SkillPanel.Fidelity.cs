@@ -10,7 +10,8 @@ namespace MmorpgClient.UI.Ugui.Skills
         // Exact relative geometry from skills HTML; outer Y keeps its title/footer inside the 1080 canvas.
         // Skills owns its 1660 x 940.296875 geometry and does not use the attribute layout helper.
         private bool _fidelityCanPreviewClasses;
-        private static readonly Color SkillsInk=QdaoUguiTheme.Html("#304736"),SkillsMuted=QdaoUguiTheme.Html("#867854"),SkillsRule=QdaoUguiTheme.Html("#CAB991");
+        private static readonly Color SkillsInk=QdaoUguiTheme.Html("#25231C"),SkillsMuted=QdaoUguiTheme.Html("#654A34"),SkillsRule=QdaoUguiTheme.Html("#CCBA95");
+        private static readonly Color SkillsJadeInk=QdaoUguiTheme.Html("#184833");
         private static readonly string[] ClassRoles={"近战物攻","法术输出","治疗辅助","高速先手"};
         private void ApplyFidelityLayout()
         {
@@ -22,8 +23,15 @@ namespace MmorpgClient.UI.Ugui.Skills
             bool pet=_state?.Context?.IsPet==true,readOnly=_state==null||_state.IsReadOnly;
             var snapshot=_state?.Snapshot;var selected=snapshot?.Find(_selectedId);var skill=selected?.Definition;
             _title.text=pet?"宝宝技能":"四脉真诀";
-            Place(Find("Close"),1600,-28,58,58);Place(Find("CloseTassel"),1640,25,24,65);
-            Label("SkillsTopline",41,29,300,30,pet?"宝宝技能":"人物技能",18,SkillsMuted);
+            PlaceClose();
+            var closeImage = Find("Close")?.GetComponent<Image>();
+            if (closeImage != null)
+            {
+                if (!HasLoadout || !ApplyGuildSprite(closeImage, "guild_close"))
+                    CharacterAttributeVisuals.Skin(closeImage, "close_button");
+                else closeImage.preserveAspect = true;
+            }
+            Label("SkillsTopline",41,29,300,30,pet?"宝宝技能":"人物技能",22,SkillsInk);
             Rule("SkillsTopRule",41,73.796875f,1578,1);Rule("SkillsClassRule",235,96.796875f,1,745.5f);
             Rule("SkillsDetailRule",1269,96.796875f,1,745.5f);Rule("SkillsCategoryRule",274,228.984375f,957,1);
             Rule("SkillsFooterRule",41,863.296875f,1578,1);
@@ -78,35 +86,75 @@ namespace MmorpgClient.UI.Ugui.Skills
                 filter.Label.color=QdaoUguiTheme.Html(selectedFilter?"#2D6848":"#7D6A47");
                 filter.Label.characterSpacing=2;
             }
-            Place(Find("NameHeader"),347,241.984375f,650,20);Place(Find("RankHeader"),1033,241.984375f,63,20);Place(Find("ManaHeader"),1108,241.984375f,111,20);
-            foreach(string name in new[]{"NameHeader","RankHeader","ManaHeader"})Font(Find(name)?.GetComponent<TMP_Text>(),12,SkillsMuted,true);
+            var studyHeader = _studyRoot.Find("StudyTableHeader") as RectTransform;
+            if (studyHeader == null && HasLoadout)
+            {
+                var header = QdaoUguiFactory.CreateImage("StudyTableHeader", _studyRoot, 274, 234, 957, 33, null);
+                ApplyGuildSprite(header, "guild_table_header");
+                studyHeader = header.rectTransform;
+                studyHeader.SetAsFirstSibling();
+            }
+            if (studyHeader != null) studyHeader.gameObject.SetActive(HasLoadout);
+            Place(Find("NameHeader"),HasLoadout?380:347,236,650,28);Place(Find("RankHeader"),1033,236,63,28);Place(Find("ManaHeader"),1108,236,111,28);
+            foreach(string name in new[]{"NameHeader","RankHeader","ManaHeader"})Font(Find(name)?.GetComponent<TMP_Text>(),HasLoadout?19:12,SkillsMuted,!HasLoadout);
             Find("ManaHeader").GetComponent<TMP_Text>().text="消耗 / 目标";Find("ManaHeader").GetComponent<TMP_Text>().alignment=TextAlignmentOptions.MidlineRight;
             foreach(string name in new[]{"KindHeader","TargetHeader"})Find(name)?.gameObject.SetActive(false);
             Place(_scroll.viewport,274,269.171875f,957,ListHeight);_content.sizeDelta=new Vector2(957,Mathf.Max(ListHeight,_visible.Count*RowStep-6));
             Place(Find("SkillListScrollbar"),1237,269.171875f,10,ListHeight);Place(_empty.rectTransform,20,110,917,160);Font(_empty,22,SkillsMuted,true);
             for(int i=0;i<_rows.Count;i++)
             {
-                var row=_rows[i];Place(row.Button.Rect,0,i*RowStep,957,RowHeight);row.Button.Plate.sprite=null;row.Button.Plate.type=Image.Type.Simple;
-                row.Button.Plate.color=QdaoUguiTheme.Html(row.Id==_selectedId?"#DFE9D3":"#FFF7E7");
-                var border=row.Button.Plate.GetComponent<Outline>()??row.Button.Plate.gameObject.AddComponent<Outline>();
-                border.effectColor=QdaoUguiTheme.Html(row.Id==_selectedId?"#789770":"#D1C6A6");border.effectDistance=new Vector2(1,-1);border.useGraphicAlpha=true;
-                Place(row.Icon.rectTransform,7,8,50,50);
+                var row = _rows[i];
+                bool selectedRow = row.Id == _selectedId;
+                Place(row.Button.Rect, 0, i * RowStep, 957, RowHeight);
+                bool paintedRow = HasLoadout && ApplyGuildSprite(row.Button.Plate, selectedRow ? "guild_row_self" : "guild_row_normal");
+                var border = row.Button.Plate.GetComponent<Outline>();
+                if (paintedRow)
+                {
+                    if (border != null) border.enabled = false;
+                }
+                else
+                {
+                    row.Button.Plate.sprite = null;
+                    row.Button.Plate.type = Image.Type.Simple;
+                    row.Button.Plate.color = QdaoUguiTheme.Html(selectedRow ? "#DFE9D3" : "#FFF7E7");
+                    border ??= row.Button.Plate.gameObject.AddComponent<Outline>();
+                    border.enabled = true;
+                    border.effectColor = QdaoUguiTheme.Html(selectedRow ? "#789770" : "#D1C6A6");
+                    border.effectDistance = new Vector2(1, -1);
+                    border.useGraphicAlpha = true;
+                }
+                var mark = row.Button.Rect.Find("SelectedMark");
+                if (paintedRow && selectedRow && mark == null)
+                {
+                    SkillLoadoutSubPanel.AddSelectedMark(row.Button.Rect, 12, 22, 22);
+                    mark = row.Button.Rect.Find("SelectedMark");
+                }
+                if (mark != null) mark.gameObject.SetActive(paintedRow && selectedRow);
+                float textX = paintedRow ? 106 : 73;
+                Place(row.Icon.rectTransform,paintedRow?43:7,8,50,50);
                 if(row.SeasonCornerBadge!=null)Place(row.SeasonCornerBadge,28,0,22,22);
-                Place(row.Name.rectTransform,73,2,674,38);Font(row.Name,23,SkillsInk);row.Name.fontStyle=FontStyles.Bold;row.Name.text=row.Name.text.Replace("✓ ",string.Empty);
-                Place(row.Kind.rectTransform,73,41.796875f,674,18);Font(row.Kind,11,SkillsMuted,true);
-                Place(row.Rank.rectTransform,759,22.796875f,63,21);Font(row.Rank,13,SkillsInk,true);
-                Place(row.Mana.rectTransform,834,12.796875f,111,22);Font(row.Mana,13,SkillsInk,true);Place(row.Target.rectTransform,834,34.796875f,111,18);Font(row.Target,11,SkillsMuted,true);
+                Place(row.Name.rectTransform,textX,2,544,36);Font(row.Name,paintedRow?25:23,selectedRow?SkillsJadeInk:SkillsInk);row.Name.text=row.Name.text.Replace("✓ ",string.Empty);
+                Place(row.Kind.rectTransform,textX,36,612,26);Font(row.Kind,paintedRow?18:11,SkillsMuted,!paintedRow);
+                Place(row.Rank.rectTransform,759,21,63,26);Font(row.Rank,paintedRow?18:13,SkillsInk,!paintedRow);
+                Place(row.Mana.rectTransform,834,10,111,25);Font(row.Mana,paintedRow?17:13,SkillsInk,!paintedRow);
+                Place(row.Target.rectTransform,834,35,111,23);Font(row.Target,paintedRow?17:11,SkillsMuted,!paintedRow);
                 row.Mana.alignment=row.Target.alignment=TextAlignmentOptions.MidlineRight;
             }
             Label("SkillsDetailKicker",1305,104.796875f,314,25,className+(pet?" · 灵宠术法":" · 术法真传"),12,SkillsMuted).alignment=TextAlignmentOptions.Center;
             Place(_selectedIcon.rectTransform,1357,138.984375f,210,210);Place(_selectedName.rectTransform,1305,363.984375f,314,42);Font(_selectedName,32,SkillsInk);_selectedName.fontStyle=FontStyles.Bold;_selectedName.alignment=TextAlignmentOptions.Center;
             string tags=skill==null?string.Empty:skill.KindLabel+" · "+skill.TargetLabel
-                +(selected.Equipped?" · 已装配":string.Empty)
-                +(!string.IsNullOrEmpty(skill.SecondaryTargetLabel)?" · "+skill.SecondaryTargetLabel:string.Empty)
-                +(skill.exclusiveGroup>0?$" · 互斥组#{skill.exclusiveGroup}":string.Empty)
                 +(readOnly?" · 状态未同步":selected.Rank>0?" · 已修习 "+selected.Rank+" 级":" · 未学习");
-            Label("SkillsDetailTags",1305,413.578125f,314,24,tags,11,SkillsMuted).alignment=TextAlignmentOptions.Center;
-            Place(_descriptionScroll.viewport,1305,457.171875f,314,70);Font(_description,15,QdaoUguiTheme.Html("#596047"),true);
+            Label("SkillsDetailTags",1305,409,314,24,tags,HasLoadout?17:11,SkillsMuted,!HasLoadout).alignment=TextAlignmentOptions.Center;
+            var modifierTags = new System.Collections.Generic.List<string>(3);
+            if (!string.IsNullOrEmpty(skill?.SecondaryTargetLabel)) modifierTags.Add(skill.SecondaryTargetLabel);
+            if (skill?.exclusiveGroup > 0) modifierTags.Add("专精互斥");
+            if (selected != null && ShowEquipped(selected, pet)) modifierTags.Add("已装配");
+            var modifiers = Label("SkillsDetailModifierTags",1305,432,314,24,string.Join(" · ", modifierTags),HasLoadout?18:13,SkillsJadeInk,!HasLoadout);
+            modifiers.alignment=TextAlignmentOptions.Center;
+            modifiers.enableAutoSizing = HasLoadout;
+            modifiers.fontSizeMin = 14;
+            modifiers.fontSizeMax = 18;
+            Place(_descriptionScroll.viewport,1305,457.171875f,314,70);Font(_description,HasLoadout?18:15,SkillsInk,!HasLoadout);
             float height=Mathf.Max(70,_description.GetPreferredValues(_description.text,304,0).y+4);
             _description.rectTransform.sizeDelta=new Vector2(304,height);_descriptionContent.sizeDelta=new Vector2(314,height);Place(Find("DescriptionScrollbar"),1624,457.171875f,10,70);
             Rule("SkillsMetricsTop",1305,542.171875f,314,1);Rule("SkillsMetricsBottom",1305,661.140625f,314,1);
@@ -120,20 +168,45 @@ namespace MmorpgClient.UI.Ugui.Skills
             Button(_refresh,1509,879.296875f,110,39,16);Place(_status.rectTransform,41,879.296875f,1425,39);Font(_status,13,null,true);
             string[] tabs={"AttributeTab","AllocationTab","SkillTab"};for(int i=0;i<tabs.Length;i++)
             {
-                var rect=Find(tabs[i]);if(rect==null)continue;Place(rect,1310+i*102,25,94,40);CharacterAttributeVisuals.Skin(rect.GetComponent<Image>(),i==2&&!_loadoutMode?"button_primary":"button_secondary");
-                var label=rect.GetComponentInChildren<TMP_Text>();label.text=label.text.Replace("\n",string.Empty);Place(label.rectTransform,0,0,94,40);Font(label,18,i==2&&!_loadoutMode?QdaoRefreshArt.Ivory:SkillsInk);
+                var rect=Find(tabs[i]);if(rect==null)continue;
+                bool studyTab = i == 2 && HasLoadout;
+                float width = studyTab ? 118 : 94, tabHeight = studyTab ? 44 : 40;
+                Place(rect,studyTab ? 1036 : 1310+i*102,studyTab ? 23 : 25,width,tabHeight);
+                bool active = i==2&&!_loadoutMode;
+                if (!HasLoadout || !ApplyGuildSprite(rect.GetComponent<Image>(), active ? "guild_tab_selected" : "guild_tab_normal"))
+                    CharacterAttributeVisuals.Skin(rect.GetComponent<Image>(),active?"button_primary":"button_secondary");
+                var label=rect.GetComponentInChildren<TMP_Text>();label.text=label.text.Replace("\n",string.Empty);Place(label.rectTransform,0,0,width,tabHeight);Font(label,HasLoadout?21:18,active?QdaoRefreshArt.Ivory:SkillsInk);
             }
-            if(_loadoutTab!=null)
+            if(HasLoadout)
             {
-                bool showLoadoutTab=!pet;
-                _loadoutTab.SetVisible(showLoadoutTab);
-                if(showLoadoutTab)
-                {
-                    Button(_loadoutTab,1168,25,128,40,18);
-                    CharacterAttributeVisuals.Skin(_loadoutTab.Plate,_loadoutMode?"button_primary":"button_secondary");
-                    _loadoutTab.Label.color=_loadoutMode?QdaoRefreshArt.Ivory:SkillsInk;
-                }
+                Button(_loadoutTab,1164,23,128,44,21);
+                StyleGuildControl(_loadoutTab,_loadoutMode?"guild_tab_selected":"guild_tab_normal",
+                    _loadoutMode?QdaoRefreshArt.Ivory:SkillsInk);
             }
+        }
+        internal static void StyleGuildControl(UiTextButton button, string art, Color ink, bool preserveReadOnlyColor = false)
+        {
+            ApplyGuildSprite(button.Plate, art);
+            Font(button.Label, button.Label.fontSize, ink);
+            button.Label.fontStyle = FontStyles.Bold;
+            var colors = button.Button.colors;
+            colors.highlightedColor = QdaoUguiTheme.Html("#FFF6E6");
+            colors.selectedColor = Color.white;
+            if (preserveReadOnlyColor) colors.disabledColor = Color.white;
+            button.Button.colors = colors;
+        }
+
+        private static bool ApplyGuildSprite(Image plate, string art)
+        {
+            var sprite = SeasonEconomyUiArt.LoadGuildFidelityAsset(art);
+            if (plate == null || sprite == null) return false;
+            SeasonEconomyUiArt.ApplyFixedControlSprite(plate, sprite, Color.white);
+            return true;
+        }
+        private void PlaceClose()
+        {
+            Place(Find("Close"), _closeOnLeft ? 27 : 1600, -28, 58, 58);
+            Place(Find("CloseTassel"), _closeOnLeft ? 2 : 1640, 25, 24, 65);
         }
         // Only these HTML controls have CSS flat backgrounds; preserve the existing production callbacks.
         private static void PlainControl(UiTextButton button,string key)
@@ -143,7 +216,8 @@ namespace MmorpgClient.UI.Ugui.Skills
             var colors=button.Button.colors;colors.selectedColor=Color.white;button.Button.colors=colors;
         }
         private RectTransform Find(string name)
-        {foreach(var rect in _root.GetComponentsInChildren<RectTransform>(true))if(rect.name==name||rect.name==name+"Plate")return rect;return null;}
+            => (_root.Find(name) ?? _root.Find(name + "Plate") ??
+                _studyRoot.Find(name) ?? _studyRoot.Find(name + "Plate")) as RectTransform;
         private static void Place(RectTransform rect,float x,float y,float width,float height)
         {if(rect==null)return;rect.anchoredPosition=new Vector2(x,-y);rect.sizeDelta=new Vector2(width,height);}
         private static void Font(TMP_Text text,float size,Color? color=null,bool body=false)
@@ -152,10 +226,17 @@ namespace MmorpgClient.UI.Ugui.Skills
         {Place(button.Rect,x,y,width,height);Place(button.Label.rectTransform,8,0,width-16,height);Font(button.Label,size);button.Plate.pixelsPerUnitMultiplier=button.Plate.sprite==null?1:button.Plate.sprite.rect.height/height;}
         private TMP_Text Label(string name,float x,float y,float width,float height,string value,float size,Color color,UnityEngine.Transform parent=null,bool body=false)
         {
-            var text=Find(name)?.GetComponent<TMP_Text>();if(text==null)text=QdaoUguiFactory.CreateText(name,parent==null?_root:parent,x,y,width,height,value,size,color);
+            parent ??= name == "SkillsTopline" ? _root : _studyRoot;
+            var text=parent.Find(name)?.GetComponent<TMP_Text>();if(text==null)text=QdaoUguiFactory.CreateText(name,parent,x,y,width,height,value,size,color);
             Place(text.rectTransform,x,y,width,height);Font(text,size,color,body);text.text=value;text.richText=false;text.raycastTarget=false;return text;
         }
+        private TMP_Text Label(string name,float x,float y,float width,float height,string value,float size,Color color,bool body)
+            => Label(name,x,y,width,height,value,size,color,null,body);
         private void Rule(string name,float x,float y,float width,float height)
-        {if(Find(name)!=null)return;var rule=QdaoUguiFactory.CreateImage(name,_root,x,y,width,height,null);rule.color=SkillsRule;rule.raycastTarget=false;}
+        {
+            if(Find(name)!=null)return;
+            var parent = name == "SkillsTopRule" || name == "SkillsFooterRule" ? _root : _studyRoot;
+            var rule=QdaoUguiFactory.CreateImage(name,parent,x,y,width,height,null);rule.color=SkillsRule;rule.raycastTarget=false;
+        }
     }
 }

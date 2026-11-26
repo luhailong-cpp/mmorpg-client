@@ -1,30 +1,62 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using MmorpgClient.Net.Generated;
 using MmorpgClient.Table;
 
 namespace MmorpgClient.Game.Season
 {
-    /// <summary>赛季技能与赛季印客户端消息号（proto/scene/player_season.proto，默认取生成常量 453–455）。</summary>
+    /// <summary>赛季技能、赛季印、五行阵法、五行幻境与配装收藏夹客户端消息号（proto/scene/player_season.proto）。</summary>
     public readonly struct SeasonMessageIds
     {
         public uint GetState { get; }
         public uint EquipSeal { get; }
         public uint CatchupSeal { get; }
+        public uint EquipWuxingFormation { get; }
+        public uint GetWuxingTowerState { get; }
+        public uint StartWuxingTowerRun { get; }
+        public uint PickWuxingTowerSigil { get; }
+        public uint AbandonWuxingTowerRun { get; }
+        public uint SaveBattleBuildBookmark { get; }
+        public uint DeleteBattleBuildBookmark { get; }
 
         public bool IsSupported => GetState != 0 && EquipSeal != 0 && CatchupSeal != 0;
 
-        public SeasonMessageIds(uint getState, uint equipSeal, uint catchupSeal)
+        public SeasonMessageIds(
+            uint getState,
+            uint equipSeal,
+            uint catchupSeal,
+            uint equipWuxingFormation = 0u,
+            uint getWuxingTowerState = 0u,
+            uint startWuxingTowerRun = 0u,
+            uint pickWuxingTowerSigil = 0u,
+            uint abandonWuxingTowerRun = 0u,
+            uint saveBattleBuildBookmark = 0u,
+            uint deleteBattleBuildBookmark = 0u)
         {
             GetState = getState;
             EquipSeal = equipSeal;
             CatchupSeal = catchupSeal;
+            EquipWuxingFormation = equipWuxingFormation;
+            GetWuxingTowerState = getWuxingTowerState;
+            StartWuxingTowerRun = startWuxingTowerRun;
+            PickWuxingTowerSigil = pickWuxingTowerSigil;
+            AbandonWuxingTowerRun = abandonWuxingTowerRun;
+            SaveBattleBuildBookmark = saveBattleBuildBookmark;
+            DeleteBattleBuildBookmark = deleteBattleBuildBookmark;
         }
 
         public static SeasonMessageIds Generated => new SeasonMessageIds(
             SceneSeasonClientPlayerRpc.GetSeasonStateMessageId,
             SceneSeasonClientPlayerRpc.EquipSeasonSealMessageId,
-            SceneSeasonClientPlayerRpc.CatchupSeasonSealMessageId);
+            SceneSeasonClientPlayerRpc.CatchupSeasonSealMessageId,
+            SceneSeasonClientPlayerRpc.EquipWuxingFormationMessageId,
+            SceneSeasonClientPlayerRpc.GetWuxingTowerStateMessageId,
+            SceneSeasonClientPlayerRpc.StartWuxingTowerRunMessageId,
+            SceneSeasonClientPlayerRpc.PickWuxingTowerSigilMessageId,
+            SceneSeasonClientPlayerRpc.AbandonWuxingTowerRunMessageId,
+            SceneSeasonClientPlayerRpc.SaveBattleBuildBookmarkMessageId,
+            SceneSeasonClientPlayerRpc.DeleteBattleBuildBookmarkMessageId);
     }
 
     /// <summary>赛季印进度追赶成功回执（不可变值对象，跨模块事件传递安全）。</summary>
@@ -255,5 +287,246 @@ namespace MmorpgClient.Game.Season
                 7u => value > 0 ? $"法宝回蓝 +{value}" : "法宝回蓝触发",
                 _ => value > 0 ? $"法宝触发 ({value})" : "法宝触发",
             };
+
+        /// <summary>按权威周词缀编号返回战斗 HUD 简洁名称（0 = 无）。</summary>
+        public static string DescribeWeeklyAffixShort(uint affixId) => affixId switch
+        {
+            1u => "护盾过载周",
+            2u => "灵息充盈周",
+            3u => "先机守势周",
+            4u => "锋芒竞速周",
+            _ => string.Empty,
+        };
+
+        /// <summary>按权威周词缀编号返回全员对称效果简述（供战斗 HUD 与排位摘要使用）。</summary>
+        public static string DescribeWeeklyAffixDetail(uint affixId) => affixId switch
+        {
+            1u => "全员对称：双方技能护盾 +15%",
+            2u => "全员对称：普通防御额外回蓝 +3%",
+            3u => "全员对称：前 2 回合受到直伤 -8%",
+            4u => "全员对称：攻击无盾目标直伤 +5%",
+            _ => string.Empty,
+        };
+
+        /// <summary>从战后 BattleEndS2C 与当前赛季快照构建结算页「赛季印进度」只读视图。</summary>
+        public static SeasonSettlementProgressView BuildSettlementProgressView(
+            global::BattleEndS2C end,
+            global::SeasonStateSnapshot snapshot = null,
+            Func<uint, (string seasonName, string honorTitle)> ruleLookup = null)
+        {
+            if (end == null || end.SeasonSealMaxPoints == 0u) return null;
+            uint seasonId = end.SeasonId != 0u ? end.SeasonId : (snapshot?.SeasonId ?? 0u);
+            string seasonName = snapshot != null && snapshot.SeasonId == seasonId && !string.IsNullOrWhiteSpace(snapshot.SeasonName)
+                ? snapshot.SeasonName
+                : null;
+            string honorTitle = null;
+            if (snapshot?.Honors != null)
+            {
+                for (int i = 0; i < snapshot.Honors.Count; i++)
+                {
+                    var h = snapshot.Honors[i];
+                    if (h != null && h.SeasonId == seasonId)
+                    {
+                        if (string.IsNullOrWhiteSpace(seasonName)) seasonName = h.SeasonName;
+                        honorTitle = h.HonorTitleName;
+                        break;
+                    }
+                }
+            }
+            if (string.IsNullOrWhiteSpace(seasonName) || string.IsNullOrWhiteSpace(honorTitle))
+            {
+                if (ruleLookup != null)
+                {
+                    var pair = ruleLookup(seasonId);
+                    if (string.IsNullOrWhiteSpace(seasonName)) seasonName = pair.seasonName;
+                    if (string.IsNullOrWhiteSpace(honorTitle)) honorTitle = pair.honorTitle;
+                }
+                else
+                {
+                    var row = SeasonRuleTableManager.Instance?.FindById(seasonId);
+                    if (row != null)
+                    {
+                        if (string.IsNullOrWhiteSpace(seasonName)) seasonName = row.Name;
+                        if (string.IsNullOrWhiteSpace(honorTitle)) honorTitle = row.HonorTitleName;
+                    }
+                }
+            }
+            if (string.IsNullOrWhiteSpace(seasonName)) seasonName = "本季赛季印";
+            return new SeasonSettlementProgressView(
+                seasonId,
+                seasonName,
+                end.SeasonSealPointsAdded,
+                end.SeasonSealProgressAfter,
+                end.SeasonSealMaxPoints,
+                end.SeasonHonorNewlyUnlocked,
+                honorTitle ?? string.Empty);
+        }
+
+        /// <summary>
+        /// 按服务端当前赛季快照动态组装至多 3 套「本季推荐流派（一键切印 + 免费技能搭配）」，
+        /// 并自动标亮契合本周对称环境词缀的流派（适配 S1 / S2 及后续赛季）。
+        /// </summary>
+        public static IReadOnlyList<SeasonBuildPresetView> BuildRecommendedLoadouts(global::SeasonStateSnapshot state)
+        {
+            if (state == null || !state.Available || state.Seals == null || state.Seals.Count == 0)
+                return Array.Empty<SeasonBuildPresetView>();
+
+            var recommended = new HashSet<uint>();
+            if (state.WeeklyAffix?.RecommendedSealIds != null)
+            {
+                for (int i = 0; i < state.WeeklyAffix.RecommendedSealIds.Count; i++)
+                    recommended.Add(state.WeeklyAffix.RecommendedSealIds[i]);
+            }
+
+            global::SeasonSealOption offenseSeal = null;
+            global::SeasonSealOption guardSeal = null;
+            global::SeasonSealOption manaSeal = null;
+            for (int i = 0; i < state.Seals.Count; i++)
+            {
+                var seal = state.Seals[i];
+                if (seal == null) continue;
+                if ((seal.EffectId == 1u || seal.EffectId == 2u) &&
+                    (offenseSeal == null || (recommended.Contains(seal.SealId) && !recommended.Contains(offenseSeal.SealId))))
+                    offenseSeal = seal;
+                else if (seal.EffectId == 6u && guardSeal == null)
+                    guardSeal = seal;
+                else if (seal.EffectId == 7u && manaSeal == null)
+                    manaSeal = seal;
+            }
+
+            string offenseSkills = JoinSkillNamesByTarget(state, targetTeam: 1u, fallback: "本季输出技");
+            string supportSkills = JoinSkillNamesByTarget(state, targetTeam: 2u, fallback: "本季增益/护盾技");
+
+            var list = new List<SeasonBuildPresetView>(3);
+            if (offenseSeal != null)
+            {
+                list.Add(new SeasonBuildPresetView(
+                    "breaker",
+                    "破盾强攻流",
+                    offenseSeal.SealId,
+                    offenseSeal.Name,
+                    offenseSkills,
+                    recommended.Contains(offenseSeal.SealId),
+                    offenseSeal.SealId == state.EquippedSealId));
+            }
+            if (guardSeal != null)
+            {
+                list.Add(new SeasonBuildPresetView(
+                    "guard",
+                    "稳守反击流",
+                    guardSeal.SealId,
+                    guardSeal.Name,
+                    supportSkills,
+                    recommended.Contains(guardSeal.SealId),
+                    guardSeal.SealId == state.EquippedSealId));
+            }
+            if (manaSeal != null)
+            {
+                list.Add(new SeasonBuildPresetView(
+                    "sustain",
+                    "蓄息拉扯流",
+                    manaSeal.SealId,
+                    manaSeal.Name,
+                    supportSkills,
+                    recommended.Contains(manaSeal.SealId),
+                    manaSeal.SealId == state.EquippedSealId));
+            }
+            return list;
+        }
+
+        public static global::SeasonHonorView FindCurrentHonor(global::SeasonStateSnapshot state)
+        {
+            if (state?.Honors == null) return null;
+            for (int i = 0; i < state.Honors.Count; i++)
+            {
+                var h = state.Honors[i];
+                if (h != null && (h.IsCurrentSeason || (state.SeasonId != 0u && h.SeasonId == state.SeasonId)))
+                    return h;
+            }
+            return null;
+        }
+
+        public static int CountUnlockedHonors(global::SeasonStateSnapshot state)
+        {
+            if (state?.Honors == null) return 0;
+            int count = 0;
+            for (int i = 0; i < state.Honors.Count; i++)
+                if (state.Honors[i] != null && state.Honors[i].Unlocked) ++count;
+            return count;
+        }
+
+        private static string JoinSkillNamesByTarget(global::SeasonStateSnapshot state, uint targetTeam, string fallback)
+        {
+            if (state?.SeasonSkills == null || state.SeasonSkills.Count == 0) return fallback;
+            var names = new List<string>(2);
+            for (int i = 0; i < state.SeasonSkills.Count && names.Count < 2; i++)
+            {
+                var sk = state.SeasonSkills[i];
+                if (sk != null && sk.TargetTeam == targetTeam && !string.IsNullOrWhiteSpace(sk.Name))
+                    names.Add(sk.Name);
+            }
+            return names.Count > 0 ? string.Join(" + ", names) : fallback;
+        }
+    }
+
+    /// <summary>战后结算窗口「赛季印进度」只读视图（零 UnityEngine 依赖）。</summary>
+    public sealed class SeasonSettlementProgressView
+    {
+        public uint SeasonId { get; }
+        public string SeasonName { get; }
+        public uint PointsAdded { get; }
+        public uint ProgressAfter { get; }
+        public uint MaxPoints { get; }
+        public bool HonorNewlyUnlocked { get; }
+        public string HonorTitleName { get; }
+        public bool IsMaxed => MaxPoints > 0u && ProgressAfter >= MaxPoints;
+
+        public SeasonSettlementProgressView(
+            uint seasonId,
+            string seasonName,
+            uint pointsAdded,
+            uint progressAfter,
+            uint maxPoints,
+            bool honorNewlyUnlocked,
+            string honorTitleName)
+        {
+            SeasonId = seasonId;
+            SeasonName = seasonName;
+            PointsAdded = pointsAdded;
+            ProgressAfter = progressAfter;
+            MaxPoints = maxPoints;
+            HonorNewlyUnlocked = honorNewlyUnlocked;
+            HonorTitleName = honorTitleName;
+        }
+    }
+
+    /// <summary>本季一键推荐流派视图（仅复用战外免费切印 RPC 454 + 本季免费技能引导）。</summary>
+    public readonly struct SeasonBuildPresetView
+    {
+        public string PresetKey { get; }
+        public string Title { get; }
+        public uint SealId { get; }
+        public string SealName { get; }
+        public string PairedSkillsSummary { get; }
+        public bool RecommendedThisWeek { get; }
+        public bool IsCurrentlyEquipped { get; }
+
+        public SeasonBuildPresetView(
+            string presetKey,
+            string title,
+            uint sealId,
+            string sealName,
+            string pairedSkillsSummary,
+            bool recommendedThisWeek,
+            bool isCurrentlyEquipped)
+        {
+            PresetKey = presetKey;
+            Title = title;
+            SealId = sealId;
+            SealName = sealName;
+            PairedSkillsSummary = pairedSkillsSummary;
+            RecommendedThisWeek = recommendedThisWeek;
+            IsCurrentlyEquipped = isCurrentlyEquipped;
+        }
     }
 }

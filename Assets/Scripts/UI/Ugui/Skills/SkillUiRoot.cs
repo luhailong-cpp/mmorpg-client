@@ -15,6 +15,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         private SkillPanel _panel;
         private SkillCraftWindow _craftWindow;
         private Canvas _canvas;
+        private RectTransform _skillWindowRoot;
         private bool BattleReadOnly => MmorpgClient.Game.Battle.BattleClient.Instance?.HasActiveBattle == true ||
             Battle.BattleUiRoot.Instance?.IsBattleLayerVisible == true;
         private uint _previewClass = 1;
@@ -82,6 +83,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             EnsurePanel();
             ApplySource();
             _panel.Show();
+            ApplySkillSafeArea();
             RequestRefresh();
         }
         private void ShowCraftWindow(SkillCraftPage page, uint scrollId)
@@ -171,9 +173,9 @@ namespace MmorpgClient.UI.Ugui.Skills
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(QdaoUguiTheme.DesignWidth, QdaoUguiTheme.DesignHeight);
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
-            var root = QdaoUguiFactory.CreateCenteredRect("SkillWindowRoot", canvasObject.transform,
+            _skillWindowRoot = QdaoUguiFactory.CreateCenteredRect("SkillWindowRoot", canvasObject.transform,
                 QdaoUguiTheme.DesignWidth, QdaoUguiTheme.DesignHeight);
-            _panel = new SkillPanel(this, root);
+            _panel = new SkillPanel(this, _skillWindowRoot);
             _craftWindow = new SkillCraftWindow(canvasObject.transform);
             _craftWindow.RequestProxyEquipmentPolish += masterId =>
                 Gameplay.GameplayUiRoot.Instance?.OpenEquipmentPolish(masterId);
@@ -185,6 +187,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             var game = AppBootstrap.Instance?.GameClient;
             if (game != null && (!game.InGame || !game.IsGateReady)) { HidePanel(); return; }
             RefreshBattleLock();
+            if (_panel?.IsVisible == true) ApplySkillSafeArea();
             if (CityPanelRegistry.IsTyping()) return;
 #if ENABLE_INPUT_SYSTEM
             if (UnityEngine.InputSystem.Keyboard.current?.escapeKey.wasPressedThisFrame == true) HidePanel();
@@ -208,6 +211,27 @@ namespace MmorpgClient.UI.Ugui.Skills
             bool locked = BattleReadOnly;
             if (_canvas != null) _canvas.sortingOrder = Battle.BattleUiRoot.Instance?.IsBattleLayerVisible == true ? 210 : 162;
             _panel?.SetBattleLocked(locked);
+        }
+
+        private void ApplySkillSafeArea()
+        {
+            var pixels = _canvas.pixelRect;
+            if (pixels.width <= 0 || pixels.height <= 0 || _canvas.scaleFactor <= 0) return;
+            var screenSafe = Screen.safeArea;
+            var safe = Rect.MinMaxRect(
+                Mathf.Max(pixels.xMin, screenSafe.xMin), Mathf.Max(pixels.yMin, screenSafe.yMin),
+                Mathf.Min(pixels.xMax, screenSafe.xMax), Mathf.Min(pixels.yMax, screenSafe.yMax));
+            if (safe.width <= 0 || safe.height <= 0) safe = pixels;
+
+            float unit = _canvas.scaleFactor;
+            _skillWindowRoot.anchoredPosition = (safe.center - pixels.center) / unit;
+            // Including the title plaque and the close tassel, the painted window
+            // fits within 1660 x 1010, centered inside the existing design canvas.
+            float scale = Mathf.Min(1, Mathf.Min(safe.width / (1660f * unit), safe.height / (1010f * unit)));
+            _skillWindowRoot.localScale = new UnityEngine.Vector3(scale, scale, 1f);
+#if UNITY_WEBGL && !UNITY_EDITOR
+            _panel.SetCloseOnLeft(true);
+#endif
         }
     }
 }

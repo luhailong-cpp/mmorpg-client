@@ -182,7 +182,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             var shade = _modalLayer.GetComponent<Image>() ?? _modalLayer.gameObject.AddComponent<Image>();
             shade.color = new Color(.02f, .07f, .055f, .85f); shade.raycastTarget = true;
-            Panel(_modalLayer, "EquipmentDialogPaper", 530, 100, 2900, 1390, true);
+            if (_modal != Modal.InheritEnhance || SeasonEconomyUiArt.LoadTradeV2Slice("panel_09_equip_inherit") == null)
+                Panel(_modalLayer, "EquipmentDialogPaper", 530, 100, 2900, 1390, true);
             switch (_modal)
             {
                 case Modal.Compare: RenderComparison(); break;

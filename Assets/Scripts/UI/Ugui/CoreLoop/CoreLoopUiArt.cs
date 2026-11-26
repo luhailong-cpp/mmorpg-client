@@ -10,7 +10,9 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
     internal static class CoreLoopUiArt
     {
         private const string ResourcePrefix = "UI/Ugui/CoreLoopV1/";
+        private const string V2ResourcePrefix = "UI/Ugui/CoreLoopV2/";
         private static readonly Dictionary<string, Sprite> Sprites = new Dictionary<string, Sprite>();
+        private static readonly Dictionary<string, Sprite> V2Sprites = new Dictionary<string, Sprite>();
 
         internal static readonly Color Ink = QdaoUguiTheme.Html("#27483C");
         internal static readonly Color Muted = QdaoUguiTheme.Html("#65786A");
@@ -37,6 +39,16 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             };
             var sprite = Resources.Load<Sprite>(path);
             Sprites.Add(key, sprite);
+            return sprite;
+        }
+
+        internal static Sprite LoadV2(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return null;
+            if (V2Sprites.TryGetValue(key, out var cached)) return cached;
+
+            var sprite = Resources.Load<Sprite>(V2ResourcePrefix + key);
+            V2Sprites.Add(key, sprite);
             return sprite;
         }
 
