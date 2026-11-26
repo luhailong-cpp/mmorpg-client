@@ -27,6 +27,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
         public event Action<uint> RequeueSameSizeRequested;
         public event Action RefreshRatingRequested;
         public event Action OpenMaterialClaimRequested;
+        public event Action<uint> OpenTrialJournalRequested;
 
         private readonly RectTransform _root;
         private readonly TMP_Text _outcomeTitle, _metaLine, _confirmBadge;
@@ -43,10 +44,11 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private readonly RectTransform[] _legacyRewardCards = new RectTransform[3];
         private readonly Button _claimMaterialBtn;
 
-        private readonly Button _backBtn, _requeueBtn;
-        private readonly TMP_Text _requeueLabel;
+        private readonly Button _backBtn, _requeueBtn, _trialJournalBtn;
+        private readonly TMP_Text _requeueLabel, _trialJournalLabel;
 
         private uint _lastTeamSize = RankedFormatting.DefaultTeamSize;
+        private uint _trialJournalEntryId;
 
         public RankedSettlementPanel(Transform designParent)
         {
@@ -102,7 +104,25 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 "guild_button_primary", "同规模再排", 28f, ButtonGoldText, out _, out _requeueLabel);
             _requeueBtn.onClick.AddListener(() => RequeueSameSizeRequested?.Invoke(_lastTeamSize));
 
+            // 卷三 303「人宠会武」试炼志结算直达入口（仅当 trialJournalEntryId != 0 时展示）
+            _trialJournalBtn = CreateGuildButton("SettlementTrialJournalBtn", _root, 1360f, 846f, 240f, 68f,
+                "guild_button_secondary", "看试炼志", 24f, JadeDark, out _, out _trialJournalLabel);
+            _trialJournalBtn.onClick.AddListener(() =>
+            {
+                if (_trialJournalEntryId != 0u) OpenTrialJournalRequested?.Invoke(_trialJournalEntryId);
+            });
+            _trialJournalBtn.gameObject.SetActive(false);
+
             _root.gameObject.SetActive(false);
+        }
+
+        public void SetTrialJournalEntry(uint entryId, string label = "看试炼志")
+        {
+            _trialJournalEntryId = entryId;
+            if (_trialJournalLabel != null)
+                _trialJournalLabel.text = string.IsNullOrEmpty(label) ? "看试炼志" : label;
+            if (_trialJournalBtn != null)
+                _trialJournalBtn.gameObject.SetActive(entryId != 0u);
         }
 
         public void Show(RankedBattleSettlementState state, RankedProfileSnapshot profile = null)

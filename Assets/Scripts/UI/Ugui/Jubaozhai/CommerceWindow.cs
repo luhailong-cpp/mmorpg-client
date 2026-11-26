@@ -119,6 +119,13 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _root.gameObject.SetActive(true);
             SelectTab(0);
         }
+        public void ShowSellerCredit(ulong sellerPlayerId, Action onBack = null)
+        {
+            if (sellerPlayerId == 0UL) return;
+            ApplySafeArea();
+            _root.gameObject.SetActive(true);
+            OpenSellerCredit(sellerPlayerId, onBack ?? Hide);
+        }
         public void Hide() { if (_root != null) _root.gameObject.SetActive(false); _confirmed = null; }
         public void Back()
         {

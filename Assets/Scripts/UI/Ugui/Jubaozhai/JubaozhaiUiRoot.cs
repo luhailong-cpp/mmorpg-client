@@ -161,6 +161,15 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _commerceWindow.ShowOfficialShopSubTab((int)subTab);
         }
 
+        /// <summary>快捷打开指定卖家的店铺信用档案（如主城宗师代工摊位点击查看大匠信用）。</summary>
+        public void OpenSellerCredit(ulong sellerPlayerId, System.Action onBack = null)
+        {
+            if (!HasView || !_available || sellerPlayerId == 0UL) return;
+            CityPanelRegistry.HideOthers(this);
+            _window.Hide();
+            _commerceWindow.ShowSellerCredit(sellerPlayerId, onBack);
+        }
+
         /// <summary>查询服务端官方商城是否已返回该 SKU 且当前有可售库存。</summary>
         public bool HasSellableOfficialSku(ulong skuId) => _commerce != null && _commerce.HasSellableOfficialSku(skuId);
 

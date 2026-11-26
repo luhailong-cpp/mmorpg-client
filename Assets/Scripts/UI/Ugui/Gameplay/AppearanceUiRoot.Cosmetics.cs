@@ -113,6 +113,38 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             ShowPanelCore(previewOnly: false, preserveCategory: true);
         }
 
+        private void PrepareWardrobeCosmeticsOnShow(bool preserveCategory)
+        {
+            if (!preserveCategory) _cosmeticState.OpenContextual(WardrobeCategoryTab.Character);
+            if (_externalVerificationClient || _cosmeticState.ActiveCategory == WardrobeCategoryTab.Character) return;
+            JubaozhaiUiRoot.Instance?.RequestOfficialSkusRefresh();
+            if (_cosmeticState.ActiveCategory == WardrobeCategoryTab.Pet) PetClient.Instance?.RequestList();
+        }
+
+        private void OnWardrobeCosmeticsHide(bool wasVisible)
+        {
+            if (wasVisible && _cosmeticState.ActiveCategory != WardrobeCategoryTab.Character &&
+                _cosmeticListScroll != null && _cosmeticListScroll.gameObject.activeInHierarchy)
+            {
+                _cosmeticState.SaveScroll(_cosmeticState.ActiveCategory, _cosmeticListScroll.verticalNormalizedPosition);
+            }
+            StopVfxPreview();
+            _cosmeticState.ResetForClose();
+        }
+
+        private bool TryHandleCosmeticsEscape()
+        {
+            if (_cosmeticState.ActiveCategory == WardrobeCategoryTab.Character) return false;
+            if (_compactLayout && _cosmeticState.CompactDetailOpen)
+            {
+                _cosmeticState.ExitCompactDetail();
+                StopVfxPreview();
+                Render();
+                return true;
+            }
+            return false;
+        }
+
         private void BuildWardrobeCosmeticsUi(RectTransform mainRoot)
         {
             // 顶部三类别页签：人物 / 灵宠 / 特效
@@ -174,9 +206,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _cosmeticListScroll.vertical = true;
             _cosmeticListScroll.movementType = ScrollRect.MovementType.Clamped;
             _cosmeticListScroll.scrollSensitivity = 48f;
-            var bar = AppearanceUiArt.AddVerticalScrollbar(_cosmeticListScroll, _cosmeticsRoot,
+            AppearanceUiArt.AddVerticalScrollbar(_cosmeticListScroll, _cosmeticsRoot,
                 "CosmeticListScrollbar", 622f, 224f, 12f, 610f);
-            _cosmeticListScrollbarObj = bar != null ? bar.gameObject : null;
+            _cosmeticListScrollbarObj = _cosmeticsRoot.Find("CosmeticListScrollbar")?.gameObject;
 
             _cosmeticEmptyLabel = QdaoUguiFactory.CreateText("CosmeticEmptyLabel", _cosmeticsRoot,
                 114f, 340f, 490f, 120f, "", 24f, AppearanceUiArt.MutedInk, TextAlignmentOptions.Center);
@@ -890,7 +922,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                             if (e != null && e.Id == skillId)
                             {
                                 usable = e.Rank > 0u || e.SeasonId != 0u;
-                                if (!string.IsNullOrEmpty(e.Definition?.Name)) name = e.Definition.Name;
                                 break;
                             }
                         }
@@ -941,6 +972,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             if (item.SkillTableId != 0u)
             {
+                var petArtSkill = CharacterPetArt.Skill(item.SkillTableId);
+                if (petArtSkill != null) return petArtSkill;
                 var skillIcon = Resources.Load<Sprite>($"UI/Skills/{item.SkillTableId}");
                 if (skillIcon != null) return skillIcon;
             }
@@ -1058,6 +1091,28 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 PlaceTopLeft((RectTransform)_cosmeticPrimaryBtn.transform, 286f, 498f, 354f, 86f);
                 PlaceTopLeft(_cosmeticStatusText.rectTransform, 0f, 598f, 700f, 56f);
             }
+            ApplyCosmeticRowLayout(compact);
+        }
+
+        private void ApplyCosmeticRowLayout(bool compact)
+        {
+            float rowW = compact ? 1004f : 496f;
+            float contentW = compact ? 1020f : 510f;
+            float nameW = compact ? 540f : 236f;
+            float stateX = compact ? 660f : 348f;
+            float stateW = compact ? 320f : 132f;
+            for (int i = 0; i < _cosmeticRows.Count; i++)
+            {
+                var row = _cosmeticRows[i];
+                if (row.Root == null) continue;
+                var rt = (RectTransform)row.Root.transform;
+                rt.sizeDelta = new Vector2(rowW, 96f);
+                if (row.Background != null) row.Background.rectTransform.sizeDelta = rt.sizeDelta;
+                if (row.NameText != null) PlaceTopLeft(row.NameText.rectTransform, 108f, 0f, nameW, 96f);
+                if (row.StateText != null) PlaceTopLeft(row.StateText.rectTransform, stateX, 0f, stateW, 96f);
+            }
+            if (_cosmeticListContent != null)
+                _cosmeticListContent.sizeDelta = new Vector2(contentW, _cosmeticListContent.sizeDelta.y);
         }
     }
 }

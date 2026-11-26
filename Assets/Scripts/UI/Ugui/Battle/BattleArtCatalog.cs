@@ -90,6 +90,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         public float TelegraphSeconds;
         /// <summary>目标段贴脚底;旧映射缺省仍贴胸口。</summary>
         public bool TargetAtFeet;
+        /// <summary>可选特效变色（技能特效衣柜染色，默认纯白无偏色）。</summary>
+        public Color TintColor = Color.white;
         public bool IsCast => Action == "cast";
     }
 
@@ -320,17 +322,30 @@ namespace MmorpgClient.UI.Ugui.Battle
         }
 
         /// <summary>
-        /// 玩家使用与选角、世界一致的存档外观兼容映射；其他演员保留原分派。
+        /// 玩家使用与选角、世界一致的存档外观兼容映射；灵宠优先使用权威幻化资源键，缺图回退原宠。
         /// </summary>
         public static string CharacterIdFor(BattleActorState actor)
         {
             if (VisualPetTableId(actor) != 0 || actor?.ActorType == eBattleActorType.BattleActorTypePet)
-                return QdaoPetCatalog.Resolve(VisualPetTableId(actor))?.id ?? QdaoPetCatalog.UnknownIdentity;
+                return VisualPetArtId(actor) ?? QdaoPetCatalog.UnknownIdentity;
             if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer)
                 return QdaoCharacterCatalog.ResolveRole(actor.ClassId, actor.Gender, actor.AppearanceId);
             if (actor == null || CharacterIds.Length == 0) return DefaultCharacterId;
             int index = BattleHudLogic.PortraitIndexFor(actor.ActorId, CharacterIds.Length);
             return CharacterIds[index];
+        }
+
+        /// <summary>解析灵宠战斗展示用 QdaoPetCatalog ID：优先使用已穿戴幻化资源键，缺图安全回退原宠。</summary>
+        public static string VisualPetArtId(BattleActorState actor)
+        {
+            if (actor == null) return null;
+            if (actor.ActorType == eBattleActorType.BattleActorTypePet && !string.IsNullOrEmpty(actor.PetCosmeticArtKey))
+            {
+                var cosmeticEntry = QdaoPetCatalog.Find(actor.PetCosmeticArtKey);
+                if (cosmeticEntry != null) return cosmeticEntry.id;
+            }
+            uint petTableId = VisualPetTableId(actor);
+            return petTableId != 0 ? QdaoPetCatalog.Resolve(petTableId)?.id : null;
         }
 
         /// <summary>无独立怪物贴图的首领试炼怪物复用宝宝美术库(仅视觉与头像，不影响捕捉判定)。</summary>
@@ -595,6 +610,40 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static string FxForSkill(uint skillId, bool isAttack = false)
             => ResolveSkillFx(skillId, isAttack).FxId;
 
+        /// <summary>技能 → 特效/动作/命中帧（含演员已穿戴技能特效覆盖，缺图安全回退默认特效，零战斗逻辑影响）。</summary>
+        public static SkillPresentation ResolveSkillFxForActor(BattleActorState actor, uint skillId, bool isAttack)
+        {
+            var basePres = ResolveSkillFx(skillId, isAttack);
+            if (isAttack || actor == null || skillId == 0u || actor.EquippedSkillVfx == null ||
+                !actor.EquippedSkillVfx.TryGetValue(skillId, out uint vfxId) || vfxId == 0u)
+            {
+                return basePres;
+            }
+            var row = MmorpgClient.Table.SkillVfxCosmeticTableManager.Instance.FindById(vfxId);
+            if (row == null || row.SkillTableId != skillId) return basePres;
+            string fxId = !string.IsNullOrEmpty(row.FxId) && LoadFx(row.FxId) != null ? row.FxId : basePres.FxId;
+            string projFxId = !string.IsNullOrEmpty(row.ProjectileFxId) && LoadFx(row.ProjectileFxId) != null
+                ? row.ProjectileFxId : basePres.ProjectileFxId;
+            string teleFxId = !string.IsNullOrEmpty(row.TelegraphFxId) && LoadFx(row.TelegraphFxId) != null
+                ? row.TelegraphFxId : basePres.TelegraphFxId;
+            var tint = MmorpgClient.Game.Appearance.WardrobeCosmeticModels.TryParseTintHex(row.TintHex, out float r, out float g, out float b)
+                ? new Color(r, g, b, 1f) : Color.white;
+            return new SkillPresentation
+            {
+                SkillId = basePres.SkillId,
+                FxId = fxId,
+                Action = basePres.Action,
+                HitFrame = basePres.HitFrame,
+                ProjectileFxId = projFxId,
+                FlightSeconds = basePres.FlightSeconds,
+                AlignProjectileToPath = basePres.AlignProjectileToPath,
+                TelegraphFxId = teleFxId,
+                TelegraphSeconds = basePres.TelegraphSeconds,
+                TargetAtFeet = basePres.TargetAtFeet,
+                TintColor = tint,
+            };
+        }
+
         /// <summary>技能 → 特效/动作/命中帧;缺表按 id 启发式分派(普攻斩击,技能三系轮换)。</summary>
         public static SkillPresentation ResolveSkillFx(uint skillId, bool isAttack)
         {
@@ -734,7 +783,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (actor == null) return null;
             if (VisualPetTableId(actor) != 0 || actor.ActorType == eBattleActorType.BattleActorTypePet)
-                return QdaoPetCatalog.LoadPortrait(QdaoPetCatalog.Resolve(VisualPetTableId(actor))?.id) ?? GetMonsterSilhouette(VisualPetTableId(actor));
+                return QdaoPetCatalog.LoadPortrait(VisualPetArtId(actor)) ?? GetMonsterSilhouette(VisualPetTableId(actor));
             string characterId = CharacterIdFor(actor, resolveCharacterId);
             var entry = QdaoCharacterCatalog.Find(characterId);
             if (entry == null) return null;

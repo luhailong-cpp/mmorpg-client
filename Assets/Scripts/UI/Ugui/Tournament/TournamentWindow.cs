@@ -3000,4 +3000,335 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     interactable: !isBusy, fontSize: 12f);
                 var rect = (RectTransform)cardBtn.transform;
                 var iconSprite = TournamentArtCatalog.Load(info.SpriteKey);
-                if (iconSpr
+                if (iconSprite != null)
+                {
+                    var img = QdaoUguiFactory.CreateImage("Icon", rect, (cardW - 52f) * 0.5f, 12f, 52f, 52f, iconSprite, false);
+                    img.preserveAspect = true;
+                    if (anyBan) img.color = new Color(0.65f, 0.65f, 0.65f, 0.72f);
+                }
+                if (anyBan)
+                {
+                    if (banSealSprite != null)
+                    {
+                        var seal = QdaoUguiFactory.CreateImage("BanSeal", rect, (cardW - 44f) * 0.5f, 16f, 44f, 44f, banSealSprite, false);
+                        seal.preserveAspect = true;
+                    }
+                    else
+                    {
+                        TournamentArtCatalog.Tag("BanSealFallback", rect, (cardW - 34f) * 0.5f, 22f, 34f, 26f, "禁",
+                            TournamentArtCatalog.WarnRed, TournamentArtCatalog.Gold, TournamentArtCatalog.PrimaryBtnText, 14f);
+                    }
+                }
+                TournamentArtCatalog.Label("Name", rect, 6f, 68f, cardW - 12f, 24f, info.ShortName, 16f,
+                    anyBan ? TournamentArtCatalog.WarnRed : TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
+                TournamentArtCatalog.Label("Eff", rect, 6f, 92f, cardW - 12f, 30f, info.EffectSummary, 11f,
+                    TournamentArtCatalog.Muted, TextAlignmentOptions.Center, wrap: true);
+                string tagText = bannedByMe && bannedByOpp ? "双方均禁" : (bannedByMe ? "本队已禁" : (bannedByOpp ? "对手已禁" : "点击禁选"));
+                TournamentArtCatalog.Label("Tag", rect, 6f, 122f, cardW - 12f, 20f, tagText, 12f,
+                    anyBan ? TournamentArtCatalog.WarnRed : TournamentArtCatalog.Jade, TextAlignmentOptions.Center, bold: anyBan);
+            }
+
+            // 当前重算后的 3 局灵脉序列预览
+            var seqParts = new List<string>();
+            for (int i = 0; i < m.LeylineSequence.Count; i++)
+            {
+                seqParts.Add($"第{i + 1}局 {TournamentFormatting.GetLeylineInfo(m.LeylineSequence[i]).ShortName}");
+            }
+            var seqBox = TournamentArtCatalog.BorderedCard("SeqPreview", host, 40f, 336f, w - 80f, 44f,
+                TournamentArtCatalog.JadeSoft, TournamentArtCatalog.Jade, 1.2f);
+            TournamentArtCatalog.Label("SeqTxt", seqBox, 14f, 0f, w - 108f, 44f,
+                seqParts.Count > 0 ? $"当前 BO3 灵脉序列：{string.Join("   →   ", seqParts)}" : "待生成 BO3 灵脉序列",
+                15f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
+
+            TournamentArtCatalog.ArtButton("CloseBanBtn", host, (w - 156f) * 0.5f, h - 66f, 156f, 42f, "关闭", () =>
+            {
+                _model.CloseModal();
+                ForceCloseModalVisual();
+            }, primary: false, fontSize: 17f);
+        }
+
+        /// <summary>V4 模块 I：《本季名局录》Top 10 精选公开淘汰赛回放轻窗（780×560 highlights-panel + 原生题字）。</summary>
+        private void BuildHighlightsModal(TournamentOverviewSnapshot overview, bool isBusy)
+        {
+            const float w = 780f;
+            const float h = 560f;
+            _modalContent.sizeDelta = new Vector2(w, h);
+            var panelSprite = TournamentArtCatalog.Load("v4-i-highlights-panel");
+            if (panelSprite != null)
+            {
+                TournamentArtCatalog.SpriteBox("HighlightsBg", _modalContent, 0f, 0f, w, h, "v4-i-highlights-panel", sliced: false, raycast: true);
+            }
+            else
+            {
+                TournamentArtCatalog.SpriteBox("HighlightsBgFallback", _modalContent, 0f, 0f, w, h, "window-frame", sliced: true, raycast: true);
+            }
+
+            // 原生题字（加载成功时严禁叠字）
+            var titleSprite = TournamentArtCatalog.Load("v4-title-highlights");
+            if (titleSprite != null)
+            {
+                var tImg = QdaoUguiFactory.CreateImage("HighlightsTitleArt", _modalContent, (w - 300f) * 0.5f, 18f, 300f, 44f, titleSprite, false);
+                tImg.preserveAspect = true;
+            }
+            else
+            {
+                TournamentArtCatalog.Label("HighlightsTitleFallback", _modalContent, 48f, 20f, w - 96f, 40f,
+                    "本季名局录", 28f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
+            }
+
+            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 66f, 20f, 40f, 40f,
+                TournamentArtCatalog.Load("close-button"), out var ci);
+            ci.preserveAspect = true;
+            close.onClick.AddListener(() =>
+            {
+                _model.CloseModal();
+                ForceCloseModalVisual();
+            });
+
+            var snap = _lastHighlights;
+            var sumBar = TournamentArtCatalog.BorderedCard("HighSumBar", _modalContent, 42f, 70f, w - 84f, 38f,
+                TournamentArtCatalog.JadeSoft, TournamentArtCatalog.Jade, 1.2f);
+            string sumText = snap == null
+                ? "正在同步《本季名局录》精选公开淘汰赛…"
+                : $"第 {snap.SeasonId} 赛季精选 {snap.Highlights.Count} 场公开淘汰赛 · 点击 G1/G2/G3 即刻观看完整战报回放";
+            TournamentArtCatalog.Label("SumTxt", sumBar, 12f, 0f, w - 108f, 38f, sumText, 14f,
+                TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
+
+            var listBox = TournamentArtCatalog.BorderedCard("HighlightsListBox", _modalContent, 42f, 118f, w - 84f, 362f,
+                TournamentArtCatalog.Ivory, TournamentArtCatalog.Line, 1.2f);
+            TournamentArtCatalog.CreateScrollView("HighlightsScroll", listBox, 6f, 6f, w - 96f, 350f, false, true, out var content);
+
+            float y = 0f;
+            float rowW = w - 108f;
+            if (snap == null || snap.Highlights.Count == 0)
+            {
+                TournamentArtCatalog.Label("EmptyHigh", content, 20f, 110f, rowW - 40f, 64f,
+                    "本赛季淘汰赛尚未决出公开名局，待淘汰赛完赛后将自动收录总决赛、BO3 决胜局、季军战与高光 MVP 战局。",
+                    15f, TournamentArtCatalog.Muted, TextAlignmentOptions.Center, wrap: true);
+                y = 240f;
+            }
+            else
+            {
+                for (int i = 0; i < snap.Highlights.Count; i++)
+                {
+                    var entry = snap.Highlights[i];
+                    var m = entry?.Match;
+                    if (m == null) continue;
+                    var row = TournamentArtCatalog.BorderedCard($"HighRow_{i}", content, 2f, y, rowW, 102f,
+                        (i % 2 == 0) ? TournamentArtCatalog.CardBg : TournamentArtCatalog.Ivory,
+                        entry.Tag == TournamentHighlightTag.Final ? TournamentArtCatalog.Gold : TournamentArtCatalog.Line, 1.2f);
+
+                    string tagLbl = !string.IsNullOrEmpty(entry.TagLabel)
+                        ? entry.TagLabel : TournamentFormatting.HighlightTagDisplayName(entry.Tag);
+                    bool isGoldTag = entry.Tag == TournamentHighlightTag.Final || entry.Tag == TournamentHighlightTag.Bo3Thriller;
+                    TournamentArtCatalog.Tag("Tag", row, 12f, 10f, 116f, 26f, tagLbl,
+                        isGoldTag ? TournamentArtCatalog.GoldTagBg : TournamentArtCatalog.TagGreenBg,
+                        isGoldTag ? TournamentArtCatalog.Gold : TournamentArtCatalog.Jade,
+                        isGoldTag ? TournamentArtCatalog.GoldTagText : TournamentArtCatalog.TagGreenText, 12f);
+
+                    string nameA = !string.IsNullOrEmpty(m.SquadAName) ? m.SquadAName : $"战队 #{m.SquadAId}";
+                    string nameB = !string.IsNullOrEmpty(m.SquadBName) ? m.SquadBName : $"战队 #{m.SquadBId}";
+                    string scoreText = m.BestOf >= 3u ? $"{m.WinsA}:{m.WinsB}" : (m.WinnerSquadId == m.SquadAId ? "胜:负" : "负:胜");
+                    TournamentArtCatalog.EmblemBadge("EmbA", row, 138f, 10f, 26f, m.SquadAEmblemId);
+                    TournamentArtCatalog.Label("Vs", row, 170f, 8f, rowW - 356f, 30f,
+                        $"{nameA}  {scoreText}  {nameB}", 17f, TournamentArtCatalog.JadeDeep, bold: true);
+
+                    string winnerName = m.WinnerSquadId == m.SquadAId ? nameA : (m.WinnerSquadId == m.SquadBId ? nameB : string.Empty);
+                    string mvpLine = m.MvpPlayerId != 0UL
+                        ? $"胜方：{winnerName}  ·  问鼎之星：{(!string.IsNullOrEmpty(m.MvpPlayerName) ? m.MvpPlayerName : $"#{m.MvpPlayerId}")}（战功 {m.MvpScore}）"
+                        : $"胜方：{winnerName}  ·  公开淘汰赛完整战报";
+                    TournamentArtCatalog.Label("Sub", row, 14f, 48f, rowW - 220f, 40f, mvpLine, 13f, TournamentArtCatalog.Muted, wrap: true);
+
+                    // 右侧：MVP 卡按钮 + 各小局回放按钮
+                    if (m.MvpPlayerId != 0UL)
+                    {
+                        var capM = m;
+                        TournamentArtCatalog.FlatButton("MvpBtn", row, rowW - 178f, 12f, 64f, 28f, "MVP卡",
+                            TournamentArtCatalog.GoldTagBg, TournamentArtCatalog.Gold, TournamentArtCatalog.GoldTagText,
+                            () =>
+                            {
+                                _model.OpenMvpHighlightModal(capM);
+                                SyncModalVisual(_lastOverview, _lastBusy);
+                            }, fontSize: 12f);
+                    }
+                    if (m.GameBattleIds.Count > 1)
+                    {
+                        int cnt = Math.Min(3, m.GameBattleIds.Count);
+                        float bx = rowW - 12f - cnt * 48f;
+                        for (int g = 0; g < cnt; g++)
+                        {
+                            ulong gBid = m.GameBattleIds[g];
+                            if (gBid == 0UL) continue;
+                            TournamentArtCatalog.FlatButton($"PlayG{g + 1}", row, bx + g * 48f, 54f, 44f, 32f, $"G{g + 1}",
+                                TournamentArtCatalog.Ivory, TournamentArtCatalog.Jade, TournamentArtCatalog.JadeDeep,
+                                () =>
+                                {
+                                    _model.CloseModal();
+                                    ForceCloseModalVisual();
+                                    WatchReplayClicked?.Invoke(gBid);
+                                }, fontSize: 13f);
+                        }
+                    }
+                    else
+                    {
+                        ulong bid = TournamentUiModel.ResolveLatestReplayBattleId(m);
+                        if (bid != 0UL)
+                        {
+                            TournamentArtCatalog.ArtButton("PlayOne", row, rowW - 108f, 52f, 96f, 34f, "看回放", () =>
+                            {
+                                _model.CloseModal();
+                                ForceCloseModalVisual();
+                                WatchReplayClicked?.Invoke(bid);
+                            }, primary: true, fontSize: 14f);
+                        }
+                    }
+                    y += 110f;
+                }
+            }
+            content.sizeDelta = new Vector2(rowW, Mathf.Max(350f, y));
+
+            TournamentArtCatalog.FlatButton("RefreshHighBtn", _modalContent, 224f, h - 66f, 152f, 42f, "刷新名局录",
+                TournamentArtCatalog.Ivory, TournamentArtCatalog.Jade, TournamentArtCatalog.JadeDeep,
+                () => RequestHighlightsRequested?.Invoke(_model.SelectedStandingsSeasonId), interactable: !isBusy, fontSize: 16f);
+            TournamentArtCatalog.ArtButton("CloseHighBtn", _modalContent, 404f, h - 66f, 152f, 42f, "关闭", () =>
+            {
+                _model.CloseModal();
+                ForceCloseModalVisual();
+            }, primary: false, fontSize: 17f);
+        }
+
+        private TournamentMatchView ResolveBanTargetMatch(TournamentOverviewSnapshot overview)
+        {
+            var target = _model.BanTargetMatch;
+            if (target == null || target.MatchId == 0UL) return null;
+            if (_lastStandings != null)
+            {
+                for (int i = 0; i < _lastStandings.KnockoutBracket.Count; i++)
+                {
+                    var m = _lastStandings.KnockoutBracket[i];
+                    if (m != null && m.MatchId == target.MatchId) return m;
+                }
+            }
+            if (overview?.MyActiveMatch != null && overview.MyActiveMatch.MatchId == target.MatchId)
+                return overview.MyActiveMatch;
+            return target;
+        }
+
+        private static int ComputeBanSig(TournamentMatchView m)
+        {
+            if (m == null) return 0;
+            unchecked
+            {
+                int h = m.MatchId.GetHashCode();
+                h = h * 31 + (int)m.BannedLeylineA;
+                h = h * 31 + (int)m.BannedLeylineB;
+                h = h * 31 + (int)m.CurrentLeylineElement;
+                h = h * 31 + m.LeylineSequence.Count;
+                for (int i = 0; i < m.LeylineSequence.Count; i++)
+                    h = h * 31 + (int)m.LeylineSequence[i];
+                return h;
+            }
+        }
+
+        private Sprite ResolveMvpPortrait(TournamentOverviewSnapshot overview, ulong mvpPlayerId)
+        {
+            if (overview?.MySquad != null)
+            {
+                for (int i = 0; i < overview.MySquad.Members.Count; i++)
+                    if (overview.MySquad.Members[i].PlayerId == mvpPlayerId)
+                        return TournamentArtCatalog.ResolveMemberPortrait(overview.MySquad.Members[i], _resolveCharacterId);
+            }
+            var champ = overview?.FindLatestChampionSeason();
+            if (champ != null)
+            {
+                for (int i = 0; i < champ.ChampionMembers.Count; i++)
+                    if (champ.ChampionMembers[i].PlayerId == mvpPlayerId)
+                        return TournamentArtCatalog.ResolveMemberPortrait(champ.ChampionMembers[i], _resolveCharacterId);
+            }
+            return TournamentArtCatalog.ResolvePlayerPortrait(_resolveCharacterId, mvpPlayerId);
+        }
+
+        private static string BuildSaluteRewardPreview()
+        {
+            var rules = TournamentRuleTableManager.Instance.FindAll();
+            uint gold = 5000u;
+            uint itemId = 20u;
+            uint itemCount = 3u;
+            if (rules != null && rules.Count > 0 && rules[0] != null)
+            {
+                if (rules[0].SaluteGoldAmount > 0) gold = rules[0].SaluteGoldAmount;
+                if (rules[0].SaluteItemId > 0) itemId = rules[0].SaluteItemId;
+                if (rules[0].SaluteItemCount > 0) itemCount = rules[0].SaluteItemCount;
+            }
+            return $"绑定银两 ×{gold.ToString("N0", CultureInfo.InvariantCulture)} · {TournamentArtCatalog.ResolveItemName(itemId)} ×{itemCount}";
+        }
+
+        // ==================== 格式化辅助 ====================
+
+        private int ComputeLineupSig()
+        {
+            int hash = _model.LineupDraft.Count * 397;
+            for (int i = 0; i < _model.LineupDraft.Count; i++)
+                hash = unchecked(hash * 31 + _model.LineupDraft[i].GetHashCode());
+            return hash;
+        }
+
+        private int ComputeInviteSig()
+        {
+            int hash = unchecked(((int)_model.InviteSource * 397) ^ (_lastInviteSourceStatus?.GetHashCode() ?? 0));
+            if (_lastInviteCandidates != null)
+            {
+                hash = unchecked(hash * 31 + _lastInviteCandidates.Count);
+                for (int i = 0; i < _lastInviteCandidates.Count; i++)
+                {
+                    var c = _lastInviteCandidates[i];
+                    hash = unchecked(hash * 31 + c.PlayerId.GetHashCode());
+                    hash = unchecked(hash * 31 + (c.IsOnline ? 1 : 0));
+                }
+            }
+            return hash;
+        }
+
+        private static string DisplayMemberName(TournamentMemberView m) =>
+            m == null ? string.Empty : (!string.IsNullOrEmpty(m.PlayerName) ? m.PlayerName : $"道友 #{m.PlayerId}");
+
+        private static string FormatRewardItems(IList<TournamentRewardItem> items, ulong gold)
+        {
+            var parts = new List<string>();
+            if (items != null)
+            {
+                for (int i = 0; i < items.Count; i++)
+                {
+                    var it = items[i];
+                    if (it != null && it.ItemId != 0 && it.Count > 0)
+                        parts.Add($"{TournamentArtCatalog.ResolveItemName(it.ItemId)} ×{it.Count}");
+                }
+            }
+            if (gold > 0UL) parts.Add($"绑定银两 ×{gold.ToString("N0", CultureInfo.InvariantCulture)}");
+            return parts.Count > 0 ? string.Join(" · ", parts) : "荣耀纪念礼";
+        }
+
+        private static string FormatHonorLine(string titleCode, string badgeCode)
+        {
+            bool hasTitle = !string.IsNullOrEmpty(titleCode);
+            bool hasBadge = !string.IsNullOrEmpty(badgeCode);
+            if (hasTitle && hasBadge) return $"称号 [{titleCode}] · 徽章 [{badgeCode}]";
+            if (hasTitle) return $"称号 [{titleCode}]";
+            if (hasBadge) return $"徽章 [{badgeCode}]";
+            return string.Empty;
+        }
+
+        private static string FormatUtc8Date(ulong unixMs)
+        {
+            try
+            {
+                var dt = DateTimeOffset.FromUnixTimeMilliseconds((long)unixMs).ToOffset(TimeSpan.FromHours(8));
+                return dt.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+    }
+}

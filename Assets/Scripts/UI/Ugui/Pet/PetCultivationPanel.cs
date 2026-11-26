@@ -529,6 +529,11 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private static Sprite Portrait(PetInfo pet)
         {
+            if (pet != null && !string.IsNullOrEmpty(pet.CosmeticArtKey))
+            {
+                var cosmetic = QdaoPetCatalog.LoadPortrait(pet.CosmeticArtKey);
+                if (cosmetic != null) return cosmetic;
+            }
             var entry = QdaoPetCatalog.Resolve(pet.PetTableId, pet.ModelId);
             if (entry?.id == "legacy-ling-yue") return CharacterPetArt.Get("portrait_lingyue");
             if (entry?.id == "legacy-yun-jiu-jiu") return CharacterPetArt.Get("portrait_yunjiujiu");

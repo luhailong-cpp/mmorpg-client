@@ -333,6 +333,14 @@ namespace MmorpgClient.UI.Ugui.Pet
             var close = CreateAction("DetailsClose", _detailsRoot, 910f, 30f,
                 170f, 64f, "关 闭", false);
             close.Button.onClick.AddListener(() => _detailsRoot.gameObject.SetActive(false));
+            var morphBtn = CreateAction("DetailsMorph", _detailsRoot, 720f, 30f,
+                170f, 64f, "幻 化", false);
+            morphBtn.Button.onClick.AddListener(() =>
+            {
+                if (_selectedPetId == 0) return;
+                _detailsRoot.gameObject.SetActive(false);
+                MmorpgClient.UI.Ugui.Gameplay.AppearanceUiRoot.Instance?.OpenPetCosmetics(_selectedPetId);
+            });
             _detailText = BattleUiWidgets.CreateWrappedText("DetailsText", _detailsRoot,
                 54f, 112f, 1000f, 220f, string.Empty, 31f, PetUiStyle.FieldLabel);
             _renameInput = QdaoUguiFactory.CreateInputField("RenameInput", _detailsRoot,
@@ -600,6 +608,11 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private static Sprite PortraitAsset(PetInfo pet)
         {
+            if (pet != null && !string.IsNullOrEmpty(pet.CosmeticArtKey))
+            {
+                var cosmetic = MmorpgClient.World.QdaoPetCatalog.LoadPortrait(pet.CosmeticArtKey);
+                if (cosmetic != null) return cosmetic;
+            }
             // data/Pet.xlsx: table 1/model 1001 灵狐 -> 灵玥; table 4/model 1004 云鹤 -> 云啾啾.
             // Resolve rejects conflicting table/model pairs before the legacy same-identity portrait fallback.
             var entry = MmorpgClient.World.QdaoPetCatalog.Resolve(pet.PetTableId, pet.ModelId);

@@ -7,6 +7,7 @@ using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.CoreLoop;
 using MmorpgClient.UI.Ugui.Gameplay;
 using MmorpgClient.UI.Ugui.Team;
+using MmorpgClient.UI.Ugui.TrialJournal;
 using MmorpgClient.World.Tianyong;
 using Rankpb;
 using TMPro;
@@ -200,6 +201,12 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 DismissSettlementToCityOrLobby();
                 GameplayUiRoot.Instance?.OpenEquipmentMaterials();
             };
+            _settlement.OpenTrialJournalRequested += entryId =>
+            {
+                DismissSettlementToCityOrLobby();
+                TrialJournalUiRoot.EnsureSpawned();
+                TrialJournalUiRoot.Instance?.Open(focusEntryId: entryId);
+            };
             _settlement.RequeueSameSizeRequested += size =>
             {
                 _pendingRequeueSize = size;
@@ -362,6 +369,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             if (state == null) return false;
             _settlementFromRecovery = false;
             ShowSettlementOverlay(state);
+            _settlement?.SetTrialJournalEntry(end?.Settlement?.TrialFacts?.JournalEntryId ?? 0u);
             return true;
         }
 
@@ -372,6 +380,9 @@ namespace MmorpgClient.UI.Ugui.Ranked
             if (state == null) return false;
             _settlementFromRecovery = true;
             ShowSettlementOverlay(state);
+            uint entryId = result?.TrialJournalEntryId ?? 0u;
+            int litCount = result?.TrialNewlyLitSealIds?.Count ?? 0;
+            _settlement?.SetTrialJournalEntry(entryId, litCount > 0 ? $"试炼印 +{litCount}" : "看试炼志");
             return true;
         }
 

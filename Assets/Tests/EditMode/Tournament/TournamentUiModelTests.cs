@@ -327,5 +327,61 @@ namespace MmorpgClient.Tests.EditMode.Tournament
             Assert.That(TournamentUiModel.ClassifyTipRecovery((uint)match_error.KMatchTournamentPredictionClosed).AutoRefreshOverviewOnce, Is.True);
             Assert.That(TournamentUiModel.ClassifyTipRecovery((uint)match_error.KMatchTournamentWarmupUnavailable).AutoRefreshOverviewOnce, Is.True);
         }
+
+        [Test]
+        public void V4_LeylineBanHonorsAndHighlights_GuardsAndFormatting()
+        {
+            // 1. 模块 J：6 枚赛季荣耀铭牌位掩码解码与统计
+            Assert.That(TournamentFormatting.AllHonors.Length, Is.EqualTo(6));
+            uint bits = (1u << 0) | (1u << 4) | (1u << 5); // 问道初成 + 零封强敌 + 问鼎群仙
+            Assert.That(TournamentFormatting.CountUnlockedHonors(bits), Is.EqualTo(3));
+            Assert.That(TournamentFormatting.HasHonorBit(bits, 0), Is.True);
+            Assert.That(TournamentFormatting.HasHonorBit(bits, 1), Is.False);
+            Assert.That(TournamentFormatting.HasHonorBit(bits, 4), Is.True);
+            Assert.That(TournamentFormatting.HasHonorBit(bits, 5), Is.True);
+            Assert.That(TournamentFormatting.AllHonors[5].SpriteKey, Is.EqualTo("v4-j-honor-06"));
+
+            // 2. 模块 I：名局录标签文案完整映射
+            Assert.That(TournamentFormatting.HighlightTagDisplayName(TournamentHighlightTag.Final), Is.EqualTo("总决赛巅峰局"));
+            Assert.That(TournamentFormatting.HighlightTagDisplayName(TournamentHighlightTag.Bo3Thriller), Is.EqualTo("决胜三局激战"));
+            Assert.That(TournamentFormatting.HighlightTagDisplayName(TournamentHighlightTag.ThirdPlace), Is.EqualTo("季军争夺战"));
+            Assert.That(TournamentFormatting.HighlightTagDisplayName(TournamentHighlightTag.HighMvp), Is.EqualTo("高光问鼎局"));
+
+            // 3. 模块 H：仅 BO3 首局开战前参战双方队长允许灵脉禁选
+            var sq = MakeSquad(TournamentSquadState.Registered, memberCount: 3u);
+            var ov = MakeOverview(TournamentStage.Knockout, sq);
+            var bo3 = new TournamentMatchView
+            {
+                MatchId = 8101UL,
+                Phase = TournamentMatchPhase.Knockout,
+                BestOf = 3u,
+                WinsA = 0u,
+                WinsB = 0u,
+                SquadAId = sq.SquadId,
+                SquadBId = 6001UL,
+                State = TournamentMatchState.WaitingOpponent,
+            };
+            Assert.That(TournamentUiModel.CanBanLeyline(bo3, ov, 1001UL), Is.True);
+            Assert.That(TournamentUiModel.CanBanLeyline(bo3, ov, 1002UL), Is.False); // 非队长
+            bo3.WinsA = 1u;
+            Assert.That(TournamentUiModel.CanBanLeyline(bo3, ov, 1001UL), Is.False); // 已打过 G1
+            bo3.WinsA = 0u;
+            bo3.BestOf = 1u;
+            Assert.That(TournamentUiModel.CanBanLeyline(bo3, ov, 1001UL), Is.False); // BO1 无禁选
+            bo3.BestOf = 3u;
+            bo3.State = TournamentMatchState.InBattle;
+            Assert.That(TournamentUiModel.CanBanLeyline(bo3, ov, 1001UL), Is.False); // 已开战
+
+            // 4. V4 弹窗状态生命周期
+            var model = new TournamentUiModel();
+            model.OpenBanLeylineModal(bo3);
+            Assert.That(model.ActiveModal, Is.EqualTo(TournamentModalKind.BanLeyline));
+            Assert.That(model.BanTargetMatch.MatchId, Is.EqualTo(8101UL));
+            model.OpenHighlightsModal();
+            Assert.That(model.ActiveModal, Is.EqualTo(TournamentModalKind.HighlightsHall));
+            model.CloseModal();
+            Assert.That(model.ActiveModal, Is.EqualTo(TournamentModalKind.None));
+            Assert.That(model.BanTargetMatch, Is.Null);
+        }
     }
 }

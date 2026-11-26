@@ -429,18 +429,28 @@ namespace MmorpgClient.UI.Ugui.Skills
                 if (sealRowBg != null)
                 {
                     SeasonEconomyUiArt.CreateSlicedOrSimple(list, "MasterSeal_" + stall.MasterPlayerId,
-                        lineX, y + 34, 2290f - lineX, 72, sealRowBg, new Color(0.95f, 0.91f, 0.80f, 0.92f));
+                        lineX, y + 34, 2040f - lineX, 72, sealRowBg, new Color(0.95f, 0.91f, 0.80f, 0.92f));
                     Label(list, "MasterLine_" + stall.MasterPlayerId, SkillCraftModels.DescribeProxyStall(stall),
-                        lineX + 68f, y + 36, 2210f - lineX, 68, 34, false, Ink);
+                        lineX + 68f, y + 36, 1960f - lineX, 68, 34, false, Ink);
                 }
                 else
                 {
                     Label(list, "MasterLine_" + stall.MasterPlayerId, SkillCraftModels.DescribeProxyStall(stall),
-                        lineX, y + 25, 2290f - lineX, 95, 38, true, Ink);
+                        lineX, y + 25, 2040f - lineX, 95, 38, true, Ink);
                 }
+                ulong masterId = stall.MasterPlayerId;
+                Button(list, "ProxyCredit_" + masterId, "查信用", 2060, y + 5, 250, () =>
+                {
+                    Hide();
+                    MmorpgClient.UI.Ugui.Jubaozhai.JubaozhaiUiRoot.Instance?.OpenSellerCredit(masterId, () =>
+                    {
+                        MmorpgClient.UI.Ugui.Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
+                        SkillUiRoot.OpenProxyStalls();
+                    });
+                });
                 if (stall.ForgeMasteryTier >= SkillCraftModels.MasterTier && stall.ProxyForgeFeeGold > 0)
                 {
-                    Button(list, "ProxyEquip_" + stall.MasterPlayerId, "找他代打装备", 2320, y + 5, 580, () =>
+                    Button(list, "ProxyEquip_" + stall.MasterPlayerId, "找他代打装备", 2330, y + 5, 570, () =>
                     {
                         Hide();
                         RequestProxyEquipmentPolish?.Invoke(stall.MasterPlayerId);
@@ -448,7 +458,7 @@ namespace MmorpgClient.UI.Ugui.Skills
                 }
                 if (stall.ScrollMasteryTier >= SkillCraftModels.MasterTier && stall.ProxyScrollFeeGold > 0)
                 {
-                    Button(list, "ProxyScroll_" + stall.MasterPlayerId, "找他代制技能", 2930, y + 5, 580, () =>
+                    Button(list, "ProxyScroll_" + stall.MasterPlayerId, "找他代制技能", 2925, y + 5, 570, () =>
                     {
                         _selectedProxyMasterId = stall.MasterPlayerId;
                         _page = SkillCraftPage.Scrolls;

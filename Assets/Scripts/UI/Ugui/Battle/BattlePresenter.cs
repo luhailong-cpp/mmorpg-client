@@ -165,7 +165,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     }
                     if (UsesCastImpact(beat))
                     {
-                        var presentation = BattleArtCatalog.ResolveSkillFx(beat.SkillId, false);
+                        var presentation = BattleArtCatalog.ResolveSkillFxForActor(actor.LastState, beat.SkillId, false);
                         float lead = !string.IsNullOrEmpty(presentation.ProjectileFxId) ? presentation.FlightSeconds :
                             !string.IsNullOrEmpty(presentation.TelegraphFxId) ? presentation.TelegraphSeconds : 0f;
                         impact += Mathf.Max(0f, lead);
@@ -499,7 +499,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 ApplyOutcomes(beat);
                 return;
             }
-            var pres = BattleArtCatalog.ResolveSkillFx(beat.SkillId, false);
+            var pres = BattleArtCatalog.ResolveSkillFxForActor(actor.LastState, beat.SkillId, false);
             bool mirror = !actor.FacingEast;
             actor.PlayCast(() =>
             {
@@ -548,7 +548,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     foreach (var view in targets)
                         Fx.Play(pres.FxId, pres.TargetAtFeet ? view.FootPosition : view.ChestPosition,
                             size * Mathf.Max(0.6f, view.Scale), 0f, applyOnce, pres.HitFrame, mirror,
-                            onComplete: impactComplete);
+                            onComplete: impactComplete, tint: pres.TintColor);
                 };
                 if (!string.IsNullOrEmpty(pres.ProjectileFxId))
                 {
@@ -563,7 +563,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     else
                         from.x += (travelsLeft ? -1f : 1f) * frontOffset;
                     Fx.PlayTravel(pres.ProjectileFxId, from, to, SingleTargetFxSize * Mathf.Max(0.6f, actor.Scale),
-                        pres.FlightSeconds, playImpacts, travelsLeft, pres.AlignProjectileToPath);
+                        pres.FlightSeconds, playImpacts, travelsLeft, pres.AlignProjectileToPath, tint: pres.TintColor);
                 }
                 else if (!string.IsNullOrEmpty(pres.TelegraphFxId))
                 {
@@ -571,7 +571,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     foreach (var view in targets)
                         Fx.Play(pres.TelegraphFxId, view.FootPosition, size * Mathf.Max(0.6f, view.Scale),
                             0f, null, BattleFxPlayer.DefaultHitFrame, false,
-                            TelegraphFps(pres), null);
+                            TelegraphFps(pres), null, tint: pres.TintColor);
                     Delay(Mathf.Max(0f, pres.TelegraphSeconds), playImpacts);
                 }
                 else playImpacts();

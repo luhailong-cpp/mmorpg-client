@@ -273,6 +273,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             BuildNoCardOverlay(_fittedRoot);
             BuildStoryOverlay(_fittedRoot);
             BuildSeriesUi((RectTransform)_mainPanelGroup.transform, _fittedRoot);
+            BuildWardrobeCosmeticsUi((RectTransform)_mainPanelGroup.transform);
             BuildReadingOverlays(_fittedRoot);
 
             _window.gameObject.SetActive(false);
@@ -294,12 +295,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 68f, 44f, 580f, 54f, "易 容", 42f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
             mainTitle.richText = false;
             mainTitle.fontStyle = FontStyles.Bold;
+            _windowMainTitleText = mainTitle;
             var subTitle = QdaoUguiFactory.CreateText("TitleSub", titlePlate.transform,
                 228f, 110f, 260f, 26f, "形象与人物志", 18f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
             subTitle.richText = false;
             subTitle.enableAutoSizing = true;
             subTitle.fontSizeMin = 13f;
             subTitle.fontSizeMax = 18f;
+            _windowSubTitleText = subTitle;
 
             var close = AppearanceUiArt.CloseButton(mainRoot, "AppearanceClose",
                 AppearanceUiArt.FrameWidth - 96f, 18f, 76f, HidePanel);
@@ -702,6 +705,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (!IsPanelVisible) return;
 
             UpdateTrialCountdownText();
+            TickWardrobeVfxPreview();
             if (_state.IsStoryOpen && _storyBodyText != null &&
                 Mathf.Abs(_storyBodyText.fontSize - _lastStoryBodyFontSize) > 0.01f)
             {
@@ -718,8 +722,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void OnDisable()
         {
+            StopVfxPreview();
             Unbind();
             _state.ResetForRoleChange();
+            _cosmeticState.ResetForRoleChangeOrDisconnect();
         }
 
         private void OnDestroy()
@@ -748,12 +754,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             return true;
         }
 
-        private void ShowPanelCore(bool previewOnly)
+        private void ShowPanelCore(bool previewOnly, bool preserveCategory = false)
         {
             if (!_available || _window == null) return;
             _corePreviewOnly = previewOnly;
             CityPanelRegistry.HideOthers(this);
             _state.ResetForCloseOrDisconnect();
+            PrepareWardrobeCosmeticsOnShow(preserveCategory);
             _window.gameObject.SetActive(true);
             _windowFit?.Fit();
             if (!_externalVerificationClient) _client?.RequestInfo(force: true);
@@ -766,6 +773,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             SaveReadingPosition();
             if (wasVisible && !_state.HasOverlay && _listScroll != null && _listScroll.gameObject.activeInHierarchy)
                 _state.SelectAppearance(_state.SelectedAppearanceId, _listScroll.verticalNormalizedPosition);
+            OnWardrobeCosmeticsHide(wasVisible);
             _state.ResetForCloseOrDisconnect();
             SyncOverlayVisibility();
             if (_window != null) _window.gameObject.SetActive(false);
@@ -911,6 +919,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 _lastEscapeHandledFrame = Time.frameCount;
                 if (_state.HasOverlay) HandleDismissOverlay();
+                else if (TryHandleCosmeticsEscape()) { }
                 else if (_compactLayout && _compactDetail)
                 {
                     _compactDetail = false;
@@ -1016,6 +1025,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (_window == null || !IsPanelVisible) return;
             var info = _client?.Info;
+
+            RenderWardrobeCategoryShell();
+            if (_cosmeticState.ActiveCategory != WardrobeCategoryTab.Character)
+            {
+                RenderCosmeticTab(info);
+                SyncOverlayVisibility();
+                return;
+            }
 
             _validIdsBuffer.Clear();
             if (info != null)
@@ -1530,7 +1547,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             bool activeChanged = active != _lastCountdownActive;
             _lastCountdownActive = active;
             _lastCountdownSeconds = remaining;
-            bool showBanner = active && (!_compactLayout || _compactDetail);
+            bool showBanner = active && _cosmeticState.ActiveCategory == WardrobeCategoryTab.Character && (!_compactLayout || _compactDetail);
             _trialBannerRoot.SetActive(showBanner);
             if (active)
             {
@@ -1604,9 +1621,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void HandleDisconnected()
         {
+            StopVfxPreview();
             _client?.HandleDisconnected();
             HidePanel();
             _state.ResetForRoleChange();
+            _cosmeticState.ResetForRoleChangeOrDisconnect();
         }
 
         private static void HandleNotice(string text) => BattleUiRoot.Instance?.ShowToast(text);

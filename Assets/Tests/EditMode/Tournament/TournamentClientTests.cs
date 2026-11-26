@@ -422,5 +422,75 @@ namespace MmorpgClient.Tests.EditMode.Tournament
             _client.Reset();
             Assert.That(_client.PredictionBoard, Is.Null);
         }
+
+        [Test]
+        public void V4_BanLeylineAndHighlights_SyncStandingsOverviewAndReset()
+        {
+            Assert.That(_client.RequestOverview(), Is.True);
+            _net.Calls[0].Reply(new GetTournamentOverviewResponse
+            {
+                CurrentSeason = new TournamentSeasonView { SeasonId = 1u, Stage = TournamentStage.Knockout, Enabled = true, BattleTeamSize = 3u },
+                MySquad = new TournamentSquadView { SquadId = 5001UL, CaptainPlayerId = 1001UL, State = TournamentSquadState.Registered, HonorBits = 0x35u },
+                MyActiveMatch = new TournamentMatchView
+                {
+                    MatchId = 7101UL,
+                    Phase = TournamentMatchPhase.Knockout,
+                    BestOf = 3u,
+                    SquadAId = 5001UL,
+                    SquadBId = 6001UL,
+                    State = TournamentMatchState.WaitingOpponent,
+                },
+            });
+
+            _now += 2f;
+            Assert.That(_client.RequestStandings(1u, 1u, 20u), Is.True);
+            var stResp = new ListTournamentStandingsResponse { Season = _client.Overview.Season.Clone(), TotalSquads = 4u };
+            stResp.KnockoutBracket.Add(_client.Overview.MyActiveMatch.Clone());
+            _net.Calls[1].Reply(stResp);
+
+            // 1. 模块 H：非法参数本地拦截；合法禁选同步更新 Overview.MyActiveMatch 与 Standings.KnockoutBracket
+            Assert.That(_client.BanLeyline(0UL, TournamentLeylineElement.TournamentLeylineMetal), Is.False);
+            Assert.That(_client.BanLeyline(7101UL, TournamentLeylineElement.TournamentLeylineUnspecified), Is.False);
+
+            _now += 2f;
+            Assert.That(_client.BanLeyline(7101UL, TournamentLeylineElement.TournamentLeylineMetal), Is.True);
+            Assert.That(_net.Calls[2].MessageId, Is.EqualTo(MatchServiceRpc.BanTournamentLeylineMessageId));
+            var banReq = (BanTournamentLeylineRequest)_net.Calls[2].Request;
+            Assert.That(banReq.MatchId, Is.EqualTo(7101UL));
+            Assert.That(banReq.LeylineElement, Is.EqualTo(TournamentLeylineElement.TournamentLeylineMetal));
+
+            var updatedMatch = _client.Overview.MyActiveMatch.Clone();
+            updatedMatch.BannedLeylineA = TournamentLeylineElement.TournamentLeylineMetal;
+            updatedMatch.CurrentLeylineElement = TournamentLeylineElement.TournamentLeylineWood;
+            updatedMatch.LeylineSequence.Add(TournamentLeylineElement.TournamentLeylineWood);
+            updatedMatch.LeylineSequence.Add(TournamentLeylineElement.TournamentLeylineWater);
+            updatedMatch.LeylineSequence.Add(TournamentLeylineElement.TournamentLeylineEarth);
+            _net.Calls[2].Reply(new BanTournamentLeylineResponse { Match = updatedMatch });
+
+            Assert.That(_client.Overview.MyActiveMatch.BannedLeylineA, Is.EqualTo(TournamentLeylineElement.TournamentLeylineMetal));
+            Assert.That(_client.Standings.KnockoutBracket[0].BannedLeylineA, Is.EqualTo(TournamentLeylineElement.TournamentLeylineMetal));
+            Assert.That(_client.Standings.KnockoutBracket[0].LeylineSequence.Count, Is.EqualTo(3));
+
+            // 2. 模块 I：拉取《本季名局录》Top 10 并在 Reset() 时清理干净
+            _now += 2f;
+            Assert.That(_client.RequestHighlights(1u), Is.True);
+            Assert.That(_net.Calls[3].MessageId, Is.EqualTo(MatchServiceRpc.GetTournamentHighlightsMessageId));
+            var hiResp = new GetTournamentHighlightsResponse { SeasonId = 1u, ServerTimeMs = 1_800_000_000_000UL };
+            hiResp.Highlights.Add(new TournamentHighlightEntry
+            {
+                Tag = TournamentHighlightTag.Final,
+                TagLabel = "总决赛巅峰局",
+                Match = new TournamentMatchView { MatchId = 7200UL, BestOf = 3u, WinsA = 2u, WinsB = 1u, MvpScore = 950u },
+            });
+            _net.Calls[3].Reply(hiResp);
+
+            Assert.That(_client.Highlights, Is.Not.Null);
+            Assert.That(_client.Highlights.SeasonId, Is.EqualTo(1u));
+            Assert.That(_client.Highlights.Highlights.Count, Is.EqualTo(1));
+            Assert.That(_client.Highlights.Highlights[0].Tag, Is.EqualTo(TournamentHighlightTag.Final));
+
+            _client.Reset();
+            Assert.That(_client.Highlights, Is.Null);
+        }
     }
 }

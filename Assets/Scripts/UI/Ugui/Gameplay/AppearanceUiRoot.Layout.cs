@@ -36,6 +36,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 if (rect == _listContent || (_listContent != null && rect.IsChildOf(_listContent))) continue;
                 if (rect == _seriesTabContent || (_seriesTabContent != null && rect.IsChildOf(_seriesTabContent))) continue;
+                if (rect == _cosmeticsRoot || (_cosmeticsRoot != null && rect.IsChildOf(_cosmeticsRoot))) continue;
+                if (rect == _categoryTabBar || (_categoryTabBar != null && rect.IsChildOf(_categoryTabBar))) continue;
                 _wideRects[rect] = (rect.anchoredPosition, rect.sizeDelta);
             }
             var main = _mainPanelGroup.transform;
@@ -216,6 +218,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             SetReadingFonts(compact);
             ApplyReadingRowLayout(compact);
             ApplyModalReadingLayout(compact);
+            ApplyWardrobeCosmeticsLayout(compact);
             _windowFit.Fit();
         }
 
