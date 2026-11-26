@@ -42,7 +42,14 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             bool hasReview = review != null && review.HasContent;
             var seasonProgress = SeasonModels.BuildSettlementProgressView(_game?.Battle?.LastBattleEnd, _game?.Season?.Snapshot);
             bool hasSeason = seasonProgress != null;
-            float seasonH = hasSeason ? (seasonProgress.HonorNewlyUnlocked ? 58f : 42f) : 0f;
+            bool hasSeasonProgressBar = hasSeason && seasonProgress.MaxPoints > 0u;
+            bool hasSeasonContrib = hasSeason && !string.IsNullOrWhiteSpace(seasonProgress.ContributionLine);
+            bool hasRetroHonor = hasSeason && seasonProgress.HasRetroHonor;
+            float seasonH = !hasSeason
+                ? 0f
+                : !hasSeasonProgressBar
+                    ? Mathf.Max(38f, 14f + (hasRetroHonor ? 22f : 0f) + (hasSeasonContrib ? 20f : 0f))
+                    : (seasonProgress.HonorNewlyUnlocked ? 58f : 42f) + (hasRetroHonor ? 19f : 0f) + (hasSeasonContrib ? 18f : 0f);
             var progression = _core.BuildLastSettlementProgression();
             bool hasProgression = progression != null && progression.HasVisibleRewards;
             float progH = hasProgression ? (progression.LeveledUp ? 54f : 34f) : 0f;
@@ -136,43 +143,97 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             if (hasSeason)
             {
                 bool gained = seasonProgress.PointsAdded > 0u;
-                Color bg = seasonProgress.HonorNewlyUnlocked
+                bool anyHonorUnlocked = seasonProgress.HonorNewlyUnlocked || seasonProgress.RetroHonorNewlyUnlocked;
+                Color bg = anyHonorUnlocked
                     ? new Color(.97f, .92f, .76f, .98f)
                     : new Color(.90f, .96f, .92f, .96f);
                 CoreLoopUiArt.Image("SeasonSealSettlementBack", body, 0, cursorY, 820, seasonH, "hud-strip", bg);
                 CoreLoopUiArt.Image("SeasonSealSettlementAccent", body, 0, cursorY, 6, seasonH, null,
-                    seasonProgress.HonorNewlyUnlocked ? SeasonEconomyUiArt.GoldHighlight : CoreLoopUiArt.Jade);
+                    anyHonorUnlocked ? SeasonEconomyUiArt.GoldHighlight : CoreLoopUiArt.Jade);
                 float sealTextX = 16f;
                 float sealTextW = 610f;
                 float sealTrackW = 600f;
-                if (seasonProgress.HonorNewlyUnlocked)
+                if (anyHonorUnlocked)
                 {
+                    uint badgeSeasonId = seasonProgress.HonorNewlyUnlocked
+                        ? seasonProgress.SeasonId
+                        : seasonProgress.RetroHonorSeasonId;
+                    string badgeKey = seasonProgress.HonorNewlyUnlocked
+                        ? seasonProgress.HonorBadgeIconKey
+                        : null;
                     SeasonV1UiArt.CreateFixedIcon(body, "SeasonHonorUnlockBadge", 14f, cursorY + 5f, 48f, 48f,
-                        SeasonV1UiArt.LoadHonorBadgeIcon(seasonProgress.SeasonId, seasonProgress.HonorBadgeIconKey),
+                        SeasonV1UiArt.LoadHonorBadgeIcon(badgeSeasonId, badgeKey),
                         SeasonEconomyUiArt.GoldHighlight);
                     sealTextX = 68f;
                     sealTextW = 558f;
                     sealTrackW = 548f;
                 }
-                string sealLine = gained
-                    ? $"{seasonProgress.SeasonName} · 赛季印进度 +{seasonProgress.PointsAdded}（{seasonProgress.ProgressAfter}/{seasonProgress.MaxPoints}）"
-                    : $"{seasonProgress.SeasonName} · 本季赛季印已满（{seasonProgress.ProgressAfter}/{seasonProgress.MaxPoints}），可随时免费切印";
-                var sealLbl = CoreLoopUiArt.Text("SeasonSealSettlementLine", body, sealTextX, cursorY + 3f, sealTextW, 22,
-                    sealLine, 17, CoreLoopUiArt.DeepJade, true, false, TextAlignmentOptions.MidlineLeft);
-                sealLbl.enableAutoSizing = true; sealLbl.fontSizeMin = 12f; sealLbl.fontSizeMax = 17f;
-
-                float sealRatio = SeasonEconomyUiArt.ComputeProgressRatio(seasonProgress.ProgressAfter, seasonProgress.MaxPoints);
-                CoreLoopUiArt.Image("SeasonSealTrack", body, sealTextX, cursorY + 28f, sealTrackW, 7, null, new Color(.74f, .80f, .72f, .92f));
-                if (sealRatio > 0f)
-                    CoreLoopUiArt.Image("SeasonSealFill", body, sealTextX, cursorY + 28f, sealTrackW * sealRatio, 7, null, CoreLoopUiArt.Jade);
-
-                if (seasonProgress.HonorNewlyUnlocked)
+                if (hasSeasonProgressBar)
                 {
-                    string titleTag = string.IsNullOrWhiteSpace(seasonProgress.HonorTitleName)
-                        ? "已永久解锁本季零数值纪念徽章与称谓"
-                        : $"已永久解锁零数值纪念称谓「{seasonProgress.HonorTitleName}」";
-                    CoreLoopUiArt.Text("SeasonHonorUnlockLine", body, sealTextX, cursorY + 37f, sealTextW, 19,
-                        titleTag, 15, SeasonEconomyUiArt.GoldHighlight, true, false, TextAlignmentOptions.MidlineLeft);
+                    string sealLine = gained
+                        ? $"{seasonProgress.SeasonName} · 赛季印进度 +{seasonProgress.PointsAdded}（{seasonProgress.ProgressAfter}/{seasonProgress.MaxPoints}）"
+                        : $"{seasonProgress.SeasonName} · 本季赛季印已满（{seasonProgress.ProgressAfter}/{seasonProgress.MaxPoints}），可随时免费切印";
+                    var sealLbl = CoreLoopUiArt.Text("SeasonSealSettlementLine", body, sealTextX, cursorY + 3f, sealTextW, 22,
+                        sealLine, 17, CoreLoopUiArt.DeepJade, true, false, TextAlignmentOptions.MidlineLeft);
+                    sealLbl.enableAutoSizing = true; sealLbl.fontSizeMin = 12f; sealLbl.fontSizeMax = 17f;
+
+                    float sealRatio = SeasonEconomyUiArt.ComputeProgressRatio(seasonProgress.ProgressAfter, seasonProgress.MaxPoints);
+                    CoreLoopUiArt.Image("SeasonSealTrack", body, sealTextX, cursorY + 28f, sealTrackW, 7, null, new Color(.74f, .80f, .72f, .92f));
+                    if (sealRatio > 0f)
+                        CoreLoopUiArt.Image("SeasonSealFill", body, sealTextX, cursorY + 28f, sealTrackW * sealRatio, 7, null, CoreLoopUiArt.Jade);
+
+                    float subLineY = cursorY + 37f;
+                    if (seasonProgress.HonorNewlyUnlocked)
+                    {
+                        string titleTag = string.IsNullOrWhiteSpace(seasonProgress.HonorTitleName)
+                            ? "已永久解锁本季零数值纪念徽章与称谓"
+                            : $"已永久解锁零数值纪念称谓「{seasonProgress.HonorTitleName}」";
+                        CoreLoopUiArt.Text("SeasonHonorUnlockLine", body, sealTextX, subLineY, sealTextW, 19,
+                            titleTag, 15, SeasonEconomyUiArt.GoldHighlight, true, false, TextAlignmentOptions.MidlineLeft);
+                        subLineY += 19f;
+                    }
+                    if (hasRetroHonor)
+                    {
+                        string retroLine = seasonProgress.RetroHonorNewlyUnlocked
+                            ? (string.IsNullOrWhiteSpace(seasonProgress.RetroHonorTitleName)
+                                ? $"往季追忆 · 永久解锁「{seasonProgress.RetroHonorSeasonName}」纪念徽章"
+                                : $"往季追忆 · 永久解锁「{seasonProgress.RetroHonorTitleName}」（{seasonProgress.RetroHonorSeasonName}）")
+                            : $"往季追忆 · {seasonProgress.RetroHonorSeasonName} +{seasonProgress.RetroHonorPointsAdded}（{seasonProgress.RetroHonorProgressAfter}/{seasonProgress.RetroHonorMaxPoints}）";
+                        var retroLbl = CoreLoopUiArt.Text("SeasonRetroHonorLine", body, sealTextX, subLineY, sealTextW, 19,
+                            retroLine, 15, seasonProgress.RetroHonorNewlyUnlocked ? SeasonEconomyUiArt.GoldHighlight : CoreLoopUiArt.DeepJade,
+                            true, false, TextAlignmentOptions.MidlineLeft);
+                        retroLbl.enableAutoSizing = true; retroLbl.fontSizeMin = 11f; retroLbl.fontSizeMax = 15f;
+                        subLineY += 19f;
+                    }
+                    if (hasSeasonContrib)
+                    {
+                        var contribLbl = CoreLoopUiArt.Text("SeasonSealContributionLine", body, sealTextX, subLineY, sealTextW, 18,
+                            seasonProgress.ContributionLine, 14, CoreLoopUiArt.Ink, false, false, TextAlignmentOptions.MidlineLeft);
+                        contribLbl.enableAutoSizing = true; contribLbl.fontSizeMin = 11f; contribLbl.fontSizeMax = 14f;
+                    }
+                }
+                else
+                {
+                    float lineY = cursorY + 7f;
+                    if (hasRetroHonor)
+                    {
+                        string retroLine = seasonProgress.RetroHonorNewlyUnlocked
+                            ? (string.IsNullOrWhiteSpace(seasonProgress.RetroHonorTitleName)
+                                ? $"往季追忆 · 永久解锁「{seasonProgress.RetroHonorSeasonName}」纪念徽章"
+                                : $"往季追忆 · 永久解锁「{seasonProgress.RetroHonorTitleName}」（{seasonProgress.RetroHonorSeasonName}）")
+                            : $"往季追忆 · {seasonProgress.RetroHonorSeasonName} +{seasonProgress.RetroHonorPointsAdded}（{seasonProgress.RetroHonorProgressAfter}/{seasonProgress.RetroHonorMaxPoints}）";
+                        var retroLbl = CoreLoopUiArt.Text("SeasonRetroHonorLine", body, sealTextX, lineY, sealTextW, 21,
+                            retroLine, 16, seasonProgress.RetroHonorNewlyUnlocked ? SeasonEconomyUiArt.GoldHighlight : CoreLoopUiArt.DeepJade,
+                            true, false, TextAlignmentOptions.MidlineLeft);
+                        retroLbl.enableAutoSizing = true; retroLbl.fontSizeMin = 11f; retroLbl.fontSizeMax = 16f;
+                        lineY += 21f;
+                    }
+                    if (hasSeasonContrib)
+                    {
+                        var contribLbl = CoreLoopUiArt.Text("SeasonSealContributionLine", body, sealTextX, lineY, sealTextW, 20,
+                            seasonProgress.ContributionLine, 15, CoreLoopUiArt.DeepJade, !hasRetroHonor, false, TextAlignmentOptions.MidlineLeft);
+                        contribLbl.enableAutoSizing = true; contribLbl.fontSizeMin = 11f; contribLbl.fontSizeMax = 15f;
+                    }
                 }
 
                 CoreLoopUiArt.Button("OpenSeasonSealFromSettlement", body, 636, cursorY + (seasonH - 32f) * 0.5f, 168, 32,

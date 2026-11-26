@@ -48,6 +48,8 @@ namespace MmorpgClient.Game.Skills
         private readonly Dictionary<ulong, List<Action<bool>>> _catalogRequests = new();
         private SaveSkillLoadoutRequest _pendingSaveLoadout;
         private SwitchSkillLoadoutRequest _pendingSwitchLoadout;
+        private RentSkillLoadoutSlotsRequest _pendingRentLoadout;
+        private ulong _rentRequestSeed = (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() << 16;
 
         public Ui.SkillDefinition FindBattlePresentation(uint id) =>
             _battlePresentation.TryGetValue(id, out var definition) ? definition : null;
@@ -219,6 +221,19 @@ namespace MmorpgClient.Game.Skills
             IReadOnlyList<uint> pursuitSkillIds, IReadOnlyList<uint> openingSkillIds,
             Action<bool, string> completed = null)
         {
+            SaveLoadout(new Ui.SkillLoadoutSaveArgs
+            {
+                SchemeId = schemeId,
+                RoleTag = roleTag,
+                PassiveSkillIds = passiveSkillIds,
+                PursuitSkillIds = pursuitSkillIds,
+                OpeningSkillIds = openingSkillIds,
+            }, completed);
+        }
+
+        public void SaveLoadout(Ui.SkillLoadoutSaveArgs args, Action<bool, string> completed = null)
+        {
+            if (args == null) { completed?.Invoke(false, "方案参数为空"); return; }
             if (_disposed) { completed?.Invoke(false, "技能服务已销毁"); return; }
             ObserveSession();
             var context = Ui.SkillBookContext.Character();
@@ -237,29 +252,39 @@ namespace MmorpgClient.Game.Skills
                 completed?.Invoke(false, locked);
                 return;
             }
-            if (_pendingSwitchLoadout != null)
+            if (_pendingSwitchLoadout != null || _pendingRentLoadout != null)
             {
-                completed?.Invoke(false, "请先确认未完成的方案切换请求。");
+                completed?.Invoke(false, "请先确认未完成的方案切换或槽位租用请求。");
                 return;
             }
+            string name = args.Name ?? string.Empty;
+            var passive = args.PassiveSkillIds ?? Array.Empty<uint>();
+            var pursuit = args.PursuitSkillIds ?? Array.Empty<uint>();
+            var opening = args.OpeningSkillIds ?? Array.Empty<uint>();
             if (_pendingSaveLoadout == null)
             {
                 var req = new SaveSkillLoadoutRequest
                 {
-                    SchemeId = schemeId,
-                    RoleTag = roleTag,
+                    SchemeId = args.SchemeId,
+                    Name = name,
+                    RoleTag = args.RoleTag,
                     StateVersion = current.Snapshot.Loadout.StateVersion,
                     RequestId = Guid.NewGuid().ToString("N"),
+                    UpdateAttributeAllocation = args.UpdateAttributeAllocation,
+                    ResetAttributeIfNeeded = args.ResetAttributeIfNeeded,
                 };
-                if (passiveSkillIds != null) req.PassiveSkillIds.AddRange(passiveSkillIds);
-                if (pursuitSkillIds != null) req.PursuitSkillIds.AddRange(pursuitSkillIds);
-                if (openingSkillIds != null) req.OpeningSkillIds.AddRange(openingSkillIds);
+                req.PassiveSkillIds.AddRange(passive);
+                req.PursuitSkillIds.AddRange(pursuit);
+                req.OpeningSkillIds.AddRange(opening);
+                if (args.UpdateAttributeAllocation && args.AttributeAllocated != null)
+                {
+                    foreach (var kv in args.AttributeAllocated)
+                        req.AttributeAllocated[kv.Key] = kv.Value;
+                }
                 _pendingSaveLoadout = req;
             }
-            else if (_pendingSaveLoadout.SchemeId != schemeId || _pendingSaveLoadout.RoleTag != roleTag ||
-                !_pendingSaveLoadout.PassiveSkillIds.SequenceEqual(passiveSkillIds ?? Array.Empty<uint>()) ||
-                !_pendingSaveLoadout.PursuitSkillIds.SequenceEqual(pursuitSkillIds ?? Array.Empty<uint>()) ||
-                !_pendingSaveLoadout.OpeningSkillIds.SequenceEqual(openingSkillIds ?? Array.Empty<uint>()))
+            else if (!MatchesPendingSave(_pendingSaveLoadout, args.SchemeId, name, args.RoleTag,
+                passive, pursuit, opening, args.UpdateAttributeAllocation, args.AttributeAllocated, args.ResetAttributeIfNeeded))
             {
                 completed?.Invoke(false, "上一次战法装配保存尚未确认，请按原方案重试或刷新查看。");
                 return;
@@ -273,7 +298,7 @@ namespace MmorpgClient.Game.Skills
                 Snapshot = current.Snapshot,
                 IsBusy = true,
                 IsConnected = true,
-                Message = "正在保存战法装配…",
+                Message = "正在保存战法与加点方案…",
             });
             SceneSkillClientPlayerRpc.SaveSkillLoadout(_rpc, sent, (status, response) =>
             {
@@ -290,11 +315,13 @@ namespace MmorpgClient.Game.Skills
                 bool exact = !rejected && response.RequestId == sent.RequestId;
                 if (rejected || exact) _pendingSaveLoadout = null;
                 string message = rejected
-                    ? SkillBookMapper.DescribeTip("保存战法装配失败", response.ErrorMessage)
-                    : $"已保存并启用流派方案 {sent.SchemeId}";
+                    ? SkillBookMapper.DescribeTip("保存流派方案失败", response.ErrorMessage)
+                    : !string.IsNullOrEmpty(response.AttributeSyncNotice)
+                        ? response.AttributeSyncNotice
+                        : $"已保存并启用流派方案 {sent.SchemeId}";
                 if (!context.Matches(State?.Context))
                 {
-                    completed?.Invoke(exact, exact ? null : message);
+                    completed?.Invoke(exact, exact ? (string.IsNullOrEmpty(response.AttributeSyncNotice) ? null : response.AttributeSyncNotice) : message);
                     return;
                 }
                 if (response.State != null && !HasTip(response.State.ErrorMessage))
@@ -305,11 +332,14 @@ namespace MmorpgClient.Game.Skills
                 {
                     PublishError(context, rejected ? message : "服务器未返回最新战法装配状态,请刷新");
                 }
-                completed?.Invoke(exact, exact ? null : message);
+                completed?.Invoke(exact, exact ? (string.IsNullOrEmpty(response.AttributeSyncNotice) ? null : response.AttributeSyncNotice) : message);
             });
         }
 
-        public void SwitchLoadout(uint schemeId, Action<bool, string> completed = null)
+        public void SwitchLoadout(uint schemeId, Action<bool, string> completed = null) =>
+            SwitchLoadout(schemeId, false, completed);
+
+        public void SwitchLoadout(uint schemeId, bool skipAttributeSync, Action<bool, string> completed = null)
         {
             if (_disposed) { completed?.Invoke(false, "技能服务已销毁"); return; }
             ObserveSession();
@@ -329,9 +359,9 @@ namespace MmorpgClient.Game.Skills
                 completed?.Invoke(false, locked);
                 return;
             }
-            if (_pendingSaveLoadout != null)
+            if (_pendingSaveLoadout != null || _pendingRentLoadout != null)
             {
-                completed?.Invoke(false, "请先确认未完成的战法装配保存请求。");
+                completed?.Invoke(false, "请先确认未完成的战法装配保存或槽位租用请求。");
                 return;
             }
             if (_pendingSwitchLoadout == null)
@@ -341,9 +371,10 @@ namespace MmorpgClient.Game.Skills
                     SchemeId = schemeId,
                     StateVersion = current.Snapshot.Loadout.StateVersion,
                     RequestId = Guid.NewGuid().ToString("N"),
+                    SkipAttributeSync = skipAttributeSync,
                 };
             }
-            else if (_pendingSwitchLoadout.SchemeId != schemeId)
+            else if (_pendingSwitchLoadout.SchemeId != schemeId || _pendingSwitchLoadout.SkipAttributeSync != skipAttributeSync)
             {
                 completed?.Invoke(false, "上一次方案切换尚未确认，请按原方案重试或刷新查看。");
                 return;
@@ -357,7 +388,7 @@ namespace MmorpgClient.Game.Skills
                 Snapshot = current.Snapshot,
                 IsBusy = true,
                 IsConnected = true,
-                Message = "正在切换战法流派…",
+                Message = "正在切换流派方案…",
             });
             SceneSkillClientPlayerRpc.SwitchSkillLoadout(_rpc, sent, (status, response) =>
             {
@@ -375,10 +406,12 @@ namespace MmorpgClient.Game.Skills
                 if (rejected || exact) _pendingSwitchLoadout = null;
                 string message = rejected
                     ? SkillBookMapper.DescribeTip("切换战法流派失败", response.ErrorMessage)
-                    : $"已切换至流派方案 {sent.SchemeId}";
+                    : !string.IsNullOrEmpty(response.AttributeSyncNotice)
+                        ? response.AttributeSyncNotice
+                        : $"已切换至流派方案 {sent.SchemeId}";
                 if (!context.Matches(State?.Context))
                 {
-                    completed?.Invoke(exact, exact ? null : message);
+                    completed?.Invoke(exact, exact ? (string.IsNullOrEmpty(response.AttributeSyncNotice) ? null : response.AttributeSyncNotice) : message);
                     return;
                 }
                 if (response.State != null && !HasTip(response.State.ErrorMessage))
@@ -389,8 +422,120 @@ namespace MmorpgClient.Game.Skills
                 {
                     PublishError(context, rejected ? message : "服务器未返回最新战法装配状态,请刷新");
                 }
-                completed?.Invoke(exact, exact ? null : message);
+                completed?.Invoke(exact, exact ? (string.IsNullOrEmpty(response.AttributeSyncNotice) ? null : response.AttributeSyncNotice) : message);
             });
+        }
+
+        public void RentLoadoutSlots(uint targetRentedSlots, uint addPeriods, ulong expectedCostDiamond,
+            Action<bool, string> completed = null)
+        {
+            if (_disposed) { completed?.Invoke(false, "技能服务已销毁"); return; }
+            ObserveSession();
+            var context = Ui.SkillBookContext.Character();
+            if (!Ready) { completed?.Invoke(false, NotInGameMessage); return; }
+            if (_activeWrite != 0 || _activeRead != 0) { completed?.Invoke(false, "上一次操作还在处理中"); return; }
+            var current = State;
+            if (current?.Snapshot?.Loadout == null || !context.Matches(current.Context))
+            {
+                completed?.Invoke(false, "请先刷新角色技能书");
+                return;
+            }
+            if (_writesBlocked?.Invoke() == true)
+            {
+                const string locked = "战斗中仅可查看，无法开通或续期方案槽位。";
+                Publish(Copy(current, message: locked));
+                completed?.Invoke(false, locked);
+                return;
+            }
+            if (_pendingSaveLoadout != null || _pendingSwitchLoadout != null)
+            {
+                completed?.Invoke(false, "请先确认未完成的战法方案操作。");
+                return;
+            }
+            if (_pendingRentLoadout == null)
+            {
+                ulong reqId = ++_rentRequestSeed;
+                if (reqId == 0UL) reqId = ++_rentRequestSeed;
+                _pendingRentLoadout = new RentSkillLoadoutSlotsRequest
+                {
+                    ClientRequestId = reqId,
+                    TargetRentedSlots = targetRentedSlots,
+                    AddPeriods = addPeriods,
+                    ExpectedCostDiamond = expectedCostDiamond,
+                };
+            }
+            else if (_pendingRentLoadout.TargetRentedSlots != targetRentedSlots
+                || _pendingRentLoadout.AddPeriods != addPeriods
+                || _pendingRentLoadout.ExpectedCostDiamond != expectedCostDiamond)
+            {
+                completed?.Invoke(false, "上一次槽位租用请求尚未确认，请按原档位重试或刷新查看。");
+                return;
+            }
+            var sent = _pendingRentLoadout.Clone();
+            var stamp = Capture();
+            _activeWrite = stamp.Id;
+            Publish(new Ui.SkillBookViewState
+            {
+                Context = context,
+                Snapshot = current.Snapshot,
+                IsBusy = true,
+                IsConnected = true,
+                Message = "正在开通或续期方案槽位…",
+            });
+            SceneSkillClientPlayerRpc.RentSkillLoadoutSlots(_rpc, sent, (status, response) =>
+            {
+                if (!CurrentWrite(stamp)) return;
+                _activeWrite = 0;
+                if (!status.IsOk || response == null)
+                {
+                    string err = "方案槽位租用结果未确认:" + DescribeFailure(status) + ",可按原档位安全重试或刷新查看";
+                    if (context.Matches(State?.Context)) PublishError(context, err);
+                    completed?.Invoke(false, err);
+                    return;
+                }
+                bool rejected = HasTip(response.ErrorMessage);
+                bool exact = !rejected && response.ClientRequestId == sent.ClientRequestId;
+                if (rejected || exact) _pendingRentLoadout = null;
+                string message = rejected
+                    ? SkillBookMapper.DescribeTip("开通方案槽位失败", response.ErrorMessage)
+                    : $"方案槽位已生效：额外 +{response.RentedExtraSlots} 套（消耗 {response.SpentDiamond} 灵石）";
+                if (!context.Matches(State?.Context))
+                {
+                    completed?.Invoke(exact, message);
+                    return;
+                }
+                if (response.State != null && !HasTip(response.State.ErrorMessage))
+                {
+                    ApplyBook(context, response.State, message);
+                }
+                else
+                {
+                    PublishError(context, rejected ? message : "服务器未返回最新方案槽位状态,请刷新");
+                }
+                completed?.Invoke(exact, message);
+            });
+        }
+
+        private static bool MatchesPendingSave(SaveSkillLoadoutRequest pending, uint schemeId, string name, uint roleTag,
+            IReadOnlyList<uint> passive, IReadOnlyList<uint> pursuit, IReadOnlyList<uint> opening,
+            bool updateAttr, IReadOnlyDictionary<uint, uint> attr, bool resetAttr)
+        {
+            if (pending.SchemeId != schemeId || pending.Name != name || pending.RoleTag != roleTag
+                || pending.UpdateAttributeAllocation != updateAttr || pending.ResetAttributeIfNeeded != resetAttr
+                || !pending.PassiveSkillIds.SequenceEqual(passive)
+                || !pending.PursuitSkillIds.SequenceEqual(pursuit)
+                || !pending.OpeningSkillIds.SequenceEqual(opening))
+                return false;
+            if (!updateAttr) return true;
+            int count = attr?.Count ?? 0;
+            if (pending.AttributeAllocated.Count != count) return false;
+            if (attr != null)
+            {
+                foreach (var kv in attr)
+                    if (!pending.AttributeAllocated.TryGetValue(kv.Key, out uint existing) || existing != kv.Value)
+                        return false;
+            }
+            return true;
         }
 
         // ── 内部 ────────────────────────────────────────────
@@ -523,6 +668,7 @@ namespace MmorpgClient.Game.Skills
             _activeRead = _activeWrite = 0;
             _pendingSaveLoadout = null;
             _pendingSwitchLoadout = null;
+            _pendingRentLoadout = null;
             _battlePresentation.Clear();
             _catalogSubjects.Clear();
             _catalogRequests.Clear();

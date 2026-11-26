@@ -14,9 +14,12 @@ namespace MmorpgClient.Game.RewardedAd
     {
         [SerializeField] private GameObject _entryRoot;
         [SerializeField] private Button _entryButton;
+        [SerializeField] private Image _entryVideoIcon;
         [SerializeField] private TMP_Text _entryLabel;
 
         [SerializeField] private GameObject _confirmDialogRoot;
+        [SerializeField] private Image _dialogRewardIcon;
+        [SerializeField] private Image _balanceBindGoldIcon;
         [SerializeField] private TMP_Text _dialogTitleText;
         [SerializeField] private TMP_Text _dialogBodyText;
         [SerializeField] private TMP_Text _balanceText;
@@ -28,6 +31,7 @@ namespace MmorpgClient.Game.RewardedAd
 
         private RewardedAdClient _client;
         private bool _subscribed;
+        private bool _iconsApplied;
 
         public void Bind(RewardedAdClient client)
         {
@@ -116,6 +120,7 @@ namespace MmorpgClient.Game.RewardedAd
             }
 
             var state = _client.Snapshot();
+            if (state.ShouldShowEntry) ApplyIcons();
             if (_entryRoot != null) _entryRoot.SetActive(state.ShouldShowEntry);
             if (_entryLabel != null)
             {
@@ -141,6 +146,25 @@ namespace MmorpgClient.Game.RewardedAd
             if (_confirmWatchLabel != null) _confirmWatchLabel.text = RewardedAdModel.BuildCooldownButtonText(state.CooldownRemainingSec);
             if (_cancelButton != null) _cancelButton.interactable = true;
             if (_cancelLabel != null) _cancelLabel.text = RewardedAdModel.CancelButtonText;
+        }
+
+        private void ApplyIcons()
+        {
+            if (_iconsApplied) return;
+            _iconsApplied = true;
+            ApplyOptionalIcon(_entryVideoIcon, RewardedAdModel.VideoIconResourcePath);
+            ApplyOptionalIcon(_dialogRewardIcon, MmorpgClient.Game.Common.CurrencyLabels.BindGoldIconResourcePath);
+            ApplyOptionalIcon(_balanceBindGoldIcon, MmorpgClient.Game.Common.CurrencyLabels.BindGoldIconResourcePath);
+        }
+
+        private static void ApplyOptionalIcon(Image target, string resourcePath)
+        {
+            if (target == null || target.sprite != null || string.IsNullOrEmpty(resourcePath)) return;
+            var sprite = Resources.Load<Sprite>(resourcePath);
+            if (sprite == null) return;
+            target.sprite = sprite;
+            target.preserveAspect = true;
+            target.color = Color.white;
         }
     }
 }

@@ -23,7 +23,7 @@ public static partial class SkillErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvc2tpbGxfZXJyb3JfdGlwLnBy",
-          "b3RvKpMHCgtza2lsbF9lcnJvchISCg5rU2tpbGxfZXJyb3JPSxAAEhoKFWtT",
+          "b3RvKpIJCgtza2lsbF9lcnJvchISCg5rU2tpbGxfZXJyb3JPSxAAEhoKFWtT",
           "a2lsbFVuSW50ZXJydXB0aWJsZRDYNhIaChVrU2tpbGxJbnZhbGlkVGFyZ2V0",
           "SWQQ2TYSGAoTa1NraWxsSW52YWxpZFRhcmdldBDaNhIbChZrU2tpbGxDb29s",
           "ZG93bk5vdFJlYWR5ENs2EiUKIGtTa2lsbENhbm5vdEJlQ2FzdEluQ3VycmVu",
@@ -43,8 +43,14 @@ public static partial class SkillErrorTipReflection {
           "ZBDvNhIaChVrU2tpbGxMb2Fkb3V0Q29uZmxpY3QQ8DYSHAoXa1NraWxsTG9h",
           "ZG91dE5vdExlYXJuZWQQ8TYSHwoaa1NraWxsTG9hZG91dFNjaGVtZUludmFs",
           "aWQQ8jYSIAoba1NraWxsTG9hZG91dFZlcnNpb25DaGFuZ2VkEPM2EhkKFGtT",
-          "a2lsbEJhbm5lZEluQmF0dGxlEPQ2QiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5l",
-          "cmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
+          "a2lsbEJhbm5lZEluQmF0dGxlEPQ2Eh0KGGtTa2lsbExvYWRvdXROYW1lSW52",
+          "YWxpZBD1NhIiCh1rU2tpbGxMb2Fkb3V0UmVudFByaWNlQ2hhbmdlZBD2NhIm",
+          "CiFrU2tpbGxMb2Fkb3V0UmVudERpYW1vbmROb3RFbm91Z2gQ9zYSIAoba1Nr",
+          "aWxsTG9hZG91dFJlbnRTdGFja0xpbWl0EPg2EiIKHWtTa2lsbExvYWRvdXRS",
+          "ZW50U2xvdHNJbnZhbGlkEPk2EiIKHWtTa2lsbExvYWRvdXRBdHRyaWJ1dGVJ",
+          "bnZhbGlkEPo2EigKI2tTa2lsbExvYWRvdXRBdHRyaWJ1dGVSZXNldFJlcXVp",
+          "cmVkEPs2QiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGVi",
+          "BnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::skill_error), }, null, null));
@@ -84,6 +90,13 @@ public enum skill_error {
   [pbr::OriginalName("kSkillLoadoutSchemeInvalid")] KSkillLoadoutSchemeInvalid = 7026,
   [pbr::OriginalName("kSkillLoadoutVersionChanged")] KSkillLoadoutVersionChanged = 7027,
   [pbr::OriginalName("kSkillBannedInBattle")] KSkillBannedInBattle = 7028,
+  [pbr::OriginalName("kSkillLoadoutNameInvalid")] KSkillLoadoutNameInvalid = 7029,
+  [pbr::OriginalName("kSkillLoadoutRentPriceChanged")] KSkillLoadoutRentPriceChanged = 7030,
+  [pbr::OriginalName("kSkillLoadoutRentDiamondNotEnough")] KSkillLoadoutRentDiamondNotEnough = 7031,
+  [pbr::OriginalName("kSkillLoadoutRentStackLimit")] KSkillLoadoutRentStackLimit = 7032,
+  [pbr::OriginalName("kSkillLoadoutRentSlotsInvalid")] KSkillLoadoutRentSlotsInvalid = 7033,
+  [pbr::OriginalName("kSkillLoadoutAttributeInvalid")] KSkillLoadoutAttributeInvalid = 7034,
+  [pbr::OriginalName("kSkillLoadoutAttributeResetRequired")] KSkillLoadoutAttributeResetRequired = 7035,
 }
 
 #endregion

@@ -270,7 +270,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                         48, 600, 1310, 62, 44);
                     previewTop = 686;
                 }
-                lines = view.PreviewLines;
+                var merged = new List<string>(view.PreviewLines);
+                merged.AddRange(EquipmentScreenModel.EnhanceAffixBenefitLines(item));
+                lines = merged;
             }
             else
             {
@@ -291,7 +293,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     isMax ? SeasonEconomyUiArt.GoldHighlight : (Color?)null);
                 EquipmentUiArt.Label(parent, "EnhancementAttributesTitle", "当前基础属性", 48, 382, 1310, 62, 44);
                 previewTop = 472;
-                lines = item.BaseAttrs.OrderBy(line => line.Seq).Select(EquipDisplay.FormatLine).ToList();
+                var currentLines = item.BaseAttrs.OrderBy(line => line.Seq).Select(EquipDisplay.FormatLine).ToList();
+                currentLines.AddRange(EquipmentScreenModel.EnhanceAffixBenefitLines(item));
+                lines = currentLines;
             }
             float height = PanelHeight - previewTop - 44;
             var content = EquipmentUiArt.Scroll(parent, "EnhancementAttributesScroll", 48, previewTop, 1310, height,

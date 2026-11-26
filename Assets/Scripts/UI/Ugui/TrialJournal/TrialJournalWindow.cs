@@ -11,13 +11,12 @@ using UnityEngine.UI;
 namespace MmorpgClient.UI.Ugui.TrialJournal
 {
     /// <summary>
-    /// 五行试炼志主窗口（1920×1080 道家 Q 版三栏手记布局，严格还原 D:\work\image\designs\trial-journal-ui-v1 验收图）。
+    /// 五行试炼志 V2 主窗口（1920×1080 三栏手记布局，严格对齐已验收 TrialJournalV2 20 张无字切片与 15 张验收图）。
     /// 只负责纯表现与交互事件回调，不持有网络对象，不改写服务端权威快照。
     /// </summary>
     internal sealed class TrialJournalWindow : IDisposable
     {
         private readonly RectTransform _root;
-        private readonly RectTransform _inner;
         private readonly RectTransform _headerArea;
         private readonly RectTransform _leftRail;
         private readonly RectTransform _centerPane;
@@ -32,16 +31,21 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         private uint _selectedEntryId;
         private uint _selectedArtifactItemId;
         private uint _pendingRedeemItemId;
+        private uint _pendingRedeemEffectId;
         private string _pendingRedeemName = "";
         private TrialJournalCommentary _readingCommentary;
         private bool _compactCloseOnLeft;
+        private uint _selectedVowMask;
+        private Match.TrialChallengeCardView _activeChallengeCard;
 
-        // 用于缓存上次非空快照，满足九态中「刷新保留旧图」与「断线保留旧快照」要求
+        // 缓存上次有效快照，满足「刷新保留旧图」与「断线保留旧快照」要求
         private global::TrialJournalSnapshot _lastValidSnapshot;
         private bool _demoBadgeVisible;
 
         public event Action CloseRequested;
-        public event Action<global::TrialJournalEntryView> JumpRequested;
+        public event Action<global::TrialJournalEntryView, uint> JumpRequested;
+        public event Action<ulong> WatchReplayRequested;
+        public event Action<global::TrialJournalEntryView, ulong> ShareChallengeRequested;
         public event Action<uint> ClaimMilestoneRequested;
         public event Action<uint> RedeemVoucherRequested;
         public event Action ViewChanged;
@@ -51,43 +55,43 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         public bool HasModalOpen => _readingCommentary != null || _pendingRedeemItemId != 0u;
         public TrialJournalNavTab ActiveTab => _activeTab;
         public uint SelectedEntryId => _selectedEntryId;
+        public uint SelectedVowMask => _selectedVowMask;
+        public Match.TrialChallengeCardView ActiveChallengeCard => _activeChallengeCard;
 
         public TrialJournalWindow(UnityEngine.Transform parent)
         {
             _root = QdaoUguiFactory.CreateRect("TrialJournalWindow", parent, 0f, 0f,
                 TrialJournalUiArt.DesignWidth, TrialJournalUiArt.DesignHeight);
 
-            // 外框与顶部标题牌（优先加载 UI/Ugui/TrialJournalV2/ 专属切片，缺图时回落至既有共享切片，底板无字）
-            var frame = TrialJournalUiArt.SlicedOrTint("MainFrame", _root,
-                50f, 135f, 1820f, 865f, TrialJournalUiArt.LoadSkin("main_frame", "main_frame"),
+            // 主外框、居中标题牌与关闭按钮（对齐 TrialJournalV2 1920×1080 基准坐标）
+            TrialJournalUiArt.SlicedOrTint("MainFrame", _root,
+                50f, 108f, 1820f, 865f, TrialJournalUiArt.LoadSkin("main_frame", "main_frame"),
                 TrialJournalUiArt.Paper, raycast: true);
-            frame.pixelsPerUnitMultiplier = 1.05f;
 
             var titlePlate = TrialJournalUiArt.FixedArt("TitlePlate", _root,
-                605f, 78f, 710f, 145f, TrialJournalUiArt.LoadSkin("title_plate", "title_plate"),
+                605f, 47f, 710f, 145f, TrialJournalUiArt.LoadSkin("title_plate", "title_plate"),
                 TrialJournalUiArt.Jade, preserveAspect: true);
             TrialJournalUiArt.Label("TitleMain", titlePlate.transform,
-                90f, 18f, 530f, 64f, "试 炼 志", 46f, TrialJournalUiArt.ButtonCream,
+                110f, 26f, 490f, 58f, "试 炼 志", 45f, TrialJournalUiArt.ButtonCream,
                 bold: true, wrap: false, alignment: TextAlignmentOptions.Center);
             TrialJournalUiArt.Label("TitleSub", titlePlate.transform,
-                140f, 76f, 430f, 32f, "道 印 与 宗 师 之 路", 17f, TrialJournalUiArt.ButtonCream,
+                140f, 78f, 430f, 30f, "五行试炼 · 道印行旅", 19f, TrialJournalUiArt.ButtonCream,
                 bold: false, wrap: false, alignment: TextAlignmentOptions.Center);
 
             _closeButton = QdaoUguiFactory.CreateArtButton("CloseButton", _root,
-                1754f, 166f, 70f, 70f, TrialJournalUiArt.LoadSkin("close_btn", "close"), out var closeImg);
+                1780f, 115f, 70f, 70f, TrialJournalUiArt.LoadSkin("close_btn", "close"), out var closeImg);
             closeImg.type = Image.Type.Simple;
             closeImg.preserveAspect = true;
             closeImg.color = closeImg.sprite != null ? Color.white : TrialJournalUiArt.Jade;
             _closeButton.onClick.AddListener(() => CloseRequested?.Invoke());
             _closeButtonRect = (RectTransform)_closeButton.transform;
 
-            // 内容容器 (108, 231, 1704×716)
-            _inner = QdaoUguiFactory.CreateRect("WindowInner", _root, 108f, 231f, 1704f, 716f);
-            _headerArea = QdaoUguiFactory.CreateRect("WindowHead", _inner, 0f, 0f, 1704f, 46f);
-            _leftRail = QdaoUguiFactory.CreateRect("LeftRail", _inner, 0f, 58f, 252f, 606f);
-            _centerPane = QdaoUguiFactory.CreateRect("CenterPane", _inner, 274f, 58f, 886f, 606f);
-            _rightPane = QdaoUguiFactory.CreateRect("RightPane", _inner, 1188f, 58f, 516f, 606f);
-            _footerArea = QdaoUguiFactory.CreateRect("WindowFoot", _inner, 0f, 676f, 1704f, 40f);
+            // 顶栏状态与刷新按钮区 + 三栏内框容器（各自复用 modal_panel 28px 九宫底板）+ 底部信息条
+            _headerArea = QdaoUguiFactory.CreateRect("WindowHead", _root, 115f, 183f, 1682f, 50f);
+            _leftRail = QdaoUguiFactory.CreateRect("LeftRail", _root, 103f, 239f, 241f, 681f);
+            _centerPane = QdaoUguiFactory.CreateRect("CenterPane", _root, 340f, 239f, 911f, 681f);
+            _rightPane = QdaoUguiFactory.CreateRect("RightPane", _root, 1253f, 239f, 558f, 681f);
+            _footerArea = QdaoUguiFactory.CreateRect("WindowFoot", _root, 115f, 922f, 1675f, 32f);
 
             _modalLayer = QdaoUguiFactory.CreateStretch("ModalLayer", _root, Vector4.zero);
             _modalLayer.gameObject.SetActive(false);
@@ -97,8 +101,8 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         {
             if (_compactCloseOnLeft == closeOnLeft || _closeButtonRect == null) return;
             _compactCloseOnLeft = closeOnLeft;
-            float x = closeOnLeft ? 96f : 1754f;
-            _closeButtonRect.anchoredPosition = new Vector2(x, -166f);
+            float x = closeOnLeft ? 96f : 1780f;
+            _closeButtonRect.anchoredPosition = new Vector2(x, -115f);
         }
 
         public void ResetForSession()
@@ -107,11 +111,30 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             _selectedEntryId = 0u;
             _selectedArtifactItemId = 0u;
             _pendingRedeemItemId = 0u;
+            _pendingRedeemEffectId = 0u;
             _pendingRedeemName = "";
             _readingCommentary = null;
             _activeTab = TrialJournalNavTab.Overview;
+            _selectedVowMask = 0u;
+            _activeChallengeCard = null;
             _demoBadgeVisible = false;
             HideModals();
+        }
+
+        public void SetChallengeTarget(global::TrialJournalSnapshot snapshot, Match.TrialChallengeCardView card)
+        {
+            _activeChallengeCard = card?.Clone();
+            if (_activeChallengeCard != null)
+            {
+                _selectedVowMask = _activeChallengeCard.VowMask & TrialJournalModels.VowMaskAll;
+                FocusTarget(snapshot, _activeChallengeCard.JournalEntryId, 0u);
+            }
+        }
+
+        public void ClearChallengeTarget()
+        {
+            _activeChallengeCard = null;
+            ViewChanged?.Invoke();
         }
 
         public void FocusTarget(global::TrialJournalSnapshot snapshot, uint entryId, uint chapterId)
@@ -128,6 +151,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                     TrialJournalModels.ChapterBreakthrough => TrialJournalNavTab.Breakthrough,
                     TrialJournalModels.ChapterThreeRealms => TrialJournalNavTab.ThreeRealms,
                     TrialJournalModels.ChapterSeasonal => TrialJournalNavTab.Seasonal,
+                    TrialJournalModels.ChapterWildRealms => TrialJournalNavTab.WildRealms,
                     _ => TrialJournalNavTab.Overview,
                 };
             }
@@ -138,6 +162,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             if (_pendingRedeemItemId != 0u)
             {
                 _pendingRedeemItemId = 0u;
+                _pendingRedeemEffectId = 0u;
                 _pendingRedeemName = "";
                 HideModals();
                 return true;
@@ -155,6 +180,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         {
             if (commentary == null || string.IsNullOrWhiteSpace(commentary.Title)) return;
             _pendingRedeemItemId = 0u;
+            _pendingRedeemEffectId = 0u;
             _readingCommentary = commentary;
             RenderModal();
         }
@@ -176,7 +202,6 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             }
             else if (liveSnapshot == null && ready && !requiresReconnect && !snapshotPending)
             {
-                // 切角或主动复位时清空旧缓存；刷新中/断线保留上次有效快照
                 _lastValidSnapshot = null;
             }
 
@@ -231,104 +256,94 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         private void RenderHeader(TrialJournalUiView view)
         {
             TrialJournalUiArt.ClearChildren(_headerArea);
-            // 底部分割金线
-            TrialJournalUiArt.BorderedBox("HeadRule", _headerArea, 0f, 44f, 1704f, 1.5f,
-                TrialJournalUiArt.GoldSoft, TrialJournalUiArt.GoldSoft, 0.5f);
 
             if (!string.IsNullOrEmpty(view.AlertText))
             {
-                Color bg = view.AlertTone == TrialJournalBannerTone.Error ? TrialJournalUiArt.ErrorBg : TrialJournalUiArt.InfoBg;
-                Color border = view.AlertTone == TrialJournalBannerTone.Error
-                    ? QdaoUguiTheme.Html("#D8A899")
-                    : TrialJournalUiArt.InfoBorder;
-                Color ink = view.AlertTone == TrialJournalBannerTone.Error ? TrialJournalUiArt.ErrorInk : TrialJournalUiArt.Jade;
-                var pill = TrialJournalUiArt.BorderedBox("HeaderAlert", _headerArea, 6f, 4f, 1320f, 34f, bg, border, 1f);
-                TrialJournalUiArt.Label("AlertText", pill.transform, 14f, 0f, 1292f, 34f,
-                    view.AlertText, 16f, ink, bold: false, wrap: false);
+                Color ink = view.AlertTone == TrialJournalBannerTone.Error
+                    ? TrialJournalUiArt.ErrorInk
+                    : view.AlertTone == TrialJournalBannerTone.Warn
+                        ? TrialJournalUiArt.WarnInk
+                        : TrialJournalUiArt.Jade;
+                var banner = TrialJournalUiArt.SlicedOrBordered("HeaderAlert", _headerArea,
+                    0f, 1f, 1340f, 48f, "entry_row_idle",
+                    view.AlertTone == TrialJournalBannerTone.Error ? TrialJournalUiArt.ErrorBg : TrialJournalUiArt.InfoBg,
+                    TrialJournalUiArt.Gold, 1f);
+                TrialJournalUiArt.Label("AlertText", banner.transform, 24f, 0f, 1292f, 48f,
+                    view.AlertText, 20f, ink, bold: false, wrap: false);
             }
             else
             {
-                TrialJournalUiArt.Label("HeadIntro", _headerArea, 8f, 4f, 1280f, 34f,
-                    $"◇  修行有迹，试炼成章  |  {view.SeasonLabel}", 19f, TrialJournalUiArt.Ink, bold: false);
+                TrialJournalUiArt.Label("HeadIntro", _headerArea, 14f, 0f, 1340f, 50f,
+                    $"{view.SeasonLabel}  ·  {view.RuleLabel}  ·  {view.SyncPillText}",
+                    22f, TrialJournalUiArt.Jade, bold: false, wrap: false);
             }
 
-            // 右侧规则版号 + 同步状态胶囊 + 手动刷新
-            TrialJournalUiArt.Label("RuleLabel", _headerArea, 1346f, 4f, 210f, 34f,
-                view.RuleLabel, 17f, TrialJournalUiArt.Sub, bold: false, wrap: false,
-                alignment: TextAlignmentOptions.MidlineRight);
-
-            Color syncBg = view.SyncPillTone switch
-            {
-                TrialJournalBannerTone.Error => TrialJournalUiArt.ErrorBg,
-                TrialJournalBannerTone.Warn => TrialJournalUiArt.WarnBg,
-                _ => TrialJournalUiArt.InfoBg,
-            };
-            Color syncBorder = view.SyncPillTone switch
-            {
-                TrialJournalBannerTone.Error => QdaoUguiTheme.Html("#D8B0A0"),
-                TrialJournalBannerTone.Warn => QdaoUguiTheme.Html("#DDC090"),
-                _ => TrialJournalUiArt.InfoBorder,
-            };
-            Color syncInk = view.SyncPillTone switch
-            {
-                TrialJournalBannerTone.Error => TrialJournalUiArt.ErrorInk,
-                TrialJournalBannerTone.Warn => TrialJournalUiArt.WarnInk,
-                _ => TrialJournalUiArt.Jade,
-            };
-            var syncBtnImg = TrialJournalUiArt.BorderedBox("SyncPill", _headerArea, 1568f, 5f, 128f, 32f,
-                syncBg, syncBorder, 1f, raycast: true);
-            var syncBtn = syncBtnImg.gameObject.AddComponent<Button>();
-            syncBtn.targetGraphic = syncBtnImg;
-            syncBtn.onClick.AddListener(() => RefreshRequested?.Invoke());
-            TrialJournalUiArt.Label("SyncText", syncBtn.transform, 4f, 0f, 120f, 32f,
-                view.SyncPillText, 15f, syncInk, bold: true, wrap: false,
-                alignment: TextAlignmentOptions.Center);
+            // 右侧手动刷新次按钮（高度 50px >= 44px 触控下限）
+            string syncLabel = view.Phase == TrialJournalVisualPhase.Disconnected ? "重连后刷新"
+                : view.Phase == TrialJournalVisualPhase.Refreshing ? "同步中…"
+                : "同步 · 刷新";
+            TrialJournalUiArt.SpriteButton("SyncRefresh", _headerArea,
+                1470f, 0f, 212f, 50f, syncLabel, 19f,
+                primary: false,
+                interactable: view.Phase != TrialJournalVisualPhase.Disconnected,
+                onClick: () => RefreshRequested?.Invoke());
         }
 
         private void RenderLeftRail(global::TrialJournalSnapshot snapshot, TrialJournalUiView view)
         {
             TrialJournalUiArt.ClearChildren(_leftRail);
-            // 右侧竖向金线
-            TrialJournalUiArt.BorderedBox("RailDivider", _leftRail, 250f, 0f, 1.5f, 602f,
-                TrialJournalUiArt.GoldSoft, TrialJournalUiArt.GoldSoft, 0.5f);
-
-            TrialJournalUiArt.Label("RailTitle", _leftRail, 8f, 0f, 224f, 34f,
-                "试炼目录", 28f, TrialJournalUiArt.Jade, bold: true);
-            TrialJournalUiArt.Label("RailSub", _leftRail, 8f, 35f, 224f, 18f,
-                "TRIAL JOURNAL", 11f, TrialJournalUiArt.MutedLabel, bold: false);
+            TrialJournalUiArt.SlicedOrBordered("LeftPanelBg", _leftRail,
+                0f, 0f, 241f, 681f, "modal_panel",
+                TrialJournalUiArt.Paper, TrialJournalUiArt.GoldSoft, 1.2f);
 
             var tabs = new List<(TrialJournalNavTab tab, string title, string sub, int badge)>();
-            tabs.Add((TrialJournalNavTab.Overview, "总览", "全卷道印与试炼", 0));
+            tabs.Add((TrialJournalNavTab.Overview, "总览", "总进度", 0));
             if (snapshot == null || TrialJournalModels.FindChapter(snapshot, TrialJournalModels.ChapterBreakthrough) != null)
             {
                 var ch1 = TrialJournalModels.FindChapter(snapshot, TrialJournalModels.ChapterBreakthrough);
                 uint ch1Seals = ch1 != null && ch1.TotalSealCount > 0u ? ch1.TotalSealCount : 15u;
+                int ch1Count = ch1?.Entries?.Count > 0 ? ch1.Entries.Count : 5;
                 int c1 = TrialJournalModels.CountClaimableMilestones(snapshot, TrialJournalModels.ChapterBreakthrough);
-                tabs.Add((TrialJournalNavTab.Breakthrough, "卷一 · 破阵", $"回春/护势/双卫 · {ch1Seals}印", c1));
+                tabs.Add((TrialJournalNavTab.Breakthrough, "卷一 · 破阵试炼", $"{ch1Count} 格 · {ch1Seals} 印", c1));
             }
             if (snapshot != null && TrialJournalModels.FindChapter(snapshot, TrialJournalModels.ChapterThreeRealms) != null)
             {
+                var ch2 = TrialJournalModels.FindChapter(snapshot, TrialJournalModels.ChapterThreeRealms);
+                uint ch2Seals = ch2 != null && ch2.TotalSealCount > 0u ? ch2.TotalSealCount : 12u;
+                int ch2Count = ch2?.Entries?.Count > 0 ? ch2.Entries.Count : 4;
                 int c2 = TrialJournalModels.CountClaimableMilestones(snapshot, TrialJournalModels.ChapterThreeRealms);
-                tabs.Add((TrialJournalNavTab.ThreeRealms, "卷二 · 灵障", "灵障与玄毒 · 12印", c2));
+                tabs.Add((TrialJournalNavTab.ThreeRealms, "卷二 · 灵障玄毒", $"{ch2Count} 格 · {ch2Seals} 印", c2));
             }
             if (snapshot != null && TrialJournalModels.FindChapter(snapshot, TrialJournalModels.ChapterSeasonal) != null)
             {
                 int c3 = TrialJournalModels.CountClaimableMilestones(snapshot, TrialJournalModels.ChapterSeasonal);
-                tabs.Add((TrialJournalNavTab.Seasonal, "卷三 · 季游", "破阵之季 · 独立存档", c3));
+                tabs.Add((TrialJournalNavTab.Seasonal, "卷三 · 季游奇谈", "S1 独立归档", c3));
             }
-            tabs.Add((TrialJournalNavTab.Milestones, "里程碑录", "拓印 · 砂 · 留灯评语", view.ClaimableMilestoneCount));
+            if (snapshot != null && TrialJournalModels.FindChapter(snapshot, TrialJournalModels.ChapterWildRealms) != null)
+            {
+                var ch4 = TrialJournalModels.FindChapter(snapshot, TrialJournalModels.ChapterWildRealms);
+                uint ch4Seals = ch4 != null && ch4.TotalSealCount > 0u ? ch4.TotalSealCount : 9u;
+                int ch4Count = ch4?.Entries?.Count > 0 ? ch4.Entries.Count : 3;
+                int c4 = TrialJournalModels.CountClaimableMilestones(snapshot, TrialJournalModels.ChapterWildRealms);
+                tabs.Add((TrialJournalNavTab.WildRealms, "卷四 · 三境明雷", $"{ch4Count} 格 · {ch4Seals} 印", c4));
+            }
+            int msTotal = snapshot?.Milestones?.Count > 0 ? snapshot.Milestones.Count : 13;
+            tabs.Add((TrialJournalNavTab.Milestones, "里程碑录", $"{msTotal} 档奖励", view.ClaimableMilestoneCount));
 
-            float y = 66f;
+            bool compactRail = tabs.Count >= 6;
+            float tabH = compactRail ? 62f : 74f;
+            float tabStep = compactRail ? 70f : 86f;
+            float y = compactRail ? 18f : 27f;
             for (int i = 0; i < tabs.Count; i++)
             {
                 var item = tabs[i];
                 bool selected = item.tab == _activeTab;
-                Color bg = selected ? TrialJournalUiArt.SelectedBg : TrialJournalUiArt.CardBg;
-                Color border = selected ? TrialJournalUiArt.SelectedLine : QdaoUguiTheme.Html("#D8C8A7");
+                Color fallbackBg = selected ? TrialJournalUiArt.Jade : TrialJournalUiArt.CardBg;
+                Color fallbackBorder = selected ? TrialJournalUiArt.SelectedLine : TrialJournalUiArt.Gold;
                 var plate = TrialJournalUiArt.SlicedOrBordered($"RailTab_{item.tab}", _leftRail,
-                    4f, y, 226f, 74f,
+                    9f, y, 226f, tabH,
                     selected ? "rail_tab_selected" : "rail_tab_idle",
-                    bg, border, selected ? 2f : 1f, raycast: true);
+                    fallbackBg, fallbackBorder, selected ? 2f : 1f, raycast: true);
                 var btn = plate.gameObject.AddComponent<Button>();
                 btn.targetGraphic = plate;
                 var targetTab = item.tab;
@@ -339,89 +354,118 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                     _selectedEntryId = 0u;
                     ViewChanged?.Invoke();
                 });
-                TrialJournalUiArt.Label("Title", plate.transform, 16f, 10f, 168f, 30f,
-                    item.title, 21f, selected ? TrialJournalUiArt.Jade : TrialJournalUiArt.Ink, bold: true);
-                TrialJournalUiArt.Label("Sub", plate.transform, 16f, 42f, 198f, 22f,
-                    item.sub, 13f, TrialJournalUiArt.Sub, bold: false);
+
+                // 选中页签为深翠底，必须配浅米金文字；未选中为纸面底，配墨绿与暖褐
+                Color titleColor = selected ? TrialJournalUiArt.ButtonCream : TrialJournalUiArt.Jade;
+                Color subColor = selected ? TrialJournalUiArt.ButtonCream : TrialJournalUiArt.Sub;
+                var titleLabel = TrialJournalUiArt.Label("Title", plate.transform, 10f, compactRail ? 6f : 10f, 206f, 28f,
+                    item.title, compactRail ? 19.5f : 21f, titleColor, bold: selected, wrap: false,
+                    alignment: TextAlignmentOptions.Center);
+                titleLabel.enableAutoSizing = true;
+                titleLabel.fontSizeMin = 15f;
+                titleLabel.fontSizeMax = compactRail ? 19.5f : 21f;
+                TrialJournalUiArt.Label("Sub", plate.transform, 10f, compactRail ? 34f : 41f, 206f, 22f,
+                    item.sub, compactRail ? 14.5f : 15.5f, subColor, bold: false, wrap: false,
+                    alignment: TextAlignmentOptions.Center);
 
                 if (item.badge > 0)
                 {
-                    var dot = QdaoUguiFactory.CreateImage("Badge", plate.transform, 188f, 12f, 26f, 26f,
+                    var dot = QdaoUguiFactory.CreateImage("Badge", plate.transform, 202f, -6f, 26f, 26f,
                         TrialJournalUiArt.CircleSprite());
-                    dot.color = TrialJournalUiArt.SealGold;
+                    dot.color = TrialJournalUiArt.BadgeRed;
+                    var dotOutline = dot.gameObject.AddComponent<Outline>();
+                    dotOutline.effectColor = TrialJournalUiArt.ButtonCream;
+                    dotOutline.effectDistance = new Vector2(1.2f, -1.2f);
                     TrialJournalUiArt.Label("BadgeNum", dot.transform, 0f, 0f, 26f, 26f,
-                        item.badge.ToString(), 13f, TrialJournalUiArt.ButtonCream, bold: true,
+                        item.badge.ToString(), 14f, TrialJournalUiArt.ButtonCream, bold: true,
                         alignment: TextAlignmentOptions.Center);
                 }
-                y += 84f;
+                y += tabStep;
             }
 
-            // 底部说明
-            TrialJournalUiArt.BorderedBox("NoteDivider", _leftRail, 8f, 504f, 220f, 1f,
-                TrialJournalUiArt.GoldSoft, TrialJournalUiArt.GoldSoft, 0.5f);
-            var noteDot = QdaoUguiFactory.CreateImage("NoteDot", _leftRail, 10f, 524f, 10f, 10f,
-                TrialJournalUiArt.CircleSprite());
-            noteDot.color = QdaoUguiTheme.Html("#67A07B");
-            TrialJournalUiArt.Label("NoteText", _leftRail, 28f, 516f, 200f, 82f,
-                "每枚道印均有来处；永久卷与季游卷分别陈列，零数值打卡压力。", 14f,
-                QdaoUguiTheme.Html("#816D4C"), bold: false, wrap: true, alignment: TextAlignmentOptions.TopLeft);
+            // 左下「试炼札记」独立卡片（复用 modal_panel 28px 九宫，对齐验收图 112,714,226,183）
+            var note = TrialJournalUiArt.SlicedOrBordered("RailNoteCard", _leftRail,
+                9f, 475f, 226f, 183f, "modal_panel",
+                TrialJournalUiArt.CardBg, TrialJournalUiArt.GoldSoft, 1f);
+            TrialJournalUiArt.Label("NoteHead", note.transform, 16f, 14f, 194f, 32f,
+                "试炼札记", 22f, TrialJournalUiArt.Jade, bold: false,
+                alignment: TextAlignmentOptions.Center);
+            QdaoUguiFactory.CreateImage("NoteRule", note.transform, 22f, 54f, 182f, 1.5f, null)
+                .color = TrialJournalUiArt.Gold;
+
+            uint permTotal = view.PermanentTotalSeals > 0u ? view.PermanentTotalSeals : 27u;
+            TrialJournalUiArt.Label("Note1", note.transform, 22f, 68f, 184f, 28f,
+                $"永久卷共 {permTotal} 印", 17f, TrialJournalUiArt.Ink);
+            TrialJournalUiArt.Label("Note2", note.transform, 22f, 100f, 184f, 28f,
+                $"宗师门槛 {view.GrandmasterRequiredSeals} 印", 17f, TrialJournalUiArt.Ink);
+            TrialJournalUiArt.Label("Note3", note.transform, 22f, 132f, 184f, 28f,
+                "卷三独立归档", 17f, TrialJournalUiArt.Sub);
         }
 
         private void RenderCenterPane(global::TrialJournalSnapshot snapshot, TrialJournalUiView view)
         {
             TrialJournalUiArt.ClearChildren(_centerPane);
+            TrialJournalUiArt.SlicedOrBordered("CenterPanelBg", _centerPane,
+                0f, 0f, 911f, 681f, "modal_panel",
+                TrialJournalUiArt.Paper, TrialJournalUiArt.GoldSoft, 1.2f);
 
-            // 1. 顶部三张统计卡片 (h=106)
+            // 1. 顶部三张统计指标卡 (15 + i*298, y=13, 287×106)
             bool loading = view.Phase == TrialJournalVisualPhase.FirstLoad;
-            string permVal = loading ? "— / 18" : $"{view.PermanentLitSeals} / {view.GrandmasterRequiredSeals}";
-            string permSub = loading
-                ? "等待首次快照"
-                : view.GrandmasterReached
-                    ? $"总永久 {view.PermanentLitSeals}/{view.PermanentTotalSeals} · 宗师已达成"
-                    : $"总永久 {view.PermanentLitSeals}/{view.PermanentTotalSeals} · 距宗师差 {view.GrandmasterRequiredSeals - view.PermanentLitSeals} 印";
-            DrawMetricCard(0f, "已点亮永久道印", permVal, permSub);
+            uint permTotal = view.PermanentTotalSeals > 0u ? view.PermanentTotalSeals : 27u;
+            uint missingGm = view.GrandmasterRequiredSeals > view.PermanentLitSeals
+                ? view.GrandmasterRequiredSeals - view.PermanentLitSeals
+                : 0u;
+            DrawMetricCard(15f, "永久道印",
+                $"{view.PermanentLitSeals} / {permTotal}",
+                view.GrandmasterReached ? "宗师门槛已达成" : $"距宗师还差 {missingGm} 印",
+                loading);
 
-            string chapVal = loading ? "— / —" : $"{view.ActiveChapterLitSeals} / {view.ActiveChapterTotalSeals}";
-            string chapSub = loading ? "首领 · 灵障 · 季游" : $"{view.ActiveChapterLabel} 进度";
-            DrawMetricCard(299f, _activeTab == TrialJournalNavTab.Seasonal ? "本季试炼" : "当前卷进度", chapVal, chapSub);
+            DrawMetricCard(313f, _activeTab == TrialJournalNavTab.Seasonal ? "本季进度" : "当前卷进度",
+                $"{view.ActiveChapterLitSeals} / {view.ActiveChapterTotalSeals}",
+                _activeTab == TrialJournalNavTab.Seasonal ? "本季独立归档" : "卷三当季另存",
+                loading);
 
-            string claimVal = loading ? "— 项" : $"{view.ClaimableMilestoneCount} 项";
-            string claimSub = loading
-                ? "里程碑与法宝凭券"
-                : $"拓印 ×{view.VoucherBalance}  ·  自用砂 ×{view.BoundSandBalance}";
-            DrawMetricCard(598f, "待领取里程碑", claimVal, claimSub);
+            DrawMetricCard(611f, "待领里程碑",
+                view.ClaimableMilestoneCount > 0 ? $"可领取 {view.ClaimableMilestoneCount} 档" : "暂无",
+                $"拓印 {view.VoucherBalance}  ·  自用砂 {view.BoundSandBalance}",
+                loading);
 
-            // 2. 分节标题条 (section_plate)
-            string sectionTitle = view.Phase == TrialJournalVisualPhase.FirstLoad ? "正在读取试炼"
-                : _activeTab == TrialJournalNavTab.Milestones ? "印记里程碑与评语"
+            // 2. 分节标题条 (section_plate, 14, 133, 372×56)
+            string sectionTitle = loading ? "正在载入试炼"
+                : _activeTab == TrialJournalNavTab.Milestones ? "里程碑录"
                 : _activeTab == TrialJournalNavTab.Breakthrough ? "卷一 · 破阵试炼"
                 : _activeTab == TrialJournalNavTab.ThreeRealms ? "卷二 · 灵障玄毒"
-                : _activeTab == TrialJournalNavTab.Seasonal ? "卷三 · 季游奇谈 S1"
-                : view.Phase == TrialJournalVisualPhase.Empty ? "尚未开启的旅程" : "正在进行的试炼";
-            string sectionSide = _activeTab == TrialJournalNavTab.Seasonal
-                ? "本季独立存档 · 错过不影响永久印"
-                : _activeTab == TrialJournalNavTab.Milestones
-                    ? "一次性绑定拓印 · 自用重铸砂 · 零战力荣誉"
-                    : "点击关卡展开战法印明细与配装复盘";
+                : _activeTab == TrialJournalNavTab.Seasonal ? "卷三 · 季游奇谈"
+                : _activeTab == TrialJournalNavTab.WildRealms ? "卷四 · 三境明雷"
+                : view.Phase == TrialJournalVisualPhase.Empty ? "尚未开启的旅程" : "五行试炼总览";
+            string sectionSide = _activeChallengeCard != null
+                ? $"应战中：{_activeChallengeCard.OwnerName} {_activeChallengeCard.TotalRounds}回合 · {TrialJournalModels.FormatVowSummary(_activeChallengeCard.VowMask)}"
+                : _activeTab == TrialJournalNavTab.Seasonal
+                    ? "3 格 · 6 印 · 当季独立"
+                    : _activeTab == TrialJournalNavTab.WildRealms
+                        ? "3 格 · 9 印 · 野外三境明雷"
+                        : _activeTab == TrialJournalNavTab.Milestones
+                            ? $"{snapshot?.Milestones?.Count ?? 13} 档奖励 · 5 篇评语"
+                            : $"{view.ActiveChapterLitSeals}/{view.ActiveChapterTotalSeals} 印 · 可滚动查看";
 
             var secImg = TrialJournalUiArt.SlicedOrTint("SectionPlate", _centerPane,
-                0f, 118f, 372f, 56f, TrialJournalUiArt.LoadSkin("section_plate", "section_plate"),
+                14f, 133f, 372f, 56f, TrialJournalUiArt.LoadSkin("section_plate", "section_plate"),
                 TrialJournalUiArt.Jade);
-            TrialJournalUiArt.Label("SectionTitle", secImg.transform, 24f, 0f, 324f, 56f,
-                sectionTitle, 24f, TrialJournalUiArt.ButtonCream, bold: true,
+            TrialJournalUiArt.Label("SectionTitle", secImg.transform, 32f, 0f, 308f, 56f,
+                sectionTitle, 25f, TrialJournalUiArt.ButtonCream, bold: true,
                 alignment: TextAlignmentOptions.Center);
-            TrialJournalUiArt.Label("SectionSide", _centerPane, 386f, 128f, 496f, 36f,
-                sectionSide, 15f, TrialJournalUiArt.MutedLabel, bold: false,
+            TrialJournalUiArt.Label("SectionSide", _centerPane, 398f, 143f, 492f, 36f,
+                sectionSide, 18f, TrialJournalUiArt.Sub, bold: false,
                 alignment: TextAlignmentOptions.MidlineRight);
 
-            // 3. 中部可滚动列表区 (y=180, h=286)
-            var listViewport = QdaoUguiFactory.CreateRect("ListViewport", _centerPane, 0f, 180f, 886f, 286f);
+            // 3. 中部可滚动列表区 (x=15, y=198, w=882, h=326)
+            var listViewport = QdaoUguiFactory.CreateRect("ListViewport", _centerPane, 15f, 198f, 882f, 326f);
             listViewport.gameObject.AddComponent<RectMask2D>();
             var vpHit = listViewport.gameObject.AddComponent<Image>();
             vpHit.color = new Color(1f, 1f, 1f, 0.001f);
             vpHit.raycastTarget = true;
 
-            var listContent = QdaoUguiFactory.CreateRect("ListContent", listViewport, 0f, 0f, 886f, 286f);
+            var listContent = QdaoUguiFactory.CreateRect("ListContent", listViewport, 0f, 0f, 882f, 326f);
             var scroll = listViewport.gameObject.AddComponent<ScrollRect>();
             scroll.viewport = listViewport;
             scroll.content = listContent;
@@ -430,43 +474,40 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             scroll.movementType = ScrollRect.MovementType.Clamped;
             scroll.scrollSensitivity = 36f;
 
-            float contentHeight = 0f;
-            if (loading)
-            {
-                contentHeight = RenderSkeletonRows(listContent);
-            }
-            else if (_activeTab == TrialJournalNavTab.Milestones)
-            {
-                contentHeight = RenderMilestoneRows(listContent, snapshot, view);
-            }
-            else
-            {
-                contentHeight = RenderEntryRows(listContent, snapshot, view);
-            }
-            listContent.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(286f, contentHeight));
+            float contentHeight = loading
+                ? RenderSkeletonRows(listContent)
+                : _activeTab == TrialJournalNavTab.Milestones
+                    ? RenderMilestoneRows(listContent, snapshot, view)
+                    : RenderEntryRows(listContent, snapshot, view);
+            listContent.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(326f, contentHeight));
             scroll.verticalNormalizedPosition = 1f;
 
-            // 4. 底部法宝凭券八选一区域 (y=472, h=134)
+            // 4. 底部法宝凭券八选一区域 (x=14, y=531, w=886, h=134)
             RenderArtifactVoucherStrip(snapshot, view);
         }
 
-        private void DrawMetricCard(float x, string title, string value, string sub)
+        private void DrawMetricCard(float x, string title, string value, string sub, bool skeleton)
         {
             var card = TrialJournalUiArt.SlicedOrBordered("Metric_" + title, _centerPane,
-                x, 0f, 287f, 106f, "metric_card",
-                TrialJournalUiArt.CardBg, QdaoUguiTheme.Html("#D5C19C"), 1.2f);
-            // 仅在无专属切片回落态绘制左侧装饰竖条
-            if (card.sprite == null)
+                x, 13f, 287f, 106f, "metric_card",
+                TrialJournalUiArt.CardBg, TrialJournalUiArt.Gold, 1.2f);
+            if (skeleton)
             {
-                QdaoUguiFactory.CreateImage("Accent", card.transform, 12f, 14f, 3.5f, 78f, null)
-                    .color = QdaoUguiTheme.Html("#93B49B");
+                QdaoUguiFactory.CreateImage("Sk1", card.transform, 22f, 22f, 148f, 16f, null)
+                    .color = TrialJournalUiArt.SkeletonBar;
+                QdaoUguiFactory.CreateImage("Sk2", card.transform, 22f, 52f, 216f, 24f, null)
+                    .color = QdaoUguiTheme.Html("#DDD9C7");
+                return;
             }
-            TrialJournalUiArt.Label("Label", card.transform, 24f, 10f, 250f, 24f,
-                title, 15f, TrialJournalUiArt.Sub);
-            TrialJournalUiArt.Label("Value", card.transform, 24f, 34f, 250f, 40f,
-                value, 31f, TrialJournalUiArt.Jade, bold: true);
-            TrialJournalUiArt.Label("Sub", card.transform, 24f, 76f, 250f, 22f,
-                sub, 12.5f, TrialJournalUiArt.MutedLabel);
+            TrialJournalUiArt.Label("Label", card.transform, 21f, 12f, 246f, 26f,
+                title, 19f, TrialJournalUiArt.Jade);
+            var valLabel = TrialJournalUiArt.Label("Value", card.transform, 22f, 40f, 244f, 36f,
+                value, 28f, TrialJournalUiArt.Jade, bold: true);
+            valLabel.enableAutoSizing = true;
+            valLabel.fontSizeMin = 20f;
+            valLabel.fontSizeMax = 28f;
+            TrialJournalUiArt.Label("Sub", card.transform, 21f, 76f, 246f, 22f,
+                sub, 15.5f, TrialJournalUiArt.Sub);
         }
 
         private float RenderSkeletonRows(RectTransform parent)
@@ -474,18 +515,17 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             float y = 4f;
             for (int i = 0; i < 3; i++)
             {
-                var row = TrialJournalUiArt.BorderedBox($"Skeleton_{i}", parent,
-                    0f, y, 882f, 88f, TrialJournalUiArt.SkeletonBg, QdaoUguiTheme.Html("#E1D7C3"), 1f);
-                var circle = QdaoUguiFactory.CreateImage("Avatar", row.transform, 16f, 12f, 64f, 64f,
+                var row = TrialJournalUiArt.SlicedOrBordered($"Skeleton_{i}", parent,
+                    0f, y, 882f, 90f, "entry_row_idle",
+                    TrialJournalUiArt.SkeletonBg, TrialJournalUiArt.GoldSoft, 1f);
+                var circle = QdaoUguiFactory.CreateImage("Avatar", row.transform, 20f, 15f, 62f, 62f,
                     TrialJournalUiArt.CircleSprite());
                 circle.color = TrialJournalUiArt.SkeletonBar;
-                QdaoUguiFactory.CreateImage("Line1", row.transform, 98f, 22f, 380f, 16f, null)
+                QdaoUguiFactory.CreateImage("Line1", row.transform, 108f, 24f, 400f, 18f, null)
                     .color = TrialJournalUiArt.SkeletonBar;
-                QdaoUguiFactory.CreateImage("Line2", row.transform, 98f, 48f, 250f, 12f, null)
-                    .color = TrialJournalUiArt.SkeletonBar;
-                QdaoUguiFactory.CreateImage("Btn", row.transform, 748f, 24f, 112f, 38f, null)
-                    .color = TrialJournalUiArt.SkeletonBar;
-                y += 96f;
+                QdaoUguiFactory.CreateImage("Line2", row.transform, 108f, 54f, 320f, 15f, null)
+                    .color = QdaoUguiTheme.Html("#E0DBCB");
+                y += 98f;
             }
             return y;
         }
@@ -498,17 +538,16 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             var entries = TrialJournalUiState.FilterEntries(snapshot, _activeTab);
             if (entries.Count == 0)
             {
-                var empty = TrialJournalUiArt.BorderedBox("EmptyPanel", parent,
-                    0f, 4f, 882f, 276f, TrialJournalUiArt.Paper, TrialJournalUiArt.Gold, 1.5f);
-                TrialJournalUiArt.Label("Mark", empty.transform, 0f, 46f, 882f, 56f,
-                    "◈", 48f, TrialJournalUiArt.Gold, alignment: TextAlignmentOptions.Center);
-                TrialJournalUiArt.Label("Title", empty.transform, 40f, 112f, 802f, 38f,
+                var empty = TrialJournalUiArt.SlicedOrBordered("EmptyPanel", parent,
+                    0f, 6f, 882f, 290f, "entry_row_idle",
+                    TrialJournalUiArt.Paper, TrialJournalUiArt.Gold, 1.5f);
+                TrialJournalUiArt.Label("Title", empty.transform, 40f, 104f, 802f, 38f,
                     "当前目录暂无已开放试炼", 26f, TrialJournalUiArt.Jade, bold: true,
                     alignment: TextAlignmentOptions.Center);
-                TrialJournalUiArt.Label("Body", empty.transform, 40f, 158f, 802f, 32f,
-                    "待对应章节或赛季开启后，新的战法印将在此呈现。", 16f, TrialJournalUiArt.Sub,
+                TrialJournalUiArt.Label("Body", empty.transform, 40f, 154f, 802f, 32f,
+                    "待对应章节或赛季开启后，新的战法印将在此呈现。", 17f, TrialJournalUiArt.Sub,
                     alignment: TextAlignmentOptions.Center);
-                return 286f;
+                return 310f;
             }
 
             float y = 4f;
@@ -516,7 +555,12 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             {
                 var entry = entries[i];
                 bool selected = entry.EntryId == _selectedEntryId;
-                float rowH = selected ? 186f : 90f;
+                ulong replayBattleId = ResolveEntryReplayBattleId(entry);
+                bool showVowBar = selected && entry.VowSupported && entry.CanEnter;
+                bool showReplayShareBar = selected && replayBattleId != 0ul && (entry.SourceKind == 1u || entry.SourceKind == 2u);
+                float rowH = !selected
+                    ? 90f
+                    : 186f + (showVowBar ? 82f : 0f) + (showReplayShareBar ? 54f : 0f);
 
                 var dedicatedRow = TrialJournalUiArt.LoadDedicatedOnly(selected ? "entry_row_selected" : "entry_row_idle");
                 var rowImg = TrialJournalUiArt.SlicedOrTint($"Entry_{entry.EntryId}", parent,
@@ -538,164 +582,240 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                     ViewChanged?.Invoke();
                 });
 
-                // 左侧头像框：PVE 复用宝宝美术库高清立绘，PVP 显示徽章；存在 portrait_frame 专属切片时自动叠框
-                var portraitBg = QdaoUguiFactory.CreateImage("PortraitBg", rowImg.transform,
-                    14f, 10f, 70f, 70f, TrialJournalUiArt.CircleSprite());
-                portraitBg.color = QdaoUguiTheme.Html("#E6EAD6");
+                // 左侧圆形头像 + portrait_frame（单卫右下 1 枚，105 双卫左下+右下 2 枚；PVP 格显示徽字）
                 if (TrialJournalModels.TryGetEntryMonsterIds(entry.EntryId, out uint bossId, out uint guardId))
                 {
-                    var bossSprite = BattleArtCatalog.LoadMonsterPortrait(bossId);
-                    var bossImg = TrialJournalUiArt.FixedArt("BossPortrait", rowImg.transform,
-                        16f, 12f, 66f, 66f, bossSprite, Color.clear, preserveAspect: true);
-                    var portraitFrame = TrialJournalUiArt.LoadDedicatedOnly("portrait_frame");
-                    if (portraitFrame != null)
-                    {
-                        TrialJournalUiArt.FixedArt("PortraitFrame", rowImg.transform,
-                            12f, 8f, 74f, 74f, portraitFrame, Color.clear, preserveAspect: true);
-                    }
+                    bool locked = !entry.CanEnter;
+                    TrialJournalUiArt.CircularPortrait("BossPortrait", rowImg.transform,
+                        16f, selected ? 14f : 10f, 70f, BattleArtCatalog.LoadMonsterPortrait(bossId), locked);
                     var guards = TrialJournalModels.GetEntryGuardMonsterIds(entry.EntryId);
                     if (guards != null && guards.Count >= 2)
                     {
-                        var leftBg = QdaoUguiFactory.CreateImage("GuardBg_0", rowImg.transform,
-                            8f, 54f, 26f, 26f, TrialJournalUiArt.CircleSprite());
-                        leftBg.color = TrialJournalUiArt.Paper;
-                        TrialJournalUiArt.FixedArt("GuardPortrait_0", leftBg.transform,
-                            2f, 2f, 22f, 22f, BattleArtCatalog.LoadMonsterPortrait(guards[0]),
-                            Color.clear, preserveAspect: true);
-                        var rightBg = QdaoUguiFactory.CreateImage("GuardBg_1", rowImg.transform,
-                            60f, 54f, 26f, 26f, TrialJournalUiArt.CircleSprite());
-                        rightBg.color = TrialJournalUiArt.Paper;
-                        TrialJournalUiArt.FixedArt("GuardPortrait_1", rightBg.transform,
-                            2f, 2f, 22f, 22f, BattleArtCatalog.LoadMonsterPortrait(guards[1]),
-                            Color.clear, preserveAspect: true);
+                        TrialJournalUiArt.CircularPortrait("GuardPortrait_0", rowImg.transform,
+                            14f, 52f, 34f, BattleArtCatalog.LoadMonsterPortrait(guards[0]), locked);
+                        TrialJournalUiArt.CircularPortrait("GuardPortrait_1", rowImg.transform,
+                            60f, 52f, 34f, BattleArtCatalog.LoadMonsterPortrait(guards[1]), locked);
                     }
                     else if (guardId != 0u)
                     {
-                        var guardBg = QdaoUguiFactory.CreateImage("GuardBg", rowImg.transform,
-                            60f, 54f, 28f, 28f, TrialJournalUiArt.CircleSprite());
-                        guardBg.color = TrialJournalUiArt.Paper;
-                        TrialJournalUiArt.FixedArt("GuardPortrait", guardBg.transform,
-                            2f, 2f, 24f, 24f, BattleArtCatalog.LoadMonsterPortrait(guardId),
-                            Color.clear, preserveAspect: true);
+                        TrialJournalUiArt.CircularPortrait("GuardPortrait", rowImg.transform,
+                            65f, 51f, 32f, BattleArtCatalog.LoadMonsterPortrait(guardId), locked);
                     }
                 }
                 else
                 {
                     string pvpMark = entry.SourceKind == 3u ? "易" : "武";
-                    TrialJournalUiArt.Label("PvpMark", portraitBg.transform, 0f, 0f, 70f, 70f,
-                        pvpMark, 30f, TrialJournalUiArt.Jade, bold: true, alignment: TextAlignmentOptions.Center);
+                    TrialJournalUiArt.SealMedallion("PvpMark", rowImg.transform,
+                        18f, selected ? 16f : 12f, 66f, lit: true, pvpMark, 28f);
                 }
 
-                // 中间标题 + 小印章状态行
+                // 中部标题与副标
                 int litCount = 0;
                 int totalSeals = entry.Seals?.Count ?? 0;
                 for (int s = 0; s < totalSeals; s++)
                     if (entry.Seals[s].Lit) litCount++;
 
                 string diffTag = entry.Difficulty == 2u ? "困难" : entry.Difficulty == 1u ? "普通" : "季游";
-                TrialJournalUiArt.Label("EntryTitle", rowImg.transform, 98f, 10f, 456f, 30f,
-                    $"{entry.DisplayName}  [{diffTag}]", 20f,
-                    selected ? TrialJournalUiArt.Jade : TrialJournalUiArt.Ink, bold: true);
+                TrialJournalUiArt.Label("EntryTitle", rowImg.transform, 104f, 14f, 412f, 32f,
+                    $"{entry.EntryId}  {entry.DisplayName}", 24f, TrialJournalUiArt.Jade, bold: true);
 
-                // 2–3 枚小印章徽标（图形+文字双标识，不只靠颜色）
-                float sealX = 98f;
+                string subLine = !entry.CanEnter
+                    ? "困难未解锁 · 需先通任意普通试炼"
+                    : entry.SeasonId != 0u
+                        ? "季游独立纪录 · 不计入永久印"
+                        : $"{diffTag} · {(entry.EntryId == 105u ? "双卫首领格" : "永久首领格")}";
+                TrialJournalUiArt.Label("EntrySub", rowImg.transform, 105f, 48f, 412f, 26f,
+                    subLine, 17f, TrialJournalUiArt.Sub);
+
+                // 中右侧 2–3 枚独立战法印圆徽（seal_medallion_lit/dim，图形+文字双区分）
+                float sealBaseX = totalSeals <= 2 ? 560f : 526f;
+                float sealStep = totalSeals <= 2 ? 56f : 50f;
+                float sealY = selected ? 14f : 22f;
                 for (int s = 0; s < totalSeals; s++)
                 {
                     var seal = entry.Seals[s];
-                    var pill = TrialJournalUiArt.BorderedBox($"SealChip_{s}", rowImg.transform,
-                        sealX, 46f, 114f, 28f,
-                        seal.Lit ? TrialJournalUiArt.SealGoldFill : TrialJournalUiArt.SealDimFill,
-                        seal.Lit ? TrialJournalUiArt.SealGold : TrialJournalUiArt.Gold, 1f);
                     string slotTag = TrialJournalModels.SealSlotLabel(seal.SealSlotKind);
-                    string mark = seal.Lit ? "★" : "○";
-                    TrialJournalUiArt.Label("Text", pill.transform, 4f, 0f, 106f, 28f,
-                        $"{mark}{slotTag}·{seal.Title}", 12.5f,
-                        seal.Lit ? QdaoUguiTheme.Html("#5E4B2B") : TrialJournalUiArt.SealDimInk,
-                        bold: seal.Lit, alignment: TextAlignmentOptions.Center);
-                    sealX += 120f;
+                    TrialJournalUiArt.SealMedallion($"Seal_{s}", rowImg.transform,
+                        sealBaseX + s * sealStep, sealY, 44f, seal.Lit, slotTag, 16f);
                 }
 
-                // 右侧进度 + 单人最好回合
-                TrialJournalUiArt.Label("ProgressNum", rowImg.transform, 578f, 12f, 146f, 30f,
-                    $"{litCount} / {totalSeals}", 20f, QdaoUguiTheme.Html("#4A755A"),
-                    bold: true, alignment: TextAlignmentOptions.MidlineRight);
-                string recordMini = entry.SoloRecorded
-                    ? $"单人 {entry.SoloBest.BestRounds} 回合"
-                    : entry.CoopRecorded ? $"合战 {entry.CoopBest.BestRounds} 回合"
-                    : entry.HasLegacyRecordOnly ? "旧版留档"
-                    : "战法印进度";
-                TrialJournalUiArt.Label("ProgressSub", rowImg.transform, 578f, 44f, 146f, 24f,
-                    recordMini, 13.5f, TrialJournalUiArt.Sub, alignment: TextAlignmentOptions.MidlineRight);
+                if (selected)
+                {
+                    string recordMini = entry.SoloRecorded
+                        ? $"最佳 {entry.SoloBest.BestRounds} 回合"
+                        : entry.CoopRecorded ? $"合战 {entry.CoopBest.BestRounds} 回合"
+                        : entry.HasLegacyRecordOnly ? "旧版留档"
+                        : "尚无纪录";
+                    TrialJournalUiArt.Label("ProgressLine", rowImg.transform, 524f, 62f, 176f, 24f,
+                        $"{litCount} / {totalSeals} 印 · {recordMini}", 16f, TrialJournalUiArt.Jade);
+                }
 
-                // 最右侧动作按钮
+                // 最右侧动作按钮（高度 50px >= 44px 触控下限）
                 bool jumpValid = TrialJournalModels.TryParseJumpTarget(entry.JumpTarget, out var jump);
                 bool canClickJump = view.OnlineWriteEnabled && entry.CanEnter && jumpValid;
                 string actionLabel = !entry.CanEnter ? "未解锁"
                     : jump.Kind == TrialJumpKind.RankedPvp ? "前往论剑"
                     : jump.Kind == TrialJumpKind.Polarity5v5 ? "报名 5V5"
+                    : jump.RequiredSceneConfigId != 0u ? "前往三境"
                     : litCount == totalSeals && totalSeals > 0 ? "再次挑战" : "前往挑战";
                 var capturedEntry = entry;
-                TrialJournalUiArt.FlatActionButton($"Jump_{entry.EntryId}", rowImg.transform,
-                    740f, 22f, 126f, 44f, actionLabel, 16f,
+                uint activeVowMask = selected && entry.VowSupported ? _selectedVowMask : 0u;
+                TrialJournalUiArt.SpriteButton($"Jump_{entry.EntryId}", rowImg.transform,
+                    709f, 18f, 152f, 50f, actionLabel, 19f,
                     primary: selected && entry.CanEnter,
                     interactable: canClickJump,
-                    onClick: () => JumpRequested?.Invoke(capturedEntry));
+                    onClick: () => JumpRequested?.Invoke(capturedEntry, activeVowMask));
 
-                // 展开态详情区（战法印逐条条件 + 单人配装复盘 / 好友合战纪录 / 准入原因）
+                // 展开态详情区（y=91 分割线下方：战法印逐条状态 + 单人配装复盘 / 好友合战纪录）
                 if (selected)
                 {
-                    TrialJournalUiArt.BorderedBox("DetailDivider", rowImg.transform,
-                        16f, 88f, 850f, 1f, TrialJournalUiArt.GoldSoft, TrialJournalUiArt.GoldSoft, 0.5f);
+                    QdaoUguiFactory.CreateImage("DetailRule", rowImg.transform, 104f, 91f, 754f, 1.5f, null)
+                        .color = TrialJournalUiArt.Gold;
 
-                    float detailY = 94f;
+                    var sealParts = new List<string>(totalSeals);
                     for (int s = 0; s < totalSeals; s++)
                     {
                         var seal = entry.Seals[s];
-                        string prefix = seal.Lit ? "● 已点亮" : "○ 未点亮";
                         string slot = TrialJournalModels.SealSlotLabel(seal.SealSlotKind);
-                        TrialJournalUiArt.Label($"SealDesc_{s}", rowImg.transform, 20f, detailY, 540f, 22f,
-                            $"{prefix} [{slot}·{seal.Title}] {seal.Desc}", 13f,
-                            seal.Lit ? TrialJournalUiArt.Jade : TrialJournalUiArt.Sub, bold: seal.Lit);
-                        detailY += 23f;
+                        sealParts.Add($"{slot}·{seal.Title}{(seal.Lit ? "（已亮）" : "（待解）")}");
                     }
+                    TrialJournalUiArt.Label("SealLine", rowImg.transform, 104f, 97f, 754f, 26f,
+                        string.Join("    ", sealParts), 17f, TrialJournalUiArt.Jade, bold: false);
 
-                    // 右半侧：战绩与复盘快照（或 PVP 说明 / 未解锁原因）
-                    string rightLine1;
-                    string rightLine2;
+                    string line2;
+                    string line3;
                     if (!entry.CanEnter && !string.IsNullOrEmpty(entry.EnterBlockedReason))
                     {
-                        rightLine1 = $"准入提示：{entry.EnterBlockedReason}";
-                        rightLine2 = entry.Desc;
+                        line2 = $"准入提示：{entry.EnterBlockedReason}";
+                        line3 = entry.Desc;
                     }
                     else if (entry.SourceKind == 3u || entry.SourceKind == 4u)
                     {
-                        rightLine1 = "赛季 PVP 题：仅点亮战法印，不计回合速通";
-                        rightLine2 = jump.DisplayHint;
+                        line2 = "赛季 PVP 题：仅点亮战法印，不计回合速通";
+                        line3 = BuildFirstUnlitSealHint(entry, jump.DisplayHint);
                     }
                     else
                     {
-                        string soloText = entry.SoloRecorded
-                            ? $"单人最佳 {entry.SoloBest.BestRounds} 回合 · {FormatLoadout(entry.SoloBest.Loadout)}"
+                        line2 = entry.SoloRecorded
+                            ? $"单人最佳 {entry.SoloBest.BestRounds} 回合    配装：{FormatLoadout(entry.SoloBest.Loadout)}"
                             : entry.HasLegacyRecordOnly
                                 ? TrialJournalModels.LegacyRecordOnlyHint
-                                : "单人破阵：通关后自动记录宝宝与法宝搭配";
-                        string coopText = entry.CoopRecorded
+                                : BuildFirstUnlitSealHint(entry, "单人破阵：通关后自动记录灵宠与法宝搭配");
+                        line3 = entry.CoopRecorded
                             ? $"好友合战：{TrialJournalModels.FormatCoopSummary(entry.CoopBest)}"
-                            : "好友合战：2–5 人组队通关留念（不设全服竞速榜）";
-                        rightLine1 = soloText;
-                        rightLine2 = coopText;
+                            : BuildFirstUnlitSealHint(entry, "好友合战：2–5 人组队通关留念（不设全服竞速榜）");
                     }
-                    TrialJournalUiArt.Label("Record1", rowImg.transform, 568f, 96f, 298f, 38f,
-                        rightLine1, 13f, TrialJournalUiArt.Ink, bold: false, wrap: true,
-                        alignment: TextAlignmentOptions.TopLeft);
-                    TrialJournalUiArt.Label("Record2", rowImg.transform, 568f, 138f, 298f, 38f,
-                        rightLine2, 12.5f, TrialJournalUiArt.Sub, bold: false, wrap: true,
-                        alignment: TextAlignmentOptions.TopLeft);
+                    TrialJournalUiArt.Label("Record1", rowImg.transform, 104f, 125f, 754f, 25f,
+                        line2, 16.5f, TrialJournalUiArt.Ink);
+                    TrialJournalUiArt.Label("Record2", rowImg.transform, 104f, 152f, 754f, 25f,
+                        line3, 16f, TrialJournalUiArt.Sub);
+
+                    float detailY = 182f;
+                    if (showVowBar)
+                    {
+                        string vowBestInfo = entry.BestVowCount > 0u
+                            ? $"个人最高：{entry.BestVowCount} 誓 {entry.BestVowRounds} 回合（{TrialJournalModels.FormatVowSummary(entry.BestVowMask)}）"
+                            : "勾选自选试炼誓约后发起挑战（零战力加成，仅作自限荣誉）";
+                        TrialJournalUiArt.Label("VowHeading", rowImg.transform, 104f, detailY, 754f, 22f,
+                            "试炼誓约  ·  " + vowBestInfo, 15.5f, TrialJournalUiArt.Jade, bold: false);
+
+                        for (int v = 0; v < TrialJournalModels.AllVowBits.Length; v++)
+                        {
+                            uint bit = TrialJournalModels.AllVowBits[v];
+                            bool on = (_selectedVowMask & bit) != 0u;
+                            float chipX = 104f + v * 188f;
+                            var chipImg = TrialJournalUiArt.SlicedOrTint($"VowChip_{entry.EntryId}_{v}", rowImg.transform,
+                                chipX, detailY + 28f, 178f, 44f,
+                                TrialJournalUiArt.LoadV3Skin(on ? "vow_chip_active" : "vow_chip_idle",
+                                    on ? "rail_tab_selected" : "entry_row_idle"),
+                                on ? TrialJournalUiArt.Jade : TrialJournalUiArt.CardBg, raycast: true);
+                            var chipBtn = chipImg.gameObject.AddComponent<Button>();
+                            chipBtn.targetGraphic = chipImg;
+                            uint capturedBit = bit;
+                            chipBtn.onClick.AddListener(() =>
+                            {
+                                _selectedVowMask ^= capturedBit;
+                                ViewChanged?.Invoke();
+                            });
+                            var vowIcon = TrialJournalUiArt.LoadV3Skin(VowIconKey(bit), null);
+                            if (vowIcon != null)
+                            {
+                                var iconImg = TrialJournalUiArt.FixedArt("VowIcon", chipImg.transform,
+                                    12f, 10f, 24f, 24f, vowIcon, Color.white, preserveAspect: true);
+                                iconImg.raycastTarget = false;
+                            }
+                            float labelX = vowIcon != null ? 40f : 8f;
+                            float labelW = vowIcon != null ? 130f : 162f;
+                            TrialJournalUiArt.Label("Label", chipImg.transform, labelX, 0f, labelW, 44f,
+                                (on ? "✓ " : "") + TrialJournalModels.VowShortLabel(bit), 16.5f,
+                                on ? TrialJournalUiArt.ButtonCream : TrialJournalUiArt.Jade,
+                                bold: on, wrap: false, alignment: TextAlignmentOptions.Center);
+                        }
+                        detailY += 82f;
+                    }
+
+                    if (showReplayShareBar)
+                    {
+                        ulong capturedBattleId = replayBattleId;
+                        var replayBtn = TrialJournalUiArt.SpriteButton($"Replay_{entry.EntryId}", rowImg.transform,
+                            104f, detailY + 2f, 156f, 44f, "观看录像", 17f,
+                            primary: false, interactable: view.OnlineWriteEnabled,
+                            onClick: () => WatchReplayRequested?.Invoke(capturedBattleId));
+                        var replaySkin = TrialJournalUiArt.LoadV3Skin("replay_btn", null);
+                        if (replaySkin != null && replayBtn.targetGraphic is Image rImg) rImg.sprite = replaySkin;
+
+                        var shareBtn = TrialJournalUiArt.SpriteButton($"Share_{entry.EntryId}", rowImg.transform,
+                            274f, detailY + 2f, 176f, 44f, "发帖约战分享", 17f,
+                            primary: true, interactable: view.OnlineWriteEnabled,
+                            onClick: () => ShareChallengeRequested?.Invoke(capturedEntry, capturedBattleId));
+                        var shareSkin = TrialJournalUiArt.LoadV3Skin("challenge_share_btn", null);
+                        if (shareSkin != null && shareBtn.targetGraphic is Image sImg) sImg.sprite = shareSkin;
+
+                        if (_activeChallengeCard != null && _activeChallengeCard.JournalEntryId == entry.EntryId)
+                        {
+                            TrialJournalUiArt.SpriteButton($"CancelChallenge_{entry.EntryId}", rowImg.transform,
+                                464f, detailY + 2f, 136f, 44f, "取消应战", 16.5f,
+                                primary: false, interactable: true,
+                                onClick: ClearChallengeTarget);
+                        }
+                    }
                 }
 
                 y += rowH + 8f;
             }
             return y;
+        }
+
+        private static string VowIconKey(uint vowBit) => vowBit switch
+        {
+            TrialJournalModels.VowBanControl => "vow_icon_ban_control",
+            TrialJournalModels.VowSingleArtifact => "vow_icon_single_artifact",
+            TrialJournalModels.VowNoPet => "vow_icon_no_pet",
+            TrialJournalModels.VowTightRounds => "vow_icon_tight_rounds",
+            _ => null,
+        };
+
+        private static ulong ResolveEntryReplayBattleId(global::TrialJournalEntryView entry)
+        {
+            if (entry == null) return 0ul;
+            if (entry.BestVowBattleId != 0ul) return entry.BestVowBattleId;
+            if (entry.SoloRecorded && entry.SoloBest != null && entry.SoloBest.BattleId != 0ul) return entry.SoloBest.BattleId;
+            if (entry.CoopRecorded && entry.CoopBest != null && entry.CoopBest.BattleId != 0ul) return entry.CoopBest.BattleId;
+            return 0ul;
+        }
+
+        private static string BuildFirstUnlitSealHint(global::TrialJournalEntryView entry, string fallback)
+        {
+            if (entry?.Seals != null)
+            {
+                for (int i = 0; i < entry.Seals.Count; i++)
+                {
+                    var s = entry.Seals[i];
+                    if (s != null && !s.Lit && !string.IsNullOrEmpty(s.Desc))
+                        return $"待亮条件[{TrialJournalModels.SealSlotLabel(s.SealSlotKind)}·{s.Title}]：{s.Desc}";
+                }
+            }
+            return fallback;
         }
 
         private float RenderMilestoneRows(
@@ -706,8 +826,8 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             if (snapshot?.Milestones == null || snapshot.Milestones.Count == 0)
             {
                 TrialJournalUiArt.Label("NoMilestones", parent, 20f, 110f, 840f, 40f,
-                    "暂无可用里程碑记录。", 18f, TrialJournalUiArt.Sub, alignment: TextAlignmentOptions.Center);
-                return 286f;
+                    "暂无可用里程碑记录。", 19f, TrialJournalUiArt.Sub, alignment: TextAlignmentOptions.Center);
+                return 310f;
             }
 
             float y = 4f;
@@ -734,46 +854,50 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                     TrialJournalModels.ChapterBreakthrough => "卷一",
                     TrialJournalModels.ChapterThreeRealms => "卷二",
                     TrialJournalModels.ChapterSeasonal => $"季游 S{m.SeasonId}",
+                    TrialJournalModels.ChapterWildRealms => "卷四",
                     _ => "试炼",
                 };
                 var badgeSprite = !string.IsNullOrEmpty(m.BadgeKey)
-                    ? SeasonEconomyUiArt.LoadTrialJournalBadge(m.BadgeKey)
+                    ? (TrialJournalUiArt.LoadV3Skin(m.BadgeKey, null) ?? SeasonEconomyUiArt.LoadTrialJournalBadge(m.BadgeKey))
                     : null;
-                float textX = badgeSprite != null ? 82f : 18f;
+                float textX = badgeSprite != null ? 92f : 22f;
                 if (badgeSprite != null)
                 {
-                    TrialJournalUiArt.FixedArt("BadgeIcon", card.transform, 16f, 20f, 56f, 56f,
+                    TrialJournalUiArt.FixedArt("BadgeIcon", card.transform, 20f, 20f, 56f, 56f,
                         badgeSprite, Color.clear, preserveAspect: true);
                 }
-                TrialJournalUiArt.Label("Title", card.transform, textX, 10f, 540f - (textX - 18f), 28f,
-                    $"[{scopeTag}] {m.Title}  （{m.CurrentSeals}/{m.RequiredSeals} 印）", 19f,
+
+                bool hasCommentary = m.Claimed && !string.IsNullOrWhiteSpace(m.CommentaryTitle);
+                float textW = (hasCommentary ? 550f : 690f) - textX;
+                TrialJournalUiArt.Label("Title", card.transform, textX, 14f, textW, 30f,
+                    $"[{scopeTag}] {m.Title}  （{m.CurrentSeals}/{m.RequiredSeals} 印）", 21f,
                     TrialJournalUiArt.Jade, bold: true);
 
                 var rewardParts = new List<string>();
-                if (m.BoundSandCount > 0) rewardParts.Add($"仅自用重铸砂 ×{m.BoundSandCount}");
-                if (m.BoundArtifactVoucherCount > 0) rewardParts.Add($"自用法宝拓印 ×{m.BoundArtifactVoucherCount}");
+                if (m.BoundSandCount > 0) rewardParts.Add($"自用重铸砂 ×{m.BoundSandCount}");
+                if (m.BoundArtifactVoucherCount > 0) rewardParts.Add($"法宝拓印 ×{m.BoundArtifactVoucherCount}");
                 if (!string.IsNullOrEmpty(m.BadgeName)) rewardParts.Add($"印戳「{m.BadgeName}」");
                 if (!string.IsNullOrEmpty(m.GrantAppearanceName)) rewardParts.Add($"专属形象「{m.GrantAppearanceName}」");
+                if (!string.IsNullOrEmpty(m.GrantPetCosmeticName)) rewardParts.Add($"灵宠幻化「{m.GrantPetCosmeticName}」");
+                if (!string.IsNullOrEmpty(m.GrantSkillVfxName)) rewardParts.Add($"技能特效「{m.GrantSkillVfxName}」");
                 if (!string.IsNullOrEmpty(m.CommentaryTitle)) rewardParts.Add($"《{m.CommentaryTitle}》");
-                TrialJournalUiArt.Label("Rewards", card.transform, textX, 40f, 610f - (textX - 18f), 24f,
-                    string.Join("  ·  ", rewardParts), 14f, TrialJournalUiArt.Ink, bold: false);
-                TrialJournalUiArt.Label("Desc", card.transform, textX, 66f, 610f - (textX - 18f), 22f,
-                    m.Desc, 12.5f, TrialJournalUiArt.Sub);
+                TrialJournalUiArt.Label("Rewards", card.transform, textX, 48f, textW, 28f,
+                    "奖励：" + string.Join(" · ", rewardParts), 16.5f, TrialJournalUiArt.Sub);
 
-                bool hasCommentary = m.Claimed && !string.IsNullOrWhiteSpace(m.CommentaryTitle);
+                // 触控按钮统一 >= 44px 高（读评语 127×46，收取/已领取 155×48）
                 if (hasCommentary)
                 {
                     var commentary = new TrialJournalCommentary(m.MilestoneId, m.CommentaryKey, m.CommentaryTitle, m.CommentaryBody);
-                    TrialJournalUiArt.FlatActionButton($"Read_{m.MilestoneId}", card.transform,
-                        638f, 26f, 106f, 42f, "读评语", 15f, primary: false, interactable: true,
+                    TrialJournalUiArt.SpriteButton($"Read_{m.MilestoneId}", card.transform,
+                        563f, 25f, 127f, 46f, "读评语", 17f, primary: false, interactable: true,
                         onClick: () => OpenCommentary(commentary));
                 }
 
                 string btnText = m.Claimed ? "已领取" : m.Claimable ? "收取" : "未达标";
                 bool btnEnabled = view.OnlineWriteEnabled && m.Claimable;
                 uint capturedId = m.MilestoneId;
-                TrialJournalUiArt.FlatActionButton($"Claim_{m.MilestoneId}", card.transform,
-                    754f, 26f, 112f, 42f, btnText, 16f,
+                TrialJournalUiArt.SpriteButton($"Claim_{m.MilestoneId}", card.transform,
+                    703f, 24f, 155f, 48f, btnText, 19f,
                     primary: m.Claimable, interactable: btnEnabled,
                     onClick: () => ClaimMilestoneRequested?.Invoke(capturedId));
 
@@ -785,40 +909,47 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         private void RenderArtifactVoucherStrip(global::TrialJournalSnapshot snapshot, TrialJournalUiView view)
         {
             var box = TrialJournalUiArt.SlicedOrBordered("ArtifactSection", _centerPane,
-                0f, 472f, 886f, 134f, "artifact_tray",
-                new Color(1f, 0.98f, 0.93f, 0.65f),
-                QdaoUguiTheme.Html("#D7C7A4"), 1.2f);
+                14f, 531f, 886f, 134f, "artifact_tray",
+                new Color(1f, 0.98f, 0.93f, 0.65f), TrialJournalUiArt.Gold, 1.2f);
 
-            TrialJournalUiArt.Label("ArtHeading", box.transform, 14f, 6f, 140f, 32f,
-                "法宝凭券", 22f, TrialJournalUiArt.Jade, bold: true);
-            TrialJournalUiArt.Label("VoucherHint", box.transform, 160f, 8f, 540f, 28f,
-                view.VoucherHintText, 13.5f,
-                view.Phase == TrialJournalVisualPhase.BagFullError ? TrialJournalUiArt.ErrorInk : TrialJournalUiArt.MutedLabel,
-                alignment: TextAlignmentOptions.MidlineRight);
+            TrialJournalUiArt.Label("ArtHeading", box.transform, 22f, 8f, 210f, 32f,
+                "法宝凭券 · 八选一", 21f, TrialJournalUiArt.Jade, bold: true);
+            TrialJournalUiArt.Label("VoucherHint", box.transform, 236f, 10f, 412f, 28f,
+                view.VoucherHintText, 16f,
+                view.Phase == TrialJournalVisualPhase.BagFullError ? TrialJournalUiArt.ErrorInk : TrialJournalUiArt.Sub);
 
-            TrialJournalUiArt.FlatActionButton("RedeemButton", box.transform,
-                712f, 6f, 160f, 32f, view.RedeemButtonText, 14.5f,
+            // 兑换按钮高度严格 44px（触控下限）
+            TrialJournalUiArt.SpriteButton("RedeemButton", box.transform,
+                657f, 3f, 205f, 44f, view.RedeemButtonText, 17f,
                 primary: true, interactable: view.RedeemButtonEnabled && _selectedArtifactItemId != 0u,
                 onClick: RequestRedeemConfirmation);
 
+            bool loading = view.Phase == TrialJournalVisualPhase.FirstLoad;
             var list = snapshot?.RedeemableArtifacts;
             int count = list != null && list.Count > 0 ? Math.Min(list.Count, 8) : 8;
             bool tilesDisabled = !view.OnlineWriteEnabled || snapshot == null || snapshot.VoucherBalance == 0;
             for (int i = 0; i < count; i++)
             {
-                float tx = 14f + i * 108f;
+                float tx = 20f + i * 106f;
                 var opt = list != null && i < list.Count ? list[i] : null;
                 uint itemId = opt?.ItemConfigId ?? (uint)(3301 + i);
                 uint effectId = opt?.ArtifactEffectId ?? (uint)(i + 1);
                 string shortName = opt != null && !string.IsNullOrEmpty(opt.Name) ? opt.Name : $"法宝{i + 1}";
-                bool selected = itemId == _selectedArtifactItemId && !tilesDisabled;
+                bool selected = !loading && itemId == _selectedArtifactItemId && !tilesDisabled;
 
                 var tile = TrialJournalUiArt.SlicedOrBordered($"ArtifactTile_{itemId}", box.transform,
-                    tx, 44f, 96f, 82f,
+                    tx, 46f, 96f, 82f,
                     selected ? "artifact_slot_selected" : "artifact_slot_idle",
                     selected ? TrialJournalUiArt.SelectedBg : TrialJournalUiArt.Paper,
-                    selected ? TrialJournalUiArt.SelectedLine : QdaoUguiTheme.Html("#DAC89E"),
+                    selected ? TrialJournalUiArt.SelectedLine : TrialJournalUiArt.Gold,
                     selected ? 2f : 1f, raycast: true);
+                if (loading)
+                {
+                    QdaoUguiFactory.CreateImage("SkIcon", tile.transform, 22f, 12f, 52f, 44f, null)
+                        .color = TrialJournalUiArt.SkeletonBar;
+                    continue;
+                }
+
                 var btn = tile.gameObject.AddComponent<Button>();
                 btn.targetGraphic = tile;
                 btn.interactable = opt != null;
@@ -830,20 +961,19 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 });
 
                 var icon = TrialJournalUiArt.FixedArt("Icon", tile.transform,
-                    20f, 4f, 56f, 56f, TrialJournalUiArt.LoadArtifactIcon(effectId),
+                    24f, 6f, 48f, 48f, TrialJournalUiArt.LoadArtifactIcon(effectId),
                     Color.clear, preserveAspect: true);
-                if (tilesDisabled) icon.color = new Color(1f, 1f, 1f, 0.65f);
+                if (tilesDisabled) icon.color = new Color(1f, 1f, 1f, 0.72f);
 
-                TrialJournalUiArt.Label("Name", tile.transform, 2f, 60f, 92f, 20f,
-                    shortName, 12f, TrialJournalUiArt.Sub, alignment: TextAlignmentOptions.Center);
+                TrialJournalUiArt.Label("Name", tile.transform, 4f, 58f, 88f, 20f,
+                    shortName, 14f, TrialJournalUiArt.Jade, bold: selected,
+                    alignment: TextAlignmentOptions.Center);
 
                 if (opt != null && opt.OwnedCount > 0)
                 {
-                    var badge = TrialJournalUiArt.BorderedBox("Owned", tile.transform,
-                        60f, 2f, 34f, 18f, TrialJournalUiArt.InfoBg, TrialJournalUiArt.InfoBorder, 0.8f);
-                    TrialJournalUiArt.Label("Count", badge.transform, 0f, 0f, 34f, 18f,
-                        $"×{opt.OwnedCount}", 11f, TrialJournalUiArt.Jade, bold: true,
-                        alignment: TextAlignmentOptions.Center);
+                    TrialJournalUiArt.Label("OwnedCount", tile.transform, 52f, 2f, 36f, 18f,
+                        opt.OwnedCount.ToString(), 13f, TrialJournalUiArt.Jade, bold: true,
+                        alignment: TextAlignmentOptions.MidlineRight);
                 }
             }
         }
@@ -851,108 +981,124 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         private void RenderRightGrandmasterPane(global::TrialJournalSnapshot snapshot, TrialJournalUiView view)
         {
             TrialJournalUiArt.ClearChildren(_rightPane);
-            // 左侧竖向金线
-            TrialJournalUiArt.BorderedBox("RightDivider", _rightPane, 0f, 0f, 1.5f, 602f,
-                TrialJournalUiArt.GoldSoft, TrialJournalUiArt.GoldSoft, 0.5f);
+            TrialJournalUiArt.SlicedOrBordered("RightPanelBg", _rightPane,
+                0f, 0f, 558f, 681f, "modal_panel",
+                TrialJournalUiArt.Paper, TrialJournalUiArt.GoldSoft, 1.2f);
 
-            // 头部标题 + M901 标签
-            TrialJournalUiArt.Label("MasterTitle", _rightPane, 18f, 0f, 240f, 38f,
-                "星阵宗师", 30f, TrialJournalUiArt.Jade, bold: true);
-            TrialJournalUiArt.Label("MasterTag", _rightPane, 260f, 8f, 238f, 28f,
-                "M901 · 置顶里程碑", 14.5f, QdaoUguiTheme.Html("#947A53"),
+            // 顶部 section_plate 标题横幅（深翠底 + 浅米金字，对齐验收图 1262,253,540,56）
+            var banner = TrialJournalUiArt.SlicedOrTint("MasterBanner", _rightPane,
+                9f, 14f, 540f, 56f, TrialJournalUiArt.LoadSkin("section_plate", "section_plate"),
+                TrialJournalUiArt.Jade);
+            TrialJournalUiArt.Label("MasterTitle", banner.transform, 44f, 0f, 240f, 56f,
+                "星阵宗师", 28f, TrialJournalUiArt.ButtonCream, bold: true,
+                alignment: TextAlignmentOptions.MidlineLeft);
+            TrialJournalUiArt.Label("MasterTag", banner.transform, 310f, 0f, 184f, 56f,
+                "M901", 21f, TrialJournalUiArt.ButtonCream, bold: false,
                 alignment: TextAlignmentOptions.MidlineRight);
-            TrialJournalUiArt.BorderedBox("MasterRule", _rightPane, 18f, 42f, 480f, 1f,
-                TrialJournalUiArt.GoldSoft, TrialJournalUiArt.GoldSoft, 0.5f);
 
-            // 立绘底座 + 星阵宗师 1024×1024 HD 立绘
-            var pedestal = TrialJournalUiArt.FixedArt("Pedestal", _rightPane,
-                123f, 52f, 270f, 250f, TrialJournalUiArt.LoadSkin("grandmaster_pedestal", "portrait_pedestal"),
-                TrialJournalUiArt.CardBg, preserveAspect: false);
-            var gmSprite = AcquireGrandmasterPortrait();
-            var gmImg = TrialJournalUiArt.FixedArt("GrandmasterPortrait", pedestal.transform,
-                15f, 6f, 240f, 218f, gmSprite, Color.clear, preserveAspect: true);
-            if (!view.GrandmasterReached && gmSprite != null)
-                gmImg.color = new Color(0.92f, 0.90f, 0.86f, 0.94f);
+            // M901 角色立绘先绘、底座后叠（底座上方完全透明，前缘自然遮住脚底边缘）
+            bool loading = view.Phase == TrialJournalVisualPhase.FirstLoad;
+            var gmSprite = loading ? null : AcquireGrandmasterPortrait();
+            if (gmSprite != null)
+            {
+                var gmImg = TrialJournalUiArt.FixedArt("GrandmasterPortrait", _rightPane,
+                    154f, 88f, 246f, 224f, gmSprite, Color.clear, preserveAspect: true);
+                if (!view.GrandmasterReached)
+                    gmImg.color = new Color(0.95f, 0.94f, 0.90f, 0.96f);
+            }
+            TrialJournalUiArt.FixedArt("Pedestal", _rightPane,
+                142f, 86f, 270f, 250f, TrialJournalUiArt.LoadSkin("grandmaster_pedestal", "portrait_pedestal"),
+                Color.clear, preserveAspect: true);
 
-            // 标题与说明
-            TrialJournalUiArt.Label("MasterHeadline", _rightPane, 18f, 306f, 480f, 32f,
-                view.GrandmasterTitle, 23f, TrialJournalUiArt.Jade, bold: true,
+            // 门槛说明 + 分割线 + 宗师道印 2×9 网格
+            uint totalPerm = snapshot != null && snapshot.TotalPermanentSeals > 0u ? snapshot.TotalPermanentSeals : 27u;
+            uint tol = totalPerm > view.GrandmasterRequiredSeals ? totalPerm - view.GrandmasterRequiredSeals : 0u;
+            string unlockSummary = loading
+                ? "首次快照载入中…"
+                : tol > 0u
+                    ? $"永久 {view.GrandmasterRequiredSeals} 印解锁 · 余 {tol} 印容错"
+                    : $"永久 {view.GrandmasterRequiredSeals} 印解锁";
+            TrialJournalUiArt.Label("MasterHeadline", _rightPane, 24f, 354f, 510f, 32f,
+                unlockSummary, 21f, TrialJournalUiArt.Jade, bold: false,
                 alignment: TextAlignmentOptions.Center);
-            TrialJournalUiArt.Label("MasterDesc", _rightPane, 28f, 338f, 460f, 44f,
-                view.GrandmasterDesc, 13.5f, TrialJournalUiArt.Sub, bold: false, wrap: true,
-                alignment: TextAlignmentOptions.Top);
+            QdaoUguiFactory.CreateImage("MasterRule", _rightPane, 37f, 391f, 484f, 1.5f, null)
+                .color = TrialJournalUiArt.Gold;
 
-            // 18 枚宗师道印 2×9 圆形网格（优先加载 seal_medallion_lit/dim 专属切片，缺图回落至抗锯齿圆徽）
+            TrialJournalUiArt.Label("SealsHead", _rightPane, 35f, 397f, 200f, 28f,
+                "宗师道印", 21f, TrialJournalUiArt.Jade, bold: false);
+
             uint litSeals = Math.Min(view.PermanentLitSeals, 18u);
-            var litMedallion = TrialJournalUiArt.LoadDedicatedOnly("seal_medallion_lit");
-            var dimMedallion = TrialJournalUiArt.LoadDedicatedOnly("seal_medallion_dim");
-            var circle = TrialJournalUiArt.CircleSprite();
             for (int i = 0; i < 18; i++)
             {
                 int col = i % 9;
                 int row = i / 9;
-                float sx = 24f + col * 52f;
-                float sy = 392f + row * 50f;
-                bool on = i < litSeals && view.Phase != TrialJournalVisualPhase.FirstLoad;
-                var dedicatedSeal = on ? litMedallion : dimMedallion;
-                var sealBg = QdaoUguiFactory.CreateImage($"Seal_{i + 1}", _rightPane, sx, sy, 44f, 44f,
-                    dedicatedSeal ?? circle);
-                if (dedicatedSeal != null)
+                float sx = 37f + col * 56f;
+                float sy = 427f + row * 57f;
+                if (loading)
                 {
-                    sealBg.type = Image.Type.Simple;
-                    sealBg.preserveAspect = true;
-                    sealBg.color = Color.white;
+                    var sk = QdaoUguiFactory.CreateImage($"SealSk_{i + 1}", _rightPane, sx, sy, 44f, 44f,
+                        TrialJournalUiArt.CircleSprite());
+                    sk.color = TrialJournalUiArt.SkeletonBar;
                 }
                 else
                 {
-                    sealBg.color = on ? TrialJournalUiArt.SealGoldFill : TrialJournalUiArt.SealDimFill;
-                    var outline = sealBg.gameObject.AddComponent<Outline>();
-                    outline.effectColor = on ? TrialJournalUiArt.SealGold : QdaoUguiTheme.Html("#C3B08C");
-                    outline.effectDistance = new Vector2(1.4f, -1.4f);
+                    TrialJournalUiArt.SealMedallion($"Seal_{i + 1}", _rightPane, sx, sy, 44f,
+                        lit: i < litSeals, (i + 1).ToString(), 15f);
                 }
-                TrialJournalUiArt.Label("Num", sealBg.transform, 0f, 0f, 44f, 44f,
-                    (i + 1).ToString(), 17f,
-                    on ? QdaoUguiTheme.Html("#5E4B2B") : TrialJournalUiArt.SealDimInk,
-                    bold: true, alignment: TextAlignmentOptions.Center);
             }
 
-            // 底部主按钮（button_primary）
+            // 底部双按钮（左主按钮 282×56，右次按钮 212×56，均 >= 44px 触控下限）
             var gmMilestone = TrialJournalModels.FindGrandmasterMilestone(snapshot);
-            TrialJournalUiArt.SpriteButton("MasterCta", _rightPane,
-                115f, 504f, 286f, 56f, view.GrandmasterButtonText, 21f,
-                primary: true, interactable: view.GrandmasterButtonEnabled,
-                onClick: () => HandleGrandmasterCta(gmMilestone, view));
+            bool hasGmCommentary = gmMilestone != null && gmMilestone.Claimed && !string.IsNullOrWhiteSpace(gmMilestone.CommentaryTitle);
 
-            uint totalPermanentSeals = snapshot != null && snapshot.TotalPermanentSeals > 0u
-                ? snapshot.TotalPermanentSeals
-                : 27u;
-            string footnote = view.GrandmasterClaimed
-                ? "点击前往易容衣柜即可随时切换「星阵宗师」"
-                : $"里程碑 M901 · 永久 18/{totalPermanentSeals} 印免费解锁（零战力）";
-            var footLabel = TrialJournalUiArt.Label("MasterFoot", _rightPane, 18f, 566f, 480f, 26f,
-                footnote, 12.5f, TrialJournalUiArt.MutedLabel, alignment: TextAlignmentOptions.Center);
-            if (view.GrandmasterClaimed)
-            {
-                var hit = QdaoUguiFactory.CreateHitButton("OpenWardrobeHit", _rightPane, 115f, 564f, 286f, 28f);
-                hit.onClick.AddListener(() => OpenAppearanceRequested?.Invoke());
-                footLabel.color = TrialJournalUiArt.Jade;
-            }
+            string leftBtnText = view.GrandmasterClaimable ? "领取宗师里程碑"
+                : view.GrandmasterClaimed ? "已领宗师里程碑"
+                : "查看全部里程碑";
+            bool leftBtnEnabled = !loading && (view.GrandmasterClaimable
+                ? view.OnlineWriteEnabled
+                : !view.GrandmasterClaimed && view.Phase != TrialJournalVisualPhase.Disconnected);
+            TrialJournalUiArt.SpriteButton("MasterPrimaryBtn", _rightPane,
+                31f, 555f, 282f, 56f, leftBtnText, 20f,
+                primary: true, interactable: leftBtnEnabled,
+                onClick: () => HandleGrandmasterPrimary(gmMilestone, view));
+
+            string rightBtnText = hasGmCommentary ? "阅读宗师跋文" : "前往衣柜";
+            TrialJournalUiArt.SpriteButton("MasterSecondaryBtn", _rightPane,
+                329f, 555f, 212f, 56f, rightBtnText, 19f,
+                primary: false, interactable: !loading,
+                onClick: () =>
+                {
+                    if (hasGmCommentary)
+                    {
+                        OpenCommentary(new TrialJournalCommentary(gmMilestone.MilestoneId, gmMilestone.CommentaryKey,
+                            gmMilestone.CommentaryTitle, gmMilestone.CommentaryBody));
+                    }
+                    else
+                    {
+                        OpenAppearanceRequested?.Invoke();
+                    }
+                });
+
+            string footnote = loading ? "正在等待服务端权威快照"
+                : view.GrandmasterClaimed ? "已入藏易容衣柜，可随时免费切换"
+                : view.GrandmasterClaimable ? "已达成：领取后前往衣柜查看衣饰"
+                : "星阵衣饰与跋文将在达成后开启";
+            TrialJournalUiArt.Label("MasterFoot", _rightPane, 24f, 622f, 510f, 28f,
+                footnote, 17f, TrialJournalUiArt.Sub, alignment: TextAlignmentOptions.Center);
         }
 
         private void RenderFooter(global::TrialJournalSnapshot snapshot, TrialJournalUiView view)
         {
             TrialJournalUiArt.ClearChildren(_footerArea);
-            TrialJournalUiArt.BorderedBox("FootRule", _footerArea, 0f, 0f, 1704f, 1f,
-                TrialJournalUiArt.GoldSoft, TrialJournalUiArt.GoldSoft, 0.5f);
-            TrialJournalUiArt.Label("FootLeft", _footerArea, 8f, 8f, 1280f, 28f,
-                view.FooterText, 14f, QdaoUguiTheme.Html("#927E63"));
+            TrialJournalUiArt.Label("FootLeft", _footerArea, 0f, 0f, 1220f, 30f,
+                view.FooterText, 16f, TrialJournalUiArt.Sub);
             string rightTag = _demoBadgeVisible
                 ? "试炼志 · UI 演示数据"
                 : snapshot != null && snapshot.Available
-                    ? $"试炼志 · 权威修订 #{snapshot.StateRevision}"
+                    ? $"快照修订 R{snapshot.StateRevision}"
                     : "五行试炼志";
-            TrialJournalUiArt.Label("FootRight", _footerArea, 1300f, 8f, 396f, 28f,
-                rightTag, 14f, TrialJournalUiArt.MutedLabel, alignment: TextAlignmentOptions.MidlineRight);
+            TrialJournalUiArt.Label("FootRight", _footerArea, 1240f, 0f, 435f, 30f,
+                rightTag, 16f, TrialJournalUiArt.Sub, alignment: TextAlignmentOptions.MidlineRight);
         }
 
         private void RenderModal()
@@ -968,32 +1114,46 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
 
             var dim = QdaoUguiFactory.CreateStretch("ModalDim", _modalLayer, Vector4.zero)
                 .gameObject.AddComponent<Image>();
-            dim.color = new Color(0.02f, 0.06f, 0.05f, 0.55f);
+            dim.color = new Color(0.10f, 0.14f, 0.11f, 0.52f);
             dim.raycastTarget = true;
 
             if (_pendingRedeemItemId != 0u)
             {
                 var card = TrialJournalUiArt.SlicedOrTint("RedeemConfirmCard", _modalLayer,
-                    580f, 340f, 760f, 380f, TrialJournalUiArt.LoadSkin("modal_panel", "application_card"),
+                    580f, 338f, 760f, 380f, TrialJournalUiArt.LoadSkin("modal_panel", "application_card"),
                     TrialJournalUiArt.Paper, raycast: true);
                 TrialJournalUiArt.Label("Title", card.transform, 40f, 32f, 680f, 44f,
-                    $"确认兑换自用法宝「{_pendingRedeemName}」？", 28f, TrialJournalUiArt.Jade,
-                    bold: true, alignment: TextAlignmentOptions.Center);
-                TrialJournalUiArt.Label("Body", card.transform, 52f, 102f, 656f, 130f,
-                    "将消耗 1 张自用法宝拓印，兑换 1 件对应法宝放入人物背包。\n"
-                    + "· 兑换所得法宝永久仅自用，不可交易、不可上架、不可拆解；\n"
-                    + "· 允许兑换同名第二件以搭配双件流派。",
-                    19f, TrialJournalUiArt.Ink, bold: false, wrap: true,
-                    alignment: TextAlignmentOptions.TopLeft);
+                    "兑换自用法宝", 30f, TrialJournalUiArt.Jade, bold: true,
+                    alignment: TextAlignmentOptions.Center);
+                QdaoUguiFactory.CreateImage("Divider", card.transform, 65f, 90f, 630f, 1.5f, null)
+                    .color = TrialJournalUiArt.Gold;
+
+                TrialJournalUiArt.FixedArt("ArtifactPreview", card.transform,
+                    105f, 118f, 90f, 90f, TrialJournalUiArt.LoadArtifactIcon(_pendingRedeemEffectId),
+                    Color.clear, preserveAspect: true);
+                TrialJournalUiArt.Label("SelectedName", card.transform, 224f, 126f, 460f, 34f,
+                    $"所选法宝：{_pendingRedeemName}", 23f, TrialJournalUiArt.Jade, bold: true);
+                TrialJournalUiArt.Label("SelectedSub", card.transform, 224f, 168f, 460f, 32f,
+                    "消耗 1 张自用法宝拓印；允许兑换同名第二件。", 19f, TrialJournalUiArt.Sub);
+                TrialJournalUiArt.Label("BoundNotice", card.transform, 105f, 232f, 550f, 32f,
+                    "仅供自用，不可交易、不可上架、不可拆解。", 20f, TrialJournalUiArt.ErrorInk, bold: false);
+
                 TrialJournalUiArt.SpriteButton("Cancel", card.transform,
-                    124f, 274f, 220f, 58f, "取消", 20f, primary: false, interactable: true,
-                    onClick: () => { _pendingRedeemItemId = 0u; _pendingRedeemName = ""; HideModals(); });
-                uint itemId = _pendingRedeemItemId;
-                TrialJournalUiArt.SpriteButton("Confirm", card.transform,
-                    416f, 274f, 220f, 58f, "确认兑换", 20f, primary: true, interactable: true,
+                    105f, 294f, 220f, 56f, "取消", 21f, primary: false, interactable: true,
                     onClick: () =>
                     {
                         _pendingRedeemItemId = 0u;
+                        _pendingRedeemEffectId = 0u;
+                        _pendingRedeemName = "";
+                        HideModals();
+                    });
+                uint itemId = _pendingRedeemItemId;
+                TrialJournalUiArt.SpriteButton("Confirm", card.transform,
+                    416f, 294f, 240f, 56f, "确认兑换", 21f, primary: true, interactable: true,
+                    onClick: () =>
+                    {
+                        _pendingRedeemItemId = 0u;
+                        _pendingRedeemEffectId = 0u;
                         _pendingRedeemName = "";
                         HideModals();
                         RedeemVoucherRequested?.Invoke(itemId);
@@ -1004,21 +1164,56 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             if (_readingCommentary != null)
             {
                 var card = TrialJournalUiArt.SlicedOrTint("CommentaryCard", _modalLayer,
-                    440f, 210f, 1040f, 640f, TrialJournalUiArt.LoadSkin("modal_panel", "application_card"),
+                    440f, 201f, 1040f, 640f, TrialJournalUiArt.LoadSkin("modal_panel", "application_card"),
                     TrialJournalUiArt.Paper, raycast: true);
-                TrialJournalUiArt.Label("Chapter", card.transform, 48f, 30f, 944f, 28f,
-                    "留 灯 院 · 试 炼 评 语", 17f, TrialJournalUiArt.MutedLabel,
+                TrialJournalUiArt.Label("Header", card.transform, 48f, 28f, 944f, 42f,
+                    "留灯院评语", 30f, TrialJournalUiArt.Jade, bold: true,
                     alignment: TextAlignmentOptions.Center);
-                TrialJournalUiArt.Label("Title", card.transform, 48f, 66f, 944f, 48f,
-                    _readingCommentary.Title, 32f, TrialJournalUiArt.Jade, bold: true,
+                TrialJournalUiArt.Label("Origin", card.transform, 62f, 82f, 520f, 28f,
+                    "出处：留灯院 · 试炼评语", 18f, TrialJournalUiArt.Sub);
+                QdaoUguiFactory.CreateImage("Divider", card.transform, 52f, 122f, 936f, 1.5f, null)
+                    .color = TrialJournalUiArt.Gold;
+
+                // 左侧已解锁评语目录切换（对齐 14-review-reading-modal.png）
+                var unlocked = TrialJournalModels.CollectUnlockedCommentaries(_lastValidSnapshot);
+                bool hasSidebar = unlocked.Count > 1;
+                if (hasSidebar)
+                {
+                    for (int i = 0; i < unlocked.Count && i < 4; i++)
+                    {
+                        var item = unlocked[i];
+                        bool isCurrent = item.MilestoneId == _readingCommentary.MilestoneId
+                            || string.Equals(item.Title, _readingCommentary.Title, StringComparison.Ordinal);
+                        var tabImg = TrialJournalUiArt.SlicedOrBordered($"ComTab_{i}", card.transform,
+                            48f, 152f + i * 76f, 270f, 62f,
+                            isCurrent ? "rail_tab_selected" : "rail_tab_idle",
+                            isCurrent ? TrialJournalUiArt.Jade : TrialJournalUiArt.CardBg,
+                            TrialJournalUiArt.Gold, 1.2f, raycast: true);
+                        var tabBtn = tabImg.gameObject.AddComponent<Button>();
+                        tabBtn.targetGraphic = tabImg;
+                        var captured = item;
+                        tabBtn.onClick.AddListener(() =>
+                        {
+                            _readingCommentary = captured;
+                            RenderModal();
+                        });
+                        TrialJournalUiArt.Label("Label", tabImg.transform, 14f, 0f, 242f, 62f,
+                            item.Title, 19f,
+                            isCurrent ? TrialJournalUiArt.ButtonCream : TrialJournalUiArt.Jade,
+                            bold: isCurrent, alignment: TextAlignmentOptions.Center);
+                    }
+                }
+
+                float bodyX = hasSidebar ? 356f : 72f;
+                float bodyW = hasSidebar ? 624f : 896f;
+                TrialJournalUiArt.Label("Title", card.transform, bodyX, 148f, bodyW, 42f,
+                    $"《{_readingCommentary.Title}》", 26f, TrialJournalUiArt.Jade, bold: true,
                     alignment: TextAlignmentOptions.Center);
-                TrialJournalUiArt.BorderedBox("Divider", card.transform, 80f, 124f, 880f, 1.5f,
-                    TrialJournalUiArt.GoldSoft, TrialJournalUiArt.GoldSoft, 0.5f);
-                TrialJournalUiArt.Label("Body", card.transform, 72f, 152f, 896f, 368f,
-                    _readingCommentary.Body, 22f, TrialJournalUiArt.Ink, bold: false, wrap: true,
+                TrialJournalUiArt.Label("Body", card.transform, bodyX, 206f, bodyW, 316f,
+                    _readingCommentary.Body, 21f, TrialJournalUiArt.Ink, bold: false, wrap: true,
                     alignment: TextAlignmentOptions.TopLeft);
                 TrialJournalUiArt.SpriteButton("CloseCommentary", card.transform,
-                    400f, 544f, 240f, 58f, "收起卷册", 20f, primary: true, interactable: true,
+                    hasSidebar ? 695f : 402f, 537f, 236f, 56f, "收起卷册", 21f, primary: false, interactable: true,
                     onClick: () => { _readingCommentary = null; HideModals(); });
             }
         }
@@ -1033,28 +1228,26 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         {
             if (_selectedArtifactItemId == 0u || _lastValidSnapshot?.RedeemableArtifacts == null) return;
             string name = $"法宝#{_selectedArtifactItemId}";
+            uint effectId = 0u;
             for (int i = 0; i < _lastValidSnapshot.RedeemableArtifacts.Count; i++)
             {
                 var opt = _lastValidSnapshot.RedeemableArtifacts[i];
                 if (opt != null && opt.ItemConfigId == _selectedArtifactItemId)
                 {
                     name = opt.Name;
+                    effectId = opt.ArtifactEffectId;
                     break;
                 }
             }
             _readingCommentary = null;
             _pendingRedeemItemId = _selectedArtifactItemId;
+            _pendingRedeemEffectId = effectId;
             _pendingRedeemName = name;
             RenderModal();
         }
 
-        private void HandleGrandmasterCta(global::TrialJournalMilestoneView gm, TrialJournalUiView view)
+        private void HandleGrandmasterPrimary(global::TrialJournalMilestoneView gm, TrialJournalUiView view)
         {
-            if (gm != null && gm.Claimed && !string.IsNullOrWhiteSpace(gm.CommentaryTitle))
-            {
-                OpenCommentary(new TrialJournalCommentary(gm.MilestoneId, gm.CommentaryKey, gm.CommentaryTitle, gm.CommentaryBody));
-                return;
-            }
             if (gm != null && gm.Claimable && view.OnlineWriteEnabled)
             {
                 ClaimMilestoneRequested?.Invoke(gm.MilestoneId);

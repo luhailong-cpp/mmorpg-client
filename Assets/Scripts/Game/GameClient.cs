@@ -5,6 +5,7 @@ using Google.Protobuf;
 using MmorpgClient.Game.Attribute;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.FestivalBeast;
+using MmorpgClient.Game.Jianghu;
 using MmorpgClient.Game.Pet;
 using MmorpgClient.Game.PetFlip;
 using MmorpgClient.Game.PlayerFeatures;
@@ -198,6 +199,9 @@ namespace MmorpgClient.Game
 
         /// <summary>青云游历手记网络层（RPC 526–529，走大厅 gate -> scene 路由）。</summary>
         public TravelPassClient TravelPass { get; }
+
+        /// <summary>江湖恩怨与天墉生死状一期网络层（RPC 547–557，走大厅 gate 路由）。</summary>
+        public JianghuClient Jianghu { get; }
 
         /// <summary>瑞兽迎春限时活动非视觉数据与恢复适配层（RPC 476–478，走大厅 gate -> scene 路由）。</summary>
         public FestivalBeastClient FestivalBeast { get; }
@@ -441,6 +445,13 @@ namespace MmorpgClient.Game
             {
                 if (InGame && IsGateReady) Features?.RequestActivities();
             };
+            Jianghu = JianghuClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
+                () => Time.realtimeSinceStartup);
+            Jianghu.BagReceived += bag =>
+            {
+                if (bag != null && !Features.TryApplyExternalCharacterBag(bag) && InGame && IsGateReady)
+                    Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
+            };
             FestivalBeast = FestivalBeastClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
                 () => (long)(Time.realtimeSinceStartup * 1000f));
             Battle.OnBattleStart += start => FestivalBeast.HandleBattleState(start?.State);
@@ -450,6 +461,7 @@ namespace MmorpgClient.Game
                 TrialJournal.HandleBattleSettled();
                 Season.HandleBattleSettled();
                 TravelPass.HandleBattleSettled();
+                Jianghu.HandleBattleSettled();
                 FestivalBeast.HandleBattleSettled(end);
                 Features?.RequestEquipmentMaterialReward();
             };
@@ -460,7 +472,10 @@ namespace MmorpgClient.Game
                 if (result != null && result.FestivalActivityInstanceId != 0)
                     FestivalBeast.HandleRecoveredBattleResult(result);
                 if (result != null)
+                {
                     TravelPass.HandleBattleSettled();
+                    Jianghu.HandleBattleSettled();
+                }
             };
             Battle.OnBattleEndWithoutContext += (end, notified) => BattleResults.HandleEndWithoutContext(end?.BattleId ?? 0, notified);
             Battle.RegionProbe = new RegionProbeClient(battleRoute, () => ClientTransport.Create(_codec), ClientTransport.ConnectRunner);
@@ -507,6 +522,18 @@ namespace MmorpgClient.Game
                 if (InGame && IsGateReady) Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
             };
             SkillCraft.BookUnsealed += _ =>
+            {
+                if (InGame && IsGateReady) Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
+            };
+            SkillCraft.ScrollMilestoneClaimed += _ =>
+            {
+                if (InGame && IsGateReady) Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
+            };
+            SkillCraft.BooksBatchDismantled += _ =>
+            {
+                if (InGame && IsGateReady) Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
+            };
+            SkillCraft.WantedOrderFulfilled += _ =>
             {
                 if (InGame && IsGateReady) Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
             };
@@ -629,6 +656,11 @@ namespace MmorpgClient.Game
             {
                 TravelPass.InBattle = inBattleOrSpectate;
                 TravelPass.Tick();
+            }
+            if (Jianghu != null)
+            {
+                Jianghu.InBattle = inBattleOrSpectate;
+                Jianghu.Tick();
             }
             if (InGame) Features?.TickEquipmentCraftRecovery();
             if (InGame) SkillCraft?.TickRecovery();
@@ -2631,6 +2663,7 @@ namespace MmorpgClient.Game
                 Season?.HandleSceneEntered();
                 SpiritShop?.HandleSceneEntered();
                 TravelPass?.HandleSceneEntered();
+                Jianghu?.HandleSceneEntered();
                 OnSceneEntered?.Invoke(ev.SceneInfo);
             });
 

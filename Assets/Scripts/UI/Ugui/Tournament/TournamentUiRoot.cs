@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using MmorpgClient.Game;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Guild;
+using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.Game.Team;
 using MmorpgClient.Game.Tournament;
 using MmorpgClient.UI.Ugui.Battle;
@@ -40,6 +41,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
 
         private GameClient _game;
         private TournamentClient _client;
+        private PlayerFeaturesClient _featuresObserved;
         private TeamInvitationDirectory _inviteDirectory;
         private GuildClient _guildObserved;
         private ulong _playerId;
@@ -50,6 +52,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
         private bool _autoRefreshArmed;
         private float _nextCountdownTickAt;
         private string _lastHudLabel = string.Empty;
+        private BattlePhase _observedBattlePhase = BattlePhase.None;
 
         private Canvas _canvas;
         private RectTransform _hud;
@@ -94,6 +97,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             _spectateCheerOverlay?.ResetAndHide();
             _championStage?.Dispose();
             UnbindClient();
+            UnbindFeatures();
         }
 
         private void OnDestroy()
@@ -103,6 +107,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             _spectateCheerOverlay?.ResetAndHide();
             _championStage?.Dispose();
             UnbindClient();
+            UnbindFeatures();
             UnbindInviteSources();
             if (Instance == this) Instance = null;
         }
@@ -147,7 +152,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             _backdrop.gameObject.SetActive(false);
 
             _spectateCheerOverlay = new TournamentSpectateCheerOverlay(transform);
-            _championStage = new TournamentChampionStageController(_hud, OpenSaluteModalFromCity);
+            _championStage = new TournamentChampionStageController();
         }
 
         private void WireWindowEvents()
@@ -181,11 +186,18 @@ namespace MmorpgClient.UI.Ugui.Tournament
             _window.StartMatchSubmitted += (matchId, lineup) => SubmitMutation(() => _client?.StartMatch(matchId, lineup) == true);
             _window.CheerSquadClicked += sid => SubmitMutation(() => _client?.CheerSquad(sid) == true);
             _window.ClaimRewardClicked += sid => SubmitMutation(() => _client?.ClaimReward(sid) == true);
-            _window.SaluteChampionConfirmed += sid => SubmitMutation(() => _client?.SaluteChampion(sid) == true);
             _window.WatchBattleClicked += HandleWatchBattle;
             _window.WatchReplayClicked += HandleWatchReplay;
             _window.OpenMailClicked += HandleOpenMail;
             _window.InviteSourceRequested += HandleInviteSourceRequested;
+            _window.EquipLoadoutSwitchRequested += schemeId =>
+                _featuresObserved?.SwitchEquipLoadout(schemeId, applyLinkedSchemes: true);
+            _window.EquipLoadoutRefreshRequested += () => _featuresObserved?.RequestEquipLoadouts();
+            _window.EquipLoadoutLockedClicked += schemeId =>
+                _window?.ShowToast(
+                    EquipLoadoutModel.FormatLockedPreBattleHint(schemeId, _featuresObserved?.EquipLoadouts),
+                    isError: false,
+                    Time.realtimeSinceStartup);
         }
 
         private void SubmitMutation(System.Func<bool> action)
@@ -206,10 +218,18 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 _game = game;
                 RebindInviteDirectory(game);
                 BindClient(game?.Tournament ?? TournamentClient.Instance);
+                BindFeatures(game?.Features);
             }
-            else if (!ReferenceEquals(_client, game?.Tournament ?? TournamentClient.Instance))
+            else
             {
-                BindClient(game?.Tournament ?? TournamentClient.Instance);
+                if (!ReferenceEquals(_client, game?.Tournament ?? TournamentClient.Instance))
+                {
+                    BindClient(game?.Tournament ?? TournamentClient.Instance);
+                }
+                if (!ReferenceEquals(_featuresObserved, game?.Features))
+                {
+                    BindFeatures(game?.Features);
+                }
             }
             SyncGuildObserver();
             if (IsWindowVisible && _model.ActiveModal == TournamentModalKind.InviteMember)
@@ -252,6 +272,12 @@ namespace MmorpgClient.UI.Ugui.Tournament
 
             if (IsWindowVisible)
             {
+                var currentBattlePhase = _game?.Battle?.Phase ?? BattlePhase.None;
+                if (currentBattlePhase != _observedBattlePhase)
+                {
+                    _observedBattlePhase = currentBattlePhase;
+                    RenderWindow();
+                }
                 if (nowTime >= _nextCountdownTickAt)
                 {
                     _nextCountdownTickAt = nowTime + 0.5f;
@@ -259,19 +285,10 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 }
                 HandleEscapeKey();
             }
-        }
-
-        public void OpenSaluteModalFromCity(uint seasonId = 0u)
-        {
-            if (!_available || _window == null) return;
-            BindClient(_game?.Tournament ?? TournamentClient.Instance);
-            CityPanelRegistry.HideOthers(this);
-            _model.ActiveTab = TournamentTab.Hall;
-            _model.OpenSaluteModal(seasonId);
-            _backdrop.gameObject.SetActive(true);
-            _window.Show();
-            RenderWindow();
-            _client?.RequestOverview(includeHistory: true);
+            else
+            {
+                _observedBattlePhase = _game?.Battle?.Phase ?? BattlePhase.None;
+            }
         }
 
         public void Toggle()
@@ -284,6 +301,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
         {
             if (!_available || _window == null) return;
             BindClient(_game?.Tournament ?? TournamentClient.Instance);
+            BindFeatures(_game?.Features);
+            PreBattleLoadoutQuickBar.EnsureRequested(_featuresObserved);
             CityPanelRegistry.HideOthers(this);
             _model.ActiveTab = tab;
             _model.CloseModal();
@@ -447,6 +466,9 @@ namespace MmorpgClient.UI.Ugui.Tournament
             {
                 BuildInviteCandidatesSnapshot(out inviteCandidates, out inviteStatus);
             }
+            var loadoutBar = PreBattleLoadoutQuickBar.BuildState(
+                _featuresObserved,
+                _game?.Battle?.Phase ?? BattlePhase.None);
             _window.Render(
                 _client?.Overview,
                 _client?.Standings,
@@ -457,7 +479,40 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 inviteCandidates,
                 inviteStatus,
                 _client?.PredictionBoard,
-                _client?.Highlights);
+                _client?.Highlights,
+                loadoutBar);
+        }
+
+        private void BindFeatures(PlayerFeaturesClient next)
+        {
+            if (ReferenceEquals(_featuresObserved, next)) return;
+            UnbindFeatures();
+            _featuresObserved = next;
+            if (_featuresObserved != null)
+            {
+                _featuresObserved.OnChanged += HandleFeaturesChanged;
+                _featuresObserved.OnEquipLoadoutSwitched += HandleEquipLoadoutSwitched;
+            }
+        }
+
+        private void UnbindFeatures()
+        {
+            if (_featuresObserved == null) return;
+            _featuresObserved.OnChanged -= HandleFeaturesChanged;
+            _featuresObserved.OnEquipLoadoutSwitched -= HandleEquipLoadoutSwitched;
+            _featuresObserved = null;
+        }
+
+        private void HandleFeaturesChanged()
+        {
+            if (IsWindowVisible) RenderWindow();
+        }
+
+        private void HandleEquipLoadoutSwitched(SwitchEquipLoadoutResponse response)
+        {
+            if (!IsWindowVisible) return;
+            _window?.ShowToast(EquipLoadoutModel.BuildSwitchToast(response), isError: false, Time.realtimeSinceStartup);
+            RenderWindow();
         }
 
         private void RebindInviteDirectory(GameClient game)

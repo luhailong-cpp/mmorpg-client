@@ -28,7 +28,7 @@ public static partial class PlayerTrialJournalReflection {
           "X2pvdXJuYWxfY29tcC5wcm90byKaAQoUVHJpYWxKb3VybmFsU2VhbFZpZXcS",
           "DwoHc2VhbF9pZBgBIAEoDRIWCg5zZWFsX3Nsb3Rfa2luZBgCIAEoDRIWCg5j",
           "b25kaXRpb25fdHlwZRgDIAEoDRIXCg9jb25kaXRpb25fcGFyYW0YBCABKA0S",
-          "DQoFdGl0bGUYBSABKAkSDAoEZGVzYxgGIAEoCRILCgNsaXQYByABKAgizQQK",
+          "DQoFdGl0bGUYBSABKAkSDAoEZGVzYxgGIAEoCRILCgNsaXQYByABKAgiyAUK",
           "FVRyaWFsSm91cm5hbEVudHJ5VmlldxIQCghlbnRyeV9pZBgBIAEoDRISCgpj",
           "aGFwdGVyX2lkGAIgASgNEhEKCXNlYXNvbl9pZBgDIAEoDRITCgtzb3VyY2Vf",
           "a2luZBgEIAEoDRISCgpkaWZmaWN1bHR5GAUgASgNEhMKC3ZhcmlhbnRfa2V5",
@@ -42,68 +42,71 @@ public static partial class PlayerTrialJournalReflection {
           "X2Jlc3QYEyABKAsyFy5UcmlhbEpvdXJuYWxDb29wUmVjb3JkEh4KFmhhc19s",
           "ZWdhY3lfcmVjb3JkX29ubHkYFCABKAgSEQoJY2FuX2VudGVyGBUgASgIEhwK",
           "FGVudGVyX2Jsb2NrZWRfcmVhc29uGBYgASgJEhMKC2p1bXBfdGFyZ2V0GBcg",
-          "ASgJIrEBChdUcmlhbEpvdXJuYWxDaGFwdGVyVmlldxISCgpjaGFwdGVyX2lk",
-          "GAEgASgNEhEKCXNlYXNvbl9pZBgCIAEoDRIUCgxjaGFwdGVyX25hbWUYAyAB",
-          "KAkSFgoObGl0X3NlYWxfY291bnQYBCABKA0SGAoQdG90YWxfc2VhbF9jb3Vu",
-          "dBgFIAEoDRInCgdlbnRyaWVzGAYgAygLMhYuVHJpYWxKb3VybmFsRW50cnlW",
-          "aWV3IscEChlUcmlhbEpvdXJuYWxNaWxlc3RvbmVWaWV3EhQKDG1pbGVzdG9u",
-          "ZV9pZBgBIAEoDRIYChBzY29wZV9jaGFwdGVyX2lkGAIgASgNEhEKCXNlYXNv",
-          "bl9pZBgDIAEoDRIWCg5yZXF1aXJlZF9zZWFscxgEIAEoDRIVCg1jdXJyZW50",
-          "X3NlYWxzGAUgASgNEg0KBXRpdGxlGAYgASgJEgwKBGRlc2MYByABKAkSGAoQ",
-          "Ym91bmRfc2FuZF9jb3VudBgIIAEoDRIkChxib3VuZF9hcnRpZmFjdF92b3Vj",
-          "aGVyX2NvdW50GAkgASgNEhEKCWJhZGdlX2tleRgKIAEoCRISCgpiYWRnZV9u",
-          "YW1lGAsgASgJEhYKDmNvbW1lbnRhcnlfa2V5GAwgASgJEhgKEGNvbW1lbnRh",
-          "cnlfdGl0bGUYDSABKAkSFwoPY29tbWVudGFyeV9ib2R5GA4gASgJEhsKE2dy",
-          "YW50X2FwcGVhcmFuY2VfaWQYDyABKAkSHQoVZ3JhbnRfYXBwZWFyYW5jZV9u",
-          "YW1lGBAgASgJEg8KB3JlYWNoZWQYESABKAgSDwoHY2xhaW1lZBgSIAEoCBIR",
-          "CgljbGFpbWFibGUYEyABKAgSHQoVZ3JhbnRfcGV0X2Nvc21ldGljX2lkGBQg",
-          "ASgNEh8KF2dyYW50X3BldF9jb3NtZXRpY19uYW1lGBUgASgJEhoKEmdyYW50",
-          "X3NraWxsX3ZmeF9pZBgWIAEoDRIcChRncmFudF9za2lsbF92ZnhfbmFtZRgX",
-          "IAEoCSKdAQodVHJpYWxSZWRlZW1hYmxlQXJ0aWZhY3RPcHRpb24SFgoOaXRl",
-          "bV9jb25maWdfaWQYASABKA0SGgoSYXJ0aWZhY3RfZWZmZWN0X2lkGAIgASgN",
-          "EgwKBG5hbWUYAyABKAkSEwoLZGVzY3JpcHRpb24YBCABKAkSEAoIaWNvbl9r",
-          "ZXkYBSABKAkSEwoLb3duZWRfY291bnQYBiABKA0i3wMKFFRyaWFsSm91cm5h",
-          "bFNuYXBzaG90EhEKCWF2YWlsYWJsZRgBIAEoCBIaChJ1bmF2YWlsYWJsZV9y",
-          "ZWFzb24YAiABKAkSFgoOc3RhdGVfcmV2aXNpb24YAyABKAQSFQoNc2VydmVy",
-          "X25vd19tcxgEIAEoBBIhChl0b3RhbF9wZXJtYW5lbnRfbGl0X3NlYWxzGAUg",
-          "ASgNEh0KFXRvdGFsX3Blcm1hbmVudF9zZWFscxgGIAEoDRIXCg92b3VjaGVy",
-          "X2JhbGFuY2UYByABKAQSGgoSYm91bmRfc2FuZF9iYWxhbmNlGAggASgEEhMK",
-          "C2Nhbl9vcGVyYXRlGAkgASgIEiEKGWFjdGlvbl91bmF2YWlsYWJsZV9yZWFz",
-          "b24YCiABKAkSKgoIY2hhcHRlcnMYCyADKAsyGC5UcmlhbEpvdXJuYWxDaGFw",
-          "dGVyVmlldxIuCgptaWxlc3RvbmVzGAwgAygLMhouVHJpYWxKb3VybmFsTWls",
-          "ZXN0b25lVmlldxI8ChRyZWRlZW1hYmxlX2FydGlmYWN0cxgNIAMoCzIeLlRy",
-          "aWFsUmVkZWVtYWJsZUFydGlmYWN0T3B0aW9uEiAKGGhhcmRfYm9zc190cmlh",
-          "bF91bmxvY2tlZBgOIAEoCCIYChZHZXRUcmlhbEpvdXJuYWxSZXF1ZXN0ImoK",
-          "F0dldFRyaWFsSm91cm5hbFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASAB",
-          "KAsyDy5UaXBJbmZvTWVzc2FnZRInCghzbmFwc2hvdBgCIAEoCzIVLlRyaWFs",
-          "Sm91cm5hbFNuYXBzaG90IlQKIUNsYWltVHJpYWxKb3VybmFsTWlsZXN0b25l",
-          "UmVxdWVzdBIZChFjbGllbnRfcmVxdWVzdF9pZBgBIAEoBBIUCgxtaWxlc3Rv",
-          "bmVfaWQYAiABKA0ioAIKIkNsYWltVHJpYWxKb3VybmFsTWlsZXN0b25lUmVz",
-          "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
-          "EicKCHNuYXBzaG90GAIgASgLMhUuVHJpYWxKb3VybmFsU25hcHNob3QSEAoI",
-          "cmVwbGF5ZWQYAyABKAgSGgoSZ3JhbnRlZF9zYW5kX2NvdW50GAQgASgNEh0K",
-          "FWdyYW50ZWRfdm91Y2hlcl9jb3VudBgFIAEoDRIdChVncmFudGVkX2FwcGVh",
-          "cmFuY2VfaWQYBiABKAkSHwoXZ3JhbnRlZF9wZXRfY29zbWV0aWNfaWQYByAB",
-          "KA0SHAoUZ3JhbnRlZF9za2lsbF92ZnhfaWQYCCABKA0iXwohUmVkZWVtQm91",
-          "bmRBcnRpZmFjdFZvdWNoZXJSZXF1ZXN0EhkKEWNsaWVudF9yZXF1ZXN0X2lk",
-          "GAEgASgEEh8KF2FydGlmYWN0X2l0ZW1fY29uZmlnX2lkGAIgASgNIsEBCiJS",
-          "ZWRlZW1Cb3VuZEFydGlmYWN0Vm91Y2hlclJlc3BvbnNlEiYKDWVycm9yX21l",
-          "c3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRInCghzbmFwc2hvdBgCIAEo",
-          "CzIVLlRyaWFsSm91cm5hbFNuYXBzaG90EhAKCHJlcGxheWVkGAMgASgIEhcK",
-          "D2NyZWF0ZWRfaXRlbV9pZBgEIAEoBBIfChdhcnRpZmFjdF9pdGVtX2NvbmZp",
-          "Z19pZBgFIAEoDTK/AgodU2NlbmVUcmlhbEpvdXJuYWxDbGllbnRQbGF5ZXIS",
-          "RAoPR2V0VHJpYWxKb3VybmFsEhcuR2V0VHJpYWxKb3VybmFsUmVxdWVzdBoY",
-          "LkdldFRyaWFsSm91cm5hbFJlc3BvbnNlEmUKGkNsYWltVHJpYWxKb3VybmFs",
-          "TWlsZXN0b25lEiIuQ2xhaW1UcmlhbEpvdXJuYWxNaWxlc3RvbmVSZXF1ZXN0",
-          "GiMuQ2xhaW1UcmlhbEpvdXJuYWxNaWxlc3RvbmVSZXNwb25zZRJlChpSZWRl",
-          "ZW1Cb3VuZEFydGlmYWN0Vm91Y2hlchIiLlJlZGVlbUJvdW5kQXJ0aWZhY3RW",
-          "b3VjaGVyUmVxdWVzdBojLlJlZGVlbUJvdW5kQXJ0aWZhY3RWb3VjaGVyUmVz",
-          "cG9uc2UaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
+          "ASgJEhUKDXZvd19zdXBwb3J0ZWQYGCABKAgSFQoNYmVzdF92b3dfbWFzaxgZ",
+          "IAEoDRIWCg5iZXN0X3Zvd19jb3VudBgaIAEoDRIXCg9iZXN0X3Zvd19yb3Vu",
+          "ZHMYGyABKA0SGgoSYmVzdF92b3dfYmF0dGxlX2lkGBwgASgEIrEBChdUcmlh",
+          "bEpvdXJuYWxDaGFwdGVyVmlldxISCgpjaGFwdGVyX2lkGAEgASgNEhEKCXNl",
+          "YXNvbl9pZBgCIAEoDRIUCgxjaGFwdGVyX25hbWUYAyABKAkSFgoObGl0X3Nl",
+          "YWxfY291bnQYBCABKA0SGAoQdG90YWxfc2VhbF9jb3VudBgFIAEoDRInCgdl",
+          "bnRyaWVzGAYgAygLMhYuVHJpYWxKb3VybmFsRW50cnlWaWV3IscEChlUcmlh",
+          "bEpvdXJuYWxNaWxlc3RvbmVWaWV3EhQKDG1pbGVzdG9uZV9pZBgBIAEoDRIY",
+          "ChBzY29wZV9jaGFwdGVyX2lkGAIgASgNEhEKCXNlYXNvbl9pZBgDIAEoDRIW",
+          "Cg5yZXF1aXJlZF9zZWFscxgEIAEoDRIVCg1jdXJyZW50X3NlYWxzGAUgASgN",
+          "Eg0KBXRpdGxlGAYgASgJEgwKBGRlc2MYByABKAkSGAoQYm91bmRfc2FuZF9j",
+          "b3VudBgIIAEoDRIkChxib3VuZF9hcnRpZmFjdF92b3VjaGVyX2NvdW50GAkg",
+          "ASgNEhEKCWJhZGdlX2tleRgKIAEoCRISCgpiYWRnZV9uYW1lGAsgASgJEhYK",
+          "DmNvbW1lbnRhcnlfa2V5GAwgASgJEhgKEGNvbW1lbnRhcnlfdGl0bGUYDSAB",
+          "KAkSFwoPY29tbWVudGFyeV9ib2R5GA4gASgJEhsKE2dyYW50X2FwcGVhcmFu",
+          "Y2VfaWQYDyABKAkSHQoVZ3JhbnRfYXBwZWFyYW5jZV9uYW1lGBAgASgJEg8K",
+          "B3JlYWNoZWQYESABKAgSDwoHY2xhaW1lZBgSIAEoCBIRCgljbGFpbWFibGUY",
+          "EyABKAgSHQoVZ3JhbnRfcGV0X2Nvc21ldGljX2lkGBQgASgNEh8KF2dyYW50",
+          "X3BldF9jb3NtZXRpY19uYW1lGBUgASgJEhoKEmdyYW50X3NraWxsX3ZmeF9p",
+          "ZBgWIAEoDRIcChRncmFudF9za2lsbF92ZnhfbmFtZRgXIAEoCSKdAQodVHJp",
+          "YWxSZWRlZW1hYmxlQXJ0aWZhY3RPcHRpb24SFgoOaXRlbV9jb25maWdfaWQY",
+          "ASABKA0SGgoSYXJ0aWZhY3RfZWZmZWN0X2lkGAIgASgNEgwKBG5hbWUYAyAB",
+          "KAkSEwoLZGVzY3JpcHRpb24YBCABKAkSEAoIaWNvbl9rZXkYBSABKAkSEwoL",
+          "b3duZWRfY291bnQYBiABKA0i3wMKFFRyaWFsSm91cm5hbFNuYXBzaG90EhEK",
+          "CWF2YWlsYWJsZRgBIAEoCBIaChJ1bmF2YWlsYWJsZV9yZWFzb24YAiABKAkS",
+          "FgoOc3RhdGVfcmV2aXNpb24YAyABKAQSFQoNc2VydmVyX25vd19tcxgEIAEo",
+          "BBIhChl0b3RhbF9wZXJtYW5lbnRfbGl0X3NlYWxzGAUgASgNEh0KFXRvdGFs",
+          "X3Blcm1hbmVudF9zZWFscxgGIAEoDRIXCg92b3VjaGVyX2JhbGFuY2UYByAB",
+          "KAQSGgoSYm91bmRfc2FuZF9iYWxhbmNlGAggASgEEhMKC2Nhbl9vcGVyYXRl",
+          "GAkgASgIEiEKGWFjdGlvbl91bmF2YWlsYWJsZV9yZWFzb24YCiABKAkSKgoI",
+          "Y2hhcHRlcnMYCyADKAsyGC5UcmlhbEpvdXJuYWxDaGFwdGVyVmlldxIuCgpt",
+          "aWxlc3RvbmVzGAwgAygLMhouVHJpYWxKb3VybmFsTWlsZXN0b25lVmlldxI8",
+          "ChRyZWRlZW1hYmxlX2FydGlmYWN0cxgNIAMoCzIeLlRyaWFsUmVkZWVtYWJs",
+          "ZUFydGlmYWN0T3B0aW9uEiAKGGhhcmRfYm9zc190cmlhbF91bmxvY2tlZBgO",
+          "IAEoCCIYChZHZXRUcmlhbEpvdXJuYWxSZXF1ZXN0ImoKF0dldFRyaWFsSm91",
+          "cm5hbFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
+          "TWVzc2FnZRInCghzbmFwc2hvdBgCIAEoCzIVLlRyaWFsSm91cm5hbFNuYXBz",
+          "aG90IlQKIUNsYWltVHJpYWxKb3VybmFsTWlsZXN0b25lUmVxdWVzdBIZChFj",
+          "bGllbnRfcmVxdWVzdF9pZBgBIAEoBBIUCgxtaWxlc3RvbmVfaWQYAiABKA0i",
+          "oAIKIkNsYWltVHJpYWxKb3VybmFsTWlsZXN0b25lUmVzcG9uc2USJgoNZXJy",
+          "b3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEicKCHNuYXBzaG90",
+          "GAIgASgLMhUuVHJpYWxKb3VybmFsU25hcHNob3QSEAoIcmVwbGF5ZWQYAyAB",
+          "KAgSGgoSZ3JhbnRlZF9zYW5kX2NvdW50GAQgASgNEh0KFWdyYW50ZWRfdm91",
+          "Y2hlcl9jb3VudBgFIAEoDRIdChVncmFudGVkX2FwcGVhcmFuY2VfaWQYBiAB",
+          "KAkSHwoXZ3JhbnRlZF9wZXRfY29zbWV0aWNfaWQYByABKA0SHAoUZ3JhbnRl",
+          "ZF9za2lsbF92ZnhfaWQYCCABKA0iXwohUmVkZWVtQm91bmRBcnRpZmFjdFZv",
+          "dWNoZXJSZXF1ZXN0EhkKEWNsaWVudF9yZXF1ZXN0X2lkGAEgASgEEh8KF2Fy",
+          "dGlmYWN0X2l0ZW1fY29uZmlnX2lkGAIgASgNIsEBCiJSZWRlZW1Cb3VuZEFy",
+          "dGlmYWN0Vm91Y2hlclJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
+          "Dy5UaXBJbmZvTWVzc2FnZRInCghzbmFwc2hvdBgCIAEoCzIVLlRyaWFsSm91",
+          "cm5hbFNuYXBzaG90EhAKCHJlcGxheWVkGAMgASgIEhcKD2NyZWF0ZWRfaXRl",
+          "bV9pZBgEIAEoBBIfChdhcnRpZmFjdF9pdGVtX2NvbmZpZ19pZBgFIAEoDTK/",
+          "AgodU2NlbmVUcmlhbEpvdXJuYWxDbGllbnRQbGF5ZXISRAoPR2V0VHJpYWxK",
+          "b3VybmFsEhcuR2V0VHJpYWxKb3VybmFsUmVxdWVzdBoYLkdldFRyaWFsSm91",
+          "cm5hbFJlc3BvbnNlEmUKGkNsYWltVHJpYWxKb3VybmFsTWlsZXN0b25lEiIu",
+          "Q2xhaW1UcmlhbEpvdXJuYWxNaWxlc3RvbmVSZXF1ZXN0GiMuQ2xhaW1Ucmlh",
+          "bEpvdXJuYWxNaWxlc3RvbmVSZXNwb25zZRJlChpSZWRlZW1Cb3VuZEFydGlm",
+          "YWN0Vm91Y2hlchIiLlJlZGVlbUJvdW5kQXJ0aWZhY3RWb3VjaGVyUmVxdWVz",
+          "dBojLlJlZGVlbUJvdW5kQXJ0aWZhY3RWb3VjaGVyUmVzcG9uc2UaCoCowwEB",
+          "iKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::PlayerTrialJournalCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalSealView), global::TrialJournalSealView.Parser, new[]{ "SealId", "SealSlotKind", "ConditionType", "ConditionParam", "Title", "Desc", "Lit" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalEntryView), global::TrialJournalEntryView.Parser, new[]{ "EntryId", "ChapterId", "SeasonId", "SourceKind", "Difficulty", "VariantKey", "RuleVersion", "RuleVersionName", "SortOrder", "DisplayName", "IconKey", "Desc", "Seals", "LitSealCount", "TotalSealCount", "SoloRecorded", "SoloBest", "CoopRecorded", "CoopBest", "HasLegacyRecordOnly", "CanEnter", "EnterBlockedReason", "JumpTarget" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalEntryView), global::TrialJournalEntryView.Parser, new[]{ "EntryId", "ChapterId", "SeasonId", "SourceKind", "Difficulty", "VariantKey", "RuleVersion", "RuleVersionName", "SortOrder", "DisplayName", "IconKey", "Desc", "Seals", "LitSealCount", "TotalSealCount", "SoloRecorded", "SoloBest", "CoopRecorded", "CoopBest", "HasLegacyRecordOnly", "CanEnter", "EnterBlockedReason", "JumpTarget", "VowSupported", "BestVowMask", "BestVowCount", "BestVowRounds", "BestVowBattleId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalChapterView), global::TrialJournalChapterView.Parser, new[]{ "ChapterId", "SeasonId", "ChapterName", "LitSealCount", "TotalSealCount", "Entries" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalMilestoneView), global::TrialJournalMilestoneView.Parser, new[]{ "MilestoneId", "ScopeChapterId", "SeasonId", "RequiredSeals", "CurrentSeals", "Title", "Desc", "BoundSandCount", "BoundArtifactVoucherCount", "BadgeKey", "BadgeName", "CommentaryKey", "CommentaryTitle", "CommentaryBody", "GrantAppearanceId", "GrantAppearanceName", "Reached", "Claimed", "Claimable", "GrantPetCosmeticId", "GrantPetCosmeticName", "GrantSkillVfxId", "GrantSkillVfxName" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialRedeemableArtifactOption), global::TrialRedeemableArtifactOption.Parser, new[]{ "ItemConfigId", "ArtifactEffectId", "Name", "Description", "IconKey", "OwnedCount" }, null, null, null, null),
@@ -601,6 +604,11 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
     canEnter_ = other.canEnter_;
     enterBlockedReason_ = other.enterBlockedReason_;
     jumpTarget_ = other.jumpTarget_;
+    vowSupported_ = other.vowSupported_;
+    bestVowMask_ = other.bestVowMask_;
+    bestVowCount_ = other.bestVowCount_;
+    bestVowRounds_ = other.bestVowRounds_;
+    bestVowBattleId_ = other.bestVowBattleId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -888,6 +896,81 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
     }
   }
 
+  /// <summary>Field number for the "vow_supported" field.</summary>
+  public const int VowSupportedFieldNumber = 24;
+  private bool vowSupported_;
+  /// <summary>
+  /// V3：本关卡格是否支持勾选试炼誓约（卷一/卷二/卷四 PVE 首领为 true）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool VowSupported {
+    get { return vowSupported_; }
+    set {
+      vowSupported_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "best_vow_mask" field.</summary>
+  public const int BestVowMaskFieldNumber = 25;
+  private uint bestVowMask_;
+  /// <summary>
+  /// V3：最高誓约纪录位掩码
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BestVowMask {
+    get { return bestVowMask_; }
+    set {
+      bestVowMask_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "best_vow_count" field.</summary>
+  public const int BestVowCountFieldNumber = 26;
+  private uint bestVowCount_;
+  /// <summary>
+  /// V3：最高达成誓约条数（0..4）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BestVowCount {
+    get { return bestVowCount_; }
+    set {
+      bestVowCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "best_vow_rounds" field.</summary>
+  public const int BestVowRoundsFieldNumber = 27;
+  private uint bestVowRounds_;
+  /// <summary>
+  /// V3：最高誓约纪录回合数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BestVowRounds {
+    get { return bestVowRounds_; }
+    set {
+      bestVowRounds_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "best_vow_battle_id" field.</summary>
+  public const int BestVowBattleIdFieldNumber = 28;
+  private ulong bestVowBattleId_;
+  /// <summary>
+  /// V3：最高誓约纪录权威 battle_id
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong BestVowBattleId {
+    get { return bestVowBattleId_; }
+    set {
+      bestVowBattleId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -926,6 +1009,11 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
     if (CanEnter != other.CanEnter) return false;
     if (EnterBlockedReason != other.EnterBlockedReason) return false;
     if (JumpTarget != other.JumpTarget) return false;
+    if (VowSupported != other.VowSupported) return false;
+    if (BestVowMask != other.BestVowMask) return false;
+    if (BestVowCount != other.BestVowCount) return false;
+    if (BestVowRounds != other.BestVowRounds) return false;
+    if (BestVowBattleId != other.BestVowBattleId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -956,6 +1044,11 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
     if (CanEnter != false) hash ^= CanEnter.GetHashCode();
     if (EnterBlockedReason.Length != 0) hash ^= EnterBlockedReason.GetHashCode();
     if (JumpTarget.Length != 0) hash ^= JumpTarget.GetHashCode();
+    if (VowSupported != false) hash ^= VowSupported.GetHashCode();
+    if (BestVowMask != 0) hash ^= BestVowMask.GetHashCode();
+    if (BestVowCount != 0) hash ^= BestVowCount.GetHashCode();
+    if (BestVowRounds != 0) hash ^= BestVowRounds.GetHashCode();
+    if (BestVowBattleId != 0UL) hash ^= BestVowBattleId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1063,6 +1156,26 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
       output.WriteRawTag(186, 1);
       output.WriteString(JumpTarget);
     }
+    if (VowSupported != false) {
+      output.WriteRawTag(192, 1);
+      output.WriteBool(VowSupported);
+    }
+    if (BestVowMask != 0) {
+      output.WriteRawTag(200, 1);
+      output.WriteUInt32(BestVowMask);
+    }
+    if (BestVowCount != 0) {
+      output.WriteRawTag(208, 1);
+      output.WriteUInt32(BestVowCount);
+    }
+    if (BestVowRounds != 0) {
+      output.WriteRawTag(216, 1);
+      output.WriteUInt32(BestVowRounds);
+    }
+    if (BestVowBattleId != 0UL) {
+      output.WriteRawTag(224, 1);
+      output.WriteUInt64(BestVowBattleId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1162,6 +1275,26 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
       output.WriteRawTag(186, 1);
       output.WriteString(JumpTarget);
     }
+    if (VowSupported != false) {
+      output.WriteRawTag(192, 1);
+      output.WriteBool(VowSupported);
+    }
+    if (BestVowMask != 0) {
+      output.WriteRawTag(200, 1);
+      output.WriteUInt32(BestVowMask);
+    }
+    if (BestVowCount != 0) {
+      output.WriteRawTag(208, 1);
+      output.WriteUInt32(BestVowCount);
+    }
+    if (BestVowRounds != 0) {
+      output.WriteRawTag(216, 1);
+      output.WriteUInt32(BestVowRounds);
+    }
+    if (BestVowBattleId != 0UL) {
+      output.WriteRawTag(224, 1);
+      output.WriteUInt64(BestVowBattleId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1238,6 +1371,21 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
     }
     if (JumpTarget.Length != 0) {
       size += 2 + pb::CodedOutputStream.ComputeStringSize(JumpTarget);
+    }
+    if (VowSupported != false) {
+      size += 2 + 1;
+    }
+    if (BestVowMask != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(BestVowMask);
+    }
+    if (BestVowCount != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(BestVowCount);
+    }
+    if (BestVowRounds != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(BestVowRounds);
+    }
+    if (BestVowBattleId != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(BestVowBattleId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1323,6 +1471,21 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
     }
     if (other.JumpTarget.Length != 0) {
       JumpTarget = other.JumpTarget;
+    }
+    if (other.VowSupported != false) {
+      VowSupported = other.VowSupported;
+    }
+    if (other.BestVowMask != 0) {
+      BestVowMask = other.BestVowMask;
+    }
+    if (other.BestVowCount != 0) {
+      BestVowCount = other.BestVowCount;
+    }
+    if (other.BestVowRounds != 0) {
+      BestVowRounds = other.BestVowRounds;
+    }
+    if (other.BestVowBattleId != 0UL) {
+      BestVowBattleId = other.BestVowBattleId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1441,6 +1604,26 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
           JumpTarget = input.ReadString();
           break;
         }
+        case 192: {
+          VowSupported = input.ReadBool();
+          break;
+        }
+        case 200: {
+          BestVowMask = input.ReadUInt32();
+          break;
+        }
+        case 208: {
+          BestVowCount = input.ReadUInt32();
+          break;
+        }
+        case 216: {
+          BestVowRounds = input.ReadUInt32();
+          break;
+        }
+        case 224: {
+          BestVowBattleId = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -1556,6 +1739,26 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
         }
         case 186: {
           JumpTarget = input.ReadString();
+          break;
+        }
+        case 192: {
+          VowSupported = input.ReadBool();
+          break;
+        }
+        case 200: {
+          BestVowMask = input.ReadUInt32();
+          break;
+        }
+        case 208: {
+          BestVowCount = input.ReadUInt32();
+          break;
+        }
+        case 216: {
+          BestVowRounds = input.ReadUInt32();
+          break;
+        }
+        case 224: {
+          BestVowBattleId = input.ReadUInt64();
           break;
         }
       }

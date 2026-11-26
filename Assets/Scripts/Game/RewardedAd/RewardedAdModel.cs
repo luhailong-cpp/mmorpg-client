@@ -120,6 +120,7 @@ namespace MmorpgClient.Game.RewardedAd
     public static class RewardedAdModel
     {
         public const uint DefaultSlotId = 1u;
+        public const string VideoIconResourcePath = "UI/Icons/icon_rewarded_ad_video";
 
         // 严格中立合规文案：仅客观描述广告奖励规则，与抖音/微信/AdMob 合规细则对齐。
         public const string VideoBadgeText = "[广告]";

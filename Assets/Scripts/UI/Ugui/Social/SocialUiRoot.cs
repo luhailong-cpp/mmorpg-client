@@ -109,6 +109,35 @@ namespace MmorpgClient.UI.Ugui.Social
             Window.FocusComposer();
             return true;
         }
+        /// <summary>五行试炼志 V3：将约战帖标签填入世界频道草稿，发送仍须玩家确认。</summary>
+        public bool TryComposeTrialChallengeCard(string draft)
+        {
+            if(!HasView||string.IsNullOrWhiteSpace(draft))return false;
+            var game=AppBootstrap.Instance?.GameClient;
+            bool battleVisible=BattleUiRoot.Instance?.IsBattleLayerVisible??false;
+            // 同帧刚关闭战斗结算时 Update 尚未跑过，按实时会话与战斗层状态校准 _available。
+            if(!_available&&!battleVisible&&game!=null&&game.InGame&&game.IsGateReady
+                &&ReferenceEquals(_game,game)&&_player==game.PlayerId
+                &&ReferenceEquals(_connection,game.GateConnectionIdentity))
+            {
+                _available=true;
+                _hud.gameObject.SetActive(true);
+            }
+            if(!_available||Window==null||Client==null||State==null||game==null||!game.InGame||!game.IsGateReady
+                ||game.PlayerId==0||!ReferenceEquals(_game,game)||_player!=game.PlayerId
+                ||!ReferenceEquals(_connection,game.GateConnectionIdentity)||State.PlayerId!=game.PlayerId
+                ||battleVisible)
+            {State?.Notify("请进入可用角色会话后发送约战帖。");return false;}
+            if(State.IsPreview||!State.CanSend(SocialChannel.World)||Client.RequiresReconnect)
+            {State.Notify(State.RequiresReconnect?SocialClient.RecoveryMessage:"聊天正在同步，请稍后再试。");return false;}
+
+            State.SetDraft(SocialChannel.World,draft);
+            State.SelectChannel(SocialChannel.World);
+            OpenPanel(SocialPage.World,false);
+            State.Notify("试炼约战帖已填入世界频道草稿，确认后点击发送。");
+            Window.FocusComposer();
+            return true;
+        }
         private void OpenPanel(SocialPage page,bool refreshHistory=true)
         {
             if(!HasView||!_available)return;

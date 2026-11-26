@@ -1,9 +1,95 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.PlayerFeatures;
 
 namespace MmorpgClient.UI.Ugui.Gameplay
 {
+    public enum PreBattleLoadoutClickKind
+    {
+        None = 0,
+        Switch = 1,
+        UnlockHint = 2,
+        Refresh = 3,
+    }
+
+    /// <summary>战前 1..5 流派快捷条单槽不可变只读视图（纯 C#，零 UnityEngine 依赖）。</summary>
+    public sealed class PreBattleLoadoutSlotView
+    {
+        public uint SchemeId { get; }
+        public bool Unlocked { get; }
+        public bool Active { get; }
+        public bool CanClick { get; }
+        public uint MissingCount { get; }
+        public string Label { get; }
+        public string SpriteKey { get; }
+        public PreBattleLoadoutClickKind ClickKind { get; }
+
+        public PreBattleLoadoutSlotView(
+            uint schemeId,
+            bool unlocked,
+            bool active,
+            bool canClick,
+            uint missingCount,
+            string label,
+            string spriteKey,
+            PreBattleLoadoutClickKind clickKind)
+        {
+            SchemeId = schemeId;
+            Unlocked = unlocked;
+            Active = active;
+            CanClick = canClick;
+            MissingCount = missingCount;
+            Label = label ?? string.Empty;
+            SpriteKey = spriteKey ?? string.Empty;
+            ClickKind = clickKind;
+        }
+    }
+
+    /// <summary>战前准备期 1..5 一键换流派快捷条不可变快照（供全部进房前/局间倒计时界面复用）。</summary>
+    public sealed class PreBattleLoadoutBarState
+    {
+        public bool Synced { get; }
+        public bool Loading { get; }
+        public bool Switching { get; }
+        public bool BlockedByPendingUnlock { get; }
+        public bool BlockedByBattleState { get; }
+        public uint ActiveSchemeId { get; }
+        public uint UnlockedSchemeCount { get; }
+        public string HeaderText { get; }
+        public string StatusText { get; }
+        public bool StatusIsError { get; }
+        public IReadOnlyList<PreBattleLoadoutSlotView> Slots { get; }
+
+        public PreBattleLoadoutBarState(
+            bool synced,
+            bool loading,
+            bool switching,
+            bool blockedByPendingUnlock,
+            bool blockedByBattleState,
+            uint activeSchemeId,
+            uint unlockedSchemeCount,
+            string headerText,
+            string statusText,
+            bool statusIsError,
+            IReadOnlyList<PreBattleLoadoutSlotView> slots)
+        {
+            Synced = synced;
+            Loading = loading;
+            Switching = switching;
+            BlockedByPendingUnlock = blockedByPendingUnlock;
+            BlockedByBattleState = blockedByBattleState;
+            ActiveSchemeId = activeSchemeId;
+            UnlockedSchemeCount = unlockedSchemeCount;
+            HeaderText = headerText ?? string.Empty;
+            StatusText = statusText ?? string.Empty;
+            StatusIsError = statusIsError;
+            Slots = slots ?? Array.Empty<PreBattleLoadoutSlotView>();
+        }
+    }
+
     /// <summary>
     /// 装备流派方案预设的纯 C# 展示与防误卖模型（不引用 UnityEngine，供 UI 与 EditMode NUnit 单测复用）。
     /// 所有方案、槽位缺失态、持有量与价格均取自服务端 <see cref="EquipLoadoutSnapshot"/>。
@@ -236,6 +322,221 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 }
             }
             return true;
+        }
+
+        /// <summary>方案 A 边界：仅进房前空闲与排队等待期（scene 未挂 InBattleComp）允许经 SwitchEquipLoadout 切流派。</summary>
+        public static bool IsPreBattleSwitchAllowed(BattlePhase phase)
+            => phase == BattlePhase.None || phase == BattlePhase.Queued;
+
+        /// <summary>打开备战界面时按需补拉装备流派快照（若已缓存或正在拉取则无副作用，纯 C# 无 UnityEngine 依赖）。</summary>
+        public static void EnsureEquipLoadoutsRequested(PlayerFeaturesClient features)
+        {
+            if (features != null && features.EquipLoadouts == null && !features.EquipLoadoutsLoading)
+            {
+                features.RequestEquipLoadouts();
+            }
+        }
+
+        /// <summary>从 <see cref="PlayerFeaturesClient"/> 与当前战斗相位推导不可变战前快捷条状态（纯 C# 便于无头单测）。</summary>
+        public static PreBattleLoadoutBarState BuildPreBattleBarState(PlayerFeaturesClient features, BattlePhase battlePhase)
+        {
+            if (features == null)
+            {
+                return BuildPreBattleBarState(
+                    snapshot: null,
+                    loading: true,
+                    switching: false,
+                    hasPendingUnlock: false,
+                    battlePhase: battlePhase,
+                    error: string.Empty);
+            }
+            bool busy = features.BusyEquipLoadout || features.BusyEquip || features.BusyEquipLoadoutUnlock;
+            return BuildPreBattleBarState(
+                features.EquipLoadouts,
+                features.EquipLoadoutsLoading,
+                busy,
+                features.HasPendingEquipLoadoutUnlock,
+                battlePhase,
+                features.EquipLoadoutError);
+        }
+
+        /// <summary>统一组装切换装备流派方案后的提示文案（装备主窗与全部战前备战入口单一真相点）。</summary>
+        public static string BuildSwitchToast(SwitchEquipLoadoutResponse response)
+        {
+            if (response == null) return "装备方案已切换";
+            var snap = response.Snapshot;
+            uint activeId = snap != null && snap.ActiveSchemeId > 0u ? snap.ActiveSchemeId : 1u;
+            var scheme = snap?.Schemes.FirstOrDefault(s => s != null && s.SchemeId == activeId);
+            var sb = new StringBuilder();
+            sb.Append(scheme != null ? $"已切换至【{SchemeDisplayName(scheme)}】" : "装备方案已切换");
+            string missing = FormatMissingSlotsNotice(response.MissingSlots, scheme);
+            if (!string.IsNullOrEmpty(missing)) sb.Append("；").Append(missing);
+            if (response.LinkedNotices != null && response.LinkedNotices.Count > 0)
+                sb.Append("；").Append(string.Join("；", response.LinkedNotices));
+            return sb.ToString();
+        }
+
+        /// <summary>战前准备或倒计时期间点击未解锁方案位时的轻提示（不打断当前倒计时窗口）。</summary>
+        public static string FormatLockedPreBattleHint(uint schemeId, EquipLoadoutSnapshot snapshot)
+        {
+            string slotName = DefaultSchemeName(schemeId);
+            if (snapshot != null && schemeId == snapshot.UnlockedSchemeCount + 1u && snapshot.NextUnlockCostDiamond > 0UL)
+            {
+                string payText = snapshot.UnlockItemOwned >= 1UL
+                    ? $"可优先消耗扩容符（持有 {snapshot.UnlockItemOwned}）"
+                    : (snapshot.NextUnlockAllowBindDiamond
+                        ? $"{snapshot.NextUnlockCostDiamond} 绑灵/灵石或扩容符"
+                        : $"{snapshot.NextUnlockCostDiamond} 灵石或扩容符");
+                return $"【{slotName}】尚未解锁，请前往「装备 → 流派方案」解锁（{payText}）";
+            }
+            return $"【{slotName}】尚未解锁，请前往「装备 → 流派方案」按序解锁";
+        }
+
+        /// <summary>推导战前准备期 1..5 一键换流派快捷条的完整不可变视图状态。</summary>
+        public static PreBattleLoadoutBarState BuildPreBattleBarState(
+            EquipLoadoutSnapshot snapshot,
+            bool loading,
+            bool switching,
+            bool hasPendingUnlock,
+            BattlePhase battlePhase,
+            string error)
+        {
+            bool battleLocked = !IsPreBattleSwitchAllowed(battlePhase);
+            bool synced = snapshot != null;
+            uint unlockedCount = synced ? Math.Max(1u, Math.Min(MaxSchemes, snapshot.UnlockedSchemeCount)) : 0u;
+            uint activeId = synced
+                ? (snapshot.ActiveSchemeId >= 1u && snapshot.ActiveSchemeId <= MaxSchemes ? snapshot.ActiveSchemeId : 1u)
+                : 0u;
+
+            EquipLoadoutSchemeInfo activeScheme = null;
+            var slots = new PreBattleLoadoutSlotView[MaxSchemes];
+            for (int i = 0; i < (int)MaxSchemes; ++i)
+            {
+                uint schemeId = (uint)(i + 1);
+                var scheme = snapshot?.Schemes.FirstOrDefault(s => s != null && s.SchemeId == schemeId);
+                bool unlocked = synced && (scheme != null ? scheme.Unlocked : schemeId <= unlockedCount);
+                bool active = unlocked && schemeId == activeId;
+                if (active) activeScheme = scheme;
+
+                uint missing = unlocked && scheme != null ? scheme.MissingCount : 0u;
+                string spriteKey = !unlocked
+                    ? TabLockedKey
+                    : (active ? TabActiveKey : TabUnlockedKey);
+
+                string label;
+                if (!synced)
+                {
+                    label = DefaultSchemeName(schemeId);
+                }
+                else if (!unlocked)
+                {
+                    label = "+ " + DefaultSchemeName(schemeId);
+                }
+                else
+                {
+                    string shortName = FormatQuickBarLabel(scheme ?? new EquipLoadoutSchemeInfo { SchemeId = schemeId, Unlocked = true });
+                    label = missing > 0u ? $"{shortName}·缺{missing}" : shortName;
+                }
+
+                PreBattleLoadoutClickKind clickKind;
+                bool canClick;
+                if (!synced)
+                {
+                    clickKind = loading ? PreBattleLoadoutClickKind.None : PreBattleLoadoutClickKind.Refresh;
+                    canClick = !loading && !battleLocked;
+                }
+                else if (!unlocked)
+                {
+                    clickKind = PreBattleLoadoutClickKind.UnlockHint;
+                    canClick = !battleLocked;
+                }
+                else if (active)
+                {
+                    clickKind = PreBattleLoadoutClickKind.None;
+                    canClick = false;
+                }
+                else
+                {
+                    clickKind = PreBattleLoadoutClickKind.Switch;
+                    canClick = !switching && !hasPendingUnlock && !battleLocked;
+                }
+
+                slots[i] = new PreBattleLoadoutSlotView(
+                    schemeId, unlocked, active, canClick, missing, label, spriteKey, clickKind);
+            }
+
+            string headerText = synced
+                ? $"战前流派 · 当前：{FormatTabLabel(activeScheme ?? new EquipLoadoutSchemeInfo { SchemeId = activeId, Unlocked = true }, true)}"
+                : (loading ? "战前流派 · 同步中…" : "战前流派 · 未同步");
+
+            string statusText = string.Empty;
+            bool statusIsError = false;
+            if (!string.IsNullOrWhiteSpace(error))
+            {
+                statusText = error.Trim();
+                statusIsError = true;
+            }
+            else if (battleLocked)
+            {
+                statusText = "即将进入战局，已锁定换装";
+            }
+            else if (hasPendingUnlock)
+            {
+                statusText = "方案解锁确认中，暂不可切换";
+                statusIsError = true;
+            }
+            else if (switching)
+            {
+                statusText = "正在切换整套流派（同步战法/加点）…";
+            }
+            else if (!synced)
+            {
+                statusText = loading ? "正在同步装备流派方案…" : "点击右侧刷新流派方案";
+            }
+            else if (activeScheme != null && activeScheme.MissingCount > 0u)
+            {
+                statusText = $"当前方案缺 {activeScheme.MissingCount} 槽装备，切换将跳过缺失槽";
+                statusIsError = true;
+            }
+            else
+            {
+                statusText = "点选 1..5 一键切整套流派（同步战法/加点）";
+            }
+
+            return new PreBattleLoadoutBarState(
+                synced, loading, switching, hasPendingUnlock, battleLocked,
+                activeId, unlockedCount, headerText, statusText, statusIsError, slots);
+        }
+
+        /// <summary>计算快捷条视图签名，供弹窗（如群仙问道赛）仅在流派状态真实变化时重建，避免打断输入焦点。</summary>
+        public static int ComputePreBattleBarSignature(PreBattleLoadoutBarState state)
+        {
+            if (state == null) return 0;
+            unchecked
+            {
+                int hash = 17;
+                hash = hash * 31 + (state.Synced ? 1 : 0);
+                hash = hash * 31 + (state.Loading ? 1 : 0);
+                hash = hash * 31 + (state.Switching ? 1 : 0);
+                hash = hash * 31 + (state.BlockedByPendingUnlock ? 1 : 0);
+                hash = hash * 31 + (state.BlockedByBattleState ? 1 : 0);
+                hash = hash * 31 + (int)state.ActiveSchemeId;
+                hash = hash * 31 + (int)state.UnlockedSchemeCount;
+                hash = hash * 31 + StringComparer.Ordinal.GetHashCode(state.HeaderText ?? string.Empty);
+                hash = hash * 31 + StringComparer.Ordinal.GetHashCode(state.StatusText ?? string.Empty);
+                hash = hash * 31 + (state.StatusIsError ? 1 : 0);
+                for (int i = 0; i < state.Slots.Count; ++i)
+                {
+                    var s = state.Slots[i];
+                    hash = hash * 31 + (int)s.SchemeId;
+                    hash = hash * 31 + (s.Unlocked ? 1 : 0);
+                    hash = hash * 31 + (s.Active ? 1 : 0);
+                    hash = hash * 31 + (s.CanClick ? 1 : 0);
+                    hash = hash * 31 + (int)s.MissingCount;
+                    hash = hash * 31 + StringComparer.Ordinal.GetHashCode(s.Label ?? string.Empty);
+                }
+                return hash;
+            }
         }
     }
 }

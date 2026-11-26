@@ -516,7 +516,7 @@ namespace MmorpgClient.Game.Battle
         /// </param>
         public void JoinQueue(Match.MatchMode mode, uint battleConfigId, uint teamSize = 0,
                               uint characterPresetId = 0, uint petPresetId = 0, uint rankedRuleVersion = 0,
-                              bool isWuxingTower = false)
+                              bool isWuxingTower = false, uint trialVowMask = 0)
         {
             RestoreQueueIntent();
             if (Phase != BattlePhase.None)
@@ -533,7 +533,7 @@ namespace MmorpgClient.Game.Battle
             _lastQueuePetPresetId = petPresetId;
             _lastQueueRankedRuleVersion = rankedRuleVersion;
             _lastQueueStatus = null;
-            _hasQueueMemory = !isWuxingTower;
+            _hasQueueMemory = !isWuxingTower && trialVowMask == 0u;
             _endAckPending = false;
 
             // 先进 Queued 再发请求:失败响应回退 None;若开战抢先到达
@@ -553,6 +553,7 @@ namespace MmorpgClient.Game.Battle
                 PetPresetId = petPresetId,
                 RankedRuleVersion = rankedRuleVersion,
                 IsWuxingTower = isWuxingTower,
+                TrialVowMask = trialVowMask,
                 RequestId = Guid.NewGuid().ToString("D"),
             };
             int generation = ++_queueGeneration;

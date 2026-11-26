@@ -155,9 +155,10 @@ $whitelist = @{
     "SceneSkillClientPlayerListSkills"             = "ListSkills"
     # 四职业技能修习(服务端 docs/design/class-skills.md §4)
     "SceneSkillClientPlayerUpgradeSkill"           = "UpgradeSkill"
-    # 人物战法构筑装配 3 套流派方案(服务端 docs/design/battle-skill-and-pet-cultivation-expansion.md)
+    # 人物战法·加点一体化流派方案（7 套非永久槽位：docs/planning/skill-build-loadout-7slots-v1.md）
     "SceneSkillClientPlayerSaveSkillLoadout"       = "SaveSkillLoadout"
     "SceneSkillClientPlayerSwitchSkillLoadout"     = "SwitchSkillLoadout"
+    "SceneSkillClientPlayerRentSkillLoadoutSlots"  = "RentSkillLoadoutSlots"
 
     "SceneMovementClientPlayerMoveStart"           = "MoveStart"
     "SceneMovementClientPlayerMoveStop"            = "MoveStop"

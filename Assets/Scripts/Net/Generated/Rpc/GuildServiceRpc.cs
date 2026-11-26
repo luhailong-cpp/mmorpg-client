@@ -250,6 +250,19 @@ namespace MmorpgClient.Net.Generated
             RpcDone<global::Guildpb.InspectFieldWarTargetsResponse> done)
             => channel.CallMethod(InspectFieldWarTargetsMessageId, request, global::Guildpb.InspectFieldWarTargetsResponse.Parser, done);
 
+        public const uint IssueGuildWarFeudMessageId = 567;
+        /// <summary>
+        /// 帮会全天帮战 V2.5 · 宿敌约战战书(2 小时全帮约战 + 实时比分)
+        /// </summary>
+        public static void IssueGuildWarFeud(IRpcChannel channel, global::Guildpb.IssueGuildWarFeudRequest request,
+            RpcDone<global::Guildpb.IssueGuildWarFeudResponse> done)
+            => channel.CallMethod(IssueGuildWarFeudMessageId, request, global::Guildpb.IssueGuildWarFeudResponse.Parser, done);
+
+        public const uint RespondGuildWarFeudMessageId = 568;
+        public static void RespondGuildWarFeud(IRpcChannel channel, global::Guildpb.RespondGuildWarFeudRequest request,
+            RpcDone<global::Guildpb.RespondGuildWarFeudResponse> done)
+            => channel.CallMethod(RespondGuildWarFeudMessageId, request, global::Guildpb.RespondGuildWarFeudResponse.Parser, done);
+
         public const uint GetGuildJianghuGrudgeWallMessageId = 547;
         /// <summary>
         /// 江湖恩怨·帮派生死状恩怨墙(docs/design/battle-jianghu-grudge-duel-bounty-v1.md §2.2):仅本帮成员可读。

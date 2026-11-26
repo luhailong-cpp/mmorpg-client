@@ -34,9 +34,9 @@ namespace MmorpgClient.Tests.EditMode.Guild
         }
 
         [Test]
-        public void GuildWarV2DeliveredAssets_LoadAll31SpritesWithExpectedThreeSliceBorders()
+        public void GuildWarV2DeliveredAssets_LoadAll33SpritesWithExpectedThreeSliceBorders()
         {
-            Assert.That(GuildWarUiArt.AllAssetKeys.Length, Is.EqualTo(31));
+            Assert.That(GuildWarUiArt.AllAssetKeys.Length, Is.EqualTo(33));
             foreach (string key in GuildWarUiArt.AllAssetKeys)
             {
                 var sprite = GuildWarUiArt.Load(key);
@@ -243,6 +243,9 @@ namespace MmorpgClient.Tests.EditMode.Guild
                 Assert.That(FindButton(window.Root, "QuickBattleBtn"), Is.Not.Null);
                 Assert.That(FindButton(window.Root, "AttackLeyline_1"), Is.Not.Null);
                 Assert.That(FindButton(window.Root, "MilestoneChest_2").interactable, Is.True);
+                Assert.That(FindImage(window.Root, "LeylineGoldBadge_1"), Is.Not.Null);
+                Assert.That(FindImage(window.Root, "LeylineRivalBadge_1"), Is.Not.Null);
+                Assert.That(FindImage(window.Root, "LiveTargetRivalBadge_0"), Is.Not.Null);
 
                 // 切守旗阵页
                 window.ShowPage(GuildWarPage.Garrison);
@@ -329,9 +332,11 @@ namespace MmorpgClient.Tests.EditMode.Guild
                 hud.SetContext(_client, 10002UL, 5u);
                 Assert.That(hud.Root.gameObject.activeSelf, Is.True);
                 Assert.That(FindButton(hud.Root, "NearbyAttack_0"), Is.Not.Null);
+                Assert.That(FindImage(hud.Root, "NearbyRivalBadge_0"), Is.Not.Null);
 
                 hud.SelectFieldTarget(20011UL);
                 Assert.That(hud.SelectedTargetPlayerId, Is.EqualTo(20011UL));
+                Assert.That(FindImage(hud.Root, "PickedRivalBadge"), Is.Not.Null);
                 FindButton(hud.Root, "PickedAttackBtn").onClick.Invoke();
                 Assert.That(_net.LastMessageId, Is.EqualTo(GuildServiceRpc.StartGuildWarBattleMessageId));
                 _net.Reply(new StartGuildWarBattleResponse { BattleId = 901234UL, WarBattleKind = GuildWarBattleKind.BountyHunt });
@@ -355,6 +360,124 @@ namespace MmorpgClient.Tests.EditMode.Guild
             }
         }
 
+        [Test]
+        public void FeudIssueRespondLiveBannerStreakAlertsAndWorldLeylineBannerWork()
+        {
+            _client.RefreshOverview();
+            _net.Reply(OverviewFixture());
+
+            // 1) 下发 2h 约战战书 + 应战转为 ACTIVE
+            _client.IssueFeud(10001UL);
+            Assert.That(_net.LastMessageId, Is.EqualTo(GuildServiceRpc.IssueGuildWarFeudMessageId));
+            _net.Reply(new IssueGuildWarFeudResponse
+            {
+                NextIssueAtMs = 1_795_516_810_000UL,
+                Feud = new GuildWarFeudView
+                {
+                    FeudId = 88001UL,
+                    IssuerGuildId = 10001UL,
+                    IssuerGuildName = "青云阁",
+                    TargetGuildId = 10002UL,
+                    TargetGuildName = "沧澜盟",
+                    Status = GuildWarFeudStatus.Pending,
+                    AcceptDeadlineMs = 1_795_431_310_000UL,
+                },
+            });
+            Assert.That(_client.Overview.ActiveFeud, Is.Not.Null);
+            Assert.That(_client.Overview.ActiveFeud.Status, Is.EqualTo(GuildWarFeudStatus.Pending));
+
+            var host = new GameObject("FeudAndBannerTestHost", typeof(RectTransform), typeof(Canvas));
+            var banner = new GuildWarLeylineWorldBanner();
+            try
+            {
+                var win = new GuildWarWindow(host.transform);
+                win.SetContext(_client, 10002UL, true);
+                win.Show(GuildWarPage.Main);
+                Assert.That(FindButton(win.Root, "AcceptFeudBtn"), Is.Not.Null);
+                Assert.That(FindButton(win.Root, "DeclineFeudBtn"), Is.Not.Null);
+
+                // 接战应战
+                FindButton(win.Root, "AcceptFeudBtn").onClick.Invoke();
+                Assert.That(_net.LastMessageId, Is.EqualTo(GuildServiceRpc.RespondGuildWarFeudMessageId));
+                _net.Reply(new RespondGuildWarFeudResponse
+                {
+                    Feud = new GuildWarFeudView
+                    {
+                        FeudId = 88001UL,
+                        IssuerGuildId = 10001UL,
+                        IssuerGuildName = "青云阁",
+                        TargetGuildId = 10002UL,
+                        TargetGuildName = "沧澜盟",
+                        Status = GuildWarFeudStatus.Active,
+                        IssuerWins = 3,
+                        TargetWins = 4,
+                        IssuerMerit = 360,
+                        TargetMerit = 490,
+                        EndsAtMs = 1_795_437_620_000UL,
+                    },
+                });
+                Assert.That(_client.Overview.ActiveFeud.Status, Is.EqualTo(GuildWarFeudStatus.Active));
+                Assert.That(FindButton(win.Root, "FeudFightNowBtn"), Is.Not.Null);
+
+                // 高连胜悬赏与宿敌战书实时捷报横幅
+                _net.Push(GuildServiceRpc.NotifyGuildWarAlertMessageId, new GuildWarAlertS2C
+                {
+                    Kind = GuildWarAlertKind.StreakBounty,
+                    AttackerGuildName = "沧澜盟",
+                    ActorName = "云中客",
+                    DefenderGuildName = "青云阁",
+                    TargetName = "剑尘",
+                    StreakCount = 5,
+                    RewardSilver = 6000,
+                });
+                Assert.That(win.AlertRoot.gameObject.activeSelf, Is.True);
+                Assert.That(FindButton(win.AlertRoot, "AlertActionStreak"), Is.Not.Null);
+
+                _net.Push(GuildServiceRpc.NotifyGuildWarAlertMessageId, new GuildWarAlertS2C
+                {
+                    Kind = GuildWarAlertKind.FeudChallenge,
+                    FeudId = 88002UL,
+                    AttackerGuildName = "青云阁",
+                });
+                Assert.That(FindButton(win.AlertRoot, "AlertActionFeud"), Is.Not.Null);
+
+                // 野外 3D 灵脉战旗实景实体与底栏旗台动作条
+                Assert.That(GuildWarLeylineWorldBanner.LeylineIdForScene(2u), Is.EqualTo(1u));
+                Assert.That(GuildWarLeylineWorldBanner.LeylineIdForScene(5u), Is.EqualTo(2u));
+                Assert.That(GuildWarLeylineWorldBanner.LeylineIdForScene(3u), Is.EqualTo(3u));
+                Assert.That(GuildWarLeylineWorldBanner.LeylineIdForScene(1u), Is.EqualTo(0u));
+
+                var ley1 = _client.Overview.Leylines[0];
+                banner.Sync(2u, ley1, 10002UL, _client.EstimatedServerNowMs, true, new UnityEngine.Vector3(10f, 0f, 10f));
+                Assert.That(banner.IsActive, Is.True);
+                Assert.That(banner.ActiveLeylineId, Is.EqualTo(1u));
+                Assert.That(banner.RootObject, Is.Not.Null);
+                Assert.That(banner.MatchesHit(banner.RootObject.transform), Is.True);
+                banner.Tick(1.25f);
+
+                var hud = new GuildWarFieldHud(host.transform);
+                hud.SetContext(_client, 10002UL, 2u);
+                hud.UpdateBannerDistance(7.2f);
+                Assert.That(FindButton(hud.Root, "FieldLeylineFlagBtn"), Is.Not.Null);
+                FindButton(hud.Root, "FieldLeylineFlagBtn").onClick.Invoke();
+                Assert.That(hud.SelectedLeylineId, Is.EqualTo(1u));
+                Assert.That(FindButton(hud.Root, "PickedLeylineSiegeBtn"), Is.Not.Null);
+                FindButton(hud.Root, "PickedLeylineSiegeBtn").onClick.Invoke();
+                Assert.That(_net.LastMessageId, Is.EqualTo(GuildServiceRpc.StartGuildWarBattleMessageId));
+                _net.Reply(new StartGuildWarBattleResponse { BattleId = 905555UL, WarBattleKind = GuildWarBattleKind.LeylinePvp });
+
+                banner.Hide();
+                Assert.That(banner.IsActive, Is.False);
+                hud.Dispose();
+                win.Dispose();
+            }
+            finally
+            {
+                banner.Dispose();
+                UnityEngine.Object.DestroyImmediate(host);
+            }
+        }
+
         private static void AssertHorizontalBorder(string key, float expectedX)
         {
             var sprite = GuildWarUiArt.Load(key);
@@ -366,6 +489,9 @@ namespace MmorpgClient.Tests.EditMode.Guild
 
         private static Button FindButton(UnityEngine.Transform root, string name) =>
             root.GetComponentsInChildren<Button>(true).FirstOrDefault(b => b.name == name);
+
+        private static Image FindImage(UnityEngine.Transform root, string name) =>
+            root.GetComponentsInChildren<Image>(true).FirstOrDefault(i => i.name == name);
 
         private static GetGuildWarOverviewResponse OverviewFixture()
         {
@@ -382,6 +508,8 @@ namespace MmorpgClient.Tests.EditMode.Guild
                 BannerHonor = new GuildWarBannerHonorView { OccupiedLeylineId = 2 },
                 Dividend = new GuildWarDividendView { ClaimableCount = 3, ClaimedThisWeek = 2, WeeklyCap = 12, GuildProducedThisWeek = 9, GuildWeeklyCap = 24, MinPersonalMerit = 30 },
             };
+            resp.BannerHonor.RivalGuildIds.Add(10001UL);
+            resp.BannerHonor.RivalGuildNames.Add("青云阁");
             resp.Leylines.Add(new GuildWarLeylineView { LeylineId = 1, Name = "八景岛 · 灵脉", SceneConfigId = 2, OwnerGuildId = 10001, OwnerGuildName = "青云阁", BannerHp = 820, BannerMaxHp = 1000, ActiveBattleCount = 2, FeaturedWatchBattleId = 900101, IsGoldLeyline = true, GarrisonCount = 4 });
             resp.Leylines.Add(new GuildWarLeylineView { LeylineId = 2, Name = "碧渊水宫 · 灵脉", SceneConfigId = 5, OwnerGuildId = 10002, OwnerGuildName = "沧澜盟", BannerHp = 380, BannerMaxHp = 1000, UnderSiege = true, ActiveBattleCount = 1, FeaturedWatchBattleId = 900102, GarrisonCount = 5 });
             resp.Leylines.Add(new GuildWarLeylineView { LeylineId = 3, Name = "月汐湾 · 灵脉", SceneConfigId = 3, OwnerGuildId = 10003, OwnerGuildName = "归墟堂", BannerHp = 600, BannerMaxHp = 1000, ShieldUntilMs = 1_795_431_150_000UL, GarrisonCount = 3 });
@@ -390,7 +518,7 @@ namespace MmorpgClient.Tests.EditMode.Guild
             resp.Milestones.Add(new GuildWarMilestoneView { MilestoneId = 3, RequiredMerit = 3000, GuildMerit = 1420, Claimed = false, Claimable = false });
             resp.Milestones.Add(new GuildWarMilestoneView { MilestoneId = 4, RequiredMerit = 6000, GuildMerit = 1420, Claimed = false, Claimable = false });
             resp.StreakBounties.Add(new GuildWarStreakBountyView { PlayerId = 20011, PlayerName = "剑尘", GuildId = 10001, GuildName = "青云阁", Streak = 5, BonusContribution = 200, BonusSilver = 6000 });
-            resp.LiveTargets.Add(new GuildWarLiveTargetView { PlayerId = 20011, PlayerName = "剑尘", GuildId = 10001, GuildName = "青云阁", Level = 60, PetName = "青鸾", PartySize = 1, Streak = 5, LeylineId = 1 });
+            resp.LiveTargets.Add(new GuildWarLiveTargetView { PlayerId = 20011, PlayerName = "剑尘", GuildId = 10001, GuildName = "青云阁", Level = 60, PetName = "青鸾", PartySize = 1, Streak = 5, LeylineId = 1, IsRivalGuild = true });
             resp.Enemies.Add(new GuildWarEnemyView { PlayerId = 20011, PlayerName = "剑尘", GuildId = 10001, GuildName = "青云阁", VictimName = "松风道童", BattleKind = GuildWarBattleKind.LeylinePvp, CanPostBounty = true });
             resp.RecentLogs.Add(new GuildWarRecentLogView { BattleId = 900100, WarBattleKind = GuildWarBattleKind.LeylinePvp, AttackerGuildName = "沧澜盟", DefenderGuildName = "青云阁", AttackerSummary = "云中客", DefenderSummary = "剑尘", Rounds = 7, BannerHpDelta = -100, SelfParticipated = true });
             return resp;

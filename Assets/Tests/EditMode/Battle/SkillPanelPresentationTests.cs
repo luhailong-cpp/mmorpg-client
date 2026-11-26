@@ -286,22 +286,128 @@ namespace MmorpgClient.Tests.EditMode.Battle
             }
         }
 
+        [Test]
+        public void LoadoutPanelSupportsSevenSchemesTemplatesResetConfirmationAndRentModal()
+        {
+            var loadoutSource = new FixtureLoadoutSource();
+            var canvas = new GameObject("LoadoutSevenSlotCanvas", typeof(RectTransform), typeof(Canvas));
+            try
+            {
+                var state = Ready();
+                var loadout = new SkillLoadoutView
+                {
+                    CustomEnabled = true,
+                    ActiveSchemeId = 1,
+                    StateVersion = 5,
+                    UnlockedSchemes = 2,
+                    MaxSchemes = 7,
+                    FreeSchemes = 2,
+                    LightCardBonusSchemes = 0,
+                    RentedExtraSlots = 0,
+                    ServerNowSec = 100000UL,
+                    DiamondBalance = 120UL,
+                    AttributeResetCostGold = 5000UL,
+                };
+                var s1 = new SkillLoadoutSchemeView { SchemeId = 1, Name = "首发", RoleTag = 1, AttributeTotalPoints = 50, AttributeRemaining = 0 };
+                s1.AttributeAllocated[SkillBuildTemplates.DimCon] = 50;
+                loadout.Schemes.Add(s1);
+                var s5 = new SkillLoadoutSchemeView { SchemeId = 5, Name = "旧封系", RoleTag = 2, AttributeTotalPoints = 50, AttributeRemaining = 0 };
+                s5.AttributeAllocated[SkillBuildTemplates.DimAgi] = 50;
+                loadout.Schemes.Add(s5);
+                state.Snapshot.Loadout = loadout;
+
+                var panel = new SkillPanel(canvas.transform, () => { }, (_, _, _) => { },
+                    getLoadoutSource: () => loadoutSource);
+                panel.Apply(state);
+                panel.Show();
+
+                canvas.GetComponentsInChildren<Button>(true).Single(b => b.name == "LoadoutTabPlate").onClick.Invoke();
+
+                // 7 个方案槽位页签 + 5 个用途标签全部就绪
+                for (uint i = 1u; i <= 7u; i++)
+                    Assert.That(canvas.GetComponentsInChildren<Button>(true).Any(b => b.name == $"LoadoutScheme{i}Plate"), Is.True, $"Scheme {i}");
+                for (uint r = 0u; r <= 4u; r++)
+                    Assert.That(canvas.GetComponentsInChildren<Button>(true).Any(b => b.name == $"LoadoutRoleTag{r}Plate"), Is.True, $"RoleTag {r}");
+
+                // 套用 4力1体 模板会减少原本全体的体质点数 -> 未勾选洗点确认前拦截保存
+                canvas.GetComponentsInChildren<Button>(true).Single(b => b.name == "LoadoutTemplate0Plate").onClick.Invoke();
+                canvas.GetComponentsInChildren<Button>(true).Single(b => b.name == "LoadoutSaveBtnPlate").onClick.Invoke();
+                Assert.That(loadoutSource.SaveCalls, Is.Zero, "下调加点未勾选洗点确认前不得提交");
+
+                // 勾选确认洗点后保存成功并携带一体化加点参数
+                canvas.GetComponentsInChildren<Button>(true).Single(b => b.name == "LoadoutResetAttrTogglePlate").onClick.Invoke();
+                canvas.GetComponentsInChildren<Button>(true).Single(b => b.name == "LoadoutSaveBtnPlate").onClick.Invoke();
+                Assert.That(loadoutSource.SaveCalls, Is.EqualTo(1));
+                Assert.That(loadoutSource.LastSaveArgs.UpdateAttributeAllocation, Is.True);
+                Assert.That(loadoutSource.LastSaveArgs.ResetAttributeIfNeeded, Is.True);
+                Assert.That(loadoutSource.LastSaveArgs.AttributeAllocated[SkillBuildTemplates.DimStr], Is.EqualTo(40u));
+                Assert.That(loadoutSource.LastSaveArgs.AttributeAllocated[SkillBuildTemplates.DimCon], Is.EqualTo(10u));
+
+                // 打开租用弹窗选择 +2 套、+30 天（60 灵钻）并确认提交
+                canvas.GetComponentsInChildren<Button>(true).Single(b => b.name == "LoadoutRentBtnPlate").onClick.Invoke();
+                canvas.GetComponentsInChildren<Button>(true).Single(b => b.name == "LoadoutRentTarget2Plate").onClick.Invoke();
+                canvas.GetComponentsInChildren<Button>(true).Single(b => b.name == "LoadoutRentPeriod1Plate").onClick.Invoke();
+                canvas.GetComponentsInChildren<Button>(true).Single(b => b.name == "LoadoutRentConfirmBtnPlate").onClick.Invoke();
+                Assert.That(loadoutSource.RentCalls, Is.EqualTo(1));
+                Assert.That(loadoutSource.LastRentTargetSlots, Is.EqualTo(2u));
+                Assert.That(loadoutSource.LastRentAddPeriods, Is.EqualTo(1u));
+                Assert.That(loadoutSource.LastRentExpectedCost, Is.EqualTo(60UL));
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(canvas);
+            }
+        }
+
         private sealed class FixtureLoadoutSource : ISkillLoadoutSource
         {
-            public int SaveCalls, SwitchCalls;
+            public int SaveCalls, SwitchCalls, RentCalls;
             public uint[] LastSavedPassive = Array.Empty<uint>();
+            public SkillLoadoutSaveArgs LastSaveArgs;
+            public uint LastRentTargetSlots, LastRentAddPeriods;
+            public ulong LastRentExpectedCost;
+
             public void SaveLoadout(uint schemeId, uint roleTag, System.Collections.Generic.IReadOnlyList<uint> passiveSkillIds,
                 System.Collections.Generic.IReadOnlyList<uint> pursuitSkillIds, System.Collections.Generic.IReadOnlyList<uint> openingSkillIds,
                 Action<bool, string> completed = null)
             {
+                SaveLoadout(new SkillLoadoutSaveArgs
+                {
+                    SchemeId = schemeId,
+                    RoleTag = roleTag,
+                    PassiveSkillIds = passiveSkillIds,
+                    PursuitSkillIds = pursuitSkillIds,
+                    OpeningSkillIds = openingSkillIds,
+                }, completed);
+            }
+
+            public void SaveLoadout(SkillLoadoutSaveArgs args, Action<bool, string> completed = null)
+            {
                 SaveCalls++;
-                LastSavedPassive = passiveSkillIds.ToArray();
+                LastSaveArgs = args;
+                LastSavedPassive = args?.PassiveSkillIds != null ? args.PassiveSkillIds.ToArray() : Array.Empty<uint>();
                 completed?.Invoke(true, "已保存");
             }
+
             public void SwitchLoadout(uint schemeId, Action<bool, string> completed = null)
+            {
+                SwitchLoadout(schemeId, false, completed);
+            }
+
+            public void SwitchLoadout(uint schemeId, bool skipAttributeSync, Action<bool, string> completed = null)
             {
                 SwitchCalls++;
                 completed?.Invoke(true, "已切换");
+            }
+
+            public void RentLoadoutSlots(uint targetRentedSlots, uint addPeriods, ulong expectedCostDiamond,
+                Action<bool, string> completed = null)
+            {
+                RentCalls++;
+                LastRentTargetSlots = targetRentedSlots;
+                LastRentAddPeriods = addPeriods;
+                LastRentExpectedCost = expectedCostDiamond;
+                completed?.Invoke(true, "已租用");
             }
         }
 

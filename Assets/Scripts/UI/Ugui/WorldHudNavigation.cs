@@ -22,7 +22,8 @@ namespace MmorpgClient.UI.Ugui
         Tournament, // 全服赛季战队锦标赛《群仙问道赛》V1(TournamentUiRoot);落在「历练」
         SkillCraft, // 率土式分卷宗技能制书与未学书架(SkillUiRoot.OpenCrafting);落在「修行」
         ProxyCraft, // 主城西市名匠代打摊位(SkillUiRoot.OpenProxyStalls);落在「交易」
-        SpiritShop // 官方灵石百宝阁 V1(SpiritShopUiRoot);落在「交易」
+        SpiritShop, // 官方灵石百宝阁 V1(SpiritShopUiRoot);落在「交易」
+        JianghuDuel // 天墉生死擂与江湖恩怨录(JianghuUiRoot);落在「历练」
     }
 
     /// <summary>
@@ -541,6 +542,9 @@ namespace MmorpgClient.UI.Ugui
                 return Resources.Load<Sprite>("UI/Ugui/SpiritShopV1/ui/hud_entry_spirit_shop")
                     ?? SeasonEconomyUiArt.LoadTradeSlice("badge_item_tradable_t")
                     ?? QdaoUguiTheme.RequireSprite("UI/Ugui/RefreshV8/round_badge_taiji");
+            if (id == WorldHudEntry.JianghuDuel)
+                return Resources.Load<Sprite>("UI/Ugui/JianghuDuelV1/hud_entry_jianghu")
+                    ?? QdaoUguiTheme.RequireSprite("UI/Ugui/RefreshV8/round_badge_taiji");
 
             var path = NewArt + id.ToString().ToLowerInvariant();
             return LoadIcon(path, "UI/Ugui/RefreshV8/round_badge_taiji");
@@ -563,6 +567,7 @@ namespace MmorpgClient.UI.Ugui
             WorldHudEntry.SkillCraft => "道籍拓印",
             WorldHudEntry.ProxyCraft => "官府托管",
             WorldHudEntry.SpiritShop => "官方直售",
+            WorldHudEntry.JianghuDuel => "生死擂台",
             _ => string.Empty
         };
 

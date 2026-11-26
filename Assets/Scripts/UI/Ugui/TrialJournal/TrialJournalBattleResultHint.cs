@@ -1,5 +1,10 @@
 using System;
+using MmorpgClient.Game;
+using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.TrialJournal;
+using MmorpgClient.UI.Ugui.Battle;
+using MmorpgClient.UI.Ugui.CoreLoop;
+using MmorpgClient.UI.Ugui.Social;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +13,8 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
 {
     /// <summary>
     /// 战斗结算页嵌入式「试炼志行内提示条」（严格还原 D:\work\image\designs\trial-journal-ui-v1\previews\12-battle-result-hint.png）。
-    /// 仅在存在有效 trial_journal_entry_id 时显示，不弹窗打断；点击「看试炼志」经宿主回调安全关闭结算并定位到对应关卡格。
+    /// 仅在存在有效 trial_journal_entry_id 时显示，不弹窗打断；点击「看试炼志」经宿主回调安全关闭结算并定位到对应关卡格；
+    /// V3 胜局同步展示「发帖约战」次要按钮，一键生成权威约战帖草稿。
     /// </summary>
     public sealed class TrialJournalBattleResultHint
     {
@@ -18,8 +24,10 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         private readonly RectTransform _root;
         private readonly TMP_Text _headline;
         private readonly TMP_Text _subtitle;
+        private readonly Button _shareButton;
         private readonly Button _openButton;
         private uint _entryId;
+        private ulong _shareBattleId;
         private readonly Action<uint> _onOpen;
 
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
@@ -36,32 +44,22 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 TrialJournalUiArt.Paper, raycast: true);
             _root = (RectTransform)plate.transform;
 
-            var dedicatedSeal = TrialJournalUiArt.LoadDedicatedOnly("seal_medallion_lit");
-            var medallion = QdaoUguiFactory.CreateImage("SealMedallion", _root,
-                22f, 15f, 52f, 52f, dedicatedSeal ?? TrialJournalUiArt.CircleSprite());
-            if (dedicatedSeal != null)
-            {
-                medallion.type = Image.Type.Simple;
-                medallion.preserveAspect = true;
-                medallion.color = Color.white;
-            }
-            else
-            {
-                medallion.color = TrialJournalUiArt.SealGoldFill;
-                var outline = medallion.gameObject.AddComponent<Outline>();
-                outline.effectColor = TrialJournalUiArt.SealGold;
-                outline.effectDistance = new Vector2(1.5f, -1.5f);
-            }
-            TrialJournalUiArt.Label("Mark", medallion.transform, 0f, 0f, 52f, 52f,
-                "印", 24f, TrialJournalUiArt.Jade, bold: true, alignment: TextAlignmentOptions.Center);
+            TrialJournalUiArt.SealMedallion("SealMedallion", _root,
+                18f, 15f, 52f, lit: true, "印", 24f);
 
-            _headline = TrialJournalUiArt.Label("Headline", _root, 90f, 12f, 510f, 30f,
-                "", 21f, TrialJournalUiArt.Jade, bold: true);
-            _subtitle = TrialJournalUiArt.Label("Subtitle", _root, 90f, 44f, 510f, 26f,
-                "", 15f, TrialJournalUiArt.Sub);
+            _headline = TrialJournalUiArt.Label("Headline", _root, 88f, 14f, 512f, 30f,
+                "", 20f, TrialJournalUiArt.Jade, bold: true);
+            _subtitle = TrialJournalUiArt.Label("Subtitle", _root, 88f, 44f, 512f, 26f,
+                "", 16f, TrialJournalUiArt.Sub);
+
+            _shareButton = TrialJournalUiArt.SpriteButton("ShareTrialChallenge", _root,
+                476f, 15f, 134f, 52f, "发帖约战", 18f,
+                primary: true, interactable: true,
+                onClick: HandleShareClicked);
+            _shareButton.gameObject.SetActive(false);
 
             _openButton = TrialJournalUiArt.SpriteButton("OpenTrialJournal", _root,
-                620f, 15f, 180f, 52f, "看试炼志", 18f,
+                620f, 15f, 180f, 52f, "看试炼志", 19f,
                 primary: false, interactable: true,
                 onClick: () =>
                 {
@@ -93,6 +91,14 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                     : "点击查看试炼志复盘与里程碑进度";
             }
             _subtitle.text = summary;
+
+            ulong battleId = result.TrialBattleId != 0ul ? result.TrialBattleId : result.BattleId;
+            bool canShare = battleId != 0ul
+                && BattleReportClient.CanWatchReplayFromRecovered(result)
+                && IsPlayerVictory((eBattleOutcome)result.Outcome, result.TeamIndex)
+                && !result.Fled;
+            ConfigureShareButton(canShare ? battleId : 0ul);
+
             _root.gameObject.SetActive(true);
             _root.SetAsLastSibling();
             return true;
@@ -100,7 +106,8 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
 
         public bool ShowForLive(global::BattleEndS2C end, global::TrialJournalSnapshot snapshot)
         {
-            uint entryId = end?.Settlement?.TrialFacts?.JournalEntryId ?? 0u;
+            var settlement = end?.Settlement;
+            uint entryId = settlement?.TrialFacts?.JournalEntryId ?? 0u;
             if (entryId == 0u)
             {
                 Hide();
@@ -111,10 +118,24 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             string entryName = entry != null && !string.IsNullOrEmpty(entry.DisplayName)
                 ? entry.DisplayName
                 : $"试炼格#{_entryId}";
-            _headline.text = $"{entryName} · 试炼志已记档";
-            _subtitle.text = snapshot != null && snapshot.Available
-                ? $"永久道印 {snapshot.TotalPermanentLitSeals}/{snapshot.TotalPermanentSeals} · 战法印与纪录将在返回后同步"
-                : "战法印、配装复盘与里程碑已在结算同步";
+            uint vowMask = settlement.TrialFacts.ChallengeVowMask & TrialJournalModels.VowMaskAll;
+            _headline.text = vowMask != 0u
+                ? $"{entryName} · {TrialJournalModels.CountVows(vowMask)}誓约记档"
+                : $"{entryName} · 试炼志已记档";
+            _subtitle.text = vowMask != 0u
+                ? $"生效誓约：{TrialJournalModels.FormatVowSummary(vowMask)}"
+                : (snapshot != null && snapshot.Available
+                    ? $"永久道印 {snapshot.TotalPermanentLitSeals}/{snapshot.TotalPermanentSeals} · 战法印与纪录将在返回后同步"
+                    : "战法印、配装复盘与里程碑已在结算同步");
+
+            var mode = (Match.MatchMode)settlement.MatchMode;
+            bool isPveTrial = mode == Match.MatchMode.PveSolo || mode == Match.MatchMode.PveTeam;
+            bool canShare = settlement.BattleId != 0ul
+                && isPveTrial
+                && IsPlayerVictory(settlement.Outcome, settlement.PlayerTeamIndex)
+                && !settlement.Fled;
+            ConfigureShareButton(canShare ? settlement.BattleId : 0ul);
+
             _root.gameObject.SetActive(true);
             _root.SetAsLastSibling();
             return true;
@@ -128,7 +149,51 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         public void Hide()
         {
             _entryId = 0u;
+            ConfigureShareButton(0ul);
             if (_root != null) _root.gameObject.SetActive(false);
+        }
+
+        private void ConfigureShareButton(ulong battleId)
+        {
+            _shareBattleId = battleId;
+            bool showShare = battleId != 0ul;
+            if (_shareButton != null) _shareButton.gameObject.SetActive(showShare);
+            float textWidth = showShare ? 378f : 512f;
+            if (_headline != null) _headline.rectTransform.sizeDelta = new Vector2(textWidth, 30f);
+            if (_subtitle != null) _subtitle.rectTransform.sizeDelta = new Vector2(textWidth, 26f);
+        }
+
+        private void HandleShareClicked()
+        {
+            if (_shareBattleId == 0ul) return;
+            var reports = BattleReportClient.Instance;
+            if (reports == null)
+            {
+                CoreGameplayUiRoot.Instance?.ShowToast("约战分享模块尚未就绪，请稍候重试。");
+                return;
+            }
+            reports.CreateTrialChallengeCard(_shareBattleId,
+                card =>
+                {
+                    var snap = AppBootstrap.Instance?.GameClient?.TrialJournal?.Snapshot;
+                    string draft = TrialJournalModels.FormatChallengeCardChatDraft(card, snap);
+                    BattleUiRoot.Instance?.FinishCoreSettlementForMaterialClaim();
+                    if (SocialUiRoot.Instance == null || !SocialUiRoot.Instance.TryComposeTrialChallengeCard(draft))
+                    {
+                        CoreGameplayUiRoot.Instance?.ShowToast("约战帖已生成，请打开仙友会世界频道发送。");
+                    }
+                },
+                err =>
+                {
+                    if (!string.IsNullOrEmpty(err))
+                        CoreGameplayUiRoot.Instance?.ShowToast(err);
+                });
+        }
+
+        private static bool IsPlayerVictory(eBattleOutcome outcome, uint teamIndex)
+        {
+            return (outcome == eBattleOutcome.BattleOutcomeSideAWin && teamIndex == 0u)
+                || (outcome == eBattleOutcome.BattleOutcomeSideBWin && teamIndex == 1u);
         }
     }
 }

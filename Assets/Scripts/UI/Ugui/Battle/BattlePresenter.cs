@@ -135,9 +135,12 @@ namespace MmorpgClient.UI.Ugui.Battle
                 var view = ownerId != 0UL ? _resolveView(ownerId) : null;
                 if (view != null)
                 {
-                    Color tint = isSeasonSeal
-                        ? new Color(0.56f, 0.94f, 0.74f, 1f)
-                        : new Color(1f, 0.88f, 0.44f, 1f);
+                    bool isResonance = isSeasonSeal && ev.ArtifactEffectId >= 101u && ev.ArtifactEffectId <= 108u;
+                    Color tint = isResonance
+                        ? new Color(1f, 0.90f, 0.48f, 1f)
+                        : isSeasonSeal
+                            ? new Color(0.56f, 0.94f, 0.74f, 1f)
+                            : new Color(1f, 0.88f, 0.44f, 1f);
                     view.SpawnFloatText(label, tint, true);
                 }
             }

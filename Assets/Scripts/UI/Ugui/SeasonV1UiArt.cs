@@ -56,6 +56,14 @@ namespace MmorpgClient.UI.Ugui
                 {
                     1u => HonorIconsPrefix + "honor_s1_pozhen",
                     2u => HonorIconsPrefix + "honor_s2_xuanmai",
+                    3u => HonorIconsPrefix + "honor_s3_lihuo",
+                    4u => HonorIconsPrefix + "honor_s4_qingmu",
+                    5u => HonorIconsPrefix + "honor_s5_xuanshui",
+                    6u => HonorIconsPrefix + "honor_s6_houtu",
+                    7u => HonorIconsPrefix + "honor_s7_gengjin",
+                    8u => HonorIconsPrefix + "honor_s8_taiyin",
+                    9u => HonorIconsPrefix + "honor_s9_tianlei",
+                    10u => HonorIconsPrefix + "honor_s10_hunyuan",
                     _ => null,
                 };
             string path = SeasonModels.NormalizeIconResource(effectiveKey, HonorIconsPrefix, seasonId);

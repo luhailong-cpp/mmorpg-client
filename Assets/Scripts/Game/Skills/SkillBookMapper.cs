@@ -120,8 +120,20 @@ namespace MmorpgClient.Game.Skills
                 MaxPassiveSlots = proto.MaxPassiveSlots > 0 ? proto.MaxPassiveSlots : 3u,
                 MaxPursuitSlots = proto.MaxPursuitSlots > 0 ? proto.MaxPursuitSlots : 1u,
                 MaxOpeningSlots = proto.MaxOpeningSlots > 0 ? proto.MaxOpeningSlots : 1u,
-                UnlockedSchemes = proto.UnlockedSchemes > 0 ? proto.UnlockedSchemes : 3u,
-                MaxSchemes = proto.MaxSchemes > 0 ? proto.MaxSchemes : 6u,
+                UnlockedSchemes = proto.UnlockedSchemes > 0 ? proto.UnlockedSchemes : 2u,
+                MaxSchemes = proto.MaxSchemes > 0 ? proto.MaxSchemes : 7u,
+                FreeSchemes = proto.FreeSchemes > 0 ? proto.FreeSchemes : 2u,
+                LightCardBonusSchemes = proto.LightCardBonusSchemes,
+                RentedExtraSlots = proto.RentedExtraSlots,
+                RentExpiresAtSec = proto.RentExpiresAtSec,
+                ServerNowSec = proto.ServerNowSec,
+                RentUnitPriceDiamond = proto.RentUnitPriceDiamond > 0 ? proto.RentUnitPriceDiamond : 30UL,
+                RentPeriodDays = proto.RentPeriodDays > 0 ? proto.RentPeriodDays : 30u,
+                RentMaxRemainingDays = proto.RentMaxRemainingDays > 0 ? proto.RentMaxRemainingDays : 180u,
+                DiamondBalance = proto.DiamondBalance,
+                AttributeResetCostGold = proto.AttributeResetCostGold,
+                AttributeSwitchCooldownUntil = proto.AttributeSwitchCooldownUntil,
+                ActiveAttributeSchemeId = proto.ActiveAttributeSchemeId > 0 ? proto.ActiveAttributeSchemeId : 1u,
                 LastRequestId = proto.LastRequestId,
             };
             foreach (var scheme in proto.Schemes)
@@ -130,11 +142,18 @@ namespace MmorpgClient.Game.Skills
                 var item = new Ui.SkillLoadoutSchemeView
                 {
                     SchemeId = scheme.SchemeId,
+                    Name = !string.IsNullOrEmpty(scheme.Name)
+                        ? scheme.Name
+                        : Ui.SkillLoadoutView.DefaultSchemeName(scheme.SchemeId),
                     RoleTag = scheme.RoleTag,
+                    AttributeRemaining = scheme.AttributeRemaining,
+                    AttributeTotalPoints = scheme.AttributeTotalPoints,
                 };
                 item.PassiveSkillIds.AddRange(scheme.PassiveSkillIds);
                 item.PursuitSkillIds.AddRange(scheme.PursuitSkillIds);
                 item.OpeningSkillIds.AddRange(scheme.OpeningSkillIds);
+                foreach (var kv in scheme.AttributeAllocated)
+                    item.AttributeAllocated[kv.Key] = kv.Value;
                 view.Schemes.Add(item);
             }
             view.Schemes.Sort((a, b) => a.SchemeId.CompareTo(b.SchemeId));
@@ -168,6 +187,14 @@ namespace MmorpgClient.Game.Skills
             (uint)skill_error.KSkillLoadoutNotLearned => "请先修习该战法后再进行装配",
             (uint)skill_error.KSkillLoadoutSchemeInvalid => "无效的战法流派方案",
             (uint)skill_error.KSkillLoadoutVersionChanged => "战法装配状态已变化，请刷新后再试",
+            (uint)skill_error.KSkillLoadoutNameInvalid => "流派方案名称不合法或包含敏感词",
+            (uint)skill_error.KSkillLoadoutRentPriceChanged => "方案槽位租用价格已变化，请刷新后再试",
+            (uint)skill_error.KSkillLoadoutRentDiamondNotEnough => "灵石不足，无法开通或续期方案槽位",
+            (uint)skill_error.KSkillLoadoutRentStackLimit => "方案槽位剩余租期已达上限，暂不能继续续期",
+            (uint)skill_error.KSkillLoadoutRentSlotsInvalid => "所选方案槽位数量超出可租上限或不可在租期内缩减",
+            (uint)skill_error.KSkillLoadoutAttributeInvalid => "所选四维属性加点超出可用点数或配置不合法",
+            (uint)skill_error.KSkillLoadoutAttributeResetRequired => "本次加点低于已分配值，需确认洗点后方可保存",
+            (uint)attribute_error.KAttributeGoldNotEnough => "银两不足，无法完成洗点重配",
             (uint)equip_error.KEquipProxyMasterUnavailable => "该名匠代打摊位当前不可用，请刷新列表",
             (uint)season_error.KSeasonSkillNoUpgrade => "本季全员免费生效，随角色等级自动成长，季末随赛季轮换",
             (uint)common_error.KInvalidTableId => "技能不存在",

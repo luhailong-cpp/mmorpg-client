@@ -370,7 +370,15 @@ namespace MmorpgClient.UI.Ugui.Ranked
             // 宿敌账本与历届赛季榜首卡
             var pastCard = CreateGuildArt("PreviousSeasonsCard", body, 950f, 772f, 786f, 148f, "guild_row_normal");
             CreateGuildArt("PastSeasonsHeader", pastCard.transform, 0f, 0f, 786f, 42f, "guild_table_header");
-            CreateLabel("PastSeasonsTitle", pastCard.transform, 28f, 6f, 730f, 32f,
+            var rivalryHeaderIcon = SeasonEconomyUiArt.LoadRankedPlayV6Asset("icon_rivalry_crossed");
+            float pastTitleX = 28f;
+            if (rivalryHeaderIcon != null)
+            {
+                var rIcon = QdaoUguiFactory.CreateImage("PastSeasonsRivalryIcon", pastCard.transform, 20f, 9f, 24f, 24f, rivalryHeaderIcon, false);
+                rIcon.preserveAspect = true;
+                pastTitleX = 50f;
+            }
+            CreateLabel("PastSeasonsTitle", pastCard.transform, pastTitleX, 6f, 758f - pastTitleX, 32f,
                 "宿敌账本与历届记录", 20f, JadeHeading, bold: true);
             _pastSeasonsText = CreateLabel("PastSeasonsBody", pastCard.transform, 28f, 48f, 730f, 94f,
                 "暂无宿敌交手与已封榜赛季记录。", 17f, InkMuted, wrap: true);
@@ -648,6 +656,180 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 next.EquippedTitleCode = string.IsNullOrEmpty(next.EquippedTitleCode) ? ent.ItemCode : string.Empty;
             }
             CosmeticUpdateRequested?.Invoke(next);
+        }
+
+        private void BuildFeaturedBuildsTab()
+        {
+            var body = QdaoUguiFactory.CreateRect("TabFeaturedBuilds", _root, 0f, 0f, DesignWidth, DesignHeight);
+            _tabBodies[3] = body.gameObject;
+
+            _featuredStatusText = CreateLabel("FeaturedStatus", body, 954f, 418f, 778f, 34f,
+                DefaultFeaturedStatus, 17f, BronzeHint);
+            _featuredStatusText.enableAutoSizing = true;
+            _featuredStatusText.fontSizeMin = 13f;
+            _featuredStatusText.fontSizeMax = 17f;
+
+            _featuredEmptyText = CreateLabel("FeaturedEmpty", body, 974f, 560f, 738f, 120f,
+                "本赛季暂未产生高段位公开名局样本，完成正式人宠会武对局后将自动汇总热门配招。",
+                20f, InkMuted, TextAlignmentOptions.Center, wrap: true);
+
+            var cardSprite = SeasonEconomyUiArt.LoadRankedPlayV6Asset("featured_build_card_base");
+            var replayIconSprite = SeasonEconomyUiArt.LoadRankedPlayV6Asset("icon_featured_replay");
+            var copyIconSprite = SeasonEconomyUiArt.LoadRankedPlayV6Asset("icon_copy_build");
+
+            for (int i = 0; i < MaxFeaturedCards; i++)
+            {
+                float y = 456f + i * 126f;
+                bool hasCardArt = cardSprite != null;
+                var bg = QdaoUguiFactory.CreateImage("FeaturedBuildCard_" + i, body, 963f, y, 760f, 120f,
+                    hasCardArt ? cardSprite : LoadGuildApproved("guild_row_normal"), false);
+                bg.type = Image.Type.Simple;
+                if (bg.sprite == null) bg.color = SeasonEconomyUiArt.BattleArenaPaper;
+
+                // 严格对齐 featured_build_card_base.png 左列信息安全区（x=28..558）与右侧双按钮槽（x=591..741, y=15..53 / 67..105）
+                float infoX = hasCardArt ? 28f : 18f;
+                float infoW = hasCardArt ? 530f : 548f;
+                var title = CreateLabel("FeaturedTitle_" + i, bg.transform, infoX, 10f, infoW, 30f, "", 19f, JadeDark, bold: true);
+                title.enableAutoSizing = true;
+                title.fontSizeMin = 13f;
+                title.fontSizeMax = 19f;
+
+                var loadout = CreateLabel("FeaturedLoadout_" + i, bg.transform, infoX, 45f, infoW, 30f, "", 17f, JadeAccent, bold: true);
+                loadout.enableAutoSizing = true;
+                loadout.fontSizeMin = 13f;
+                loadout.fontSizeMax = 17f;
+
+                var skills = CreateLabel("FeaturedSkills_" + i, bg.transform, infoX, 80f, infoW, 30f, "", 16f, InkSecondary);
+                skills.enableAutoSizing = true;
+                skills.fontSizeMin = 12f;
+                skills.fontSizeMax = 16f;
+
+                Button replayBtn;
+                TMP_Text replayLbl;
+                if (hasCardArt)
+                {
+                    // 卡片底图已在 [591, 15, 150, 38] 绘好上槽金边宣纸按钮，用透明点击层叠图标与字，杜绝双框重叠
+                    replayBtn = QdaoUguiFactory.CreateHitButton("FeaturedReplayBtn_" + i, bg.transform, 591f, 15f, 150f, 38f);
+                    replayLbl = CreateLabel("FeaturedReplayBtn_" + i + "_Label", replayBtn.transform, 8f, 0f, 134f, 38f,
+                        "观摩名局", 18f, JadeDark, TextAlignmentOptions.Center, bold: true);
+                    replayLbl.enableAutoSizing = true;
+                    replayLbl.fontSizeMin = 13f;
+                    replayLbl.fontSizeMax = 18f;
+                }
+                else
+                {
+                    replayBtn = CreateGuildButton("FeaturedReplayBtn_" + i, bg.transform, 591f, 15f, 150f, 38f,
+                        "guild_button_secondary", "观摩名局", 18f, JadeDark, out _, out replayLbl);
+                }
+                AttachSmallButtonIcon(replayBtn.transform, replayLbl, "ReplayIcon_" + i, replayIconSprite, 150f, 38f);
+
+                var copyBtn = CreateGuildButton("FeaturedCopyBtn_" + i, bg.transform, 591f, 67f, 150f, 38f,
+                    "guild_button_primary", "一键套用", 18f, ButtonGoldText, out _, out var copyLbl);
+                AttachSmallButtonIcon(copyBtn.transform, copyLbl, "CopyIcon_" + i, copyIconSprite, 150f, 38f);
+
+                var row = new FeaturedBuildRowView
+                {
+                    Root = bg.gameObject,
+                    Bg = bg,
+                    TitleText = title,
+                    LoadoutText = loadout,
+                    SkillsText = skills,
+                    ReplayBtn = replayBtn,
+                    CopyBtn = copyBtn,
+                };
+                replayBtn.onClick.AddListener(() =>
+                {
+                    if (row.BoundBuild != null && row.BoundBuild.FeaturedBattleId != 0UL)
+                        WatchFeaturedReplayRequested?.Invoke(row.BoundBuild.FeaturedBattleId);
+                });
+                copyBtn.onClick.AddListener(() =>
+                {
+                    if (row.BoundBuild != null)
+                        ApplyFeaturedBuildRequested?.Invoke(row.BoundBuild);
+                });
+                bg.gameObject.SetActive(false);
+                _featuredRows[i] = row;
+            }
+
+            body.gameObject.SetActive(false);
+        }
+
+        private static void AttachSmallButtonIcon(Transform btnTransform, TMP_Text label, string iconName,
+            Sprite iconSprite, float btnWidth, float btnHeight)
+        {
+            if (iconSprite == null) return;
+            const float iconSize = 24f;
+            float iconY = Mathf.Max(0f, (btnHeight - iconSize) * 0.5f);
+            var icon = QdaoUguiFactory.CreateImage(iconName, btnTransform, 10f, iconY, iconSize, iconSize, iconSprite, false);
+            icon.preserveAspect = true;
+            if (label != null && label.rectTransform != null)
+            {
+                var rt = label.rectTransform;
+                rt.anchoredPosition = new Vector2(36f, 0f);
+                rt.sizeDelta = new Vector2(Mathf.Max(60f, btnWidth - 44f), btnHeight);
+            }
+        }
+
+        private void RenderFeaturedBuilds()
+        {
+            var builds = _profile?.FeaturedBuilds;
+            int count = builds != null ? Math.Min(builds.Count, MaxFeaturedCards) : 0;
+            if (_featuredEmptyText != null) _featuredEmptyText.gameObject.SetActive(count == 0);
+
+            for (int i = 0; i < MaxFeaturedCards; i++)
+            {
+                var row = _featuredRows[i];
+                if (row == null) continue;
+                if (i >= count || builds[i] == null)
+                {
+                    row.BoundBuild = null;
+                    row.Root.SetActive(false);
+                    continue;
+                }
+
+                var b = builds[i];
+                row.BoundBuild = b;
+                row.Root.SetActive(true);
+
+                string playerLabel = !string.IsNullOrEmpty(b.FeaturedPlayerName)
+                    ? b.FeaturedPlayerName
+                    : (b.FeaturedPlayerId != 0UL ? $"道友{b.FeaturedPlayerId}" : "高段名家");
+                string scaleTag = b.FeaturedTeamSize >= 1u && b.FeaturedTeamSize <= 5u
+                    ? $"{b.FeaturedTeamSize}V{b.FeaturedTeamSize}"
+                    : "论剑";
+                string winRate = RankedFormatting.FormatWinRatePercent(b.Wins, b.Appearances);
+                row.TitleText.text = $"#{i + 1} 胜率 {winRate}（{b.Wins}胜/{b.Appearances}场）· {RankedFormatting.FormatRating(b.FeaturedRatingCenti)}分 {scaleTag} · {playerLabel}";
+
+                string sealName = b.SeasonSealId != 0u
+                    ? (SeasonSealTableManager.Instance?.FindById(b.SeasonSealId)?.Name ?? $"赛季印#{b.SeasonSealId}")
+                    : "未配印";
+                string petName = b.StarterPetTableId != 0u
+                    ? (PetTableManager.Instance?.FindById(b.StarterPetTableId)?.Name ?? $"灵宠#{b.StarterPetTableId}")
+                    : "未出战宠";
+                row.LoadoutText.text = $"赛季印：{sealName}   ·   首发灵宠：{petName}";
+
+                if (b.CoreSkillIds.Count > 0)
+                {
+                    var skillNames = new List<string>(b.CoreSkillIds.Count);
+                    for (int s = 0; s < b.CoreSkillIds.Count && s < 4; s++)
+                    {
+                        uint sid = b.CoreSkillIds[s];
+                        if (sid == 0u) continue;
+                        string sn = SkillTableManager.Instance?.FindById(sid)?.Name;
+                        skillNames.Add(string.IsNullOrWhiteSpace(sn) ? $"技能{sid}" : sn);
+                    }
+                    row.SkillsText.text = skillNames.Count > 0
+                        ? "核心招式：" + string.Join(" / ", skillNames)
+                        : "核心招式：默认流派";
+                }
+                else
+                {
+                    row.SkillsText.text = "核心招式：默认流派";
+                }
+
+                row.ReplayBtn.interactable = b.FeaturedBattleId != 0UL;
+                row.CopyBtn.interactable = b.SeasonSealId != 0u || b.StarterPetTableId != 0u;
+            }
         }
 
         private static string FormatOpenTeamSizes(IReadOnlyList<uint> sizes)

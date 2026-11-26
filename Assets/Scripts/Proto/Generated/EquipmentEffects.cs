@@ -43,22 +43,24 @@ public static partial class EquipmentEffectsReflection {
           "bnRIaXRCcHNFbnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgB",
           "GjcKFUFpbG1lbnRSZXNpc3RCcHNFbnRyeRILCgNrZXkYASABKA0SDQoFdmFs",
           "dWUYAiABKA06AjgBGjcKFU1hbmFSZWR1Y3Rpb25CcHNFbnRyeRILCgNrZXkY",
-          "ASABKA0SDQoFdmFsdWUYAiABKA06AjgBIt8BChBTZWFzb25TZWFsRWZmZWN0",
+          "ASABKA0SDQoFdmFsdWUYAiABKA06AjgBIqwCChBTZWFzb25TZWFsRWZmZWN0",
           "EhEKCXNlYXNvbl9pZBgBIAEoDRIPCgdzZWFsX2lkGAIgASgNEhEKCWVmZmVj",
           "dF9pZBgDIAEoDRIRCglib251c19icHMYBCABKA0SDwoHY2FwX2JwcxgFIAEo",
           "DRIXCg9wZXJfcm91bmRfbGltaXQYBiABKA0SFAoMYmF0dGxlX2xpbWl0GAcg",
           "ASgNEhUKDWFjdGl2ZV9yb3VuZHMYCCABKA0SHAoUaGVhbHRoX3RocmVzaG9s",
-          "ZF9icHMYCSABKA0SDAoEbmFtZRgKIAEoCSLTAQoXRXF1aXBtZW50QXJ0aWZh",
-          "Y3RTb3VyY2USDwoHaXRlbV9pZBgBIAEoBBIRCgllZmZlY3RfaWQYAiABKA0S",
-          "EQoJYm9udXNfYnBzGAMgASgNEg8KB2NhcF9icHMYBCABKA0SFwoPcGVyX3Jv",
-          "dW5kX2xpbWl0GAUgASgNEhQKDGJhdHRsZV9saW1pdBgGIAEoDRIVCg1hY3Rp",
-          "dmVfcm91bmRzGAcgASgNEhwKFGhlYWx0aF90aHJlc2hvbGRfYnBzGAggASgN",
-          "EgwKBG5hbWUYCSABKAlCEloQY29tbW9uL2NvbXBvbmVudGIGcHJvdG8z"));
+          "ZF9icHMYCSABKA0SDAoEbmFtZRgKIAEoCRIaChJyZXNvbmFuY2Vfc2tpbGxf",
+          "aWQYCyABKA0SFgoOcmVzb25hbmNlX2tpbmQYDCABKA0SFwoPcmVzb25hbmNl",
+          "X3BhcmFtGA0gASgNItMBChdFcXVpcG1lbnRBcnRpZmFjdFNvdXJjZRIPCgdp",
+          "dGVtX2lkGAEgASgEEhEKCWVmZmVjdF9pZBgCIAEoDRIRCglib251c19icHMY",
+          "AyABKA0SDwoHY2FwX2JwcxgEIAEoDRIXCg9wZXJfcm91bmRfbGltaXQYBSAB",
+          "KA0SFAoMYmF0dGxlX2xpbWl0GAYgASgNEhUKDWFjdGl2ZV9yb3VuZHMYByAB",
+          "KA0SHAoUaGVhbHRoX3RocmVzaG9sZF9icHMYCCABKA0SDAoEbmFtZRgJIAEo",
+          "CUISWhBjb21tb24vY29tcG9uZW50YgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::SupportEffectsReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentEffects), global::EquipmentEffects.Parser, new[]{ "PhysicalAttackBps", "MagicAttackBps", "MaxHealthBps", "SpeedBps", "OutgoingHealBps", "ShieldCapacityBps", "PhysicalCritBps", "MagicCritBps", "PhysicalResistBps", "MagicResistBps", "AilmentHitBps", "AilmentResistBps", "ManaReductionBps", "Artifacts", "SupportSources", "SupportSourcesComplete", "SeasonSeal", "SeasonMaxHealthBps", "SeasonDefenseBps" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, null, }),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SeasonSealEffect), global::SeasonSealEffect.Parser, new[]{ "SeasonId", "SealId", "EffectId", "BonusBps", "CapBps", "PerRoundLimit", "BattleLimit", "ActiveRounds", "HealthThresholdBps", "Name" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SeasonSealEffect), global::SeasonSealEffect.Parser, new[]{ "SeasonId", "SealId", "EffectId", "BonusBps", "CapBps", "PerRoundLimit", "BattleLimit", "ActiveRounds", "HealthThresholdBps", "Name", "ResonanceSkillId", "ResonanceKind", "ResonanceParam" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentArtifactSource), global::EquipmentArtifactSource.Parser, new[]{ "ItemId", "EffectId", "BonusBps", "CapBps", "PerRoundLimit", "BattleLimit", "ActiveRounds", "HealthThresholdBps", "Name" }, null, null, null, null)
         }));
   }
@@ -959,6 +961,9 @@ public sealed partial class SeasonSealEffect : pb::IMessage<SeasonSealEffect>
     activeRounds_ = other.activeRounds_;
     healthThresholdBps_ = other.healthThresholdBps_;
     name_ = other.name_;
+    resonanceSkillId_ = other.resonanceSkillId_;
+    resonanceKind_ = other.resonanceKind_;
+    resonanceParam_ = other.resonanceParam_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1100,6 +1105,51 @@ public sealed partial class SeasonSealEffect : pb::IMessage<SeasonSealEffect>
     }
   }
 
+  /// <summary>Field number for the "resonance_skill_id" field.</summary>
+  public const int ResonanceSkillIdFieldNumber = 11;
+  private uint resonanceSkillId_;
+  /// <summary>
+  /// 表驱动技印共鸣绑定技能 ID（0 = 无共鸣）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ResonanceSkillId {
+    get { return resonanceSkillId_; }
+    set {
+      resonanceSkillId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "resonance_kind" field.</summary>
+  public const int ResonanceKindFieldNumber = 12;
+  private uint resonanceKind_;
+  /// <summary>
+  /// 共鸣原语种类（1..8；0 = 无共鸣）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ResonanceKind {
+    get { return resonanceKind_; }
+    set {
+      resonanceKind_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "resonance_param" field.</summary>
+  public const int ResonanceParamFieldNumber = 13;
+  private uint resonanceParam_;
+  /// <summary>
+  /// 共鸣参数（受服务端硬上限约束）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ResonanceParam {
+    get { return resonanceParam_; }
+    set {
+      resonanceParam_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1125,6 +1175,9 @@ public sealed partial class SeasonSealEffect : pb::IMessage<SeasonSealEffect>
     if (ActiveRounds != other.ActiveRounds) return false;
     if (HealthThresholdBps != other.HealthThresholdBps) return false;
     if (Name != other.Name) return false;
+    if (ResonanceSkillId != other.ResonanceSkillId) return false;
+    if (ResonanceKind != other.ResonanceKind) return false;
+    if (ResonanceParam != other.ResonanceParam) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1142,6 +1195,9 @@ public sealed partial class SeasonSealEffect : pb::IMessage<SeasonSealEffect>
     if (ActiveRounds != 0) hash ^= ActiveRounds.GetHashCode();
     if (HealthThresholdBps != 0) hash ^= HealthThresholdBps.GetHashCode();
     if (Name.Length != 0) hash ^= Name.GetHashCode();
+    if (ResonanceSkillId != 0) hash ^= ResonanceSkillId.GetHashCode();
+    if (ResonanceKind != 0) hash ^= ResonanceKind.GetHashCode();
+    if (ResonanceParam != 0) hash ^= ResonanceParam.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1200,6 +1256,18 @@ public sealed partial class SeasonSealEffect : pb::IMessage<SeasonSealEffect>
       output.WriteRawTag(82);
       output.WriteString(Name);
     }
+    if (ResonanceSkillId != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(ResonanceSkillId);
+    }
+    if (ResonanceKind != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(ResonanceKind);
+    }
+    if (ResonanceParam != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(ResonanceParam);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1250,6 +1318,18 @@ public sealed partial class SeasonSealEffect : pb::IMessage<SeasonSealEffect>
       output.WriteRawTag(82);
       output.WriteString(Name);
     }
+    if (ResonanceSkillId != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(ResonanceSkillId);
+    }
+    if (ResonanceKind != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(ResonanceKind);
+    }
+    if (ResonanceParam != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(ResonanceParam);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1289,6 +1369,15 @@ public sealed partial class SeasonSealEffect : pb::IMessage<SeasonSealEffect>
     }
     if (Name.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+    }
+    if (ResonanceSkillId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ResonanceSkillId);
+    }
+    if (ResonanceKind != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ResonanceKind);
+    }
+    if (ResonanceParam != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ResonanceParam);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1331,6 +1420,15 @@ public sealed partial class SeasonSealEffect : pb::IMessage<SeasonSealEffect>
     }
     if (other.Name.Length != 0) {
       Name = other.Name;
+    }
+    if (other.ResonanceSkillId != 0) {
+      ResonanceSkillId = other.ResonanceSkillId;
+    }
+    if (other.ResonanceKind != 0) {
+      ResonanceKind = other.ResonanceKind;
+    }
+    if (other.ResonanceParam != 0) {
+      ResonanceParam = other.ResonanceParam;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1391,6 +1489,18 @@ public sealed partial class SeasonSealEffect : pb::IMessage<SeasonSealEffect>
           Name = input.ReadString();
           break;
         }
+        case 88: {
+          ResonanceSkillId = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          ResonanceKind = input.ReadUInt32();
+          break;
+        }
+        case 104: {
+          ResonanceParam = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -1448,6 +1558,18 @@ public sealed partial class SeasonSealEffect : pb::IMessage<SeasonSealEffect>
         }
         case 82: {
           Name = input.ReadString();
+          break;
+        }
+        case 88: {
+          ResonanceSkillId = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          ResonanceKind = input.ReadUInt32();
+          break;
+        }
+        case 104: {
+          ResonanceParam = input.ReadUInt32();
           break;
         }
       }

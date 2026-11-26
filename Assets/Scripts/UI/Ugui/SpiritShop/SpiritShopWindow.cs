@@ -173,14 +173,22 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             var cancelBtn = Button(modalFrame, "取消", 64f, 518f, 230f, 74f, CloseConfirmModal, fontSize: 28f);
             cancelBtn.name = ConfirmCancelButtonName;
 
-            _confirmRechargeButton = Button(modalFrame, "前往充值", 320f, 518f, 250f, 74f, () =>
+            Action confirmRechargeClick = () =>
             {
                 CloseConfirmModal();
                 HandleRechargeClicked();
-            }, fontSize: 26f);
+            };
+            _confirmRechargeButton = rechargeSprite != null
+                ? CreateOptionalButton(modalFrame, ConfirmRechargeButtonName, "前往充值", 320f, 518f, 250f, 74f,
+                    rechargeSprite, confirmRechargeClick, Ink, 26f)
+                : Button(modalFrame, "前往充值", 320f, 518f, 250f, 74f, confirmRechargeClick, fontSize: 26f);
             _confirmRechargeButton.name = ConfirmRechargeButtonName;
 
-            _confirmBuyButton = Button(modalFrame, "确认购买", 596f, 518f, 300f, 74f, ExecuteConfirmBuy, primary: true, fontSize: 28f);
+            var confirmBuySprite = LoadOptionalSkin("ui/btn_buy_primary");
+            _confirmBuyButton = confirmBuySprite != null
+                ? CreateOptionalButton(modalFrame, ConfirmBuyButtonName, "确认购买", 596f, 518f, 300f, 74f,
+                    confirmBuySprite, ExecuteConfirmBuy, Cream, 28f)
+                : Button(modalFrame, "确认购买", 596f, 518f, 300f, 74f, ExecuteConfirmBuy, primary: true, fontSize: 28f);
             _confirmBuyButton.name = ConfirmBuyButtonName;
         }
 
@@ -752,8 +760,8 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             if (goods != null && goods.TabId == SpiritShopModels.TabFestival)
             {
                 var festivalFallback = SpiritShopModels.IsChooseOne(goods)
-                    ? SeasonEconomyUiArt.LoadCraftIcon("item_celestial_ink")
-                    : LoadOptionalSkin("pack_starter_300");
+                    ? (LoadOptionalSkin("pack_festival_choice") ?? SeasonEconomyUiArt.LoadCraftIcon("item_celestial_ink"))
+                    : (LoadOptionalSkin("pack_festival_bundle") ?? LoadOptionalSkin("pack_starter_300"));
                 if (festivalFallback != null) return festivalFallback;
             }
             uint firstItemId = goods?.Items != null && goods.Items.Count > 0 ? goods.Items[0].ItemConfigId : 0u;

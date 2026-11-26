@@ -210,6 +210,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly TMP_Text _prepEnemySummaryText;
         private readonly RectTransform _prepRivalryTagRoot;
         private readonly TMP_Text _prepRivalryTagText;
+        private readonly bool _prepRivalryHasArt;
         private readonly RectTransform _prepTeamContent;
         private readonly UnityEngine.UI.ScrollRect _prepTeamScroll;
         private readonly List<GameObject> _prepTeamChips = new();
@@ -861,30 +862,34 @@ namespace MmorpgClient.UI.Ugui.Battle
             _prepEnemySummaryText.overflowMode = TextOverflowModes.Ellipsis;
             _prepEnemySummaryText.raycastTarget = false;
 
-            // 论剑 V6 战前宿敌标签（260×44，位于敌方初阵栏右侧，仅本人视角展示，预绑 RankedPlayV6/rivalry_prep_tag + icon_rivalry_crossed）
+            // 论剑 V6 战前宿敌标签（260×44，位于敌方初阵栏右侧，仅本人视角展示，左图标井 x=12..54，右侧文字安全区 x=61..247）
             var rivalryBg = BattleUiWidgets.CreatePanel("PrepRivalryTag", _prepPanel, 1288f, 256f, 260f, 44f,
                 SeasonEconomyUiArt.BattleArenaAmber, raycastTarget: false);
             var rivalryTagSprite = SeasonEconomyUiArt.LoadRankedPlayV6Asset("rivalry_prep_tag");
-            bool hasRivalryTagArt = rivalryTagSprite != null;
-            if (hasRivalryTagArt) SeasonEconomyUiArt.ApplyFixedControlSprite(rivalryBg, rivalryTagSprite, SeasonEconomyUiArt.BattleArenaAmber);
+            _prepRivalryHasArt = rivalryTagSprite != null;
+            if (_prepRivalryHasArt) SeasonEconomyUiArt.ApplyFixedControlSprite(rivalryBg, rivalryTagSprite, SeasonEconomyUiArt.BattleArenaAmber);
             else BattleRoundCounter.ApplyNineSlice(rivalryBg, "panel_9slice");
             _prepRivalryTagRoot = rivalryBg.rectTransform;
             var rivalryIconSprite = SeasonEconomyUiArt.LoadRankedPlayV6Asset("icon_rivalry_crossed");
-            float rivalryTextX = 12f;
             if (rivalryIconSprite != null)
             {
-                var rIcon = QdaoUguiFactory.CreateImage("Icon", _prepRivalryTagRoot, 10f, 8f, 28f, 28f, rivalryIconSprite, false);
+                float iconX = _prepRivalryHasArt ? 14f : 10f;
+                float iconY = _prepRivalryHasArt ? 7f : 8f;
+                float iconSize = _prepRivalryHasArt ? 30f : 28f;
+                var rIcon = QdaoUguiFactory.CreateImage("Icon", _prepRivalryTagRoot, iconX, iconY, iconSize, iconSize, rivalryIconSprite, false);
                 rIcon.preserveAspect = true;
                 rIcon.color = Color.white;
-                rivalryTextX = 42f;
             }
+            float rivalryTextX = _prepRivalryHasArt ? 61f : (rivalryIconSprite != null ? 42f : 12f);
+            float rivalryTextW = _prepRivalryHasArt ? 186f : (252f - rivalryTextX);
             _prepRivalryTagText = QdaoUguiFactory.CreateText("PrepRivalryTagText", _prepRivalryTagRoot,
-                rivalryTextX, 0f, 252f - rivalryTextX, 44f, string.Empty, 17f,
-                QdaoUguiTheme.Cream, TextAlignmentOptions.MidlineLeft);
+                rivalryTextX, 2f, rivalryTextW, 40f, string.Empty, 16f,
+                _prepRivalryHasArt ? SeasonEconomyUiArt.BattleArenaInk : QdaoUguiTheme.Cream, TextAlignmentOptions.MidlineLeft);
             _prepRivalryTagText.fontStyle = FontStyles.Bold;
             _prepRivalryTagText.enableAutoSizing = true;
-            _prepRivalryTagText.fontSizeMin = 13f;
-            _prepRivalryTagText.fontSizeMax = 17f;
+            _prepRivalryTagText.fontSizeMin = 11f;
+            _prepRivalryTagText.fontSizeMax = 16f;
+            _prepRivalryTagText.overflowMode = TextOverflowModes.Ellipsis;
             _prepRivalryTagText.raycastTarget = false;
             _prepRivalryTagRoot.gameObject.SetActive(false);
 
@@ -1875,6 +1880,11 @@ namespace MmorpgClient.UI.Ugui.Battle
                 SetHint("该技能本局已被禁用");
                 return;
             }
+            if (BattleSkillBanModels.IsSkillBlockedByTrialVow(_state, skillTableId))
+            {
+                SetHint("当前「禁控硬破」试炼誓约已禁用控制类技能");
+                return;
+            }
             var definition = Skills.SkillUiRoot.FindPresentation(skillTableId);
             bool isMirrorCopy = skillTableId == TurnPlan.MirrorCopySkillId;
             if (!isMirrorCopy && definition == null && MmorpgClient.Game.Skills.SkillBookClient.Instance != null)
@@ -2621,9 +2631,12 @@ namespace MmorpgClient.UI.Ugui.Battle
                     if (isPet && !isPassive && SkillCategory(skillId) != _petSkillTab) continue;
                     me.SkillCooldownRounds.TryGetValue(skillId, out uint cooldown);
                     bool isBannedInBattle = BattleSkillBanModels.IsSkillBanned(_state, skillId);
-                    string blockReason = isBannedInBattle ? "本局禁用" : ResolveSkillBlockReason(me, cooldown, definition);
+                    bool isBlockedByVow = !isBannedInBattle && BattleSkillBanModels.IsSkillBlockedByTrialVow(_state, skillId);
+                    string blockReason = isBannedInBattle
+                        ? "本局禁用"
+                        : (isBlockedByVow ? "誓约禁控" : ResolveSkillBlockReason(me, cooldown, definition));
                     bool canUse = string.IsNullOrEmpty(blockReason);
-                    bool isLastUsed = !isPassive && !isBannedInBattle && lastUsedSkillId != 0u && skillId == lastUsedSkillId;
+                    bool isLastUsed = !isPassive && !isBannedInBattle && !isBlockedByVow && lastUsedSkillId != 0u && skillId == lastUsedSkillId;
 
                     int row = index / 3;
                     int col = index % 3;
@@ -2641,7 +2654,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                         iconSprite != null ? iconSprite : QdaoRefreshArt.Load("round_badge_taiji"));
                     icon.preserveAspect = true;
                     icon.raycastTarget = false;
-                    if (isBannedInBattle)
+                    if (isBannedInBattle || isBlockedByVow)
                     {
                         icon.color = new Color(0.50f, 0.50f, 0.50f, 0.85f);
                         var banStamp = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("skill_banned_stamp");
@@ -2819,6 +2832,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_prepState == null) _prepRequestPending = false;
             RefreshActionBar();
             RefreshPrepUi();
+            RefreshBanStrip(_state);
             RefreshTacticalPingBar();
         }
 
@@ -2962,7 +2976,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 _spectatorPrepBanner.gameObject.SetActive(_spectate && prepActive);
                 if (_spectatorPrepText != null)
-                    _spectatorPrepText.text = hasSkillBan ? "战前禁招与变阵中…" : "战前明牌变阵中…";
+                    _spectatorPrepText.text = (prepActive && _prepState.SkillBanSlotsPerTeam > 0u) ? "战前禁招与变阵中…" : "战前明牌变阵中…";
             }
 
             bool show = !IsReadOnly && prepActive;
@@ -3142,7 +3156,16 @@ namespace MmorpgClient.UI.Ugui.Battle
                 string rivalLabel = RankedFormatting.PrepRivalryTagText(topRival);
                 bool showRival = !string.IsNullOrEmpty(rivalLabel);
                 _prepRivalryTagRoot.gameObject.SetActive(showRival);
-                if (showRival) _prepRivalryTagText.text = rivalLabel;
+                if (showRival)
+                {
+                    _prepRivalryTagText.text = rivalLabel;
+                    if (_prepRivalryHasArt)
+                    {
+                        _prepRivalryTagText.color = topRival != null && topRival.RevengeTarget
+                            ? SeasonEconomyUiArt.BattleArenaVermilion
+                            : SeasonEconomyUiArt.BattleArenaInk;
+                    }
+                }
                 if (_prepEnemySummaryText != null)
                 {
                     var rt = _prepEnemySummaryText.rectTransform;

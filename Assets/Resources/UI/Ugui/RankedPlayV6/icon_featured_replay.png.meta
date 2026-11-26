@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9315413db533ec441f05a7c51bfa6b0b
+guid: 38f31f7be2280ef65a6573176453fb1b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3404941882930200004
-    second: b-salute-title_0
+      213: 2782074720630849246
+    second: icon_featured_replay_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -34,7 +34,7 @@ TextureImporter:
   cubemapConvolution: 0
   seamlessCubemap: 0
   textureFormat: 1
-  maxTextureSize: 2048
+  maxTextureSize: 4096
   textureSettings:
     serializedVersion: 2
     filterMode: 1
@@ -45,7 +45,7 @@ TextureImporter:
     wrapW: 1
   nPOTScale: 0
   lightmap: 0
-  compressionQuality: 50
+  compressionQuality: 100
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
@@ -53,7 +53,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationMethod: 0
@@ -89,13 +89,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: b-salute-title_0
+      name: icon_featured_replay_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 260
-        height: 56
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,8 +104,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f65b2f25b2f91c16a66379c9f4ef6be0
-      internalID: 3404941882930200004
+      spriteID: 98c4c8e51c616b65a066fa8a02decad1
+      internalID: 2782074720630849246
       vertices: []
       indices: 
       edges: []
@@ -114,7 +114,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 76fd8110e7acacd76346b274990826ab
+    spriteID: 1a6ea3d7e0b802d763732e205e77c110
     internalID: 0
     vertices: []
     indices: 
@@ -123,8 +123,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      b-salute-title_0: 3404941882930200004
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

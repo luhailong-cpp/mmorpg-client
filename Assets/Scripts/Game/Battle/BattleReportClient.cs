@@ -55,6 +55,9 @@ namespace MmorpgClient.Game.Battle
         // 简单有界 LRU(列表尾 = 最近使用):每份解压后最大 1 MiB,上限固定在个位数。
         private readonly List<(ulong BattleId, BattleReplay Replay)> _replayCache =
             new List<(ulong, BattleReplay)>();
+        private readonly Dictionary<ulong, Match.TrialChallengeCardView> _challengeCardCache =
+            new Dictionary<ulong, Match.TrialChallengeCardView>();
+        private bool _cardActionInFlight;
 
         private object _observedConnection;
         private ulong _observedPlayer;
@@ -214,6 +217,167 @@ namespace MmorpgClient.Game.Battle
             return true;
         }
 
+        /// <summary>五行试炼志 V3：将本人近期通关试炼战报签发为可分享约战帖。</summary>
+        public bool CreateTrialChallengeCard(ulong battleId, Action<Match.TrialChallengeCardView> onCreated,
+            Action<string> onError = null)
+        {
+            if (_disposed || battleId == 0ul) return false;
+            ObserveSession();
+            if (_cardActionInFlight) return false;
+            if (!_net.IsReady || _net.PlayerId == 0)
+            {
+                string msg = NotReadyMessage;
+                onError?.Invoke(msg);
+                OnError?.Invoke(msg);
+                return false;
+            }
+
+            _cardActionInFlight = true;
+            int generation = _generation;
+            ulong player = _observedPlayer;
+            object connection = _observedConnection;
+            _net.Call(MatchServiceRpc.CreateTrialChallengeCardMessageId,
+                new Match.CreateTrialChallengeCardRequest { BattleId = battleId },
+                Match.CreateTrialChallengeCardResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrentCall(generation, player, connection)) return;
+                    _cardActionInFlight = false;
+                    if (HasTip(resp?.ErrorMessage))
+                    {
+                        string msg = DescribeTip(resp.ErrorMessage.Id);
+                        onError?.Invoke(msg);
+                        OnError?.Invoke(msg);
+                        return;
+                    }
+                    if (resp?.Card == null || resp.Card.CardId == 0ul)
+                    {
+                        string msg = "未能生成有效约战帖，请稍后重试";
+                        onError?.Invoke(msg);
+                        OnError?.Invoke(msg);
+                        return;
+                    }
+                    var cloned = resp.Card.Clone();
+                    _challengeCardCache[cloned.CardId] = cloned;
+                    onCreated?.Invoke(cloned);
+                },
+                err =>
+                {
+                    if (!IsCurrentCall(generation, player, connection)) return;
+                    _cardActionInFlight = false;
+                    string msg = DescribeTransportError(err);
+                    onError?.Invoke(msg);
+                    OnError?.Invoke(msg);
+                });
+            return true;
+        }
+
+        /// <summary>五行试炼志 V3：按 card_id 读取权威约战帖详情（命中会话内缓存时直返）。</summary>
+        public bool TryGetCachedChallengeCard(ulong cardId, out Match.TrialChallengeCardView card)
+        {
+            ObserveSession();
+            return _challengeCardCache.TryGetValue(cardId, out card);
+        }
+
+        public bool GetTrialChallengeCard(ulong cardId, Action<Match.TrialChallengeCardView> onLoaded,
+            Action<string> onError = null)
+        {
+            if (_disposed || cardId == 0ul) return false;
+            ObserveSession();
+            if (_challengeCardCache.TryGetValue(cardId, out var cached))
+            {
+                onLoaded?.Invoke(cached);
+                return true;
+            }
+            if (!_net.IsReady || _net.PlayerId == 0)
+            {
+                onError?.Invoke(NotReadyMessage);
+                return false;
+            }
+            int generation = _generation;
+            ulong player = _observedPlayer;
+            object connection = _observedConnection;
+            _net.Call(MatchServiceRpc.GetTrialChallengeCardMessageId,
+                new Match.GetTrialChallengeCardRequest { CardId = cardId },
+                Match.GetTrialChallengeCardResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrentCall(generation, player, connection)) return;
+                    if (HasTip(resp?.ErrorMessage))
+                    {
+                        onError?.Invoke(resp.ErrorMessage.Id == (uint)match_error.KMatchBattleReportNotFound
+                            ? "该约战帖已过期或不存在"
+                            : DescribeTip(resp.ErrorMessage.Id));
+                        return;
+                    }
+                    if (resp?.Card == null || resp.Card.CardId == 0ul)
+                    {
+                        onError?.Invoke("该约战帖已过期或不存在");
+                        return;
+                    }
+                    var cloned = resp.Card.Clone();
+                    if (_challengeCardCache.Count >= 64) _challengeCardCache.Clear();
+                    _challengeCardCache[cloned.CardId] = cloned;
+                    onLoaded?.Invoke(cloned);
+                },
+                err =>
+                {
+                    if (!IsCurrentCall(generation, player, connection)) return;
+                    onError?.Invoke(DescribeTransportError(err));
+                });
+            return true;
+        }
+
+        /// <summary>五行试炼志 V3：凭有效约战帖 card_id 拉取并播放受控共享的试炼回放。</summary>
+        public bool FetchSharedTrialReplay(ulong cardId, Action<BattleReplay> onReady = null)
+        {
+            if (_disposed || cardId == 0ul) return false;
+            ObserveSession();
+            if (_fetchInFlight) return false;
+            if (!_net.IsReady || _net.PlayerId == 0)
+            {
+                OnError?.Invoke(NotReadyMessage);
+                return false;
+            }
+            _fetchInFlight = true;
+            _fetchingBattleId = 0ul;
+            int generation = _generation;
+            ulong player = _observedPlayer;
+            object connection = _observedConnection;
+            _net.Call(MatchServiceRpc.GetSharedTrialReplayMessageId,
+                new Match.GetSharedTrialReplayRequest { CardId = cardId },
+                Match.GetSharedTrialReplayResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrentCall(generation, player, connection)) return;
+                    _fetchInFlight = false;
+                    if (HasTip(resp?.ErrorMessage))
+                    {
+                        OnError?.Invoke(resp.ErrorMessage.Id == (uint)match_error.KMatchBattleReportNotFound
+                            ? "该约战帖的回放已过期或不可用"
+                            : DescribeTip(resp.ErrorMessage.Id));
+                        return;
+                    }
+                    var decoded = BattleReplayDecoder.Decode(resp?.Replay);
+                    if (!decoded.Success)
+                    {
+                        _log?.Invoke($"shared trial replay decode failed card_id={cardId} error={decoded.Error}");
+                        OnError?.Invoke(decoded.Message);
+                        return;
+                    }
+                    CacheReplay(decoded.Replay.BattleId, decoded.Replay);
+                    if (onReady != null) onReady(decoded.Replay);
+                    else OnReplayLoaded?.Invoke(decoded.Replay);
+                },
+                err =>
+                {
+                    if (!IsCurrentCall(generation, player, connection)) return;
+                    _fetchInFlight = false;
+                    OnError?.Invoke(DescribeTransportError(err));
+                });
+            return true;
+        }
+
         public void ObserveSession()
         {
             if (_disposed) return;
@@ -231,9 +395,11 @@ namespace MmorpgClient.Game.Battle
             _generation++;
             _listInFlight = false;
             _fetchInFlight = false;
+            _cardActionInFlight = false;
             _fetchingBattleId = 0;
             _reports.Clear();
             _replayCache.Clear();
+            _challengeCardCache.Clear();
         }
 
         // ── 纯函数(UI 与 EditMode 共用) ─────────────────────
@@ -284,11 +450,11 @@ namespace MmorpgClient.Game.Battle
 
         public static bool IsPvpMode(uint matchMode) => IsPvpMode((Match.MatchMode)matchMode);
 
-        /// <summary>近期战斗结果面板是否提供「看回放」入口(非作废的 PVP 局且有有效 battle_id)。</summary>
+        /// <summary>近期战斗结果面板是否提供「看回放」入口(非作废的 PVP 局或试炼志有格 PVE 局，且有有效 battle_id)。</summary>
         public static bool CanWatchReplayFromRecovered(PlayerBattleResult result)
             => result != null && result.BattleId != 0
                && !BattleResultRecoveryClient.IsVoid(result)
-               && IsPvpMode(result.MatchMode);
+               && (IsPvpMode(result.MatchMode) || result.TrialJournalEntryId != 0u);
 
         public static string ModeName(Match.MatchMode mode) => mode switch
         {
@@ -343,9 +509,11 @@ namespace MmorpgClient.Game.Battle
             _generation++;
             _listInFlight = false;
             _fetchInFlight = false;
+            _cardActionInFlight = false;
             _fetchingBattleId = 0;
             _reports.Clear();
             _replayCache.Clear();
+            _challengeCardCache.Clear();
         }
 
         private bool IsCurrentCall(int generation, ulong player, object connection)

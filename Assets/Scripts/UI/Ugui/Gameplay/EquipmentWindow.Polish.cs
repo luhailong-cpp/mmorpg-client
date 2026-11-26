@@ -21,6 +21,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private bool _polishUseCharm;
         private bool _polishAllowBound;
         private ulong _polishProxyMasterId;
+        private uint _polishTargetTier; // V3：0=单次打磨，3=磨至上品，4=磨至珍品，5=磨至极品
         private uint _reforgeTargetAffixId;
         private bool _reforgeAllowBound;
         private bool _bindConfirmForReforge;
@@ -41,6 +42,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _polishItemId = itemId;
             _polishUseCharm = false;
             _polishAllowBound = false;
+            _polishTargetTier = 0;
             _reforgeAllowBound = false;
             _polishProxyMasterId = proxyMasterPlayerId;
             _craft.ClearSelection();
@@ -62,7 +64,32 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 masteryLabelX = 282f;
             }
             Label(_body, "PolishMasteryBadge", EquipmentScreenModel.FormatForgeMastery(rules?.ForgeMastery),
-                masteryLabelX, 290, 2960f - masteryLabelX, 70, 40, color: Jade);
+                masteryLabelX, 272, 1650f - masteryLabelX, 60, 36, color: Jade);
+            var items = OwnedEquipment().Where(i => i.FixedAffixSlots.Count > 0 && i.Artifact == null).ToList();
+            var audit = EquipmentScreenModel.BuildQualityAudit(items);
+            string auditText = audit.PolishableSlots == 0
+                ? "工坊品相健检：暂无可打磨词条"
+                : $"工坊健检：极品 {audit.SupremeSlots}/{audit.PolishableSlots}"
+                    + (audit.ExemptSpeedSlots > 0 ? $" · 速度豁免 {audit.ExemptSpeedSlots}" : string.Empty)
+                    + (audit.WorstCaseSandNeeded > 0
+                        ? $" · 满极品至多需 {audit.WorstCaseSandNeeded} 砂/{audit.WorstCaseGoldNeeded} 银"
+                        : " · 已全满极品");
+            Label(_body, "PolishAuditSummary", auditText, 1660, 272, 1140, 62, 30, true,
+                audit.WorstCaseSandNeeded == 0 && audit.PolishableSlots > 0 ? SeasonEconomyUiArt.GoldHighlight : Ink);
+            if (audit.LowestItemId != 0)
+            {
+                Button(_body, "PolishJumpLowest", "定位最低品相", 2810, 270, 450, () =>
+                {
+                    if (_craft.Busy || _craft.Pending) return;
+                    _polishItemId = audit.LowestItemId;
+                    _polishSlot = audit.LowestSlot;
+                    _polishTargetTier = 0;
+                    _polishUseCharm = false;
+                    _polishAllowBound = false;
+                    _craft.ClearSelection();
+                    Render();
+                }, false, !_craft.Busy && !_craft.Pending);
+            }
             Button(_body, "PolishOddsButton", "品相概率", 3280, 270, 500, () =>
             {
                 _modal = Modal.PolishOdds;
@@ -72,7 +99,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
             Panel(_body, "PolishItemsPaper", 130, 415, 860, 965);
             Label(_body, "PolishItemsTitle", "选择打磨装备", 200, 465, 720, 70, 48, color: Jade);
-            var items = OwnedEquipment().Where(i => i.FixedAffixSlots.Count > 0 && i.Artifact == null).ToList();
             if (_polishItemId == 0 || !items.Any(i => i.ItemId == _polishItemId))
             {
                 _polishItemId = items.FirstOrDefault()?.ItemId ?? 0;
@@ -121,17 +147,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Label(_body, "PolishCurrentItem", header, 1320, 556, 820, hasSignature ? 84 : 175, 40, true);
             if (hasSignature)
             {
+                string sigText = EquipmentScreenModel.FormatCrafterLine(current.CrafterName, isBook: false);
                 var sealSprite = SeasonEconomyUiArt.LoadCraftControl("seal_master_signature");
                 if (sealSprite != null)
                 {
                     SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "PolishMasterSealBg", 1320, 648, 640, 72,
                         sealSprite, new Color(0.95f, 0.91f, 0.80f, 0.95f));
-                    Label(_body, "PolishMasterSealText", $"宗师·{current.CrafterName} 亲手铸造",
+                    Label(_body, "PolishMasterSealText", sigText,
                         1386, 654, 520, 60, 34, false, Jade);
                 }
                 else
                 {
-                    Label(_body, "PolishMasterSealText", $"宗师·{current.CrafterName} 亲手铸造",
+                    Label(_body, "PolishMasterSealText", sigText,
                         1320, 648, 820, 72, 36, false, Jade);
                 }
             }
@@ -239,11 +266,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
 
             // 首次进入或切换参数后自动向服务端拉取权威预览，不本地猜测消耗。
+            if (_polishUseCharm || (_polishTargetTier != 0 && _polishTargetTier <= selectedAffix.QualityTier))
+                _polishTargetTier = 0;
+            uint effectiveMaxAttempts = _polishTargetTier != 0 ? 8u : 0u;
             var choice = _craft.Choice;
             bool matchingChoice = choice?.Operation == EquipmentCraftChoice.Types.Operation.PolishAffix
                 && choice.ItemId == current.ItemId && choice.AffixSlot == selectedSlot.Slot
                 && choice.UseGuaranteeCharm == _polishUseCharm && choice.AllowBoundMaterials == _polishAllowBound
-                && choice.ProxyMasterPlayerId == _polishProxyMasterId;
+                && choice.ProxyMasterPlayerId == _polishProxyMasterId
+                && choice.TargetQualityTier == _polishTargetTier && choice.MaxPolishAttempts == effectiveMaxAttempts;
             if (!matchingChoice && !_craft.LoadingPreview && !_craft.Busy && !_craft.Pending && string.IsNullOrEmpty(_craft.Error))
             {
                 RequestPolishPreview(current, selectedSlot);
@@ -253,10 +284,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 MmorpgClient.Game.SpiritShop.SpiritShopModels.ItemStarGuaranteeCharm) > 0;
             float charmBtnWidth = hasCharm ? 1420f : 960f;
             var charmBtn = Button(_body, "PolishCharmToggle", _polishUseCharm ? "✓ 已选：定星保底符（必出极品）" : "使用定星保底符（仅自用 · 必出极品）",
-                2330, 690, charmBtnWidth, () =>
+                2330, 684, charmBtnWidth, () =>
                 {
                     if (_craft.Busy || _craft.Pending) return;
                     _polishUseCharm = !_polishUseCharm;
+                    if (_polishUseCharm) _polishTargetTier = 0;
                     _polishAllowBound = false;
                     RequestPolishPreview(current, selectedSlot);
                     Render();
@@ -269,7 +301,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             if (!hasCharm)
             {
-                Button(_body, "PolishBuyCharmShortcut", "百宝阁补符", 3310, 690, 440, () =>
+                Button(_body, "PolishBuyCharmShortcut", "百宝阁补符", 3310, 684, 440, () =>
                 {
                     Hide();
                     MmorpgClient.UI.Ugui.SpiritShop.SpiritShopUiRoot.Instance?.OpenTab(
@@ -278,23 +310,65 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 });
             }
 
+            // V3 智能定档连磨目标选择行（定星符开启时自动锁定单次）
+            var batchIcon = SeasonEconomyUiArt.LoadCraftIcon("icon_batch_polish");
+            float modeStartX = 2330f;
+            if (batchIcon != null)
+            {
+                var bImg = QdaoUguiFactory.CreateImage("PolishBatchIcon", _body, 2330, 816, 68, 68, batchIcon, false);
+                bImg.preserveAspect = true;
+                modeStartX = 2408f;
+            }
+            (uint tier, string label)[] batchModes = { (0u, "单次打磨"), (3u, "连磨→上品"), (4u, "连磨→珍品"), (5u, "连磨→极品") };
+            float pillW = (3750f - modeStartX - 36f) / 4f;
+            for (int m = 0; m < batchModes.Length; ++m)
+            {
+                uint targetTier = batchModes[m].tier;
+                bool validTarget = targetTier == 0 || (!_polishUseCharm && targetTier > selectedAffix.QualityTier);
+                Button(_body, "PolishMode_" + targetTier, batchModes[m].label,
+                    modeStartX + m * (pillW + 12f), 800, pillW, () =>
+                    {
+                        if (_craft.Busy || _craft.Pending) return;
+                        _polishTargetTier = targetTier;
+                        _polishAllowBound = false;
+                        RequestPolishPreview(current, selectedSlot);
+                        Render();
+                    }, _polishTargetTier == targetTier, validTarget && !_craft.Busy && !_craft.Pending);
+            }
+
             var forgeMasters = ActiveForgeMasters();
+            var selectedForgeMaster = _polishProxyMasterId != 0
+                ? forgeMasters.FirstOrDefault(m => m.MasterPlayerId == _polishProxyMasterId)
+                : null;
+            if (selectedForgeMaster?.ViewerGetsFreeProxy == true)
+            {
+                var freeBadge = SeasonEconomyUiArt.LoadCraftControl("badge_team_free_proxy");
+                if (freeBadge != null)
+                {
+                    SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "PolishFreeProxyBadge",
+                        3248, 472, 236, 56, freeBadge, Color.white);
+                    var freeLbl = Label(_body, "PolishFreeProxyBadgeText",
+                        "同队免税", 3272, 472, 188, 56, 28, false, SeasonEconomyUiArt.GoldText);
+                    freeLbl.fontStyle = TMPro.FontStyles.Bold;
+                    freeLbl.alignment = TMPro.TextAlignmentOptions.Center;
+                }
+            }
             string masterLabel = _polishProxyMasterId == 0
-                ? "当前方式：亲自打磨（点击切换主城名匠代打）"
+                ? "当前方式：亲自打磨（点击切换全区名匠24小时代打）"
                 : FormatSelectedForgeMaster(forgeMasters, _polishProxyMasterId);
-            Button(_body, "PolishProxyCycle", masterLabel, 2330, 845, 700, () =>
+            Button(_body, "PolishProxyCycle", masterLabel, 2330, 915, 700, () =>
             {
                 if (_craft.Busy || _craft.Pending) return;
                 CycleForgeMaster(forgeMasters);
                 RequestPolishPreview(current, selectedSlot);
                 Render();
             }, _polishProxyMasterId != 0, !_craft.Busy && !_craft.Pending);
-            Button(_body, "PolishProxyRefresh", "刷新名匠", 3045, 845, 350, () =>
+            Button(_body, "PolishProxyRefresh", "刷新名匠", 3045, 915, 350, () =>
             {
                 SkillCraftClient.Instance?.RefreshProxyStalls();
                 Render();
             });
-            Button(_body, "PolishOpenStalls", "名匠摊位", 3405, 845, 350, () =>
+            Button(_body, "PolishOpenStalls", "名匠摊位", 3405, 915, 350, () =>
             {
                 Hide();
                 SkillUiRoot.OpenProxyStalls();
@@ -304,12 +378,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             string previewText = EquipmentScreenModel.FormatCraftPreviewSummary(preview);
             if (preview != null && !preview.Available && preview.UnavailableTip != 0)
                 previewText += "\n" + PlayerFeaturesClient.DescribeEquipTip("不可打磨", new TipInfoMessage { Id = preview.UnavailableTip });
-            Label(_body, "PolishPreviewCost", previewText, 2330, 1005, 1420, 185, 36, true,
+            string lastRecap = EquipmentScreenModel.FormatPolishReceiptSummary(_craft.LastApplied);
+            if (!string.IsNullOrEmpty(lastRecap))
+                previewText += "\n" + lastRecap;
+            Label(_body, "PolishPreviewCost", previewText, 2330, 1030, 1420, 175, 32, true,
                 preview?.Available == true ? Jade : Danger);
 
             if (_craft.RequiresBindConfirmation)
             {
-                Button(_body, "PolishBindConfirmOpen", "允许混用绑定材料（二次确认）", 2330, 1210, 840, () =>
+                Button(_body, "PolishBindConfirmOpen", "允许混用绑定材料（二次确认）", 2330, 1215, 840, () =>
                 {
                     _bindConfirmForReforge = false;
                     _bindConfirmAcknowledged = false;
@@ -318,7 +395,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 }, true, !WriteBlocked);
             }
             bool canPolish = _craft.CanCommit && !WriteBlocked && matchingChoice;
-            Button(_body, "PolishCommit", _craft.Busy ? "打磨中…" : "打磨一次", 3220, 1210, 530,
+            string commitLabel = _craft.Busy ? "打磨中…" : (_polishTargetTier != 0
+                ? $"智能连磨→{EquipmentScreenModel.QualityTierName(_polishTargetTier)}" : "打磨一次");
+            Button(_body, "PolishCommit", commitLabel, 3190, 1215, 560,
                 () => { if (canPolish) _craft.Commit(); }, true, canPolish);
         }
 
@@ -326,8 +405,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             var affix = slot?.Selected;
             if (item == null || slot == null || affix == null || affix.PolishExempt || affix.QualityTier >= 5) return;
+            uint targetTier = _polishUseCharm || _polishTargetTier <= affix.QualityTier ? 0u : _polishTargetTier;
+            uint maxAttempts = targetTier != 0 ? 8u : 0u;
             _craft.SelectPolishAffix(item.ItemId, slot.Slot, _polishUseCharm, _polishAllowBound,
-                _polishProxyMasterId, affix.PolishPityCount);
+                _polishProxyMasterId, affix.PolishPityCount, targetTier, maxAttempts);
         }
 
         private static List<CraftProxyStallInfo> ActiveForgeMasters()
@@ -348,9 +429,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private static string FormatSelectedForgeMaster(List<CraftProxyStallInfo> masters, ulong id)
         {
             var found = masters.FirstOrDefault(m => m.MasterPlayerId == id);
-            return found == null
-                ? $"代打宗师 #{id}（点击切换 / 刷新）"
-                : $"名匠代打：{found.MasterName}（极品率 {EquipDisplay.FormatSuccessRate(found.TopQualityRateBps)} · {found.ProxyForgeFeeGold} 银两）";
+            if (found == null) return $"代打宗师 #{id}（点击切换 / 刷新）";
+            string feeLabel = found.ViewerGetsFreeProxy ? "同队0费情义" : $"{found.ProxyForgeFeeGold} 银两";
+            return $"名匠代打：{found.MasterName}（极品率 {EquipDisplay.FormatSuccessRate(found.TopQualityRateBps)} · {feeLabel}）";
         }
 
         private void RenderPolishOddsModal()

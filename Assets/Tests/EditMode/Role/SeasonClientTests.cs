@@ -445,5 +445,224 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(SeasonModels.CountUnlockedHonors(snap), Is.EqualTo(1));
             Assert.That(SeasonModels.FindCurrentHonor(snap)?.HonorTitleName, Is.EqualTo("破阵宗师"));
         }
+
+        [Test]
+        public void SeasonV3Models_FormatsResonanceEventsHintsAndSettlementContribution()
+        {
+            Assert.That(SeasonModels.FormatSeasonSealTriggerText(101u, 101u, 180L, _ => "破阵锐印"),
+                Is.EqualTo("技印共鸣 · 破阵锐印碎盾返蓝 +180"));
+            Assert.That(SeasonModels.FormatSeasonSealTriggerText(102u, 102u, 1L, _ => "破阵玄印"),
+                Is.EqualTo("技印共鸣 · 破阵玄印破甲 +1回合"));
+            Assert.That(SeasonModels.FormatSeasonSealTriggerText(103u, 103u, 100L, _ => "固阵守印"),
+                Is.EqualTo("技印共鸣 · 固阵守印护盾 +100"));
+            Assert.That(SeasonModels.FormatSeasonSealTriggerText(104u, 104u, 250L, _ => "聚息援印"),
+                Is.EqualTo("技印共鸣 · 聚息援印省蓝 -250"));
+
+            Assert.That(SeasonModels.DescribeSealResonance(1u, 101u), Does.Contain("破阵裂锋"));
+            Assert.That(SeasonModels.DescribeSealResonance(1u, 102u), Does.Contain("破阵灵雷"));
+            Assert.That(SeasonModels.DescribeSealResonance(1u, 103u), Does.Contain("固阵灵障"));
+            Assert.That(SeasonModels.DescribeSealResonance(1u, 104u), Does.Contain("破阵蓄势"));
+            Assert.That(SeasonModels.DescribeSealResonance(2u, 201u), Is.Empty);
+
+            var snap = new SeasonStateSnapshot { Available = true, SeasonId = 1u, SeasonName = "破阵之季" };
+            snap.Seals.Add(new SeasonSealOption { SealId = 104u, Name = "聚息援印", EffectId = 7u });
+
+            // 带赛季进度 + 本场赛季印功劳摘要
+            var endWithProgress = new BattleEndS2C
+            {
+                SeasonId = 1u,
+                SeasonSealPointsAdded = 1u,
+                SeasonSealProgressAfter = 7u,
+                SeasonSealMaxPoints = 12u,
+                Settlement = new BattleSettlementData
+                {
+                    FinalSeasonSealId = 104u,
+                    SeasonSealContributionValue = 650UL,
+                    SeasonSealTriggerCount = 1u,
+                    SeasonSealResonanceCount = 1u,
+                },
+            };
+            var view = SeasonModels.BuildSettlementProgressView(endWithProgress, snap);
+            Assert.That(view, Is.Not.Null);
+            Assert.That(view.ContributionLine, Is.EqualTo("本场聚息援印回蓝/省蓝 650 · 技印共鸣 ×1"));
+
+            // 无本场进度增点（如首领试炼败局）只要赛季印有实战触发也展示功劳摘要
+            var endContribOnly = new BattleEndS2C
+            {
+                SeasonId = 1u,
+                Settlement = new BattleSettlementData
+                {
+                    FinalSeasonSealId = 101u,
+                    SeasonSealContributionValue = 1420UL,
+                    SeasonSealTriggerCount = 2u,
+                    SeasonSealResonanceCount = 0u,
+                },
+            };
+            var contribOnlyView = SeasonModels.BuildSettlementProgressView(endContribOnly, snap);
+            Assert.That(contribOnlyView, Is.Not.Null);
+            Assert.That(contribOnlyView.MaxPoints, Is.EqualTo(0u));
+            Assert.That(contribOnlyView.ContributionLine, Does.Contain("累计削盾 1,420"));
+            Assert.That(contribOnlyView.ContributionLine, Does.Not.Contain("技印共鸣"));
+        }
+
+        [Test]
+        public void SeasonV4ModelsAndClient_ResonancesR5ToR8_TermBanner_RetroTargetRpc569_AndSettlementRetro()
+        {
+            // 1. V4 基础词条 4/5 与 R5..R8 共鸣事件文案
+            Assert.That(SeasonModels.FormatSeasonSealTriggerText(204u, 4u, 220L, _ => "济脉愈印"),
+                Is.EqualTo("济脉愈印 · 急救增疗 +220"));
+            Assert.That(SeasonModels.FormatSeasonSealTriggerText(203u, 5u, 150L, _ => "玄脉甲印"),
+                Is.EqualTo("玄脉甲印 · 首盾增容 +150"));
+            Assert.That(SeasonModels.FormatSeasonSealTriggerText(204u, 105u, 160L, _ => "济脉愈印"),
+                Is.EqualTo("技印共鸣 · 济脉愈印急救返蓝 +160"));
+            Assert.That(SeasonModels.FormatSeasonSealTriggerText(203u, 106u, 120L, _ => "玄脉甲印"),
+                Is.EqualTo("技印共鸣 · 玄脉甲印首盾回蓝 +120"));
+            Assert.That(SeasonModels.FormatSeasonSealTriggerText(403u, 107u, 90L, _ => "青木守印"),
+                Is.EqualTo("技印共鸣 · 青木守印增疗 +90"));
+            Assert.That(SeasonModels.FormatSeasonSealTriggerText(604u, 108u, 140L, _ => "厚土援印"),
+                Is.EqualTo("技印共鸣 · 厚土援印增盾 +140"));
+
+            // 2. 数据驱动共鸣描述 + resonance_kind=0 紧急回滚隐藏
+            var s2Seal = new SeasonSealOption
+            {
+                SealId = 204u,
+                Name = "济脉愈印",
+                ResonanceSkillId = 15104u,
+                ResonanceKind = 5u,
+                ResonanceParam = 2500u,
+                ResonanceDesc = "技印共鸣 · 搭配「玄脉回春」急救触发返还 25% 法力",
+            };
+            Assert.That(SeasonModels.DescribeSealResonance(s2Seal, 2u), Does.Contain("玄脉回春"));
+            var rolledBackSeal = new SeasonSealOption
+            {
+                SealId = 101u,
+                ResonanceSkillId = 15001u,
+                ResonanceKind = 0u,
+                ResonanceDesc = "不应显示",
+            };
+            Assert.That(SeasonModels.DescribeSealResonance(rolledBackSeal, 1u), Is.Empty);
+
+            // 3. 无限期号横幅格式化 + 34012/34013 错误码提示
+            Assert.That(SeasonModels.FormatSeasonTermBanner(new SeasonStateSnapshot
+            {
+                SeasonName = "破阵之季",
+                SeasonTerm = 11u,
+                CycleIndex = 2u,
+                CyclePoolSize = 10u,
+            }), Is.EqualTo("第 2 轮 · 第 11 届 · 破阵之季"));
+            Assert.That(SeasonModels.FormatSeasonTermBanner(new SeasonStateSnapshot
+            {
+                SeasonName = "破阵之季",
+                SeasonTerm = 1u,
+                CycleIndex = 1u,
+                CyclePoolSize = 0u,
+            }), Is.EqualTo("破阵之季 · 单槽赛季印"));
+            Assert.That(SeasonModels.DescribeTip((uint)season_error.KSeasonHonorAlreadyUnlocked), Does.Contain("已解锁"));
+            Assert.That(SeasonModels.DescribeTip((uint)season_error.KSeasonHonorTargetInvalid), Does.Contain("无效"));
+
+            // 4. RPC 569 SetRetroHonorTarget 设定与清零自动顺延
+            var net = new FakeTransport();
+            object conn = new object();
+            uint targetSeason = 2u;
+            bool explicitTarget = false;
+            net.Responder = (msgId, req) =>
+            {
+                if (msgId == SceneSeasonClientPlayerRpc.GetSeasonStateMessageId)
+                {
+                    return (new GetSeasonStateResponse
+                    {
+                        State = new SeasonStateSnapshot
+                        {
+                            Available = true,
+                            SeasonId = 1u,
+                            SeasonName = "破阵之季",
+                            SeasonTerm = 1u,
+                            Revision = 10UL,
+                            CanSwitchSeal = true,
+                            RetroHonorTargetSeasonId = targetSeason,
+                            RetroHonorTargetExplicit = explicitTarget,
+                        },
+                    }, null);
+                }
+                if (msgId == SceneSeasonClientPlayerRpc.SetRetroHonorTargetMessageId)
+                {
+                    var r = (SetRetroHonorTargetRequest)req;
+                    explicitTarget = r.SeasonId != 0u;
+                    targetSeason = r.SeasonId != 0u ? r.SeasonId : 2u;
+                    return (new SetRetroHonorTargetResponse
+                    {
+                        State = new SeasonStateSnapshot
+                        {
+                            Available = true,
+                            SeasonId = 1u,
+                            SeasonName = "破阵之季",
+                            SeasonTerm = 1u,
+                            Revision = 10UL,
+                            CanSwitchSeal = true,
+                            RetroHonorTargetSeasonId = targetSeason,
+                            RetroHonorTargetExplicit = explicitTarget,
+                        },
+                    }, null);
+                }
+                return (null, "unexpected");
+            };
+
+            float now = 10f;
+            using var client = new SeasonClient(net, () => conn, () => now);
+            client.RequestState(force: true);
+            net.Flush();
+            Assert.That(client.Snapshot?.RetroHonorTargetSeasonId, Is.EqualTo(2u));
+            Assert.That(client.Snapshot?.RetroHonorTargetExplicit, Is.False);
+
+            now = 20f;
+            Assert.That(client.SetRetroHonorTarget(5u), Is.True);
+            net.Flush();
+            Assert.That(SceneSeasonClientPlayerRpc.SetRetroHonorTargetMessageId, Is.EqualTo(569u));
+            Assert.That(net.Calls[^1].msgId, Is.EqualTo(569u));
+            Assert.That(((SetRetroHonorTargetRequest)net.Calls[^1].req).SeasonId, Is.EqualTo(5u));
+            Assert.That(client.Snapshot?.RetroHonorTargetSeasonId, Is.EqualTo(5u));
+            Assert.That(client.Snapshot?.RetroHonorTargetExplicit, Is.True);
+
+            now = 30f;
+            Assert.That(client.SetRetroHonorTarget(0u), Is.True);
+            net.Flush();
+            Assert.That(client.Snapshot?.RetroHonorTargetSeasonId, Is.EqualTo(2u));
+            Assert.That(client.Snapshot?.RetroHonorTargetExplicit, Is.False);
+
+            // 5. 战后结算往季徽章追忆视图（含仅追忆无本季增点场景）
+            var honorSnap = new SeasonStateSnapshot { Available = true, SeasonId = 1u, SeasonName = "破阵之季" };
+            honorSnap.Honors.Add(new SeasonHonorView
+            {
+                SeasonId = 5u,
+                SeasonName = "玄水之季",
+                HonorTitleName = "玄水清流",
+                HonorBadgeIconKey = "UI/SeasonHonors/honor_s5_xuanshui",
+                ProgressPoints = 12u,
+                MaxPoints = 12u,
+                Unlocked = true,
+            });
+            var retroEnd = new BattleEndS2C
+            {
+                SeasonId = 1u,
+                SeasonSealPointsAdded = 0u,
+                SeasonSealProgressAfter = 12u,
+                SeasonSealMaxPoints = 12u,
+                RetroHonorSeasonId = 5u,
+                RetroHonorPointsAdded = 2u,
+                RetroHonorProgressAfter = 12u,
+                RetroHonorMaxPoints = 12u,
+                RetroHonorNewlyUnlocked = true,
+            };
+            var settleView = SeasonModels.BuildSettlementProgressView(retroEnd, honorSnap);
+            Assert.That(settleView, Is.Not.Null);
+            Assert.That(settleView.HasRetroHonor, Is.True);
+            Assert.That(settleView.RetroHonorSeasonId, Is.EqualTo(5u));
+            Assert.That(settleView.RetroHonorSeasonName, Is.EqualTo("玄水之季"));
+            Assert.That(settleView.RetroHonorTitleName, Is.EqualTo("玄水清流"));
+            Assert.That(settleView.RetroHonorPointsAdded, Is.EqualTo(2u));
+            Assert.That(settleView.RetroHonorProgressAfter, Is.EqualTo(12u));
+            Assert.That(settleView.RetroHonorMaxPoints, Is.EqualTo(12u));
+            Assert.That(settleView.RetroHonorNewlyUnlocked, Is.True);
+        }
     }
 }

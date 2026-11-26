@@ -537,6 +537,70 @@ namespace MmorpgClient.Game.Guild
                 _ => { });
         }
 
+        public void IssueFeud(ulong targetGuildId)
+        {
+            ObserveConnection();
+            if (!EnsureReady("请进入角色后再下发宿敌约战战书。")) return;
+            if (ActionInFlight || targetGuildId == 0) return;
+            ActionInFlight = true;
+            LastError = string.Empty;
+            LastErrorTipId = 0;
+            Changed?.Invoke();
+
+            int gen = _generation;
+            ulong player = PlayerId;
+            object conn = _connectionIdentity();
+            var req = new IssueGuildWarFeudRequest { TargetGuildId = targetGuildId, ClientRequestId = NextClientRequestId() };
+            _net.Call(GuildServiceRpc.IssueGuildWarFeudMessageId, req, IssueGuildWarFeudResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrent(gen, player, conn)) return;
+                    ActionInFlight = false;
+                    if (HasError(resp?.ErrorMessage)) { ApplyError(resp.ErrorMessage); return; }
+                    if (Overview != null) Overview = Overview.WithFeud(resp.Feud, resp.NextIssueAtMs);
+                    Status = "已向敌帮下发 2 小时宿敌约战战书，等待对方管理 15 分钟内应战！";
+                    Changed?.Invoke();
+                },
+                err =>
+                {
+                    if (!IsCurrent(gen, player, conn)) return;
+                    ActionInFlight = false;
+                    ApplyTransportError(err);
+                });
+        }
+
+        public void RespondFeud(ulong feudId, bool accept)
+        {
+            ObserveConnection();
+            if (!EnsureReady("请进入角色后再应答宿敌约战战书。")) return;
+            if (ActionInFlight || feudId == 0) return;
+            ActionInFlight = true;
+            LastError = string.Empty;
+            LastErrorTipId = 0;
+            Changed?.Invoke();
+
+            int gen = _generation;
+            ulong player = PlayerId;
+            object conn = _connectionIdentity();
+            var req = new RespondGuildWarFeudRequest { FeudId = feudId, Accept = accept };
+            _net.Call(GuildServiceRpc.RespondGuildWarFeudMessageId, req, RespondGuildWarFeudResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrent(gen, player, conn)) return;
+                    ActionInFlight = false;
+                    if (HasError(resp?.ErrorMessage)) { ApplyError(resp.ErrorMessage); return; }
+                    if (Overview != null) Overview = Overview.WithFeud(resp.Feud);
+                    Status = accept ? "已接战！2 小时宿敌约战正式打响（收益 +25% · 前 3 场免递减）！" : "已婉拒/撤回约战战书。";
+                    Changed?.Invoke();
+                },
+                err =>
+                {
+                    if (!IsCurrent(gen, player, conn)) return;
+                    ActionInFlight = false;
+                    ApplyTransportError(err);
+                });
+        }
+
         public void Tick()
         {
             if (_disposed) return;

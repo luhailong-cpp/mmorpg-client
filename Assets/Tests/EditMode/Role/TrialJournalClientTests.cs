@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using Google.Protobuf;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.CoreLoop;
 using MmorpgClient.Game.TrialJournal;
 using MmorpgClient.Net;
+using MmorpgClient.Net.Generated;
 using NUnit.Framework;
 
 namespace MmorpgClient.Tests.EditMode.Role
@@ -91,6 +93,8 @@ namespace MmorpgClient.Tests.EditMode.Role
                     {
                         GrantedSandCount = 2,
                         GrantedVoucherCount = 1,
+                        GrantedPetCosmeticId = 3,
+                        GrantedSkillVfxId = 3,
                         Snapshot = new TrialJournalSnapshot
                         {
                             Available = true,
@@ -127,6 +131,8 @@ namespace MmorpgClient.Tests.EditMode.Role
             net.Flush();
             Assert.That(claimed.HasValue, Is.True);
             Assert.That(claimed.Value.GrantedVoucherCount, Is.EqualTo(1u));
+            Assert.That(claimed.Value.GrantedPetCosmeticId, Is.EqualTo(3u));
+            Assert.That(claimed.Value.GrantedSkillVfxId, Is.EqualTo(3u));
             Assert.That(client.Snapshot?.VoucherBalance, Is.EqualTo(1ul));
 
             now = 12f;
@@ -256,6 +262,215 @@ namespace MmorpgClient.Tests.EditMode.Role
 
             Assert.That(BattleReportClient.IsPvpMode(Match.MatchMode.Polarity5V5), Is.True);
             Assert.That(BattleReportClient.ModeName(Match.MatchMode.Polarity5V5), Is.EqualTo("物法易势 5v5"));
+        }
+
+        [Test]
+        public void V3_Vol4WildRealmsJumpsVowsChallengeCardsAndPveReplayPolicy()
+        {
+            // 1. 卷四三境明雷跳转、地图绑定与怪物立绘映射
+            var wildCases = new (string raw, uint dungeonId, uint sceneId, uint entryId, uint bossId, uint guardId, string sceneName)[]
+            {
+                ("boss_trial:wild:wind", 113u, 2u, 401u, 111u, 112u, "八景岛"),
+                ("boss_trial:wild:bell", 114u, 5u, 402u, 113u, 114u, "碧渊水宫"),
+                ("boss_trial:wild:tide", 115u, 3u, 403u, 115u, 116u, "月汐湾"),
+            };
+            foreach (var c in wildCases)
+            {
+                Assert.That(TrialJournalModels.TryParseJumpTarget(c.raw, out var target), Is.True, c.raw);
+                Assert.That(target.Kind, Is.EqualTo(TrialJumpKind.BossTrial));
+                Assert.That(target.DungeonConfigId, Is.EqualTo(c.dungeonId));
+                Assert.That(target.Difficulty, Is.EqualTo(1u));
+                Assert.That(target.RequiredSceneConfigId, Is.EqualTo(c.sceneId));
+                Assert.That(TrialJournalModels.WildSceneName(c.sceneId), Is.EqualTo(c.sceneName));
+
+                Assert.That(TrialJournalModels.TryGetWildSceneBossInfo(c.sceneId, out uint eId, out uint dId, out string bossTitle), Is.True);
+                Assert.That((eId, dId), Is.EqualTo((c.entryId, c.dungeonId)));
+                Assert.That(bossTitle, Is.Not.Empty);
+
+                Assert.That(TrialJournalModels.TryGetEntryMonsterIds(c.entryId, out uint bId, out uint gId), Is.True);
+                Assert.That((bId, gId), Is.EqualTo((c.bossId, c.guardId)));
+            }
+            Assert.That(TrialJournalModels.TryGetWildSceneBossInfo(1u, out _, out _, out _), Is.False);
+
+            // 2. 试炼誓约掩码校验、汇总与回合紧缩
+            Assert.That(TrialJournalModels.IsValidVowMask(0u), Is.True);
+            Assert.That(TrialJournalModels.IsValidVowMask(TrialJournalModels.VowMaskAll), Is.True);
+            Assert.That(TrialJournalModels.IsValidVowMask(0x10u), Is.False);
+            uint combo = TrialJournalModels.VowBanControl | TrialJournalModels.VowNoPet | TrialJournalModels.VowTightRounds;
+            Assert.That(TrialJournalModels.CountVows(combo), Is.EqualTo(3u));
+            Assert.That(TrialJournalModels.FormatVowSummary(combo), Is.EqualTo("禁控硬破+无宠孤剑+紧缩回合"));
+            Assert.That(TrialJournalModels.TightenRoundLimit(12u), Is.EqualTo(9u));
+            Assert.That(TrialJournalModels.TightenRoundLimit(7u), Is.EqualTo(6u));
+
+            // 3. 结算摘要带誓约刷新 + 卷四导航页签过滤与 36 印总计
+            var snap = new TrialJournalSnapshot { Available = true, CanOperate = true, TotalPermanentSeals = 36, TotalPermanentLitSeals = 10 };
+            var ch4 = new TrialJournalChapterView { ChapterId = TrialJournalModels.ChapterWildRealms, ChapterName = "卷四 · 三境明雷", TotalSealCount = 9 };
+            ch4.Entries.Add(new TrialJournalEntryView { EntryId = 401u, DisplayName = "八景岛 · 风眼引风", VowSupported = true, CanEnter = true });
+            snap.Chapters.Add(ch4);
+            Assert.That(TrialJournalUiState.ResolveTabForEntry(snap, 401u), Is.EqualTo(TrialJournalNavTab.WildRealms));
+            Assert.That(TrialJournalUiState.FilterEntries(snap, TrialJournalNavTab.WildRealms).Count, Is.EqualTo(1));
+
+            var vowResult = new PlayerBattleResult
+            {
+                BattleId = 88001ul,
+                MatchMode = (uint)Match.MatchMode.PveSolo,
+                TrialJournalEntryId = 401u,
+                TrialVowMask = TrialJournalModels.VowBanControl | TrialJournalModels.VowSingleArtifact,
+                TrialNewVowBest = true,
+                TotalRounds = 7u,
+            };
+            string vowFormatted = TrialJournalModels.FormatBattleResultSummary(vowResult, snap);
+            Assert.That(vowFormatted, Does.Contain("刷新誓约纪录（禁控硬破+单宝轻装）"));
+
+            // 4. 受控 PVE 回放判定：仅试炼志 PVE 放行，常规 PVE 仍禁
+            Assert.That(BattleReportClient.CanWatchReplayFromRecovered(vowResult), Is.True);
+            var regularPve = new PlayerBattleResult
+            {
+                BattleId = 88002ul,
+                MatchMode = (uint)Match.MatchMode.PveSolo,
+                TrialJournalEntryId = 0u,
+            };
+            Assert.That(BattleReportClient.CanWatchReplayFromRecovered(regularPve), Is.False);
+
+            // 5. #TJC:<card_id># 聊天协议标记格式化、解析与剥离
+            var card = new Match.TrialChallengeCardView
+            {
+                CardId = 900123456789ul,
+                BattleId = 88001ul,
+                JournalEntryId = 401u,
+                VowMask = TrialJournalModels.VowBanControl | TrialJournalModels.VowNoPet,
+                TotalRounds = 7u,
+                PartySize = 1u,
+            };
+            string draft = TrialJournalModels.FormatChallengeCardChatDraft(card, snap);
+            Assert.That(draft.Length, Is.LessThanOrEqualTo(120));
+            Assert.That(TrialJournalModels.TryParseChallengeCardId(draft, out ulong parsedId), Is.True);
+            Assert.That(parsedId, Is.EqualTo(900123456789ul));
+            string stripped = TrialJournalModels.StripChallengeCardTag(draft);
+            Assert.That(stripped, Does.Not.Contain("#TJC:"));
+            Assert.That(stripped, Does.Contain("八景岛 · 风眼引风"));
+            Assert.That(TrialJournalModels.TryParseChallengeCardId("普通闲聊 #TJC:abc#", out _), Is.False);
+            Assert.That(TrialJournalModels.TryParseChallengeCardId("普通闲聊 #TJC:0#", out _), Is.False);
+        }
+
+        [Test]
+        public void BattleReportClient_TrialChallengeCardCreateGetAndSharedReplayFlow()
+        {
+            var net = new FakeTransport();
+            object connection = new object();
+            var sampleCard = new Match.TrialChallengeCardView
+            {
+                CardId = 777001ul,
+                OwnerPlayerId = 9101ul,
+                BattleId = 66001ul,
+                JournalEntryId = 401u,
+                VowMask = TrialJournalModels.VowBanControl,
+                TotalRounds = 8u,
+                PartySize = 1u,
+            };
+            int getCalls = 0;
+            net.Responder = (msgId, _) =>
+            {
+                if (msgId == MatchServiceRpc.CreateTrialChallengeCardMessageId)
+                {
+                    return (new Match.CreateTrialChallengeCardResponse { Card = sampleCard.Clone() }, null);
+                }
+                if (msgId == MatchServiceRpc.GetTrialChallengeCardMessageId)
+                {
+                    getCalls++;
+                    return (new Match.GetTrialChallengeCardResponse { Card = sampleCard.Clone() }, null);
+                }
+                if (msgId == MatchServiceRpc.GetSharedTrialReplayMessageId)
+                {
+                    return (new Match.GetSharedTrialReplayResponse
+                    {
+                        ErrorMessage = new TipInfoMessage { Id = (uint)match_error.KMatchBattleReportNotFound },
+                    }, null);
+                }
+                return (null, "unexpected");
+            };
+
+            using var reports = new BattleReportClient(net, () => connection);
+            Match.TrialChallengeCardView created = null;
+            Assert.That(reports.CreateTrialChallengeCard(66001ul, c => created = c, _ => Assert.Fail("unexpected error")), Is.True);
+            net.Flush();
+            Assert.That(created?.CardId, Is.EqualTo(777001ul));
+            Assert.That(reports.TryGetCachedChallengeCard(777001ul, out var cached), Is.True);
+            Assert.That(cached.VowMask, Is.EqualTo(TrialJournalModels.VowBanControl));
+
+            // 命中缓存不应重复发 GetTrialChallengeCard RPC
+            Match.TrialChallengeCardView loaded = null;
+            Assert.That(reports.GetTrialChallengeCard(777001ul, c => loaded = c, _ => Assert.Fail("unexpected error")), Is.True);
+            Assert.That(loaded?.CardId, Is.EqualTo(777001ul));
+            Assert.That(getCalls, Is.EqualTo(0));
+
+            // 未缓存 card_id 触发远端拉取
+            Assert.That(reports.GetTrialChallengeCard(777002ul, c => loaded = c, _ => Assert.Fail("unexpected error")), Is.True);
+            net.Flush();
+            Assert.That(getCalls, Is.EqualTo(1));
+
+            // 共享回放缺失时触发友好错误回调而非静默吞错
+            string replayErr = null;
+            reports.OnError += e => replayErr = e;
+            Assert.That(reports.FetchSharedTrialReplay(777001ul), Is.True);
+            net.Flush();
+            Assert.That(replayErr, Does.Contain("过期"));
+        }
+
+        [Test]
+        public void V3_InBattleHudVol4TelegraphQuickParryAndVowControlSkillBlock()
+        {
+            // 1. 卷四风眼强袭（IntentKind=10）触发一键化劲防御与专属战报标题
+            Assert.That(CoreGameplayLoopModels.TelegraphIntentTitle(CoreGameplayLoopModels.TelegraphKindWildWindGust), Is.EqualTo("风眼强袭"));
+            var windState = new BattleStateS2C
+            {
+                RoundIndex = 3u,
+                Outcome = eBattleOutcome.BattleOutcomeOngoing,
+                BossTrialKind = CoreGameplayLoopModels.BossTrialKindWildWind,
+                TrialVowMask = TrialJournalModels.VowBanControl | TrialJournalModels.VowNoPet,
+            };
+            windState.Actors.Add(new BattleActorState { ActorId = 9101ul, ActorType = eBattleActorType.BattleActorTypePlayer });
+            windState.PendingActorIds.Add(9101ul);
+            windState.Telegraphs.Add(new BattleTelegraphEntry
+            {
+                SourceActorId = 5001ul,
+                TargetActorId = 9101ul,
+                ExecuteRound = 3u,
+                IntentKind = CoreGameplayLoopModels.TelegraphKindWildWindGust,
+                Status = 2u,
+            });
+            var windHud = CoreGameplayLoopModels.BuildBattleCoreHud(windState);
+            Assert.That(windHud.IsBossTrial, Is.True);
+            Assert.That(windHud.BossPhaseBannerText, Does.Contain("风眼引风"));
+            var parryActors = CoreGameplayLoopModels.CollectQuickParryDefendActorIds(9101ul, windState);
+            Assert.That(parryActors, Is.EqualTo(new[] { 9101ul }));
+
+            // 2. 碧渊水宫阳钟/阴鼓与月汐湾涨潮/退潮回合相位与服务端完全一致
+            Assert.That(CoreGameplayLoopModels.IsWildBellYangRound(1u), Is.True);
+            Assert.That(CoreGameplayLoopModels.IsWildBellYangRound(3u), Is.False);
+            Assert.That(CoreGameplayLoopModels.IsWildTideEbbRound(2u), Is.False);
+            Assert.That(CoreGameplayLoopModels.IsWildTideEbbRound(3u), Is.True);
+            var tideHud = CoreGameplayLoopModels.BuildBattleCoreHud(new BattleStateS2C
+            {
+                RoundIndex = 3u,
+                BossTrialKind = CoreGameplayLoopModels.BossTrialKindWildTide,
+            });
+            Assert.That(tideHud.BossPhaseBannerText, Does.Contain("退潮窗口"));
+
+            // 3. 试炼誓约「禁控硬破」客户端技能栏前置拦截（与 C++ TurnBattleEngine::IsControlSkill 同口径）
+            var ctrlSkill = new SkillTable { Id = 10010u };
+            ctrlSkill.Effect.Add(9001u);
+            var dmgSkill = new SkillTable { Id = 10011u };
+            dmgSkill.Effect.Add(9002u);
+            var ctrlBuff = new BuffTable { Id = 9001u, BattleOp = 13u, StateKind = 1u };
+            var dmgBuff = new BuffTable { Id = 9002u, BattleOp = 1u, StateKind = 0u };
+            Func<uint, SkillTable> sLookup = id => id == 10010u ? ctrlSkill : (id == 10011u ? dmgSkill : null);
+            Func<uint, BuffTable> bLookup = id => id == 9001u ? ctrlBuff : (id == 9002u ? dmgBuff : null);
+
+            Assert.That(BattleSkillBanModels.IsSkillBlockedByTrialVow(windState, 10010u, sLookup, bLookup), Is.True);
+            Assert.That(BattleSkillBanModels.IsSkillBlockedByTrialVow(windState, 10011u, sLookup, bLookup), Is.False);
+            var noVowState = new BattleStateS2C { TrialVowMask = 0u };
+            Assert.That(BattleSkillBanModels.IsSkillBlockedByTrialVow(noVowState, 10010u, sLookup, bLookup), Is.False);
         }
 
         [Test]
@@ -453,6 +668,25 @@ namespace MmorpgClient.Tests.EditMode.Role
                 var sp = UnityEngine.Resources.Load<UnityEngine.Sprite>("UI/Ugui/EquipLoadoutV1/" + key);
                 Assert.That(sp, Is.Not.Null, "missing EquipLoadoutV1 sprite: " + key);
                 Assert.That(sp.border, Is.EqualTo(border), "unexpected border for EquipLoadoutV1/" + key);
+            }
+
+            var tjV3Expected = new (string path, UnityEngine.Vector4 border)[]
+            {
+                ("UI/Ugui/TrialJournalV3/wild_boss_btn", new UnityEngine.Vector4(24f, 12f, 24f, 12f)),
+                ("UI/Ugui/TrialJournalV3/vow_chip_idle", new UnityEngine.Vector4(16f, 12f, 16f, 12f)),
+                ("UI/Ugui/TrialJournalV3/vow_chip_active", new UnityEngine.Vector4(16f, 12f, 16f, 12f)),
+                ("UI/Ugui/TrialJournalV3/vow_icon_ban_control", UnityEngine.Vector4.zero),
+                ("UI/Ugui/TrialJournalV3/vow_icon_single_artifact", UnityEngine.Vector4.zero),
+                ("UI/Ugui/TrialJournalV3/vow_icon_no_pet", UnityEngine.Vector4.zero),
+                ("UI/Ugui/TrialJournalV3/vow_icon_tight_rounds", UnityEngine.Vector4.zero),
+                ("UI/Ugui/TrialJournalV3/challenge_card_panel", new UnityEngine.Vector4(24f, 20f, 24f, 20f)),
+                ("UI/Ugui/TrialJournal/Badges/badge_trial_three_realms", UnityEngine.Vector4.zero),
+            };
+            foreach (var (path, border) in tjV3Expected)
+            {
+                var sp = UnityEngine.Resources.Load<UnityEngine.Sprite>(path);
+                Assert.That(sp, Is.Not.Null, "missing TrialJournalV3 sprite: " + path);
+                Assert.That(sp.border, Is.EqualTo(border), "unexpected border for " + path);
             }
         }
     }

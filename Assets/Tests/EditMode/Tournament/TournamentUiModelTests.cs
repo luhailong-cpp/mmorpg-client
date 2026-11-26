@@ -257,10 +257,6 @@ namespace MmorpgClient.Tests.EditMode.Tournament
             Assert.That(real.isNeutral, Is.False);
             Assert.That(real.ratioA, Is.EqualTo(0.75f).Within(0.001f));
             Assert.That(real.ratioB, Is.EqualTo(0.25f).Within(0.001f));
-
-            // V2 新增 Tip 恢复策略
-            Assert.That(TournamentUiModel.ClassifyTipRecovery((uint)match_error.KMatchTournamentAlreadySalutedToday).AutoRefreshOverviewOnce, Is.True);
-            Assert.That(TournamentUiModel.ClassifyTipRecovery((uint)match_error.KMatchTournamentNoChampionToSalute).AutoRefreshOverviewOnce, Is.True);
         }
 
         [Test]

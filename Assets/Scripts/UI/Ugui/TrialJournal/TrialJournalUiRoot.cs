@@ -6,6 +6,7 @@ using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.CoreLoop;
 using MmorpgClient.UI.Ugui.Gameplay;
 using MmorpgClient.UI.Ugui.Ranked;
+using MmorpgClient.UI.Ugui.Social;
 using MmorpgClient.UI.Ugui.Team;
 using MmorpgClient.World.Tianyong;
 using UnityEngine;
@@ -109,6 +110,8 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             _window = new TrialJournalWindow(_fittedRoot);
             _window.CloseRequested += Hide;
             _window.JumpRequested += HandleJumpRequested;
+            _window.WatchReplayRequested += HandleWatchReplay;
+            _window.ShareChallengeRequested += HandleShareChallenge;
             _window.ClaimMilestoneRequested += HandleClaimMilestone;
             _window.RedeemVoucherRequested += HandleRedeemVoucher;
             _window.ViewChanged += RenderNow;
@@ -127,6 +130,21 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             if (BattleUiRoot.Instance?.IsBattleLayerVisible == true) return;
             CityPanelRegistry.HideOthers(this);
             _window.FocusTarget(_client?.Snapshot, focusEntryId, focusChapterId);
+            _backdrop.gameObject.SetActive(true);
+            ApplySafeArea();
+            _client?.RequestSnapshot(force: false);
+            RenderNow();
+        }
+
+        /// <summary>V3 约战帖应战入口：打开试炼志并自动锁定对应关卡格与相同誓约掩码。</summary>
+        public void OpenForChallengeCard(Match.TrialChallengeCardView card)
+        {
+            if (card == null || card.CardId == 0ul) return;
+            SyncBinding();
+            if (_backdrop == null || _window == null) return;
+            if (BattleUiRoot.Instance?.IsBattleLayerVisible == true) return;
+            CityPanelRegistry.HideOthers(this);
+            _window.SetChallengeTarget(_client?.Snapshot, card);
             _backdrop.gameObject.SetActive(true);
             ApplySafeArea();
             _client?.RequestSnapshot(force: false);
@@ -211,6 +229,18 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             {
                 CoreGameplayUiRoot.Instance?.ShowToast("已免费永久解锁「星阵宗师」零战力专属形象！");
             }
+            if (ev.GrantedPetCosmeticId != 0)
+            {
+                string name = MmorpgClient.Table.PetCosmeticTableManager.Instance.FindById(ev.GrantedPetCosmeticId)?.Name;
+                string label = string.IsNullOrWhiteSpace(name) ? $"灵宠幻化#{ev.GrantedPetCosmeticId}" : name;
+                CoreGameplayUiRoot.Instance?.ShowToast($"已免费永久解锁「{label}」零战力专属灵宠幻化，可在衣柜「灵宠」页随时穿戴！");
+            }
+            if (ev.GrantedSkillVfxId != 0)
+            {
+                string name = MmorpgClient.Table.SkillVfxCosmeticTableManager.Instance.FindById(ev.GrantedSkillVfxId)?.Name;
+                string label = string.IsNullOrWhiteSpace(name) ? $"技能特效#{ev.GrantedSkillVfxId}" : name;
+                CoreGameplayUiRoot.Instance?.ShowToast($"已免费永久解锁「{label}」零战力专属技能特效，可在衣柜「特效」页随时启用！");
+            }
             _dirty = true;
         }
 
@@ -220,7 +250,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             _dirty = true;
         }
 
-        private void HandleJumpRequested(global::TrialJournalEntryView entry)
+        private void HandleJumpRequested(global::TrialJournalEntryView entry, uint vowMask)
         {
             if (entry == null || !entry.CanEnter) return;
             if (!TrialJournalModels.TryParseJumpTarget(entry.JumpTarget, out var target))
@@ -235,13 +265,38 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 else CoreGameplayUiRoot.Instance?.OpenFormalPvp();
                 return;
             }
-            var matchEntry = TeamUiRoot.Instance?.MatchEntry;
+            // 卷四三境明雷须先抵达对应野外地图（未到图时自动走正式换图状态机）。
+            if (target.RequiredSceneConfigId != 0u)
+            {
+                var travel = CityTravelUiRoot.Instance;
+                if (travel == null)
+                {
+                    CoreGameplayUiRoot.Instance?.ShowToast("世界传送模块尚未就绪，请稍候重试。");
+                    return;
+                }
+                if (travel.CurrentScene != target.RequiredSceneConfigId)
+                {
+                    if (travel.RequestTravelToScene(target.RequiredSceneConfigId, 0ul, out string travelErr))
+                    {
+                        Hide();
+                        CoreGameplayUiRoot.Instance?.ShowToast(
+                            $"正在前往{TrialJournalModels.WildSceneName(target.RequiredSceneConfigId)}，抵达后即可挑战明雷首领！");
+                    }
+                    else if (!string.IsNullOrEmpty(travelErr))
+                    {
+                        CoreGameplayUiRoot.Instance?.ShowToast(travelErr);
+                    }
+                    return;
+                }
+            }
+            var matchEntry = TeamUiRoot.Instance?.MatchEntry ?? BattleUiRoot.Instance?.MatchEntry;
             if (matchEntry == null)
             {
                 CoreGameplayUiRoot.Instance?.ShowToast("战斗匹配模块尚未就绪，请稍候重试。");
                 return;
             }
-            if (matchEntry.StartFromTrialJump(target))
+            uint appliedVow = entry.VowSupported ? (vowMask & TrialJournalModels.VowMaskAll) : 0u;
+            if (matchEntry.StartFromTrialJump(target, appliedVow))
             {
                 Hide();
                 if (!string.IsNullOrEmpty(matchEntry.Status))
@@ -251,6 +306,51 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             {
                 CoreGameplayUiRoot.Instance?.ShowToast(matchEntry.Status);
             }
+        }
+
+        private void HandleWatchReplay(ulong battleId)
+        {
+            if (battleId == 0ul) return;
+            var reports = BattleReportClient.Instance;
+            if (reports == null)
+            {
+                CoreGameplayUiRoot.Instance?.ShowToast("战报回放模块尚未就绪，请稍候重试。");
+                return;
+            }
+            if (reports.FetchReplay(battleId))
+            {
+                CoreGameplayUiRoot.Instance?.ShowToast("正在拉取试炼录像…");
+            }
+            else
+            {
+                CoreGameplayUiRoot.Instance?.ShowToast("已有录像正在加载中，请稍候。");
+            }
+        }
+
+        private void HandleShareChallenge(global::TrialJournalEntryView entry, ulong battleId)
+        {
+            if (battleId == 0ul) return;
+            var reports = BattleReportClient.Instance;
+            if (reports == null)
+            {
+                CoreGameplayUiRoot.Instance?.ShowToast("约战分享模块尚未就绪，请稍候重试。");
+                return;
+            }
+            reports.CreateTrialChallengeCard(battleId,
+                card =>
+                {
+                    string draft = TrialJournalModels.FormatChallengeCardChatDraft(card, _client?.Snapshot);
+                    Hide();
+                    if (SocialUiRoot.Instance == null || !SocialUiRoot.Instance.TryComposeTrialChallengeCard(draft))
+                    {
+                        CoreGameplayUiRoot.Instance?.ShowToast("约战帖已生成，请打开仙友会世界频道发送。");
+                    }
+                },
+                err =>
+                {
+                    if (!string.IsNullOrEmpty(err))
+                        CoreGameplayUiRoot.Instance?.ShowToast(err);
+                });
         }
 
         private void HandleClaimMilestone(uint milestoneId)

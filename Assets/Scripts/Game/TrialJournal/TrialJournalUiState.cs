@@ -11,6 +11,7 @@ namespace MmorpgClient.Game.TrialJournal
         ThreeRealms = 2,
         Seasonal = 3,
         Milestones = 4,
+        WildRealms = 5,
     }
 
     /// <summary>试炼志九态验收视觉相位（纯 C# 推导，脱离 UnityEngine，可被 EditMode 单测直接覆盖）。</summary>
@@ -310,6 +311,7 @@ namespace MmorpgClient.Game.TrialJournal
                 TrialJournalNavTab.Breakthrough => TrialJournalModels.ChapterBreakthrough,
                 TrialJournalNavTab.ThreeRealms => TrialJournalModels.ChapterThreeRealms,
                 TrialJournalNavTab.Seasonal => TrialJournalModels.ChapterSeasonal,
+                TrialJournalNavTab.WildRealms => TrialJournalModels.ChapterWildRealms,
                 _ => 0u,
             };
             for (int c = 0; c < snapshot.Chapters.Count; c++)
@@ -343,6 +345,7 @@ namespace MmorpgClient.Game.TrialJournal
                         TrialJournalModels.ChapterBreakthrough => TrialJournalNavTab.Breakthrough,
                         TrialJournalModels.ChapterThreeRealms => TrialJournalNavTab.ThreeRealms,
                         TrialJournalModels.ChapterSeasonal => TrialJournalNavTab.Seasonal,
+                        TrialJournalModels.ChapterWildRealms => TrialJournalNavTab.WildRealms,
                         _ => TrialJournalNavTab.Overview,
                     };
                 }
@@ -359,6 +362,7 @@ namespace MmorpgClient.Game.TrialJournal
                 TrialJournalNavTab.Breakthrough => TrialJournalModels.ChapterBreakthrough,
                 TrialJournalNavTab.ThreeRealms => TrialJournalModels.ChapterThreeRealms,
                 TrialJournalNavTab.Seasonal => TrialJournalModels.ChapterSeasonal,
+                TrialJournalNavTab.WildRealms => TrialJournalModels.ChapterWildRealms,
                 _ => TrialJournalModels.ChapterSeasonal,
             };
             return TrialJournalModels.FindChapter(snapshot, chapterId)

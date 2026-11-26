@@ -168,6 +168,7 @@ namespace MmorpgClient.Net
         public const uint RenameAttributeScheme  =  169; // SceneAttributeClientPlayerRenameAttributeScheme
         public const uint RenameGuild            =  439; // GuildServiceRenameGuild
         public const uint RenamePet              =  189; // ScenePetClientPlayerRenamePet
+        public const uint RentSkillLoadoutSlots  =  565; // SceneSkillClientPlayerRentSkillLoadoutSlots
         public const uint RequestBattleTicket    =  179; // MatchServiceRequestBattleTicket
         public const uint ResetAttributePoints   =  172; // SceneAttributeClientPlayerResetAttributePoints
         public const uint ResetPetPoints         =  182; // ScenePetClientPlayerResetPetPoints

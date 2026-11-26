@@ -522,6 +522,48 @@ namespace MmorpgClient.Game.Season
             return true;
         }
 
+        /// <summary>569 设定/清除「往季徽章追忆」指定目标（0=自动顺延首个未解锁往季；纯免费零收费）。</summary>
+        public bool SetRetroHonorTarget(uint seasonId)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (_messageIds.SetRetroHonorTarget == 0u) return RejectLocally(UnsupportedMessage);
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (ActionPending) return false;
+            float now = _clock();
+            if (now < _nextActionAt) return RejectLocally(TooFastMessage);
+
+            _nextActionAt = now + MinActionIntervalSeconds;
+            ActionPending = true;
+            int generation = _generation;
+            SetStatus("正在更新往季徽章追忆目标…", false);
+            Changed?.Invoke();
+
+            var req = new global::SetRetroHonorTargetRequest { SeasonId = seasonId };
+            _net.Call(_messageIds.SetRetroHonorTarget, req, global::SetRetroHonorTargetResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    if (response.State != null) ApplySnapshot(response.State);
+                    uint tipId = response.ErrorMessage?.Id ?? 0u;
+                    if (tipId != 0u) { HandleWriteTip("SetRetroHonorTarget", tipId); return; }
+                    string msg = seasonId == 0u ? "已切换为自动顺延追忆往季徽章。" : "已设定往季徽章追忆目标。";
+                    SetStatus(msg, false);
+                    Notice?.Invoke(msg);
+                    Changed?.Invoke();
+                },
+                error =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    uint tipId = RpcStatus.TryParseLegacyServerTip(error, out uint parsed) ? parsed : 0u;
+                    SetStatus(tipId != 0u ? SeasonModels.DescribeTip(tipId) : StateUnavailableMessage, true);
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
         private void ApplyTowerSnapshot(global::WuxingTowerStateSnapshot incoming)
         {
             if (incoming == null) return;
@@ -596,7 +638,9 @@ namespace MmorpgClient.Game.Season
             SetStatus(SeasonModels.DescribeTip(tipId), true);
             if (tipId == (uint)season_error.KSeasonMismatch
                 || tipId == (uint)season_error.KSeasonCatchupPriceChanged
-                || tipId == (uint)season_error.KSeasonSealAlreadyMax)
+                || tipId == (uint)season_error.KSeasonSealAlreadyMax
+                || tipId == (uint)season_error.KSeasonHonorAlreadyUnlocked
+                || tipId == (uint)season_error.KSeasonHonorTargetInvalid)
             {
                 RequestState(force: true);
             }
@@ -623,7 +667,10 @@ namespace MmorpgClient.Game.Season
         private void ApplySnapshot(global::SeasonStateSnapshot incoming)
         {
             if (incoming == null) return;
-            if (Snapshot != null && incoming.SeasonId == Snapshot.SeasonId && incoming.Revision < Snapshot.Revision)
+            if (Snapshot != null
+                && incoming.SeasonId == Snapshot.SeasonId
+                && incoming.SeasonTerm == Snapshot.SeasonTerm
+                && incoming.Revision < Snapshot.Revision)
                 return;
             Snapshot = incoming.Clone();
         }

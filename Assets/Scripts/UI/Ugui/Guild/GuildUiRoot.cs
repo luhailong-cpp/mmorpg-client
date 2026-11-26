@@ -28,6 +28,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         public GuildWarWindow WarWindow => _warWindow;
         public GuildWarClient WarClient => _warClient;
         public GuildWarFieldHud FieldHud => _fieldHud;
+        public GuildWarLeylineWorldBanner LeylineBanner => _leylineBanner;
         public bool IsActiveGuildWarBattle(ulong battleId) =>
             battleId != 0 && _warClient != null &&
             (_warClient.LastLaunchedBattleId == battleId || _warClient.Overview?.ActiveBattleId == battleId);
@@ -42,6 +43,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         private GuildWindow _window;
         private GuildWarWindow _warWindow;
         private GuildWarFieldHud _fieldHud;
+        private GuildWarLeylineWorldBanner _leylineBanner;
         private RectTransform _hud;
         private ulong _player;
         private bool _available;
@@ -127,6 +129,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             _fieldHud = new GuildWarFieldHud(_hud);
             _fieldHud.OpenWarWindowRequested += OpenGuildWar;
             _fieldHud.WatchBattleRequested += WatchBattle;
+            _leylineBanner = new GuildWarLeylineWorldBanner();
             _hud.gameObject.SetActive(false);
         }
         private void Update()
@@ -164,6 +167,7 @@ namespace MmorpgClient.UI.Ugui.Guild
                 _warClient?.Reset(); _warWindow?.Hide(); _warWindow?.DismissAlert();
                 _warWindow?.SetContext(_warClient, 0UL, false);
                 _fieldHud?.SetContext(_warClient, 0UL, 0u);
+                _leylineBanner?.Hide();
                 _nextFieldInspectSec = 0f; _lastObservedSceneConfigId = 0u;
             }
             bool inBattle = BattleUiRoot.Instance?.IsBattleLayerVisible ?? false;
@@ -180,10 +184,11 @@ namespace MmorpgClient.UI.Ugui.Guild
             _hud.gameObject.SetActive(_available);
             // 开战(收到 NotifyBattleStart 后战斗层显示)由战斗界面接管:本窗口连同邀请框 / 选人框在这里关掉。
             // 战斗中到达的历练邀请不弹,标志留在 GuildClient 里(有时限,见 TrialInvitePending)。
-            if (!_available) { HidePanel(); return; }
+            if (!_available) { HidePanel(); _leylineBanner?.Hide(); return; }
             _warClient?.Tick();
             _warWindow?.Tick(Time.unscaledTime);
             UpdateFieldWarPresence(game);
+            _leylineBanner?.Tick(Time.unscaledTime);
             OpenPendingTrialInvite();
             // NotifyGuildChanged 只置排队标志;真正的拉取在这里按帧消费,一帧最多发一个请求,
             // 不让每条推送都触发一次全量 Refresh。窗口关着不拉推送排的重拉,Toggle() 打开时已有 Refresh()。
@@ -307,7 +312,20 @@ namespace MmorpgClient.UI.Ugui.Guild
                 _nextFieldInspectSec = 0f;
             }
             _fieldHud?.UpdateScene(sceneConf, gid);
-            if (gid == 0 || !GuildWarFieldHud.IsWildWarScene(sceneConf)) return;
+            if (gid == 0 || !GuildWarFieldHud.IsWildWarScene(sceneConf))
+            {
+                _leylineBanner?.Hide();
+                return;
+            }
+
+            UnityEngine.Vector3? localPos = null;
+            if (game.World != null && game.World.HasLocalPlayer &&
+                game.World.TryGetActor(game.World.LocalEntity, out var localActor) &&
+                localActor != null && localActor.Go != null)
+            {
+                localPos = localActor.Go.transform.position;
+            }
+            SyncWildLeylineBanner(sceneConf, gid, localPos);
 
             float now = Time.unscaledTime;
             if (now >= _nextFieldInspectSec && game.World != null)
@@ -325,6 +343,24 @@ namespace MmorpgClient.UI.Ugui.Guild
                 if (ids.Count > 0) _warClient.InspectFieldWarTargets(ids);
             }
             TryPickWildActor(game);
+        }
+        private void SyncWildLeylineBanner(uint sceneConf, ulong myGuildId, UnityEngine.Vector3? localPos)
+        {
+            if (_leylineBanner == null) return;
+            uint lid = GuildWarLeylineWorldBanner.LeylineIdForScene(sceneConf);
+            GuildWarLeylineSnapshot matched = null;
+            var ov = _warClient?.Overview;
+            if (ov != null && lid != 0)
+            {
+                for (int i = 0; i < ov.Leylines.Count; i++)
+                {
+                    if (ov.Leylines[i].LeylineId == lid) { matched = ov.Leylines[i]; break; }
+                }
+            }
+            bool isGold = matched != null && (matched.IsGoldLeyline || (ov != null && ov.GoldLeylineId == lid));
+            _leylineBanner.Sync(sceneConf, matched, myGuildId, _warClient?.EstimatedServerNowMs ?? 0UL, isGold, localPos);
+            if (localPos.HasValue)
+                _fieldHud?.UpdateBannerDistance(_leylineBanner.DistanceTo(localPos.Value));
         }
         private void TryPickWildActor(GameClient game)
         {
@@ -353,6 +389,11 @@ namespace MmorpgClient.UI.Ugui.Guild
             Ray ray = cam.ScreenPointToRay(pointerPos);
             if (!Physics.Raycast(ray, out RaycastHit hit, 120f)) return;
             var hitTr = hit.transform;
+            if (_leylineBanner != null && _leylineBanner.MatchesHit(hitTr))
+            {
+                _fieldHud.SelectLeylineBanner(_leylineBanner.ActiveLeylineId);
+                return;
+            }
             foreach (var kv in game.World.Actors)
             {
                 var actor = kv.Value;
@@ -381,6 +422,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             if (_warClient != null) { _warClient.Changed -= OnWarClientChanged; _warClient.Dispose(); _warClient = null; }
             _warWindow?.SetContext(null, 0UL, false);
             _fieldHud?.SetContext(null, 0UL, 0u);
+            _leylineBanner?.Hide();
             _client = null; _game = null; _player = 0; _available = _inBattle = false;
         }
         private void OnDisable() { UnbindClient(); HidePanel(); }
@@ -391,6 +433,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             UnbindClient(); HidePanel();
             _warWindow?.Dispose(); _warWindow = null;
             _fieldHud?.Dispose(); _fieldHud = null;
+            _leylineBanner?.Dispose(); _leylineBanner = null;
             _window = null;
             if (Instance == this) Instance = null;
         }

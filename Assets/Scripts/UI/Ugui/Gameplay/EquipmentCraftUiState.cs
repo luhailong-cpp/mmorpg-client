@@ -124,7 +124,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         });
 
         public void SelectPolishAffix(ulong itemId, uint slot, bool useGuaranteeCharm = false,
-            bool allowBoundMaterials = false, ulong proxyMasterPlayerId = 0, uint? expectedPolishPityCount = null)
+            bool allowBoundMaterials = false, ulong proxyMasterPlayerId = 0, uint? expectedPolishPityCount = null,
+            uint targetQualityTier = 0, uint maxPolishAttempts = 0)
         {
             var choice = new EquipmentCraftChoice
             {
@@ -134,6 +135,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 UseGuaranteeCharm = useGuaranteeCharm,
                 AllowBoundMaterials = allowBoundMaterials,
                 ProxyMasterPlayerId = proxyMasterPlayerId,
+                TargetQualityTier = targetQualityTier,
+                MaxPolishAttempts = maxPolishAttempts,
             };
             if (expectedPolishPityCount.HasValue) choice.ExpectedPolishPityCount = expectedPolishPityCount.Value;
             Select(choice);

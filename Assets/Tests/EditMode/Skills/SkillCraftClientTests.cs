@@ -354,5 +354,137 @@ namespace MmorpgClient.Tests.EditMode.Skills
                 SealedSkillBook = new SealedSkillBookInfo { SkillTableId = 12020, SkillName = "愈战愈勇", ScrollId = 3, ScrollName = "兵法成长卷", CrafterName = "欧冶子" },
             }), Is.EqualTo("【背包封卷】愈战愈勇（兵法成长卷 · 可交易 · 宗师·欧冶子 亲手撰）"));
         }
+
+        [Test]
+        public void V2ToV5ProxySortMilestonesBatchDismantleAdvisorAndWantedBoardWorkEndToEnd()
+        {
+            // ── V2: 西市名匠口碑排序、筛选与雅号招牌设置 ──
+            var stalls = new[]
+            {
+                new CraftProxyStallInfo { MasterPlayerId = 10, MasterName = "甲", ForgeMasteryTier = 3, ProxyForgeFeeGold = 90, ProxyOrdersCompleted = 12, SupremeForgedCount = 2, MasterShowcaseTag = 1, EquippedCraftTitleId = 1 },
+                new CraftProxyStallInfo { MasterPlayerId = 20, MasterName = "乙", ForgeMasteryTier = 3, ScrollMasteryTier = 3, ProxyForgeFeeGold = 80, ProxyScrollFeeGold = 70, ProxyOrdersCompleted = 30, SupremeForgedCount = 15, MasterShowcaseTag = 4, EquippedCraftTitleId = 6, TeamFreeProxy = true, ViewerGetsFreeProxy = true },
+            };
+            var byRep = SkillCraftModels.SortAndFilterProxyStalls(stalls, ProxyStallSortMode.Reputation, ProxyStallFilterMode.All);
+            Assert.That(byRep[0].MasterPlayerId, Is.EqualTo(20UL));
+            var onlyTeamFree = SkillCraftModels.SortAndFilterProxyStalls(stalls, ProxyStallSortMode.LowestFee, ProxyStallFilterMode.TeamFree);
+            Assert.That(onlyTeamFree.Count, Is.EqualTo(1));
+            Assert.That(SkillCraftModels.DescribeProxyStall(byRep[0]), Does.Contain("双绝天工·乙"));
+            Assert.That(SkillCraftModels.DescribeProxyStall(byRep[0]), Does.Contain("同队0费情义代打"));
+
+            // ── V4: 藏经阁里程碑位图、批量安全拆页与六大流派体检 ──
+            var state = MakeState(revision: 10, fragments: 50, gold: 2000);
+            state.BookUnlockedSkillIds.Add(12020);
+            state.BookUnlockedSkillIds.Add(12021); // 卷 3 共 3 技 -> 已解锁 2 >= ceil(3/2)=2
+            var status = SkillCraftModels.GetScrollMilestoneStatus(state, state.Scrolls[0]);
+            Assert.That(status.HalfClaimable, Is.True);
+            Assert.That(status.FullClaimable, Is.False);
+
+            // 书架：已学常规书(1)、重复未学常规书(2,3)、稀世书(4) -> 安全批量拆页仅选 1 与 3（留孤本 2 与稀世 4）
+            state.SkillBooks.Add(new CraftedSkillBookEntry { BookId = 1, SkillTableId = 12020, ScrollId = 3, RarityTier = 0 });
+            state.SkillBooks.Add(new CraftedSkillBookEntry { BookId = 2, SkillTableId = 12022, ScrollId = 3, RarityTier = 0 });
+            state.SkillBooks.Add(new CraftedSkillBookEntry { BookId = 3, SkillTableId = 12022, ScrollId = 3, RarityTier = 0 });
+            state.SkillBooks.Add(new CraftedSkillBookEntry { BookId = 4, SkillTableId = 10041, ScrollId = 2, RarityTier = 1 });
+            var safeBatch = SkillCraftModels.SelectSafeBatchDismantleBookIds(state);
+            Assert.That(safeBatch, Is.EqualTo(new[] { 1UL, 3UL }));
+
+            var advisor = SkillCraftModels.EvaluateBuildBookAdvisor(state);
+            Assert.That(advisor.Count, Is.EqualTo(6));
+            Assert.That(advisor[0].UnlockedCount, Is.EqualTo(1)); // 物理破阵流含 12020
+
+            LoadState(state);
+            ClaimScrollCollectionMilestoneResponse milestoneResp = null;
+            BatchDismantleSkillBooksResponse batchResp = null;
+            PostSkillBookWantedOrderResponse postResp = null;
+            CancelSkillBookWantedOrderResponse cancelResp = null;
+            FulfillSkillBookWantedOrderResponse fulfillResp = null;
+            _client.ScrollMilestoneClaimed += r => milestoneResp = r;
+            _client.BooksBatchDismantled += r => batchResp = r;
+            _client.WantedOrderPosted += r => postResp = r;
+            _client.WantedOrderCanceled += r => cancelResp = r;
+            _client.WantedOrderFulfilled += r => fulfillResp = r;
+
+            _client.ClaimScrollMilestone(3, 1);
+            var mReq = (ClaimScrollCollectionMilestoneRequest)_net.LastRequest;
+            Assert.That(mReq.ScrollId, Is.EqualTo(3u));
+            Assert.That(mReq.MilestoneTier, Is.EqualTo(1u));
+            _net.Reply(new ClaimScrollCollectionMilestoneResponse
+            {
+                ClientRequestId = mReq.ClientRequestId,
+                RewardedFragments = 20,
+                State = MakeState(revision: 11, fragments: 70, gold: 2000),
+            });
+            Assert.That(milestoneResp.RewardedFragments, Is.EqualTo(20u));
+
+            _now += 5000;
+            _client.BatchDismantleBooks(safeBatch);
+            var bReq = (BatchDismantleSkillBooksRequest)_net.LastRequest;
+            Assert.That(bReq.BookIds, Is.EqualTo(safeBatch));
+            _net.Reply(new BatchDismantleSkillBooksResponse
+            {
+                ClientRequestId = bReq.ClientRequestId,
+                DismantledCount = 2,
+                RefundedFragments = 32,
+                State = MakeState(revision: 12, fragments: 102, gold: 2000),
+            });
+            Assert.That(batchResp.RefundedFragments, Is.EqualTo(32u));
+
+            // ── V5: 西市悬赏求书板发榜 / 撤单 / 列表 / 匹配揭榜交卷 ──
+            _now += 5000;
+            _client.PostWantedOrder(12020, 1000, requireMasterSignature: true);
+            var pReq = (PostSkillBookWantedOrderRequest)_net.LastRequest;
+            Assert.That(pReq.RewardGold, Is.EqualTo(1000UL));
+            Assert.That(pReq.RequireMasterSignature, Is.True);
+            var orderInfo = new SkillBookWantedOrderInfo
+            {
+                OrderId = 7, PosterPlayerId = 888, PosterName = "买书道友",
+                SkillTableId = 12020, SkillName = "愈战愈勇", ScrollId = 3,
+                RequireMasterSignature = true, RewardGold = 1000, SellerNetGold = 950,
+            };
+            _net.Reply(new PostSkillBookWantedOrderResponse
+            {
+                ClientRequestId = pReq.ClientRequestId,
+                Order = orderInfo,
+                State = MakeState(revision: 13, fragments: 102, gold: 1000),
+            });
+            Assert.That(postResp.Order.OrderId, Is.EqualTo(7UL));
+
+            _now += 5000;
+            _client.CancelWantedOrder(7);
+            var cReq = (CancelSkillBookWantedOrderRequest)_net.LastRequest;
+            _net.Reply(new CancelSkillBookWantedOrderResponse
+            {
+                ClientRequestId = cReq.ClientRequestId,
+                RefundedGold = 1000,
+                State = MakeState(revision: 14, fragments: 102, gold: 2000),
+            });
+            Assert.That(cancelResp.RefundedGold, Is.EqualTo(1000UL));
+
+            _client.RefreshWantedOrders();
+            _net.Reply(new ListSkillBookWantedOrdersResponse { Orders = { orderInfo } });
+            Assert.That(_client.WantedOrders.Count, Is.EqualTo(1));
+
+            // 揭榜匹配：仅接受未绑定且满足宗师署名要求的 3414 封卷道籍
+            var bag = new BagInfo();
+            bag.Items.Add(new BagItemInfo
+            {
+                ItemId = 9002, ConfigId = 3414, Count = 1, Bound = false,
+                SealedSkillBook = new SealedSkillBookInfo { SkillTableId = 12020, RarityTier = 0, CrafterName = "双绝天工·欧冶子", CrafterPlayerId = 20 },
+            });
+            var match = SkillCraftModels.FindMatchingFulfillSource(orderInfo, _client.State, bag);
+            Assert.That(match.SealedItemId, Is.EqualTo(9002UL));
+
+            _now += 5000;
+            _client.FulfillWantedOrderWithSealedItem(888, 7, 9002);
+            var fReq = (FulfillSkillBookWantedOrderRequest)_net.LastRequest;
+            Assert.That(fReq.SealedItemId, Is.EqualTo(9002UL));
+            _net.Reply(new FulfillSkillBookWantedOrderResponse
+            {
+                ClientRequestId = fReq.ClientRequestId,
+                OrderId = 7,
+                SellerNetGold = 950,
+                State = MakeState(revision: 15, fragments: 102, gold: 2950),
+            });
+            Assert.That(fulfillResp.SellerNetGold, Is.EqualTo(950UL));
+        }
     }
 }

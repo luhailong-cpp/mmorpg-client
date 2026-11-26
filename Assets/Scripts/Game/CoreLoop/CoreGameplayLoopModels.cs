@@ -559,11 +559,34 @@ namespace MmorpgClient.Game.CoreLoop
         public const uint Polarity5v5DungeonId = 110u;
         public const uint Boss1DualGuardHardDungeonId = 112u;
         public const uint BossTrialKindDualGuard = 8u;
+        public const uint BossTrialKindWildWind = 12u;
+        public const uint BossTrialKindWildBell = 13u;
+        public const uint BossTrialKindWildTide = 14u;
+        public const uint TelegraphKindWildWindGust = 10u;
 
         public const string HardLockDefaultHint = "通关任意一只普通首领试炼后开放困难难度";
 
+        public static bool IsWildBossTrialKind(uint bossTrialKind) =>
+            bossTrialKind >= BossTrialKindWildWind && bossTrialKind <= BossTrialKindWildTide;
+
         public static bool IsBossTrialKind(uint bossTrialKind) =>
-            (bossTrialKind >= 1u && bossTrialKind <= 4u) || bossTrialKind == BossTrialKindDualGuard;
+            (bossTrialKind >= 1u && bossTrialKind <= 4u)
+            || bossTrialKind == BossTrialKindDualGuard
+            || IsWildBossTrialKind(bossTrialKind);
+
+        /// <summary>碧渊水宫·水镜钟鸣（kind=13）：与服务端 IsWildBellYangRound 同口径，第 1-2/5-6... 回合为阳钟（物伤+20%），3-4/7-8... 为阴鼓（法伤+20%）。</summary>
+        public static bool IsWildBellYangRound(uint roundIndex)
+        {
+            uint r = roundIndex > 0u ? roundIndex : 1u;
+            return (((r - 1u) / 2u) % 2u) == 0u;
+        }
+
+        /// <summary>月汐湾·涨退潮（kind=14）：与服务端 IsWildTideEbbRound 同口径，第 3-4/7-8... 回合为退潮窗口（首领承伤+20%）。</summary>
+        public static bool IsWildTideEbbRound(uint roundIndex)
+        {
+            uint r = roundIndex > 0u ? roundIndex : 1u;
+            return (((r - 1u) / 2u) % 2u) == 1u;
+        }
 
         public static bool IsHardBossTrialDungeon(uint dungeonConfigId) =>
             dungeonConfigId == Boss1RejuvenateHardDungeonId
@@ -770,7 +793,35 @@ namespace MmorpgClient.Game.CoreLoop
 
             string bossPhaseBanner = "";
             string bossStatusSummary = "";
-            if (IsBossTrialKind(state.BossTrialKind))
+            if (IsWildBossTrialKind(state.BossTrialKind))
+            {
+                if (state.BossTrialKind == BossTrialKindWildWind)
+                {
+                    bossPhaseBanner = "八景岛 · 风眼引风（每 3 回合蓄风点名，防御或护盾化劲免倒地）";
+                    bossStatusSummary = "风眼蓄风点名时使用一键化劲防御或套盾，可点亮「御风」战法印";
+                }
+                else if (state.BossTrialKind == BossTrialKindWildBell)
+                {
+                    bool yang = IsWildBellYangRound(state.RoundIndex);
+                    bossPhaseBanner = yang
+                        ? "碧渊水宫 · 阳钟期（物理直伤 +20%，阴鼓期换法术点亮「和鸣」）"
+                        : "碧渊水宫 · 阴鼓期（法术直伤 +20%，阳钟期换物理点亮「和鸣」）";
+                    bossStatusSummary = yang
+                        ? "当前阳钟（物理直伤 +20% · 每 2 回合切换阴鼓）"
+                        : "当前阴鼓（法术直伤 +20% · 每 2 回合切换阳钟）";
+                }
+                else
+                {
+                    bool ebb = IsWildTideEbbRound(state.RoundIndex);
+                    bossPhaseBanner = ebb
+                        ? "月汐湾 · 退潮窗口（首领承伤 +20%，本窗口终结点亮「赶潮」）"
+                        : "月汐湾 · 涨潮期（首领承伤 -25%，蓄势待退潮抢杀）";
+                    bossStatusSummary = ebb
+                        ? "当前退潮窗口（首领承伤 +20% · 抢本窗口终结得「赶潮」）"
+                        : "当前涨潮期（首领承伤 -25% · 每 2 回合切换退潮）";
+                }
+            }
+            else if (IsBossTrialKind(state.BossTrialKind))
             {
                 bossPhaseBanner = state.BossPhase >= 2u
                     ? "二阶段 · 决战姿态（破釜）：首领易伤 +15%，重劈每 2 回合循环"
@@ -823,6 +874,7 @@ namespace MmorpgClient.Game.CoreLoop
             7u => "灵障法术重击",
             8u => "玄毒群体冲击",
             9u => "春禧重击",
+            TelegraphKindWildWindGust => "风眼强袭",
             _ => "首领蓄力",
         };
 
@@ -852,7 +904,7 @@ namespace MmorpgClient.Game.CoreLoop
                     allOwnedThreatened = true;
                     continue;
                 }
-                if (t.IntentKind != 1u && t.IntentKind != 7u && t.IntentKind != 9u) continue;
+                if (t.IntentKind != 1u && t.IntentKind != 7u && t.IntentKind != 9u && t.IntentKind != TelegraphKindWildWindGust) continue;
                 if (t.TargetActorIds != null && t.TargetActorIds.Count > 0)
                 {
                     for (int k = 0; k < t.TargetActorIds.Count; k++)
@@ -973,9 +1025,30 @@ namespace MmorpgClient.Game.CoreLoop
             uint bossKind = s.BossTrialKind;
             uint matchMode = s.MatchMode;
 
-            // 1. 首领试炼（1..4 及 8 困难·双卫同阵）
+            // 1. 首领试炼（1..4、8 困难·双卫同阵、12..14 卷四三境明雷）
             if (IsBossTrialKind(bossKind))
             {
+                if (IsWildBossTrialKind(bossKind))
+                {
+                    string wildTag = bossKind == BossTrialKindWildWind ? "卷四明雷 · 八景岛"
+                        : (bossKind == BossTrialKindWildBell ? "卷四明雷 · 碧渊水宫" : "卷四明雷 · 月汐湾");
+                    if (won)
+                    {
+                        string wildReason = bossKind == BossTrialKindWildWind
+                            ? (f != null && !f.BossWindHitUnprotectedDeath ? "稳健化解风眼强袭，无人未防护倒地过关" : $"历时 {s.TotalRounds} 回合攻克八景岛明雷")
+                            : (bossKind == BossTrialKindWildBell
+                                ? (f != null && f.DealtYangBellPhysicalDamage && f.DealtYinDrumMagicDamage ? "阳钟物理与阴鼓法术双系应律破阵" : $"历时 {s.TotalRounds} 回合攻克碧渊水宫明雷")
+                                : (f != null && f.FinishedInEbbTide ? "精准把握退潮窗口完成终结收官" : $"历时 {s.TotalRounds} 回合攻克月汐湾明雷"));
+                        return new BattleTacticalReviewView(true, wildTag, wildReason,
+                            "可在试炼志勾选自选试炼誓约发起进阶挑战，或一键生成约战帖分享录像给好友。");
+                    }
+                    string wildTip = bossKind == BossTrialKindWildWind
+                        ? "首领每 3 回合蓄风点名，点名回合使用一键化劲防御或护盾化解风眼强袭。"
+                        : (bossKind == BossTrialKindWildBell
+                            ? "按阳钟（物伤 +20%）与阴鼓（法伤 +20%）节拍切换输出，兼顾双系伤害点亮「和鸣」。"
+                            : "涨潮期首领承伤 -25%，可先稳血蓄势，留爆发在退潮期（承伤 +20%）收官。");
+                    return new BattleTacticalReviewView(false, wildTag, $"本场第 {s.TotalRounds} 回合失利", wildTip);
+                }
                 string tag = s.BattleDifficulty >= 2u ? "首领试炼 · 困难" : "首领试炼 · 普通";
                 if (won)
                 {

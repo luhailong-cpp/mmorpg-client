@@ -22,16 +22,20 @@ namespace MmorpgClient.Game.TrialJournal
         public uint Difficulty { get; }
         public string VariantKey { get; }
         public string DisplayHint { get; }
+        /// <summary>卷四三境明雷绑定的野外地图场景配置 ID（2=八景岛 / 5=碧渊水宫 / 3=月汐湾；其余为 0）。</summary>
+        public uint RequiredSceneConfigId { get; }
 
         public bool IsValid => Kind != TrialJumpKind.None && DungeonConfigId != 0;
 
-        public TrialJumpTarget(TrialJumpKind kind, uint dungeonConfigId, uint difficulty, string variantKey, string displayHint)
+        public TrialJumpTarget(TrialJumpKind kind, uint dungeonConfigId, uint difficulty, string variantKey, string displayHint,
+            uint requiredSceneConfigId = 0u)
         {
             Kind = kind;
             DungeonConfigId = dungeonConfigId;
             Difficulty = difficulty;
             VariantKey = variantKey ?? "";
             DisplayHint = displayHint ?? "";
+            RequiredSceneConfigId = requiredSceneConfigId;
         }
     }
 
@@ -62,6 +66,141 @@ namespace MmorpgClient.Game.TrialJournal
         public const uint ChapterBreakthrough = 1u;
         public const uint ChapterThreeRealms = 2u;
         public const uint ChapterSeasonal = 3u;
+        public const uint ChapterWildRealms = 4u;
+
+        // 五行试炼志 V3 自选试炼誓约位掩码（与服务端 trial_journal_rules.h 逐位一致）
+        public const uint VowNone = 0u;
+        public const uint VowBanControl = 1u << 0;
+        public const uint VowSingleArtifact = 1u << 1;
+        public const uint VowNoPet = 1u << 2;
+        public const uint VowTightRounds = 1u << 3;
+        public const uint VowMaskAll = VowBanControl | VowSingleArtifact | VowNoPet | VowTightRounds;
+
+        public static readonly uint[] AllVowBits = { VowBanControl, VowSingleArtifact, VowNoPet, VowTightRounds };
+
+        public const string ChallengeCardTagPrefix = "#TJC:";
+        public const string ChallengeCardTagSuffix = "#";
+
+        public static bool IsValidVowMask(uint mask) => (mask & ~VowMaskAll) == 0u;
+
+        public static uint CountVows(uint mask)
+        {
+            uint valid = mask & VowMaskAll;
+            uint count = 0u;
+            for (int i = 0; i < 4; i++)
+            {
+                if ((valid & (1u << i)) != 0u) count++;
+            }
+            return count;
+        }
+
+        public static string VowShortLabel(uint vowBit) => vowBit switch
+        {
+            VowBanControl => "禁控硬破",
+            VowSingleArtifact => "单宝轻装",
+            VowNoPet => "无宠孤剑",
+            VowTightRounds => "紧缩回合",
+            _ => "誓约",
+        };
+
+        public static string VowDescription(uint vowBit) => vowBit switch
+        {
+            VowBanControl => "本方禁用控制技，硬解首领机制",
+            VowSingleArtifact => "本场仅首槽法宝生效",
+            VowNoPet => "本场不召唤灵宠出战",
+            VowTightRounds => "回合上限压缩约三成（至少 6 回合）",
+            _ => "",
+        };
+
+        public static string FormatVowSummary(uint vowMask)
+        {
+            uint valid = vowMask & VowMaskAll;
+            if (valid == 0u) return "无誓约";
+            var parts = new List<string>(4);
+            for (int i = 0; i < AllVowBits.Length; i++)
+            {
+                uint bit = AllVowBits[i];
+                if ((valid & bit) != 0u) parts.Add(VowShortLabel(bit));
+            }
+            return string.Join("+", parts);
+        }
+
+        public static uint TightenRoundLimit(uint baseRounds)
+        {
+            if (baseRounds <= 6u) return baseRounds;
+            uint scaled = (baseRounds * 7u + 9u) / 10u;
+            return scaled < 6u ? 6u : scaled;
+        }
+
+        public static bool TryGetWildSceneBossInfo(uint sceneConfigId, out uint entryId, out uint dungeonConfigId, out string bossTitle)
+        {
+            switch (sceneConfigId)
+            {
+                case 2u:
+                    entryId = 401u; dungeonConfigId = 113u; bossTitle = "风眼妖尊"; return true;
+                case 5u:
+                    entryId = 402u; dungeonConfigId = 114u; bossTitle = "水镜妖尊"; return true;
+                case 3u:
+                    entryId = 403u; dungeonConfigId = 115u; bossTitle = "潮汐妖尊"; return true;
+                default:
+                    entryId = 0u; dungeonConfigId = 0u; bossTitle = ""; return false;
+            }
+        }
+
+        public static string WildSceneName(uint sceneConfigId) => sceneConfigId switch
+        {
+            2u => "八景岛",
+            3u => "月汐湾",
+            5u => "碧渊水宫",
+            _ => $"野外地图#{sceneConfigId}",
+        };
+
+        /// <summary>生成可直接投入世界/队伍/私聊频道的约战帖消息（总长严格 <= 120 字，内嵌 #TJC:card_id#）。</summary>
+        public static string FormatChallengeCardChatDraft(Match.TrialChallengeCardView card, global::TrialJournalSnapshot snapshot = null)
+        {
+            if (card == null || card.CardId == 0ul) return "";
+            var entry = FindEntry(snapshot, card.JournalEntryId);
+            string title = entry != null && !string.IsNullOrEmpty(entry.DisplayName)
+                ? entry.DisplayName
+                : $"试炼格#{card.JournalEntryId}";
+            string vowText = card.VowMask != 0u ? $" · 誓约:{FormatVowSummary(card.VowMask)}" : "";
+            string partyText = card.PartySize > 1u ? $"{card.PartySize}人" : "单人";
+            string text = $"【试炼约战】{title} {partyText}{card.TotalRounds}回合{vowText} 来破纪录 {ChallengeCardTagPrefix}{card.CardId}{ChallengeCardTagSuffix}";
+            if (text.Length > 120)
+            {
+                text = $"【试炼约战】{title} {card.TotalRounds}回合 {ChallengeCardTagPrefix}{card.CardId}{ChallengeCardTagSuffix}";
+            }
+            return text;
+        }
+
+        /// <summary>从聊天消息中解析权威约战帖 card_id（格式 #TJC:&lt;uint64&gt;#）。</summary>
+        public static bool TryParseChallengeCardId(string text, out ulong cardId)
+        {
+            cardId = 0ul;
+            if (string.IsNullOrEmpty(text)) return false;
+            int start = text.IndexOf(ChallengeCardTagPrefix, StringComparison.Ordinal);
+            if (start < 0) return false;
+            int numStart = start + ChallengeCardTagPrefix.Length;
+            int end = text.IndexOf(ChallengeCardTagSuffix, numStart, StringComparison.Ordinal);
+            if (end <= numStart) return false;
+            string slice = text.Substring(numStart, end - numStart);
+            return ulong.TryParse(slice, NumberStyles.None, CultureInfo.InvariantCulture, out cardId) && cardId != 0ul;
+        }
+
+        /// <summary>移除展示正文中的 #TJC:card_id# 协议标记，保留可读邀请文案。</summary>
+        public static string StripChallengeCardTag(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return "";
+            int start = text.IndexOf(ChallengeCardTagPrefix, StringComparison.Ordinal);
+            if (start < 0) return text;
+            int end = text.IndexOf(ChallengeCardTagSuffix, start + ChallengeCardTagPrefix.Length, StringComparison.Ordinal);
+            if (end < 0) return text;
+            string before = text.Substring(0, start).TrimEnd();
+            string after = text.Substring(end + ChallengeCardTagSuffix.Length).TrimStart();
+            if (before.Length == 0) return after;
+            if (after.Length == 0) return before;
+            return before + " " + after;
+        }
 
         public const uint BoundReforgeSandItemId = 3403u;
         public const uint BoundArtifactVoucherItemId = 3404u;
@@ -306,6 +445,15 @@ namespace MmorpgClient.Game.TrialJournal
                 case "boss_trial:normal:rescue":
                     target = new TrialJumpTarget(TrialJumpKind.BossTrial, 109u, 1u, "rescue", "单人 / 组队均可挑战");
                     return true;
+                case "boss_trial:wild:wind":
+                    target = new TrialJumpTarget(TrialJumpKind.BossTrial, 113u, 1u, "wild_wind", "需前往八景岛挑战明雷首领（1–5人）", 2u);
+                    return true;
+                case "boss_trial:wild:bell":
+                    target = new TrialJumpTarget(TrialJumpKind.BossTrial, 114u, 1u, "wild_bell", "需前往碧渊水宫挑战明雷首领（1–5人）", 5u);
+                    return true;
+                case "boss_trial:wild:tide":
+                    target = new TrialJumpTarget(TrialJumpKind.BossTrial, 115u, 1u, "wild_tide", "需前往月汐湾挑战明雷首领（1–5人）", 3u);
+                    return true;
             }
             const string polarityPrefix = "polarity_5v5:";
             if (raw.StartsWith(polarityPrefix, StringComparison.Ordinal)
@@ -359,6 +507,18 @@ namespace MmorpgClient.Game.TrialJournal
                     bossMonsterId = 106u;
                     guardMonsterId = 107u;
                     return true;
+                case 401u:
+                    bossMonsterId = 111u;
+                    guardMonsterId = 112u;
+                    return true;
+                case 402u:
+                    bossMonsterId = 113u;
+                    guardMonsterId = 114u;
+                    return true;
+                case 403u:
+                    bossMonsterId = 115u;
+                    guardMonsterId = 116u;
+                    return true;
                 default:
                     bossMonsterId = 0u;
                     guardMonsterId = 0u;
@@ -408,6 +568,16 @@ namespace MmorpgClient.Game.TrialJournal
                 if (sb.Length > 0) sb.Append("  ·  ");
                 sb.Append("刷新好友合战纪录");
                 if (result.TotalRounds > 0) sb.Append('（').Append(result.TotalRounds).Append("回合）");
+            }
+            if (result.TrialNewVowBest && result.TrialVowMask != 0u)
+            {
+                if (sb.Length > 0) sb.Append("  ·  ");
+                sb.Append("刷新誓约纪录（").Append(FormatVowSummary(result.TrialVowMask)).Append('）');
+            }
+            else if (result.TrialVowMask != 0u)
+            {
+                if (sb.Length > 0) sb.Append("  ·  ");
+                sb.Append("试炼誓约：").Append(FormatVowSummary(result.TrialVowMask));
             }
             return sb.ToString();
         }

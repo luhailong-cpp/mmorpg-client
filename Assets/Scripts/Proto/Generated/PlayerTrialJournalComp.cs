@@ -25,31 +25,34 @@ public static partial class PlayerTrialJournalCompReflection {
           "CjZwcm90by9jb21tb24vY29tcG9uZW50L3BsYXllcl90cmlhbF9qb3VybmFs",
           "X2NvbXAucHJvdG8iaAobVHJpYWxKb3VybmFsTG9hZG91dFNuYXBzaG90EhQK",
           "DHBldF90YWJsZV9pZBgBIAEoDRIbChNhcnRpZmFjdF9lZmZlY3RfaWRzGAIg",
-          "AygNEhYKDnNlYXNvbl9zZWFsX2lkGAMgASgNInQKFlRyaWFsSm91cm5hbFNv",
-          "bG9SZWNvcmQSEwoLYmVzdF9yb3VuZHMYASABKA0SFgoOYWNoaWV2ZWRfYXRf",
-          "bXMYAiABKAQSLQoHbG9hZG91dBgDIAEoCzIcLlRyaWFsSm91cm5hbExvYWRv",
-          "dXRTbmFwc2hvdCKHAQoWVHJpYWxKb3VybmFsQ29vcFJlY29yZBITCgtiZXN0",
-          "X3JvdW5kcxgBIAEoDRISCgpwYXJ0eV9zaXplGAIgASgNEhYKDmFjaGlldmVk",
-          "X2F0X21zGAMgASgEEhQKDHBldF90YWJsZV9pZBgEIAEoDRIWCg50ZWFtbWF0",
-          "ZV9uYW1lcxgFIAMoCSKZAQoXVHJpYWxKb3VybmFsRW50cnlSZWNvcmQSEAoI",
-          "ZW50cnlfaWQYASABKA0SFAoMcnVsZV92ZXJzaW9uGAIgASgNEioKCXNvbG9f",
-          "YmVzdBgDIAEoCzIXLlRyaWFsSm91cm5hbFNvbG9SZWNvcmQSKgoJY29vcF9i",
-          "ZXN0GAQgASgLMhcuVHJpYWxKb3VybmFsQ29vcFJlY29yZCJjChlTZWFzb25U",
-          "cmlhbEpvdXJuYWxBcmNoaXZlEhEKCXNlYXNvbl9pZBgBIAEoDRIUCgxsaXRf",
-          "c2VhbF9pZHMYAiADKA0SHQoVY2xhaW1lZF9taWxlc3RvbmVfaWRzGAMgAygN",
-          "IukBChZQbGF5ZXJUcmlhbEpvdXJuYWxDb21wEhUKDWxpdF9zZWFsX2JpdHMY",
-          "ASABKAwSHgoWY2xhaW1lZF9taWxlc3RvbmVfYml0cxgCIAEoDBIWCg5zdGF0",
-          "ZV9yZXZpc2lvbhgDIAEoBBIpCgdyZWNvcmRzGAQgAygLMhguVHJpYWxKb3Vy",
-          "bmFsRW50cnlSZWNvcmQSMgoOc2Vhc29uX3JlY29yZHMYBSADKAsyGi5TZWFz",
-          "b25UcmlhbEpvdXJuYWxBcmNoaXZlEiEKGW5vcm1hbF9ib3NzX3RyaWFsX2Ns",
-          "ZWFyZWQYBiABKAhCEloQY29tbW9uL2NvbXBvbmVudGIGcHJvdG8z"));
+          "AygNEhYKDnNlYXNvbl9zZWFsX2lkGAMgASgNIocBChZUcmlhbEpvdXJuYWxT",
+          "b2xvUmVjb3JkEhMKC2Jlc3Rfcm91bmRzGAEgASgNEhYKDmFjaGlldmVkX2F0",
+          "X21zGAIgASgEEi0KB2xvYWRvdXQYAyABKAsyHC5UcmlhbEpvdXJuYWxMb2Fk",
+          "b3V0U25hcHNob3QSEQoJYmF0dGxlX2lkGAQgASgEIpoBChZUcmlhbEpvdXJu",
+          "YWxDb29wUmVjb3JkEhMKC2Jlc3Rfcm91bmRzGAEgASgNEhIKCnBhcnR5X3Np",
+          "emUYAiABKA0SFgoOYWNoaWV2ZWRfYXRfbXMYAyABKAQSFAoMcGV0X3RhYmxl",
+          "X2lkGAQgASgNEhYKDnRlYW1tYXRlX25hbWVzGAUgAygJEhEKCWJhdHRsZV9p",
+          "ZBgGIAEoBCL9AQoXVHJpYWxKb3VybmFsRW50cnlSZWNvcmQSEAoIZW50cnlf",
+          "aWQYASABKA0SFAoMcnVsZV92ZXJzaW9uGAIgASgNEioKCXNvbG9fYmVzdBgD",
+          "IAEoCzIXLlRyaWFsSm91cm5hbFNvbG9SZWNvcmQSKgoJY29vcF9iZXN0GAQg",
+          "ASgLMhcuVHJpYWxKb3VybmFsQ29vcFJlY29yZBIVCg1iZXN0X3Zvd19tYXNr",
+          "GAUgASgNEhYKDmJlc3Rfdm93X2NvdW50GAYgASgNEhcKD2Jlc3Rfdm93X3Jv",
+          "dW5kcxgHIAEoDRIaChJiZXN0X3Zvd19iYXR0bGVfaWQYCCABKAQiYwoZU2Vh",
+          "c29uVHJpYWxKb3VybmFsQXJjaGl2ZRIRCglzZWFzb25faWQYASABKA0SFAoM",
+          "bGl0X3NlYWxfaWRzGAIgAygNEh0KFWNsYWltZWRfbWlsZXN0b25lX2lkcxgD",
+          "IAMoDSLpAQoWUGxheWVyVHJpYWxKb3VybmFsQ29tcBIVCg1saXRfc2VhbF9i",
+          "aXRzGAEgASgMEh4KFmNsYWltZWRfbWlsZXN0b25lX2JpdHMYAiABKAwSFgoO",
+          "c3RhdGVfcmV2aXNpb24YAyABKAQSKQoHcmVjb3JkcxgEIAMoCzIYLlRyaWFs",
+          "Sm91cm5hbEVudHJ5UmVjb3JkEjIKDnNlYXNvbl9yZWNvcmRzGAUgAygLMhou",
+          "U2Vhc29uVHJpYWxKb3VybmFsQXJjaGl2ZRIhChlub3JtYWxfYm9zc190cmlh",
+          "bF9jbGVhcmVkGAYgASgIQhJaEGNvbW1vbi9jb21wb25lbnRiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalLoadoutSnapshot), global::TrialJournalLoadoutSnapshot.Parser, new[]{ "PetTableId", "ArtifactEffectIds", "SeasonSealId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalSoloRecord), global::TrialJournalSoloRecord.Parser, new[]{ "BestRounds", "AchievedAtMs", "Loadout" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalCoopRecord), global::TrialJournalCoopRecord.Parser, new[]{ "BestRounds", "PartySize", "AchievedAtMs", "PetTableId", "TeammateNames" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalEntryRecord), global::TrialJournalEntryRecord.Parser, new[]{ "EntryId", "RuleVersion", "SoloBest", "CoopBest" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalSoloRecord), global::TrialJournalSoloRecord.Parser, new[]{ "BestRounds", "AchievedAtMs", "Loadout", "BattleId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalCoopRecord), global::TrialJournalCoopRecord.Parser, new[]{ "BestRounds", "PartySize", "AchievedAtMs", "PetTableId", "TeammateNames", "BattleId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalEntryRecord), global::TrialJournalEntryRecord.Parser, new[]{ "EntryId", "RuleVersion", "SoloBest", "CoopBest", "BestVowMask", "BestVowCount", "BestVowRounds", "BestVowBattleId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SeasonTrialJournalArchive), global::SeasonTrialJournalArchive.Parser, new[]{ "SeasonId", "LitSealIds", "ClaimedMilestoneIds" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerTrialJournalComp), global::PlayerTrialJournalComp.Parser, new[]{ "LitSealBits", "ClaimedMilestoneBits", "StateRevision", "Records", "SeasonRecords", "NormalBossTrialCleared" }, null, null, null, null)
         }));
@@ -374,6 +377,7 @@ public sealed partial class TrialJournalSoloRecord : pb::IMessage<TrialJournalSo
     bestRounds_ = other.bestRounds_;
     achievedAtMs_ = other.achievedAtMs_;
     loadout_ = other.loadout_ != null ? other.loadout_.Clone() : null;
+    battleId_ = other.battleId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -419,6 +423,21 @@ public sealed partial class TrialJournalSoloRecord : pb::IMessage<TrialJournalSo
     }
   }
 
+  /// <summary>Field number for the "battle_id" field.</summary>
+  public const int BattleIdFieldNumber = 4;
+  private ulong battleId_;
+  /// <summary>
+  /// 刷新该单人最佳回合时的权威 battle_id（供回放与约战帖引用）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong BattleId {
+    get { return battleId_; }
+    set {
+      battleId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -437,6 +456,7 @@ public sealed partial class TrialJournalSoloRecord : pb::IMessage<TrialJournalSo
     if (BestRounds != other.BestRounds) return false;
     if (AchievedAtMs != other.AchievedAtMs) return false;
     if (!object.Equals(Loadout, other.Loadout)) return false;
+    if (BattleId != other.BattleId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -447,6 +467,7 @@ public sealed partial class TrialJournalSoloRecord : pb::IMessage<TrialJournalSo
     if (BestRounds != 0) hash ^= BestRounds.GetHashCode();
     if (AchievedAtMs != 0UL) hash ^= AchievedAtMs.GetHashCode();
     if (loadout_ != null) hash ^= Loadout.GetHashCode();
+    if (BattleId != 0UL) hash ^= BattleId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -477,6 +498,10 @@ public sealed partial class TrialJournalSoloRecord : pb::IMessage<TrialJournalSo
       output.WriteRawTag(26);
       output.WriteMessage(Loadout);
     }
+    if (BattleId != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(BattleId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -499,6 +524,10 @@ public sealed partial class TrialJournalSoloRecord : pb::IMessage<TrialJournalSo
       output.WriteRawTag(26);
       output.WriteMessage(Loadout);
     }
+    if (BattleId != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(BattleId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -517,6 +546,9 @@ public sealed partial class TrialJournalSoloRecord : pb::IMessage<TrialJournalSo
     }
     if (loadout_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(Loadout);
+    }
+    if (BattleId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BattleId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -541,6 +573,9 @@ public sealed partial class TrialJournalSoloRecord : pb::IMessage<TrialJournalSo
         Loadout = new global::TrialJournalLoadoutSnapshot();
       }
       Loadout.MergeFrom(other.Loadout);
+    }
+    if (other.BattleId != 0UL) {
+      BattleId = other.BattleId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -576,6 +611,10 @@ public sealed partial class TrialJournalSoloRecord : pb::IMessage<TrialJournalSo
           input.ReadMessage(Loadout);
           break;
         }
+        case 32: {
+          BattleId = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -608,6 +647,10 @@ public sealed partial class TrialJournalSoloRecord : pb::IMessage<TrialJournalSo
             Loadout = new global::TrialJournalLoadoutSnapshot();
           }
           input.ReadMessage(Loadout);
+          break;
+        }
+        case 32: {
+          BattleId = input.ReadUInt64();
           break;
         }
       }
@@ -660,6 +703,7 @@ public sealed partial class TrialJournalCoopRecord : pb::IMessage<TrialJournalCo
     achievedAtMs_ = other.achievedAtMs_;
     petTableId_ = other.petTableId_;
     teammateNames_ = other.teammateNames_.Clone();
+    battleId_ = other.battleId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -731,6 +775,21 @@ public sealed partial class TrialJournalCoopRecord : pb::IMessage<TrialJournalCo
     get { return teammateNames_; }
   }
 
+  /// <summary>Field number for the "battle_id" field.</summary>
+  public const int BattleIdFieldNumber = 6;
+  private ulong battleId_;
+  /// <summary>
+  /// 刷新该合战最快回合时的权威 battle_id（供回放与约战帖引用）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong BattleId {
+    get { return battleId_; }
+    set {
+      battleId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -751,6 +810,7 @@ public sealed partial class TrialJournalCoopRecord : pb::IMessage<TrialJournalCo
     if (AchievedAtMs != other.AchievedAtMs) return false;
     if (PetTableId != other.PetTableId) return false;
     if(!teammateNames_.Equals(other.teammateNames_)) return false;
+    if (BattleId != other.BattleId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -763,6 +823,7 @@ public sealed partial class TrialJournalCoopRecord : pb::IMessage<TrialJournalCo
     if (AchievedAtMs != 0UL) hash ^= AchievedAtMs.GetHashCode();
     if (PetTableId != 0) hash ^= PetTableId.GetHashCode();
     hash ^= teammateNames_.GetHashCode();
+    if (BattleId != 0UL) hash ^= BattleId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -798,6 +859,10 @@ public sealed partial class TrialJournalCoopRecord : pb::IMessage<TrialJournalCo
       output.WriteUInt32(PetTableId);
     }
     teammateNames_.WriteTo(output, _repeated_teammateNames_codec);
+    if (BattleId != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(BattleId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -825,6 +890,10 @@ public sealed partial class TrialJournalCoopRecord : pb::IMessage<TrialJournalCo
       output.WriteUInt32(PetTableId);
     }
     teammateNames_.WriteTo(ref output, _repeated_teammateNames_codec);
+    if (BattleId != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(BattleId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -848,6 +917,9 @@ public sealed partial class TrialJournalCoopRecord : pb::IMessage<TrialJournalCo
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PetTableId);
     }
     size += teammateNames_.CalculateSize(_repeated_teammateNames_codec);
+    if (BattleId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BattleId);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -873,6 +945,9 @@ public sealed partial class TrialJournalCoopRecord : pb::IMessage<TrialJournalCo
       PetTableId = other.PetTableId;
     }
     teammateNames_.Add(other.teammateNames_);
+    if (other.BattleId != 0UL) {
+      BattleId = other.BattleId;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -912,6 +987,10 @@ public sealed partial class TrialJournalCoopRecord : pb::IMessage<TrialJournalCo
           teammateNames_.AddEntriesFrom(input, _repeated_teammateNames_codec);
           break;
         }
+        case 48: {
+          BattleId = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -949,6 +1028,10 @@ public sealed partial class TrialJournalCoopRecord : pb::IMessage<TrialJournalCo
         }
         case 42: {
           teammateNames_.AddEntriesFrom(ref input, _repeated_teammateNames_codec);
+          break;
+        }
+        case 48: {
+          BattleId = input.ReadUInt64();
           break;
         }
       }
@@ -1000,6 +1083,10 @@ public sealed partial class TrialJournalEntryRecord : pb::IMessage<TrialJournalE
     ruleVersion_ = other.ruleVersion_;
     soloBest_ = other.soloBest_ != null ? other.soloBest_.Clone() : null;
     coopBest_ = other.coopBest_ != null ? other.coopBest_.Clone() : null;
+    bestVowMask_ = other.bestVowMask_;
+    bestVowCount_ = other.bestVowCount_;
+    bestVowRounds_ = other.bestVowRounds_;
+    bestVowBattleId_ = other.bestVowBattleId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1057,6 +1144,66 @@ public sealed partial class TrialJournalEntryRecord : pb::IMessage<TrialJournalE
     }
   }
 
+  /// <summary>Field number for the "best_vow_mask" field.</summary>
+  public const int BestVowMaskFieldNumber = 5;
+  private uint bestVowMask_;
+  /// <summary>
+  /// V3：达成最高誓约纪录时的誓约位掩码（0=尚未带誓约通关）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BestVowMask {
+    get { return bestVowMask_; }
+    set {
+      bestVowMask_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "best_vow_count" field.</summary>
+  public const int BestVowCountFieldNumber = 6;
+  private uint bestVowCount_;
+  /// <summary>
+  /// V3：最高达成誓约条数（0..4）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BestVowCount {
+    get { return bestVowCount_; }
+    set {
+      bestVowCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "best_vow_rounds" field.</summary>
+  public const int BestVowRoundsFieldNumber = 7;
+  private uint bestVowRounds_;
+  /// <summary>
+  /// V3：最高誓约纪录对应通关回合数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BestVowRounds {
+    get { return bestVowRounds_; }
+    set {
+      bestVowRounds_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "best_vow_battle_id" field.</summary>
+  public const int BestVowBattleIdFieldNumber = 8;
+  private ulong bestVowBattleId_;
+  /// <summary>
+  /// V3：最高誓约纪录对应权威 battle_id
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong BestVowBattleId {
+    get { return bestVowBattleId_; }
+    set {
+      bestVowBattleId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1076,6 +1223,10 @@ public sealed partial class TrialJournalEntryRecord : pb::IMessage<TrialJournalE
     if (RuleVersion != other.RuleVersion) return false;
     if (!object.Equals(SoloBest, other.SoloBest)) return false;
     if (!object.Equals(CoopBest, other.CoopBest)) return false;
+    if (BestVowMask != other.BestVowMask) return false;
+    if (BestVowCount != other.BestVowCount) return false;
+    if (BestVowRounds != other.BestVowRounds) return false;
+    if (BestVowBattleId != other.BestVowBattleId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1087,6 +1238,10 @@ public sealed partial class TrialJournalEntryRecord : pb::IMessage<TrialJournalE
     if (RuleVersion != 0) hash ^= RuleVersion.GetHashCode();
     if (soloBest_ != null) hash ^= SoloBest.GetHashCode();
     if (coopBest_ != null) hash ^= CoopBest.GetHashCode();
+    if (BestVowMask != 0) hash ^= BestVowMask.GetHashCode();
+    if (BestVowCount != 0) hash ^= BestVowCount.GetHashCode();
+    if (BestVowRounds != 0) hash ^= BestVowRounds.GetHashCode();
+    if (BestVowBattleId != 0UL) hash ^= BestVowBattleId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1121,6 +1276,22 @@ public sealed partial class TrialJournalEntryRecord : pb::IMessage<TrialJournalE
       output.WriteRawTag(34);
       output.WriteMessage(CoopBest);
     }
+    if (BestVowMask != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(BestVowMask);
+    }
+    if (BestVowCount != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(BestVowCount);
+    }
+    if (BestVowRounds != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(BestVowRounds);
+    }
+    if (BestVowBattleId != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(BestVowBattleId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1147,6 +1318,22 @@ public sealed partial class TrialJournalEntryRecord : pb::IMessage<TrialJournalE
       output.WriteRawTag(34);
       output.WriteMessage(CoopBest);
     }
+    if (BestVowMask != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(BestVowMask);
+    }
+    if (BestVowCount != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(BestVowCount);
+    }
+    if (BestVowRounds != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(BestVowRounds);
+    }
+    if (BestVowBattleId != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(BestVowBattleId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1168,6 +1355,18 @@ public sealed partial class TrialJournalEntryRecord : pb::IMessage<TrialJournalE
     }
     if (coopBest_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(CoopBest);
+    }
+    if (BestVowMask != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BestVowMask);
+    }
+    if (BestVowCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BestVowCount);
+    }
+    if (BestVowRounds != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BestVowRounds);
+    }
+    if (BestVowBattleId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BestVowBattleId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1198,6 +1397,18 @@ public sealed partial class TrialJournalEntryRecord : pb::IMessage<TrialJournalE
         CoopBest = new global::TrialJournalCoopRecord();
       }
       CoopBest.MergeFrom(other.CoopBest);
+    }
+    if (other.BestVowMask != 0) {
+      BestVowMask = other.BestVowMask;
+    }
+    if (other.BestVowCount != 0) {
+      BestVowCount = other.BestVowCount;
+    }
+    if (other.BestVowRounds != 0) {
+      BestVowRounds = other.BestVowRounds;
+    }
+    if (other.BestVowBattleId != 0UL) {
+      BestVowBattleId = other.BestVowBattleId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1240,6 +1451,22 @@ public sealed partial class TrialJournalEntryRecord : pb::IMessage<TrialJournalE
           input.ReadMessage(CoopBest);
           break;
         }
+        case 40: {
+          BestVowMask = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          BestVowCount = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          BestVowRounds = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          BestVowBattleId = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -1279,6 +1506,22 @@ public sealed partial class TrialJournalEntryRecord : pb::IMessage<TrialJournalE
             CoopBest = new global::TrialJournalCoopRecord();
           }
           input.ReadMessage(CoopBest);
+          break;
+        }
+        case 40: {
+          BestVowMask = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          BestVowCount = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          BestVowRounds = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          BestVowBattleId = input.ReadUInt64();
           break;
         }
       }

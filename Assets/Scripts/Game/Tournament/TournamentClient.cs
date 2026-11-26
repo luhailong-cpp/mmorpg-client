@@ -61,7 +61,6 @@ namespace MmorpgClient.Game.Tournament
 
         public event Action Changed;
         public event Action<ulong> MatchBattleLaunched;
-        public event Action<TournamentSaluteOutcome> ChampionSaluted;
         public event Action SpectateCheerChanged;
 
         public TournamentClient(
@@ -576,49 +575,6 @@ namespace MmorpgClient.Game.Tournament
             return true;
         }
 
-        /// <summary>V2 RPC 506：每日免费向总冠军观道致敬（每人每天 UTC+8 1 次，绑定银两与灵兽口粮发至邮箱）。</summary>
-        public bool SaluteChampion(uint seasonId = 0u)
-        {
-            if (!BeginMutation(MatchServiceRpc.SaluteTournamentChampionMessageId, "正在向总冠军观道致敬…", out int gen, out ulong player))
-                return false;
-
-            _net.Call(MatchServiceRpc.SaluteTournamentChampionMessageId,
-                new SaluteTournamentChampionRequest { SeasonId = seasonId },
-                SaluteTournamentChampionResponse.Parser,
-                resp =>
-                {
-                    if (!IsCurrent(gen, player)) return;
-                    _mutating = false;
-                    if (HasTip(resp?.ErrorMessage))
-                    {
-                        FailServer(resp.ErrorMessage);
-                        return;
-                    }
-                    uint effSeason = resp?.SeasonId ?? seasonId;
-                    ulong saluteCount = resp?.ChampionSaluteCount ?? 0UL;
-                    if (Overview != null)
-                        Overview = Overview.WithSaluted(effSeason, saluteCount);
-                    var items = new List<TournamentRewardItem>();
-                    if (resp != null)
-                    {
-                        for (int i = 0; i < resp.Items.Count; i++)
-                            if (resp.Items[i] != null) items.Add(resp.Items[i].Clone());
-                    }
-                    var outcome = new TournamentSaluteOutcome(effSeason, saluteCount, resp?.GoldAmount ?? 0UL, items, resp?.MailId ?? 0UL);
-                    LastError = string.Empty;
-                    Status = "观道致敬成功，绑定薄礼已发至仙笺邮箱。";
-                    Changed?.Invoke();
-                    ChampionSaluted?.Invoke(outcome);
-                },
-                err =>
-                {
-                    if (!IsCurrent(gen, player)) return;
-                    _mutating = false;
-                    FailTransport("观道致敬失败", err);
-                });
-            return true;
-        }
-
         /// <summary>V2 RPC 507：观战底部预设喝彩（严格白名单 phraseId 1..6、阵营 0/1，5 秒冷却，绝不本地臆造人气）。</summary>
         public bool SendSpectateCheer(ulong battleId, uint phraseId, uint side)
         {
@@ -1000,10 +956,6 @@ namespace MmorpgClient.Game.Tournament
                     return "本赛季免费助威机会已使用（每人每季 1 票）。";
                 case (uint)match_error.KMatchTournamentRewardUnavailable:
                     return "暂无可领取的赛季奖励或奖励已发放。";
-                case (uint)match_error.KMatchTournamentAlreadySalutedToday:
-                    return "今日已向总冠军观道致敬，明日 0 点后可再次致敬。";
-                case (uint)match_error.KMatchTournamentNoChampionToSalute:
-                    return "当前暂无已诞生的总冠军可供观道致敬。";
                 case (uint)match_error.KMatchTournamentSpectateCheerCooldown:
                     return "喝彩过于频繁，请稍候片刻再为道友加油。";
                 case (uint)match_error.KMatchTournamentSpectateCheerInvalid:

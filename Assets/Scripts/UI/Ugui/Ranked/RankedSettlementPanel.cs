@@ -106,17 +106,19 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _streakBreakText.fontSizeMax = 19f;
             _streakBreakPlate.gameObject.SetActive(false);
 
-            // 论剑 V6 左侧宿敌「雪耻复仇」荣誉印章（原尺寸 280×68，预绑 RankedPlayV6/rivalry_revenge_stamp，纯荣誉不改分）
+            // 论剑 V6 左侧宿敌「雪耻复仇」荣誉印章（原尺寸 280×68，中央文字区 x=66..214 避让左右朱印，纯荣誉不改分）
             _revengeStampPlate = QdaoUguiFactory.CreateImage("RevengeRivalStamp", _root, 172f, 460f, 280f, 68f, null, false);
             var revengeSprite = SeasonEconomyUiArt.LoadRankedPlayV6Asset("rivalry_revenge_stamp");
             bool hasRevengeArt = revengeSprite != null;
             if (hasRevengeArt) SeasonEconomyUiArt.ApplyFixedControlSprite(_revengeStampPlate, revengeSprite, SeasonEconomyUiArt.BattleArenaVermilion);
             else _revengeStampPlate.color = SeasonEconomyUiArt.BattleArenaVermilion;
-            _revengeStampText = CreateLabel("RevengeRivalText", _revengeStampPlate.transform, 14f, 0f, 252f, 68f,
-                string.Empty, 19f, hasRevengeArt ? JadeDark : GoldCream, TextAlignmentOptions.Center, bold: true);
+            _revengeStampText = CreateLabel("RevengeRivalText", _revengeStampPlate.transform,
+                hasRevengeArt ? 66f : 14f, 6f, hasRevengeArt ? 148f : 252f, 56f,
+                string.Empty, 19f, hasRevengeArt ? WarnRed : GoldCream, TextAlignmentOptions.Center, bold: true);
             _revengeStampText.enableAutoSizing = true;
-            _revengeStampText.fontSizeMin = 14f;
+            _revengeStampText.fontSizeMin = 12f;
             _revengeStampText.fontSizeMax = 19f;
+            _revengeStampText.overflowMode = TextOverflowModes.Ellipsis;
             _revengeStampPlate.gameObject.SetActive(false);
 
             // 论剑 V4 右侧战术复盘高光卡（与中部段位卡等高齐平 [1446, 292, 324, 250]）

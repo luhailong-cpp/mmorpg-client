@@ -35,19 +35,25 @@ namespace MmorpgClient.Game.TrialJournal
         public uint GrantedSandCount { get; }
         public uint GrantedVoucherCount { get; }
         public string GrantedAppearanceId { get; }
+        public uint GrantedPetCosmeticId { get; }
+        public uint GrantedSkillVfxId { get; }
 
         public TrialMilestoneClaimedEvent(
             uint milestoneId,
             bool replayed,
             uint grantedSandCount,
             uint grantedVoucherCount,
-            string grantedAppearanceId)
+            string grantedAppearanceId,
+            uint grantedPetCosmeticId = 0,
+            uint grantedSkillVfxId = 0)
         {
             MilestoneId = milestoneId;
             Replayed = replayed;
             GrantedSandCount = grantedSandCount;
             GrantedVoucherCount = grantedVoucherCount;
             GrantedAppearanceId = grantedAppearanceId ?? "";
+            GrantedPetCosmeticId = grantedPetCosmeticId;
+            GrantedSkillVfxId = grantedSkillVfxId;
         }
     }
 
@@ -209,7 +215,9 @@ namespace MmorpgClient.Game.TrialJournal
                             response.Replayed,
                             response.GrantedSandCount,
                             response.GrantedVoucherCount,
-                            response.GrantedAppearanceId));
+                            response.GrantedAppearanceId,
+                            response.GrantedPetCosmeticId,
+                            response.GrantedSkillVfxId));
                         Changed?.Invoke();
                     },
                     error =>

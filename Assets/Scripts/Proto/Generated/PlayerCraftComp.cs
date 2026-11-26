@@ -31,7 +31,7 @@ public static partial class PlayerCraftCompReflection {
           "ZXJfcGxheWVyX2lkGAIgASgEEhMKC3Bvc3Rlcl9uYW1lGAMgASgJEhYKDnNr",
           "aWxsX3RhYmxlX2lkGAQgASgNEhEKCXNjcm9sbF9pZBgFIAEoDRIgChhyZXF1",
           "aXJlX21hc3Rlcl9zaWduYXR1cmUYBiABKAgSEwoLcmV3YXJkX2dvbGQYByAB",
-          "KAQSFgoOY3JlYXRlZF9hdF9zZWMYCCABKAQizgQKD1BsYXllckNyYWZ0Q29t",
+          "KAQSFgoOY3JlYXRlZF9hdF9zZWMYCCABKAQitAYKD1BsYXllckNyYWZ0Q29t",
           "cBIZChFmb3JnZV9tYXN0ZXJ5X2V4cBgBIAEoDRIaChJzY3JvbGxfbWFzdGVy",
           "eV9leHAYAiABKA0SHQoVc2Nyb2xsX2NyYWZ0X3JldmlzaW9uGAMgASgEEhUK",
           "DW5leHRfYm9va19zZXEYBCABKAQSKwoLc2tpbGxfYm9va3MYBSADKAsyFi5D",
@@ -44,14 +44,19 @@ public static partial class PlayerCraftCompReflection {
           "cXVpcHBlZF9jcmFmdF90aXRsZV9pZBgOIAEoDRIlCh1jbGFpbWVkX3Njcm9s",
           "bF9taWxlc3RvbmVfYml0cxgPIAEoDBIsCg13YW50ZWRfb3JkZXJzGBAgAygL",
           "MhUuU2tpbGxCb29rV2FudGVkT3JkZXISHQoVbmV4dF93YW50ZWRfb3JkZXJf",
-          "c2VxGBEgASgEEhcKD3RlYW1fZnJlZV9wcm94eRgSIAEoCEISWhBjb21tb24v",
-          "Y29tcG9uZW50YgZwcm90bzM="));
+          "c2VxGBEgASgEEhcKD3RlYW1fZnJlZV9wcm94eRgSIAEoCBIiChp1bnJlYWRf",
+          "cHJveHlfZGlnZXN0X29yZGVycxgTIAEoDRIjCht1bnJlYWRfcHJveHlfZGln",
+          "ZXN0X3N1cHJlbWUYFCABKA0SIAoYdW5yZWFkX3Byb3h5X2RpZ2VzdF9yYXJl",
+          "GBUgASgNEiQKHHVucmVhZF9wcm94eV9kaWdlc3RfbmV0X2dvbGQYFiABKAQS",
+          "JgoedW5yZWFkX3Byb3h5X2RpZ2VzdF9sYXN0X2J1eWVyGBcgASgJEisKI3Vu",
+          "cmVhZF9wcm94eV9kaWdlc3RfbmV3X3RpdGxlc19tYXNrGBggASgNQhJaEGNv",
+          "bW1vbi9jb21wb25lbnRiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::CraftedSkillBookEntry), global::CraftedSkillBookEntry.Parser, new[]{ "BookId", "SkillTableId", "ScrollId", "RarityTier", "Bound", "CrafterName", "CrafterPlayerId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SkillBookWantedOrder), global::SkillBookWantedOrder.Parser, new[]{ "OrderId", "PosterPlayerId", "PosterName", "SkillTableId", "ScrollId", "RequireMasterSignature", "RewardGold", "CreatedAtSec" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerCraftComp), global::PlayerCraftComp.Parser, new[]{ "ForgeMasteryExp", "ScrollMasteryExp", "ScrollCraftRevision", "NextBookSeq", "SkillBooks", "ProxyStallOpen", "ProxyForgeFeeGold", "ProxyScrollFeeGold", "BookUnlockedSkillIds", "ProxyOrdersCompleted", "SupremeForgedCount", "RareBooksCraftedCount", "MasterShowcaseTag", "EquippedCraftTitleId", "ClaimedScrollMilestoneBits", "WantedOrders", "NextWantedOrderSeq", "TeamFreeProxy" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerCraftComp), global::PlayerCraftComp.Parser, new[]{ "ForgeMasteryExp", "ScrollMasteryExp", "ScrollCraftRevision", "NextBookSeq", "SkillBooks", "ProxyStallOpen", "ProxyForgeFeeGold", "ProxyScrollFeeGold", "BookUnlockedSkillIds", "ProxyOrdersCompleted", "SupremeForgedCount", "RareBooksCraftedCount", "MasterShowcaseTag", "EquippedCraftTitleId", "ClaimedScrollMilestoneBits", "WantedOrders", "NextWantedOrderSeq", "TeamFreeProxy", "UnreadProxyDigestOrders", "UnreadProxyDigestSupreme", "UnreadProxyDigestRare", "UnreadProxyDigestNetGold", "UnreadProxyDigestLastBuyer", "UnreadProxyDigestNewTitlesMask" }, null, null, null, null)
         }));
   }
   #endregion
@@ -1044,6 +1049,12 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
     wantedOrders_ = other.wantedOrders_.Clone();
     nextWantedOrderSeq_ = other.nextWantedOrderSeq_;
     teamFreeProxy_ = other.teamFreeProxy_;
+    unreadProxyDigestOrders_ = other.unreadProxyDigestOrders_;
+    unreadProxyDigestSupreme_ = other.unreadProxyDigestSupreme_;
+    unreadProxyDigestRare_ = other.unreadProxyDigestRare_;
+    unreadProxyDigestNetGold_ = other.unreadProxyDigestNetGold_;
+    unreadProxyDigestLastBuyer_ = other.unreadProxyDigestLastBuyer_;
+    unreadProxyDigestNewTitlesMask_ = other.unreadProxyDigestNewTitlesMask_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1321,6 +1332,96 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
     }
   }
 
+  /// <summary>Field number for the "unread_proxy_digest_orders" field.</summary>
+  public const int UnreadProxyDigestOrdersFieldNumber = 19;
+  private uint unreadProxyDigestOrders_;
+  /// <summary>
+  /// ── 离线/跨线名匠代打未读营业战报（异步回账落盘后累积，宗师 AckCraftProxyDigest 幂等清零） ──
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint UnreadProxyDigestOrders {
+    get { return unreadProxyDigestOrders_; }
+    set {
+      unreadProxyDigestOrders_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "unread_proxy_digest_supreme" field.</summary>
+  public const int UnreadProxyDigestSupremeFieldNumber = 20;
+  private uint unreadProxyDigestSupreme_;
+  /// <summary>
+  /// 尚未查阅的极品产出次数。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint UnreadProxyDigestSupreme {
+    get { return unreadProxyDigestSupreme_; }
+    set {
+      unreadProxyDigestSupreme_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "unread_proxy_digest_rare" field.</summary>
+  public const int UnreadProxyDigestRareFieldNumber = 21;
+  private uint unreadProxyDigestRare_;
+  /// <summary>
+  /// 尚未查阅的稀世制书次数。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint UnreadProxyDigestRare {
+    get { return unreadProxyDigestRare_; }
+    set {
+      unreadProxyDigestRare_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "unread_proxy_digest_net_gold" field.</summary>
+  public const int UnreadProxyDigestNetGoldFieldNumber = 22;
+  private ulong unreadProxyDigestNetGold_;
+  /// <summary>
+  /// 尚未查阅的税后 95% 净银两总额（已寄往邮箱）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong UnreadProxyDigestNetGold {
+    get { return unreadProxyDigestNetGold_; }
+    set {
+      unreadProxyDigestNetGold_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "unread_proxy_digest_last_buyer" field.</summary>
+  public const int UnreadProxyDigestLastBuyerFieldNumber = 23;
+  private string unreadProxyDigestLastBuyer_ = "";
+  /// <summary>
+  /// 最近一位下单侠士名（服务端已过审角色名）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string UnreadProxyDigestLastBuyer {
+    get { return unreadProxyDigestLastBuyer_; }
+    set {
+      unreadProxyDigestLastBuyer_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "unread_proxy_digest_new_titles_mask" field.</summary>
+  public const int UnreadProxyDigestNewTitlesMaskFieldNumber = 24;
+  private uint unreadProxyDigestNewTitlesMask_;
+  /// <summary>
+  /// 本期间新解锁的零属性名匠雅号位图（bit (title_id - 1)）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint UnreadProxyDigestNewTitlesMask {
+    get { return unreadProxyDigestNewTitlesMask_; }
+    set {
+      unreadProxyDigestNewTitlesMask_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1354,6 +1455,12 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
     if(!wantedOrders_.Equals(other.wantedOrders_)) return false;
     if (NextWantedOrderSeq != other.NextWantedOrderSeq) return false;
     if (TeamFreeProxy != other.TeamFreeProxy) return false;
+    if (UnreadProxyDigestOrders != other.UnreadProxyDigestOrders) return false;
+    if (UnreadProxyDigestSupreme != other.UnreadProxyDigestSupreme) return false;
+    if (UnreadProxyDigestRare != other.UnreadProxyDigestRare) return false;
+    if (UnreadProxyDigestNetGold != other.UnreadProxyDigestNetGold) return false;
+    if (UnreadProxyDigestLastBuyer != other.UnreadProxyDigestLastBuyer) return false;
+    if (UnreadProxyDigestNewTitlesMask != other.UnreadProxyDigestNewTitlesMask) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1379,6 +1486,12 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
     hash ^= wantedOrders_.GetHashCode();
     if (NextWantedOrderSeq != 0UL) hash ^= NextWantedOrderSeq.GetHashCode();
     if (TeamFreeProxy != false) hash ^= TeamFreeProxy.GetHashCode();
+    if (UnreadProxyDigestOrders != 0) hash ^= UnreadProxyDigestOrders.GetHashCode();
+    if (UnreadProxyDigestSupreme != 0) hash ^= UnreadProxyDigestSupreme.GetHashCode();
+    if (UnreadProxyDigestRare != 0) hash ^= UnreadProxyDigestRare.GetHashCode();
+    if (UnreadProxyDigestNetGold != 0UL) hash ^= UnreadProxyDigestNetGold.GetHashCode();
+    if (UnreadProxyDigestLastBuyer.Length != 0) hash ^= UnreadProxyDigestLastBuyer.GetHashCode();
+    if (UnreadProxyDigestNewTitlesMask != 0) hash ^= UnreadProxyDigestNewTitlesMask.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1460,6 +1573,30 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
       output.WriteRawTag(144, 1);
       output.WriteBool(TeamFreeProxy);
     }
+    if (UnreadProxyDigestOrders != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(UnreadProxyDigestOrders);
+    }
+    if (UnreadProxyDigestSupreme != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(UnreadProxyDigestSupreme);
+    }
+    if (UnreadProxyDigestRare != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(UnreadProxyDigestRare);
+    }
+    if (UnreadProxyDigestNetGold != 0UL) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt64(UnreadProxyDigestNetGold);
+    }
+    if (UnreadProxyDigestLastBuyer.Length != 0) {
+      output.WriteRawTag(186, 1);
+      output.WriteString(UnreadProxyDigestLastBuyer);
+    }
+    if (UnreadProxyDigestNewTitlesMask != 0) {
+      output.WriteRawTag(192, 1);
+      output.WriteUInt32(UnreadProxyDigestNewTitlesMask);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1533,6 +1670,30 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
       output.WriteRawTag(144, 1);
       output.WriteBool(TeamFreeProxy);
     }
+    if (UnreadProxyDigestOrders != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(UnreadProxyDigestOrders);
+    }
+    if (UnreadProxyDigestSupreme != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(UnreadProxyDigestSupreme);
+    }
+    if (UnreadProxyDigestRare != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(UnreadProxyDigestRare);
+    }
+    if (UnreadProxyDigestNetGold != 0UL) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt64(UnreadProxyDigestNetGold);
+    }
+    if (UnreadProxyDigestLastBuyer.Length != 0) {
+      output.WriteRawTag(186, 1);
+      output.WriteString(UnreadProxyDigestLastBuyer);
+    }
+    if (UnreadProxyDigestNewTitlesMask != 0) {
+      output.WriteRawTag(192, 1);
+      output.WriteUInt32(UnreadProxyDigestNewTitlesMask);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1590,6 +1751,24 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
     }
     if (TeamFreeProxy != false) {
       size += 2 + 1;
+    }
+    if (UnreadProxyDigestOrders != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(UnreadProxyDigestOrders);
+    }
+    if (UnreadProxyDigestSupreme != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(UnreadProxyDigestSupreme);
+    }
+    if (UnreadProxyDigestRare != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(UnreadProxyDigestRare);
+    }
+    if (UnreadProxyDigestNetGold != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(UnreadProxyDigestNetGold);
+    }
+    if (UnreadProxyDigestLastBuyer.Length != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeStringSize(UnreadProxyDigestLastBuyer);
+    }
+    if (UnreadProxyDigestNewTitlesMask != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(UnreadProxyDigestNewTitlesMask);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1650,6 +1829,24 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
     }
     if (other.TeamFreeProxy != false) {
       TeamFreeProxy = other.TeamFreeProxy;
+    }
+    if (other.UnreadProxyDigestOrders != 0) {
+      UnreadProxyDigestOrders = other.UnreadProxyDigestOrders;
+    }
+    if (other.UnreadProxyDigestSupreme != 0) {
+      UnreadProxyDigestSupreme = other.UnreadProxyDigestSupreme;
+    }
+    if (other.UnreadProxyDigestRare != 0) {
+      UnreadProxyDigestRare = other.UnreadProxyDigestRare;
+    }
+    if (other.UnreadProxyDigestNetGold != 0UL) {
+      UnreadProxyDigestNetGold = other.UnreadProxyDigestNetGold;
+    }
+    if (other.UnreadProxyDigestLastBuyer.Length != 0) {
+      UnreadProxyDigestLastBuyer = other.UnreadProxyDigestLastBuyer;
+    }
+    if (other.UnreadProxyDigestNewTitlesMask != 0) {
+      UnreadProxyDigestNewTitlesMask = other.UnreadProxyDigestNewTitlesMask;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1743,6 +1940,30 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
           TeamFreeProxy = input.ReadBool();
           break;
         }
+        case 152: {
+          UnreadProxyDigestOrders = input.ReadUInt32();
+          break;
+        }
+        case 160: {
+          UnreadProxyDigestSupreme = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          UnreadProxyDigestRare = input.ReadUInt32();
+          break;
+        }
+        case 176: {
+          UnreadProxyDigestNetGold = input.ReadUInt64();
+          break;
+        }
+        case 186: {
+          UnreadProxyDigestLastBuyer = input.ReadString();
+          break;
+        }
+        case 192: {
+          UnreadProxyDigestNewTitlesMask = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -1833,6 +2054,30 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
         }
         case 144: {
           TeamFreeProxy = input.ReadBool();
+          break;
+        }
+        case 152: {
+          UnreadProxyDigestOrders = input.ReadUInt32();
+          break;
+        }
+        case 160: {
+          UnreadProxyDigestSupreme = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          UnreadProxyDigestRare = input.ReadUInt32();
+          break;
+        }
+        case 176: {
+          UnreadProxyDigestNetGold = input.ReadUInt64();
+          break;
+        }
+        case 186: {
+          UnreadProxyDigestLastBuyer = input.ReadString();
+          break;
+        }
+        case 192: {
+          UnreadProxyDigestNewTitlesMask = input.ReadUInt32();
           break;
         }
       }

@@ -100,6 +100,132 @@ namespace MmorpgClient.Tests.EditMode.Skills
         }
 
         [Test]
+        public void UnifiedSaveForwardsNameAttributesAndResetFlagAndGuardsRetryPayload()
+        {
+            var book = Book(1000);
+            book.Loadout = new SkillLoadoutSnapshot { StateVersion = 3, ActiveSchemeId = 1 };
+            LoadBook(book);
+
+            var args = new SkillLoadoutSaveArgs
+            {
+                SchemeId = 1,
+                Name = "破军爆发",
+                RoleTag = 1,
+                PassiveSkillIds = new uint[] { 12101 },
+                UpdateAttributeAllocation = true,
+                AttributeAllocated = new Dictionary<uint, uint> { { 103, 40 }, { 101, 10 } },
+                ResetAttributeIfNeeded = true,
+            };
+            _client.SaveLoadout(args);
+            var req = (SaveSkillLoadoutRequest)_net.LastRequest;
+            Assert.That(req.Name, Is.EqualTo("破军爆发"));
+            Assert.That(req.UpdateAttributeAllocation, Is.True);
+            Assert.That(req.ResetAttributeIfNeeded, Is.True);
+            Assert.That(req.AttributeAllocated[103], Is.EqualTo(40u));
+            Assert.That(req.AttributeAllocated[101], Is.EqualTo(10u));
+
+            _net.Fail("请求超时");
+
+            // 改了名称或加点后不得复用旧幂等请求
+            bool? mismatchResult = null;
+            _client.SaveLoadout(new SkillLoadoutSaveArgs
+            {
+                SchemeId = 1,
+                Name = "改名了",
+                RoleTag = 1,
+                PassiveSkillIds = new uint[] { 12101 },
+                UpdateAttributeAllocation = true,
+                AttributeAllocated = new Dictionary<uint, uint> { { 103, 40 }, { 101, 10 } },
+                ResetAttributeIfNeeded = true,
+            }, (ok, _) => mismatchResult = ok);
+            Assert.That(mismatchResult, Is.False);
+
+            // 完全一致的参数重试复用同一个 RequestId
+            _client.SaveLoadout(args);
+            var retry = (SaveSkillLoadoutRequest)_net.LastRequest;
+            Assert.That(retry.RequestId, Is.EqualTo(req.RequestId));
+        }
+
+        [Test]
+        public void SwitchLoadoutSurfacesAttributeSyncNoticeWithoutFailingSwitch()
+        {
+            var book = Book(1000);
+            book.Loadout = new SkillLoadoutSnapshot { StateVersion = 1, ActiveSchemeId = 1 };
+            LoadBook(book);
+
+            bool? okResult = null;
+            string msgResult = null;
+            _client.SwitchLoadout(2, false, (ok, msg) => { okResult = ok; msgResult = msg; });
+            var req = (SwitchSkillLoadoutRequest)_net.LastRequest;
+            Assert.That(req.SkipAttributeSync, Is.False);
+
+            book.Loadout.ActiveSchemeId = 2;
+            book.Loadout.StateVersion = 2;
+            _net.Reply(new SwitchSkillLoadoutResponse
+            {
+                State = book,
+                RequestId = req.RequestId,
+                AttributeSyncNotice = "属性方案切换冷却中，已仅切换战法",
+            });
+            Assert.That(okResult, Is.True);
+            Assert.That(msgResult, Does.Contain("属性方案切换冷却中"));
+        }
+
+        [Test]
+        public void RentLoadoutSlotsUsesNonZeroIdempotentClientRequestIdAndReconcilesOnSuccess()
+        {
+            var book = Book(1000);
+            book.Loadout = new SkillLoadoutSnapshot
+            {
+                StateVersion = 1,
+                ActiveSchemeId = 1,
+                UnlockedSchemes = 2,
+                MaxSchemes = 7,
+                DiamondBalance = 200,
+            };
+            LoadBook(book);
+
+            _client.RentLoadoutSlots(2u, 1u, 60UL);
+            Assert.That(_net.Calls[^1], Is.EqualTo(MessageIds.RentSkillLoadoutSlots));
+            var original = (RentSkillLoadoutSlotsRequest)_net.LastRequest;
+            Assert.That(original.ClientRequestId, Is.GreaterThan(0UL));
+            Assert.That(original.TargetRentedSlots, Is.EqualTo(2u));
+            Assert.That(original.AddPeriods, Is.EqualTo(1u));
+            Assert.That(original.ExpectedCostDiamond, Is.EqualTo(60UL));
+
+            // 超时后，不同参数禁止覆盖未确认请求
+            _net.Fail("请求超时");
+            bool? mismatchOk = null;
+            _client.RentLoadoutSlots(3u, 1u, 90UL, (ok, _) => mismatchOk = ok);
+            Assert.That(mismatchOk, Is.False);
+            Assert.That(_net.Calls.Count, Is.EqualTo(2));
+
+            // 同参数重试复用相同 ClientRequestId，服务端成功后刷新快照
+            bool? okFlag = null;
+            string okMsg = null;
+            _client.RentLoadoutSlots(2u, 1u, 60UL, (ok, msg) => { okFlag = ok; okMsg = msg; });
+            var retry = (RentSkillLoadoutSlotsRequest)_net.LastRequest;
+            Assert.That(retry.ClientRequestId, Is.EqualTo(original.ClientRequestId));
+
+            book.Loadout.StateVersion = 2;
+            book.Loadout.UnlockedSchemes = 4;
+            book.Loadout.RentedExtraSlots = 2;
+            book.Loadout.DiamondBalance = 140;
+            _net.Reply(new RentSkillLoadoutSlotsResponse
+            {
+                State = book,
+                ClientRequestId = original.ClientRequestId,
+                SpentDiamond = 60UL,
+                RentedExtraSlots = 2u,
+                RentExpiresAtSec = 999999UL,
+            });
+            Assert.That(okFlag, Is.True);
+            Assert.That(okMsg, Does.Contain("60"));
+            Assert.That(_client.State.Snapshot.Loadout.UnlockedSchemes, Is.EqualTo(4u));
+            Assert.That(_client.State.Snapshot.Loadout.DiamondBalance, Is.EqualTo(140UL));
+        }
+
+        [Test]
         public void BattleLockPreservesReadableRanksAndBlocksUpgradeUntilBattleEnds()
         {
             _client.Dispose();

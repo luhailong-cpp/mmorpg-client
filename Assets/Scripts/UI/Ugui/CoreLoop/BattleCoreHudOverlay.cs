@@ -168,6 +168,10 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 {
                     wuxingTags.Add("切磋坊 · " + WuxingExpansionModels.FormatCustomDuelRulesSummary(liveState.CustomDuelRules));
                 }
+                if ((liveState.TrialVowMask & MmorpgClient.Game.TrialJournal.TrialJournalModels.VowMaskAll) != 0u)
+                {
+                    wuxingTags.Add("试炼誓约 · " + MmorpgClient.Game.TrialJournal.TrialJournalModels.FormatVowSummary(liveState.TrialVowMask));
+                }
                 if (wuxingTags.Count > 0)
                 {
                     CoreLoopUiArt.Image("WuxingBattleInfoPlate", topBanners, 760f, nextY, 1080f, 38f,
@@ -208,7 +212,10 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 }
                 else
                 {
-                    string phaseLabel = hud.IsBossPhaseTwo ? "二阶段 · 决战姿态" : "一阶段";
+                    string phaseLabel = CoreGameplayLoopModels.IsWildBossTrialKind(hud.BossTrialKind)
+                        ? (hud.BossTrialKind == CoreGameplayLoopModels.BossTrialKindWildWind ? "八景岛 · 明雷"
+                            : (hud.BossTrialKind == CoreGameplayLoopModels.BossTrialKindWildBell ? "碧渊水宫 · 明雷" : "月汐湾 · 明雷"))
+                        : (hud.IsBossPhaseTwo ? "二阶段 · 决战姿态" : "一阶段");
                     CoreLoopUiArt.Badge(topBanners, "BossPhaseBadge", 772f, nextY, 240f,
                         phaseLabel, hud.IsBossPhaseTwo ? CoreLoopUiArt.Warning : CoreLoopUiArt.DeepJade);
                 }

@@ -114,6 +114,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 string amount = _bag?.Currency != null && i < _bag.Currency.Values.Count ? _bag.Currency.Values[i].ToString("N0") : "—";
                 NativeText(_body, amount, i == 0 ? 261 : 562, 708, i == 0 ? 132 : 85, 43, 28);
             }
+            if (_bag?.Currency != null && _bag.Currency.Values.Count > PlayerFeaturesClient.BindGoldCurrencyIndex)
+            {
+                var bindGoldSprite = SeasonEconomyUiArt.LoadBindGoldIcon();
+                if (bindGoldSprite != null)
+                {
+                    var bindIcon = QdaoUguiFactory.CreateImage("BagBindGoldIcon", _body, 698, 714, 30, 30, bindGoldSprite, false);
+                    bindIcon.preserveAspect = true;
+                }
+                string bindAmount = _bag.Currency.Values[PlayerFeaturesClient.BindGoldCurrencyIndex].ToString("N0");
+                var bindLabel = NativeText(_body, bindAmount, 732, 708, 96, 43, 24);
+                bindLabel.name = "BagBindGoldAmount";
+                bindLabel.enableAutoSizing = true;
+                bindLabel.fontSizeMin = 16;
+                bindLabel.fontSizeMax = 24;
+            }
             NativeButton(_body, "SortBag", _sorting ? "整理中" : "整理", "bag-sort", 1005, 700, 158, 54,
                 () => SortRequested?.Invoke(), !_bagLoading && !_sorting && !_equipBusy && _bag?.Layout != null && _bag.Layout.CanSort && _bag.Layout.BagType == 0, 30);
             var worn = EquipBagModel.Slots(_equipment);

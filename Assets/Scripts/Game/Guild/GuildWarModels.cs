@@ -390,6 +390,53 @@ namespace MmorpgClient.Game.Guild
         }
     }
 
+    public sealed class GuildWarFeudSnapshot
+    {
+        public ulong FeudId { get; }
+        public ulong IssuerGuildId { get; }
+        public string IssuerGuildName { get; }
+        public ulong TargetGuildId { get; }
+        public string TargetGuildName { get; }
+        public GuildWarFeudStatus Status { get; }
+        public uint IssuerWins { get; }
+        public uint TargetWins { get; }
+        public ulong IssuerMerit { get; }
+        public ulong TargetMerit { get; }
+        public ulong CreatedAtMs { get; }
+        public ulong AcceptDeadlineMs { get; }
+        public ulong StartedAtMs { get; }
+        public ulong EndsAtMs { get; }
+        public ulong WinnerGuildId { get; }
+
+        public bool IsPending => Status == GuildWarFeudStatus.Pending;
+        public bool IsActive => Status == GuildWarFeudStatus.Active;
+        public bool IsIssuer(ulong myGuildId) => myGuildId != 0 && IssuerGuildId == myGuildId;
+        public ulong EnemyGuildId(ulong myGuildId) => IsIssuer(myGuildId) ? TargetGuildId : IssuerGuildId;
+        public string EnemyGuildName(ulong myGuildId) => IsIssuer(myGuildId) ? TargetGuildName : IssuerGuildName;
+        public uint MyWins(ulong myGuildId) => IsIssuer(myGuildId) ? IssuerWins : TargetWins;
+        public uint EnemyWins(ulong myGuildId) => IsIssuer(myGuildId) ? TargetWins : IssuerWins;
+
+        public GuildWarFeudSnapshot(GuildWarFeudView src)
+        {
+            if (src == null) { IssuerGuildName = string.Empty; TargetGuildName = string.Empty; return; }
+            FeudId = src.FeudId;
+            IssuerGuildId = src.IssuerGuildId;
+            IssuerGuildName = src.IssuerGuildName ?? string.Empty;
+            TargetGuildId = src.TargetGuildId;
+            TargetGuildName = src.TargetGuildName ?? string.Empty;
+            Status = src.Status;
+            IssuerWins = src.IssuerWins;
+            TargetWins = src.TargetWins;
+            IssuerMerit = src.IssuerMerit;
+            TargetMerit = src.TargetMerit;
+            CreatedAtMs = src.CreatedAtMs;
+            AcceptDeadlineMs = src.AcceptDeadlineMs;
+            StartedAtMs = src.StartedAtMs;
+            EndsAtMs = src.EndsAtMs;
+            WinnerGuildId = src.WinnerGuildId;
+        }
+    }
+
     public sealed class GuildWarOverviewSnapshot
     {
         public ulong ServerTimeMs { get; }
@@ -412,6 +459,9 @@ namespace MmorpgClient.Game.Guild
         public ulong ContributionBalance { get; }
         public uint PublicBountyUsedToday { get; }
         public uint PublicBountyDailyLimit { get; }
+        public GuildWarFeudSnapshot ActiveFeud { get; }
+        public string LastFeudSummary { get; }
+        public ulong NextFeudIssueAtMs { get; }
 
         public bool HasClaimableReward
         {
@@ -447,6 +497,10 @@ namespace MmorpgClient.Game.Guild
             ContributionBalance = resp.ContributionBalance;
             PublicBountyUsedToday = resp.PublicBountyUsedToday;
             PublicBountyDailyLimit = resp.PublicBountyDailyLimit;
+            ActiveFeud = resp.ActiveFeud != null && resp.ActiveFeud.FeudId != 0
+                ? new GuildWarFeudSnapshot(resp.ActiveFeud) : null;
+            LastFeudSummary = resp.LastFeudSummary ?? string.Empty;
+            NextFeudIssueAtMs = resp.NextFeudIssueAtMs;
         }
 
         private GuildWarOverviewSnapshot(
@@ -455,7 +509,10 @@ namespace MmorpgClient.Game.Guild
             IReadOnlyList<GuildWarGarrisonSlotSnapshot> garrisons = null,
             IReadOnlyList<GuildWarMilestoneSnapshot> milestones = null,
             GuildWarDividendSnapshot dividend = null,
-            IReadOnlyList<GuildWarBountySnapshot> bounties = null)
+            IReadOnlyList<GuildWarBountySnapshot> bounties = null,
+            bool replaceFeud = false,
+            GuildWarFeudSnapshot feud = null,
+            ulong? nextFeudIssueAtMs = null)
         {
             ServerTimeMs = src.ServerTimeMs;
             WeekKey = src.WeekKey;
@@ -477,6 +534,19 @@ namespace MmorpgClient.Game.Guild
             ContributionBalance = src.ContributionBalance;
             PublicBountyUsedToday = src.PublicBountyUsedToday;
             PublicBountyDailyLimit = src.PublicBountyDailyLimit;
+            ActiveFeud = replaceFeud ? feud : src.ActiveFeud;
+            LastFeudSummary = src.LastFeudSummary;
+            NextFeudIssueAtMs = nextFeudIssueAtMs ?? src.NextFeudIssueAtMs;
+        }
+
+        public GuildWarOverviewSnapshot WithFeud(GuildWarFeudView feud, ulong nextIssueAtMs = 0)
+        {
+            GuildWarFeudSnapshot snap = feud != null && feud.FeudId != 0
+                && (feud.Status == GuildWarFeudStatus.Pending || feud.Status == GuildWarFeudStatus.Active)
+                ? new GuildWarFeudSnapshot(feud)
+                : null;
+            return new GuildWarOverviewSnapshot(this, replaceFeud: true, feud: snap,
+                nextFeudIssueAtMs: nextIssueAtMs != 0 ? nextIssueAtMs : (ulong?)null);
         }
 
         public GuildWarOverviewSnapshot WithStance(GuildWarStanceView stance) =>
@@ -563,6 +633,7 @@ namespace MmorpgClient.Game.Guild
         public string BountyCandidateName { get; }
         public bool GoldLeylineBonus { get; }
         public bool RivalryBonus { get; }
+        public bool FeudBonus { get; }
 
         public GuildWarBattleSettlementSnapshot(GetGuildWarBattleResultResponse resp)
         {
@@ -593,6 +664,7 @@ namespace MmorpgClient.Game.Guild
             BountyCandidateName = resp.BountyCandidateName ?? string.Empty;
             GoldLeylineBonus = resp.GoldLeylineBonus;
             RivalryBonus = resp.RivalryBonus;
+            FeudBonus = resp.FeudBonus;
         }
     }
 
@@ -611,6 +683,9 @@ namespace MmorpgClient.Game.Guild
         public ulong BattleId { get; }
         public ulong RewardSilver { get; }
         public uint StreakCount { get; }
+        public ulong FeudId { get; }
+        public uint IssuerWins { get; }
+        public uint TargetWins { get; }
 
         public GuildWarAlertSnapshot(GuildWarAlertS2C msg)
         {
@@ -635,6 +710,9 @@ namespace MmorpgClient.Game.Guild
             BattleId = msg.BattleId;
             RewardSilver = msg.RewardSilver;
             StreakCount = msg.StreakCount;
+            FeudId = msg.FeudId;
+            IssuerWins = msg.IssuerWins;
+            TargetWins = msg.TargetWins;
         }
     }
 
@@ -748,8 +826,15 @@ namespace MmorpgClient.Game.Guild
                     $"【{alert.AttackerGuildName}】的追兵已踏入【{SceneName(alert.SceneConfigId)} · {alert.ChannelNo}线】，请小心迎战或暂避！",
                 GuildWarAlertKind.BountyResolved =>
                     $"江湖追杀令已结案：{alert.ActorName} 与 {alert.TargetName} 交锋分出胜负。",
-                GuildWarAlertKind.StreakBounty =>
-                    $"【{alert.AttackerGuildName} · {alert.ActorName}】已达 {alert.StreakCount} 连胜，击破可享额外悬赏！",
+                GuildWarAlertKind.StreakBounty => alert.RewardSilver > 0
+                    ? $"终结连胜！【{alert.AttackerGuildName}·{alert.ActorName}】斩落【{alert.DefenderGuildName}·{alert.TargetName}】{alert.StreakCount}连胜，喜提悬赏 {alert.RewardSilver} 银两！"
+                    : $"连胜封神！【{alert.AttackerGuildName}·{alert.ActorName}】已达 {alert.StreakCount} 连胜，击破享高额悬赏！",
+                GuildWarAlertKind.FeudChallenge =>
+                    $"宿敌战书！【{alert.AttackerGuildName}】向本帮下发 2 小时帮会约战战书，帮主/长老 15 分钟内可接战应战！",
+                GuildWarAlertKind.FeudStarted =>
+                    $"宿敌约战打响！【{alert.AttackerGuildName}】VS【{alert.DefenderGuildName}】2 小时约战开启（收益 +25% · 前 3 场免递减）！",
+                GuildWarAlertKind.FeudEnded =>
+                    $"宿敌约战收官：【{alert.AttackerGuildName}】{alert.IssuerWins}:{alert.TargetWins}【{alert.DefenderGuildName}】！",
                 _ => "帮会争锋战况已更新。",
             };
         }
@@ -791,6 +876,10 @@ namespace MmorpgClient.Game.Guild
                 guild_error.KGuildWarBountyNotFound => "未找到对应追杀令，可能已结单或过期。",
                 guild_error.KGuildWarTrackCooldown => "追踪行踪冷却 15 秒中，请稍后再试。",
                 guild_error.KGuildWarServiceBusy => "帮战服务繁忙，本次未扣费，请稍后重试。",
+                guild_error.KGuildWarFeudCooldown => "本帮宿敌约战战书仍在 24 小时冷却中，请稍后再发。",
+                guild_error.KGuildWarFeudAlreadyActive => "本帮或对方帮会已有进行中或待应答的约战战书。",
+                guild_error.KGuildWarFeudNotFound => "约战战书不存在、已过期或已处理。",
+                guild_error.KGuildWarFeudInvalidTarget => "不能对本帮或不存在的帮会下发约战战书。",
                 _ => TipFaults.IsFault(tip.Id)
                     ? $"帮战服务繁忙（错误码 {tip.Id}），请稍后重试。"
                     : $"帮战操作未完成（错误码 {tip.Id}）。",

@@ -210,6 +210,59 @@ namespace MmorpgClient.Tests.EditMode.Role
         }
 
         [Test]
+        public void CraftQualitySkillV2V5IncrementalAssets_All5SpritesAndMetasMatchContract()
+        {
+            string cwd = Directory.GetCurrentDirectory();
+            string craftRoot = Directory.Exists(Path.Combine(cwd, "Assets", "Resources"))
+                ? Path.Combine(cwd, "Assets", "Resources", "UI", "Ugui", "CraftQualitySkill")
+                : Path.Combine(cwd, "mmorpg-client", "Assets", "Resources", "UI", "Ugui", "CraftQualitySkill");
+
+            var expected = new (string RelPath, int Width, int Height, string Border)[]
+            {
+                ("Icons/icon_master_honor.png", 512, 512, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("Icons/icon_batch_polish.png", 512, 512, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("Icons/icon_scroll_archive.png", 512, 512, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("Icons/icon_wanted_board.png", 512, 512, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("badge_team_free_proxy.png", 220, 56, "spriteBorder: {x: 20, y: 0, z: 20, w: 0}"),
+            };
+
+            var seenGuids = new HashSet<string>();
+            foreach (var (rel, wantW, wantH, border) in expected)
+            {
+                string pngPath = Path.Combine(craftRoot, rel.Replace('/', Path.DirectorySeparatorChar));
+                string metaPath = pngPath + ".meta";
+                Assert.That(File.Exists(pngPath), Is.True, $"Missing Craft V2-V5 PNG: {rel}");
+                Assert.That(File.Exists(metaPath), Is.True, $"Missing Craft V2-V5 meta: {rel}.meta");
+
+                byte[] header = new byte[26];
+                using (var fs = File.OpenRead(pngPath))
+                    Assert.That(fs.Read(header, 0, header.Length), Is.EqualTo(header.Length), rel);
+                int w = (header[16] << 24) | (header[17] << 16) | (header[18] << 8) | header[19];
+                int h = (header[20] << 24) | (header[21] << 16) | (header[22] << 8) | header[23];
+                Assert.That(w, Is.EqualTo(wantW), $"{rel} width");
+                Assert.That(h, Is.EqualTo(wantH), $"{rel} height");
+                Assert.That(header[25], Is.EqualTo((byte)6), $"{rel} must be transparent RGBA PNG-32");
+
+                string meta = File.ReadAllText(metaPath);
+                Assert.That(meta, Does.Contain("enableMipMap: 0"), rel);
+                Assert.That(meta, Does.Contain("sRGBTexture: 1"), rel);
+                Assert.That(meta, Does.Contain("alphaIsTransparency: 1"), rel);
+                Assert.That(meta, Does.Contain("textureType: 8"), rel);
+                Assert.That(meta, Does.Contain("spriteMode: 1"), rel);
+                Assert.That(meta, Does.Contain(border), rel);
+
+                string guidLine = null;
+                foreach (string line in File.ReadAllLines(metaPath))
+                {
+                    if (line.StartsWith("guid: ")) { guidLine = line.Substring(6).Trim(); break; }
+                }
+                Assert.That(guidLine, Is.Not.Null.And.Not.Empty, rel);
+                Assert.That(seenGuids.Add(guidLine), Is.True, $"Duplicate GUID {guidLine} on {rel}");
+            }
+            Assert.That(seenGuids.Count, Is.EqualTo(5));
+        }
+
+        [Test]
         public void BossTrialV2Assets_All26RuntimeTexturesAndMetasMatchContract()
         {
             string cwd = Directory.GetCurrentDirectory();

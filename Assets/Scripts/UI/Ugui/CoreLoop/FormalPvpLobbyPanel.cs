@@ -44,6 +44,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             uint preferred = _game?.Ranked?.SelectedTeamSize ?? 0u;
             if (preferred >= 1u && preferred <= 5u) _selectedSize = preferred;
             gameObject.SetActive(true);
+            PreBattleLoadoutQuickBar.EnsureRequested(_game?.Features);
             Refresh();
         }
         public void Hide()
@@ -107,8 +108,14 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             DrawRankedHonorBanner();
 
             DrawOwnProgressionSummary();
-            CoreLoopUiArt.Text("ScaleHeading", transform, 290, 492, 1550, 44,
-                "选择匹配规模 · 开放态以服务端为准", 28, CoreLoopUiArt.Ink, true);
+            var scaleHead = CoreLoopUiArt.Text("ScaleHeading", transform, 290, 488, 450, 44,
+                "选择匹配规模 · 开放态以服务端为准", 24, CoreLoopUiArt.Ink, true);
+            scaleHead.enableAutoSizing = true;
+            scaleHead.fontSizeMin = 18f;
+            scaleHead.fontSizeMax = 24f;
+            PreBattleLoadoutQuickBar.RenderForFeatures(
+                transform, "FormalPvpLoadoutQuickBar", 756f, 478f, 1524f, 58f,
+                _game?.Features, phase, _root.ShowToast);
             for (int i = 0; i < scales.Count; ++i)
             {
                 var slot = scales[i];

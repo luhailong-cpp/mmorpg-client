@@ -30,6 +30,34 @@ namespace MmorpgClient.Game.Battle
             return false;
         }
 
+        /// <summary>
+        /// 五行试炼志 V3：判定技能是否因当前生效的「禁控硬破」试炼誓约（bit0）被禁用。
+        /// 判定口径与 C++ TurnBattleEngine::IsControlSkill 逐项一致（BattleOp=13 & StateKind 1..6，或 BuffType 30/31/52）。
+        /// </summary>
+        public static bool IsSkillBlockedByTrialVow(
+            BattleStateS2C state,
+            uint skillId,
+            Func<uint, global::SkillTable> skillLookup = null,
+            Func<uint, global::BuffTable> buffLookup = null)
+        {
+            if (state == null || skillId == 0u) return false;
+            if ((state.TrialVowMask & MmorpgClient.Game.TrialJournal.TrialJournalModels.VowBanControl) == 0u)
+                return false;
+            var skillRow = skillLookup != null ? skillLookup(skillId) : SkillTableManager.Instance?.FindById(skillId);
+            if (skillRow == null || skillRow.Effect == null || skillRow.Effect.Count == 0) return false;
+            for (int i = 0; i < skillRow.Effect.Count; i++)
+            {
+                uint buffId = skillRow.Effect[i];
+                if (buffId == 0u) continue;
+                var buffRow = buffLookup != null ? buffLookup(buffId) : BuffTableManager.Instance?.FindById(buffId);
+                if (buffRow == null) continue;
+                if ((buffRow.BattleOp == 13u && buffRow.StateKind >= 1u && buffRow.StateKind <= 6u)
+                    || buffRow.BuffType == 30u || buffRow.BuffType == 31u || buffRow.BuffType == 52u)
+                    return true;
+            }
+            return false;
+        }
+
         /// <summary>按 SkillTable.ban_pool_category（1..4）将服务端权威候选池分到 4 个页签桶，保序去重。</summary>
         public static List<uint>[] GroupCandidatesByCategory(
             IReadOnlyList<uint> candidateSkillIds,

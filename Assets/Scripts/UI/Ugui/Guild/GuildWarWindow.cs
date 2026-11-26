@@ -175,10 +175,23 @@ namespace MmorpgClient.UI.Ugui.Guild
             _activeAlert = alert;
             _alertHideAtUnscaledSec = Time.unscaledTime + 6f;
             GuildUiArt.Clear(_alertRoot);
-            string bannerKey = alert.Kind == GuildWarAlertKind.PursuerEnteredMap || alert.Kind == GuildWarAlertKind.BountyResolved
-                ? "alert_banner_bounty"
-                : "alert_banner_siege";
-            var bg = Art(_alertRoot, "AlertBg", bannerKey, 0f, 0f, 1680f, 120f);
+            bool isFeudOrStreak = alert.Kind == GuildWarAlertKind.FeudChallenge
+                || alert.Kind == GuildWarAlertKind.FeudStarted
+                || alert.Kind == GuildWarAlertKind.FeudEnded
+                || alert.Kind == GuildWarAlertKind.StreakBounty;
+            Image bg;
+            if (isFeudOrStreak)
+            {
+                string fallback = alert.Kind == GuildWarAlertKind.StreakBounty ? "alert_banner_bounty" : "alert_banner_siege";
+                bg = ArtOrFallback(_alertRoot, "AlertBg", "alert_banner_feud", fallback, 0f, 0f, 1680f, 120f);
+            }
+            else
+            {
+                string bannerKey = alert.Kind == GuildWarAlertKind.PursuerEnteredMap || alert.Kind == GuildWarAlertKind.BountyResolved
+                    ? "alert_banner_bounty"
+                    : "alert_banner_siege";
+                bg = Art(_alertRoot, "AlertBg", bannerKey, 0f, 0f, 1680f, 120f);
+            }
             bg.raycastTarget = false;
             Label(_alertRoot, "AlertText", GuildWarText.FormatAlert(alert), 120f, 24f, 1140f, 72f, 26f, LightText, wrap: true);
             if (alert.Kind == GuildWarAlertKind.LeylineUnderSiege)
@@ -190,6 +203,16 @@ namespace MmorpgClient.UI.Ugui.Guild
             {
                 ActionButton(_alertRoot, "AlertActionBounty", "查看追杀", 1280f, 32f, 168f, 56f,
                     () => { DismissAlert(); Show(GuildWarPage.Bounty); }, primary: true, fontSize: 22f);
+            }
+            else if (alert.Kind == GuildWarAlertKind.FeudChallenge || alert.Kind == GuildWarAlertKind.FeudStarted || alert.Kind == GuildWarAlertKind.FeudEnded)
+            {
+                ActionButton(_alertRoot, "AlertActionFeud", "查看约战", 1280f, 32f, 168f, 56f,
+                    () => { DismissAlert(); Show(GuildWarPage.Main); }, danger: alert.Kind != GuildWarAlertKind.FeudEnded, primary: alert.Kind == GuildWarAlertKind.FeudEnded, fontSize: 22f);
+            }
+            else if (alert.Kind == GuildWarAlertKind.StreakBounty)
+            {
+                ActionButton(_alertRoot, "AlertActionStreak", alert.RewardSilver == 0 ? "前往围剿" : "查看战况", 1280f, 32f, 168f, 56f,
+                    () => { DismissAlert(); Show(GuildWarPage.Main); }, danger: alert.RewardSilver == 0, primary: alert.RewardSilver > 0, fontSize: 22f);
             }
             ActionButton(_alertRoot, "AlertDismiss", "忽略", 1464f, 32f, 116f, 56f, DismissAlert, fontSize: 21f);
             _alertRoot.gameObject.SetActive(true);
@@ -348,12 +371,19 @@ namespace MmorpgClient.UI.Ugui.Guild
                 Art(_body, "LeylineBg_" + ley.LeylineId, LeylineBackgroundKey(ley.LeylineId), lx + 8f, 154f, 516f, 110f);
                 if (ley.ShieldUntilMs > nowMs)
                     Art(_body, "LeylineShield_" + ley.LeylineId, "leyline_shield_overlay", lx + 8f, 154f, 516f, 110f);
-                string tagText = ley.IsGoldLeyline ? "1.5x 金脉热点" : ley.UnderSiege ? "正被踢馆!" : ley.ActiveBattleCount > 0 ? $"激战 {ley.ActiveBattleCount} 场" : "守旗驻守";
+                bool isGold = ley.IsGoldLeyline || (ov.GoldLeylineId != 0 && ley.LeylineId == ov.GoldLeylineId);
+                bool ownerIsRival = ley.OwnerGuildId != 0 && IsRivalGuild(ov.BannerHonor, ley.OwnerGuildId);
+                if (isGold)
+                    Art(_body, "LeylineGoldBadge_" + ley.LeylineId, "badge_gold_leyline", lx + 466f, 158f, 52f, 52f, true);
+                if (ownerIsRival)
+                    Art(_body, "LeylineRivalBadge_" + ley.LeylineId, "badge_rival_guild", lx + (isGold ? 410f : 466f), 158f, 52f, 52f, true);
+                float titleW = isGold && ownerIsRival ? 386f : (isGold || ownerIsRival) ? 442f : 496f;
+                string tagText = isGold ? "1.5x 金脉热点" : ley.UnderSiege ? "正被踢馆!" : ley.ActiveBattleCount > 0 ? $"激战 {ley.ActiveBattleCount} 场" : "守旗驻守";
                 Label(_body, "LeylineName_" + ley.LeylineId,
                     (string.IsNullOrEmpty(ley.Name) ? GuildWarText.LeylineName(ley.LeylineId) : ley.Name) + " · " + tagText,
-                    lx + 18f, 160f, 496f, 34f, 23f, LightText);
-                string ownerText = ley.IsUnclaimed ? "无主 · 灵脉守卫" : "占领帮：" + ley.OwnerGuildName + $"（守旗 {ley.GarrisonCount}/5）";
-                Label(_body, "LeylineOwner_" + ley.LeylineId, ownerText, lx + 18f, 198f, 496f, 30f, 21f, LightText);
+                    lx + 18f, 160f, titleW, 34f, 23f, LightText);
+                string ownerText = ley.IsUnclaimed ? "无主 · 灵脉守卫" : "占领帮：" + ley.OwnerGuildName + $"（守旗 {ley.GarrisonCount}/5）" + (ownerIsRival ? " · 宿敌" : string.Empty);
+                Label(_body, "LeylineOwner_" + ley.LeylineId, ownerText, lx + 18f, 198f, titleW, 30f, 21f, LightText);
 
                 // 旗势进度条（横向三段拉伸）
                 Art(_body, "LeylineHpTrack_" + ley.LeylineId, "bar_banner_hp_track", lx + 18f, 272f, 326f, 26f);
@@ -370,34 +400,97 @@ namespace MmorpgClient.UI.Ugui.Guild
                 uint lid = ley.LeylineId;
                 uint sceneConf = ley.SceneConfigId;
                 ulong recSceneId = ley.RecommendedSceneId;
-                ActionButton(_body, "AttackLeyline_" + lid, ally ? "驰援守旗" : "攻打灵脉",
-                    lx + 18f, 308f, 166f, 44f, () => _client.StartLeylineSiege(lid),
-                    danger: !ally, primary: ally, enabled: !busy, fontSize: 20f);
                 ulong watchId = ley.FeaturedWatchBattleId;
-                ActionButton(_body, "WatchLeyline_" + lid, watchId != 0 ? "观战" : "无激战",
-                    lx + 194f, 308f, 146f, 44f, () => WatchBattleRequested?.Invoke(watchId),
-                    enabled: watchId != 0, fontSize: 20f);
-                ActionButton(_body, "TravelLeyline_" + lid, "前往现场",
-                    lx + 350f, 308f, 164f, 44f, () => TravelToSceneRequested?.Invoke(sceneConf, recSceneId),
-                    enabled: sceneConf != 0, fontSize: 20f);
+                bool canOfferFeud = _isOfficerOrLeader && !ally && !ley.IsUnclaimed && ov.ActiveFeud == null;
+                if (canOfferFeud)
+                {
+                    ulong ownerGid = ley.OwnerGuildId;
+                    bool feudReady = !busy && ov.NextFeudIssueAtMs <= nowMs;
+                    ActionButton(_body, "AttackLeyline_" + lid, "攻打灵脉",
+                        lx + 14f, 308f, 132f, 44f, () => _client.StartLeylineSiege(lid),
+                        danger: true, enabled: !busy, fontSize: 19f);
+                    ActionButton(_body, "WatchLeyline_" + lid, watchId != 0 ? "观战" : "无激战",
+                        lx + 152f, 308f, 104f, 44f, () => WatchBattleRequested?.Invoke(watchId),
+                        enabled: watchId != 0, fontSize: 19f);
+                    ActionButton(_body, "TravelLeyline_" + lid, "前往现场",
+                        lx + 262f, 308f, 122f, 44f, () => TravelToSceneRequested?.Invoke(sceneConf, recSceneId),
+                        enabled: sceneConf != 0, fontSize: 19f);
+                    ActionButton(_body, "IssueFeudLeyline_" + lid,
+                        ov.NextFeudIssueAtMs > nowMs ? "冷却中" : "下战书",
+                        lx + 390f, 308f, 128f, 44f, () => _client.IssueFeud(ownerGid),
+                        primary: feudReady, enabled: feudReady, fontSize: 19f);
+                }
+                else
+                {
+                    ActionButton(_body, "AttackLeyline_" + lid, ally ? "驰援守旗" : "攻打灵脉",
+                        lx + 18f, 308f, 166f, 44f, () => _client.StartLeylineSiege(lid),
+                        danger: !ally, primary: ally, enabled: !busy, fontSize: 20f);
+                    ActionButton(_body, "WatchLeyline_" + lid, watchId != 0 ? "观战" : "无激战",
+                        lx + 194f, 308f, 146f, 44f, () => WatchBattleRequested?.Invoke(watchId),
+                        enabled: watchId != 0, fontSize: 20f);
+                    ActionButton(_body, "TravelLeyline_" + lid, "前往现场",
+                        lx + 350f, 308f, 164f, 44f, () => TravelToSceneRequested?.Invoke(sceneConf, recSceneId),
+                        enabled: sceneConf != 0, fontSize: 20f);
+                }
             }
 
-            // ── 底栏：连胜悬赏 + 在线活人/守旗阵目标切换 + 0 秒一键快速开战 ──
+            // ── 底栏：宿敌约战实况条（有活跃/待应战书时展示）+ 连胜悬赏 + 在线活人/守旗阵目标切换 + 0 秒一键快速开战 ──
             Card(_body, "TargetsCard", 0f, 376f, 1272f, 212f);
+            var feud = ov.ActiveFeud;
+            bool hasFeudStrip = feud != null && (feud.Status == GuildWarFeudStatus.Pending || feud.Status == GuildWarFeudStatus.Active);
+            if (hasFeudStrip)
+            {
+                Card(_body, "ActiveFeudStripBg", 14f, 382f, 1244f, 46f, PaperFill);
+                ArtOrFallback(_body, "ActiveFeudBadge", "badge_feud_edict", "badge_rival_guild", 20f, 385f, 40f, 40f, true);
+                if (feud.Status == GuildWarFeudStatus.Pending)
+                {
+                    bool iAmTarget = _myGuildId != 0 && feud.TargetGuildId == _myGuildId;
+                    string pendingText = iAmTarget
+                        ? $"【宿敌战书待应】[{feud.IssuerGuildName}] 下发 2h 约战（+25% 收益 · 前3场免递减）· 剩 {GuildWarText.FormatCountdown(feud.AcceptDeadlineMs, nowMs)}"
+                        : $"【战书待对方应答】已向 [{feud.TargetGuildName}] 下发 2h 约战战书 · 剩 {GuildWarText.FormatCountdown(feud.AcceptDeadlineMs, nowMs)}";
+                    Label(_body, "ActiveFeudText", pendingText, 68f, 388f, 880f, 34f, 19f, CrimsonText);
+                    ulong fid = feud.FeudId;
+                    if (_isOfficerOrLeader && iAmTarget)
+                    {
+                        ActionButton(_body, "AcceptFeudBtn", "接战应战", 960f, 385f, 138f, 40f,
+                            () => _client.RespondFeud(fid, true), danger: true, enabled: !busy, fontSize: 19f);
+                        ActionButton(_body, "DeclineFeudBtn", "婉拒战书", 1106f, 385f, 138f, 40f,
+                            () => _client.RespondFeud(fid, false), enabled: !busy, fontSize: 19f);
+                    }
+                    else if (_isOfficerOrLeader && _myGuildId != 0 && feud.IssuerGuildId == _myGuildId)
+                    {
+                        ActionButton(_body, "CancelFeudBtn", "撤回战书", 1090f, 385f, 154f, 40f,
+                            () => _client.RespondFeud(fid, false), enabled: !busy, fontSize: 19f);
+                    }
+                }
+                else
+                {
+                    string activeText = $"【2h 宿敌约战激战中】{feud.IssuerGuildName} {feud.IssuerWins}:{feud.TargetWins} {feud.TargetGuildName}"
+                        + $"（战功 {feud.IssuerMerit}:{feud.TargetMerit} · +25% 收益）· 剩 {GuildWarText.FormatCountdown(feud.EndsAtMs, nowMs)}";
+                    Label(_body, "ActiveFeudText", activeText, 68f, 388f, 996f, 34f, 19f, CrimsonText);
+                    ActionButton(_body, "FeudFightNowBtn", "约战直打", 1078f, 385f, 166f, 40f,
+                        () => _client.StartQuickBattle(ov.GoldLeylineId), danger: true, enabled: !busy, fontSize: 19f);
+                }
+            }
+
+            float tabsY = hasFeudStrip ? 434f : 388f;
+            float rowsStartY = hasFeudStrip ? 482f : 440f;
+            int maxTargetRows = hasFeudStrip ? 2 : 3;
+
             ActionButton(_body, "TargetsTabLive", $"在线迎战活人 ({ov.LiveTargets.Count})",
-                16f, 388f, 256f, 42f, () => { _showGarrisonTargets = false; Render(); },
+                16f, tabsY, 256f, 42f, () => { _showGarrisonTargets = false; Render(); },
                 primary: !_showGarrisonTargets, fontSize: 20f);
             ActionButton(_body, "TargetsTabGarrison", $"本帮守旗阵 ({ov.GarrisonSlots.Count}/5)",
-                284f, 388f, 240f, 42f, () => { _showGarrisonTargets = true; Render(); },
+                284f, tabsY, 240f, 42f, () => { _showGarrisonTargets = true; Render(); },
                 primary: _showGarrisonTargets, fontSize: 20f);
 
             if (ov.StreakBounties.Count > 0)
             {
                 var top = ov.StreakBounties[0];
-                Art(_body, "TopStreakBadge", StreakBadgeKey(top.Streak), 540f, 386f, 46f, 46f, true);
+                Art(_body, "TopStreakBadge", StreakBadgeKey(top.Streak), 540f, tabsY - 2f, 46f, 46f, true);
                 Label(_body, "TopStreakText",
                     $"连胜悬赏：[{top.GuildName}·{top.PlayerName}] {top.Streak}连胜（挑落额外 +{top.BonusContribution}帮贡 / +{top.BonusSilver}银两）",
-                    594f, 392f, 660f, 34f, 19f, CrimsonText);
+                    594f, tabsY + 4f, 660f, 34f, 19f, CrimsonText);
             }
 
             if (!_showGarrisonTargets)
@@ -405,18 +498,21 @@ namespace MmorpgClient.UI.Ugui.Guild
                 if (ov.LiveTargets.Count == 0)
                 {
                     Label(_body, "NoLiveTargets", "当前暂无在线挂牌异帮活人，点击右侧「一键快速开战」0 秒直打敌帮守旗阵！",
-                        24f, 464f, 1220f, 52f, 22f, LabelBrown);
+                        24f, rowsStartY + 18f, 1220f, 52f, 22f, LabelBrown);
                 }
                 else
                 {
-                    for (int i = 0; i < Math.Min(3, ov.LiveTargets.Count); i++)
+                    for (int i = 0; i < Math.Min(maxTargetRows, ov.LiveTargets.Count); i++)
                     {
                         var t = ov.LiveTargets[i];
-                        float ry = 440f + i * 48f;
+                        float ry = rowsStartY + i * 48f;
+                        bool rival = t.IsRivalGuild || IsRivalGuild(ov.BannerHonor, t.GuildId);
+                        if (rival)
+                            Art(_body, "LiveTargetRivalBadge_" + i, "badge_rival_guild", 24f, ry + 4f, 34f, 34f, true);
                         string rowText = $"[{t.GuildName}] {t.PlayerName}  Lv.{t.Level}  出战：{t.PetName}  {t.PartySize}人"
                             + (t.Streak >= 3 ? $"  · {t.Streak}连胜" : string.Empty)
-                            + (t.IsRivalGuild ? "  · 宿敌+20%" : string.Empty);
-                        Label(_body, "LiveTargetRow_" + i, rowText, 24f, ry + 4f, 980f, 38f, 21f, BodyInk);
+                            + (rival ? "  · 宿敌+20%" : string.Empty);
+                        Label(_body, "LiveTargetRow_" + i, rowText, rival ? 64f : 24f, ry + 4f, rival ? 940f : 980f, 38f, 21f, BodyInk);
                         if (t.InBattle && t.BattleId != 0)
                         {
                             ulong bid = t.BattleId;
@@ -435,22 +531,25 @@ namespace MmorpgClient.UI.Ugui.Guild
             }
             else
             {
-                for (int i = 0; i < Math.Min(3, ov.GarrisonSlots.Count); i++)
+                for (int i = 0; i < Math.Min(maxTargetRows, ov.GarrisonSlots.Count); i++)
                 {
                     var g = ov.GarrisonSlots[i];
-                    float ry = 440f + i * 48f;
+                    float ry = rowsStartY + i * 48f;
                     Label(_body, "GarrisonPreview_" + i,
                         $"槽位 #{g.SlotIndex} · {g.PlayerName} (Lv.{g.Level}) · 出战宠：{g.PetName}",
                         24f, ry + 4f, 1220f, 38f, 21f, BodyInk);
                 }
                 if (ov.GarrisonSlots.Count == 0)
-                    Label(_body, "NoGarrisonPreview", "本帮暂未登记守旗阵，可切至「守旗阵」页登记本人战力快照。", 24f, 464f, 1220f, 48f, 22f, LabelBrown);
+                    Label(_body, "NoGarrisonPreview", "本帮暂未登记守旗阵，可切至「守旗阵」页登记本人战力快照。", 24f, rowsStartY + 18f, 1220f, 48f, 22f, LabelBrown);
             }
 
-            // 右下：0 秒一键快速开战（无匹配池）+ 帮会商店直达
+            // 右下：0 秒一键快速开战（无匹配池）+ 上场约战荣光摘要 + 帮会商店直达
             Card(_body, "QuickActionCard", 1288f, 376f, 348f, 212f);
-            Label(_body, "QuickActionHint", "无匹配池 · 0 秒直打\n优先连在线活人，无活人直踢敌帮守旗阵",
-                1308f, 390f, 308f, 64f, 19f, LabelBrown, wrap: true);
+            string quickHint = !string.IsNullOrEmpty(ov.LastFeudSummary)
+                ? ov.LastFeudSummary
+                : "无匹配池 · 0 秒直打\n优先连在线活人，无活人直踢敌帮守旗阵";
+            Label(_body, "QuickActionHint", quickHint,
+                1308f, 390f, 308f, 64f, 18f, !string.IsNullOrEmpty(ov.LastFeudSummary) ? TitleJade : LabelBrown, wrap: true);
             ActionButton(_body, "QuickBattleBtn", "一键快速开战", 1308f, 464f, 308f, 62f,
                 () => _client.StartQuickBattle(ov.GoldLeylineId), danger: true, enabled: !busy, fontSize: 26f);
             ActionButton(_body, "WarToShopBtn", "逛帮会商店（换硬货）", 1308f, 534f, 308f, 42f,
@@ -526,9 +625,20 @@ namespace MmorpgClient.UI.Ugui.Guild
                     var e = enemies[i];
                     float ry = 64f + i * 102f;
                     Card(_body, "EnemyRow_" + i, 0f, ry, 1636f, 90f);
+                    bool canFeudEnemy = _isOfficerOrLeader && ov != null && ov.ActiveFeud == null && e.GuildId != 0 && e.GuildId != _myGuildId;
                     Label(_body, "EnemyInfo_" + i,
                         $"[{e.GuildName}] {e.PlayerName}  击败本帮「{e.VictimName}」（{GuildWarText.BattleKindLabel(e.BattleKind)}）",
-                        24f, ry + 24f, 1200f, 42f, 23f, BodyInk);
+                        24f, ry + 24f, canFeudEnemy ? 1120f : 1280f, 42f, 23f, BodyInk);
+                    if (canFeudEnemy)
+                    {
+                        ulong enemyGid = e.GuildId;
+                        bool feudReady = !busy && ov.NextFeudIssueAtMs <= nowMs;
+                        ActionButton(_body, "IssueFeudEnemy_" + i,
+                            ov.NextFeudIssueAtMs > nowMs ? "战书冷却中" : "下2h战书",
+                            1164f, ry + 20f, 174f, 50f,
+                            () => _client.IssueFeud(enemyGid),
+                            primary: feudReady, enabled: feudReady, fontSize: 21f);
+                    }
                     ulong targetPid = e.PlayerId;
                     string targetName = e.PlayerName;
                     ActionButton(_body, "PostBountyForEnemy_" + i, e.CanPostBounty ? "发布追杀令" : "暂不可挂单",
@@ -661,7 +771,8 @@ namespace MmorpgClient.UI.Ugui.Guild
                     : $"{GuildWarText.LeylineName(s.LeylineId)}：旗势 {s.BannerHpBefore} → {s.BannerHpAfter}";
             string diminishLine = s.DiminishPercent < 100
                 ? $"防互刷提示：与同对手 30 分钟内多次交锋，本场帮战收益按 {s.DiminishPercent}% 结算，换对手立即恢复 100%。"
-                : (s.GoldLeylineBonus ? "已享 1.5x 金脉热点加成。" : "") + (s.RivalryBonus ? " 已享宿敌 +20% 加成。" : "");
+                : (s.GoldLeylineBonus ? "已享 1.5x 金脉热点加成。" : "")
+                  + (s.FeudBonus ? " 已享 2 小时宿敌约战 +25% 收益与前 3 场免递减！" : (s.RivalryBonus ? " 已享宿敌 +20% 加成。" : ""));
 
             Label(_body, "SettlementMatLine", matLine, 180f, 178f, 1276f, 44f, 23f, BodyInk);
             Label(_body, "SettlementGainLine", gainLine, 180f, 236f, 1276f, 44f, 23f, BodyInk);
@@ -716,10 +827,14 @@ namespace MmorpgClient.UI.Ugui.Guild
                 else if (t.InBattle) Art(_body, "FieldFightMark_" + i, "badge_spectate_swords", 16f, ry + 12f, 64f, 64f, true);
                 else if (t.Streak >= 3) Art(_body, "FieldStreakMark_" + i, StreakBadgeKey(t.Streak), 16f, ry + 12f, 64f, 64f, true);
 
+                if (t.IsRivalGuild)
+                    Art(_body, "FieldRivalBadge_" + i, "badge_rival_guild", 1288f, ry + 18f, 52f, 52f, true);
+
                 Label(_body, "FieldTargetText_" + i,
                     $"[{t.GuildName}] {t.PlayerName}" + (t.PeaceMode ? " · 和平免战" : " · 战意")
+                    + (t.IsRivalGuild ? " · 宿敌+20%" : string.Empty)
                     + (t.ActiveBountyId != 0 ? $" · 追杀赏金 {t.ActiveBountyRewardSilver} 银两" : ""),
-                    96f, ry + 22f, 1080f, 42f, 23f, BodyInk);
+                    96f, ry + 22f, t.IsRivalGuild ? 1176f : 1236f, 42f, 23f, BodyInk);
 
                 if (t.InBattle && t.BattleId != 0)
                 {
@@ -792,6 +907,14 @@ namespace MmorpgClient.UI.Ugui.Guild
             if (Application.isPlaying) UnityEngine.Object.Destroy(_modal.gameObject);
             else UnityEngine.Object.DestroyImmediate(_modal.gameObject);
             _modal = null;
+        }
+
+        private static bool IsRivalGuild(GuildWarBannerHonorSnapshot honor, ulong guildId)
+        {
+            if (honor == null || guildId == 0 || honor.RivalGuildIds == null) return false;
+            for (int i = 0; i < honor.RivalGuildIds.Count; i++)
+                if (honor.RivalGuildIds[i] == guildId) return true;
+            return false;
         }
     }
 }

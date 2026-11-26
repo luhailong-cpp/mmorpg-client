@@ -24,23 +24,24 @@ public static partial class PlayerSkillCompReflection {
         string.Concat(
           "Ci5wcm90by9jb21tb24vY29tcG9uZW50L3BsYXllcl9za2lsbF9jb21wLnBy",
           "b3RvIkMKD1BsYXllclNraWxsQ29tcBIKCgJpZBgBIAEoBBIWCg5za2lsbF90",
-          "YWJsZV9pZBgCIAEoDRIMCgRyYW5rGAMgASgNIooBChJTa2lsbExvYWRvdXRT",
+          "YWJsZV9pZBgCIAEoDRIMCgRyYW5rGAMgASgNIpgBChJTa2lsbExvYWRvdXRT",
           "Y2hlbWUSEQoJc2NoZW1lX2lkGAEgASgNEhAKCHJvbGVfdGFnGAIgASgNEhkK",
           "EXBhc3NpdmVfc2tpbGxfaWRzGAMgAygNEhkKEXB1cnN1aXRfc2tpbGxfaWRz",
-          "GAQgAygNEhkKEW9wZW5pbmdfc2tpbGxfaWRzGAUgAygNIo4CChNQbGF5ZXJT",
-          "a2lsbExpc3RDb21wEiQKCnNraWxsX2xpc3QYASADKAsyEC5QbGF5ZXJTa2ls",
-          "bENvbXASIAoYYWN0aXZlX2xvYWRvdXRfc2NoZW1lX2lkGAIgASgNEiwKD2xv",
-          "YWRvdXRfc2NoZW1lcxgDIAMoCzITLlNraWxsTG9hZG91dFNjaGVtZRIdChVs",
-          "b2Fkb3V0X3N0YXRlX3ZlcnNpb24YBCABKAQSHwoXbG9hZG91dF9sYXN0X3Jl",
-          "cXVlc3RfaWQYBSABKAkSIQoZbG9hZG91dF9sYXN0X2Jhc2VfdmVyc2lvbhgG",
-          "IAEoBBIeChZsb2Fkb3V0X2xhc3Rfc2NoZW1lX2lkGAcgASgNQhJaEGNvbW1v",
-          "bi9jb21wb25lbnRiBnByb3RvMw=="));
+          "GAQgAygNEhkKEW9wZW5pbmdfc2tpbGxfaWRzGAUgAygNEgwKBG5hbWUYBiAB",
+          "KAkixwIKE1BsYXllclNraWxsTGlzdENvbXASJAoKc2tpbGxfbGlzdBgBIAMo",
+          "CzIQLlBsYXllclNraWxsQ29tcBIgChhhY3RpdmVfbG9hZG91dF9zY2hlbWVf",
+          "aWQYAiABKA0SLAoPbG9hZG91dF9zY2hlbWVzGAMgAygLMhMuU2tpbGxMb2Fk",
+          "b3V0U2NoZW1lEh0KFWxvYWRvdXRfc3RhdGVfdmVyc2lvbhgEIAEoBBIfChds",
+          "b2Fkb3V0X2xhc3RfcmVxdWVzdF9pZBgFIAEoCRIhChlsb2Fkb3V0X2xhc3Rf",
+          "YmFzZV92ZXJzaW9uGAYgASgEEh4KFmxvYWRvdXRfbGFzdF9zY2hlbWVfaWQY",
+          "ByABKA0SGgoScmVudGVkX2V4dHJhX3Nsb3RzGAggASgNEhsKE3JlbnRfZXhw",
+          "aXJlc19hdF9zZWMYCSABKARCEloQY29tbW9uL2NvbXBvbmVudGIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerSkillComp), global::PlayerSkillComp.Parser, new[]{ "Id", "SkillTableId", "Rank" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SkillLoadoutScheme), global::SkillLoadoutScheme.Parser, new[]{ "SchemeId", "RoleTag", "PassiveSkillIds", "PursuitSkillIds", "OpeningSkillIds" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerSkillListComp), global::PlayerSkillListComp.Parser, new[]{ "SkillList", "ActiveLoadoutSchemeId", "LoadoutSchemes", "LoadoutStateVersion", "LoadoutLastRequestId", "LoadoutLastBaseVersion", "LoadoutLastSchemeId" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::SkillLoadoutScheme), global::SkillLoadoutScheme.Parser, new[]{ "SchemeId", "RoleTag", "PassiveSkillIds", "PursuitSkillIds", "OpeningSkillIds", "Name" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerSkillListComp), global::PlayerSkillListComp.Parser, new[]{ "SkillList", "ActiveLoadoutSchemeId", "LoadoutSchemes", "LoadoutStateVersion", "LoadoutLastRequestId", "LoadoutLastBaseVersion", "LoadoutLastSchemeId", "RentedExtraSlots", "RentExpiresAtSec" }, null, null, null, null)
         }));
   }
   #endregion
@@ -327,7 +328,7 @@ public sealed partial class PlayerSkillComp : pb::IMessage<PlayerSkillComp>
 }
 
 /// <summary>
-/// 人物战法构筑装配方案（布局层：与 skill_list 实例层解耦，不靠下标承载槽位语义）。
+/// 人物战法与加点一体化流派方案（布局层：与 skill_list 实例层解耦，不靠下标承载槽位语义）。
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class SkillLoadoutScheme : pb::IMessage<SkillLoadoutScheme>
@@ -369,6 +370,7 @@ public sealed partial class SkillLoadoutScheme : pb::IMessage<SkillLoadoutScheme
     passiveSkillIds_ = other.passiveSkillIds_.Clone();
     pursuitSkillIds_ = other.pursuitSkillIds_.Clone();
     openingSkillIds_ = other.openingSkillIds_.Clone();
+    name_ = other.name_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -382,7 +384,7 @@ public sealed partial class SkillLoadoutScheme : pb::IMessage<SkillLoadoutScheme
   public const int SchemeIdFieldNumber = 1;
   private uint schemeId_;
   /// <summary>
-  /// 1..3 显式流派方案号
+  /// 1..7 显式流派方案号（1..2 永久免费；轻享卡 +2；按套按月租用 0..5，封顶 7 套）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -397,7 +399,7 @@ public sealed partial class SkillLoadoutScheme : pb::IMessage<SkillLoadoutScheme
   public const int RoleTagFieldNumber = 2;
   private uint roleTag_;
   /// <summary>
-  /// 0默认 / 1输出 / 2控场 / 3辅助
+  /// 0默认 / 1输出 / 2控场 / 3辅助 / 4生存
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -450,6 +452,21 @@ public sealed partial class SkillLoadoutScheme : pb::IMessage<SkillLoadoutScheme
     get { return openingSkillIds_; }
   }
 
+  /// <summary>Field number for the "name" field.</summary>
+  public const int NameFieldNumber = 6;
+  private string name_ = "";
+  /// <summary>
+  /// 自定义方案名（UTF-8 1..12 字符；空则回退「方案一..七」）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Name {
+    get { return name_; }
+    set {
+      name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -470,6 +487,7 @@ public sealed partial class SkillLoadoutScheme : pb::IMessage<SkillLoadoutScheme
     if(!passiveSkillIds_.Equals(other.passiveSkillIds_)) return false;
     if(!pursuitSkillIds_.Equals(other.pursuitSkillIds_)) return false;
     if(!openingSkillIds_.Equals(other.openingSkillIds_)) return false;
+    if (Name != other.Name) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -482,6 +500,7 @@ public sealed partial class SkillLoadoutScheme : pb::IMessage<SkillLoadoutScheme
     hash ^= passiveSkillIds_.GetHashCode();
     hash ^= pursuitSkillIds_.GetHashCode();
     hash ^= openingSkillIds_.GetHashCode();
+    if (Name.Length != 0) hash ^= Name.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -511,6 +530,10 @@ public sealed partial class SkillLoadoutScheme : pb::IMessage<SkillLoadoutScheme
     passiveSkillIds_.WriteTo(output, _repeated_passiveSkillIds_codec);
     pursuitSkillIds_.WriteTo(output, _repeated_pursuitSkillIds_codec);
     openingSkillIds_.WriteTo(output, _repeated_openingSkillIds_codec);
+    if (Name.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(Name);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -532,6 +555,10 @@ public sealed partial class SkillLoadoutScheme : pb::IMessage<SkillLoadoutScheme
     passiveSkillIds_.WriteTo(ref output, _repeated_passiveSkillIds_codec);
     pursuitSkillIds_.WriteTo(ref output, _repeated_pursuitSkillIds_codec);
     openingSkillIds_.WriteTo(ref output, _repeated_openingSkillIds_codec);
+    if (Name.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(Name);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -551,6 +578,9 @@ public sealed partial class SkillLoadoutScheme : pb::IMessage<SkillLoadoutScheme
     size += passiveSkillIds_.CalculateSize(_repeated_passiveSkillIds_codec);
     size += pursuitSkillIds_.CalculateSize(_repeated_pursuitSkillIds_codec);
     size += openingSkillIds_.CalculateSize(_repeated_openingSkillIds_codec);
+    if (Name.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -572,6 +602,9 @@ public sealed partial class SkillLoadoutScheme : pb::IMessage<SkillLoadoutScheme
     passiveSkillIds_.Add(other.passiveSkillIds_);
     pursuitSkillIds_.Add(other.pursuitSkillIds_);
     openingSkillIds_.Add(other.openingSkillIds_);
+    if (other.Name.Length != 0) {
+      Name = other.Name;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -614,6 +647,10 @@ public sealed partial class SkillLoadoutScheme : pb::IMessage<SkillLoadoutScheme
           openingSkillIds_.AddEntriesFrom(input, _repeated_openingSkillIds_codec);
           break;
         }
+        case 50: {
+          Name = input.ReadString();
+          break;
+        }
       }
     }
   #endif
@@ -654,6 +691,10 @@ public sealed partial class SkillLoadoutScheme : pb::IMessage<SkillLoadoutScheme
         case 42:
         case 40: {
           openingSkillIds_.AddEntriesFrom(ref input, _repeated_openingSkillIds_codec);
+          break;
+        }
+        case 50: {
+          Name = input.ReadString();
           break;
         }
       }
@@ -705,6 +746,8 @@ public sealed partial class PlayerSkillListComp : pb::IMessage<PlayerSkillListCo
     loadoutLastRequestId_ = other.loadoutLastRequestId_;
     loadoutLastBaseVersion_ = other.loadoutLastBaseVersion_;
     loadoutLastSchemeId_ = other.loadoutLastSchemeId_;
+    rentedExtraSlots_ = other.rentedExtraSlots_;
+    rentExpiresAtSec_ = other.rentExpiresAtSec_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -729,7 +772,7 @@ public sealed partial class PlayerSkillListComp : pb::IMessage<PlayerSkillListCo
   public const int ActiveLoadoutSchemeIdFieldNumber = 2;
   private uint activeLoadoutSchemeId_;
   /// <summary>
-  /// 0 = 未启用自定义装配（全量非互斥兼容态）；1..3 = 启用对应方案
+  /// 0 = 未启用自定义装配（全量非互斥兼容态）；1..7 = 启用对应方案
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -811,6 +854,36 @@ public sealed partial class PlayerSkillListComp : pb::IMessage<PlayerSkillListCo
     }
   }
 
+  /// <summary>Field number for the "rented_extra_slots" field.</summary>
+  public const int RentedExtraSlotsFieldNumber = 8;
+  private uint rentedExtraSlots_;
+  /// <summary>
+  /// 非永久按套租用的额外方案槽位数（0..5，共享统一到期日）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RentedExtraSlots {
+    get { return rentedExtraSlots_; }
+    set {
+      rentedExtraSlots_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "rent_expires_at_sec" field.</summary>
+  public const int RentExpiresAtSecFieldNumber = 9;
+  private ulong rentExpiresAtSec_;
+  /// <summary>
+  /// 付费租用方案槽位统一到期 Unix 秒（0 或 &lt;= 当前时刻为未租/已到期，到期只锁不删）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong RentExpiresAtSec {
+    get { return rentExpiresAtSec_; }
+    set {
+      rentExpiresAtSec_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -833,6 +906,8 @@ public sealed partial class PlayerSkillListComp : pb::IMessage<PlayerSkillListCo
     if (LoadoutLastRequestId != other.LoadoutLastRequestId) return false;
     if (LoadoutLastBaseVersion != other.LoadoutLastBaseVersion) return false;
     if (LoadoutLastSchemeId != other.LoadoutLastSchemeId) return false;
+    if (RentedExtraSlots != other.RentedExtraSlots) return false;
+    if (RentExpiresAtSec != other.RentExpiresAtSec) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -847,6 +922,8 @@ public sealed partial class PlayerSkillListComp : pb::IMessage<PlayerSkillListCo
     if (LoadoutLastRequestId.Length != 0) hash ^= LoadoutLastRequestId.GetHashCode();
     if (LoadoutLastBaseVersion != 0UL) hash ^= LoadoutLastBaseVersion.GetHashCode();
     if (LoadoutLastSchemeId != 0) hash ^= LoadoutLastSchemeId.GetHashCode();
+    if (RentedExtraSlots != 0) hash ^= RentedExtraSlots.GetHashCode();
+    if (RentExpiresAtSec != 0UL) hash ^= RentExpiresAtSec.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -887,6 +964,14 @@ public sealed partial class PlayerSkillListComp : pb::IMessage<PlayerSkillListCo
       output.WriteRawTag(56);
       output.WriteUInt32(LoadoutLastSchemeId);
     }
+    if (RentedExtraSlots != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(RentedExtraSlots);
+    }
+    if (RentExpiresAtSec != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(RentExpiresAtSec);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -919,6 +1004,14 @@ public sealed partial class PlayerSkillListComp : pb::IMessage<PlayerSkillListCo
       output.WriteRawTag(56);
       output.WriteUInt32(LoadoutLastSchemeId);
     }
+    if (RentedExtraSlots != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(RentedExtraSlots);
+    }
+    if (RentExpiresAtSec != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(RentExpiresAtSec);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -945,6 +1038,12 @@ public sealed partial class PlayerSkillListComp : pb::IMessage<PlayerSkillListCo
     }
     if (LoadoutLastSchemeId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LoadoutLastSchemeId);
+    }
+    if (RentedExtraSlots != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RentedExtraSlots);
+    }
+    if (RentExpiresAtSec != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RentExpiresAtSec);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -974,6 +1073,12 @@ public sealed partial class PlayerSkillListComp : pb::IMessage<PlayerSkillListCo
     }
     if (other.LoadoutLastSchemeId != 0) {
       LoadoutLastSchemeId = other.LoadoutLastSchemeId;
+    }
+    if (other.RentedExtraSlots != 0) {
+      RentedExtraSlots = other.RentedExtraSlots;
+    }
+    if (other.RentExpiresAtSec != 0UL) {
+      RentExpiresAtSec = other.RentExpiresAtSec;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1022,6 +1127,14 @@ public sealed partial class PlayerSkillListComp : pb::IMessage<PlayerSkillListCo
           LoadoutLastSchemeId = input.ReadUInt32();
           break;
         }
+        case 64: {
+          RentedExtraSlots = input.ReadUInt32();
+          break;
+        }
+        case 72: {
+          RentExpiresAtSec = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -1067,6 +1180,14 @@ public sealed partial class PlayerSkillListComp : pb::IMessage<PlayerSkillListCo
         }
         case 56: {
           LoadoutLastSchemeId = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          RentedExtraSlots = input.ReadUInt32();
+          break;
+        }
+        case 72: {
+          RentExpiresAtSec = input.ReadUInt64();
           break;
         }
       }

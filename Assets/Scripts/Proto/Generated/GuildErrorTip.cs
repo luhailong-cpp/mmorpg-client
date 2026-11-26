@@ -23,7 +23,7 @@ public static partial class GuildErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvZ3VpbGRfZXJyb3JfdGlwLnBy",
-          "b3RvKqUQCgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
+          "b3RvKp8RCgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
           "dWlsZEFscmVhZHlJbkd1aWxkELBtEhMKDmtHdWlsZE5vdEZvdW5kELFtEhUK",
           "EGtHdWlsZE5vdEluR3VpbGQQsm0SDwoKa0d1aWxkRnVsbBCzbRIaChVrR3Vp",
           "bGRMZWFkZXJDYW50TGVhdmUQtG0SFAoPa0d1aWxkTm90TGVhZGVyELVtEhcK",
@@ -69,8 +69,11 @@ public static partial class GuildErrorTipReflection {
           "YXJnZXQQ8m0SIQoca0d1aWxkV2FyQm91bnR5QWxyZWFkeUFjdGl2ZRDzbRIZ",
           "ChRrR3VpbGRXYXJCb3VudHlMaW1pdBD0bRIcChdrR3VpbGRXYXJCb3VudHlO",
           "b3RGb3VuZBD1bRIbChZrR3VpbGRXYXJUcmFja0Nvb2xkb3duEPZtEhkKFGtH",
-          "dWlsZFdhclNlcnZpY2VCdXN5EPdtQiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5l",
-          "cmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
+          "dWlsZFdhclNlcnZpY2VCdXN5EPdtEhoKFWtHdWlsZFdhckZldWRDb29sZG93",
+          "bhD4bRIfChprR3VpbGRXYXJGZXVkQWxyZWFkeUFjdGl2ZRD5bRIaChVrR3Vp",
+          "bGRXYXJGZXVkTm90Rm91bmQQ+m0SHwoaa0d1aWxkV2FyRmV1ZEludmFsaWRU",
+          "YXJnZXQQ+21CJAoOY29tLmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90YWJs",
+          "ZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::guild_error), }, null, null));
@@ -153,6 +156,10 @@ public enum guild_error {
   [pbr::OriginalName("kGuildWarBountyNotFound")] KGuildWarBountyNotFound = 14069,
   [pbr::OriginalName("kGuildWarTrackCooldown")] KGuildWarTrackCooldown = 14070,
   [pbr::OriginalName("kGuildWarServiceBusy")] KGuildWarServiceBusy = 14071,
+  [pbr::OriginalName("kGuildWarFeudCooldown")] KGuildWarFeudCooldown = 14072,
+  [pbr::OriginalName("kGuildWarFeudAlreadyActive")] KGuildWarFeudAlreadyActive = 14073,
+  [pbr::OriginalName("kGuildWarFeudNotFound")] KGuildWarFeudNotFound = 14074,
+  [pbr::OriginalName("kGuildWarFeudInvalidTarget")] KGuildWarFeudInvalidTarget = 14075,
 }
 
 #endregion

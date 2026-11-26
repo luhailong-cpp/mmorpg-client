@@ -430,13 +430,13 @@ namespace MmorpgClient.Game.Team
 
         /// <param name="targetTeamSize">0 为直接开局；目标人数更大时等待补位，必须由服务端明确声明支持。</param>
         public bool StartMatch(uint battleConfigId, uint targetTeamSize = 0, Match.MatchMode matchMode = Match.MatchMode.PveTeam,
-                               uint rankedRuleVersion = 0)
+                               uint rankedRuleVersion = 0, uint trialVowMask = 0)
         {
             if (MatchNetworkPreparing) { Status = "正在准备匹配网络，请稍候…"; Changed?.Invoke(); return false; }
             if (matchMode == Match.MatchMode.Unspecified) matchMode = Match.MatchMode.PveTeam;
             RestoreStartIntent();
             if(_startRecoveryBlocked){Status="开局恢复记录无法读取，保留保护状态；请修复本机存储后重新登录。";Changed?.Invoke();return false;}
-            if(_pendingStart!=null&&(_pendingStart.BattleConfigId!=battleConfigId||_pendingStart.TargetTeamSize!=targetTeamSize||EffectiveMode(_pendingStart.MatchMode)!=matchMode)){Status="上一笔队伍开局结果尚未确认，请先恢复原请求。";Changed?.Invoke();return false;}
+            if(_pendingStart!=null&&(_pendingStart.BattleConfigId!=battleConfigId||_pendingStart.TargetTeamSize!=targetTeamSize||EffectiveMode(_pendingStart.MatchMode)!=matchMode||_pendingStart.TrialVowMask!=trialVowMask)){Status="上一笔队伍开局结果尚未确认，请先恢复原请求。";Changed?.Invoke();return false;}
             // 旧补位分支忽略 UUID。未知结果只能先读权威队列，不能盲目重发成为第二次开局。
             if (_pendingStart != null && _pendingStart.TargetTeamSize > 0 && _startHadUncertainAttempt
                 && !_backfillIntentRecoverySupported)
@@ -446,7 +446,7 @@ namespace MmorpgClient.Game.Team
                 Changed?.Invoke();
                 return false;
             }
-            if (PrepareMatchNetwork == null) return SendStartMatch(battleConfigId, targetTeamSize, matchMode, rankedRuleVersion);
+            if (PrepareMatchNetwork == null) return SendStartMatch(battleConfigId, targetTeamSize, matchMode, rankedRuleVersion, trialVowMask);
             int generation = _generation; ulong teamId = Snapshot.TeamId;
             int prepareVersion = ++_matchPrepareVersion;
             MatchNetworkPreparing = true;
@@ -457,7 +457,7 @@ namespace MmorpgClient.Game.Team
                     if (_disposed || prepareVersion != _matchPrepareVersion) return;
                     MatchNetworkPreparing = false;
                     if (generation == _generation && Snapshot.TeamId == teamId && HasFreshView)
-                        SendStartMatch(battleConfigId, targetTeamSize, matchMode, rankedRuleVersion);
+                        SendStartMatch(battleConfigId, targetTeamSize, matchMode, rankedRuleVersion, trialVowMask);
                     else { Status = "队伍信息已变化，请重新发起战斗。"; Changed?.Invoke(); }
                 },
                 error => { if (!_disposed && prepareVersion == _matchPrepareVersion) { MatchNetworkPreparing = false; Status = error; Changed?.Invoke(); } });
@@ -466,9 +466,9 @@ namespace MmorpgClient.Game.Team
 
         private static Match.MatchMode EffectiveMode(Match.MatchMode mode) => mode == Match.MatchMode.Unspecified ? Match.MatchMode.PveTeam : mode;
 
-        private bool SendStartMatch(uint battleConfigId, uint targetTeamSize, Match.MatchMode matchMode, uint rankedRuleVersion = 0)
+        private bool SendStartMatch(uint battleConfigId, uint targetTeamSize, Match.MatchMode matchMode, uint rankedRuleVersion = 0, uint trialVowMask = 0)
         {
-            var request=_pendingStart??new StartTeamMatchRequest{BattleConfigId=battleConfigId,ExpectedTeamId=Snapshot.TeamId,TargetTeamSize=targetTeamSize,MatchMode=matchMode,RankedRuleVersion=rankedRuleVersion,RequestId=Guid.NewGuid().ToString("D")};
+            var request=_pendingStart??new StartTeamMatchRequest{BattleConfigId=battleConfigId,ExpectedTeamId=Snapshot.TeamId,TargetTeamSize=targetTeamSize,MatchMode=matchMode,RankedRuleVersion=rankedRuleVersion,TrialVowMask=trialVowMask,RequestId=Guid.NewGuid().ToString("D")};
             bool backfill = EffectiveMode(request.MatchMode) == Match.MatchMode.PvpTeam || request.TargetTeamSize > Snapshot.Members.Count;
             return Send(TeamAction.StartMatch,0,MessageIds.StartTeamMatch,request,TeamResponse.Parser,false,reply=>{
                 FinishWrite(TeamAction.StartMatch,0,reply,"已发起队伍战斗，正在集合队员…");

@@ -23,7 +23,7 @@ public static partial class SeasonErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci9nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvc2Vhc29uX2Vycm9yX3RpcC5w",
-          "cm90byrzAgoMc2Vhc29uX2Vycm9yEhMKD2tTZWFzb25fZXJyb3JPSxAAEhQK",
+          "cm90byq3AwoMc2Vhc29uX2Vycm9yEhMKD2tTZWFzb25fZXJyb3JPSxAAEhQK",
           "DmtTZWFzb25Ob3RPcGVuENCJAhIVCg9rU2Vhc29uTWlzbWF0Y2gQ0YkCEhgK",
           "EmtTZWFzb25TZWFsSW52YWxpZBDSiQISIAoaa1NlYXNvblNlYWxBbHJlYWR5",
           "RXF1aXBwZWQQ04kCEhsKFWtTZWFzb25TZWFsQWxyZWFkeU1heBDUiQISHAoW",
@@ -31,8 +31,9 @@ public static partial class SeasonErrorTipReflection {
           "cmljZUNoYW5nZWQQ1okCEiUKH2tTZWFzb25DYXRjaHVwQ3VycmVuY3lOb3RF",
           "bm91Z2gQ14kCEhMKDWtTZWFzb25Gcm96ZW4Q2IkCEhUKD2tTZWFzb25JbkJh",
           "dHRsZRDZiQISGwoVa1NlYXNvblNraWxsTm9VcGdyYWRlENqJAhIYChJrU2Vh",
-          "c29uVW5hdmFpbGFibGUQ24kCQiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0",
-          "ZWQvcGIvdGFibGViBnByb3RvMw=="));
+          "c29uVW5hdmFpbGFibGUQ24kCEiEKG2tTZWFzb25Ib25vckFscmVhZHlVbmxv",
+          "Y2tlZBDciQISHwoZa1NlYXNvbkhvbm9yVGFyZ2V0SW52YWxpZBDdiQJCJAoO",
+          "Y29tLmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::season_error), }, null, null));
@@ -55,6 +56,8 @@ public enum season_error {
   [pbr::OriginalName("kSeasonInBattle")] KSeasonInBattle = 34009,
   [pbr::OriginalName("kSeasonSkillNoUpgrade")] KSeasonSkillNoUpgrade = 34010,
   [pbr::OriginalName("kSeasonUnavailable")] KSeasonUnavailable = 34011,
+  [pbr::OriginalName("kSeasonHonorAlreadyUnlocked")] KSeasonHonorAlreadyUnlocked = 34012,
+  [pbr::OriginalName("kSeasonHonorTargetInvalid")] KSeasonHonorTargetInvalid = 34013,
 }
 
 #endregion

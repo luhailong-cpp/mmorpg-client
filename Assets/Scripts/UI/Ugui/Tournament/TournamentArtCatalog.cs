@@ -87,11 +87,9 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 "v2-a-intermission-panel" => "UI/Ugui/TournamentV2/a/intermission-panel",
                 "v2-a-score-bo3" => "UI/Ugui/TournamentV2/a/score-bo3",
                 "v2-a-button-primary" => "UI/Ugui/TournamentV2/a/button-primary",
-                // V2 Module B（冠军基座、牌匾、观道致敬气泡与轻窗）
+                // V2 Module B（冠军基座、牌匾）
                 "v2-b-champion-pedestal" => "UI/Ugui/TournamentV2/b/champion-pedestal",
                 "v2-b-champion-plaque" => "UI/Ugui/TournamentV2/b/champion-plaque",
-                "v2-b-salute-bubble" => "UI/Ugui/TournamentV2/b/salute-bubble",
-                "v2-b-salute-panel" => "UI/Ugui/TournamentV2/b/salute-panel",
                 // V2 Module C（观战底部喝彩条、6 预设完整短语图、对推条与飘字）
                 "v2-c-cheer-bar" => "UI/Ugui/TournamentV2/c/cheer-bar",
                 "v2-c-cheer-float" => "UI/Ugui/TournamentV2/c/cheer-float",
@@ -109,7 +107,6 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 "v2-c-popularity-track" => "UI/Ugui/TournamentV2/c/popularity-track",
                 // V2 原生毛笔题字（严禁叠字）
                 "v2-title-intermission" => "UI/Ugui/TournamentV2/titles/a-intermission-title",
-                "v2-title-salute" => "UI/Ugui/TournamentV2/titles/b-salute-title",
                 "v2-title-cheer" => "UI/Ugui/TournamentV2/titles/c-cheer-title",
                 // V3 Module D（赛前零积分热身约战）
                 "v3-d-warmup-btn" => "UI/Ugui/TournamentV3/d/warmup-btn",

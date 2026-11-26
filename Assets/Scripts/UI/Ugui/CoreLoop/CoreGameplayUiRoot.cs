@@ -298,7 +298,11 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 game.Season.Changed += RefreshAll;
                 game.Season.Notice += ShowToast;
             }
-            if (game.Features != null) game.Features.OnChanged += RefreshAll;
+            if (game.Features != null)
+            {
+                game.Features.OnChanged += RefreshAll;
+                game.Features.OnEquipLoadoutSwitched += HandleEquipLoadoutSwitched;
+            }
             if (game.Attributes != null) game.Attributes.OnPanel += HandleAttributePanelChanged;
             game.Battle.OnPhaseChanged += HandleBattlePhaseChanged;
             game.Battle.OnBattleStart += HandleBattleStart;
@@ -311,6 +315,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             if (game.TrialJournal?.Snapshot == null) game.TrialJournal?.RequestSnapshot();
             if (game.Season?.Snapshot == null) game.Season?.RequestState();
             if (game.Features?.EquipmentMaterialReward == null) game.Features?.RequestEquipmentMaterialReward();
+            PreBattleLoadoutQuickBar.EnsureRequested(game.Features);
             if (game.Attributes?.Panel == null) game.Attributes?.RequestPanel();
             RefreshAll();
             SyncVisibility();
@@ -340,7 +345,11 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     _game.Season.Changed -= RefreshAll;
                     _game.Season.Notice -= ShowToast;
                 }
-                if (_game.Features != null) _game.Features.OnChanged -= RefreshAll;
+                if (_game.Features != null)
+                {
+                    _game.Features.OnChanged -= RefreshAll;
+                    _game.Features.OnEquipLoadoutSwitched -= HandleEquipLoadoutSwitched;
+                }
                 if (_game.Attributes != null) _game.Attributes.OnPanel -= HandleAttributePanelChanged;
                 if (_game.Battle != null)
                 {
@@ -411,6 +420,12 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         }
 
         private void HandleAttributePanelChanged(AttributePanelInfo _) => RefreshAll();
+
+        private void HandleEquipLoadoutSwitched(SwitchEquipLoadoutResponse response)
+        {
+            if (!HasLiveSession || _windowLayer == null || !_windowLayer.gameObject.activeSelf) return;
+            ShowToast(EquipLoadoutModel.BuildSwitchToast(response));
+        }
 
         private void HandleBattlePhaseChanged(BattlePhase _) { if (HasLiveSession) { SyncVisibility(); RefreshAll(); } }
         private void HandleBattleStart(global::BattleStartS2C _)

@@ -113,6 +113,10 @@ namespace MmorpgClient.UI.Ugui
 
         public static Sprite LoadBattlePrepSkillBanSlice(string name) => LoadCached(BattlePrepSkillBanRoot + name);
 
+        public static Sprite LoadBindGoldIcon() => LoadCached(MmorpgClient.Game.Common.CurrencyLabels.BindGoldIconResourcePath);
+
+        public static Sprite LoadRewardedAdVideoIcon() => LoadCached(MmorpgClient.Game.RewardedAd.RewardedAdModel.VideoIconResourcePath);
+
         public static void ApplySlicedControlSprite(Image image, Sprite sprite, Color fallbackColor)
         {
             if (image == null) return;

@@ -12,6 +12,7 @@ namespace MmorpgClient.Game.Common
         public const uint Diamond = 1u;
         public const uint BindDiamond = 2u;
         public const uint BindGold = 3u;
+        public const string BindGoldIconResourcePath = "UI/Icons/icon_bind_gold";
 
         public static string Name(uint currencyType, string unknownFallback = "货币") => currencyType switch
         {

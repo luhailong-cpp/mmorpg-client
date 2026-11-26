@@ -533,5 +533,118 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(tooltipLines.Any(l => l.Text.Contains("愈战愈勇") && l.Text.Contains("兵法成长卷")), Is.True);
             Assert.That(tooltipLines.Any(l => l.Text.Contains("宗师·欧冶子 亲手撰")), Is.True);
         }
+
+        [Test]
+        public void V2ToV5QualityAuditBatchPolishSummaryAndFormattedTitleWork()
+        {
+            // V2 雅号署名不重复拼接「宗师·」
+            Assert.That(EquipmentScreenModel.FormatCrafterLine("双绝天工·欧冶子", false), Is.EqualTo("双绝天工·欧冶子 亲手铸造"));
+            Assert.That(EquipmentScreenModel.FormatCrafterLine("欧冶子", true), Is.EqualTo("宗师·欧冶子 亲手撰"));
+
+            // V3 全身品相工坊健检：1 极品 + 1 凡品(保底2/8 -> 最坏剩6砂) + 1 速度豁免
+            var gear = new BagItemInfo { ItemId = 501, ConfigId = 3101 };
+            gear.FixedAffixSlots.Add(new EquipFixedAffixSlotInfo
+            {
+                Slot = 1, Pool = 1,
+                Selected = new EquipFixedAffixInfo { AffixId = 101, QualityTier = 5, PolishPityLimit = 8 },
+            });
+            gear.FixedAffixSlots.Add(new EquipFixedAffixSlotInfo
+            {
+                Slot = 2, Pool = 2,
+                Selected = new EquipFixedAffixInfo { AffixId = 201, QualityTier = 1, PolishPityCount = 2, PolishPityLimit = 8 },
+            });
+            var acc = new BagItemInfo { ItemId = 502, ConfigId = 3201 };
+            acc.FixedAffixSlots.Add(new EquipFixedAffixSlotInfo
+            {
+                Slot = 1, Pool = 3,
+                Selected = new EquipFixedAffixInfo { AffixId = 302, QualityTier = 5, PolishExempt = true },
+            });
+            var audit = EquipmentScreenModel.BuildQualityAudit(new[] { gear, acc });
+            Assert.That(audit.PolishableSlots, Is.EqualTo(2));
+            Assert.That(audit.SupremeSlots, Is.EqualTo(1));
+            Assert.That(audit.ExemptSpeedSlots, Is.EqualTo(1));
+            Assert.That(audit.WorstCaseSandNeeded, Is.EqualTo(6u));
+            Assert.That(audit.WorstCaseGoldNeeded, Is.EqualTo(120UL));
+            Assert.That(audit.LowestItemId, Is.EqualTo(501UL));
+            Assert.That(audit.LowestSlot, Is.EqualTo(2u));
+
+            // V3 智能连磨 + V5 同队情义 0 费代打预览与回执摘要
+            string batchSummary = EquipmentScreenModel.FormatCraftPreviewSummary(new EquipmentCraftPreview
+            {
+                Available = true,
+                GoldCost = 20,
+                ProxyFeeGold = 0,
+                ProxyMasterName = "双绝天工·欧冶子",
+                TeamFreeProxyApplied = true,
+                MaxPolishAttempts = 6,
+                MaxPolishSandCost = 6,
+                MaxPolishGoldCost = 120,
+                Choice = new EquipmentCraftChoice { Operation = EquipmentCraftChoice.Types.Operation.PolishAffix, TargetQualityTier = 5, MaxPolishAttempts = 8 },
+            });
+            Assert.That(batchSummary, Does.Contain("同队情义代打（0 银两免税"));
+            Assert.That(batchSummary, Does.Contain("智能定档连磨（目标 极品）"));
+
+            string recap = EquipmentScreenModel.FormatPolishReceiptSummary(new CommitEquipmentCraftResponse
+            {
+                Outcome = CommitEquipmentCraftResponse.Types.Outcome.Applied,
+                ResultQualityTier = 4,
+                PolishAttemptsUsed = 2,
+                ActualGoldSpent = 40,
+                PolishSteps =
+                {
+                    new PolishStepTrace { AttemptIndex = 1, TierBefore = 1, TierAfter = 3 },
+                    new PolishStepTrace { AttemptIndex = 2, TierBefore = 3, TierAfter = 4 },
+                },
+            });
+            Assert.That(recap, Does.Contain("实耗 2 手 · 40 银两 → 珍品"));
+            Assert.That(recap, Does.Contain("上品 → 珍品"));
+        }
+
+        [Test]
+        public void SupportAndControlEnhancedAffixesShowEnhancementBonusTagAndBenefitLinesWithoutScalingSpeedOrAttack()
+        {
+            var weapon = new BagItemInfo
+            {
+                ItemId = 9901,
+                ConfigId = 3181,
+                EquipKind = 11,
+                EquipProfile = 1,
+                EnhanceLevel = 10,
+                EnhanceMaxLevel = 11,
+                EnhanceBonusPermyriad = 2000,
+                EnhanceNext = new EquipEnhancePreview { NextLevel = 11, SuccessRate = 1000, BonusPermyriad = 2400 },
+            };
+            var heal = Affix(103, 5, 0, 1, 880, "施放治疗");
+            heal.MaxValueBps = 800; heal.SourceCapBps = 3520; heal.QualityTier = 5; heal.QualityName = "极品";
+            var ctrl = Affix(105, 11, 1, 2, 420, "封灵命中");
+            ctrl.MaxValueBps = 400; ctrl.SourceCapBps = 1680; ctrl.QualityTier = 5; ctrl.QualityName = "极品";
+            Select(weapon, 1, 1, heal);
+            Select(weapon, 2, 2, ctrl);
+
+            Assert.That(EquipmentScreenModel.FormatAffixQualityTag(heal), Is.EqualTo(" [极品 · 强化+0.8%]"));
+            Assert.That(EquipmentScreenModel.FormatAffixQualityTag(ctrl), Is.EqualTo(" [极品 · 强化+0.2个百分点]"));
+
+            var enhancedTier4 = Affix(103, 5, 0, 1, 851, "施放治疗");
+            enhancedTier4.MaxValueBps = 800; enhancedTier4.QualityTier = 4; enhancedTier4.QualityName = "珍品";
+            Assert.That(EquipmentScreenModel.FormatAffixQualityTag(enhancedTier4), Is.EqualTo(" [珍品 · 含强化 / 基础满值 +8%]"));
+
+            var benefitLines = EquipmentScreenModel.EnhanceAffixBenefitLines(weapon);
+            Assert.That(benefitLines, Has.Count.EqualTo(2));
+            Assert.That(benefitLines[0], Does.Contain("施放治疗").And.Contain("50%").And.Contain("+8.8%").And.Contain("+11 词条 +12%"));
+            Assert.That(benefitLines[1], Does.Contain("封灵命中").And.Contain("25%").And.Contain("+4.2个百分点").And.Contain("+11 词条 +6%"));
+
+            // +11 满级（无 EnhanceNext）也展示已生效的控辅词条强化幅度；输出攻%与速度不生成词条强化受益行。
+            weapon.EnhanceLevel = 11;
+            weapon.EnhanceBonusPermyriad = 2400;
+            weapon.EnhanceNext = null;
+            heal.ValueBps = 896;
+            var maxBenefits = EquipmentScreenModel.EnhanceAffixBenefitLines(weapon);
+            Assert.That(maxBenefits[0], Does.Contain("+8.96%").And.Contain("已享 50% 幅度 · +12%"));
+
+            var dps = new BagItemInfo { EquipKind = 11, EquipProfile = 1, EnhanceLevel = 11, EnhanceMaxLevel = 11, EnhanceBonusPermyriad = 2400 };
+            Select(dps, 1, 1, Affix(101, 1, 0, 1, 800, "物理攻击"));
+            Select(dps, 2, 3, Affix(302, 4, 0, 1, 100, "速度"));
+            Assert.That(EquipmentScreenModel.EnhanceAffixBenefitLines(dps), Is.Empty);
+        }
     }
 }

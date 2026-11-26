@@ -62,13 +62,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 string scrollName = string.IsNullOrWhiteSpace(sb.ScrollName) ? "常规卷宗" : sb.ScrollName;
                 lines.Add($"封存技能：{skillName}（{scrollName}）");
                 lines.Add(item.Bound ? "状态：仅自用（开卷回书架后保持仅自用）" : "状态：可交易（可上架集市或面对面交易，开卷回书架后可研习）");
-                if (!string.IsNullOrWhiteSpace(sb.CrafterName)) lines.Add($"宗师·{sb.CrafterName} 亲手撰");
+                if (!string.IsNullOrWhiteSpace(sb.CrafterName)) lines.Add(FormatCrafterLine(sb.CrafterName, isBook: true));
             }
             else if (!string.IsNullOrWhiteSpace(item.CrafterName))
             {
-                lines.Add($"宗师·{item.CrafterName} 亲手铸造");
+                lines.Add(FormatCrafterLine(item.CrafterName, isBook: false));
             }
             return lines;
+        }
+
+        public static string FormatCrafterLine(string crafterName, bool isBook)
+        {
+            if (string.IsNullOrWhiteSpace(crafterName)) return string.Empty;
+            string verb = isBook ? "亲手撰" : "亲手铸造";
+            // V2 宗师佩戴雅号后服务端直接下发「双绝天工·欧冶子」；未戴雅号时补「宗师·」前缀。
+            return crafterName.Contains("·") ? $"{crafterName} {verb}" : $"宗师·{crafterName} {verb}";
         }
 
         /// <summary>
@@ -157,16 +165,51 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             };
         }
 
-        /// <summary>词条品相附加标签；旧快照未下发品相字段时返回空串以保持既有文案不变。</summary>
+        /// <summary>词条品相附加标签；旧快照未下发品相字段时返回空串；控辅词条经强化超过基础满值时改标强化增益。</summary>
         public static string FormatAffixQualityTag(EquipFixedAffixInfo affix)
         {
             if (affix == null) return string.Empty;
             if (affix.PolishExempt) return " [固定满值]";
             if (affix.QualityTier == 0) return string.Empty;
             string name = QualityTierName(affix.QualityTier, affix.QualityName);
-            string maxPart = affix.MaxValueBps != 0 && affix.MaxValueBps != affix.ValueBps
+            if (affix.MaxValueBps != 0 && affix.ValueBps > affix.MaxValueBps)
+            {
+                if (affix.QualityTier >= 5)
+                    return $" [{name} · 强化+{FixedAmount(affix.ValueBps - affix.MaxValueBps, affix.Unit)}]";
+                return $" [{name} · 含强化 / 基础满值 {AffixMaxValue(affix)}]";
+            }
+            string maxPart = affix.MaxValueBps != 0 && affix.ValueBps < affix.MaxValueBps
                 ? $" / 满值 {AffixMaxValue(affix)}" : string.Empty;
             return $" [{name}{maxPart}]";
+        }
+
+        /// <summary>
+        /// V1 基础装控辅强化公平受益展示行：奶盾词条(effect 5/6)享 50% 强化幅度，控场命中(effect 11)享 25% 强化幅度；
+        /// 速度与输出词条不生成该行，数值均基于服务端权威快照字段。
+        /// </summary>
+        public static IReadOnlyList<string> EnhanceAffixBenefitLines(BagItemInfo item)
+        {
+            var lines = new List<string>();
+            if (item == null || item.EquipProfile != 1) return lines;
+            var next = item.EnhanceNext;
+            foreach (var slot in item.FixedAffixSlots.OrderBy(entry => entry.Slot).ThenBy(entry => entry.Pool))
+            {
+                var affix = slot?.Selected;
+                if (affix == null) continue;
+                uint sharePct = affix.Effect == 5 || affix.Effect == 6 ? 50u : affix.Effect == 11 ? 25u : 0u;
+                if (sharePct == 0) continue;
+                if (next != null)
+                {
+                    decimal nextShareBps = next.BonusPermyriad * (sharePct / 100m);
+                    lines.Add($"词条强化受益：{AffixName(affix)} 当前 {AffixValue(affix)}（享 {Number(sharePct)}% 幅度 · +{Number(next.NextLevel)} 词条 +{FixedAmount(nextShareBps, 1)}）");
+                }
+                else if (item.EnhanceBonusPermyriad > 0)
+                {
+                    decimal curShareBps = item.EnhanceBonusPermyriad * (sharePct / 100m);
+                    lines.Add($"词条强化受益：{AffixName(affix)} {AffixValue(affix)}（已享 {Number(sharePct)}% 幅度 · +{FixedAmount(curShareBps, 1)}）");
+                }
+            }
+            return lines;
         }
 
         /// <summary>单条词条的打磨保底进度提示；豁免或已满极品返回空串。</summary>
@@ -225,19 +268,105 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 string extra = $"{preview.ExtraMaterial.Name} 需要 {Number(preview.ExtraMaterial.Count)} · 可用 {Number(preview.ExtraMaterial.Available)}";
                 parts.Add(extra);
             }
-            if (preview.GoldCost != 0 || preview.ProxyFeeGold != 0)
+            if (preview.GoldCost != 0 || preview.ProxyFeeGold != 0 || preview.TeamFreeProxyApplied)
             {
-                string gold = $"银两 {Number(preview.GoldCost)}";
-                if (preview.ProxyFeeGold != 0)
+                string gold = preview.MaxPolishAttempts > 1
+                    ? $"单手银两 {Number(preview.GoldCost)}"
+                    : $"银两 {Number(preview.GoldCost)}";
+                if (preview.TeamFreeProxyApplied)
+                {
+                    string master = string.IsNullOrWhiteSpace(preview.ProxyMasterName) ? "宗师" : preview.ProxyMasterName;
+                    gold += $" + {master}同队情义代打（0 银两免税 · 装备不离身）";
+                }
+                else if (preview.ProxyFeeGold != 0)
                 {
                     string master = string.IsNullOrWhiteSpace(preview.ProxyMasterName) ? "名匠" : preview.ProxyMasterName;
                     gold += $" + {master}手工费 {Number(preview.ProxyFeeGold)} 银两（零风险代打，装备不离身）";
                 }
                 parts.Add(gold);
             }
+            if (preview.Choice?.Operation == EquipmentCraftChoice.Types.Operation.PolishAffix && preview.MaxPolishAttempts > 1)
+            {
+                string targetLabel = QualityTierName(preview.Choice.TargetQualityTier != 0 ? preview.Choice.TargetQualityTier : 5u);
+                parts.Add($"智能定档连磨（目标 {targetLabel}）：至多 {Number(preview.MaxPolishAttempts)} 手，最坏消耗 {Number(preview.MaxPolishSandCost)} 砂 + {Number(preview.MaxPolishGoldCost)} 银两（达标或保底立即停止，按实际手数扣费）");
+            }
             if (preview.WillBindItem)
                 parts.Add("注意：本次将消耗绑定材料，完成后装备永久转为仅自用");
             return string.Join("\n", parts);
+        }
+
+        public readonly struct EquipmentQualityAudit
+        {
+            public readonly int PolishableSlots;
+            public readonly int SupremeSlots;
+            public readonly int ExemptSpeedSlots;
+            public readonly uint WorstCaseSandNeeded;
+            public readonly ulong WorstCaseGoldNeeded;
+            public readonly ulong LowestItemId;
+            public readonly uint LowestSlot;
+            public readonly uint LowestQualityTier;
+
+            public EquipmentQualityAudit(int polishableSlots, int supremeSlots, int exemptSpeedSlots,
+                uint worstCaseSandNeeded, ulong worstCaseGoldNeeded, ulong lowestItemId, uint lowestSlot, uint lowestQualityTier)
+            {
+                PolishableSlots = polishableSlots;
+                SupremeSlots = supremeSlots;
+                ExemptSpeedSlots = exemptSpeedSlots;
+                WorstCaseSandNeeded = worstCaseSandNeeded;
+                WorstCaseGoldNeeded = worstCaseGoldNeeded;
+                LowestItemId = lowestItemId;
+                LowestSlot = lowestSlot;
+                LowestQualityTier = lowestQualityTier;
+            }
+        }
+
+        /// <summary>V3 全身品相工坊健检：汇总已穿戴/背包可打磨槽位极品度与最坏保底预算，定位最低品相槽位。</summary>
+        public static EquipmentQualityAudit BuildQualityAudit(IEnumerable<BagItemInfo> items)
+        {
+            int polishable = 0, supreme = 0, exempt = 0;
+            uint worstSand = 0;
+            ulong lowestItem = 0;
+            uint lowestSlot = 0, lowestTier = uint.MaxValue;
+            if (items != null)
+            {
+                foreach (var item in items)
+                {
+                    if (item == null || item.ItemId == 0 || item.Artifact != null || item.FixedAffixSlots.Count == 0) continue;
+                    foreach (var slot in item.FixedAffixSlots.OrderBy(s => s.Slot))
+                    {
+                        var affix = slot?.Selected;
+                        if (affix == null) continue;
+                        if (affix.PolishExempt) { ++exempt; continue; }
+                        ++polishable;
+                        uint tier = affix.QualityTier == 0 ? 5u : affix.QualityTier;
+                        if (tier >= 5u) { ++supreme; continue; }
+                        uint pityLimit = affix.PolishPityLimit != 0 ? affix.PolishPityLimit : 8u;
+                        uint remain = affix.PolishPityCount < pityLimit ? pityLimit - affix.PolishPityCount : 1u;
+                        worstSand += remain;
+                        if (tier < lowestTier)
+                        {
+                            lowestTier = tier;
+                            lowestItem = item.ItemId;
+                            lowestSlot = slot.Slot;
+                        }
+                    }
+                }
+            }
+            return new EquipmentQualityAudit(polishable, supreme, exempt, worstSand, worstSand * 20UL,
+                lowestItem, lowestSlot, lowestTier == uint.MaxValue ? 0u : lowestTier);
+        }
+
+        public static string FormatPolishReceiptSummary(CommitEquipmentCraftResponse receipt)
+        {
+            if (receipt == null || receipt.Outcome != CommitEquipmentCraftResponse.Types.Outcome.Applied) return string.Empty;
+            if (receipt.PolishAttemptsUsed == 0 && receipt.PolishSteps.Count == 0) return string.Empty;
+            uint attempts = receipt.PolishAttemptsUsed != 0 ? receipt.PolishAttemptsUsed : (uint)receipt.PolishSteps.Count;
+            string tierName = QualityTierName(receipt.ResultQualityTier);
+            string pityTag = receipt.GuaranteedByPity ? "（触发保底直出极品）" : string.Empty;
+            string trace = receipt.PolishSteps.Count > 0
+                ? " | 过程：" + string.Join(" → ", receipt.PolishSteps.Select(s => $"{QualityTierName(s.TierAfter)}{(s.GuaranteedByPity ? "★" : string.Empty)}"))
+                : string.Empty;
+            return $"上次打磨：实耗 {Number(attempts)} 手 · {Number(receipt.ActualGoldSpent)} 银两 → {tierName}{pityTag}{trace}";
         }
 
         /// <summary>
@@ -434,11 +563,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var next = item.EnhanceNext;
             if (next == null)
             {
+                foreach (string affixLine in EnhanceAffixBenefitLines(item)) lines.Add(affixLine);
                 if (!maximum) lines.Add("下一次强化暂不可用");
                 return;
             }
             lines.Add($"下一级：+{Number(next.NextLevel)}，可强化基础项加成 {FixedAmount(next.BonusPermyriad, 1)}");
             foreach (string preview in EquipDisplay.EnhancePreviewLines(item)) lines.Add(preview);
+            foreach (string affixLine in EnhanceAffixBenefitLines(item)) lines.Add(affixLine);
             lines.Add($"成功率：{EquipDisplay.FormatSuccessRate(next.SuccessRate)}");
             lines.Add($"强化消耗：{EquipDisplay.FormatEnhanceCost(next)}");
             if (next.SuccessRate < 10000)

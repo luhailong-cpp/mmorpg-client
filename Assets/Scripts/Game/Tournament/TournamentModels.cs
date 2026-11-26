@@ -408,18 +408,6 @@ namespace MmorpgClient.Game.Tournament
             return null;
         }
 
-        public TournamentSeasonView FindChampionSeason(uint seasonId)
-        {
-            if (seasonId == 0u) return FindLatestChampionSeason();
-            if (Season != null && Season.SeasonId == seasonId && Season.ChampionSquadId != 0UL) return Season;
-            for (int i = 0; i < HallOfFame.Count; i++)
-            {
-                if (HallOfFame[i] != null && HallOfFame[i].SeasonId == seasonId && HallOfFame[i].ChampionSquadId != 0UL)
-                    return HallOfFame[i];
-            }
-            return FindLatestChampionSeason();
-        }
-
         public TournamentOverviewSnapshot(
             TournamentSeasonView season,
             TournamentSquadView mySquad,
@@ -576,61 +564,6 @@ namespace MmorpgClient.Game.Tournament
                 HallOfFame,
                 ServerTimeMs,
                 CapturedAtLocalSeconds);
-        }
-
-        public TournamentOverviewSnapshot WithSaluted(uint seasonId, ulong championSaluteCount)
-        {
-            var nextSeason = Season?.Clone();
-            if (nextSeason != null)
-            {
-                nextSeason.SalutedToday = true;
-                if (nextSeason.SeasonId == seasonId) nextSeason.ChampionSaluteCount = championSaluteCount;
-            }
-            var nextHof = new List<TournamentSeasonView>(HallOfFame.Count);
-            for (int i = 0; i < HallOfFame.Count; i++)
-            {
-                var h = HallOfFame[i].Clone();
-                h.SalutedToday = true;
-                if (h.SeasonId == seasonId) h.ChampionSaluteCount = championSaluteCount;
-                nextHof.Add(h);
-            }
-            return new TournamentOverviewSnapshot(
-                nextSeason,
-                MySquad?.Clone(),
-                PendingInvites,
-                MyActiveMatch?.Clone(),
-                FeaturedMatches,
-                MyCheeredSquadId,
-                MyCheeredSquadName,
-                RewardTiers,
-                MyRewards,
-                nextHof,
-                ServerTimeMs,
-                CapturedAtLocalSeconds);
-        }
-    }
-
-    /// <summary>V2 RPC 506 观道致敬结果不可变摘要。</summary>
-    public readonly struct TournamentSaluteOutcome
-    {
-        public uint SeasonId { get; }
-        public ulong ChampionSaluteCount { get; }
-        public ulong GoldAmount { get; }
-        public IReadOnlyList<TournamentRewardItem> Items { get; }
-        public ulong MailId { get; }
-
-        public TournamentSaluteOutcome(
-            uint seasonId,
-            ulong championSaluteCount,
-            ulong goldAmount,
-            IReadOnlyList<TournamentRewardItem> items,
-            ulong mailId)
-        {
-            SeasonId = seasonId;
-            ChampionSaluteCount = championSaluteCount;
-            GoldAmount = goldAmount;
-            Items = items ?? Array.Empty<TournamentRewardItem>();
-            MailId = mailId;
         }
     }
 

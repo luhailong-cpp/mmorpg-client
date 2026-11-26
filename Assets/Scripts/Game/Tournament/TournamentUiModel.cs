@@ -28,7 +28,6 @@ namespace MmorpgClient.Game.Tournament
         ConfirmLineup = 3,
         ConfirmLock = 4,
         IntermissionSwap = 5,
-        SaluteChampion = 6,
         WarmupSpar = 7,
         PredictionBoard = 8,
         SelectEmblem = 9,
@@ -162,7 +161,6 @@ namespace MmorpgClient.Game.Tournament
         public ulong PendingMatchId { get; private set; }
         public bool LineupModalIsForMatchStart { get; private set; }
         public TournamentLeylineElement SelectedLeylineInspect { get; set; } = TournamentLeylineElement.TournamentLeylineUnspecified;
-        public uint SaluteTargetSeasonId { get; private set; }
         public uint SelectedCreateEmblemId { get; set; } = 1u;
         public uint SelectedEmblemDraft { get; set; } = 1u;
         public string WarmupTargetSquadIdDraft { get; set; } = string.Empty;
@@ -237,13 +235,6 @@ namespace MmorpgClient.Game.Tournament
                 : TournamentLeylineElement.TournamentLeylineMetal;
             ModalInlineError = string.Empty;
             SeedLineupDraft(squad, battleTeamSize);
-        }
-
-        public void OpenSaluteModal(uint seasonId = 0u)
-        {
-            ActiveModal = TournamentModalKind.SaluteChampion;
-            SaluteTargetSeasonId = seasonId;
-            ModalInlineError = string.Empty;
         }
 
         public void OpenCreateModal()
@@ -378,7 +369,6 @@ namespace MmorpgClient.Game.Tournament
             ActiveModal = TournamentModalKind.None;
             PendingMatchId = 0UL;
             LineupModalIsForMatchStart = false;
-            SaluteTargetSeasonId = 0u;
             InspectedMvpMatch = null;
             BanTargetMatch = null;
             ModalInlineError = string.Empty;
@@ -592,8 +582,6 @@ namespace MmorpgClient.Game.Tournament
                 case (uint)match_error.KMatchTournamentMatchNotReady:
                 case (uint)match_error.KMatchTournamentAlreadyCheered:
                 case (uint)match_error.KMatchTournamentRewardUnavailable:
-                case (uint)match_error.KMatchTournamentAlreadySalutedToday:
-                case (uint)match_error.KMatchTournamentNoChampionToSalute:
                 case (uint)match_error.KMatchTournamentPredictionClosed:
                 case (uint)match_error.KMatchTournamentPredictionTargetInvalid:
                 case (uint)match_error.KMatchTournamentWarmupUnavailable:

@@ -140,5 +140,15 @@ namespace MmorpgClient.Net.Generated
         public static void FulfillSkillBookWantedOrder(IRpcChannel channel, global::FulfillSkillBookWantedOrderRequest request,
             RpcDone<global::FulfillSkillBookWantedOrderResponse> done)
             => channel.CallMethod(FulfillSkillBookWantedOrderMessageId, request, global::FulfillSkillBookWantedOrderResponse.Parser, done);
+
+        public const uint RentSkillLoadoutSlotsMessageId = 565;
+        public static void RentSkillLoadoutSlots(IRpcChannel channel, global::RentSkillLoadoutSlotsRequest request,
+            RpcDone<global::RentSkillLoadoutSlotsResponse> done)
+            => channel.CallMethod(RentSkillLoadoutSlotsMessageId, request, global::RentSkillLoadoutSlotsResponse.Parser, done);
+
+        public const uint AckCraftProxyDigestMessageId = 573;
+        public static void AckCraftProxyDigest(IRpcChannel channel, global::AckCraftProxyDigestRequest request,
+            RpcDone<global::AckCraftProxyDigestResponse> done)
+            => channel.CallMethod(AckCraftProxyDigestMessageId, request, global::AckCraftProxyDigestResponse.Parser, done);
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MmorpgClient.Game.Social;
+using MmorpgClient.Game.TrialJournal;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -122,13 +123,17 @@ namespace MmorpgClient.UI.Ugui.Social
             {
                 bool self=message.Sender==State.PlayerId;
                 var person=State.Person(message.Sender);
-                float bubble=Mathf.Min(width-126,Mathf.Max(220,SocialState.TextLength(message.Text)*23f+36));
-                if(!string.IsNullOrEmpty(message.Card))bubble=Mathf.Max(bubble,350);
-                var probe=FText(content,"Measure",message.Text,0,0,bubble-32,100,24,wrap:true);
-                float textHeight=Mathf.Max(32,probe.GetPreferredValues(message.Text,bubble-32,float.PositiveInfinity).y);
+                bool hasTrialCard=TrialJournalModels.TryParseChallengeCardId(message.Text,out ulong trialCardId);
+                string displayText=hasTrialCard?TrialJournalModels.StripChallengeCardTag(message.Text):message.Text;
+                if(hasTrialCard&&string.IsNullOrEmpty(displayText))displayText="发出了一封五行试炼约战帖";
+                float bubble=Mathf.Min(width-126,Mathf.Max(220,SocialState.TextLength(displayText)*23f+36));
+                if(hasTrialCard)bubble=Mathf.Max(bubble,396);
+                else if(!string.IsNullOrEmpty(message.Card))bubble=Mathf.Max(bubble,350);
+                var probe=FText(content,"Measure",displayText,0,0,bubble-32,100,24,wrap:true);
+                float textHeight=Mathf.Max(32,probe.GetPreferredValues(displayText,bubble-32,float.PositiveInfinity).y);
                 probe.gameObject.SetActive(false);
                 if(Application.isPlaying)UnityEngine.Object.Destroy(probe.gameObject);else UnityEngine.Object.DestroyImmediate(probe.gameObject);
-                float cardHeight=string.IsNullOrEmpty(message.Card)?0:message.Card=="bamboo"?61:86;
+                float cardHeight=hasTrialCard?64:(string.IsNullOrEmpty(message.Card)?0:message.Card=="bamboo"?61:86);
                 float rowHeight=Mathf.Max(98,39+textHeight+cardHeight+18);
                 var row=QdaoUguiFactory.CreateRect("SocialMessage_"+message.Id,content,0,y,width,rowHeight);
                 float avatarX=self?width-100:0, bubbleX=self?width-116-bubble:117;
@@ -146,8 +151,36 @@ namespace MmorpgClient.UI.Ugui.Social
                 }
                 var paper=FImage(row,"message_bubble",bubbleX,34,bubble,textHeight+14+cardHeight);
                 if(self){paper.color=QdaoUguiTheme.Html("#E0EFD5");paper.rectTransform.localScale=new UnityEngine.Vector3(-1,1,1);paper.rectTransform.anchoredPosition+=new Vector2(bubble,0);}
-                FText(row,"MessageText",message.Text,bubbleX+18,39,bubble-36,textHeight+4,24,Ink,true,TextAlignmentOptions.TopLeft);
-                if(cardHeight>0)
+                FText(row,"MessageText",displayText,bubbleX+18,39,bubble-36,textHeight+4,24,Ink,true,TextAlignmentOptions.TopLeft);
+                if(hasTrialCard)
+                {
+                    ulong capturedCardId=trialCardId;
+                    float cardY=43+textHeight;
+                    var v3Panel=Resources.Load<Sprite>("UI/Ugui/TrialJournalV3/challenge_card_panel");
+                    if(v3Panel!=null)
+                    {
+                        var cardBg=QdaoUguiFactory.CreateImage("SocialTrialCardBg_"+message.Id,row,bubbleX+14,cardY,bubble-28,56,v3Panel);
+                        cardBg.type=v3Panel.border.sqrMagnitude>0?Image.Type.Sliced:Image.Type.Simple;
+                    }
+                    else
+                    {
+                        FImage(row,"exact_location_card",bubbleX+14,cardY,bubble-28,56);
+                    }
+                    var replaySprite=Resources.Load<Sprite>("UI/Ugui/TrialJournalV3/btn_watch_replay")??Load("button_secondary");
+                    var replayBg=QdaoUguiFactory.CreateImage("SocialTrialReplayBg_"+message.Id,row,bubbleX+24,cardY+6,148,44,replaySprite);
+                    replayBg.type=replaySprite.border.sqrMagnitude>0?Image.Type.Sliced:Image.Type.Simple;
+                    var replayBtn=FHit(row,"SocialTrialReplay_"+message.Id,"看录像",bubbleX+24,cardY+6,148,44,
+                        ()=>HandleWatchSharedTrialReplay(capturedCardId),!State.IsPreview,size:20,color:Ink);
+                    replayBtn.targetGraphic=replayBg;
+
+                    var acceptSprite=Resources.Load<Sprite>("UI/Ugui/TrialJournalV3/btn_accept_challenge")??Load("button_primary");
+                    var acceptBg=QdaoUguiFactory.CreateImage("SocialTrialChallengeBg_"+message.Id,row,bubbleX+184,cardY+6,184,44,acceptSprite);
+                    acceptBg.type=acceptSprite.border.sqrMagnitude>0?Image.Type.Sliced:Image.Type.Simple;
+                    var acceptBtn=FHit(row,"SocialTrialChallenge_"+message.Id,"同誓约应战",bubbleX+184,cardY+6,184,44,
+                        ()=>HandleAcceptTrialChallengeCard(capturedCardId),!State.IsPreview,size:20,color:Cream);
+                    acceptBtn.targetGraphic=acceptBg;
+                }
+                else if(cardHeight>0)
                 {
                     var card=message.Card;
                     float cardY=43+textHeight;

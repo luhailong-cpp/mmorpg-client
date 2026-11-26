@@ -16,7 +16,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
     {
         private CoreGameplayUiRoot _root;
         private GameClient _game;
-        private int _activeTab; // 0=赛季印, 1=五行阵法, 2=试炼志
+        private int _activeTab; // 0=赛季印, 1=五行阵法, 2=试炼志, 3=十季荣誉墙
         private bool _skillsExpanded;
         private SeasonCatchupQuote? _pendingCatchupQuote;
         private int _milestonePage;
@@ -34,6 +34,16 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         public void Show()
         {
             _activeTab = 0;
+            _skillsExpanded = false;
+            _pendingCatchupQuote = null;
+            gameObject.SetActive(true);
+            _game?.Season?.RequestState();
+            Refresh();
+        }
+
+        public void ShowHonorsWall()
+        {
+            _activeTab = 3;
             _skillsExpanded = false;
             _pendingCatchupQuote = null;
             gameObject.SetActive(true);
@@ -74,19 +84,24 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             ValidatePendingQuote(snapshot);
 
             CoreLoopUiArt.Clear(transform);
-            string frameTitle = _activeTab == 1
-                ? "五行阵法 · 人宠相生"
-                : (_activeTab == 0 && snapshot != null && snapshot.Available && !string.IsNullOrWhiteSpace(snapshot.SeasonName)
-                    ? $"{snapshot.SeasonName} · 赛季印"
-                    : "赛季印 · 试炼志");
+            string frameTitle = _activeTab switch
+            {
+                1 => "五行阵法 · 人宠相生",
+                3 => "十季荣誉墙 · 往季追忆",
+                0 when snapshot != null && snapshot.Available && !string.IsNullOrWhiteSpace(snapshot.SeasonName)
+                    => $"{snapshot.SeasonName} · 赛季印",
+                _ => "赛季印 · 试炼志",
+            };
             CoreLoopUiArt.Frame(transform, frameTitle, _root.CloseCurrent);
 
-            CoreLoopUiArt.Button("SeasonTab", transform, 295f, 246f, 200f, 48f,
-                "赛季印", Show, true, _activeTab == 0, 22f, _activeTab == 0 ? "tab_active" : "tab_normal");
-            CoreLoopUiArt.Button("FormationTab", transform, 505f, 246f, 200f, 48f,
-                "五行阵法", ShowFormations, true, _activeTab == 1, 22f, _activeTab == 1 ? "tab_active" : "tab_normal");
-            CoreLoopUiArt.Button("JournalTab", transform, 715f, 246f, 175f, 48f,
-                "试炼志", () => _root.OpenTrialJournal(), true, _activeTab == 2, 22f, _activeTab == 2 ? "tab_active" : "tab_normal");
+            CoreLoopUiArt.Button("SeasonTab", transform, 295f, 246f, 150f, 48f,
+                "赛季印", Show, true, _activeTab == 0, 21f, _activeTab == 0 ? "tab_active" : "tab_normal");
+            CoreLoopUiArt.Button("HonorsTab", transform, 453f, 246f, 150f, 48f,
+                "荣誉墙", ShowHonorsWall, true, _activeTab == 3, 21f, _activeTab == 3 ? "tab_active" : "tab_normal");
+            CoreLoopUiArt.Button("FormationTab", transform, 611f, 246f, 155f, 48f,
+                "五行阵法", ShowFormations, true, _activeTab == 1, 21f, _activeTab == 1 ? "tab_active" : "tab_normal");
+            CoreLoopUiArt.Button("JournalTab", transform, 774f, 246f, 146f, 48f,
+                "试炼志", () => _root.OpenTrialJournal(), true, _activeTab == 2, 21f, _activeTab == 2 ? "tab_active" : "tab_normal");
 
             if (_activeTab == 1)
             {
@@ -109,14 +124,21 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 return;
             }
 
+            bool busy = season.ActionPending || season.RequiresReconnect;
+            if (_activeTab == 3)
+            {
+                DrawHonorsWall(season, snapshot, busy);
+                return;
+            }
+
             if (!snapshot.Available)
             {
-                CoreLoopUiArt.Text("Unavailable", transform, 400f, 360f, 1760f, 90f,
+                CoreLoopUiArt.Text("Unavailable", transform, 400f, 340f, 1760f, 80f,
                     string.IsNullOrWhiteSpace(snapshot.UnavailableReason) ? "当前暂无进行中的赛季" : snapshot.UnavailableReason,
                     34f, CoreLoopUiArt.Muted, false, true, TextAlignmentOptions.Center);
                 if (snapshot.Honors.Count > 0)
-                    DrawHonorsStrip(snapshot, 470f);
-                CoreLoopUiArt.Button("Retry", transform, 1070f, snapshot.Honors.Count > 0 ? 640f : 520f, 420f, 68f,
+                    DrawHonorsStrip(snapshot, 434f);
+                CoreLoopUiArt.Button("Retry", transform, 1070f, snapshot.Honors.Count > 0 ? 730f : 520f, 420f, 68f,
                     "刷新赛季资料", () => season?.RequestState(true), season?.StatePending != true, true, 26f);
                 return;
             }
@@ -125,7 +147,6 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             DrawProgressAndLightStats(snapshot);
 
             bool maxed = snapshot.MaxPoints > 0u && snapshot.ProgressPoints >= snapshot.MaxPoints;
-            bool busy = season.ActionPending || season.RequiresReconnect;
             if (maxed)
                 DrawMaxedBody(season, snapshot, busy);
             else
@@ -146,10 +167,13 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         {
             string timeLabel = SeasonModels.FormatSeasonTimeLabel(snapshot.EndsAtMs, snapshot.ServerNowMs);
             var banner = SeasonV1UiArt.CreateHorizontalSlice(transform, "SeasonBanner",
-                796f, 240f, 1060f, 60f, "season_banner", CoreLoopUiArt.DeepJade);
+                936f, 240f, 924f, 60f, "season_banner", CoreLoopUiArt.DeepJade);
             var bannerText = CoreLoopUiArt.Text("SeasonBannerTitle", banner.transform,
-                40f, 0f, 980f, 60f, $"{snapshot.SeasonName} · 单槽赛季印", 27f, SeasonV1UiArt.BadgeIvoryText,
+                28f, 0f, 868f, 60f, SeasonModels.FormatSeasonTermBanner(snapshot), 26f, SeasonV1UiArt.BadgeIvoryText,
                 true, false, TextAlignmentOptions.Center);
+            bannerText.enableAutoSizing = true;
+            bannerText.fontSizeMin = 17f;
+            bannerText.fontSizeMax = 26f;
             bannerText.raycastTarget = false;
 
             SeasonV1UiArt.CreateBadgePill(transform, "SeasonTimePill",
@@ -276,27 +300,158 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
 
         private void DrawHonorsStrip(global::SeasonStateSnapshot snapshot, float y)
         {
-            CoreLoopUiArt.Card(transform, "SeasonHonorsBar", 295f, y, 1970f, 128f);
+            int count = Mathf.Min(snapshot.Honors.Count, 10);
+            int rows = count > 5 ? 2 : 1;
+            float panelH = 48f + rows * 108f;
+            CoreLoopUiArt.Card(transform, "SeasonHonorsBar", 295f, y, 1970f, panelH);
             CoreLoopUiArt.Text("SeasonHonorsTitle", transform, 320f, y + 10f, 1920f, 30f,
-                "历季永久纪念印记与称谓（纯荣誉零战斗属性 · 换季永久保留）", 22f, CoreLoopUiArt.DeepJade, true);
-            int count = Mathf.Min(snapshot.Honors.Count, 4);
+                $"历季永久纪念印记与称谓（已解锁 {SeasonModels.CountUnlockedHonors(snapshot)}/{snapshot.Honors.Count} · 零战斗属性 · 永不收回）",
+                22f, CoreLoopUiArt.DeepJade, true);
             for (int i = 0; i < count; ++i)
             {
                 var h = snapshot.Honors[i];
                 if (h == null) continue;
-                float x = 320f + i * 480f;
+                int col = i % 5;
+                int row = i / 5;
+                float x = 315f + col * 388f;
+                float iy = y + 48f + row * 104f;
                 var badgeImg = SeasonV1UiArt.CreateFixedIcon(transform, "HonorBadge_" + h.SeasonId,
-                    x, y + 48f, 64f, 64f,
+                    x, iy + 8f, 64f, 64f,
                     SeasonV1UiArt.LoadHonorBadgeIcon(h.SeasonId, h.HonorBadgeIconKey),
                     h.Unlocked ? CoreLoopUiArt.Gold : CoreLoopUiArt.Muted);
                 if (!h.Unlocked) badgeImg.color = new Color(0.72f, 0.72f, 0.72f, 0.52f);
                 string statusText = h.Unlocked
                     ? $"「{h.HonorTitleName}」已解锁"
                     : $"进度 {h.ProgressPoints}/{h.MaxPoints}";
-                CoreLoopUiArt.Text("HonorName_" + h.SeasonId, transform, x + 76f, y + 50f, 384f, 28f,
-                    h.SeasonName, 20f, CoreLoopUiArt.Ink, true);
-                CoreLoopUiArt.Text("HonorStatus_" + h.SeasonId, transform, x + 76f, y + 80f, 384f, 26f,
-                    statusText, 18f, h.Unlocked ? SeasonEconomyUiArt.GoldHighlight : CoreLoopUiArt.Muted);
+                var nameLbl = CoreLoopUiArt.Text("HonorName_" + h.SeasonId, transform, x + 74f, iy + 10f, 300f, 28f,
+                    $"S{h.SeasonId} · {h.SeasonName}", 19f, CoreLoopUiArt.Ink, true);
+                nameLbl.enableAutoSizing = true; nameLbl.fontSizeMin = 13f; nameLbl.fontSizeMax = 19f;
+                var stLbl = CoreLoopUiArt.Text("HonorStatus_" + h.SeasonId, transform, x + 74f, iy + 40f, 300f, 26f,
+                    statusText, 17f, h.Unlocked ? SeasonEconomyUiArt.GoldHighlight : CoreLoopUiArt.Muted);
+                stLbl.enableAutoSizing = true; stLbl.fontSizeMin = 12f; stLbl.fontSizeMax = 17f;
+            }
+        }
+
+        private void DrawHonorsWall(SeasonClient season, global::SeasonStateSnapshot snapshot, bool busy)
+        {
+            int unlockedTotal = SeasonModels.CountUnlockedHonors(snapshot);
+            int total = snapshot.Honors.Count;
+            global::SeasonHonorView retroTarget = null;
+            for (int i = 0; i < snapshot.Honors.Count; ++i)
+            {
+                var h = snapshot.Honors[i];
+                if (h != null && (h.IsRetroTarget || (snapshot.RetroHonorTargetSeasonId != 0u && h.SeasonId == snapshot.RetroHonorTargetSeasonId)))
+                {
+                    retroTarget = h;
+                    break;
+                }
+            }
+
+            CoreLoopUiArt.Card(transform, "HonorsWallSummary", 295f, 314f, 1970f, 76f);
+            CoreLoopUiArt.Text("HonorsWallHeadline", transform, 320f, 322f, 1620f, 30f,
+                $"已永久解锁 {unlockedTotal}/{total} 枚纪念徽章与称谓（纯荣誉零战斗属性 · 跨轮次永不收回 · 全靠免费对局获取）",
+                21f, CoreLoopUiArt.DeepJade, true);
+            string retroSummary = retroTarget != null
+                ? $"满级后免费追忆目标：S{retroTarget.SeasonId} {retroTarget.SeasonName}「{retroTarget.HonorTitleName}」（{retroTarget.ProgressPoints}/{retroTarget.MaxPoints} · {(snapshot.RetroHonorTargetExplicit ? "已手动指定" : "自动顺延")}）"
+                : (total > 0 && unlockedTotal >= total
+                    ? "全部十季永久纪念徽章均已集齐！"
+                    : "本季进度满 12/12 后，继续排位或首领试炼将自动免费累计未解锁往季徽章");
+            var subLbl = CoreLoopUiArt.Text("HonorsWallRetroLine", transform, 320f, 354f, 1620f, 28f,
+                retroSummary, 18f, retroTarget != null ? SeasonEconomyUiArt.GoldHighlight : CoreLoopUiArt.Muted,
+                retroTarget != null);
+            subLbl.enableAutoSizing = true; subLbl.fontSizeMin = 13f; subLbl.fontSizeMax = 18f;
+
+            CoreLoopUiArt.Button("ResetRetroHonorAuto", transform, 2006f, 327f, 236f, 50f,
+                "恢复自动顺延", () => season.SetRetroHonorTarget(0u),
+                !busy && snapshot.CanSwitchSeal && snapshot.RetroHonorTargetExplicit, false, 20f);
+
+            const float cardW = 382f;
+            const float cardH = 248f;
+            const float gapX = 15f;
+            const float gapY = 16f;
+            int count = Mathf.Min(snapshot.Honors.Count, 10);
+            for (int i = 0; i < count; ++i)
+            {
+                var h = snapshot.Honors[i];
+                if (h == null) continue;
+                int col = i % 5;
+                int row = i / 5;
+                float cx = 295f + col * (cardW + gapX);
+                float cy = 404f + row * (cardH + gapY);
+                bool isRetro = h.IsRetroTarget || (snapshot.RetroHonorTargetSeasonId != 0u && h.SeasonId == snapshot.RetroHonorTargetSeasonId);
+                CoreLoopUiArt.Card(transform, "HonorWallCard_" + h.SeasonId, cx, cy, cardW, cardH,
+                    selected: h.Unlocked || isRetro);
+
+                var badgeImg = SeasonV1UiArt.CreateFixedIcon(transform, "HonorWallBadge_" + h.SeasonId,
+                    cx + 16f, cy + 16f, 80f, 80f,
+                    SeasonV1UiArt.LoadHonorBadgeIcon(h.SeasonId, h.HonorBadgeIconKey),
+                    h.Unlocked ? CoreLoopUiArt.Gold : CoreLoopUiArt.Muted);
+                if (!h.Unlocked) badgeImg.color = new Color(0.72f, 0.72f, 0.72f, 0.52f);
+
+                var sName = CoreLoopUiArt.Text("HonorWallSeason_" + h.SeasonId, transform, cx + 108f, cy + 16f, 258f, 30f,
+                    $"S{h.SeasonId} · {h.SeasonName}", 21f, CoreLoopUiArt.DeepJade, true);
+                sName.enableAutoSizing = true; sName.fontSizeMin = 15f; sName.fontSizeMax = 21f;
+
+                var tName = CoreLoopUiArt.Text("HonorWallTitle_" + h.SeasonId, transform, cx + 108f, cy + 48f, 258f, 26f,
+                    $"称谓「{h.HonorTitleName}」", 17f, h.Unlocked ? SeasonEconomyUiArt.GoldHighlight : CoreLoopUiArt.Ink, h.Unlocked);
+                tName.enableAutoSizing = true; tName.fontSizeMin = 13f; tName.fontSizeMax = 17f;
+
+                string tagText = h.Unlocked ? "永久已解锁"
+                    : h.IsCurrentSeason ? "本季进行中"
+                    : isRetro ? "当前追忆目标"
+                    : "往季未解锁";
+                Color tagColor = h.Unlocked ? SeasonEconomyUiArt.GoldHighlight
+                    : (h.IsCurrentSeason || isRetro) ? CoreLoopUiArt.Jade
+                    : CoreLoopUiArt.Muted;
+                CoreLoopUiArt.Text("HonorWallTag_" + h.SeasonId, transform, cx + 108f, cy + 78f, 258f, 24f,
+                    tagText, 16f, tagColor, true);
+
+                uint maxPts = h.MaxPoints > 0u ? h.MaxPoints : 12u;
+                uint curPts = h.Unlocked ? maxPts : System.Math.Min(h.ProgressPoints, maxPts);
+                CoreLoopUiArt.Text("HonorWallProg_" + h.SeasonId, transform, cx + 16f, cy + 114f, 350f, 24f,
+                    $"累计进度 {curPts} / {maxPts}", 16f, CoreLoopUiArt.Ink);
+                CoreLoopUiArt.Image("HonorWallTrack_" + h.SeasonId, transform, cx + 16f, cy + 144f, 350f, 12f,
+                    null, new Color(0.76f, 0.80f, 0.72f, 0.92f));
+                float ratio = SeasonEconomyUiArt.ComputeProgressRatio(curPts, maxPts);
+                if (ratio > 0f)
+                {
+                    CoreLoopUiArt.Image("HonorWallFill_" + h.SeasonId, transform, cx + 16f, cy + 144f, 350f * ratio, 12f,
+                        null, h.Unlocked ? SeasonEconomyUiArt.GoldHighlight : CoreLoopUiArt.Jade);
+                }
+
+                if (h.Unlocked)
+                {
+                    SeasonV1UiArt.CreateBadgePill(transform, "HonorWallDone_" + h.SeasonId,
+                        cx + 16f, cy + 178f, 350f, 48f, "season_badge_equipped", "永久已解锁（永不收回）", 18f,
+                        CoreLoopUiArt.DeepJade, SeasonV1UiArt.BadgeIvoryText);
+                }
+                else if (h.IsCurrentSeason)
+                {
+                    SeasonV1UiArt.CreateBadgePill(transform, "HonorWallCur_" + h.SeasonId,
+                        cx + 16f, cy + 178f, 350f, 48f, "season_badge_free", "本季免费累计", 18f,
+                        new Color(0.84f, 0.92f, 0.85f, 0.96f), CoreLoopUiArt.DeepJade);
+                }
+                else if (isRetro)
+                {
+                    SeasonV1UiArt.CreateBadgePill(transform, "HonorWallActive_" + h.SeasonId,
+                        cx + 16f, cy + 178f, 350f, 48f, "season_badge_equipped",
+                        snapshot.RetroHonorTargetExplicit ? "追忆中（已指定）" : "追忆中（自动顺延）", 18f,
+                        CoreLoopUiArt.Jade, SeasonV1UiArt.BadgeIvoryText);
+                }
+                else
+                {
+                    uint capturedSid = h.SeasonId;
+                    CoreLoopUiArt.Button("SetRetroTarget_" + capturedSid, transform, cx + 16f, cy + 178f, 350f, 48f,
+                        "设为追忆目标", () => season.SetRetroHonorTarget(capturedSid),
+                        !busy && snapshot.CanSwitchSeal, true, 19f);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(season.Status))
+            {
+                CoreLoopUiArt.Text("HonorsWallStatus", transform, 300f, 938f, 1960f, 34f,
+                    season.Status, 21f, season.StatusIsError ? CoreLoopUiArt.Warning : CoreLoopUiArt.Jade,
+                    false, false, TextAlignmentOptions.MidlineLeft);
             }
         }
 
@@ -386,9 +541,29 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             DrawSkillsGrid(snapshot, 1280f, 564f, 482f, 114f, 20f, 12f);
 
             var currentHonor = SeasonModels.FindCurrentHonor(snapshot);
-            string maxedMsg = currentHonor != null && currentHonor.Unlocked && !string.IsNullOrWhiteSpace(currentHonor.HonorTitleName)
-                ? $"本季进度已满 · 已永久解锁零数值纪念称谓「{currentHonor.HonorTitleName}」，可随时免费切换赛季印"
-                : "本季进度已满，可随时免费切换赛季印";
+            global::SeasonHonorView retroTarget = null;
+            for (int i = 0; i < snapshot.Honors.Count; ++i)
+            {
+                var h = snapshot.Honors[i];
+                if (h != null && !h.Unlocked && (h.IsRetroTarget || (snapshot.RetroHonorTargetSeasonId != 0u && h.SeasonId == snapshot.RetroHonorTargetSeasonId)))
+                {
+                    retroTarget = h;
+                    break;
+                }
+            }
+            string maxedMsg;
+            if (retroTarget != null)
+            {
+                maxedMsg = $"本季已满 · 继续免费对局自动追忆「{retroTarget.SeasonName} · {retroTarget.HonorTitleName}」（{retroTarget.ProgressPoints}/{retroTarget.MaxPoints}）";
+            }
+            else if (currentHonor != null && currentHonor.Unlocked && !string.IsNullOrWhiteSpace(currentHonor.HonorTitleName))
+            {
+                maxedMsg = $"本季进度已满 · 已永久解锁零数值纪念称谓「{currentHonor.HonorTitleName}」，可随时免费切换赛季印";
+            }
+            else
+            {
+                maxedMsg = "本季进度已满，可随时免费切换赛季印";
+            }
             CoreLoopUiArt.Card(transform, "MaxedNoticeBar", 295f, 814f, 1970f, 64f);
             if (currentHonor != null && currentHonor.Unlocked)
             {
@@ -396,9 +571,15 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     SeasonV1UiArt.LoadHonorBadgeIcon(currentHonor.SeasonId, currentHonor.HonorBadgeIconKey),
                     CoreLoopUiArt.Gold);
             }
-            CoreLoopUiArt.Text("MaxedNoticeText", transform, 375f, 824f, 1870f, 44f,
-                maxedMsg, 25f, CoreLoopUiArt.DeepJade,
-                true, false, TextAlignmentOptions.Center);
+            var maxedLbl = CoreLoopUiArt.Text("MaxedNoticeText", transform, 375f, 824f, 1635f, 44f,
+                maxedMsg, 23f, CoreLoopUiArt.DeepJade,
+                true, false, TextAlignmentOptions.MidlineLeft);
+            maxedLbl.enableAutoSizing = true;
+            maxedLbl.fontSizeMin = 15f;
+            maxedLbl.fontSizeMax = 23f;
+
+            CoreLoopUiArt.Button("OpenHonorsWallFromMaxed", transform, 2028f, 821f, 220f, 50f,
+                "十季荣誉墙", ShowHonorsWall, true, retroTarget != null, 20f);
 
             DrawMaxedFreeSkillsFooter(snapshot, 886f);
         }
@@ -432,8 +613,24 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             float descX = nameX + nameW + 14f;
             float rightW = compact ? 170f : 220f;
             float descW = Mathf.Max(140f, w - (descX - x) - rightW - 28f);
-            CoreLoopUiArt.Text("SealDesc_" + seal.SealId, transform, descX, y + 8f, descW, h - 16f,
-                seal.Description, compact ? 18f : 21f, CoreLoopUiArt.Ink, false, true);
+            string resonanceHint = SeasonModels.DescribeSealResonance(seal, snapshot.SeasonId);
+            if (!string.IsNullOrEmpty(resonanceHint))
+            {
+                float innerH = h - 10f;
+                float topH = innerH * 0.54f;
+                float bottomH = innerH - topH;
+                var descLbl = CoreLoopUiArt.Text("SealDesc_" + seal.SealId, transform, descX, y + 5f, descW, topH,
+                    seal.Description, compact ? 16f : 19f, CoreLoopUiArt.Ink, false, false);
+                descLbl.enableAutoSizing = true; descLbl.fontSizeMin = 12f; descLbl.fontSizeMax = compact ? 16f : 19f;
+                var resLbl = CoreLoopUiArt.Text("SealResonance_" + seal.SealId, transform, descX, y + 5f + topH, descW, bottomH,
+                    resonanceHint, compact ? 14f : 17f, CoreLoopUiArt.DeepJade, true, false);
+                resLbl.enableAutoSizing = true; resLbl.fontSizeMin = 11f; resLbl.fontSizeMax = compact ? 14f : 17f;
+            }
+            else
+            {
+                CoreLoopUiArt.Text("SealDesc_" + seal.SealId, transform, descX, y + 8f, descW, h - 16f,
+                    seal.Description, compact ? 18f : 21f, CoreLoopUiArt.Ink, false, true);
+            }
 
             float actionX = x + w - rightW - 18f;
             float actionY = y + (h - 48f) * 0.5f;

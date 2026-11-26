@@ -229,7 +229,7 @@ namespace MmorpgClient.Tests.EditMode.Tournament
         }
 
         [Test]
-        public void V2_SaluteChampion_And_SpectateCheer_MergeCooldownAndReset()
+        public void V2_SpectateCheer_MergeCooldownAndReset()
         {
             // 先拉总览使 Overview 带有第 1 季总冠军
             Assert.That(_client.RequestOverview(includeHistory: true), Is.True);
@@ -242,42 +242,19 @@ namespace MmorpgClient.Tests.EditMode.Tournament
                     Enabled = true,
                     ChampionSquadId = 5001UL,
                     ChampionSquadName = "太玄剑阁",
-                    ChampionSaluteCount = 7UL,
-                    SalutedToday = false,
                 },
                 ServerTimeMs = 100_000UL,
             };
             _net.Calls[0].Reply(ovResp);
-            Assert.That(_client.Overview.Season.SalutedToday, Is.False);
 
-            // 1. V2 RPC 506：观道致敬更新计数与今日已致敬态
-            TournamentSaluteOutcome? fired = null;
-            _client.ChampionSaluted += o => fired = o;
-            _now += 2f;
-            Assert.That(_client.SaluteChampion(1u), Is.True);
-            Assert.That(_net.Calls[1].MessageId, Is.EqualTo(MatchServiceRpc.SaluteTournamentChampionMessageId));
-            var salResp = new SaluteTournamentChampionResponse
-            {
-                SeasonId = 1u,
-                ChampionSaluteCount = 8UL,
-                SalutedToday = true,
-                GoldAmount = 5000UL,
-                MailId = 88001UL,
-            };
-            salResp.Items.Add(new TournamentRewardItem { ItemId = 20u, Count = 3u });
-            _net.Calls[1].Reply(salResp);
-            Assert.That(_client.Overview.Season.SalutedToday, Is.True);
-            Assert.That(_client.Overview.Season.ChampionSaluteCount, Is.EqualTo(8UL));
-            Assert.That(fired.HasValue && fired.Value.MailId == 88001UL && fired.Value.GoldAmount == 5000UL, Is.True);
-
-            // 2. V2 RPC 507/508：预设喝彩白名单校验 + 增量合并 + 冷却 + 切场清空
+            // V2 RPC 507/508：预设喝彩白名单校验 + 增量合并 + 冷却 + 切场清空
             Assert.That(_client.SendSpectateCheer(77701UL, 0u, 0u), Is.False, "非法 phraseId=0 不发包");
             Assert.That(_client.SendSpectateCheer(77701UL, 7u, 0u), Is.False, "非法 phraseId=7 不发包");
             Assert.That(_client.SendSpectateCheer(77701UL, 3u, 2u), Is.False, "非法 side=2 不发包");
 
             _now += 2f;
             Assert.That(_client.SendSpectateCheer(77701UL, 3u, 0u), Is.True);
-            Assert.That(_net.Calls[2].MessageId, Is.EqualTo(MatchServiceRpc.SendTournamentSpectateCheerMessageId));
+            Assert.That(_net.Calls[1].MessageId, Is.EqualTo(MatchServiceRpc.SendTournamentSpectateCheerMessageId));
             var sendResp = new SendTournamentSpectateCheerResponse
             {
                 BattleId = 77701UL,
@@ -287,7 +264,7 @@ namespace MmorpgClient.Tests.EditMode.Tournament
                 ServerTimeMs = 110_000UL,
             };
             sendResp.RecentCheers.Add(new TournamentSpectateCheerItem { Seq = 1UL, PhraseId = 3u, Side = 0u, SenderName = "道友甲" });
-            _net.Calls[2].Reply(sendResp);
+            _net.Calls[1].Reply(sendResp);
             Assert.That(_client.SpectateCheer, Is.Not.Null);
             Assert.That(_client.SpectateCheer.CountA, Is.EqualTo(1UL));
             Assert.That(_client.SpectateCheer.LatestSeq, Is.EqualTo(1UL));
@@ -296,7 +273,7 @@ namespace MmorpgClient.Tests.EditMode.Tournament
             // 增量拉取 RPC 508 自动带 after_seq=1 并保留已有条目
             _now += 2f;
             Assert.That(_client.RequestSpectateCheer(77701UL), Is.True);
-            var getReq = (GetTournamentSpectateCheerRequest)_net.Calls[3].Request;
+            var getReq = (GetTournamentSpectateCheerRequest)_net.Calls[2].Request;
             Assert.That(getReq.AfterSeq, Is.EqualTo(1UL));
             var getResp = new GetTournamentSpectateCheerResponse
             {
@@ -306,7 +283,7 @@ namespace MmorpgClient.Tests.EditMode.Tournament
                 ServerTimeMs = 112_000UL,
             };
             getResp.RecentCheers.Add(new TournamentSpectateCheerItem { Seq = 2UL, PhraseId = 6u, Side = 1u, SenderName = "道友乙" });
-            _net.Calls[3].Reply(getResp);
+            _net.Calls[2].Reply(getResp);
             Assert.That(_client.SpectateCheer.CountB, Is.EqualTo(2UL));
             Assert.That(_client.SpectateCheer.RecentCheers.Count, Is.EqualTo(2));
             Assert.That(_client.SpectateCheer.LatestSeq, Is.EqualTo(2UL));

@@ -333,5 +333,60 @@ namespace MmorpgClient.Tests.EditMode.Role
                 }
             }
         }
+
+        [Test]
+        public void DeliveredBindGoldAndRewardedAdIcons_MatchAssetContract()
+        {
+            string cwd = Directory.GetCurrentDirectory();
+            string resourcesRoot = Directory.Exists(Path.Combine(cwd, "Assets", "Resources"))
+                ? Path.Combine(cwd, "Assets", "Resources")
+                : Path.Combine(cwd, "mmorpg-client", "Assets", "Resources");
+
+            string[] resourcePaths =
+            {
+                CurrencyLabels.BindGoldIconResourcePath,
+                RewardedAdModel.VideoIconResourcePath,
+            };
+            var seenGuids = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (string resPath in resourcePaths)
+            {
+                string pngPath = Path.Combine(resourcesRoot, resPath.Replace('/', Path.DirectorySeparatorChar) + ".png");
+                string metaPath = pngPath + ".meta";
+                Assert.That(File.Exists(pngPath), Is.True, $"Missing icon PNG: {resPath}");
+                Assert.That(File.Exists(metaPath), Is.True, $"Missing icon meta: {resPath}.meta");
+
+                byte[] header = new byte[26];
+                using (var fs = File.OpenRead(pngPath))
+                    Assert.That(fs.Read(header, 0, header.Length), Is.EqualTo(header.Length), resPath);
+                int w = (header[16] << 24) | (header[17] << 16) | (header[18] << 8) | header[19];
+                int h = (header[20] << 24) | (header[21] << 16) | (header[22] << 8) | header[23];
+                Assert.That(w, Is.EqualTo(128), $"{resPath} width");
+                Assert.That(h, Is.EqualTo(128), $"{resPath} height");
+                Assert.That(header[25], Is.EqualTo((byte)6), $"{resPath} must be RGBA PNG-32");
+
+                string meta = File.ReadAllText(metaPath);
+                Assert.That(meta, Does.Contain("enableMipMap: 0"), resPath);
+                Assert.That(meta, Does.Contain("filterMode: 1"), resPath);
+                Assert.That(meta, Does.Contain("wrapU: 1"), resPath);
+                Assert.That(meta, Does.Contain("alphaIsTransparency: 1"), resPath);
+                Assert.That(meta, Does.Contain("textureType: 8"), resPath);
+                Assert.That(meta, Does.Contain("spriteMode: 1"), resPath);
+                Assert.That(meta, Does.Contain("spriteBorder: {x: 0, y: 0, z: 0, w: 0}"), resPath);
+
+                string guidLine = null;
+                foreach (string line in File.ReadAllLines(metaPath))
+                {
+                    if (line.StartsWith("guid: ", StringComparison.Ordinal))
+                    {
+                        guidLine = line.Substring(6).Trim();
+                        break;
+                    }
+                }
+                Assert.That(guidLine, Is.Not.Null.And.Length.EqualTo(32), resPath);
+                Assert.That(seenGuids.Add(guidLine), Is.True, $"Duplicate GUID {guidLine} on {resPath}");
+            }
+            Assert.That(seenGuids.Count, Is.EqualTo(2));
+        }
     }
 }

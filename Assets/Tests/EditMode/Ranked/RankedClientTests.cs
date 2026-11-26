@@ -421,13 +421,13 @@ namespace MmorpgClient.Tests.EditMode.Ranked
             // 1. 宿敌标签与雪耻复仇印文案
             Assert.That(RankedFormatting.PrepRivalryTagText(new RankedRivalryEncounter
             {
-                OpponentPlayerId = 2002UL,
+                OpponentId = 2002UL,
                 OpponentName = "玄烈",
                 Wins = 1u,
                 Losses = 2u,
-                LastOutcome = 2u,
+                RevengeTarget = true,
             }), Is.EqualTo("宿敌 · 玄烈 1胜2负(可雪耻)"));
-            Assert.That(RankedFormatting.RevengeStampText("玄烈", 2u, 2u), Is.EqualTo("雪耻复仇 · 胜玄烈(2胜2负)"));
+            Assert.That(RankedFormatting.RevengeStampText(true, "玄烈", 2u, 2u), Is.EqualTo("雪耻复仇 · 胜玄烈 (2胜2负)"));
             Assert.That(RankedFormatting.FormatWinRatePercent(3u, 4u), Is.EqualTo("75%"));
 
             // 2. Profile 透传 FeaturedBuilds 与 TopRivals
@@ -474,7 +474,7 @@ namespace MmorpgClient.Tests.EditMode.Ranked
                     BattleId = 99002UL,
                     CompetitiveRanked = true,
                     SeasonId = 1u,
-                    MatchMode = (uint)MatchMode.PvpSolo,
+                    MatchMode = (uint)MatchMode.PvpTeam,
                     Outcome = eBattleOutcome.BattleOutcomeSideAWin,
                     TotalRounds = 7u,
                     RevengedRival = true,

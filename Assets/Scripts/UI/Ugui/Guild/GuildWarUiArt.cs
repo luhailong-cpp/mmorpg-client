@@ -29,7 +29,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         public static readonly Color CrimsonText = QdaoUguiTheme.Html("#9C2B1A");
         public static readonly Color DeepBackdrop = new Color(0.027f, 0.094f, 0.114f, 0.72f);
 
-        /// <summary>全部 31 张正式运行切图名（8 张无字底板 + 23 张独立无字透明切图）。</summary>
+        /// <summary>全部 33 张正式运行切图名（8 张无字底板 + 25 张独立无字透明切图）。</summary>
         public static readonly string[] AllAssetKeys =
         {
             "panel_01_guild_home",
@@ -56,6 +56,8 @@ namespace MmorpgClient.UI.Ugui.Guild
             "badge_stance_war",
             "badge_stance_peace",
             "badge_frenzy_round12",
+            "badge_gold_leyline",
+            "badge_rival_guild",
             "chest_merit_locked",
             "chest_merit_ready",
             "chest_merit_claimed",
@@ -74,6 +76,34 @@ namespace MmorpgClient.UI.Ugui.Guild
             var sprite = QdaoUguiTheme.RequireSprite(Root + key);
             Cache[key] = sprite;
             return sprite;
+        }
+
+        /// <summary>加载 V2.5 可选增补切片；未落盘前自动优雅降级到既有正式切图，落盘后零改代码自动生效。</summary>
+        public static Sprite LoadOrFallback(string key, string fallbackKey)
+        {
+            if (!string.IsNullOrEmpty(key))
+            {
+                if (Cache.TryGetValue(key, out var cached) && cached != null) return cached;
+                var loaded = Resources.Load<Sprite>(Root + key);
+                if (loaded != null)
+                {
+                    Cache[key] = loaded;
+                    return loaded;
+                }
+            }
+            return Load(fallbackKey);
+        }
+
+        public static Image ArtOrFallback(UnityEngine.Transform parent, string name, string key, string fallbackKey,
+            float x, float y, float w, float h, bool preserveAspect = false)
+        {
+            var sprite = LoadOrFallback(key, fallbackKey);
+            var img = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, sprite);
+            img.type = !preserveAspect && sprite != null && sprite.border.sqrMagnitude > 0f
+                ? Image.Type.Sliced
+                : Image.Type.Simple;
+            img.preserveAspect = preserveAspect;
+            return img;
         }
 
         public static string LeylineBackgroundKey(uint leylineId) => leylineId switch

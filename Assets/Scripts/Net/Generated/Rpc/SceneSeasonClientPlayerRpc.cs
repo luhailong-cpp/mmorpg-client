@@ -67,5 +67,10 @@ namespace MmorpgClient.Net.Generated
         public static void DeleteBattleBuildBookmark(IRpcChannel channel, global::DeleteBattleBuildBookmarkRequest request,
             RpcDone<global::DeleteBattleBuildBookmarkResponse> done)
             => channel.CallMethod(DeleteBattleBuildBookmarkMessageId, request, global::DeleteBattleBuildBookmarkResponse.Parser, done);
+
+        public const uint SetRetroHonorTargetMessageId = 569;
+        public static void SetRetroHonorTarget(IRpcChannel channel, global::SetRetroHonorTargetRequest request,
+            RpcDone<global::SetRetroHonorTargetResponse> done)
+            => channel.CallMethod(SetRetroHonorTargetMessageId, request, global::SetRetroHonorTargetResponse.Parser, done);
     }
 }

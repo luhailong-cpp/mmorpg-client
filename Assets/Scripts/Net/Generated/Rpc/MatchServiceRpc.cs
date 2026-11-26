@@ -251,15 +251,11 @@ namespace MmorpgClient.Net.Generated
             RpcDone<global::Match.ClaimTournamentRewardResponse> done)
             => channel.CallMethod(ClaimTournamentRewardMessageId, request, global::Match.ClaimTournamentRewardResponse.Parser, done);
 
-        public const uint SaluteTournamentChampionMessageId = 506;
-        /// <summary>
-        /// ---- 全服赛季战队锦标赛《群仙问道赛》V2(docs/design/season-team-tournament-v2.md):请求只认会话本人 ----
-        /// </summary>
-        public static void SaluteTournamentChampion(IRpcChannel channel, global::Match.SaluteTournamentChampionRequest request,
-            RpcDone<global::Match.SaluteTournamentChampionResponse> done)
-            => channel.CallMethod(SaluteTournamentChampionMessageId, request, global::Match.SaluteTournamentChampionResponse.Parser, done);
-
         public const uint SendTournamentSpectateCheerMessageId = 507;
+        /// <summary>
+        /// ---- 全服赛季战队锦标赛《群仙问道赛》V2(docs/planning/season-team-tournament-v2.md):请求只认会话本人 ----
+        /// 原 506=SaluteTournamentChampion（每日免费观道致敬）已彻底移除，消息号 506 永久保留不复用。
+        /// </summary>
         public static void SendTournamentSpectateCheer(IRpcChannel channel, global::Match.SendTournamentSpectateCheerRequest request,
             RpcDone<global::Match.SendTournamentSpectateCheerResponse> done)
             => channel.CallMethod(SendTournamentSpectateCheerMessageId, request, global::Match.SendTournamentSpectateCheerResponse.Parser, done);
@@ -360,5 +356,24 @@ namespace MmorpgClient.Net.Generated
                 handler(message);
             });
         }
+
+        public const uint CreateTrialChallengeCardMessageId = 570;
+        /// <summary>
+        /// ---- 五行试炼志 V3：好友约战帖与受控 PVE 录像播放(docs/planning/trial-journal-v3-wild-bosses-vows-replay-share.md) ----
+        /// 均为只认会话本人（Create 校验参战者身份；Get 与 GetSharedReplay 凭有效未过期 card_id 放行，不破坏既有 GetBattleReport 隐私边界）。
+        /// </summary>
+        public static void CreateTrialChallengeCard(IRpcChannel channel, global::Match.CreateTrialChallengeCardRequest request,
+            RpcDone<global::Match.CreateTrialChallengeCardResponse> done)
+            => channel.CallMethod(CreateTrialChallengeCardMessageId, request, global::Match.CreateTrialChallengeCardResponse.Parser, done);
+
+        public const uint GetTrialChallengeCardMessageId = 571;
+        public static void GetTrialChallengeCard(IRpcChannel channel, global::Match.GetTrialChallengeCardRequest request,
+            RpcDone<global::Match.GetTrialChallengeCardResponse> done)
+            => channel.CallMethod(GetTrialChallengeCardMessageId, request, global::Match.GetTrialChallengeCardResponse.Parser, done);
+
+        public const uint GetSharedTrialReplayMessageId = 572;
+        public static void GetSharedTrialReplay(IRpcChannel channel, global::Match.GetSharedTrialReplayRequest request,
+            RpcDone<global::Match.GetSharedTrialReplayResponse> done)
+            => channel.CallMethod(GetSharedTrialReplayMessageId, request, global::Match.GetSharedTrialReplayResponse.Parser, done);
     }
 }

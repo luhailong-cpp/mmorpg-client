@@ -4,6 +4,7 @@ using System.Globalization;
 using Match;
 using MmorpgClient.Game.Tournament;
 using MmorpgClient.Table;
+using MmorpgClient.UI.Ugui.Gameplay;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,11 +48,13 @@ namespace MmorpgClient.UI.Ugui.Tournament
         public event Action<ulong, IReadOnlyList<ulong>> StartMatchSubmitted;
         public event Action<ulong> CheerSquadClicked;
         public event Action<uint> ClaimRewardClicked;
-        public event Action<uint> SaluteChampionConfirmed;
         public event Action<ulong> WatchBattleClicked;
         public event Action<ulong> WatchReplayClicked;
         public event Action OpenMailClicked;
         public event Action<TournamentInviteQuickSource> InviteSourceRequested;
+        public event Action<uint> EquipLoadoutSwitchRequested;
+        public event Action<uint> EquipLoadoutLockedClicked;
+        public event Action EquipLoadoutRefreshRequested;
 
         private readonly TournamentUiModel _model;
         private readonly Func<ulong, string> _resolveCharacterId;
@@ -72,8 +75,6 @@ namespace MmorpgClient.UI.Ugui.Tournament
         private TMP_Text _heroStageTagLabel;
         private TMP_Text _intermissionCountdownLabel;
         private TournamentLeylineElement _renderedInspectLeyline = TournamentLeylineElement.TournamentLeylineUnspecified;
-        private bool _renderedSalutedToday;
-        private ulong _renderedSaluteCount;
         private float _toastHideAt = -1f;
 
         private TournamentModalKind _renderedModal = TournamentModalKind.None;
@@ -93,11 +94,13 @@ namespace MmorpgClient.UI.Ugui.Tournament
         private TournamentHighlightsSnapshot _renderedHighlights;
         private ulong _renderedMvpMatchId;
         private int _renderedBanSig = -1;
+        private int _renderedLoadoutSig;
 
         private TournamentOverviewSnapshot _lastOverview;
         private TournamentStandingsSnapshot _lastStandings;
         private TournamentPredictionBoardSnapshot _lastPredictionBoard;
         private TournamentHighlightsSnapshot _lastHighlights;
+        private PreBattleLoadoutBarState _lastLoadoutBar;
         private ulong _lastPlayerId;
         private bool _lastBusy;
         private string _lastStatus = string.Empty;
@@ -184,6 +187,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
         {
             _model.CloseModal();
             ForceCloseModalVisual();
+            _lastLoadoutBar = null;
             Root.gameObject.SetActive(false);
         }
 
@@ -236,12 +240,14 @@ namespace MmorpgClient.UI.Ugui.Tournament
             IReadOnlyList<TournamentInviteCandidate> inviteCandidates = null,
             string inviteSourceStatus = null,
             TournamentPredictionBoardSnapshot predictionBoard = null,
-            TournamentHighlightsSnapshot highlights = null)
+            TournamentHighlightsSnapshot highlights = null,
+            PreBattleLoadoutBarState loadoutBar = null)
         {
             _lastOverview = overview;
             _lastStandings = standings;
             _lastPredictionBoard = predictionBoard;
             _lastHighlights = highlights;
+            if (loadoutBar != null) _lastLoadoutBar = loadoutBar;
             _lastPlayerId = playerId;
             _lastBusy = isBusy;
             _lastStatus = status ?? string.Empty;
@@ -732,10 +738,23 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 : (sq.SeedRank > 0
                     ? $"海选定档：#{sq.SeedRank} · 助威人气 {sq.CheerCount}"
                     : $"本季进度与战绩按服务端快照刷新 · 助威人气 {sq.CheerCount}");
-            TournamentArtCatalog.Label("RankHint", card, 24f, 360f, w - 48f, 52f,
+            TournamentArtCatalog.Label("RankHint", card, 24f, 360f, w - 48f, 48f,
                 rankHint, 15f, TournamentArtCatalog.Muted, wrap: true);
 
+            if (overview.Season.Stage != TournamentStage.Settled)
+                RenderTournamentLoadoutBar(card, "OverviewLoadoutQuickBar", 24f, 414f, w - 48f, 60f);
+
             RenderPrimaryCtaFooter(card, w, h, cta, overview);
+        }
+
+        private void RenderTournamentLoadoutBar(Transform parent, string name, float x, float y, float w, float h)
+        {
+            if (_lastLoadoutBar == null) return;
+            PreBattleLoadoutQuickBar.Render(
+                parent, name, x, y, w, h, _lastLoadoutBar,
+                onSwitchScheme: id => EquipLoadoutSwitchRequested?.Invoke(id),
+                onLockedClicked: id => EquipLoadoutLockedClicked?.Invoke(id),
+                onRefreshClicked: () => EquipLoadoutRefreshRequested?.Invoke());
         }
 
         private void RenderPrimaryCtaFooter(RectTransform card, float w, float h, TournamentPrimaryCta cta, TournamentOverviewSnapshot overview)
@@ -1696,7 +1715,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             TournamentArtCatalog.Box("Sep", parent, 0f, y + 50f, w, 1f, TournamentArtCatalog.Line);
         }
 
-        // ==================== 分页 5：冠军殿堂（V2 玉石基座 + 牌匾 + 观道致敬） ====================
+        // ==================== 分页 5：冠军殿堂（V2 玉石基座 + 牌匾） ====================
 
         private void RenderHallTab(TournamentOverviewSnapshot overview)
         {
@@ -1724,17 +1743,6 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 "v2-b-champion-plaque", preserveAspect: true);
             TournamentArtCatalog.Label("PlaqueChampName", plaque.transform, 36f, 16f, 348f, 64f,
                 champName, 30f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
-
-            // V2 模块 B：右侧 80×80 可点击观道致敬气泡
-            uint targetSeasonId = latest.SeasonId;
-            var bubbleBtn = QdaoUguiFactory.CreateArtButton("HallSaluteBubble", spot, leftW - 108f, 24f, 80f, 80f,
-                TournamentArtCatalog.Load("v2-b-salute-bubble"), out var bImg);
-            bImg.preserveAspect = true;
-            bubbleBtn.onClick.AddListener(() =>
-            {
-                _model.OpenSaluteModal(targetSeasonId);
-                SyncModalVisual(_lastOverview, _lastBusy);
-            });
 
             // V2 模块 B：玉石基座（480×320 等比居中）+ 真实冠军成员头像（无数据时中性太极占位，严禁借演示图冒充）
             TournamentArtCatalog.SpriteBox("ChampPedestal", spot, (leftW - 420f) * 0.5f, 178f, 420f, 280f,
@@ -1791,22 +1799,14 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     string.Join("   |   ", parts), 14f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
             }
 
-            // 底部：全服累计观道次数 + 每日免费观道致敬按钮
+            // 底部：赛季封榜日期与纯荣誉铭记
             string dateText = latest.EndMs > 0 ? $"封榜日期：{FormatUtc8Date(latest.EndMs)}" : $"第 {latest.SeasonId} 赛季总冠军";
-            TournamentArtCatalog.Label("SaluteSummary", spot, 28f, 470f, 460f, 28f,
-                $"{dateText}  ·  全服已观道致敬 {latest.ChampionSaluteCount} 次",
+            TournamentArtCatalog.Label("ChampionDateSummary", spot, 28f, 476f, leftW - 56f, 28f,
+                $"{dateText}  ·  历届问鼎名录永久铭刻",
                 16f, TournamentArtCatalog.GoldTagText, bold: true);
-            TournamentArtCatalog.Label("SaluteSub", spot, 28f, 502f, 460f, 26f,
-                latest.SalutedToday ? "今日已完成观道致敬，明日 0 点后可再次免费致敬。" : "每日可免费向总冠军观道致敬一次，立得绑定薄礼。",
+            TournamentArtCatalog.Label("ChampionHonorSub", spot, 28f, 508f, leftW - 56f, 26f,
+                "赛季总冠军将留名冠军殿堂并在天墉城广场立座示荣。",
                 14f, TournamentArtCatalog.Muted);
-
-            TournamentArtCatalog.V2PrimaryButton("OpenSaluteModalBtn", spot, leftW - 220f, 480f, 190f, 46f,
-                latest.SalutedToday ? "今日已观道" : "观道致敬",
-                () =>
-                {
-                    _model.OpenSaluteModal(targetSeasonId);
-                    SyncModalVisual(_lastOverview, _lastBusy);
-                }, interactable: !_lastBusy, fontSize: 19f);
 
             // 右侧历届列表
             var histBox = TournamentArtCatalog.BorderedCard("HistoryListBox", _pageRoot, rightX, 0f, rightW, 574f,
@@ -1860,11 +1860,13 @@ namespace MmorpgClient.UI.Ugui.Tournament
 
             int lineupSig = ComputeLineupSig();
             int inviteSig = ComputeInviteSig();
-            var saluteTarget = overview?.FindChampionSeason(_model.SaluteTargetSeasonId);
-            bool salutedNow = saluteTarget?.SalutedToday ?? false;
-            ulong saluteCountNow = saluteTarget?.ChampionSaluteCount ?? 0UL;
             ulong mvpMatchIdNow = _model.InspectedMvpMatch?.MatchId ?? 0UL;
             int banSigNow = ComputeBanSig(ResolveBanTargetMatch(overview));
+            int loadoutSigNow = EquipLoadoutModel.ComputePreBattleBarSignature(_lastLoadoutBar);
+            bool modalShowsLoadout = _model.ActiveModal == TournamentModalKind.IntermissionSwap
+                || _model.ActiveModal == TournamentModalKind.BanLeyline
+                || _model.ActiveModal == TournamentModalKind.WarmupSpar
+                || (_model.ActiveModal == TournamentModalKind.ConfirmLineup && _model.LineupModalIsForMatchStart);
             bool needRebuild = _renderedModal != _model.ActiveModal
                 || !string.Equals(_renderedModalError, _model.ModalInlineError, StringComparison.Ordinal)
                 || (_model.ActiveModal == TournamentModalKind.CreateSquad && _renderedCreateEmblem != _model.SelectedCreateEmblemId)
@@ -1878,7 +1880,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 || (_model.ActiveModal == TournamentModalKind.BanLeyline && _renderedBanSig != banSigNow)
                 || (_model.ActiveModal == TournamentModalKind.MvpHighlight && _renderedMvpMatchId != mvpMatchIdNow)
                 || (_model.ActiveModal == TournamentModalKind.IntermissionSwap && _renderedInspectLeyline != _model.SelectedLeylineInspect)
-                || (_model.ActiveModal == TournamentModalKind.SaluteChampion && (_renderedSalutedToday != salutedNow || _renderedSaluteCount != saluteCountNow));
+                || (modalShowsLoadout && _renderedLoadoutSig != loadoutSigNow);
 
             if (!needRebuild && _modalBackdrop.gameObject.activeSelf)
             {
@@ -1895,8 +1897,6 @@ namespace MmorpgClient.UI.Ugui.Tournament
             _renderedLineupSig = lineupSig;
             _renderedInviteSig = inviteSig;
             _renderedInspectLeyline = _model.SelectedLeylineInspect;
-            _renderedSalutedToday = salutedNow;
-            _renderedSaluteCount = saluteCountNow;
             _renderedCreateEmblem = _model.SelectedCreateEmblemId;
             _renderedSelectEmblem = _model.SelectedEmblemDraft;
             _renderedWarmupLeyline = _model.WarmupLeylineDraft;
@@ -1904,6 +1904,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             _renderedHighlights = _lastHighlights;
             _renderedMvpMatchId = mvpMatchIdNow;
             _renderedBanSig = banSigNow;
+            _renderedLoadoutSig = loadoutSigNow;
             _intermissionCountdownLabel = null;
             _createInput = null;
             _createCounter = null;
@@ -1930,9 +1931,6 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     break;
                 case TournamentModalKind.IntermissionSwap:
                     BuildIntermissionModal(overview, isBusy);
-                    break;
-                case TournamentModalKind.SaluteChampion:
-                    BuildSaluteModal(overview, isBusy);
                     break;
                 case TournamentModalKind.SelectEmblem:
                     BuildSelectEmblemModal(isBusy);
@@ -1965,6 +1963,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             _renderedHighlights = null;
             _renderedMvpMatchId = 0UL;
             _renderedBanSig = -1;
+            _renderedLoadoutSig = 0;
             _intermissionCountdownLabel = null;
             _createInput = null;
             _createCounter = null;
@@ -2198,13 +2197,16 @@ namespace MmorpgClient.UI.Ugui.Tournament
             uint teamSize = overview?.Season?.BattleTeamSize > 0 ? overview.Season.BattleTeamSize : 3u;
             var members = overview?.MySquad?.Members;
             int count = members?.Count ?? 0;
-            float modalH = Mathf.Clamp(290f + count * 62f, 420f, 620f);
-            var host = BuildModalFrame(_model.LineupModalIsForMatchStart ? "确认出战阵容" : "调整默认首发", 580f, modalH);
+            bool forStart = _model.LineupModalIsForMatchStart;
+            float modalW = forStart ? 640f : 580f;
+            float innerW = modalW - 96f;
+            float modalH = Mathf.Clamp((forStart ? 364f : 290f) + count * 62f, forStart ? 494f : 420f, 692f);
+            var host = BuildModalFrame(forStart ? "确认出战阵容" : "调整默认首发", modalW, modalH);
 
-            string desc = _model.LineupModalIsForMatchStart
+            string desc = forStart
                 ? $"请选择恰好 {teamSize} 名出战成员。确认后将全员拉入跨服战斗房间，请确保已整备好本人真实装备、技能与出战宝宝。"
                 : $"请选择恰好 {teamSize} 名默认首发成员，其余自动列为替补。";
-            TournamentArtCatalog.Label("Desc", host, 48f, 86f, 484f, 48f, desc, 15f, TournamentArtCatalog.Muted, wrap: true);
+            TournamentArtCatalog.Label("Desc", host, 48f, 86f, innerW, 48f, desc, 15f, TournamentArtCatalog.Muted, wrap: true);
 
             float y = 142f;
             if (members != null)
@@ -2214,7 +2216,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     var m = members[i];
                     bool selected = _model.IsMemberSelectedInDraft(m.PlayerId);
                     ulong pid = m.PlayerId;
-                    var rowBtn = TournamentArtCatalog.FlatButton($"Pick_{i}", host, 48f, y, 484f, 52f, string.Empty,
+                    var rowBtn = TournamentArtCatalog.FlatButton($"Pick_{i}", host, 48f, y, innerW, 52f, string.Empty,
                         selected ? TournamentArtCatalog.JadeCard : TournamentArtCatalog.Ivory,
                         selected ? TournamentArtCatalog.Jade : TournamentArtCatalog.Line,
                         TournamentArtCatalog.Ink,
@@ -2231,28 +2233,34 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         TournamentArtCatalog.PrimaryBtnText, 18f);
                     var portrait = TournamentArtCatalog.ResolvePlayerPortrait(_resolveCharacterId, m.PlayerId);
                     TournamentArtCatalog.AvatarMedallion("Av", rowRect, 52f, 6f, 40f, portrait);
-                    TournamentArtCatalog.Label("Name", rowRect, 102f, 10f, 220f, 32f, DisplayMemberName(m), 17f, TournamentArtCatalog.JadeDeep, bold: true);
-                    TournamentArtCatalog.Label("Role", rowRect, 326f, 10f, 146f, 32f,
+                    TournamentArtCatalog.Label("Name", rowRect, 102f, 10f, innerW - 264f, 32f, DisplayMemberName(m), 17f, TournamentArtCatalog.JadeDeep, bold: true);
+                    TournamentArtCatalog.Label("Role", rowRect, innerW - 158f, 10f, 146f, 32f,
                         TournamentFormatting.MemberRoleDisplayName(m.Role), 15f, TournamentArtCatalog.Muted, TextAlignmentOptions.MidlineRight);
                     y += 60f;
                 }
             }
 
+            if (forStart)
+            {
+                RenderTournamentLoadoutBar(host, "ConfirmLineupLoadoutBar", 48f, modalH - 188f, innerW, 62f);
+            }
+
             string statusTxt = !string.IsNullOrEmpty(_model.ModalInlineError)
                 ? _model.ModalInlineError
                 : $"已选择 {_model.LineupDraft.Count} / {teamSize} 名首发";
-            TournamentArtCatalog.Label("CountLbl", host, 48f, modalH - 118f, 484f, 28f, statusTxt, 15f,
+            TournamentArtCatalog.Label("CountLbl", host, 48f, modalH - 118f, innerW, 28f, statusTxt, 15f,
                 !string.IsNullOrEmpty(_model.ModalInlineError) ? TournamentArtCatalog.WarnRed : TournamentArtCatalog.JadeDeep, bold: true);
 
-            TournamentArtCatalog.ArtButton("CancelBtn", host, 126f, modalH - 76f, 140f, 48f, "取消", () =>
+            float btnStartX = (modalW - 348f) * 0.5f;
+            TournamentArtCatalog.ArtButton("CancelBtn", host, btnStartX, modalH - 76f, 140f, 48f, "取消", () =>
             {
                 _model.CloseModal();
                 ForceCloseModalVisual();
             }, primary: false, fontSize: 19f);
 
             bool complete = _model.IsLineupDraftComplete(teamSize);
-            TournamentArtCatalog.ArtButton("SubmitLineupBtn", host, 286f, modalH - 76f, 188f, 48f,
-                _model.LineupModalIsForMatchStart ? "确认阵容并开战" : "保存首发阵容",
+            TournamentArtCatalog.ArtButton("SubmitLineupBtn", host, btnStartX + 160f, modalH - 76f, 188f, 48f,
+                forStart ? "确认阵容并开战" : "保存首发阵容",
                 () =>
                 {
                     if (!_model.IsLineupDraftComplete(teamSize))
@@ -2262,7 +2270,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         return;
                     }
                     var copy = new List<ulong>(_model.LineupDraft);
-                    if (_model.LineupModalIsForMatchStart)
+                    if (forStart)
                         StartMatchSubmitted?.Invoke(_model.PendingMatchId, copy);
                     else
                         UpdateLineupSubmitted?.Invoke(copy);
@@ -2378,8 +2386,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 $"{leyTag}{inspectInfo.FullName}：{inspectInfo.EffectSummary}",
                 15f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
 
-            // 首发 / 替补换阵区
-            float y = 252f;
+            // 首发 / 替补换阵区（微调行高至 48px，为下方 BO3 局间个人 1..5 换流派快捷条腾出空间，保持 760×540 原图零拉伸）
+            float y = 246f;
             var members = squad?.Members;
             if (members != null)
             {
@@ -2391,10 +2399,10 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     int col = i % 2;
                     int row = i / 2;
                     float rx = 56f + col * (rowW + 12f);
-                    float ry = y + row * 64f;
+                    float ry = y + row * 54f;
                     bool selected = _model.IsMemberSelectedInDraft(m.PlayerId);
                     ulong pid = m.PlayerId;
-                    var rowBtn = TournamentArtCatalog.FlatButton($"InterPick_{i}", _modalContent, rx, ry, rowW, 54f, string.Empty,
+                    var rowBtn = TournamentArtCatalog.FlatButton($"InterPick_{i}", _modalContent, rx, ry, rowW, 48f, string.Empty,
                         selected ? TournamentArtCatalog.JadeCard : TournamentArtCatalog.Ivory,
                         selected ? TournamentArtCatalog.Jade : TournamentArtCatalog.Line,
                         TournamentArtCatalog.Ink,
@@ -2406,17 +2414,20 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         }, interactable: isCaptain && !myReady && !isBusy, fontSize: 15f);
 
                     var rRect = (RectTransform)rowBtn.transform;
-                    TournamentArtCatalog.Tag("Chk", rRect, 10f, 12f, 28f, 28f, selected ? "✓" : string.Empty,
+                    TournamentArtCatalog.Tag("Chk", rRect, 10f, 11f, 26f, 26f, selected ? "✓" : string.Empty,
                         selected ? TournamentArtCatalog.Jade : TournamentArtCatalog.CardBg,
                         selected ? TournamentArtCatalog.JadeDeep : TournamentArtCatalog.Line,
-                        TournamentArtCatalog.PrimaryBtnText, 16f);
+                        TournamentArtCatalog.PrimaryBtnText, 15f);
                     var portrait = TournamentArtCatalog.ResolveMemberPortrait(m, _resolveCharacterId);
-                    TournamentArtCatalog.AvatarMedallion("Av", rRect, 46f, 7f, 40f, portrait);
-                    TournamentArtCatalog.Label("Name", rRect, 94f, 6f, rowW - 104f, 24f, DisplayMemberName(m), 15f, TournamentArtCatalog.JadeDeep, bold: true);
-                    TournamentArtCatalog.Label("Role", rRect, 94f, 30f, rowW - 104f, 20f,
+                    TournamentArtCatalog.AvatarMedallion("Av", rRect, 44f, 6f, 36f, portrait);
+                    TournamentArtCatalog.Label("Name", rRect, 88f, 4f, rowW - 96f, 22f, DisplayMemberName(m), 15f, TournamentArtCatalog.JadeDeep, bold: true);
+                    TournamentArtCatalog.Label("Role", rRect, 88f, 26f, rowW - 96f, 18f,
                         selected ? "本局首发" : "本局替补", 12f, selected ? TournamentArtCatalog.Jade : TournamentArtCatalog.Muted);
                 }
             }
+
+            // BO3 局间倒计时个人一键换流派（看到对手战队与本局五行灵脉后，队长与全体队员均可直接切装）
+            RenderTournamentLoadoutBar(_modalContent, "IntermissionLoadoutBar", 56f, 356f, w - 112f, 56f);
 
             string errOrNote = !string.IsNullOrEmpty(_model.ModalInlineError)
                 ? _model.ModalInlineError
@@ -2424,8 +2435,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     ? "本队已锁定本局阵容，关闭弹窗不影响服务端倒计时。"
                     : (isCaptain
                         ? $"已选 {_model.LineupDraft.Count}/{teamSize} 名出战；超时将沿用上局合法阵容自动开战。"
-                        : "仅队长可提交本局换阵，关闭弹窗不影响服务端倒计时。"));
-            TournamentArtCatalog.Label("InterNote", _modalContent, 56f, 392f, w - 112f, 36f, errOrNote, 14f,
+                        : "仅队长可提交本局换阵；队员可直接用上方快捷条切个人流派。"));
+            TournamentArtCatalog.Label("InterNote", _modalContent, 56f, 418f, w - 112f, 36f, errOrNote, 14f,
                 !string.IsNullOrEmpty(_model.ModalInlineError) ? TournamentArtCatalog.WarnRed : TournamentArtCatalog.Muted,
                 TextAlignmentOptions.Center, wrap: true);
 
@@ -2444,93 +2455,6 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     var copy = new List<ulong>(_model.LineupDraft);
                     StartMatchSubmitted?.Invoke(match.MatchId, copy);
                 }, interactable: canSubmit, fontSize: 18f);
-        }
-
-        /// <summary>V2 模块 B：观道致敬轻弹窗（640×440 原图面板 + b-salute-title 原生「观道致敬」字稿，严禁叠字）。</summary>
-        private void BuildSaluteModal(TournamentOverviewSnapshot overview, bool isBusy)
-        {
-            const float w = 640f;
-            const float h = 440f;
-            _modalContent.sizeDelta = new Vector2(w, h);
-            TournamentArtCatalog.SpriteBox("SaluteBg", _modalContent, 0f, 0f, w, h,
-                "v2-b-salute-panel", sliced: false, preserveAspect: false, raycast: true);
-
-            var titleImg = TournamentArtCatalog.SpriteBox("SaluteTitleArt", _modalContent, (w - 260f) * 0.5f, 20f, 260f, 56f,
-                "v2-title-salute", preserveAspect: true);
-            if (titleImg.sprite == null)
-                TournamentArtCatalog.Label("FallbackTitle", _modalContent, 60f, 28f, w - 120f, 40f, "观道致敬", 28f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
-
-            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 66f, 20f, 44f, 44f,
-                TournamentArtCatalog.Load("close-button"), out var ci);
-            ci.preserveAspect = true;
-            close.onClick.AddListener(() =>
-            {
-                _model.CloseModal();
-                ForceCloseModalVisual();
-            });
-
-            var champ = overview?.FindChampionSeason(_model.SaluteTargetSeasonId);
-            if (champ == null || champ.ChampionSquadId == 0UL)
-            {
-                TournamentArtCatalog.Label("NoChamp", _modalContent, 56f, 160f, w - 112f, 80f,
-                    "当前暂无已诞生的全服总冠军，待赛季封榜后即可每日免费观道致敬。",
-                    18f, TournamentArtCatalog.Muted, TextAlignmentOptions.Center, wrap: true);
-                TournamentArtCatalog.ArtButton("OkBtn", _modalContent, (w - 156f) * 0.5f, h - 82f, 156f, 44f, "知道了", () =>
-                {
-                    _model.CloseModal();
-                    ForceCloseModalVisual();
-                }, primary: false, fontSize: 18f);
-                return;
-            }
-
-            string sqName = !string.IsNullOrEmpty(champ.ChampionSquadName) ? champ.ChampionSquadName : $"战队 #{champ.ChampionSquadId}";
-            TournamentArtCatalog.Label("ChampLine", _modalContent, 48f, 84f, w - 96f, 34f,
-                $"第 {champ.SeasonId} 赛季总冠军 · {sqName}", 22f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
-
-            // 真实冠军成员头像排（数据缺失时中性太极占位）
-            if (champ.ChampionMembers.Count > 0)
-            {
-                int mCount = Math.Min(4, champ.ChampionMembers.Count);
-                float avSize = 68f;
-                float avGap = 20f;
-                float rowW = mCount * avSize + (mCount - 1) * avGap;
-                float sx = (w - rowW) * 0.5f;
-                for (int i = 0; i < mCount; i++)
-                {
-                    var cm = champ.ChampionMembers[i];
-                    var portrait = TournamentArtCatalog.ResolveMemberPortrait(cm, _resolveCharacterId);
-                    TournamentArtCatalog.AvatarMedallion($"SalAv_{i}", _modalContent, sx + i * (avSize + avGap), 126f, avSize, portrait);
-                    TournamentArtCatalog.Label($"SalNm_{i}", _modalContent, sx + i * (avSize + avGap) - 10f, 198f, avSize + 20f, 22f,
-                        DisplayMemberName(cm), 13f, TournamentArtCatalog.Muted, TextAlignmentOptions.Center);
-                }
-            }
-            else
-            {
-                TournamentArtCatalog.Label("ChampMemSummary", _modalContent, 56f, 140f, w - 112f, 64f,
-                    !string.IsNullOrEmpty(champ.ChampionMemberSummary) ? champ.ChampionMemberSummary : "全服总冠军战队",
-                    16f, TournamentArtCatalog.Ink, TextAlignmentOptions.Center, wrap: true);
-            }
-
-            // 每日免费绑定薄礼预览（现查配表，零硬编码漂移）
-            string rewardPreview = BuildSaluteRewardPreview();
-            var rewardBox = TournamentArtCatalog.BorderedCard("SaluteRewardBox", _modalContent, 64f, 232f, w - 128f, 96f,
-                TournamentArtCatalog.Ivory, TournamentArtCatalog.Line, 1.2f);
-            TournamentArtCatalog.Label("SalCount", rewardBox, 16f, 10f, w - 160f, 26f,
-                $"全服已累计观道致敬：{champ.ChampionSaluteCount} 次", 16f, TournamentArtCatalog.GoldTagText, TextAlignmentOptions.Center, bold: true);
-            TournamentArtCatalog.Label("SalReward", rewardBox, 16f, 40f, w - 160f, 44f,
-                $"每日免费绑定薄礼：{rewardPreview}（自动发至邮箱）", 15f, TournamentArtCatalog.Ink, TextAlignmentOptions.Center, wrap: true);
-
-            uint targetSeason = champ.SeasonId;
-            bool canSalute = !champ.SalutedToday && !isBusy;
-            TournamentArtCatalog.ArtButton("SalCancelBtn", _modalContent, 140f, h - 78f, 148f, 44f, "关闭", () =>
-            {
-                _model.CloseModal();
-                ForceCloseModalVisual();
-            }, primary: false, fontSize: 18f);
-            TournamentArtCatalog.V2PrimaryButton("SalConfirmBtn", _modalContent, 312f, h - 78f, 188f, 44f,
-                champ.SalutedToday ? "今日已观道" : "观道致敬",
-                () => SaluteChampionConfirmed?.Invoke(targetSeason),
-                interactable: canSalute, fontSize: 19f);
         }
 
         /// <summary>V3 模块 G：择选道家战队战旗轻弹窗（4×2 官方预设纹章，v3-title-emblem 原生题字严禁叠字）。</summary>
@@ -2611,7 +2535,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
         private void BuildWarmupSparModal(TournamentOverviewSnapshot overview, bool isBusy)
         {
             const float w = 720f;
-            const float h = 560f;
+            const float h = 628f;
             _modalContent.sizeDelta = new Vector2(w, h);
             TournamentArtCatalog.SpriteBox("WarmupFrame", _modalContent, 0f, 0f, w, h, "window-frame", sliced: true, raycast: true);
 
@@ -2723,6 +2647,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     TournamentArtCatalog.Label("Role", rRect, 94f, 30f, rw - 104f, 18f, sel ? "热身首发" : "替补观战", 12f, TournamentArtCatalog.Muted);
                 }
             }
+
+            RenderTournamentLoadoutBar(_modalContent, "WarmupLoadoutBar", 52f, 446f, w - 104f, 62f);
 
             if (!string.IsNullOrEmpty(_model.ModalInlineError))
             {
@@ -2982,7 +2908,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 return;
             }
             const float w = 680f;
-            const float h = 468f;
+            const float h = 538f;
             var host = BuildModalFrame("BO3 灵脉禁选", w, h);
 
             string nameA = !string.IsNullOrEmpty(m.SquadAName) ? m.SquadAName : $"战队 #{m.SquadAId}";
@@ -3067,6 +2993,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
             TournamentArtCatalog.Label("SeqTxt", seqBox, 14f, 0f, w - 108f, 44f,
                 seqParts.Count > 0 ? $"当前 BO3 灵脉序列：{string.Join("   →   ", seqParts)}" : "待生成 BO3 灵脉序列",
                 15f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
+
+            RenderTournamentLoadoutBar(host, "BanLeylineLoadoutBar", 40f, 392f, w - 80f, 62f);
 
             TournamentArtCatalog.ArtButton("CloseBanBtn", host, (w - 156f) * 0.5f, h - 68f, 156f, 44f, "关闭", () =>
             {
@@ -3278,21 +3206,6 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         return TournamentArtCatalog.ResolveMemberPortrait(champ.ChampionMembers[i], _resolveCharacterId);
             }
             return TournamentArtCatalog.ResolvePlayerPortrait(_resolveCharacterId, mvpPlayerId);
-        }
-
-        private static string BuildSaluteRewardPreview()
-        {
-            var rules = TournamentRuleTableManager.Instance.FindAll();
-            uint gold = 5000u;
-            uint itemId = 20u;
-            uint itemCount = 3u;
-            if (rules != null && rules.Count > 0 && rules[0] != null)
-            {
-                if (rules[0].SaluteGoldAmount > 0) gold = rules[0].SaluteGoldAmount;
-                if (rules[0].SaluteItemId > 0) itemId = rules[0].SaluteItemId;
-                if (rules[0].SaluteItemCount > 0) itemCount = rules[0].SaluteItemCount;
-            }
-            return $"绑定银两 ×{gold.ToString("N0", CultureInfo.InvariantCulture)} · {TournamentArtCatalog.ResolveItemName(itemId)} ×{itemCount}";
         }
 
         // ==================== 格式化辅助 ====================

@@ -26,7 +26,7 @@ public static partial class PlayerBattleResultCompReflection {
           "X2NvbXAucHJvdG8iQwoaUGxheWVyQmF0dGxlUmVzdWx0Q3VycmVuY3kSFQoN",
           "Y3VycmVuY3lfdHlwZRgBIAEoDRIOCgZhbW91bnQYAiABKAQiPgoWUGxheWVy",
           "QmF0dGxlUmVzdWx0SXRlbRIVCg1pdGVtX3RhYmxlX2lkGAEgASgNEg0KBWNv",
-          "dW50GAIgASgEItkKChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
+          "dW50GAIgASgEIs8MChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
           "cRgBIAEoBBIRCgliYXR0bGVfaWQYAiABKAQSDwoHb3V0Y29tZRgDIAEoDRIS",
           "Cgp0ZWFtX2luZGV4GAQgASgNEg8KB2lzX2RlYWQYBSABKAgSDAoEZmxlZBgG",
           "IAEoCBIUCgx0b3RhbF9yb3VuZHMYByABKA0SFgoOZmluaXNoZWRfYXRfbXMY",
@@ -56,16 +56,21 @@ public static partial class PlayerBattleResultCompReflection {
           "ASgNEhcKD3RvdGFsX2V4cF9hZnRlchgqIAEoBBIcChRuZXh0X2xldmVsX3Rv",
           "dGFsX2V4cBgrIAEoBBIhChliYXR0bGVfc2lsdmVyX3dlZWtseV91c2VkGCwg",
           "ASgEEiUKHWJhdHRsZV9zaWx2ZXJfd2Vla2x5X3NvZnRfY2FwGC0gASgEEiAK",
-          "GGJhdHRsZV9zaWx2ZXJfZGltaW5pc2hlZBguIAEoCCJXChZQbGF5ZXJCYXR0",
-          "bGVSZXN1bHRDb21wEhcKD2xhc3RfcmVzdWx0X3NlcRgBIAEoBBIkCgdlbnRy",
-          "aWVzGAIgAygLMhMuUGxheWVyQmF0dGxlUmVzdWx0QhJaEGNvbW1vbi9jb21w",
-          "b25lbnRiBnByb3RvMw=="));
+          "GGJhdHRsZV9zaWx2ZXJfZGltaW5pc2hlZBguIAEoCBIWCg50cmlhbF92b3df",
+          "bWFzaxgvIAEoDRIaChJ0cmlhbF9uZXdfdm93X2Jlc3QYMCABKAgSFwoPdHJp",
+          "YWxfYmF0dGxlX2lkGDEgASgEEh0KFXJldHJvX2hvbm9yX3NlYXNvbl9pZBgy",
+          "IAEoDRIgChhyZXRyb19ob25vcl9wb2ludHNfYWRkZWQYMyABKA0SIgoacmV0",
+          "cm9faG9ub3JfcHJvZ3Jlc3NfYWZ0ZXIYNCABKA0SHgoWcmV0cm9faG9ub3Jf",
+          "bWF4X3BvaW50cxg1IAEoDRIiChpyZXRyb19ob25vcl9uZXdseV91bmxvY2tl",
+          "ZBg2IAEoCCJXChZQbGF5ZXJCYXR0bGVSZXN1bHRDb21wEhcKD2xhc3RfcmVz",
+          "dWx0X3NlcRgBIAEoBBIkCgdlbnRyaWVzGAIgAygLMhMuUGxheWVyQmF0dGxl",
+          "UmVzdWx0QhJaEGNvbW1vbi9jb21wb25lbnRiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultCurrency), global::PlayerBattleResultCurrency.Parser, new[]{ "CurrencyType", "Amount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultItem), global::PlayerBattleResultItem.Parser, new[]{ "ItemTableId", "Count" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed", "ExpGain", "MaterialCreditUnitsAdded", "SeasonId", "TrialJournalEntryId", "TrialNewlyLitSealIds", "TrialNewSoloBest", "TrialNewCoopBest", "MaterialTradableUnitsAdded", "MaterialPvpLossIneligible", "FestivalActivityInstanceId", "FestivalRewardIdentity", "FestivalWinsBefore", "FestivalWinsAfter", "FestivalRequiredWins", "FestivalNewlyEligible", "MaterialAvailableUnitsAfter", "MaterialEarnableRemainingAfter", "SeasonSealPointsAdded", "SeasonSealProgressAfter", "SeasonSealMaxPoints", "SeasonHonorNewlyUnlocked", "Surrendered", "LevelBefore", "LevelAfter", "TotalExpAfter", "NextLevelTotalExp", "BattleSilverWeeklyUsed", "BattleSilverWeeklySoftCap", "BattleSilverDiminished" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed", "ExpGain", "MaterialCreditUnitsAdded", "SeasonId", "TrialJournalEntryId", "TrialNewlyLitSealIds", "TrialNewSoloBest", "TrialNewCoopBest", "MaterialTradableUnitsAdded", "MaterialPvpLossIneligible", "FestivalActivityInstanceId", "FestivalRewardIdentity", "FestivalWinsBefore", "FestivalWinsAfter", "FestivalRequiredWins", "FestivalNewlyEligible", "MaterialAvailableUnitsAfter", "MaterialEarnableRemainingAfter", "SeasonSealPointsAdded", "SeasonSealProgressAfter", "SeasonSealMaxPoints", "SeasonHonorNewlyUnlocked", "Surrendered", "LevelBefore", "LevelAfter", "TotalExpAfter", "NextLevelTotalExp", "BattleSilverWeeklyUsed", "BattleSilverWeeklySoftCap", "BattleSilverDiminished", "TrialVowMask", "TrialNewVowBest", "TrialBattleId", "RetroHonorSeasonId", "RetroHonorPointsAdded", "RetroHonorProgressAfter", "RetroHonorMaxPoints", "RetroHonorNewlyUnlocked" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultComp), global::PlayerBattleResultComp.Parser, new[]{ "LastResultSeq", "Entries" }, null, null, null, null)
         }));
   }
@@ -639,6 +644,14 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     battleSilverWeeklyUsed_ = other.battleSilverWeeklyUsed_;
     battleSilverWeeklySoftCap_ = other.battleSilverWeeklySoftCap_;
     battleSilverDiminished_ = other.battleSilverDiminished_;
+    trialVowMask_ = other.trialVowMask_;
+    trialNewVowBest_ = other.trialNewVowBest_;
+    trialBattleId_ = other.trialBattleId_;
+    retroHonorSeasonId_ = other.retroHonorSeasonId_;
+    retroHonorPointsAdded_ = other.retroHonorPointsAdded_;
+    retroHonorProgressAfter_ = other.retroHonorProgressAfter_;
+    retroHonorMaxPoints_ = other.retroHonorMaxPoints_;
+    retroHonorNewlyUnlocked_ = other.retroHonorNewlyUnlocked_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1284,6 +1297,114 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
   }
 
+  /// <summary>Field number for the "trial_vow_mask" field.</summary>
+  public const int TrialVowMaskFieldNumber = 47;
+  private uint trialVowMask_;
+  /// <summary>
+  /// 五行试炼志 V3：本局生效的试炼誓约位掩码（0=常规）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TrialVowMask {
+    get { return trialVowMask_; }
+    set {
+      trialVowMask_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "trial_new_vow_best" field.</summary>
+  public const int TrialNewVowBestFieldNumber = 48;
+  private bool trialNewVowBest_;
+  /// <summary>
+  /// 五行试炼志 V3：本局是否刷新该试炼格最高誓约纪录
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool TrialNewVowBest {
+    get { return trialNewVowBest_; }
+    set {
+      trialNewVowBest_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "trial_battle_id" field.</summary>
+  public const int TrialBattleIdFieldNumber = 49;
+  private ulong trialBattleId_;
+  /// <summary>
+  /// 五行试炼志 V3：可供一键发帖约战/回放的权威 battle_id（仅胜局非 0）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong TrialBattleId {
+    get { return trialBattleId_; }
+    set {
+      trialBattleId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "retro_honor_season_id" field.</summary>
+  public const int RetroHonorSeasonIdFieldNumber = 50;
+  private uint retroHonorSeasonId_;
+  /// <summary>
+  /// 满级溢出流向「往季徽章追忆」的单局增量（与 BattleEndS2C 同源，断线补弹零丢失）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RetroHonorSeasonId {
+    get { return retroHonorSeasonId_; }
+    set {
+      retroHonorSeasonId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "retro_honor_points_added" field.</summary>
+  public const int RetroHonorPointsAddedFieldNumber = 51;
+  private uint retroHonorPointsAdded_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RetroHonorPointsAdded {
+    get { return retroHonorPointsAdded_; }
+    set {
+      retroHonorPointsAdded_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "retro_honor_progress_after" field.</summary>
+  public const int RetroHonorProgressAfterFieldNumber = 52;
+  private uint retroHonorProgressAfter_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RetroHonorProgressAfter {
+    get { return retroHonorProgressAfter_; }
+    set {
+      retroHonorProgressAfter_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "retro_honor_max_points" field.</summary>
+  public const int RetroHonorMaxPointsFieldNumber = 53;
+  private uint retroHonorMaxPoints_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RetroHonorMaxPoints {
+    get { return retroHonorMaxPoints_; }
+    set {
+      retroHonorMaxPoints_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "retro_honor_newly_unlocked" field.</summary>
+  public const int RetroHonorNewlyUnlockedFieldNumber = 54;
+  private bool retroHonorNewlyUnlocked_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool RetroHonorNewlyUnlocked {
+    get { return retroHonorNewlyUnlocked_; }
+    set {
+      retroHonorNewlyUnlocked_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1345,6 +1466,14 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (BattleSilverWeeklyUsed != other.BattleSilverWeeklyUsed) return false;
     if (BattleSilverWeeklySoftCap != other.BattleSilverWeeklySoftCap) return false;
     if (BattleSilverDiminished != other.BattleSilverDiminished) return false;
+    if (TrialVowMask != other.TrialVowMask) return false;
+    if (TrialNewVowBest != other.TrialNewVowBest) return false;
+    if (TrialBattleId != other.TrialBattleId) return false;
+    if (RetroHonorSeasonId != other.RetroHonorSeasonId) return false;
+    if (RetroHonorPointsAdded != other.RetroHonorPointsAdded) return false;
+    if (RetroHonorProgressAfter != other.RetroHonorProgressAfter) return false;
+    if (RetroHonorMaxPoints != other.RetroHonorMaxPoints) return false;
+    if (RetroHonorNewlyUnlocked != other.RetroHonorNewlyUnlocked) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1398,6 +1527,14 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (BattleSilverWeeklyUsed != 0UL) hash ^= BattleSilverWeeklyUsed.GetHashCode();
     if (BattleSilverWeeklySoftCap != 0UL) hash ^= BattleSilverWeeklySoftCap.GetHashCode();
     if (BattleSilverDiminished != false) hash ^= BattleSilverDiminished.GetHashCode();
+    if (TrialVowMask != 0) hash ^= TrialVowMask.GetHashCode();
+    if (TrialNewVowBest != false) hash ^= TrialNewVowBest.GetHashCode();
+    if (TrialBattleId != 0UL) hash ^= TrialBattleId.GetHashCode();
+    if (RetroHonorSeasonId != 0) hash ^= RetroHonorSeasonId.GetHashCode();
+    if (RetroHonorPointsAdded != 0) hash ^= RetroHonorPointsAdded.GetHashCode();
+    if (RetroHonorProgressAfter != 0) hash ^= RetroHonorProgressAfter.GetHashCode();
+    if (RetroHonorMaxPoints != 0) hash ^= RetroHonorMaxPoints.GetHashCode();
+    if (RetroHonorNewlyUnlocked != false) hash ^= RetroHonorNewlyUnlocked.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1588,6 +1725,38 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(240, 2);
       output.WriteBool(BattleSilverDiminished);
     }
+    if (TrialVowMask != 0) {
+      output.WriteRawTag(248, 2);
+      output.WriteUInt32(TrialVowMask);
+    }
+    if (TrialNewVowBest != false) {
+      output.WriteRawTag(128, 3);
+      output.WriteBool(TrialNewVowBest);
+    }
+    if (TrialBattleId != 0UL) {
+      output.WriteRawTag(136, 3);
+      output.WriteUInt64(TrialBattleId);
+    }
+    if (RetroHonorSeasonId != 0) {
+      output.WriteRawTag(144, 3);
+      output.WriteUInt32(RetroHonorSeasonId);
+    }
+    if (RetroHonorPointsAdded != 0) {
+      output.WriteRawTag(152, 3);
+      output.WriteUInt32(RetroHonorPointsAdded);
+    }
+    if (RetroHonorProgressAfter != 0) {
+      output.WriteRawTag(160, 3);
+      output.WriteUInt32(RetroHonorProgressAfter);
+    }
+    if (RetroHonorMaxPoints != 0) {
+      output.WriteRawTag(168, 3);
+      output.WriteUInt32(RetroHonorMaxPoints);
+    }
+    if (RetroHonorNewlyUnlocked != false) {
+      output.WriteRawTag(176, 3);
+      output.WriteBool(RetroHonorNewlyUnlocked);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1770,6 +1939,38 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(240, 2);
       output.WriteBool(BattleSilverDiminished);
     }
+    if (TrialVowMask != 0) {
+      output.WriteRawTag(248, 2);
+      output.WriteUInt32(TrialVowMask);
+    }
+    if (TrialNewVowBest != false) {
+      output.WriteRawTag(128, 3);
+      output.WriteBool(TrialNewVowBest);
+    }
+    if (TrialBattleId != 0UL) {
+      output.WriteRawTag(136, 3);
+      output.WriteUInt64(TrialBattleId);
+    }
+    if (RetroHonorSeasonId != 0) {
+      output.WriteRawTag(144, 3);
+      output.WriteUInt32(RetroHonorSeasonId);
+    }
+    if (RetroHonorPointsAdded != 0) {
+      output.WriteRawTag(152, 3);
+      output.WriteUInt32(RetroHonorPointsAdded);
+    }
+    if (RetroHonorProgressAfter != 0) {
+      output.WriteRawTag(160, 3);
+      output.WriteUInt32(RetroHonorProgressAfter);
+    }
+    if (RetroHonorMaxPoints != 0) {
+      output.WriteRawTag(168, 3);
+      output.WriteUInt32(RetroHonorMaxPoints);
+    }
+    if (RetroHonorNewlyUnlocked != false) {
+      output.WriteRawTag(176, 3);
+      output.WriteBool(RetroHonorNewlyUnlocked);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1908,6 +2109,30 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       size += 2 + pb::CodedOutputStream.ComputeUInt64Size(BattleSilverWeeklySoftCap);
     }
     if (BattleSilverDiminished != false) {
+      size += 2 + 1;
+    }
+    if (TrialVowMask != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(TrialVowMask);
+    }
+    if (TrialNewVowBest != false) {
+      size += 2 + 1;
+    }
+    if (TrialBattleId != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(TrialBattleId);
+    }
+    if (RetroHonorSeasonId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RetroHonorSeasonId);
+    }
+    if (RetroHonorPointsAdded != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RetroHonorPointsAdded);
+    }
+    if (RetroHonorProgressAfter != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RetroHonorProgressAfter);
+    }
+    if (RetroHonorMaxPoints != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RetroHonorMaxPoints);
+    }
+    if (RetroHonorNewlyUnlocked != false) {
       size += 2 + 1;
     }
     if (_unknownFields != null) {
@@ -2051,6 +2276,30 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (other.BattleSilverDiminished != false) {
       BattleSilverDiminished = other.BattleSilverDiminished;
+    }
+    if (other.TrialVowMask != 0) {
+      TrialVowMask = other.TrialVowMask;
+    }
+    if (other.TrialNewVowBest != false) {
+      TrialNewVowBest = other.TrialNewVowBest;
+    }
+    if (other.TrialBattleId != 0UL) {
+      TrialBattleId = other.TrialBattleId;
+    }
+    if (other.RetroHonorSeasonId != 0) {
+      RetroHonorSeasonId = other.RetroHonorSeasonId;
+    }
+    if (other.RetroHonorPointsAdded != 0) {
+      RetroHonorPointsAdded = other.RetroHonorPointsAdded;
+    }
+    if (other.RetroHonorProgressAfter != 0) {
+      RetroHonorProgressAfter = other.RetroHonorProgressAfter;
+    }
+    if (other.RetroHonorMaxPoints != 0) {
+      RetroHonorMaxPoints = other.RetroHonorMaxPoints;
+    }
+    if (other.RetroHonorNewlyUnlocked != false) {
+      RetroHonorNewlyUnlocked = other.RetroHonorNewlyUnlocked;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2256,6 +2505,38 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
           BattleSilverDiminished = input.ReadBool();
           break;
         }
+        case 376: {
+          TrialVowMask = input.ReadUInt32();
+          break;
+        }
+        case 384: {
+          TrialNewVowBest = input.ReadBool();
+          break;
+        }
+        case 392: {
+          TrialBattleId = input.ReadUInt64();
+          break;
+        }
+        case 400: {
+          RetroHonorSeasonId = input.ReadUInt32();
+          break;
+        }
+        case 408: {
+          RetroHonorPointsAdded = input.ReadUInt32();
+          break;
+        }
+        case 416: {
+          RetroHonorProgressAfter = input.ReadUInt32();
+          break;
+        }
+        case 424: {
+          RetroHonorMaxPoints = input.ReadUInt32();
+          break;
+        }
+        case 432: {
+          RetroHonorNewlyUnlocked = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -2458,6 +2739,38 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
         }
         case 368: {
           BattleSilverDiminished = input.ReadBool();
+          break;
+        }
+        case 376: {
+          TrialVowMask = input.ReadUInt32();
+          break;
+        }
+        case 384: {
+          TrialNewVowBest = input.ReadBool();
+          break;
+        }
+        case 392: {
+          TrialBattleId = input.ReadUInt64();
+          break;
+        }
+        case 400: {
+          RetroHonorSeasonId = input.ReadUInt32();
+          break;
+        }
+        case 408: {
+          RetroHonorPointsAdded = input.ReadUInt32();
+          break;
+        }
+        case 416: {
+          RetroHonorProgressAfter = input.ReadUInt32();
+          break;
+        }
+        case 424: {
+          RetroHonorMaxPoints = input.ReadUInt32();
+          break;
+        }
+        case 432: {
+          RetroHonorNewlyUnlocked = input.ReadBool();
           break;
         }
       }

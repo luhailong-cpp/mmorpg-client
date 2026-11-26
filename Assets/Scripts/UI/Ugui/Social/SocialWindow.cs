@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Social;
+using MmorpgClient.Game.TrialJournal;
+using MmorpgClient.UI.Ugui.TrialJournal;
 using MmorpgClient.World.Tianyong;
 using TMPro;
 using UnityEngine;
@@ -138,17 +141,27 @@ namespace MmorpgClient.UI.Ugui.Social
             foreach(var m in messages)
             {
                 bool self=m.Sender==State.PlayerId;var person=State.Person(m.Sender);
-                float maxBubble=width-116,bubble=Mathf.Min(maxBubble,Mathf.Max(360,SocialState.TextLength(m.Text)*28*.60f+58));
-                if(!string.IsNullOrEmpty(m.Card))bubble=Mathf.Max(Mathf.Min(650,maxBubble),bubble);
-                var probe=Text(content,m.Text,0,0,bubble-40,100,28,Ink,wrap:true);float textH=Mathf.Max(45,probe.GetPreferredValues(m.Text,bubble-40,float.PositiveInfinity).y);probe.gameObject.SetActive(false);if(Application.isPlaying)UnityEngine.Object.Destroy(probe.gameObject);else UnityEngine.Object.DestroyImmediate(probe.gameObject);
-                float cardH=string.IsNullOrEmpty(m.Card)?0:90;float height=44+textH+24+cardH;
+                bool hasTrialCard=TrialJournalModels.TryParseChallengeCardId(m.Text,out ulong trialCardId);
+                string displayText=hasTrialCard?TrialJournalModels.StripChallengeCardTag(m.Text):m.Text;
+                if(hasTrialCard&&string.IsNullOrEmpty(displayText))displayText="发出了一封五行试炼约战帖";
+                float maxBubble=width-116,bubble=Mathf.Min(maxBubble,Mathf.Max(360,SocialState.TextLength(displayText)*28*.60f+58));
+                if(hasTrialCard)bubble=Mathf.Max(Mathf.Min(540,maxBubble),bubble);
+                else if(!string.IsNullOrEmpty(m.Card))bubble=Mathf.Max(Mathf.Min(650,maxBubble),bubble);
+                var probe=Text(content,displayText,0,0,bubble-40,100,28,Ink,wrap:true);float textH=Mathf.Max(45,probe.GetPreferredValues(displayText,bubble-40,float.PositiveInfinity).y);probe.gameObject.SetActive(false);if(Application.isPlaying)UnityEngine.Object.Destroy(probe.gameObject);else UnityEngine.Object.DestroyImmediate(probe.gameObject);
+                float cardH=hasTrialCard?76:(string.IsNullOrEmpty(m.Card)?0:90);float height=44+textH+24+cardH;
                 var row=QdaoUguiFactory.CreateRect("SocialMessage_"+m.Id,content,0,y,width,height);
                 float avatarX=self?width-83:0,bubbleX=self?width-105-bubble:104;
                 Portrait(row,"SocialPortrait_"+m.Sender,person.Portrait,avatarX,0,77,()=>ShowProfile(m.Sender));
                 Text(row,person.Name+(person.Level>0?"  "+person.Level+"级":"")+(self?"  我":""),bubbleX,0,bubble-126,43,25,Jade,name:"Sender");Text(row,m.TimeLabel,bubbleX+bubble-116,0,116,43,20,Muted,align:TextAlignmentOptions.MidlineRight);
                 var paper=Art(row,"stat_field",bubbleX,46,bubble,textH+26+cardH);paper.color=self?QdaoUguiTheme.Html("#E7EED6"):Color.white;
-                Text(row,m.Text,bubbleX+20,55,bubble-40,textH+8,28,Ink,wrap:true,name:"MessageText");
-                if(cardH>0){string label=m.Card=="talisman"?"太清护身符 · 查看物品":m.Card=="bamboo"?"青岚竹海（126，84）":"青云试炼 · 同游邀约";Button(row,"SocialCard_"+m.Id,label,bubbleX+18,59+textH,bubble-36,70,()=>ShowCard(m.Card),size:25);}
+                Text(row,displayText,bubbleX+20,55,bubble-40,textH+8,28,Ink,wrap:true,name:"MessageText");
+                if(hasTrialCard)
+                {
+                    ulong capturedCardId=trialCardId;
+                    Button(row,"SocialTrialReplay_"+m.Id,"看录像",bubbleX+18,62+textH,180,54,()=>HandleWatchSharedTrialReplay(capturedCardId),enabled:!State.IsPreview,size:23);
+                    Button(row,"SocialTrialChallenge_"+m.Id,"同誓约应战",bubbleX+210,62+textH,210,54,()=>HandleAcceptTrialChallengeCard(capturedCardId),primary:true,enabled:!State.IsPreview,size:23);
+                }
+                else if(cardH>0){string label=m.Card=="talisman"?"太清护身符 · 查看物品":m.Card=="bamboo"?"青岚竹海（126，84）":"青云试炼 · 同游邀约";Button(row,"SocialCard_"+m.Id,label,bubbleX+18,59+textH,bubble-36,70,()=>ShowCard(m.Card),size:25);}
                 y+=height+23;
             }
             content.sizeDelta=new Vector2(width,Mathf.Max(430,y));
@@ -373,6 +386,29 @@ namespace MmorpgClient.UI.Ugui.Social
                 ReportRequested?.Invoke(channel,message,selectedReason,note);
             },true,size:27);
             Button(panel,"SocialModalCancel","取消",290,532,230,62,()=>CloseModal(),size:27);
+        }
+        private void HandleWatchSharedTrialReplay(ulong cardId)
+        {
+            if(cardId==0ul)return;
+            var reports=BattleReportClient.Instance;
+            if(reports==null){State?.Notify("战报回放模块尚未就绪，请稍候重试。");return;}
+            if(reports.FetchSharedTrialReplay(cardId))State?.Notify("正在拉取约战试炼录像…");
+            else State?.Notify("已有录像正在加载中，请稍候。");
+        }
+        private void HandleAcceptTrialChallengeCard(ulong cardId)
+        {
+            if(cardId==0ul)return;
+            var reports=BattleReportClient.Instance;
+            if(reports==null){State?.Notify("约战模块尚未就绪，请稍候重试。");return;}
+            State?.Notify("正在拉取约战帖详情…");
+            reports.GetTrialChallengeCard(cardId,
+                card=>
+                {
+                    Hide();
+                    TrialJournalUiRoot.EnsureSpawned();
+                    TrialJournalUiRoot.Instance?.OpenForChallengeCard(card);
+                },
+                err=>State?.Notify(string.IsNullOrEmpty(err)?"该约战帖已过期或不可用。":err));
         }
         public void Dispose(){State.Changed-=Changed;Hide();_countdowns.Clear();}
     }

@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.UI.Ugui.CoreLoop;
+using MmorpgClient.UI.Ugui.Gameplay;
 using MmorpgClient.UI.Ugui.TrialJournal;
 
 namespace MmorpgClient.UI.Ugui.Battle
@@ -50,6 +52,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private SpectateClient _spectate;
         private bool _spectateBound;
         private Game.GameClient _boundGameClient;
+        private PlayerFeaturesClient _boundFeatures;
         private bool _stopping;
 
         private GameObject _canvasGo;
@@ -112,6 +115,9 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         /// <summary>供子面板取 BattleReportClient(可能为 null:NET 路尚未初始化)。</summary>
         public BattleReportClient Reports => _reports;
+
+        /// <summary>供切磋倒计时弹窗取装备流派协调器（仅进房前可用）。</summary>
+        internal PlayerFeaturesClient Features => _boundFeatures;
 
         /// <summary>战斗层(参战屏、观战屏或战报回放屏)正在显示；资料窗口据此进入战斗只读状态。</summary>
         public bool IsBattleLayerVisible => _battleOpen || _spectateOpen || _replayOpen;
@@ -216,6 +222,12 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void UnbindGameClient()
         {
+            if (_boundFeatures != null)
+            {
+                _boundFeatures.OnChanged -= HandleFeaturesChanged;
+                _boundFeatures.OnEquipLoadoutSwitched -= HandleEquipLoadoutSwitched;
+                _boundFeatures = null;
+            }
             if (_boundGameClient != null)
             {
                 _boundGameClient.OnDisconnected -= HandleDisconnected;
@@ -268,7 +280,33 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 UnbindGameClient();
                 _boundGameClient = game;
-                if (_boundGameClient != null) _boundGameClient.OnDisconnected += HandleDisconnected;
+                if (_boundGameClient != null)
+                {
+                    _boundGameClient.OnDisconnected += HandleDisconnected;
+                    _boundFeatures = _boundGameClient.Features;
+                    if (_boundFeatures != null)
+                    {
+                        _boundFeatures.OnChanged += HandleFeaturesChanged;
+                        _boundFeatures.OnEquipLoadoutSwitched += HandleEquipLoadoutSwitched;
+                    }
+                }
+            }
+        }
+
+        private void HandleFeaturesChanged()
+        {
+            if (_stopping) return;
+            if (_challengePopup != null && _challengePopup.IsVisible)
+                _challengePopup.RefreshLoadoutBar();
+        }
+
+        private void HandleEquipLoadoutSwitched(SwitchEquipLoadoutResponse response)
+        {
+            if (_stopping) return;
+            if (_challengePopup != null && _challengePopup.IsVisible)
+            {
+                ShowToast(EquipLoadoutModel.BuildSwitchToast(response));
+                _challengePopup.RefreshLoadoutBar();
             }
         }
 
@@ -572,6 +610,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                     ShowNextRecoveredResult(); // 回到空闲:排着的补弹结果可以弹了
                     break;
             }
+            if (_challengePopup != null && _challengePopup.IsVisible)
+                _challengePopup.RefreshLoadoutBar();
         }
 
         /// <summary>

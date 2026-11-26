@@ -274,7 +274,6 @@ namespace MmorpgClient.Net
                 case MatchServiceRpc.StartTournamentMatchMessageId:
                 case MatchServiceRpc.CheerTournamentSquadMessageId:
                 case MatchServiceRpc.ClaimTournamentRewardMessageId:
-                case MatchServiceRpc.SaluteTournamentChampionMessageId:
                 case MatchServiceRpc.SendTournamentSpectateCheerMessageId:
                 case MatchServiceRpc.GetTournamentSpectateCheerMessageId:
                 case MatchServiceRpc.UpdateTournamentSquadEmblemMessageId:
@@ -283,6 +282,9 @@ namespace MmorpgClient.Net
                 case MatchServiceRpc.GetTournamentPredictionBoardMessageId:
                 case MatchServiceRpc.BanTournamentLeylineMessageId:
                 case MatchServiceRpc.GetTournamentHighlightsMessageId:
+                case MatchServiceRpc.CreateTrialChallengeCardMessageId:
+                case MatchServiceRpc.GetTrialChallengeCardMessageId:
+                case MatchServiceRpc.GetSharedTrialReplayMessageId:
                     return "match";
 
                 case MessageIds.SubmitBattleAction:

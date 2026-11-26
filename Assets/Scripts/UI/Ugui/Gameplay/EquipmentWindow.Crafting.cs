@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MmorpgClient.Game.Skills;
 using UnityEngine;
 using static MmorpgClient.UI.Ugui.Gameplay.EquipmentUiArt;
 
@@ -9,6 +10,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     public sealed partial class EquipmentWindow
     {
         private bool _craftOwnedMode;
+        private ulong _affixProxyMasterId;
 
         private void RenderCraft()
         {
@@ -134,7 +136,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var item = FindItem(itemId);
             var position = item?.FixedAffixSlots.FirstOrDefault(s => s.Slot == slot);
             if (position == null || position.Selected != null || WriteBlocked) return;
-            _affixItem = itemId; _affixSlot = slot; _craft.ClearSelection(); _modal = Modal.Affix; _scroll.Clear(); Render();
+            _affixItem = itemId; _affixSlot = slot; _affixProxyMasterId = 0; _craft.ClearSelection(); _modal = Modal.Affix; _scroll.Clear();
+            SkillCraftClient.Instance?.RefreshProxyStalls();
+            Render();
             if (_craft.Rules == null && !_craft.LoadingRules) _craft.RefreshRules();
         }
 
@@ -171,18 +175,47 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 bool duplicate = item.FixedAffixSlots.Any(s => s.Selected?.AffixId == affix.AffixId);
                 string text = affix.Name + "  " + EquipmentScreenModel.AffixValue(affix) + (duplicate ? "  本件已选" : "");
                 ChoiceRow(list, "AffixOption_" + affix.AffixId, text, 5, i * 160, 1190, 140, () =>
-                    _craft.SelectAffix(_affixItem, _affixSlot, affix.AffixId), choice?.AffixId == affix.AffixId,
+                    _craft.SelectAffix(_affixItem, _affixSlot, affix.AffixId, false, _affixProxyMasterId), choice?.AffixId == affix.AffixId,
                     !duplicate && position?.Selected == null && !_craft.Pending && !_craft.Busy);
             }
             var selected = candidates.FirstOrDefault(a => a.AffixId == choice?.AffixId);
-            Label(_modalLayer, "AffixSelectedHeading", selected?.Name ?? "请选择词条", 2110, 450, 1050, 100, 52, color: Jade);
+            Label(_modalLayer, "AffixSelectedHeading", selected?.Name ?? "请选择词条", 2110, 450, 1050, 90, 52, color: Jade);
             if (selected != null)
             {
                 TextLines(_modalLayer, "AffixDescription", new[] { EquipmentScreenModel.AffixValue(selected), selected.Description,
-                    "首次安装后固定生效，已有词条不可在此覆盖。", "另一件首饰可以选择相同组合。" }, 2110, 590, 1060, 480, 44);
+                    "首次安装后固定生效，已有词条不可在此覆盖。", "另一件首饰可以选择相同组合。" }, 2110, 550, 1060, 350, 42);
             }
+            var forgeMasters = ActiveForgeMasters();
+            string affixMasterLabel = _affixProxyMasterId == 0
+                ? "当前方式：亲自装条（点击切换全区名匠24小时代打）"
+                : FormatSelectedForgeMaster(forgeMasters, _affixProxyMasterId);
+            Button(_modalLayer, "AffixProxyCycle", affixMasterLabel, 2110, 915, 1050, () =>
+            {
+                if (_craft.Busy || _craft.Pending) return;
+                if (forgeMasters.Count == 0) _affixProxyMasterId = 0;
+                else if (_affixProxyMasterId == 0) _affixProxyMasterId = forgeMasters[0].MasterPlayerId;
+                else
+                {
+                    int idx = forgeMasters.FindIndex(m => m.MasterPlayerId == _affixProxyMasterId);
+                    _affixProxyMasterId = idx < 0 || idx + 1 >= forgeMasters.Count ? 0 : forgeMasters[idx + 1].MasterPlayerId;
+                }
+                if (selected != null)
+                    _craft.SelectAffix(_affixItem, _affixSlot, selected.AffixId, false, _affixProxyMasterId);
+                Render();
+            }, _affixProxyMasterId != 0, !_craft.Busy && !_craft.Pending);
             if (candidates.Count == 0) Label(_modalLayer, "AffixPickerEmpty", _craft.LoadingRules ? "正在读取词条…" : "词条未同步，请关闭后刷新", 850, 630, 1000, 200, 46, true, Muted);
-            RenderMaterialCost(_modalLayer, _craft.Preview, 2110, 1090, 1050);
+            if (_affixProxyMasterId != 0 && _craft.Preview != null)
+            {
+                string proxySummary = EquipmentScreenModel.FormatCraftPreviewSummary(_craft.Preview);
+                if (!_craft.Preview.Available && _craft.Preview.UnavailableTip != 0)
+                    proxySummary += "\n" + MmorpgClient.Game.PlayerFeatures.PlayerFeaturesClient.DescribeEquipTip("不可安装", new TipInfoMessage { Id = _craft.Preview.UnavailableTip });
+                Label(_modalLayer, "EquipmentMaterialCost", proxySummary, 2110, 1075, 1050, 175, 34, true,
+                    _craft.Preview.Available ? Jade : Danger);
+            }
+            else
+            {
+                RenderMaterialCost(_modalLayer, _craft.Preview, 2110, 1090, 1050);
+            }
             Button(_modalLayer, "AffixCancel", "取消", 870, 1290, 700, CloseModal);
             Button(_modalLayer, "AffixCommit", _craft.Busy ? "安装中…" : "确认安装", 2280, 1290, 850, CommitAffix, true, CanInstallAffix());
         }

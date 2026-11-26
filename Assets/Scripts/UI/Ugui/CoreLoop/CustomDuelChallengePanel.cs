@@ -1,5 +1,7 @@
 using MmorpgClient.Game;
+using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.CoreLoop;
+using MmorpgClient.UI.Ugui.Gameplay;
 using TMPro;
 using UnityEngine;
 
@@ -40,6 +42,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             if (presetTargetPlayerId != 0ul)
                 _targetIdDraft = presetTargetPlayerId.ToString();
             gameObject.SetActive(true);
+            PreBattleLoadoutQuickBar.EnsureRequested(_game?.Features);
             Refresh();
         }
 
@@ -135,6 +138,12 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     CoreLoopUiArt.Button("PetPreset" + pid, transform, 710f + i * 240f, 698f, 220f, 48f,
                         petNames[i], () => { _challengerPetPreset = pid; Refresh(); }, true, _challengerPetPreset == pid, 20f);
                 }
+            }
+            else
+            {
+                PreBattleLoadoutQuickBar.RenderForFeatures(
+                    transform, "CustomDuelLoadoutQuickBar", 480f, 644f, 1600f, 76f,
+                    _game?.Features, _game?.Battle?.Phase ?? BattlePhase.None, _root.ShowToast);
             }
 
             // 规则预览 + 发起按钮

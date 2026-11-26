@@ -1,5 +1,7 @@
 using MmorpgClient.Game;
+using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.CoreLoop;
+using MmorpgClient.UI.Ugui.Gameplay;
 using TMPro;
 using UnityEngine;
 
@@ -31,6 +33,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         {
             gameObject.SetActive(true);
             _game?.Season?.RequestWuxingTowerState(force: true);
+            PreBattleLoadoutQuickBar.EnsureRequested(_game?.Features);
             Refresh();
         }
 
@@ -135,6 +138,11 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                         def.Description, 14f, CoreLoopUiArt.Ink, false, true);
                 }
             }
+
+            // 战前准备期 1..5 一键换流派快捷条（看到当前层五行灵脉后直接切换抗性/控场/输出整套方案）
+            PreBattleLoadoutQuickBar.RenderForFeatures(
+                transform, "TowerLoadoutQuickBar", 808f, 760f, 852f, 58f,
+                _game?.Features, _game?.Battle?.Phase ?? BattlePhase.None, _root.ShowToast);
 
             // 底部行动按钮区
             if (!tower.RunActive)

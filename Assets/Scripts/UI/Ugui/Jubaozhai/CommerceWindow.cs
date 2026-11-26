@@ -778,8 +778,9 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 var assets = _selection.Clone();
                 string designatedNote = designatedId != 0 ? $"，仅限指定买家角色编号 #{designatedId} 购买" : "";
                 string noticeNote = MarketP50DisplayModel.DescribeNoticeTier(assets.ItemUuids.Count > 0 || assets.PetId != 0);
+                string loadoutWarn = FormatSelectedLoadoutWarning(assets, auction ? "创建竞拍" : "上架寄售");
                 Confirm("上架「" + _selectedName + "」，" + (auction ? "起拍价 " : "价格 ") + EconomyFormat.FormatSilver(amount)
-                    + "，时长 " + hour + " 小时" + designatedNote + "。\n公示规则：" + noticeNote + "。资产将移入官方托管。",
+                    + "，时长 " + hour + " 小时" + designatedNote + "。\n公示规则：" + noticeNote + "。资产将移入官方托管。" + loadoutWarn,
                     () => { if (auction) _client.CreateLot(assets, 0, amount, step, duration); else _client.Consign(assets, 0, amount, duration, designatedId); });
             };
             Action("创建寄售 / 定向托管单", 24, 296, 440, () => publish(false), true);
@@ -793,8 +794,9 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 if (!HasAssets()) { _client.SetStatus("请先选择要交易的资产。"); return; }
                 if (!Positive(target, out var buyer) || !Positive(wanted, out var gold)) return;
                 var seller = _selection.Clone();
+                string loadoutWarn = FormatSelectedLoadoutWarning(seller, "当面交易");
                 Confirm("向服务端角色编号 #" + buyer + " 发起当面交易：交付「" + _selectedName + "」，收取 " + EconomyFormat.FormatSilver(gold)
-                    + "。\n好友不代表官方担保；任一方修改条款均会清空双方锁定。",
+                    + "。\n好友不代表官方担保；任一方修改条款均会清空双方锁定。" + loadoutWarn,
                     () => _client.CreateTrade(buyer, seller, new TradeAssetSelection { CurrencyType = 0, CurrencyAmount = gold }));
             }, true);
         }
@@ -839,7 +841,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 var assets = _selection.Clone();
                 string noticeNote = MarketP50DisplayModel.DescribeNoticeTier(uniqueValuable, priceFen);
                 string designatedNote = designatedId != 0 ? $"\n仅限指定买家角色编号 #{designatedId} 购买。" : "";
-                Confirm($"确认上架珍宝阁 RMB 托管单「{title}」，价格 {EconomyFormat.FormatMoney(priceFen, "CNY")}？\n公示规则：{noticeNote}{designatedNote}",
+                string loadoutWarn = FormatSelectedLoadoutWarning(assets, "珍宝阁寄售");
+                Confirm($"确认上架珍宝阁 RMB 托管单「{title}」，价格 {EconomyFormat.FormatMoney(priceFen, "CNY")}？\n公示规则：{noticeNote}{designatedNote}{loadoutWarn}",
                     () => _client.CreateRmbConsignment(assets, title, priceFen, designatedId));
             }, true);
         }
@@ -861,6 +864,23 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             PlayerPrefs.Save();
         }
 
+        private string FormatSelectedLoadoutWarning(TradeAssetSelection selection, string actionVerb)
+        {
+            if (selection == null || selection.ItemUuids.Count == 0) return string.Empty;
+            var snap = _game()?.Features?.EquipLoadouts;
+            if (snap == null) return string.Empty;
+            var schemes = new List<string>();
+            for (int i = 0; i < selection.ItemUuids.Count; ++i)
+            {
+                var refs = EquipLoadoutModel.ReferencedSchemesOf(snap, selection.ItemUuids[i]);
+                for (int r = 0; r < refs.Count; ++r)
+                    if (!schemes.Contains(refs[r])) schemes.Add(refs[r]);
+            }
+            return schemes.Count == 0
+                ? string.Empty
+                : "\n提示：" + EquipLoadoutModel.FormatItemProtectionWarning(schemes, actionVerb);
+        }
+
         private bool HasAssets() => _selection.Items.Count != 0 || _selection.ItemUuids.Count != 0 || _selection.PetId != 0;
         private void ShowAssets(bool pets, int page)
         {
@@ -879,8 +899,11 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             }
             else
             {
+                if (game?.Features != null && game.Features.EquipLoadouts == null && !game.Features.EquipLoadoutsLoading)
+                    game.Features.RequestEquipLoadouts();
                 var bag = game?.Features?.CharacterBag;
                 var list = bag?.Items;
+                var loadouts = game?.Features?.EquipLoadouts;
                 if (list == null) { game?.Features?.RequestBag(); Text("正在读取背包，请稍后刷新。", 24, 24); }
                 else for (int i = start; i < list.Count && i < start + 7; i++)
                 {
@@ -889,13 +912,32 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                     // 选了也过不去 —— 服务器会一直回「稍后重试」,直到那一局结算。
                     ulong held = EquipBagModel.HeldCountOf(bag, item.ConfigId);
                     uint available = (uint)EquipBagModel.AvailableInStack(bag, item);
+                    var loadoutRefs = item.MaxStack == 1
+                        ? EquipLoadoutModel.ReferencedSchemesOf(loadouts, item.ItemId)
+                        : Array.Empty<string>();
+                    string loadoutTag = loadoutRefs.Count > 0 ? " · 【方案:" + string.Join("/", loadoutRefs) + "】" : "";
                     Text(item.Name + " × " + item.Count + (item.MaxStack == 1 ? " · 独立实例" : "")
+                        + loadoutTag
                         + (held != 0 ? " · 战斗结算中 " + held + "，可交易 " + available : ""), 24, y, 1450);
-                    var choose = Action("选择", 1600, y, 350, () =>
+                    Action selectItem = () =>
                     {
                         _selection = new TradeAssetSelection();
                         if (item.MaxStack == 1) _selection.ItemUuids.Add(item.ItemId); else _selection.Items[item.ConfigId] = available;
                         _selectedName = item.Name + " × " + available; Clear(); ShowActivePublishForm(); Changed();
+                    };
+                    var choose = Action("选择", 1600, y, 350, () =>
+                    {
+                        if (loadoutRefs.Count > 0)
+                        {
+                            Clear();
+                            Text("防误卖提醒：" + item.Name + "\n" + EquipLoadoutModel.FormatItemProtectionWarning(loadoutRefs, "上架/交易"),
+                                24, 36, 1980, 260, 29);
+                            Action("继续选择", 24, 350, 300, selectItem);
+                            Action("返回背包", 350, 350, 260, () => ShowAssets(false, page));
+                            Changed();
+                            return;
+                        }
+                        selectItem();
                     });
                     choose.interactable = available != 0;
                 }

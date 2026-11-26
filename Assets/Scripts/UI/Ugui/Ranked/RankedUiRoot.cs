@@ -186,10 +186,13 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _lobby.TimeoutCancelClicked += HandleLobbyCancelClick;
 
             _drawer.Closed += HandleDrawerClosed;
+            _drawer.TabSelected += HandleDrawerTabSelected;
             _drawer.LeaderboardModeRequested += around => RequestLeaderboard(around, 1u);
             _drawer.LeaderboardPageRequested += page => RequestLeaderboard(false, page);
             _drawer.LeaderboardRefreshRequested += () => RequestLeaderboard(false, 1u);
             _drawer.CosmeticUpdateRequested += loadout => _ranked?.UpdateCosmetic(loadout);
+            _drawer.WatchFeaturedReplayRequested += HandleWatchFeaturedReplay;
+            _drawer.ApplyFeaturedBuildRequested += HandleApplyFeaturedBuild;
 
             _settlement.BackRequested += DismissSettlementToCityOrLobby;
             _settlement.RefreshRatingRequested += () =>
@@ -336,6 +339,65 @@ namespace MmorpgClient.UI.Ugui.Ranked
             if (_canvas != null) _canvas.sortingOrder = CanvasSortingOrder;
             if (_window != null && (_lobby == null || !_lobby.IsVisible) && (_settlement == null || !_settlement.IsVisible))
                 _window.gameObject.SetActive(false);
+        }
+
+        private void HandleDrawerTabSelected(RankedDrawerTab tab)
+        {
+            if (tab != RankedDrawerTab.FeaturedBuilds) return;
+            if (_game?.Season != null && _game.Season.Snapshot == null)
+                _game.Season.RequestState();
+            if (_game?.Pets != null && !_game.Pets.HasList)
+                _game.Pets.RequestList();
+        }
+
+        private void HandleWatchFeaturedReplay(ulong battleId)
+        {
+            if (battleId == 0UL) return;
+            var reports = BattleReportClient.Instance;
+            if (reports == null)
+            {
+                _drawer?.SetFeaturedBuildStatus("战报回放通道尚未就绪，请稍后再试。", isError: true);
+                return;
+            }
+            if (!reports.FetchReplay(battleId))
+            {
+                _drawer?.SetFeaturedBuildStatus("正在加载战报回放，请稍候重试。", isError: true);
+                return;
+            }
+            _drawer?.Hide();
+        }
+
+        private void HandleApplyFeaturedBuild(global::Match.RankedFeaturedBuildView build)
+        {
+            if (build == null) return;
+            var season = _game?.Season;
+            var pets = _game?.Pets;
+            var plan = RankedFormatting.EvaluateFeaturedBuildCopyPlan(
+                build,
+                season?.Snapshot,
+                pets?.Pets,
+                id => SeasonSealTableManager.Instance?.FindById(id)?.Name,
+                id => PetTableManager.Instance?.FindById(id)?.Name);
+
+            if (plan.MissingSeal && season != null && season.Snapshot == null)
+                season.RequestState();
+            if (plan.MissingPet && pets != null && !pets.HasList)
+                pets.RequestList();
+
+            bool sealSent = plan.CanEquipSeal && season != null && season.EquipSeal(plan.TargetSealId);
+            bool petSent = false;
+            if (plan.CanSummonPet && pets != null && !pets.Busy)
+            {
+                pets.Summon(plan.TargetPetId);
+                petSent = true;
+            }
+
+            if (sealSent || petSent)
+                _drawer?.SetFeaturedBuildStatus("已提交套用：" + plan.SummaryMessage, isError: false);
+            else if (plan.HasAnyWriteAction)
+                _drawer?.SetFeaturedBuildStatus("当前状态忙碌或冷却中，请稍后再试 · " + plan.SummaryMessage, isError: true);
+            else
+                _drawer?.SetFeaturedBuildStatus(plan.SummaryMessage, isError: plan.MissingSeal || plan.MissingPet);
         }
 
         private void HideLobbyOnly()

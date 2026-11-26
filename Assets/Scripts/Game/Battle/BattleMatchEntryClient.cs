@@ -156,8 +156,8 @@ namespace MmorpgClient.Game.Battle
             return _battle.Phase != BattlePhase.None;
         }
 
-        /// <summary>发起指定首领试炼或护卫救援（Dungeon 101–109，支持单人 PveSolo 或队长整队 PveTeam；109 护卫救援可附带免费 3×3 预设）。</summary>
-        public bool StartBossTrial(uint dungeonConfigId, uint characterPresetId = 0, uint petPresetId = 0)
+        /// <summary>发起指定首领试炼或护卫救援（Dungeon 101–115，支持单人 PveSolo 或队长整队 PveTeam；常驻首领试炼可附带 trialVowMask）。</summary>
+        public bool StartBossTrial(uint dungeonConfigId, uint characterPresetId = 0, uint petPresetId = 0, uint trialVowMask = 0)
         {
             if (!CanStart()) return false;
             if (dungeonConfigId == 0)
@@ -165,15 +165,23 @@ namespace MmorpgClient.Game.Battle
                 ShowStatus("试炼副本配置无效。");
                 return false;
             }
+            if (!TrialJournalModels.IsValidVowMask(trialVowMask))
+            {
+                ShowStatus("试炼誓约配置无效。");
+                return false;
+            }
             if (_team.HasTeam)
             {
-                bool sent = _team.StartMatch(dungeonConfigId);
+                bool sent = _team.StartMatch(dungeonConfigId, 0u, Match.MatchMode.PveTeam, 0u, trialVowMask);
                 ShowStatus(_team.Status);
                 return sent;
             }
             if (!ConsumeLocalQuota(MessageIds.JoinQueue)) return false;
-            _battle.JoinQueue(Match.MatchMode.PveSolo, dungeonConfigId, 0u, characterPresetId, petPresetId, 0u);
-            ShowSoloStatus(dungeonConfigId == 109u ? "正在发起护卫救援…" : "正在发起首领试炼…");
+            _battle.JoinQueue(Match.MatchMode.PveSolo, dungeonConfigId, 0u, characterPresetId, petPresetId, 0u,
+                isWuxingTower: false, trialVowMask: trialVowMask);
+            ShowSoloStatus(dungeonConfigId == 109u ? "正在发起护卫救援…"
+                : trialVowMask != 0u ? $"正在发起誓约试炼（{TrialJournalModels.FormatVowSummary(trialVowMask)}）…"
+                : "正在发起首领试炼…");
             return _battle.Phase != BattlePhase.None;
         }
 
@@ -252,7 +260,7 @@ namespace MmorpgClient.Game.Battle
         }
 
         /// <summary>按五行试炼志解析出的跳转目标发起匹配（论剑排位需切到排位页选档位，不在此处盲排）。</summary>
-        public bool StartFromTrialJump(TrialJumpTarget target)
+        public bool StartFromTrialJump(TrialJumpTarget target, uint trialVowMask = 0)
         {
             if (!target.IsValid)
             {
@@ -262,7 +270,7 @@ namespace MmorpgClient.Game.Battle
             switch (target.Kind)
             {
                 case TrialJumpKind.BossTrial:
-                    return StartBossTrial(target.DungeonConfigId);
+                    return StartBossTrial(target.DungeonConfigId, 0u, 0u, trialVowMask);
                 case TrialJumpKind.Polarity5v5:
                     return StartPolarity5v5(target.DungeonConfigId);
                 case TrialJumpKind.RankedPvp:

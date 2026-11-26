@@ -199,5 +199,75 @@ namespace MmorpgClient.Tests.EditMode.Skills
             Assert.That(expiredSnap.Loadout.MaxSchemes, Is.EqualTo(6u));
             Assert.That(expiredSnap.Loadout.FindScheme(4)?.RoleTag, Is.EqualTo(2u), "到期后仍须保留第 4 套已存方案供只读展示");
         }
+
+        [Test]
+        public void LoadoutSnapshot_MapsSevenSlotRentalMetadataCustomNamesAttributesAndNewTips()
+        {
+            var scheme5 = new SkillLoadoutSchemeInfo
+            {
+                SchemeId = 5,
+                Name = "高速封系",
+                RoleTag = 2,
+                AttributeRemaining = 10,
+                AttributeTotalPoints = 60,
+            };
+            scheme5.AttributeAllocated[104] = 40;
+            scheme5.AttributeAllocated[101] = 10;
+
+            var resp = new ListSkillsResponse
+            {
+                ClassId = 1,
+                PlayerLevel = 60,
+                Loadout = new SkillLoadoutSnapshot
+                {
+                    CustomEnabled = true,
+                    ActiveSchemeId = 5,
+                    StateVersion = 9,
+                    UnlockedSchemes = 6,
+                    MaxSchemes = 7,
+                    FreeSchemes = 2,
+                    LightCardBonusSchemes = 2,
+                    RentedExtraSlots = 2,
+                    RentExpiresAtSec = 200000UL,
+                    ServerNowSec = 100000UL,
+                    RentUnitPriceDiamond = 30UL,
+                    RentPeriodDays = 30u,
+                    RentMaxRemainingDays = 180u,
+                    DiamondBalance = 95UL,
+                    AttributeResetCostGold = 12000UL,
+                    AttributeSwitchCooldownUntil = 100045UL,
+                    ActiveAttributeSchemeId = 5u,
+                },
+            };
+            resp.Loadout.Schemes.Add(scheme5);
+
+            var snap = SkillBookMapper.ToSnapshot(resp);
+            Assert.That(snap.Loadout.MaxSchemes, Is.EqualTo(7u));
+            Assert.That(snap.Loadout.FreeSchemes, Is.EqualTo(2u));
+            Assert.That(snap.Loadout.LightCardActive, Is.True);
+            Assert.That(snap.Loadout.RentedExtraSlots, Is.EqualTo(2u));
+            Assert.That(snap.Loadout.IsRentActive, Is.True);
+            Assert.That(snap.Loadout.RemainingRentSeconds, Is.EqualTo(100000UL));
+            Assert.That(snap.Loadout.DiamondBalance, Is.EqualTo(95UL));
+            Assert.That(snap.Loadout.AttributeResetCostGold, Is.EqualTo(12000UL));
+            Assert.That(snap.Loadout.ActiveAttributeSchemeId, Is.EqualTo(5u));
+
+            var mapped = snap.Loadout.FindScheme(5);
+            Assert.That(mapped, Is.Not.Null);
+            Assert.That(mapped.Name, Is.EqualTo("高速封系"));
+            Assert.That(mapped.AttributeTotalPoints, Is.EqualTo(60u));
+            Assert.That(mapped.AttributeRemaining, Is.EqualTo(10u));
+            Assert.That(mapped.GetAllocated(104), Is.EqualTo(40u));
+            Assert.That(mapped.GetAllocated(101), Is.EqualTo(10u));
+
+            Assert.That(SkillBookMapper.DescribeTip((uint)skill_error.KSkillLoadoutNameInvalid), Does.Contain("方案名称"));
+            Assert.That(SkillBookMapper.DescribeTip((uint)skill_error.KSkillLoadoutRentPriceChanged), Does.Contain("价格"));
+            Assert.That(SkillBookMapper.DescribeTip((uint)skill_error.KSkillLoadoutRentDiamondNotEnough), Does.Contain("灵石不足"));
+            Assert.That(SkillBookMapper.DescribeTip((uint)skill_error.KSkillLoadoutRentStackLimit), Does.Contain("上限"));
+            Assert.That(SkillBookMapper.DescribeTip((uint)skill_error.KSkillLoadoutRentSlotsInvalid), Does.Contain("缩减"));
+            Assert.That(SkillBookMapper.DescribeTip((uint)skill_error.KSkillLoadoutAttributeInvalid), Does.Contain("加点"));
+            Assert.That(SkillBookMapper.DescribeTip((uint)skill_error.KSkillLoadoutAttributeResetRequired), Does.Contain("洗点"));
+            Assert.That(SkillBookMapper.DescribeTip((uint)attribute_error.KAttributeGoldNotEnough), Does.Contain("银两不足"));
+        }
     }
 }

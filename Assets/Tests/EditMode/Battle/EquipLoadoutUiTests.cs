@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.Net;
 using MmorpgClient.Net.Generated;
@@ -208,6 +209,148 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_client.HasPendingEquipLoadoutUnlock, Is.False);
             Assert.That(_client.EquipLoadouts.UnlockedSchemeCount, Is.EqualTo(2u));
             Assert.That(_unlocked.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void IconKeyMapsTalisman3413AndSaveDropsStaleConnectionCallbacks()
+        {
+            var talisman = new BagItemInfo { ConfigId = 3413u, EquipKind = 0u };
+            Assert.That(EquipmentScreenModel.IconKey(talisman), Is.EqualTo(EquipLoadoutModel.ExpandTalismanIconKey));
+
+            _client.RequestEquipLoadouts();
+            _net.Calls.Last().Respond(new GetEquipLoadoutsResponse { Snapshot = MakeSnapshot(unlocked: 2u, active: 1u, version: 9UL) });
+
+            _client.SaveEquipLoadout(2u, "PVP控场套", 2u, captureCurrentEquipped: false,
+                explicitSlots: new[] { new EquipLoadoutSlotBinding { Slot = 3u, ItemGuid = 5001UL } }, linkedSkillSchemeId: 2u, linkedAttributeSchemeId: 1u);
+            var saveCall = _net.CallsOf(SceneBagClientPlayerRpc.SaveEquipLoadoutMessageId).Last();
+            var saveReq = (SaveEquipLoadoutRequest)saveCall.Request;
+            Assert.That(saveReq.SchemeId, Is.EqualTo(2u));
+            Assert.That(saveReq.Name, Is.EqualTo("PVP控场套"));
+            Assert.That(saveReq.RoleTag, Is.EqualTo(2u));
+            Assert.That(saveReq.CaptureCurrentEquipped, Is.False);
+            Assert.That(saveReq.Slots.Count, Is.EqualTo(1));
+            Assert.That(saveReq.StateVersion, Is.EqualTo(9UL));
+
+            // 模拟切连接代次后才收到旧回包：必须丢弃，绝不覆盖新会话状态
+            _connection = new object();
+            _client.RequestEquipLoadouts();
+            saveCall.Respond(new SaveEquipLoadoutResponse
+            {
+                Snapshot = MakeSnapshot(unlocked: 2u, active: 2u, version: 10UL),
+                RequestId = saveReq.RequestId,
+            });
+            Assert.That(_client.EquipLoadouts, Is.Null);
+        }
+
+        [Test]
+        public void PreBattleBarStateEnforcesPhaseGateMissingSlotsAndLockedHints()
+        {
+            Assert.That(EquipLoadoutModel.IsPreBattleSwitchAllowed(BattlePhase.None), Is.True);
+            Assert.That(EquipLoadoutModel.IsPreBattleSwitchAllowed(BattlePhase.Queued), Is.True);
+            Assert.That(EquipLoadoutModel.IsPreBattleSwitchAllowed(BattlePhase.Preparing), Is.False);
+            Assert.That(EquipLoadoutModel.IsPreBattleSwitchAllowed(BattlePhase.WaitingAction), Is.False);
+            Assert.That(EquipLoadoutModel.IsPreBattleSwitchAllowed(BattlePhase.Resolving), Is.False);
+
+            // 未同步且非加载中：可触发刷新
+            var unsynced = EquipLoadoutModel.BuildPreBattleBarState(
+                null, loading: false, switching: false, hasPendingUnlock: false, BattlePhase.None, string.Empty);
+            Assert.That(unsynced.Synced, Is.False);
+            Assert.That(unsynced.Slots.Count, Is.EqualTo(5));
+            Assert.That(unsynced.Slots[0].ClickKind, Is.EqualTo(PreBattleLoadoutClickKind.Refresh));
+            Assert.That(unsynced.Slots[0].CanClick, Is.True);
+
+            var snap = MakeSnapshot(unlocked: 2u, active: 1u, diamond: 100UL, bindDiamond: 60UL, talismans: 0UL);
+            snap.Schemes[1].Name = "PVP控场";
+            snap.Schemes[1].MissingCount = 2u;
+
+            // 排队等待期（Queued）仍未入房，允许一键切换未激活已解锁方案
+            var queued = EquipLoadoutModel.BuildPreBattleBarState(
+                snap, loading: false, switching: false, hasPendingUnlock: false, BattlePhase.Queued, string.Empty);
+            Assert.That(queued.Synced, Is.True);
+            Assert.That(queued.BlockedByBattleState, Is.False);
+            Assert.That(queued.Slots[0].Active, Is.True);
+            Assert.That(queued.Slots[0].CanClick, Is.False);
+            Assert.That(queued.Slots[0].SpriteKey, Is.EqualTo(EquipLoadoutModel.TabActiveKey));
+            Assert.That(queued.Slots[1].CanClick, Is.True);
+            Assert.That(queued.Slots[1].ClickKind, Is.EqualTo(PreBattleLoadoutClickKind.Switch));
+            Assert.That(queued.Slots[1].SpriteKey, Is.EqualTo(EquipLoadoutModel.TabUnlockedKey));
+            Assert.That(queued.Slots[1].Label, Does.Contain("缺2"));
+            Assert.That(queued.Slots[2].Unlocked, Is.False);
+            Assert.That(queued.Slots[2].CanClick, Is.True);
+            Assert.That(queued.Slots[2].ClickKind, Is.EqualTo(PreBattleLoadoutClickKind.UnlockHint));
+            Assert.That(queued.Slots[2].SpriteKey, Is.EqualTo(EquipLoadoutModel.TabLockedKey));
+
+            // 匹配成局进入 Preparing 后全部置灰锁死
+            var preparing = EquipLoadoutModel.BuildPreBattleBarState(
+                snap, loading: false, switching: false, hasPendingUnlock: false, BattlePhase.Preparing, string.Empty);
+            Assert.That(preparing.BlockedByBattleState, Is.True);
+            Assert.That(preparing.Slots.All(s => !s.CanClick), Is.True);
+            Assert.That(preparing.StatusText, Does.Contain("锁定"));
+
+            // 待确认解锁时禁止切换方案
+            var pendingUnlock = EquipLoadoutModel.BuildPreBattleBarState(
+                snap, loading: false, switching: false, hasPendingUnlock: true, BattlePhase.None, string.Empty);
+            Assert.That(pendingUnlock.Slots[1].CanClick, Is.False);
+            Assert.That(pendingUnlock.StatusIsError, Is.True);
+
+            // 未解锁轻提示与签名变更校验
+            string lockHint = EquipLoadoutModel.FormatLockedPreBattleHint(3u, snap);
+            Assert.That(lockHint, Does.Contain("方案三"));
+            Assert.That(lockHint, Does.Contain("120 灵石"));
+            int sigQueued = EquipLoadoutModel.ComputePreBattleBarSignature(queued);
+            int sigQueuedAgain = EquipLoadoutModel.ComputePreBattleBarSignature(
+                EquipLoadoutModel.BuildPreBattleBarState(
+                    snap, loading: false, switching: false, hasPendingUnlock: false, BattlePhase.Queued, string.Empty));
+            int sigPrep = EquipLoadoutModel.ComputePreBattleBarSignature(preparing);
+            Assert.That(sigQueuedAgain, Is.EqualTo(sigQueued));
+            Assert.That(sigPrep, Is.Not.EqualTo(sigQueued));
+        }
+
+        [Test]
+        public void PreBattleQuickBarHelperRequestsSnapshotSwitchesAndFormatsToast()
+        {
+            EquipLoadoutModel.EnsureEquipLoadoutsRequested(_client);
+            Assert.That(_net.CallsOf(SceneBagClientPlayerRpc.GetEquipLoadoutsMessageId).Count(), Is.EqualTo(1));
+            // 加载中重复调用不得重发
+            EquipLoadoutModel.EnsureEquipLoadoutsRequested(_client);
+            Assert.That(_net.CallsOf(SceneBagClientPlayerRpc.GetEquipLoadoutsMessageId).Count(), Is.EqualTo(1));
+
+            _net.CallsOf(SceneBagClientPlayerRpc.GetEquipLoadoutsMessageId).Last()
+                .Respond(new GetEquipLoadoutsResponse { Snapshot = MakeSnapshot(unlocked: 3u, active: 1u, version: 7UL) });
+
+            var before = EquipLoadoutModel.BuildPreBattleBarState(_client, BattlePhase.None);
+            Assert.That(before.ActiveSchemeId, Is.EqualTo(1u));
+            Assert.That(before.Slots[1].CanClick, Is.True);
+
+            _client.SwitchEquipLoadout(2u, applyLinkedSchemes: true);
+            var inFlight = EquipLoadoutModel.BuildPreBattleBarState(_client, BattlePhase.None);
+            Assert.That(inFlight.Switching, Is.True);
+            Assert.That(inFlight.Slots[1].CanClick, Is.False);
+
+            var call = _net.CallsOf(SceneBagClientPlayerRpc.SwitchEquipLoadoutMessageId).Last();
+            var req = (SwitchEquipLoadoutRequest)call.Request;
+            var resp = new SwitchEquipLoadoutResponse
+            {
+                Bag = MakeBag(PlayerFeaturesClient.CharacterBagType, 7101UL),
+                Equipment = MakeBag(PlayerFeaturesClient.EquipmentBagType, 7102UL),
+                Snapshot = MakeSnapshot(unlocked: 3u, active: 2u, version: 8UL),
+                RequestId = req.RequestId,
+            };
+            resp.MissingSlots.Add(9u);
+            resp.LinkedNotices.Add("已同步切换至战法方案 2");
+            call.Respond(resp);
+
+            var after = EquipLoadoutModel.BuildPreBattleBarState(_client, BattlePhase.None);
+            Assert.That(after.Switching, Is.False);
+            Assert.That(after.ActiveSchemeId, Is.EqualTo(2u));
+            Assert.That(after.Slots[1].Active, Is.True);
+            Assert.That(after.Slots[1].CanClick, Is.False);
+            Assert.That(after.Slots[0].CanClick, Is.True);
+
+            string toast = EquipLoadoutModel.BuildSwitchToast(resp);
+            Assert.That(toast, Does.Contain("方案二"));
+            Assert.That(toast, Does.Contain("法宝一"));
+            Assert.That(toast, Does.Contain("战法方案 2"));
         }
     }
 }

@@ -1,6 +1,8 @@
 using MmorpgClient.Game;
+using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.CoreLoop;
 using MmorpgClient.Game.Team;
+using MmorpgClient.UI.Ugui.Gameplay;
 using MmorpgClient.UI.Ugui.Team;
 using TMPro;
 using UnityEngine;
@@ -30,7 +32,13 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             Hide();
         }
 
-        public void Show() { if (IsVisible) return; gameObject.SetActive(true); Refresh(); }
+        public void Show()
+        {
+            if (IsVisible) return;
+            gameObject.SetActive(true);
+            PreBattleLoadoutQuickBar.EnsureRequested(_game?.Features);
+            Refresh();
+        }
         public void Hide() => gameObject.SetActive(false);
 
         private void Update()
@@ -215,12 +223,15 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 SeasonEconomyUiArt.LoadIcon("badge_tradable_tag"), false);
             tradableIcon.preserveAspect = true;
             tradableIcon.gameObject.SetActive(tradableIcon.sprite != null);
-            CoreLoopUiArt.Text("RewardRule", transform, tradableIcon.sprite != null ? 344 : 295, 842, 1265, 45,
+            CoreLoopUiArt.Text("RewardRule", transform, tradableIcon.sprite != null ? 344 : 295, 840, 1360, 42,
                 selectedCard.IsHardOnly
                     ? "双卫同阵（仅困难）：与困难单卫共享 15 份材料上限，额外解锁试炼志「破阵双绝」徽章。"
                     : _selectedHard
                         ? "困难胜局：基础 10 + 困难绑定加量 5（含至多 1 份可交易）；全队成员均须已解锁困难。"
-                        : "普通胜局：基础材料奖励，含至多 1 份可交易。", 23, CoreLoopUiArt.Muted);
+                        : "普通胜局：基础材料奖励，含至多 1 份可交易。", 22, CoreLoopUiArt.Muted);
+            PreBattleLoadoutQuickBar.RenderForFeatures(
+                transform, "BossTrialLoadoutQuickBar", 286f, 890f, 1422f, 62f,
+                _game?.Features, _game?.Battle?.Phase ?? BattlePhase.None, _root.ShowToast);
             CoreLoopUiArt.Button("EnterTrial", transform, 1740, 834, 420, 80,
                 enterLabel, () => _core.EnterBossTrial(selectedDungeon), canLead, true, 28, "btn_primary_gold");
             CoreLoopUiArt.Text("PartyStatus", transform, 1740, 919, 420, 35,

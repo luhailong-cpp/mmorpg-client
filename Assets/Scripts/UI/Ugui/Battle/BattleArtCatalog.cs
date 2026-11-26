@@ -360,6 +360,13 @@ namespace MmorpgClient.UI.Ugui.Battle
                 case 105: return 11; // 灵障护卫 → 汐螺
                 case 106: return 14; // 玄毒首领 → 赤砂魁
                 case 107: return 16; // 缚灵护卫 → 月弦师
+                // 卷四·三境明雷首领与护卫复用宝宝库高清立绘
+                case 111: return 4;  // 风眼妖尊 → 云鹤
+                case 112: return 13; // 疾风护卫 → 竹风狸
+                case 113: return 2;  // 水镜妖尊 → 石灵
+                case 114: return 6;  // 钟鼓护卫 → 绛铃
+                case 115: return 3;  // 潮汐妖尊 → 金猊
+                case 116: return 1;  // 赶海护卫 → 灵狐
                 // 109(策应卫·破军)、110(策应卫·鼓噪)已接入专属 Battle/Monsters/{109,110} 帧条与头像，不再借用宝宝视觉
                 default: return 0;
             }
@@ -379,6 +386,12 @@ namespace MmorpgClient.UI.Ugui.Battle
                 case 107: return "缚灵护卫";
                 case 109: return "破军卫";
                 case 110: return "鼓噪卫";
+                case 111: return "风眼妖尊";
+                case 112: return "疾风护卫";
+                case 113: return "水镜妖尊";
+                case 114: return "钟鼓护卫";
+                case 115: return "潮汐妖尊";
+                case 116: return "赶海护卫";
                 default: return null;
             }
         }

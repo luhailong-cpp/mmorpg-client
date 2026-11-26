@@ -19,6 +19,7 @@ namespace MmorpgClient.Game.Season
         public uint AbandonWuxingTowerRun { get; }
         public uint SaveBattleBuildBookmark { get; }
         public uint DeleteBattleBuildBookmark { get; }
+        public uint SetRetroHonorTarget { get; }
 
         public bool IsSupported => GetState != 0 && EquipSeal != 0 && CatchupSeal != 0;
 
@@ -32,7 +33,8 @@ namespace MmorpgClient.Game.Season
             uint pickWuxingTowerSigil = 0u,
             uint abandonWuxingTowerRun = 0u,
             uint saveBattleBuildBookmark = 0u,
-            uint deleteBattleBuildBookmark = 0u)
+            uint deleteBattleBuildBookmark = 0u,
+            uint setRetroHonorTarget = 0u)
         {
             GetState = getState;
             EquipSeal = equipSeal;
@@ -44,6 +46,7 @@ namespace MmorpgClient.Game.Season
             AbandonWuxingTowerRun = abandonWuxingTowerRun;
             SaveBattleBuildBookmark = saveBattleBuildBookmark;
             DeleteBattleBuildBookmark = deleteBattleBuildBookmark;
+            SetRetroHonorTarget = setRetroHonorTarget;
         }
 
         public static SeasonMessageIds Generated => new SeasonMessageIds(
@@ -56,7 +59,8 @@ namespace MmorpgClient.Game.Season
             SceneSeasonClientPlayerRpc.PickWuxingTowerSigilMessageId,
             SceneSeasonClientPlayerRpc.AbandonWuxingTowerRunMessageId,
             SceneSeasonClientPlayerRpc.SaveBattleBuildBookmarkMessageId,
-            SceneSeasonClientPlayerRpc.DeleteBattleBuildBookmarkMessageId);
+            SceneSeasonClientPlayerRpc.DeleteBattleBuildBookmarkMessageId,
+            SceneSeasonClientPlayerRpc.SetRetroHonorTargetMessageId);
     }
 
     /// <summary>赛季印进度追赶成功回执（不可变值对象，跨模块事件传递安全）。</summary>
@@ -133,6 +137,8 @@ namespace MmorpgClient.Game.Season
             (uint)season_error.KSeasonInBattle => "战斗中不可切换或追赶赛季印，请在结算后重试。",
             (uint)season_error.KSeasonSkillNoUpgrade => "赛季技能随赛季自动生效，无需单独升级。",
             (uint)season_error.KSeasonUnavailable => "赛季服务暂不可用，请稍后再试。",
+            (uint)season_error.KSeasonHonorAlreadyUnlocked => "该赛季永久徽章已解锁，无需再设为追忆目标。",
+            (uint)season_error.KSeasonHonorTargetInvalid => "所选往季徽章追忆目标无效，请重新选择。",
             (uint)common_error.KRateLimitExceeded => "操作太快了，请稍候再试。",
             (uint)common_error.KServiceUnavailable => "服务暂时不可用，请稍后再试。",
             (uint)common_error.KInvalidParameter => "请求参数无效，请刷新页面后再试。",
@@ -255,6 +261,17 @@ namespace MmorpgClient.Game.Season
             return row != null && row.SeasonId > 0u;
         }
 
+        /// <summary>按服务端无限期号快照格式化赛季横幅标题（单季常开 / 无限循环期号轮次）。</summary>
+        public static string FormatSeasonTermBanner(global::SeasonStateSnapshot state)
+        {
+            if (state == null || string.IsNullOrWhiteSpace(state.SeasonName)) return "单槽赛季印";
+            if (state.CyclePoolSize > 0u && state.SeasonTerm > 0u)
+                return $"第 {Math.Max(1u, state.CycleIndex)} 轮 · 第 {state.SeasonTerm} 届 · {state.SeasonName}";
+            if (state.SeasonTerm > 1u)
+                return $"第 {state.SeasonTerm} 届 · {state.SeasonName}";
+            return $"{state.SeasonName} · 单槽赛季印";
+        }
+
         /// <summary>格式化战斗内赛季印触发飘字/战报短句（现查 SeasonSealTable，缺表优雅降级）。</summary>
         public static string FormatSeasonSealTriggerText(uint seasonSealId, uint effectId, long value,
             Func<uint, string> sealNameLookup = null)
@@ -266,10 +283,84 @@ namespace MmorpgClient.Game.Season
             return effectId switch
             {
                 1u or 2u => value > 0 ? $"{sealName} · 破盾 -{value}" : $"{sealName} · 破盾触发",
+                4u => value > 0 ? $"{sealName} · 急救增疗 +{value}" : $"{sealName} · 急救增疗",
+                5u => value > 0 ? $"{sealName} · 首盾增容 +{value}" : $"{sealName} · 首盾增容",
                 6u => value > 0 ? $"{sealName} · 减伤 -{value}" : $"{sealName} · 护阵减伤",
                 7u => value > 0 ? $"{sealName} · 回蓝 +{value}" : $"{sealName} · 聚息回蓝",
+                101u => value > 0 ? $"技印共鸣 · {sealName}碎盾返蓝 +{value}" : $"技印共鸣 · {sealName}碎盾返蓝",
+                102u => value > 0 ? $"技印共鸣 · {sealName}破甲 +{value}回合" : $"技印共鸣 · {sealName}破甲延长",
+                103u => value > 0 ? $"技印共鸣 · {sealName}护盾 +{value}" : $"技印共鸣 · {sealName}灵障增盾",
+                104u => value > 0 ? $"技印共鸣 · {sealName}省蓝 -{value}" : $"技印共鸣 · {sealName}蓄势省蓝",
+                105u => value > 0 ? $"技印共鸣 · {sealName}急救返蓝 +{value}" : $"技印共鸣 · {sealName}急救返蓝",
+                106u => value > 0 ? $"技印共鸣 · {sealName}首盾回蓝 +{value}" : $"技印共鸣 · {sealName}首盾回蓝",
+                107u => value > 0 ? $"技印共鸣 · {sealName}增疗 +{value}" : $"技印共鸣 · {sealName}守印增疗",
+                108u => value > 0 ? $"技印共鸣 · {sealName}增盾 +{value}" : $"技印共鸣 · {sealName}防御增盾",
                 _ => value > 0 ? $"{sealName}触发 ({value})" : $"{sealName}触发",
             };
+        }
+
+        /// <summary>优先读取服务端表驱动共鸣说明，零客户端硬编码；仅当热更未下发且为 S1 时兼容兜底。</summary>
+        public static string DescribeSealResonance(global::SeasonSealOption seal, uint seasonId)
+        {
+            if (seal == null) return string.Empty;
+            if (seal.ResonanceKind == 0u && seal.ResonanceSkillId != 0u) return string.Empty;
+            if (!string.IsNullOrWhiteSpace(seal.ResonanceDesc)) return seal.ResonanceDesc;
+            return DescribeSealResonance(seasonId, seal.SealId);
+        }
+
+        /// <summary>返回 S1 兜底「技印共鸣」一句说明（非 S1 或新季请优先使用表驱动重载）。</summary>
+        public static string DescribeSealResonance(uint seasonId, uint sealId)
+        {
+            if (seasonId != 1u) return string.Empty;
+            return sealId switch
+            {
+                101u => "技印共鸣 · 搭配「破阵裂锋」碎盾返还 30% 法力消耗",
+                102u => "技印共鸣 · 搭配「破阵灵雷」破盾使减防延长 +1 回合",
+                103u => "技印共鸣 · 触发减伤次轮施放「固阵灵障」护盾 +10%（每场1次）",
+                104u => "技印共鸣 · 防御回蓝次轮施放「破阵蓄势」耗蓝减半",
+                _ => string.Empty,
+            };
+        }
+
+        /// <summary>将战后结算包中的单槽赛季印实战统计格式化为一句功劳摘要（零触发返回空串）。</summary>
+        public static string FormatSettlementContributionLine(
+            uint sealId,
+            ulong contributionValue,
+            uint triggerCount,
+            uint resonanceCount,
+            Func<uint, string> sealNameLookup = null)
+        {
+            if (sealId == 0u || (contributionValue == 0UL && triggerCount == 0u && resonanceCount == 0u))
+                return string.Empty;
+            string sealName = sealNameLookup != null
+                ? sealNameLookup(sealId)
+                : SeasonSealTableManager.Instance?.FindById(sealId)?.Name;
+            if (string.IsNullOrWhiteSpace(sealName)) sealName = "赛季印";
+            uint effectId = SeasonSealTableManager.Instance?.FindById(sealId)?.EffectId ?? 0u;
+            string metric = (effectId, sealId) switch
+            {
+                (1u or 2u, _) or (_, 101u or 102u) => contributionValue > 0UL
+                    ? $"累计削盾 {contributionValue.ToString("N0", CultureInfo.InvariantCulture)}"
+                    : $"触发破盾 ×{triggerCount}",
+                (4u, _) => contributionValue > 0UL
+                    ? $"急救增疗 {contributionValue.ToString("N0", CultureInfo.InvariantCulture)}"
+                    : $"触发急救增疗 ×{triggerCount}",
+                (5u, _) => contributionValue > 0UL
+                    ? $"首盾增容 {contributionValue.ToString("N0", CultureInfo.InvariantCulture)}"
+                    : $"触发首盾增容 ×{triggerCount}",
+                (6u, _) or (_, 103u) => contributionValue > 0UL
+                    ? $"护阵减伤/增效 {contributionValue.ToString("N0", CultureInfo.InvariantCulture)}"
+                    : $"触发护阵 ×{triggerCount}",
+                (7u, _) or (_, 104u) => contributionValue > 0UL
+                    ? $"回蓝/省蓝 {contributionValue.ToString("N0", CultureInfo.InvariantCulture)}"
+                    : $"触发聚息 ×{triggerCount}",
+                _ => contributionValue > 0UL
+                    ? $"累计贡献 {contributionValue.ToString("N0", CultureInfo.InvariantCulture)}"
+                    : $"触发 ×{triggerCount}",
+            };
+            return resonanceCount > 0u
+                ? $"本场{sealName}{metric} · 技印共鸣 ×{resonanceCount}"
+                : $"本场{sealName}{metric}";
         }
 
         /// <summary>格式化战斗内永久法宝触发飘字/战报短句。</summary>
@@ -302,13 +393,40 @@ namespace MmorpgClient.Game.Season
             _ => string.Empty,
         };
 
-        /// <summary>从战后 BattleEndS2C 与当前赛季快照构建结算页「赛季印进度」只读视图。</summary>
+        /// <summary>从战后 BattleEndS2C 与当前赛季快照构建结算页「赛季印进度与实战功劳」只读视图。</summary>
         public static SeasonSettlementProgressView BuildSettlementProgressView(
             global::BattleEndS2C end,
             global::SeasonStateSnapshot snapshot = null,
             Func<uint, (string seasonName, string honorTitle)> ruleLookup = null)
         {
-            if (end == null || end.SeasonSealMaxPoints == 0u) return null;
+            if (end == null) return null;
+            string contributionLine = string.Empty;
+            var settlement = end.Settlement;
+            if (settlement != null && settlement.FinalSeasonSealId != 0u)
+            {
+                uint finalSealId = settlement.FinalSeasonSealId;
+                Func<uint, string> sealNameFromSnap = id =>
+                {
+                    if (snapshot?.Seals != null)
+                    {
+                        for (int i = 0; i < snapshot.Seals.Count; i++)
+                        {
+                            var s = snapshot.Seals[i];
+                            if (s != null && s.SealId == id && !string.IsNullOrWhiteSpace(s.Name))
+                                return s.Name;
+                        }
+                    }
+                    return SeasonSealTableManager.Instance?.FindById(id)?.Name;
+                };
+                contributionLine = FormatSettlementContributionLine(
+                    finalSealId,
+                    settlement.SeasonSealContributionValue,
+                    settlement.SeasonSealTriggerCount,
+                    settlement.SeasonSealResonanceCount,
+                    sealNameFromSnap);
+            }
+            bool hasRetro = end.RetroHonorSeasonId != 0u && end.RetroHonorPointsAdded > 0u;
+            if (end.SeasonSealMaxPoints == 0u && string.IsNullOrEmpty(contributionLine) && !hasRetro) return null;
             uint seasonId = end.SeasonId != 0u ? end.SeasonId : (snapshot?.SeasonId ?? 0u);
             string seasonName = snapshot != null && snapshot.SeasonId == seasonId && !string.IsNullOrWhiteSpace(snapshot.SeasonName)
                 ? snapshot.SeasonName
@@ -349,6 +467,46 @@ namespace MmorpgClient.Game.Season
                 }
             }
             if (string.IsNullOrWhiteSpace(seasonName)) seasonName = "本季赛季印";
+
+            string retroSeasonName = string.Empty;
+            string retroTitleName = string.Empty;
+            if (hasRetro)
+            {
+                uint rsid = end.RetroHonorSeasonId;
+                if (snapshot?.Honors != null)
+                {
+                    for (int i = 0; i < snapshot.Honors.Count; i++)
+                    {
+                        var h = snapshot.Honors[i];
+                        if (h != null && h.SeasonId == rsid)
+                        {
+                            retroSeasonName = h.SeasonName ?? string.Empty;
+                            retroTitleName = h.HonorTitleName ?? string.Empty;
+                            break;
+                        }
+                    }
+                }
+                if (string.IsNullOrWhiteSpace(retroSeasonName) || string.IsNullOrWhiteSpace(retroTitleName))
+                {
+                    if (ruleLookup != null)
+                    {
+                        var pair = ruleLookup(rsid);
+                        if (string.IsNullOrWhiteSpace(retroSeasonName)) retroSeasonName = pair.seasonName ?? string.Empty;
+                        if (string.IsNullOrWhiteSpace(retroTitleName)) retroTitleName = pair.honorTitle ?? string.Empty;
+                    }
+                    else
+                    {
+                        var rRow = SeasonRuleTableManager.Instance?.FindById(rsid);
+                        if (rRow != null)
+                        {
+                            if (string.IsNullOrWhiteSpace(retroSeasonName)) retroSeasonName = rRow.Name ?? string.Empty;
+                            if (string.IsNullOrWhiteSpace(retroTitleName)) retroTitleName = rRow.HonorTitleName ?? string.Empty;
+                        }
+                    }
+                }
+                if (string.IsNullOrWhiteSpace(retroSeasonName)) retroSeasonName = $"第 {rsid} 季";
+            }
+
             return new SeasonSettlementProgressView(
                 seasonId,
                 seasonName,
@@ -357,7 +515,15 @@ namespace MmorpgClient.Game.Season
                 end.SeasonSealMaxPoints,
                 end.SeasonHonorNewlyUnlocked,
                 honorTitle ?? string.Empty,
-                honorBadgeIconKey ?? string.Empty);
+                honorBadgeIconKey ?? string.Empty,
+                contributionLine,
+                hasRetro ? end.RetroHonorSeasonId : 0u,
+                retroSeasonName,
+                retroTitleName,
+                hasRetro ? end.RetroHonorPointsAdded : 0u,
+                hasRetro ? end.RetroHonorProgressAfter : 0u,
+                hasRetro ? end.RetroHonorMaxPoints : 0u,
+                hasRetro && end.RetroHonorNewlyUnlocked);
         }
 
         /// <summary>
@@ -386,9 +552,11 @@ namespace MmorpgClient.Game.Season
                 if ((seal.EffectId == 1u || seal.EffectId == 2u) &&
                     (offenseSeal == null || (recommended.Contains(seal.SealId) && !recommended.Contains(offenseSeal.SealId))))
                     offenseSeal = seal;
-                else if (seal.EffectId == 6u && guardSeal == null)
+                else if ((seal.EffectId == 6u || seal.EffectId == 5u) &&
+                    (guardSeal == null || (recommended.Contains(seal.SealId) && !recommended.Contains(guardSeal.SealId))))
                     guardSeal = seal;
-                else if (seal.EffectId == 7u && manaSeal == null)
+                else if ((seal.EffectId == 7u || seal.EffectId == 4u) &&
+                    (manaSeal == null || (recommended.Contains(seal.SealId) && !recommended.Contains(manaSeal.SealId))))
                     manaSeal = seal;
             }
 
@@ -467,7 +635,7 @@ namespace MmorpgClient.Game.Season
         }
     }
 
-    /// <summary>战后结算窗口「赛季印进度」只读视图（零 UnityEngine 依赖）。</summary>
+    /// <summary>战后结算窗口「赛季印进度、往季追忆与本场功劳」只读视图（零 UnityEngine 依赖）。</summary>
     public sealed class SeasonSettlementProgressView
     {
         public uint SeasonId { get; }
@@ -478,6 +646,15 @@ namespace MmorpgClient.Game.Season
         public bool HonorNewlyUnlocked { get; }
         public string HonorTitleName { get; }
         public string HonorBadgeIconKey { get; }
+        public string ContributionLine { get; }
+        public uint RetroHonorSeasonId { get; }
+        public string RetroHonorSeasonName { get; }
+        public string RetroHonorTitleName { get; }
+        public uint RetroHonorPointsAdded { get; }
+        public uint RetroHonorProgressAfter { get; }
+        public uint RetroHonorMaxPoints { get; }
+        public bool RetroHonorNewlyUnlocked { get; }
+        public bool HasRetroHonor => RetroHonorSeasonId != 0u && RetroHonorPointsAdded > 0u;
         public bool IsMaxed => MaxPoints > 0u && ProgressAfter >= MaxPoints;
 
         public SeasonSettlementProgressView(
@@ -488,7 +665,15 @@ namespace MmorpgClient.Game.Season
             uint maxPoints,
             bool honorNewlyUnlocked,
             string honorTitleName,
-            string honorBadgeIconKey = "")
+            string honorBadgeIconKey = "",
+            string contributionLine = "",
+            uint retroHonorSeasonId = 0u,
+            string retroHonorSeasonName = "",
+            string retroHonorTitleName = "",
+            uint retroHonorPointsAdded = 0u,
+            uint retroHonorProgressAfter = 0u,
+            uint retroHonorMaxPoints = 0u,
+            bool retroHonorNewlyUnlocked = false)
         {
             SeasonId = seasonId;
             SeasonName = seasonName;
@@ -498,6 +683,14 @@ namespace MmorpgClient.Game.Season
             HonorNewlyUnlocked = honorNewlyUnlocked;
             HonorTitleName = honorTitleName;
             HonorBadgeIconKey = honorBadgeIconKey ?? string.Empty;
+            ContributionLine = contributionLine ?? string.Empty;
+            RetroHonorSeasonId = retroHonorSeasonId;
+            RetroHonorSeasonName = retroHonorSeasonName ?? string.Empty;
+            RetroHonorTitleName = retroHonorTitleName ?? string.Empty;
+            RetroHonorPointsAdded = retroHonorPointsAdded;
+            RetroHonorProgressAfter = retroHonorProgressAfter;
+            RetroHonorMaxPoints = retroHonorMaxPoints;
+            RetroHonorNewlyUnlocked = retroHonorNewlyUnlocked;
         }
     }
 

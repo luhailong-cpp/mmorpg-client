@@ -11,26 +11,39 @@ using static MmorpgClient.UI.Ugui.Gameplay.EquipmentUiArt;
 
 namespace MmorpgClient.UI.Ugui.Skills
 {
-    public enum SkillCraftPage { Scrolls, ProxyStalls }
+    public enum SkillCraftPage { Scrolls, ProxyStalls, WantedBoard }
 
     /// <summary>
-    /// 典籍制书（分卷宗常规/稀世双轨拓印 + 我的未学书架）与主城西市名匠代打摊位窗口。
+    /// 典籍制书（分卷宗常规/稀世双轨拓印 + 藏经阁里程碑 + 批量拆页 + 流派体检 + 我的未学书架）、
+    /// 主城西市名匠代打摊位（口碑/雅号/招牌/同队情义免税）与西市封卷悬赏求书板窗口。
     /// 独立于已锁死原图像素几何的 SkillPanel，切图可从 UI/Ugui/CraftQualitySkill/ 无缝替换，缺图时回退既有道家 Q 版控件。
     /// </summary>
     public sealed class SkillCraftWindow : IDisposable
     {
+        private enum CraftModal { None = 0, DismantleSingle = 1, BatchDismantle = 2, BuildAdvisor = 3 }
+
         private readonly RectTransform _root, _frame, _body, _modalLayer;
         private readonly CanvasGroup _bodyGroup;
         private SkillCraftClient _client;
         private SkillCraftPage _page;
+        private CraftModal _modal;
         private uint _selectedScrollId;
         private uint _selectedSkillId;
         private ulong _selectedProxyMasterId;
         private ulong _dismantleConfirmBookId;
+        private List<ulong> _batchDismantleIds = new();
         private ulong _learnPetId;
         private ulong _draftForgeFee = 80;
         private ulong _draftScrollFee = 80;
+        private uint _draftShowcaseTag;
+        private uint _draftCraftTitleId;
+        private bool _draftTeamFreeProxy;
         private bool _draftFeesInitialized;
+        private ProxyStallSortMode _stallSortMode = ProxyStallSortMode.Reputation;
+        private ProxyStallFilterMode _stallFilterMode = ProxyStallFilterMode.All;
+        private uint _wantedSkillId;
+        private ulong _wantedRewardGold = 500;
+        private bool _wantedRequireMasterSig;
         private bool _rendering, _renderAgain, _disposed;
         private PlayerFeaturesClient _bagSource;
 
@@ -75,6 +88,8 @@ namespace MmorpgClient.UI.Ugui.Skills
             _page = page;
             if (focusScrollId != 0) _selectedScrollId = focusScrollId;
             _dismantleConfirmBookId = 0;
+            _batchDismantleIds.Clear();
+            _modal = CraftModal.None;
             _root.SetAsLastSibling();
             _root.gameObject.SetActive(true);
             BindBagSource(PlayerFeaturesClient.Instance);
@@ -82,6 +97,7 @@ namespace MmorpgClient.UI.Ugui.Skills
                 _bagSource.RequestBag(PlayerFeaturesClient.CharacterBagType);
             _client?.RefreshState();
             _client?.RefreshProxyStalls();
+            if (_page == SkillCraftPage.WantedBoard) _client?.RefreshWantedOrders();
             Render();
         }
 
@@ -90,6 +106,8 @@ namespace MmorpgClient.UI.Ugui.Skills
             if (!IsVisible) return;
             BindBagSource(null);
             _dismantleConfirmBookId = 0;
+            _batchDismantleIds.Clear();
+            _modal = CraftModal.None;
             _root.gameObject.SetActive(false);
             Closed?.Invoke();
         }
@@ -115,23 +133,44 @@ namespace MmorpgClient.UI.Ugui.Skills
                     Clear(_body);
                     Clear(_modalLayer);
 
-                    Button(_body, "SkillCraftTab_Scrolls", "典籍制书", 180, 140, 380,
-                        () => { _page = SkillCraftPage.Scrolls; _dismantleConfirmBookId = 0; Render(); },
+                    Button(_body, "SkillCraftTab_Scrolls", "典籍制书", 180, 140, 340,
+                        () => { _page = SkillCraftPage.Scrolls; _modal = CraftModal.None; _dismantleConfirmBookId = 0; Render(); },
                         _page == SkillCraftPage.Scrolls);
-                    Button(_body, "SkillCraftTab_Proxy", "名匠代打", 590, 140, 380,
-                        () => { _page = SkillCraftPage.ProxyStalls; _dismantleConfirmBookId = 0; _client?.RefreshProxyStalls(); Render(); },
+                    Button(_body, "SkillCraftTab_Proxy", "名匠代打", 545, 140, 340,
+                        () => { _page = SkillCraftPage.ProxyStalls; _modal = CraftModal.None; _dismantleConfirmBookId = 0; _client?.RefreshProxyStalls(); Render(); },
                         _page == SkillCraftPage.ProxyStalls);
-                    Label(_body, "SkillCraftHeading", _page == SkillCraftPage.Scrolls ? "典籍制书" : "名匠代打",
-                        1560, 65, 960, 130, 68, color: Jade);
+                    var wantedTabBtn = Button(_body, "SkillCraftTab_Wanted", "悬赏求书", 910, 140, 340,
+                        () => { _page = SkillCraftPage.WantedBoard; _modal = CraftModal.None; _dismantleConfirmBookId = 0; _client?.RefreshWantedOrders(); Render(); },
+                        _page == SkillCraftPage.WantedBoard);
+                    var wantedIcon = SeasonEconomyUiArt.LoadCraftIcon("icon_wanted_board");
+                    if (wantedIcon != null)
+                    {
+                        var wImg = QdaoUguiFactory.CreateImage("WantedTabIcon", wantedTabBtn.transform, 18, 38, 64, 64, wantedIcon, false);
+                        wImg.preserveAspect = true;
+                        if (wantedTabBtn.transform.Find("Label") is RectTransform wLbl)
+                        {
+                            wLbl.anchoredPosition = new Vector2(86f, 0f);
+                            wLbl.sizeDelta = new Vector2(244f, 140f);
+                        }
+                    }
+                    string heading = _page switch
+                    {
+                        SkillCraftPage.ProxyStalls => "名匠代打",
+                        SkillCraftPage.WantedBoard => "西市悬赏求书",
+                        _ => "典籍制书",
+                    };
+                    Label(_body, "SkillCraftHeading", heading, 1560, 65, 960, 130, 68, color: Jade);
                     Button(_body, "SkillCraftRefresh", "刷新", 3040, 135, 355, () =>
                     {
                         _client?.RefreshState();
                         _client?.RefreshProxyStalls();
+                        if (_page == SkillCraftPage.WantedBoard) _client?.RefreshWantedOrders();
                     }, enabled: _client != null && !_client.IsLoading && !_client.IsBusy);
                     Button(_body, "SkillCraftClose", "关闭", 3420, 135, 355, Hide);
 
                     if (_page == SkillCraftPage.Scrolls) RenderScrollsPage();
-                    else RenderProxyStallsPage();
+                    else if (_page == SkillCraftPage.ProxyStalls) RenderProxyStallsPage();
+                    else RenderWantedBoardPage();
 
                     string status = _client == null ? SkillCraftClient.NotInGameMessage :
                         !string.IsNullOrEmpty(_client.Error) ? _client.Error : _client.Message;
@@ -143,11 +182,14 @@ namespace MmorpgClient.UI.Ugui.Skills
                             () => _client.RetryPendingWrite(), true, !_client.IsBusy);
                     }
 
-                    bool hasModal = _dismantleConfirmBookId != 0;
+                    if (_dismantleConfirmBookId != 0 && _modal == CraftModal.None) _modal = CraftModal.DismantleSingle;
+                    bool hasModal = _modal != CraftModal.None;
                     _bodyGroup.interactable = !hasModal;
                     _bodyGroup.blocksRaycasts = !hasModal;
                     _modalLayer.gameObject.SetActive(hasModal);
-                    if (hasModal) RenderDismantleConfirmModal();
+                    if (_modal == CraftModal.DismantleSingle) RenderDismantleConfirmModal();
+                    else if (_modal == CraftModal.BatchDismantle) RenderBatchDismantleModal();
+                    else if (_modal == CraftModal.BuildAdvisor) RenderBuildAdvisorModal();
                 } while (_renderAgain);
             }
             finally { _rendering = false; }
@@ -181,7 +223,23 @@ namespace MmorpgClient.UI.Ugui.Skills
 
             // 左栏：分卷宗列表（老卷宗永不稀释，新主题卷宗自动出现）
             Panel(_body, "ScrollListPaper", 130, 390, 720, 1020);
-            Label(_body, "ScrollListTitle", "典籍卷宗", 200, 440, 560, 70, 48, color: Jade);
+            Label(_body, "ScrollListTitle", "典籍卷宗", 190, 440, 290, 70, 44, color: Jade);
+            var advisorBtn = Button(_body, "BuildBookAdvisorBtn", "流派体检", 485, 428, 320, () =>
+            {
+                _modal = CraftModal.BuildAdvisor;
+                Render();
+            }, false, state != null);
+            var archiveIcon = SeasonEconomyUiArt.LoadCraftIcon("icon_scroll_archive");
+            if (archiveIcon != null)
+            {
+                var aImg = QdaoUguiFactory.CreateImage("ScrollArchiveIcon", advisorBtn.transform, 16, 42, 56, 56, archiveIcon, false);
+                aImg.preserveAspect = true;
+                if (advisorBtn.transform.Find("Label") is RectTransform aLbl)
+                {
+                    aLbl.anchoredPosition = new Vector2(76f, 0f);
+                    aLbl.sizeDelta = new Vector2(254f, 140f);
+                }
+            }
             var scrolls = state?.Scrolls.ToList() ?? new List<SkillScrollCatalogInfo>();
             if (_selectedScrollId == 0 || !scrolls.Any(s => s.ScrollId == _selectedScrollId))
                 _selectedScrollId = scrolls.FirstOrDefault()?.ScrollId ?? 0;
@@ -291,15 +349,33 @@ namespace MmorpgClient.UI.Ugui.Skills
                 }
 
                 ulong proxyFee = SelectedScrollProxyFee();
+                bool proxyFreeForMe = SelectedScrollProxyIsTeamFree();
+                var milestone = SkillCraftModels.GetScrollMilestoneStatus(state, activeScroll);
+                bool locked = _client == null || _client.IsBusy || _client.HasPendingWrite;
+
+                // V4 藏经阁本卷收集进度与小成/圆满残页里程碑领取栏
+                Label(_body, "ScrollArchiveProgress",
+                    $"藏经阁进度：{milestone.UnlockedCount}/{milestone.TotalCount} 已解锁",
+                    955, 976, 560, 58, 30, false, Jade);
+                string halfLabel = milestone.HalfClaimed ? "小成已领" : $"领小成(20页·{milestone.HalfThreshold}技)";
+                Button(_body, "ScrollMilestoneHalfBtn", halfLabel, 1525, 962, 460,
+                    () => _client?.ClaimScrollMilestone(activeScroll.ScrollId, 1u),
+                    milestone.HalfClaimable, !locked && milestone.HalfClaimable);
+                string fullLabel = milestone.FullClaimed ? "圆满已领" : "领圆满(40页·全解锁)";
+                Button(_body, "ScrollMilestoneFullBtn", fullLabel, 2000, 962, 460,
+                    () => _client?.ClaimScrollMilestone(activeScroll.ScrollId, 2u),
+                    milestone.FullClaimable, !locked && milestone.FullClaimable);
+
                 if (_selectedProxyMasterId != 0)
                 {
-                    Button(_body, "ScrollProxyClear", $"当前名匠代制（手工费 {proxyFee} 银两）· 点此改回亲自制书",
-                        950, 975, 1480, () => { _selectedProxyMasterId = 0; Render(); });
+                    string proxyFeeLabel = proxyFreeForMe ? "同队情义 0 银两免税" : $"手工费 {proxyFee} 银两";
+                    Button(_body, "ScrollProxyClear", $"当前名匠代制（{proxyFeeLabel}）· 点此改回亲自制书",
+                        950, 1044, 1510, () => { _selectedProxyMasterId = 0; Render(); });
                 }
                 else
                 {
-                    Button(_body, "ScrollProxyPick", "亲自制书 · 点此查看主城名匠代制（5% 官府托管）",
-                        950, 975, 1480, () =>
+                    Button(_body, "ScrollProxyPick", "亲自制书 · 点此查看全区名匠24小时代制（跨线/离线可接单）",
+                        950, 1044, 1510, () =>
                         {
                             _page = SkillCraftPage.ProxyStalls;
                             _client?.RefreshProxyStalls();
@@ -307,7 +383,6 @@ namespace MmorpgClient.UI.Ugui.Skills
                         });
                 }
 
-                bool locked = _client == null || _client.IsBusy || _client.HasPendingWrite;
                 if (activeScroll.RarityTier == 0)
                 {
                     bool randAllowed = SkillCraftModels.CanCraftRegularRandom(state, activeScroll, proxyFee, out _);
@@ -317,10 +392,10 @@ namespace MmorpgClient.UI.Ugui.Skills
                     Label(_body, "ScrollRegularHint",
                         $"随机拓印：{activeScroll.RandomFragmentCount} 残页 + {activeScroll.RandomGoldCost + proxyFee} 银两（产物可交易）\n" +
                         $"定向拓印（{ResolveSkillName(_selectedSkillId)}）：{activeScroll.TargetedFragmentCount} 残页 + {activeScroll.TargetedGoldCost + proxyFee} 银两",
-                        960, 1125, 1480, 110, 34, true, Ink);
-                    Button(_body, "CraftRandomRegularBtn", "随机拓印", 960, 1250, 680,
+                        960, 1140, 1480, 100, 32, true, Ink);
+                    Button(_body, "CraftRandomRegularBtn", "随机拓印", 960, 1255, 680,
                         () => _client?.CraftRegularRandom(activeScroll.ScrollId, _selectedProxyMasterId), true, canRand);
-                    Button(_body, "CraftTargetedRegularBtn", "定向拓印", 1740, 1250, 680,
+                    Button(_body, "CraftTargetedRegularBtn", "定向拓印", 1740, 1255, 680,
                         () => _client?.CraftRegularTargeted(activeScroll.ScrollId, _selectedSkillId, _selectedProxyMasterId), true, canTarget);
                     if (!canTarget && !string.IsNullOrEmpty(targetReason))
                         Label(_body, "ScrollCraftReason", targetReason, 960, 1395, 1480, 50, 30, color: Danger);
@@ -333,12 +408,12 @@ namespace MmorpgClient.UI.Ugui.Skills
                     Label(_body, "ScrollRareHint",
                         $"定向制书（{ResolveSkillName(_selectedSkillId)}）：{activeScroll.RareScrollCount} 绝学残卷 + {activeScroll.RareInkCount} 绑定天工秘墨 + {activeScroll.RareGoldCost + proxyFee} 银两\n" +
                         "100% 必出指定稀世绝学（不抽卡不歪书）；消耗绑定秘墨合出的稀世绝学书永久仅自用。",
-                        960, 1110, 1480, 130, 34, true, Ink);
+                        960, 1132, 1480, 114, 30, true, Ink);
                     if (inkShort)
                     {
-                        Button(_body, "CraftTargetedRareBtn", "定向制书（100%必出）", 960, 1250, 820,
+                        Button(_body, "CraftTargetedRareBtn", "定向制书（100%必出）", 960, 1255, 820,
                             () => _client?.CraftRareTargeted(activeScroll.ScrollId, _selectedSkillId, _selectedProxyMasterId), true, canRare);
-                        Button(_body, "RareMallShortcutBtn", "百宝阁补秘墨", 1810, 1250, 630, () =>
+                        Button(_body, "RareMallShortcutBtn", "百宝阁补秘墨", 1810, 1255, 630, () =>
                         {
                             Hide();
                             var spiritRoot = MmorpgClient.UI.Ugui.SpiritShop.SpiritShopUiRoot.Instance;
@@ -352,7 +427,7 @@ namespace MmorpgClient.UI.Ugui.Skills
                     }
                     else
                     {
-                        Button(_body, "CraftTargetedRareBtn", "定向制书（100%必出）", 1260, 1250, 880,
+                        Button(_body, "CraftTargetedRareBtn", "定向制书（100%必出）", 1260, 1255, 880,
                             () => _client?.CraftRareTargeted(activeScroll.ScrollId, _selectedSkillId, _selectedProxyMasterId), true, canRare);
                     }
                     if (!canRare && !string.IsNullOrEmpty(rareReason))
@@ -360,9 +435,19 @@ namespace MmorpgClient.UI.Ugui.Skills
                 }
             }
 
-            // 右栏：我的未学书架
+            // 右栏：我的未学书架（含 V4 安全批量一键拆多余常规书）
             Panel(_body, "BookshelfPaper", 2550, 390, 1280, 1020);
-            Label(_body, "BookshelfTitle", "我的未学书架", 2620, 440, 660, 70, 48, color: Jade);
+            Label(_body, "BookshelfTitle", "我的未学书架", 2620, 440, 520, 70, 46, color: Jade);
+            var safeBatchIds = SkillCraftModels.SelectSafeBatchDismantleBookIds(state);
+            bool shelfBusy = _client == null || _client.IsBusy || _client.HasPendingWrite;
+            Button(_body, "BookshelfBatchDismantleBtn",
+                safeBatchIds.Count > 0 ? $"一键拆多余({safeBatchIds.Count}本)" : "无多余常规书",
+                3160, 428, 600, () =>
+                {
+                    _batchDismantleIds = safeBatchIds;
+                    _modal = CraftModal.BatchDismantle;
+                    Render();
+                }, safeBatchIds.Count > 0, !shelfBusy && safeBatchIds.Count > 0);
             string learnTargetText = _learnPetId == 0 ? "研习对象：人物（点切换灵宠）" : $"研习对象：灵宠 #{_learnPetId}";
             Button(_body, "BookshelfTargetCycle", learnTargetText, 2610, 520, 1150, CycleLearnTarget);
 
@@ -428,61 +513,95 @@ namespace MmorpgClient.UI.Ugui.Skills
                 SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "ProxySafetyBannerBg", 150, 284, 3660, 84,
                     escrowBanner, new Color(0.93f, 0.91f, 0.82f, 0.96f));
                 Label(_body, "ProxySafetyBanner",
-                    "官府托管 · 零风险代工：装备与材料全程留在本人背包，宗师不接触原件，成品直入本人背包（成交自动扣 5% 摆摊银两税）。",
-                    260, 294, 3440, 64, 36, false, Jade);
+                    "官府托管 · 全区24小时离线代工：装备与材料全程不离身，宗师跨线/离线照常接单，95% 净银两经邮件自动入账（扣 5% 税）。",
+                    260, 294, 3440, 64, 34, false, Jade);
             }
             else
             {
                 Label(_body, "ProxySafetyBanner",
-                    "官府托管 · 零风险代工：装备与材料全程留在本人背包，宗师不接触原件，成品直入本人背包（成交自动扣 5% 摆摊银两税）。",
-                    180, 290, 3600, 80, 38, true, Jade);
+                    "官府托管 · 全区24小时离线代工：装备与材料全程不离身，宗师跨线/离线照常接单，95% 净银两经邮件自动入账（扣 5% 税）。",
+                    180, 290, 3600, 80, 36, true, Jade);
             }
 
-            Panel(_body, "MyProxyStallPaper", 130, 390, 3700, 310);
+            Panel(_body, "MyProxyStallPaper", 130, 385, 3700, 360);
             bool isMaster = SkillCraftModels.CanOpenProxyStall(state);
             if (state != null && !_draftFeesInitialized)
             {
                 _draftForgeFee = SkillCraftModels.IsValidProxyFee(state.ProxyForgeFeeGold) ? state.ProxyForgeFeeGold : 80;
                 _draftScrollFee = SkillCraftModels.IsValidProxyFee(state.ProxyScrollFeeGold) ? state.ProxyScrollFeeGold : 80;
+                _draftShowcaseTag = state.MasterShowcaseTag;
+                _draftCraftTitleId = state.EquippedCraftTitleId;
+                _draftTeamFreeProxy = state.TeamFreeProxy;
                 _draftFeesInitialized = true;
             }
             string myStatus = !isMaster
-                ? "我的代打摊位：铸器或制卷达到【宗师】后自动解锁开摊资格。"
-                : $"我的代打摊位：{(state.ProxyStallOpen ? "营业中" : "未营业")}  |  装备代打费 {_draftForgeFee} 银两  |  技能代制费 {_draftScrollFee} 银两（范围 50–100 银两）";
+                ? "我的代打摊位：铸器或制卷达到【宗师】后自动解锁 24 小时跨线/离线开摊、名匠雅号与同队情义免税。"
+                : $"我的名匠摊位：{(state.ProxyStallOpen ? "24小时营业中（离线照常接单 · 收益走邮件）" : "未营业")} | 口碑 {state.ProxyOrdersCompleted} 单 · 极品 {state.SupremeForgedCount} · 稀世 {state.RareBooksCraftedCount}\n" +
+                  $"装备代打费 {_draftForgeFee} 银两 · 技能代制费 {_draftScrollFee} 银两 | 招牌：{SkillCraftModels.ShowcaseTagName(_draftShowcaseTag)} | 雅号：{SkillCraftModels.CraftTitleName(_draftCraftTitleId)}";
             float myInfoX = 200f;
             if (isMaster)
             {
-                var gmBadge = SeasonEconomyUiArt.LoadTradeV2Slice("icon_master_seal")
+                var gmBadge = SeasonEconomyUiArt.LoadCraftIcon("icon_master_honor")
+                    ?? SeasonEconomyUiArt.LoadTradeV2Slice("icon_master_seal")
                     ?? SeasonEconomyUiArt.LoadCraftControl("mastery_badge_grandmaster");
                 if (gmBadge != null)
                 {
-                    var badgeImg = QdaoUguiFactory.CreateImage("MyProxyMasterBadge", _body, 190, 420, 96, 96, gmBadge, false);
+                    var badgeImg = QdaoUguiFactory.CreateImage("MyProxyMasterBadge", _body, 190, 412, 96, 96, gmBadge, false);
                     badgeImg.preserveAspect = true;
                     myInfoX = 300f;
                 }
             }
-            Label(_body, "MyProxyStallInfo", myStatus, myInfoX, 430, 3750f - myInfoX, 80, 40, true, isMaster ? Jade : Muted);
+            Label(_body, "MyProxyStallInfo", myStatus, myInfoX, 405, 3450f - myInfoX, 110, 34, true, isMaster ? Jade : Muted);
             if (isMaster)
             {
                 bool busy = _client.IsBusy;
-                Button(_body, "ForgeFeeMinus", "装备费-10", 200, 535, 360, () => { _draftForgeFee = Math.Max(SkillCraftModels.ProxyFeeMinGold, _draftForgeFee - 10); Render(); }, enabled: !busy);
-                Button(_body, "ForgeFeePlus", "装备费+10", 580, 535, 360, () => { _draftForgeFee = Math.Min(SkillCraftModels.ProxyFeeMaxGold, _draftForgeFee + 10); Render(); }, enabled: !busy);
-                Button(_body, "ScrollFeeMinus", "制书费-10", 980, 535, 360, () => { _draftScrollFee = Math.Max(SkillCraftModels.ProxyFeeMinGold, _draftScrollFee - 10); Render(); }, enabled: !busy);
-                Button(_body, "ScrollFeePlus", "制书费+10", 1360, 535, 360, () => { _draftScrollFee = Math.Min(SkillCraftModels.ProxyFeeMaxGold, _draftScrollFee + 10); Render(); }, enabled: !busy);
-                Button(_body, "ProxyStallOpenBtn", state.ProxyStallOpen ? "保存并保持营业" : "开启代打摊位", 2420, 535, 650,
-                    () => _client.SetProxyStall(true, _draftForgeFee, _draftScrollFee), true, !busy);
+                Button(_body, "ForgeFeeMinus", "装备费-10", 190, 520, 290, () => { _draftForgeFee = Math.Max(SkillCraftModels.ProxyFeeMinGold, _draftForgeFee - 10); Render(); }, enabled: !busy);
+                Button(_body, "ForgeFeePlus", "装备费+10", 495, 520, 290, () => { _draftForgeFee = Math.Min(SkillCraftModels.ProxyFeeMaxGold, _draftForgeFee + 10); Render(); }, enabled: !busy);
+                Button(_body, "ScrollFeeMinus", "制书费-10", 815, 520, 290, () => { _draftScrollFee = Math.Max(SkillCraftModels.ProxyFeeMinGold, _draftScrollFee - 10); Render(); }, enabled: !busy);
+                Button(_body, "ScrollFeePlus", "制书费+10", 1120, 520, 290, () => { _draftScrollFee = Math.Min(SkillCraftModels.ProxyFeeMaxGold, _draftScrollFee + 10); Render(); }, enabled: !busy);
+                Button(_body, "ShowcaseTagCycle", $"招牌:{SkillCraftModels.ShowcaseTagName(_draftShowcaseTag)}", 1440, 520, 490, () =>
+                {
+                    _draftShowcaseTag = (_draftShowcaseTag + 1u) % (SkillCraftModels.MaxShowcaseTag + 1u);
+                    Render();
+                }, enabled: !busy);
+                Button(_body, "CraftTitleCycle", $"雅号:{SkillCraftModels.CraftTitleName(_draftCraftTitleId)}", 1945, 520, 450, () =>
+                {
+                    CycleUnlockedCraftTitle(state);
+                    Render();
+                }, _draftCraftTitleId != 0, !busy);
+                Button(_body, "TeamFreeProxyToggle", _draftTeamFreeProxy ? "✓ 同队情义免税" : "同队免税:关", 2410, 520, 420, () =>
+                {
+                    _draftTeamFreeProxy = !_draftTeamFreeProxy;
+                    Render();
+                }, _draftTeamFreeProxy, !busy);
+                Button(_body, "ProxyStallOpenBtn", state.ProxyStallOpen ? "保存并保持营业" : "开启代打摊位", 2850, 520, 520,
+                    () => _client.SetProxyStall(true, _draftForgeFee, _draftScrollFee, _draftShowcaseTag, _draftCraftTitleId, _draftTeamFreeProxy), true, !busy);
                 if (state.ProxyStallOpen)
-                    Button(_body, "ProxyStallCloseBtn", "收摊", 3100, 535, 450,
-                        () => _client.SetProxyStall(false, 0, 0), false, !busy);
+                    Button(_body, "ProxyStallCloseBtn", "收摊", 3390, 520, 380,
+                        () => _client.SetProxyStall(false, 0, 0, _draftShowcaseTag, _draftCraftTitleId, _draftTeamFreeProxy), false, !busy);
+                else
+                    Button(_body, "ProxyProfileSaveBtn", "仅存雅号", 3390, 520, 380,
+                        () => _client.SetProxyStall(false, 0, 0, _draftShowcaseTag, _draftCraftTitleId, _draftTeamFreeProxy), false, !busy);
             }
 
-            Panel(_body, "CityMastersPaper", 130, 730, 3700, 680);
-            Label(_body, "CityMastersTitle", "全城在营业名匠（委托前核对代工费用与 5% 官方税）", 200, 770, 2200, 70, 46, color: Jade);
-            var stalls = _client?.ProxyStalls ?? Array.Empty<CraftProxyStallInfo>();
-            var list = Scroll(_body, "CityMastersViewport", 190, 855, 3580, 520, Math.Max(520, stalls.Count * 165));
-            var gmRowBadge = SeasonEconomyUiArt.LoadTradeV2Slice("icon_master_seal")
+            Panel(_body, "CityMastersPaper", 130, 760, 3700, 650);
+            Label(_body, "CityMastersTitle", "全区24小时营业名匠", 190, 790, 620, 66, 42, color: Jade);
+            // V2 排序与筛选按钮组
+            Button(_body, "SortReputation", "口碑优先", 820, 778, 310, () => { _stallSortMode = ProxyStallSortMode.Reputation; Render(); }, _stallSortMode == ProxyStallSortMode.Reputation);
+            Button(_body, "SortSupreme", "极品最多", 1145, 778, 310, () => { _stallSortMode = ProxyStallSortMode.SupremeCount; Render(); }, _stallSortMode == ProxyStallSortMode.SupremeCount);
+            Button(_body, "SortLowestFee", "手工费最低", 1470, 778, 330, () => { _stallSortMode = ProxyStallSortMode.LowestFee; Render(); }, _stallSortMode == ProxyStallSortMode.LowestFee);
+            Button(_body, "FilterAll", "全部", 1920, 778, 220, () => { _stallFilterMode = ProxyStallFilterMode.All; Render(); }, _stallFilterMode == ProxyStallFilterMode.All);
+            Button(_body, "FilterForge", "铸器宗师", 2155, 778, 310, () => { _stallFilterMode = ProxyStallFilterMode.ForgeMaster; Render(); }, _stallFilterMode == ProxyStallFilterMode.ForgeMaster);
+            Button(_body, "FilterScroll", "制卷宗师", 2480, 778, 310, () => { _stallFilterMode = ProxyStallFilterMode.ScrollMaster; Render(); }, _stallFilterMode == ProxyStallFilterMode.ScrollMaster);
+            Button(_body, "FilterTeamFree", "同队免税", 2805, 778, 310, () => { _stallFilterMode = ProxyStallFilterMode.TeamFree; Render(); }, _stallFilterMode == ProxyStallFilterMode.TeamFree);
+
+            var stalls = SkillCraftModels.SortAndFilterProxyStalls(_client?.ProxyStalls, _stallSortMode, _stallFilterMode);
+            var list = Scroll(_body, "CityMastersViewport", 190, 880, 3580, 500, Math.Max(500, stalls.Count * 165));
+            var gmRowBadge = SeasonEconomyUiArt.LoadCraftIcon("icon_master_honor")
+                ?? SeasonEconomyUiArt.LoadTradeV2Slice("icon_master_seal")
                 ?? SeasonEconomyUiArt.LoadCraftControl("mastery_badge_grandmaster");
             var sealRowBg = SeasonEconomyUiArt.LoadCraftControl("seal_master_signature");
+            var freeProxyBadge = SeasonEconomyUiArt.LoadCraftControl("badge_team_free_proxy");
             for (int i = 0; i < stalls.Count; ++i)
             {
                 var stall = stalls[i];
@@ -497,14 +616,23 @@ namespace MmorpgClient.UI.Ugui.Skills
                 if (sealRowBg != null)
                 {
                     SeasonEconomyUiArt.CreateSlicedOrSimple(list, "MasterSeal_" + stall.MasterPlayerId,
-                        lineX, y + 34, 2040f - lineX, 72, sealRowBg, new Color(0.95f, 0.91f, 0.80f, 0.92f));
+                        lineX, y + 24, 2040f - lineX, 92, sealRowBg, new Color(0.95f, 0.91f, 0.80f, 0.92f));
                     Label(list, "MasterLine_" + stall.MasterPlayerId, SkillCraftModels.DescribeProxyStall(stall),
-                        lineX + 68f, y + 36, 1960f - lineX, 68, 34, false, Ink);
+                        lineX + 48f, y + 24, 1980f - lineX, 92, 28, true, Ink);
                 }
                 else
                 {
                     Label(list, "MasterLine_" + stall.MasterPlayerId, SkillCraftModels.DescribeProxyStall(stall),
-                        lineX, y + 25, 2040f - lineX, 95, 38, true, Ink);
+                        lineX, y + 20, 2040f - lineX, 105, 30, true, Ink);
+                }
+                if (stall.ViewerGetsFreeProxy && freeProxyBadge != null)
+                {
+                    SeasonEconomyUiArt.CreateSlicedOrSimple(list, "MasterFreeBadge_" + stall.MasterPlayerId,
+                        1820, y + 2, 220, 48, freeProxyBadge, Color.white);
+                    var freeLbl = Label(list, "MasterFreeBadgeText_" + stall.MasterPlayerId,
+                        "同队免税", 1844, y + 2, 172, 48, 28, false, SeasonEconomyUiArt.GoldText);
+                    freeLbl.fontStyle = TMPro.FontStyles.Bold;
+                    freeLbl.alignment = TMPro.TextAlignmentOptions.Center;
                 }
                 ulong masterId = stall.MasterPlayerId;
                 Button(list, "ProxyCredit_" + masterId, "查信用", 2060, y + 5, 250, () =>
@@ -554,14 +682,239 @@ namespace MmorpgClient.UI.Ugui.Skills
                 $"确定拆解【{ResolveSkillName(book.SkillTableId)}】？\n将固定返还 {refund} 张通用悟道残页（新老常规卷宗通用）。",
                 900, 560, 2160, 320, 44, true, Ink);
             Button(_modalLayer, "DismantleCancel", "取消", 1040, 1020, 680,
-                () => { _dismantleConfirmBookId = 0; Render(); });
+                () => { _dismantleConfirmBookId = 0; _modal = CraftModal.None; Render(); });
             Button(_modalLayer, "DismantleConfirm", "确认拆页", 2160, 1020, 680, () =>
             {
                 ulong id = _dismantleConfirmBookId;
                 _dismantleConfirmBookId = 0;
+                _modal = CraftModal.None;
                 if (id != 0) _client?.DismantleBook(id);
                 Render();
             }, true, book != null && _client != null && !_client.IsBusy);
+        }
+
+        private void RenderBatchDismantleModal()
+        {
+            var shade = _modalLayer.GetComponent<Image>() ?? _modalLayer.gameObject.AddComponent<Image>();
+            shade.color = new Color(.02f, .07f, .055f, .85f);
+            shade.raycastTarget = true;
+            Panel(_modalLayer, "BatchDismantlePaper", 730, 300, 2500, 960, true);
+            var state = _client?.State;
+            uint totalRefund = 0;
+            var names = new List<string>();
+            if (state != null)
+            {
+                foreach (ulong bid in _batchDismantleIds)
+                {
+                    var b = state.SkillBooks.FirstOrDefault(x => x.BookId == bid);
+                    if (b == null || b.RarityTier != 0) continue;
+                    totalRefund += SkillCraftModels.DismantleRefundOf(state, b);
+                    if (names.Count < 8) names.Add(ResolveSkillName(b.SkillTableId));
+                }
+            }
+            string previewNames = names.Count > 0 ? string.Join("、", names) + (_batchDismantleIds.Count > names.Count ? " 等" : string.Empty) : "无";
+            Label(_modalLayer, "BatchDismantleTitle", "批量拆解多余常规技能书", 900, 390, 2160, 90, 56, color: Jade);
+            Label(_modalLayer, "BatchDismantleBody",
+                $"已安全筛选 {_batchDismantleIds.Count} 本多余常规书（仅含已习得或书架重复书，绝不误拆孤本未学书与稀世绝学）：\n{previewNames}\n\n" +
+                $"确认拆解后将一次性返还 {totalRefund} 张绑定通用悟道残页。",
+                900, 520, 2160, 420, 38, true, Ink);
+            Button(_modalLayer, "BatchDismantleCancel", "取消", 1040, 1050, 680,
+                () => { _batchDismantleIds.Clear(); _modal = CraftModal.None; Render(); });
+            Button(_modalLayer, "BatchDismantleConfirm", "确认一键拆页", 2160, 1050, 680, () =>
+            {
+                var ids = _batchDismantleIds.ToList();
+                _batchDismantleIds.Clear();
+                _modal = CraftModal.None;
+                if (ids.Count > 0) _client?.BatchDismantleBooks(ids);
+                Render();
+            }, true, _batchDismantleIds.Count > 0 && _client != null && !_client.IsBusy);
+        }
+
+        private void RenderBuildAdvisorModal()
+        {
+            var shade = _modalLayer.GetComponent<Image>() ?? _modalLayer.gameObject.AddComponent<Image>();
+            shade.color = new Color(.02f, .07f, .055f, .85f);
+            shade.raycastTarget = true;
+            Panel(_modalLayer, "BuildAdvisorPaper", 360, 160, 3240, 1260, true);
+            Label(_modalLayer, "BuildAdvisorTitle", "典籍藏经阁 · 六大流派缺书体检（点击缺书直跳定向拓印）",
+                460, 220, 2400, 80, 46, color: Jade);
+            Button(_modalLayer, "BuildAdvisorClose", "关闭", 3120, 210, 380,
+                () => { _modal = CraftModal.None; Render(); });
+
+            var state = _client?.State;
+            var advices = SkillCraftModels.EvaluateBuildBookAdvisor(state);
+            var list = Scroll(_modalLayer, "BuildAdvisorViewport", 440, 325, 3080, 1020, Math.Max(1020, advices.Count * 225));
+            for (int i = 0; i < advices.Count; ++i)
+            {
+                var adv = advices[i];
+                float y = i * 225;
+                string head = $"{adv.Archetype.Name}（{adv.UnlockedCount}/{adv.Archetype.SkillIds.Length} 已解锁） — {adv.Archetype.Summary}";
+                Label(list, "BuildArchHead_" + i, head, 15, y + 6, 3000, 56, 34, false,
+                    adv.MissingSkills.Count == 0 ? SeasonEconomyUiArt.GoldHighlight : Jade);
+                if (adv.MissingSkills.Count == 0)
+                {
+                    Label(list, "BuildArchComplete_" + i, "✓ 该流派核心技能已全部解锁！", 15, y + 72, 1600, 64, 32, false, Jade);
+                }
+                else
+                {
+                    for (int m = 0; m < adv.MissingSkills.Count && m < 5; ++m)
+                    {
+                        var miss = adv.MissingSkills[m];
+                        string scrollName = SkillCraftModels.ScrollNameOf(state, miss.ScrollId);
+                        uint targetScroll = miss.ScrollId;
+                        uint targetSkill = miss.SkillId;
+                        Button(list, $"BuildMiss_{i}_{targetSkill}", $"缺:{ResolveSkillName(targetSkill)}({scrollName})",
+                            15 + m * 600, y + 74, 580, () =>
+                            {
+                                _modal = CraftModal.None;
+                                _page = SkillCraftPage.Scrolls;
+                                if (targetScroll != 0) _selectedScrollId = targetScroll;
+                                _selectedSkillId = targetSkill;
+                                Render();
+                            }, false, targetScroll != 0);
+                    }
+                }
+            }
+        }
+
+        private void RenderWantedBoardPage()
+        {
+            var state = _client?.State;
+            var escrowBanner = SeasonEconomyUiArt.LoadCraftControl("banner_safe_escrow");
+            if (escrowBanner != null)
+            {
+                SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "WantedSafetyBannerBg", 150, 284, 3660, 84,
+                    escrowBanner, new Color(0.93f, 0.91f, 0.82f, 0.96f));
+                Label(_body, "WantedSafetyBanner",
+                    "西市封卷悬赏求书板：发榜原子托管非绑银两、随时撤单 100% 全额退还；揭榜可用背包【3414 封卷道籍】或书架未绑常规书一键交卷（成交扣 5% 银两税）。",
+                    220, 294, 3520, 64, 30, false, Jade);
+            }
+            else
+            {
+                Label(_body, "WantedSafetyBanner",
+                    "西市封卷悬赏求书板：发榜原子托管非绑银两、随时撤单全额退还；揭榜可用背包封卷或书架未绑常规书一键交卷（扣 5% 税）。",
+                    180, 290, 3600, 76, 34, true, Jade);
+            }
+
+            // 上半区左：发布求书悬赏；上半区右：我的在榜悬赏（最多 3 条）
+            var regularSkills = new List<uint>();
+            if (state != null)
+            {
+                foreach (var sc in state.Scrolls)
+                {
+                    if (sc == null || sc.RarityTier != 0) continue;
+                    foreach (uint sid in sc.SkillTableIds) regularSkills.Add(sid);
+                }
+            }
+            if (_wantedSkillId == 0 || !regularSkills.Contains(_wantedSkillId))
+                _wantedSkillId = regularSkills.FirstOrDefault();
+
+            Panel(_body, "PostWantedPaper", 130, 385, 1980, 360);
+            Label(_body, "PostWantedTitle",
+                $"发布常规技能求书单（持有流通银两：{state?.GoldBalance ?? 0} · 范围 100–50000）",
+                190, 412, 1860, 62, 34, color: Jade);
+            bool writeLocked = _client == null || _client.IsBusy || _client.HasPendingWrite || state == null;
+            Button(_body, "WantedSkillPrev", "←换技", 190, 488, 250, () =>
+            {
+                if (regularSkills.Count == 0) return;
+                int idx = regularSkills.IndexOf(_wantedSkillId);
+                _wantedSkillId = regularSkills[(idx <= 0 ? regularSkills.Count : idx) - 1];
+                Render();
+            }, enabled: regularSkills.Count > 1 && !writeLocked);
+            Label(_body, "WantedSkillCurrent",
+                _wantedSkillId != 0 ? $"求购：{ResolveSkillName(_wantedSkillId)}" : "暂无常规技能可选",
+                455, 502, 580, 66, 34, false, Ink);
+            Button(_body, "WantedSkillNext", "换技→", 1045, 488, 250, () =>
+            {
+                if (regularSkills.Count == 0) return;
+                int idx = regularSkills.IndexOf(_wantedSkillId);
+                _wantedSkillId = regularSkills[(idx + 1) % regularSkills.Count];
+                Render();
+            }, enabled: regularSkills.Count > 1 && !writeLocked);
+            Button(_body, "WantedSigToggle", _wantedRequireMasterSig ? "✓ 仅收宗师署名" : "不限宗师署名",
+                1320, 488, 730, () => { _wantedRequireMasterSig = !_wantedRequireMasterSig; Render(); },
+                _wantedRequireMasterSig, !writeLocked);
+
+            Button(_body, "WantedGoldMinus", "悬赏-100", 190, 610, 310, () =>
+            {
+                _wantedRewardGold = _wantedRewardGold > SkillCraftModels.WantedOrderMinGold + 100
+                    ? _wantedRewardGold - 100 : SkillCraftModels.WantedOrderMinGold;
+                Render();
+            }, enabled: !writeLocked);
+            Label(_body, "WantedGoldValue", $"悬赏 {_wantedRewardGold} 银两", 515, 626, 440, 66, 34, false, Jade);
+            Button(_body, "WantedGoldPlus", "悬赏+100", 965, 610, 310, () =>
+            {
+                _wantedRewardGold = Math.Min(SkillCraftModels.WantedOrderMaxGold, _wantedRewardGold + 100);
+                Render();
+            }, enabled: !writeLocked);
+            bool canPost = !writeLocked && _wantedSkillId != 0 && SkillCraftModels.IsValidWantedRewardGold(_wantedRewardGold)
+                && state.GoldBalance >= _wantedRewardGold && state.MyWantedOrders.Count < SkillCraftModels.MaxActiveWantedOrders;
+            Button(_body, "PostWantedSubmitBtn", "发榜托管求书", 1320, 610, 730,
+                () => _client?.PostWantedOrder(_wantedSkillId, _wantedRewardGold, _wantedRequireMasterSig), true, canPost);
+
+            Panel(_body, "MyWantedPaper", 2140, 385, 1690, 360);
+            var myOrders = state?.MyWantedOrders.ToList() ?? new List<SkillBookWantedOrderInfo>();
+            Label(_body, "MyWantedTitle", $"我的在榜悬赏（{myOrders.Count}/{SkillCraftModels.MaxActiveWantedOrders}）",
+                2200, 412, 1560, 62, 34, color: Jade);
+            for (int i = 0; i < myOrders.Count && i < 3; ++i)
+            {
+                var ord = myOrders[i];
+                float y = 480 + i * 86;
+                Label(_body, "MyWantedLine_" + ord.OrderId,
+                    $"#{ord.OrderId} 求【{(string.IsNullOrWhiteSpace(ord.SkillName) ? ResolveSkillName(ord.SkillTableId) : ord.SkillName)}】{(ord.RequireMasterSignature ? "[须署名]" : "")} · {ord.RewardGold} 银",
+                    2200, y + 10, 1120, 62, 28, false, Ink);
+                ulong oid = ord.OrderId;
+                Button(_body, "MyWantedCancel_" + oid, "撤单全退", 3340, y, 420,
+                    () => _client?.CancelWantedOrder(oid), false, !writeLocked);
+            }
+            if (myOrders.Count == 0)
+                Label(_body, "MyWantedEmpty", "暂无挂单，可在左侧发榜求购心仪常规书。", 2200, 540, 1520, 80, 32, true, Muted);
+
+            // 下半区：全城悬赏求书板（支持背包 3414 封卷或书架未绑常规书一键揭榜）
+            Panel(_body, "CityWantedPaper", 130, 765, 3700, 645);
+            Label(_body, "CityWantedTitle", "全城悬赏求书榜（有匹配的未绑封卷或书架常规书即可一键揭榜领银两）",
+                190, 795, 2900, 66, 38, color: Jade);
+            Button(_body, "CityWantedRefreshBtn", "刷新求书榜", 3220, 785, 520,
+                () => _client?.RefreshWantedOrders(), false, _client != null && !_client.WantedOrdersLoading);
+
+            var allOrders = _client?.WantedOrders ?? Array.Empty<SkillBookWantedOrderInfo>();
+            var wantedList = Scroll(_body, "CityWantedViewport", 190, 880, 3580, 500, Math.Max(500, allOrders.Count * 145));
+            ulong selfId = _client?.SelfPlayerId ?? 0;
+            for (int i = 0; i < allOrders.Count; ++i)
+            {
+                var order = allOrders[i];
+                float y = i * 145;
+                Label(wantedList, "WantedOrderLine_" + order.PosterPlayerId + "_" + order.OrderId,
+                    SkillCraftModels.DescribeWantedOrder(order, ResolveSkillName),
+                    15, y + 18, 2680, 96, 32, true, Ink);
+                bool isMine = selfId != 0 && order.PosterPlayerId == selfId;
+                var match = isMine ? default : SkillCraftModels.FindMatchingFulfillSource(order, state, _bagSource?.CharacterBag);
+                string btnLabel = isMine ? "本人悬赏单" :
+                    match.SealedItemId != 0 ? "交背包封卷揭榜" :
+                    match.BookshelfBookId != 0 ? "交书架书揭榜" : "无匹配未绑书";
+                ulong posterId = order.PosterPlayerId;
+                ulong orderId = order.OrderId;
+                Button(wantedList, $"WantedFulfill_{posterId}_{orderId}", btnLabel, 2730, y + 10, 790, () =>
+                {
+                    if (match.SealedItemId != 0) _client?.FulfillWantedOrderWithSealedItem(posterId, orderId, match.SealedItemId);
+                    else if (match.BookshelfBookId != 0) _client?.FulfillWantedOrderWithBookshelfBook(posterId, orderId, match.BookshelfBookId);
+                }, match.Found && !isMine, !writeLocked && !isMine && match.Found);
+            }
+            if (allOrders.Count == 0)
+                Label(_body, "CityWantedEmpty", _client?.WantedOrdersLoading == true ? "正在读取西市悬赏求书榜…" : "当前暂无悬赏求书单，可率先发榜求购心仪技能书。",
+                    220, 960, 2800, 120, 40, true, Muted);
+        }
+
+        private void CycleUnlockedCraftTitle(SkillCraftingStateSnapshot state)
+        {
+            var unlocked = new List<uint> { 0u };
+            if (state != null)
+            {
+                foreach (uint id in state.UnlockedCraftTitleIds)
+                    if (id != 0 && !unlocked.Contains(id)) unlocked.Add(id);
+            }
+            int idx = unlocked.IndexOf(_draftCraftTitleId);
+            _draftCraftTitleId = unlocked[(idx + 1) % unlocked.Count];
         }
 
         private void CycleLearnTarget()
@@ -579,7 +932,15 @@ namespace MmorpgClient.UI.Ugui.Skills
         {
             if (_selectedProxyMasterId == 0 || _client == null) return 0;
             var stall = _client.ProxyStalls.FirstOrDefault(s => s.MasterPlayerId == _selectedProxyMasterId);
-            return stall?.ProxyScrollFeeGold ?? 0;
+            if (stall == null) return 0;
+            return stall.ViewerGetsFreeProxy ? 0UL : stall.ProxyScrollFeeGold;
+        }
+
+        private bool SelectedScrollProxyIsTeamFree()
+        {
+            if (_selectedProxyMasterId == 0 || _client == null) return false;
+            var stall = _client.ProxyStalls.FirstOrDefault(s => s.MasterPlayerId == _selectedProxyMasterId);
+            return stall != null && stall.ViewerGetsFreeProxy;
         }
 
         private void DrawWalletItem(string name, float x, string iconKey, string text, float width)

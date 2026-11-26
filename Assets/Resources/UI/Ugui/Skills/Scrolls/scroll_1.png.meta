@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 17272495e0af4224a513672992f32666
+guid: d14c6a73d29249f881bdb8496ab3f29a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6883492892489806102
+      213: -5145530938844335132
     second: scroll_1_0
   externalObjects: {}
   serializedVersion: 13
@@ -34,7 +34,7 @@ TextureImporter:
   cubemapConvolution: 0
   seamlessCubemap: 0
   textureFormat: 1
-  maxTextureSize: 1024
+  maxTextureSize: 4096
   textureSettings:
     serializedVersion: 2
     filterMode: 1
@@ -45,7 +45,7 @@ TextureImporter:
     wrapW: 1
   nPOTScale: 0
   lightmap: 0
-  compressionQuality: 50
+  compressionQuality: 100
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
@@ -53,7 +53,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationMethod: 0
@@ -104,8 +104,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e7dc6bb46b634fc8a9d02070c44d842f
-      internalID: -6883492892489806102
+      spriteID: 0a4156a3eeb64c0d955784cb1b3754bf
+      internalID: -5145530938844335132
       vertices: []
       indices: 
       edges: []
@@ -114,7 +114,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f816804e2ac34153ab8047e498354279
+    spriteID: 58f2d2fcb9fd48d68bc202a1fb47c954
     internalID: 0
     vertices: []
     indices: 

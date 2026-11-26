@@ -1,4 +1,6 @@
+using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.CoreLoop;
+using MmorpgClient.UI.Ugui.Gameplay;
 using TMPro;
 using UnityEngine;
 
@@ -19,6 +21,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly TMP_Text _rulesText;
         private readonly TMP_Text _countdownText;
         private readonly GameObject _presetRowRoot;
+        private readonly RectTransform _loadoutRowRoot;
         private readonly UiTextButton[] _charButtons = new UiTextButton[3];
         private readonly UiTextButton[] _petButtons = new UiTextButton[3];
         private readonly UiTextButton _acceptButton;
@@ -53,6 +56,8 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             var presetRect = QdaoUguiFactory.CreateRect("PresetRow", _root, 36f, 228f, PanelW - 72f, 132f);
             _presetRowRoot = presetRect.gameObject;
+            _loadoutRowRoot = QdaoUguiFactory.CreateRect("LoadoutRow", _root, 36f, 232f, PanelW - 72f, 122f);
+            _loadoutRowRoot.gameObject.SetActive(false);
             QdaoUguiFactory.CreateText("PresetHint", presetRect, 0f, 0f, PanelW - 72f, 28f,
                 "公平 3×3 切磋：请选择应战人物与灵宠模板", 18f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
             string[] charLabels = { "剑修·力", "法宗·灵", "道医·体" };
@@ -100,9 +105,35 @@ namespace MmorpgClient.UI.Ugui.Battle
             _rulesText.text = "约战规则：" + WuxingExpansionModels.FormatCustomDuelRulesSummary(invite.CustomRules);
             _countdownText.text = string.Empty;
             if (_presetRowRoot != null) _presetRowRoot.SetActive(_useFreePreset);
+            if (_loadoutRowRoot != null) _loadoutRowRoot.gameObject.SetActive(!_useFreePreset);
             RefreshPresetHighlight();
             _root.gameObject.SetActive(true);
+            if (!_useFreePreset)
+            {
+                PreBattleLoadoutQuickBar.EnsureRequested(_owner?.Features);
+                RefreshLoadoutBar();
+            }
             _owner?.RefreshModalDim();
+        }
+
+        /// <summary>非公平模板自养切磋倒计时内刷新 1..5 一键换流派快捷条。</summary>
+        public void RefreshLoadoutBar()
+        {
+            if (_loadoutRowRoot == null || !IsVisible || _useFreePreset) return;
+            for (int i = _loadoutRowRoot.childCount - 1; i >= 0; --i)
+            {
+                var child = _loadoutRowRoot.GetChild(i).gameObject;
+                child.SetActive(false);
+                Object.Destroy(child);
+            }
+            PreBattleLoadoutQuickBar.RenderForFeatures(
+                _loadoutRowRoot,
+                "ChallengeLoadoutQuickBar",
+                0f, 0f, PanelW - 72f, 122f,
+                _owner?.Features,
+                _owner?.Client?.Phase ?? BattlePhase.None,
+                msg => _owner?.ShowToast(msg),
+                darkBackdrop: true);
         }
 
         private void RefreshPresetHighlight()

@@ -25,7 +25,11 @@ namespace MmorpgClient.Game.Skills
         private const int MaxAutoRecoveryAttempts = 3;
         private const long MinWriteIntervalMs = 800;
 
-        private enum PendingKind { None = 0, Craft = 1, Learn = 2, Dismantle = 3, Seal = 4, Unseal = 5 }
+        private enum PendingKind
+        {
+            None = 0, Craft = 1, Learn = 2, Dismantle = 3, Seal = 4, Unseal = 5,
+            ClaimMilestone = 6, BatchDismantle = 7, PostWanted = 8, CancelWanted = 9, FulfillWanted = 10,
+        }
 
         private sealed class PendingRequest
         {
@@ -35,6 +39,11 @@ namespace MmorpgClient.Game.Skills
             public DismantleSkillBookRequest Dismantle;
             public SealSkillBookRequest Seal;
             public UnsealSkillBookRequest Unseal;
+            public ClaimScrollCollectionMilestoneRequest ClaimMilestone;
+            public BatchDismantleSkillBooksRequest BatchDismantle;
+            public PostSkillBookWantedOrderRequest PostWanted;
+            public CancelSkillBookWantedOrderRequest CancelWanted;
+            public FulfillSkillBookWantedOrderRequest FulfillWanted;
             public string EncodedRecord;
             public ulong ClientRequestId => Kind switch
             {
@@ -43,6 +52,11 @@ namespace MmorpgClient.Game.Skills
                 PendingKind.Dismantle => Dismantle?.ClientRequestId ?? 0,
                 PendingKind.Seal => Seal?.ClientRequestId ?? 0,
                 PendingKind.Unseal => Unseal?.ClientRequestId ?? 0,
+                PendingKind.ClaimMilestone => ClaimMilestone?.ClientRequestId ?? 0,
+                PendingKind.BatchDismantle => BatchDismantle?.ClientRequestId ?? 0,
+                PendingKind.PostWanted => PostWanted?.ClientRequestId ?? 0,
+                PendingKind.CancelWanted => CancelWanted?.ClientRequestId ?? 0,
+                PendingKind.FulfillWanted => FulfillWanted?.ClientRequestId ?? 0,
                 _ => 0,
             };
             public string Label => Kind switch
@@ -52,6 +66,11 @@ namespace MmorpgClient.Game.Skills
                 PendingKind.Dismantle => "拆解技能书",
                 PendingKind.Seal => "技能书封卷入包",
                 PendingKind.Unseal => "封卷道籍开卷",
+                PendingKind.ClaimMilestone => "领取卷宗里程碑",
+                PendingKind.BatchDismantle => "批量拆解技能书",
+                PendingKind.PostWanted => "发布求书悬赏",
+                PendingKind.CancelWanted => "撤销求书悬赏",
+                PendingKind.FulfillWanted => "揭榜交卷结算",
                 _ => "制书操作",
             };
         }
@@ -74,11 +93,12 @@ namespace MmorpgClient.Game.Skills
         private Func<long> _nowMs = () => MonotonicClock.ElapsedMilliseconds;
         private object _connection;
         private ulong _player;
-        private long _epoch, _serial, _activeRead, _activeWrite, _activeStallRead;
+        private long _epoch, _serial, _activeRead, _activeWrite, _activeStallRead, _activeWantedRead;
         private bool _disposed;
 
         private SkillCraftingStateSnapshot _state;
         private readonly List<CraftProxyStallInfo> _proxyStalls = new();
+        private readonly List<SkillBookWantedOrderInfo> _wantedOrders = new();
         private PendingRequest _pending;
         private ulong _recoveryPlayer;
         private bool _recoveryBlocked;
@@ -103,11 +123,22 @@ namespace MmorpgClient.Game.Skills
                 return copy;
             }
         }
+        public IReadOnlyList<SkillBookWantedOrderInfo> WantedOrders
+        {
+            get
+            {
+                var copy = new List<SkillBookWantedOrderInfo>(_wantedOrders.Count);
+                foreach (var order in _wantedOrders) copy.Add(order.Clone());
+                return copy;
+            }
+        }
 
         public bool IsConnected => !_disposed && _net.IsReady && _net.PlayerId != 0;
+        public ulong SelfPlayerId => IsConnected ? _net.PlayerId : 0;
         public bool IsLoading => _activeRead != 0;
         public bool IsBusy => _activeWrite != 0;
         public bool ProxyStallsLoading => _activeStallRead != 0;
+        public bool WantedOrdersLoading => _activeWantedRead != 0;
         public bool HasPendingWrite => _pending != null || _recoveryBlocked;
         public string PendingWriteLabel => _pending?.Label ?? string.Empty;
         public string Message { get; private set; } = NotInGameMessage;
@@ -119,6 +150,11 @@ namespace MmorpgClient.Game.Skills
         public event Action<DismantleSkillBookResponse> BookDismantled;
         public event Action<SealSkillBookResponse> BookSealed;
         public event Action<UnsealSkillBookResponse> BookUnsealed;
+        public event Action<ClaimScrollCollectionMilestoneResponse> ScrollMilestoneClaimed;
+        public event Action<BatchDismantleSkillBooksResponse> BooksBatchDismantled;
+        public event Action<PostSkillBookWantedOrderResponse> WantedOrderPosted;
+        public event Action<CancelSkillBookWantedOrderResponse> WantedOrderCanceled;
+        public event Action<FulfillSkillBookWantedOrderResponse> WantedOrderFulfilled;
 
         public SkillCraftClient(IBattleTransport transport, IRpcChannel rpc,
             Func<object> connectionIdentity = null, Func<bool> writesBlocked = null)
@@ -296,7 +332,8 @@ namespace MmorpgClient.Game.Skills
             StartIdempotentWrite(playerId, new PendingRequest { Kind = PendingKind.Unseal, Unseal = request });
         }
 
-        public void SetProxyStall(bool open, ulong forgeFeeGold, ulong scrollFeeGold)
+        public void SetProxyStall(bool open, ulong forgeFeeGold, ulong scrollFeeGold,
+            uint masterShowcaseTag = 0, uint equippedCraftTitleId = 0, bool teamFreeProxy = false)
         {
             if (_disposed) return;
             ObserveSession();
@@ -307,7 +344,7 @@ namespace MmorpgClient.Game.Skills
             var stamp = Capture();
             _activeWrite = stamp.Id;
             Error = string.Empty;
-            Message = open ? "正在更新名匠代打摊位…" : "正在关闭名匠代打摊位…";
+            Message = open ? "正在更新名匠代打摊位…" : "正在保存名匠设置…";
             Changed?.Invoke();
 
             var request = new SetCraftProxyStallRequest
@@ -315,6 +352,9 @@ namespace MmorpgClient.Game.Skills
                 Open = open,
                 ProxyForgeFeeGold = open ? forgeFeeGold : 0,
                 ProxyScrollFeeGold = open ? scrollFeeGold : 0,
+                MasterShowcaseTag = masterShowcaseTag,
+                EquippedCraftTitleId = equippedCraftTitleId,
+                TeamFreeProxy = teamFreeProxy,
             };
             SceneSkillClientPlayerRpc.SetCraftProxyStall(_rpc, request,
                 (status, response) =>
@@ -338,9 +378,153 @@ namespace MmorpgClient.Game.Skills
                         return;
                     }
                     Error = string.Empty;
-                    Message = open ? "名匠代打摊位已开启" : "名匠代打摊位已关闭";
+                    Message = open
+                        ? "名匠代打摊位已开启（支持跨线/离线24小时接单，95% 净银两自动经邮件入账）"
+                        : "名匠代打摊位已关闭（雅号与情义设置已保存）";
                     Changed?.Invoke();
                 });
+        }
+
+        public void ClaimScrollMilestone(uint scrollId, uint milestoneTier)
+        {
+            if (!PrepareWrite(out ulong playerId)) return;
+            if (scrollId == 0 || (milestoneTier != 1 && milestoneTier != 2))
+            { Fail("请选择有效的卷宗里程碑"); return; }
+            if (!ClientRequestKeys.TryCreate(out ulong key)) { Fail(ClientRequestKeys.UnavailableText); return; }
+
+            var request = new ClaimScrollCollectionMilestoneRequest
+            {
+                ScrollId = scrollId,
+                MilestoneTier = milestoneTier,
+                ExpectedRevision = _state.ScrollCraftRevision,
+                ClientRequestId = key,
+            };
+            StartIdempotentWrite(playerId, new PendingRequest { Kind = PendingKind.ClaimMilestone, ClaimMilestone = request });
+        }
+
+        public void BatchDismantleBooks(IEnumerable<ulong> bookIds)
+        {
+            if (!PrepareWrite(out ulong playerId)) return;
+            var ids = new List<ulong>();
+            if (bookIds != null)
+            {
+                var seen = new HashSet<ulong>();
+                foreach (ulong id in bookIds)
+                    if (id != 0 && seen.Add(id)) ids.Add(id);
+            }
+            if (ids.Count == 0 || ids.Count > 20)
+            { Fail("请选择 1 至 20 本可拆常规技能书"); return; }
+            if (!ClientRequestKeys.TryCreate(out ulong key)) { Fail(ClientRequestKeys.UnavailableText); return; }
+
+            var request = new BatchDismantleSkillBooksRequest
+            {
+                ExpectedRevision = _state.ScrollCraftRevision,
+                ClientRequestId = key,
+            };
+            request.BookIds.AddRange(ids);
+            StartIdempotentWrite(playerId, new PendingRequest { Kind = PendingKind.BatchDismantle, BatchDismantle = request });
+        }
+
+        public void RefreshWantedOrders(uint filterSkillTableId = 0, bool onlyMine = false)
+        {
+            if (_disposed) return;
+            ObserveSession();
+            if (!IsConnected) { Fail(NotInGameMessage); return; }
+            if (_activeWantedRead != 0) return;
+
+            var stamp = Capture();
+            _activeWantedRead = stamp.Id;
+            Changed?.Invoke();
+
+            var request = new ListSkillBookWantedOrdersRequest
+            {
+                FilterSkillTableId = filterSkillTableId,
+                OnlyMine = onlyMine,
+            };
+            SceneSkillClientPlayerRpc.ListSkillBookWantedOrders(_rpc, request,
+                (status, response) =>
+                {
+                    if (!CurrentWantedRead(stamp)) return;
+                    _activeWantedRead = 0;
+                    if (!status.IsOk)
+                    {
+                        Fail("读取悬赏求书榜失败：" + DescribeFailure(status));
+                        return;
+                    }
+                    if (response == null)
+                    {
+                        Fail("服务器未返回悬赏求书列表，请刷新");
+                        return;
+                    }
+                    if (HasTip(response.ErrorMessage))
+                    {
+                        Fail(SkillBookMapper.DescribeTip("读取悬赏求书榜失败", response.ErrorMessage));
+                        return;
+                    }
+                    _wantedOrders.Clear();
+                    foreach (var order in response.Orders)
+                        if (order != null && order.OrderId != 0) _wantedOrders.Add(order.Clone());
+                    Error = string.Empty;
+                    Changed?.Invoke();
+                });
+        }
+
+        public void PostWantedOrder(uint skillTableId, ulong rewardGold, bool requireMasterSignature = false)
+        {
+            if (!PrepareWrite(out ulong playerId)) return;
+            if (skillTableId == 0) { Fail("请选择要求购的常规技能"); return; }
+            if (rewardGold < 100 || rewardGold > 50000) { Fail("悬赏银两须在 100 至 50000 之间"); return; }
+            if (!ClientRequestKeys.TryCreate(out ulong key)) { Fail(ClientRequestKeys.UnavailableText); return; }
+
+            var request = new PostSkillBookWantedOrderRequest
+            {
+                SkillTableId = skillTableId,
+                RequireMasterSignature = requireMasterSignature,
+                RewardGold = rewardGold,
+                ExpectedRevision = _state.ScrollCraftRevision,
+                ClientRequestId = key,
+            };
+            StartIdempotentWrite(playerId, new PendingRequest { Kind = PendingKind.PostWanted, PostWanted = request });
+        }
+
+        public void CancelWantedOrder(ulong orderId)
+        {
+            if (!PrepareWrite(out ulong playerId)) return;
+            if (orderId == 0) { Fail("请选择要撤销的悬赏求书单"); return; }
+            if (!ClientRequestKeys.TryCreate(out ulong key)) { Fail(ClientRequestKeys.UnavailableText); return; }
+
+            var request = new CancelSkillBookWantedOrderRequest
+            {
+                OrderId = orderId,
+                ExpectedRevision = _state.ScrollCraftRevision,
+                ClientRequestId = key,
+            };
+            StartIdempotentWrite(playerId, new PendingRequest { Kind = PendingKind.CancelWanted, CancelWanted = request });
+        }
+
+        public void FulfillWantedOrderWithSealedItem(ulong posterPlayerId, ulong orderId, ulong sealedItemId)
+            => SubmitFulfillWanted(posterPlayerId, orderId, sealedItemId, 0);
+
+        public void FulfillWantedOrderWithBookshelfBook(ulong posterPlayerId, ulong orderId, ulong bookshelfBookId)
+            => SubmitFulfillWanted(posterPlayerId, orderId, 0, bookshelfBookId);
+
+        private void SubmitFulfillWanted(ulong posterPlayerId, ulong orderId, ulong sealedItemId, ulong bookshelfBookId)
+        {
+            if (!PrepareWrite(out ulong playerId)) return;
+            if (posterPlayerId == 0 || orderId == 0 || (sealedItemId == 0) == (bookshelfBookId == 0))
+            { Fail("揭榜交卷参数无效"); return; }
+            if (!ClientRequestKeys.TryCreate(out ulong key)) { Fail(ClientRequestKeys.UnavailableText); return; }
+
+            var request = new FulfillSkillBookWantedOrderRequest
+            {
+                PosterPlayerId = posterPlayerId,
+                OrderId = orderId,
+                SealedItemId = sealedItemId,
+                BookshelfBookId = bookshelfBookId,
+                ExpectedRevision = _state.ScrollCraftRevision,
+                ClientRequestId = key,
+            };
+            StartIdempotentWrite(playerId, new PendingRequest { Kind = PendingKind.FulfillWanted, FulfillWanted = request });
         }
 
         public void RetryPendingWrite()
@@ -462,6 +646,26 @@ namespace MmorpgClient.Game.Skills
                     SceneSkillClientPlayerRpc.UnsealSkillBook(_rpc, pending.Unseal.Clone(),
                         (status, response) => HandleUnsealReply(stamp, playerId, pending, status, response));
                     break;
+                case PendingKind.ClaimMilestone:
+                    SceneSkillClientPlayerRpc.ClaimScrollCollectionMilestone(_rpc, pending.ClaimMilestone.Clone(),
+                        (status, response) => HandleClaimMilestoneReply(stamp, playerId, pending, status, response));
+                    break;
+                case PendingKind.BatchDismantle:
+                    SceneSkillClientPlayerRpc.BatchDismantleSkillBooks(_rpc, pending.BatchDismantle.Clone(),
+                        (status, response) => HandleBatchDismantleReply(stamp, playerId, pending, status, response));
+                    break;
+                case PendingKind.PostWanted:
+                    SceneSkillClientPlayerRpc.PostSkillBookWantedOrder(_rpc, pending.PostWanted.Clone(),
+                        (status, response) => HandlePostWantedReply(stamp, playerId, pending, status, response));
+                    break;
+                case PendingKind.CancelWanted:
+                    SceneSkillClientPlayerRpc.CancelSkillBookWantedOrder(_rpc, pending.CancelWanted.Clone(),
+                        (status, response) => HandleCancelWantedReply(stamp, playerId, pending, status, response));
+                    break;
+                case PendingKind.FulfillWanted:
+                    SceneSkillClientPlayerRpc.FulfillSkillBookWantedOrder(_rpc, pending.FulfillWanted.Clone(),
+                        (status, response) => HandleFulfillWantedReply(stamp, playerId, pending, status, response));
+                    break;
             }
         }
 
@@ -572,6 +776,113 @@ namespace MmorpgClient.Game.Skills
             if (Current(stamp)) BookUnsealed?.Invoke(response.Clone());
         }
 
+        private void HandleClaimMilestoneReply(RequestStamp stamp, ulong playerId, PendingRequest pending,
+            RpcStatus status, ClaimScrollCollectionMilestoneResponse response)
+        {
+            if (!CurrentWrite(stamp)) return;
+            _activeWrite = 0;
+            if (!status.IsOk) { HandleTransportFailure(playerId, pending, status); return; }
+            if (response == null || response.ClientRequestId != pending.ClientRequestId)
+            { DeferPending($"{pending.Label}回执身份不符，原请求已保留"); return; }
+            if (response.State != null) _state = response.State.Clone();
+            if (!ClearPending(playerId, pending.EncodedRecord)) return;
+            if (HasTip(response.ErrorMessage))
+            {
+                Notice(SkillBookMapper.DescribeTip("领取里程碑未成功", response.ErrorMessage));
+                return;
+            }
+            Error = string.Empty;
+            Message = response.Replayed
+                ? $"已恢复里程碑领奖，获得 {response.RewardedFragments} 张绑定悟道残页"
+                : $"藏经阁里程碑已领取，获得 {response.RewardedFragments} 张绑定悟道残页";
+            Changed?.Invoke();
+            if (Current(stamp)) ScrollMilestoneClaimed?.Invoke(response.Clone());
+        }
+
+        private void HandleBatchDismantleReply(RequestStamp stamp, ulong playerId, PendingRequest pending,
+            RpcStatus status, BatchDismantleSkillBooksResponse response)
+        {
+            if (!CurrentWrite(stamp)) return;
+            _activeWrite = 0;
+            if (!status.IsOk) { HandleTransportFailure(playerId, pending, status); return; }
+            if (response == null || response.ClientRequestId != pending.ClientRequestId)
+            { DeferPending($"{pending.Label}回执身份不符，原请求已保留"); return; }
+            if (response.State != null) _state = response.State.Clone();
+            if (!ClearPending(playerId, pending.EncodedRecord)) return;
+            if (HasTip(response.ErrorMessage))
+            {
+                Notice(SkillBookMapper.DescribeTip("批量拆页未成功", response.ErrorMessage));
+                return;
+            }
+            Error = string.Empty;
+            Message = $"批量拆解 {response.DismantledCount} 本常规书完成，共返还 {response.RefundedFragments} 张绑定悟道残页";
+            Changed?.Invoke();
+            if (Current(stamp)) BooksBatchDismantled?.Invoke(response.Clone());
+        }
+
+        private void HandlePostWantedReply(RequestStamp stamp, ulong playerId, PendingRequest pending,
+            RpcStatus status, PostSkillBookWantedOrderResponse response)
+        {
+            if (!CurrentWrite(stamp)) return;
+            _activeWrite = 0;
+            if (!status.IsOk) { HandleTransportFailure(playerId, pending, status); return; }
+            if (response == null || response.ClientRequestId != pending.ClientRequestId)
+            { DeferPending($"{pending.Label}回执身份不符，原请求已保留"); return; }
+            if (response.State != null) _state = response.State.Clone();
+            if (!ClearPending(playerId, pending.EncodedRecord)) return;
+            if (HasTip(response.ErrorMessage))
+            {
+                Notice(SkillBookMapper.DescribeTip("发布悬赏未成功", response.ErrorMessage));
+                return;
+            }
+            Error = string.Empty;
+            Message = $"求书悬赏已发榜（已托管 {response.Order?.RewardGold ?? 0} 银两，随时可撤单全额退还）";
+            Changed?.Invoke();
+            if (Current(stamp)) WantedOrderPosted?.Invoke(response.Clone());
+        }
+
+        private void HandleCancelWantedReply(RequestStamp stamp, ulong playerId, PendingRequest pending,
+            RpcStatus status, CancelSkillBookWantedOrderResponse response)
+        {
+            if (!CurrentWrite(stamp)) return;
+            _activeWrite = 0;
+            if (!status.IsOk) { HandleTransportFailure(playerId, pending, status); return; }
+            if (response == null || response.ClientRequestId != pending.ClientRequestId)
+            { DeferPending($"{pending.Label}回执身份不符，原请求已保留"); return; }
+            if (response.State != null) _state = response.State.Clone();
+            if (!ClearPending(playerId, pending.EncodedRecord)) return;
+            if (HasTip(response.ErrorMessage))
+            {
+                Notice(SkillBookMapper.DescribeTip("撤单未成功", response.ErrorMessage));
+                return;
+            }
+            Error = string.Empty;
+            Message = $"已撤销求书悬赏，全额退还 {response.RefundedGold} 银两";
+            Changed?.Invoke();
+            if (Current(stamp)) WantedOrderCanceled?.Invoke(response.Clone());
+        }
+
+        private void HandleFulfillWantedReply(RequestStamp stamp, ulong playerId, PendingRequest pending,
+            RpcStatus status, FulfillSkillBookWantedOrderResponse response)
+        {
+            if (!CurrentWrite(stamp)) return;
+            _activeWrite = 0;
+            if (!status.IsOk) { HandleTransportFailure(playerId, pending, status); return; }
+            if (response == null || response.ClientRequestId != pending.ClientRequestId)
+            { DeferPending($"{pending.Label}回执身份不符，原请求已保留"); return; }
+            if (response.State != null) _state = response.State.Clone();
+            if (!ClearPending(playerId, pending.EncodedRecord)) return;
+            if (HasTip(response.ErrorMessage))
+            {
+                Notice(SkillBookMapper.DescribeTip("揭榜交卷未成功", response.ErrorMessage));
+                return;
+            }
+            Error = string.Empty;
+            Message = $"揭榜交卷成功，扣 5% 税后实得 {response.SellerNetGold} 银两";
+            Changed?.Invoke();
+            if (Current(stamp)) WantedOrderFulfilled?.Invoke(response.Clone());
+        }
+
         private void HandleTransportFailure(ulong playerId, PendingRequest pending, RpcStatus status)
         {
             // 明确未发到服务端（断线/未就绪/网关明确信封拒绝）才安全清除原请求；超时与未知故障必须原样保留幂等键。
@@ -635,6 +946,11 @@ namespace MmorpgClient.Game.Skills
             PendingKind.Dismantle => "dismantle:" + Convert.ToBase64String(pending.Dismantle.ToByteArray()),
             PendingKind.Seal => "seal:" + Convert.ToBase64String(pending.Seal.ToByteArray()),
             PendingKind.Unseal => "unseal:" + Convert.ToBase64String(pending.Unseal.ToByteArray()),
+            PendingKind.ClaimMilestone => "milestone:" + Convert.ToBase64String(pending.ClaimMilestone.ToByteArray()),
+            PendingKind.BatchDismantle => "batchdismantle:" + Convert.ToBase64String(pending.BatchDismantle.ToByteArray()),
+            PendingKind.PostWanted => "postwanted:" + Convert.ToBase64String(pending.PostWanted.ToByteArray()),
+            PendingKind.CancelWanted => "cancelwanted:" + Convert.ToBase64String(pending.CancelWanted.ToByteArray()),
+            PendingKind.FulfillWanted => "fulfillwanted:" + Convert.ToBase64String(pending.FulfillWanted.ToByteArray()),
             _ => string.Empty,
         };
 
@@ -651,6 +967,11 @@ namespace MmorpgClient.Game.Skills
                 "dismantle" => new PendingRequest { Kind = PendingKind.Dismantle, Dismantle = DismantleSkillBookRequest.Parser.ParseFrom(bytes) },
                 "seal" => new PendingRequest { Kind = PendingKind.Seal, Seal = SealSkillBookRequest.Parser.ParseFrom(bytes) },
                 "unseal" => new PendingRequest { Kind = PendingKind.Unseal, Unseal = UnsealSkillBookRequest.Parser.ParseFrom(bytes) },
+                "milestone" => new PendingRequest { Kind = PendingKind.ClaimMilestone, ClaimMilestone = ClaimScrollCollectionMilestoneRequest.Parser.ParseFrom(bytes) },
+                "batchdismantle" => new PendingRequest { Kind = PendingKind.BatchDismantle, BatchDismantle = BatchDismantleSkillBooksRequest.Parser.ParseFrom(bytes) },
+                "postwanted" => new PendingRequest { Kind = PendingKind.PostWanted, PostWanted = PostSkillBookWantedOrderRequest.Parser.ParseFrom(bytes) },
+                "cancelwanted" => new PendingRequest { Kind = PendingKind.CancelWanted, CancelWanted = CancelSkillBookWantedOrderRequest.Parser.ParseFrom(bytes) },
+                "fulfillwanted" => new PendingRequest { Kind = PendingKind.FulfillWanted, FulfillWanted = FulfillSkillBookWantedOrderRequest.Parser.ParseFrom(bytes) },
                 _ => null,
             };
         }
@@ -692,9 +1013,10 @@ namespace MmorpgClient.Game.Skills
         private void ResetSession(string message)
         {
             ++_epoch;
-            _activeRead = _activeWrite = _activeStallRead = 0;
+            _activeRead = _activeWrite = _activeStallRead = _activeWantedRead = 0;
             _state = null;
             _proxyStalls.Clear();
+            _wantedOrders.Clear();
             _pending = null;
             _recoveryPlayer = 0;
             _recoveryBlocked = false;
@@ -711,6 +1033,7 @@ namespace MmorpgClient.Game.Skills
         private bool CurrentRead(RequestStamp stamp) => Current(stamp) && stamp.Id == _activeRead;
         private bool CurrentWrite(RequestStamp stamp) => Current(stamp) && stamp.Id == _activeWrite;
         private bool CurrentStallRead(RequestStamp stamp) => Current(stamp) && stamp.Id == _activeStallRead;
+        private bool CurrentWantedRead(RequestStamp stamp) => Current(stamp) && stamp.Id == _activeWantedRead;
 
         private static bool HasTip(TipInfoMessage tip) => tip != null && tip.Id != 0;
 
@@ -730,9 +1053,10 @@ namespace MmorpgClient.Game.Skills
             _disposed = true;
             _net.Disconnected -= HandleDisconnected;
             ++_epoch;
-            _activeRead = _activeWrite = _activeStallRead = 0;
+            _activeRead = _activeWrite = _activeStallRead = _activeWantedRead = 0;
             _state = null;
             _proxyStalls.Clear();
+            _wantedOrders.Clear();
             _pending = null;
             if (ReferenceEquals(Instance, this)) Instance = null;
             Changed = null;
@@ -741,6 +1065,11 @@ namespace MmorpgClient.Game.Skills
             BookDismantled = null;
             BookSealed = null;
             BookUnsealed = null;
+            ScrollMilestoneClaimed = null;
+            BooksBatchDismantled = null;
+            WantedOrderPosted = null;
+            WantedOrderCanceled = null;
+            WantedOrderFulfilled = null;
         }
     }
 }
