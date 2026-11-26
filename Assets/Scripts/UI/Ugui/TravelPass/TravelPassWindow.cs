@@ -402,10 +402,17 @@ namespace MmorpgClient.UI.Ugui.TravelPass
                 freeBtnX = (RowColPremiumX - RowColFreeX - 16f) - 156f;
             }
 
+            float freeTextWidth = freeInnerW - 162f;
+            if (!string.IsNullOrWhiteSpace(tier.FreeItemIconKey))
+            {
+                ItemIcon(freeHost, tier.FreeItemIconKey, freeTextX, hasRowArt ? 18f : 10f, 56f);
+                freeTextX += 66f;
+                freeTextWidth -= 66f;
+            }
             string freeSummary = TravelPassModels.FormatTrackReward(
                 tier.FreeItemId, tier.FreeItemCount, tier.FreeItemName, tier.FreeGold,
                 tier.FreeCosmeticKey, tier.FreeCosmeticName);
-            Text(freeHost, freeSummary, freeTextX, hasRowArt ? 14f : 8f, freeInnerW - 162f, h - 28f, 22f, Ink, wrap: true).raycastTarget = false;
+            Text(freeHost, freeSummary, freeTextX, hasRowArt ? 14f : 8f, freeTextWidth, h - 28f, 22f, Ink, wrap: true).raycastTarget = false;
 
             uint capturedTier = tier.TierIndex;
             string freeBtnLabel = tier.FreeClaimed ? "已领取" : tier.FreeCanClaim ? "领取" : "未达成";
@@ -439,6 +446,12 @@ namespace MmorpgClient.UI.Ugui.TravelPass
                 cosIcon.preserveAspect = true;
                 premTextX += 80f;
                 premTextWidth -= 80f;
+            }
+            else if (!string.IsNullOrWhiteSpace(tier.PremiumItemIconKey))
+            {
+                ItemIcon(premHost, tier.PremiumItemIconKey, premTextX, hasRowArt ? 18f : 10f, 56f);
+                premTextX += 66f;
+                premTextWidth -= 66f;
             }
 
             string premSummary = TravelPassModels.FormatTrackReward(

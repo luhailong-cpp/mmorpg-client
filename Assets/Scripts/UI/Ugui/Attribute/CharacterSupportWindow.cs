@@ -18,7 +18,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private readonly Text _title, _overviewName, _overviewLevel, _overviewExpText, _detailName, _detailLevel, _skillName, _skillCategory;
         private readonly Text[] _values = new Text[6], _detailValues = new Text[4], _detailLabels = new Text[4];
         private readonly Text _healing, _shield, _rules, _rulesSecond, _status, _sourceTitle, _sourceTotal, _renameStatus;
-        private readonly Image _overviewPortrait, _detailPortrait, _skillIcon, _overviewExpFill;
+        private readonly Image _overviewPortrait, _detailPortrait, _overviewPortraitRing, _detailPortraitRing, _skillIcon, _overviewExpFill;
         private readonly Button _healChoice, _shieldChoice;
         private readonly Button _allocation, _allocationTab, _renameButton, _renameConfirmButton;
         private readonly TMP_InputField _renameInput;
@@ -26,7 +26,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private SkillBookViewState _lastBook;
         private BagInfo _lastEquipment;
         private SupportEffectSummary _lastSupport;
-        private string _identity, _appearance;
+        private string _identity, _appearance, _equippedFrameKey, _equippedTitleKey;
         private uint _skillId;
         private bool _sourceOpen, _sourceShield, _renameOpen;
         private bool _battleReadOnly;
@@ -47,7 +47,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _overview = Rect("OverviewPage", _root, 0, 0, 2560, 1080);
             Picture("BaseCard", _overview, 179, 182, 799, 695, "application_card", true);
             Plate(_overview, "基础属性", 168, 160);
-            _overviewPortrait = Portrait(_overview, 218, 217, 133);
+            _overviewPortrait = Portrait(_overview, 218, 217, 133, out _overviewPortraitRing);
             _overviewName = Label("RoleName", _overview, 380, 238, 390, 52, "—", 40, Ink);
             _renameButton = Action("RenameRole", _overview, 782, 236, 152, 54, "改 名", "button_secondary", OpenRenamePopup);
             _overviewLevel = Label("RoleLevel", _overview, 382, 294, 500, 34, "等级 —", 25, Muted);
@@ -81,7 +81,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             Picture("SkillDetailCard", _details, 732, 178, 1526, 706, "application_card", true);
             Plate(_details, "技能详情", 723, 154);
             Picture("IdentityCard", _details, 188, 215, 503, 146, "mail_row_normal", true);
-            _detailPortrait = Portrait(_details, 202, 223, 130);
+            _detailPortrait = Portrait(_details, 202, 223, 130, out _detailPortraitRing);
             _detailName = Label("DetailRoleName", _details, 356, 237, 310, 44, "—", 34, Green);
             _detailLevel = Label("DetailRoleLevel", _details, 356, 292, 310, 34, "等级 —", 24, Muted);
             Label("SkillListTitle", _details, 211, 392, 420, 40, "技能详情", 30, Green);
@@ -169,7 +169,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         public void Hide() { _sourceOpen = false; _renameOpen = false; _root.gameObject.SetActive(false); }
         public void Back() { if (_renameOpen) HideRenamePopup(); else if (_sourceOpen) CloseSource(); else Hide(); }
         private void CloseSource() { _sourceOpen = false; RefreshView(); }
-        public void ResetSession() { _panel = null; _lastBook = null; _lastEquipment = null; _lastSupport = null; _identity = _appearance = null; _renameOpen = false; Hide(); }
+        public void ResetSession() { _panel = null; _lastBook = null; _lastEquipment = null; _lastSupport = null; _identity = _appearance = _equippedFrameKey = _equippedTitleKey = null; _renameOpen = false; Hide(); }
         private void OpenRenamePopup()
         {
             if (_battleReadOnly || string.IsNullOrEmpty(_identity)) return;
@@ -219,10 +219,13 @@ namespace MmorpgClient.UI.Ugui.Attribute
         {
             if (!IsVisible) return;
             string identity = _owner?.RoleName, appearance = _owner?.RoleAppearanceId;
+            var tpState = MmorpgClient.UI.AppBootstrap.Instance?.GameClient?.TravelPass?.State;
+            string frameKey = tpState?.EquippedFrameKey ?? string.Empty;
+            string titleKey = tpState?.EquippedTitleKey ?? string.Empty;
             var book = _owner?.SkillSource?.State;
             var equipment = _owner?.FeatureSource?.Equipment;
             var support = _owner?.BattleReadOnly == true ? _owner.BattleSupportEffects : _panel?.SupportEffects;
-            if (!ReferenceEquals(_lastSupport, support) || _battleReadOnly != (_owner?.BattleReadOnly == true) || _identity != identity || _appearance != appearance || !ReferenceEquals(_lastBook, book) || !ReferenceEquals(_lastEquipment, equipment))
+            if (!ReferenceEquals(_lastSupport, support) || _battleReadOnly != (_owner?.BattleReadOnly == true) || _identity != identity || _appearance != appearance || _equippedFrameKey != frameKey || _equippedTitleKey != titleKey || !ReferenceEquals(_lastBook, book) || !ReferenceEquals(_lastEquipment, equipment))
                 RefreshView();
         }
         private void RefreshView()
@@ -234,8 +237,14 @@ namespace MmorpgClient.UI.Ugui.Attribute
             var features = _owner?.FeatureSource;
             _lastEquipment = features != null && features.SnapshotPlayerId == _owner?.Client?.MyPlayerId ? features.Equipment : null;
             _identity = _owner?.RoleName; _appearance = _owner?.RoleAppearanceId;
+            var tpState = MmorpgClient.UI.AppBootstrap.Instance?.GameClient?.TravelPass?.State;
+            _equippedFrameKey = tpState?.EquippedFrameKey ?? string.Empty;
+            _equippedTitleKey = tpState?.EquippedTitleKey ?? string.Empty;
             _overviewName.text = _detailName.text = string.IsNullOrWhiteSpace(_identity) ? "—" : _identity;
-            _overviewLevel.text = _detailLevel.text = _panel == null ? "等级 —" : CharacterSupportModel.Number(_panel.Level) + "级";
+            string levelLine = _panel == null ? "等级 —" : CharacterSupportModel.Number(_panel.Level) + "级";
+            if (!string.IsNullOrWhiteSpace(_equippedTitleKey))
+                levelLine += " · 「" + MmorpgClient.Game.TravelPass.TravelPassModels.ResolveCosmeticName(tpState, _equippedTitleKey) + "」";
+            _overviewLevel.text = _detailLevel.text = levelLine;
             var expSnap = MmorpgClient.Game.CoreLoop.PlayerProgressionModels.BuildExpSnapshot(_panel);
             _overviewExpText.text = expSnap == null ? "经验 —" : expSnap.ExpProgressText;
             float expFillW = expSnap == null ? 0f : 460f * Mathf.Clamp01((float)expSnap.ProgressRatio);
@@ -244,6 +253,11 @@ namespace MmorpgClient.UI.Ugui.Attribute
             var portrait = string.IsNullOrEmpty(_appearance) ? null : MmorpgClient.World.QdaoCharacterCatalog.LoadPortrait(_appearance);
             _overviewPortrait.sprite = _detailPortrait.sprite = portrait;
             _overviewPortrait.enabled = _detailPortrait.enabled = portrait != null;
+            Sprite frameSprite = (!string.IsNullOrWhiteSpace(_equippedFrameKey)
+                ? Resources.Load<Sprite>(MmorpgClient.UI.Ugui.TravelPass.TravelPassWindow.SkinRoot + _equippedFrameKey) : null)
+                ?? CharacterPetArt.Get("portrait_frame");
+            _overviewPortraitRing.sprite = _detailPortraitRing.sprite = frameSprite;
+            _overviewPortraitRing.enabled = _detailPortraitRing.enabled = frameSprite != null;
             var values = CharacterSupportModel.Attributes(_panel);
             for (int i = 0; i < values.Length; ++i) _values[i].text = values[i];
             _healing.text = CharacterSupportModel.TotalBonus(_panel, false, _lastSupport, _battleReadOnly);
@@ -320,7 +334,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             button.image.sprite = CharacterPetArt.Get(selected ? "pet_card_selected" : "mail_row_normal");
             foreach (var label in button.GetComponentsInChildren<Text>()) label.color = selected ? Cream : label.name == "Name" ? Green : Muted;
         }
-        private static Image Portrait(Transform parent, float x, float y, float size)
+        private static Image Portrait(Transform parent, float x, float y, float size, out Image ring)
         {
             var clip = Rect("PortraitClip", parent, x + 5, y + 5, size - 10, size - 10);
             clip.gameObject.AddComponent<CanvasRenderer>();
@@ -328,7 +342,8 @@ namespace MmorpgClient.UI.Ugui.Attribute
             clip.gameObject.AddComponent<Mask>().showMaskGraphic = false;
             var portrait = Picture("Portrait", clip, 0, 0, size - 10, size - 10, null);
             portrait.preserveAspect = true;
-            Picture("PortraitRing", parent, x, y, size, size, "portrait_frame");
+            ring = Picture("PortraitRing", parent, x, y, size, size, "portrait_frame");
+            ring.preserveAspect = true;
             return portrait;
         }
         private static void Plate(Transform parent, string text, float x, float y)

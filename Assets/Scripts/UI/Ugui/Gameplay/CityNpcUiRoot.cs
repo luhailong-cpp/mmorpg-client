@@ -587,6 +587,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                         seasonHonors.Add(h.HonorTitleName);
                 }
             }
+            var travelPassSnap = _game?.TravelPass?.State;
+            if (travelPassSnap != null && !string.IsNullOrWhiteSpace(travelPassSnap.EquippedTitleKey))
+            {
+                string titleName = MmorpgClient.Game.TravelPass.TravelPassModels.ResolveCosmeticName(
+                    travelPassSnap, travelPassSnap.EquippedTitleKey);
+                if (!string.IsNullOrWhiteSpace(titleName))
+                    seasonHonors.Add("游历·" + titleName);
+            }
             int sealCount = (int)(_game?.TrialJournal?.Snapshot?.TotalPermanentLitSeals ?? 0u);
             string activePetName = "";
             var petList = PetUiRoot.Instance?.Client?.Pets;
