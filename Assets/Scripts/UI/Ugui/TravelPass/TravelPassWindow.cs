@@ -103,7 +103,7 @@ namespace MmorpgClient.UI.Ugui.TravelPass
 
             // 承诺条与游历进度条（严格对齐 travel_pass_banner.png 左右分栏线 x=1150）
             var bannerBg = QdaoUguiFactory.CreateImage("TravelPassBanner", _frame, ContentX, BannerY, ContentWidth, BannerHeight,
-                LoadOptionalSkin("hero_banner") ?? LoadOptionalSkin("travel_pass_banner"));
+                LoadOptionalSkin("travel_pass_banner"));
             bannerBg.type = bannerBg.sprite != null && bannerBg.sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
             bannerBg.pixelsPerUnitMultiplier = 1f;
             if (bannerBg.sprite == null) bannerBg.color = new Color(0.93f, 0.89f, 0.79f, 0.94f);
