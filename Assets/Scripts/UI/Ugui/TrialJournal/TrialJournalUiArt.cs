@@ -18,6 +18,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         // 微信 / 抖音小游戏右上角胶囊保守避让边界（基于 1920 基准，结合 Screen.safeArea 共同生效）
         public const float MiniGameCapsuleWidth = 176f;
 
+        public const string DedicatedSkinRoot = "UI/Ugui/TrialJournalV2/";
         private const string ChronicleRoot = "UI/Ugui/AppearanceChronicleV2/";
         private const string EquipmentIconsRoot = "UI/Ugui/Equipment20261117/Icons/";
         private static readonly Dictionary<string, Sprite> SpriteCache = new Dictionary<string, Sprite>(StringComparer.Ordinal);
@@ -51,6 +52,20 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         public static readonly Color BackdropShade = new Color(0.03f, 0.08f, 0.06f, 0.58f);
 
         public static Sprite LoadChronicle(string key) => LoadCached(ChronicleRoot + key);
+
+        /// <summary>优先加载 UI/Ugui/TrialJournalV2/ 专属切片，缺图时回落到既有共享切片。</summary>
+        public static Sprite LoadSkin(string dedicatedKey, string chronicleFallbackKey = null)
+        {
+            if (!string.IsNullOrEmpty(dedicatedKey))
+            {
+                var dedicated = LoadCached(DedicatedSkinRoot + dedicatedKey);
+                if (dedicated != null) return dedicated;
+            }
+            return !string.IsNullOrEmpty(chronicleFallbackKey) ? LoadChronicle(chronicleFallbackKey) : null;
+        }
+
+        public static Sprite LoadDedicatedOnly(string dedicatedKey)
+            => string.IsNullOrEmpty(dedicatedKey) ? null : LoadCached(DedicatedSkinRoot + dedicatedKey);
 
         public static Sprite LoadArtifactIcon(uint artifactEffectId)
         {
@@ -169,6 +184,27 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             return img;
         }
 
+        public static Image SlicedOrBordered(
+            string name,
+            UnityEngine.Transform parent,
+            float x,
+            float y,
+            float w,
+            float h,
+            string dedicatedKey,
+            Color fallbackFill,
+            Color fallbackBorder,
+            float borderPx = 1.5f,
+            bool raycast = false)
+        {
+            var sprite = LoadDedicatedOnly(dedicatedKey);
+            if (sprite != null)
+            {
+                return SlicedOrTint(name, parent, x, y, w, h, sprite, fallbackFill, raycast);
+            }
+            return BorderedBox(name, parent, x, y, w, h, fallbackFill, fallbackBorder, borderPx, raycast);
+        }
+
         public static TextMeshProUGUI Label(
             string name,
             UnityEngine.Transform parent,
@@ -204,7 +240,8 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             bool interactable,
             Action onClick)
         {
-            var sprite = LoadChronicle(primary ? "button_primary" : "button_secondary");
+            var sprite = LoadSkin(primary ? "btn_primary" : "btn_secondary",
+                primary ? "button_primary" : "button_secondary");
             var btn = QdaoUguiFactory.CreateArtButton(name, parent, x, y, w, h, sprite, out var img);
             if (sprite != null)
             {
@@ -243,11 +280,21 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             bool interactable,
             Action onClick)
         {
-            Color fill = !interactable
-                ? QdaoUguiTheme.Html("#D4D0C0")
-                : primary ? Jade : QdaoUguiTheme.Html("#F8F1DB");
-            Color border = !interactable ? QdaoUguiTheme.Html("#B9B09E") : QdaoUguiTheme.Html("#B59D6A");
-            var plate = BorderedBox(name, parent, x, y, w, h, fill, border, 1.5f, raycast: true);
+            var dedicated = LoadDedicatedOnly(primary ? "btn_primary" : "btn_secondary");
+            Image plate;
+            if (dedicated != null)
+            {
+                plate = SlicedOrTint(name, parent, x, y, w, h, dedicated, primary ? Jade : Paper, raycast: true);
+                if (!interactable) plate.color = new Color(0.82f, 0.80f, 0.74f, 0.75f);
+            }
+            else
+            {
+                Color fill = !interactable
+                    ? QdaoUguiTheme.Html("#D4D0C0")
+                    : primary ? Jade : QdaoUguiTheme.Html("#F8F1DB");
+                Color border = !interactable ? QdaoUguiTheme.Html("#B9B09E") : QdaoUguiTheme.Html("#B59D6A");
+                plate = BorderedBox(name, parent, x, y, w, h, fill, border, 1.5f, raycast: true);
+            }
             var btn = plate.gameObject.AddComponent<Button>();
             btn.targetGraphic = plate;
             btn.interactable = interactable;

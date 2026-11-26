@@ -904,7 +904,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 332f, 12f, 76f, 60f, "屏蔽", 18f, SeasonEconomyUiArt.BattleArenaDisabled, QdaoUguiTheme.Cream);
             _pingMuteButton.Button.onClick.AddListener(OnPingMuteClicked);
             _pingArmedHint = QdaoUguiFactory.CreateText("PingArmedHint", _pingBarRoot, 0f, -26f, 420f, 24f,
-                string.Empty, 17f, QdaoUguiTheme.Gold, TextAlignmentOptions.MidlineLeft);
+                string.Empty, 17f, SeasonEconomyUiArt.BattleArenaAmber, TextAlignmentOptions.MidlineLeft);
             _pingArmedHint.fontStyle = FontStyles.Bold;
             _pingArmedHint.raycastTarget = false;
             _pingArmedHint.gameObject.SetActive(false);

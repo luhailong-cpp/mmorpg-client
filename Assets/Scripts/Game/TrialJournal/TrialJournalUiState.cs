@@ -203,7 +203,8 @@ namespace MmorpgClient.Game.TrialJournal
                 view.Phase = TrialJournalVisualPhase.SeasonalIsolated;
                 view.SyncPillText = "已同步";
                 view.SyncPillTone = TrialJournalBannerTone.Info;
-                view.AlertText = "卷三季游按赛季独立归档，错过整季不影响永久卷 24 印与「星阵宗师」解锁。";
+                uint totalPerm = snapshot.TotalPermanentSeals > 0u ? snapshot.TotalPermanentSeals : 27u;
+                view.AlertText = $"卷三季游按赛季独立归档，错过整季不影响永久卷 {totalPerm} 印与「星阵宗师」解锁。";
                 view.AlertTone = TrialJournalBannerTone.Info;
                 view.FooterText = "每季独立展示赛季道印与纪念奖励。";
             }
@@ -283,10 +284,13 @@ namespace MmorpgClient.Game.TrialJournal
             else
             {
                 uint missing = gmReq > snapshot.TotalPermanentLitSeals ? gmReq - snapshot.TotalPermanentLitSeals : 0u;
+                uint tolerance = snapshot.TotalPermanentSeals > gmReq ? snapshot.TotalPermanentSeals - gmReq : 0u;
                 view.GrandmasterTitle = "九天星阵，待君点亮";
                 view.GrandmasterDesc = missing == 0
-                    ? "已达 18 枚永久道印，请先完成前置同步后领取。"
-                    : $"再点亮 {missing} 枚永久道印（总永久 {snapshot.TotalPermanentLitSeals}/{snapshot.TotalPermanentSeals}，留 6 印容错），免费解锁专属形象。";
+                    ? $"已达 {gmReq} 枚永久道印，请先完成前置同步后领取。"
+                    : tolerance > 0
+                        ? $"再点亮 {missing} 枚永久道印（总永久 {snapshot.TotalPermanentLitSeals}/{snapshot.TotalPermanentSeals}，留 {tolerance} 印容错），免费解锁专属形象。"
+                        : $"再点亮 {missing} 枚永久道印（总永久 {snapshot.TotalPermanentLitSeals}/{snapshot.TotalPermanentSeals}），免费解锁专属形象。";
                 view.GrandmasterButtonText = "查看全部里程碑";
                 view.GrandmasterButtonEnabled = !disconnected;
             }
