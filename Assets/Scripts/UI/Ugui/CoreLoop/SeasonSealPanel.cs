@@ -753,20 +753,20 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 equipped > 0u ? "当前已布设" : "点击外环布阵", 16f, CoreLoopUiArt.Muted, false, true, TextAlignmentOptions.Center);
 
             var formations = WuxingExpansionModels.Formations;
-            // 五槽中心比例（顺时针：顶/右上/右下/左下/左上，匹配 formation_compass_bg.png 五圆形阵槽）
+            // 五槽中心比例（顺时针：顶/右上/右下/左下/左上，精确对齐重绘 512×512 formation_compass_bg.png 五圆槽质心）
             Vector2[] socketNorm =
             {
-                new Vector2(0.500f, 0.125f),
-                new Vector2(0.865f, 0.388f),
-                new Vector2(0.745f, 0.778f),
-                new Vector2(0.255f, 0.778f),
-                new Vector2(0.135f, 0.388f),
+                new Vector2(0.500f, 0.168f),
+                new Vector2(0.796f, 0.378f),
+                new Vector2(0.689f, 0.707f),
+                new Vector2(0.304f, 0.707f),
+                new Vector2(0.199f, 0.378f),
             };
             for (int i = 0; i < formations.Length && i < socketNorm.Length; ++i)
             {
                 var def = formations[i];
                 bool isEquipped = equipped == def.Id;
-                float badgeSize = isEquipped ? 86f : 74f;
+                float badgeSize = isEquipped ? 72f : 62f;
                 float bx = compassX + socketNorm[i].x * compassSize - badgeSize * 0.5f;
                 float by = compassY + socketNorm[i].y * compassSize - badgeSize * 0.5f;
                 var socketIcon = WuxingExpansionsUiArt.LoadFormationIcon(def.Id) ?? WuxingExpansionsUiArt.LoadElementIcon(def.Element);

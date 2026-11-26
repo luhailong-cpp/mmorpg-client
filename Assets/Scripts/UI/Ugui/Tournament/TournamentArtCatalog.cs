@@ -195,7 +195,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
         {
             var sprite = Load("v2-a-button-primary") ?? Load("button-primary");
             var btn = QdaoUguiFactory.CreateArtButton(name, parent, x, y, w, h, sprite, out var img);
-            img.type = Image.Type.Simple;
+            img.type = sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
             img.preserveAspect = false;
             if (sprite == null) img.color = Jade;
             btn.interactable = interactable;
@@ -438,7 +438,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             if (sprite == null)
                 return ArtButton(name, parent, x, y, w, h, labelText, onClick, primary: primaryFallback, interactable: interactable, fontSize: fontSize);
             var btn = QdaoUguiFactory.CreateArtButton(name, parent, x, y, w, h, sprite, out var img);
-            img.type = Image.Type.Simple;
+            img.type = sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
             img.preserveAspect = false;
             btn.interactable = interactable;
             if (onClick != null) btn.onClick.AddListener(() => onClick());

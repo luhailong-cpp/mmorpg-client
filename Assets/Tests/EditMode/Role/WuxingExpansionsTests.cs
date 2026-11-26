@@ -207,26 +207,26 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.IsTrue(System.IO.File.Exists(System.IO.Path.Combine(projectRoot, "ui.meta")), "ui.meta 缺失");
             Assert.IsTrue(System.IO.File.Exists(System.IO.Path.Combine(projectRoot, "icons.meta")), "icons.meta 缺失");
 
-            var expected = new (string Rel, int W, int H)[]
+            var expected = new (string Rel, int W, int H, string Border)[]
             {
-                ("ui/sigil_card_common.png", 420, 600),
-                ("ui/sigil_card_spirit.png", 420, 600),
-                ("ui/sigil_card_immortal.png", 420, 600),
-                ("ui/formation_compass_bg.png", 768, 768),
-                ("icons/element_metal.png", 512, 512),
-                ("icons/element_wood.png", 512, 512),
-                ("icons/element_water.png", 512, 512),
-                ("icons/element_fire.png", 512, 512),
-                ("icons/element_earth.png", 512, 512),
-                ("icons/formation_1_tianfu.png", 512, 512),
-                ("icons/formation_2_dizai.png", 512, 512),
-                ("icons/formation_3_fengyang.png", 512, 512),
-                ("icons/formation_4_yunchui.png", 512, 512),
-                ("icons/formation_5_huyi.png", 512, 512),
-                ("icons/duel_rule_polarity.png", 512, 512),
-                ("icons/duel_rule_blitz.png", 512, 512),
-                ("icons/duel_rule_ban_cc.png", 512, 512),
-                ("icons/duel_rule_spectate.png", 512, 512),
+                ("ui/sigil_card_common.png", 360, 480, "spriteBorder: {x: 125, y: 120, z: 125, w: 120}"),
+                ("ui/sigil_card_spirit.png", 360, 480, "spriteBorder: {x: 125, y: 120, z: 125, w: 120}"),
+                ("ui/sigil_card_immortal.png", 360, 480, "spriteBorder: {x: 125, y: 120, z: 125, w: 120}"),
+                ("ui/formation_compass_bg.png", 512, 512, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/element_metal.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/element_wood.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/element_water.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/element_fire.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/element_earth.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/formation_1_tianfu.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/formation_2_dizai.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/formation_3_fengyang.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/formation_4_yunchui.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/formation_5_huyi.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/duel_rule_polarity.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/duel_rule_blitz.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/duel_rule_ban_cc.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("icons/duel_rule_spectate.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
             };
 
             foreach (var item in expected)
@@ -253,6 +253,7 @@ namespace MmorpgClient.Tests.EditMode.Role
                 StringAssert.Contains("textureType: 8", meta, $"非 Sprite 类型: {item.Rel}");
                 StringAssert.Contains("spriteMode: 1", meta, $"非 Single Sprite: {item.Rel}");
                 StringAssert.Contains("alphaIsTransparency: 1", meta, $"未启用 Alpha 透明: {item.Rel}");
+                StringAssert.Contains(item.Border, meta, $"九宫格边距不匹配: {item.Rel}");
             }
         }
     }

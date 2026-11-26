@@ -1284,14 +1284,20 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     if (!isFinalCol)
                         TournamentArtCatalog.Box($"Link_{c}_{mIdx}", content, cx + colW, cy + cardH * 0.5f, colGap * 0.6f, 1.5f, TournamentArtCatalog.Gold);
 
-                    // V3 模块 G：季军争夺战牌匾标（bronze-banner.png 含原生毛笔字，加载成功时严禁叠字）
+                    // V3 模块 G：季军争夺战九宫格横幅（重绘无字深玉金边底条，居中叠加暖金文字）
                     if (m.IsThirdPlace)
                     {
                         var bronzeSprite = TournamentArtCatalog.Load("v3-g-bronze-banner");
                         if (bronzeSprite != null)
                         {
                             var bImg = QdaoUguiFactory.CreateImage("BronzeBanner", mCard, 10f, 4f, 118f, 24f, bronzeSprite, false);
-                            bImg.preserveAspect = true;
+                            bImg.type = bronzeSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                            bImg.preserveAspect = false;
+                            var bTxt = TournamentArtCatalog.Label("BronzeTxt", bImg.transform, 10f, 0f, 98f, 24f, "季军争夺战",
+                                12f, TournamentArtCatalog.PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
+                            bTxt.enableAutoSizing = true;
+                            bTxt.fontSizeMin = 9f;
+                            bTxt.fontSizeMax = 12f;
                         }
                         else
                         {
@@ -1513,40 +1519,34 @@ namespace MmorpgClient.UI.Ugui.Tournament
             if (canPredict && squadId != 0UL)
             {
                 bool picked = myPredictedSquadId == squadId;
-                string btnLbl = picked ? $"✓已猜({predictCount})" : (predictCount > 0 ? $"猜胜({predictCount})" : "猜胜");
+                var pickSprite = TournamentArtCatalog.Load("v3-e-predict-pick");
+                bool showPickIcon = picked && pickSprite != null;
+                string btnLbl = picked
+                    ? (showPickIcon ? $"已猜({predictCount})" : $"✓已猜({predictCount})")
+                    : (predictCount > 0 ? $"猜胜({predictCount})" : "猜胜");
                 ulong capMatch = matchId;
                 ulong capSquad = squadId;
-                var pickSprite = TournamentArtCatalog.Load("v3-e-predict-pick");
-                if (pickSprite != null)
+                // 重绘 predict-pick 为 64×64 圆形对勾角标：按钮本身走清晰高对比底框，已选中时左侧叠加 1:1 对勾角标不拉伸
+                var btn = TournamentArtCatalog.FlatButton("PickBtn", card, cardW - 96f, y, 88f, 44f, btnLbl,
+                    picked ? TournamentArtCatalog.GoldTagBg : TournamentArtCatalog.JadeSoft,
+                    picked ? TournamentArtCatalog.Gold : TournamentArtCatalog.Jade,
+                    picked ? TournamentArtCatalog.GoldTagText : TournamentArtCatalog.JadeDeep,
+                    () => PredictMatchClicked?.Invoke(capMatch, capSquad), interactable: !isBusy, fontSize: 11.5f);
+                if (showPickIcon)
                 {
-                    // 交接规范：84×32 图像外包 88×44 透明 Button 点击热区，文字居中在安全区内且保持深玉高对比暖金字
-                    var hitRect = QdaoUguiFactory.CreateRect("PickBtn", card, cardW - 96f, y, 88f, 44f);
-                    var hitImg = hitRect.gameObject.AddComponent<Image>();
-                    hitImg.color = new Color(1f, 1f, 1f, 0f);
-                    hitImg.raycastTarget = true;
-                    var btn = hitRect.gameObject.AddComponent<Button>();
-                    if (picked)
-                        TournamentArtCatalog.Box("PickRing", hitRect, 1f, 5f, 86f, 34f, TournamentArtCatalog.Gold, false);
-                    var pImg = QdaoUguiFactory.CreateImage("PickVisual", hitRect, 2f, 6f, 84f, 32f, pickSprite, false);
-                    pImg.type = Image.Type.Simple;
-                    pImg.preserveAspect = false;
-                    pImg.color = picked ? new Color(1f, 0.94f, 0.78f, 1f) : Color.white;
-                    btn.targetGraphic = pImg;
-                    btn.interactable = !isBusy;
-                    btn.onClick.AddListener(() => PredictMatchClicked?.Invoke(capMatch, capSquad));
-                    var lbl = TournamentArtCatalog.Label("Lbl", pImg.transform, 10f, 0f, 64f, 32f, btnLbl, 11.5f,
-                        TournamentArtCatalog.PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
-                    lbl.enableAutoSizing = true;
-                    lbl.fontSizeMin = 9f;
-                    lbl.fontSizeMax = 11.5f;
-                }
-                else
-                {
-                    TournamentArtCatalog.FlatButton("PickBtn", card, cardW - 96f, y, 88f, 44f, btnLbl,
-                        picked ? TournamentArtCatalog.GoldTagBg : TournamentArtCatalog.JadeSoft,
-                        picked ? TournamentArtCatalog.Gold : TournamentArtCatalog.Jade,
-                        picked ? TournamentArtCatalog.GoldTagText : TournamentArtCatalog.JadeDeep,
-                        () => PredictMatchClicked?.Invoke(capMatch, capSquad), interactable: !isBusy, fontSize: 12f);
+                    var pIcon = QdaoUguiFactory.CreateImage("PickIcon", btn.transform, 5f, 13f, 18f, 18f, pickSprite, false);
+                    pIcon.preserveAspect = true;
+                    pIcon.raycastTarget = false;
+                    var txt = btn.GetComponentInChildren<TMP_Text>(true);
+                    if (txt != null)
+                    {
+                        var tr = txt.rectTransform;
+                        tr.anchoredPosition = new Vector2(23f, 0f);
+                        tr.sizeDelta = new Vector2(61f, 44f);
+                        txt.enableAutoSizing = true;
+                        txt.fontSizeMin = 9f;
+                        txt.fontSizeMax = 11.5f;
+                    }
                 }
                 return;
             }
@@ -2629,15 +2629,14 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 ForceCloseModalVisual();
             });
 
-            // 零积分演练状态胶囊（v3-d-warmup-badge 原尺寸 140×36 无字深玉底皮，配暖金高亮字与安全内距）
+            // 零积分演练状态标（重绘 v3-d-warmup-badge 为 96×96 圆形双剑徽章：左侧 1:1 渲染，右侧紧跟青玉状态胶囊）
             var badgeSprite = TournamentArtCatalog.Load("v3-d-warmup-badge");
             if (badgeSprite != null)
             {
-                var bImg = QdaoUguiFactory.CreateImage("WarmBadge", _modalContent, 52f, 72f, 140f, 36f, badgeSprite, false);
-                var bTxt = TournamentArtCatalog.Label("Txt", bImg.transform, 16f, 0f, 108f, 36f, "零积分演练", 13f, TournamentArtCatalog.PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
-                bTxt.enableAutoSizing = true;
-                bTxt.fontSizeMin = 10f;
-                bTxt.fontSizeMax = 13f;
+                var bImg = QdaoUguiFactory.CreateImage("WarmBadge", _modalContent, 52f, 72f, 36f, 36f, badgeSprite, false);
+                bImg.preserveAspect = true;
+                TournamentArtCatalog.Tag("WarmBadgeTag", _modalContent, 92f, 75f, 100f, 30f, "零积分演练",
+                    TournamentArtCatalog.JadeSoft, TournamentArtCatalog.Jade, TournamentArtCatalog.JadeDeep, 13f);
             }
             else
             {
@@ -2778,7 +2777,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             var panelSprite = TournamentArtCatalog.Load("v3-e-predict-panel");
             if (panelSprite != null)
             {
-                TournamentArtCatalog.SpriteBox("PredictBg", _modalContent, 0f, 0f, w, h, "v3-e-predict-panel", sliced: false, raycast: true);
+                TournamentArtCatalog.SpriteBox("PredictBg", _modalContent, 0f, 0f, w, h, "v3-e-predict-panel", sliced: true, raycast: true);
             }
             else
             {
@@ -2903,7 +2902,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             var bgSprite = TournamentArtCatalog.Load("v3-f-mvp-card-bg");
             if (bgSprite != null)
             {
-                TournamentArtCatalog.SpriteBox("MvpBg", _modalContent, 0f, 0f, w, h, "v3-f-mvp-card-bg", sliced: false, raycast: true);
+                TournamentArtCatalog.SpriteBox("MvpBg", _modalContent, 0f, 0f, w, h, "v3-f-mvp-card-bg", sliced: true, raycast: true);
             }
             else
             {
@@ -3085,7 +3084,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             var panelSprite = TournamentArtCatalog.Load("v4-i-highlights-panel");
             if (panelSprite != null)
             {
-                TournamentArtCatalog.SpriteBox("HighlightsBg", _modalContent, 0f, 0f, w, h, "v4-i-highlights-panel", sliced: false, raycast: true);
+                TournamentArtCatalog.SpriteBox("HighlightsBg", _modalContent, 0f, 0f, w, h, "v4-i-highlights-panel", sliced: true, raycast: true);
             }
             else
             {

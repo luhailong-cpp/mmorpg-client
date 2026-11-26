@@ -306,6 +306,32 @@ namespace MmorpgClient.Tests.EditMode.Role
                     }
                 }
             }
+
+            // 3. 全客户端业务源码红线扫描：严禁在游戏客户端任意脚本字符串内夹带站外捐赠外链、收款码或诱导点广告词（防拒审/下架）
+            string[] clientWideBannedTokens =
+            {
+                "爱发电", "afdian.com", "afdian.net", "patreon.com", "ko-fi.com", "buymeacoffee.com",
+                "收款码", "微信收款", "支付宝收款", "点广告", "点击广告", "帮忙点广告", "支持作者", "支持开发",
+            };
+            string scriptsRoot = Path.Combine(Directory.GetCurrentDirectory(), "Assets", "Scripts");
+            if (Directory.Exists(scriptsRoot))
+            {
+                var literalRegex = new Regex("\"([^\"\\\\]|\\\\.)*\"", RegexOptions.Compiled);
+                foreach (string file in Directory.GetFiles(scriptsRoot, "*.cs", SearchOption.AllDirectories))
+                {
+                    string norm = file.Replace('\\', '/');
+                    if (norm.Contains("/Generated/")) continue;
+                    string src = File.ReadAllText(file);
+                    foreach (System.Text.RegularExpressions.Match m in literalRegex.Matches(src))
+                    {
+                        foreach (string token in clientWideBannedTokens)
+                        {
+                            Assert.That(m.Value.IndexOf(token, StringComparison.OrdinalIgnoreCase), Is.LessThan(0),
+                                $"Store-rejection banned token '{token}' found in client script {norm}: {m.Value}");
+                        }
+                    }
+                }
+            }
         }
     }
 }

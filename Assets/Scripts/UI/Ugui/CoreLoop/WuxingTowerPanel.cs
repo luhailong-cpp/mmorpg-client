@@ -220,7 +220,11 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 float cx = startX + i * (cardW + 90f);
                 var frame = WuxingExpansionsUiArt.LoadSigilCardFrame(def.Rarity);
                 if (frame != null)
-                    SeasonV1UiArt.CreateFixedIcon(transform, "OfferCard" + i, cx, cy, cardW, cardH, frame, Color.white);
+                {
+                    var cardImg = QdaoUguiFactory.CreateImage("OfferCard" + i, transform, cx, cy, cardW, cardH, frame, false);
+                    cardImg.type = frame.border.sqrMagnitude > 0f ? UnityEngine.UI.Image.Type.Sliced : UnityEngine.UI.Image.Type.Simple;
+                    cardImg.preserveAspect = false;
+                }
                 else
                     CoreLoopUiArt.Card(transform, "OfferCard" + i, cx, cy, cardW, cardH);
 

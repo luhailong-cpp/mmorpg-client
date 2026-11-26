@@ -107,7 +107,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 default: return LoadSprite(GameplayUiArt.Root + key);
             }
         }
-        public static Sprite LoadCardIcon() => LoadTeam("item_appearance_card");
+        public static Sprite LoadCardIcon() => LoadSprite("UI/Ugui/AppearanceV1/item_appearance_card") ?? LoadTeam("item_appearance_card");
 
         public static Image Frame(UnityEngine.Transform parent, string name, float x, float y, float w, float h,
             string gameplayKey = "main_frame", Color? fallback = null)

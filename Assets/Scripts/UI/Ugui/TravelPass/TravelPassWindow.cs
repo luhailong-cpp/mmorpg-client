@@ -82,9 +82,18 @@ namespace MmorpgClient.UI.Ugui.TravelPass
             _frame = QdaoUguiFactory.CreateCenteredRect("TravelPassFrame", _root, FrameWidth, FrameHeight);
             CreateSkinOrFallbackArt(_frame, "TravelPassFrameBg", "window_frame", "main_frame", 0f, 0f, FrameWidth, FrameHeight);
 
+            bool hasDedicatedTitlePlate = LoadOptionalSkin("title_plate") != null;
             var plaque = CreateSkinOrFallbackArt(_frame, "TravelPassTitlePlaque", "title_plate", "title_plate", 90f, 20f, 520f, 110f);
-            // 标题文字收束在卷云端头与垂穗内侧玉绿匾面（左右留 76px、底部避开垂穗）
-            _titleText = Text(plaque.transform, "青云游历手记", 76f, 14f, 368f, 68f, 32f, Cream, alignment: TextAlignmentOptions.Center);
+            // 重绘 title_plate 为浅宣纸心+顶部太极徽记匾额，须用深墨绿字并收束在太极徽记下方宣纸带内
+            _titleText = Text(plaque.transform, "青云游历手记",
+                hasDedicatedTitlePlate ? 86f : 76f,
+                hasDedicatedTitlePlate ? 28f : 14f,
+                hasDedicatedTitlePlate ? 348f : 368f,
+                hasDedicatedTitlePlate ? 58f : 68f,
+                32f,
+                hasDedicatedTitlePlate ? Ink : Cream,
+                alignment: TextAlignmentOptions.Center);
+            _titleText.fontStyle = FontStyles.Bold;
             _titleText.raycastTarget = false;
 
             // 双余额独立展示：严禁把绑定灵石混算成可解锁额度

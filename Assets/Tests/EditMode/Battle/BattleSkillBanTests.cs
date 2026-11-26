@@ -108,8 +108,11 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void AllEightBattlePrepSkillBanSlicesLoadFromResources()
+        public void AllEightBattlePrepSkillBanSlicesAndMetasExistInResources()
         {
+            string root = System.IO.Path.Combine(
+                System.IO.Directory.GetCurrentDirectory(),
+                "Assets", "Resources", "UI", "Ugui", "BattlePrepSkillBan");
             string[] expectedSlices =
             {
                 "prep_ban_slot_empty",
@@ -121,10 +124,19 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 "skill_banned_stamp",
                 "battle_ban_strip_bg",
             };
+            Assert.That(SeasonEconomyUiArt.BattlePrepSkillBanRoot, Is.EqualTo("UI/Ugui/BattlePrepSkillBan/"));
             for (int i = 0; i < expectedSlices.Length; i++)
             {
-                var sprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice(expectedSlices[i]);
-                Assert.That(sprite, Is.Not.Null, $"缺少切片资源: UI/Ugui/BattlePrepSkillBan/{expectedSlices[i]}");
+                string pngPath = System.IO.Path.Combine(root, expectedSlices[i] + ".png");
+                string metaPath = pngPath + ".meta";
+                Assert.That(System.IO.File.Exists(pngPath), Is.True, $"缺少切片 PNG: {pngPath}");
+                Assert.That(System.IO.File.Exists(metaPath), Is.True, $"缺少切片 META: {metaPath}");
+                byte[] header = new byte[4];
+                using (var fs = System.IO.File.OpenRead(pngPath))
+                {
+                    Assert.That(fs.Read(header, 0, 4), Is.EqualTo(4));
+                }
+                Assert.That(header, Is.EqualTo(new byte[] { 0x89, 0x50, 0x4E, 0x47 }), $"非合法 PNG 文件头: {pngPath}");
             }
         }
     }

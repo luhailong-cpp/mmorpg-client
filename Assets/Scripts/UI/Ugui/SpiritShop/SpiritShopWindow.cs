@@ -83,8 +83,18 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             _frame = QdaoUguiFactory.CreateCenteredRect("SpiritShopFrame", _root, FrameWidth, FrameHeight);
             CreateSkinOrFallbackArt(_frame, "SpiritShopFrameBg", "ui/window_frame", "main_frame", 0f, 0f, FrameWidth, FrameHeight);
 
+            bool hasDedicatedTitlePlate = LoadOptionalSkin("ui/title_plate") != null;
             var plaque = CreateSkinOrFallbackArt(_frame, "SpiritShopTitlePlaque", "ui/title_plate", "title_plate", 56f, -20f, 480f, 110f);
-            var title = Text(plaque.transform, "灵石百宝阁", 32f, 10f, 416f, 84f, 46f, Cream, alignment: TextAlignmentOptions.Center);
+            // 重绘 ui/title_plate 为浅宣纸心匾额，须配深墨绿字保高对比；回退旧深青底时维持暖白字
+            var title = Text(plaque.transform, "灵石百宝阁",
+                hasDedicatedTitlePlate ? 76f : 32f,
+                hasDedicatedTitlePlate ? 24f : 10f,
+                hasDedicatedTitlePlate ? 328f : 416f,
+                hasDedicatedTitlePlate ? 62f : 84f,
+                hasDedicatedTitlePlate ? 38f : 46f,
+                hasDedicatedTitlePlate ? Ink : Cream,
+                alignment: TextAlignmentOptions.Center);
+            title.fontStyle = FontStyles.Bold;
             title.raycastTarget = false;
 
             // 双余额独立展示：严禁把绑定灵石混算成可购买额度（V-4）
@@ -626,7 +636,8 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             }
             if (firstItemId == SpiritShopModels.ItemAppearanceCard)
             {
-                var card = QdaoUguiTheme.LoadSprite("UI/Ugui/AppearanceChronicleV2/item_appearance_card")
+                var card = QdaoUguiTheme.LoadSprite("UI/Ugui/AppearanceV1/item_appearance_card")
+                    ?? QdaoUguiTheme.LoadSprite("UI/Ugui/AppearanceChronicleV2/item_appearance_card")
                     ?? QdaoUguiTheme.LoadSprite("UI/Icons/item_appearance_card");
                 if (card != null) return card;
             }
