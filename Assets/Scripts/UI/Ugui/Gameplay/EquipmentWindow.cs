@@ -17,7 +17,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     /// <summary>Live equipment UI. Painted screens are references only; every value comes from a server snapshot.</summary>
     public sealed partial class EquipmentWindow : IDisposable
     {
-        private enum Modal { None, Compare, Affix, Detail, Materials, PolishOdds, Reforge, BindConfirm, EnhanceBindConfirm, UnsealConfirm, InheritEnhance, UpgradeTier }
+        private enum Modal { None, Compare, Affix, Detail, Materials, PolishOdds, Reforge, BindConfirm, EnhanceBindConfirm, UnsealConfirm, InheritEnhance, UpgradeTier, EquipLoadout, EquipLoadoutUnlock }
         private readonly RectTransform _root, _frame, _surface, _body, _modalLayer;
         private readonly CanvasGroup _surfaceInput;
         private readonly EquipWishDialogInput _input;
@@ -72,12 +72,25 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             if (ReferenceEquals(_client, client)) return;
             Hide();
-            if (_client != null) { _client.OnChanged -= OnClientChanged; _client.OnMaterialRewardClaimed -= OnMaterialRewardClaimed; }
+            if (_client != null)
+            {
+                _client.OnChanged -= OnClientChanged;
+                _client.OnMaterialRewardClaimed -= OnMaterialRewardClaimed;
+                _client.OnEquipLoadoutSwitched -= OnEquipLoadoutSwitched;
+                _client.OnEquipLoadoutUnlocked -= OnEquipLoadoutUnlocked;
+            }
             _client = client; _targetSlot = null; _selectedItem = _candidate = _affixItem = 0;
             _recipeConfig = _artifactConfig = 0; _notice = string.Empty; _scroll.Clear();
             _craft.Bind(client); _forge.Bind(client);
             _materialSelectionReady = false;
-            if (_client != null) { _client.OnChanged += OnClientChanged; _client.OnMaterialRewardClaimed += OnMaterialRewardClaimed; }
+            _loadoutDraftSynced = false;
+            if (_client != null)
+            {
+                _client.OnChanged += OnClientChanged;
+                _client.OnMaterialRewardClaimed += OnMaterialRewardClaimed;
+                _client.OnEquipLoadoutSwitched += OnEquipLoadoutSwitched;
+                _client.OnEquipLoadoutUnlocked += OnEquipLoadoutUnlocked;
+            }
         }
 
         public void Show(EquipmentPage page = EquipmentPage.Overview)
@@ -133,13 +146,16 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             _craft.ClearSelection();
             _client?.RequestBag(PlayerFeaturesClient.CharacterBagType); _client?.RequestEquipment();
+            _client?.RequestEquipLoadouts();
             _craft.RefreshRules(); _attributes?.RequestPanel();
         }
         private bool WriteBlocked => _client == null || _craft.Busy || _craft.Pending ||
             _client.HasPendingActivityReward || _client.HasPendingMaterialReward || _client.BusyMaterialReward ||
+            _client.HasPendingEquipLoadoutUnlock || _client.BusyEquipLoadout ||
             _client.BagLoading || _client.EquipmentLoading;
         private string WriteReason => _craft.Pending ? "正在确认上次装备操作，请恢复结果" :
             _client?.HasPendingMaterialReward == true ? "请先确认上次材料领取" :
+            _client?.HasPendingEquipLoadoutUnlock == true ? "请先确认上次方案位解锁" :
             _client?.HasPendingActivityReward == true ? "请先确认上次奖励领取" :
             _craft.Busy ? "装备操作处理中，请稍候" : "正在同步装备，请稍候";
         private BagItemInfo FindItem(ulong id)

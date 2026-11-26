@@ -91,13 +91,13 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 "guild_button_secondary", "刷新确认", 19f, JadeDark, out _, out _);
             _refreshRatingBtn.onClick.AddListener(() => RefreshRatingRequested?.Invoke());
 
-            // 论剑 V4 左侧破势终结印章（原尺寸 324×68 底图，高对比深墨叠字，终结对手 >=3 连胜时显示）
-            _streakBreakPlate = QdaoUguiFactory.CreateImage("StreakBreakStamp", _root, 150f, 382f, 324f, 68f, null, false);
+            // 论剑 V4 左侧破势终结印章（原尺寸 280×68 宣纸金框底图，高对比深墨叠字，终结对手 >=3 连胜时显示）
+            _streakBreakPlate = QdaoUguiFactory.CreateImage("StreakBreakStamp", _root, 172f, 382f, 280f, 68f, null, false);
             var streakBreakSprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset("streak_break_stamp");
             bool hasStreakBreakArt = streakBreakSprite != null;
             if (hasStreakBreakArt) SeasonEconomyUiArt.ApplyFixedControlSprite(_streakBreakPlate, streakBreakSprite, SeasonEconomyUiArt.BattleArenaAmber);
             else _streakBreakPlate.color = SeasonEconomyUiArt.BattleArenaAmber;
-            _streakBreakText = CreateLabel("StreakBreakText", _streakBreakPlate.transform, 18f, 0f, 288f, 68f,
+            _streakBreakText = CreateLabel("StreakBreakText", _streakBreakPlate.transform, 14f, 0f, 252f, 68f,
                 string.Empty, 19f, hasStreakBreakArt ? JadeDark : GoldCream, TextAlignmentOptions.Center, bold: true);
             _streakBreakText.enableAutoSizing = true;
             _streakBreakText.fontSizeMin = 15f;

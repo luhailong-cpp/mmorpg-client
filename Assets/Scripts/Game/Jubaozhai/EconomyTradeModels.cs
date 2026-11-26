@@ -17,13 +17,8 @@ namespace MmorpgClient.Game.Jubaozhai
         public static string FormatSilver(ulong amount)
             => FormatInteger(amount) + " 银两";
 
-        public static string CurrencyName(uint type) => type switch
-        {
-            0u => "银两",
-            1u => "灵石",
-            2u => "绑定灵石",
-            _ => "货币 " + type.ToString(CultureInfo.InvariantCulture)
-        };
+        public static string CurrencyName(uint type)
+            => MmorpgClient.Game.Common.CurrencyLabels.Name(type, "货币 " + type.ToString(CultureInfo.InvariantCulture));
 
         public static string FormatCurrency(ulong amount, uint currencyType)
             => FormatInteger(amount) + " " + CurrencyName(currencyType);
@@ -52,6 +47,8 @@ namespace MmorpgClient.Game.Jubaozhai
                     return FormatInteger(amount) + " 灵石";
                 case "2":
                     return FormatInteger(amount) + " 绑定灵石";
+                case "3":
+                    return FormatInteger(amount) + " 绑定银两";
                 default:
                     return FormatInteger(amount) + (code.Length == 0 ? string.Empty : " " + code);
             }
@@ -785,8 +782,4 @@ namespace MmorpgClient.Game.Jubaozhai
         public static bool IsSkuRowHighlighted(OfficialSkuView sku, ulong selectedSkuId, int rowIndex)
         {
             if (sku == null) return false;
-            if (selectedSkuId != 0UL) return sku.SkuId == selectedSkuId;
-            return rowIndex == 0 && sku.Available > 0UL;
-        }
-    }
-}
+            if (selectedSkuId != 0UL) return sku.SkuId

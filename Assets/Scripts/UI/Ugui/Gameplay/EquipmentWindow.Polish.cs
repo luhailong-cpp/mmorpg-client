@@ -637,12 +637,16 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var unsealIcon = SeasonEconomyUiArt.LoadTradeSlice("icon_unseal_talisman");
             if (unsealIcon != null)
                 QdaoUguiFactory.CreateImage("UnsealIconArt", _modalLayer, 760, 320, 220, 220, unsealIcon, false).preserveAspect = true;
+            string loadoutRef = EquipLoadoutModel.FormatItemLoadoutBadge(_client?.EquipLoadouts, _talismanTargetItemId);
+            string loadoutWarn = string.IsNullOrEmpty(loadoutRef)
+                ? string.Empty
+                : $"\n• 注意：该装备当前正被【{loadoutRef}】引用，剥离清空后对应流派方案将失去其强化与词条";
             Label(_modalLayer, "UnsealDesc",
                 $"目标装备：{Name(item)}（当前强化 +{item?.EnhanceLevel ?? 0} · 绑定 B）\n\n"
                 + "• 消耗 1 张「解封剥离符」\n"
                 + "• 清空全部绑定养成：强化等级归 +0、保底清零、清空已装词条与宗师署名\n"
                 + "• 仅恢复为纯可交易（T）原胚，绝不把绑定材料洗白为可交易\n"
-                + "• 若装备上镶嵌了宝石，需先取下宝石再执行剥离",
+                + "• 若装备上镶嵌了宝石，需先取下宝石再执行剥离" + loadoutWarn,
                 1020, 315, 2100, 440, 40, true, Ink);
 
             var preview = _craft.Preview;

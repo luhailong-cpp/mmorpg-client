@@ -65,6 +65,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Label(button.transform, "EquipmentSlotName", slot.Name, 205, 20, 380, 65, 46);
                 Label(button.transform, "EquipmentSlotItem", slot.Item == null ? "尚未装备" : Name(slot.Item), 205, 95, 380, 105, 36, true, Muted);
                 if (slot.Item?.EnhanceMaxLevel > 0) Label(button.transform, "EquipmentEnhanceBadge", "+" + slot.Item.EnhanceLevel, 125, 10, 90, 50, 35, color: Jade);
+                if (slot.Item != null) DrawLoadoutInUseBadge(button.transform, slot.Item.ItemId, 464f, 16f);
             }
             RenderSeasonSealSingleSlot();
             var game = AppBootstrap.Instance?.GameClient;
@@ -133,9 +134,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var button = ChoiceRow(list, "EquipmentCandidate_" + item.ItemId, "", 5, i * 180, 510, 160, () => BeginCompare(item.ItemId));
                 Icon(button.transform, item, 8, 15, 120);
                 Label(button.transform, "CandidateName", Name(item) + "\n未佩戴 · " + item.EquipLevel + "级", 150, 15, 335, 130, 36, true);
+                DrawLoadoutInUseBadge(button.transform, item.ItemId, 360f, 114f, 138f, 36f);
             }
             if (candidates.Count == 0) Label(_body, "EquipmentCandidatesEmpty", _client?.BagLoading == true ? "读取中…" : "暂无可替换装备", 3210, 600, 490, 180, 43, true, Muted);
-            Button(_body, "EquipmentMaterialEntry", "材料自选", 3130, 1345, 620, OpenMaterials);
+            Button(_body, "EquipmentLoadoutEntry", "流派方案", 3110, 1345, 355, OpenEquipLoadouts, primary: true);
+            Button(_body, "EquipmentMaterialEntry", "材料自选", 3480, 1345, 355, OpenMaterials);
             // Occupied historic fixture slots must remain accessible through the original bag view.
             if (slots.Any(s => !official.Any(o => o.Slot == s.Slot) && s.Item != null))
                 Label(_body, "EquipmentLegacySlots", "其他旧装备可在背包「已穿戴」中查看和卸下", 230, 1405, 1670, 65, 34, color: Muted);
@@ -182,7 +185,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             var shade = _modalLayer.GetComponent<Image>() ?? _modalLayer.gameObject.AddComponent<Image>();
             shade.color = new Color(.02f, .07f, .055f, .85f); shade.raycastTarget = true;
-            if (_modal != Modal.InheritEnhance || SeasonEconomyUiArt.LoadTradeV2Slice("panel_09_equip_inherit") == null)
+            bool customPanel = _modal == Modal.EquipLoadout || _modal == Modal.EquipLoadoutUnlock
+                || (_modal == Modal.InheritEnhance && SeasonEconomyUiArt.LoadTradeV2Slice("panel_09_equip_inherit") != null);
+            if (!customPanel)
                 Panel(_modalLayer, "EquipmentDialogPaper", 530, 100, 2900, 1390, true);
             switch (_modal)
             {
@@ -197,6 +202,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 case Modal.UnsealConfirm: RenderUnsealConfirmModal(); break;
                 case Modal.InheritEnhance: RenderInheritEnhanceModal(); break;
                 case Modal.UpgradeTier: RenderUpgradeTierModal(); break;
+                case Modal.EquipLoadout: RenderEquipLoadoutModal(); break;
+                case Modal.EquipLoadoutUnlock: RenderEquipLoadoutUnlockModal(); break;
             }
         }
 

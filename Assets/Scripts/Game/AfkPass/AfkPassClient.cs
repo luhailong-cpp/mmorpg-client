@@ -53,13 +53,7 @@ namespace MmorpgClient.Game.AfkPass
                 : $"开通「仙途轻享卡」解锁：离线跟队托管 · 战法/属性配装槽 3→6 格（当前 {slots} 格）· 阶段二胜局可交易资格（零战力加成）";
         }
 
-        public static string CurrencyName(uint currencyType) => currencyType switch
-        {
-            0 => "银两",
-            1 => "灵石",
-            2 => "绑定灵石",
-            _ => "货币",
-        };
+        public static string CurrencyName(uint currencyType) => MmorpgClient.Game.Common.CurrencyLabels.Name(currencyType);
 
         public static ulong RemainingSeconds(ulong expiresAt, ulong serverNow) => expiresAt > serverNow ? expiresAt - serverNow : 0;
 

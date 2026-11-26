@@ -49,7 +49,7 @@
       "sprite_mode": "Single"
     }
   },
-  "file_count": 51,
+  "file_count": 57,
   "fx": [
     {
       "path": "Fx/slash_arc_strip.png",
@@ -378,6 +378,102 @@
       ],
       "loop": false,
       "desc": "复制施法者脚下的镜像阵，供玄镜映法、反戈一击和法术反击复用"
+    },
+    {
+      "path": "Fx/vfx_xuanfu_alt_impact_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": false,
+      "desc": "衣柜专属特效·玄符落曜命中：目标胸口播放一次"
+    },
+    {
+      "path": "Fx/vfx_xuanfu_alt_projectile_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": true,
+      "desc": "衣柜专属特效·玄符落曜投射：朝右飞行，左向由程序镜像"
+    },
+    {
+      "path": "Fx/vfx_zixiao_alt_strike_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "loop": false,
+      "desc": "衣柜专属特效·紫霄雷阵落雷：目标脚下播放一次"
+    },
+    {
+      "path": "Fx/vfx_zixiao_alt_telegraph_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": false,
+      "desc": "衣柜专属特效·紫霄雷阵预示：目标脚下蓄力预示"
+    },
+    {
+      "path": "Fx/vfx_hanxing_alt_impact_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": false,
+      "desc": "衣柜专属特效·寒星凝魄命中：赛季荣誉专属外观，目标胸口播放一次"
+    },
+    {
+      "path": "Fx/vfx_hanxing_alt_projectile_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": true,
+      "desc": "衣柜专属特效·寒星凝魄投射：赛季荣誉专属外观，朝右飞行，左向由程序镜像"
     }
   ],
   "ui": [

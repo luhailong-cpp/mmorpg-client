@@ -440,7 +440,16 @@ namespace MmorpgClient.Net
                 case SceneBagClientPlayerRpc.CommitEquipmentCraftMessageId:
                 case SceneBagClientPlayerRpc.GetEquipmentMaterialRewardMessageId:
                 case SceneBagClientPlayerRpc.ClaimEquipmentMaterialRewardMessageId:
+                case SceneBagClientPlayerRpc.GetEquipLoadoutsMessageId:
+                case SceneBagClientPlayerRpc.SaveEquipLoadoutMessageId:
+                case SceneBagClientPlayerRpc.SwitchEquipLoadoutMessageId:
+                case SceneBagClientPlayerRpc.UnlockEquipLoadoutMessageId:
                     return "scene_bag";
+
+                case SceneRewardedAdClientPlayerRpc.GetRewardedAdInfoMessageId:
+                case SceneRewardedAdClientPlayerRpc.BeginRewardedAdSessionMessageId:
+                case SceneRewardedAdClientPlayerRpc.ClaimRewardedAdMessageId:
+                    return "rewarded_ad";
 
                 case MessageIds.ListSkills:
                 case MessageIds.ReleaseSkill:

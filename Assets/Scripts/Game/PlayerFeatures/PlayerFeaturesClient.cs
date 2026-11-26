@@ -868,6 +868,14 @@ namespace MmorpgClient.Game.PlayerFeatures
                 (uint)equip_error.KEquipPolishPityChanged => "打磨保底进度已变化，请刷新后再试",
                 (uint)equip_error.KEquipCraftGoldNotEnough => "银两不足，无法完成打造或打磨",
                 (uint)equip_error.KEquipProxyMasterUnavailable => "该名匠代打摊位当前不可用，请刷新列表",
+                (uint)equip_error.KEquipLoadoutSchemeInvalid => "目标装备方案位无效或尚未解锁",
+                (uint)equip_error.KEquipLoadoutMaxUnlocked => "装备流派方案位已达最大 5 套上限",
+                (uint)equip_error.KEquipLoadoutVersionChanged => "装备方案状态已变化，请刷新后再试",
+                (uint)equip_error.KEquipLoadoutDiamondNotEnough => "灵石不足且背包无装备方案扩容符",
+                (uint)equip_error.KEquipLoadoutNameInvalid => "方案名称长度须为 1～12 字且不含敏感词",
+                (uint)equip_error.KEquipLoadoutDuplicateItem => "同一件装备不可重复配置到多个槽位",
+                (uint)equip_error.KEquipLoadoutSlotUnavailable => "槽位装备不匹配或背包空格不足，无法切换",
+                (uint)equip_error.KEquipLoadoutUnlockCountChanged => "已解锁方案数量已变化，请刷新后重试",
                 _ => null,
             };
             return text == null ? DescribeTip(operation, tip) : $"{operation}:{text}";
@@ -977,6 +985,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             ResetActivityRewardSession();
             ResetEquipmentCraftSession();
             ResetMaterialRewardSession();
+            ResetEquipLoadoutSession();
             ResetTemporarySession();
             _snapshotPlayerId = 0;
             Array.Clear(_bags, 0, _bags.Length);
@@ -1005,6 +1014,8 @@ namespace MmorpgClient.Game.PlayerFeatures
             OnActivityRewardClaimed = null;
             OnEquipmentCraftApplied = null;
             OnMaterialRewardClaimed = null;
+            OnEquipLoadoutSwitched = null;
+            OnEquipLoadoutUnlocked = null;
         }
     }
 }
