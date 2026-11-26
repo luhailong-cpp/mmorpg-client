@@ -714,49 +714,100 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     }
                 }
             }
-            bool synergyReady = WuxingExpansionModels.AreElementsMutuallyGenerating(
-                WuxingExpansionModels.ElementOfClass(myClassId),
-                WuxingExpansionModels.ElementOfPet(activePetTableId));
+            uint playerElem = WuxingExpansionModels.ElementOfClass(myClassId);
+            uint petElem = WuxingExpansionModels.ElementOfPet(activePetTableId);
+            bool synergyReady = WuxingExpansionModels.AreElementsMutuallyGenerating(playerElem, petElem);
 
             CoreLoopUiArt.Card(transform, "SynergyPreviewCard", 295f, 312f, 1970f, 96f, selected: synergyReady);
-            CoreLoopUiArt.Text("SynergyTitle", transform, 326f, 322f, 1340f, 38f,
+            var pElemIcon = WuxingExpansionsUiArt.LoadElementIcon(playerElem);
+            var petElemIcon = WuxingExpansionsUiArt.LoadElementIcon(petElem);
+            if (pElemIcon != null)
+                SeasonV1UiArt.CreateFixedIcon(transform, "PlayerElemIcon", 316f, 336f, 48f, 48f, pElemIcon, Color.clear);
+            if (petElemIcon != null)
+                SeasonV1UiArt.CreateFixedIcon(transform, "PetElemIcon", 370f, 336f, 48f, 48f, petElemIcon, Color.clear);
+            float synTextX = (pElemIcon != null || petElemIcon != null) ? 430f : 326f;
+            CoreLoopUiArt.Text("SynergyTitle", transform, synTextX, 322f, 1520f, 38f,
                 WuxingExpansionModels.DescribeSynergy(myClassId, activePetTableId),
                 23f, synergyReady ? CoreLoopUiArt.DeepJade : CoreLoopUiArt.Ink, true);
-            CoreLoopUiArt.Text("FormationCounterRule", transform, 326f, 364f, 1520f, 32f,
+            CoreLoopUiArt.Text("FormationCounterRule", transform, synTextX, 364f, 1520f, 32f,
                 "五阵循环互克（+5% 直伤）：天覆(金) → 地载(土) → 风扬(木) → 云垂(水) → 虎翼(火) → 天覆(金) · 全员免费自由切换",
                 19f, CoreLoopUiArt.Muted, false);
             CoreLoopUiArt.Button("UnequipFormation", transform, 1990f, 332f, 245f, 54f,
                 equipped == 0u ? "当前未布阵" : "卸下当前阵法",
                 () => season?.EquipFormation(0u), !busy && equipped != 0u, false, 20f);
 
+            // 左侧：1:1 八卦五行阵盘（formation_compass_bg.png），5 枚阵法徽章精准落入外环五槽
+            CoreLoopUiArt.Card(transform, "FormationCompassCard", 295f, 422f, 530f, 502f);
+            const float compassSize = 460f;
+            const float compassX = 330f;
+            const float compassY = 442f;
             var compassBg = WuxingExpansionsUiArt.LoadFormationCompassBg();
             if (compassBg != null)
-                SeasonV1UiArt.CreateFixedIcon(transform, "FormationCompassBg", 1040f, 418f, 480f, 480f, compassBg, new Color(1f, 1f, 1f, 0.22f));
+                SeasonV1UiArt.CreateFixedIcon(transform, "FormationCompassBg", compassX, compassY, compassSize, compassSize, compassBg, Color.white);
 
-            // 5 套免费道家阵法卡片列表
+            // 中心安全区（对齐 CONTROL-USAGE.md：246..522 / 768）显示当前阵法名
+            CoreLoopUiArt.Text("CompassCenterName", transform, compassX + 148f, compassY + 190f, 164f, 38f,
+                WuxingExpansionModels.FormationName(equipped), 22f, CoreLoopUiArt.DeepJade, true, false, TextAlignmentOptions.Center);
+            CoreLoopUiArt.Text("CompassCenterSub", transform, compassX + 148f, compassY + 230f, 164f, 44f,
+                equipped > 0u ? "当前已布设" : "点击外环布阵", 16f, CoreLoopUiArt.Muted, false, true, TextAlignmentOptions.Center);
+
             var formations = WuxingExpansionModels.Formations;
+            // 五槽中心比例（顺时针：顶/右上/右下/左下/左上，匹配 formation_compass_bg.png 五圆形阵槽）
+            Vector2[] socketNorm =
+            {
+                new Vector2(0.500f, 0.125f),
+                new Vector2(0.865f, 0.388f),
+                new Vector2(0.745f, 0.778f),
+                new Vector2(0.255f, 0.778f),
+                new Vector2(0.135f, 0.388f),
+            };
+            for (int i = 0; i < formations.Length && i < socketNorm.Length; ++i)
+            {
+                var def = formations[i];
+                bool isEquipped = equipped == def.Id;
+                float badgeSize = isEquipped ? 86f : 74f;
+                float bx = compassX + socketNorm[i].x * compassSize - badgeSize * 0.5f;
+                float by = compassY + socketNorm[i].y * compassSize - badgeSize * 0.5f;
+                var socketIcon = WuxingExpansionsUiArt.LoadFormationIcon(def.Id) ?? WuxingExpansionsUiArt.LoadElementIcon(def.Element);
+                if (socketIcon != null)
+                    SeasonV1UiArt.CreateFixedIcon(transform, "CompassBadge" + def.Id, bx, by, badgeSize, badgeSize, socketIcon, Color.clear);
+                uint capturedSocketId = def.Id;
+                var hitBtn = QdaoUguiFactory.CreateRect("CompassHit" + def.Id, transform, bx, by, badgeSize, badgeSize);
+                var hitImg = hitBtn.gameObject.AddComponent<UnityEngine.UI.Image>();
+                hitImg.color = isEquipped ? new Color(1f, 0.88f, 0.42f, 0.16f) : new Color(0f, 0f, 0f, 0f);
+                hitImg.raycastTarget = true;
+                var btn = hitBtn.gameObject.AddComponent<UnityEngine.UI.Button>();
+                btn.interactable = !busy && !isEquipped;
+                btn.onClick.AddListener(() => season?.EquipFormation(capturedSocketId));
+            }
+
+            // 右侧：5 套免费道家阵法详情与切换列表
             for (int i = 0; i < formations.Length; ++i)
             {
                 var def = formations[i];
-                float fy = 424f + i * 100f;
+                float fy = 422f + i * 102f;
                 bool isEquipped = equipped == def.Id;
-                CoreLoopUiArt.Card(transform, "FormationRow" + def.Id, 295f, fy, 1970f, 88f, selected: isEquipped);
+                CoreLoopUiArt.Card(transform, "FormationRow" + def.Id, 842f, fy, 1423f, 92f, selected: isEquipped);
 
                 var formIcon = WuxingExpansionsUiArt.LoadFormationIcon(def.Id) ?? WuxingExpansionsUiArt.LoadElementIcon(def.Element);
                 if (formIcon != null)
-                    SeasonV1UiArt.CreateFixedIcon(transform, "FormIcon" + def.Id, 320f, fy + 14f, 60f, 60f, formIcon, Color.clear);
+                    SeasonV1UiArt.CreateFixedIcon(transform, "FormIcon" + def.Id, 862f, fy + 16f, 60f, 60f, formIcon, Color.clear);
 
-                CoreLoopUiArt.Badge(transform, "FormElem" + def.Id, 396f, fy + 20f, 118f,
-                    $"{WuxingExpansionModels.ElementName(def.Element)}行", isEquipped ? CoreLoopUiArt.Warning : CoreLoopUiArt.DeepJade);
-                CoreLoopUiArt.Text("FormName" + def.Id, transform, 532f, fy + 14f, 220f, 58f,
-                    def.Name, 28f, CoreLoopUiArt.DeepJade, true, false, TextAlignmentOptions.MidlineLeft);
-                CoreLoopUiArt.Text("FormBonus" + def.Id, transform, 766f, fy + 16f, 1140f, 54f,
-                    def.BonusSummary, 22f, CoreLoopUiArt.Ink, false, false, TextAlignmentOptions.MidlineLeft);
+                var elemIcon = WuxingExpansionsUiArt.LoadElementIcon(def.Element);
+                if (elemIcon != null)
+                    SeasonV1UiArt.CreateFixedIcon(transform, "FormElemIcon" + def.Id, 930f, fy + 26f, 40f, 40f, elemIcon, Color.clear);
+
+                CoreLoopUiArt.Text("FormName" + def.Id, transform, 980f, fy + 10f, 200f, 38f,
+                    def.Name, 25f, CoreLoopUiArt.DeepJade, true, false, TextAlignmentOptions.MidlineLeft);
+                CoreLoopUiArt.Text("FormElemText" + def.Id, transform, 980f, fy + 50f, 200f, 28f,
+                    $"{WuxingExpansionModels.ElementName(def.Element)}行阵法", 16f, CoreLoopUiArt.Muted, false, false, TextAlignmentOptions.MidlineLeft);
+                CoreLoopUiArt.Text("FormBonus" + def.Id, transform, 1188f, fy + 14f, 800f, 64f,
+                    def.BonusSummary, 20f, CoreLoopUiArt.Ink, false, true, TextAlignmentOptions.MidlineLeft);
 
                 uint capturedId = def.Id;
-                CoreLoopUiArt.Button("EquipFormBtn" + def.Id, transform, 1980f, fy + 17f, 255f, 54f,
+                CoreLoopUiArt.Button("EquipFormBtn" + def.Id, transform, 2006f, fy + 19f, 236f, 54f,
                     isEquipped ? "当前已布设" : "免费布设",
-                    () => season?.EquipFormation(capturedId), !busy && !isEquipped, !isEquipped, 22f);
+                    () => season?.EquipFormation(capturedId), !busy && !isEquipped, !isEquipped, 21f);
             }
 
             if (season != null && !string.IsNullOrEmpty(season.Status))

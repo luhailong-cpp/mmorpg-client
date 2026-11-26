@@ -43,6 +43,16 @@ namespace MmorpgClient.Game.AfkPass
         public const string HostingDescription =
             "开通后，断线时角色不会在 25 秒后下线：留在原地离线托管，组队时照常跟着队长走，直到重新登录或月卡到期。";
 
+        /// <summary>仙途轻享卡零战力便利权益汇总（复用单真相 afk_pass_expires_at）。</summary>
+        public static string LightCardBenefitsSummary(global::AfkPassInfo info)
+        {
+            uint slots = info != null && info.UnlockedLoadoutSlots > 0 ? info.UnlockedLoadoutSlots : 3u;
+            bool stage2Tradable = info != null && info.Stage2TradableEnabled;
+            return stage2Tradable
+                ? $"轻享卡生效：离线跟队托管 · 战法/属性配装槽 {slots} 格（3→6）· 阶段二胜局可交易资格已激活（零战力加成）"
+                : $"开通「仙途轻享卡」解锁：离线跟队托管 · 战法/属性配装槽 3→6 格（当前 {slots} 格）· 阶段二胜局可交易资格（零战力加成）";
+        }
+
         public static string CurrencyName(uint currencyType) => currencyType switch
         {
             0 => "银两",
@@ -168,6 +178,8 @@ namespace MmorpgClient.Game.AfkPass
         public event Action Changed;
         /// <summary>快到期 / 已到期提醒的文案。宿主用飘字显示。</summary>
         public event Action<string> Reminder;
+        /// <summary>服务端确认开通/续费成功后触发，供宿主刷新配装槽位与材料可交易资格。</summary>
+        public event Action Purchased;
 
         /// <summary>最近一份服务端结论;null = 还没问到(或断线后已复位)。只读:不要改它的字段。</summary>
         public global::AfkPassInfo Info { get; private set; }
@@ -349,6 +361,7 @@ namespace MmorpgClient.Game.AfkPass
                         if (response.Info != null) ApplyInfo(response.Info);
                         SetStatus(BoughtMessage, false);
                         Changed?.Invoke();
+                        Purchased?.Invoke();
                     },
                     error =>
                     {

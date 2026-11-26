@@ -403,6 +403,81 @@ namespace MmorpgClient.Tests.EditMode.Jubaozhai
                 Does.EndWith("icon_inherit_talisman"));
         }
 
+        [Test]
+        public void AllTwelvePaymentCashierV1SlicesAndMetasExistWithExactBorders()
+        {
+            string assetsDir = ResolveAssetsDirectory();
+            string root = Path.Combine(assetsDir, "Resources", "UI", "Ugui", "PaymentCashierV1");
+            Assert.That(File.Exists(root + ".meta"), Is.True, "Missing PaymentCashierV1 folder meta");
+            Assert.That(MmorpgClient.UI.Ugui.SeasonEconomyUiArt.PaymentCashierAssetKeys.Length, Is.EqualTo(12));
+
+            var expected = new (string Key, int Width, int Height, int L, int B, int R, int T)[]
+            {
+                ("cashier_card_bg", 1024, 512, 64, 64, 64, 64),
+                ("lightcard_hero_frame", 720, 520, 56, 56, 56, 56),
+                ("sku_row_card", 960, 112, 32, 32, 32, 32),
+                ("sku_row_card_highlight", 960, 112, 32, 32, 32, 32),
+                ("pay_action_btn_primary", 360, 84, 40, 20, 40, 20),
+                ("pay_action_btn_secondary", 360, 84, 40, 20, 40, 20),
+                ("pay_countdown_track", 640, 28, 16, 10, 16, 10),
+                ("pay_countdown_fill", 640, 28, 16, 10, 16, 10),
+                ("badge_pay_waiting", 192, 192, 0, 0, 0, 0),
+                ("badge_pay_settled", 192, 192, 0, 0, 0, 0),
+                ("badge_pay_revoked", 192, 192, 0, 0, 0, 0),
+                ("icon_gift_chest_gold", 256, 256, 0, 0, 0, 0),
+            };
+
+            foreach (var item in expected)
+            {
+                Assert.That(MmorpgClient.UI.Ugui.SeasonEconomyUiArt.PaymentCashierAssetKeys, Does.Contain(item.Key));
+                string pngPath = Path.Combine(root, item.Key + ".png");
+                string metaPath = pngPath + ".meta";
+                Assert.That(File.Exists(pngPath), Is.True, "Missing PaymentCashierV1 PNG: " + item.Key);
+                Assert.That(File.Exists(metaPath), Is.True, "Missing PaymentCashierV1 meta: " + item.Key);
+                string meta = File.ReadAllText(metaPath);
+                Assert.That(meta, Does.Contain("textureType: 8"), item.Key + " must be Sprite (2D and UI)");
+                Assert.That(meta, Does.Contain("spriteMode: 1"), item.Key + " must be Single sprite");
+                Assert.That(meta, Does.Contain("alphaIsTransparency: 1"), item.Key + " must preserve alpha");
+                Assert.That(meta, Does.Contain($"spriteBorder: {{x: {item.L}, y: {item.B}, z: {item.R}, w: {item.T}}}"), item.Key + " border mismatch");
+                Assert.That(meta, Does.Contain($"width: {item.Width}"), item.Key + " rect width");
+                Assert.That(meta, Does.Contain($"height: {item.Height}"), item.Key + " rect height");
+            }
+        }
+
+        [Test]
+        public void PaymentCashierViewModelMapsStatesCountdownThresholdAndSkuHighlight()
+        {
+            Assert.That(PaymentCashierViewModel.ResolveBadgeSliceKey(CommerceOrderState.AwaitingPayment, false), Is.EqualTo("badge_pay_waiting"));
+            Assert.That(PaymentCashierViewModel.ResolveBadgeSliceKey(CommerceOrderState.Delivering, true), Is.EqualTo("badge_pay_waiting"));
+            Assert.That(PaymentCashierViewModel.ResolveBadgeSliceKey(CommerceOrderState.Delivered, false), Is.EqualTo("badge_pay_settled"));
+            Assert.That(PaymentCashierViewModel.ResolveBadgeSliceKey(CommerceOrderState.Settled, false), Is.EqualTo("badge_pay_settled"));
+            Assert.That(PaymentCashierViewModel.ResolveBadgeSliceKey(CommerceOrderState.Reversing, false), Is.EqualTo("badge_pay_revoked"));
+            Assert.That(PaymentCashierViewModel.ResolveBadgeSliceKey(CommerceOrderState.Reversed, false), Is.EqualTo("badge_pay_revoked"));
+            Assert.That(PaymentCashierViewModel.ResolveBadgeSliceKey(CommerceOrderState.Refunded, false), Is.EqualTo("badge_pay_revoked"));
+            Assert.That(PaymentCashierViewModel.ResolveBadgeSliceKey(CommerceOrderState.Manual, false), Is.EqualTo("badge_pay_revoked"));
+            Assert.That(PaymentCashierViewModel.ResolveBadgeSliceKey(CommerceOrderState.Cancelled, false), Is.EqualTo("badge_pay_revoked"));
+
+            // 倒计时填充条宽度 < 32px（左右角帽 16+16px）时必须隐藏返回 0
+            Assert.That(PaymentCashierViewModel.ComputeCountdownFillWidth(640f, 300_000UL, 600_000UL), Is.EqualTo(320f).Within(0.01f));
+            Assert.That(PaymentCashierViewModel.ComputeCountdownFillWidth(640f, 29_000UL, 600_000UL), Is.EqualTo(0f));
+            Assert.That(PaymentCashierViewModel.ComputeCountdownFillWidth(640f, 30_000UL, 600_000UL), Is.EqualTo(32f).Within(0.01f));
+            Assert.That(PaymentCashierViewModel.ComputeCountdownFillWidth(640f, 0UL, 600_000UL), Is.EqualTo(0f));
+            Assert.That(PaymentCashierViewModel.ComputeCountdownFillWidth(640f, 1000UL, 0UL), Is.EqualTo(0f));
+
+            Assert.That(PaymentCashierViewModel.FormatCountdownText(0UL), Does.Contain("支付时限已到"));
+            Assert.That(PaymentCashierViewModel.FormatCountdownText(61_100UL), Is.EqualTo("剩余支付时间：01分02秒"));
+            Assert.That(PaymentCashierViewModel.FormatCountdownText(3_665_000UL), Is.EqualTo("剩余支付时间：1时01分05秒"));
+
+            var skuA = new OfficialSkuView { SkuId = 101UL, Title = "解封剥离符", Available = 5UL };
+            var skuB = new OfficialSkuView { SkuId = 102UL, Title = "首套礼匣", Available = 2UL };
+            Assert.That(PaymentCashierViewModel.IsUnsealTalismanSku(skuA), Is.True);
+            Assert.That(PaymentCashierViewModel.IsUnsealTalismanSku(skuB), Is.False);
+            Assert.That(PaymentCashierViewModel.IsSkuRowHighlighted(skuA, 0UL, 0), Is.True);
+            Assert.That(PaymentCashierViewModel.IsSkuRowHighlighted(skuB, 0UL, 1), Is.False);
+            Assert.That(PaymentCashierViewModel.IsSkuRowHighlighted(skuB, 102UL, 1), Is.True);
+            Assert.That(PaymentCashierViewModel.IsSkuRowHighlighted(skuA, 102UL, 0), Is.False);
+        }
+
         private static string ResolveAssetsDirectory()
         {
             string[] candidates =

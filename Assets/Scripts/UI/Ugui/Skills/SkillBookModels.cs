@@ -52,6 +52,8 @@ namespace MmorpgClient.UI.Ugui.Skills
         public uint MaxPassiveSlots = 3;
         public uint MaxPursuitSlots = 1;
         public uint MaxOpeningSlots = 1;
+        public uint UnlockedSchemes = 3;
+        public uint MaxSchemes = 6;
         public string LastRequestId;
         public readonly List<SkillLoadoutSchemeView> Schemes = new();
 

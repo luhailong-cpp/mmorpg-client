@@ -28,43 +28,45 @@ public static partial class PlayerAfkPassReflection {
           "BBIQCghlbmRlZF9hdBgCIAEoBBIUCgxiYXR0bGVfY291bnQYAyABKA0SEQoJ",
           "d2luX2NvdW50GAQgASgNEhIKCmV4cF9nYWluZWQYBSABKAQSFQoNc2lsdmVy",
           "X2dhaW5lZBgGIAEoBBISCgppdGVtX2NvdW50GAcgASgNEhMKC3BlbmRpbmdf",
-          "YWNrGAggASgIIpECCgtBZmtQYXNzSW5mbxISCgpleHBpcmVzX2F0GAEgASgE",
+          "YWNrGAggASgIItICCgtBZmtQYXNzSW5mbxISCgpleHBpcmVzX2F0GAEgASgE",
           "EhIKCnNlcnZlcl9ub3cYAiABKAQSGwoTcHJpY2VfY3VycmVuY3lfdHlwZRgD",
           "IAEoDRINCgVwcmljZRgEIAEoBBITCgtwZXJpb2RfZGF5cxgFIAEoDRIaChJt",
           "YXhfcmVtYWluaW5nX2RheXMYBiABKA0SGwoTcmVtaW5kX2JlZm9yZV9ob3Vy",
           "cxgHIAEoDRIPCgdiYWxhbmNlGAggASgEEiQKHGF1dG9fcmV0dXJuX2NpdHlf",
           "b25fdGVhbV9lbmQYCSABKAgSKQoMaG9zdGVkX3JlY2FwGAogASgLMhMuSG9z",
-          "dGVkUmVjYXBTdW1tYXJ5IhMKEUdldEFma1Bhc3NSZXF1ZXN0IlgKEkdldEFm",
-          "a1Bhc3NSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
-          "b01lc3NhZ2USGgoEaW5mbxgCIAEoCzIMLkFma1Bhc3NJbmZvImYKEUJ1eUFm",
-          "a1Bhc3NSZXF1ZXN0EhkKEWNsaWVudF9yZXF1ZXN0X2lkGAEgASgEEh4KFmV4",
-          "cGVjdGVkX2N1cnJlbmN5X3R5cGUYAiABKA0SFgoOZXhwZWN0ZWRfcHJpY2UY",
-          "AyABKAQiagoSQnV5QWZrUGFzc1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
+          "dGVkUmVjYXBTdW1tYXJ5Eh4KFnVubG9ja2VkX2xvYWRvdXRfc2xvdHMYCyAB",
+          "KA0SHwoXc3RhZ2UyX3RyYWRhYmxlX2VuYWJsZWQYDCABKAgiEwoRR2V0QWZr",
+          "UGFzc1JlcXVlc3QiWAoSR2V0QWZrUGFzc1Jlc3BvbnNlEiYKDWVycm9yX21l",
+          "c3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIaCgRpbmZvGAIgASgLMgwu",
+          "QWZrUGFzc0luZm8iZgoRQnV5QWZrUGFzc1JlcXVlc3QSGQoRY2xpZW50X3Jl",
+          "cXVlc3RfaWQYASABKAQSHgoWZXhwZWN0ZWRfY3VycmVuY3lfdHlwZRgCIAEo",
+          "DRIWCg5leHBlY3RlZF9wcmljZRgDIAEoBCJqChJCdXlBZmtQYXNzUmVzcG9u",
+          "c2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhoK",
+          "BGluZm8YAiABKAsyDC5BZmtQYXNzSW5mbxIQCghyZXBsYXllZBgDIAEoCCIw",
+          "ChNHbVNldEFma1Bhc3NSZXF1ZXN0EhkKEXJlbWFpbmluZ19zZWNvbmRzGAEg",
+          "ASgNIloKFEdtU2V0QWZrUGFzc1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
           "ASABKAsyDy5UaXBJbmZvTWVzc2FnZRIaCgRpbmZvGAIgASgLMgwuQWZrUGFz",
-          "c0luZm8SEAoIcmVwbGF5ZWQYAyABKAgiMAoTR21TZXRBZmtQYXNzUmVxdWVz",
-          "dBIZChFyZW1haW5pbmdfc2Vjb25kcxgBIAEoDSJaChRHbVNldEFma1Bhc3NS",
-          "ZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3Nh",
-          "Z2USGgoEaW5mbxgCIAEoCzIMLkFma1Bhc3NJbmZvIkEKGVNldEFma1Bhc3NT",
-          "ZXR0aW5nc1JlcXVlc3QSJAocYXV0b19yZXR1cm5fY2l0eV9vbl90ZWFtX2Vu",
-          "ZBgBIAEoCCJgChpTZXRBZmtQYXNzU2V0dGluZ3NSZXNwb25zZRImCg1lcnJv",
-          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USGgoEaW5mbxgCIAEo",
-          "CzIMLkFma1Bhc3NJbmZvIisKFUFja0hvc3RlZFJlY2FwUmVxdWVzdBISCgpz",
-          "dGFydGVkX2F0GAEgASgEIlwKFkFja0hvc3RlZFJlY2FwUmVzcG9uc2USJgoN",
-          "ZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhoKBGluZm8Y",
-          "AiABKAsyDC5BZmtQYXNzSW5mbzLjAgoYU2NlbmVBZmtQYXNzQ2xpZW50UGxh",
-          "eWVyEjUKCkdldEFma1Bhc3MSEi5HZXRBZmtQYXNzUmVxdWVzdBoTLkdldEFm",
-          "a1Bhc3NSZXNwb25zZRI1CgpCdXlBZmtQYXNzEhIuQnV5QWZrUGFzc1JlcXVl",
-          "c3QaEy5CdXlBZmtQYXNzUmVzcG9uc2USOwoMR21TZXRBZmtQYXNzEhQuR21T",
-          "ZXRBZmtQYXNzUmVxdWVzdBoVLkdtU2V0QWZrUGFzc1Jlc3BvbnNlEk0KElNl",
-          "dEFma1Bhc3NTZXR0aW5ncxIaLlNldEFma1Bhc3NTZXR0aW5nc1JlcXVlc3Qa",
-          "Gy5TZXRBZmtQYXNzU2V0dGluZ3NSZXNwb25zZRJBCg5BY2tIb3N0ZWRSZWNh",
-          "cBIWLkFja0hvc3RlZFJlY2FwUmVxdWVzdBoXLkFja0hvc3RlZFJlY2FwUmVz",
-          "cG9uc2UaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
+          "c0luZm8iQQoZU2V0QWZrUGFzc1NldHRpbmdzUmVxdWVzdBIkChxhdXRvX3Jl",
+          "dHVybl9jaXR5X29uX3RlYW1fZW5kGAEgASgIImAKGlNldEFma1Bhc3NTZXR0",
+          "aW5nc1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
+          "TWVzc2FnZRIaCgRpbmZvGAIgASgLMgwuQWZrUGFzc0luZm8iKwoVQWNrSG9z",
+          "dGVkUmVjYXBSZXF1ZXN0EhIKCnN0YXJ0ZWRfYXQYASABKAQiXAoWQWNrSG9z",
+          "dGVkUmVjYXBSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
+          "SW5mb01lc3NhZ2USGgoEaW5mbxgCIAEoCzIMLkFma1Bhc3NJbmZvMuMCChhT",
+          "Y2VuZUFma1Bhc3NDbGllbnRQbGF5ZXISNQoKR2V0QWZrUGFzcxISLkdldEFm",
+          "a1Bhc3NSZXF1ZXN0GhMuR2V0QWZrUGFzc1Jlc3BvbnNlEjUKCkJ1eUFma1Bh",
+          "c3MSEi5CdXlBZmtQYXNzUmVxdWVzdBoTLkJ1eUFma1Bhc3NSZXNwb25zZRI7",
+          "CgxHbVNldEFma1Bhc3MSFC5HbVNldEFma1Bhc3NSZXF1ZXN0GhUuR21TZXRB",
+          "ZmtQYXNzUmVzcG9uc2USTQoSU2V0QWZrUGFzc1NldHRpbmdzEhouU2V0QWZr",
+          "UGFzc1NldHRpbmdzUmVxdWVzdBobLlNldEFma1Bhc3NTZXR0aW5nc1Jlc3Bv",
+          "bnNlEkEKDkFja0hvc3RlZFJlY2FwEhYuQWNrSG9zdGVkUmVjYXBSZXF1ZXN0",
+          "GhcuQWNrSG9zdGVkUmVjYXBSZXNwb25zZRoKgKjDAQGIqMMBAUIOWgVzY2Vu",
+          "ZYABAZjUYQNiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::HostedRecapSummary), global::HostedRecapSummary.Parser, new[]{ "StartedAt", "EndedAt", "BattleCount", "WinCount", "ExpGained", "SilverGained", "ItemCount", "PendingAck" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::AfkPassInfo), global::AfkPassInfo.Parser, new[]{ "ExpiresAt", "ServerNow", "PriceCurrencyType", "Price", "PeriodDays", "MaxRemainingDays", "RemindBeforeHours", "Balance", "AutoReturnCityOnTeamEnd", "HostedRecap" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::AfkPassInfo), global::AfkPassInfo.Parser, new[]{ "ExpiresAt", "ServerNow", "PriceCurrencyType", "Price", "PeriodDays", "MaxRemainingDays", "RemindBeforeHours", "Balance", "AutoReturnCityOnTeamEnd", "HostedRecap", "UnlockedLoadoutSlots", "Stage2TradableEnabled" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetAfkPassRequest), global::GetAfkPassRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetAfkPassResponse), global::GetAfkPassResponse.Parser, new[]{ "ErrorMessage", "Info" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BuyAfkPassRequest), global::BuyAfkPassRequest.Parser, new[]{ "ClientRequestId", "ExpectedCurrencyType", "ExpectedPrice" }, null, null, null, null),
@@ -613,6 +615,8 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     balance_ = other.balance_;
     autoReturnCityOnTeamEnd_ = other.autoReturnCityOnTeamEnd_;
     hostedRecap_ = other.hostedRecap_ != null ? other.hostedRecap_.Clone() : null;
+    unlockedLoadoutSlots_ = other.unlockedLoadoutSlots_;
+    stage2TradableEnabled_ = other.stage2TradableEnabled_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -772,6 +776,36 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     }
   }
 
+  /// <summary>Field number for the "unlocked_loadout_slots" field.</summary>
+  public const int UnlockedLoadoutSlotsFieldNumber = 11;
+  private uint unlockedLoadoutSlots_;
+  /// <summary>
+  /// 当前已解锁的方案槽位数（免费 3；仙途轻享卡生效 6，纯便利零数值）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint UnlockedLoadoutSlots {
+    get { return unlockedLoadoutSlots_; }
+    set {
+      unlockedLoadoutSlots_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "stage2_tradable_enabled" field.</summary>
+  public const int Stage2TradableEnabledFieldNumber = 12;
+  private bool stage2TradableEnabled_;
+  /// <summary>
+  /// true = 阶段二每周 150 池胜局可交易资格生效中（不增加总额度）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Stage2TradableEnabled {
+    get { return stage2TradableEnabled_; }
+    set {
+      stage2TradableEnabled_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -797,6 +831,8 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     if (Balance != other.Balance) return false;
     if (AutoReturnCityOnTeamEnd != other.AutoReturnCityOnTeamEnd) return false;
     if (!object.Equals(HostedRecap, other.HostedRecap)) return false;
+    if (UnlockedLoadoutSlots != other.UnlockedLoadoutSlots) return false;
+    if (Stage2TradableEnabled != other.Stage2TradableEnabled) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -814,6 +850,8 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     if (Balance != 0UL) hash ^= Balance.GetHashCode();
     if (AutoReturnCityOnTeamEnd != false) hash ^= AutoReturnCityOnTeamEnd.GetHashCode();
     if (hostedRecap_ != null) hash ^= HostedRecap.GetHashCode();
+    if (UnlockedLoadoutSlots != 0) hash ^= UnlockedLoadoutSlots.GetHashCode();
+    if (Stage2TradableEnabled != false) hash ^= Stage2TradableEnabled.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -872,6 +910,14 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
       output.WriteRawTag(82);
       output.WriteMessage(HostedRecap);
     }
+    if (UnlockedLoadoutSlots != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(UnlockedLoadoutSlots);
+    }
+    if (Stage2TradableEnabled != false) {
+      output.WriteRawTag(96);
+      output.WriteBool(Stage2TradableEnabled);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -922,6 +968,14 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
       output.WriteRawTag(82);
       output.WriteMessage(HostedRecap);
     }
+    if (UnlockedLoadoutSlots != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(UnlockedLoadoutSlots);
+    }
+    if (Stage2TradableEnabled != false) {
+      output.WriteRawTag(96);
+      output.WriteBool(Stage2TradableEnabled);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -961,6 +1015,12 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     }
     if (hostedRecap_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(HostedRecap);
+    }
+    if (UnlockedLoadoutSlots != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnlockedLoadoutSlots);
+    }
+    if (Stage2TradableEnabled != false) {
+      size += 1 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1006,6 +1066,12 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
         HostedRecap = new global::HostedRecapSummary();
       }
       HostedRecap.MergeFrom(other.HostedRecap);
+    }
+    if (other.UnlockedLoadoutSlots != 0) {
+      UnlockedLoadoutSlots = other.UnlockedLoadoutSlots;
+    }
+    if (other.Stage2TradableEnabled != false) {
+      Stage2TradableEnabled = other.Stage2TradableEnabled;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1069,6 +1135,14 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
           input.ReadMessage(HostedRecap);
           break;
         }
+        case 88: {
+          UnlockedLoadoutSlots = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          Stage2TradableEnabled = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -1129,6 +1203,14 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
             HostedRecap = new global::HostedRecapSummary();
           }
           input.ReadMessage(HostedRecap);
+          break;
+        }
+        case 88: {
+          UnlockedLoadoutSlots = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          Stage2TradableEnabled = input.ReadBool();
           break;
         }
       }

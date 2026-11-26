@@ -197,6 +197,27 @@ namespace MmorpgClient.Game.Battle
             return _battle.Phase != BattlePhase.None;
         }
 
+        /// <summary>发起野外地图灵宠栖息地单人寻宠遇敌（Dungeon 202/203/205，仅限单人 PVE_SOLO；服务端复核当前所在野外地图）。</summary>
+        public bool StartWildPetHabitat(uint dungeonConfigId)
+        {
+            if (dungeonConfigId == 0)
+            {
+                ShowStatus("野外栖息地副本配置无效。");
+                return false;
+            }
+            // 在 CanStart 之前先拦截组队态，避免队员收到“请由队长发起全队战斗”的误导提示。
+            if (_team.HasFreshView && _team.HasTeam)
+            {
+                ShowStatus("野外寻宠遇敌仅支持单人携宠出发，请先离队。");
+                return false;
+            }
+            if (!CanStart()) return false;
+            if (!ConsumeLocalQuota(MessageIds.JoinQueue)) return false;
+            _battle.JoinQueue(Match.MatchMode.PveSolo, dungeonConfigId);
+            ShowSoloStatus("正在野外寻宠遇敌…");
+            return _battle.Phase != BattlePhase.None;
+        }
+
         private static bool ContainsSize(IReadOnlyCollection<uint> sizes, uint targetSize)
         {
             foreach (uint size in sizes)

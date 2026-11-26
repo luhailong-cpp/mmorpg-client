@@ -5,7 +5,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
 {
     public sealed partial class AttributePanel
     {
-        private TMP_Text _identityName, _identityLevel;
+        private TMP_Text _identityName, _identityLevel, _overviewExpLabel;
 
         // Account metadata can arrive independently of an attribute response. Refresh just these
         // labels while visible; no attribute rebuild, requests, or pending allocation mutations.
@@ -22,6 +22,12 @@ namespace MmorpgClient.UI.Ugui.Attribute
             string level = _panel != null && _panel.Level > 0 ? $"{_panel.Level}级" : "等级 —";
             string detail = string.IsNullOrEmpty(profession) ? level : profession + " · " + level;
             if (_identityLevel.text != detail) _identityLevel.text = detail;
+            if (_overviewExpLabel != null)
+            {
+                var expSnap = MmorpgClient.Game.CoreLoop.PlayerProgressionModels.BuildExpSnapshot(_panel);
+                string expText = expSnap != null ? expSnap.CompactExpText : level;
+                if (_overviewExpLabel.text != expText) _overviewExpLabel.text = expText;
+            }
         }
 
         private void ApplyFidelityLayout()
@@ -36,10 +42,13 @@ namespace MmorpgClient.UI.Ugui.Attribute
             var level=_panel!=null&&_panel.Level>0?$"{_panel.Level}级":"等级 —";
             _identityLevel=AttributeFidelityLayout.Text(_root,"ExactIdentityLevel",417.6f,145.6f,238.4f,67.2f,level,20.8f,AttributeFidelityLayout.Muted,true);
             _identityLevel.richText=false;_identityLevel.alignment=TextAlignmentOptions.MidlineRight;
-            RefreshIdentity();
+            _identityLevel.enableAutoSizing=true;_identityLevel.fontSizeMin=14f;_identityLevel.fontSizeMax=20.8f;
             AttributeFidelityLayout.Rule(_root,"ExactIdentityRule",81.6f,224,574.4f);
             AttributeFidelityLayout.Text(_root,"V10OverviewHeading",81.6f,254.4f,300,43.2f,"属性总览",33.6f,AttributeFidelityLayout.Ink).fontStyle=FontStyles.Bold;
-            var summary=AttributeFidelityLayout.Text(_root,"ExactOverviewLevel",400,254.4f,256,43.2f,level,20.8f,AttributeFidelityLayout.Muted,true);summary.alignment=TextAlignmentOptions.MidlineRight;
+            _overviewExpLabel=AttributeFidelityLayout.Text(_root,"ExactOverviewLevel",360,254.4f,296,43.2f,level,20.8f,AttributeFidelityLayout.Muted,true);
+            _overviewExpLabel.richText=false;_overviewExpLabel.alignment=TextAlignmentOptions.MidlineRight;
+            _overviewExpLabel.enableAutoSizing=true;_overviewExpLabel.fontSizeMin=13f;_overviewExpLabel.fontSizeMax=20.8f;
+            RefreshIdentity();
             for(int i=0;i<6;i++)
             {
                 float y=318.4f+i*68.8f;

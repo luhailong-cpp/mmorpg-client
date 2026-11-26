@@ -98,6 +98,13 @@ namespace MmorpgClient.Game.PlayerFeatures
             PreviewEquipmentCraft(choice);
         }
 
+        public void PreviewUpgradeEquipTier(ulong itemId, uint targetConfigId) => PreviewEquipmentCraft(new EquipmentCraftChoice
+        {
+            Operation = EquipmentCraftChoice.Types.Operation.UpgradeTier,
+            ItemId = itemId,
+            ConfigId = targetConfigId,
+        });
+
         public void PreviewEquipmentCraft(EquipmentCraftChoice choice)
         {
             if (!PrepareRequest(out var playerId)) return;
@@ -147,7 +154,8 @@ namespace MmorpgClient.Game.PlayerFeatures
             if (CraftOtherWriteBusy || HasPendingActivityReward)
             { CraftFailure("其他资产操作正在处理中，请稍候"); return; }
             if (preview == null || _craftPreview == null || !_craftPreview.Equals(preview)
-                || !preview.Available || preview.Result == null || preview.Material == null)
+                || !preview.Available || preview.Result == null
+                || (preview.Material == null && preview.Choice?.Operation != EquipmentCraftChoice.Types.Operation.UpgradeTier))
             { CraftFailure("当前预览不可提交，请重新预览"); return; }
             if (!CanSendCraft()) { CraftFailure("打造操作太快，请稍候重试"); return; }
             if (EquipmentCraftRecovery == null) { CraftFailure("打造恢复存储未就绪，暂不能提交"); return; }
@@ -316,7 +324,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         private bool CanSendCraft() => !_craftLastSendMs.HasValue || _nowMs() < _craftLastSendMs.Value
             || _nowMs() - _craftLastSendMs.Value >= CraftMinSendIntervalMs;
 
-        private static bool ValidCraftChoice(EquipmentCraftChoice choice)
+        internal static bool ValidCraftChoice(EquipmentCraftChoice choice)
         {
             if (choice == null) return false;
             return choice.Operation switch
@@ -340,6 +348,10 @@ namespace MmorpgClient.Game.PlayerFeatures
                     choice.ConfigId == 0 && choice.ItemId != 0 && choice.SourceItemId != 0
                     && choice.SourceItemId != choice.ItemId && choice.AffixSlot == 0 && choice.AffixId == 0
                     && !choice.UseGuaranteeCharm && choice.ProxyMasterPlayerId == 0
+                    && !choice.HasExpectedPolishPityCount,
+                EquipmentCraftChoice.Types.Operation.UpgradeTier =>
+                    choice.ConfigId != 0 && choice.ItemId != 0 && choice.SourceItemId == 0 && choice.AffixSlot == 0
+                    && choice.AffixId == 0 && !choice.UseGuaranteeCharm && choice.ProxyMasterPlayerId == 0
                     && !choice.HasExpectedPolishPityCount,
                 _ => false,
             };

@@ -76,8 +76,11 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             DrawRuleToggle("Spectate", 1040f, 482f, "允许全服公开观战", _allowPublicSpectate, "spectate",
                 () => { _allowPublicSpectate = !_allowPublicSpectate; Refresh(); });
 
-            // 回合上限白名单：默认 / 8 / 12 / 20
-            CoreLoopUiArt.Text("RoundLimitLbl", transform, 480f, 566f, 220f, 42f,
+            // 回合上限白名单：默认 / 8 / 12 / 20（配 duel_rule_blitz 沙漏小图标）
+            var blitzIcon = WuxingExpansionsUiArt.LoadDuelRuleIcon("blitz");
+            if (blitzIcon != null)
+                SeasonV1UiArt.CreateFixedIcon(transform, "RoundLimitIcon", 480f, 566f, 40f, 40f, blitzIcon, Color.clear);
+            CoreLoopUiArt.Text("RoundLimitLbl", transform, blitzIcon != null ? 528f : 480f, 566f, 176f, 42f,
                 "回合上限：", 23f, CoreLoopUiArt.DeepJade, true);
             uint[] limits = { 0u, 8u, 12u, 20u };
             string[] limitLabels = { "默认", "8 回合速决", "12 回合", "20 回合" };

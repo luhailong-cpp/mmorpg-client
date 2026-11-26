@@ -120,6 +120,8 @@ namespace MmorpgClient.Game.Skills
                 MaxPassiveSlots = proto.MaxPassiveSlots > 0 ? proto.MaxPassiveSlots : 3u,
                 MaxPursuitSlots = proto.MaxPursuitSlots > 0 ? proto.MaxPursuitSlots : 1u,
                 MaxOpeningSlots = proto.MaxOpeningSlots > 0 ? proto.MaxOpeningSlots : 1u,
+                UnlockedSchemes = proto.UnlockedSchemes > 0 ? proto.UnlockedSchemes : 3u,
+                MaxSchemes = proto.MaxSchemes > 0 ? proto.MaxSchemes : 6u,
                 LastRequestId = proto.LastRequestId,
             };
             foreach (var scheme in proto.Schemes)

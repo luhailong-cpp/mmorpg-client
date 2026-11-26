@@ -460,9 +460,17 @@
   - **V2 存档编码**：仅存在 `(Relaxed12, Classic)` 时继续输出 V1 `1|<flips>`（100% 向后兼容）；存在多桶或今日灵签时输出 `2|<diff>:<mode>=<flips>[@<yyyyMMdd>],...`，任意字段损坏按暂无纪录兜底，保存失败不影响继续游玩。
   - **盘中锁配置**：`SelectConfiguration(difficulty, mode)` 与 `ReturnToEntryAfterCompletion()` 仅允许在 `Idle` 或 `Completed` 阶段执行，盘中未完成时一律返回 `RoundNotCompleted`。
 
-### 9.3 交由另一台 Codex 产出的 V2 UI 资产需求清单（`designs/pet-memory-ui-v2/`，仅定义功能与规格，不干预美术风格）
-1. **主城入口专用图标**：`WorldHud20261022/petflip.png`（84×84 RGBA 透明，替换当前复用的 `card-back.png`）。
-2. **入口页双排选择胶囊素材（无字 9-slice 底图）**：`assets/pill-normal.png`、`assets/pill-selected.png`（适配 190×42 / 340×54，选中与未选中需清晰区分，配套横屏 `1922×818` 与竖屏 `1024×1536` 入口预览）。
-3. **进阶 16 张（4×4）盘面与终局 8 头像预览**：横屏 `1922×818` 与竖屏 `1024×1536` 预览图 + 新增 2 只灵宠头像交付副本（`portraits/02-jiangling.png` 绛铃、`portraits/15-landuoxian.png` 岚铎仙）。
-4. **灵目模式与完美通关组件**：`assets/spirit-eye-icon.png`（64×64 灵目功能图标）、`assets/card-spirit-peek-frame.png`（870×1158 灵目窥看态卡牌叠框，需一眼区别于普通明牌与已配对牌）、`assets/stamp-perfect.png`（128×128 透明完美通关徽章/印章）。
-5. **当前客户端 UI 状态诚实标注**：客户端代码已用 V1 原图 + 程序化圆角胶囊实现 V2 全量可交互功能版布局（待 Codex 提交 `pet-memory-ui-v2` 切片后零逻辑改动换皮替换）。
+### 9.3 V2 增量美术资产接入记录（2026-11-26）
+来源：`D:\work\image\designs\pet-memory-ui-v2\assets\`（Azure `image/main` 提交 `a979af4a019320c2c99294860305cb26ee201b8c`，`manifest.json` 校验通过，不导入 `previews/` 整图遮罩）：
+
+| 文件 | 尺寸 | SHA-256 | 客户端路径与用途 |
+|---|---:|---|---|
+| `hud-entry-petflip.png` | 84×84 | `f1cd555d5a33e108f3b1a254ac4838585a6938b4a566419598f5bfdeb79485e8` | `PetFlipV1/hud-entry-petflip.png` & `WorldHud20261022/petflip.png`（主城「历练」入口图标） |
+| `pill-normal.png` | 380×84 | `d8dfd27f0584b1cf578d9e1239d44818d085547c6be66764fafc75482ee64a27` | `PetFlipV1/pill-normal.png`（9-slice `42,38,42,38`，200 PPU，未选中胶囊与“切换难度 / 玩法”按钮底板） |
+| `pill-selected.png` | 380×84 | `1f4c52ca0c96a320cb5583fde2be6fc41134c5df4ebde3a7d09ec44554082501` | `PetFlipV1/pill-selected.png`（9-slice `42,38,42,38`，200 PPU，选中胶囊底板） |
+| `spirit-eye-icon.png` | 64×64 | `d72934c2ae81656bda60af0fdac9320bcb476a853c17a6f7562e1a4476dcb8af` | `PetFlipV1/spirit-eye-icon.png`（灵目模式主按钮左侧图标） |
+| `card-spirit-peek-frame.png` | 870×1158 | `d459605009914af64de73d6e4b95edaa48f31cc1e9967e42e1a26aa94231497f` | `PetFlipV1/card-spirit-peek-frame.png`（叠在 `card-front.png` 之上、中心透明的灵目窥看态牌框） |
+| `stamp-perfect.png` | 128×128 | `34a4ddad1270f4b11e62394cb63a0cc5aed31e61a1033c3571e00e21457fb771` | `PetFlipV1/stamp-perfect.png`（零失误完成页徽章，对齐 `manifest.json` 坐标横屏 `(745,222)` / 竖屏 `(448,298)`） |
+
+- 新增 2 只灵宠 `02-jiangling`（绛铃，SHA-256 `bff3e5b6b9a59de3843ecaa0e0b36caff4214b221add1aa5ef759a8fd1e50b11`）与 `15-landuoxian`（岚铎仙，SHA-256 `80324d622b13833c542acad8da6d5e2317e15d4481d9b642e7a178bca4849f97`）已核验与客户端 `QdaoPetCatalog` 现有实图逐字节一致。
+- **验证边界**：V1+V2 全部逻辑、实图切片与 uGUI 布局已接入并通过离线 Roslyn 编译与纯逻辑/展示单测；Unity 编辑器 PlayMode 实机画面及移动/小游戏真机验收仍待在运行环境实测。

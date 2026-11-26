@@ -43,7 +43,10 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             var seasonProgress = SeasonModels.BuildSettlementProgressView(_game?.Battle?.LastBattleEnd, _game?.Season?.Snapshot);
             bool hasSeason = seasonProgress != null;
             float seasonH = hasSeason ? (seasonProgress.HonorNewlyUnlocked ? 58f : 42f) : 0f;
-            float baseH = 180f + (hasSeason ? seasonH + 4f : 0f) + (hasHighlights ? 40f : 0f) + (hasReview ? 56f : 0f);
+            var progression = _core.BuildLastSettlementProgression();
+            bool hasProgression = progression != null && progression.HasVisibleRewards;
+            float progH = hasProgression ? (progression.LeveledUp ? 54f : 34f) : 0f;
+            float baseH = 180f + (hasProgression ? progH + 4f : 0f) + (hasSeason ? seasonH + 4f : 0f) + (hasHighlights ? 40f : 0f) + (hasReview ? 56f : 0f);
             float scale = Mathf.Min(width / 820f, height / baseH);
             float offsetX = (width - 820f * scale) * .5f;
             float offsetY = (height - baseH * scale) * .5f;
@@ -103,6 +106,33 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 view.ClaimableUnits > 0, false, 18);
 
             float cursorY = 184f;
+            if (hasProgression)
+            {
+                Color progBg = progression.LeveledUp
+                    ? new Color(.98f, .93f, .76f, .98f)
+                    : new Color(.92f, .95f, .90f, .96f);
+                CoreLoopUiArt.Image("ProgressionSettlementBack", body, 0, cursorY, 820, progH, "hud-strip", progBg);
+                CoreLoopUiArt.Image("ProgressionSettlementAccent", body, 0, cursorY, 6, progH, null,
+                    progression.LeveledUp ? SeasonEconomyUiArt.GoldHighlight : CoreLoopUiArt.Jade);
+                if (progression.LeveledUp)
+                {
+                    var lvLbl = CoreLoopUiArt.Text("ProgressionLevelUpLine", body, 16, cursorY + 4f, 610, 24,
+                        progression.LevelUpBannerLine, 19, SeasonEconomyUiArt.GoldHighlight, true, false, TextAlignmentOptions.MidlineLeft);
+                    lvLbl.enableAutoSizing = true; lvLbl.fontSizeMin = 13f; lvLbl.fontSizeMax = 19f;
+                    var gainLbl = CoreLoopUiArt.Text("ProgressionGainLine", body, 16, cursorY + 29f, 610, 21,
+                        progression.RewardSummaryLine, 16, CoreLoopUiArt.Ink, false, false, TextAlignmentOptions.MidlineLeft);
+                    gainLbl.enableAutoSizing = true; gainLbl.fontSizeMin = 12f; gainLbl.fontSizeMax = 16f;
+                    CoreLoopUiArt.Button("OpenAttributeAllocFromSettlement", body, 636, cursorY + (progH - 34f) * 0.5f, 168, 34,
+                        "前往加点", _root.OpenAttributeAllocation, true, true, 17);
+                }
+                else
+                {
+                    var gainLbl = CoreLoopUiArt.Text("ProgressionGainLine", body, 16, cursorY + 4f, 788, 26,
+                        progression.RewardSummaryLine, 17, CoreLoopUiArt.DeepJade, true, false, TextAlignmentOptions.MidlineLeft);
+                    gainLbl.enableAutoSizing = true; gainLbl.fontSizeMin = 12f; gainLbl.fontSizeMax = 17f;
+                }
+                cursorY += progH + 4f;
+            }
             if (hasSeason)
             {
                 bool gained = seasonProgress.PointsAdded > 0u;

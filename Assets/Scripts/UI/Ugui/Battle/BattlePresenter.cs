@@ -487,7 +487,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private static bool IsMirrorCast(Beat beat) => beat.Kind == BeatKind.Cast && beat.HitKind == eBattleHitKind.BattleHitMirror;
 
-        private static bool UsesCastImpact(Beat beat) => IsMirrorCopyCast(beat) || IsMirrorCast(beat) ||
+        private static bool UsesCastImpact(Beat beat) => IsMirrorCopyCast(beat) ||
             beat.Targets.Exists(target => target.Effect == TargetEffect.Damage ||
                 target.Effect == TargetEffect.Miss || target.Effect == TargetEffect.Block);
 
@@ -509,8 +509,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                     actor.SpawnFloatText(mirrorLabel, new Color(0.84f, 0.95f, 0.91f), true);
                 }
                 var targets = IsMirrorCopyCast(beat) ? new List<BattleUnitView>() : DistinctTargetViews(beat);
-                // 玄镜映法成功时没有目标结算。镜像辅助技也可能只有后续独立的护盾等事件。
-                if (targets.Count == 0 && (IsMirrorCopyCast(beat) || mirrorLabel != null) && beat.PrimaryTargetId != 0)
+                // 玄镜映法第一拍成功时没有目标结算，沿 PrimaryTargetId 在源敌方身上播汲取特效。
+                if (targets.Count == 0 && IsMirrorCopyCast(beat) && beat.PrimaryTargetId != 0)
                 {
                     var primary = _resolveView(beat.PrimaryTargetId);
                     if (primary != null) targets.Add(primary);

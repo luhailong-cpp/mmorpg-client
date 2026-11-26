@@ -22,7 +22,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         private const float TableWidth = 1324f;
         private const float ListHeight = 326f;
         private const float RowHeight = 55f;
-        private static readonly string[] SchemeNames = { "方案一", "方案二", "方案三" };
+        private static readonly string[] SchemeNames = { "方案一", "方案二", "方案三", "方案四", "方案五", "方案六" };
 
         private readonly RectTransform _root;
         private readonly RectTransform _contentRoot;
@@ -93,13 +93,21 @@ namespace MmorpgClient.UI.Ugui.Skills
             if (visible) Rebuild(resetScroll: versionChanged);
         }
 
+        private static uint UnlockedSchemeLimit(SkillLoadoutView loadout)
+        {
+            uint max = loadout != null && loadout.MaxSchemes >= 3u ? Math.Min(loadout.MaxSchemes, 6u) : 6u;
+            uint unlocked = loadout != null && loadout.UnlockedSchemes >= 3u ? loadout.UnlockedSchemes : 3u;
+            return Math.Min(unlocked, max);
+        }
+
         private bool CanWrite =>
             !_battleLocked && !_saving &&
             _state?.Context?.IsPet == false && _state.IsConnected && !_state.IsReadOnly && !_state.IsLoading && !_state.IsBusy &&
-            _state.Snapshot?.Loadout != null && _source != null && ReferenceEquals(_source, _getSource?.Invoke());
+            _state.Snapshot?.Loadout != null && _draft.SchemeId <= UnlockedSchemeLimit(_state.Snapshot.Loadout) &&
+            _source != null && ReferenceEquals(_source, _getSource?.Invoke());
 
         private static uint ActiveSchemeId(SkillLoadoutView loadout) =>
-            loadout.ActiveSchemeId is >= 1u and <= 3u ? loadout.ActiveSchemeId : 1u;
+            loadout.ActiveSchemeId is >= 1u and <= 6u ? loadout.ActiveSchemeId : 1u;
 
         private void Rebuild(bool resetScroll = false)
         {

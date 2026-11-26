@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using MmorpgClient.Game.Jubaozhai;
 using MmorpgClient.UI.Ugui.Gameplay;
+using Paymentpb;
 using TMPro;
 using Trade;
 using UnityEngine;
@@ -78,7 +79,9 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             Action<int> onSelectSubTab,
             Action<OfficialSkuView> onBuySku,
             Action onOpenLightCard,
-            Action<Button> registerWriteButton)
+            Action<Button> registerWriteButton,
+            ulong selectedSkuId = 0UL,
+            Action<OfficialSkuView> onSelectSku = null)
         {
             DrawPanelBackdrop(body, "panel_07_official_shop", 0.22f);
 
@@ -94,39 +97,41 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             GameplayUiArt.Text(body, "官方 7:3 小额直售 · " + OfficialShopCatalogModel.PlatformPurchaseComplianceNote(PaymentClient.Platform),
                 1360f, 8f, 740f, 54f, 19f, GameplayUiArt.Muted, wrap: true);
 
-            // 左侧主推卡：仙途轻享卡（联动实时 AfkPassClient）
-            var left = CreateCard(body, "LightCardHero", 24f, 74f, 700f, 504f);
-            GameplayUiArt.Text(left, "仙途轻享卡  ·  ¥18 / 30 天", 24f, 18f, 650f, 44f, 29f, JadeTint);
+            // 左侧主推卡：仙途轻享卡（使用 PaymentCashierV1/lightcard_hero_frame 九宫底框，联动实时 AfkPassClient）
+            var left = QdaoUguiFactory.CreateRect("LightCardHero", body, 24f, 74f, 700f, 504f);
+            SeasonEconomyUiArt.CreateSlicedOrSimple(left, "LightCardHeroBg", 0f, 0f, 700f, 504f,
+                SeasonEconomyUiArt.LoadPaymentCashierSlice("lightcard_hero_frame"), IvoryScrim);
+            GameplayUiArt.Text(left, "仙途轻享卡  ·  ¥18 / 30 天", 36f, 28f, 628f, 44f, 29f, JadeTint);
             var afk = AfkPassUiRoot.Instance?.Client;
             string liveState = afk == null
                 ? "状态：进入主城后可实时查询月卡剩余时长"
                 : (afk.Active ? "当前已开通：" + afk.RemainingText : "当前未开通（点击下方按钮可查看或开通）");
-            GameplayUiArt.Text(left, liveState, 24f, 70f, 650f, 40f, 22f, GameplayUiArt.Gold);
+            GameplayUiArt.Text(left, liveState, 36f, 78f, 628f, 40f, 22f, GameplayUiArt.Gold);
             GameplayUiArt.Text(left,
                 "• 零氪同样 100% 免费 +10 毕业，不售数值毕业资格\n"
                 + "• 月卡解锁市场可交易产出与轻度离线便利\n"
                 + "• 官方小额直售仅提供外观、匠心配套与限量绑定追赶\n"
                 + "• 严守平台合规：商城不展示扫码或第三方支付图标",
-                24f, 116f, 650f, 184f, 21f, GameplayUiArt.Ink, wrap: true);
+                36f, 124f, 628f, 174f, 21f, GameplayUiArt.Ink, wrap: true);
 
             var talisman = SeasonEconomyUiArt.LoadTradeSlice("icon_unseal_talisman");
             var inheritTalisman = SeasonEconomyUiArt.LoadTradeV2Slice("icon_inherit_talisman");
             if (talisman != null)
             {
-                var icon = QdaoUguiFactory.CreateImage("ShopTalismanPreview", left, 24f, 308f, 88f, 88f, talisman, false);
+                var icon = QdaoUguiFactory.CreateImage("ShopTalismanPreview", left, 36f, 304f, 84f, 84f, talisman, false);
                 icon.preserveAspect = true;
             }
             if (inheritTalisman != null)
             {
-                var icon2 = QdaoUguiFactory.CreateImage("ShopInheritPreview", left, 120f, 308f, 88f, 88f, inheritTalisman, false);
+                var icon2 = QdaoUguiFactory.CreateImage("ShopInheritPreview", left, 128f, 304f, 84f, 84f, inheritTalisman, false);
                 icon2.preserveAspect = true;
             }
             GameplayUiArt.Text(left, "匠心配套亮点：解封剥离符 / 流派副套继承符\n解封仅恢复纯 T 原胚不洗白 B 料；继承无损转移高强至副套并转绑定。",
-                (talisman != null || inheritTalisman != null) ? 218f : 24f, 312f,
-                (talisman != null || inheritTalisman != null) ? 458f : 650f, 92f, 19f, GameplayUiArt.Muted, wrap: true);
-            GameplayUiArt.Button(left, "管理 / 购买仙途轻享卡", 24f, 434f, 380f, 48f, onOpenLightCard, primary: true, fontSize: 22f);
+                (talisman != null || inheritTalisman != null) ? 224f : 36f, 306f,
+                (talisman != null || inheritTalisman != null) ? 440f : 628f, 92f, 19f, GameplayUiArt.Muted, wrap: true);
+            SeasonEconomyUiArt.CreateCashierButton(left, "管理 / 购买仙途轻享卡", 36f, 418f, 380f, 56f, onOpenLightCard, primary: true, fontSize: 22f);
 
-            // 右侧官方在售商品列表（按子页签筛选；若该分栏暂无专属 SKU 则展示全部在售并标注所属分栏，绝不隐藏真实服务端商品）
+            // 右侧官方在售商品列表（使用 PaymentCashierV1 商品行九宫底卡 + 礼盒图标 + 主按钮）
             var right = CreateCard(body, "OfficialSkuPanel", 748f, 74f, 1348f, 504f);
             var filtered = new List<OfficialSkuView>();
             if (skus != null)
@@ -142,7 +147,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             string heading = showingAllFallback
                 ? $"当前分栏「{OfficialShopCatalogModel.TabTitles[activeSubTab]}」暂无独立上架项，为您展示全部官方直售商品："
                 : $"官方直售 · {OfficialShopCatalogModel.TabTitles[activeSubTab]}";
-            GameplayUiArt.Text(right, heading, 24f, 14f, 1300f, 40f, 22f, JadeTint);
+            GameplayUiArt.Text(right, heading, 24f, 14f, 1300f, 38f, 22f, JadeTint);
 
             if (displayList == null || displayList.Count == 0)
             {
@@ -150,17 +155,188 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 return;
             }
 
+            var rowNormalSprite = SeasonEconomyUiArt.LoadPaymentCashierSlice("sku_row_card");
+            var rowHighlightSprite = SeasonEconomyUiArt.LoadPaymentCashierSlice("sku_row_card_highlight");
+            var defaultGiftSprite = SeasonEconomyUiArt.LoadPaymentCashierSlice("icon_gift_chest_gold");
+
             int maxRows = Math.Min(displayList.Count, 6);
             for (int i = 0; i < maxRows; i++)
             {
                 var sku = displayList[i].Clone();
-                float y = 62f + i * 70f;
+                float y = 58f + i * 72f;
+                bool highlighted = PaymentCashierViewModel.IsSkuRowHighlighted(sku, selectedSkuId, i);
+                var rowRect = QdaoUguiFactory.CreateRect("OfficialSkuRow_" + i, right, 16f, y, 1316f, 66f);
+                var rowBg = SeasonEconomyUiArt.CreateSlicedOrSimple(rowRect, "RowBg", 0f, 0f, 1316f, 66f,
+                    highlighted ? (rowHighlightSprite ?? rowNormalSprite) : rowNormalSprite,
+                    highlighted ? AmberAlertTint : IvoryScrim, raycast: onSelectSku != null);
+                if (onSelectSku != null)
+                {
+                    var rowBtn = rowBg.gameObject.AddComponent<Button>();
+                    rowBtn.transition = Selectable.Transition.None;
+                    rowBtn.onClick.AddListener(() => onSelectSku(sku));
+                }
+
+                Sprite rowIcon = defaultGiftSprite;
+                if (PaymentCashierViewModel.IsUnsealTalismanSku(sku) && talisman != null)
+                    rowIcon = talisman;
+                else if ((sku.Title ?? string.Empty).Contains("继承") && inheritTalisman != null)
+                    rowIcon = inheritTalisman;
+                float textX = 24f;
+                if (rowIcon != null)
+                {
+                    var iconImg = QdaoUguiFactory.CreateImage("SkuIcon_" + i, rowRect, 18f, 8f, 50f, 50f, rowIcon, false);
+                    iconImg.preserveAspect = true;
+                    textX = 82f;
+                }
                 string catName = OfficialShopCatalogModel.TabTitles[(int)OfficialShopCatalogModel.ClassifySku(sku)];
                 string line = $"[{catName}] {sku.Title} · {EconomyFormat.FormatMoney(sku.PriceMinor, sku.Currency)} · 可售 {EconomyFormat.FormatInteger(sku.Available)}";
-                GameplayUiArt.Text(right, line, 24f, y, 960f, 54f, 23f);
-                var buyBtn = GameplayUiArt.Button(right, "在游戏内购买", 1010f, y, 310f, 52f, () => onBuySku(sku), primary: true, fontSize: 22f);
+                GameplayUiArt.Text(rowRect, line, textX, 6f, 990f - textX, 54f, 22f);
+                var buyBtn = SeasonEconomyUiArt.CreateCashierButton(rowRect, "在游戏内购买", 1002f, 7f, 296f, 52f, () => onBuySku(sku), primary: true, fontSize: 22f);
                 registerWriteButton?.Invoke(buyBtn);
             }
+        }
+
+        /// <summary>官方订单收银台倒计时条运行时句柄（仅原地更新宽度与文案，避免每秒重建界面）。</summary>
+        internal struct OfficialCashierCountdownHandles
+        {
+            public string OrderId;
+            public float TrackWidthPx;
+            public RectTransform FillRect;
+            public GameObject FillObject;
+            public TMP_Text Label;
+
+            public bool IsValid => !string.IsNullOrEmpty(OrderId) && FillRect != null && FillObject != null && Label != null;
+        }
+
+        /// <summary>官方直售订单收银台视图（全量接入 PaymentCashierV1 底板、徽章、礼盒图标、服务端倒计时条与主次按钮）。</summary>
+        public static OfficialCashierCountdownHandles RenderOfficialOrderCashier(
+            RectTransform body,
+            CommerceOrderView order,
+            string kindLabel,
+            string stateLabel,
+            string amountLabel,
+            PaymentClient payment,
+            Action onRefreshOrder,
+            Action onCancelOrder,
+            Action onBackOrders,
+            Action<Button> registerWriteButton,
+            Action<Button> registerPaymentButton,
+            out Button cancelOrderButton,
+            out Button stopWaitButton)
+        {
+            cancelOrderButton = null;
+            stopWaitButton = null;
+            var handles = default(OfficialCashierCountdownHandles);
+
+            var card = QdaoUguiFactory.CreateRect("OfficialCashierCard", body, 24f, 10f, 2072f, 566f);
+            SeasonEconomyUiArt.CreateSlicedOrSimple(card, "CashierCardBg", 0f, 0f, 2072f, 566f,
+                SeasonEconomyUiArt.LoadPaymentCashierSlice("cashier_card_bg"), IvoryScrim);
+
+            var chestSprite = SeasonEconomyUiArt.LoadPaymentCashierSlice("icon_gift_chest_gold");
+            if (chestSprite != null)
+            {
+                var chestImg = QdaoUguiFactory.CreateImage("CashierChestIcon", card, 48f, 44f, 112f, 112f, chestSprite, false);
+                chestImg.preserveAspect = true;
+            }
+
+            bool isWatching = payment != null && payment.PendingOrder == order.OrderId;
+            string badgeKey = PaymentCashierViewModel.ResolveBadgeSliceKey(order.State, isWatching);
+            var badgeSprite = string.IsNullOrEmpty(badgeKey) ? null : SeasonEconomyUiArt.LoadPaymentCashierSlice(badgeKey);
+            if (badgeSprite != null)
+            {
+                var badgeImg = QdaoUguiFactory.CreateImage("CashierStatusBadge", card, 1884f, 36f, 136f, 136f, badgeSprite, false);
+                badgeImg.preserveAspect = true;
+            }
+
+            float infoX = chestSprite != null ? 184f : 48f;
+            float infoW = badgeSprite != null ? 1660f : 1940f;
+            GameplayUiArt.Text(card, $"{kindLabel}  ·  {stateLabel}", infoX, 38f, infoW, 44f, 30f, JadeTint);
+            string designatedLine = order.DesignatedBuyerPlayerId != 0UL
+                ? $"\n指定买家角色编号：#{order.DesignatedBuyerPlayerId}"
+                : string.Empty;
+            GameplayUiArt.Text(card,
+                $"订单号：{order.OrderId}\n应付金额：{amountLabel}{designatedLine}\n卖方确认：{(order.SellerConfirmed ? "是" : "否")}    买方确认：{(order.BuyerConfirmed ? "是" : "否")}",
+                infoX, 90f, infoW, 128f, 24f, GameplayUiArt.Ink, wrap: true);
+
+            // 仅在服务端下发了真实 PayIntentView.ExpireMs + ServerNowMs 时展示倒计时条；绝不用 90 秒轮询窗伪造过期时间。
+            if (order.State == CommerceOrderState.AwaitingPayment
+                && payment != null
+                && payment.TryGetServerDeadline(order.OrderId, out ulong remainingMs, out ulong totalWindowMs))
+            {
+                const float trackWidth = 640f;
+                const float trackHeight = 28f;
+                var label = GameplayUiArt.Text(card, PaymentCashierViewModel.FormatCountdownText(remainingMs),
+                    infoX, 224f, 1080f, 36f, 22f, remainingMs == 0UL ? CinnabarText : AmberText);
+
+                var trackHolder = QdaoUguiFactory.CreateRect("PayCountdownTrackHolder", card, infoX, 266f, trackWidth, trackHeight);
+                SeasonEconomyUiArt.CreateSlicedOrSimple(trackHolder, "TrackBg", 0f, 0f, trackWidth, trackHeight,
+                    SeasonEconomyUiArt.LoadPaymentCashierSlice("pay_countdown_track"), new Color(0.84f, 0.80f, 0.70f, 1f));
+
+                float fillWidth = PaymentCashierViewModel.ComputeCountdownFillWidth(trackWidth, remainingMs, totalWindowMs);
+                var fillImg = SeasonEconomyUiArt.CreateSlicedOrSimple(trackHolder, "TrackFill", 0f, 0f,
+                    Mathf.Max(PaymentCashierViewModel.CountdownMinVisibleWidthPx, fillWidth), trackHeight,
+                    SeasonEconomyUiArt.LoadPaymentCashierSlice("pay_countdown_fill"), SeasonEconomyUiArt.GoldHighlight);
+                fillImg.gameObject.SetActive(fillWidth > 0f);
+
+                handles = new OfficialCashierCountdownHandles
+                {
+                    OrderId = order.OrderId,
+                    TrackWidthPx = trackWidth,
+                    FillRect = fillImg.rectTransform,
+                    FillObject = fillImg.gameObject,
+                    Label = label,
+                };
+            }
+
+            // 操作区（次级按钮）
+            SeasonEconomyUiArt.CreateCashierButton(card, "刷新订单", 48f, 330f, 260f, 58f, onRefreshOrder, primary: false, fontSize: 23f);
+            float nextX = 334f;
+            if (order.State == CommerceOrderState.WaitingConfirmation || order.State == CommerceOrderState.AwaitingPayment)
+            {
+                cancelOrderButton = SeasonEconomyUiArt.CreateCashierButton(card, "取消订单", nextX, 330f, 260f, 58f, onCancelOrder, primary: false, fontSize: 23f);
+                registerWriteButton?.Invoke(cancelOrderButton);
+                nextX += 286f;
+            }
+            SeasonEconomyUiArt.CreateCashierButton(card, "我的订单", nextX, 330f, 260f, 58f, onBackOrders, primary: false, fontSize: 23f);
+
+            // 支付渠道拉起区（仅待支付态展示；严守平台合规，不渲染第三方图标或二维码）
+            if (order.State == CommerceOrderState.AwaitingPayment)
+            {
+                if (payment == null)
+                {
+                    GameplayUiArt.Text(card, "等待正式支付渠道确认。付款结果会由服务端同步，请稍后刷新订单。", 48f, 430f, 1940f, 64f, 24f, GameplayUiArt.Muted, wrap: true);
+                }
+                else if (isWatching)
+                {
+                    GameplayUiArt.Text(card, "正在等待支付渠道确认，请稍候；如未完成付款可停止等待后重试。", 48f, 434f, 1420f, 56f, 24f, AmberText);
+                    stopWaitButton = SeasonEconomyUiArt.CreateCashierButton(card, "停止等待", 1500f, 428f, 280f, 60f, payment.CancelWatching, primary: false, fontSize: 23f);
+                }
+                else if (payment.Channels.Count == 0)
+                {
+                    var loadBtn = SeasonEconomyUiArt.CreateCashierButton(card, "选择支付方式", 48f, 428f, 320f, 60f, payment.ListChannels, primary: true, fontSize: 24f);
+                    registerPaymentButton?.Invoke(loadBtn);
+                }
+                else
+                {
+                    int rendered = 0;
+                    for (int i = 0; i < payment.Channels.Count && rendered < 6; i++)
+                    {
+                        var channel = payment.Channels[i];
+                        if (!OfficialShopCatalogModel.IsChannelAllowedOnPlatform(channel, PaymentClient.Platform)) continue;
+                        var payBtn = SeasonEconomyUiArt.CreateCashierButton(card, PaymentClient.ChannelName(channel),
+                            48f + rendered * 324f, 428f, 304f, 60f, () => payment.Pay(order.OrderId, channel), primary: true, fontSize: 24f);
+                        registerPaymentButton?.Invoke(payBtn);
+                        rendered++;
+                    }
+                    if (rendered == 0)
+                    {
+                        GameplayUiArt.Text(card, OfficialShopCatalogModel.PlatformPurchaseComplianceNote(PaymentClient.Platform),
+                            48f, 432f, 1940f, 64f, 23f, GameplayUiArt.Muted, wrap: true);
+                    }
+                }
+            }
+
+            return handles;
         }
 
         /// <summary>卖家店铺信用档案与高危状态单显（官方过户换人 vs 异地陌生新设备清 0）。</summary>

@@ -196,6 +196,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 case Modal.EnhanceBindConfirm: RenderEnhanceBindConfirmModal(); break;
                 case Modal.UnsealConfirm: RenderUnsealConfirmModal(); break;
                 case Modal.InheritEnhance: RenderInheritEnhanceModal(); break;
+                case Modal.UpgradeTier: RenderUpgradeTierModal(); break;
             }
         }
 
@@ -243,6 +244,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                         () => OpenPolishForItem(item.ItemId, 0), true, !WriteBlocked);
                 if (item.EquipProfile == 0) Button(_modalLayer, "EquipmentLegacyForge", "强化 / 宝石", 2390, 1290, 800, () =>
                 { _modal = Modal.None; _forge.Open(item.ItemId); _legacyForge.Show(() => { _input.enabled = true; Render(); }); _input.enabled = false; }, enabled: !WriteBlocked);
+                else if (EquipmentScreenModel.CanUpgradeTier(item)) Button(_modalLayer, "EquipmentOpenUpgradeTier", "无损升档", 2390, 1290, 800,
+                    () => OpenUpgradeTier(item.ItemId), true, !WriteBlocked);
             }
             else if (item?.Artifact != null)
                 Button(_modalLayer, "ArtifactDetailExchange", "兑换", 2390, 1290, 800, () =>

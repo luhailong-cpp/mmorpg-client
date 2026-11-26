@@ -282,9 +282,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             _hpBgRect = hpBg.rectTransform;
             var shieldBg = BattleUiWidgets.CreatePanel("ShieldBg", _plate, barX, 29f, BarWidth, ShieldBarHeight,
                 QdaoUguiTheme.Html("#9E804E"), false);
+            SeasonEconomyUiArt.ApplyFixedControlSprite(shieldBg,
+                SeasonEconomyUiArt.LoadNewPlayReviewControl("shield_track"), QdaoUguiTheme.Html("#9E804E"));
             _shieldBgRect = shieldBg.rectTransform;
             var shieldFill = BattleUiWidgets.CreatePanel("ShieldFill", shieldBg.transform, 1f, 1f, 0f, ShieldBarHeight - 2f,
                 QdaoUguiTheme.Html("#59C5B3"), false);
+            SeasonEconomyUiArt.ApplyFixedControlSprite(shieldFill,
+                SeasonEconomyUiArt.LoadNewPlayReviewControl("shield_fill"), QdaoUguiTheme.Html("#59C5B3"));
             _shieldFillRect = shieldFill.rectTransform;
             shieldBg.gameObject.SetActive(false);
             _hpGhost = BattleUiWidgets.CreatePanel("HpGhost", hpBg.transform, 1f, 1f, BarWidth - 2f, HpBarHeight - 2f,

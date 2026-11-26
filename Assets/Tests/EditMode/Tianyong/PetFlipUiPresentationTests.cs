@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
 using MmorpgClient.Game.PetFlip;
 using MmorpgClient.UI.Ugui.PetFlip;
 using NUnit.Framework;
@@ -307,8 +310,15 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(m.Y + m.Height, Is.LessThanOrEqualTo(canvasHeight));
             }
 
+            PetFlipPixelRect stamp = PetFlipUiPresentation.GetPerfectStampRect(isPortrait);
+            Assert.That(stamp.X, Is.GreaterThanOrEqualTo(0f));
+            Assert.That(stamp.Y, Is.GreaterThanOrEqualTo(0f));
+            Assert.That(stamp.X + stamp.Width, Is.LessThanOrEqualTo(canvasWidth));
+            Assert.That(stamp.Y + stamp.Height, Is.LessThanOrEqualTo(canvasHeight));
+
             for (int a = 0; a < medalRects.Length; a++)
             {
+                Assert.That(Overlaps(stamp, medalRects[a]), Is.False, $"完美徽章与终局头像 {a} 重叠");
                 for (int b = a + 1; b < medalRects.Length; b++)
                     Assert.That(Overlaps(medalRects[a], medalRects[b]), Is.False, $"进阶终局头像 {a} 与 {b} 重叠");
             }
@@ -316,6 +326,75 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
         [Test]
         public void V2ArtSpritesAndBorders_AllSixLoadCleanly()
+        {
+            string projectRoot = FindClientProjectRoot();
+            Assert.That(projectRoot, Is.Not.Null, "未能定位 mmorpg-client 项目根目录。");
+
+            string uiDir = Path.Combine(projectRoot, "Assets", "Resources", "UI", "Ugui", "PetFlipV1");
+            string[] requiredAssets =
+            {
+                "window-frame.png", "window-frame-portrait.png", "card-back.png", "card-front.png",
+                "matched-mark.png", "button-primary.png", "button-secondary.png",
+                "hud-entry-petflip.png", "pill-normal.png", "pill-selected.png",
+                "spirit-eye-icon.png", "card-spirit-peek-frame.png", "stamp-perfect.png"
+            };
+            for (int i = 0; i < requiredAssets.Length; i++)
+            {
+                string assetPath = Path.Combine(uiDir, requiredAssets[i]);
+                Assert.That(File.Exists(assetPath), Is.True, $"缺少 UI 切片：{requiredAssets[i]}");
+                Assert.That(File.Exists(assetPath + ".meta"), Is.True, $"缺少 Unity .meta：{requiredAssets[i]}.meta");
+            }
+
+            string pillNormalMeta = File.ReadAllText(Path.Combine(uiDir, "pill-normal.png.meta"));
+            string pillSelectedMeta = File.ReadAllText(Path.Combine(uiDir, "pill-selected.png.meta"));
+            Assert.That(pillNormalMeta, Does.Contain("spriteBorder: {x: 42, y: 38, z: 42, w: 38}"));
+            Assert.That(pillSelectedMeta, Does.Contain("spriteBorder: {x: 42, y: 38, z: 42, w: 38}"));
+
+            string petsDir = Path.Combine(projectRoot, "Assets", "Resources", "World", "Pets", "QdaoPets20261005");
+            for (int i = 0; i < PetFlipConstants.MaxPairCount; i++)
+            {
+                string petId = PetFlipUiPresentation.GetPetCatalogId((SpiritPetCardPattern)i);
+                string portraitPath = Path.Combine(petsDir, petId, "portrait.png");
+                Assert.That(File.Exists(portraitPath), Is.True, $"缺少灵宠头像：{petId}");
+            }
+
+            if (IsUnityRuntimeLoaded())
+                AssertUnityRuntimeSpritesLoaded();
+        }
+
+        private static string FindClientProjectRoot()
+        {
+            string[] seeds = { Directory.GetCurrentDirectory(), AppDomain.CurrentDomain.BaseDirectory };
+            for (int s = 0; s < seeds.Length; s++)
+            {
+                var dir = new DirectoryInfo(seeds[s]);
+                while (dir != null)
+                {
+                    if (Directory.Exists(Path.Combine(dir.FullName, "Assets", "Resources", "UI", "Ugui", "PetFlipV1")))
+                        return dir.FullName;
+                    string childClient = Path.Combine(dir.FullName, "mmorpg-client");
+                    if (Directory.Exists(Path.Combine(childClient, "Assets", "Resources", "UI", "Ugui", "PetFlipV1")))
+                        return childClient;
+                    dir = dir.Parent;
+                }
+            }
+
+            return null;
+        }
+
+        private static bool IsUnityRuntimeLoaded()
+        {
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            for (int i = 0; i < assemblies.Length; i++)
+            {
+                if (string.Equals(assemblies[i].GetName().Name, "UnityEngine.CoreModule", StringComparison.Ordinal))
+                    return true;
+            }
+            return false;
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void AssertUnityRuntimeSpritesLoaded()
         {
             Assert.That(PetFlipArtCatalog.TryLoadAndValidate(out PetFlipResolvedAssets resolved, out string reason), Is.True, reason);
             Assert.That(resolved.HudEntryIcon, Is.Not.Null, "hud-entry-petflip");

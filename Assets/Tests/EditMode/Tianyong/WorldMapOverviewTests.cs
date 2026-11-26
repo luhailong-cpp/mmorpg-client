@@ -1,12 +1,16 @@
 using System.Linq;
 using System.Reflection;
+using Google.Protobuf.WellKnownTypes;
+using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.MysteryMerchant;
+using MmorpgClient.Game.Team;
 using MmorpgClient.Game.WorldTravel;
 using MmorpgClient.Net;
 using MmorpgClient.UI.Ugui;
 using MmorpgClient.UI.Ugui.Gameplay;
 using MmorpgClient.World.CurrentMaps;
 using NUnit.Framework;
+using Teampb;
 using TMPro;
 using UnityEngine;
 
@@ -220,6 +224,17 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(badge.raycastTarget, Is.False);
                 Assert.That(badge.gameObject.activeSelf, Is.False);
 
+                var habitatBg = host.GetComponentsInChildren<UnityEngine.UI.Image>(true)
+                    .Single(image => image.name == "WildPetHabitatBg");
+                var habitatIcon = host.GetComponentsInChildren<UnityEngine.UI.Image>(true)
+                    .Single(image => image.name == "WildPetHabitatIcon");
+                var habitatBtn = host.GetComponentsInChildren<UnityEngine.UI.Image>(true)
+                    .Single(image => image.name == "WildPetHabitatEncounterBtn");
+                Assert.That(habitatBg.sprite.name, Is.EqualTo("wild_habitat_bar"));
+                Assert.That(habitatIcon.sprite.name, Is.EqualTo("wild_habitat_icon"));
+                Assert.That(habitatBtn.sprite.name, Is.EqualTo("wild_habitat_btn"));
+                Assert.That(habitatBg.transform.parent.gameObject.activeSelf, Is.False);
+
                 PushTide(3600, true);
                 Assert.That(badge.gameObject.activeSelf, Is.True);
                 root.MarkCurrentTideSeen();
@@ -319,6 +334,90 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Object.DestroyImmediate(root);
                 CurrentMapCatalog.ReloadDeliveries();
             }
+        }
+
+        [Test]
+        public void WildPetHabitatModels_CoversWildScenesAndFormatsDrawerAndHud()
+        {
+            Assert.That(WorldMapOverviewModels.FindHabitat(1u), Is.Null);
+            Assert.That(WorldMapOverviewModels.FormatHabitatSummary(1u), Is.EqualTo(""));
+
+            var bajing = WorldMapOverviewModels.FindHabitat(2u);
+            var yuexi = WorldMapOverviewModels.FindHabitat(3u);
+            var biyuan = WorldMapOverviewModels.FindHabitat(5u);
+            Assert.That(bajing.HasValue && bajing.Value.DungeonConfigId == 202u, Is.True);
+            Assert.That(yuexi.HasValue && yuexi.Value.DungeonConfigId == 203u, Is.True);
+            Assert.That(biyuan.HasValue && biyuan.Value.DungeonConfigId == 205u, Is.True);
+            Assert.That(WorldMapOverviewModels.FormatHabitatSummary(2u), Does.Contain("云鹤"));
+            Assert.That(WorldMapOverviewModels.FormatHabitatSummary(3u), Does.Contain("金猊"));
+            Assert.That(WorldMapOverviewModels.FormatHabitatSummary(5u), Does.Contain("玄潮龟"));
+
+            var tideOverview = new WorldMapOverviewSnapshot(
+                1u, 1000UL, 1000UL, System.Array.Empty<WorldMapOverviewItem>(),
+                new WorldTideSnapshotModel(true, 3600UL, 3u, 30001UL, 1u, 0UL, 2_400_000UL, 3_600_000UL), 3u);
+            Assert.That(WorldMapOverviewModels.FormatWildHabitatHeadline(tideOverview, 3u), Does.Contain("灵潮中"));
+            Assert.That(WorldMapOverviewModels.FormatWildHabitatHeadline(tideOverview, 2u), Does.Not.Contain("灵潮中"));
+
+            // 抽屉在选中野外开放图（八景岛 2）时应展示可捕灵宠摘要。
+            CurrentMapCatalog.ReloadDeliveries();
+            var root = new GameObject("WildHabitatDrawerTest", typeof(RectTransform));
+            try
+            {
+                var design = QdaoUguiFactory.CreateCenteredRect("Design", root.transform, 2560, 1080);
+                var travelWindow = new CityTravelWindow(design);
+                travelWindow.SetDestinations(CityTravelUiRoot.CreateDestinations());
+                travelWindow.Show(2u, false);
+                var desc = travelWindow.Root.GetComponentsInChildren<TMP_Text>(true)
+                    .Single(t => t.name == "SelectedDestinationDescription");
+                Assert.That(desc.text, Does.Contain("可捕灵宠："));
+                Assert.That(desc.text, Does.Contain("云鹤"));
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+                CurrentMapCatalog.ReloadDeliveries();
+            }
+        }
+
+        [Test]
+        public void BattleMatchEntryClient_StartWildPetHabitatEnforcesSoloAndQueuesHabitatDungeon()
+        {
+            float now = 100f;
+            var teamNet = new TeamFakeTransport();
+            var battleNet = new TeamFakeTransport();
+            using var team = new TeamClient(teamNet, () => teamNet.Identity, _ => { }, _ => { }, () => now);
+            var battle = new BattleClient(battleNet);
+            var entry = new BattleMatchEntryClient(team, battle, 1u, 5u, () => now);
+
+            // 初始化无队状态。
+            team.DrainQueued(false);
+            teamNet.Reply(new TeamResponse { Team = new TeamView { TeamId = 0, Version = 1, MembershipEpoch = 1 } });
+            now += 1f;
+
+            // 单人请求八景岛栖息地(202) -> 发送 PVE_SOLO + BattleConfigId=202。
+            Assert.That(entry.StartWildPetHabitat(202u), Is.True);
+            Assert.That(battleNet.Calls.Count, Is.EqualTo(1));
+            var joinReq = (Match.JoinQueueRequest)battleNet.Calls[0].Request;
+            Assert.That(joinReq.Mode, Is.EqualTo(Match.MatchMode.PveSolo));
+            Assert.That(joinReq.BattleConfigId, Is.EqualTo(202u));
+
+            // 取消队列后模拟入队，再请求野外寻宠 -> 必须拒绝并提示离队。
+            battleNet.Reply(new Match.JoinQueueResponse { QueueTicket = "habitat-1" });
+            Assert.That(entry.Cancel(), Is.True);
+            battleNet.Reply(new Empty());
+            now += 2f;
+
+            var teamedView = new TeamView { TeamId = 77, LeaderId = 1, Version = 2, MembershipEpoch = 2 };
+            teamedView.Members.Add(new TeamMemberView { PlayerId = 1, Name = "队长" });
+            teamedView.Members.Add(new TeamMemberView { PlayerId = 2, Name = "队员" });
+            team.RequestRefresh();
+            team.DrainQueued(false);
+            teamNet.Reply(new TeamResponse { Team = teamedView });
+            now += 1f;
+
+            Assert.That(entry.StartWildPetHabitat(203u), Is.False);
+            Assert.That(entry.Status, Does.Contain("单人"));
+            Assert.That(battleNet.Calls.Count, Is.EqualTo(2));
         }
     }
 }

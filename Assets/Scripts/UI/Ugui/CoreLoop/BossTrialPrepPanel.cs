@@ -119,7 +119,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 else
                     CoreLoopUiArt.Card(transform, "BossCard" + i, x, 345, cardW, 488, selected);
                 bool isDualGuard = card.BossTrialKind == CoreGameplayLoopModels.BossTrialKindDualGuard;
-                var bossAvatar = (isDualGuard ? CoreLoopUiArt.LoadV2("boss_dual_guard_avatar") : null)
+                var bossAvatar = (isDualGuard ? SeasonEconomyUiArt.LoadCanonicalBossAvatar("boss_avatar_dual_guard") : null)
+                    ?? (isDualGuard ? CoreLoopUiArt.LoadV2("boss_dual_guard_avatar") : null)
                     ?? SeasonEconomyUiArt.LoadIcon(SeasonEconomyUiArt.BossAvatarIconKey(card.BossTrialKind))
                     ?? (isDualGuard ? SeasonEconomyUiArt.LoadIcon("boss_break_avatar") : null);
                 if (bossAvatar != null)

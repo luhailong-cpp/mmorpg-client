@@ -29,6 +29,9 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private CommerceOrderResponse _shownOrder;
         private int _tab;
         private int _officialSubTab;
+        private ulong _selectedOfficialSkuId;
+        private EconomyTradeUiViews.OfficialCashierCountdownHandles _countdownHandles;
+        private int _lastCountdownSecond = -1;
         private readonly List<OfficialSkuView> _officialSkus = new();
         private RmbConsignmentSubTab _rmbSubTab = RmbConsignmentSubTab.All;
         private ulong _rmbSelectedListingId;
@@ -103,6 +106,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             if (client != null) { client.Changed += Changed; client.Response += OnResponse; }
             if (payment != null) { payment.Changed += PaymentChanged; payment.Settled += PaymentSettled; }
             _selection = new TradeAssetSelection(); _selectedName = "尚未选择资产";
+            _selectedOfficialSkuId = 0UL;
+            _countdownHandles = default; _lastCountdownSecond = -1;
             _officialSkus.Clear(); _lastDepth = null;
             _previousTradeSnapshots.Clear(); _refPriceRequestedKeys.Clear(); _quotaRequested = false;
             _activeTradeDiff = FaceToFaceTradeDiffResult.None; _activeTradeDiffOrderId = ""; _lockedTradeKey = "";
@@ -154,9 +159,31 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private void Clear()
         {
             _confirmed = null; _shownOrder = null; _paymentLayoutKey = "";
+            _countdownHandles = default; _lastCountdownSecond = -1;
             _viewingCreditProfile = null; _reviewOrder = null;
             _cancelOrderButton = null; _stopWaitButton = null;
             _writeButtons.Clear(); _paymentButtons.Clear(); GameplayUiArt.Clear(_body);
+        }
+        /// <summary>主线程每帧更新官方收银台服务端倒计时条（仅整秒变化时原地改宽与文本，零重建）。</summary>
+        public void Tick()
+        {
+            if (_disposed || !IsVisible || _payment == null || !_countdownHandles.IsValid) return;
+            if (!_payment.TryGetServerDeadline(_countdownHandles.OrderId, out ulong remainingMs, out ulong totalWindowMs)) return;
+            int wholeSeconds = (int)Math.Min(int.MaxValue, (remainingMs + 999UL) / 1000UL);
+            if (wholeSeconds == _lastCountdownSecond) return;
+            _lastCountdownSecond = wholeSeconds;
+            _countdownHandles.Label.text = PaymentCashierViewModel.FormatCountdownText(remainingMs);
+            float fillW = PaymentCashierViewModel.ComputeCountdownFillWidth(_countdownHandles.TrackWidthPx, remainingMs, totalWindowMs);
+            if (fillW > 0f)
+            {
+                var size = _countdownHandles.FillRect.sizeDelta;
+                _countdownHandles.FillRect.sizeDelta = new Vector2(fillW, size.y);
+                _countdownHandles.FillObject.SetActive(true);
+            }
+            else
+            {
+                _countdownHandles.FillObject.SetActive(false);
+            }
         }
         private string PaymentLayoutKey(CommerceOrderView order)
         {
@@ -164,6 +191,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             var sb = new System.Text.StringBuilder();
             for (int i = 0; i < _payment.Channels.Count && i < 6; i++) sb.Append((int)_payment.Channels[i]).Append(',');
             sb.Append('|').Append(_payment.PendingOrder == order.OrderId ? '1' : '0');
+            sb.Append('|').Append(_payment.TryGetServerDeadline(order.OrderId, out _, out _) ? '1' : '0');
             return sb.ToString();
         }
         private void PaymentChanged()
@@ -460,7 +488,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 _body,
                 _officialSubTab,
                 _officialSkus,
-                subTab => { _officialSubTab = subTab; RenderOfficialShopPage(); Changed(); },
+                subTab => { _officialSubTab = subTab; _selectedOfficialSkuId = 0UL; RenderOfficialShopPage(); Changed(); },
                 sku => Confirm("购买「" + sku.Title + "」一份，价格 " + Money(sku.PriceMinor, sku.Currency)
                     + "。创建订单后，请按当前发行平台完成官方合规支付；到账以服务端确认和订单状态为准。", () => _client.BuySku(sku.SkuId, 1)),
                 () =>
@@ -468,7 +496,9 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                     if (AfkPassUiRoot.Instance != null) AfkPassUiRoot.Instance.ShowPanel();
                     else _client?.SetStatus("请进入主城后查看「仙途轻享卡」。");
                 },
-                btn => _writeButtons.Add(btn));
+                btn => _writeButtons.Add(btn),
+                selectedSkuId: _selectedOfficialSkuId,
+                onSelectSku: sku => { _selectedOfficialSkuId = sku.SkuId; RenderOfficialShopPage(); Changed(); });
             Pagination();
         }
 
@@ -593,6 +623,29 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                     onBackToOrders: () => SelectTab(4),
                     registerWriteButton: btn => _writeButtons.Add(btn),
                     cancelButton: out _cancelOrderButton);
+                RefreshButtonStates();
+                return;
+            }
+
+            if (order.Kind == CommerceOrderKind.Official)
+            {
+                Clear();
+                _shownOrder = response;
+                _paymentLayoutKey = PaymentLayoutKey(order);
+                _countdownHandles = EconomyTradeUiViews.RenderOfficialOrderCashier(
+                    _body,
+                    order,
+                    Kind(order.Kind),
+                    State(order.State),
+                    Money(order.Amount, order.Currency),
+                    _payment,
+                    onRefreshOrder: () => _client.GetOrder(order.OrderId),
+                    onCancelOrder: () => Confirm("确认取消该订单？已支付订单由服务端确定退款状态。", () => _client.CancelOrder(order.OrderId)),
+                    onBackOrders: () => SelectTab(4),
+                    registerWriteButton: btn => _writeButtons.Add(btn),
+                    registerPaymentButton: btn => _paymentButtons.Add(btn),
+                    cancelOrderButton: out _cancelOrderButton,
+                    stopWaitButton: out _stopWaitButton);
                 RefreshButtonStates();
                 return;
             }

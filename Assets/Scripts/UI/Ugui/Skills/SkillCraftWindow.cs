@@ -200,6 +200,20 @@ namespace MmorpgClient.UI.Ugui.Skills
                         img.color = Color.white;
                     }
                 }
+                var scrollIcon = SeasonEconomyUiArt.LoadSkillScrollIcon(scroll.ScrollId);
+                if (scrollIcon != null)
+                {
+                    var iconImg = QdaoUguiFactory.CreateImage("ScrollTabIcon_" + scroll.ScrollId, tabBtn.transform,
+                        24, 38, 64, 64, scrollIcon, false);
+                    iconImg.preserveAspect = true;
+                    var btnLabel = tabBtn.transform.Find("Label") as RectTransform;
+                    if (btnLabel != null)
+                    {
+                        float tabWidth = hasTabArt ? 420f : 560f;
+                        btnLabel.anchoredPosition = new Vector2(96f, 0f);
+                        btnLabel.sizeDelta = new Vector2(tabWidth - 116f, 140f);
+                    }
+                }
             }
 
             // 中栏：拓印案台
@@ -532,7 +546,8 @@ namespace MmorpgClient.UI.Ugui.Skills
             var growth = SeasonEconomyUiArt.LoadGrowthSkillIcon(skillId);
             if (growth != null) return growth;
             var def = SkillUiRoot.FindPresentation(skillId);
-            return def != null ? QdaoUguiTheme.LoadSprite(def.IconResource) : null;
+            return (def != null ? QdaoUguiTheme.LoadSprite(def.IconResource) : null)
+                ?? (skillId != 0u ? QdaoUguiTheme.LoadSprite("UI/Skills/" + skillId) : null);
         }
 
         private static string ResolveSkillName(uint skillId)

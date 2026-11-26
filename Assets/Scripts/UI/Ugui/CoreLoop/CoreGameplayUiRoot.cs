@@ -2,6 +2,7 @@ using System;
 using MmorpgClient.Game;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.CoreLoop;
+using MmorpgClient.UI.Ugui.Attribute;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.Gameplay;
 using MmorpgClient.UI.Ugui.Jubaozhai;
@@ -75,6 +76,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         private CoreSettlementRewardSection _battleSettlement;
         private CoreSettlementRewardSection _rankedSettlement;
         private int _pendingMaterialClaimFrame = -1;
+        private int _pendingAttributeAllocFrame = -1;
         private bool _lastBattleWasWuxingTower;
         private bool _pendingWuxingTowerReopen;
 
@@ -133,6 +135,12 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             {
                 _pendingMaterialClaimFrame = -1;
                 GameplayUiRoot.Instance?.OpenEquipmentMaterials();
+            }
+            if (_pendingAttributeAllocFrame >= 0 && Time.frameCount >= _pendingAttributeAllocFrame &&
+                !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false))
+            {
+                _pendingAttributeAllocFrame = -1;
+                AttributeUiRoot.Instance?.OpenPanel(true);
             }
             if (_pendingWuxingTowerReopen && CanOpenWorldPanel)
             {
@@ -291,6 +299,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 game.Season.Notice += ShowToast;
             }
             if (game.Features != null) game.Features.OnChanged += RefreshAll;
+            if (game.Attributes != null) game.Attributes.OnPanel += HandleAttributePanelChanged;
             game.Battle.OnPhaseChanged += HandleBattlePhaseChanged;
             game.Battle.OnBattleStart += HandleBattleStart;
             game.Battle.OnTurnResult += HandleTurnResult;
@@ -302,6 +311,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             if (game.TrialJournal?.Snapshot == null) game.TrialJournal?.RequestSnapshot();
             if (game.Season?.Snapshot == null) game.Season?.RequestState();
             if (game.Features?.EquipmentMaterialReward == null) game.Features?.RequestEquipmentMaterialReward();
+            if (game.Attributes?.Panel == null) game.Attributes?.RequestPanel();
             RefreshAll();
             SyncVisibility();
         }
@@ -331,6 +341,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     _game.Season.Notice -= ShowToast;
                 }
                 if (_game.Features != null) _game.Features.OnChanged -= RefreshAll;
+                if (_game.Attributes != null) _game.Attributes.OnPanel -= HandleAttributePanelChanged;
                 if (_game.Battle != null)
                 {
                     _game.Battle.OnPhaseChanged -= HandleBattlePhaseChanged;
@@ -348,6 +359,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             _playerId = 0;
             _connectionIdentity = null;
             _pendingMaterialClaimFrame = -1;
+            _pendingAttributeAllocFrame = -1;
             _lastBattleWasWuxingTower = false;
             _pendingWuxingTowerReopen = false;
             _marketPreviewActive = false;
@@ -397,6 +409,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             if (_battleSettlement != null && _battleSettlement.IsVisible) _battleSettlement.Refresh();
             if (_rankedSettlement != null && _rankedSettlement.IsVisible) _rankedSettlement.Refresh();
         }
+
+        private void HandleAttributePanelChanged(AttributePanelInfo _) => RefreshAll();
 
         private void HandleBattlePhaseChanged(BattlePhase _) { if (HasLiveSession) { SyncVisibility(); RefreshAll(); } }
         private void HandleBattleStart(global::BattleStartS2C _)
@@ -669,6 +683,24 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             }
             HideWindows();
             GameplayUiRoot.Instance?.OpenEquipmentMaterials();
+        }
+
+        public void OpenAttributeAllocation()
+        {
+            if (_rankedSettlement != null && _rankedSettlement.IsVisible)
+            {
+                RankedUiRoot.Instance?.CloseCoreSettlementForMaterialClaim();
+                _pendingAttributeAllocFrame = Time.frameCount + 2;
+                return;
+            }
+            if (_battleSettlement != null && _battleSettlement.IsVisible)
+            {
+                BattleUiRoot.Instance?.FinishCoreSettlementForMaterialClaim();
+                _pendingAttributeAllocFrame = Time.frameCount + 2;
+                return;
+            }
+            HideWindows();
+            AttributeUiRoot.Instance?.OpenPanel(true);
         }
 
         public bool ShowBattleSettlement(RectTransform resultPanel)

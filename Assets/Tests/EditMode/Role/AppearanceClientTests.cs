@@ -517,6 +517,31 @@ namespace MmorpgClient.Tests.EditMode.Role
                 Is.EqualTo(AppearanceSwitchIntentOutcome.Ignored));
             Assert.That(state.CloseSeriesEpilogue(), Is.True);
             Assert.That(state.IsSeriesEpilogueOpen, Is.False);
+
+            // 单行四页签宽度分配：3 个现役系列 + 全部 刚好填满 612px 视口；扩展到 5 个系列时自动保留舒适宽度交由横向滚动
+            var threeSeries = new List<CharacterAppearanceSeriesProgress>
+            {
+                new CharacterAppearanceSeriesProgress { SeriesId = 1, Name = "留灯院旧友" },
+                new CharacterAppearanceSeriesProgress { SeriesId = 2, Name = "水火冰锋" },
+                new CharacterAppearanceSeriesProgress { SeriesId = 3, Name = "清音济世" },
+            };
+            float[] singleRowWidths = AppearanceSeriesModels.ComputeSeriesTabWidths(threeSeries);
+            Assert.That(singleRowWidths.Length, Is.EqualTo(4));
+            float singleRowTotal = singleRowWidths[0] + singleRowWidths[1] + singleRowWidths[2] + singleRowWidths[3]
+                + AppearanceSeriesModels.DefaultTabGap * 3f;
+            Assert.That(singleRowTotal, Is.EqualTo(AppearanceSeriesModels.DefaultTabViewportWidth).Within(0.01f));
+            for (int i = 0; i < singleRowWidths.Length; i++)
+                Assert.That(singleRowWidths[i], Is.GreaterThanOrEqualTo(76f));
+
+            var fiveSeries = new List<CharacterAppearanceSeriesProgress>(threeSeries)
+            {
+                new CharacterAppearanceSeriesProgress { SeriesId = 4, Name = "星河问道" },
+                new CharacterAppearanceSeriesProgress { SeriesId = 5, Name = "碧渊游侠" },
+            };
+            float[] overflowWidths = AppearanceSeriesModels.ComputeSeriesTabWidths(fiveSeries);
+            float overflowTotal = AppearanceSeriesModels.DefaultTabGap * 5f;
+            for (int i = 0; i < overflowWidths.Length; i++) overflowTotal += overflowWidths[i];
+            Assert.That(overflowTotal, Is.GreaterThan(AppearanceSeriesModels.DefaultTabViewportWidth));
         }
 
         [Test]

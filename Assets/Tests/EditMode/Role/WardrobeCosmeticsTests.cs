@@ -68,7 +68,7 @@ namespace MmorpgClient.Tests.EditMode.Role
             {
                 ConfigId = 1,
                 Name = "苍嶂麟·墨玉",
-                ArtKey = "07-cangzhanglin",
+                VisualArtKey = "07-cangzhanglin",
                 VisualPetTableId = 12,
                 TargetPetTableId = 0,
                 MallSkuId = 0,
@@ -79,9 +79,9 @@ namespace MmorpgClient.Tests.EditMode.Role
             {
                 ConfigId = 2,
                 Name = "绯耳灵·丹霞",
-                ArtKey = "14-feierling",
+                VisualArtKey = "14-feierling",
                 VisualPetTableId = 18,
-                TargetPetTableId = 18,
+                TargetPetTableId = 0,
                 MallSkuId = 8801,
                 AcquireHint = "前往官方商城「永久衣柜」获取",
                 Owned = false,
@@ -90,54 +90,68 @@ namespace MmorpgClient.Tests.EditMode.Role
             {
                 ConfigId = 3,
                 Name = "月弦师·素月",
-                ArtKey = "12-yuexianshi",
+                VisualArtKey = "12-yuexianshi",
                 VisualPetTableId = 16,
                 TargetPetTableId = 0,
                 MallSkuId = 8802,
                 AcquireHint = "暂未上架",
                 Owned = false,
             });
+            info.PetCosmetics.Add(new PetCosmeticEntry
+            {
+                ConfigId = 4,
+                Name = "绯耳灵专属",
+                VisualArtKey = "14-feierling",
+                VisualPetTableId = 18,
+                TargetPetTableId = 18,
+                MallSkuId = 0,
+                AcquireHint = "仅限绯耳灵",
+                Owned = true,
+            });
             info.EquippedPetCosmetics.Add(new PetEquippedCosmetic { PetId = 7001, CosmeticId = 1 });
 
             var petA = new WardrobePetTargetOption(7001, 12, 1012, "灵宠甲", "07-cangzhanglin", 1);
             var rows = WardrobeCosmeticModels.BuildPetRows(info, petA, skuId => skuId == 8801ul);
 
+            // 种类不匹配的 ConfigId=4 应被 BuildPetRows 过滤，仅保留原形 + 1/2/3
             Assert.That(rows.Count, Is.EqualTo(4));
             Assert.That(rows[0].IsBaseDefault, Is.True);
-            Assert.That(rows[0].State, Is.EqualTo(WardrobeCosmeticRowState.Owned));
+            Assert.That(rows[0].State, Is.EqualTo(WardrobeCosmeticRowState.BaseDefault));
             Assert.That(rows[1].ConfigId, Is.EqualTo(1u));
             Assert.That(rows[1].State, Is.EqualTo(WardrobeCosmeticRowState.Equipped));
 
             // 8801 有真实在售 SKU -> 可跳转永久衣柜；8802 无在售 SKU -> 不可伪造购买按钮
             Assert.That(rows[2].State, Is.EqualTo(WardrobeCosmeticRowState.LockedPurchasable));
-            Assert.That(rows[3].State, Is.EqualTo(WardrobeCosmeticRowState.LockedNotListed));
+            Assert.That(rows[3].State, Is.EqualTo(WardrobeCosmeticRowState.LockedUnavailable));
 
-            var actEquipped = WardrobeCosmeticModels.ResolvePetPrimaryAction(rows[1], petA, canSubmit: true, actionPending: false, corePreviewOnly: false);
+            var actEquipped = WardrobeCosmeticModels.ResolvePetPrimaryAction(rows[1], petA, canSubmit: true, busy: false, previewOnly: false);
             Assert.That(actEquipped.Kind, Is.EqualTo(WardrobePrimaryActionKind.RestoreDefault));
-            Assert.That(actEquipped.Label, Is.EqualTo("卸下幻化"));
+            Assert.That(actEquipped.Label, Is.EqualTo("恢复原形"));
             Assert.That(actEquipped.Interactable, Is.True);
 
-            var actBase = WardrobeCosmeticModels.ResolvePetPrimaryAction(rows[0], petA, canSubmit: true, actionPending: false, corePreviewOnly: false);
+            var actBase = WardrobeCosmeticModels.ResolvePetPrimaryAction(rows[0], petA, canSubmit: true, busy: false, previewOnly: false);
             Assert.That(actBase.Kind, Is.EqualTo(WardrobePrimaryActionKind.RestoreDefault));
             Assert.That(actBase.Label, Is.EqualTo("恢复原形"));
 
-            var actBuyable = WardrobeCosmeticModels.ResolvePetPrimaryAction(rows[2], petA, canSubmit: true, actionPending: false, corePreviewOnly: false);
+            var actBuyable = WardrobeCosmeticModels.ResolvePetPrimaryAction(rows[2], petA, canSubmit: true, busy: false, previewOnly: false);
             Assert.That(actBuyable.Kind, Is.EqualTo(WardrobePrimaryActionKind.OpenPermanentWardrobeMall));
             Assert.That(actBuyable.Interactable, Is.True);
 
-            var actUnlisted = WardrobeCosmeticModels.ResolvePetPrimaryAction(rows[3], petA, canSubmit: true, actionPending: false, corePreviewOnly: false);
-            Assert.That(actUnlisted.Kind, Is.EqualTo(WardrobePrimaryActionKind.Unavailable));
+            var actUnlisted = WardrobeCosmeticModels.ResolvePetPrimaryAction(rows[3], petA, canSubmit: true, busy: false, previewOnly: false);
+            Assert.That(actUnlisted.Kind, Is.EqualTo(WardrobePrimaryActionKind.NoneDisabled));
             Assert.That(actUnlisted.Interactable, Is.False);
 
-            // 种类不匹配（仅支持 pet_table_id=18，当前灵宠为 12）
-            info.PetCosmetics[1].Owned = true;
-            var rowsOwnedMismatch = WardrobeCosmeticModels.BuildPetRows(info, petA, _ => false);
-            var actMismatch = WardrobeCosmeticModels.ResolvePetPrimaryAction(rowsOwnedMismatch[2], petA, canSubmit: true, actionPending: false, corePreviewOnly: false);
-            Assert.That(actMismatch.Kind, Is.EqualTo(WardrobePrimaryActionKind.SpeciesMismatch));
-            Assert.That(actMismatch.Interactable, Is.False);
+            // 切换到种类 18 的灵宠时，ConfigId=4 出现在列表中且可穿戴
+            var petB = new WardrobePetTargetOption(7002, 18, 1018, "灵宠乙", "14-feierling", 0);
+            var rowsB = WardrobeCosmeticModels.BuildPetRows(info, petB, _ => false);
+            Assert.That(rowsB.Count, Is.EqualTo(5));
+            Assert.That(rowsB[4].ConfigId, Is.EqualTo(4u));
+            var actEquipB = WardrobeCosmeticModels.ResolvePetPrimaryAction(rowsB[4], petB, canSubmit: true, busy: false, previewOnly: false);
+            Assert.That(actEquipB.Kind, Is.EqualTo(WardrobePrimaryActionKind.EquipCosmetic));
+            Assert.That(actEquipB.Interactable, Is.True);
 
             // 首测预览模式下禁止跳转商城或穿戴
-            var actCorePreview = WardrobeCosmeticModels.ResolvePetPrimaryAction(rows[2], petA, canSubmit: true, actionPending: false, corePreviewOnly: true);
+            var actCorePreview = WardrobeCosmeticModels.ResolvePetPrimaryAction(rows[2], petA, canSubmit: true, busy: false, previewOnly: true);
             Assert.That(actCorePreview.Interactable, Is.False);
         }
 
@@ -183,7 +197,7 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(filtered[0].IsBaseDefault, Is.True);
             Assert.That(filtered[0].State, Is.EqualTo(WardrobeCosmeticRowState.Equipped));
             Assert.That(filtered[1].ConfigId, Is.EqualTo(2u));
-            Assert.That(filtered[1].State, Is.EqualTo(WardrobeCosmeticRowState.LockedNotListed));
+            Assert.That(filtered[1].State, Is.EqualTo(WardrobeCosmeticRowState.LockedUnavailable));
 
             var state = new WardrobeCosmeticTabState();
             state.OpenContextual(WardrobeCategoryTab.Pet, targetPetId: 7002ul);
@@ -265,6 +279,7 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(client.Info.EquippedPetCosmetics[0].CosmeticId, Is.EqualTo(1u));
 
             // 2. 超时应自动触发刷新而非伪造穿戴结果
+            now += 2f;
             int callsBeforeTimeout = net.Calls.Count;
             Assert.That(client.EquipPetCosmetic(7001ul, 0u), Is.True);
             net.Flush();
@@ -273,20 +288,24 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(net.Calls[net.Calls.Count - 1].msgId, Is.EqualTo(Ids.Get));
 
             // 3. 服务端返回 KPetNotFound 时显示中文提示并触发同步
+            now += 2f;
             Assert.That(client.EquipPetCosmetic(9999ul, 1u), Is.True);
             net.Flush();
             Assert.That(client.StatusIsError, Is.True);
             Assert.That(client.Status, Does.Contain("不存在"));
 
             // 4. 穿戴技能特效与恢复默认
+            now += 2f;
             Assert.That(client.EquipSkillVfx(1201u, 1u), Is.True);
             net.Flush();
             Assert.That(client.Info.EquippedSkillVfx[1201u], Is.EqualTo(1u));
+            now += 2f;
             Assert.That(client.EquipSkillVfx(1201u, 0u), Is.True);
             net.Flush();
             Assert.That(client.Info.EquippedSkillVfx.ContainsKey(1201u), Is.False);
 
             // 5. 换角后迟到回包不得污染新角色状态
+            now += 2f;
             Assert.That(client.EquipSkillVfx(1201u, 1u), Is.True);
             net.PlayerId = 99999ul;
             net.Flush();

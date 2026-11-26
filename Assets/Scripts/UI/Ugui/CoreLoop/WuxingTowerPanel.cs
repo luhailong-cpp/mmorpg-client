@@ -64,7 +64,10 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             string bestText = tower.WeeklyBestFloor >= 10u && tower.WeeklyBestRounds > 0u
                 ? $"本周全通最速：{tower.WeeklyBestRounds} 回合"
                 : $"本周最高：第 {tower.WeeklyBestFloor} 层";
-            CoreLoopUiArt.Text("TowerSummaryLeft", transform, 325f, 252f, 1180f, 50f,
+            var leySprite = WuxingExpansionsUiArt.LoadElementIcon(tower.CurrentFloorLeylineElement);
+            if (leySprite != null)
+                SeasonV1UiArt.CreateFixedIcon(transform, "TowerLeylineIcon", 316f, 256f, 44f, 44f, leySprite, Color.clear);
+            CoreLoopUiArt.Text("TowerSummaryLeft", transform, leySprite != null ? 368f : 325f, 252f, 1140f, 50f,
                 $"本周首通 {cleared} / {tower.MaxFloors} 层  ·  {bestText}  ·  当前层灵脉：[{leylineName}行]",
                 25f, CoreLoopUiArt.DeepJade, true, false, TextAlignmentOptions.MidlineLeft);
             CoreLoopUiArt.Text("TowerZeroP2wNote", transform, 1520f, 256f, 715f, 42f,
@@ -120,20 +123,16 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     int col = i % 3;
                     int row = i / 3;
                     float sx = 808f + col * 288f;
-                    float sy = 440f + row * 102f;
-                    var frame = WuxingExpansionsUiArt.LoadSigilCardFrame(def.Rarity);
-                    if (frame != null)
-                        SeasonEconomyUiArt.CreateSlicedOrSimple(transform, "SigilChip" + i, sx, sy, 276f, 92f, frame, Color.white, raycast: false);
-                    else
-                        CoreLoopUiArt.Image("SigilChip" + i, transform, sx, sy, 276f, 92f, null,
-                            def.Rarity >= 3u ? new Color(0.98f, 0.90f, 0.72f, 0.95f) : new Color(0.94f, 0.92f, 0.85f, 0.95f));
+                    float sy = 440f + row * 106f;
+                    // 已持有符印条用紧凑圆角底卡 + 五行图标（立式 420×600 符印卡框仅按原比例用于三选一浮层，不横向压扁）
+                    CoreLoopUiArt.Card(transform, "SigilChip" + i, sx, sy, 276f, 96f, selected: def.Rarity >= 3u);
                     var elemSprite = WuxingExpansionsUiArt.LoadElementIcon(def.Element);
                     if (elemSprite != null)
-                        SeasonV1UiArt.CreateFixedIcon(transform, "SigilElem" + i, sx + 10f, sy + 12f, 32f, 32f, elemSprite, Color.clear);
-                    CoreLoopUiArt.Text("SigilName" + i, transform, sx + (elemSprite != null ? 48f : 12f), sy + 8f, 218f, 30f,
-                        $"{def.Name}（{WuxingExpansionModels.RarityLabel(def.Rarity)}）", 18f, CoreLoopUiArt.DeepJade, true);
-                    CoreLoopUiArt.Text("SigilDesc" + i, transform, sx + 12f, sy + 42f, 252f, 44f,
-                        def.Description, 15f, CoreLoopUiArt.Ink, false, true);
+                        SeasonV1UiArt.CreateFixedIcon(transform, "SigilElem" + i, sx + 12f, sy + 14f, 44f, 44f, elemSprite, Color.clear);
+                    CoreLoopUiArt.Text("SigilName" + i, transform, sx + (elemSprite != null ? 62f : 14f), sy + 10f, 202f, 30f,
+                        $"{def.Name}（{WuxingExpansionModels.RarityLabel(def.Rarity)}）", 17f, CoreLoopUiArt.DeepJade, true);
+                    CoreLoopUiArt.Text("SigilDesc" + i, transform, sx + (elemSprite != null ? 62f : 14f), sy + 44f, 202f, 44f,
+                        def.Description, 14f, CoreLoopUiArt.Ink, false, true);
                 }
             }
 
@@ -202,39 +201,45 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             dim.color = new Color(0.04f, 0.11f, 0.09f, 0.76f);
             dim.raycastTarget = true;
 
-            CoreLoopUiArt.Card(transform, "SigilPickModal", 380f, 210f, 1800f, 660f);
-            CoreLoopUiArt.Text("SigilPickTitle", transform, 420f, 236f, 1720f, 48f,
+            CoreLoopUiArt.Card(transform, "SigilPickModal", 520f, 148f, 1520f, 784f);
+            CoreLoopUiArt.Text("SigilPickTitle", transform, 560f, 174f, 1440f, 48f,
                 $"通关第 {tower.CurrentFloor} 层！请选择 1 枚局内五行符印（出塔清空）",
                 30f, CoreLoopUiArt.DeepJade, true, false, TextAlignmentOptions.Center);
 
+            // 严格遵守 CONTROL-USAGE.md：三张立式符印卡按 420:600 等比缩放（350×500），内容落在安全区内（左右 >=47px、上 >=120px、下 >=70px）
+            const float cardW = 350f;
+            const float cardH = 500f;
+            const float cy = 244f;
             int count = Mathf.Min(tower.PendingOfferSigilIds.Count, 3);
+            float totalW = count * cardW + Mathf.Max(0, count - 1) * 90f;
+            float startX = (2560f - totalW) * 0.5f;
             for (int i = 0; i < count; ++i)
             {
                 uint sigilId = tower.PendingOfferSigilIds[i];
                 WuxingExpansionModels.TryFindSigil(sigilId, out var def);
-                float cx = 440f + i * 580f;
-                float cy = 312f;
+                float cx = startX + i * (cardW + 90f);
                 var frame = WuxingExpansionsUiArt.LoadSigilCardFrame(def.Rarity);
                 if (frame != null)
-                    SeasonEconomyUiArt.CreateSlicedOrSimple(transform, "OfferCard" + i, cx, cy, 520f, 420f, frame, Color.white, raycast: false);
+                    SeasonV1UiArt.CreateFixedIcon(transform, "OfferCard" + i, cx, cy, cardW, cardH, frame, Color.white);
                 else
-                    CoreLoopUiArt.Card(transform, "OfferCard" + i, cx, cy, 520f, 420f);
+                    CoreLoopUiArt.Card(transform, "OfferCard" + i, cx, cy, cardW, cardH);
+
+                CoreLoopUiArt.Badge(transform, "OfferRarity" + i, cx + 88f, cy + 114f, 174f,
+                    $"{WuxingExpansionModels.ElementName(def.Element)}行 · {WuxingExpansionModels.RarityLabel(def.Rarity)}",
+                    def.Rarity >= 3u ? CoreLoopUiArt.Warning : CoreLoopUiArt.DeepJade);
 
                 var elemIcon = WuxingExpansionsUiArt.LoadElementIcon(def.Element);
                 if (elemIcon != null)
-                    SeasonV1UiArt.CreateFixedIcon(transform, "OfferElem" + i, cx + 216f, cy + 32f, 88f, 88f, elemIcon, Color.clear);
+                    SeasonV1UiArt.CreateFixedIcon(transform, "OfferElem" + i, cx + 117f, cy + 162f, 116f, 116f, elemIcon, Color.clear);
 
-                CoreLoopUiArt.Badge(transform, "OfferRarity" + i, cx + 170f, cy + 132f, 180f,
-                    $"{WuxingExpansionModels.ElementName(def.Element)}行 · {WuxingExpansionModels.RarityLabel(def.Rarity)}",
-                    def.Rarity >= 3u ? CoreLoopUiArt.Warning : CoreLoopUiArt.DeepJade);
-                CoreLoopUiArt.Text("OfferName" + i, transform, cx + 32f, cy + 190f, 456f, 46f,
-                    def.Name, 28f, CoreLoopUiArt.Ink, true, false, TextAlignmentOptions.Center);
-                CoreLoopUiArt.Text("OfferDesc" + i, transform, cx + 40f, cy + 248f, 440f, 130f,
-                    def.Description, 22f, CoreLoopUiArt.Muted, false, true, TextAlignmentOptions.Center);
+                CoreLoopUiArt.Text("OfferName" + i, transform, cx + 46f, cy + 286f, 258f, 38f,
+                    def.Name, 25f, CoreLoopUiArt.Ink, true, false, TextAlignmentOptions.Center);
+                CoreLoopUiArt.Text("OfferDesc" + i, transform, cx + 48f, cy + 330f, 254f, 94f,
+                    def.Description, 18f, CoreLoopUiArt.Muted, false, true, TextAlignmentOptions.Center);
 
                 uint capturedId = sigilId;
-                CoreLoopUiArt.Button("PickSigilBtn" + i, transform, cx + 90f, cy + 444f, 340f, 64f,
-                    "铭刻此符印", () => season.PickWuxingTowerSigil(capturedId), !busy, true, 24f);
+                CoreLoopUiArt.Button("PickSigilBtn" + i, transform, cx + 35f, cy + cardH + 18f, 280f, 58f,
+                    "铭刻此符印", () => season.PickWuxingTowerSigil(capturedId), !busy, true, 23f);
             }
         }
     }

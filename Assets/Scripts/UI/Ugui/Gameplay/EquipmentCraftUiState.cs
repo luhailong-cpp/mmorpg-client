@@ -64,7 +64,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 if (_client == null || Busy || Pending || LoadingRules || LoadingPreview || _client.HasPendingActivityReward || _client.HasPendingMaterialReward)
                     return false;
                 var preview = Preview;
-                return preview != null && preview.Available && preview.Result != null && preview.Material != null;
+                return preview != null && preview.Available && preview.Result != null
+                    && (preview.Material != null || preview.Choice?.Operation == EquipmentCraftChoice.Types.Operation.UpgradeTier);
             }
         }
 
@@ -151,6 +152,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Operation = EquipmentCraftChoice.Types.Operation.InheritEnhance,
             ItemId = targetItemId,
             SourceItemId = sourceItemId,
+        });
+
+        /// <summary>V1 基础装/首饰原地无损升档：纯银两升级至同部位更高档位模板，保留强化、保底、词条、品相、署名与可交易态。</summary>
+        public void SelectUpgradeTier(ulong itemId, uint targetConfigId) => Select(new EquipmentCraftChoice
+        {
+            Operation = EquipmentCraftChoice.Types.Operation.UpgradeTier,
+            ItemId = itemId,
+            ConfigId = targetConfigId,
         });
 
         private void Select(EquipmentCraftChoice choice)

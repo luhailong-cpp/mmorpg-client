@@ -28,6 +28,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private ulong _enhanceBindItemId;
         private ulong _talismanTargetItemId;
         private ulong _inheritSourceItemId;
+        private ulong _upgradeTierItemId;
+        private uint _upgradeTierTargetConfigId;
 
         public void OpenPolishForItem(ulong itemId = 0, ulong proxyMasterPlayerId = 0)
         {
@@ -808,6 +810,93 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 preview?.Available == true ? Jade : Danger);
             Button(_modalLayer, "InheritCancel", "取消", 860, 1240, 720, CloseModal);
             Button(_modalLayer, "InheritCommit", _craft.Busy ? "继承中…" : "确认消耗继承符", 2160, 1240, 960,
+                () => { if (canCommit) _craft.Commit(); }, true, canCommit);
+        }
+
+        private void OpenUpgradeTier(ulong itemId)
+        {
+            if (WriteBlocked || itemId == 0) return;
+            _upgradeTierItemId = itemId;
+            _upgradeTierTargetConfigId = 0;
+            _craft.ClearSelection();
+            _modal = Modal.UpgradeTier;
+            if (_craft.Rules == null && !_craft.LoadingRules) _craft.RefreshRules();
+            Render();
+        }
+
+        private void RenderUpgradeTierModal()
+        {
+            var item = FindItem(_upgradeTierItemId);
+            var targets = EquipmentScreenModel.FindUpgradeTierTargets(item, _craft.Rules);
+            uint playerLevel = _panel?.Level ?? 0u;
+            var selectedTarget = targets.FirstOrDefault(t => t.ConfigId == _upgradeTierTargetConfigId);
+            if (selectedTarget == null && targets.Count > 0)
+            {
+                selectedTarget = EquipmentScreenModel.PickDefaultUpgradeTarget(targets, playerLevel);
+                _upgradeTierTargetConfigId = selectedTarget?.ConfigId ?? 0u;
+            }
+            if (item != null && selectedTarget != null && !_craft.LoadingPreview && !_craft.Busy && !_craft.Pending)
+            {
+                var cur = _craft.Choice;
+                if (cur?.Operation != EquipmentCraftChoice.Types.Operation.UpgradeTier
+                    || cur.ItemId != item.ItemId || cur.ConfigId != selectedTarget.ConfigId)
+                {
+                    _craft.SelectUpgradeTier(item.ItemId, selectedTarget.ConfigId);
+                }
+            }
+
+            Label(_modalLayer, "UpgradeTierTitle", "V1 装备原地无损升档（纯银两 · 0 材料）", 750, 195, 2400, 90, 58, color: Jade);
+            string currentSummary = item == null
+                ? "未找到该装备，请关闭后刷新"
+                : $"当前：{Name(item)}（{item.EquipLevel}级 · 强化 +{item.EnhanceLevel} · {(item.Bound ? "仅自用 B" : "可交易 T")}）";
+            Label(_modalLayer, "UpgradeTierBanner",
+                currentSummary + "\n原地无损升级基础属性档位：100% 保留强化等级、保底次数、已装词条、品相、宗师署名与可交易状态，不消耗永久打造材料。",
+                750, 294, 2400, 118, 34, true, Jade);
+
+            var list = Scroll(_modalLayer, "UpgradeTierList", 750, 428, 1220, 740, Math.Max(740, targets.Count * 155));
+            for (int i = 0; i < targets.Count; i++)
+            {
+                var target = targets[i];
+                bool overLevel = playerLevel > 0 && target.EquipLevel > playerLevel;
+                string label = $"{Name(target)}  ·  {target.EquipLevel}级" + (overLevel ? "（高于当前等级）" : "（可立即穿戴）");
+                ChoiceRow(list, "UpgradeTierTarget_" + target.ConfigId, label, 5, i * 155, 1160, 138, () =>
+                {
+                    if (_craft.Busy || _craft.Pending || item == null) return;
+                    _upgradeTierTargetConfigId = target.ConfigId;
+                    _craft.SelectUpgradeTier(item.ItemId, target.ConfigId);
+                    Render();
+                }, _upgradeTierTargetConfigId == target.ConfigId, !_craft.Busy && !_craft.Pending);
+            }
+            if (targets.Count == 0)
+            {
+                string emptyHint = _craft.LoadingRules ? "正在同步可升档列表…" : "该装备已达当前最高档位或暂无更高档位模板。";
+                Label(list, "UpgradeTierEmpty", emptyHint, 24, 48, 1140, 120, 40, true, Muted);
+            }
+
+            var preview = _craft.Preview;
+            string previewText = _craft.LoadingPreview
+                ? "正在读取服务端升档预览…"
+                : preview == null
+                    ? "请在左侧选择目标等级档位查看纯银两消耗与属性变化。"
+                    : EquipmentScreenModel.FormatCraftPreviewSummary(preview);
+            if (preview != null && !preview.Available && preview.UnavailableTip != 0)
+                previewText += "\n" + PlayerFeaturesClient.DescribeEquipTip("不可升档", new TipInfoMessage { Id = preview.UnavailableTip });
+            Label(_modalLayer, "UpgradeTierCost", previewText, 2040, 434, 1120, 220, 38, true,
+                preview?.Available == true ? Jade : Danger);
+
+            if (item != null && preview?.Result != null)
+            {
+                Label(_modalLayer, "UpgradeTierDiffTitle", "基础属性提升预览", 2040, 668, 1120, 56, 40, color: Jade);
+                TextLines(_modalLayer, "UpgradeTierDiffLines", EquipmentScreenModel.CompareLines(item, preview.Result),
+                    2040, 730, 1120, 440, 36);
+            }
+
+            bool canCommit = _craft.CanCommit && !WriteBlocked && item != null
+                && preview?.Choice?.Operation == EquipmentCraftChoice.Types.Operation.UpgradeTier
+                && preview.Choice.ItemId == item.ItemId
+                && preview.Choice.ConfigId == _upgradeTierTargetConfigId;
+            Button(_modalLayer, "UpgradeTierCancel", "取消", 860, 1260, 720, CloseModal);
+            Button(_modalLayer, "UpgradeTierCommit", _craft.Busy ? "升档中…" : "确认无损升档", 2160, 1260, 960,
                 () => { if (canCommit) _craft.Commit(); }, true, canCommit);
         }
     }

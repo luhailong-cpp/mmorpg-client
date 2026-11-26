@@ -400,5 +400,75 @@ namespace MmorpgClient.Tests.EditMode.Jubaozhai
                 Assert.That(copy, Does.Not.Contain(tip.ToString()), $"tip {tip} 不得退化为裸错误码");
             }
         }
+
+        [Test]
+        public void ServerAuthoritativeDeadlineTracksMonotonicallyAndClearsOnSettleOrReset()
+        {
+            var net = new JubaozhaiFakeTransport();
+            using var client = new PaymentClient(net);
+
+            Assert.That(client.TryGetServerDeadline("order-deadline", out _, out _), Is.False, "未下发服务端意图前绝不伪造倒计时");
+
+            client.Tick(100.0);
+            client.Pay("order-deadline", PayChannel.Devpay);
+            net.Reply(new CreatePayIntentResponse
+            {
+                ServerNowMs = 1_000_000UL,
+                Intent = new PayIntentView
+                {
+                    OrderId = "order-deadline",
+                    State = PayIntentState.Created,
+                    ExpireMs = 1_300_000UL,
+                },
+            });
+
+            Assert.That(client.TryGetServerDeadline("order-deadline", out ulong rem0, out ulong total0), Is.True);
+            Assert.That(rem0, Is.EqualTo(300_000UL));
+            Assert.That(total0, Is.EqualTo(300_000UL));
+
+            // 单调推进 10 秒后，剩 290 秒且窗口分母保持 300 秒
+            client.Tick(110.0);
+            net.Reply(new GetPayIntentResponse
+            {
+                ServerNowMs = 1_010_000UL,
+                Intent = new PayIntentView
+                {
+                    OrderId = "order-deadline",
+                    State = PayIntentState.Created,
+                    ExpireMs = 1_300_000UL,
+                },
+            });
+            Assert.That(client.TryGetServerDeadline("order-deadline", out ulong rem1, out ulong total1), Is.True);
+            Assert.That(rem1, Is.EqualTo(290_000UL));
+            Assert.That(total1, Is.EqualTo(300_000UL));
+
+            // 推进超过截止时刻后归零不下溢
+            client.Tick(450.0);
+            Assert.That(client.TryGetServerDeadline("order-deadline", out ulong remExpired, out _), Is.True);
+            Assert.That(remExpired, Is.EqualTo(0UL));
+
+            // 终态 PAID 或 Reset 后清除倒计时
+            net.Reply(new GetPayIntentResponse
+            {
+                ServerNowMs = 1_350_000UL,
+                Intent = new PayIntentView
+                {
+                    OrderId = "order-deadline",
+                    State = PayIntentState.Paid,
+                    ExpireMs = 1_300_000UL,
+                },
+            });
+            Assert.That(client.TryGetServerDeadline("order-deadline", out _, out _), Is.False);
+
+            client.Pay("order-reset", PayChannel.Devpay);
+            net.Reply(new CreatePayIntentResponse
+            {
+                ServerNowMs = 2_000_000UL,
+                Intent = new PayIntentView { OrderId = "order-reset", State = PayIntentState.Created, ExpireMs = 2_600_000UL },
+            });
+            Assert.That(client.TryGetServerDeadline("order-reset", out _, out _), Is.True);
+            client.Reset();
+            Assert.That(client.TryGetServerDeadline("order-reset", out _, out _), Is.False);
+        }
     }
 }

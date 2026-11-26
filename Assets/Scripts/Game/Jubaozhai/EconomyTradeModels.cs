@@ -705,4 +705,88 @@ namespace MmorpgClient.Game.Jubaozhai
             }
         }
     }
+
+    public enum PaymentCashierBadgeKind
+    {
+        None = 0,
+        Waiting = 1,
+        Settled = 2,
+        Revoked = 3,
+    }
+
+    /// <summary>官方直售商城与订单支付收银台纯 C# 推导模型（零 Unity 依赖，严禁以本地轮询窗代替服务端订单截止时间）。</summary>
+    public static class PaymentCashierViewModel
+    {
+        /// <summary>pay_countdown_fill.png 左右九宫角帽总和 16+16=32px；宽度小于此阈值时须隐藏填充，避免角帽挤压。</summary>
+        public const float CountdownMinVisibleWidthPx = 32f;
+
+        public static PaymentCashierBadgeKind ResolveBadge(CommerceOrderState state, bool paymentWatching)
+        {
+            if (state == CommerceOrderState.Delivered || state == CommerceOrderState.Settled)
+                return PaymentCashierBadgeKind.Settled;
+            if (state == CommerceOrderState.Reversing || state == CommerceOrderState.Reversed
+                || state == CommerceOrderState.Refunded || state == CommerceOrderState.Manual
+                || state == CommerceOrderState.Cancelled)
+                return PaymentCashierBadgeKind.Revoked;
+            if (paymentWatching
+                || state == CommerceOrderState.AwaitingPayment
+                || state == CommerceOrderState.WaitingConfirmation
+                || state == CommerceOrderState.Escrowing
+                || state == CommerceOrderState.Delivering
+                || state == CommerceOrderState.CancelPending
+                || state == CommerceOrderState.RefundPending)
+                return PaymentCashierBadgeKind.Waiting;
+            return PaymentCashierBadgeKind.None;
+        }
+
+        public static string BadgeSliceKey(PaymentCashierBadgeKind kind) => kind switch
+        {
+            PaymentCashierBadgeKind.Waiting => "badge_pay_waiting",
+            PaymentCashierBadgeKind.Settled => "badge_pay_settled",
+            PaymentCashierBadgeKind.Revoked => "badge_pay_revoked",
+            _ => string.Empty,
+        };
+
+        public static string ResolveBadgeSliceKey(CommerceOrderState state, bool paymentWatching)
+            => BadgeSliceKey(ResolveBadge(state, paymentWatching));
+
+        public static float ComputeCountdownFillWidth(
+            float trackWidthPx,
+            ulong remainingMs,
+            ulong totalWindowMs,
+            float minVisibleWidthPx = CountdownMinVisibleWidthPx)
+        {
+            if (trackWidthPx <= 0f || minVisibleWidthPx <= 0f || trackWidthPx < minVisibleWidthPx
+                || totalWindowMs == 0UL || remainingMs == 0UL)
+                return 0f;
+            double ratio = remainingMs >= totalWindowMs ? 1d : (double)remainingMs / (double)totalWindowMs;
+            float width = (float)(trackWidthPx * ratio);
+            return width < minVisibleWidthPx ? 0f : width;
+        }
+
+        public static string FormatCountdownText(ulong remainingMs)
+        {
+            if (remainingMs == 0UL) return "支付时限已到，请刷新订单确认最新状态";
+            ulong totalSeconds = (remainingMs + 999UL) / 1000UL;
+            ulong hours = totalSeconds / 3600UL;
+            ulong minutes = (totalSeconds % 3600UL) / 60UL;
+            ulong seconds = totalSeconds % 60UL;
+            if (hours > 0UL)
+                return $"剩余支付时间：{hours}时{minutes:D2}分{seconds:D2}秒";
+            return $"剩余支付时间：{minutes:D2}分{seconds:D2}秒";
+        }
+
+        public static bool IsUnsealTalismanSku(OfficialSkuView sku)
+        {
+            string title = sku?.Title ?? string.Empty;
+            return title.Contains("解封") || title.Contains("剥离");
+        }
+
+        public static bool IsSkuRowHighlighted(OfficialSkuView sku, ulong selectedSkuId, int rowIndex)
+        {
+            if (sku == null) return false;
+            if (selectedSkuId != 0UL) return sku.SkuId == selectedSkuId;
+            return rowIndex == 0 && sku.Available > 0UL;
+        }
+    }
 }

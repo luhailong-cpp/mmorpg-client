@@ -44,6 +44,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         public event Action<global::TrialJournalEntryView> JumpRequested;
         public event Action<uint> ClaimMilestoneRequested;
         public event Action<uint> RedeemVoucherRequested;
+        public event Action ViewChanged;
         public event Action RefreshRequested;
         public event Action OpenAppearanceRequested;
 
@@ -56,14 +57,14 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             _root = QdaoUguiFactory.CreateRect("TrialJournalWindow", parent, 0f, 0f,
                 TrialJournalUiArt.DesignWidth, TrialJournalUiArt.DesignHeight);
 
-            // 外框与顶部云纹标题牌（严格按 style.css 尺寸定位，底板无字）
+            // 外框与顶部标题牌（优先加载 UI/Ugui/TrialJournalV2/ 专属切片，缺图时回落至既有共享切片，底板无字）
             var frame = TrialJournalUiArt.SlicedOrTint("MainFrame", _root,
-                50f, 135f, 1820f, 865f, TrialJournalUiArt.LoadChronicle("main_frame"),
+                50f, 135f, 1820f, 865f, TrialJournalUiArt.LoadSkin("main_frame", "main_frame"),
                 TrialJournalUiArt.Paper, raycast: true);
             frame.pixelsPerUnitMultiplier = 1.05f;
 
             var titlePlate = TrialJournalUiArt.FixedArt("TitlePlate", _root,
-                605f, 78f, 710f, 145f, TrialJournalUiArt.LoadChronicle("title_plate"),
+                605f, 78f, 710f, 145f, TrialJournalUiArt.LoadSkin("title_plate", "title_plate"),
                 TrialJournalUiArt.Jade, preserveAspect: true);
             TrialJournalUiArt.Label("TitleMain", titlePlate.transform,
                 90f, 18f, 530f, 64f, "试 炼 志", 46f, TrialJournalUiArt.ButtonCream,
@@ -73,7 +74,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 bold: false, wrap: false, alignment: TextAlignmentOptions.Center);
 
             _closeButton = QdaoUguiFactory.CreateArtButton("CloseButton", _root,
-                1754f, 166f, 70f, 70f, TrialJournalUiArt.LoadChronicle("close"), out var closeImg);
+                1754f, 166f, 70f, 70f, TrialJournalUiArt.LoadSkin("close_btn", "close"), out var closeImg);
             closeImg.type = Image.Type.Simple;
             closeImg.preserveAspect = true;
             closeImg.color = closeImg.sprite != null ? Color.white : TrialJournalUiArt.Jade;
@@ -324,8 +325,10 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 bool selected = item.tab == _activeTab;
                 Color bg = selected ? TrialJournalUiArt.SelectedBg : TrialJournalUiArt.CardBg;
                 Color border = selected ? TrialJournalUiArt.SelectedLine : QdaoUguiTheme.Html("#D8C8A7");
-                var plate = TrialJournalUiArt.BorderedBox($"RailTab_{item.tab}", _leftRail,
-                    4f, y, 226f, 74f, bg, border, selected ? 2f : 1f, raycast: true);
+                var plate = TrialJournalUiArt.SlicedOrBordered($"RailTab_{item.tab}", _leftRail,
+                    4f, y, 226f, 74f,
+                    selected ? "rail_tab_selected" : "rail_tab_idle",
+                    bg, border, selected ? 2f : 1f, raycast: true);
                 var btn = plate.gameObject.AddComponent<Button>();
                 btn.targetGraphic = plate;
                 var targetTab = item.tab;
@@ -334,7 +337,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                     if (_activeTab == targetTab) return;
                     _activeTab = targetTab;
                     _selectedEntryId = 0u;
-                    RefreshRequested?.Invoke(); // 触发一次轻量重绘，不强刷网络
+                    ViewChanged?.Invoke();
                 });
                 TrialJournalUiArt.Label("Title", plate.transform, 16f, 10f, 168f, 30f,
                     item.title, 21f, selected ? TrialJournalUiArt.Jade : TrialJournalUiArt.Ink, bold: true);
@@ -402,7 +405,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                     : "点击关卡展开战法印明细与配装复盘";
 
             var secImg = TrialJournalUiArt.SlicedOrTint("SectionPlate", _centerPane,
-                0f, 118f, 372f, 56f, TrialJournalUiArt.LoadChronicle("section_plate"),
+                0f, 118f, 372f, 56f, TrialJournalUiArt.LoadSkin("section_plate", "section_plate"),
                 TrialJournalUiArt.Jade);
             TrialJournalUiArt.Label("SectionTitle", secImg.transform, 24f, 0f, 324f, 56f,
                 sectionTitle, 24f, TrialJournalUiArt.ButtonCream, bold: true,
@@ -449,11 +452,15 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
 
         private void DrawMetricCard(float x, string title, string value, string sub)
         {
-            var card = TrialJournalUiArt.BorderedBox("Metric_" + title, _centerPane,
-                x, 0f, 287f, 106f, TrialJournalUiArt.CardBg, QdaoUguiTheme.Html("#D5C19C"), 1.2f);
-            // 左侧细玉绿竖条（对齐 .metric::before）
-            QdaoUguiFactory.CreateImage("Accent", card.transform, 12f, 14f, 3.5f, 78f, null)
-                .color = QdaoUguiTheme.Html("#93B49B");
+            var card = TrialJournalUiArt.SlicedOrBordered("Metric_" + title, _centerPane,
+                x, 0f, 287f, 106f, "metric_card",
+                TrialJournalUiArt.CardBg, QdaoUguiTheme.Html("#D5C19C"), 1.2f);
+            // 仅在无专属切片回落态绘制左侧装饰竖条
+            if (card.sprite == null)
+            {
+                QdaoUguiFactory.CreateImage("Accent", card.transform, 12f, 14f, 3.5f, 78f, null)
+                    .color = QdaoUguiTheme.Html("#93B49B");
+            }
             TrialJournalUiArt.Label("Label", card.transform, 24f, 10f, 250f, 24f,
                 title, 15f, TrialJournalUiArt.Sub);
             TrialJournalUiArt.Label("Value", card.transform, 24f, 34f, 250f, 40f,
@@ -511,10 +518,11 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 bool selected = entry.EntryId == _selectedEntryId;
                 float rowH = selected ? 186f : 90f;
 
+                var dedicatedRow = TrialJournalUiArt.LoadDedicatedOnly(selected ? "entry_row_selected" : "entry_row_idle");
                 var rowImg = TrialJournalUiArt.SlicedOrTint($"Entry_{entry.EntryId}", parent,
-                    0f, y, 882f, rowH, TrialJournalUiArt.LoadChronicle("member_row"),
+                    0f, y, 882f, rowH, dedicatedRow ?? TrialJournalUiArt.LoadChronicle("member_row"),
                     selected ? TrialJournalUiArt.SelectedBg : TrialJournalUiArt.CardBg, raycast: true);
-                if (selected)
+                if (selected && dedicatedRow == null)
                 {
                     rowImg.color = TrialJournalUiArt.SelectedBg;
                     var outline = rowImg.gameObject.AddComponent<Outline>();
@@ -527,10 +535,10 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 rowBtn.onClick.AddListener(() =>
                 {
                     _selectedEntryId = capturedEntryId;
-                    RefreshRequested?.Invoke();
+                    ViewChanged?.Invoke();
                 });
 
-                // 左侧头像框：PVE 复用宝宝美术库高清立绘，PVP 显示徽章
+                // 左侧头像框：PVE 复用宝宝美术库高清立绘，PVP 显示徽章；存在 portrait_frame 专属切片时自动叠框
                 var portraitBg = QdaoUguiFactory.CreateImage("PortraitBg", rowImg.transform,
                     14f, 10f, 70f, 70f, TrialJournalUiArt.CircleSprite());
                 portraitBg.color = QdaoUguiTheme.Html("#E6EAD6");
@@ -539,6 +547,12 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                     var bossSprite = BattleArtCatalog.LoadMonsterPortrait(bossId);
                     var bossImg = TrialJournalUiArt.FixedArt("BossPortrait", rowImg.transform,
                         16f, 12f, 66f, 66f, bossSprite, Color.clear, preserveAspect: true);
+                    var portraitFrame = TrialJournalUiArt.LoadDedicatedOnly("portrait_frame");
+                    if (portraitFrame != null)
+                    {
+                        TrialJournalUiArt.FixedArt("PortraitFrame", rowImg.transform,
+                            12f, 8f, 74f, 74f, portraitFrame, Color.clear, preserveAspect: true);
+                    }
                     var guards = TrialJournalModels.GetEntryGuardMonsterIds(entry.EntryId);
                     if (guards != null && guards.Count >= 2)
                     {
@@ -702,10 +716,11 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 var m = snapshot.Milestones[i];
                 if (m == null) continue;
                 bool highlight = m.Claimable;
+                var dedicatedCard = TrialJournalUiArt.LoadDedicatedOnly(highlight ? "entry_row_selected" : "entry_row_idle");
                 var card = TrialJournalUiArt.SlicedOrTint($"Milestone_{m.MilestoneId}", parent,
-                    0f, y, 882f, 96f, TrialJournalUiArt.LoadChronicle("member_row"),
+                    0f, y, 882f, 96f, dedicatedCard ?? TrialJournalUiArt.LoadChronicle("member_row"),
                     highlight ? TrialJournalUiArt.SelectedBg : TrialJournalUiArt.CardBg);
-                if (highlight)
+                if (highlight && dedicatedCard == null)
                 {
                     card.color = TrialJournalUiArt.SelectedBg;
                     var outline = card.gameObject.AddComponent<Outline>();
@@ -769,8 +784,9 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
 
         private void RenderArtifactVoucherStrip(global::TrialJournalSnapshot snapshot, TrialJournalUiView view)
         {
-            var box = TrialJournalUiArt.BorderedBox("ArtifactSection", _centerPane,
-                0f, 472f, 886f, 134f, new Color(1f, 0.98f, 0.93f, 0.65f),
+            var box = TrialJournalUiArt.SlicedOrBordered("ArtifactSection", _centerPane,
+                0f, 472f, 886f, 134f, "artifact_tray",
+                new Color(1f, 0.98f, 0.93f, 0.65f),
                 QdaoUguiTheme.Html("#D7C7A4"), 1.2f);
 
             TrialJournalUiArt.Label("ArtHeading", box.transform, 14f, 6f, 140f, 32f,
@@ -797,8 +813,9 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 string shortName = opt != null && !string.IsNullOrEmpty(opt.Name) ? opt.Name : $"法宝{i + 1}";
                 bool selected = itemId == _selectedArtifactItemId && !tilesDisabled;
 
-                var tile = TrialJournalUiArt.BorderedBox($"ArtifactTile_{itemId}", box.transform,
+                var tile = TrialJournalUiArt.SlicedOrBordered($"ArtifactTile_{itemId}", box.transform,
                     tx, 44f, 96f, 82f,
+                    selected ? "artifact_slot_selected" : "artifact_slot_idle",
                     selected ? TrialJournalUiArt.SelectedBg : TrialJournalUiArt.Paper,
                     selected ? TrialJournalUiArt.SelectedLine : QdaoUguiTheme.Html("#DAC89E"),
                     selected ? 2f : 1f, raycast: true);
@@ -809,7 +826,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 btn.onClick.AddListener(() =>
                 {
                     _selectedArtifactItemId = capturedItem;
-                    RefreshRequested?.Invoke();
+                    ViewChanged?.Invoke();
                 });
 
                 var icon = TrialJournalUiArt.FixedArt("Icon", tile.transform,
@@ -849,7 +866,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
 
             // 立绘底座 + 星阵宗师 1024×1024 HD 立绘
             var pedestal = TrialJournalUiArt.FixedArt("Pedestal", _rightPane,
-                123f, 52f, 270f, 250f, TrialJournalUiArt.LoadChronicle("portrait_pedestal"),
+                123f, 52f, 270f, 250f, TrialJournalUiArt.LoadSkin("grandmaster_pedestal", "portrait_pedestal"),
                 TrialJournalUiArt.CardBg, preserveAspect: false);
             var gmSprite = AcquireGrandmasterPortrait();
             var gmImg = TrialJournalUiArt.FixedArt("GrandmasterPortrait", pedestal.transform,
@@ -865,8 +882,10 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 view.GrandmasterDesc, 13.5f, TrialJournalUiArt.Sub, bold: false, wrap: true,
                 alignment: TextAlignmentOptions.Top);
 
-            // 18 枚宗师道印 2×9 圆形网格（对齐 04-in-progress.png / 05-grandmaster-18-seals.png）
+            // 18 枚宗师道印 2×9 圆形网格（优先加载 seal_medallion_lit/dim 专属切片，缺图回落至抗锯齿圆徽）
             uint litSeals = Math.Min(view.PermanentLitSeals, 18u);
+            var litMedallion = TrialJournalUiArt.LoadDedicatedOnly("seal_medallion_lit");
+            var dimMedallion = TrialJournalUiArt.LoadDedicatedOnly("seal_medallion_dim");
             var circle = TrialJournalUiArt.CircleSprite();
             for (int i = 0; i < 18; i++)
             {
@@ -875,11 +894,22 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 float sx = 24f + col * 52f;
                 float sy = 392f + row * 50f;
                 bool on = i < litSeals && view.Phase != TrialJournalVisualPhase.FirstLoad;
-                var sealBg = QdaoUguiFactory.CreateImage($"Seal_{i + 1}", _rightPane, sx, sy, 44f, 44f, circle);
-                sealBg.color = on ? TrialJournalUiArt.SealGoldFill : TrialJournalUiArt.SealDimFill;
-                var outline = sealBg.gameObject.AddComponent<Outline>();
-                outline.effectColor = on ? TrialJournalUiArt.SealGold : QdaoUguiTheme.Html("#C3B08C");
-                outline.effectDistance = new Vector2(1.4f, -1.4f);
+                var dedicatedSeal = on ? litMedallion : dimMedallion;
+                var sealBg = QdaoUguiFactory.CreateImage($"Seal_{i + 1}", _rightPane, sx, sy, 44f, 44f,
+                    dedicatedSeal ?? circle);
+                if (dedicatedSeal != null)
+                {
+                    sealBg.type = Image.Type.Simple;
+                    sealBg.preserveAspect = true;
+                    sealBg.color = Color.white;
+                }
+                else
+                {
+                    sealBg.color = on ? TrialJournalUiArt.SealGoldFill : TrialJournalUiArt.SealDimFill;
+                    var outline = sealBg.gameObject.AddComponent<Outline>();
+                    outline.effectColor = on ? TrialJournalUiArt.SealGold : QdaoUguiTheme.Html("#C3B08C");
+                    outline.effectDistance = new Vector2(1.4f, -1.4f);
+                }
                 TrialJournalUiArt.Label("Num", sealBg.transform, 0f, 0f, 44f, 44f,
                     (i + 1).ToString(), 17f,
                     on ? QdaoUguiTheme.Html("#5E4B2B") : TrialJournalUiArt.SealDimInk,
@@ -944,7 +974,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             if (_pendingRedeemItemId != 0u)
             {
                 var card = TrialJournalUiArt.SlicedOrTint("RedeemConfirmCard", _modalLayer,
-                    580f, 340f, 760f, 380f, TrialJournalUiArt.LoadChronicle("application_card"),
+                    580f, 340f, 760f, 380f, TrialJournalUiArt.LoadSkin("modal_panel", "application_card"),
                     TrialJournalUiArt.Paper, raycast: true);
                 TrialJournalUiArt.Label("Title", card.transform, 40f, 32f, 680f, 44f,
                     $"确认兑换自用法宝「{_pendingRedeemName}」？", 28f, TrialJournalUiArt.Jade,
@@ -974,7 +1004,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             if (_readingCommentary != null)
             {
                 var card = TrialJournalUiArt.SlicedOrTint("CommentaryCard", _modalLayer,
-                    440f, 210f, 1040f, 640f, TrialJournalUiArt.LoadChronicle("application_card"),
+                    440f, 210f, 1040f, 640f, TrialJournalUiArt.LoadSkin("modal_panel", "application_card"),
                     TrialJournalUiArt.Paper, raycast: true);
                 TrialJournalUiArt.Label("Chapter", card.transform, 48f, 30f, 944f, 28f,
                     "留 灯 院 · 试 炼 评 语", 17f, TrialJournalUiArt.MutedLabel,
@@ -1031,7 +1061,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 return;
             }
             _activeTab = TrialJournalNavTab.Milestones;
-            RefreshRequested?.Invoke();
+            ViewChanged?.Invoke();
         }
 
         private Sprite AcquireGrandmasterPortrait()

@@ -12,10 +12,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 {
     public sealed partial class AppearanceUiRoot
     {
-        private const float SeriesEpilogueViewportWidth = 944f;
-        private const float SeriesEpilogueViewportHeight = 432f;
-        private const float SeriesTabHeight = 44f;
-        private const float SeriesBadgeHeight = 36f;
+        private const float SeriesEpilogueViewportWidth = 952f;
+        private const float SeriesEpilogueViewportHeight = 444f;
+        private const float SeriesTabHeight = 46f;
+        private const float SeriesBadgeHeight = 34f;
 
         private sealed class SeriesTabView
         {
@@ -72,6 +72,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
 #if UNITY_EDITOR
         public GameObject SeriesTabBarRoot => _seriesTabBarRoot;
+        public RectTransform SeriesTabContent => _seriesTabContent;
         public GameObject SeriesBannerRoot => _seriesBannerRoot;
         public GameObject SeriesEpilogueOverlay => _seriesEpilogueOverlay;
         public ScrollRect SeriesEpilogueScroll => _seriesEpilogueScroll;
@@ -90,21 +91,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void BuildSeriesUi(RectTransform mainRoot, RectTransform fittedRoot)
         {
-            // 左栏顶右侧：已集齐系列计数条（文案避开两端卷云装饰）
+            // 左栏顶右侧：已集齐系列计数铭牌（220x44 原生高 44px 横向三段拉伸，文字避开两端 35px 云纹）
             var summaryPlate = AppearanceUiArt.HorizontalBar(mainRoot, "AppearanceSeriesSummary",
                 AppearanceUiArt.LoadSeries("series_badge_dim") ?? AppearanceUiArt.LoadTeam("badge_leader"),
-                416f, 148f, 264f, 52f, AppearanceUiArt.SeriesDimBg);
+                436f, 152f, 244f, 44f, AppearanceUiArt.SeriesDimBg);
             _seriesSummaryLabel = QdaoUguiFactory.CreateText("SeriesSummaryLabel", summaryPlate.transform,
-                42f, 0f, 180f, 52f, "集齐系列 0/0", 21f, AppearanceUiArt.DeepJade, TextAlignmentOptions.Center);
+                36f, 0f, 172f, 44f, "集齐系列 0/0", 20f, AppearanceUiArt.DeepJade, TextAlignmentOptions.Center);
             _seriesSummaryLabel.richText = false;
+            _seriesSummaryLabel.textWrappingMode = TextWrappingModes.NoWrap;
             _seriesSummaryLabel.fontStyle = FontStyles.Bold;
             _seriesSummaryLabel.enableAutoSizing = true;
             _seriesSummaryLabel.fontSizeMin = 15f;
-            _seriesSummaryLabel.fontSizeMax = 21f;
+            _seriesSummaryLabel.fontSizeMax = 20f;
             _seriesSummaryRoot = summaryPlate.gameObject;
             _seriesSummaryRoot.SetActive(false);
 
-            // 左栏系列筛选横条（支持横向滑动，便于未来持续扩充节日/门派系列）
+            // 左栏系列筛选横条（现有 4 项同排单行展示，后续扩展更多系列时自动启用横向滑动）
             var tabBar = QdaoUguiFactory.CreateRect("AppearanceSeriesTabBar", mainRoot, 68f, 206f, 612f, 48f);
             var tabHit = tabBar.gameObject.AddComponent<Image>();
             tabHit.color = new Color(1f, 1f, 1f, 0.001f);
@@ -121,10 +123,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _seriesTabBarRoot = tabBar.gameObject;
             _seriesTabBarRoot.SetActive(false);
 
-            // 左栏选中系列时的精简系列信息条（612x120 原比例卡片：左侧圆环印章槽 cx=83 cy=60、x=151 金色竖线、右侧正文区 x=166..586）
+            // 左栏选中系列时的精简系列信息条（612x120 九宫格底板：左 68x68 印章，中右标题/铭牌/简介与合篇按钮）
             var bannerCard = AppearanceUiArt.SeriesCard(mainRoot, "AppearanceSeriesBanner", "series_banner_card",
                 68f, 258f, 612f, 120f, AppearanceUiArt.ParchmentCard);
-            var sealBox = QdaoUguiFactory.CreateRect("SeriesSealSlot", bannerCard.transform, 49f, 26f, 68f, 68f);
+            var sealBox = QdaoUguiFactory.CreateRect("SeriesSealSlot", bannerCard.transform, 18f, 26f, 68f, 68f);
             _seriesSealFallbackBg = QdaoUguiFactory.CreateImage("SeriesSealFallbackBg", sealBox, 0f, 0f, 68f, 68f, null);
             _seriesSealFallbackBg.color = AppearanceUiArt.SeriesDimBg;
             _seriesSealFallbackLabel = QdaoUguiFactory.CreateText("SeriesSealFallbackLabel", sealBox,
@@ -136,30 +138,42 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _seriesSealIcon.enabled = false;
 
             _seriesBannerTitle = QdaoUguiFactory.CreateText("SeriesBannerTitle", bannerCard.transform,
-                166f, 12f, 224f, 30f, "", 20f, AppearanceUiArt.DeepJade, TextAlignmentOptions.MidlineLeft);
+                102f, 14f, 250f, 30f, "", 20f, AppearanceUiArt.DeepJade, TextAlignmentOptions.MidlineLeft);
             _seriesBannerTitle.richText = false;
+            _seriesBannerTitle.textWrappingMode = TextWrappingModes.NoWrap;
             _seriesBannerTitle.fontStyle = FontStyles.Bold;
             _seriesBannerTitle.enableAutoSizing = true;
             _seriesBannerTitle.fontSizeMin = 15f;
             _seriesBannerTitle.fontSizeMax = 20f;
 
             _seriesBannerBadgeBg = AppearanceUiArt.HorizontalBar(bannerCard.transform, "SeriesBannerBadge",
-                null, 166f, 44f, 224f, SeriesBadgeHeight, AppearanceUiArt.SeriesDimBg);
+                null, 102f, 46f, 186f, SeriesBadgeHeight, AppearanceUiArt.SeriesDimBg);
             _seriesBannerBadgeLabel = QdaoUguiFactory.CreateText("SeriesBannerBadgeLabel", _seriesBannerBadgeBg.transform,
-                30f, 0f, 164f, SeriesBadgeHeight, "", 16f, AppearanceUiArt.MutedInk, TextAlignmentOptions.Center);
+                28f, 0f, 130f, SeriesBadgeHeight, "", 18f, AppearanceUiArt.MutedInk, TextAlignmentOptions.Center);
             _seriesBannerBadgeLabel.richText = false;
+            _seriesBannerBadgeLabel.textWrappingMode = TextWrappingModes.NoWrap;
             _seriesBannerBadgeLabel.enableAutoSizing = true;
-            _seriesBannerBadgeLabel.fontSizeMin = 12f;
-            _seriesBannerBadgeLabel.fontSizeMax = 16f;
+            _seriesBannerBadgeLabel.fontSizeMin = 13f;
+            _seriesBannerBadgeLabel.fontSizeMax = 18f;
 
             _seriesBannerDesc = QdaoUguiFactory.CreateText("SeriesBannerDesc", bannerCard.transform,
-                166f, 84f, 414f, 24f, "", 16f, AppearanceUiArt.MutedInk, TextAlignmentOptions.MidlineLeft);
+                102f, 84f, 490f, 24f, "", 16f, AppearanceUiArt.MutedInk, TextAlignmentOptions.MidlineLeft);
             _seriesBannerDesc.richText = false;
+            _seriesBannerDesc.textWrappingMode = TextWrappingModes.NoWrap;
             _seriesBannerDesc.overflowMode = TextOverflowModes.Ellipsis;
 
             _seriesEpilogueBtn = AppearanceUiArt.ActionButton(bannerCard.transform, "AppearanceReadSeriesEpilogue",
-                "集齐解锁合篇", 398f, 18f, 188f, 54f, HandleReadSeriesEpilogueClicked, primary: false, fontSize: 18f);
+                "集齐解锁合篇", 360f, 24f, 232f, 50f, HandleReadSeriesEpilogueClicked, primary: false, fontSize: 18f);
             _seriesEpilogueBtnLabel = _seriesEpilogueBtn.GetComponentInChildren<TMP_Text>(true);
+            if (_seriesEpilogueBtnLabel != null)
+            {
+                // 预留按钮两端金尖装饰留白，防止较长篇名紧贴左右边框
+                _seriesEpilogueBtnLabel.rectTransform.offsetMin = new Vector2(26f, 0f);
+                _seriesEpilogueBtnLabel.rectTransform.offsetMax = new Vector2(-26f, 0f);
+                _seriesEpilogueBtnLabel.textWrappingMode = TextWrappingModes.NoWrap;
+                _seriesEpilogueBtnLabel.fontSizeMin = 13f;
+                _seriesEpilogueBtnLabel.fontSizeMax = 18f;
+            }
             _seriesBannerRoot = bannerCard.gameObject;
             _seriesBannerRoot.SetActive(false);
 
@@ -175,14 +189,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             AppearanceUiArt.Frame(box, "SeriesEpilogueFrameBg", 0f, 0f, w, h);
 
             _seriesEpilogueBackBtn = AppearanceUiArt.ActionButton(box, "AppearanceSeriesEpilogueBack",
-                "返回", 76f, 46f, 160f, 60f, HandleCloseSeriesEpilogue, primary: false, fontSize: 25f);
+                "返回", 64f, 36f, 160f, 56f, HandleCloseSeriesEpilogue, primary: false, fontSize: 25f);
 
-            var sealHolder = QdaoUguiFactory.CreateRect("SeriesEpilogueSealSlot", box, 256f, 34f, 76f, 76f);
+            // 顶栏居中点亮印章（84x84，与合篇效果图保持一致）
+            var sealHolder = QdaoUguiFactory.CreateRect("SeriesEpilogueSealSlot", box, (w - 84f) * 0.5f, 14f, 84f, 84f);
             var epilogueBgRect = QdaoUguiFactory.CreateStretch("SeriesEpilogueSealFallbackBg", sealHolder, Vector4.zero);
             _seriesEpilogueSealFallbackBg = epilogueBgRect.gameObject.AddComponent<Image>();
             _seriesEpilogueSealFallbackBg.color = AppearanceUiArt.SeriesLitBg;
             _seriesEpilogueSealFallbackLabel = QdaoUguiFactory.CreateText("SeriesEpilogueSealFallbackLabel", sealHolder,
-                0f, 0f, 76f, 76f, "印", 32f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
+                0f, 0f, 84f, 84f, "印", 32f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
             _seriesEpilogueSealFallbackLabel.rectTransform.anchorMin = Vector2.zero;
             _seriesEpilogueSealFallbackLabel.rectTransform.anchorMax = Vector2.one;
             _seriesEpilogueSealFallbackLabel.rectTransform.offsetMin = Vector2.zero;
@@ -195,29 +210,31 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _seriesEpilogueSealIcon.enabled = false;
 
             _seriesEpilogueTitleText = QdaoUguiFactory.CreateText("SeriesEpilogueTitle", box,
-                348f, 30f, 664f, 52f, "", 38f, AppearanceUiArt.DeepJade, TextAlignmentOptions.Center);
+                240f, 100f, 880f, 48f, "", 38f, AppearanceUiArt.DeepJade, TextAlignmentOptions.Center);
             _seriesEpilogueTitleText.richText = false;
+            _seriesEpilogueTitleText.textWrappingMode = TextWrappingModes.NoWrap;
             _seriesEpilogueTitleText.fontStyle = FontStyles.Bold;
             _seriesEpilogueTitleText.enableAutoSizing = true;
             _seriesEpilogueTitleText.fontSizeMin = 24f;
             _seriesEpilogueTitleText.fontSizeMax = 38f;
 
             _seriesEpilogueMetaText = QdaoUguiFactory.CreateText("SeriesEpilogueMeta", box,
-                348f, 86f, 664f, 34f, "", 22f, AppearanceUiArt.MutedInk, TextAlignmentOptions.Center);
+                240f, 150f, 880f, 30f, "", 22f, AppearanceUiArt.MutedInk, TextAlignmentOptions.Center);
             _seriesEpilogueMetaText.richText = false;
+            _seriesEpilogueMetaText.textWrappingMode = TextWrappingModes.NoWrap;
             _seriesEpilogueMetaText.enableAutoSizing = true;
             _seriesEpilogueMetaText.fontSizeMin = 16f;
             _seriesEpilogueMetaText.fontSizeMax = 22f;
 
             _seriesEpilogueCloseBtn = AppearanceUiArt.CloseButton(box, "AppearanceSeriesEpilogueClose",
-                w - 116f, 38f, 72f, HidePanel);
+                w - 112f, 30f, 68f, HidePanel);
 
             AppearanceUiArt.SeriesCard(box, "SeriesEpiloguePaperCard", "series_epilogue_card",
-                84f, 154f, 1192f, 528f, AppearanceUiArt.ParchmentInner);
+                84f, 186f, 1192f, 528f, AppearanceUiArt.ParchmentInner);
 
-            // 正文与滚动条严格落在 series_epilogue_card 四角云纹与上下金线安全区（卡内 x=112..1056, y=48..480）
+            // 正文严格落在 CONTROL-USAGE.md 声明的 series_epilogue_card 安全阅读区（卡内 x=120..1071, y=45..489）
             var viewport = QdaoUguiFactory.CreateRect("SeriesEpilogueViewport", box,
-                196f, 202f, SeriesEpilogueViewportWidth, SeriesEpilogueViewportHeight);
+                204f, 231f, SeriesEpilogueViewportWidth, SeriesEpilogueViewportHeight);
             var viewHit = viewport.gameObject.AddComponent<Image>();
             viewHit.color = new Color(1f, 1f, 1f, 0.001f);
             viewHit.raycastTarget = true;
@@ -233,7 +250,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _seriesEpilogueScroll.movementType = ScrollRect.MovementType.Clamped;
             _seriesEpilogueScroll.scrollSensitivity = 48f;
             AppearanceUiArt.AddVerticalScrollbar(_seriesEpilogueScroll, box, "SeriesEpilogueScrollbar",
-                1152f, 250f, 14f, 336f);
+                1180f, 240f, 14f, 426f);
 
             _seriesEpilogueDescLabel = QdaoUguiFactory.CreateText("SeriesEpilogueDesc", _seriesEpilogueContent,
                 12f, 12f, SeriesEpilogueViewportWidth - 24f, 84f, "", 23f,
@@ -260,7 +277,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _lastEpilogueBodyFontSize = _seriesEpilogueBodyText.fontSize;
 
             _seriesEpilogueFinishBtn = AppearanceUiArt.ActionButton(box, "AppearanceSeriesEpilogueFinish",
-                "读完返回", (w - 320f) * 0.5f, 706f, 320f, 68f, HandleCloseSeriesEpilogue, primary: true, fontSize: 27f);
+                "读完返回", (w - 300f) * 0.5f, 728f, 300f, 64f, HandleCloseSeriesEpilogue, primary: true, fontSize: 27f);
 
             _seriesEpilogueControls = new Selectable[]
             {
@@ -354,16 +371,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             ClearSeriesTabs();
             float x = 0f;
-            const float gap = 8f;
+            const float gap = AppearanceSeriesModels.DefaultTabGap;
+            float[] widths = AppearanceSeriesModels.ComputeSeriesTabWidths(
+                info.SeriesProgress, AppearanceSeriesModels.DefaultTabViewportWidth, gap);
 
-            AddSeriesTab(AppearanceSeriesModels.AllSeriesId, "全部", 112f, ref x, gap);
+            AddSeriesTab(AppearanceSeriesModels.AllSeriesId, "全部", widths[0], ref x, gap);
             for (int i = 0; i < info.SeriesProgress.Count; i++)
             {
                 var s = info.SeriesProgress[i];
-                float tabWidth = Mathf.Clamp(104f + (s.Name?.Length ?? 4) * 20f + 56f, 196f, 260f);
-                AddSeriesTab(s.SeriesId, s.Name ?? "", tabWidth, ref x, gap);
+                AddSeriesTab(s.SeriesId, s.Name ?? "", widths[i + 1], ref x, gap);
             }
-            _seriesTabContent.sizeDelta = new Vector2(Mathf.Max(612f, x), 48f);
+            float contentWidth = Mathf.Max(AppearanceSeriesModels.DefaultTabViewportWidth, x > 0f ? x - gap : 0f);
+            _seriesTabContent.sizeDelta = new Vector2(contentWidth, 48f);
         }
 
         private void AddSeriesTab(uint seriesId, string initialLabel, float width, ref float x, float gap)
@@ -371,18 +390,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             string objName = seriesId == AppearanceSeriesModels.AllSeriesId
                 ? "AppearanceSeriesTab_All"
                 : "AppearanceSeriesTab_" + seriesId;
-            var btn = QdaoUguiFactory.CreateArtButton(objName, _seriesTabContent, x, 2f, width, SeriesTabHeight,
+            var btn = QdaoUguiFactory.CreateArtButton(objName, _seriesTabContent, x, 1f, width, SeriesTabHeight,
                 null, out var bg);
             btn.navigation = new Navigation { mode = Navigation.Mode.Automatic };
             btn.onClick.AddListener(() => HandleSelectSeriesClicked(seriesId));
 
-            // 预留两端卷云安全边距（240x64 @ h=44 云纹约占左右 30px）
-            var label = QdaoUguiFactory.CreateText("Label", btn.transform, 32f, 0f, width - 64f, SeriesTabHeight,
-                initialLabel, 19f, AppearanceUiArt.JadeInk, TextAlignmentOptions.Center);
+            // 新版 series_tab_* 窄金角框预留左右 10~12px 安全边距，确保 4 项单行同屏完整可读
+            float padX = seriesId == AppearanceSeriesModels.AllSeriesId ? 10f : 12f;
+            var label = QdaoUguiFactory.CreateText("Label", btn.transform, padX, 0f, width - padX * 2f, SeriesTabHeight,
+                initialLabel, 18f, AppearanceUiArt.JadeInk, TextAlignmentOptions.Center);
             label.richText = false;
+            label.textWrappingMode = TextWrappingModes.NoWrap;
             label.enableAutoSizing = true;
-            label.fontSizeMin = 14f;
-            label.fontSizeMax = 19f;
+            label.fontSizeMin = 13f;
+            label.fontSizeMax = 18f;
 
             _seriesTabs.Add(new SeriesTabView
             {
@@ -438,16 +459,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (btnImg != null)
             {
                 var sprite = AppearanceUiArt.LoadGameplay(epilogueUnlocked ? "button_primary" : "button_secondary");
-                if (sprite != null)
-                {
-                    btnImg.sprite = sprite;
-                    btnImg.type = sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
-                    btnImg.color = Color.white;
-                }
-                else
-                {
-                    btnImg.color = epilogueUnlocked ? AppearanceUiArt.DeepJade : AppearanceUiArt.SeriesDimBg;
-                }
+                float targetHeight = _compactLayout ? 56f : 50f;
+                AppearanceUiArt.ApplyHorizontalSlice(btnImg, sprite, targetHeight,
+                    epilogueUnlocked ? AppearanceUiArt.DeepJade : AppearanceUiArt.SeriesDimBg);
             }
             string titleHint = !string.IsNullOrWhiteSpace(series.EpilogueTitle)
                 ? $"《{series.EpilogueTitle}》" : "合篇";
@@ -585,27 +599,30 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 if (hasSeries)
                 {
-                    MoveReadingElement(main, "AppearanceSeriesSummary", 532f, 124f, 584f, 64f);
+                    MoveReadingElement(main, "AppearanceSeriesSummary", 532f, 132f, 584f, 48f);
                     var summaryImg = _seriesSummaryRoot != null ? _seriesSummaryRoot.GetComponent<Image>() : null;
                     if (summaryImg != null)
-                        AppearanceUiArt.ApplyHorizontalSlice(summaryImg, summaryImg.sprite, 64f, AppearanceUiArt.SeriesDimBg);
+                        AppearanceUiArt.ApplyHorizontalSlice(summaryImg, summaryImg.sprite, 48f, AppearanceUiArt.SeriesDimBg);
                     if (_seriesSummaryLabel != null)
-                        PlaceTopLeft(_seriesSummaryLabel.rectTransform, 52f, 0f, 480f, 64f);
+                        PlaceTopLeft(_seriesSummaryLabel.rectTransform, 44f, 0f, 496f, 48f);
                     MoveReadingElement(main, "AppearanceSeriesTabBar", 56f, 194f, 1060f, 52f);
                     if (showBanner)
                     {
-                        // 窄横屏横卡比例 1060x92 与 612x120 差异大，切回九宫格纸卡避免烘焙圆环被压扁
                         ApplySeriesCardSprite(_seriesBannerRoot != null ? _seriesBannerRoot.GetComponent<Image>() : null,
-                            AppearanceUiArt.LoadTeam("application_card"), AppearanceUiArt.ParchmentCard);
+                            AppearanceUiArt.LoadSeries("series_banner_card") ?? AppearanceUiArt.LoadTeam("application_card"),
+                            AppearanceUiArt.ParchmentCard);
                         MoveReadingElement(main, "AppearanceSeriesBanner", 56f, 252f, 1060f, 92f);
                         var banner = _seriesBannerRoot.transform;
-                        MoveReadingElement(banner, "SeriesSealSlot", 14f, 12f, 68f, 68f);
-                        MoveReadingElement(banner, "SeriesBannerTitle", 94f, 8f, 360f, 34f);
-                        MoveReadingElement(banner, "SeriesBannerBadge", 464f, 8f, 260f, SeriesBadgeHeight);
+                        MoveReadingElement(banner, "SeriesSealSlot", 18f, 12f, 68f, 68f);
+                        MoveReadingElement(banner, "SeriesBannerTitle", 100f, 10f, 360f, 34f);
+                        MoveReadingElement(banner, "SeriesBannerBadge", 472f, 10f, 220f, SeriesBadgeHeight);
                         if (_seriesBannerBadgeLabel != null)
-                            PlaceTopLeft(_seriesBannerBadgeLabel.rectTransform, 30f, 0f, 200f, SeriesBadgeHeight);
-                        MoveReadingElement(banner, "SeriesBannerDesc", 94f, 52f, 630f, 30f);
-                        MoveReadingElement(banner, "AppearanceReadSeriesEpilogue", 742f, 18f, 300f, 56f);
+                            PlaceTopLeft(_seriesBannerBadgeLabel.rectTransform, 28f, 0f, 164f, SeriesBadgeHeight);
+                        MoveReadingElement(banner, "SeriesBannerDesc", 100f, 52f, 610f, 28f);
+                        MoveReadingElement(banner, "AppearanceReadSeriesEpilogue", 736f, 18f, 304f, 56f);
+                        var epilogueBtnImg = _seriesEpilogueBtn != null ? _seriesEpilogueBtn.GetComponent<Image>() : null;
+                        if (epilogueBtnImg != null && epilogueBtnImg.sprite != null)
+                            AppearanceUiArt.ApplyHorizontalSlice(epilogueBtnImg, epilogueBtnImg.sprite, 56f, AppearanceUiArt.SeriesDimBg);
                         MoveReadingElement(main, "AppearanceListViewport", 56f, 350f, 1036f, 222f);
                         MoveReadingElement(main, "AppearanceListScrollbar", 1104f, 350f, 12f, 222f);
                     }
@@ -620,12 +637,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 if (hasSeries)
                 {
-                    MoveReadingElement(main, "AppearanceSeriesSummary", 416f, 148f, 264f, 52f);
+                    MoveReadingElement(main, "AppearanceSeriesSummary", 436f, 152f, 244f, 44f);
                     var summaryImg = _seriesSummaryRoot != null ? _seriesSummaryRoot.GetComponent<Image>() : null;
                     if (summaryImg != null)
-                        AppearanceUiArt.ApplyHorizontalSlice(summaryImg, summaryImg.sprite, 52f, AppearanceUiArt.SeriesDimBg);
+                        AppearanceUiArt.ApplyHorizontalSlice(summaryImg, summaryImg.sprite, 44f, AppearanceUiArt.SeriesDimBg);
                     if (_seriesSummaryLabel != null)
-                        PlaceTopLeft(_seriesSummaryLabel.rectTransform, 42f, 0f, 180f, 52f);
+                        PlaceTopLeft(_seriesSummaryLabel.rectTransform, 36f, 0f, 172f, 44f);
                     MoveReadingElement(main, "AppearanceSeriesTabBar", 68f, 206f, 612f, 48f);
                     if (showBanner)
                     {
@@ -634,13 +651,16 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                             AppearanceUiArt.ParchmentCard);
                         MoveReadingElement(main, "AppearanceSeriesBanner", 68f, 258f, 612f, 120f);
                         var banner = _seriesBannerRoot.transform;
-                        MoveReadingElement(banner, "SeriesSealSlot", 49f, 26f, 68f, 68f);
-                        MoveReadingElement(banner, "SeriesBannerTitle", 166f, 12f, 224f, 30f);
-                        MoveReadingElement(banner, "SeriesBannerBadge", 166f, 44f, 224f, SeriesBadgeHeight);
+                        MoveReadingElement(banner, "SeriesSealSlot", 18f, 26f, 68f, 68f);
+                        MoveReadingElement(banner, "SeriesBannerTitle", 102f, 14f, 250f, 30f);
+                        MoveReadingElement(banner, "SeriesBannerBadge", 102f, 46f, 186f, SeriesBadgeHeight);
                         if (_seriesBannerBadgeLabel != null)
-                            PlaceTopLeft(_seriesBannerBadgeLabel.rectTransform, 30f, 0f, 164f, SeriesBadgeHeight);
-                        MoveReadingElement(banner, "SeriesBannerDesc", 166f, 84f, 414f, 24f);
-                        MoveReadingElement(banner, "AppearanceReadSeriesEpilogue", 398f, 18f, 188f, 54f);
+                            PlaceTopLeft(_seriesBannerBadgeLabel.rectTransform, 28f, 0f, 130f, SeriesBadgeHeight);
+                        MoveReadingElement(banner, "SeriesBannerDesc", 102f, 84f, 490f, 24f);
+                        MoveReadingElement(banner, "AppearanceReadSeriesEpilogue", 360f, 24f, 232f, 50f);
+                        var epilogueBtnImg = _seriesEpilogueBtn != null ? _seriesEpilogueBtn.GetComponent<Image>() : null;
+                        if (epilogueBtnImg != null && epilogueBtnImg.sprite != null)
+                            AppearanceUiArt.ApplyHorizontalSlice(epilogueBtnImg, epilogueBtnImg.sprite, 50f, AppearanceUiArt.SeriesDimBg);
                         MoveReadingElement(main, "AppearanceListViewport", 68f, 384f, 594f, 486f);
                         MoveReadingElement(main, "AppearanceListScrollbar", 668f, 384f, 12f, 486f);
                     }
@@ -668,22 +688,27 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             frame.sizeDelta = new Vector2(epilogueW, epilogueH);
             MoveReadingElement(frame, "SeriesEpilogueFrameBg", 0f, 0f, epilogueW, epilogueH);
             RefreshFrameScale(frame, "SeriesEpilogueFrameBg", epilogueW, epilogueH);
-            MoveReadingElement(frame, "AppearanceSeriesEpilogueBack", compact ? 36f : 76f, compact ? 28f : 46f, 160f, compact ? 76f : 60f);
-            MoveReadingElement(frame, "SeriesEpilogueSealSlot", compact ? 212f : 256f, compact ? 30f : 34f, compact ? 64f : 76f, compact ? 64f : 76f);
-            MoveReadingElement(frame, "SeriesEpilogueTitle", compact ? 288f : 348f, 30f, compact ? 680f : 664f, 52f);
-            MoveReadingElement(frame, "SeriesEpilogueMeta", compact ? 288f : 348f, 86f, compact ? 680f : 664f, 34f);
-            MoveReadingElement(frame, "AppearanceSeriesEpilogueClose", compact ? 1030f : 1244f, compact ? 28f : 38f, 72f, 72f);
+            MoveReadingElement(frame, "AppearanceSeriesEpilogueBack", compact ? 36f : 64f, compact ? 28f : 36f, 160f, compact ? 70f : 56f);
+            MoveReadingElement(frame, "SeriesEpilogueSealSlot", compact ? 212f : (epilogueW - 84f) * 0.5f,
+                compact ? 32f : 14f, compact ? 64f : 84f, compact ? 64f : 84f);
+            MoveReadingElement(frame, "SeriesEpilogueTitle", compact ? 288f : 240f, compact ? 28f : 100f,
+                compact ? 680f : 880f, compact ? 50f : 48f);
+            MoveReadingElement(frame, "SeriesEpilogueMeta", compact ? 288f : 240f, compact ? 82f : 150f,
+                compact ? 680f : 880f, compact ? 32f : 30f);
+            MoveReadingElement(frame, "AppearanceSeriesEpilogueClose", compact ? 1030f : epilogueW - 112f,
+                compact ? 28f : 30f, compact ? 72f : 68f, compact ? 72f : 68f);
             var paperCardTr = frame.Find("SeriesEpiloguePaperCard");
             ApplySeriesCardSprite(paperCardTr != null ? paperCardTr.GetComponent<Image>() : null,
-                compact ? AppearanceUiArt.LoadTeam("application_card")
-                    : (AppearanceUiArt.LoadSeries("series_epilogue_card") ?? AppearanceUiArt.LoadTeam("application_card")),
+                AppearanceUiArt.LoadSeries("series_epilogue_card") ?? AppearanceUiArt.LoadTeam("application_card"),
                 AppearanceUiArt.ParchmentInner);
-            MoveReadingElement(frame, "SeriesEpiloguePaperCard", compact ? 70f : 84f, 154f, compact ? 1000f : 1192f, compact ? 320f : 528f);
-            MoveReadingElement(frame, "SeriesEpilogueViewport", compact ? 84f : 196f, compact ? 168f : 202f,
-                compact ? 954f : SeriesEpilogueViewportWidth, compact ? 292f : SeriesEpilogueViewportHeight);
-            MoveReadingElement(frame, "SeriesEpilogueScrollbar", compact ? 1050f : 1152f, compact ? 168f : 250f,
-                14f, compact ? 292f : 336f);
-            MoveReadingElement(frame, "AppearanceSeriesEpilogueFinish", compact ? 410f : 520f, compact ? 506f : 706f, 320f, compact ? 76f : 68f);
+            MoveReadingElement(frame, "SeriesEpiloguePaperCard", compact ? 70f : 84f, compact ? 136f : 186f,
+                compact ? 1000f : 1192f, compact ? 350f : 528f);
+            MoveReadingElement(frame, "SeriesEpilogueViewport", compact ? 96f : 204f, compact ? 156f : 231f,
+                compact ? 924f : SeriesEpilogueViewportWidth, compact ? 310f : SeriesEpilogueViewportHeight);
+            MoveReadingElement(frame, "SeriesEpilogueScrollbar", compact ? 1036f : 1180f, compact ? 156f : 240f,
+                14f, compact ? 310f : 426f);
+            MoveReadingElement(frame, "AppearanceSeriesEpilogueFinish", compact ? 410f : (epilogueW - 300f) * 0.5f,
+                compact ? 506f : 728f, compact ? 320f : 300f, compact ? 76f : 64f);
             RefreshSeriesEpilogueScrollLayout();
         }
 
@@ -746,11 +771,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private static string BuildSeriesTabSignature(PlayerAppearanceInfo info)
         {
             if (info == null || info.SeriesProgress == null) return "";
-            var sb = new StringBuilder(info.SeriesProgress.Count * 16);
+            var sb = new StringBuilder(info.SeriesProgress.Count * 24);
             for (int i = 0; i < info.SeriesProgress.Count; i++)
             {
                 if (i > 0) sb.Append('|');
-                sb.Append(info.SeriesProgress[i].SeriesId);
+                sb.Append(info.SeriesProgress[i].SeriesId).Append(':').Append(info.SeriesProgress[i].Name);
             }
             return sb.ToString();
         }

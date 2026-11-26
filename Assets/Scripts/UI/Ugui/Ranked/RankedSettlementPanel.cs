@@ -390,6 +390,14 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 _card3Sub.text = "当前阶段材料总账已满（首套 660 / 周精进池），本局积分与赛季场次照常记录。";
                 _claimMaterialBtn.gameObject.SetActive(true);
             }
+
+            if (!state.IsVoid && state.Progression != null && state.Progression.HasVisibleRewards)
+            {
+                string progLine = state.Progression.LeveledUp
+                    ? $"{state.Progression.LevelUpBannerLine} · {state.Progression.RewardSummaryLine}"
+                    : state.Progression.RewardSummaryLine;
+                _card3Sub.text = string.IsNullOrEmpty(_card3Sub.text) ? progLine : $"{_card3Sub.text}\n{progLine}";
+            }
         }
 
         private Transform BuildCard(float x, string header, out TMP_Text mainText, out TMP_Text subText, float subHeight = 82f)

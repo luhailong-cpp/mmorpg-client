@@ -553,7 +553,8 @@ namespace MmorpgClient.Game.Appearance
                 || tipId == (uint)appearance_error.KAppearanceTrialAlreadyUsed
                 || tipId == (uint)appearance_error.KAppearanceNotOwned
                 || tipId == (uint)appearance_error.KAppearanceNotCardUnlockable
-                || tipId == (uint)appearance_error.KAppearanceAlreadyOwned)
+                || tipId == (uint)appearance_error.KAppearanceAlreadyOwned
+                || tipId == (uint)pet_error.KPetNotFound)
                 RequestInfo(force: true);
             Changed?.Invoke();
         }

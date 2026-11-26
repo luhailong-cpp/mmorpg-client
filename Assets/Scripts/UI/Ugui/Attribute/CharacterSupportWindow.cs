@@ -15,10 +15,10 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private static readonly Color Ink = Hex("34483b"), Green = Hex("1e604c"), Muted = Hex("655840"), Cream = Hex("fbf2d7");
         private readonly AttributeUiRoot _owner;
         private readonly RectTransform _root, _overview, _effects, _details, _popup, _sourceRows, _renamePopup;
-        private readonly Text _title, _overviewName, _overviewLevel, _detailName, _detailLevel, _skillName, _skillCategory;
+        private readonly Text _title, _overviewName, _overviewLevel, _overviewExpText, _detailName, _detailLevel, _skillName, _skillCategory;
         private readonly Text[] _values = new Text[6], _detailValues = new Text[4], _detailLabels = new Text[4];
         private readonly Text _healing, _shield, _rules, _rulesSecond, _status, _sourceTitle, _sourceTotal, _renameStatus;
-        private readonly Image _overviewPortrait, _detailPortrait, _skillIcon;
+        private readonly Image _overviewPortrait, _detailPortrait, _skillIcon, _overviewExpFill;
         private readonly Button _healChoice, _shieldChoice;
         private readonly Button _allocation, _allocationTab, _renameButton, _renameConfirmButton;
         private readonly TMP_InputField _renameInput;
@@ -51,6 +51,11 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _overviewName = Label("RoleName", _overview, 380, 238, 390, 52, "—", 40, Ink);
             _renameButton = Action("RenameRole", _overview, 782, 236, 152, 54, "改 名", "button_secondary", OpenRenamePopup);
             _overviewLevel = Label("RoleLevel", _overview, 382, 294, 500, 34, "等级 —", 25, Muted);
+            var expTrack = Rect("RoleExpTrack", _overview, 382, 332, 460, 8).gameObject.AddComponent<Image>();
+            expTrack.color = new Color(0.76f, 0.78f, 0.70f, 0.90f); expTrack.raycastTarget = false;
+            _overviewExpFill = Rect("RoleExpFill", _overview, 382, 332, 0, 8).gameObject.AddComponent<Image>();
+            _overviewExpFill.color = Green; _overviewExpFill.raycastTarget = false; _overviewExpFill.enabled = false;
+            _overviewExpText = Label("RoleExpText", _overview, 382, 342, 550, 26, "经验 —", 20, Muted);
             string[] names = { "气血", "法力", "物理攻击", "法术攻击", "防御", "速度" };
             for (int i = 0; i < names.Length; ++i)
             {
@@ -231,6 +236,11 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _identity = _owner?.RoleName; _appearance = _owner?.RoleAppearanceId;
             _overviewName.text = _detailName.text = string.IsNullOrWhiteSpace(_identity) ? "—" : _identity;
             _overviewLevel.text = _detailLevel.text = _panel == null ? "等级 —" : CharacterSupportModel.Number(_panel.Level) + "级";
+            var expSnap = MmorpgClient.Game.CoreLoop.PlayerProgressionModels.BuildExpSnapshot(_panel);
+            _overviewExpText.text = expSnap == null ? "经验 —" : expSnap.ExpProgressText;
+            float expFillW = expSnap == null ? 0f : 460f * Mathf.Clamp01((float)expSnap.ProgressRatio);
+            _overviewExpFill.rectTransform.sizeDelta = new Vector2(expFillW, 8f);
+            _overviewExpFill.enabled = expFillW > 0f;
             var portrait = string.IsNullOrEmpty(_appearance) ? null : MmorpgClient.World.QdaoCharacterCatalog.LoadPortrait(_appearance);
             _overviewPortrait.sprite = _detailPortrait.sprite = portrait;
             _overviewPortrait.enabled = _detailPortrait.enabled = portrait != null;

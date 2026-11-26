@@ -139,7 +139,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             ResolveTitle(outcome, myTeam, voided, out string title, out Color titleColor);
             string subtitle = voided ? VoidSubtitle
                 : settlement != null ? $"共 {settlement.TotalRounds} 回合" : string.Empty;
-            var lines = voided ? BuildVoidLines() : BuildRewardLines(settlement, end.ItemsMailed);
+            var lines = voided ? BuildVoidLines() : BuildRewardLines(end);
             ConfigureActionButtons(replayBattleId: 0);
             Present(title, titleColor, subtitle, lines, LiveConfirmText,
                 coreSettlementVisible || hintVisible ? 0 : AutoReturnSeconds);
@@ -380,6 +380,35 @@ namespace MmorpgClient.UI.Ugui.Battle
             };
         }
 
+        /// <summary>现场结算奖励行（优先叠加 scene 落账后的经验、银两、升级与周软上限衰减信息，保持旧结算兼容）。</summary>
+        public static List<string> BuildRewardLines(BattleEndS2C end)
+        {
+            if (end == null) return BuildRewardLines((BattleSettlementData)null, false);
+            var lines = BuildRewardLines(end.Settlement, end.ItemsMailed);
+            if (end.Settlement == null) return lines;
+
+            if (end.ExpGain > end.Settlement.ExpGain && lines.Count > 0 && lines[0].StartsWith("经验", StringComparison.Ordinal))
+            {
+                lines[0] = $"经验  +{end.ExpGain}";
+            }
+            if (end.SilverGain > 0 && end.Settlement.CurrencyGains.Count == 0
+                && end.SilverGain > end.Settlement.GoldGain && lines.Count > 1 && lines[1].StartsWith("银两", StringComparison.Ordinal))
+            {
+                lines[1] = end.BattleSilverDiminished
+                    ? $"银两  +{end.SilverGain}（本周银两已触发衰减）"
+                    : $"银两  +{end.SilverGain}";
+            }
+            else if (end.BattleSilverDiminished)
+            {
+                lines.Add("提示  本周战斗银两已触发衰减");
+            }
+            if (end.LevelAfter > end.LevelBefore && end.LevelBefore > 0)
+            {
+                lines.Insert(0, $"角色升级  Lv.{end.LevelBefore} → Lv.{end.LevelAfter}");
+            }
+            return lines;
+        }
+
         /// <summary>
         /// 奖励行文案(纯逻辑,EditMode 可测)。itemsMailed:本局获得的道具改由邮件发放,在道具行之后加一行提示;
         /// 没有获得道具时不加。
@@ -450,6 +479,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (result == null) return new List<string> { "(未收到结算数据)" };
             if (BattleResultRecoveryClient.IsVoid(result)) return BuildVoidLines();
             var lines = new List<string>();
+            if (result.LevelAfter > result.LevelBefore && result.LevelBefore > 0)
+                lines.Add($"角色升级  Lv.{result.LevelBefore} → Lv.{result.LevelAfter}");
             if (result.ExpGain > 0) lines.Add($"经验  +{result.ExpGain}");
             if (result.Currencies.Count > 0)
             {
@@ -460,6 +491,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 lines.Add("获得货币  无");
             }
+            if (result.BattleSilverDiminished) lines.Add("提示  本周战斗银两已触发衰减");
             if (result.ItemsGained.Count > 0)
             {
                 foreach (var item in result.ItemsGained)

@@ -484,6 +484,9 @@ namespace MmorpgClient.Game.Ranked
         public uint MaterialTradableUnitsAdded { get; set; }
         public bool MaterialPvpLossIneligible { get; set; }
 
+        // Scene 权威战斗成长结算（经验、银两、升级与周软上限衰减提示，纯展示快照）
+        public MmorpgClient.Game.CoreLoop.SettlementProgressionView Progression { get; set; }
+
         // 论剑 V4 本局复盘高光统计与战术徽记（纯荣誉展示，来自权威 BattleSettlementData）
         public ulong TotalDamageDealt { get; set; }
         public ulong PrimaryFocusDamageDealt { get; set; }

@@ -35,7 +35,26 @@ namespace MmorpgClient.UI.Ugui
             "panel_08_zhenbaoge_rmb",
             "panel_09_equip_inherit",
         };
+        public const string PaymentCashierRoot = "UI/Ugui/PaymentCashierV1/";
+        public static readonly string[] PaymentCashierAssetKeys =
+        {
+            "cashier_card_bg",
+            "lightcard_hero_frame",
+            "sku_row_card",
+            "sku_row_card_highlight",
+            "pay_action_btn_primary",
+            "pay_action_btn_secondary",
+            "pay_countdown_track",
+            "pay_countdown_fill",
+            "badge_pay_waiting",
+            "badge_pay_settled",
+            "badge_pay_revoked",
+            "icon_gift_chest_gold",
+        };
         public const string BossTrialV2IconsRoot = "UI/Ugui/Battle/BossTrialV2/";
+        public const string NewPlayReviewControlsRoot = "UI/Ugui/NewPlayReview/Controls/";
+        public const string SkillScrollIconsRoot = "UI/Ugui/Skills/Scrolls/";
+        public const string CanonicalSeasonEconomyIconsRoot = "UI/Ugui/SeasonEconomy/Icons/";
         public const string TrialJournalBadgesRoot = "UI/Ugui/TrialJournal/Badges/";
         public const string BattleArenaV2V3AssetsRoot = "UI/Ugui/BattleArenaV2V3/assets/";
         public const string BattleArenaV2V3ControlsRoot = "UI/Ugui/BattleArenaV2V3/controls/";
@@ -87,7 +106,50 @@ namespace MmorpgClient.UI.Ugui
 
         public static Sprite LoadTradeV2Slice(string name) => LoadCached(EconomyTradeV2Root + name);
 
+        public static Sprite LoadPaymentCashierSlice(string name) => LoadCached(PaymentCashierRoot + name);
+
+        /// <summary>使用 PaymentCashierV1 9-slice 按钮切图创建收银台/官方商城操作按钮，缺图回退通用按钮。</summary>
+        public static Button CreateCashierButton(
+            Transform parent,
+            string label,
+            float x,
+            float y,
+            float width,
+            float height,
+            Action click,
+            bool primary,
+            float fontSize = 24f)
+        {
+            var sprite = LoadPaymentCashierSlice(primary ? "pay_action_btn_primary" : "pay_action_btn_secondary");
+            if (sprite == null)
+            {
+                return Gameplay.GameplayUiArt.Button(parent, label, x, y, width, height, click, primary: primary, fontSize: fontSize);
+            }
+            var button = QdaoUguiFactory.CreateArtButton(label, parent, x, y, width, height, sprite, out var art);
+            art.type = sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+            art.pixelsPerUnitMultiplier = 1f;
+            art.color = Color.white;
+            button.navigation = new Navigation { mode = Navigation.Mode.Automatic };
+            var colors = button.colors;
+            colors.highlightedColor = new Color(1f, 0.96f, 0.84f, 1f);
+            colors.selectedColor = new Color(1f, 0.94f, 0.78f, 1f);
+            button.colors = colors;
+            if (click != null) button.onClick.AddListener(() => click());
+            var text = QdaoUguiFactory.CreateText("Label", button.transform, 18f, 0f, width - 36f, height,
+                label, fontSize, primary ? Gameplay.GameplayUiArt.Cream : Gameplay.GameplayUiArt.Ink, TextAlignmentOptions.Center);
+            text.richText = false;
+            text.textWrappingMode = TextWrappingModes.NoWrap;
+            return button;
+        }
+
         public static Sprite LoadBossTrialV2Icon(string name) => LoadCached(BossTrialV2IconsRoot + name);
+
+        public static Sprite LoadNewPlayReviewControl(string name) => LoadCached(NewPlayReviewControlsRoot + name);
+
+        public static Sprite LoadSkillScrollIcon(uint scrollId)
+            => scrollId == 0u ? null : LoadCached($"{SkillScrollIconsRoot}scroll_{scrollId}");
+
+        public static Sprite LoadCanonicalBossAvatar(string name) => LoadCached(CanonicalSeasonEconomyIconsRoot + name);
 
         public static Sprite LoadTrialJournalBadge(string name) => LoadCached(TrialJournalBadgesRoot + name);
 

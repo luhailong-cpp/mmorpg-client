@@ -361,7 +361,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Color fallbackBg = selected ? DeepJade : (completed ? QdaoUguiTheme.Html("#DFECDA") : SeriesDimBg);
             ApplyHorizontalSlice(bg, sprite, targetHeight, fallbackBg);
             if (sprite != null && !selected && completed)
-                bg.color = QdaoUguiTheme.Html("#EAF3E4");
+                bg.color = QdaoUguiTheme.Html("#E3F3E4");
             label.color = selected ? WarmCream : (completed ? DeepJade : JadeInk);
             label.fontStyle = (selected || completed) ? FontStyles.Bold : FontStyles.Normal;
         }
@@ -373,7 +373,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 ?? LoadTeam(completed ? "badge_self" : "badge_leader");
             ApplyHorizontalSlice(bg, sprite, targetHeight, completed ? SeriesLitBg : SeriesDimBg);
             string display = string.IsNullOrWhiteSpace(badgeName) ? "系列印章" : badgeName;
-            label.text = completed ? $"印章 · {display}" : $"{display}（未点亮）";
+            label.text = display;
             label.color = completed ? WarmCream : MutedInk;
             label.fontStyle = completed ? FontStyles.Bold : FontStyles.Normal;
         }

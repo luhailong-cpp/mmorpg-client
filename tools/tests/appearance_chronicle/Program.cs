@@ -291,6 +291,17 @@ internal static class Program
         state.SelectSeries(2, .5f);
         state.ResetForRoleChange();
         Check(state.SelectedSeriesId == 0 && !state.HasOverlay, "换角色重置系列筛选");
+
+        var threeSeries = new List<CharacterAppearanceSeriesProgress>
+        {
+            new CharacterAppearanceSeriesProgress { SeriesId = 1, Name = "留灯院旧友" },
+            new CharacterAppearanceSeriesProgress { SeriesId = 2, Name = "水火冰锋" },
+            new CharacterAppearanceSeriesProgress { SeriesId = 3, Name = "清音济世" },
+        };
+        float[] widths = AppearanceSeriesModels.ComputeSeriesTabWidths(threeSeries);
+        float totalW = widths[0] + widths[1] + widths[2] + widths[3] + AppearanceSeriesModels.DefaultTabGap * 3f;
+        Check(widths.Length == 4 && Math.Abs(totalW - AppearanceSeriesModels.DefaultTabViewportWidth) < 0.01f,
+            "四个系列筛选页签应刚好单行排满 612px 视口");
     }
 
     private static int Main()

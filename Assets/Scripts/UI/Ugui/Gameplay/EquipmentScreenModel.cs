@@ -305,6 +305,45 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 .ThenBy(recipe => recipe.Product.ConfigId).ToList();
         }
 
+        /// <summary>仅 V1 基础四部位与首饰（低于 80 级）支持纯银两原地无损升档。</summary>
+        public static bool CanUpgradeTier(BagItemInfo item) =>
+            item != null && item.ItemId != 0 && item.Count != 0
+            && (item.EquipProfile == 1u || item.EquipProfile == 2u)
+            && item.EquipKind != 0 && item.EquipLevel < 80u;
+
+        /// <summary>从服务端打造规则中筛出同类型、同部位且等级高于当前装备的可升档目标模板。</summary>
+        public static List<BagItemInfo> FindUpgradeTierTargets(BagItemInfo item, GetEquipmentCraftRulesResponse rules)
+        {
+            if (!CanUpgradeTier(item) || rules == null || (rules.ErrorMessage != null && rules.ErrorMessage.Id != 0))
+                return new List<BagItemInfo>();
+            var seen = new HashSet<uint>();
+            return rules.Recipes
+                .Select(recipe => recipe?.Product)
+                .Where(product => product != null && product.ConfigId != 0
+                    && product.EquipProfile == item.EquipProfile
+                    && product.EquipKind == item.EquipKind
+                    && product.EquipLevel > item.EquipLevel
+                    && seen.Add(product.ConfigId))
+                .OrderBy(product => product.EquipLevel)
+                .ThenBy(product => product.ConfigId)
+                .ToList();
+        }
+
+        /// <summary>默认选中不超过角色当前等级的最高档位；若全部高于角色等级则选中下一档。</summary>
+        public static BagItemInfo PickDefaultUpgradeTarget(IReadOnlyList<BagItemInfo> targets, uint playerLevel)
+        {
+            if (targets == null || targets.Count == 0) return null;
+            BagItemInfo best = null;
+            for (int i = 0; i < targets.Count; i++)
+            {
+                var candidate = targets[i];
+                if (candidate == null) continue;
+                if (playerLevel > 0 && candidate.EquipLevel <= playerLevel)
+                    best = candidate;
+            }
+            return best ?? targets[0];
+        }
+
         /// <summary>人物背包与装备栏的独立实例数；同 GUID 的两份快照只计一次，不把堆数量当装备件数。</summary>
         public static int OwnedCount(BagInfo bag, BagInfo worn, uint configId)
         {

@@ -341,6 +341,7 @@ namespace MmorpgClient.Game.Ranked
                 MaterialCreditUnitsAdded = end.MaterialCreditUnitsAdded,
                 MaterialTradableUnitsAdded = end.MaterialTradableUnitsAdded,
                 MaterialPvpLossIneligible = end.MaterialPvpLossIneligible,
+                Progression = MmorpgClient.Game.CoreLoop.PlayerProgressionModels.BuildSettlementView(end),
                 TotalDamageDealt = end.Settlement?.TotalDamageDealt ?? 0ul,
                 PrimaryFocusDamageDealt = end.Settlement?.PrimaryFocusDamageDealt ?? 0ul,
                 TotalSupportValue = end.Settlement?.TotalHealingDone ?? 0ul,
@@ -381,6 +382,7 @@ namespace MmorpgClient.Game.Ranked
                 MaterialCreditUnitsAdded = result.MaterialCreditUnitsAdded,
                 MaterialTradableUnitsAdded = result.MaterialTradableUnitsAdded,
                 MaterialPvpLossIneligible = result.MaterialPvpLossIneligible,
+                Progression = MmorpgClient.Game.CoreLoop.PlayerProgressionModels.BuildSettlementView(result),
                 RatingLoading = !isVoid,
             };
             ActiveSettlement = state;

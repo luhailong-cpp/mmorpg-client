@@ -32,16 +32,26 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
         {
             _onOpen = onOpen;
             var plate = TrialJournalUiArt.SlicedOrTint("TrialJournalHintBar", parent,
-                x, y, BarWidth, BarHeight, TrialJournalUiArt.LoadChronicle("member_row"),
+                x, y, BarWidth, BarHeight, TrialJournalUiArt.LoadSkin("battle_result_hint_bar", "member_row"),
                 TrialJournalUiArt.Paper, raycast: true);
             _root = (RectTransform)plate.transform;
 
+            var dedicatedSeal = TrialJournalUiArt.LoadDedicatedOnly("seal_medallion_lit");
             var medallion = QdaoUguiFactory.CreateImage("SealMedallion", _root,
-                22f, 15f, 52f, 52f, TrialJournalUiArt.CircleSprite());
-            medallion.color = TrialJournalUiArt.SealGoldFill;
-            var outline = medallion.gameObject.AddComponent<Outline>();
-            outline.effectColor = TrialJournalUiArt.SealGold;
-            outline.effectDistance = new Vector2(1.5f, -1.5f);
+                22f, 15f, 52f, 52f, dedicatedSeal ?? TrialJournalUiArt.CircleSprite());
+            if (dedicatedSeal != null)
+            {
+                medallion.type = Image.Type.Simple;
+                medallion.preserveAspect = true;
+                medallion.color = Color.white;
+            }
+            else
+            {
+                medallion.color = TrialJournalUiArt.SealGoldFill;
+                var outline = medallion.gameObject.AddComponent<Outline>();
+                outline.effectColor = TrialJournalUiArt.SealGold;
+                outline.effectDistance = new Vector2(1.5f, -1.5f);
+            }
             TrialJournalUiArt.Label("Mark", medallion.transform, 0f, 0f, 52f, 52f,
                 "印", 24f, TrialJournalUiArt.Jade, bold: true, alignment: TextAlignmentOptions.Center);
 

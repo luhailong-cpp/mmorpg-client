@@ -128,7 +128,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _previewAspect = previewRect.gameObject.AddComponent<AspectRatioFitter>();
             _previewAspect.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
             _name=Text(_travelPanel,"",446,142,922,38,28,Ink);_name.name="SelectedDestinationName";
-            _description=Text(_travelPanel,"",446,181,922,30,23,Ink);_description.name="SelectedDestinationDescription";
+            _description=Text(_travelPanel,"",446,181,922,30,23,Ink);_description.name="SelectedDestinationDescription";_description.overflowMode=TextOverflowModes.Ellipsis;
             _appearanceHint=Text(_travelPanel,"",446,216,922,28,21,Muted);_appearanceHint.name="DestinationAppearanceHint";
             _status=Text(_travelPanel,"",446,302,922,24,21,Ink);_status.name="CityTravelStatus";
             _day=FidelityButton(_travelPanel,"日景",446,251,94,46,()=>SelectFestival(false),25);_day.name="DayAppearance";
@@ -307,7 +307,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             string selectedName = ResolveWorldMapName(_selected.SceneConfigId);
             string badges = WorldMapOverviewModels.FormatDestinationBadges(_overview, _selected.SceneConfigId);
             _name.text = string.IsNullOrEmpty(badges) ? selectedName : selectedName + "  [" + badges + "]";
-            _description.text = _selected.Description;
+            string habitatSummary = _selected.OnlineAvailable
+                ? WorldMapOverviewModels.FormatHabitatSummary(_selected.SceneConfigId) : "";
+            _description.text = string.IsNullOrEmpty(habitatSummary)
+                ? _selected.Description
+                : string.IsNullOrEmpty(_selected.Description)
+                    ? habitatSummary
+                    : _selected.Description + " · " + habitatSummary;
             string path = _selected.TexturePath(_appearance);
             _preview.texture = string.IsNullOrEmpty(path) ? null : Resources.Load<Texture2D>(path);
             _preview.gameObject.SetActive(_preview.texture != null);

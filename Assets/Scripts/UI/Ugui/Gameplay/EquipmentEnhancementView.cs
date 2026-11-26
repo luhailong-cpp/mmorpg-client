@@ -18,7 +18,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Action<ulong> selectItem, bool blocked,
             Action<ulong> onRequestEnhanceBindConfirm = null,
             Action<ulong> onOpenUnseal = null,
-            Action<ulong> onOpenInherit = null)
+            Action<ulong> onOpenInherit = null,
+            Action<ulong> onOpenUpgradeTier = null)
         {
             var candidates = Candidates(client);
             var view = forge?.View ?? EquipForgeView.Closed;
@@ -28,7 +29,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var right = EquipmentUiArt.Panel(parent, "EnhancementPreview", 2410, PanelTop, 1406, PanelHeight).transform;
 
             RenderCandidates(left, client, candidates, selected?.ItemId ?? 0, selectItem);
-            RenderSelected(center, selected, view, candidates, blocked, onOpenUnseal, onOpenInherit);
+            RenderSelected(center, selected, view, candidates, blocked, onOpenUnseal, onOpenInherit, onOpenUpgradeTier);
             RenderPreview(right, selected, view);
 
             bool writeBlocked = WriteBlocked(client, blocked);
@@ -160,16 +161,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
 
         private static void RenderSelected(UnityEngine.Transform parent, BagItemInfo item, EquipForgeView view,
-            List<BagItemInfo> candidates, bool blocked, Action<ulong> onOpenUnseal, Action<ulong> onOpenInherit)
+            List<BagItemInfo> candidates, bool blocked, Action<ulong> onOpenUnseal, Action<ulong> onOpenInherit,
+            Action<ulong> onOpenUpgradeTier)
         {
             if (item == null)
             {
                 EquipmentUiArt.Label(parent, "EnhancementSelectedEmpty", "从左侧选择一件装备\n查看当前属性与强化预览", 100, 360, 860, 220, 52, true);
                 return;
             }
+            bool canUpgradeTier = EquipmentScreenModel.CanUpgradeTier(item) && onOpenUpgradeTier != null;
             EquipmentUiArt.Label(parent, "EnhancementSelectedName", view.Title, 60, 40, 940, 140, 54, true);
             EquipmentUiArt.Label(parent, "EnhancementSelectedLocation", view.LocationText, 60, 192, 940, 62, 42);
-            EquipmentUiArt.Icon(parent, item, 260, 280, 460);
+            EquipmentUiArt.Icon(parent, item, canUpgradeTier ? 220 : 260, 280, canUpgradeTier ? 400 : 460);
             var selectedBadge = SeasonEconomyUiArt.LoadTradeSlice(item.Bound ? "badge_item_bound_b" : "badge_item_tradable_t");
             if (selectedBadge != null)
             {
@@ -187,6 +190,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 }
                 EquipmentUiArt.Label(parent, "EnhancementMaxStamp", $"+{item.EnhanceLevel} 满配",
                     650, 404, 260, 52, 38, false, SeasonEconomyUiArt.GoldHighlight);
+            }
+            if (canUpgradeTier)
+            {
+                EquipmentUiArt.Button(parent, "EnhancementUpgradeTierBtn", "无损升档", 645, 520, 355,
+                    () => onOpenUpgradeTier(item.ItemId), primary: true, enabled: !blocked);
             }
             EquipmentUiArt.Label(parent, "EnhancementSelectedLevel", view.EnhanceLevelText, 60, 748, 940, 60, 44);
             string isolationRule = item.Bound

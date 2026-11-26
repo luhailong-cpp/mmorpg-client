@@ -192,5 +192,68 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.AreEqual(102u, respondReq.ResponderCharacterPresetId);
             Assert.AreEqual(201u, respondReq.ResponderPetPresetId);
         }
+
+        [Test]
+        public void ImportedWuxingExpansionSpritesAndMetasMatchArtCatalog()
+        {
+            string projectRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(
+                System.IO.Directory.GetCurrentDirectory(), "Assets", "Resources", "UI", "Ugui", "WuxingExpansionsV1"));
+            if (!System.IO.Directory.Exists(projectRoot))
+            {
+                projectRoot = @"D:\luyuan\mmorpg-client\Assets\Resources\UI\Ugui\WuxingExpansionsV1";
+            }
+            Assert.IsTrue(System.IO.Directory.Exists(projectRoot), "WuxingExpansionsV1 资源目录缺失");
+            Assert.IsTrue(System.IO.File.Exists(projectRoot + ".meta"), "WuxingExpansionsV1.meta 缺失");
+            Assert.IsTrue(System.IO.File.Exists(System.IO.Path.Combine(projectRoot, "ui.meta")), "ui.meta 缺失");
+            Assert.IsTrue(System.IO.File.Exists(System.IO.Path.Combine(projectRoot, "icons.meta")), "icons.meta 缺失");
+
+            var expected = new (string Rel, int W, int H)[]
+            {
+                ("ui/sigil_card_common.png", 420, 600),
+                ("ui/sigil_card_spirit.png", 420, 600),
+                ("ui/sigil_card_immortal.png", 420, 600),
+                ("ui/formation_compass_bg.png", 768, 768),
+                ("icons/element_metal.png", 512, 512),
+                ("icons/element_wood.png", 512, 512),
+                ("icons/element_water.png", 512, 512),
+                ("icons/element_fire.png", 512, 512),
+                ("icons/element_earth.png", 512, 512),
+                ("icons/formation_1_tianfu.png", 512, 512),
+                ("icons/formation_2_dizai.png", 512, 512),
+                ("icons/formation_3_fengyang.png", 512, 512),
+                ("icons/formation_4_yunchui.png", 512, 512),
+                ("icons/formation_5_huyi.png", 512, 512),
+                ("icons/duel_rule_polarity.png", 512, 512),
+                ("icons/duel_rule_blitz.png", 512, 512),
+                ("icons/duel_rule_ban_cc.png", 512, 512),
+                ("icons/duel_rule_spectate.png", 512, 512),
+            };
+
+            foreach (var item in expected)
+            {
+                string full = System.IO.Path.Combine(projectRoot, item.Rel.Replace('/', System.IO.Path.DirectorySeparatorChar));
+                Assert.IsTrue(System.IO.File.Exists(full), $"缺少导入精灵: {item.Rel}");
+                byte[] header = new byte[24];
+                using (var fs = System.IO.File.OpenRead(full))
+                {
+                    Assert.AreEqual(24, fs.Read(header, 0, 24), $"PNG 头截断: {item.Rel}");
+                }
+                Assert.AreEqual(0x89, header[0]);
+                Assert.AreEqual(0x50, header[1]);
+                Assert.AreEqual(0x4E, header[2]);
+                Assert.AreEqual(0x47, header[3]);
+                int w = (header[16] << 24) | (header[17] << 16) | (header[18] << 8) | header[19];
+                int h = (header[20] << 24) | (header[21] << 16) | (header[22] << 8) | header[23];
+                Assert.AreEqual(item.W, w, $"宽度不匹配: {item.Rel}");
+                Assert.AreEqual(item.H, h, $"高度不匹配: {item.Rel}");
+
+                string metaPath = full + ".meta";
+                Assert.IsTrue(System.IO.File.Exists(metaPath), $"缺少 .meta: {item.Rel}.meta");
+                string meta = System.IO.File.ReadAllText(metaPath);
+                StringAssert.Contains("textureType: 8", meta, $"非 Sprite 类型: {item.Rel}");
+                StringAssert.Contains("spriteMode: 1", meta, $"非 Single Sprite: {item.Rel}");
+                StringAssert.Contains("alphaIsTransparency: 1", meta, $"未启用 Alpha 透明: {item.Rel}");
+            }
+        }
     }
 }

@@ -164,6 +164,26 @@ namespace MmorpgClient.Game.WorldTravel
         }
     }
 
+    /// <summary>单张野外地图的灵宠栖息地生态摘要（与权威 Dungeon 202/203/205 对齐，纯数据无 Unity 依赖）。</summary>
+    public readonly struct WorldMapHabitatInfo
+    {
+        public uint SceneConfigId { get; }
+        public uint DungeonConfigId { get; }
+        public string HabitatName { get; }
+        public string BiomeTag { get; }
+        public string PetSummary { get; }
+
+        public WorldMapHabitatInfo(uint sceneConfigId, uint dungeonConfigId, string habitatName,
+            string biomeTag, string petSummary)
+        {
+            SceneConfigId = sceneConfigId;
+            DungeonConfigId = dungeonConfigId;
+            HabitatName = habitatName ?? "";
+            BiomeTag = biomeTag ?? "";
+            PetSummary = petSummary ?? "";
+        }
+    }
+
     /// <summary>世界地图总览的纯转换与文案规则（EditMode 测试直接调用）。</summary>
     public static class WorldMapOverviewModels
     {
@@ -336,6 +356,38 @@ namespace MmorpgClient.Game.WorldTravel
             if (tide == null || !tide.Active || tide.RoundId == 0UL || tide.SceneConfigId == 0u) return false;
             if (tide.RoundId == dismissedTideRoundId) return false;
             return tide.SceneConfigId != currentSceneConfigId;
+        }
+
+        /// <summary>查询指定野外地图的灵宠栖息地配置；主城(1)及未配置生态图返回 null。</summary>
+        public static WorldMapHabitatInfo? FindHabitat(uint sceneConfigId)
+        {
+            switch (sceneConfigId)
+            {
+                case 2u:
+                    return new WorldMapHabitatInfo(2u, 202u, "八景岛 · 灵宠栖息地", "仙风灵禽", "云鹤（10级）、竹风狸、霞角鹿");
+                case 3u:
+                    return new WorldMapHabitatInfo(3u, 203u, "月汐湾 · 灵宠栖息地", "海潮猛兽", "金猊（10级）、灵狐、符小虎");
+                case 5u:
+                    return new WorldMapHabitatInfo(5u, 205u, "碧渊水宫 · 灵宠栖息地", "玄水水灵", "玄潮龟、汐螺、露华灵");
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>格式化地图抽屉与野外浮条展示的可捕灵宠摘要；非野外栖息地图返回空串。</summary>
+        public static string FormatHabitatSummary(uint sceneConfigId)
+        {
+            var habitat = FindHabitat(sceneConfigId);
+            return habitat.HasValue ? "可捕灵宠：" + habitat.Value.PetSummary : "";
+        }
+
+        /// <summary>格式化当前野外地图栖息地 HUD 标题（灵潮期间自动附带灵潮提示）。</summary>
+        public static string FormatWildHabitatHeadline(WorldMapOverviewSnapshot overview, uint currentSceneConfigId)
+        {
+            var habitat = FindHabitat(currentSceneConfigId);
+            if (!habitat.HasValue) return "";
+            bool isTide = overview?.Tide != null && overview.Tide.Active && overview.Tide.SceneConfigId == currentSceneConfigId;
+            return isTide ? habitat.Value.HabitatName + " · 灵潮中" : habitat.Value.HabitatName;
         }
 
         private static long RemainingSecondsCeil(ulong targetMs, ulong nowMs)

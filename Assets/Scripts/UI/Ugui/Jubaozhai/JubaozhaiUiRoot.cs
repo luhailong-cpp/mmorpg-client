@@ -116,6 +116,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _hud.gameObject.SetActive(available);
             if (!available) { HidePanel(); return; }
             _window.Tick(Time.unscaledTime);
+            _commerceWindow.Tick();
             if (IsTyping() || (!_window.IsVisible && !_commerceWindow.IsVisible && GameplayInputGate.IsKeyboardBlocked)) return;
 #if ENABLE_INPUT_SYSTEM
             var keys = Keyboard.current;

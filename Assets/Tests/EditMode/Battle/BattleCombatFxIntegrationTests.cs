@@ -160,6 +160,30 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void MirroredHealSkillPlaysCasterRingAndHealWithoutFallbackAttackImpact()
+        {
+            var plan = TurnPlan.Build(new[]
+            {
+                new TurnEventInput { Type = BattleEventCodes.Skill, SourceId = 1, TargetId = 2,
+                    SkillId = TurnPlan.MirrorCopySkillId, GroupId = 8 },
+                new TurnEventInput { Type = BattleEventCodes.Skill, SourceId = 1, TargetId = 1, SkillId = 10010,
+                    HitKind = eBattleHitKind.BattleHitMirror, GroupId = 8 },
+                new TurnEventInput { Type = BattleEventCodes.Heal, SourceId = 1, TargetId = 1,
+                    Value = 300, HealthAfter = 1000, GroupId = 8 },
+            });
+            var log = new List<string>();
+            _presenter.OnLog += log.Add;
+            _presenter.Play(plan);
+            Advance(plan.Beats[0].DurationSeconds + _views[1].ActionEventDelaySeconds("cast") + .05f);
+
+            Assert.That(ActiveFx.Any(image => image.name.StartsWith("Fx_mirror_cast_ring_")), Is.True);
+            Assert.That(ActiveFx.Any(image => image.name.StartsWith("Fx_fire_burst_") ||
+                image.name.StartsWith("Fx_ice_shard_") || image.name.StartsWith("Fx_lightning_strike_")), Is.False);
+            Assert.That(log.Any(line => line.StartsWith("1 复制施放【")), Is.True);
+            Assert.That(log, Does.Contain("1 恢复 300 生命"));
+        }
+
+        [Test]
         public void MissingMirrorCopyStripStillPresentsResistanceAndFinishesOnce()
         {
             var presentation = BattleArtCatalog.ResolveSkillFx(TurnPlan.MirrorCopySkillId, false);

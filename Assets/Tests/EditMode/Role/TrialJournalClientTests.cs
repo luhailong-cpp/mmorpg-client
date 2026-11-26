@@ -312,17 +312,17 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(loading.OnlineWriteEnabled, Is.False);
             Assert.That(loading.SyncPillText, Is.EqualTo("首次同步中"));
 
-            // 构造覆盖三卷 + M901 + 8法宝的完整样例快照
+            // 构造覆盖三卷 + 双卫同阵（总永久 27 印，18/27 留 9 印容错）+ M901 + 8法宝的完整样例快照
             var snap = new TrialJournalSnapshot
             {
                 Available = true,
                 CanOperate = true,
                 TotalPermanentLitSeals = 0,
-                TotalPermanentSeals = 24,
+                TotalPermanentSeals = 27,
                 VoucherBalance = 0,
                 BoundSandBalance = 0,
             };
-            var ch1 = new TrialJournalChapterView { ChapterId = 1, ChapterName = "卷一 · 破阵试炼", TotalSealCount = 12 };
+            var ch1 = new TrialJournalChapterView { ChapterId = 1, ChapterName = "卷一 · 破阵试炼", TotalSealCount = 15 };
             var e101 = new TrialJournalEntryView { EntryId = 101, DisplayName = "普通·回春", RuleVersion = 1, RuleVersionName = "首测规则", CanEnter = true };
             ch1.Entries.Add(e101);
             var ch3 = new TrialJournalChapterView { ChapterId = 3, SeasonId = 1, ChapterName = "卷三 · 季游奇谈", TotalSealCount = 6 };
@@ -353,6 +353,8 @@ namespace MmorpgClient.Tests.EditMode.Role
                 TrialJournalNavTab.Overview, 101u);
             Assert.That(active.Phase, Is.EqualTo(TrialJournalVisualPhase.InProgress));
             Assert.That(active.RedeemButtonEnabled, Is.True);
+            Assert.That(active.GrandmasterDesc, Does.Contain("7/27"));
+            Assert.That(active.GrandmasterDesc, Does.Contain("留 9 印容错"));
 
             var refreshing = TrialJournalUiState.Evaluate(snap, true, false, true, false, "", false,
                 TrialJournalNavTab.Overview, 101u);
@@ -374,6 +376,7 @@ namespace MmorpgClient.Tests.EditMode.Role
             var seasonal = TrialJournalUiState.Evaluate(snap, false, false, true, false, "", false,
                 TrialJournalNavTab.Seasonal, 302u);
             Assert.That(seasonal.Phase, Is.EqualTo(TrialJournalVisualPhase.SeasonalIsolated));
+            Assert.That(seasonal.AlertText, Does.Contain("永久卷 27 印"));
             Assert.That(TrialJournalUiState.ResolveTabForEntry(snap, 302u), Is.EqualTo(TrialJournalNavTab.Seasonal));
             Assert.That(TrialJournalUiState.FilterEntries(snap, TrialJournalNavTab.Seasonal).Count, Is.EqualTo(1));
 

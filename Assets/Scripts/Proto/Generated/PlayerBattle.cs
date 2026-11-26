@@ -70,7 +70,7 @@ public static partial class PlayerBattleReflection {
           "aWFsX3VuaXRzX2FkZGVkGAcgASgNEiUKHW1hdGVyaWFsX3RyYWRhYmxlX3Vu",
           "aXRzX2FkZGVkGAggASgNEiYKHm1hdGVyaWFsX2F2YWlsYWJsZV91bml0c19h",
           "ZnRlchgJIAEoBBIpCiFtYXRlcmlhbF9lYXJuYWJsZV9yZW1haW5pbmdfYWZ0",
-          "ZXIYCiABKA0i2AMKDEJhdHRsZUVuZFMyQxIRCgliYXR0bGVfaWQYASABKAQS",
+          "ZXIYCiABKA0igwUKDEJhdHRsZUVuZFMyQxIRCgliYXR0bGVfaWQYASABKAQS",
           "IAoHb3V0Y29tZRgCIAEoDjIPLmVCYXR0bGVPdXRjb21lEikKCnNldHRsZW1l",
           "bnQYAyABKAsyFS5CYXR0bGVTZXR0bGVtZW50RGF0YRIUCgxpdGVtc19tYWls",
           "ZWQYBCABKAgSIwobbWF0ZXJpYWxfY3JlZGl0X3VuaXRzX2FkZGVkGAUgASgN",
@@ -80,107 +80,111 @@ public static partial class PlayerBattleReflection {
           "ZXN0aXZhbEJlYXN0U2V0dGxlbWVudFN1bW1hcnkSIAoYc2Vhc29uX3NlYWxf",
           "cG9pbnRzX2FkZGVkGAogASgNEiIKGnNlYXNvbl9zZWFsX3Byb2dyZXNzX2Fm",
           "dGVyGAsgASgNEh4KFnNlYXNvbl9zZWFsX21heF9wb2ludHMYDCABKA0SIwob",
-          "c2Vhc29uX2hvbm9yX25ld2x5X3VubG9ja2VkGA0gASgIIicKEkJhdHRsZVJl",
-          "Y29ubmVjdFMyQxIRCgliYXR0bGVfaWQYASABKAQiSgoQU3BlY3RhdGVTdGF0",
-          "ZVMyQxIeCgVzdGF0ZRgBIAEoCzIPLkJhdHRsZVN0YXRlUzJDEhYKDm9ic2Vy",
-          "dmVyX2NvdW50GAIgASgNImoKDlNwZWN0YXRlRW5kUzJDEhEKCWJhdHRsZV9p",
-          "ZBgBIAEoBBIgCgdvdXRjb21lGAIgASgOMg8uZUJhdHRsZU91dGNvbWUSIwoG",
-          "cmVhc29uGAMgASgOMhMuZVNwZWN0YXRlRW5kUmVhc29uInQKGVN1Ym1pdEJh",
-          "dHRsZUFjdGlvblJlcXVlc3QSEQoJYmF0dGxlX2lkGAEgASgEEh0KBmFjdGlv",
-          "bhgCIAEoCzINLkJhdHRsZUFjdGlvbhIQCghhY3Rvcl9pZBgDIAEoBBITCgty",
-          "b3VuZF9pbmRleBgEIAEoDSJEChpTdWJtaXRCYXR0bGVBY3Rpb25SZXNwb25z",
-          "ZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2UiKgoV",
-          "R2V0QmF0dGxlU3RhdGVSZXF1ZXN0EhEKCWJhdHRsZV9pZBgBIAEoBCIrChZT",
-          "dG9wV2F0Y2hCYXR0bGVSZXF1ZXN0EhEKCWJhdHRsZV9pZBgBIAEoBCJBChdT",
-          "dG9wV2F0Y2hCYXR0bGVSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
-          "Mg8uVGlwSW5mb01lc3NhZ2UiOgoUU2V0QXV0b0JhdHRsZVJlcXVlc3QSEQoJ",
-          "YmF0dGxlX2lkGAEgASgEEg8KB2VuYWJsZWQYAiABKAgiPwoVU2V0QXV0b0Jh",
-          "dHRsZVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
-          "TWVzc2FnZSI6ChZTdXJyZW5kZXJCYXR0bGVSZXF1ZXN0EhEKCWJhdHRsZV9p",
-          "ZBgBIAEoBBINCgVhZ3JlZRgCIAEoCCJwChdTdXJyZW5kZXJCYXR0bGVSZXNw",
-          "b25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2US",
-          "LQoKdm90ZV9zdGF0ZRgCIAEoCzIZLkJhdHRsZVN1cnJlbmRlclZvdGVTdGF0",
-          "ZSJUChBTdXJyZW5kZXJWb3RlUzJDEhEKCWJhdHRsZV9pZBgBIAEoBBItCgp2",
-          "b3RlX3N0YXRlGAIgASgLMhkuQmF0dGxlU3VycmVuZGVyVm90ZVN0YXRlIm4K",
-          "F1VwZGF0ZUJhdHRsZVByZXBSZXF1ZXN0EhEKCWJhdHRsZV9pZBgBIAEoBBIY",
-          "ChBzZWxlY3RlZF9zZWFsX2lkGAIgASgNEhcKD3NlbGVjdGVkX3BldF9pZBgD",
-          "IAEoBBINCgVyZWFkeRgEIAEoCCJoChhVcGRhdGVCYXR0bGVQcmVwUmVzcG9u",
-          "c2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiQK",
-          "CnByZXBfc3RhdGUYAiABKAsyEC5CYXR0bGVQcmVwU3RhdGUiTgoTQmF0dGxl",
-          "UHJlcFVwZGF0ZVMyQxIRCgliYXR0bGVfaWQYASABKAQSJAoKcHJlcF9zdGF0",
-          "ZRgCIAEoCzIQLkJhdHRsZVByZXBTdGF0ZSJiChVTZW5kQmF0dGxlUGluZ1Jl",
-          "cXVlc3QSEQoJYmF0dGxlX2lkGAEgASgEEhcKD3RhcmdldF9hY3Rvcl9pZBgC",
-          "IAEoBBIdCgRraW5kGAMgASgOMg8uQmF0dGxlUGluZ0tpbmQiYwoWU2VuZEJh",
-          "dHRsZVBpbmdSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
-          "SW5mb01lc3NhZ2USIQoEcGluZxgCIAEoCzITLkJhdHRsZVRhY3RpY2FsUGlu",
-          "ZyJFCg1CYXR0bGVQaW5nUzJDEhEKCWJhdHRsZV9pZBgBIAEoBBIhCgRwaW5n",
-          "GAIgASgLMhMuQmF0dGxlVGFjdGljYWxQaW5nIscBChNCYXR0bGVUaWNrZXRQ",
-          "YXlsb2FkEhEKCWJhdHRsZV9pZBgBIAEoBBIRCglwbGF5ZXJfaWQYAiABKAQS",
-          "FgoOYmF0dGxlX25vZGVfaWQYAyABKA0SGgoSYmF0dGxlX2luc3RhbmNlX2lk",
-          "GAQgASgJEhQKDGV4cGlyZV9hdF9tcxgFIAEoBBIgCgRyb2xlGAYgASgOMhIu",
-          "ZUJhdHRsZVRpY2tldFJvbGUSHgoWc3BlY3RhdG9yX29wZXJhdGlvbl9pZBgH",
-          "IAEoCSI+ChhCYXR0bGVUb2tlblZlcmlmeVJlcXVlc3QSDwoHcGF5bG9hZBgB",
-          "IAEoDBIRCglzaWduYXR1cmUYAiABKAwiiwEKGUJhdHRsZVRva2VuVmVyaWZ5",
-          "UmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCBINCgVlcnJvchgCIAEoCRIRCgli",
-          "YXR0bGVfaWQYAyABKAQSHQoVaGVhcnRiZWF0X2ludGVydmFsX21zGAQgASgN",
-          "EhwKFGhlYXJ0YmVhdF90aW1lb3V0X21zGAUgASgNIroBChFCYXR0bGVBc3Np",
-          "Z25lZFMyQxIRCgliYXR0bGVfaWQYASABKAQSDAoEaG9zdBgCIAEoCRIMCgRw",
-          "b3J0GAMgASgNEhUKDXRva2VuX3BheWxvYWQYBCABKAwSFwoPdG9rZW5fc2ln",
-          "bmF0dXJlGAUgASgMEhQKDGV4cGlyZV9hdF9tcxgGIAEoBBIgCgRyb2xlGAcg",
-          "ASgOMhIuZUJhdHRsZVRpY2tldFJvbGUSDgoGd3NfdXJsGAggASgJIi8KGlJl",
-          "cXVlc3RCYXR0bGVUaWNrZXRSZXF1ZXN0EhEKCWJhdHRsZV9pZBgBIAEoBCJt",
-          "ChtSZXF1ZXN0QmF0dGxlVGlja2V0UmVzcG9uc2USJgoNZXJyb3JfbWVzc2Fn",
-          "ZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiYKCmFzc2lnbm1lbnQYAiABKAsy",
-          "Ei5CYXR0bGVBc3NpZ25lZFMyQyKtAwoMQmF0dGxlUmVwbGF5EhEKCWJhdHRs",
-          "ZV9pZBgBIAEoBBISCgptYXRjaF9tb2RlGAIgASgNEhgKEGJhdHRsZV9jb25m",
-          "aWdfaWQYAyABKA0SFQoNc3RhcnRlZF9hdF9tcxgEIAEoBBIWCg5maW5pc2hl",
-          "ZF9hdF9tcxgFIAEoBBIgCgdvdXRjb21lGAYgASgOMg8uZUJhdHRsZU91dGNv",
-          "bWUSKwoKZW5kX3JlYXNvbhgHIAEoDjIXLmVCYXR0bGVSZXBsYXlFbmRSZWFz",
-          "b24SFAoMdG90YWxfcm91bmRzGAggASgNEhkKEXRhYmxlX2ZpbmdlcnByaW50",
-          "GAkgASgJEiQKC3N0YXJ0X3N0YXRlGAogASgLMg8uQmF0dGxlU3RhdGVTMkMS",
-          "HgoGcm91bmRzGAsgAygLMg4uVHVyblJlc3VsdFMyQxIkCgtmaW5hbF9zdGF0",
-          "ZRgMIAEoCzIPLkJhdHRsZVN0YXRlUzJDEhEKCXRydW5jYXRlZBgNIAEoCBIu",
-          "CgxhY3Rvcl9idWlsZHMYDiADKAsyGC5CYXR0bGVBY3RvckJ1aWxkU3VtbWFy",
-          "eSJ2ChRCYXR0bGVSZXBsYXlFbnZlbG9wZRIWCg5mb3JtYXRfdmVyc2lvbhgB",
-          "IAEoDRIiCgVjb2RlYxgCIAEoDjITLmVCYXR0bGVSZXBsYXlDb2RlYxIRCgly",
-          "YXdfYnl0ZXMYAyABKA0SDwoHcGF5bG9hZBgEIAEoDCqmAQoSZVNwZWN0YXRl",
-          "RW5kUmVhc29uEhUKEVNQRUNUQVRFX0VORF9OT05FEAASIAocU1BFQ1RBVEVf",
-          "RU5EX0JBVFRMRV9GSU5JU0hFRBABEh8KG1NQRUNUQVRFX0VORF9CQVRUTEVf",
-          "QUJPUlRFRBACEhgKFFNQRUNUQVRFX0VORF9SRU1PVkVEEAMSHAoYU1BFQ1RB",
-          "VEVfRU5EX1NPVVJDRV9MT1NUEAQqdQoRZUJhdHRsZVRpY2tldFJvbGUSGwoX",
-          "QkFUVExFX1RJQ0tFVF9ST0xFX05PTkUQABIiCh5CQVRUTEVfVElDS0VUX1JP",
-          "TEVfUEFSVElDSVBBTlQQARIfChtCQVRUTEVfVElDS0VUX1JPTEVfT0JTRVJW",
-          "RVIQAipQChJlQmF0dGxlUmVwbGF5Q29kZWMSHAoYQkFUVExFX1JFUExBWV9D",
-          "T0RFQ19OT05FEAASHAoYQkFUVExFX1JFUExBWV9DT0RFQ19HWklQEAEqgAEK",
-          "FmVCYXR0bGVSZXBsYXlFbmRSZWFzb24SIQodQkFUVExFX1JFUExBWV9FTkRf",
-          "VU5TUEVDSUZJRUQQABIeChpCQVRUTEVfUkVQTEFZX0VORF9GSU5JU0hFRBAB",
-          "EiMKH0JBVFRMRV9SRVBMQVlfRU5EX0RFQURMSU5FX0RSQVcQAjLiCAoSQmF0",
-          "dGxlQ2xpZW50UGxheWVyEk0KElN1Ym1pdEJhdHRsZUFjdGlvbhIaLlN1Ym1p",
-          "dEJhdHRsZUFjdGlvblJlcXVlc3QaGy5TdWJtaXRCYXR0bGVBY3Rpb25SZXNw",
-          "b25zZRI5Cg5HZXRCYXR0bGVTdGF0ZRIWLkdldEJhdHRsZVN0YXRlUmVxdWVz",
-          "dBoPLkJhdHRsZVN0YXRlUzJDEjMKEU5vdGlmeUJhdHRsZVN0YXJ0Eg8uQmF0",
-          "dGxlU3RhcnRTMkMaBi5FbXB0eSIFiJnIAQISMQoQTm90aWZ5VHVyblJlc3Vs",
-          "dBIOLlR1cm5SZXN1bHRTMkMaBi5FbXB0eSIFiJnIAQISLwoPTm90aWZ5QmF0",
-          "dGxlRW5kEg0uQmF0dGxlRW5kUzJDGgYuRW1wdHkiBYiZyAECEjsKFU5vdGlm",
-          "eUJhdHRsZVJlY29ubmVjdBITLkJhdHRsZVJlY29ubmVjdFMyQxoGLkVtcHR5",
-          "IgWImcgBAhJECg9TdG9wV2F0Y2hCYXR0bGUSFy5TdG9wV2F0Y2hCYXR0bGVS",
-          "ZXF1ZXN0GhguU3RvcFdhdGNoQmF0dGxlUmVzcG9uc2USPgoNU2V0QXV0b0Jh",
-          "dHRsZRIVLlNldEF1dG9CYXR0bGVSZXF1ZXN0GhYuU2V0QXV0b0JhdHRsZVJl",
-          "c3BvbnNlEjcKE05vdGlmeVNwZWN0YXRlU3RhdGUSES5TcGVjdGF0ZVN0YXRl",
-          "UzJDGgYuRW1wdHkiBYiZyAECEjkKGE5vdGlmeVNwZWN0YXRlVHVyblJlc3Vs",
-          "dBIOLlR1cm5SZXN1bHRTMkMaBi5FbXB0eSIFiJnIAQISMwoRTm90aWZ5U3Bl",
-          "Y3RhdGVFbmQSDy5TcGVjdGF0ZUVuZFMyQxoGLkVtcHR5IgWImcgBAhI5ChRO",
-          "b3RpZnlCYXR0bGVBc3NpZ25lZBISLkJhdHRsZUFzc2lnbmVkUzJDGgYuRW1w",
-          "dHkiBYiZyAECEkQKD1N1cnJlbmRlckJhdHRsZRIXLlN1cnJlbmRlckJhdHRs",
-          "ZVJlcXVlc3QaGC5TdXJyZW5kZXJCYXR0bGVSZXNwb25zZRI3ChNOb3RpZnlT",
-          "dXJyZW5kZXJWb3RlEhEuU3VycmVuZGVyVm90ZVMyQxoGLkVtcHR5IgWImcgB",
-          "AhJHChBVcGRhdGVCYXR0bGVQcmVwEhguVXBkYXRlQmF0dGxlUHJlcFJlcXVl",
-          "c3QaGS5VcGRhdGVCYXR0bGVQcmVwUmVzcG9uc2USPQoWTm90aWZ5QmF0dGxl",
-          "UHJlcFVwZGF0ZRIULkJhdHRsZVByZXBVcGRhdGVTMkMaBi5FbXB0eSIFiJnI",
-          "AQISQQoOU2VuZEJhdHRsZVBpbmcSFi5TZW5kQmF0dGxlUGluZ1JlcXVlc3Qa",
-          "Fy5TZW5kQmF0dGxlUGluZ1Jlc3BvbnNlEjEKEE5vdGlmeUJhdHRsZVBpbmcS",
-          "Di5CYXR0bGVQaW5nUzJDGgYuRW1wdHkiBYiZyAECGgWIqMMBAUIMWgZiYXR0",
-          "bGWY1GEeYgZwcm90bzM="));
+          "c2Vhc29uX2hvbm9yX25ld2x5X3VubG9ja2VkGA0gASgIEhQKDGxldmVsX2Jl",
+          "Zm9yZRgOIAEoDRITCgtsZXZlbF9hZnRlchgPIAEoDRIQCghleHBfZ2FpbhgQ",
+          "IAEoBBITCgtzaWx2ZXJfZ2FpbhgRIAEoBBIXCg90b3RhbF9leHBfYWZ0ZXIY",
+          "EiABKAQSHAoUbmV4dF9sZXZlbF90b3RhbF9leHAYEyABKAQSIAoYYmF0dGxl",
+          "X3NpbHZlcl9kaW1pbmlzaGVkGBQgASgIIicKEkJhdHRsZVJlY29ubmVjdFMy",
+          "QxIRCgliYXR0bGVfaWQYASABKAQiSgoQU3BlY3RhdGVTdGF0ZVMyQxIeCgVz",
+          "dGF0ZRgBIAEoCzIPLkJhdHRsZVN0YXRlUzJDEhYKDm9ic2VydmVyX2NvdW50",
+          "GAIgASgNImoKDlNwZWN0YXRlRW5kUzJDEhEKCWJhdHRsZV9pZBgBIAEoBBIg",
+          "CgdvdXRjb21lGAIgASgOMg8uZUJhdHRsZU91dGNvbWUSIwoGcmVhc29uGAMg",
+          "ASgOMhMuZVNwZWN0YXRlRW5kUmVhc29uInQKGVN1Ym1pdEJhdHRsZUFjdGlv",
+          "blJlcXVlc3QSEQoJYmF0dGxlX2lkGAEgASgEEh0KBmFjdGlvbhgCIAEoCzIN",
+          "LkJhdHRsZUFjdGlvbhIQCghhY3Rvcl9pZBgDIAEoBBITCgtyb3VuZF9pbmRl",
+          "eBgEIAEoDSJEChpTdWJtaXRCYXR0bGVBY3Rpb25SZXNwb25zZRImCg1lcnJv",
+          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2UiKgoVR2V0QmF0dGxl",
+          "U3RhdGVSZXF1ZXN0EhEKCWJhdHRsZV9pZBgBIAEoBCIrChZTdG9wV2F0Y2hC",
+          "YXR0bGVSZXF1ZXN0EhEKCWJhdHRsZV9pZBgBIAEoBCJBChdTdG9wV2F0Y2hC",
+          "YXR0bGVSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
+          "b01lc3NhZ2UiOgoUU2V0QXV0b0JhdHRsZVJlcXVlc3QSEQoJYmF0dGxlX2lk",
+          "GAEgASgEEg8KB2VuYWJsZWQYAiABKAgiPwoVU2V0QXV0b0JhdHRsZVJlc3Bv",
+          "bnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZSI6",
+          "ChZTdXJyZW5kZXJCYXR0bGVSZXF1ZXN0EhEKCWJhdHRsZV9pZBgBIAEoBBIN",
+          "CgVhZ3JlZRgCIAEoCCJwChdTdXJyZW5kZXJCYXR0bGVSZXNwb25zZRImCg1l",
+          "cnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USLQoKdm90ZV9z",
+          "dGF0ZRgCIAEoCzIZLkJhdHRsZVN1cnJlbmRlclZvdGVTdGF0ZSJUChBTdXJy",
+          "ZW5kZXJWb3RlUzJDEhEKCWJhdHRsZV9pZBgBIAEoBBItCgp2b3RlX3N0YXRl",
+          "GAIgASgLMhkuQmF0dGxlU3VycmVuZGVyVm90ZVN0YXRlIm4KF1VwZGF0ZUJh",
+          "dHRsZVByZXBSZXF1ZXN0EhEKCWJhdHRsZV9pZBgBIAEoBBIYChBzZWxlY3Rl",
+          "ZF9zZWFsX2lkGAIgASgNEhcKD3NlbGVjdGVkX3BldF9pZBgDIAEoBBINCgVy",
+          "ZWFkeRgEIAEoCCJoChhVcGRhdGVCYXR0bGVQcmVwUmVzcG9uc2USJgoNZXJy",
+          "b3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiQKCnByZXBfc3Rh",
+          "dGUYAiABKAsyEC5CYXR0bGVQcmVwU3RhdGUiTgoTQmF0dGxlUHJlcFVwZGF0",
+          "ZVMyQxIRCgliYXR0bGVfaWQYASABKAQSJAoKcHJlcF9zdGF0ZRgCIAEoCzIQ",
+          "LkJhdHRsZVByZXBTdGF0ZSJiChVTZW5kQmF0dGxlUGluZ1JlcXVlc3QSEQoJ",
+          "YmF0dGxlX2lkGAEgASgEEhcKD3RhcmdldF9hY3Rvcl9pZBgCIAEoBBIdCgRr",
+          "aW5kGAMgASgOMg8uQmF0dGxlUGluZ0tpbmQiYwoWU2VuZEJhdHRsZVBpbmdS",
+          "ZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3Nh",
+          "Z2USIQoEcGluZxgCIAEoCzITLkJhdHRsZVRhY3RpY2FsUGluZyJFCg1CYXR0",
+          "bGVQaW5nUzJDEhEKCWJhdHRsZV9pZBgBIAEoBBIhCgRwaW5nGAIgASgLMhMu",
+          "QmF0dGxlVGFjdGljYWxQaW5nIscBChNCYXR0bGVUaWNrZXRQYXlsb2FkEhEK",
+          "CWJhdHRsZV9pZBgBIAEoBBIRCglwbGF5ZXJfaWQYAiABKAQSFgoOYmF0dGxl",
+          "X25vZGVfaWQYAyABKA0SGgoSYmF0dGxlX2luc3RhbmNlX2lkGAQgASgJEhQK",
+          "DGV4cGlyZV9hdF9tcxgFIAEoBBIgCgRyb2xlGAYgASgOMhIuZUJhdHRsZVRp",
+          "Y2tldFJvbGUSHgoWc3BlY3RhdG9yX29wZXJhdGlvbl9pZBgHIAEoCSI+ChhC",
+          "YXR0bGVUb2tlblZlcmlmeVJlcXVlc3QSDwoHcGF5bG9hZBgBIAEoDBIRCglz",
+          "aWduYXR1cmUYAiABKAwiiwEKGUJhdHRsZVRva2VuVmVyaWZ5UmVzcG9uc2US",
+          "DwoHc3VjY2VzcxgBIAEoCBINCgVlcnJvchgCIAEoCRIRCgliYXR0bGVfaWQY",
+          "AyABKAQSHQoVaGVhcnRiZWF0X2ludGVydmFsX21zGAQgASgNEhwKFGhlYXJ0",
+          "YmVhdF90aW1lb3V0X21zGAUgASgNIroBChFCYXR0bGVBc3NpZ25lZFMyQxIR",
+          "CgliYXR0bGVfaWQYASABKAQSDAoEaG9zdBgCIAEoCRIMCgRwb3J0GAMgASgN",
+          "EhUKDXRva2VuX3BheWxvYWQYBCABKAwSFwoPdG9rZW5fc2lnbmF0dXJlGAUg",
+          "ASgMEhQKDGV4cGlyZV9hdF9tcxgGIAEoBBIgCgRyb2xlGAcgASgOMhIuZUJh",
+          "dHRsZVRpY2tldFJvbGUSDgoGd3NfdXJsGAggASgJIi8KGlJlcXVlc3RCYXR0",
+          "bGVUaWNrZXRSZXF1ZXN0EhEKCWJhdHRsZV9pZBgBIAEoBCJtChtSZXF1ZXN0",
+          "QmF0dGxlVGlja2V0UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIP",
+          "LlRpcEluZm9NZXNzYWdlEiYKCmFzc2lnbm1lbnQYAiABKAsyEi5CYXR0bGVB",
+          "c3NpZ25lZFMyQyKtAwoMQmF0dGxlUmVwbGF5EhEKCWJhdHRsZV9pZBgBIAEo",
+          "BBISCgptYXRjaF9tb2RlGAIgASgNEhgKEGJhdHRsZV9jb25maWdfaWQYAyAB",
+          "KA0SFQoNc3RhcnRlZF9hdF9tcxgEIAEoBBIWCg5maW5pc2hlZF9hdF9tcxgF",
+          "IAEoBBIgCgdvdXRjb21lGAYgASgOMg8uZUJhdHRsZU91dGNvbWUSKwoKZW5k",
+          "X3JlYXNvbhgHIAEoDjIXLmVCYXR0bGVSZXBsYXlFbmRSZWFzb24SFAoMdG90",
+          "YWxfcm91bmRzGAggASgNEhkKEXRhYmxlX2ZpbmdlcnByaW50GAkgASgJEiQK",
+          "C3N0YXJ0X3N0YXRlGAogASgLMg8uQmF0dGxlU3RhdGVTMkMSHgoGcm91bmRz",
+          "GAsgAygLMg4uVHVyblJlc3VsdFMyQxIkCgtmaW5hbF9zdGF0ZRgMIAEoCzIP",
+          "LkJhdHRsZVN0YXRlUzJDEhEKCXRydW5jYXRlZBgNIAEoCBIuCgxhY3Rvcl9i",
+          "dWlsZHMYDiADKAsyGC5CYXR0bGVBY3RvckJ1aWxkU3VtbWFyeSJ2ChRCYXR0",
+          "bGVSZXBsYXlFbnZlbG9wZRIWCg5mb3JtYXRfdmVyc2lvbhgBIAEoDRIiCgVj",
+          "b2RlYxgCIAEoDjITLmVCYXR0bGVSZXBsYXlDb2RlYxIRCglyYXdfYnl0ZXMY",
+          "AyABKA0SDwoHcGF5bG9hZBgEIAEoDCqmAQoSZVNwZWN0YXRlRW5kUmVhc29u",
+          "EhUKEVNQRUNUQVRFX0VORF9OT05FEAASIAocU1BFQ1RBVEVfRU5EX0JBVFRM",
+          "RV9GSU5JU0hFRBABEh8KG1NQRUNUQVRFX0VORF9CQVRUTEVfQUJPUlRFRBAC",
+          "EhgKFFNQRUNUQVRFX0VORF9SRU1PVkVEEAMSHAoYU1BFQ1RBVEVfRU5EX1NP",
+          "VVJDRV9MT1NUEAQqdQoRZUJhdHRsZVRpY2tldFJvbGUSGwoXQkFUVExFX1RJ",
+          "Q0tFVF9ST0xFX05PTkUQABIiCh5CQVRUTEVfVElDS0VUX1JPTEVfUEFSVElD",
+          "SVBBTlQQARIfChtCQVRUTEVfVElDS0VUX1JPTEVfT0JTRVJWRVIQAipQChJl",
+          "QmF0dGxlUmVwbGF5Q29kZWMSHAoYQkFUVExFX1JFUExBWV9DT0RFQ19OT05F",
+          "EAASHAoYQkFUVExFX1JFUExBWV9DT0RFQ19HWklQEAEqgAEKFmVCYXR0bGVS",
+          "ZXBsYXlFbmRSZWFzb24SIQodQkFUVExFX1JFUExBWV9FTkRfVU5TUEVDSUZJ",
+          "RUQQABIeChpCQVRUTEVfUkVQTEFZX0VORF9GSU5JU0hFRBABEiMKH0JBVFRM",
+          "RV9SRVBMQVlfRU5EX0RFQURMSU5FX0RSQVcQAjLiCAoSQmF0dGxlQ2xpZW50",
+          "UGxheWVyEk0KElN1Ym1pdEJhdHRsZUFjdGlvbhIaLlN1Ym1pdEJhdHRsZUFj",
+          "dGlvblJlcXVlc3QaGy5TdWJtaXRCYXR0bGVBY3Rpb25SZXNwb25zZRI5Cg5H",
+          "ZXRCYXR0bGVTdGF0ZRIWLkdldEJhdHRsZVN0YXRlUmVxdWVzdBoPLkJhdHRs",
+          "ZVN0YXRlUzJDEjMKEU5vdGlmeUJhdHRsZVN0YXJ0Eg8uQmF0dGxlU3RhcnRT",
+          "MkMaBi5FbXB0eSIFiJnIAQISMQoQTm90aWZ5VHVyblJlc3VsdBIOLlR1cm5S",
+          "ZXN1bHRTMkMaBi5FbXB0eSIFiJnIAQISLwoPTm90aWZ5QmF0dGxlRW5kEg0u",
+          "QmF0dGxlRW5kUzJDGgYuRW1wdHkiBYiZyAECEjsKFU5vdGlmeUJhdHRsZVJl",
+          "Y29ubmVjdBITLkJhdHRsZVJlY29ubmVjdFMyQxoGLkVtcHR5IgWImcgBAhJE",
+          "Cg9TdG9wV2F0Y2hCYXR0bGUSFy5TdG9wV2F0Y2hCYXR0bGVSZXF1ZXN0Ghgu",
+          "U3RvcFdhdGNoQmF0dGxlUmVzcG9uc2USPgoNU2V0QXV0b0JhdHRsZRIVLlNl",
+          "dEF1dG9CYXR0bGVSZXF1ZXN0GhYuU2V0QXV0b0JhdHRsZVJlc3BvbnNlEjcK",
+          "E05vdGlmeVNwZWN0YXRlU3RhdGUSES5TcGVjdGF0ZVN0YXRlUzJDGgYuRW1w",
+          "dHkiBYiZyAECEjkKGE5vdGlmeVNwZWN0YXRlVHVyblJlc3VsdBIOLlR1cm5S",
+          "ZXN1bHRTMkMaBi5FbXB0eSIFiJnIAQISMwoRTm90aWZ5U3BlY3RhdGVFbmQS",
+          "Dy5TcGVjdGF0ZUVuZFMyQxoGLkVtcHR5IgWImcgBAhI5ChROb3RpZnlCYXR0",
+          "bGVBc3NpZ25lZBISLkJhdHRsZUFzc2lnbmVkUzJDGgYuRW1wdHkiBYiZyAEC",
+          "EkQKD1N1cnJlbmRlckJhdHRsZRIXLlN1cnJlbmRlckJhdHRsZVJlcXVlc3Qa",
+          "GC5TdXJyZW5kZXJCYXR0bGVSZXNwb25zZRI3ChNOb3RpZnlTdXJyZW5kZXJW",
+          "b3RlEhEuU3VycmVuZGVyVm90ZVMyQxoGLkVtcHR5IgWImcgBAhJHChBVcGRh",
+          "dGVCYXR0bGVQcmVwEhguVXBkYXRlQmF0dGxlUHJlcFJlcXVlc3QaGS5VcGRh",
+          "dGVCYXR0bGVQcmVwUmVzcG9uc2USPQoWTm90aWZ5QmF0dGxlUHJlcFVwZGF0",
+          "ZRIULkJhdHRsZVByZXBVcGRhdGVTMkMaBi5FbXB0eSIFiJnIAQISQQoOU2Vu",
+          "ZEJhdHRsZVBpbmcSFi5TZW5kQmF0dGxlUGluZ1JlcXVlc3QaFy5TZW5kQmF0",
+          "dGxlUGluZ1Jlc3BvbnNlEjEKEE5vdGlmeUJhdHRsZVBpbmcSDi5CYXR0bGVQ",
+          "aW5nUzJDGgYuRW1wdHkiBYiZyAECGgWIqMMBAUIMWgZiYXR0bGWY1GEeYgZw",
+          "cm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, global::BattleDataReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eSpectateEndReason), typeof(global::eBattleTicketRole), typeof(global::eBattleReplayCodec), typeof(global::eBattleReplayEndReason), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -189,7 +193,7 @@ public static partial class PlayerBattleReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleStartS2C), global::BattleStartS2C.Parser, new[]{ "BattleId", "State" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TurnResultS2C), global::TurnResultS2C.Parser, new[]{ "BattleId", "RoundIndex", "Events", "State", "ActionOrder", "ResolvedTelegraphs" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::FestivalBeastSettlementSummary), global::FestivalBeastSettlementSummary.Parser, new[]{ "ActivityInstanceId", "RewardIdentity", "WinsBefore", "WinsAfter", "RequiredWins", "NewlyEligible", "MaterialUnitsAdded", "MaterialTradableUnitsAdded", "MaterialAvailableUnitsAfter", "MaterialEarnableRemainingAfter" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleEndS2C), global::BattleEndS2C.Parser, new[]{ "BattleId", "Outcome", "Settlement", "ItemsMailed", "MaterialCreditUnitsAdded", "SeasonId", "MaterialTradableUnitsAdded", "MaterialPvpLossIneligible", "FestivalBeastSettlement", "SeasonSealPointsAdded", "SeasonSealProgressAfter", "SeasonSealMaxPoints", "SeasonHonorNewlyUnlocked" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleEndS2C), global::BattleEndS2C.Parser, new[]{ "BattleId", "Outcome", "Settlement", "ItemsMailed", "MaterialCreditUnitsAdded", "SeasonId", "MaterialTradableUnitsAdded", "MaterialPvpLossIneligible", "FestivalBeastSettlement", "SeasonSealPointsAdded", "SeasonSealProgressAfter", "SeasonSealMaxPoints", "SeasonHonorNewlyUnlocked", "LevelBefore", "LevelAfter", "ExpGain", "SilverGain", "TotalExpAfter", "NextLevelTotalExp", "BattleSilverDiminished" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleReconnectS2C), global::BattleReconnectS2C.Parser, new[]{ "BattleId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SpectateStateS2C), global::SpectateStateS2C.Parser, new[]{ "State", "ObserverCount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SpectateEndS2C), global::SpectateEndS2C.Parser, new[]{ "BattleId", "Outcome", "Reason" }, null, null, null, null),
@@ -3544,6 +3548,13 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     seasonSealProgressAfter_ = other.seasonSealProgressAfter_;
     seasonSealMaxPoints_ = other.seasonSealMaxPoints_;
     seasonHonorNewlyUnlocked_ = other.seasonHonorNewlyUnlocked_;
+    levelBefore_ = other.levelBefore_;
+    levelAfter_ = other.levelAfter_;
+    expGain_ = other.expGain_;
+    silverGain_ = other.silverGain_;
+    totalExpAfter_ = other.totalExpAfter_;
+    nextLevelTotalExp_ = other.nextLevelTotalExp_;
+    battleSilverDiminished_ = other.battleSilverDiminished_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -3743,6 +3754,93 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     }
   }
 
+  /// <summary>Field number for the "level_before" field.</summary>
+  public const int LevelBeforeFieldNumber = 14;
+  private uint levelBefore_;
+  /// <summary>
+  /// 角色升级与战斗银两结算增量（与 PlayerBattleResult 同源，docs/planning/player-leveling-and-battle-economy-v1.md §2.3）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint LevelBefore {
+    get { return levelBefore_; }
+    set {
+      levelBefore_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "level_after" field.</summary>
+  public const int LevelAfterFieldNumber = 15;
+  private uint levelAfter_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint LevelAfter {
+    get { return levelAfter_; }
+    set {
+      levelAfter_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "exp_gain" field.</summary>
+  public const int ExpGainFieldNumber = 16;
+  private ulong expGain_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ExpGain {
+    get { return expGain_; }
+    set {
+      expGain_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "silver_gain" field.</summary>
+  public const int SilverGainFieldNumber = 17;
+  private ulong silverGain_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong SilverGain {
+    get { return silverGain_; }
+    set {
+      silverGain_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "total_exp_after" field.</summary>
+  public const int TotalExpAfterFieldNumber = 18;
+  private ulong totalExpAfter_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong TotalExpAfter {
+    get { return totalExpAfter_; }
+    set {
+      totalExpAfter_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "next_level_total_exp" field.</summary>
+  public const int NextLevelTotalExpFieldNumber = 19;
+  private ulong nextLevelTotalExp_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong NextLevelTotalExp {
+    get { return nextLevelTotalExp_; }
+    set {
+      nextLevelTotalExp_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "battle_silver_diminished" field.</summary>
+  public const int BattleSilverDiminishedFieldNumber = 20;
+  private bool battleSilverDiminished_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool BattleSilverDiminished {
+    get { return battleSilverDiminished_; }
+    set {
+      battleSilverDiminished_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -3771,6 +3869,13 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     if (SeasonSealProgressAfter != other.SeasonSealProgressAfter) return false;
     if (SeasonSealMaxPoints != other.SeasonSealMaxPoints) return false;
     if (SeasonHonorNewlyUnlocked != other.SeasonHonorNewlyUnlocked) return false;
+    if (LevelBefore != other.LevelBefore) return false;
+    if (LevelAfter != other.LevelAfter) return false;
+    if (ExpGain != other.ExpGain) return false;
+    if (SilverGain != other.SilverGain) return false;
+    if (TotalExpAfter != other.TotalExpAfter) return false;
+    if (NextLevelTotalExp != other.NextLevelTotalExp) return false;
+    if (BattleSilverDiminished != other.BattleSilverDiminished) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -3791,6 +3896,13 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     if (SeasonSealProgressAfter != 0) hash ^= SeasonSealProgressAfter.GetHashCode();
     if (SeasonSealMaxPoints != 0) hash ^= SeasonSealMaxPoints.GetHashCode();
     if (SeasonHonorNewlyUnlocked != false) hash ^= SeasonHonorNewlyUnlocked.GetHashCode();
+    if (LevelBefore != 0) hash ^= LevelBefore.GetHashCode();
+    if (LevelAfter != 0) hash ^= LevelAfter.GetHashCode();
+    if (ExpGain != 0UL) hash ^= ExpGain.GetHashCode();
+    if (SilverGain != 0UL) hash ^= SilverGain.GetHashCode();
+    if (TotalExpAfter != 0UL) hash ^= TotalExpAfter.GetHashCode();
+    if (NextLevelTotalExp != 0UL) hash ^= NextLevelTotalExp.GetHashCode();
+    if (BattleSilverDiminished != false) hash ^= BattleSilverDiminished.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -3861,6 +3973,34 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
       output.WriteRawTag(104);
       output.WriteBool(SeasonHonorNewlyUnlocked);
     }
+    if (LevelBefore != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(LevelBefore);
+    }
+    if (LevelAfter != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(LevelAfter);
+    }
+    if (ExpGain != 0UL) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt64(ExpGain);
+    }
+    if (SilverGain != 0UL) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt64(SilverGain);
+    }
+    if (TotalExpAfter != 0UL) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt64(TotalExpAfter);
+    }
+    if (NextLevelTotalExp != 0UL) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt64(NextLevelTotalExp);
+    }
+    if (BattleSilverDiminished != false) {
+      output.WriteRawTag(160, 1);
+      output.WriteBool(BattleSilverDiminished);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3923,6 +4063,34 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
       output.WriteRawTag(104);
       output.WriteBool(SeasonHonorNewlyUnlocked);
     }
+    if (LevelBefore != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(LevelBefore);
+    }
+    if (LevelAfter != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(LevelAfter);
+    }
+    if (ExpGain != 0UL) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt64(ExpGain);
+    }
+    if (SilverGain != 0UL) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt64(SilverGain);
+    }
+    if (TotalExpAfter != 0UL) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt64(TotalExpAfter);
+    }
+    if (NextLevelTotalExp != 0UL) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt64(NextLevelTotalExp);
+    }
+    if (BattleSilverDiminished != false) {
+      output.WriteRawTag(160, 1);
+      output.WriteBool(BattleSilverDiminished);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -3971,6 +4139,27 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     }
     if (SeasonHonorNewlyUnlocked != false) {
       size += 1 + 1;
+    }
+    if (LevelBefore != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LevelBefore);
+    }
+    if (LevelAfter != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LevelAfter);
+    }
+    if (ExpGain != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(ExpGain);
+    }
+    if (SilverGain != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(SilverGain);
+    }
+    if (TotalExpAfter != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(TotalExpAfter);
+    }
+    if (NextLevelTotalExp != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(NextLevelTotalExp);
+    }
+    if (BattleSilverDiminished != false) {
+      size += 2 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -4028,6 +4217,27 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     }
     if (other.SeasonHonorNewlyUnlocked != false) {
       SeasonHonorNewlyUnlocked = other.SeasonHonorNewlyUnlocked;
+    }
+    if (other.LevelBefore != 0) {
+      LevelBefore = other.LevelBefore;
+    }
+    if (other.LevelAfter != 0) {
+      LevelAfter = other.LevelAfter;
+    }
+    if (other.ExpGain != 0UL) {
+      ExpGain = other.ExpGain;
+    }
+    if (other.SilverGain != 0UL) {
+      SilverGain = other.SilverGain;
+    }
+    if (other.TotalExpAfter != 0UL) {
+      TotalExpAfter = other.TotalExpAfter;
+    }
+    if (other.NextLevelTotalExp != 0UL) {
+      NextLevelTotalExp = other.NextLevelTotalExp;
+    }
+    if (other.BattleSilverDiminished != false) {
+      BattleSilverDiminished = other.BattleSilverDiminished;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -4106,6 +4316,34 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
           SeasonHonorNewlyUnlocked = input.ReadBool();
           break;
         }
+        case 112: {
+          LevelBefore = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          LevelAfter = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          ExpGain = input.ReadUInt64();
+          break;
+        }
+        case 136: {
+          SilverGain = input.ReadUInt64();
+          break;
+        }
+        case 144: {
+          TotalExpAfter = input.ReadUInt64();
+          break;
+        }
+        case 152: {
+          NextLevelTotalExp = input.ReadUInt64();
+          break;
+        }
+        case 160: {
+          BattleSilverDiminished = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -4181,6 +4419,34 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
         }
         case 104: {
           SeasonHonorNewlyUnlocked = input.ReadBool();
+          break;
+        }
+        case 112: {
+          LevelBefore = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          LevelAfter = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          ExpGain = input.ReadUInt64();
+          break;
+        }
+        case 136: {
+          SilverGain = input.ReadUInt64();
+          break;
+        }
+        case 144: {
+          TotalExpAfter = input.ReadUInt64();
+          break;
+        }
+        case 152: {
+          NextLevelTotalExp = input.ReadUInt64();
+          break;
+        }
+        case 160: {
+          BattleSilverDiminished = input.ReadBool();
           break;
         }
       }

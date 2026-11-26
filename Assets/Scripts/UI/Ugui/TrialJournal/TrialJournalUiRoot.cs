@@ -111,6 +111,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             _window.JumpRequested += HandleJumpRequested;
             _window.ClaimMilestoneRequested += HandleClaimMilestone;
             _window.RedeemVoucherRequested += HandleRedeemVoucher;
+            _window.ViewChanged += RenderNow;
             _window.RefreshRequested += HandleManualRefresh;
             _window.OpenAppearanceRequested += HandleOpenAppearance;
 
@@ -266,7 +267,7 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
 
         private void HandleManualRefresh()
         {
-            _client?.RequestSnapshot(force: false);
+            _client?.RequestSnapshot(force: true);
             RenderNow();
         }
 

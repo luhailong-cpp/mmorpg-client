@@ -17,7 +17,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     /// <summary>Live equipment UI. Painted screens are references only; every value comes from a server snapshot.</summary>
     public sealed partial class EquipmentWindow : IDisposable
     {
-        private enum Modal { None, Compare, Affix, Detail, Materials, PolishOdds, Reforge, BindConfirm, EnhanceBindConfirm, UnsealConfirm, InheritEnhance }
+        private enum Modal { None, Compare, Affix, Detail, Materials, PolishOdds, Reforge, BindConfirm, EnhanceBindConfirm, UnsealConfirm, InheritEnhance, UpgradeTier }
         private readonly RectTransform _root, _frame, _surface, _body, _modalLayer;
         private readonly CanvasGroup _surfaceInput;
         private readonly EquipWishDialogInput _input;
@@ -151,7 +151,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private static string Name(BagItemInfo item) => item == null ? "尚未装备" : GameplayUiArt.ItemName(item);
         private void Applied(ulong id)
         {
-            _selectedItem = id; _notice = "装备操作已完成";
+            bool wasUpgradeTier = _modal == Modal.UpgradeTier;
+            _selectedItem = id;
+            _notice = wasUpgradeTier ? "装备已原地无损升档（强化、保底、词条与品相已保留）" : "装备操作已完成";
             _modal = Modal.None;
             // A created empty item stays a real instance: each subsequent affix is previewed and confirmed separately.
             if (_page == EquipmentPage.Craft)
@@ -223,7 +225,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                             EquipmentEnhancementView.Render(_body, _client, _forge, SelectEnhancement, WriteBlocked,
                                 onRequestEnhanceBindConfirm: OpenEnhanceBindConfirm,
                                 onOpenUnseal: OpenUnsealConfirm,
-                                onOpenInherit: OpenInheritEnhance);
+                                onOpenInherit: OpenInheritEnhance,
+                                onOpenUpgradeTier: OpenUpgradeTier);
                             break;
                         case EquipmentPage.Artifacts: RenderArtifacts(); break;
                         case EquipmentPage.Polish: RenderPolish(); break;

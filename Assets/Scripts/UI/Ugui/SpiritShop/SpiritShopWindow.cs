@@ -621,7 +621,8 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             }
             if (firstItemId == SpiritShopModels.ItemAppearanceCard)
             {
-                var card = QdaoUguiTheme.LoadSprite("UI/Ugui/AppearanceV1/item_appearance_card");
+                var card = QdaoUguiTheme.LoadSprite("UI/Ugui/AppearanceChronicleV2/item_appearance_card")
+                    ?? QdaoUguiTheme.LoadSprite("UI/Icons/item_appearance_card");
                 if (card != null) return card;
             }
             return Load("icon_scroll");

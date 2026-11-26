@@ -36,6 +36,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private RectTransform _hud;
         private Button _entry;
         private GameObject _tideHudBadge;
+        private GameObject _wildHabitatBar;
+        private TMP_Text _wildHabitatTitle;
+        private TMP_Text _wildHabitatPets;
+        private Button _wildHabitatButton;
+        private string _wildHabitatNotice = "";
+        private double _wildHabitatNoticeUntilSeconds;
         private CityTravelWindow _window;
         private string _status = "";
         private bool _wasAvailable;
@@ -91,6 +97,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             tideBadge.preserveAspect = true;
             _tideHudBadge = tideBadge.gameObject;
             _tideHudBadge.SetActive(false);
+            BuildWildHabitatBar();
             _window = new CityTravelWindow(design);
             _window.SetDestinations(CreateDestinations());
             _window.AppearanceTravelRequested += RequestTravel;
@@ -111,6 +118,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _hud.gameObject.SetActive(inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false));
             _entry.interactable = available && !_request.IsPending;
             RefreshTideHudBadge();
+            RefreshWildHabitatBar(available);
             double nowSeconds = Time.realtimeSinceStartupAsDouble;
             if (inGame && _channelClient != null)
             {
@@ -223,6 +231,101 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_tideHudBadge == null) return;
             bool visible = ShouldShowTideHudBadge;
             if (_tideHudBadge.activeSelf != visible) _tideHudBadge.SetActive(visible);
+        }
+
+        private void BuildWildHabitatBar()
+        {
+            var bar = QdaoUguiFactory.CreateRect("WildPetHabitatBar", _hud, 880f, 984f, 800f, 76f);
+            var bg = QdaoUguiFactory.CreateImage("WildPetHabitatBg", bar, 0f, 0f, 800f, 76f,
+                LoadHabitatSprite("wild_habitat_bar", "world_map_paper_panel"));
+            bg.type = Image.Type.Sliced;
+            bg.raycastTarget = true;
+
+            var icon = QdaoUguiFactory.CreateImage("WildPetHabitatIcon", bar, 18f, 14f, 48f, 48f,
+                LoadHabitatSprite("wild_habitat_icon", "seal_tide"));
+            icon.preserveAspect = true;
+            icon.raycastTarget = false;
+
+            _wildHabitatTitle = GameplayUiArt.Text(bar, "", 78f, 8f, 504f, 30f, 22f, GameplayUiArt.Ink);
+            _wildHabitatTitle.name = "WildPetHabitatTitle";
+            _wildHabitatTitle.overflowMode = TextOverflowModes.Ellipsis;
+
+            _wildHabitatPets = GameplayUiArt.Text(bar, "", 78f, 39f, 504f, 28f, 19f, GameplayUiArt.Muted);
+            _wildHabitatPets.name = "WildPetHabitatPets";
+            _wildHabitatPets.overflowMode = TextOverflowModes.Ellipsis;
+
+            var btnRect = QdaoUguiFactory.CreateRect("WildPetHabitatEncounterBtn", bar, 594f, 13f, 190f, 50f);
+            var btnImage = btnRect.gameObject.AddComponent<Image>();
+            btnImage.sprite = LoadHabitatSprite("wild_habitat_btn", "tide_quick_travel_btn");
+            btnImage.type = Image.Type.Sliced;
+            _wildHabitatButton = btnRect.gameObject.AddComponent<Button>();
+            _wildHabitatButton.targetGraphic = btnImage;
+            _wildHabitatButton.navigation = new Navigation { mode = Navigation.Mode.None };
+            _wildHabitatButton.onClick.AddListener(HandleWildPetEncounterRequested);
+            var btnLabel = GameplayUiArt.Text(btnRect, "寻宠遇敌", 31f, 10f, 128f, 30f, 24f, GameplayUiArt.Cream,
+                alignment: TextAlignmentOptions.Center);
+            btnLabel.name = "WildPetHabitatEncounterLabel";
+            btnLabel.raycastTarget = false;
+
+            _wildHabitatBar = bar.gameObject;
+            _wildHabitatBar.SetActive(false);
+        }
+
+        private static Sprite LoadHabitatSprite(string dedicatedName, string fallbackName)
+        {
+            var dedicated = Resources.Load<Sprite>("UI/Ugui/WorldMapV2/" + dedicatedName);
+            return dedicated != null ? dedicated : QdaoUguiTheme.RequireSprite("UI/Ugui/WorldMapV2/" + fallbackName);
+        }
+
+        private void RefreshWildHabitatBar(bool available)
+        {
+            if (_wildHabitatBar == null) return;
+            var habitat = WorldMapOverviewModels.FindHabitat(CurrentScene);
+            bool visible = available && (_window == null || !_window.IsVisible) && habitat.HasValue;
+            if (_wildHabitatBar.activeSelf != visible) _wildHabitatBar.SetActive(visible);
+            if (!visible) return;
+
+            _wildHabitatTitle.text = WorldMapOverviewModels.FormatWildHabitatHeadline(CurrentOverview, CurrentScene);
+            double now = Time.realtimeSinceStartupAsDouble;
+            if (!string.IsNullOrEmpty(_wildHabitatNotice) && now < _wildHabitatNoticeUntilSeconds)
+            {
+                _wildHabitatPets.text = _wildHabitatNotice;
+            }
+            else
+            {
+                _wildHabitatNotice = "";
+                _wildHabitatPets.text = WorldMapOverviewModels.FormatHabitatSummary(CurrentScene);
+            }
+            if (_wildHabitatButton != null)
+            {
+                _wildHabitatButton.interactable = !_request.IsPending && BattleUiRoot.Instance?.MatchEntry != null;
+            }
+        }
+
+        private void HandleWildPetEncounterRequested()
+        {
+            var habitat = WorldMapOverviewModels.FindHabitat(CurrentScene);
+            if (!habitat.HasValue) return;
+            var entry = BattleUiRoot.Instance?.MatchEntry;
+            if (entry == null)
+            {
+                ShowWildHabitatNotice("匹配服务尚未就绪，请稍候重试。");
+                return;
+            }
+            if (!entry.StartWildPetHabitat(habitat.Value.DungeonConfigId) && !string.IsNullOrEmpty(entry.Status))
+            {
+                ShowWildHabitatNotice(entry.Status);
+            }
+        }
+
+        private void ShowWildHabitatNotice(string message)
+        {
+            _wildHabitatNotice = message ?? "";
+            _wildHabitatNoticeUntilSeconds = Time.realtimeSinceStartupAsDouble + 3d;
+            if (_wildHabitatPets != null && !string.IsNullOrEmpty(_wildHabitatNotice))
+            {
+                _wildHabitatPets.text = _wildHabitatNotice;
+            }
         }
 
         private void HandleTideQuickTravelRequested()
@@ -466,6 +569,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _dismissedTideRoundId = 0UL;
             _overviewBootstrapped = false;
             _nextHudOverviewRefreshSeconds = 0d;
+            _wildHabitatNotice = "";
+            _wildHabitatNoticeUntilSeconds = 0d;
             _status = "";
             HidePanel();
             _game = game;
@@ -548,6 +653,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _dismissedTideRoundId = 0UL;
             _overviewBootstrapped = false;
             _nextHudOverviewRefreshSeconds = 0d;
+            _wildHabitatNotice = "";
+            _wildHabitatNoticeUntilSeconds = 0d;
             _status = "";
             HidePanel();
             Refresh();

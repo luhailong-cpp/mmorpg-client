@@ -60,11 +60,20 @@ namespace MmorpgClient.Game.Jubaozhai
             public int Attempts;
         }
 
+        private struct IntentDeadlineSnapshot
+        {
+            public ulong ExpireMs;
+            public ulong ServerNowMs;
+            public ulong TotalWindowMs;
+            public double CapturedAtMonoSec;
+        }
+
         public const double PollIntervalSeconds = 2, PollWindowSeconds = 90;
         private readonly IBattleTransport _net;
         private readonly Func<object> _connectionIdentity;
         private readonly Dictionary<PayChannel, PayBridge> _bridges = new() { [PayChannel.Devpay] = new DevPayBridge() };
         private readonly List<PendingReceipt> _deferredReceipts = new();
+        private readonly Dictionary<string, IntentDeadlineSnapshot> _intentDeadlines = new(StringComparer.Ordinal);
         private PendingReceipt? _submittingReceipt;
         private object _observedConnection;
         private int _generation, _channelsGeneration;
@@ -224,6 +233,7 @@ namespace MmorpgClient.Game.Jubaozhai
                     { OrderId = orderId, Channel = channel, Platform = Platform, LoginCode = loginCode ?? "", DeviceOs = DeviceOs },
                         CreatePayIntentResponse.Parser, r => r.ErrorMessage, "正在创建支付…", intent =>
                         {
+                            RecordIntentDeadline(orderId, intent.Intent, intent.ServerNowMs);
                             if (Finished(orderId, intent.Intent)) return;
                             int launching = ++_generation;
                             Busy = true; Status = "请在支付界面完成付款…";
@@ -276,6 +286,7 @@ namespace MmorpgClient.Game.Jubaozhai
             }, SubmitPurchaseResponse.Parser, r => r.ErrorMessage, "正在核验购买凭证…", r =>
             {
                 _submittingReceipt = null;
+                RecordIntentDeadline(orderId, r.Intent, r.ServerNowMs);
                 if (r.FinishTransaction) bridge.Finish(purchase);
                 // 补交的交易(或跨角色补交 r.Intent == null)没有可等的本角订单,核验完即结束。
                 if (!Finished(orderId, r.Intent) && !string.IsNullOrEmpty(orderId) && r.Intent != null) Watch(orderId, "");
@@ -315,6 +326,7 @@ namespace MmorpgClient.Game.Jubaozhai
             Call(ClientPlayerPaymentRpc.GetPayIntentMessageId, new GetPayIntentRequest { OrderId = orderId },
                 GetPayIntentResponse.Parser, r => r.ErrorMessage, "正在确认支付结果…", r =>
                 {
+                    RecordIntentDeadline(orderId, r.Intent, r.ServerNowMs);
                     if (!Finished(orderId, r.Intent) && !StopWatchingIfOverdue()) Status = "等待支付结果…";
                 }, tip =>
                 {
@@ -355,8 +367,52 @@ namespace MmorpgClient.Game.Jubaozhai
             _pollOrder = "";
             Status = intent.State == PayIntentState.Paid ? "支付成功，正在发货。" : "这笔支付已关闭；如已扣款会原路退回。";
             string settledOrder = !string.IsNullOrEmpty(intent.OrderId) ? intent.OrderId : orderId;
-            if (!string.IsNullOrEmpty(settledOrder)) Settled?.Invoke(settledOrder);
+            if (!string.IsNullOrEmpty(settledOrder))
+            {
+                _intentDeadlines.Remove(settledOrder);
+                Settled?.Invoke(settledOrder);
+            }
             return true;
+        }
+
+        /// <summary>返回服务端下发的支付意图截止倒计时（严禁以客户端 90 秒轮询窗代替订单过期时间）。</summary>
+        public bool TryGetServerDeadline(string orderId, out ulong remainingMs, out ulong totalWindowMs)
+        {
+            remainingMs = 0UL;
+            totalWindowMs = 0UL;
+            if (string.IsNullOrEmpty(orderId) || !_intentDeadlines.TryGetValue(orderId, out var snap) || snap.TotalWindowMs == 0UL)
+                return false;
+            double elapsedSec = Math.Max(0d, _now - snap.CapturedAtMonoSec);
+            ulong elapsedMs = elapsedSec >= (double)ulong.MaxValue / 1000d ? ulong.MaxValue : (ulong)(elapsedSec * 1000d);
+            ulong estimatedNowMs = elapsedMs > ulong.MaxValue - snap.ServerNowMs ? ulong.MaxValue : snap.ServerNowMs + elapsedMs;
+            remainingMs = snap.ExpireMs > estimatedNowMs ? snap.ExpireMs - estimatedNowMs : 0UL;
+            totalWindowMs = snap.TotalWindowMs;
+            return true;
+        }
+
+        private void RecordIntentDeadline(string fallbackOrderId, PayIntentView intent, ulong serverNowMs)
+        {
+            if (intent == null || intent.ExpireMs == 0UL || serverNowMs == 0UL) return;
+            string orderId = !string.IsNullOrEmpty(intent.OrderId) ? intent.OrderId : fallbackOrderId;
+            if (string.IsNullOrEmpty(orderId)) return;
+            if (intent.State == PayIntentState.Paid || intent.State == PayIntentState.Closed)
+            {
+                _intentDeadlines.Remove(orderId);
+                return;
+            }
+            ulong remainingMs = intent.ExpireMs > serverNowMs ? intent.ExpireMs - serverNowMs : 0UL;
+            ulong totalWindowMs = remainingMs > 0UL ? remainingMs : 1UL;
+            if (_intentDeadlines.TryGetValue(orderId, out var previous) && previous.ExpireMs == intent.ExpireMs && previous.TotalWindowMs > totalWindowMs)
+            {
+                totalWindowMs = previous.TotalWindowMs;
+            }
+            _intentDeadlines[orderId] = new IntentDeadlineSnapshot
+            {
+                ExpireMs = intent.ExpireMs,
+                ServerNowMs = serverNowMs,
+                TotalWindowMs = totalWindowMs,
+                CapturedAtMonoSec = _now,
+            };
         }
 
         private void Call<T>(uint method, IMessage request, MessageParser<T> parser, Func<T, TipInfoMessage> tipOf, string busyText,
@@ -446,6 +502,7 @@ namespace MmorpgClient.Game.Jubaozhai
             if (_disposed) return;
             _observedConnection = _connectionIdentity();
             ++_generation; ++_channelsGeneration; Busy = false; ChannelsLoading = false; _pollOrder = ""; _launchFailure = "";
+            _intentDeadlines.Clear();
             RequeueInflightReceipt();
             CancelBridges();
             SetStatus("");
@@ -460,6 +517,7 @@ namespace MmorpgClient.Game.Jubaozhai
         {
             _observedConnection = _connectionIdentity();
             ++_generation; ++_channelsGeneration; Busy = false; ChannelsLoading = false; _pollOrder = "";
+            _intentDeadlines.Clear();
             RequeueInflightReceipt();
             CancelBridges();
             SetStatus("连接已断开；如已付款，重连后在订单里刷新即可，请勿重复支付。");
@@ -471,6 +529,7 @@ namespace MmorpgClient.Game.Jubaozhai
             _disposed = true; ++_generation; ++_channelsGeneration; _net.Disconnected -= Disconnected;
             _submittingReceipt = null;
             _deferredReceipts.Clear();
+            _intentDeadlines.Clear();
             CancelBridges();
         }
     }

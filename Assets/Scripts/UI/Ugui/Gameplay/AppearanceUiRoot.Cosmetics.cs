@@ -164,7 +164,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var lbl = QdaoUguiFactory.CreateText("Label", btn.transform, 10f, 0f, 178f, 56f,
                     tabLabels[i], 24f, i == 0 ? AppearanceUiArt.WarmCream : AppearanceUiArt.JadeInk,
                     TextAlignmentOptions.Center);
+                lbl.rectTransform.anchorMin = Vector2.zero;
+                lbl.rectTransform.anchorMax = Vector2.one;
+                lbl.rectTransform.pivot = new Vector2(0.5f, 0.5f);
+                lbl.rectTransform.offsetMin = new Vector2(8f, 0f);
+                lbl.rectTransform.offsetMax = new Vector2(-8f, 0f);
                 lbl.richText = false;
+                lbl.textWrappingMode = TextWrappingModes.NoWrap;
                 lbl.fontStyle = i == 0 ? FontStyles.Bold : FontStyles.Normal;
                 _categoryTabButtons[i] = btn;
                 _categoryTabImages[i] = img;
@@ -986,14 +992,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var cat = _cosmeticState.ActiveCategory;
             bool inCosmetic = cat != WardrobeCategoryTab.Character;
 
-            // 顶部三类别页签定位：宽屏避开居中标题牌，窄屏对齐 layout.json compactDetail.tabs
+            // 顶部三类别页签定位：宽屏避开居中标题牌；窄屏人物详情子页收起页签避免与返回列表/角色名重叠，列表页置于卡片上方
+            bool showCategoryTabs = !compact || inCosmetic || !_compactDetail;
+            _categoryTabBar.gameObject.SetActive(showCategoryTabs);
             if (compact)
             {
-                PlaceTopLeft(_categoryTabBar, 66f, 74f, 470f, 47f);
+                float tabBarX = inCosmetic ? 66f : 56f;
+                float tabBarY = inCosmetic ? 74f : 68f;
+                float tabBarH = inCosmetic ? 47f : 40f;
+                PlaceTopLeft(_categoryTabBar, tabBarX, tabBarY, 470f, tabBarH);
                 for (int i = 0; i < 3; i++)
                 {
                     if (_categoryTabButtons[i] != null)
-                        PlaceTopLeft((RectTransform)_categoryTabButtons[i].transform, i * 158f, 0f, 145f, 47f);
+                        PlaceTopLeft((RectTransform)_categoryTabButtons[i].transform, i * 158f, 0f, 145f, tabBarH);
                     if (_categoryTabLabels[i] != null) _categoryTabLabels[i].fontSize = 20f;
                 }
             }

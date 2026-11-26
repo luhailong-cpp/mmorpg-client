@@ -67,6 +67,30 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 _collapsed ? "展开" : "收起", () => { _collapsed = !_collapsed; Refresh(); },
                 true, false, 20);
 
+            // 角色等级、经验条与一键加点入口（落在 x=544..1140, y=138..186，避开顶栏与右上导航）
+            var expSnap = PlayerProgressionModels.BuildExpSnapshot(_game?.Attributes?.Panel);
+            if (expSnap != null)
+            {
+                bool hasPoints = expSnap.UnallocatedPoints > 0u;
+                float stripW = hasPoints ? 596f : 446f;
+                CoreLoopUiArt.Image("HubExpPlate", transform, 544, 138, stripW, 48,
+                    "hud-strip", new Color(.94f, .92f, .85f, .95f));
+                var expLbl = CoreLoopUiArt.Text("HubExpText", transform, 560, 141, 414, 24,
+                    $"Lv.{expSnap.Level} · {expSnap.CompactExpText}", 19, CoreLoopUiArt.DeepJade,
+                    true, false, TextAlignmentOptions.MidlineLeft);
+                expLbl.enableAutoSizing = true; expLbl.fontSizeMin = 13f; expLbl.fontSizeMax = 19f;
+                CoreLoopUiArt.Image("HubExpTrack", transform, 560, 170, 414, 7,
+                    null, new Color(.76f, .80f, .70f, .92f));
+                float expW = 414f * Mathf.Clamp01((float)expSnap.ProgressRatio);
+                if (expW > 0f)
+                    CoreLoopUiArt.Image("HubExpFill", transform, 560, 170, expW, 7,
+                        null, CoreLoopUiArt.Jade);
+                if (hasPoints)
+                    CoreLoopUiArt.Button("HubExpAllocBtn", transform, 988, 143, 138, 38,
+                        $"可加点 +{expSnap.UnallocatedPoints}", _root.OpenAttributeAllocation,
+                        true, true, 16);
+            }
+
             if (_collapsed) return;
 
             // 左上三项权威进度（x=40..1360, y=194..312；留空中央与右侧）
@@ -146,7 +170,9 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             const float width = 360f;
             const float height = 96f;
             CoreLoopUiArt.Card(transform, key + "Card", x, y, width, height);
-            var icon = CoreLoopUiArt.LoadV2(iconKey);
+            var icon = key == "WuxingTower"
+                ? (WuxingExpansionsUiArt.LoadFormationCompassBg() ?? CoreLoopUiArt.LoadV2(iconKey))
+                : CoreLoopUiArt.LoadV2(iconKey);
             if (icon != null)
                 SeasonV1UiArt.CreateFixedIcon(transform, key + "Icon", x + 15, y + 20, 56, 56, icon, Color.clear);
             else

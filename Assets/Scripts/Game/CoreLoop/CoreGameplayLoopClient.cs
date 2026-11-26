@@ -208,6 +208,9 @@ namespace MmorpgClient.Game.CoreLoop
         public CoreSettlementRewardView BuildLastSettlementReward() =>
             CoreGameplayLoopModels.BuildSettlementRewardView(_battle.LastBattleEnd, _features?.EquipmentMaterialReward);
 
+        public SettlementProgressionView BuildLastSettlementProgression() =>
+            PlayerProgressionModels.BuildSettlementView(_battle.LastBattleEnd);
+
         public MainCityHubView BuildMainCityHub(
             bool paymentEnabled = false,
             bool hasAfkPass = false,

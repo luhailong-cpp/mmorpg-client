@@ -26,7 +26,7 @@ public static partial class PlayerBattleResultCompReflection {
           "X2NvbXAucHJvdG8iQwoaUGxheWVyQmF0dGxlUmVzdWx0Q3VycmVuY3kSFQoN",
           "Y3VycmVuY3lfdHlwZRgBIAEoDRIOCgZhbW91bnQYAiABKAQiPgoWUGxheWVy",
           "QmF0dGxlUmVzdWx0SXRlbRIVCg1pdGVtX3RhYmxlX2lkGAEgASgNEg0KBWNv",
-          "dW50GAIgASgEIosJChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
+          "dW50GAIgASgEItkKChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
           "cRgBIAEoBBIRCgliYXR0bGVfaWQYAiABKAQSDwoHb3V0Y29tZRgDIAEoDRIS",
           "Cgp0ZWFtX2luZGV4GAQgASgNEg8KB2lzX2RlYWQYBSABKAgSDAoEZmxlZBgG",
           "IAEoCBIUCgx0b3RhbF9yb3VuZHMYByABKA0SFgoOZmluaXNoZWRfYXRfbXMY",
@@ -52,15 +52,20 @@ public static partial class PlayerBattleResultCompReflection {
           "dHNfYWRkZWQYIyABKA0SIgoac2Vhc29uX3NlYWxfcHJvZ3Jlc3NfYWZ0ZXIY",
           "JCABKA0SHgoWc2Vhc29uX3NlYWxfbWF4X3BvaW50cxglIAEoDRIjChtzZWFz",
           "b25faG9ub3JfbmV3bHlfdW5sb2NrZWQYJiABKAgSEwoLc3VycmVuZGVyZWQY",
-          "JyABKAgiVwoWUGxheWVyQmF0dGxlUmVzdWx0Q29tcBIXCg9sYXN0X3Jlc3Vs",
-          "dF9zZXEYASABKAQSJAoHZW50cmllcxgCIAMoCzITLlBsYXllckJhdHRsZVJl",
-          "c3VsdEISWhBjb21tb24vY29tcG9uZW50YgZwcm90bzM="));
+          "JyABKAgSFAoMbGV2ZWxfYmVmb3JlGCggASgNEhMKC2xldmVsX2FmdGVyGCkg",
+          "ASgNEhcKD3RvdGFsX2V4cF9hZnRlchgqIAEoBBIcChRuZXh0X2xldmVsX3Rv",
+          "dGFsX2V4cBgrIAEoBBIhChliYXR0bGVfc2lsdmVyX3dlZWtseV91c2VkGCwg",
+          "ASgEEiUKHWJhdHRsZV9zaWx2ZXJfd2Vla2x5X3NvZnRfY2FwGC0gASgEEiAK",
+          "GGJhdHRsZV9zaWx2ZXJfZGltaW5pc2hlZBguIAEoCCJXChZQbGF5ZXJCYXR0",
+          "bGVSZXN1bHRDb21wEhcKD2xhc3RfcmVzdWx0X3NlcRgBIAEoBBIkCgdlbnRy",
+          "aWVzGAIgAygLMhMuUGxheWVyQmF0dGxlUmVzdWx0QhJaEGNvbW1vbi9jb21w",
+          "b25lbnRiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultCurrency), global::PlayerBattleResultCurrency.Parser, new[]{ "CurrencyType", "Amount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultItem), global::PlayerBattleResultItem.Parser, new[]{ "ItemTableId", "Count" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed", "ExpGain", "MaterialCreditUnitsAdded", "SeasonId", "TrialJournalEntryId", "TrialNewlyLitSealIds", "TrialNewSoloBest", "TrialNewCoopBest", "MaterialTradableUnitsAdded", "MaterialPvpLossIneligible", "FestivalActivityInstanceId", "FestivalRewardIdentity", "FestivalWinsBefore", "FestivalWinsAfter", "FestivalRequiredWins", "FestivalNewlyEligible", "MaterialAvailableUnitsAfter", "MaterialEarnableRemainingAfter", "SeasonSealPointsAdded", "SeasonSealProgressAfter", "SeasonSealMaxPoints", "SeasonHonorNewlyUnlocked", "Surrendered" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed", "ExpGain", "MaterialCreditUnitsAdded", "SeasonId", "TrialJournalEntryId", "TrialNewlyLitSealIds", "TrialNewSoloBest", "TrialNewCoopBest", "MaterialTradableUnitsAdded", "MaterialPvpLossIneligible", "FestivalActivityInstanceId", "FestivalRewardIdentity", "FestivalWinsBefore", "FestivalWinsAfter", "FestivalRequiredWins", "FestivalNewlyEligible", "MaterialAvailableUnitsAfter", "MaterialEarnableRemainingAfter", "SeasonSealPointsAdded", "SeasonSealProgressAfter", "SeasonSealMaxPoints", "SeasonHonorNewlyUnlocked", "Surrendered", "LevelBefore", "LevelAfter", "TotalExpAfter", "NextLevelTotalExp", "BattleSilverWeeklyUsed", "BattleSilverWeeklySoftCap", "BattleSilverDiminished" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultComp), global::PlayerBattleResultComp.Parser, new[]{ "LastResultSeq", "Entries" }, null, null, null, null)
         }));
   }
@@ -627,6 +632,13 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     seasonSealMaxPoints_ = other.seasonSealMaxPoints_;
     seasonHonorNewlyUnlocked_ = other.seasonHonorNewlyUnlocked_;
     surrendered_ = other.surrendered_;
+    levelBefore_ = other.levelBefore_;
+    levelAfter_ = other.levelAfter_;
+    totalExpAfter_ = other.totalExpAfter_;
+    nextLevelTotalExp_ = other.nextLevelTotalExp_;
+    battleSilverWeeklyUsed_ = other.battleSilverWeeklyUsed_;
+    battleSilverWeeklySoftCap_ = other.battleSilverWeeklySoftCap_;
+    battleSilverDiminished_ = other.battleSilverDiminished_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1185,6 +1197,93 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
   }
 
+  /// <summary>Field number for the "level_before" field.</summary>
+  public const int LevelBeforeFieldNumber = 40;
+  private uint levelBefore_;
+  /// <summary>
+  /// 角色升级与战斗银两周上限增量（docs/planning/player-leveling-and-battle-economy-v1.md §2.3）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint LevelBefore {
+    get { return levelBefore_; }
+    set {
+      levelBefore_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "level_after" field.</summary>
+  public const int LevelAfterFieldNumber = 41;
+  private uint levelAfter_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint LevelAfter {
+    get { return levelAfter_; }
+    set {
+      levelAfter_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "total_exp_after" field.</summary>
+  public const int TotalExpAfterFieldNumber = 42;
+  private ulong totalExpAfter_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong TotalExpAfter {
+    get { return totalExpAfter_; }
+    set {
+      totalExpAfter_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "next_level_total_exp" field.</summary>
+  public const int NextLevelTotalExpFieldNumber = 43;
+  private ulong nextLevelTotalExp_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong NextLevelTotalExp {
+    get { return nextLevelTotalExp_; }
+    set {
+      nextLevelTotalExp_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "battle_silver_weekly_used" field.</summary>
+  public const int BattleSilverWeeklyUsedFieldNumber = 44;
+  private ulong battleSilverWeeklyUsed_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong BattleSilverWeeklyUsed {
+    get { return battleSilverWeeklyUsed_; }
+    set {
+      battleSilverWeeklyUsed_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "battle_silver_weekly_soft_cap" field.</summary>
+  public const int BattleSilverWeeklySoftCapFieldNumber = 45;
+  private ulong battleSilverWeeklySoftCap_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong BattleSilverWeeklySoftCap {
+    get { return battleSilverWeeklySoftCap_; }
+    set {
+      battleSilverWeeklySoftCap_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "battle_silver_diminished" field.</summary>
+  public const int BattleSilverDiminishedFieldNumber = 46;
+  private bool battleSilverDiminished_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool BattleSilverDiminished {
+    get { return battleSilverDiminished_; }
+    set {
+      battleSilverDiminished_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1239,6 +1338,13 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (SeasonSealMaxPoints != other.SeasonSealMaxPoints) return false;
     if (SeasonHonorNewlyUnlocked != other.SeasonHonorNewlyUnlocked) return false;
     if (Surrendered != other.Surrendered) return false;
+    if (LevelBefore != other.LevelBefore) return false;
+    if (LevelAfter != other.LevelAfter) return false;
+    if (TotalExpAfter != other.TotalExpAfter) return false;
+    if (NextLevelTotalExp != other.NextLevelTotalExp) return false;
+    if (BattleSilverWeeklyUsed != other.BattleSilverWeeklyUsed) return false;
+    if (BattleSilverWeeklySoftCap != other.BattleSilverWeeklySoftCap) return false;
+    if (BattleSilverDiminished != other.BattleSilverDiminished) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1285,6 +1391,13 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (SeasonSealMaxPoints != 0) hash ^= SeasonSealMaxPoints.GetHashCode();
     if (SeasonHonorNewlyUnlocked != false) hash ^= SeasonHonorNewlyUnlocked.GetHashCode();
     if (Surrendered != false) hash ^= Surrendered.GetHashCode();
+    if (LevelBefore != 0) hash ^= LevelBefore.GetHashCode();
+    if (LevelAfter != 0) hash ^= LevelAfter.GetHashCode();
+    if (TotalExpAfter != 0UL) hash ^= TotalExpAfter.GetHashCode();
+    if (NextLevelTotalExp != 0UL) hash ^= NextLevelTotalExp.GetHashCode();
+    if (BattleSilverWeeklyUsed != 0UL) hash ^= BattleSilverWeeklyUsed.GetHashCode();
+    if (BattleSilverWeeklySoftCap != 0UL) hash ^= BattleSilverWeeklySoftCap.GetHashCode();
+    if (BattleSilverDiminished != false) hash ^= BattleSilverDiminished.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1447,6 +1560,34 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(184, 2);
       output.WriteBool(Surrendered);
     }
+    if (LevelBefore != 0) {
+      output.WriteRawTag(192, 2);
+      output.WriteUInt32(LevelBefore);
+    }
+    if (LevelAfter != 0) {
+      output.WriteRawTag(200, 2);
+      output.WriteUInt32(LevelAfter);
+    }
+    if (TotalExpAfter != 0UL) {
+      output.WriteRawTag(208, 2);
+      output.WriteUInt64(TotalExpAfter);
+    }
+    if (NextLevelTotalExp != 0UL) {
+      output.WriteRawTag(216, 2);
+      output.WriteUInt64(NextLevelTotalExp);
+    }
+    if (BattleSilverWeeklyUsed != 0UL) {
+      output.WriteRawTag(224, 2);
+      output.WriteUInt64(BattleSilverWeeklyUsed);
+    }
+    if (BattleSilverWeeklySoftCap != 0UL) {
+      output.WriteRawTag(232, 2);
+      output.WriteUInt64(BattleSilverWeeklySoftCap);
+    }
+    if (BattleSilverDiminished != false) {
+      output.WriteRawTag(240, 2);
+      output.WriteBool(BattleSilverDiminished);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1601,6 +1742,34 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(184, 2);
       output.WriteBool(Surrendered);
     }
+    if (LevelBefore != 0) {
+      output.WriteRawTag(192, 2);
+      output.WriteUInt32(LevelBefore);
+    }
+    if (LevelAfter != 0) {
+      output.WriteRawTag(200, 2);
+      output.WriteUInt32(LevelAfter);
+    }
+    if (TotalExpAfter != 0UL) {
+      output.WriteRawTag(208, 2);
+      output.WriteUInt64(TotalExpAfter);
+    }
+    if (NextLevelTotalExp != 0UL) {
+      output.WriteRawTag(216, 2);
+      output.WriteUInt64(NextLevelTotalExp);
+    }
+    if (BattleSilverWeeklyUsed != 0UL) {
+      output.WriteRawTag(224, 2);
+      output.WriteUInt64(BattleSilverWeeklyUsed);
+    }
+    if (BattleSilverWeeklySoftCap != 0UL) {
+      output.WriteRawTag(232, 2);
+      output.WriteUInt64(BattleSilverWeeklySoftCap);
+    }
+    if (BattleSilverDiminished != false) {
+      output.WriteRawTag(240, 2);
+      output.WriteBool(BattleSilverDiminished);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1718,6 +1887,27 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       size += 2 + 1;
     }
     if (Surrendered != false) {
+      size += 2 + 1;
+    }
+    if (LevelBefore != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(LevelBefore);
+    }
+    if (LevelAfter != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(LevelAfter);
+    }
+    if (TotalExpAfter != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(TotalExpAfter);
+    }
+    if (NextLevelTotalExp != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(NextLevelTotalExp);
+    }
+    if (BattleSilverWeeklyUsed != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(BattleSilverWeeklyUsed);
+    }
+    if (BattleSilverWeeklySoftCap != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(BattleSilverWeeklySoftCap);
+    }
+    if (BattleSilverDiminished != false) {
       size += 2 + 1;
     }
     if (_unknownFields != null) {
@@ -1840,6 +2030,27 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (other.Surrendered != false) {
       Surrendered = other.Surrendered;
+    }
+    if (other.LevelBefore != 0) {
+      LevelBefore = other.LevelBefore;
+    }
+    if (other.LevelAfter != 0) {
+      LevelAfter = other.LevelAfter;
+    }
+    if (other.TotalExpAfter != 0UL) {
+      TotalExpAfter = other.TotalExpAfter;
+    }
+    if (other.NextLevelTotalExp != 0UL) {
+      NextLevelTotalExp = other.NextLevelTotalExp;
+    }
+    if (other.BattleSilverWeeklyUsed != 0UL) {
+      BattleSilverWeeklyUsed = other.BattleSilverWeeklyUsed;
+    }
+    if (other.BattleSilverWeeklySoftCap != 0UL) {
+      BattleSilverWeeklySoftCap = other.BattleSilverWeeklySoftCap;
+    }
+    if (other.BattleSilverDiminished != false) {
+      BattleSilverDiminished = other.BattleSilverDiminished;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2017,6 +2228,34 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
           Surrendered = input.ReadBool();
           break;
         }
+        case 320: {
+          LevelBefore = input.ReadUInt32();
+          break;
+        }
+        case 328: {
+          LevelAfter = input.ReadUInt32();
+          break;
+        }
+        case 336: {
+          TotalExpAfter = input.ReadUInt64();
+          break;
+        }
+        case 344: {
+          NextLevelTotalExp = input.ReadUInt64();
+          break;
+        }
+        case 352: {
+          BattleSilverWeeklyUsed = input.ReadUInt64();
+          break;
+        }
+        case 360: {
+          BattleSilverWeeklySoftCap = input.ReadUInt64();
+          break;
+        }
+        case 368: {
+          BattleSilverDiminished = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -2191,6 +2430,34 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
         }
         case 312: {
           Surrendered = input.ReadBool();
+          break;
+        }
+        case 320: {
+          LevelBefore = input.ReadUInt32();
+          break;
+        }
+        case 328: {
+          LevelAfter = input.ReadUInt32();
+          break;
+        }
+        case 336: {
+          TotalExpAfter = input.ReadUInt64();
+          break;
+        }
+        case 344: {
+          NextLevelTotalExp = input.ReadUInt64();
+          break;
+        }
+        case 352: {
+          BattleSilverWeeklyUsed = input.ReadUInt64();
+          break;
+        }
+        case 360: {
+          BattleSilverWeeklySoftCap = input.ReadUInt64();
+          break;
+        }
+        case 368: {
+          BattleSilverDiminished = input.ReadBool();
           break;
         }
       }

@@ -81,34 +81,30 @@
 
 ## 9. 人物收藏系列美术素材规格与接入记录（`AppearanceSeriesV1`）
 
-客户端代码 `AppearanceUiArt.cs` 与 `AppearanceUiRoot.Series.cs` 已完成 **11 张正式透明 PNG** 接入，来源仓库 `image`（`designs/appearance-series-v1/`，提交 `a1517134644b34a69dc6cfcc16c227da3089460d`，程序矢量栅格化，无 AI 模型调用），落盘目录：
+客户端代码 `AppearanceUiArt.cs`、`AppearanceSeriesModels.cs` 与 `AppearanceUiRoot.Series.cs` 已完成 **11 张正式透明 PNG** 及最新修订版布局接入，来源仓库 `image`（`designs/appearance-series-v1/`，`RELEASE-MANIFEST.json` 验收于 `2026-11-26T04:25:47Z`，承接已确认帮会/易容/邮件同源原件组合与精修），落盘目录：
 
-- `Assets/Resources/UI/Ugui/AppearanceSeriesV1/`（逐图 SHA-256 与 `validation.json` 一致，零内嵌文字，轮廓外 100% 透明 Alpha）。
+- `Assets/Resources/UI/Ugui/AppearanceSeriesV1/`（11/11 逐图 SHA-256 与 `RELEASE-MANIFEST.json` 一致，零内嵌文字，轮廓外 100% 透明 Alpha）。
 
-### 9.1 视觉基调与色板（严格同源 `AppearanceChronicleV2` / `team-ui-v2`）
+### 9.1 接入边界与不变量
 
-- 风格：国风轻仙侠青玉暖金卷云＋宣纸手账风，干净扁平微质感插画，无写实噪点、无厚重发光、无整屏底景。
-- 严格红线：**全部 PNG 严禁烘焙任何文字、数字、印章汉字、水印**（所有文案均由 TMP 实时绘制）；**控件轮廓外必须为 100% 纯透明 Alpha=0**。
-- 配色锚点（来自 `AppearanceUiArt.cs`）：
-  - 主青玉深色 `#205B46`（DeepJade）、高亮青玉 `#2B6A50`（SeriesLitBg）、墨青正文字 `#304736`（JadeInk）
-  - 宣纸底 `#F7F0E1`（ParchmentCard）、内纸面 `#FBF6EA`（ParchmentInner）、暖金边 `#C9AB70`（ParchmentBorder）、烫金暗色 `#8E651F`（SeriesGoldInk）
-  - 未点亮灰纸 `#E6DEC9`（SeriesDimBg）、未点亮暖灰 `#70634E`（MutedInk）、素石玉灰 `#D8CFBC`、反白暖米字 `#FFF3D6`（WarmCream）
+- 沿用既有易容主窗框、关闭按钮、主/次按钮、立绘台、形象卡槽与行状态皮肤，仅更新本次新增的系列筛选栏、集齐计数铭牌、系列信息条、合篇宣纸底板与 5 枚圆形印章。
+- 严格红线：**全部 PNG 严禁烘焙任何文字、数字、印章汉字、水印**（标题、计数、角色名、状态、印章名、按钮、简介和合篇正文全部由 TMP 动态绘制）；**控件轮廓外为 100% 纯透明 Alpha=0**；纯外观与叙事收藏，不含任何数值属性或战力加成暗示。
 
 ### 9.2 已接入切图与 Unity Border（11 张正式素材）
 
 | 文件名 | 尺寸 (px) | UGUI Image 类型 | Unity `spriteBorder` `(L, B, R, T)` | 布局与安全区对齐 |
 |---|---|---|---|---|
-| `series_tab_normal.png` | `240×64` | `Sliced`（横向中段 50%） | `60, 0, 60, 0` | 未选中系列标签，文字留左右 `32px` 云纹安全边距 |
-| `series_tab_selected.png` | `240×64` | `Sliced`（横向中段 50%） | `60, 0, 60, 0` | 选中系列标签，深青玉双金线描边 |
-| `series_badge_dim.png` | `220×44` | `Sliced`（横向中段 50%） | `55, 0, 55, 0` | 未点亮印章条 / 顶栏统计条，文字避让两端卷云（宽屏 `42px` / 信息条 `30px` / 窄屏 `52px`） |
-| `series_badge_lit.png` | `220×44` | `Sliced`（横向中段 50%） | `55, 0, 55, 0` | 已点亮印章名条，翠青玉暖金边 |
-| `series_banner_card.png` | `612×120` | `Simple`（宽屏原比例 1:1） | `0, 0, 0, 0` | 宽屏 `612×120` 原比例显示：印章槽 `49,26,68,68` 精准居中于圆环 `(83,60)`，正文与按钮严格落在金竖线 `x=151` 右侧 `x=166..586`；窄横屏 `1060×92` 切回九宫格 `application_card` 防圆环拉扁 |
-| `series_epilogue_card.png` | `1192×528` | `Simple`（宽屏原比例 1:1） | `0, 0, 0, 0` | 宽屏 `1192×528` 原比例显示：正文视口落在卡内 `x=112..1056, y=48..480`、滚动条 `x=1068, y=96..432`，完全避让四角云回纹；窄横屏 `1000×320` 切回九宫格 `application_card` |
-| `series_seal_dim.png` | `160×160` | `Simple`（1:1 保持比例） | `0, 0, 0, 0` | 通用未点亮印章八角素石玉佩 |
-| `series_seal_lit.png` | `160×160` | `Simple`（1:1 保持比例） | `0, 0, 0, 0` | 通用已点亮五瓣云星玉印 |
-| `series_seal_lantern_courtyard_lit.png` | `160×160` | `Simple`（1:1 保持比例） | `0, 0, 0, 0` | 系列 1「留灯院旧友」专属点亮印章（纸灯笼＋竹叶） |
-| `series_seal_elemental_blades_lit.png` | `160×160` | `Simple`（1:1 保持比例） | `0, 0, 0, 0` | 系列 2「水火冰锋」专属点亮印章（冰剑＋火纹＋水波） |
-| `series_seal_lotus_melody_lit.png` | `160×160` | `Simple`（1:1 保持比例） | `0, 0, 0, 0` | 系列 3「清音济世」专属点亮印章（青莲＋七弦琴＋音纹） |
+| `series_tab_normal.png` | `240×64` | `Sliced`（横向三段） | `46, 0, 46, 0` | 未选中系列页签；已集齐的未选中页签配合浅玉调色 `#E3F3E4` 与动态「印」字；4 项（全部＋3 系列）在 612px 视口内单行同屏排布，扩展至更多系列时自动横向滑动 |
+| `series_tab_selected.png` | `240×64` | `Sliced`（横向三段） | `46, 0, 46, 0` | 当前系列或「全部」选中底条，高度 `46px` 按 `ApplyHorizontalSlice` 等比缩放两端 |
+| `series_badge_dim.png` | `220×44` | `Sliced`（横向三段） | `35, 0, 35, 0` | 未点亮印章铭牌（宽屏 `186×34`）及左栏顶右侧集齐统计条（宽屏原高 `244×44`、窄屏 `584×48`） |
+| `series_badge_lit.png` | `220×44` | `Sliced`（横向三段） | `35, 0, 35, 0` | 已点亮印章铭牌（如「清音杏林」「留灯同袍」） |
+| `series_banner_card.png` | `612×120` | `Sliced`（九宫格） | `48, 44, 48, 44` | 宽屏 `612×120` 与窄屏 `1060×92` 均使用九宫格底板；左端 `68×68` 独立印章位，中右摆放标题/铭牌/单行简介与合篇按钮（文字安全区 `x=106..565, y=21..98`） |
+| `series_epilogue_card.png` | `1192×528` | `Sliced`（九宫格） | `120, 112, 120, 112` | 宽屏 `1192×528` 与窄屏 `1000×350` 均使用九宫格宣纸底板；宽屏阅读视口严格落在 `CONTROL-USAGE.md` 安全区（卡内 `x=120..1071, y=45..489`），顶栏居中摆放 `84×84` 专属点亮印章 |
+| `series_seal_dim.png` | `160×160` | `Simple`（`preserveAspect`） | `0, 0, 0, 0` | 通用未点亮灰石太极圆印，复用于三个系列未集齐态 |
+| `series_seal_lit.png` | `160×160` | `Simple`（`preserveAspect`） | `0, 0, 0, 0` | 通用点亮金玉太极圆印，专属点亮图缺失时回退 |
+| `series_seal_lantern_courtyard_lit.png` | `160×160` | `Simple`（`preserveAspect`） | `0, 0, 0, 0` | 系列 1「留灯院旧友」专属点亮圆印（纸灯笼＋檐角＋青竹） |
+| `series_seal_elemental_blades_lit.png` | `160×160` | `Simple`（`preserveAspect`） | `0, 0, 0, 0` | 系列 2「水火冰锋」专属点亮圆印（寒冰剑锋＋赤焰朱符＋水纹） |
+| `series_seal_lotus_melody_lit.png` | `160×160` | `Simple`（`preserveAspect`） | `0, 0, 0, 0` | 系列 3「清音济世」专属点亮圆印（青莲＋古琴丝弦） |
 
 ### 9.3 Unity 导入参数（所有 PNG 统一）
 
