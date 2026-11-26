@@ -138,176 +138,185 @@ public static partial class PlayerBagReflection {
           "cmlwdGlvbhgDIAEoCRIRCglib251c19icHMYBCABKA0SDwoHY2FwX2JwcxgF",
           "IAEoDRIXCg9wZXJfcm91bmRfbGltaXQYBiABKA0SFAoMYmF0dGxlX2xpbWl0",
           "GAcgASgNEhUKDWFjdGl2ZV9yb3VuZHMYCCABKA0SHAoUaGVhbHRoX3RocmVz",
-          "aG9sZF9icHMYCSABKA0i9wMKFEVxdWlwbWVudENyYWZ0Q2hvaWNlEjIKCW9w",
+          "aG9sZF9icHMYCSABKA0isQQKFEVxdWlwbWVudENyYWZ0Q2hvaWNlEjIKCW9w",
           "ZXJhdGlvbhgBIAEoDjIfLkVxdWlwbWVudENyYWZ0Q2hvaWNlLk9wZXJhdGlv",
           "bhIRCgljb25maWdfaWQYAiABKA0SDwoHaXRlbV9pZBgDIAEoBBISCgphZmZp",
           "eF9zbG90GAQgASgNEhAKCGFmZml4X2lkGAUgASgNEhsKE3VzZV9ndWFyYW50",
           "ZWVfY2hhcm0YBiABKAgSHQoVYWxsb3dfYm91bmRfbWF0ZXJpYWxzGAcgASgI",
           "Eh4KFnByb3h5X21hc3Rlcl9wbGF5ZXJfaWQYCCABKAQSJwoaZXhwZWN0ZWRf",
           "cG9saXNoX3BpdHlfY291bnQYCSABKA1IAIgBARIWCg5zb3VyY2VfaXRlbV9p",
-          "ZBgKIAEoBCKkAQoJT3BlcmF0aW9uEg8KC1VOU1BFQ0lGSUVEEAASDwoLQ1JF",
-          "QVRFX0lURU0QARIRCg1JTlNUQUxMX0FGRklYEAISEQoNUkVGT1JHRV9BRkZJ",
-          "WBADEhAKDFBPTElTSF9BRkZJWBAEEhYKElVOU0VBTF9UT19UUkFEQUJMRRAF",
-          "EhMKD0lOSEVSSVRfRU5IQU5DRRAGEhAKDFVQR1JBREVfVElFUhAHQh0KG19l",
-          "eHBlY3RlZF9wb2xpc2hfcGl0eV9jb3VudCJ8ChZFcXVpcG1lbnRDcmFmdE1h",
-          "dGVyaWFsEhEKCWNvbmZpZ19pZBgBIAEoDRIMCgRuYW1lGAIgASgJEhAKCGlj",
-          "b25fa2V5GAMgASgJEg0KBWNvdW50GAQgASgNEg0KBW93bmVkGAUgASgEEhEK",
-          "CWF2YWlsYWJsZRgGIAEoBCJpChRFcXVpcG1lbnRDcmFmdFJlY2lwZRIdCgdw",
-          "cm9kdWN0GAEgASgLMgwuQmFnSXRlbUluZm8SGgoSbWF0ZXJpYWxfY29uZmln",
-          "X2lkGAIgASgNEhYKDm1hdGVyaWFsX2NvdW50GAMgASgNIh8KHUdldEVxdWlw",
-          "bWVudENyYWZ0UnVsZXNSZXF1ZXN0IqMCCh5HZXRFcXVpcG1lbnRDcmFmdFJ1",
-          "bGVzUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9N",
-          "ZXNzYWdlEhkKEXJ1bGVzX2ZpbmdlcnByaW50GAIgASgMEhYKDmZvcmdlX3Jl",
-          "dmlzaW9uGAMgASgEEiYKB3JlY2lwZXMYBCADKAsyFS5FcXVpcG1lbnRDcmFm",
-          "dFJlY2lwZRIlCgdhZmZpeGVzGAUgAygLMhQuRXF1aXBGaXhlZEFmZml4SW5m",
-          "bxItCg1xdWFsaXR5X3RpZXJzGAYgAygLMhYuRXF1aXBBZmZpeFF1YWxpdHlJ",
-          "bmZvEigKDWZvcmdlX21hc3RlcnkYByABKAsyES5DcmFmdE1hc3RlcnlJbmZv",
-          "Iv4CChVFcXVpcG1lbnRDcmFmdFByZXZpZXcSJQoGY2hvaWNlGAEgASgLMhUu",
-          "RXF1aXBtZW50Q3JhZnRDaG9pY2USGQoRcnVsZXNfZmluZ2VycHJpbnQYAiAB",
-          "KAwSHwoXZXhwZWN0ZWRfZm9yZ2VfcmV2aXNpb24YAyABKAQSHAoGcmVzdWx0",
-          "GAQgASgLMgwuQmFnSXRlbUluZm8SKQoIbWF0ZXJpYWwYBSABKAsyFy5FcXVp",
-          "cG1lbnRDcmFmdE1hdGVyaWFsEhEKCWF2YWlsYWJsZRgGIAEoCBIXCg91bmF2",
-          "YWlsYWJsZV90aXAYByABKA0SEQoJZ29sZF9jb3N0GAggASgEEi8KDmV4dHJh",
-          "X21hdGVyaWFsGAkgASgLMhcuRXF1aXBtZW50Q3JhZnRNYXRlcmlhbBIWCg5w",
-          "cm94eV9mZWVfZ29sZBgKIAEoBBIZChFwcm94eV9tYXN0ZXJfbmFtZRgLIAEo",
-          "CRIWCg53aWxsX2JpbmRfaXRlbRgMIAEoCCJFChxQcmV2aWV3RXF1aXBtZW50",
-          "Q3JhZnRSZXF1ZXN0EiUKBmNob2ljZRgBIAEoCzIVLkVxdWlwbWVudENyYWZ0",
-          "Q2hvaWNlInAKHVByZXZpZXdFcXVpcG1lbnRDcmFmdFJlc3BvbnNlEiYKDWVy",
-          "cm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRInCgdwcmV2aWV3",
-          "GAIgASgLMhYuRXF1aXBtZW50Q3JhZnRQcmV2aWV3IpsBChtDb21taXRFcXVp",
-          "cG1lbnRDcmFmdFJlcXVlc3QSJQoGY2hvaWNlGAEgASgLMhUuRXF1aXBtZW50",
-          "Q3JhZnRDaG9pY2USGQoRcnVsZXNfZmluZ2VycHJpbnQYAiABKAwSHwoXZXhw",
-          "ZWN0ZWRfZm9yZ2VfcmV2aXNpb24YAyABKAQSGQoRY2xpZW50X3JlcXVlc3Rf",
-          "aWQYBCABKAQi+AMKHENvbW1pdEVxdWlwbWVudENyYWZ0UmVzcG9uc2USJgoN",
-          "ZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhkKEWNsaWVu",
-          "dF9yZXF1ZXN0X2lkGAIgASgEEjYKB291dGNvbWUYAyABKA4yJS5Db21taXRF",
-          "cXVpcG1lbnRDcmFmdFJlc3BvbnNlLk91dGNvbWUSDwoHZHVyYWJsZRgEIAEo",
-          "CBIQCghyZXBsYXllZBgFIAEoCBIPCgdpdGVtX2lkGAYgASgEEh0KFXJlc3Vs",
-          "dF9mb3JnZV9yZXZpc2lvbhgHIAEoBBIeChZjdXJyZW50X2ZvcmdlX3Jldmlz",
-          "aW9uGAggASgEEhUKA2JhZxgJIAEoCzIILkJhZ0luZm8SGwoJZXF1aXBtZW50",
-          "GAogASgLMgguQmFnSW5mbxIbChNyZXN1bHRfcXVhbGl0eV90aWVyGAsgASgN",
-          "EiAKGHJlc3VsdF9wb2xpc2hfcGl0eV9jb3VudBgMIAEoDRIaChJndWFyYW50",
-          "ZWVkX2J5X3BpdHkYDSABKAgSKAoNZm9yZ2VfbWFzdGVyeRgOIAEoCzIRLkNy",
-          "YWZ0TWFzdGVyeUluZm8iMQoHT3V0Y29tZRILCgdVTktOT1dOEAASDAoIUkVK",
-          "RUNURUQQARILCgdBUFBMSUVEEAIiogUKH0VxdWlwbWVudE1hdGVyaWFsUmV3",
-          "YXJkU25hcHNob3QSEQoJYXZhaWxhYmxlGAEgASgIEhoKEnVuYXZhaWxhYmxl",
-          "X3JlYXNvbhgCIAEoCRIYChBkYXlfc3RhcnRzX2F0X21zGAMgASgEEhgKEG5l",
-          "eHRfcmVzZXRfYXRfbXMYBCABKAQSFAoMZWFybmVkX3RvZGF5GAUgASgNEhMK",
-          "C2RhaWx5X2xpbWl0GAYgASgNEhcKD2F2YWlsYWJsZV91bml0cxgHIAEoBBIT",
-          "CgtiYXRjaF91bml0cxgIIAEoDRIQCghyZXZpc2lvbhgJIAEoBBIyChFjcmFm",
-          "dGluZ19tYXRlcmlhbBgKIAEoCzIXLkVxdWlwbWVudENyYWZ0TWF0ZXJpYWwS",
-          "MgoRZW5oYW5jZW1lbnRfc3RvbmUYCyABKAsyFy5FcXVpcG1lbnRDcmFmdE1h",
-          "dGVyaWFsEhEKCWNhbl9jbGFpbRgMIAEoCBIXCg9saWZldGltZV9lYXJuZWQY",
-          "DSABKA0SFgoObGlmZXRpbWVfbGltaXQYDiABKA0SHQoVdHJhZGFibGVfZWFy",
-          "bmVkX3RvdGFsGA8gASgNEh8KF3RyYWRhYmxlX2xpZmV0aW1lX2xpbWl0GBAg",
-          "ASgNEiAKGGF2YWlsYWJsZV90cmFkYWJsZV91bml0cxgRIAEoBBIcChRiYXRj",
-          "aF90cmFkYWJsZV91bml0cxgSIAEoDRIbChN3ZWVrbHlfcGhhc2VfYWN0aXZl",
-          "GBMgASgIEhkKEXdlZWtfc3RhcnRzX2F0X21zGBQgASgEEh0KFW5leHRfd2Vl",
-          "a19yZXNldF9hdF9tcxgVIAEoBBIYChBlYXJuZWRfdGhpc193ZWVrGBYgASgN",
-          "EhQKDHdlZWtseV9saW1pdBgXIAEoDSIjCiFHZXRFcXVpcG1lbnRNYXRlcmlh",
-          "bFJld2FyZFJlcXVlc3QigAEKIkdldEVxdWlwbWVudE1hdGVyaWFsUmV3YXJk",
-          "UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNz",
-          "YWdlEjIKCHNuYXBzaG90GAIgASgLMiAuRXF1aXBtZW50TWF0ZXJpYWxSZXdh",
-          "cmRTbmFwc2hvdCKdAQojQ2xhaW1FcXVpcG1lbnRNYXRlcmlhbFJld2FyZFJl",
-          "cXVlc3QSGQoRY2xpZW50X3JlcXVlc3RfaWQYASABKAQSGQoRZXhwZWN0ZWRf",
-          "cmV2aXNpb24YAiABKAQSHwoXY3JhZnRpbmdfbWF0ZXJpYWxfY291bnQYAyAB",
-          "KA0SHwoXZW5oYW5jZW1lbnRfc3RvbmVfY291bnQYBCABKA0i/QIKJENsYWlt",
-          "RXF1aXBtZW50TWF0ZXJpYWxSZXdhcmRSZXNwb25zZRImCg1lcnJvcl9tZXNz",
-          "YWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USGQoRY2xpZW50X3JlcXVlc3Rf",
-          "aWQYAiABKAQSPgoHb3V0Y29tZRgDIAEoDjItLkNsYWltRXF1aXBtZW50TWF0",
-          "ZXJpYWxSZXdhcmRSZXNwb25zZS5PdXRjb21lEg8KB2R1cmFibGUYBCABKAgS",
-          "EAoIcmVwbGF5ZWQYBSABKAgSFwoPcmVzdWx0X3JldmlzaW9uGAYgASgEEhgK",
-          "EGN1cnJlbnRfcmV2aXNpb24YByABKAQSFQoDYmFnGAggASgLMgguQmFnSW5m",
-          "bxIyCghzbmFwc2hvdBgJIAEoCzIgLkVxdWlwbWVudE1hdGVyaWFsUmV3YXJk",
-          "U25hcHNob3QiMQoHT3V0Y29tZRILCgdVTktOT1dOEAASDAoIUkVKRUNURUQQ",
-          "ARILCgdBUFBMSUVEEAIiowEKFEVxdWlwTG9hZG91dFNsb3RWaWV3EgwKBHNs",
-          "b3QYASABKA0SEQoJc2xvdF9uYW1lGAIgASgJEhIKCmVxdWlwX2tpbmQYAyAB",
-          "KA0SEQoJaXRlbV9ndWlkGAQgASgEEicKBnN0YXR1cxgFIAEoDjIXLkVxdWlw",
-          "TG9hZG91dFNsb3RTdGF0dXMSGgoEaXRlbRgGIAEoCzIMLkJhZ0l0ZW1JbmZv",
-          "It4BChZFcXVpcExvYWRvdXRTY2hlbWVJbmZvEhEKCXNjaGVtZV9pZBgBIAEo",
-          "DRIQCgh1bmxvY2tlZBgCIAEoCBIMCgRuYW1lGAMgASgJEhAKCHJvbGVfdGFn",
-          "GAQgASgNEiQKBXNsb3RzGAUgAygLMhUuRXF1aXBMb2Fkb3V0U2xvdFZpZXcS",
-          "HgoWbGlua2VkX3NraWxsX3NjaGVtZV9pZBgGIAEoDRIiChpsaW5rZWRfYXR0",
-          "cmlidXRlX3NjaGVtZV9pZBgHIAEoDRIVCg1taXNzaW5nX2NvdW50GAggASgN",
-          "Ik0KGEVxdWlwTG9hZG91dExpbmtlZE9wdGlvbhIRCglzY2hlbWVfaWQYASAB",
-          "KA0SDAoEbmFtZRgCIAEoCRIQCghyb2xlX3RhZxgDIAEoDSLNAwoURXF1aXBM",
-          "b2Fkb3V0U25hcHNob3QSHQoVdW5sb2NrZWRfc2NoZW1lX2NvdW50GAEgASgN",
-          "EhgKEG1heF9zY2hlbWVfY291bnQYAiABKA0SGAoQYWN0aXZlX3NjaGVtZV9p",
-          "ZBgDIAEoDRIVCg1zdGF0ZV92ZXJzaW9uGAQgASgEEigKB3NjaGVtZXMYBSAD",
-          "KAsyFy5FcXVpcExvYWRvdXRTY2hlbWVJbmZvEiAKGG5leHRfdW5sb2NrX2Nv",
-          "c3RfZGlhbW9uZBgGIAEoBBImCh5uZXh0X3VubG9ja19hbGxvd19iaW5kX2Rp",
-          "YW1vbmQYByABKAgSHQoVdW5sb2NrX2l0ZW1fY29uZmlnX2lkGAggASgNEhkK",
-          "EXVubG9ja19pdGVtX293bmVkGAkgASgEEhcKD2RpYW1vbmRfYmFsYW5jZRgK",
-          "IAEoBBIcChRiaW5kX2RpYW1vbmRfYmFsYW5jZRgLIAEoBBIwCg1za2lsbF9z",
-          "Y2hlbWVzGAwgAygLMhkuRXF1aXBMb2Fkb3V0TGlua2VkT3B0aW9uEjQKEWF0",
-          "dHJpYnV0ZV9zY2hlbWVzGA0gAygLMhkuRXF1aXBMb2Fkb3V0TGlua2VkT3B0",
-          "aW9uIhkKF0dldEVxdWlwTG9hZG91dHNSZXF1ZXN0ImsKGEdldEVxdWlwTG9h",
-          "ZG91dHNSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
-          "b01lc3NhZ2USJwoIc25hcHNob3QYAiABKAsyFS5FcXVpcExvYWRvdXRTbmFw",
-          "c2hvdCKGAgoXU2F2ZUVxdWlwTG9hZG91dFJlcXVlc3QSEQoJc2NoZW1lX2lk",
-          "GAEgASgNEgwKBG5hbWUYAiABKAkSEAoIcm9sZV90YWcYAyABKA0SJwoFc2xv",
-          "dHMYBCADKAsyGC5FcXVpcExvYWRvdXRTbG90QmluZGluZxIgChhjYXB0dXJl",
-          "X2N1cnJlbnRfZXF1aXBwZWQYBSABKAgSHgoWbGlua2VkX3NraWxsX3NjaGVt",
-          "ZV9pZBgGIAEoDRIiChpsaW5rZWRfYXR0cmlidXRlX3NjaGVtZV9pZBgHIAEo",
-          "DRIVCg1zdGF0ZV92ZXJzaW9uGAggASgEEhIKCnJlcXVlc3RfaWQYCSABKAki",
-          "kQEKGFNhdmVFcXVpcExvYWRvdXRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdl",
-          "GAEgASgLMg8uVGlwSW5mb01lc3NhZ2USJwoIc25hcHNob3QYAiABKAsyFS5F",
-          "cXVpcExvYWRvdXRTbmFwc2hvdBISCgpyZXF1ZXN0X2lkGAMgASgJEhAKCHJl",
-          "cGxheWVkGAQgASgIIncKGVN3aXRjaEVxdWlwTG9hZG91dFJlcXVlc3QSEQoJ",
-          "c2NoZW1lX2lkGAEgASgNEhwKFGFwcGx5X2xpbmtlZF9zY2hlbWVzGAIgASgI",
-          "EhUKDXN0YXRlX3ZlcnNpb24YAyABKAQSEgoKcmVxdWVzdF9pZBgEIAEoCSL2",
-          "AQoaU3dpdGNoRXF1aXBMb2Fkb3V0UmVzcG9uc2USJgoNZXJyb3JfbWVzc2Fn",
-          "ZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhUKA2JhZxgCIAEoCzIILkJhZ0lu",
-          "Zm8SGwoJZXF1aXBtZW50GAMgASgLMgguQmFnSW5mbxInCghzbmFwc2hvdBgE",
-          "IAEoCzIVLkVxdWlwTG9hZG91dFNuYXBzaG90EhUKDW1pc3Npbmdfc2xvdHMY",
-          "BSADKA0SFgoObGlua2VkX25vdGljZXMYBiADKAkSEgoKcmVxdWVzdF9pZBgH",
-          "IAEoCRIQCghyZXBsYXllZBgIIAEoCCJ3ChlVbmxvY2tFcXVpcExvYWRvdXRS",
-          "ZXF1ZXN0EhkKEWNsaWVudF9yZXF1ZXN0X2lkGAEgASgEEh8KF2V4cGVjdGVk",
-          "X3VubG9ja2VkX2NvdW50GAIgASgNEh4KFnVzZV9iaW5kX2RpYW1vbmRfZmly",
-          "c3QYAyABKAgiugMKGlVubG9ja0VxdWlwTG9hZG91dFJlc3BvbnNlEiYKDWVy",
+          "ZBgKIAEoBBIbChN0YXJnZXRfcXVhbGl0eV90aWVyGAsgASgNEhsKE21heF9w",
+          "b2xpc2hfYXR0ZW1wdHMYDCABKA0ipAEKCU9wZXJhdGlvbhIPCgtVTlNQRUNJ",
+          "RklFRBAAEg8KC0NSRUFURV9JVEVNEAESEQoNSU5TVEFMTF9BRkZJWBACEhEK",
+          "DVJFRk9SR0VfQUZGSVgQAxIQCgxQT0xJU0hfQUZGSVgQBBIWChJVTlNFQUxf",
+          "VE9fVFJBREFCTEUQBRITCg9JTkhFUklUX0VOSEFOQ0UQBhIQCgxVUEdSQURF",
+          "X1RJRVIQB0IdChtfZXhwZWN0ZWRfcG9saXNoX3BpdHlfY291bnQiggEKD1Bv",
+          "bGlzaFN0ZXBUcmFjZRIVCg1hdHRlbXB0X2luZGV4GAEgASgNEhMKC3JvbGxl",
+          "ZF90aWVyGAIgASgNEhMKC3RpZXJfYmVmb3JlGAMgASgNEhIKCnRpZXJfYWZ0",
+          "ZXIYBCABKA0SGgoSZ3VhcmFudGVlZF9ieV9waXR5GAUgASgIInwKFkVxdWlw",
+          "bWVudENyYWZ0TWF0ZXJpYWwSEQoJY29uZmlnX2lkGAEgASgNEgwKBG5hbWUY",
+          "AiABKAkSEAoIaWNvbl9rZXkYAyABKAkSDQoFY291bnQYBCABKA0SDQoFb3du",
+          "ZWQYBSABKAQSEQoJYXZhaWxhYmxlGAYgASgEImkKFEVxdWlwbWVudENyYWZ0",
+          "UmVjaXBlEh0KB3Byb2R1Y3QYASABKAsyDC5CYWdJdGVtSW5mbxIaChJtYXRl",
+          "cmlhbF9jb25maWdfaWQYAiABKA0SFgoObWF0ZXJpYWxfY291bnQYAyABKA0i",
+          "HwodR2V0RXF1aXBtZW50Q3JhZnRSdWxlc1JlcXVlc3QiowIKHkdldEVxdWlw",
+          "bWVudENyYWZ0UnVsZXNSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
+          "Mg8uVGlwSW5mb01lc3NhZ2USGQoRcnVsZXNfZmluZ2VycHJpbnQYAiABKAwS",
+          "FgoOZm9yZ2VfcmV2aXNpb24YAyABKAQSJgoHcmVjaXBlcxgEIAMoCzIVLkVx",
+          "dWlwbWVudENyYWZ0UmVjaXBlEiUKB2FmZml4ZXMYBSADKAsyFC5FcXVpcEZp",
+          "eGVkQWZmaXhJbmZvEi0KDXF1YWxpdHlfdGllcnMYBiADKAsyFi5FcXVpcEFm",
+          "Zml4UXVhbGl0eUluZm8SKAoNZm9yZ2VfbWFzdGVyeRgHIAEoCzIRLkNyYWZ0",
+          "TWFzdGVyeUluZm8i+AMKFUVxdWlwbWVudENyYWZ0UHJldmlldxIlCgZjaG9p",
+          "Y2UYASABKAsyFS5FcXVpcG1lbnRDcmFmdENob2ljZRIZChFydWxlc19maW5n",
+          "ZXJwcmludBgCIAEoDBIfChdleHBlY3RlZF9mb3JnZV9yZXZpc2lvbhgDIAEo",
+          "BBIcCgZyZXN1bHQYBCABKAsyDC5CYWdJdGVtSW5mbxIpCghtYXRlcmlhbBgF",
+          "IAEoCzIXLkVxdWlwbWVudENyYWZ0TWF0ZXJpYWwSEQoJYXZhaWxhYmxlGAYg",
+          "ASgIEhcKD3VuYXZhaWxhYmxlX3RpcBgHIAEoDRIRCglnb2xkX2Nvc3QYCCAB",
+          "KAQSLwoOZXh0cmFfbWF0ZXJpYWwYCSABKAsyFy5FcXVpcG1lbnRDcmFmdE1h",
+          "dGVyaWFsEhYKDnByb3h5X2ZlZV9nb2xkGAogASgEEhkKEXByb3h5X21hc3Rl",
+          "cl9uYW1lGAsgASgJEhYKDndpbGxfYmluZF9pdGVtGAwgASgIEhsKE21heF9w",
+          "b2xpc2hfYXR0ZW1wdHMYDSABKA0SHAoUbWF4X3BvbGlzaF9zYW5kX2Nvc3QY",
+          "DiABKA0SHAoUbWF4X3BvbGlzaF9nb2xkX2Nvc3QYDyABKAQSHwoXdGVhbV9m",
+          "cmVlX3Byb3h5X2FwcGxpZWQYECABKAgiRQocUHJldmlld0VxdWlwbWVudENy",
+          "YWZ0UmVxdWVzdBIlCgZjaG9pY2UYASABKAsyFS5FcXVpcG1lbnRDcmFmdENo",
+          "b2ljZSJwCh1QcmV2aWV3RXF1aXBtZW50Q3JhZnRSZXNwb25zZRImCg1lcnJv",
+          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USJwoHcHJldmlldxgC",
+          "IAEoCzIWLkVxdWlwbWVudENyYWZ0UHJldmlldyKbAQobQ29tbWl0RXF1aXBt",
+          "ZW50Q3JhZnRSZXF1ZXN0EiUKBmNob2ljZRgBIAEoCzIVLkVxdWlwbWVudENy",
+          "YWZ0Q2hvaWNlEhkKEXJ1bGVzX2ZpbmdlcnByaW50GAIgASgMEh8KF2V4cGVj",
+          "dGVkX2ZvcmdlX3JldmlzaW9uGAMgASgEEhkKEWNsaWVudF9yZXF1ZXN0X2lk",
+          "GAQgASgEItkEChxDb21taXRFcXVpcG1lbnRDcmFmdFJlc3BvbnNlEiYKDWVy",
           "cm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIZChFjbGllbnRf",
-          "cmVxdWVzdF9pZBgCIAEoBBI0CgdvdXRjb21lGAMgASgOMiMuVW5sb2NrRXF1",
-          "aXBMb2Fkb3V0UmVzcG9uc2UuT3V0Y29tZRIPCgdkdXJhYmxlGAQgASgIEhAK",
-          "CHJlcGxheWVkGAUgASgIEh0KFXJlc3VsdF91bmxvY2tlZF9jb3VudBgGIAEo",
-          "DRIeChZjdXJyZW50X3VubG9ja2VkX2NvdW50GAcgASgNEhsKE3VzZWRfaXRl",
-          "bV9jb25maWdfaWQYCCABKA0SGgoSc3BlbnRfYmluZF9kaWFtb25kGAkgASgE",
-          "EhUKDXNwZW50X2RpYW1vbmQYCiABKAQSFQoDYmFnGAsgASgLMgguQmFnSW5m",
-          "bxInCghzbmFwc2hvdBgMIAEoCzIVLkVxdWlwTG9hZG91dFNuYXBzaG90IjEK",
-          "B091dGNvbWUSCwoHVU5LTk9XThAAEgwKCFJFSkVDVEVEEAESCwoHQVBQTElF",
-          "RBACKqABChZFcXVpcExvYWRvdXRTbG90U3RhdHVzEhwKGEVRVUlQX0xPQURP",
-          "VVRfU0xPVF9FTVBUWRAAEh8KG0VRVUlQX0xPQURPVVRfU0xPVF9FUVVJUFBF",
-          "RBABEh0KGUVRVUlQX0xPQURPVVRfU0xPVF9JTl9CQUcQAhIoCiRFUVVJUF9M",
-          "T0FET1VUX1NMT1RfTUlTU0lOR19PUl9TVE9SRUQQAzKsCgoUU2NlbmVCYWdD",
-          "bGllbnRQbGF5ZXISKQoGR2V0QmFnEg4uR2V0QmFnUmVxdWVzdBoPLkdldEJh",
-          "Z1Jlc3BvbnNlEiwKB1NvcnRCYWcSDy5Tb3J0QmFnUmVxdWVzdBoQLlNvcnRC",
-          "YWdSZXNwb25zZRIyCglFcXVpcEl0ZW0SES5FcXVpcEl0ZW1SZXF1ZXN0GhIu",
-          "RXF1aXBJdGVtUmVzcG9uc2USOAoLVW5lcXVpcEl0ZW0SEy5VbmVxdWlwSXRl",
-          "bVJlcXVlc3QaFC5VbmVxdWlwSXRlbVJlc3BvbnNlEjgKC0dtR3JhbnRJdGVt",
-          "EhMuR21HcmFudEl0ZW1SZXF1ZXN0GhQuR21HcmFudEl0ZW1SZXNwb25zZRI7",
-          "CgxFbmhhbmNlRXF1aXASFC5FbmhhbmNlRXF1aXBSZXF1ZXN0GhUuRW5oYW5j",
-          "ZUVxdWlwUmVzcG9uc2USLwoISW5sYXlHZW0SEC5JbmxheUdlbVJlcXVlc3Qa",
-          "ES5JbmxheUdlbVJlc3BvbnNlEjIKCVJlbW92ZUdlbRIRLlJlbW92ZUdlbVJl",
-          "cXVlc3QaEi5SZW1vdmVHZW1SZXNwb25zZRJZChZSZXRyaWV2ZVRlbXBvcmFy",
-          "eUl0ZW1zEh4uUmV0cmlldmVUZW1wb3JhcnlJdGVtc1JlcXVlc3QaHy5SZXRy",
-          "aWV2ZVRlbXBvcmFyeUl0ZW1zUmVzcG9uc2USWQoWR2V0RXF1aXBtZW50Q3Jh",
-          "ZnRSdWxlcxIeLkdldEVxdWlwbWVudENyYWZ0UnVsZXNSZXF1ZXN0Gh8uR2V0",
-          "RXF1aXBtZW50Q3JhZnRSdWxlc1Jlc3BvbnNlElYKFVByZXZpZXdFcXVpcG1l",
-          "bnRDcmFmdBIdLlByZXZpZXdFcXVpcG1lbnRDcmFmdFJlcXVlc3QaHi5QcmV2",
-          "aWV3RXF1aXBtZW50Q3JhZnRSZXNwb25zZRJTChRDb21taXRFcXVpcG1lbnRD",
-          "cmFmdBIcLkNvbW1pdEVxdWlwbWVudENyYWZ0UmVxdWVzdBodLkNvbW1pdEVx",
-          "dWlwbWVudENyYWZ0UmVzcG9uc2USZQoaR2V0RXF1aXBtZW50TWF0ZXJpYWxS",
-          "ZXdhcmQSIi5HZXRFcXVpcG1lbnRNYXRlcmlhbFJld2FyZFJlcXVlc3QaIy5H",
-          "ZXRFcXVpcG1lbnRNYXRlcmlhbFJld2FyZFJlc3BvbnNlEmsKHENsYWltRXF1",
-          "aXBtZW50TWF0ZXJpYWxSZXdhcmQSJC5DbGFpbUVxdWlwbWVudE1hdGVyaWFs",
-          "UmV3YXJkUmVxdWVzdBolLkNsYWltRXF1aXBtZW50TWF0ZXJpYWxSZXdhcmRS",
-          "ZXNwb25zZRJHChBHZXRFcXVpcExvYWRvdXRzEhguR2V0RXF1aXBMb2Fkb3V0",
-          "c1JlcXVlc3QaGS5HZXRFcXVpcExvYWRvdXRzUmVzcG9uc2USRwoQU2F2ZUVx",
-          "dWlwTG9hZG91dBIYLlNhdmVFcXVpcExvYWRvdXRSZXF1ZXN0GhkuU2F2ZUVx",
-          "dWlwTG9hZG91dFJlc3BvbnNlEk0KElN3aXRjaEVxdWlwTG9hZG91dBIaLlN3",
-          "aXRjaEVxdWlwTG9hZG91dFJlcXVlc3QaGy5Td2l0Y2hFcXVpcExvYWRvdXRS",
-          "ZXNwb25zZRJNChJVbmxvY2tFcXVpcExvYWRvdXQSGi5VbmxvY2tFcXVpcExv",
-          "YWRvdXRSZXF1ZXN0GhsuVW5sb2NrRXF1aXBMb2Fkb3V0UmVzcG9uc2UaCoCo",
-          "wwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
+          "cmVxdWVzdF9pZBgCIAEoBBI2CgdvdXRjb21lGAMgASgOMiUuQ29tbWl0RXF1",
+          "aXBtZW50Q3JhZnRSZXNwb25zZS5PdXRjb21lEg8KB2R1cmFibGUYBCABKAgS",
+          "EAoIcmVwbGF5ZWQYBSABKAgSDwoHaXRlbV9pZBgGIAEoBBIdChVyZXN1bHRf",
+          "Zm9yZ2VfcmV2aXNpb24YByABKAQSHgoWY3VycmVudF9mb3JnZV9yZXZpc2lv",
+          "bhgIIAEoBBIVCgNiYWcYCSABKAsyCC5CYWdJbmZvEhsKCWVxdWlwbWVudBgK",
+          "IAEoCzIILkJhZ0luZm8SGwoTcmVzdWx0X3F1YWxpdHlfdGllchgLIAEoDRIg",
+          "ChhyZXN1bHRfcG9saXNoX3BpdHlfY291bnQYDCABKA0SGgoSZ3VhcmFudGVl",
+          "ZF9ieV9waXR5GA0gASgIEigKDWZvcmdlX21hc3RlcnkYDiABKAsyES5DcmFm",
+          "dE1hc3RlcnlJbmZvEhwKFHBvbGlzaF9hdHRlbXB0c191c2VkGA8gASgNEiYK",
+          "DHBvbGlzaF9zdGVwcxgQIAMoCzIQLlBvbGlzaFN0ZXBUcmFjZRIZChFhY3R1",
+          "YWxfZ29sZF9zcGVudBgRIAEoBCIxCgdPdXRjb21lEgsKB1VOS05PV04QABIM",
+          "CghSRUpFQ1RFRBABEgsKB0FQUExJRUQQAiKiBQofRXF1aXBtZW50TWF0ZXJp",
+          "YWxSZXdhcmRTbmFwc2hvdBIRCglhdmFpbGFibGUYASABKAgSGgoSdW5hdmFp",
+          "bGFibGVfcmVhc29uGAIgASgJEhgKEGRheV9zdGFydHNfYXRfbXMYAyABKAQS",
+          "GAoQbmV4dF9yZXNldF9hdF9tcxgEIAEoBBIUCgxlYXJuZWRfdG9kYXkYBSAB",
+          "KA0SEwoLZGFpbHlfbGltaXQYBiABKA0SFwoPYXZhaWxhYmxlX3VuaXRzGAcg",
+          "ASgEEhMKC2JhdGNoX3VuaXRzGAggASgNEhAKCHJldmlzaW9uGAkgASgEEjIK",
+          "EWNyYWZ0aW5nX21hdGVyaWFsGAogASgLMhcuRXF1aXBtZW50Q3JhZnRNYXRl",
+          "cmlhbBIyChFlbmhhbmNlbWVudF9zdG9uZRgLIAEoCzIXLkVxdWlwbWVudENy",
+          "YWZ0TWF0ZXJpYWwSEQoJY2FuX2NsYWltGAwgASgIEhcKD2xpZmV0aW1lX2Vh",
+          "cm5lZBgNIAEoDRIWCg5saWZldGltZV9saW1pdBgOIAEoDRIdChV0cmFkYWJs",
+          "ZV9lYXJuZWRfdG90YWwYDyABKA0SHwoXdHJhZGFibGVfbGlmZXRpbWVfbGlt",
+          "aXQYECABKA0SIAoYYXZhaWxhYmxlX3RyYWRhYmxlX3VuaXRzGBEgASgEEhwK",
+          "FGJhdGNoX3RyYWRhYmxlX3VuaXRzGBIgASgNEhsKE3dlZWtseV9waGFzZV9h",
+          "Y3RpdmUYEyABKAgSGQoRd2Vla19zdGFydHNfYXRfbXMYFCABKAQSHQoVbmV4",
+          "dF93ZWVrX3Jlc2V0X2F0X21zGBUgASgEEhgKEGVhcm5lZF90aGlzX3dlZWsY",
+          "FiABKA0SFAoMd2Vla2x5X2xpbWl0GBcgASgNIiMKIUdldEVxdWlwbWVudE1h",
+          "dGVyaWFsUmV3YXJkUmVxdWVzdCKAAQoiR2V0RXF1aXBtZW50TWF0ZXJpYWxS",
+          "ZXdhcmRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
+          "b01lc3NhZ2USMgoIc25hcHNob3QYAiABKAsyIC5FcXVpcG1lbnRNYXRlcmlh",
+          "bFJld2FyZFNuYXBzaG90Ip0BCiNDbGFpbUVxdWlwbWVudE1hdGVyaWFsUmV3",
+          "YXJkUmVxdWVzdBIZChFjbGllbnRfcmVxdWVzdF9pZBgBIAEoBBIZChFleHBl",
+          "Y3RlZF9yZXZpc2lvbhgCIAEoBBIfChdjcmFmdGluZ19tYXRlcmlhbF9jb3Vu",
+          "dBgDIAEoDRIfChdlbmhhbmNlbWVudF9zdG9uZV9jb3VudBgEIAEoDSL9Agok",
+          "Q2xhaW1FcXVpcG1lbnRNYXRlcmlhbFJld2FyZFJlc3BvbnNlEiYKDWVycm9y",
+          "X21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIZChFjbGllbnRfcmVx",
+          "dWVzdF9pZBgCIAEoBBI+CgdvdXRjb21lGAMgASgOMi0uQ2xhaW1FcXVpcG1l",
+          "bnRNYXRlcmlhbFJld2FyZFJlc3BvbnNlLk91dGNvbWUSDwoHZHVyYWJsZRgE",
+          "IAEoCBIQCghyZXBsYXllZBgFIAEoCBIXCg9yZXN1bHRfcmV2aXNpb24YBiAB",
+          "KAQSGAoQY3VycmVudF9yZXZpc2lvbhgHIAEoBBIVCgNiYWcYCCABKAsyCC5C",
+          "YWdJbmZvEjIKCHNuYXBzaG90GAkgASgLMiAuRXF1aXBtZW50TWF0ZXJpYWxS",
+          "ZXdhcmRTbmFwc2hvdCIxCgdPdXRjb21lEgsKB1VOS05PV04QABIMCghSRUpF",
+          "Q1RFRBABEgsKB0FQUExJRUQQAiKjAQoURXF1aXBMb2Fkb3V0U2xvdFZpZXcS",
+          "DAoEc2xvdBgBIAEoDRIRCglzbG90X25hbWUYAiABKAkSEgoKZXF1aXBfa2lu",
+          "ZBgDIAEoDRIRCglpdGVtX2d1aWQYBCABKAQSJwoGc3RhdHVzGAUgASgOMhcu",
+          "RXF1aXBMb2Fkb3V0U2xvdFN0YXR1cxIaCgRpdGVtGAYgASgLMgwuQmFnSXRl",
+          "bUluZm8i3gEKFkVxdWlwTG9hZG91dFNjaGVtZUluZm8SEQoJc2NoZW1lX2lk",
+          "GAEgASgNEhAKCHVubG9ja2VkGAIgASgIEgwKBG5hbWUYAyABKAkSEAoIcm9s",
+          "ZV90YWcYBCABKA0SJAoFc2xvdHMYBSADKAsyFS5FcXVpcExvYWRvdXRTbG90",
+          "VmlldxIeChZsaW5rZWRfc2tpbGxfc2NoZW1lX2lkGAYgASgNEiIKGmxpbmtl",
+          "ZF9hdHRyaWJ1dGVfc2NoZW1lX2lkGAcgASgNEhUKDW1pc3NpbmdfY291bnQY",
+          "CCABKA0iTQoYRXF1aXBMb2Fkb3V0TGlua2VkT3B0aW9uEhEKCXNjaGVtZV9p",
+          "ZBgBIAEoDRIMCgRuYW1lGAIgASgJEhAKCHJvbGVfdGFnGAMgASgNIs0DChRF",
+          "cXVpcExvYWRvdXRTbmFwc2hvdBIdChV1bmxvY2tlZF9zY2hlbWVfY291bnQY",
+          "ASABKA0SGAoQbWF4X3NjaGVtZV9jb3VudBgCIAEoDRIYChBhY3RpdmVfc2No",
+          "ZW1lX2lkGAMgASgNEhUKDXN0YXRlX3ZlcnNpb24YBCABKAQSKAoHc2NoZW1l",
+          "cxgFIAMoCzIXLkVxdWlwTG9hZG91dFNjaGVtZUluZm8SIAoYbmV4dF91bmxv",
+          "Y2tfY29zdF9kaWFtb25kGAYgASgEEiYKHm5leHRfdW5sb2NrX2FsbG93X2Jp",
+          "bmRfZGlhbW9uZBgHIAEoCBIdChV1bmxvY2tfaXRlbV9jb25maWdfaWQYCCAB",
+          "KA0SGQoRdW5sb2NrX2l0ZW1fb3duZWQYCSABKAQSFwoPZGlhbW9uZF9iYWxh",
+          "bmNlGAogASgEEhwKFGJpbmRfZGlhbW9uZF9iYWxhbmNlGAsgASgEEjAKDXNr",
+          "aWxsX3NjaGVtZXMYDCADKAsyGS5FcXVpcExvYWRvdXRMaW5rZWRPcHRpb24S",
+          "NAoRYXR0cmlidXRlX3NjaGVtZXMYDSADKAsyGS5FcXVpcExvYWRvdXRMaW5r",
+          "ZWRPcHRpb24iGQoXR2V0RXF1aXBMb2Fkb3V0c1JlcXVlc3QiawoYR2V0RXF1",
+          "aXBMb2Fkb3V0c1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5U",
+          "aXBJbmZvTWVzc2FnZRInCghzbmFwc2hvdBgCIAEoCzIVLkVxdWlwTG9hZG91",
+          "dFNuYXBzaG90IoYCChdTYXZlRXF1aXBMb2Fkb3V0UmVxdWVzdBIRCglzY2hl",
+          "bWVfaWQYASABKA0SDAoEbmFtZRgCIAEoCRIQCghyb2xlX3RhZxgDIAEoDRIn",
+          "CgVzbG90cxgEIAMoCzIYLkVxdWlwTG9hZG91dFNsb3RCaW5kaW5nEiAKGGNh",
+          "cHR1cmVfY3VycmVudF9lcXVpcHBlZBgFIAEoCBIeChZsaW5rZWRfc2tpbGxf",
+          "c2NoZW1lX2lkGAYgASgNEiIKGmxpbmtlZF9hdHRyaWJ1dGVfc2NoZW1lX2lk",
+          "GAcgASgNEhUKDXN0YXRlX3ZlcnNpb24YCCABKAQSEgoKcmVxdWVzdF9pZBgJ",
+          "IAEoCSKRAQoYU2F2ZUVxdWlwTG9hZG91dFJlc3BvbnNlEiYKDWVycm9yX21l",
+          "c3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRInCghzbmFwc2hvdBgCIAEo",
+          "CzIVLkVxdWlwTG9hZG91dFNuYXBzaG90EhIKCnJlcXVlc3RfaWQYAyABKAkS",
+          "EAoIcmVwbGF5ZWQYBCABKAgidwoZU3dpdGNoRXF1aXBMb2Fkb3V0UmVxdWVz",
+          "dBIRCglzY2hlbWVfaWQYASABKA0SHAoUYXBwbHlfbGlua2VkX3NjaGVtZXMY",
+          "AiABKAgSFQoNc3RhdGVfdmVyc2lvbhgDIAEoBBISCgpyZXF1ZXN0X2lkGAQg",
+          "ASgJIvYBChpTd2l0Y2hFcXVpcExvYWRvdXRSZXNwb25zZRImCg1lcnJvcl9t",
+          "ZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USFQoDYmFnGAIgASgLMggu",
+          "QmFnSW5mbxIbCgllcXVpcG1lbnQYAyABKAsyCC5CYWdJbmZvEicKCHNuYXBz",
+          "aG90GAQgASgLMhUuRXF1aXBMb2Fkb3V0U25hcHNob3QSFQoNbWlzc2luZ19z",
+          "bG90cxgFIAMoDRIWCg5saW5rZWRfbm90aWNlcxgGIAMoCRISCgpyZXF1ZXN0",
+          "X2lkGAcgASgJEhAKCHJlcGxheWVkGAggASgIIncKGVVubG9ja0VxdWlwTG9h",
+          "ZG91dFJlcXVlc3QSGQoRY2xpZW50X3JlcXVlc3RfaWQYASABKAQSHwoXZXhw",
+          "ZWN0ZWRfdW5sb2NrZWRfY291bnQYAiABKA0SHgoWdXNlX2JpbmRfZGlhbW9u",
+          "ZF9maXJzdBgDIAEoCCK6AwoaVW5sb2NrRXF1aXBMb2Fkb3V0UmVzcG9uc2US",
+          "JgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhkKEWNs",
+          "aWVudF9yZXF1ZXN0X2lkGAIgASgEEjQKB291dGNvbWUYAyABKA4yIy5Vbmxv",
+          "Y2tFcXVpcExvYWRvdXRSZXNwb25zZS5PdXRjb21lEg8KB2R1cmFibGUYBCAB",
+          "KAgSEAoIcmVwbGF5ZWQYBSABKAgSHQoVcmVzdWx0X3VubG9ja2VkX2NvdW50",
+          "GAYgASgNEh4KFmN1cnJlbnRfdW5sb2NrZWRfY291bnQYByABKA0SGwoTdXNl",
+          "ZF9pdGVtX2NvbmZpZ19pZBgIIAEoDRIaChJzcGVudF9iaW5kX2RpYW1vbmQY",
+          "CSABKAQSFQoNc3BlbnRfZGlhbW9uZBgKIAEoBBIVCgNiYWcYCyABKAsyCC5C",
+          "YWdJbmZvEicKCHNuYXBzaG90GAwgASgLMhUuRXF1aXBMb2Fkb3V0U25hcHNo",
+          "b3QiMQoHT3V0Y29tZRILCgdVTktOT1dOEAASDAoIUkVKRUNURUQQARILCgdB",
+          "UFBMSUVEEAIqoAEKFkVxdWlwTG9hZG91dFNsb3RTdGF0dXMSHAoYRVFVSVBf",
+          "TE9BRE9VVF9TTE9UX0VNUFRZEAASHwobRVFVSVBfTE9BRE9VVF9TTE9UX0VR",
+          "VUlQUEVEEAESHQoZRVFVSVBfTE9BRE9VVF9TTE9UX0lOX0JBRxACEigKJEVR",
+          "VUlQX0xPQURPVVRfU0xPVF9NSVNTSU5HX09SX1NUT1JFRBADMqwKChRTY2Vu",
+          "ZUJhZ0NsaWVudFBsYXllchIpCgZHZXRCYWcSDi5HZXRCYWdSZXF1ZXN0Gg8u",
+          "R2V0QmFnUmVzcG9uc2USLAoHU29ydEJhZxIPLlNvcnRCYWdSZXF1ZXN0GhAu",
+          "U29ydEJhZ1Jlc3BvbnNlEjIKCUVxdWlwSXRlbRIRLkVxdWlwSXRlbVJlcXVl",
+          "c3QaEi5FcXVpcEl0ZW1SZXNwb25zZRI4CgtVbmVxdWlwSXRlbRITLlVuZXF1",
+          "aXBJdGVtUmVxdWVzdBoULlVuZXF1aXBJdGVtUmVzcG9uc2USOAoLR21HcmFu",
+          "dEl0ZW0SEy5HbUdyYW50SXRlbVJlcXVlc3QaFC5HbUdyYW50SXRlbVJlc3Bv",
+          "bnNlEjsKDEVuaGFuY2VFcXVpcBIULkVuaGFuY2VFcXVpcFJlcXVlc3QaFS5F",
+          "bmhhbmNlRXF1aXBSZXNwb25zZRIvCghJbmxheUdlbRIQLklubGF5R2VtUmVx",
+          "dWVzdBoRLklubGF5R2VtUmVzcG9uc2USMgoJUmVtb3ZlR2VtEhEuUmVtb3Zl",
+          "R2VtUmVxdWVzdBoSLlJlbW92ZUdlbVJlc3BvbnNlElkKFlJldHJpZXZlVGVt",
+          "cG9yYXJ5SXRlbXMSHi5SZXRyaWV2ZVRlbXBvcmFyeUl0ZW1zUmVxdWVzdBof",
+          "LlJldHJpZXZlVGVtcG9yYXJ5SXRlbXNSZXNwb25zZRJZChZHZXRFcXVpcG1l",
+          "bnRDcmFmdFJ1bGVzEh4uR2V0RXF1aXBtZW50Q3JhZnRSdWxlc1JlcXVlc3Qa",
+          "Hy5HZXRFcXVpcG1lbnRDcmFmdFJ1bGVzUmVzcG9uc2USVgoVUHJldmlld0Vx",
+          "dWlwbWVudENyYWZ0Eh0uUHJldmlld0VxdWlwbWVudENyYWZ0UmVxdWVzdBoe",
+          "LlByZXZpZXdFcXVpcG1lbnRDcmFmdFJlc3BvbnNlElMKFENvbW1pdEVxdWlw",
+          "bWVudENyYWZ0EhwuQ29tbWl0RXF1aXBtZW50Q3JhZnRSZXF1ZXN0Gh0uQ29t",
+          "bWl0RXF1aXBtZW50Q3JhZnRSZXNwb25zZRJlChpHZXRFcXVpcG1lbnRNYXRl",
+          "cmlhbFJld2FyZBIiLkdldEVxdWlwbWVudE1hdGVyaWFsUmV3YXJkUmVxdWVz",
+          "dBojLkdldEVxdWlwbWVudE1hdGVyaWFsUmV3YXJkUmVzcG9uc2USawocQ2xh",
+          "aW1FcXVpcG1lbnRNYXRlcmlhbFJld2FyZBIkLkNsYWltRXF1aXBtZW50TWF0",
+          "ZXJpYWxSZXdhcmRSZXF1ZXN0GiUuQ2xhaW1FcXVpcG1lbnRNYXRlcmlhbFJl",
+          "d2FyZFJlc3BvbnNlEkcKEEdldEVxdWlwTG9hZG91dHMSGC5HZXRFcXVpcExv",
+          "YWRvdXRzUmVxdWVzdBoZLkdldEVxdWlwTG9hZG91dHNSZXNwb25zZRJHChBT",
+          "YXZlRXF1aXBMb2Fkb3V0EhguU2F2ZUVxdWlwTG9hZG91dFJlcXVlc3QaGS5T",
+          "YXZlRXF1aXBMb2Fkb3V0UmVzcG9uc2USTQoSU3dpdGNoRXF1aXBMb2Fkb3V0",
+          "EhouU3dpdGNoRXF1aXBMb2Fkb3V0UmVxdWVzdBobLlN3aXRjaEVxdWlwTG9h",
+          "ZG91dFJlc3BvbnNlEk0KElVubG9ja0VxdWlwTG9hZG91dBIaLlVubG9ja0Vx",
+          "dWlwTG9hZG91dFJlcXVlc3QaGy5VbmxvY2tFcXVpcExvYWRvdXRSZXNwb25z",
+          "ZRoKgKjDAQGIqMMBAUIOWgVzY2VuZYABAZjUYQNiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::CurrencyCompReflection.Descriptor, global::PlayerEquipLoadoutCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::EquipLoadoutSlotStatus), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -344,16 +353,17 @@ public static partial class PlayerBagReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::CraftMasteryInfo), global::CraftMasteryInfo.Parser, new[]{ "Tier", "TierName", "Exp", "NextTierExp", "TopQualityRateBps" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipFixedAffixSlotInfo), global::EquipFixedAffixSlotInfo.Parser, new[]{ "Slot", "Pool", "Selected" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipArtifactInfo), global::EquipArtifactInfo.Parser, new[]{ "EffectId", "Name", "Description", "BonusBps", "CapBps", "PerRoundLimit", "BattleLimit", "ActiveRounds", "HealthThresholdBps" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentCraftChoice), global::EquipmentCraftChoice.Parser, new[]{ "Operation", "ConfigId", "ItemId", "AffixSlot", "AffixId", "UseGuaranteeCharm", "AllowBoundMaterials", "ProxyMasterPlayerId", "ExpectedPolishPityCount", "SourceItemId" }, new[]{ "ExpectedPolishPityCount" }, new[]{ typeof(global::EquipmentCraftChoice.Types.Operation) }, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentCraftChoice), global::EquipmentCraftChoice.Parser, new[]{ "Operation", "ConfigId", "ItemId", "AffixSlot", "AffixId", "UseGuaranteeCharm", "AllowBoundMaterials", "ProxyMasterPlayerId", "ExpectedPolishPityCount", "SourceItemId", "TargetQualityTier", "MaxPolishAttempts" }, new[]{ "ExpectedPolishPityCount" }, new[]{ typeof(global::EquipmentCraftChoice.Types.Operation) }, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PolishStepTrace), global::PolishStepTrace.Parser, new[]{ "AttemptIndex", "RolledTier", "TierBefore", "TierAfter", "GuaranteedByPity" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentCraftMaterial), global::EquipmentCraftMaterial.Parser, new[]{ "ConfigId", "Name", "IconKey", "Count", "Owned", "Available" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentCraftRecipe), global::EquipmentCraftRecipe.Parser, new[]{ "Product", "MaterialConfigId", "MaterialCount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetEquipmentCraftRulesRequest), global::GetEquipmentCraftRulesRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetEquipmentCraftRulesResponse), global::GetEquipmentCraftRulesResponse.Parser, new[]{ "ErrorMessage", "RulesFingerprint", "ForgeRevision", "Recipes", "Affixes", "QualityTiers", "ForgeMastery" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentCraftPreview), global::EquipmentCraftPreview.Parser, new[]{ "Choice", "RulesFingerprint", "ExpectedForgeRevision", "Result", "Material", "Available", "UnavailableTip", "GoldCost", "ExtraMaterial", "ProxyFeeGold", "ProxyMasterName", "WillBindItem" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentCraftPreview), global::EquipmentCraftPreview.Parser, new[]{ "Choice", "RulesFingerprint", "ExpectedForgeRevision", "Result", "Material", "Available", "UnavailableTip", "GoldCost", "ExtraMaterial", "ProxyFeeGold", "ProxyMasterName", "WillBindItem", "MaxPolishAttempts", "MaxPolishSandCost", "MaxPolishGoldCost", "TeamFreeProxyApplied" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PreviewEquipmentCraftRequest), global::PreviewEquipmentCraftRequest.Parser, new[]{ "Choice" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PreviewEquipmentCraftResponse), global::PreviewEquipmentCraftResponse.Parser, new[]{ "ErrorMessage", "Preview" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::CommitEquipmentCraftRequest), global::CommitEquipmentCraftRequest.Parser, new[]{ "Choice", "RulesFingerprint", "ExpectedForgeRevision", "ClientRequestId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::CommitEquipmentCraftResponse), global::CommitEquipmentCraftResponse.Parser, new[]{ "ErrorMessage", "ClientRequestId", "Outcome", "Durable", "Replayed", "ItemId", "ResultForgeRevision", "CurrentForgeRevision", "Bag", "Equipment", "ResultQualityTier", "ResultPolishPityCount", "GuaranteedByPity", "ForgeMastery" }, null, new[]{ typeof(global::CommitEquipmentCraftResponse.Types.Outcome) }, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::CommitEquipmentCraftResponse), global::CommitEquipmentCraftResponse.Parser, new[]{ "ErrorMessage", "ClientRequestId", "Outcome", "Durable", "Replayed", "ItemId", "ResultForgeRevision", "CurrentForgeRevision", "Bag", "Equipment", "ResultQualityTier", "ResultPolishPityCount", "GuaranteedByPity", "ForgeMastery", "PolishAttemptsUsed", "PolishSteps", "ActualGoldSpent" }, null, new[]{ typeof(global::CommitEquipmentCraftResponse.Types.Outcome) }, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentMaterialRewardSnapshot), global::EquipmentMaterialRewardSnapshot.Parser, new[]{ "Available", "UnavailableReason", "DayStartsAtMs", "NextResetAtMs", "EarnedToday", "DailyLimit", "AvailableUnits", "BatchUnits", "Revision", "CraftingMaterial", "EnhancementStone", "CanClaim", "LifetimeEarned", "LifetimeLimit", "TradableEarnedTotal", "TradableLifetimeLimit", "AvailableTradableUnits", "BatchTradableUnits", "WeeklyPhaseActive", "WeekStartsAtMs", "NextWeekResetAtMs", "EarnedThisWeek", "WeeklyLimit" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetEquipmentMaterialRewardRequest), global::GetEquipmentMaterialRewardRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetEquipmentMaterialRewardResponse), global::GetEquipmentMaterialRewardResponse.Parser, new[]{ "ErrorMessage", "Snapshot" }, null, null, null, null),
@@ -12978,6 +12988,8 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
     proxyMasterPlayerId_ = other.proxyMasterPlayerId_;
     expectedPolishPityCount_ = other.expectedPolishPityCount_;
     sourceItemId_ = other.sourceItemId_;
+    targetQualityTier_ = other.targetQualityTier_;
+    maxPolishAttempts_ = other.maxPolishAttempts_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -13146,6 +13158,36 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
     }
   }
 
+  /// <summary>Field number for the "target_quality_tier" field.</summary>
+  public const int TargetQualityTierFieldNumber = 11;
+  private uint targetQualityTier_;
+  /// <summary>
+  /// V3 POLISH_AFFIX可选：智能定档连磨目标品相（0=单次打磨，2..5=达标或保底即停）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TargetQualityTier {
+    get { return targetQualityTier_; }
+    set {
+      targetQualityTier_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_polish_attempts" field.</summary>
+  public const int MaxPolishAttemptsFieldNumber = 12;
+  private uint maxPolishAttempts_;
+  /// <summary>
+  /// V3 POLISH_AFFIX可选：智能连磨最多手数（0/1=单次，2..8=封顶至8次硬保底）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaxPolishAttempts {
+    get { return maxPolishAttempts_; }
+    set {
+      maxPolishAttempts_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -13171,6 +13213,8 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
     if (ProxyMasterPlayerId != other.ProxyMasterPlayerId) return false;
     if (ExpectedPolishPityCount != other.ExpectedPolishPityCount) return false;
     if (SourceItemId != other.SourceItemId) return false;
+    if (TargetQualityTier != other.TargetQualityTier) return false;
+    if (MaxPolishAttempts != other.MaxPolishAttempts) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -13188,6 +13232,8 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
     if (ProxyMasterPlayerId != 0UL) hash ^= ProxyMasterPlayerId.GetHashCode();
     if (HasExpectedPolishPityCount) hash ^= ExpectedPolishPityCount.GetHashCode();
     if (SourceItemId != 0UL) hash ^= SourceItemId.GetHashCode();
+    if (TargetQualityTier != 0) hash ^= TargetQualityTier.GetHashCode();
+    if (MaxPolishAttempts != 0) hash ^= MaxPolishAttempts.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -13246,6 +13292,14 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
       output.WriteRawTag(80);
       output.WriteUInt64(SourceItemId);
     }
+    if (TargetQualityTier != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(TargetQualityTier);
+    }
+    if (MaxPolishAttempts != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(MaxPolishAttempts);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -13296,6 +13350,14 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
       output.WriteRawTag(80);
       output.WriteUInt64(SourceItemId);
     }
+    if (TargetQualityTier != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(TargetQualityTier);
+    }
+    if (MaxPolishAttempts != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(MaxPolishAttempts);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -13335,6 +13397,12 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
     }
     if (SourceItemId != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(SourceItemId);
+    }
+    if (TargetQualityTier != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetQualityTier);
+    }
+    if (MaxPolishAttempts != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaxPolishAttempts);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -13377,6 +13445,12 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
     }
     if (other.SourceItemId != 0UL) {
       SourceItemId = other.SourceItemId;
+    }
+    if (other.TargetQualityTier != 0) {
+      TargetQualityTier = other.TargetQualityTier;
+    }
+    if (other.MaxPolishAttempts != 0) {
+      MaxPolishAttempts = other.MaxPolishAttempts;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -13435,6 +13509,14 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
         }
         case 80: {
           SourceItemId = input.ReadUInt64();
+          break;
+        }
+        case 88: {
+          TargetQualityTier = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          MaxPolishAttempts = input.ReadUInt32();
           break;
         }
       }
@@ -13496,6 +13578,14 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
           SourceItemId = input.ReadUInt64();
           break;
         }
+        case 88: {
+          TargetQualityTier = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          MaxPolishAttempts = input.ReadUInt32();
+          break;
+        }
       }
     }
   }
@@ -13538,6 +13628,367 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
 }
 
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class PolishStepTrace : pb::IMessage<PolishStepTrace>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<PolishStepTrace> _parser = new pb::MessageParser<PolishStepTrace>(() => new PolishStepTrace());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<PolishStepTrace> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[34]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public PolishStepTrace() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public PolishStepTrace(PolishStepTrace other) : this() {
+    attemptIndex_ = other.attemptIndex_;
+    rolledTier_ = other.rolledTier_;
+    tierBefore_ = other.tierBefore_;
+    tierAfter_ = other.tierAfter_;
+    guaranteedByPity_ = other.guaranteedByPity_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public PolishStepTrace Clone() {
+    return new PolishStepTrace(this);
+  }
+
+  /// <summary>Field number for the "attempt_index" field.</summary>
+  public const int AttemptIndexFieldNumber = 1;
+  private uint attemptIndex_;
+  /// <summary>
+  /// 本次连磨的第几手（从 1 开始）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint AttemptIndex {
+    get { return attemptIndex_; }
+    set {
+      attemptIndex_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "rolled_tier" field.</summary>
+  public const int RolledTierFieldNumber = 2;
+  private uint rolledTier_;
+  /// <summary>
+  /// 该手实际掷出的品相档位（1..5）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RolledTier {
+    get { return rolledTier_; }
+    set {
+      rolledTier_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "tier_before" field.</summary>
+  public const int TierBeforeFieldNumber = 3;
+  private uint tierBefore_;
+  /// <summary>
+  /// 该手前的词条品相档位（1..5）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TierBefore {
+    get { return tierBefore_; }
+    set {
+      tierBefore_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "tier_after" field.</summary>
+  public const int TierAfterFieldNumber = 4;
+  private uint tierAfter_;
+  /// <summary>
+  /// 该手后的词条品相档位（只升不降，1..5）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TierAfter {
+    get { return tierAfter_; }
+    set {
+      tierAfter_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "guaranteed_by_pity" field.</summary>
+  public const int GuaranteedByPityFieldNumber = 5;
+  private bool guaranteedByPity_;
+  /// <summary>
+  /// true = 该手由 8 次硬保底或定星保底符直出极品。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool GuaranteedByPity {
+    get { return guaranteedByPity_; }
+    set {
+      guaranteedByPity_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as PolishStepTrace);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(PolishStepTrace other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (AttemptIndex != other.AttemptIndex) return false;
+    if (RolledTier != other.RolledTier) return false;
+    if (TierBefore != other.TierBefore) return false;
+    if (TierAfter != other.TierAfter) return false;
+    if (GuaranteedByPity != other.GuaranteedByPity) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (AttemptIndex != 0) hash ^= AttemptIndex.GetHashCode();
+    if (RolledTier != 0) hash ^= RolledTier.GetHashCode();
+    if (TierBefore != 0) hash ^= TierBefore.GetHashCode();
+    if (TierAfter != 0) hash ^= TierAfter.GetHashCode();
+    if (GuaranteedByPity != false) hash ^= GuaranteedByPity.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (AttemptIndex != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(AttemptIndex);
+    }
+    if (RolledTier != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(RolledTier);
+    }
+    if (TierBefore != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(TierBefore);
+    }
+    if (TierAfter != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(TierAfter);
+    }
+    if (GuaranteedByPity != false) {
+      output.WriteRawTag(40);
+      output.WriteBool(GuaranteedByPity);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (AttemptIndex != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(AttemptIndex);
+    }
+    if (RolledTier != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(RolledTier);
+    }
+    if (TierBefore != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(TierBefore);
+    }
+    if (TierAfter != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(TierAfter);
+    }
+    if (GuaranteedByPity != false) {
+      output.WriteRawTag(40);
+      output.WriteBool(GuaranteedByPity);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (AttemptIndex != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(AttemptIndex);
+    }
+    if (RolledTier != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RolledTier);
+    }
+    if (TierBefore != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TierBefore);
+    }
+    if (TierAfter != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TierAfter);
+    }
+    if (GuaranteedByPity != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(PolishStepTrace other) {
+    if (other == null) {
+      return;
+    }
+    if (other.AttemptIndex != 0) {
+      AttemptIndex = other.AttemptIndex;
+    }
+    if (other.RolledTier != 0) {
+      RolledTier = other.RolledTier;
+    }
+    if (other.TierBefore != 0) {
+      TierBefore = other.TierBefore;
+    }
+    if (other.TierAfter != 0) {
+      TierAfter = other.TierAfter;
+    }
+    if (other.GuaranteedByPity != false) {
+      GuaranteedByPity = other.GuaranteedByPity;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          AttemptIndex = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          RolledTier = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          TierBefore = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          TierAfter = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          GuaranteedByPity = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          AttemptIndex = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          RolledTier = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          TierBefore = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          TierAfter = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          GuaranteedByPity = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class EquipmentCraftMaterial : pb::IMessage<EquipmentCraftMaterial>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
@@ -13552,7 +14003,7 @@ public sealed partial class EquipmentCraftMaterial : pb::IMessage<EquipmentCraft
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[34]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[35]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13938,7 +14389,7 @@ public sealed partial class EquipmentCraftRecipe : pb::IMessage<EquipmentCraftRe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[35]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[36]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14219,7 +14670,7 @@ public sealed partial class GetEquipmentCraftRulesRequest : pb::IMessage<GetEqui
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[36]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[37]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14380,7 +14831,7 @@ public sealed partial class GetEquipmentCraftRulesResponse : pb::IMessage<GetEqu
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[37]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[38]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14794,7 +15245,7 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[38]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[39]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14826,6 +15277,10 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
     proxyFeeGold_ = other.proxyFeeGold_;
     proxyMasterName_ = other.proxyMasterName_;
     willBindItem_ = other.willBindItem_;
+    maxPolishAttempts_ = other.maxPolishAttempts_;
+    maxPolishSandCost_ = other.maxPolishSandCost_;
+    maxPolishGoldCost_ = other.maxPolishGoldCost_;
+    teamFreeProxyApplied_ = other.teamFreeProxyApplied_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -14991,6 +15446,66 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
     }
   }
 
+  /// <summary>Field number for the "max_polish_attempts" field.</summary>
+  public const int MaxPolishAttemptsFieldNumber = 13;
+  private uint maxPolishAttempts_;
+  /// <summary>
+  /// V3 智能连磨预计最多手数（受保底余量与当前材料上限封顶）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaxPolishAttempts {
+    get { return maxPolishAttempts_; }
+    set {
+      maxPolishAttempts_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_polish_sand_cost" field.</summary>
+  public const int MaxPolishSandCostFieldNumber = 14;
+  private uint maxPolishSandCost_;
+  /// <summary>
+  /// V3 智能连磨最坏情况下消耗的重铸砂总数。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaxPolishSandCost {
+    get { return maxPolishSandCost_; }
+    set {
+      maxPolishSandCost_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_polish_gold_cost" field.</summary>
+  public const int MaxPolishGoldCostFieldNumber = 15;
+  private ulong maxPolishGoldCost_;
+  /// <summary>
+  /// V3 智能连磨最坏情况下消耗的总银两（基础+代打费）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong MaxPolishGoldCost {
+    get { return maxPolishGoldCost_; }
+    set {
+      maxPolishGoldCost_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "team_free_proxy_applied" field.</summary>
+  public const int TeamFreeProxyAppliedFieldNumber = 16;
+  private bool teamFreeProxyApplied_;
+  /// <summary>
+  /// V5 true = 同队情义零费原子代打生效（代打费为 0）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool TeamFreeProxyApplied {
+    get { return teamFreeProxyApplied_; }
+    set {
+      teamFreeProxyApplied_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -15018,6 +15533,10 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
     if (ProxyFeeGold != other.ProxyFeeGold) return false;
     if (ProxyMasterName != other.ProxyMasterName) return false;
     if (WillBindItem != other.WillBindItem) return false;
+    if (MaxPolishAttempts != other.MaxPolishAttempts) return false;
+    if (MaxPolishSandCost != other.MaxPolishSandCost) return false;
+    if (MaxPolishGoldCost != other.MaxPolishGoldCost) return false;
+    if (TeamFreeProxyApplied != other.TeamFreeProxyApplied) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -15037,6 +15556,10 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
     if (ProxyFeeGold != 0UL) hash ^= ProxyFeeGold.GetHashCode();
     if (ProxyMasterName.Length != 0) hash ^= ProxyMasterName.GetHashCode();
     if (WillBindItem != false) hash ^= WillBindItem.GetHashCode();
+    if (MaxPolishAttempts != 0) hash ^= MaxPolishAttempts.GetHashCode();
+    if (MaxPolishSandCost != 0) hash ^= MaxPolishSandCost.GetHashCode();
+    if (MaxPolishGoldCost != 0UL) hash ^= MaxPolishGoldCost.GetHashCode();
+    if (TeamFreeProxyApplied != false) hash ^= TeamFreeProxyApplied.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -15103,6 +15626,22 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
       output.WriteRawTag(96);
       output.WriteBool(WillBindItem);
     }
+    if (MaxPolishAttempts != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(MaxPolishAttempts);
+    }
+    if (MaxPolishSandCost != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(MaxPolishSandCost);
+    }
+    if (MaxPolishGoldCost != 0UL) {
+      output.WriteRawTag(120);
+      output.WriteUInt64(MaxPolishGoldCost);
+    }
+    if (TeamFreeProxyApplied != false) {
+      output.WriteRawTag(128, 1);
+      output.WriteBool(TeamFreeProxyApplied);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -15161,6 +15700,22 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
       output.WriteRawTag(96);
       output.WriteBool(WillBindItem);
     }
+    if (MaxPolishAttempts != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(MaxPolishAttempts);
+    }
+    if (MaxPolishSandCost != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(MaxPolishSandCost);
+    }
+    if (MaxPolishGoldCost != 0UL) {
+      output.WriteRawTag(120);
+      output.WriteUInt64(MaxPolishGoldCost);
+    }
+    if (TeamFreeProxyApplied != false) {
+      output.WriteRawTag(128, 1);
+      output.WriteBool(TeamFreeProxyApplied);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -15206,6 +15761,18 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
     }
     if (WillBindItem != false) {
       size += 1 + 1;
+    }
+    if (MaxPolishAttempts != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaxPolishAttempts);
+    }
+    if (MaxPolishSandCost != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaxPolishSandCost);
+    }
+    if (MaxPolishGoldCost != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MaxPolishGoldCost);
+    }
+    if (TeamFreeProxyApplied != false) {
+      size += 2 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -15266,6 +15833,18 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
     }
     if (other.WillBindItem != false) {
       WillBindItem = other.WillBindItem;
+    }
+    if (other.MaxPolishAttempts != 0) {
+      MaxPolishAttempts = other.MaxPolishAttempts;
+    }
+    if (other.MaxPolishSandCost != 0) {
+      MaxPolishSandCost = other.MaxPolishSandCost;
+    }
+    if (other.MaxPolishGoldCost != 0UL) {
+      MaxPolishGoldCost = other.MaxPolishGoldCost;
+    }
+    if (other.TeamFreeProxyApplied != false) {
+      TeamFreeProxyApplied = other.TeamFreeProxyApplied;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -15344,6 +15923,22 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
         }
         case 96: {
           WillBindItem = input.ReadBool();
+          break;
+        }
+        case 104: {
+          MaxPolishAttempts = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          MaxPolishSandCost = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          MaxPolishGoldCost = input.ReadUInt64();
+          break;
+        }
+        case 128: {
+          TeamFreeProxyApplied = input.ReadBool();
           break;
         }
       }
@@ -15425,6 +16020,22 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
           WillBindItem = input.ReadBool();
           break;
         }
+        case 104: {
+          MaxPolishAttempts = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          MaxPolishSandCost = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          MaxPolishGoldCost = input.ReadUInt64();
+          break;
+        }
+        case 128: {
+          TeamFreeProxyApplied = input.ReadBool();
+          break;
+        }
       }
     }
   }
@@ -15447,7 +16058,7 @@ public sealed partial class PreviewEquipmentCraftRequest : pb::IMessage<PreviewE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[39]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[40]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -15654,7 +16265,7 @@ public sealed partial class PreviewEquipmentCraftResponse : pb::IMessage<Preview
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[40]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[41]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -15910,7 +16521,7 @@ public sealed partial class CommitEquipmentCraftRequest : pb::IMessage<CommitEqu
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[41]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[42]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -16231,7 +16842,7 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[42]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[43]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -16265,6 +16876,9 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
     resultPolishPityCount_ = other.resultPolishPityCount_;
     guaranteedByPity_ = other.guaranteedByPity_;
     forgeMastery_ = other.forgeMastery_ != null ? other.forgeMastery_.Clone() : null;
+    polishAttemptsUsed_ = other.polishAttemptsUsed_;
+    polishSteps_ = other.polishSteps_.Clone();
+    actualGoldSpent_ = other.actualGoldSpent_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -16457,6 +17071,50 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
     }
   }
 
+  /// <summary>Field number for the "polish_attempts_used" field.</summary>
+  public const int PolishAttemptsUsedFieldNumber = 15;
+  private uint polishAttemptsUsed_;
+  /// <summary>
+  /// V3 实际执行打磨手数（单磨为 1，连磨为 1..8）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PolishAttemptsUsed {
+    get { return polishAttemptsUsed_; }
+    set {
+      polishAttemptsUsed_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "polish_steps" field.</summary>
+  public const int PolishStepsFieldNumber = 16;
+  private static readonly pb::FieldCodec<global::PolishStepTrace> _repeated_polishSteps_codec
+      = pb::FieldCodec.ForMessage(130, global::PolishStepTrace.Parser);
+  private readonly pbc::RepeatedField<global::PolishStepTrace> polishSteps_ = new pbc::RepeatedField<global::PolishStepTrace>();
+  /// <summary>
+  /// V3 逐手掷骰明细（首次执行返回）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::PolishStepTrace> PolishSteps {
+    get { return polishSteps_; }
+  }
+
+  /// <summary>Field number for the "actual_gold_spent" field.</summary>
+  public const int ActualGoldSpentFieldNumber = 17;
+  private ulong actualGoldSpent_;
+  /// <summary>
+  /// V3 本次实际扣除银两总量（含代打费）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ActualGoldSpent {
+    get { return actualGoldSpent_; }
+    set {
+      actualGoldSpent_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -16486,6 +17144,9 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
     if (ResultPolishPityCount != other.ResultPolishPityCount) return false;
     if (GuaranteedByPity != other.GuaranteedByPity) return false;
     if (!object.Equals(ForgeMastery, other.ForgeMastery)) return false;
+    if (PolishAttemptsUsed != other.PolishAttemptsUsed) return false;
+    if(!polishSteps_.Equals(other.polishSteps_)) return false;
+    if (ActualGoldSpent != other.ActualGoldSpent) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -16507,6 +17168,9 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
     if (ResultPolishPityCount != 0) hash ^= ResultPolishPityCount.GetHashCode();
     if (GuaranteedByPity != false) hash ^= GuaranteedByPity.GetHashCode();
     if (forgeMastery_ != null) hash ^= ForgeMastery.GetHashCode();
+    if (PolishAttemptsUsed != 0) hash ^= PolishAttemptsUsed.GetHashCode();
+    hash ^= polishSteps_.GetHashCode();
+    if (ActualGoldSpent != 0UL) hash ^= ActualGoldSpent.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -16581,6 +17245,15 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
       output.WriteRawTag(114);
       output.WriteMessage(ForgeMastery);
     }
+    if (PolishAttemptsUsed != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(PolishAttemptsUsed);
+    }
+    polishSteps_.WriteTo(output, _repeated_polishSteps_codec);
+    if (ActualGoldSpent != 0UL) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt64(ActualGoldSpent);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -16647,6 +17320,15 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
       output.WriteRawTag(114);
       output.WriteMessage(ForgeMastery);
     }
+    if (PolishAttemptsUsed != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(PolishAttemptsUsed);
+    }
+    polishSteps_.WriteTo(ref output, _repeated_polishSteps_codec);
+    if (ActualGoldSpent != 0UL) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt64(ActualGoldSpent);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -16698,6 +17380,13 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
     }
     if (forgeMastery_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(ForgeMastery);
+    }
+    if (PolishAttemptsUsed != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PolishAttemptsUsed);
+    }
+    size += polishSteps_.CalculateSize(_repeated_polishSteps_codec);
+    if (ActualGoldSpent != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(ActualGoldSpent);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -16764,6 +17453,13 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
         ForgeMastery = new global::CraftMasteryInfo();
       }
       ForgeMastery.MergeFrom(other.ForgeMastery);
+    }
+    if (other.PolishAttemptsUsed != 0) {
+      PolishAttemptsUsed = other.PolishAttemptsUsed;
+    }
+    polishSteps_.Add(other.polishSteps_);
+    if (other.ActualGoldSpent != 0UL) {
+      ActualGoldSpent = other.ActualGoldSpent;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -16850,6 +17546,18 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
             ForgeMastery = new global::CraftMasteryInfo();
           }
           input.ReadMessage(ForgeMastery);
+          break;
+        }
+        case 120: {
+          PolishAttemptsUsed = input.ReadUInt32();
+          break;
+        }
+        case 130: {
+          polishSteps_.AddEntriesFrom(input, _repeated_polishSteps_codec);
+          break;
+        }
+        case 136: {
+          ActualGoldSpent = input.ReadUInt64();
           break;
         }
       }
@@ -16939,6 +17647,18 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
           input.ReadMessage(ForgeMastery);
           break;
         }
+        case 120: {
+          PolishAttemptsUsed = input.ReadUInt32();
+          break;
+        }
+        case 130: {
+          polishSteps_.AddEntriesFrom(ref input, _repeated_polishSteps_codec);
+          break;
+        }
+        case 136: {
+          ActualGoldSpent = input.ReadUInt64();
+          break;
+        }
       }
     }
   }
@@ -16985,7 +17705,7 @@ public sealed partial class EquipmentMaterialRewardSnapshot : pb::IMessage<Equip
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[43]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[44]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18048,7 +18768,7 @@ public sealed partial class GetEquipmentMaterialRewardRequest : pb::IMessage<Get
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[44]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[45]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18209,7 +18929,7 @@ public sealed partial class GetEquipmentMaterialRewardResponse : pb::IMessage<Ge
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[45]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[46]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18465,7 +19185,7 @@ public sealed partial class ClaimEquipmentMaterialRewardRequest : pb::IMessage<C
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[46]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[47]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18774,7 +19494,7 @@ public sealed partial class ClaimEquipmentMaterialRewardResponse : pb::IMessage<
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[47]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[48]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19318,7 +20038,7 @@ public sealed partial class EquipLoadoutSlotView : pb::IMessage<EquipLoadoutSlot
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[48]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[49]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19728,7 +20448,7 @@ public sealed partial class EquipLoadoutSchemeInfo : pb::IMessage<EquipLoadoutSc
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[49]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[50]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -20198,7 +20918,7 @@ public sealed partial class EquipLoadoutLinkedOption : pb::IMessage<EquipLoadout
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[50]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[51]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -20470,7 +21190,7 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[51]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[52]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21118,7 +21838,7 @@ public sealed partial class GetEquipLoadoutsRequest : pb::IMessage<GetEquipLoado
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[52]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[53]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21279,7 +21999,7 @@ public sealed partial class GetEquipLoadoutsResponse : pb::IMessage<GetEquipLoad
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[53]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[54]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21532,7 +22252,7 @@ public sealed partial class SaveEquipLoadoutRequest : pb::IMessage<SaveEquipLoad
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[54]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[55]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -22042,7 +22762,7 @@ public sealed partial class SaveEquipLoadoutResponse : pb::IMessage<SaveEquipLoa
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[55]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[56]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -22369,7 +23089,7 @@ public sealed partial class SwitchEquipLoadoutRequest : pb::IMessage<SwitchEquip
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[56]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[57]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -22690,7 +23410,7 @@ public sealed partial class SwitchEquipLoadoutResponse : pb::IMessage<SwitchEqui
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[57]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[58]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23181,7 +23901,7 @@ public sealed partial class UnlockEquipLoadoutRequest : pb::IMessage<UnlockEquip
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[58]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[59]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23462,7 +24182,7 @@ public sealed partial class UnlockEquipLoadoutResponse : pb::IMessage<UnlockEqui
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[59]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[60]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

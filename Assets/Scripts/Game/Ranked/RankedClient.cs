@@ -349,6 +349,10 @@ namespace MmorpgClient.Game.Ranked
                 DamageTaken = end.Settlement?.DamageTaken ?? 0ul,
                 HighlightKind = end.Settlement?.HighlightKind ?? BattleHighlightKind.BattleHighlightNone,
                 EndedOpponentStreak = end.Settlement?.EndedOpponentStreak ?? 0u,
+                RevengedRival = end.Settlement?.RevengedRival == true,
+                RevengedOpponentName = end.Settlement?.RevengedOpponentName ?? string.Empty,
+                RevengedWinsAfter = end.Settlement?.RevengedWinsAfter ?? 0u,
+                RevengedLossesAfter = end.Settlement?.RevengedLossesAfter ?? 0u,
                 RatingLoading = !isVoid,
             };
             ActiveSettlement = state;

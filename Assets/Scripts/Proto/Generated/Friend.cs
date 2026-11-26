@@ -76,33 +76,40 @@ namespace Friendpb {
             "ZXh0X2N1cnNvchgDIAEoCRIYChBvbmxpbmVfZGlyZWN0b3J5GAQgASgIImIK",
             "DkZyaWVuZEV2ZW50UzJDEisKBnJlYXNvbhgBIAEoDjIbLmZyaWVuZHBiLkZy",
             "aWVuZEV2ZW50UmVhc29uEhQKDGJ5X3BsYXllcl9pZBgCIAEoBBINCgV0c19t",
-            "cxgDIAEoAyqHAQoTRnJpZW5kUmVxdWVzdFN0YXR1cxIaChZGUklFTkRfUkVR",
-            "VUVTVF9VTktOT1dOEAASGgoWRlJJRU5EX1JFUVVFU1RfUEVORElORxABEhsK",
-            "F0ZSSUVORF9SRVFVRVNUX0FDQ0VQVEVEEAISGwoXRlJJRU5EX1JFUVVFU1Rf",
-            "UkVKRUNURUQQAyqMAQoRRnJpZW5kRXZlbnRSZWFzb24SIwofRlJJRU5EX0VW",
-            "RU5UX1JFQVNPTl9VTlNQRUNJRklFRBAAEigKJEZSSUVORF9FVkVOVF9SRUFT",
-            "T05fUkVRVUVTVF9SRUNFSVZFRBABEigKJEZSSUVORF9FVkVOVF9SRUFTT05f",
-            "UkVRVUVTVF9BQ0NFUFRFRBACMt0GChJDbGllbnRQbGF5ZXJGcmllbmQSRAoJ",
-            "QWRkRnJpZW5kEhouZnJpZW5kcGIuQWRkRnJpZW5kUmVxdWVzdBobLmZyaWVu",
-            "ZHBiLkFkZEZyaWVuZFJlc3BvbnNlEk0KDEFjY2VwdEZyaWVuZBIdLmZyaWVu",
-            "ZHBiLkFjY2VwdEZyaWVuZFJlcXVlc3QaHi5mcmllbmRwYi5BY2NlcHRGcmll",
-            "bmRSZXNwb25zZRJNCgxSZWplY3RGcmllbmQSHS5mcmllbmRwYi5SZWplY3RG",
-            "cmllbmRSZXF1ZXN0Gh4uZnJpZW5kcGIuUmVqZWN0RnJpZW5kUmVzcG9uc2US",
-            "TQoMUmVtb3ZlRnJpZW5kEh0uZnJpZW5kcGIuUmVtb3ZlRnJpZW5kUmVxdWVz",
-            "dBoeLmZyaWVuZHBiLlJlbW92ZUZyaWVuZFJlc3BvbnNlElAKDUdldEZyaWVu",
-            "ZExpc3QSHi5mcmllbmRwYi5HZXRGcmllbmRMaXN0UmVxdWVzdBofLmZyaWVu",
-            "ZHBiLkdldEZyaWVuZExpc3RSZXNwb25zZRJfChJHZXRQZW5kaW5nUmVxdWVz",
-            "dHMSIy5mcmllbmRwYi5HZXRQZW5kaW5nUmVxdWVzdHNSZXF1ZXN0GiQuZnJp",
-            "ZW5kcGIuR2V0UGVuZGluZ1JlcXVlc3RzUmVzcG9uc2USOAoFQmxvY2sSFi5m",
-            "cmllbmRwYi5CbG9ja1JlcXVlc3QaFy5mcmllbmRwYi5CbG9ja1Jlc3BvbnNl",
-            "Ej4KB1VuYmxvY2sSGC5mcmllbmRwYi5VbmJsb2NrUmVxdWVzdBoZLmZyaWVu",
-            "ZHBiLlVuYmxvY2tSZXNwb25zZRJHCgpMaXN0QmxvY2tzEhsuZnJpZW5kcGIu",
-            "TGlzdEJsb2Nrc1JlcXVlc3QaHC5mcmllbmRwYi5MaXN0QmxvY2tzUmVzcG9u",
-            "c2USWQoQUmVjb21tZW5kRnJpZW5kcxIhLmZyaWVuZHBiLlJlY29tbWVuZEZy",
-            "aWVuZHNSZXF1ZXN0GiIuZnJpZW5kcGIuUmVjb21tZW5kRnJpZW5kc1Jlc3Bv",
-            "bnNlEjwKEU5vdGlmeUZyaWVuZEV2ZW50EhguZnJpZW5kcGIuRnJpZW5kRXZl",
-            "bnRTMkMaBi5FbXB0eSIFiJnIAQIaBYiowwEBQhVaE2ZyaWVuZC9wcm90by9m",
-            "cmllbmRiBnByb3RvMw=="));
+            "cxgDIAEoAyJYCiBCYXRjaENoZWNrU29jaWFsUmVsYXRpb25zUmVxdWVzdBIZ",
+            "ChFzaWRlX2FfcGxheWVyX2lkcxgBIAMoBBIZChFzaWRlX2JfcGxheWVyX2lk",
+            "cxgCIAMoBCJ7CiFCYXRjaENoZWNrU29jaWFsUmVsYXRpb25zUmVzcG9uc2US",
+            "JgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhUKDWhh",
+            "c19hbnlfYmxvY2sYAiABKAgSFwoPYWxsX2FyZV9mcmllbmRzGAMgASgIKocB",
+            "ChNGcmllbmRSZXF1ZXN0U3RhdHVzEhoKFkZSSUVORF9SRVFVRVNUX1VOS05P",
+            "V04QABIaChZGUklFTkRfUkVRVUVTVF9QRU5ESU5HEAESGwoXRlJJRU5EX1JF",
+            "UVVFU1RfQUNDRVBURUQQAhIbChdGUklFTkRfUkVRVUVTVF9SRUpFQ1RFRBAD",
+            "KowBChFGcmllbmRFdmVudFJlYXNvbhIjCh9GUklFTkRfRVZFTlRfUkVBU09O",
+            "X1VOU1BFQ0lGSUVEEAASKAokRlJJRU5EX0VWRU5UX1JFQVNPTl9SRVFVRVNU",
+            "X1JFQ0VJVkVEEAESKAokRlJJRU5EX0VWRU5UX1JFQVNPTl9SRVFVRVNUX0FD",
+            "Q0VQVEVEEAIy2gcKEkNsaWVudFBsYXllckZyaWVuZBJECglBZGRGcmllbmQS",
+            "Gi5mcmllbmRwYi5BZGRGcmllbmRSZXF1ZXN0GhsuZnJpZW5kcGIuQWRkRnJp",
+            "ZW5kUmVzcG9uc2USTQoMQWNjZXB0RnJpZW5kEh0uZnJpZW5kcGIuQWNjZXB0",
+            "RnJpZW5kUmVxdWVzdBoeLmZyaWVuZHBiLkFjY2VwdEZyaWVuZFJlc3BvbnNl",
+            "Ek0KDFJlamVjdEZyaWVuZBIdLmZyaWVuZHBiLlJlamVjdEZyaWVuZFJlcXVl",
+            "c3QaHi5mcmllbmRwYi5SZWplY3RGcmllbmRSZXNwb25zZRJNCgxSZW1vdmVG",
+            "cmllbmQSHS5mcmllbmRwYi5SZW1vdmVGcmllbmRSZXF1ZXN0Gh4uZnJpZW5k",
+            "cGIuUmVtb3ZlRnJpZW5kUmVzcG9uc2USUAoNR2V0RnJpZW5kTGlzdBIeLmZy",
+            "aWVuZHBiLkdldEZyaWVuZExpc3RSZXF1ZXN0Gh8uZnJpZW5kcGIuR2V0RnJp",
+            "ZW5kTGlzdFJlc3BvbnNlEl8KEkdldFBlbmRpbmdSZXF1ZXN0cxIjLmZyaWVu",
+            "ZHBiLkdldFBlbmRpbmdSZXF1ZXN0c1JlcXVlc3QaJC5mcmllbmRwYi5HZXRQ",
+            "ZW5kaW5nUmVxdWVzdHNSZXNwb25zZRI4CgVCbG9jaxIWLmZyaWVuZHBiLkJs",
+            "b2NrUmVxdWVzdBoXLmZyaWVuZHBiLkJsb2NrUmVzcG9uc2USPgoHVW5ibG9j",
+            "axIYLmZyaWVuZHBiLlVuYmxvY2tSZXF1ZXN0GhkuZnJpZW5kcGIuVW5ibG9j",
+            "a1Jlc3BvbnNlEkcKCkxpc3RCbG9ja3MSGy5mcmllbmRwYi5MaXN0QmxvY2tz",
+            "UmVxdWVzdBocLmZyaWVuZHBiLkxpc3RCbG9ja3NSZXNwb25zZRJZChBSZWNv",
+            "bW1lbmRGcmllbmRzEiEuZnJpZW5kcGIuUmVjb21tZW5kRnJpZW5kc1JlcXVl",
+            "c3QaIi5mcmllbmRwYi5SZWNvbW1lbmRGcmllbmRzUmVzcG9uc2USPAoRTm90",
+            "aWZ5RnJpZW5kRXZlbnQSGC5mcmllbmRwYi5GcmllbmRFdmVudFMyQxoGLkVt",
+            "cHR5IgWImcgBAhJ7ChlCYXRjaENoZWNrU29jaWFsUmVsYXRpb25zEiouZnJp",
+            "ZW5kcGIuQmF0Y2hDaGVja1NvY2lhbFJlbGF0aW9uc1JlcXVlc3QaKy5mcmll",
+            "bmRwYi5CYXRjaENoZWNrU29jaWFsUmVsYXRpb25zUmVzcG9uc2UiBYiZyAED",
+            "GgWIqMMBAUIVWhNmcmllbmQvcHJvdG8vZnJpZW5kYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Friendpb.FriendRequestStatus), typeof(global::Friendpb.FriendEventReason), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -130,7 +137,9 @@ namespace Friendpb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RecommendFriendsRequest), global::Friendpb.RecommendFriendsRequest.Parser, new[]{ "Limit", "ExcludePlayerIds", "OnlineOnly", "Cursor", "Query" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RecommendEntry), global::Friendpb.RecommendEntry.Parser, new[]{ "CandidatePlayerId", "MutualFriends", "IsOnline", "LastActiveMs", "Name", "Level", "ClassId", "Gender", "AppearanceId", "ZoneId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RecommendFriendsResponse), global::Friendpb.RecommendFriendsResponse.Parser, new[]{ "ErrorMessage", "Candidates", "NextCursor", "OnlineDirectory" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.FriendEventS2C), global::Friendpb.FriendEventS2C.Parser, new[]{ "Reason", "ByPlayerId", "TsMs" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.FriendEventS2C), global::Friendpb.FriendEventS2C.Parser, new[]{ "Reason", "ByPlayerId", "TsMs" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.BatchCheckSocialRelationsRequest), global::Friendpb.BatchCheckSocialRelationsRequest.Parser, new[]{ "SideAPlayerIds", "SideBPlayerIds" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.BatchCheckSocialRelationsResponse), global::Friendpb.BatchCheckSocialRelationsResponse.Parser, new[]{ "ErrorMessage", "HasAnyBlock", "AllAreFriends" }, null, null, null, null)
           }));
     }
     #endregion
@@ -6490,6 +6499,510 @@ namespace Friendpb {
           }
           case 24: {
             TsMs = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class BatchCheckSocialRelationsRequest : pb::IMessage<BatchCheckSocialRelationsRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<BatchCheckSocialRelationsRequest> _parser = new pb::MessageParser<BatchCheckSocialRelationsRequest>(() => new BatchCheckSocialRelationsRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<BatchCheckSocialRelationsRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Friendpb.FriendReflection.Descriptor.MessageTypes[25]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public BatchCheckSocialRelationsRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public BatchCheckSocialRelationsRequest(BatchCheckSocialRelationsRequest other) : this() {
+      sideAPlayerIds_ = other.sideAPlayerIds_.Clone();
+      sideBPlayerIds_ = other.sideBPlayerIds_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public BatchCheckSocialRelationsRequest Clone() {
+      return new BatchCheckSocialRelationsRequest(this);
+    }
+
+    /// <summary>Field number for the "side_a_player_ids" field.</summary>
+    public const int SideAPlayerIdsFieldNumber = 1;
+    private static readonly pb::FieldCodec<ulong> _repeated_sideAPlayerIds_codec
+        = pb::FieldCodec.ForUInt64(10);
+    private readonly pbc::RepeatedField<ulong> sideAPlayerIds_ = new pbc::RepeatedField<ulong>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<ulong> SideAPlayerIds {
+      get { return sideAPlayerIds_; }
+    }
+
+    /// <summary>Field number for the "side_b_player_ids" field.</summary>
+    public const int SideBPlayerIdsFieldNumber = 2;
+    private static readonly pb::FieldCodec<ulong> _repeated_sideBPlayerIds_codec
+        = pb::FieldCodec.ForUInt64(18);
+    private readonly pbc::RepeatedField<ulong> sideBPlayerIds_ = new pbc::RepeatedField<ulong>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<ulong> SideBPlayerIds {
+      get { return sideBPlayerIds_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as BatchCheckSocialRelationsRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(BatchCheckSocialRelationsRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!sideAPlayerIds_.Equals(other.sideAPlayerIds_)) return false;
+      if(!sideBPlayerIds_.Equals(other.sideBPlayerIds_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= sideAPlayerIds_.GetHashCode();
+      hash ^= sideBPlayerIds_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      sideAPlayerIds_.WriteTo(output, _repeated_sideAPlayerIds_codec);
+      sideBPlayerIds_.WriteTo(output, _repeated_sideBPlayerIds_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      sideAPlayerIds_.WriteTo(ref output, _repeated_sideAPlayerIds_codec);
+      sideBPlayerIds_.WriteTo(ref output, _repeated_sideBPlayerIds_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += sideAPlayerIds_.CalculateSize(_repeated_sideAPlayerIds_codec);
+      size += sideBPlayerIds_.CalculateSize(_repeated_sideBPlayerIds_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(BatchCheckSocialRelationsRequest other) {
+      if (other == null) {
+        return;
+      }
+      sideAPlayerIds_.Add(other.sideAPlayerIds_);
+      sideBPlayerIds_.Add(other.sideBPlayerIds_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10:
+          case 8: {
+            sideAPlayerIds_.AddEntriesFrom(input, _repeated_sideAPlayerIds_codec);
+            break;
+          }
+          case 18:
+          case 16: {
+            sideBPlayerIds_.AddEntriesFrom(input, _repeated_sideBPlayerIds_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10:
+          case 8: {
+            sideAPlayerIds_.AddEntriesFrom(ref input, _repeated_sideAPlayerIds_codec);
+            break;
+          }
+          case 18:
+          case 16: {
+            sideBPlayerIds_.AddEntriesFrom(ref input, _repeated_sideBPlayerIds_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class BatchCheckSocialRelationsResponse : pb::IMessage<BatchCheckSocialRelationsResponse>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<BatchCheckSocialRelationsResponse> _parser = new pb::MessageParser<BatchCheckSocialRelationsResponse>(() => new BatchCheckSocialRelationsResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<BatchCheckSocialRelationsResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Friendpb.FriendReflection.Descriptor.MessageTypes[26]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public BatchCheckSocialRelationsResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public BatchCheckSocialRelationsResponse(BatchCheckSocialRelationsResponse other) : this() {
+      errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+      hasAnyBlock_ = other.hasAnyBlock_;
+      allAreFriends_ = other.allAreFriends_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public BatchCheckSocialRelationsResponse Clone() {
+      return new BatchCheckSocialRelationsResponse(this);
+    }
+
+    /// <summary>Field number for the "error_message" field.</summary>
+    public const int ErrorMessageFieldNumber = 1;
+    private global::TipInfoMessage errorMessage_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::TipInfoMessage ErrorMessage {
+      get { return errorMessage_; }
+      set {
+        errorMessage_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "has_any_block" field.</summary>
+    public const int HasAnyBlockFieldNumber = 2;
+    private bool hasAnyBlock_;
+    /// <summary>
+    /// true = 两队成员间存在任意单向或双向拉黑
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAnyBlock {
+      get { return hasAnyBlock_; }
+      set {
+        hasAnyBlock_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "all_are_friends" field.</summary>
+    public const int AllAreFriendsFieldNumber = 3;
+    private bool allAreFriends_;
+    /// <summary>
+    /// true = 双方队长及全体跨队成员均为有效好友（允许绕过闭关免战）
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool AllAreFriends {
+      get { return allAreFriends_; }
+      set {
+        allAreFriends_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as BatchCheckSocialRelationsResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(BatchCheckSocialRelationsResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+      if (HasAnyBlock != other.HasAnyBlock) return false;
+      if (AllAreFriends != other.AllAreFriends) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+      if (HasAnyBlock != false) hash ^= HasAnyBlock.GetHashCode();
+      if (AllAreFriends != false) hash ^= AllAreFriends.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (errorMessage_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(ErrorMessage);
+      }
+      if (HasAnyBlock != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(HasAnyBlock);
+      }
+      if (AllAreFriends != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(AllAreFriends);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (errorMessage_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(ErrorMessage);
+      }
+      if (HasAnyBlock != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(HasAnyBlock);
+      }
+      if (AllAreFriends != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(AllAreFriends);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (errorMessage_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+      }
+      if (HasAnyBlock != false) {
+        size += 1 + 1;
+      }
+      if (AllAreFriends != false) {
+        size += 1 + 1;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(BatchCheckSocialRelationsResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.errorMessage_ != null) {
+        if (errorMessage_ == null) {
+          ErrorMessage = new global::TipInfoMessage();
+        }
+        ErrorMessage.MergeFrom(other.ErrorMessage);
+      }
+      if (other.HasAnyBlock != false) {
+        HasAnyBlock = other.HasAnyBlock;
+      }
+      if (other.AllAreFriends != false) {
+        AllAreFriends = other.AllAreFriends;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (errorMessage_ == null) {
+              ErrorMessage = new global::TipInfoMessage();
+            }
+            input.ReadMessage(ErrorMessage);
+            break;
+          }
+          case 16: {
+            HasAnyBlock = input.ReadBool();
+            break;
+          }
+          case 24: {
+            AllAreFriends = input.ReadBool();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (errorMessage_ == null) {
+              ErrorMessage = new global::TipInfoMessage();
+            }
+            input.ReadMessage(ErrorMessage);
+            break;
+          }
+          case 16: {
+            HasAnyBlock = input.ReadBool();
+            break;
+          }
+          case 24: {
+            AllAreFriends = input.ReadBool();
             break;
           }
         }

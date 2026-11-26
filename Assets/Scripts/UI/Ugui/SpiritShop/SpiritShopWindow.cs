@@ -43,12 +43,13 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
         private static readonly Color FocusTint = new Color(0.99f, 0.96f, 0.87f, 1f);
         private static readonly Color CardTint = new Color(0.97f, 0.94f, 0.86f, 0.96f);
 
-        private readonly RectTransform _root, _frame, _contentHost, _confirmOverlay;
+        private readonly RectTransform _root, _frame, _contentHost, _confirmOverlay, _confirmChoiceHost;
         private readonly TMP_Text _diamondText, _bindDiamondText, _statusText;
         private readonly TMP_Text _confirmTitle, _confirmBody, _confirmNotice;
         private readonly Button _confirmBuyButton, _confirmRechargeButton;
-        private readonly Button[] _tabButtons = new Button[3];
+        private readonly Button[] _tabButtons = new Button[4];
         private readonly Dictionary<uint, uint> _selectedCounts = new();
+        private readonly List<(TMP_Text label, string prefix, ulong endTimeMs)> _countdownLabels = new();
 
         private SpiritShopClient _client;
         private Action _openRechargeAction;
@@ -57,7 +58,9 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
         private uint _focusedGoodsId;
         private uint _confirmGoodsId;
         private uint _confirmCount;
+        private uint _confirmChosenIndex;
         private SpiritShopPurchaseQuote _confirmQuote;
+        private float _lastCountdownTick = float.NegativeInfinity;
         private bool _disposed;
 
         public RectTransform Root => _root;
@@ -118,12 +121,13 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             var closeBtn = Button(_frame, "关闭", 1708f, 30f, 110f, 68f, Hide, fontSize: 26f);
             closeBtn.name = CloseButtonName;
 
-            // 顶部分页：1 首套提速 / 2 精进配套 / 3 外观便利
+            // 顶部分页：1 首套提速 / 2 精进配套 / 3 外观便利 / 4 节庆特惠（平时无限时商品自动隐藏）
             uint[] tabIds =
             {
                 SpiritShopModels.TabStarterPacks,
                 SpiritShopModels.TabAdvancement,
                 SpiritShopModels.TabAppearanceAndConvenience,
+                SpiritShopModels.TabFestival,
             };
             for (int i = 0; i < tabIds.Length; i++)
             {
@@ -131,6 +135,7 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
                 var btn = Button(_frame, SpiritShopModels.TabName(capturedTab), 56f + i * 280f, 146f, 260f, 72f,
                     () => SelectTab(capturedTab), key: "tab_normal", fontSize: 30f);
                 btn.name = "SpiritShopTab_" + capturedTab.ToString(CultureInfo.InvariantCulture);
+                if (capturedTab == SpiritShopModels.TabFestival) btn.gameObject.SetActive(false);
                 _tabButtons[i] = btn;
             }
 
@@ -143,36 +148,39 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             _statusText.name = "SpiritShopStatus";
             _statusText.raycastTarget = false;
 
-            // 二次确认浮层
+            // 二次确认浮层（支持 ALL 1..4 项确认与 CHOOSE_ONE 多选一单选交互）
             _confirmOverlay = QdaoUguiFactory.CreateStretch("SpiritShopConfirmOverlay", _root, Vector4.zero);
             _confirmOverlay.gameObject.SetActive(false);
             var modalDim = _confirmOverlay.gameObject.AddComponent<Image>();
             modalDim.color = new Color(0.02f, 0.06f, 0.05f, 0.72f);
             modalDim.raycastTarget = true;
 
-            var modalFrame = QdaoUguiFactory.CreateCenteredRect("SpiritShopConfirmFrame", _confirmOverlay, 960f, 540f);
-            CreateSkinOrFallbackArt(modalFrame, "SpiritShopConfirmBg", "ui/window_frame", "main_frame", 0f, 0f, 960f, 540f);
+            var modalFrame = QdaoUguiFactory.CreateCenteredRect("SpiritShopConfirmFrame", _confirmOverlay, 960f, 620f);
+            CreateSkinOrFallbackArt(modalFrame, "SpiritShopConfirmBg", "ui/window_frame", "main_frame", 0f, 0f, 960f, 620f);
 
-            _confirmTitle = Text(modalFrame, "确认购买", 56f, 34f, 848f, 54f, 36f, Ink, alignment: TextAlignmentOptions.Center);
+            _confirmTitle = Text(modalFrame, "确认购买", 56f, 32f, 848f, 52f, 36f, Ink, alignment: TextAlignmentOptions.Center);
             _confirmTitle.raycastTarget = false;
 
-            _confirmBody = Text(modalFrame, "", 64f, 108f, 832f, 190f, 28f, Ink, wrap: true);
+            _confirmBody = Text(modalFrame, "", 64f, 96f, 832f, 160f, 26f, Ink, wrap: true);
             _confirmBody.raycastTarget = false;
 
-            _confirmNotice = Text(modalFrame, "", 64f, 312f, 832f, 84f, 24f, DangerInk, wrap: true);
+            _confirmChoiceHost = QdaoUguiFactory.CreateRect("SpiritShopConfirmChoices", modalFrame, 64f, 258f, 832f, 164f);
+            _confirmChoiceHost.gameObject.SetActive(false);
+
+            _confirmNotice = Text(modalFrame, "", 64f, 430f, 832f, 76f, 23f, DangerInk, wrap: true);
             _confirmNotice.raycastTarget = false;
 
-            var cancelBtn = Button(modalFrame, "取消", 64f, 424f, 230f, 74f, CloseConfirmModal, fontSize: 28f);
+            var cancelBtn = Button(modalFrame, "取消", 64f, 518f, 230f, 74f, CloseConfirmModal, fontSize: 28f);
             cancelBtn.name = ConfirmCancelButtonName;
 
-            _confirmRechargeButton = Button(modalFrame, "前往充值", 320f, 424f, 250f, 74f, () =>
+            _confirmRechargeButton = Button(modalFrame, "前往充值", 320f, 518f, 250f, 74f, () =>
             {
                 CloseConfirmModal();
                 HandleRechargeClicked();
             }, fontSize: 26f);
             _confirmRechargeButton.name = ConfirmRechargeButtonName;
 
-            _confirmBuyButton = Button(modalFrame, "确认购买", 596f, 424f, 300f, 74f, ExecuteConfirmBuy, primary: true, fontSize: 28f);
+            _confirmBuyButton = Button(modalFrame, "确认购买", 596f, 518f, 300f, 74f, ExecuteConfirmBuy, primary: true, fontSize: 28f);
             _confirmBuyButton.name = ConfirmBuyButtonName;
         }
 
@@ -195,7 +203,10 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
         {
             if (_root == null) return;
             ApplySafeArea();
-            if (tabId == SpiritShopModels.TabStarterPacks || tabId == SpiritShopModels.TabAdvancement || tabId == SpiritShopModels.TabAppearanceAndConvenience)
+            if (tabId == SpiritShopModels.TabStarterPacks
+                || tabId == SpiritShopModels.TabAdvancement
+                || tabId == SpiritShopModels.TabAppearanceAndConvenience
+                || tabId == SpiritShopModels.TabFestival)
                 _activeTab = tabId;
             _focusedGoodsId = focusGoodsId;
             CloseConfirmModal();
@@ -225,15 +236,38 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             Render();
         }
 
+        public void TickCountdown(float unscaledTime)
+        {
+            if (_disposed || !IsVisible || _client == null || _countdownLabels.Count == 0) return;
+            if (unscaledTime - _lastCountdownTick < 1f) return;
+            _lastCountdownTick = unscaledTime;
+            ulong serverNow = _client.EstimatedServerNowMs;
+            for (int i = 0; i < _countdownLabels.Count; i++)
+            {
+                var entry = _countdownLabels[i];
+                if (entry.label == null) continue;
+                string timePart = SpiritShopModels.FormatRemainingTime(entry.endTimeMs, serverNow);
+                entry.label.text = string.IsNullOrEmpty(timePart)
+                    ? entry.prefix
+                    : $"{entry.prefix}  ·  {timePart}";
+            }
+        }
+
         public void Render()
         {
             if (_disposed || _root == null || !_root.gameObject.activeSelf) return;
 
             var info = _client?.Info;
+            if (_activeTab == SpiritShopModels.TabFestival
+                && info != null
+                && !SpiritShopModels.HasTabGoods(info, SpiritShopModels.TabFestival))
+            {
+                _activeTab = SpiritShopModels.TabStarterPacks;
+            }
             _diamondText.text = $"灵石：{(info?.DiamondBalance ?? 0).ToString(CultureInfo.InvariantCulture)}";
             _bindDiamondText.text = $"绑定灵石：{(info?.BindDiamondBalance ?? 0).ToString(CultureInfo.InvariantCulture)}（仅活动赠送，不抵扣直售商品）";
 
-            UpdateTabVisuals();
+            UpdateTabVisuals(info);
             UpdateStatusLine();
             RebuildBody(info);
             RefreshConfirmModalState();
@@ -245,20 +279,27 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             Render();
         }
 
-        private void UpdateTabVisuals()
+        private void UpdateTabVisuals(global::SpiritShopInfo info)
         {
             uint[] tabIds =
             {
                 SpiritShopModels.TabStarterPacks,
                 SpiritShopModels.TabAdvancement,
                 SpiritShopModels.TabAppearanceAndConvenience,
+                SpiritShopModels.TabFestival,
             };
+            bool hasFestival = SpiritShopModels.HasTabGoods(info, SpiritShopModels.TabFestival);
             Sprite activeSprite = LoadOptionalSkin("ui/tab_active") ?? Load("tab_selected");
             Sprite normalSprite = LoadOptionalSkin("ui/tab_inactive") ?? Load("tab_normal");
             for (int i = 0; i < _tabButtons.Length; i++)
             {
                 var btn = _tabButtons[i];
                 if (btn == null) continue;
+                if (tabIds[i] == SpiritShopModels.TabFestival)
+                {
+                    btn.gameObject.SetActive(hasFestival);
+                    if (!hasFestival) continue;
+                }
                 bool selected = tabIds[i] == _activeTab;
                 var img = btn.GetComponent<Image>();
                 if (img != null)
@@ -290,6 +331,7 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
 
         private void RebuildBody(global::SpiritShopInfo info)
         {
+            _countdownLabels.Clear();
             Clear(_contentHost);
             float viewW = ContentWidth - 36f;
             float viewH = ContentHeight - 36f;
@@ -437,11 +479,12 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             float h)
         {
             bool focused = goods.GoodsId == _focusedGoodsId;
-            Sprite customBg = LoadOptionalSkin(focused ? "ui/card_bg_featured" : "ui/card_bg_normal");
+            bool featured = focused || goods.TabId == SpiritShopModels.TabFestival;
+            Sprite customBg = LoadOptionalSkin(featured ? "ui/card_bg_featured" : "ui/card_bg_normal");
             Sprite bgSprite = customBg ?? Load("pet_card_normal");
             var card = QdaoUguiFactory.CreateImage("SpiritShopCard_" + goods.GoodsId.ToString(CultureInfo.InvariantCulture),
                 parent, x, y, w, h, bgSprite);
-            card.color = customBg != null ? Color.white : (focused ? FocusTint : CardTint);
+            card.color = customBg != null ? Color.white : (featured ? FocusTint : CardTint);
             if (bgSprite != null && bgSprite.border.sqrMagnitude > 0f) card.type = Image.Type.Sliced;
             card.raycastTarget = false;
 
@@ -457,23 +500,38 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
                 displayName += $"  [{goods.BadgeText}]";
             else if (focused)
                 displayName += "  [当前急需]";
+            string discountTag = SpiritShopModels.ComputeDiscountLabel(goods.UnitPrice, goods.OriginalPrice);
+            if (!string.IsNullOrEmpty(discountTag) && !displayName.Contains("折", StringComparison.Ordinal))
+                displayName += $"  [{discountTag}]";
 
-            var title = Text(card.transform, displayName, textX, 14f, textW, 40f, 29f, focused ? GoldAccent : Ink);
+            var title = Text(card.transform, displayName, textX, 12f, textW, 38f, 28f, featured ? GoldAccent : Ink);
             title.fontStyle = FontStyles.Bold;
             title.raycastTarget = false;
 
             uint qty = GetSelectedCount(goods, group);
+            bool denseItems = (goods.Items != null && goods.Items.Count >= 3) || SpiritShopModels.IsChooseOne(goods);
             string itemsLine = SpiritShopModels.FormatItemsSummary(goods, qty);
-            var itemsTxt = Text(card.transform, itemsLine, textX, 56f, textW, 34f, 23f, Ink);
+            var itemsTxt = Text(card.transform, itemsLine, textX, 50f, textW, denseItems ? 48f : 34f,
+                denseItems ? 20f : 23f, Ink, wrap: denseItems);
             itemsTxt.raycastTarget = false;
 
             string desc = string.IsNullOrWhiteSpace(goods.Description) ? "购买后全部物品均为绑定仅自用。" : goods.Description;
-            var descTxt = Text(card.transform, desc, textX, 92f, textW, 32f, 20f, Muted);
+            var descTxt = Text(card.transform, desc, textX, denseItems ? 100f : 92f, textW, denseItems ? 26f : 32f,
+                denseItems ? 18f : 20f, Muted);
             descTxt.raycastTarget = false;
 
             string limitStr = SpiritShopModels.LimitLabel(goods, group);
-            var limitTxt = Text(card.transform, limitStr, textX, 126f, textW, 28f, 20f, Muted);
+            string timeStr = goods.EndTimeMs > 0
+                ? SpiritShopModels.FormatRemainingTime(goods.EndTimeMs, _client?.EstimatedServerNowMs ?? 0)
+                : string.Empty;
+            string metaLine = string.IsNullOrEmpty(timeStr) ? limitStr : $"{limitStr}  ·  {timeStr}";
+            var limitTxt = Text(card.transform, metaLine, textX, denseItems ? 130f : 126f, textW, 28f,
+                denseItems ? 19f : 20f, goods.EndTimeMs > 0 ? DangerInk : Muted);
             limitTxt.raycastTarget = false;
+            if (goods.EndTimeMs > 0)
+            {
+                _countdownLabels.Add((limitTxt, limitStr, goods.EndTimeMs));
+            }
 
             uint maxBuy = SpiritShopModels.MaxBuyableCount(goods, group);
             bool inBattle = _client?.InBattle ?? false;
@@ -497,17 +555,22 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             }
 
             ulong totalCost = goods.UnitPrice * Math.Max(1u, qty);
-            string priceStr = $"{totalCost.ToString(CultureInfo.InvariantCulture)} {SpiritShopModels.CurrencyName(goods.CurrencyType)}";
-            var priceLbl = Text(card.transform, priceStr, w - 260f, 18f, 236f, 34f, 25f, GoldAccent,
+            string priceStr = goods.OriginalPrice > goods.UnitPrice
+                ? $"<size=19><color=#7A7265><s>{(goods.OriginalPrice * Math.Max(1u, qty)).ToString(CultureInfo.InvariantCulture)}</s></color></size>  {totalCost.ToString(CultureInfo.InvariantCulture)} {SpiritShopModels.CurrencyName(goods.CurrencyType)}"
+                : $"{totalCost.ToString(CultureInfo.InvariantCulture)} {SpiritShopModels.CurrencyName(goods.CurrencyType)}";
+            var priceLbl = Text(card.transform, priceStr, w - 274f, 18f, 260f, 34f, 24f, GoldAccent,
                 alignment: TextAlignmentOptions.Center);
             priceLbl.fontStyle = FontStyles.Bold;
             priceLbl.raycastTarget = false;
 
-            var block = SpiritShopModels.EvaluateBuy(goods, group, Math.Max(1u, qty), _client?.Ready ?? false, inBattle);
+            var block = SpiritShopModels.EvaluateBuy(goods, group, Math.Max(1u, qty), _client?.Ready ?? false, inBattle,
+                _client?.EstimatedServerNowMs ?? 0);
             bool canOpenConfirm = block == SpiritShopBuyBlock.None && !busy && !(_client?.RequiresReconnect ?? false);
             string btnText = busy && _client.BuyingGoodsId == goods.GoodsId ? "购买中…"
+                : block == SpiritShopBuyBlock.SaleEnded ? "已结束"
                 : block == SpiritShopBuyBlock.GroupLimitReached || block == SpiritShopBuyBlock.LimitReached ? "已达上限"
                 : block == SpiritShopBuyBlock.InBattle ? "战斗中"
+                : SpiritShopModels.IsChooseOne(goods) ? "自选购买"
                 : "购买";
 
             Sprite buyBg = LoadOptionalSkin("ui/btn_buy_primary");
@@ -545,11 +608,12 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
         private void OpenConfirmModal(global::SpiritShopGoodsView goods, uint count)
         {
             if (goods == null || _confirmOverlay == null) return;
-            var quote = SpiritShopPurchaseQuote.Of(goods);
+            var quote = SpiritShopPurchaseQuote.Of(goods, 0u);
             if (!quote.IsValid) return;
 
             _confirmGoodsId = goods.GoodsId;
             _confirmCount = count;
+            _confirmChosenIndex = 0u;
             _confirmQuote = quote;
             _confirmOverlay.gameObject.SetActive(true);
             RefreshConfirmModalState();
@@ -559,8 +623,24 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
         {
             _confirmGoodsId = 0;
             _confirmCount = 0;
+            _confirmChosenIndex = 0;
             _confirmQuote = default;
+            if (_confirmChoiceHost != null)
+            {
+                Clear(_confirmChoiceHost);
+                _confirmChoiceHost.gameObject.SetActive(false);
+            }
             if (_confirmOverlay != null) _confirmOverlay.gameObject.SetActive(false);
+        }
+
+        private void SelectConfirmChoice(global::SpiritShopGoodsView goods, uint index)
+        {
+            if (goods == null || !SpiritShopModels.IsChooseOne(goods)) return;
+            var nextQuote = SpiritShopPurchaseQuote.Of(goods, index);
+            if (!nextQuote.IsValid) return;
+            _confirmChosenIndex = index;
+            _confirmQuote = nextQuote;
+            RefreshConfirmModalState();
         }
 
         private void RefreshConfirmModalState()
@@ -572,17 +652,63 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
                 CloseConfirmModal();
                 return;
             }
+            bool chooseOne = SpiritShopModels.IsChooseOne(goods);
+            if (chooseOne && _confirmChosenIndex >= (uint)goods.Items.Count)
+            {
+                _confirmChosenIndex = 0u;
+            }
             ulong totalCost = goods.UnitPrice * _confirmCount;
             string currencyName = SpiritShopModels.CurrencyName(goods.CurrencyType);
-            string itemsSummary = SpiritShopModels.FormatItemsSummary(goods, _confirmCount);
+            string itemsSummary = chooseOne
+                ? SpiritShopModels.FormatItemsSummary(goods, _confirmCount, (int)_confirmChosenIndex)
+                : SpiritShopModels.FormatItemsSummary(goods, _confirmCount);
             ulong balance = goods.CurrencyType == SpiritShopModels.CurrencyDiamond ? (_client?.DiamondBalance ?? 0) : 0;
             bool shortBalance = goods.CurrencyType == SpiritShopModels.CurrencyDiamond && balance < totalCost;
 
-            _confirmTitle.text = $"确认购买「{goods.Name}」";
+            string priceSummary = goods.OriginalPrice > goods.UnitPrice
+                ? $"{totalCost.ToString(CultureInfo.InvariantCulture)} {currencyName}（原价 <s>{(goods.OriginalPrice * _confirmCount).ToString(CultureInfo.InvariantCulture)}</s> · 当前持有：{balance.ToString(CultureInfo.InvariantCulture)}）"
+                : $"{totalCost.ToString(CultureInfo.InvariantCulture)} {currencyName}（当前持有：{balance.ToString(CultureInfo.InvariantCulture)}）";
+
+            _confirmTitle.text = chooseOne ? $"自选购买「{goods.Name}」" : $"确认购买「{goods.Name}」";
             _confirmBody.text =
                 $"购买份数：{_confirmCount} 份\n" +
-                $"发放内容：{itemsSummary}\n" +
-                $"合计消耗：{totalCost.ToString(CultureInfo.InvariantCulture)} {currencyName}（当前持有：{balance.ToString(CultureInfo.InvariantCulture)}）";
+                (chooseOne ? $"当前已选：{itemsSummary}\n" : $"发放内容：{itemsSummary}\n") +
+                $"合计消耗：{priceSummary}";
+
+            if (_confirmChoiceHost != null)
+            {
+                Clear(_confirmChoiceHost);
+                _confirmChoiceHost.gameObject.SetActive(chooseOne);
+                if (chooseOne)
+                {
+                    var hint = Text(_confirmChoiceHost, "请任选 1 项奖励（买后直接发放绑定成品）：", 0f, 0f, 832f, 26f, 21f, Muted);
+                    hint.raycastTarget = false;
+                    Sprite activeSprite = LoadOptionalSkin("ui/tab_active") ?? Load("tab_selected");
+                    Sprite normalSprite = LoadOptionalSkin("ui/tab_inactive") ?? Load("tab_normal");
+                    for (int i = 0; i < goods.Items.Count; i++)
+                    {
+                        uint capturedIdx = (uint)i;
+                        bool selected = capturedIdx == _confirmChosenIndex;
+                        int col = i % 2;
+                        int row = i / 2;
+                        string label = (selected ? "✓ " : "") + SpiritShopModels.FormatSingleItem(goods.Items[i], _confirmCount);
+                        var choiceBtn = CreateOptionalButton(
+                            _confirmChoiceHost,
+                            "SpiritShopChoice_" + capturedIdx.ToString(CultureInfo.InvariantCulture),
+                            label,
+                            col * 424f,
+                            30f + row * 68f,
+                            408f,
+                            58f,
+                            selected ? activeSprite : normalSprite,
+                            () => SelectConfirmChoice(goods, capturedIdx),
+                            selected ? Cream : Ink,
+                            21f,
+                            enabled: !(_client?.BuyPending ?? false));
+                        choiceBtn.name = "SpiritShopChoice_" + capturedIdx.ToString(CultureInfo.InvariantCulture);
+                    }
+                }
+            }
 
             _confirmNotice.text = shortBalance
                 ? "提示：当前灵石余额不足，请先点击「前往充值」补足灵石；\n全部百宝阁道具均为永久绑定仅自用（不可挂集市或交易）。"
@@ -622,6 +748,13 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
                 var custom = LoadOptionalSkin("icons/" + goods.IconKey) ?? LoadOptionalSkin(goods.IconKey)
                     ?? QdaoUguiTheme.LoadSprite(goods.IconKey);
                 if (custom != null) return custom;
+            }
+            if (goods != null && goods.TabId == SpiritShopModels.TabFestival)
+            {
+                var festivalFallback = SpiritShopModels.IsChooseOne(goods)
+                    ? SeasonEconomyUiArt.LoadCraftIcon("item_celestial_ink")
+                    : LoadOptionalSkin("pack_starter_300");
+                if (festivalFallback != null) return festivalFallback;
             }
             uint firstItemId = goods?.Items != null && goods.Items.Count > 0 ? goods.Items[0].ItemConfigId : 0u;
             if (firstItemId == SpiritShopModels.ItemStarGuaranteeCharm)

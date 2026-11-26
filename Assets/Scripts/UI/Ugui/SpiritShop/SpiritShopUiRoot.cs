@@ -84,6 +84,7 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             _available = _game != null && _game.InGame && _game.IsGateReady && !battleLayer && (_client?.IsSupported ?? false);
             _hud.gameObject.SetActive(_available);
             if (!_available && _window.IsVisible) _window.Hide();
+            else if (_window.IsVisible) _window.TickCountdown(Time.unscaledTime);
         }
 
         private void OnDestroy()
@@ -137,7 +138,8 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
 
         private void OnSpiritShopPurchased(global::SpiritShopGoodsView goods, uint count)
         {
-            if (goods != null && goods.TabId == SpiritShopModels.TabAppearanceAndConvenience)
+            if (goods != null
+                && (goods.TabId == SpiritShopModels.TabAppearanceAndConvenience || goods.TabId == SpiritShopModels.TabFestival))
             {
                 AppearanceUiRoot.Instance?.Client?.RequestInfo(force: true);
             }

@@ -3,6 +3,7 @@ using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Rank;
 using MmorpgClient.Game.Ranked;
 using MmorpgClient.Game.Team;
+using MmorpgClient.Table;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.CoreLoop;
 using MmorpgClient.UI.Ugui.Gameplay;

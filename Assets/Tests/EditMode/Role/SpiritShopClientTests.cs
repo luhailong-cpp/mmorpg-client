@@ -286,7 +286,117 @@ namespace MmorpgClient.Tests.EditMode.Role
                 Assert.IsFalse(string.IsNullOrWhiteSpace(text), $"Missing description for {tip}");
             }
             Assert.IsTrue(SpiritShopModels.TipMeansStale((uint)spirit_shop_error.KSpiritShopPriceChanged));
+            Assert.IsTrue(SpiritShopModels.TipMeansStale((uint)spirit_shop_error.KSpiritShopNotInSaleWindow));
+            Assert.IsTrue(SpiritShopModels.TipMeansStale((uint)spirit_shop_error.KSpiritShopLevelNotMet));
+            Assert.IsTrue(SpiritShopModels.TipMeansStale((uint)spirit_shop_error.KSpiritShopInvalidChoice));
             Assert.IsFalse(SpiritShopModels.TipMeansStale((uint)spirit_shop_error.KSpiritShopCurrencyNotEnough));
+        }
+
+        [Test]
+        public void V2_ChooseOneQuoteAndBuy_SendsChosenIndexAndSingleExpectedItem()
+        {
+            const ulong startMs = 1801756800000UL;
+            const ulong endMs = 1803139199000UL;
+            var info = SampleShopInfo(diamond: 500, bindDiamond: 0);
+            info.ServerTimeMs = startMs;
+
+            var g401 = new global::SpiritShopGoodsView
+            {
+                GoodsId = SpiritShopModels.GoodsSpringBundle401,
+                TabId = SpiritShopModels.TabFestival,
+                SortOrder = 1,
+                Name = "新春四喜大礼盒",
+                CurrencyType = SpiritShopModels.CurrencyDiamond,
+                UnitPrice = 180,
+                OriginalPrice = 300,
+                MaxBuyPerRequest = 1,
+                GrantMode = SpiritShopModels.GrantModeAll,
+                StartTimeMs = startMs,
+                EndTimeMs = endMs,
+                MinLevel = 10,
+                LimitCount = 1,
+            };
+            g401.Items.Add(new global::SpiritShopItemEntry { ItemConfigId = 3001, ItemCount = 60, Bound = true });
+            g401.Items.Add(new global::SpiritShopItemEntry { ItemConfigId = 3002, ItemCount = 60, Bound = true });
+            g401.Items.Add(new global::SpiritShopItemEntry { ItemConfigId = 3405, ItemCount = 2, Bound = true });
+            g401.Items.Add(new global::SpiritShopItemEntry { ItemConfigId = 3402, ItemCount = 1, Bound = true });
+            info.Goods.Add(g401);
+
+            var g402 = new global::SpiritShopGoodsView
+            {
+                GoodsId = SpiritShopModels.GoodsSpringChoice402,
+                TabId = SpiritShopModels.TabFestival,
+                SortOrder = 2,
+                Name = "新春秘宝自选匣",
+                CurrencyType = SpiritShopModels.CurrencyDiamond,
+                UnitPrice = 120,
+                OriginalPrice = 180,
+                MaxBuyPerRequest = 1,
+                GrantMode = SpiritShopModels.GrantModeChooseOne,
+                StartTimeMs = startMs,
+                EndTimeMs = endMs,
+                MinLevel = 10,
+                LimitCount = 2,
+            };
+            g402.Items.Add(new global::SpiritShopItemEntry { ItemConfigId = 3408, ItemCount = 1, Bound = true });
+            g402.Items.Add(new global::SpiritShopItemEntry { ItemConfigId = 3412, ItemCount = 1, Bound = true });
+            g402.Items.Add(new global::SpiritShopItemEntry { ItemConfigId = 3411, ItemCount = 1, Bound = true });
+            g402.Items.Add(new global::SpiritShopItemEntry { ItemConfigId = 3405, ItemCount = 3, Bound = true });
+            info.Goods.Add(g402);
+
+            Assert.IsTrue(SpiritShopModels.HasTabGoods(info, SpiritShopModels.TabFestival));
+            Assert.AreEqual("6折", SpiritShopModels.ComputeDiscountLabel(180, 300));
+            Assert.AreEqual("6.7折", SpiritShopModels.ComputeDiscountLabel(120, 180));
+            Assert.AreEqual(string.Empty, SpiritShopModels.ComputeDiscountLabel(180, 0));
+            Assert.IsFalse(SpiritShopPurchaseQuote.Of(g401, chosenItemIndex: 1).IsValid);
+            Assert.IsFalse(SpiritShopPurchaseQuote.Of(g402, chosenItemIndex: 4).IsValid);
+
+            var net = new FakeTransport();
+            object conn = new object();
+            float now = 10f;
+            global::BuySpiritShopGoodsRequest sent = null;
+            net.Responder = (msgId, req) =>
+            {
+                if (msgId == MessageIds.GetSpiritShopInfo)
+                    return (new global::GetSpiritShopInfoResponse { Info = info.Clone() }, null);
+                sent = (global::BuySpiritShopGoodsRequest)req;
+                return (new global::BuySpiritShopGoodsResponse { Info = info.Clone() }, null);
+            };
+
+            using var client = new SpiritShopClient(net, () => conn, () => now);
+            client.RequestInfo(force: true);
+            net.Flush();
+
+            // 单调时钟推进 5 秒：EstimatedServerNowMs 精准前进 5000ms，不信本机系统时间
+            now += 5f;
+            Assert.AreEqual(startMs + 5000UL, client.EstimatedServerNowMs);
+            Assert.That(SpiritShopModels.FormatRemainingTime(endMs, client.EstimatedServerNowMs), Does.StartWith("剩余 15天"));
+
+            // 自选匣选择下标 2（灵宠幻化符 3411 x1）
+            var quote = client.QuoteFor(SpiritShopModels.GoodsSpringChoice402, chosenItemIndex: 2);
+            Assert.IsTrue(quote.IsValid);
+            Assert.AreEqual(2u, quote.ChosenItemIndex);
+            Assert.AreEqual(1, quote.Items.Count);
+            Assert.AreEqual(3411u, quote.Items[0].ItemConfigId);
+
+            bool ok = false;
+            Assert.IsTrue(client.BuyGoods(quote, 1, r => ok = r));
+            net.Flush();
+
+            Assert.IsTrue(ok);
+            Assert.IsNotNull(sent);
+            Assert.AreEqual(2u, sent.ChosenItemIndex);
+            Assert.AreEqual(1, sent.ExpectedItems.Count);
+            Assert.AreEqual(3411u, sent.ExpectedItems[0].ItemConfigId);
+            Assert.IsTrue(sent.ExpectedItems[0].Bound);
+
+            // 模拟服务器时间跨过 endMs：本地即时拦截 SaleEnded 并自动触发货架刷新
+            now += (float)((endMs - startMs) / 1000.0) + 2f;
+            Assert.AreEqual("活动已结束", SpiritShopModels.FormatRemainingTime(endMs, client.EstimatedServerNowMs));
+            int callsBefore = net.Calls.Count;
+            Assert.IsFalse(client.BuyGoods(quote, 1));
+            Assert.IsTrue(client.StatusIsError);
+            Assert.Greater(net.Calls.Count, callsBefore, "Expired festival goods must trigger shelf refresh.");
         }
     }
 }

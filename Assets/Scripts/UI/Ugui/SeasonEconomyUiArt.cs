@@ -61,6 +61,7 @@ namespace MmorpgClient.UI.Ugui
         public const string RankedV3GuildFidelityUiRoot = "UI/Ugui/RankedV3GuildFidelity/ui/";
         public const string RankedPlayV2ControlsRoot = "UI/Ugui/RankedPlayV2/";
         public const string RankedPlayV4Root = "UI/Ugui/RankedPlayV4/";
+        public const string RankedPlayV6Root = "UI/Ugui/RankedPlayV6/";
         public const string RankedV4TacticalUiRoot = "UI/Ugui/RankedV4Tactical/ui/";
         public const string BattlePrepSkillBanRoot = "UI/Ugui/BattlePrepSkillBan/";
         public const string GuildFidelityRoot = "UI/Ugui/GuildFidelity20261016/";
@@ -187,6 +188,9 @@ namespace MmorpgClient.UI.Ugui
 
         /// <summary>加载 Ranked Play V4 独立透明无字控件与图标（12 张透明 PNG 来自 image@51c33ee740a，缺图返回 null 安全回退）。</summary>
         public static Sprite LoadRankedPlayV4Asset(string name) => LoadCached(RankedPlayV4Root + name);
+
+        /// <summary>加载 Ranked Play V6 宿敌标签、雪耻复仇印章与问道名局控件（缺图返回 null 安全回退）。</summary>
+        public static Sprite LoadRankedPlayV6Asset(string name) => LoadCached(RankedPlayV6Root + name);
 
         /// <summary>加载论剑 V5 临阵唤灵无字透明控件（来自 Codex 交付 1471b83 ranked-play-v4-tactical-ui-20261125/ui/）。</summary>
         public static Sprite LoadRankedV4TacticalControl(string name) => LoadCached(RankedV4TacticalUiRoot + name);

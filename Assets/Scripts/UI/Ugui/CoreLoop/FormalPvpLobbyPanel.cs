@@ -95,13 +95,15 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             CoreLoopUiArt.Frame(transform, "正式人宠会武", _root.OpenHub);
             SeasonEconomyUiArt.DrawSeasonLobbyTabs(transform, 2,
                 _root.OpenBossTrials, _root.OpenRotations, _root.OpenFormalPvp);
-            // 顶栏右侧：复用既有论剑档案抽屉（排行榜 / 赛季记录 / 玉符与称号）
-            CoreLoopUiArt.Button("RankedDrawerBoard", transform, 1540, 176, 164, 60,
-                "排行榜", () => _root.OpenRankedDrawer(RankedDrawerTab.Leaderboard), true, false, 22);
-            CoreLoopUiArt.Button("RankedDrawerRecord", transform, 1716, 176, 164, 60,
-                "赛季记录", () => _root.OpenRankedDrawer(RankedDrawerTab.SeasonRecord), true, false, 22);
-            CoreLoopUiArt.Button("RankedDrawerCosmetics", transform, 1892, 176, 164, 60,
-                "玉符与称号", () => _root.OpenRankedDrawer(RankedDrawerTab.Cosmetics), true, false, 22);
+            // 顶栏右侧：复用既有论剑档案抽屉（排行榜 / 赛季记录 / 玉符与称号 / 问道名局）
+            CoreLoopUiArt.Button("RankedDrawerBoard", transform, 1566, 176, 122, 60,
+                "排行榜", () => _root.OpenRankedDrawer(RankedDrawerTab.Leaderboard), true, false, 20);
+            CoreLoopUiArt.Button("RankedDrawerRecord", transform, 1696, 176, 122, 60,
+                "赛季记录", () => _root.OpenRankedDrawer(RankedDrawerTab.SeasonRecord), true, false, 20);
+            CoreLoopUiArt.Button("RankedDrawerCosmetics", transform, 1826, 176, 122, 60,
+                "玉符与称号", () => _root.OpenRankedDrawer(RankedDrawerTab.Cosmetics), true, false, 20);
+            CoreLoopUiArt.Button("RankedDrawerFeatured", transform, 1956, 176, 122, 60,
+                "问道名局", () => _root.OpenRankedDrawer(RankedDrawerTab.FeaturedBuilds), true, false, 20);
             DrawRankedHonorBanner();
 
             DrawOwnProgressionSummary();

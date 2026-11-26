@@ -40,6 +40,7 @@ namespace MmorpgClient.Game.SpiritShop
         private int _generation;
         private float _nextInfoAt = float.NegativeInfinity;
         private float _nextBuyAt = float.NegativeInfinity;
+        private float _infoReceivedAtClock;
         private bool _requeryAfterPending;
         private bool _inBattle;
 
@@ -74,6 +75,17 @@ namespace MmorpgClient.Game.SpiritShop
         public ulong DiamondBalance => Info?.DiamondBalance ?? 0;
         public ulong BindDiamondBalance => Info?.BindDiamondBalance ?? 0;
 
+        /// <summary>基于服务端回包 server_time_ms + 客户端单调时钟差值推算的当前服务器 UTC 毫秒，不信本机系统时间。</summary>
+        public ulong EstimatedServerNowMs
+        {
+            get
+            {
+                if (Info == null || Info.ServerTimeMs == 0) return 0;
+                float elapsedSec = Math.Max(0f, _clock() - _infoReceivedAtClock);
+                return Info.ServerTimeMs + (ulong)Math.Round(elapsedSec * 1000.0);
+            }
+        }
+
         public SpiritShopClient(
             IBattleTransport transport,
             Func<object> connectionIdentity,
@@ -106,7 +118,8 @@ namespace MmorpgClient.Game.SpiritShop
 
         public global::SpiritShopLimitGroupView FindLimitGroup(uint groupId) => SpiritShopModels.FindLimitGroup(Info, groupId);
 
-        public SpiritShopPurchaseQuote QuoteFor(uint goodsId) => SpiritShopPurchaseQuote.Of(FindGoods(goodsId));
+        public SpiritShopPurchaseQuote QuoteFor(uint goodsId, uint chosenItemIndex = 0)
+            => SpiritShopPurchaseQuote.Of(FindGoods(goodsId), chosenItemIndex);
 
         public void RequestInfo(bool force = false)
         {
@@ -153,7 +166,7 @@ namespace MmorpgClient.Game.SpiritShop
                 return false;
             }
             var goods = FindGoods(quote.GoodsId);
-            var latestQuote = SpiritShopPurchaseQuote.Of(goods);
+            var latestQuote = SpiritShopPurchaseQuote.Of(goods, quote.ChosenItemIndex);
             if (goods == null || !quote.IsValid || quote != latestQuote)
             {
                 RejectLocally(SpiritShopModels.DescribeTip((uint)spirit_shop_error.KSpiritShopPriceChanged));
@@ -162,10 +175,11 @@ namespace MmorpgClient.Game.SpiritShop
                 return false;
             }
             var group = FindLimitGroup(goods.LimitGroupId);
-            var block = SpiritShopModels.EvaluateBuy(goods, group, count, true, _inBattle);
+            var block = SpiritShopModels.EvaluateBuy(goods, group, count, true, _inBattle, EstimatedServerNowMs);
             if (block != SpiritShopBuyBlock.None)
             {
                 RejectLocally(SpiritShopModels.DescribeBlock(block));
+                if (block == SpiritShopBuyBlock.SaleEnded) RequestInfo(force: true);
                 completed?.Invoke(false);
                 return false;
             }
@@ -198,6 +212,7 @@ namespace MmorpgClient.Game.SpiritShop
                 Count = count,
                 ExpectedCurrencyType = quote.CurrencyType,
                 ExpectedUnitPrice = quote.UnitPrice,
+                ChosenItemIndex = quote.ChosenItemIndex,
             };
             quote.WriteExpectedItems(request.ExpectedItems);
 
@@ -222,7 +237,7 @@ namespace MmorpgClient.Game.SpiritShop
                             completed?.Invoke(false);
                             return;
                         }
-                        if (response.Info != null) Info = response.Info;
+                        if (response.Info != null) ApplyInfo(response.Info);
                         SetStatus(SpiritShopModels.PurchasedText(seen, count), false);
                         if (response.Bag != null) BagReceived?.Invoke(response.Bag);
                         Changed?.Invoke();
@@ -308,7 +323,7 @@ namespace MmorpgClient.Game.SpiritShop
                         Changed?.Invoke();
                         return;
                     }
-                    if (response.Info != null) Info = response.Info;
+                    if (response.Info != null) ApplyInfo(response.Info);
                     if (!BuyPending && Status == InfoPendingMessage) ClearStatus();
                     Changed?.Invoke();
                     if (_requeryAfterPending)
@@ -380,10 +395,17 @@ namespace MmorpgClient.Game.SpiritShop
             Changed?.Invoke();
         }
 
+        private void ApplyInfo(global::SpiritShopInfo info)
+        {
+            Info = info;
+            _infoReceivedAtClock = _clock();
+        }
+
         private void ResetSession()
         {
             ++_generation;
             Info = null;
+            _infoReceivedAtClock = 0f;
             InfoPending = false;
             InfoQueued = false;
             _requeryAfterPending = false;

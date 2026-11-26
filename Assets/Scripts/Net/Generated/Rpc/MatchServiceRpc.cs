@@ -304,5 +304,61 @@ namespace MmorpgClient.Net.Generated
         public static void GetTournamentHighlights(IRpcChannel channel, global::Match.GetTournamentHighlightsRequest request,
             RpcDone<global::Match.GetTournamentHighlightsResponse> done)
             => channel.CallMethod(GetTournamentHighlightsMessageId, request, global::Match.GetTournamentHighlightsResponse.Parser, done);
+
+        public const uint CreateJianghuDuelInviteMessageId = 548;
+        /// <summary>
+        /// ---- 江湖恩怨与天墉生死状一期(docs/design/battle-jianghu-grudge-duel-bounty-v1.md):请求只认会话本人 ----
+        /// </summary>
+        public static void CreateJianghuDuelInvite(IRpcChannel channel, global::Match.CreateJianghuDuelInviteRequest request,
+            RpcDone<global::Match.CreateJianghuDuelInviteResponse> done)
+            => channel.CallMethod(CreateJianghuDuelInviteMessageId, request, global::Match.CreateJianghuDuelInviteResponse.Parser, done);
+
+        public const uint ConfirmJianghuDuelMemberMessageId = 549;
+        public static void ConfirmJianghuDuelMember(IRpcChannel channel, global::Match.ConfirmJianghuDuelMemberRequest request,
+            RpcDone<global::Match.ConfirmJianghuDuelMemberResponse> done)
+            => channel.CallMethod(ConfirmJianghuDuelMemberMessageId, request, global::Match.ConfirmJianghuDuelMemberResponse.Parser, done);
+
+        public const uint RespondJianghuDuelInviteMessageId = 550;
+        public static void RespondJianghuDuelInvite(IRpcChannel channel, global::Match.RespondJianghuDuelInviteRequest request,
+            RpcDone<global::Match.RespondJianghuDuelInviteResponse> done)
+            => channel.CallMethod(RespondJianghuDuelInviteMessageId, request, global::Match.RespondJianghuDuelInviteResponse.Parser, done);
+
+        public const uint ListJianghuGrudgesMessageId = 551;
+        public static void ListJianghuGrudges(IRpcChannel channel, global::Match.ListJianghuGrudgesRequest request,
+            RpcDone<global::Match.ListJianghuGrudgesResponse> done)
+            => channel.CallMethod(ListJianghuGrudgesMessageId, request, global::Match.ListJianghuGrudgesResponse.Parser, done);
+
+        public const uint DismissJianghuGrudgeMessageId = 552;
+        public static void DismissJianghuGrudge(IRpcChannel channel, global::Match.DismissJianghuGrudgeRequest request,
+            RpcDone<global::Match.DismissJianghuGrudgeResponse> done)
+            => channel.CallMethod(DismissJianghuGrudgeMessageId, request, global::Match.DismissJianghuGrudgeResponse.Parser, done);
+
+        public const uint NotifyJianghuDuelInviteMessageId = 553;
+        public static void OnNotifyJianghuDuelInvite(IRpcChannel channel, Action<global::Match.JianghuDuelInviteS2C> handler,
+            Action<InvalidProtocolBufferException> onMalformed = null)
+        {
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
+            channel.RegisterNotify(NotifyJianghuDuelInviteMessageId, mc =>
+            {
+                global::Match.JianghuDuelInviteS2C message;
+                try { message = global::Match.JianghuDuelInviteS2C.Parser.ParseFrom(mc.SerializedMessage); }
+                catch (InvalidProtocolBufferException ex) { onMalformed?.Invoke(ex); return; }
+                handler(message);
+            });
+        }
+
+        public const uint NotifyJianghuDuelStatusMessageId = 554;
+        public static void OnNotifyJianghuDuelStatus(IRpcChannel channel, Action<global::Match.JianghuDuelStatusS2C> handler,
+            Action<InvalidProtocolBufferException> onMalformed = null)
+        {
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
+            channel.RegisterNotify(NotifyJianghuDuelStatusMessageId, mc =>
+            {
+                global::Match.JianghuDuelStatusS2C message;
+                try { message = global::Match.JianghuDuelStatusS2C.Parser.ParseFrom(mc.SerializedMessage); }
+                catch (InvalidProtocolBufferException ex) { onMalformed?.Invoke(ex); return; }
+                handler(message);
+            });
+        }
     }
 }

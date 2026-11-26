@@ -389,6 +389,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 if (item.ConfigId == 3408) return CraftIconRoot + "item_celestial_ink";
                 if (item.ConfigId == 3409) return SeasonEconomyUiArt.EconomyTradeRoot + "icon_unseal_talisman";
                 if (item.ConfigId == 3410) return SeasonEconomyUiArt.EconomyTradeV2Root + "icon_inherit_talisman";
+                if (item.ConfigId == 3413) return EquipLoadoutModel.ExpandTalismanIconKey;
                 if (item.ConfigId == 3414) return "UI/Icons/item_sealed_skill_book";
                 return IsIcon(item.IconKey, "reward_choice") ? IconRoot + "reward_choice" : null;
             }

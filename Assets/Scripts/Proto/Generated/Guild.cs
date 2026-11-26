@@ -382,149 +382,167 @@ namespace Guildpb {
             "HUluc3BlY3RGaWVsZFdhclRhcmdldHNSZXF1ZXN0EhIKCnBsYXllcl9pZHMY",
             "ASADKAQidwoeSW5zcGVjdEZpZWxkV2FyVGFyZ2V0c1Jlc3BvbnNlEiYKDWVy",
             "cm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRItCgd0YXJnZXRz",
-            "GAIgAygLMhwuZ3VpbGRwYi5GaWVsZFdhclRhcmdldEJyaWVmKugECg9HdWls",
-            "ZENoYW5nZUtpbmQSIQodR1VJTERfQ0hBTkdFX0tJTkRfVU5TUEVDSUZJRUQQ",
-            "ABIjCh9HVUlMRF9DSEFOR0VfS0lORF9NRU1CRVJfSk9JTkVEEAESIQodR1VJ",
-            "TERfQ0hBTkdFX0tJTkRfTUVNQkVSX0xFRlQQAhIjCh9HVUlMRF9DSEFOR0Vf",
-            "S0lORF9NRU1CRVJfS0lDS0VEEAMSIgoeR1VJTERfQ0hBTkdFX0tJTkRfUk9M",
-            "RV9DSEFOR0VEEAQSKAokR1VJTERfQ0hBTkdFX0tJTkRfTEVBREVSX1RSQU5T",
-            "RkVSUkVEEAUSHwobR1VJTERfQ0hBTkdFX0tJTkRfRElTQkFOREVEEAYSKgom",
-            "R1VJTERfQ0hBTkdFX0tJTkRfQVBQTElDQVRJT05fUkVDRUlWRUQQBxIqCiZH",
-            "VUlMRF9DSEFOR0VfS0lORF9BUFBMSUNBVElPTl9SRUpFQ1RFRBAIEiMKH0dV",
-            "SUxEX0NIQU5HRV9LSU5EX0ZVTkRTX0NIQU5HRUQQCRIeChpHVUlMRF9DSEFO",
-            "R0VfS0lORF9MRVZFTF9VUBAKEioKJkdVSUxEX0NIQU5HRV9LSU5EX0FOTk9V",
-            "TkNFTUVOVF9DSEFOR0VEEAsSJgoiR1VJTERfQ0hBTkdFX0tJTkRfQUNUSVZJ",
-            "VFlfQ0hBTkdFRBAMEiMKH0dVSUxEX0NIQU5HRV9LSU5EX0RFTElWRVJZX0RP",
-            "TkUQDRIdChlHVUlMRF9DSEFOR0VfS0lORF9SRU5BTUVEEA4SIQodR1VJTERf",
-            "Q0hBTkdFX0tJTkRfV0FSX1VQREFURUQQDyqIAgoVR3VpbGRBc3NldE9yZGVy",
-            "U3RhdHVzEigKJEdVSUxEX0FTU0VUX09SREVSX1NUQVRVU19VTlNQRUNJRklF",
-            "RBAAEiQKIEdVSUxEX0FTU0VUX09SREVSX1NUQVRVU19QRU5ESU5HEAESJAog",
-            "R1VJTERfQVNTRVRfT1JERVJfU1RBVFVTX0FQUExJRUQQAhIlCiFHVUlMRF9B",
-            "U1NFVF9PUkRFUl9TVEFUVVNfUkVKRUNURUQQAxIkCiBHVUlMRF9BU1NFVF9P",
-            "UkRFUl9TVEFUVVNfQUJPUlRFRBAEEiwKKEdVSUxEX0FTU0VUX09SREVSX1NU",
-            "QVRVU19BUFBMSUVEX1BBUlRJQUwQBSqZAQoRR3VpbGRBY3Rpdml0eVR5cGUS",
-            "IwofR1VJTERfQUNUSVZJVFlfVFlQRV9VTlNQRUNJRklFRBAAEh8KG0dVSUxE",
-            "X0FDVElWSVRZX1RZUEVfTEFOVEVSThABEh8KG0dVSUxEX0FDVElWSVRZX1RZ",
-            "UEVfUkVVTklPThACEh0KGUdVSUxEX0FDVElWSVRZX1RZUEVfVFJJQUwQAyq/",
-            "AQoSR3VpbGRBY3Rpdml0eVN0YXRlEiQKIEdVSUxEX0FDVElWSVRZX1NUQVRF",
-            "X1VOU1BFQ0lGSUVEEAASIQodR1VJTERfQUNUSVZJVFlfU1RBVEVfRElTQUJM",
-            "RUQQARIhCh1HVUlMRF9BQ1RJVklUWV9TVEFURV9VUENPTUlORxACEh0KGUdV",
-            "SUxEX0FDVElWSVRZX1NUQVRFX09QRU4QAxIeChpHVUlMRF9BQ1RJVklUWV9T",
-            "VEFURV9FTkRFRBAEKtQBChRHdWlsZFRyaWFsTG9iYnlTdGF0ZRInCiNHVUlM",
-            "RF9UUklBTF9MT0JCWV9TVEFURV9VTlNQRUNJRklFRBAAEiMKH0dVSUxEX1RS",
-            "SUFMX0xPQkJZX1NUQVRFX1BFTkRJTkcQARIlCiFHVUlMRF9UUklBTF9MT0JC",
-            "WV9TVEFURV9MQVVOQ0hJTkcQAhIkCiBHVUlMRF9UUklBTF9MT0JCWV9TVEFU",
-            "RV9MQVVOQ0hFRBADEiEKHUdVSUxEX1RSSUFMX0xPQkJZX1NUQVRFX0VOREVE",
-            "EAQq/gEKEkd1aWxkV2FyVGFyZ2V0S2luZBIlCiFHVUlMRF9XQVJfVEFSR0VU",
-            "X0tJTkRfVU5TUEVDSUZJRUQQABIkCiBHVUlMRF9XQVJfVEFSR0VUX0tJTkRf",
-            "UVVJQ0tfQVVUTxABEiUKIUdVSUxEX1dBUl9UQVJHRVRfS0lORF9MSVZFX1BM",
-            "QVlFUhACEioKJkdVSUxEX1dBUl9UQVJHRVRfS0lORF9MRVlMSU5FX0dBUlJJ",
-            "U09OEAMSIAocR1VJTERfV0FSX1RBUkdFVF9LSU5EX0JPVU5UWRAEEiYKIkdV",
-            "SUxEX1dBUl9UQVJHRVRfS0lORF9GSUVMRF9QTEFZRVIQBSr+AQoSR3VpbGRX",
-            "YXJCYXR0bGVLaW5kEiUKIUdVSUxEX1dBUl9CQVRUTEVfS0lORF9VTlNQRUNJ",
-            "RklFRBAAEiMKH0dVSUxEX1dBUl9CQVRUTEVfS0lORF9QQU5FTF9QVlAQARIo",
-            "CiRHVUlMRF9XQVJfQkFUVExFX0tJTkRfR0FSUklTT05fU0lFR0UQAhIkCiBH",
-            "VUlMRF9XQVJfQkFUVExFX0tJTkRfRklFTERfUk9BRBADEiUKIUdVSUxEX1dB",
-            "Ul9CQVRUTEVfS0lORF9MRVlMSU5FX1BWUBAEEiUKIUdVSUxEX1dBUl9CQVRU",
-            "TEVfS0lORF9CT1VOVFlfSFVOVBAFKrQBChJHdWlsZFdhckJvdW50eVRpZXIS",
-            "JQohR1VJTERfV0FSX0JPVU5UWV9USUVSX1VOU1BFQ0lGSUVEEAASJwojR1VJ",
-            "TERfV0FSX0JPVU5UWV9USUVSX05PUk1BTF9TSUxWRVIQARImCiJHVUlMRF9X",
-            "QVJfQk9VTlRZX1RJRVJfSEVBVllfU0lMVkVSEAISJgoiR1VJTERfV0FSX0JP",
-            "VU5UWV9USUVSX0dVSUxEX1BVQkxJQxADKocCChRHdWlsZFdhckJvdW50eVN0",
-            "YXR1cxInCiNHVUlMRF9XQVJfQk9VTlRZX1NUQVRVU19VTlNQRUNJRklFRBAA",
-            "EioKJkdVSUxEX1dBUl9CT1VOVFlfU1RBVFVTX0VTQ1JPV19QRU5ESU5HEAES",
-            "IgoeR1VJTERfV0FSX0JPVU5UWV9TVEFUVVNfQUNUSVZFEAISJQohR1VJTERf",
-            "V0FSX0JPVU5UWV9TVEFUVVNfQ09NUExFVEVEEAMSKgomR1VJTERfV0FSX0JP",
-            "VU5UWV9TVEFUVVNfVE9STl9CWV9UQVJHRVQQBBIjCh9HVUlMRF9XQVJfQk9V",
-            "TlRZX1NUQVRVU19FWFBJUkVEEAUqkgIKEUd1aWxkV2FyQWxlcnRLaW5kEiQK",
-            "IEdVSUxEX1dBUl9BTEVSVF9LSU5EX1VOU1BFQ0lGSUVEEAASLAooR1VJTERf",
-            "V0FSX0FMRVJUX0tJTkRfTEVZTElORV9VTkRFUl9TSUVHRRABEikKJUdVSUxE",
-            "X1dBUl9BTEVSVF9LSU5EX0xFWUxJTkVfQ0FQVFVSRUQQAhIsCihHVUlMRF9X",
-            "QVJfQUxFUlRfS0lORF9QVVJTVUVSX0VOVEVSRURfTUFQEAMSKAokR1VJTERf",
-            "V0FSX0FMRVJUX0tJTkRfQk9VTlRZX1JFU09MVkVEEAQSJgoiR1VJTERfV0FS",
-            "X0FMRVJUX0tJTkRfU1RSRUFLX0JPVU5UWRAFMtMcCgxHdWlsZFNlcnZpY2US",
-            "SAoLQ3JlYXRlR3VpbGQSGy5ndWlsZHBiLkNyZWF0ZUd1aWxkUmVxdWVzdBoc",
-            "Lmd1aWxkcGIuQ3JlYXRlR3VpbGRSZXNwb25zZRI/CghHZXRHdWlsZBIYLmd1",
-            "aWxkcGIuR2V0R3VpbGRSZXF1ZXN0GhkuZ3VpbGRwYi5HZXRHdWlsZFJlc3Bv",
-            "bnNlElEKDkdldFBsYXllckd1aWxkEh4uZ3VpbGRwYi5HZXRQbGF5ZXJHdWls",
-            "ZFJlcXVlc3QaHy5ndWlsZHBiLkdldFBsYXllckd1aWxkUmVzcG9uc2USRQoK",
-            "TGVhdmVHdWlsZBIaLmd1aWxkcGIuTGVhdmVHdWlsZFJlcXVlc3QaGy5ndWls",
-            "ZHBiLkxlYXZlR3VpbGRSZXNwb25zZRJLCgxEaXNiYW5kR3VpbGQSHC5ndWls",
-            "ZHBiLkRpc2JhbmRHdWlsZFJlcXVlc3QaHS5ndWlsZHBiLkRpc2JhbmRHdWls",
-            "ZFJlc3BvbnNlElQKD1NldEFubm91bmNlbWVudBIfLmd1aWxkcGIuU2V0QW5u",
-            "b3VuY2VtZW50UmVxdWVzdBogLmd1aWxkcGIuU2V0QW5ub3VuY2VtZW50UmVz",
-            "cG9uc2USSAoLUmVuYW1lR3VpbGQSGy5ndWlsZHBiLlJlbmFtZUd1aWxkUmVx",
-            "dWVzdBocLmd1aWxkcGIuUmVuYW1lR3VpbGRSZXNwb25zZRJdChJTZXRHdWls",
-            "ZE1lbWJlclJvbGUSIi5ndWlsZHBiLlNldEd1aWxkTWVtYmVyUm9sZVJlcXVl",
-            "c3QaIy5ndWlsZHBiLlNldEd1aWxkTWVtYmVyUm9sZVJlc3BvbnNlElQKD0tp",
-            "Y2tHdWlsZE1lbWJlchIfLmd1aWxkcGIuS2lja0d1aWxkTWVtYmVyUmVxdWVz",
-            "dBogLmd1aWxkcGIuS2lja0d1aWxkTWVtYmVyUmVzcG9uc2USYAoTVHJhbnNm",
-            "ZXJHdWlsZExlYWRlchIjLmd1aWxkcGIuVHJhbnNmZXJHdWlsZExlYWRlclJl",
-            "cXVlc3QaJC5ndWlsZHBiLlRyYW5zZmVyR3VpbGRMZWFkZXJSZXNwb25zZRJR",
-            "Cg5BcHBseUpvaW5HdWlsZBIeLmd1aWxkcGIuQXBwbHlKb2luR3VpbGRSZXF1",
-            "ZXN0Gh8uZ3VpbGRwYi5BcHBseUpvaW5HdWlsZFJlc3BvbnNlEmkKFkNhbmNl",
-            "bEd1aWxkQXBwbGljYXRpb24SJi5ndWlsZHBiLkNhbmNlbEd1aWxkQXBwbGlj",
-            "YXRpb25SZXF1ZXN0GicuZ3VpbGRwYi5DYW5jZWxHdWlsZEFwcGxpY2F0aW9u",
-            "UmVzcG9uc2USbAoXTGlzdE15R3VpbGRBcHBsaWNhdGlvbnMSJy5ndWlsZHBi",
-            "Lkxpc3RNeUd1aWxkQXBwbGljYXRpb25zUmVxdWVzdBooLmd1aWxkcGIuTGlz",
-            "dE15R3VpbGRBcHBsaWNhdGlvbnNSZXNwb25zZRJmChVMaXN0R3VpbGRBcHBs",
-            "aWNhdGlvbnMSJS5ndWlsZHBiLkxpc3RHdWlsZEFwcGxpY2F0aW9uc1JlcXVl",
-            "c3QaJi5ndWlsZHBiLkxpc3RHdWlsZEFwcGxpY2F0aW9uc1Jlc3BvbnNlEmkK",
-            "FlJldmlld0d1aWxkQXBwbGljYXRpb24SJi5ndWlsZHBiLlJldmlld0d1aWxk",
-            "QXBwbGljYXRpb25SZXF1ZXN0GicuZ3VpbGRwYi5SZXZpZXdHdWlsZEFwcGxp",
-            "Y2F0aW9uUmVzcG9uc2USPQoSTm90aWZ5R3VpbGRDaGFuZ2VkEhguZ3VpbGRw",
-            "Yi5HdWlsZENoYW5nZWRTMkMaBi5FbXB0eSIFiJnIAQISXgoQVXBkYXRlR3Vp",
-            "bGRTY29yZRIgLmd1aWxkcGIuVXBkYXRlR3VpbGRTY29yZVJlcXVlc3QaIS5n",
-            "dWlsZHBiLlVwZGF0ZUd1aWxkU2NvcmVSZXNwb25zZSIFiJnIAQMSSwoMR2V0",
-            "R3VpbGRSYW5rEhwuZ3VpbGRwYi5HZXRHdWlsZFJhbmtSZXF1ZXN0Gh0uZ3Vp",
-            "bGRwYi5HZXRHdWlsZFJhbmtSZXNwb25zZRJgChNHZXRHdWlsZFJhbmtCeUd1",
-            "aWxkEiMuZ3VpbGRwYi5HZXRHdWlsZFJhbmtCeUd1aWxkUmVxdWVzdBokLmd1",
-            "aWxkcGIuR2V0R3VpbGRSYW5rQnlHdWlsZFJlc3BvbnNlEmYKFUdldEd1aWxk",
-            "RG9uYXRlT3B0aW9ucxIlLmd1aWxkcGIuR2V0R3VpbGREb25hdGVPcHRpb25z",
-            "UmVxdWVzdBomLmd1aWxkcGIuR2V0R3VpbGREb25hdGVPcHRpb25zUmVzcG9u",
-            "c2USTgoNRG9uYXRlVG9HdWlsZBIdLmd1aWxkcGIuRG9uYXRlVG9HdWlsZFJl",
-            "cXVlc3QaHi5ndWlsZHBiLkRvbmF0ZVRvR3VpbGRSZXNwb25zZRJLCgxVcGdy",
-            "YWRlR3VpbGQSHC5ndWlsZHBiLlVwZ3JhZGVHdWlsZFJlcXVlc3QaHS5ndWls",
-            "ZHBiLlVwZ3JhZGVHdWlsZFJlc3BvbnNlEksKDEdldEd1aWxkU2hvcBIcLmd1",
-            "aWxkcGIuR2V0R3VpbGRTaG9wUmVxdWVzdBodLmd1aWxkcGIuR2V0R3VpbGRT",
-            "aG9wUmVzcG9uc2USWgoRQnV5R3VpbGRTaG9wR29vZHMSIS5ndWlsZHBiLkJ1",
-            "eUd1aWxkU2hvcEdvb2RzUmVxdWVzdBoiLmd1aWxkcGIuQnV5R3VpbGRTaG9w",
-            "R29vZHNSZXNwb25zZRJdChJHZXRHdWlsZEFjdGl2aXRpZXMSIi5ndWlsZHBi",
-            "LkdldEd1aWxkQWN0aXZpdGllc1JlcXVlc3QaIy5ndWlsZHBiLkdldEd1aWxk",
-            "QWN0aXZpdGllc1Jlc3BvbnNlEloKEUxpZ2h0R3VpbGRMYW50ZXJuEiEuZ3Vp",
-            "bGRwYi5MaWdodEd1aWxkTGFudGVyblJlcXVlc3QaIi5ndWlsZHBiLkxpZ2h0",
-            "R3VpbGRMYW50ZXJuUmVzcG9uc2USWgoRQ2xhaW1HdWlsZFJldW5pb24SIS5n",
-            "dWlsZHBiLkNsYWltR3VpbGRSZXVuaW9uUmVxdWVzdBoiLmd1aWxkcGIuQ2xh",
-            "aW1HdWlsZFJldW5pb25SZXNwb25zZRJUCg9TdGFydEd1aWxkVHJpYWwSHy5n",
-            "dWlsZHBiLlN0YXJ0R3VpbGRUcmlhbFJlcXVlc3QaIC5ndWlsZHBiLlN0YXJ0",
-            "R3VpbGRUcmlhbFJlc3BvbnNlEmwKF1Jlc3BvbmRHdWlsZFRyaWFsSW52aXRl",
-            "EicuZ3VpbGRwYi5SZXNwb25kR3VpbGRUcmlhbEludml0ZVJlcXVlc3QaKC5n",
-            "dWlsZHBiLlJlc3BvbmRHdWlsZFRyaWFsSW52aXRlUmVzcG9uc2USYAoTR2V0",
-            "R3VpbGRXYXJPdmVydmlldxIjLmd1aWxkcGIuR2V0R3VpbGRXYXJPdmVydmll",
-            "d1JlcXVlc3QaJC5ndWlsZHBiLkdldEd1aWxkV2FyT3ZlcnZpZXdSZXNwb25z",
-            "ZRJaChFTZXRHdWlsZFdhclN0YW5jZRIhLmd1aWxkcGIuU2V0R3VpbGRXYXJT",
-            "dGFuY2VSZXF1ZXN0GiIuZ3VpbGRwYi5TZXRHdWlsZFdhclN0YW5jZVJlc3Bv",
-            "bnNlEm8KGFJlZ2lzdGVyR3VpbGRXYXJHYXJyaXNvbhIoLmd1aWxkcGIuUmVn",
-            "aXN0ZXJHdWlsZFdhckdhcnJpc29uUmVxdWVzdBopLmd1aWxkcGIuUmVnaXN0",
-            "ZXJHdWlsZFdhckdhcnJpc29uUmVzcG9uc2USYAoTU3RhcnRHdWlsZFdhckJh",
-            "dHRsZRIjLmd1aWxkcGIuU3RhcnRHdWlsZFdhckJhdHRsZVJlcXVlc3QaJC5n",
-            "dWlsZHBiLlN0YXJ0R3VpbGRXYXJCYXR0bGVSZXNwb25zZRJpChZDbGFpbUd1",
-            "aWxkV2FyTWlsZXN0b25lEiYuZ3VpbGRwYi5DbGFpbUd1aWxkV2FyTWlsZXN0",
-            "b25lUmVxdWVzdBonLmd1aWxkcGIuQ2xhaW1HdWlsZFdhck1pbGVzdG9uZVJl",
-            "c3BvbnNlEmYKFUNsYWltR3VpbGRXYXJEaXZpZGVuZBIlLmd1aWxkcGIuQ2xh",
-            "aW1HdWlsZFdhckRpdmlkZW5kUmVxdWVzdBomLmd1aWxkcGIuQ2xhaW1HdWls",
-            "ZFdhckRpdmlkZW5kUmVzcG9uc2USXQoSUG9zdEd1aWxkV2FyQm91bnR5EiIu",
-            "Z3VpbGRwYi5Qb3N0R3VpbGRXYXJCb3VudHlSZXF1ZXN0GiMuZ3VpbGRwYi5Q",
-            "b3N0R3VpbGRXYXJCb3VudHlSZXNwb25zZRJgChNUcmFja0d1aWxkV2FyQm91",
-            "bnR5EiMuZ3VpbGRwYi5UcmFja0d1aWxkV2FyQm91bnR5UmVxdWVzdBokLmd1",
-            "aWxkcGIuVHJhY2tHdWlsZFdhckJvdW50eVJlc3BvbnNlEmwKF0dldEd1aWxk",
-            "V2FyQmF0dGxlUmVzdWx0EicuZ3VpbGRwYi5HZXRHdWlsZFdhckJhdHRsZVJl",
-            "c3VsdFJlcXVlc3QaKC5ndWlsZHBiLkdldEd1aWxkV2FyQmF0dGxlUmVzdWx0",
-            "UmVzcG9uc2USPwoTTm90aWZ5R3VpbGRXYXJBbGVydBIZLmd1aWxkcGIuR3Vp",
-            "bGRXYXJBbGVydFMyQxoGLkVtcHR5IgWImcgBAhJpChZJbnNwZWN0RmllbGRX",
-            "YXJUYXJnZXRzEiYuZ3VpbGRwYi5JbnNwZWN0RmllbGRXYXJUYXJnZXRzUmVx",
-            "dWVzdBonLmd1aWxkcGIuSW5zcGVjdEZpZWxkV2FyVGFyZ2V0c1Jlc3BvbnNl",
-            "GgWIqMMBAUITWhFndWlsZC9wcm90by9ndWlsZGIGcHJvdG8z"));
+            "GAIgAygLMhwuZ3VpbGRwYi5GaWVsZFdhclRhcmdldEJyaWVmIpUBChxHdWls",
+            "ZEppYW5naHVSaXZhbFN1bW1hcnlWaWV3EhYKDnJpdmFsX2d1aWxkX2lkGAEg",
+            "ASgEEhgKEHJpdmFsX2d1aWxkX25hbWUYAiABKAkSDAoEd2lucxgDIAEoDRIO",
+            "CgZsb3NzZXMYBCABKA0SDQoFZHJhd3MYBSABKA0SFgoObGFzdF9iYXR0bGVf",
+            "bXMYBiABKAQihQIKHEd1aWxkSmlhbmdodUdydWRnZVJlY29yZFZpZXcSEQoJ",
+            "YmF0dGxlX2lkGAEgASgEEhYKDnJpdmFsX2d1aWxkX2lkGAIgASgEEhgKEHJp",
+            "dmFsX2d1aWxkX25hbWUYAyABKAkSGQoRb3V0Y29tZV9mb3JfZ3VpbGQYBCAB",
+            "KA0SEQoJd3JpdF90aWVyGAUgASgNEhEKCXRlYW1fc2l6ZRgGIAEoDRIUCgx0",
+            "b3RhbF9yb3VuZHMYByABKA0SGAoQb3VyX2NhcHRhaW5fbmFtZRgIIAEoCRIa",
+            "ChJyaXZhbF9jYXB0YWluX25hbWUYCSABKAkSEwoLZmluaXNoZWRfbXMYCiAB",
+            "KAQiIgogR2V0R3VpbGRKaWFuZ2h1R3J1ZGdlV2FsbFJlcXVlc3Qi0wEKIUdl",
+            "dEd1aWxkSmlhbmdodUdydWRnZVdhbGxSZXNwb25zZRImCg1lcnJvcl9tZXNz",
+            "YWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USEAoIZ3VpbGRfaWQYAiABKAQS",
+            "NQoGcml2YWxzGAMgAygLMiUuZ3VpbGRwYi5HdWlsZEppYW5naHVSaXZhbFN1",
+            "bW1hcnlWaWV3Ej0KDnJlY2VudF9yZWNvcmRzGAQgAygLMiUuZ3VpbGRwYi5H",
+            "dWlsZEppYW5naHVHcnVkZ2VSZWNvcmRWaWV3KugECg9HdWlsZENoYW5nZUtp",
+            "bmQSIQodR1VJTERfQ0hBTkdFX0tJTkRfVU5TUEVDSUZJRUQQABIjCh9HVUlM",
+            "RF9DSEFOR0VfS0lORF9NRU1CRVJfSk9JTkVEEAESIQodR1VJTERfQ0hBTkdF",
+            "X0tJTkRfTUVNQkVSX0xFRlQQAhIjCh9HVUlMRF9DSEFOR0VfS0lORF9NRU1C",
+            "RVJfS0lDS0VEEAMSIgoeR1VJTERfQ0hBTkdFX0tJTkRfUk9MRV9DSEFOR0VE",
+            "EAQSKAokR1VJTERfQ0hBTkdFX0tJTkRfTEVBREVSX1RSQU5TRkVSUkVEEAUS",
+            "HwobR1VJTERfQ0hBTkdFX0tJTkRfRElTQkFOREVEEAYSKgomR1VJTERfQ0hB",
+            "TkdFX0tJTkRfQVBQTElDQVRJT05fUkVDRUlWRUQQBxIqCiZHVUlMRF9DSEFO",
+            "R0VfS0lORF9BUFBMSUNBVElPTl9SRUpFQ1RFRBAIEiMKH0dVSUxEX0NIQU5H",
+            "RV9LSU5EX0ZVTkRTX0NIQU5HRUQQCRIeChpHVUlMRF9DSEFOR0VfS0lORF9M",
+            "RVZFTF9VUBAKEioKJkdVSUxEX0NIQU5HRV9LSU5EX0FOTk9VTkNFTUVOVF9D",
+            "SEFOR0VEEAsSJgoiR1VJTERfQ0hBTkdFX0tJTkRfQUNUSVZJVFlfQ0hBTkdF",
+            "RBAMEiMKH0dVSUxEX0NIQU5HRV9LSU5EX0RFTElWRVJZX0RPTkUQDRIdChlH",
+            "VUlMRF9DSEFOR0VfS0lORF9SRU5BTUVEEA4SIQodR1VJTERfQ0hBTkdFX0tJ",
+            "TkRfV0FSX1VQREFURUQQDyqIAgoVR3VpbGRBc3NldE9yZGVyU3RhdHVzEigK",
+            "JEdVSUxEX0FTU0VUX09SREVSX1NUQVRVU19VTlNQRUNJRklFRBAAEiQKIEdV",
+            "SUxEX0FTU0VUX09SREVSX1NUQVRVU19QRU5ESU5HEAESJAogR1VJTERfQVNT",
+            "RVRfT1JERVJfU1RBVFVTX0FQUExJRUQQAhIlCiFHVUlMRF9BU1NFVF9PUkRF",
+            "Ul9TVEFUVVNfUkVKRUNURUQQAxIkCiBHVUlMRF9BU1NFVF9PUkRFUl9TVEFU",
+            "VVNfQUJPUlRFRBAEEiwKKEdVSUxEX0FTU0VUX09SREVSX1NUQVRVU19BUFBM",
+            "SUVEX1BBUlRJQUwQBSqZAQoRR3VpbGRBY3Rpdml0eVR5cGUSIwofR1VJTERf",
+            "QUNUSVZJVFlfVFlQRV9VTlNQRUNJRklFRBAAEh8KG0dVSUxEX0FDVElWSVRZ",
+            "X1RZUEVfTEFOVEVSThABEh8KG0dVSUxEX0FDVElWSVRZX1RZUEVfUkVVTklP",
+            "ThACEh0KGUdVSUxEX0FDVElWSVRZX1RZUEVfVFJJQUwQAyq/AQoSR3VpbGRB",
+            "Y3Rpdml0eVN0YXRlEiQKIEdVSUxEX0FDVElWSVRZX1NUQVRFX1VOU1BFQ0lG",
+            "SUVEEAASIQodR1VJTERfQUNUSVZJVFlfU1RBVEVfRElTQUJMRUQQARIhCh1H",
+            "VUlMRF9BQ1RJVklUWV9TVEFURV9VUENPTUlORxACEh0KGUdVSUxEX0FDVElW",
+            "SVRZX1NUQVRFX09QRU4QAxIeChpHVUlMRF9BQ1RJVklUWV9TVEFURV9FTkRF",
+            "RBAEKtQBChRHdWlsZFRyaWFsTG9iYnlTdGF0ZRInCiNHVUlMRF9UUklBTF9M",
+            "T0JCWV9TVEFURV9VTlNQRUNJRklFRBAAEiMKH0dVSUxEX1RSSUFMX0xPQkJZ",
+            "X1NUQVRFX1BFTkRJTkcQARIlCiFHVUlMRF9UUklBTF9MT0JCWV9TVEFURV9M",
+            "QVVOQ0hJTkcQAhIkCiBHVUlMRF9UUklBTF9MT0JCWV9TVEFURV9MQVVOQ0hF",
+            "RBADEiEKHUdVSUxEX1RSSUFMX0xPQkJZX1NUQVRFX0VOREVEEAQq/gEKEkd1",
+            "aWxkV2FyVGFyZ2V0S2luZBIlCiFHVUlMRF9XQVJfVEFSR0VUX0tJTkRfVU5T",
+            "UEVDSUZJRUQQABIkCiBHVUlMRF9XQVJfVEFSR0VUX0tJTkRfUVVJQ0tfQVVU",
+            "TxABEiUKIUdVSUxEX1dBUl9UQVJHRVRfS0lORF9MSVZFX1BMQVlFUhACEioK",
+            "JkdVSUxEX1dBUl9UQVJHRVRfS0lORF9MRVlMSU5FX0dBUlJJU09OEAMSIAoc",
+            "R1VJTERfV0FSX1RBUkdFVF9LSU5EX0JPVU5UWRAEEiYKIkdVSUxEX1dBUl9U",
+            "QVJHRVRfS0lORF9GSUVMRF9QTEFZRVIQBSr+AQoSR3VpbGRXYXJCYXR0bGVL",
+            "aW5kEiUKIUdVSUxEX1dBUl9CQVRUTEVfS0lORF9VTlNQRUNJRklFRBAAEiMK",
+            "H0dVSUxEX1dBUl9CQVRUTEVfS0lORF9QQU5FTF9QVlAQARIoCiRHVUlMRF9X",
+            "QVJfQkFUVExFX0tJTkRfR0FSUklTT05fU0lFR0UQAhIkCiBHVUlMRF9XQVJf",
+            "QkFUVExFX0tJTkRfRklFTERfUk9BRBADEiUKIUdVSUxEX1dBUl9CQVRUTEVf",
+            "S0lORF9MRVlMSU5FX1BWUBAEEiUKIUdVSUxEX1dBUl9CQVRUTEVfS0lORF9C",
+            "T1VOVFlfSFVOVBAFKrQBChJHdWlsZFdhckJvdW50eVRpZXISJQohR1VJTERf",
+            "V0FSX0JPVU5UWV9USUVSX1VOU1BFQ0lGSUVEEAASJwojR1VJTERfV0FSX0JP",
+            "VU5UWV9USUVSX05PUk1BTF9TSUxWRVIQARImCiJHVUlMRF9XQVJfQk9VTlRZ",
+            "X1RJRVJfSEVBVllfU0lMVkVSEAISJgoiR1VJTERfV0FSX0JPVU5UWV9USUVS",
+            "X0dVSUxEX1BVQkxJQxADKocCChRHdWlsZFdhckJvdW50eVN0YXR1cxInCiNH",
+            "VUlMRF9XQVJfQk9VTlRZX1NUQVRVU19VTlNQRUNJRklFRBAAEioKJkdVSUxE",
+            "X1dBUl9CT1VOVFlfU1RBVFVTX0VTQ1JPV19QRU5ESU5HEAESIgoeR1VJTERf",
+            "V0FSX0JPVU5UWV9TVEFUVVNfQUNUSVZFEAISJQohR1VJTERfV0FSX0JPVU5U",
+            "WV9TVEFUVVNfQ09NUExFVEVEEAMSKgomR1VJTERfV0FSX0JPVU5UWV9TVEFU",
+            "VVNfVE9STl9CWV9UQVJHRVQQBBIjCh9HVUlMRF9XQVJfQk9VTlRZX1NUQVRV",
+            "U19FWFBJUkVEEAUqkgIKEUd1aWxkV2FyQWxlcnRLaW5kEiQKIEdVSUxEX1dB",
+            "Ul9BTEVSVF9LSU5EX1VOU1BFQ0lGSUVEEAASLAooR1VJTERfV0FSX0FMRVJU",
+            "X0tJTkRfTEVZTElORV9VTkRFUl9TSUVHRRABEikKJUdVSUxEX1dBUl9BTEVS",
+            "VF9LSU5EX0xFWUxJTkVfQ0FQVFVSRUQQAhIsCihHVUlMRF9XQVJfQUxFUlRf",
+            "S0lORF9QVVJTVUVSX0VOVEVSRURfTUFQEAMSKAokR1VJTERfV0FSX0FMRVJU",
+            "X0tJTkRfQk9VTlRZX1JFU09MVkVEEAQSJgoiR1VJTERfV0FSX0FMRVJUX0tJ",
+            "TkRfU1RSRUFLX0JPVU5UWRAFMscdCgxHdWlsZFNlcnZpY2USSAoLQ3JlYXRl",
+            "R3VpbGQSGy5ndWlsZHBiLkNyZWF0ZUd1aWxkUmVxdWVzdBocLmd1aWxkcGIu",
+            "Q3JlYXRlR3VpbGRSZXNwb25zZRI/CghHZXRHdWlsZBIYLmd1aWxkcGIuR2V0",
+            "R3VpbGRSZXF1ZXN0GhkuZ3VpbGRwYi5HZXRHdWlsZFJlc3BvbnNlElEKDkdl",
+            "dFBsYXllckd1aWxkEh4uZ3VpbGRwYi5HZXRQbGF5ZXJHdWlsZFJlcXVlc3Qa",
+            "Hy5ndWlsZHBiLkdldFBsYXllckd1aWxkUmVzcG9uc2USRQoKTGVhdmVHdWls",
+            "ZBIaLmd1aWxkcGIuTGVhdmVHdWlsZFJlcXVlc3QaGy5ndWlsZHBiLkxlYXZl",
+            "R3VpbGRSZXNwb25zZRJLCgxEaXNiYW5kR3VpbGQSHC5ndWlsZHBiLkRpc2Jh",
+            "bmRHdWlsZFJlcXVlc3QaHS5ndWlsZHBiLkRpc2JhbmRHdWlsZFJlc3BvbnNl",
+            "ElQKD1NldEFubm91bmNlbWVudBIfLmd1aWxkcGIuU2V0QW5ub3VuY2VtZW50",
+            "UmVxdWVzdBogLmd1aWxkcGIuU2V0QW5ub3VuY2VtZW50UmVzcG9uc2USSAoL",
+            "UmVuYW1lR3VpbGQSGy5ndWlsZHBiLlJlbmFtZUd1aWxkUmVxdWVzdBocLmd1",
+            "aWxkcGIuUmVuYW1lR3VpbGRSZXNwb25zZRJdChJTZXRHdWlsZE1lbWJlclJv",
+            "bGUSIi5ndWlsZHBiLlNldEd1aWxkTWVtYmVyUm9sZVJlcXVlc3QaIy5ndWls",
+            "ZHBiLlNldEd1aWxkTWVtYmVyUm9sZVJlc3BvbnNlElQKD0tpY2tHdWlsZE1l",
+            "bWJlchIfLmd1aWxkcGIuS2lja0d1aWxkTWVtYmVyUmVxdWVzdBogLmd1aWxk",
+            "cGIuS2lja0d1aWxkTWVtYmVyUmVzcG9uc2USYAoTVHJhbnNmZXJHdWlsZExl",
+            "YWRlchIjLmd1aWxkcGIuVHJhbnNmZXJHdWlsZExlYWRlclJlcXVlc3QaJC5n",
+            "dWlsZHBiLlRyYW5zZmVyR3VpbGRMZWFkZXJSZXNwb25zZRJRCg5BcHBseUpv",
+            "aW5HdWlsZBIeLmd1aWxkcGIuQXBwbHlKb2luR3VpbGRSZXF1ZXN0Gh8uZ3Vp",
+            "bGRwYi5BcHBseUpvaW5HdWlsZFJlc3BvbnNlEmkKFkNhbmNlbEd1aWxkQXBw",
+            "bGljYXRpb24SJi5ndWlsZHBiLkNhbmNlbEd1aWxkQXBwbGljYXRpb25SZXF1",
+            "ZXN0GicuZ3VpbGRwYi5DYW5jZWxHdWlsZEFwcGxpY2F0aW9uUmVzcG9uc2US",
+            "bAoXTGlzdE15R3VpbGRBcHBsaWNhdGlvbnMSJy5ndWlsZHBiLkxpc3RNeUd1",
+            "aWxkQXBwbGljYXRpb25zUmVxdWVzdBooLmd1aWxkcGIuTGlzdE15R3VpbGRB",
+            "cHBsaWNhdGlvbnNSZXNwb25zZRJmChVMaXN0R3VpbGRBcHBsaWNhdGlvbnMS",
+            "JS5ndWlsZHBiLkxpc3RHdWlsZEFwcGxpY2F0aW9uc1JlcXVlc3QaJi5ndWls",
+            "ZHBiLkxpc3RHdWlsZEFwcGxpY2F0aW9uc1Jlc3BvbnNlEmkKFlJldmlld0d1",
+            "aWxkQXBwbGljYXRpb24SJi5ndWlsZHBiLlJldmlld0d1aWxkQXBwbGljYXRp",
+            "b25SZXF1ZXN0GicuZ3VpbGRwYi5SZXZpZXdHdWlsZEFwcGxpY2F0aW9uUmVz",
+            "cG9uc2USPQoSTm90aWZ5R3VpbGRDaGFuZ2VkEhguZ3VpbGRwYi5HdWlsZENo",
+            "YW5nZWRTMkMaBi5FbXB0eSIFiJnIAQISXgoQVXBkYXRlR3VpbGRTY29yZRIg",
+            "Lmd1aWxkcGIuVXBkYXRlR3VpbGRTY29yZVJlcXVlc3QaIS5ndWlsZHBiLlVw",
+            "ZGF0ZUd1aWxkU2NvcmVSZXNwb25zZSIFiJnIAQMSSwoMR2V0R3VpbGRSYW5r",
+            "EhwuZ3VpbGRwYi5HZXRHdWlsZFJhbmtSZXF1ZXN0Gh0uZ3VpbGRwYi5HZXRH",
+            "dWlsZFJhbmtSZXNwb25zZRJgChNHZXRHdWlsZFJhbmtCeUd1aWxkEiMuZ3Vp",
+            "bGRwYi5HZXRHdWlsZFJhbmtCeUd1aWxkUmVxdWVzdBokLmd1aWxkcGIuR2V0",
+            "R3VpbGRSYW5rQnlHdWlsZFJlc3BvbnNlEmYKFUdldEd1aWxkRG9uYXRlT3B0",
+            "aW9ucxIlLmd1aWxkcGIuR2V0R3VpbGREb25hdGVPcHRpb25zUmVxdWVzdBom",
+            "Lmd1aWxkcGIuR2V0R3VpbGREb25hdGVPcHRpb25zUmVzcG9uc2USTgoNRG9u",
+            "YXRlVG9HdWlsZBIdLmd1aWxkcGIuRG9uYXRlVG9HdWlsZFJlcXVlc3QaHi5n",
+            "dWlsZHBiLkRvbmF0ZVRvR3VpbGRSZXNwb25zZRJLCgxVcGdyYWRlR3VpbGQS",
+            "HC5ndWlsZHBiLlVwZ3JhZGVHdWlsZFJlcXVlc3QaHS5ndWlsZHBiLlVwZ3Jh",
+            "ZGVHdWlsZFJlc3BvbnNlEksKDEdldEd1aWxkU2hvcBIcLmd1aWxkcGIuR2V0",
+            "R3VpbGRTaG9wUmVxdWVzdBodLmd1aWxkcGIuR2V0R3VpbGRTaG9wUmVzcG9u",
+            "c2USWgoRQnV5R3VpbGRTaG9wR29vZHMSIS5ndWlsZHBiLkJ1eUd1aWxkU2hv",
+            "cEdvb2RzUmVxdWVzdBoiLmd1aWxkcGIuQnV5R3VpbGRTaG9wR29vZHNSZXNw",
+            "b25zZRJdChJHZXRHdWlsZEFjdGl2aXRpZXMSIi5ndWlsZHBiLkdldEd1aWxk",
+            "QWN0aXZpdGllc1JlcXVlc3QaIy5ndWlsZHBiLkdldEd1aWxkQWN0aXZpdGll",
+            "c1Jlc3BvbnNlEloKEUxpZ2h0R3VpbGRMYW50ZXJuEiEuZ3VpbGRwYi5MaWdo",
+            "dEd1aWxkTGFudGVyblJlcXVlc3QaIi5ndWlsZHBiLkxpZ2h0R3VpbGRMYW50",
+            "ZXJuUmVzcG9uc2USWgoRQ2xhaW1HdWlsZFJldW5pb24SIS5ndWlsZHBiLkNs",
+            "YWltR3VpbGRSZXVuaW9uUmVxdWVzdBoiLmd1aWxkcGIuQ2xhaW1HdWlsZFJl",
+            "dW5pb25SZXNwb25zZRJUCg9TdGFydEd1aWxkVHJpYWwSHy5ndWlsZHBiLlN0",
+            "YXJ0R3VpbGRUcmlhbFJlcXVlc3QaIC5ndWlsZHBiLlN0YXJ0R3VpbGRUcmlh",
+            "bFJlc3BvbnNlEmwKF1Jlc3BvbmRHdWlsZFRyaWFsSW52aXRlEicuZ3VpbGRw",
+            "Yi5SZXNwb25kR3VpbGRUcmlhbEludml0ZVJlcXVlc3QaKC5ndWlsZHBiLlJl",
+            "c3BvbmRHdWlsZFRyaWFsSW52aXRlUmVzcG9uc2USYAoTR2V0R3VpbGRXYXJP",
+            "dmVydmlldxIjLmd1aWxkcGIuR2V0R3VpbGRXYXJPdmVydmlld1JlcXVlc3Qa",
+            "JC5ndWlsZHBiLkdldEd1aWxkV2FyT3ZlcnZpZXdSZXNwb25zZRJaChFTZXRH",
+            "dWlsZFdhclN0YW5jZRIhLmd1aWxkcGIuU2V0R3VpbGRXYXJTdGFuY2VSZXF1",
+            "ZXN0GiIuZ3VpbGRwYi5TZXRHdWlsZFdhclN0YW5jZVJlc3BvbnNlEm8KGFJl",
+            "Z2lzdGVyR3VpbGRXYXJHYXJyaXNvbhIoLmd1aWxkcGIuUmVnaXN0ZXJHdWls",
+            "ZFdhckdhcnJpc29uUmVxdWVzdBopLmd1aWxkcGIuUmVnaXN0ZXJHdWlsZFdh",
+            "ckdhcnJpc29uUmVzcG9uc2USYAoTU3RhcnRHdWlsZFdhckJhdHRsZRIjLmd1",
+            "aWxkcGIuU3RhcnRHdWlsZFdhckJhdHRsZVJlcXVlc3QaJC5ndWlsZHBiLlN0",
+            "YXJ0R3VpbGRXYXJCYXR0bGVSZXNwb25zZRJpChZDbGFpbUd1aWxkV2FyTWls",
+            "ZXN0b25lEiYuZ3VpbGRwYi5DbGFpbUd1aWxkV2FyTWlsZXN0b25lUmVxdWVz",
+            "dBonLmd1aWxkcGIuQ2xhaW1HdWlsZFdhck1pbGVzdG9uZVJlc3BvbnNlEmYK",
+            "FUNsYWltR3VpbGRXYXJEaXZpZGVuZBIlLmd1aWxkcGIuQ2xhaW1HdWlsZFdh",
+            "ckRpdmlkZW5kUmVxdWVzdBomLmd1aWxkcGIuQ2xhaW1HdWlsZFdhckRpdmlk",
+            "ZW5kUmVzcG9uc2USXQoSUG9zdEd1aWxkV2FyQm91bnR5EiIuZ3VpbGRwYi5Q",
+            "b3N0R3VpbGRXYXJCb3VudHlSZXF1ZXN0GiMuZ3VpbGRwYi5Qb3N0R3VpbGRX",
+            "YXJCb3VudHlSZXNwb25zZRJgChNUcmFja0d1aWxkV2FyQm91bnR5EiMuZ3Vp",
+            "bGRwYi5UcmFja0d1aWxkV2FyQm91bnR5UmVxdWVzdBokLmd1aWxkcGIuVHJh",
+            "Y2tHdWlsZFdhckJvdW50eVJlc3BvbnNlEmwKF0dldEd1aWxkV2FyQmF0dGxl",
+            "UmVzdWx0EicuZ3VpbGRwYi5HZXRHdWlsZFdhckJhdHRsZVJlc3VsdFJlcXVl",
+            "c3QaKC5ndWlsZHBiLkdldEd1aWxkV2FyQmF0dGxlUmVzdWx0UmVzcG9uc2US",
+            "PwoTTm90aWZ5R3VpbGRXYXJBbGVydBIZLmd1aWxkcGIuR3VpbGRXYXJBbGVy",
+            "dFMyQxoGLkVtcHR5IgWImcgBAhJpChZJbnNwZWN0RmllbGRXYXJUYXJnZXRz",
+            "EiYuZ3VpbGRwYi5JbnNwZWN0RmllbGRXYXJUYXJnZXRzUmVxdWVzdBonLmd1",
+            "aWxkcGIuSW5zcGVjdEZpZWxkV2FyVGFyZ2V0c1Jlc3BvbnNlEnIKGUdldEd1",
+            "aWxkSmlhbmdodUdydWRnZVdhbGwSKS5ndWlsZHBiLkdldEd1aWxkSmlhbmdo",
+            "dUdydWRnZVdhbGxSZXF1ZXN0GiouZ3VpbGRwYi5HZXRHdWlsZEppYW5naHVH",
+            "cnVkZ2VXYWxsUmVzcG9uc2UaBYiowwEBQhNaEWd1aWxkL3Byb3RvL2d1aWxk",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Guildpb.GuildChangeKind), typeof(global::Guildpb.GuildAssetOrderStatus), typeof(global::Guildpb.GuildActivityType), typeof(global::Guildpb.GuildActivityState), typeof(global::Guildpb.GuildTrialLobbyState), typeof(global::Guildpb.GuildWarTargetKind), typeof(global::Guildpb.GuildWarBattleKind), typeof(global::Guildpb.GuildWarBountyTier), typeof(global::Guildpb.GuildWarBountyStatus), typeof(global::Guildpb.GuildWarAlertKind), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -629,7 +647,11 @@ namespace Guildpb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GuildWarAlertS2C), global::Guildpb.GuildWarAlertS2C.Parser, new[]{ "Kind", "LeylineId", "SceneConfigId", "ChannelNo", "AttackerGuildName", "DefenderGuildName", "ActorName", "TargetName", "BannerHpPercent", "BountyId", "BattleId", "RewardSilver", "StreakCount" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.FieldWarTargetBrief), global::Guildpb.FieldWarTargetBrief.Parser, new[]{ "PlayerId", "PlayerName", "GuildId", "GuildName", "PeaceMode", "ProtectUntilMs", "Streak", "InBattle", "BattleId", "IsRivalGuild", "ActiveBountyId", "ActiveBountyRewardSilver", "ActiveBountyTier", "CanAttackNow" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.InspectFieldWarTargetsRequest), global::Guildpb.InspectFieldWarTargetsRequest.Parser, new[]{ "PlayerIds" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.InspectFieldWarTargetsResponse), global::Guildpb.InspectFieldWarTargetsResponse.Parser, new[]{ "ErrorMessage", "Targets" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.InspectFieldWarTargetsResponse), global::Guildpb.InspectFieldWarTargetsResponse.Parser, new[]{ "ErrorMessage", "Targets" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GuildJianghuRivalSummaryView), global::Guildpb.GuildJianghuRivalSummaryView.Parser, new[]{ "RivalGuildId", "RivalGuildName", "Wins", "Losses", "Draws", "LastBattleMs" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GuildJianghuGrudgeRecordView), global::Guildpb.GuildJianghuGrudgeRecordView.Parser, new[]{ "BattleId", "RivalGuildId", "RivalGuildName", "OutcomeForGuild", "WritTier", "TeamSize", "TotalRounds", "OurCaptainName", "RivalCaptainName", "FinishedMs" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GetGuildJianghuGrudgeWallRequest), global::Guildpb.GetGuildJianghuGrudgeWallRequest.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GetGuildJianghuGrudgeWallResponse), global::Guildpb.GetGuildJianghuGrudgeWallResponse.Parser, new[]{ "ErrorMessage", "GuildId", "Rivals", "RecentRecords" }, null, null, null, null)
           }));
     }
     #endregion
@@ -35657,6 +35679,1383 @@ namespace Guildpb {
           }
           case 18: {
             targets_.AddEntriesFrom(ref input, _repeated_targets_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class GuildJianghuRivalSummaryView : pb::IMessage<GuildJianghuRivalSummaryView>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GuildJianghuRivalSummaryView> _parser = new pb::MessageParser<GuildJianghuRivalSummaryView>(() => new GuildJianghuRivalSummaryView());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GuildJianghuRivalSummaryView> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Guildpb.GuildReflection.Descriptor.MessageTypes[102]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GuildJianghuRivalSummaryView() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GuildJianghuRivalSummaryView(GuildJianghuRivalSummaryView other) : this() {
+      rivalGuildId_ = other.rivalGuildId_;
+      rivalGuildName_ = other.rivalGuildName_;
+      wins_ = other.wins_;
+      losses_ = other.losses_;
+      draws_ = other.draws_;
+      lastBattleMs_ = other.lastBattleMs_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GuildJianghuRivalSummaryView Clone() {
+      return new GuildJianghuRivalSummaryView(this);
+    }
+
+    /// <summary>Field number for the "rival_guild_id" field.</summary>
+    public const int RivalGuildIdFieldNumber = 1;
+    private ulong rivalGuildId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RivalGuildId {
+      get { return rivalGuildId_; }
+      set {
+        rivalGuildId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "rival_guild_name" field.</summary>
+    public const int RivalGuildNameFieldNumber = 2;
+    private string rivalGuildName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RivalGuildName {
+      get { return rivalGuildName_; }
+      set {
+        rivalGuildName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "wins" field.</summary>
+    public const int WinsFieldNumber = 3;
+    private uint wins_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Wins {
+      get { return wins_; }
+      set {
+        wins_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "losses" field.</summary>
+    public const int LossesFieldNumber = 4;
+    private uint losses_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Losses {
+      get { return losses_; }
+      set {
+        losses_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "draws" field.</summary>
+    public const int DrawsFieldNumber = 5;
+    private uint draws_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Draws {
+      get { return draws_; }
+      set {
+        draws_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "last_battle_ms" field.</summary>
+    public const int LastBattleMsFieldNumber = 6;
+    private ulong lastBattleMs_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong LastBattleMs {
+      get { return lastBattleMs_; }
+      set {
+        lastBattleMs_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GuildJianghuRivalSummaryView);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GuildJianghuRivalSummaryView other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (RivalGuildId != other.RivalGuildId) return false;
+      if (RivalGuildName != other.RivalGuildName) return false;
+      if (Wins != other.Wins) return false;
+      if (Losses != other.Losses) return false;
+      if (Draws != other.Draws) return false;
+      if (LastBattleMs != other.LastBattleMs) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (RivalGuildId != 0UL) hash ^= RivalGuildId.GetHashCode();
+      if (RivalGuildName.Length != 0) hash ^= RivalGuildName.GetHashCode();
+      if (Wins != 0) hash ^= Wins.GetHashCode();
+      if (Losses != 0) hash ^= Losses.GetHashCode();
+      if (Draws != 0) hash ^= Draws.GetHashCode();
+      if (LastBattleMs != 0UL) hash ^= LastBattleMs.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (RivalGuildId != 0UL) {
+        output.WriteRawTag(8);
+        output.WriteUInt64(RivalGuildId);
+      }
+      if (RivalGuildName.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(RivalGuildName);
+      }
+      if (Wins != 0) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(Wins);
+      }
+      if (Losses != 0) {
+        output.WriteRawTag(32);
+        output.WriteUInt32(Losses);
+      }
+      if (Draws != 0) {
+        output.WriteRawTag(40);
+        output.WriteUInt32(Draws);
+      }
+      if (LastBattleMs != 0UL) {
+        output.WriteRawTag(48);
+        output.WriteUInt64(LastBattleMs);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (RivalGuildId != 0UL) {
+        output.WriteRawTag(8);
+        output.WriteUInt64(RivalGuildId);
+      }
+      if (RivalGuildName.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(RivalGuildName);
+      }
+      if (Wins != 0) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(Wins);
+      }
+      if (Losses != 0) {
+        output.WriteRawTag(32);
+        output.WriteUInt32(Losses);
+      }
+      if (Draws != 0) {
+        output.WriteRawTag(40);
+        output.WriteUInt32(Draws);
+      }
+      if (LastBattleMs != 0UL) {
+        output.WriteRawTag(48);
+        output.WriteUInt64(LastBattleMs);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (RivalGuildId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RivalGuildId);
+      }
+      if (RivalGuildName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RivalGuildName);
+      }
+      if (Wins != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Wins);
+      }
+      if (Losses != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Losses);
+      }
+      if (Draws != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Draws);
+      }
+      if (LastBattleMs != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(LastBattleMs);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GuildJianghuRivalSummaryView other) {
+      if (other == null) {
+        return;
+      }
+      if (other.RivalGuildId != 0UL) {
+        RivalGuildId = other.RivalGuildId;
+      }
+      if (other.RivalGuildName.Length != 0) {
+        RivalGuildName = other.RivalGuildName;
+      }
+      if (other.Wins != 0) {
+        Wins = other.Wins;
+      }
+      if (other.Losses != 0) {
+        Losses = other.Losses;
+      }
+      if (other.Draws != 0) {
+        Draws = other.Draws;
+      }
+      if (other.LastBattleMs != 0UL) {
+        LastBattleMs = other.LastBattleMs;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            RivalGuildId = input.ReadUInt64();
+            break;
+          }
+          case 18: {
+            RivalGuildName = input.ReadString();
+            break;
+          }
+          case 24: {
+            Wins = input.ReadUInt32();
+            break;
+          }
+          case 32: {
+            Losses = input.ReadUInt32();
+            break;
+          }
+          case 40: {
+            Draws = input.ReadUInt32();
+            break;
+          }
+          case 48: {
+            LastBattleMs = input.ReadUInt64();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            RivalGuildId = input.ReadUInt64();
+            break;
+          }
+          case 18: {
+            RivalGuildName = input.ReadString();
+            break;
+          }
+          case 24: {
+            Wins = input.ReadUInt32();
+            break;
+          }
+          case 32: {
+            Losses = input.ReadUInt32();
+            break;
+          }
+          case 40: {
+            Draws = input.ReadUInt32();
+            break;
+          }
+          case 48: {
+            LastBattleMs = input.ReadUInt64();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class GuildJianghuGrudgeRecordView : pb::IMessage<GuildJianghuGrudgeRecordView>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GuildJianghuGrudgeRecordView> _parser = new pb::MessageParser<GuildJianghuGrudgeRecordView>(() => new GuildJianghuGrudgeRecordView());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GuildJianghuGrudgeRecordView> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Guildpb.GuildReflection.Descriptor.MessageTypes[103]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GuildJianghuGrudgeRecordView() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GuildJianghuGrudgeRecordView(GuildJianghuGrudgeRecordView other) : this() {
+      battleId_ = other.battleId_;
+      rivalGuildId_ = other.rivalGuildId_;
+      rivalGuildName_ = other.rivalGuildName_;
+      outcomeForGuild_ = other.outcomeForGuild_;
+      writTier_ = other.writTier_;
+      teamSize_ = other.teamSize_;
+      totalRounds_ = other.totalRounds_;
+      ourCaptainName_ = other.ourCaptainName_;
+      rivalCaptainName_ = other.rivalCaptainName_;
+      finishedMs_ = other.finishedMs_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GuildJianghuGrudgeRecordView Clone() {
+      return new GuildJianghuGrudgeRecordView(this);
+    }
+
+    /// <summary>Field number for the "battle_id" field.</summary>
+    public const int BattleIdFieldNumber = 1;
+    private ulong battleId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong BattleId {
+      get { return battleId_; }
+      set {
+        battleId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "rival_guild_id" field.</summary>
+    public const int RivalGuildIdFieldNumber = 2;
+    private ulong rivalGuildId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RivalGuildId {
+      get { return rivalGuildId_; }
+      set {
+        rivalGuildId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "rival_guild_name" field.</summary>
+    public const int RivalGuildNameFieldNumber = 3;
+    private string rivalGuildName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RivalGuildName {
+      get { return rivalGuildName_; }
+      set {
+        rivalGuildName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "outcome_for_guild" field.</summary>
+    public const int OutcomeForGuildFieldNumber = 4;
+    private uint outcomeForGuild_;
+    /// <summary>
+    /// 1=胜, 2=负, 3=平
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint OutcomeForGuild {
+      get { return outcomeForGuild_; }
+      set {
+        outcomeForGuild_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "writ_tier" field.</summary>
+    public const int WritTierFieldNumber = 5;
+    private uint writTier_;
+    /// <summary>
+    /// 1=普通战书, 2=金帖生死状
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint WritTier {
+      get { return writTier_; }
+      set {
+        writTier_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "team_size" field.</summary>
+    public const int TeamSizeFieldNumber = 6;
+    private uint teamSize_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint TeamSize {
+      get { return teamSize_; }
+      set {
+        teamSize_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "total_rounds" field.</summary>
+    public const int TotalRoundsFieldNumber = 7;
+    private uint totalRounds_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint TotalRounds {
+      get { return totalRounds_; }
+      set {
+        totalRounds_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "our_captain_name" field.</summary>
+    public const int OurCaptainNameFieldNumber = 8;
+    private string ourCaptainName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string OurCaptainName {
+      get { return ourCaptainName_; }
+      set {
+        ourCaptainName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "rival_captain_name" field.</summary>
+    public const int RivalCaptainNameFieldNumber = 9;
+    private string rivalCaptainName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RivalCaptainName {
+      get { return rivalCaptainName_; }
+      set {
+        rivalCaptainName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "finished_ms" field.</summary>
+    public const int FinishedMsFieldNumber = 10;
+    private ulong finishedMs_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong FinishedMs {
+      get { return finishedMs_; }
+      set {
+        finishedMs_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GuildJianghuGrudgeRecordView);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GuildJianghuGrudgeRecordView other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (BattleId != other.BattleId) return false;
+      if (RivalGuildId != other.RivalGuildId) return false;
+      if (RivalGuildName != other.RivalGuildName) return false;
+      if (OutcomeForGuild != other.OutcomeForGuild) return false;
+      if (WritTier != other.WritTier) return false;
+      if (TeamSize != other.TeamSize) return false;
+      if (TotalRounds != other.TotalRounds) return false;
+      if (OurCaptainName != other.OurCaptainName) return false;
+      if (RivalCaptainName != other.RivalCaptainName) return false;
+      if (FinishedMs != other.FinishedMs) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (BattleId != 0UL) hash ^= BattleId.GetHashCode();
+      if (RivalGuildId != 0UL) hash ^= RivalGuildId.GetHashCode();
+      if (RivalGuildName.Length != 0) hash ^= RivalGuildName.GetHashCode();
+      if (OutcomeForGuild != 0) hash ^= OutcomeForGuild.GetHashCode();
+      if (WritTier != 0) hash ^= WritTier.GetHashCode();
+      if (TeamSize != 0) hash ^= TeamSize.GetHashCode();
+      if (TotalRounds != 0) hash ^= TotalRounds.GetHashCode();
+      if (OurCaptainName.Length != 0) hash ^= OurCaptainName.GetHashCode();
+      if (RivalCaptainName.Length != 0) hash ^= RivalCaptainName.GetHashCode();
+      if (FinishedMs != 0UL) hash ^= FinishedMs.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (BattleId != 0UL) {
+        output.WriteRawTag(8);
+        output.WriteUInt64(BattleId);
+      }
+      if (RivalGuildId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(RivalGuildId);
+      }
+      if (RivalGuildName.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RivalGuildName);
+      }
+      if (OutcomeForGuild != 0) {
+        output.WriteRawTag(32);
+        output.WriteUInt32(OutcomeForGuild);
+      }
+      if (WritTier != 0) {
+        output.WriteRawTag(40);
+        output.WriteUInt32(WritTier);
+      }
+      if (TeamSize != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(TeamSize);
+      }
+      if (TotalRounds != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(TotalRounds);
+      }
+      if (OurCaptainName.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(OurCaptainName);
+      }
+      if (RivalCaptainName.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(RivalCaptainName);
+      }
+      if (FinishedMs != 0UL) {
+        output.WriteRawTag(80);
+        output.WriteUInt64(FinishedMs);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (BattleId != 0UL) {
+        output.WriteRawTag(8);
+        output.WriteUInt64(BattleId);
+      }
+      if (RivalGuildId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(RivalGuildId);
+      }
+      if (RivalGuildName.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RivalGuildName);
+      }
+      if (OutcomeForGuild != 0) {
+        output.WriteRawTag(32);
+        output.WriteUInt32(OutcomeForGuild);
+      }
+      if (WritTier != 0) {
+        output.WriteRawTag(40);
+        output.WriteUInt32(WritTier);
+      }
+      if (TeamSize != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(TeamSize);
+      }
+      if (TotalRounds != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(TotalRounds);
+      }
+      if (OurCaptainName.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(OurCaptainName);
+      }
+      if (RivalCaptainName.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(RivalCaptainName);
+      }
+      if (FinishedMs != 0UL) {
+        output.WriteRawTag(80);
+        output.WriteUInt64(FinishedMs);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (BattleId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BattleId);
+      }
+      if (RivalGuildId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RivalGuildId);
+      }
+      if (RivalGuildName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RivalGuildName);
+      }
+      if (OutcomeForGuild != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(OutcomeForGuild);
+      }
+      if (WritTier != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WritTier);
+      }
+      if (TeamSize != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TeamSize);
+      }
+      if (TotalRounds != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TotalRounds);
+      }
+      if (OurCaptainName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OurCaptainName);
+      }
+      if (RivalCaptainName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RivalCaptainName);
+      }
+      if (FinishedMs != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(FinishedMs);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GuildJianghuGrudgeRecordView other) {
+      if (other == null) {
+        return;
+      }
+      if (other.BattleId != 0UL) {
+        BattleId = other.BattleId;
+      }
+      if (other.RivalGuildId != 0UL) {
+        RivalGuildId = other.RivalGuildId;
+      }
+      if (other.RivalGuildName.Length != 0) {
+        RivalGuildName = other.RivalGuildName;
+      }
+      if (other.OutcomeForGuild != 0) {
+        OutcomeForGuild = other.OutcomeForGuild;
+      }
+      if (other.WritTier != 0) {
+        WritTier = other.WritTier;
+      }
+      if (other.TeamSize != 0) {
+        TeamSize = other.TeamSize;
+      }
+      if (other.TotalRounds != 0) {
+        TotalRounds = other.TotalRounds;
+      }
+      if (other.OurCaptainName.Length != 0) {
+        OurCaptainName = other.OurCaptainName;
+      }
+      if (other.RivalCaptainName.Length != 0) {
+        RivalCaptainName = other.RivalCaptainName;
+      }
+      if (other.FinishedMs != 0UL) {
+        FinishedMs = other.FinishedMs;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            BattleId = input.ReadUInt64();
+            break;
+          }
+          case 16: {
+            RivalGuildId = input.ReadUInt64();
+            break;
+          }
+          case 26: {
+            RivalGuildName = input.ReadString();
+            break;
+          }
+          case 32: {
+            OutcomeForGuild = input.ReadUInt32();
+            break;
+          }
+          case 40: {
+            WritTier = input.ReadUInt32();
+            break;
+          }
+          case 48: {
+            TeamSize = input.ReadUInt32();
+            break;
+          }
+          case 56: {
+            TotalRounds = input.ReadUInt32();
+            break;
+          }
+          case 66: {
+            OurCaptainName = input.ReadString();
+            break;
+          }
+          case 74: {
+            RivalCaptainName = input.ReadString();
+            break;
+          }
+          case 80: {
+            FinishedMs = input.ReadUInt64();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            BattleId = input.ReadUInt64();
+            break;
+          }
+          case 16: {
+            RivalGuildId = input.ReadUInt64();
+            break;
+          }
+          case 26: {
+            RivalGuildName = input.ReadString();
+            break;
+          }
+          case 32: {
+            OutcomeForGuild = input.ReadUInt32();
+            break;
+          }
+          case 40: {
+            WritTier = input.ReadUInt32();
+            break;
+          }
+          case 48: {
+            TeamSize = input.ReadUInt32();
+            break;
+          }
+          case 56: {
+            TotalRounds = input.ReadUInt32();
+            break;
+          }
+          case 66: {
+            OurCaptainName = input.ReadString();
+            break;
+          }
+          case 74: {
+            RivalCaptainName = input.ReadString();
+            break;
+          }
+          case 80: {
+            FinishedMs = input.ReadUInt64();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class GetGuildJianghuGrudgeWallRequest : pb::IMessage<GetGuildJianghuGrudgeWallRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GetGuildJianghuGrudgeWallRequest> _parser = new pb::MessageParser<GetGuildJianghuGrudgeWallRequest>(() => new GetGuildJianghuGrudgeWallRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GetGuildJianghuGrudgeWallRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Guildpb.GuildReflection.Descriptor.MessageTypes[104]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetGuildJianghuGrudgeWallRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetGuildJianghuGrudgeWallRequest(GetGuildJianghuGrudgeWallRequest other) : this() {
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetGuildJianghuGrudgeWallRequest Clone() {
+      return new GetGuildJianghuGrudgeWallRequest(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GetGuildJianghuGrudgeWallRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GetGuildJianghuGrudgeWallRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GetGuildJianghuGrudgeWallRequest other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class GetGuildJianghuGrudgeWallResponse : pb::IMessage<GetGuildJianghuGrudgeWallResponse>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GetGuildJianghuGrudgeWallResponse> _parser = new pb::MessageParser<GetGuildJianghuGrudgeWallResponse>(() => new GetGuildJianghuGrudgeWallResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GetGuildJianghuGrudgeWallResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Guildpb.GuildReflection.Descriptor.MessageTypes[105]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetGuildJianghuGrudgeWallResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetGuildJianghuGrudgeWallResponse(GetGuildJianghuGrudgeWallResponse other) : this() {
+      errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+      guildId_ = other.guildId_;
+      rivals_ = other.rivals_.Clone();
+      recentRecords_ = other.recentRecords_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetGuildJianghuGrudgeWallResponse Clone() {
+      return new GetGuildJianghuGrudgeWallResponse(this);
+    }
+
+    /// <summary>Field number for the "error_message" field.</summary>
+    public const int ErrorMessageFieldNumber = 1;
+    private global::TipInfoMessage errorMessage_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::TipInfoMessage ErrorMessage {
+      get { return errorMessage_; }
+      set {
+        errorMessage_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "guild_id" field.</summary>
+    public const int GuildIdFieldNumber = 2;
+    private ulong guildId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong GuildId {
+      get { return guildId_; }
+      set {
+        guildId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "rivals" field.</summary>
+    public const int RivalsFieldNumber = 3;
+    private static readonly pb::FieldCodec<global::Guildpb.GuildJianghuRivalSummaryView> _repeated_rivals_codec
+        = pb::FieldCodec.ForMessage(26, global::Guildpb.GuildJianghuRivalSummaryView.Parser);
+    private readonly pbc::RepeatedField<global::Guildpb.GuildJianghuRivalSummaryView> rivals_ = new pbc::RepeatedField<global::Guildpb.GuildJianghuRivalSummaryView>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::Guildpb.GuildJianghuRivalSummaryView> Rivals {
+      get { return rivals_; }
+    }
+
+    /// <summary>Field number for the "recent_records" field.</summary>
+    public const int RecentRecordsFieldNumber = 4;
+    private static readonly pb::FieldCodec<global::Guildpb.GuildJianghuGrudgeRecordView> _repeated_recentRecords_codec
+        = pb::FieldCodec.ForMessage(34, global::Guildpb.GuildJianghuGrudgeRecordView.Parser);
+    private readonly pbc::RepeatedField<global::Guildpb.GuildJianghuGrudgeRecordView> recentRecords_ = new pbc::RepeatedField<global::Guildpb.GuildJianghuGrudgeRecordView>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::Guildpb.GuildJianghuGrudgeRecordView> RecentRecords {
+      get { return recentRecords_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GetGuildJianghuGrudgeWallResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GetGuildJianghuGrudgeWallResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+      if (GuildId != other.GuildId) return false;
+      if(!rivals_.Equals(other.rivals_)) return false;
+      if(!recentRecords_.Equals(other.recentRecords_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+      if (GuildId != 0UL) hash ^= GuildId.GetHashCode();
+      hash ^= rivals_.GetHashCode();
+      hash ^= recentRecords_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (errorMessage_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(ErrorMessage);
+      }
+      if (GuildId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(GuildId);
+      }
+      rivals_.WriteTo(output, _repeated_rivals_codec);
+      recentRecords_.WriteTo(output, _repeated_recentRecords_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (errorMessage_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(ErrorMessage);
+      }
+      if (GuildId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(GuildId);
+      }
+      rivals_.WriteTo(ref output, _repeated_rivals_codec);
+      recentRecords_.WriteTo(ref output, _repeated_recentRecords_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (errorMessage_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+      }
+      if (GuildId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(GuildId);
+      }
+      size += rivals_.CalculateSize(_repeated_rivals_codec);
+      size += recentRecords_.CalculateSize(_repeated_recentRecords_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GetGuildJianghuGrudgeWallResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.errorMessage_ != null) {
+        if (errorMessage_ == null) {
+          ErrorMessage = new global::TipInfoMessage();
+        }
+        ErrorMessage.MergeFrom(other.ErrorMessage);
+      }
+      if (other.GuildId != 0UL) {
+        GuildId = other.GuildId;
+      }
+      rivals_.Add(other.rivals_);
+      recentRecords_.Add(other.recentRecords_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (errorMessage_ == null) {
+              ErrorMessage = new global::TipInfoMessage();
+            }
+            input.ReadMessage(ErrorMessage);
+            break;
+          }
+          case 16: {
+            GuildId = input.ReadUInt64();
+            break;
+          }
+          case 26: {
+            rivals_.AddEntriesFrom(input, _repeated_rivals_codec);
+            break;
+          }
+          case 34: {
+            recentRecords_.AddEntriesFrom(input, _repeated_recentRecords_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (errorMessage_ == null) {
+              ErrorMessage = new global::TipInfoMessage();
+            }
+            input.ReadMessage(ErrorMessage);
+            break;
+          }
+          case 16: {
+            GuildId = input.ReadUInt64();
+            break;
+          }
+          case 26: {
+            rivals_.AddEntriesFrom(ref input, _repeated_rivals_codec);
+            break;
+          }
+          case 34: {
+            recentRecords_.AddEntriesFrom(ref input, _repeated_recentRecords_codec);
             break;
           }
         }

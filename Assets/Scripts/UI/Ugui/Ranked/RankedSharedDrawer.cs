@@ -4,6 +4,7 @@ using System.Globalization;
 using Match;
 using MmorpgClient.Game.Rank;
 using MmorpgClient.Game.Ranked;
+using MmorpgClient.Table;
 using Rankpb;
 using TMPro;
 using UnityEngine;
@@ -13,16 +14,21 @@ using static MmorpgClient.UI.Ugui.Ranked.RankedArtCatalog;
 namespace MmorpgClient.UI.Ugui.Ranked
 {
     using Transform = UnityEngine.Transform;
-    public enum RankedDrawerTab { Leaderboard = 0, SeasonRecord = 1, Cosmetics = 2 }
+    public enum RankedDrawerTab { Leaderboard = 0, SeasonRecord = 1, Cosmetics = 2, FeaturedBuilds = 3 }
 
     /// <summary>
     /// 论剑右侧共享抽屉（1920x1080 坐标系，严格采用 component-export-manifest.json 的 pngDisplayRect 摆位）：
     /// Tab 0：排行榜（Top100 / 我的附近 + 翻页 + 异常/未亮段/上季结算中态）；
-    /// Tab 1：赛季记录（本季战绩、4/8/12 三档展示权益、历届榜首与从缺/结算中态）；
-    /// Tab 2：已获外观（实景名片与玉符预览、头像纹样/名片底纹/青云玉符佩戴与隐藏开关）。
+    /// Tab 1：赛季记录（本季战绩、4/8/12 三档展示权益、宿敌账本与历届榜首）；
+    /// Tab 2：已获外观（实景名片与玉符预览、头像纹样/名片底纹/青云玉符佩戴与隐藏开关）；
+    /// Tab 3：问道名局（本季高段位热门配招汇总、直看公开名局回放、一键套用已拥有的赛季印与首发灵宠）。
     /// </summary>
     public sealed class RankedSharedDrawer
     {
+        private const int DrawerTabCount = 4;
+        private const int MaxFeaturedCards = 4;
+        private const string DefaultFeaturedStatus = "本季高段位热门配招：可观摩公开名局回放，或一键套用已拥有的赛季印与首发宠。";
+
         private sealed class RankRowView
         {
             public GameObject Root;
@@ -43,19 +49,34 @@ namespace MmorpgClient.UI.Ugui.Ranked
             public TMP_Text ActionLabel;
         }
 
+        private sealed class FeaturedBuildRowView
+        {
+            public GameObject Root;
+            public Image Bg;
+            public TMP_Text TitleText;
+            public TMP_Text LoadoutText;
+            public TMP_Text SkillsText;
+            public Button ReplayBtn;
+            public Button CopyBtn;
+            public RankedFeaturedBuildView BoundBuild;
+        }
+
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public RankedDrawerTab CurrentTab { get; private set; } = RankedDrawerTab.Leaderboard;
 
         public event Action Closed;
+        public event Action<RankedDrawerTab> TabSelected;
         public event Action<bool> LeaderboardModeRequested; // true = around self, false = top page
         public event Action<uint> LeaderboardPageRequested;
         public event Action LeaderboardRefreshRequested;
         public event Action<RankedCosmeticLoadout> CosmeticUpdateRequested;
+        public event Action<ulong> WatchFeaturedReplayRequested;
+        public event Action<RankedFeaturedBuildView> ApplyFeaturedBuildRequested;
 
         private readonly RectTransform _root;
-        private readonly Image[] _tabImages = new Image[3];
-        private readonly TMP_Text[] _tabLabels = new TMP_Text[3];
-        private readonly GameObject[] _tabBodies = new GameObject[3];
+        private readonly Image[] _tabImages = new Image[DrawerTabCount];
+        private readonly TMP_Text[] _tabLabels = new TMP_Text[DrawerTabCount];
+        private readonly GameObject[] _tabBodies = new GameObject[DrawerTabCount];
 
         // Tab 0: 排行榜
         private bool _aroundMode;
@@ -80,6 +101,11 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private readonly TMP_Text[] _seasonHonorStatus = new TMP_Text[3];
         private TMP_Text _cosmeticStatusText;
         private Sprite _portraitOverride;
+
+        // Tab 3: 问道名局（V6）
+        private TMP_Text _featuredStatusText;
+        private TMP_Text _featuredEmptyText;
+        private readonly FeaturedBuildRowView[] _featuredRows = new FeaturedBuildRowView[MaxFeaturedCards];
 
         private RankedProfileSnapshot _profile;
         private string _playerName = "道友";
@@ -109,15 +135,15 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 "guild_button_secondary", "收起", 21f, JadeDark, out _, out _);
             collapse.onClick.AddListener(Hide);
 
-            // 3 个顶栏页签：统一使用已验收帮会页签切片（guild_tab_selected / guild_tab_normal）
-            string[] tabTitles = { "排行榜", "赛季记录", "玉符与称号" };
-            float[] tabXs = { 950f, 1211f, 1472f };
-            for (int i = 0; i < 3; i++)
+            // 4 个顶栏页签：统一使用已验收帮会页签切片（guild_tab_selected / guild_tab_normal）
+            string[] tabTitles = { "排行榜", "赛季记录", "玉符与称号", "问道名局" };
+            float[] tabXs = { 950f, 1148f, 1346f, 1544f };
+            for (int i = 0; i < DrawerTabCount; i++)
             {
                 int idx = i;
-                var tabBtn = CreateGuildButton("DrawerTab_" + i, _root, tabXs[i], 348f, 248f, 59f,
+                var tabBtn = CreateGuildButton("DrawerTab_" + i, _root, tabXs[i], 348f, 190f, 59f,
                     i == 0 ? "guild_tab_selected" : "guild_tab_normal",
-                    tabTitles[i], 23f, i == 0 ? ButtonGoldText : InkSecondary,
+                    tabTitles[i], 21f, i == 0 ? ButtonGoldText : InkSecondary,
                     out _tabImages[i], out _tabLabels[i]);
                 tabBtn.onClick.AddListener(() => SelectTab((RankedDrawerTab)idx));
             }
@@ -125,6 +151,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             BuildLeaderboardTab();
             BuildSeasonRecordTab();
             BuildCosmeticsTab();
+            BuildFeaturedBuildsTab();
 
             _root.gameObject.SetActive(false);
         }
@@ -133,6 +160,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
         {
             _root.SetAsLastSibling();
             _root.gameObject.SetActive(true);
+            SetFeaturedBuildStatus(DefaultFeaturedStatus);
             SelectTab(tab);
         }
 
@@ -146,15 +174,23 @@ namespace MmorpgClient.UI.Ugui.Ranked
         public void SelectTab(RankedDrawerTab tab)
         {
             CurrentTab = tab;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < DrawerTabCount; i++)
             {
                 bool active = (int)tab == i;
                 _tabImages[i].sprite = LoadGuildApproved(active ? "guild_tab_selected" : "guild_tab_normal");
                 _tabLabels[i].color = active ? ButtonGoldText : InkSecondary;
                 _tabBodies[i].SetActive(active);
             }
+            TabSelected?.Invoke(tab);
             if (tab == RankedDrawerTab.Leaderboard)
                 LeaderboardModeRequested?.Invoke(_aroundMode);
+        }
+
+        public void SetFeaturedBuildStatus(string status, bool isError = false)
+        {
+            if (_featuredStatusText == null) return;
+            _featuredStatusText.text = string.IsNullOrEmpty(status) ? DefaultFeaturedStatus : status;
+            _featuredStatusText.color = isError ? WarnRed : BronzeHint;
         }
 
         public void RenderProfile(RankedProfileSnapshot profile, string playerName, bool cosmeticSaving, string statusText,
@@ -165,6 +201,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _portraitOverride = portraitOverride;
             RenderSeasonRecord();
             RenderCosmetics(cosmeticSaving, statusText);
+            RenderFeaturedBuilds();
         }
 
         public void RenderLeaderboard(RankClient rankClient, RankedProfileSnapshot profile)
@@ -330,13 +367,13 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _rewardSummaryText = CreateLabel("SeasonRewardBody", rewardCard.transform, 28f, 50f, 730f, 118f,
                 "", 18f, InkSecondary, wrap: true);
 
-            // 历届赛季与榜首卡
+            // 宿敌账本与历届赛季榜首卡
             var pastCard = CreateGuildArt("PreviousSeasonsCard", body, 950f, 772f, 786f, 148f, "guild_row_normal");
             CreateGuildArt("PastSeasonsHeader", pastCard.transform, 0f, 0f, 786f, 42f, "guild_table_header");
             CreateLabel("PastSeasonsTitle", pastCard.transform, 28f, 6f, 730f, 32f,
-                "历届赛季与榜首记录", 20f, JadeHeading, bold: true);
-            _pastSeasonsText = CreateLabel("PastSeasonsBody", pastCard.transform, 28f, 48f, 730f, 92f,
-                "暂无已封榜的历届赛季记录。", 18f, InkMuted, wrap: true);
+                "宿敌账本与历届记录", 20f, JadeHeading, bold: true);
+            _pastSeasonsText = CreateLabel("PastSeasonsBody", pastCard.transform, 28f, 48f, 730f, 94f,
+                "暂无宿敌交手与已封榜赛季记录。", 17f, InkMuted, wrap: true);
 
             body.gameObject.SetActive(false);
         }
@@ -348,7 +385,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 _seasonTitleText.text = "论剑档案同步中…";
                 _seasonStatsText.text = "连接就绪后将显示本季段位、积分与历届记录。";
                 _rewardSummaryText.text = "4 场：头像纹样 · 8 场：名片底纹 · 12 场：青云玉符";
-                _pastSeasonsText.text = "暂无历届赛季记录。";
+                _pastSeasonsText.text = "暂无宿敌交手与历届赛季记录。";
                 return;
             }
 
@@ -386,16 +423,34 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 $"• {winTarget} 胜永久「锋芒」称号：{(hasWinTitle ? "已取得（可于已获外观佩戴）" : $"{Math.Min(wins, winTarget)}/{winTarget}")}\n" +
                 $"• 封榜荣誉（云章 / 天枢 / 无双）：{(hasRankHonor ? "已取得永久段位徽章与称号" : "赛季封榜达云章及以上永久解锁")}";
 
+            var lines = new List<string>(5);
+            if (_profile.TopRivals != null && _profile.TopRivals.Count > 0)
+            {
+                var rivalParts = new List<string>(3);
+                int rivalCount = Math.Min(_profile.TopRivals.Count, 3);
+                for (int i = 0; i < rivalCount; i++)
+                {
+                    var r = _profile.TopRivals[i];
+                    if (r == null || r.OpponentId == 0UL) continue;
+                    string oppName = string.IsNullOrEmpty(r.OpponentName) ? $"道友{r.OpponentId}" : r.OpponentName;
+                    bool canRevenge = r.LastOutcome == 2u || r.Losses > r.Wins;
+                    rivalParts.Add(canRevenge
+                        ? $"{oppName} {r.Wins}胜{r.Losses}负(可雪耻)"
+                        : $"{oppName} {r.Wins}胜{r.Losses}负");
+                }
+                if (rivalParts.Count > 0)
+                    lines.Add("本季宿敌：" + string.Join(" · ", rivalParts));
+            }
+
             if (_profile.PastSeasons.Count == 0)
             {
-                _pastSeasonsText.text = s.State == RankedSeasonState.Settling
+                lines.Add(s.State == RankedSeasonState.Settling
                     ? "上季结算中：正在排空终局、封榜并落发赛季荣誉。"
-                    : "本季为首测赛季，封榜后可在此查看历届榜首与个人最终名次。";
+                    : "本季为首测赛季，封榜后可在此查看历届榜首与个人最终名次。");
             }
             else
             {
-                var lines = new List<string>();
-                for (int i = 0; i < Math.Min(_profile.PastSeasons.Count, 3); i++)
+                for (int i = 0; i < Math.Min(_profile.PastSeasons.Count, 2); i++)
                 {
                     var ps = _profile.PastSeasons[i];
                     if (ps.State == RankedSeasonState.Settling)
@@ -418,8 +473,8 @@ namespace MmorpgClient.UI.Ugui.Ranked
                     string rankStr = last.FinalRank > 0 ? $"第 {last.FinalRank} 名" : "未上榜";
                     lines.Add($"本人上季：{last.SeasonKey} · {RankedFormatting.TierDisplayName(last.CurrentTier, last.Qualified)} · {rankStr}");
                 }
-                _pastSeasonsText.text = string.Join("\n", lines);
             }
+            _pastSeasonsText.text = string.Join("\n", lines);
         }
 
         private void BuildCosmeticsTab()

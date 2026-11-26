@@ -414,5 +414,111 @@ namespace MmorpgClient.Tests.EditMode.Ranked
             Assert.That(recovered.FromRecovery, Is.True);
             Assert.That(recovered.Surrendered, Is.True);
         }
+
+        [Test]
+        public void RankedV6_RivalryRevengeAndFeaturedBuildCopyPlan()
+        {
+            // 1. 宿敌标签与雪耻复仇印文案
+            Assert.That(RankedFormatting.PrepRivalryTagText(new RankedRivalryEncounter
+            {
+                OpponentPlayerId = 2002UL,
+                OpponentName = "玄烈",
+                Wins = 1u,
+                Losses = 2u,
+                LastOutcome = 2u,
+            }), Is.EqualTo("宿敌 · 玄烈 1胜2负(可雪耻)"));
+            Assert.That(RankedFormatting.RevengeStampText("玄烈", 2u, 2u), Is.EqualTo("雪耻复仇 · 胜玄烈(2胜2负)"));
+            Assert.That(RankedFormatting.FormatWinRatePercent(3u, 4u), Is.EqualTo("75%"));
+
+            // 2. Profile 透传 FeaturedBuilds 与 TopRivals
+            var profileResp = new GetRankedProfileResponse
+            {
+                CurrentSeason = new RankedSeasonInfo { SeasonId = 1u, SeasonKey = "s1", SeasonName = "第一赛季" },
+            };
+            profileResp.TopRivals.Add(new RankedRivalrySummary
+            {
+                OpponentId = 2002UL,
+                OpponentName = "玄烈",
+                Wins = 2u,
+                Losses = 2u,
+                LastOutcome = 1u,
+            });
+            profileResp.FeaturedBuilds.Add(new RankedFeaturedBuildView
+            {
+                BuildKey = "seal102:pet201:s1001,1002",
+                SeasonSealId = 102u,
+                StarterPetTableId = 201u,
+                Appearances = 4u,
+                Wins = 3u,
+                FeaturedBattleId = 99001UL,
+                FeaturedPlayerName = "清风",
+                FeaturedRatingCenti = 178500L,
+            });
+            profileResp.FeaturedBuilds[0].CoreSkillIds.Add(1001u);
+            profileResp.FeaturedBuilds[0].CoreSkillIds.Add(1002u);
+
+            var snap = RankedProfileSnapshot.FromResponse(profileResp);
+            Assert.That(snap.TopRivals.Count, Is.EqualTo(1));
+            Assert.That(snap.TopRivals[0].OpponentName, Is.EqualTo("玄烈"));
+            Assert.That(snap.FeaturedBuilds.Count, Is.EqualTo(1));
+            Assert.That(snap.FeaturedBuilds[0].FeaturedBattleId, Is.EqualTo(99001UL));
+
+            // 3. 结算态复仇字段合并（BattleEnd 现场优先，Match 权威补齐）
+            var revengeEnd = new BattleEndS2C
+            {
+                BattleId = 99002UL,
+                SeasonId = 1u,
+                Outcome = eBattleOutcome.BattleOutcomeSideAWin,
+                Settlement = new BattleSettlementData
+                {
+                    BattleId = 99002UL,
+                    CompetitiveRanked = true,
+                    SeasonId = 1u,
+                    MatchMode = (uint)MatchMode.PvpSolo,
+                    Outcome = eBattleOutcome.BattleOutcomeSideAWin,
+                    TotalRounds = 7u,
+                    RevengedRival = true,
+                    RevengedOpponentName = "玄烈",
+                    RevengedWinsAfter = 2u,
+                    RevengedLossesAfter = 2u,
+                },
+            };
+            var revengeState = _client.BeginSettlementFromBattleEnd(revengeEnd, 0u, 1u);
+            Assert.That(revengeState.EffectiveRevengedRival, Is.True);
+            Assert.That(revengeState.EffectiveRevengedOpponentName, Is.EqualTo("玄烈"));
+            Assert.That(revengeState.EffectiveRevengedWinsAfter, Is.EqualTo(2u));
+            Assert.That(revengeState.EffectiveRevengedLossesAfter, Is.EqualTo(2u));
+
+            // 4. 抄作业计划：已拥有赛季印 + 拥有未出战宠（选最高等级实例）
+            var season = new SeasonStateSnapshot { SeasonId = 1u, Available = true, EquippedSealId = 101u };
+            season.Seals.Add(new SeasonSealOption { SealId = 101u, Name = "破阵印" });
+            season.Seals.Add(new SeasonSealOption { SealId = 102u, Name = "镇魂印" });
+            var pets = new PetListInfo { ActivePetId = 5001UL };
+            pets.Pets.Add(new PetInfo { PetId = 5001UL, PetTableId = 202u, Level = 40u, Name = "灵狐" });
+            pets.Pets.Add(new PetInfo { PetId = 5002UL, PetTableId = 201u, Level = 35u, Name = "金猊甲" });
+            pets.Pets.Add(new PetInfo { PetId = 5003UL, PetTableId = 201u, Level = 48u, Name = "金猊乙" });
+
+            var copyPlan = RankedFormatting.EvaluateFeaturedBuildCopyPlan(
+                snap.FeaturedBuilds[0], season, pets,
+                id => id == 102u ? "镇魂印" : null,
+                id => id == 201u ? "金猊" : null);
+            Assert.That(copyPlan.CanEquipSeal, Is.True);
+            Assert.That(copyPlan.TargetSealId, Is.EqualTo(102u));
+            Assert.That(copyPlan.CanSummonPet, Is.True);
+            Assert.That(copyPlan.TargetPetId, Is.EqualTo(5003UL));
+            Assert.That(copyPlan.HasAnyWriteAction, Is.True);
+
+            // 5. 抄作业差异：缺少赛季印与缺少首发宠时明确报告且不触发写操作
+            var missingPlan = RankedFormatting.EvaluateFeaturedBuildCopyPlan(
+                new RankedFeaturedBuildView { SeasonSealId = 104u, StarterPetTableId = 209u },
+                season, pets,
+                id => id == 104u ? "青冥印" : null,
+                id => id == 209u ? "玄龟" : null);
+            Assert.That(missingPlan.HasAnyWriteAction, Is.False);
+            Assert.That(missingPlan.MissingSeal, Is.True);
+            Assert.That(missingPlan.MissingPet, Is.True);
+            Assert.That(missingPlan.SummaryMessage, Does.Contain("缺少赛季印「青冥印」"));
+            Assert.That(missingPlan.SummaryMessage, Does.Contain("未拥有首发宠「玄龟」"));
+        }
     }
 }

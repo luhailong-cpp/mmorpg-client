@@ -249,5 +249,13 @@ namespace MmorpgClient.Net.Generated
         public static void InspectFieldWarTargets(IRpcChannel channel, global::Guildpb.InspectFieldWarTargetsRequest request,
             RpcDone<global::Guildpb.InspectFieldWarTargetsResponse> done)
             => channel.CallMethod(InspectFieldWarTargetsMessageId, request, global::Guildpb.InspectFieldWarTargetsResponse.Parser, done);
+
+        public const uint GetGuildJianghuGrudgeWallMessageId = 547;
+        /// <summary>
+        /// 江湖恩怨·帮派生死状恩怨墙(docs/design/battle-jianghu-grudge-duel-bounty-v1.md §2.2):仅本帮成员可读。
+        /// </summary>
+        public static void GetGuildJianghuGrudgeWall(IRpcChannel channel, global::Guildpb.GetGuildJianghuGrudgeWallRequest request,
+            RpcDone<global::Guildpb.GetGuildJianghuGrudgeWallResponse> done)
+            => channel.CallMethod(GetGuildJianghuGrudgeWallMessageId, request, global::Guildpb.GetGuildJianghuGrudgeWallResponse.Parser, done);
     }
 }

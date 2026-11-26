@@ -237,8 +237,23 @@ namespace MmorpgClient.Tests.EditMode.CityNpc
             Assert.That(state.ArchiveErrand("errand_bajing_ink"), Is.True);
             Assert.That(state.ArchivedErrandCount, Is.EqualTo(1));
 
-            // 2. 战斗结算：木桩(301)/逃跑/战败不点亮；残局(311)与奇谈(321)权威胜利点亮一次
-            Assert.That(state.ObserveAuthoritativeBattleEnd(MakeBattleEnd(301u, win: true)), Is.False);
+            // 2. 战斗结算：木桩(301)记录实战输出与历史最佳对比；残局(311)逃跑/战败不点亮，权威胜利点亮一次
+            Assert.That(state.ObserveAuthoritativeBattleEnd(MakeBattleEnd(301u, win: true, totalDamage: 12000ul, healing: 1500ul, shield: 500ul, controls: 1u, dispels: 1u, rounds: 6u)), Is.True);
+            Assert.That(state.TryGetDummyRecord(301u, out var rec1), Is.True);
+            Assert.That(rec1.AvgDamagePerRound, Is.EqualTo(2000ul));
+            Assert.That(rec1.SupportValue, Is.EqualTo(2000ul));
+            Assert.That(rec1.ControlAndDispelCount, Is.EqualTo(2u));
+            Assert.That(rec1.HasPreviousComparison, Is.False);
+            Assert.That(state.ClearedPuzzleCount, Is.EqualTo(0));
+
+            Assert.That(state.ObserveAuthoritativeBattleEnd(MakeBattleEnd(301u, win: false, totalDamage: 18000ul, healing: 2000ul, shield: 1500ul, controls: 3u, dispels: 1u, rounds: 6u)), Is.True);
+            Assert.That(state.TryGetDummyRecord(301u, out var rec2), Is.True);
+            Assert.That(rec2.AvgDamagePerRound, Is.EqualTo(3000ul));
+            Assert.That(rec2.HasPreviousComparison, Is.True);
+            Assert.That(rec2.DeltaAvgDamagePercent, Is.EqualTo(50));
+            Assert.That(rec2.BestTotalDamage, Is.EqualTo(18000ul));
+            Assert.That(rec2.FormatCompactSummary(), Does.Contain("+50%"));
+
             Assert.That(state.ObserveAuthoritativeBattleEnd(MakeBattleEnd(311u, win: false)), Is.False);
             Assert.That(state.ObserveAuthoritativeBattleEnd(MakeBattleEnd(311u, win: true, fled: true)), Is.False);
             Assert.That(state.ObserveAuthoritativeBattleEnd(MakeBattleEnd(311u, win: true)), Is.True);
@@ -447,8 +462,51 @@ namespace MmorpgClient.Tests.EditMode.CityNpc
             return panel;
         }
 
+        [Test]
+        public void CityNpcState_PersistenceRoundTripIsolatesByPlayerId()
+        {
+            var store = new InMemoryStorage();
+            var session1 = new CityNpcState(store);
+            session1.BindPlayer(7701UL);
+            session1.AcceptErrand("errand_yuexi_rope");
+            session1.ObserveAuthoritativeScene(3u);
+            session1.ArchiveErrand("errand_yuexi_rope");
+            session1.ObserveAuthoritativeBattleEnd(MakeBattleEnd(301u, win: true, totalDamage: 15000ul, rounds: 5u));
+            session1.ObserveAuthoritativeBattleEnd(MakeBattleEnd(312u, win: true));
+            session1.ObserveAuthoritativeBattleEnd(MakeBattleEnd(322u, win: true));
+            session1.CycleCompanionOath();
+            session1.CycleCompanionOath();
+            string expectedOath = session1.SelectedCompanionOathPhrase;
+
+            // 同角色重登恢复全部见闻、木桩历史纪录与同行之约
+            var session2 = new CityNpcState(store);
+            session2.BindPlayer(7701UL);
+            Assert.That(session2.ArchivedErrandCount, Is.EqualTo(1));
+            Assert.That(session2.IsPuzzleCleared(312u), Is.True);
+            Assert.That(session2.IsTaleCleared(322u), Is.True);
+            Assert.That(session2.SelectedCompanionOathPhrase, Is.EqualTo(expectedOath));
+            Assert.That(session2.TryGetDummyRecord(301u, out var restoredDummy), Is.True);
+            Assert.That(restoredDummy.BestTotalDamage, Is.EqualTo(15000ul));
+
+            // 切到另一名角色完全隔离，不串档
+            session2.BindPlayer(7702UL);
+            Assert.That(session2.ArchivedErrandCount, Is.EqualTo(0));
+            Assert.That(session2.ClearedPuzzleCount, Is.EqualTo(0));
+            Assert.That(session2.ClearedTaleCount, Is.EqualTo(0));
+            Assert.That(session2.TryGetDummyRecord(301u, out _), Is.False);
+        }
+
+        private sealed class InMemoryStorage : ICityNpcStateStorage
+        {
+            private readonly Dictionary<ulong, string> _data = new();
+            public string Load(ulong playerId) => _data.TryGetValue(playerId, out var v) ? v : "";
+            public void Save(ulong playerId, string payload) => _data[playerId] = payload ?? "";
+        }
+
         private static global::BattleEndS2C MakeBattleEnd(
-            uint dungeonId, bool win, bool fled = false, uint playerTeamIndex = 0u)
+            uint dungeonId, bool win, bool fled = false, uint playerTeamIndex = 0u,
+            ulong totalDamage = 0ul, ulong healing = 0ul, ulong shield = 0ul,
+            uint controls = 0u, uint dispels = 0u, uint rounds = 3u)
         {
             var outcome = win
                 ? (playerTeamIndex == 0u ? global::eBattleOutcome.BattleOutcomeSideAWin : global::eBattleOutcome.BattleOutcomeSideBWin)
@@ -460,8 +518,13 @@ namespace MmorpgClient.Tests.EditMode.CityNpc
                 {
                     BattleConfigId = dungeonId,
                     PlayerTeamIndex = playerTeamIndex,
-                    TotalRounds = 3u,
-                    Fled = fled
+                    TotalRounds = rounds,
+                    Fled = fled,
+                    TotalDamageDealt = totalDamage,
+                    TotalHealingDone = healing,
+                    TotalShieldGranted = shield,
+                    TotalControlsLanded = controls,
+                    TotalDispelsLanded = dispels
                 }
             };
         }

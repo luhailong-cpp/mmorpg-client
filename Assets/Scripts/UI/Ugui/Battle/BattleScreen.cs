@@ -208,6 +208,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly TMP_Text _prepTeamReadyText;
         private readonly Image[] _prepReadyDots = new Image[5];
         private readonly TMP_Text _prepEnemySummaryText;
+        private readonly RectTransform _prepRivalryTagRoot;
+        private readonly TMP_Text _prepRivalryTagText;
         private readonly RectTransform _prepTeamContent;
         private readonly UnityEngine.UI.ScrollRect _prepTeamScroll;
         private readonly List<GameObject> _prepTeamChips = new();
@@ -858,6 +860,33 @@ namespace MmorpgClient.UI.Ugui.Battle
                 string.Empty, 22f, QdaoUguiTheme.Html("#3E412C"), TextAlignmentOptions.MidlineLeft);
             _prepEnemySummaryText.overflowMode = TextOverflowModes.Ellipsis;
             _prepEnemySummaryText.raycastTarget = false;
+
+            // 论剑 V6 战前宿敌标签（260×44，位于敌方初阵栏右侧，仅本人视角展示，预绑 RankedPlayV6/rivalry_prep_tag + icon_rivalry_crossed）
+            var rivalryBg = BattleUiWidgets.CreatePanel("PrepRivalryTag", _prepPanel, 1288f, 256f, 260f, 44f,
+                SeasonEconomyUiArt.BattleArenaAmber, raycastTarget: false);
+            var rivalryTagSprite = SeasonEconomyUiArt.LoadRankedPlayV6Asset("rivalry_prep_tag");
+            bool hasRivalryTagArt = rivalryTagSprite != null;
+            if (hasRivalryTagArt) SeasonEconomyUiArt.ApplyFixedControlSprite(rivalryBg, rivalryTagSprite, SeasonEconomyUiArt.BattleArenaAmber);
+            else BattleRoundCounter.ApplyNineSlice(rivalryBg, "panel_9slice");
+            _prepRivalryTagRoot = rivalryBg.rectTransform;
+            var rivalryIconSprite = SeasonEconomyUiArt.LoadRankedPlayV6Asset("icon_rivalry_crossed");
+            float rivalryTextX = 12f;
+            if (rivalryIconSprite != null)
+            {
+                var rIcon = QdaoUguiFactory.CreateImage("Icon", _prepRivalryTagRoot, 10f, 8f, 28f, 28f, rivalryIconSprite, false);
+                rIcon.preserveAspect = true;
+                rIcon.color = Color.white;
+                rivalryTextX = 42f;
+            }
+            _prepRivalryTagText = QdaoUguiFactory.CreateText("PrepRivalryTagText", _prepRivalryTagRoot,
+                rivalryTextX, 0f, 252f - rivalryTextX, 44f, string.Empty, 17f,
+                QdaoUguiTheme.Cream, TextAlignmentOptions.MidlineLeft);
+            _prepRivalryTagText.fontStyle = FontStyles.Bold;
+            _prepRivalryTagText.enableAutoSizing = true;
+            _prepRivalryTagText.fontSizeMin = 13f;
+            _prepRivalryTagText.fontSizeMax = 17f;
+            _prepRivalryTagText.raycastTarget = false;
+            _prepRivalryTagRoot.gameObject.SetActive(false);
 
             var teamLbl = QdaoUguiFactory.CreateText("PrepTeamLabel", _prepPanel, 31f, 304f, 114f, 44f,
                 "己方协同", 24f, QdaoUguiTheme.Html("#163C27"), TextAlignmentOptions.Center);
@@ -3090,6 +3119,35 @@ namespace MmorpgClient.UI.Ugui.Battle
                     }
                 }
                 _prepEnemySummaryText.text = enemies.Count > 0 ? string.Join("  ·  ", enemies) : "初阵信息待同步";
+            }
+
+            // 3b. 论剑 V6 宿敌交手标签（仅展示本人视角的敌方宿敌，优先可雪耻目标，避免遮挡敌方初阵文字）
+            if (_prepRivalryTagRoot != null && _prepRivalryTagText != null)
+            {
+                RankedRivalryEncounter topRival = null;
+                if (_prepState != null && _prepState.SelfRivalries.Count > 0)
+                {
+                    for (int i = 0; i < _prepState.SelfRivalries.Count; i++)
+                    {
+                        var r = _prepState.SelfRivalries[i];
+                        if (r == null || (r.Wins + r.Losses) == 0u) continue;
+                        if (topRival == null
+                            || (r.RevengeTarget && !topRival.RevengeTarget)
+                            || (r.RevengeTarget == topRival.RevengeTarget && (r.Wins + r.Losses) > (topRival.Wins + topRival.Losses)))
+                        {
+                            topRival = r;
+                        }
+                    }
+                }
+                string rivalLabel = RankedFormatting.PrepRivalryTagText(topRival);
+                bool showRival = !string.IsNullOrEmpty(rivalLabel);
+                _prepRivalryTagRoot.gameObject.SetActive(showRival);
+                if (showRival) _prepRivalryTagText.text = rivalLabel;
+                if (_prepEnemySummaryText != null)
+                {
+                    var rt = _prepEnemySummaryText.rectTransform;
+                    rt.sizeDelta = new Vector2(showRival ? 1108f : 1380f, rt.sizeDelta.y);
+                }
             }
 
             // 4. 己方同队横向协同条 + 锁定统计竖丸（仅统计 TeamStates）

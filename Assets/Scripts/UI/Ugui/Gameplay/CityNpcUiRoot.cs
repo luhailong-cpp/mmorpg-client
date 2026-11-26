@@ -46,10 +46,26 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public const float ApproachStandOff = 3.2f;
         public const float ApproachTimeoutSeconds = 25f;
         private const float CoopBubbleIntervalSeconds = 22f;
+        private const float ProximityBubbleCheckIntervalSeconds = 1.2f;
+        private const float ProximityBubbleRadius = 22f;
+        private const float ProximityNpcCooldownSeconds = 45f;
 
-        private readonly CityNpcState _state = new();
+        private sealed class PlayerPrefsCityNpcStorage : ICityNpcStateStorage
+        {
+            private const string KeyPrefix = "guiyuan_city_npc_v1_";
+            public string Load(ulong playerId) => PlayerPrefs.GetString(KeyPrefix + playerId, "");
+            public void Save(ulong playerId, string payload)
+            {
+                PlayerPrefs.SetString(KeyPrefix + playerId, payload ?? "");
+                PlayerPrefs.Save();
+            }
+        }
+
+        private readonly CityNpcState _state = new(new PlayerPrefsCityNpcStorage());
         private readonly List<GuiyuanCityNpcActor> _actors = new();
         private readonly List<Button> _hotspots = new();
+        private readonly Dictionary<string, float> _npcProximityCooldowns = new(StringComparer.Ordinal);
+        private float _nextProximityCheckAt;
 
         private GameClient _game;
         private Canvas _canvas;
@@ -197,6 +213,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 EnsureWorldActors();
                 SyncHotspots();
                 TickApproach();
+                TickProximityBubbles();
                 TickSeriesCoopBubble();
             }
             else
@@ -272,6 +289,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             HidePanel();
             ClearWorldActors();
+            _npcProximityCooldowns.Clear();
             _state.Reset();
         }
 
@@ -420,6 +438,41 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             _approachingNpc = null;
             _approachDeadline = 0f;
+        }
+
+        /// <summary>归元城活城近身互动：玩家路过任意原创街坊（≤22 单位且冷却就绪）自动触发头顶「看人下菜碟」气泡。</summary>
+        private void TickProximityBubbles()
+        {
+            if (_window != null && _window.IsVisible) return;
+            float now = Time.unscaledTime;
+            if (now < _nextProximityCheckAt) return;
+            _nextProximityCheckAt = now + ProximityBubbleCheckIntervalSeconds;
+
+            var controller = FindLocalController();
+            if (controller == null) return;
+            var playerFeet = controller.FeetPosition;
+            string activeId = ResolveActiveAppearanceId();
+
+            GuiyuanCityNpcActor bestActor = null;
+            float bestDist = ProximityBubbleRadius;
+            for (int i = 0; i < _actors.Count; ++i)
+            {
+                var actor = _actors[i];
+                if (actor == null || actor.Definition == null) continue;
+                if (_npcProximityCooldowns.TryGetValue(actor.NpcId, out float readyAt) && now < readyAt) continue;
+                float dist = MysteryMerchantNpc.HorizontalDistance(playerFeet, actor.FeetPosition);
+                if (dist <= bestDist)
+                {
+                    bestDist = dist;
+                    bestActor = actor;
+                }
+            }
+            if (bestActor == null) return;
+            _npcProximityCooldowns[bestActor.NpcId] = now + ProximityNpcCooldownSeconds;
+            string line = bestActor.Definition.TryGetCharacterGreeting(activeId, out var custom)
+                ? custom
+                : bestActor.Definition.AmbientBubble;
+            bestActor.ShowBubble(line, 4.2f);
         }
 
         private void TickSeriesCoopBubble()

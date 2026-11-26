@@ -27,6 +27,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private bool _bindConfirmAcknowledged;
         private ulong _enhanceBindItemId;
         private ulong _talismanTargetItemId;
+        private bool _unsealLoadoutAck;
         private ulong _inheritSourceItemId;
         private ulong _upgradeTierItemId;
         private uint _upgradeTierTargetConfigId;
@@ -538,6 +539,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (WriteBlocked || itemId == 0) return;
             _talismanTargetItemId = itemId;
+            _unsealLoadoutAck = false;
             _craft.SelectUnsealToTradable(itemId);
             _modal = Modal.UnsealConfirm;
             Render();
@@ -653,9 +655,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             string costText = EquipmentScreenModel.FormatCraftPreviewSummary(preview);
             if (preview != null && !preview.Available && preview.UnavailableTip != 0)
                 costText += "\n" + PlayerFeaturesClient.DescribeEquipTip("不可剥离", new TipInfoMessage { Id = preview.UnavailableTip });
-            Label(_modalLayer, "UnsealPreview", costText, 760, 790, 2360, 240, 38, true, preview?.Available == true ? Jade : Danger);
+            Label(_modalLayer, "UnsealPreview", costText, 760, 770, 2360, 210, 38, true, preview?.Available == true ? Jade : Danger);
+
+            if (loadoutSchemes.Count > 0)
+            {
+                string ackText = (_unsealLoadoutAck ? "✓ " : "□ ")
+                    + $"我已知晓：该装备正被方案【{string.Join("、", loadoutSchemes)}】引用，剥离后对应方案将出现缺件";
+                ChoiceRow(_modalLayer, "UnsealLoadoutAck", ackText, 760, 1015, 2360, 118,
+                    () => { _unsealLoadoutAck = !_unsealLoadoutAck; Render(); },
+                    selected: _unsealLoadoutAck);
+            }
 
             bool canCommit = _craft.CanCommit && !WriteBlocked
+                && (loadoutSchemes.Count == 0 || _unsealLoadoutAck)
                 && preview?.Choice?.Operation == EquipmentCraftChoice.Types.Operation.UnsealToTradable
                 && preview.Choice.ItemId == _talismanTargetItemId;
             Button(_modalLayer, "UnsealCancel", "返回检查", 860, 1220, 720, CloseModal);

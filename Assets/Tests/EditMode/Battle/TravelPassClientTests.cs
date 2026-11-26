@@ -299,16 +299,16 @@ namespace MmorpgClient.Tests.EditMode.Battle
             // Order: (resource path under Resources/, border Left, Bottom, Right, Top)
             var expected = new (string path, float l, float b, float r, float t)[]
             {
-                // TournamentV3 (29)
-                ("UI/Ugui/TournamentV3/d/warmup-btn", 32, 0, 32, 0),
-                ("UI/Ugui/TournamentV3/d/warmup-badge", 24, 0, 24, 0),
-                ("UI/Ugui/TournamentV3/e/predict-panel", 56, 56, 56, 56),
-                ("UI/Ugui/TournamentV3/e/predict-pick", 14, 0, 14, 0),
+                // TournamentV3 (29 — 与 ui-missing-61-redraw-20261126 正式重绘交付逐文件对齐)
+                ("UI/Ugui/TournamentV3/d/warmup-btn", 30, 12, 30, 12),
+                ("UI/Ugui/TournamentV3/d/warmup-badge", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/e/predict-panel", 84, 84, 84, 84),
+                ("UI/Ugui/TournamentV3/e/predict-pick", 0, 0, 0, 0),
                 ("UI/Ugui/TournamentV3/e/predict-hit", 0, 0, 0, 0),
                 ("UI/Ugui/TournamentV3/e/predict-miss", 0, 0, 0, 0),
                 ("UI/Ugui/TournamentV3/f/mvp-seal", 0, 0, 0, 0),
-                ("UI/Ugui/TournamentV3/f/mvp-card-bg", 48, 48, 48, 48),
-                ("UI/Ugui/TournamentV3/g/bronze-banner", 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/f/mvp-card-bg", 84, 84, 84, 84),
+                ("UI/Ugui/TournamentV3/g/bronze-banner", 16, 14, 16, 14),
                 ("UI/Ugui/TournamentV3/g/emblem-01-sword", 0, 0, 0, 0),
                 ("UI/Ugui/TournamentV3/g/emblem-02-taiji", 0, 0, 0, 0),
                 ("UI/Ugui/TournamentV3/g/emblem-03-furnace", 0, 0, 0, 0),
@@ -318,7 +318,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 ("UI/Ugui/TournamentV3/g/emblem-07-bagua", 0, 0, 0, 0),
                 ("UI/Ugui/TournamentV3/g/emblem-08-cauldron", 0, 0, 0, 0),
                 ("UI/Ugui/TournamentV3/h/ban-seal", 0, 0, 0, 0),
-                ("UI/Ugui/TournamentV3/i/highlights-panel", 56, 56, 56, 56),
+                ("UI/Ugui/TournamentV3/i/highlights-panel", 84, 84, 84, 84),
                 ("UI/Ugui/TournamentV3/j/honor-01-debut", 0, 0, 0, 0),
                 ("UI/Ugui/TournamentV3/j/honor-02-streak", 0, 0, 0, 0),
                 ("UI/Ugui/TournamentV3/j/honor-03-unbeaten", 0, 0, 0, 0),
@@ -342,10 +342,10 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 ("UI/Ugui/RankedPlayV4/highlight_support", 0, 0, 0, 0),
                 ("UI/Ugui/RankedPlayV4/highlight_guard", 0, 0, 0, 0),
                 ("UI/Ugui/RankedPlayV4/highlight_comeback", 0, 0, 0, 0),
-                // SpiritShopV1 + item_rename_card (16)
-                ("UI/Ugui/SpiritShopV1/ui/window_frame", 80, 80, 80, 80),
-                ("UI/Ugui/SpiritShopV1/ui/title_plate", 72, 0, 72, 0),
-                ("UI/Ugui/SpiritShopV1/ui/content_panel", 48, 48, 48, 48),
+                // SpiritShopV1 + item_rename_card (16 — window_frame/title_plate/content_panel 与重绘交付对齐)
+                ("UI/Ugui/SpiritShopV1/ui/window_frame", 300, 220, 300, 180),
+                ("UI/Ugui/SpiritShopV1/ui/title_plate", 0, 0, 0, 0),
+                ("UI/Ugui/SpiritShopV1/ui/content_panel", 300, 180, 300, 300),
                 ("UI/Ugui/SpiritShopV1/ui/tab_active", 44, 0, 44, 0),
                 ("UI/Ugui/SpiritShopV1/ui/tab_inactive", 44, 0, 44, 0),
                 ("UI/Ugui/SpiritShopV1/ui/card_bg_normal", 44, 28, 44, 28),
@@ -359,10 +359,10 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 ("UI/Ugui/SpiritShopV1/pack_starter_180", 0, 0, 0, 0),
                 ("UI/Ugui/SpiritShopV1/pack_starter_300", 0, 0, 0, 0),
                 ("UI/Icons/item_rename_card", 0, 0, 0, 0),
-                // TravelPassV1 (12 — 与 D:\work\image\designs\travel-pass-v1 正式交付包逐文件同哈希)
-                ("UI/Ugui/TravelPassV1/window_frame", 72, 72, 72, 72),
-                ("UI/Ugui/TravelPassV1/title_plate", 80, 24, 80, 24),
-                ("UI/Ugui/TravelPassV1/content_panel", 36, 36, 36, 36),
+                // TravelPassV1 (12 — window_frame/title_plate/content_panel 与重绘交付对齐)
+                ("UI/Ugui/TravelPassV1/window_frame", 280, 220, 280, 320),
+                ("UI/Ugui/TravelPassV1/title_plate", 0, 0, 0, 0),
+                ("UI/Ugui/TravelPassV1/content_panel", 450, 200, 450, 300),
                 ("UI/Ugui/TravelPassV1/travel_pass_banner", 0, 0, 0, 0),
                 ("UI/Ugui/TravelPassV1/progress_track", 14, 6, 14, 6),
                 ("UI/Ugui/TravelPassV1/progress_fill", 12, 4, 12, 4),

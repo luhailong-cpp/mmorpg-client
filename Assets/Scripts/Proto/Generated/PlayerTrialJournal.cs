@@ -46,7 +46,7 @@ public static partial class PlayerTrialJournalReflection {
           "GAEgASgNEhEKCXNlYXNvbl9pZBgCIAEoDRIUCgxjaGFwdGVyX25hbWUYAyAB",
           "KAkSFgoObGl0X3NlYWxfY291bnQYBCABKA0SGAoQdG90YWxfc2VhbF9jb3Vu",
           "dBgFIAEoDRInCgdlbnRyaWVzGAYgAygLMhYuVHJpYWxKb3VybmFsRW50cnlW",
-          "aWV3Is0DChlUcmlhbEpvdXJuYWxNaWxlc3RvbmVWaWV3EhQKDG1pbGVzdG9u",
+          "aWV3IscEChlUcmlhbEpvdXJuYWxNaWxlc3RvbmVWaWV3EhQKDG1pbGVzdG9u",
           "ZV9pZBgBIAEoDRIYChBzY29wZV9jaGFwdGVyX2lkGAIgASgNEhEKCXNlYXNv",
           "bl9pZBgDIAEoDRIWCg5yZXF1aXJlZF9zZWFscxgEIAEoDRIVCg1jdXJyZW50",
           "X3NlYWxzGAUgASgNEg0KBXRpdGxlGAYgASgJEgwKBGRlc2MYByABKAkSGAoQ",
@@ -56,58 +56,62 @@ public static partial class PlayerTrialJournalReflection {
           "cnlfdGl0bGUYDSABKAkSFwoPY29tbWVudGFyeV9ib2R5GA4gASgJEhsKE2dy",
           "YW50X2FwcGVhcmFuY2VfaWQYDyABKAkSHQoVZ3JhbnRfYXBwZWFyYW5jZV9u",
           "YW1lGBAgASgJEg8KB3JlYWNoZWQYESABKAgSDwoHY2xhaW1lZBgSIAEoCBIR",
-          "CgljbGFpbWFibGUYEyABKAginQEKHVRyaWFsUmVkZWVtYWJsZUFydGlmYWN0",
-          "T3B0aW9uEhYKDml0ZW1fY29uZmlnX2lkGAEgASgNEhoKEmFydGlmYWN0X2Vm",
-          "ZmVjdF9pZBgCIAEoDRIMCgRuYW1lGAMgASgJEhMKC2Rlc2NyaXB0aW9uGAQg",
-          "ASgJEhAKCGljb25fa2V5GAUgASgJEhMKC293bmVkX2NvdW50GAYgASgNIt8D",
-          "ChRUcmlhbEpvdXJuYWxTbmFwc2hvdBIRCglhdmFpbGFibGUYASABKAgSGgoS",
-          "dW5hdmFpbGFibGVfcmVhc29uGAIgASgJEhYKDnN0YXRlX3JldmlzaW9uGAMg",
-          "ASgEEhUKDXNlcnZlcl9ub3dfbXMYBCABKAQSIQoZdG90YWxfcGVybWFuZW50",
-          "X2xpdF9zZWFscxgFIAEoDRIdChV0b3RhbF9wZXJtYW5lbnRfc2VhbHMYBiAB",
-          "KA0SFwoPdm91Y2hlcl9iYWxhbmNlGAcgASgEEhoKEmJvdW5kX3NhbmRfYmFs",
-          "YW5jZRgIIAEoBBITCgtjYW5fb3BlcmF0ZRgJIAEoCBIhChlhY3Rpb25fdW5h",
-          "dmFpbGFibGVfcmVhc29uGAogASgJEioKCGNoYXB0ZXJzGAsgAygLMhguVHJp",
-          "YWxKb3VybmFsQ2hhcHRlclZpZXcSLgoKbWlsZXN0b25lcxgMIAMoCzIaLlRy",
-          "aWFsSm91cm5hbE1pbGVzdG9uZVZpZXcSPAoUcmVkZWVtYWJsZV9hcnRpZmFj",
-          "dHMYDSADKAsyHi5UcmlhbFJlZGVlbWFibGVBcnRpZmFjdE9wdGlvbhIgChho",
-          "YXJkX2Jvc3NfdHJpYWxfdW5sb2NrZWQYDiABKAgiGAoWR2V0VHJpYWxKb3Vy",
-          "bmFsUmVxdWVzdCJqChdHZXRUcmlhbEpvdXJuYWxSZXNwb25zZRImCg1lcnJv",
-          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USJwoIc25hcHNob3QY",
-          "AiABKAsyFS5UcmlhbEpvdXJuYWxTbmFwc2hvdCJUCiFDbGFpbVRyaWFsSm91",
-          "cm5hbE1pbGVzdG9uZVJlcXVlc3QSGQoRY2xpZW50X3JlcXVlc3RfaWQYASAB",
-          "KAQSFAoMbWlsZXN0b25lX2lkGAIgASgNIuEBCiJDbGFpbVRyaWFsSm91cm5h",
-          "bE1pbGVzdG9uZVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5U",
-          "aXBJbmZvTWVzc2FnZRInCghzbmFwc2hvdBgCIAEoCzIVLlRyaWFsSm91cm5h",
-          "bFNuYXBzaG90EhAKCHJlcGxheWVkGAMgASgIEhoKEmdyYW50ZWRfc2FuZF9j",
-          "b3VudBgEIAEoDRIdChVncmFudGVkX3ZvdWNoZXJfY291bnQYBSABKA0SHQoV",
-          "Z3JhbnRlZF9hcHBlYXJhbmNlX2lkGAYgASgJIl8KIVJlZGVlbUJvdW5kQXJ0",
-          "aWZhY3RWb3VjaGVyUmVxdWVzdBIZChFjbGllbnRfcmVxdWVzdF9pZBgBIAEo",
-          "BBIfChdhcnRpZmFjdF9pdGVtX2NvbmZpZ19pZBgCIAEoDSLBAQoiUmVkZWVt",
-          "Qm91bmRBcnRpZmFjdFZvdWNoZXJSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdl",
-          "GAEgASgLMg8uVGlwSW5mb01lc3NhZ2USJwoIc25hcHNob3QYAiABKAsyFS5U",
-          "cmlhbEpvdXJuYWxTbmFwc2hvdBIQCghyZXBsYXllZBgDIAEoCBIXCg9jcmVh",
-          "dGVkX2l0ZW1faWQYBCABKAQSHwoXYXJ0aWZhY3RfaXRlbV9jb25maWdfaWQY",
-          "BSABKA0yvwIKHVNjZW5lVHJpYWxKb3VybmFsQ2xpZW50UGxheWVyEkQKD0dl",
-          "dFRyaWFsSm91cm5hbBIXLkdldFRyaWFsSm91cm5hbFJlcXVlc3QaGC5HZXRU",
-          "cmlhbEpvdXJuYWxSZXNwb25zZRJlChpDbGFpbVRyaWFsSm91cm5hbE1pbGVz",
-          "dG9uZRIiLkNsYWltVHJpYWxKb3VybmFsTWlsZXN0b25lUmVxdWVzdBojLkNs",
-          "YWltVHJpYWxKb3VybmFsTWlsZXN0b25lUmVzcG9uc2USZQoaUmVkZWVtQm91",
-          "bmRBcnRpZmFjdFZvdWNoZXISIi5SZWRlZW1Cb3VuZEFydGlmYWN0Vm91Y2hl",
-          "clJlcXVlc3QaIy5SZWRlZW1Cb3VuZEFydGlmYWN0Vm91Y2hlclJlc3BvbnNl",
-          "GgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
+          "CgljbGFpbWFibGUYEyABKAgSHQoVZ3JhbnRfcGV0X2Nvc21ldGljX2lkGBQg",
+          "ASgNEh8KF2dyYW50X3BldF9jb3NtZXRpY19uYW1lGBUgASgJEhoKEmdyYW50",
+          "X3NraWxsX3ZmeF9pZBgWIAEoDRIcChRncmFudF9za2lsbF92ZnhfbmFtZRgX",
+          "IAEoCSKdAQodVHJpYWxSZWRlZW1hYmxlQXJ0aWZhY3RPcHRpb24SFgoOaXRl",
+          "bV9jb25maWdfaWQYASABKA0SGgoSYXJ0aWZhY3RfZWZmZWN0X2lkGAIgASgN",
+          "EgwKBG5hbWUYAyABKAkSEwoLZGVzY3JpcHRpb24YBCABKAkSEAoIaWNvbl9r",
+          "ZXkYBSABKAkSEwoLb3duZWRfY291bnQYBiABKA0i3wMKFFRyaWFsSm91cm5h",
+          "bFNuYXBzaG90EhEKCWF2YWlsYWJsZRgBIAEoCBIaChJ1bmF2YWlsYWJsZV9y",
+          "ZWFzb24YAiABKAkSFgoOc3RhdGVfcmV2aXNpb24YAyABKAQSFQoNc2VydmVy",
+          "X25vd19tcxgEIAEoBBIhChl0b3RhbF9wZXJtYW5lbnRfbGl0X3NlYWxzGAUg",
+          "ASgNEh0KFXRvdGFsX3Blcm1hbmVudF9zZWFscxgGIAEoDRIXCg92b3VjaGVy",
+          "X2JhbGFuY2UYByABKAQSGgoSYm91bmRfc2FuZF9iYWxhbmNlGAggASgEEhMK",
+          "C2Nhbl9vcGVyYXRlGAkgASgIEiEKGWFjdGlvbl91bmF2YWlsYWJsZV9yZWFz",
+          "b24YCiABKAkSKgoIY2hhcHRlcnMYCyADKAsyGC5UcmlhbEpvdXJuYWxDaGFw",
+          "dGVyVmlldxIuCgptaWxlc3RvbmVzGAwgAygLMhouVHJpYWxKb3VybmFsTWls",
+          "ZXN0b25lVmlldxI8ChRyZWRlZW1hYmxlX2FydGlmYWN0cxgNIAMoCzIeLlRy",
+          "aWFsUmVkZWVtYWJsZUFydGlmYWN0T3B0aW9uEiAKGGhhcmRfYm9zc190cmlh",
+          "bF91bmxvY2tlZBgOIAEoCCIYChZHZXRUcmlhbEpvdXJuYWxSZXF1ZXN0ImoK",
+          "F0dldFRyaWFsSm91cm5hbFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASAB",
+          "KAsyDy5UaXBJbmZvTWVzc2FnZRInCghzbmFwc2hvdBgCIAEoCzIVLlRyaWFs",
+          "Sm91cm5hbFNuYXBzaG90IlQKIUNsYWltVHJpYWxKb3VybmFsTWlsZXN0b25l",
+          "UmVxdWVzdBIZChFjbGllbnRfcmVxdWVzdF9pZBgBIAEoBBIUCgxtaWxlc3Rv",
+          "bmVfaWQYAiABKA0ioAIKIkNsYWltVHJpYWxKb3VybmFsTWlsZXN0b25lUmVz",
+          "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
+          "EicKCHNuYXBzaG90GAIgASgLMhUuVHJpYWxKb3VybmFsU25hcHNob3QSEAoI",
+          "cmVwbGF5ZWQYAyABKAgSGgoSZ3JhbnRlZF9zYW5kX2NvdW50GAQgASgNEh0K",
+          "FWdyYW50ZWRfdm91Y2hlcl9jb3VudBgFIAEoDRIdChVncmFudGVkX2FwcGVh",
+          "cmFuY2VfaWQYBiABKAkSHwoXZ3JhbnRlZF9wZXRfY29zbWV0aWNfaWQYByAB",
+          "KA0SHAoUZ3JhbnRlZF9za2lsbF92ZnhfaWQYCCABKA0iXwohUmVkZWVtQm91",
+          "bmRBcnRpZmFjdFZvdWNoZXJSZXF1ZXN0EhkKEWNsaWVudF9yZXF1ZXN0X2lk",
+          "GAEgASgEEh8KF2FydGlmYWN0X2l0ZW1fY29uZmlnX2lkGAIgASgNIsEBCiJS",
+          "ZWRlZW1Cb3VuZEFydGlmYWN0Vm91Y2hlclJlc3BvbnNlEiYKDWVycm9yX21l",
+          "c3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRInCghzbmFwc2hvdBgCIAEo",
+          "CzIVLlRyaWFsSm91cm5hbFNuYXBzaG90EhAKCHJlcGxheWVkGAMgASgIEhcK",
+          "D2NyZWF0ZWRfaXRlbV9pZBgEIAEoBBIfChdhcnRpZmFjdF9pdGVtX2NvbmZp",
+          "Z19pZBgFIAEoDTK/AgodU2NlbmVUcmlhbEpvdXJuYWxDbGllbnRQbGF5ZXIS",
+          "RAoPR2V0VHJpYWxKb3VybmFsEhcuR2V0VHJpYWxKb3VybmFsUmVxdWVzdBoY",
+          "LkdldFRyaWFsSm91cm5hbFJlc3BvbnNlEmUKGkNsYWltVHJpYWxKb3VybmFs",
+          "TWlsZXN0b25lEiIuQ2xhaW1UcmlhbEpvdXJuYWxNaWxlc3RvbmVSZXF1ZXN0",
+          "GiMuQ2xhaW1UcmlhbEpvdXJuYWxNaWxlc3RvbmVSZXNwb25zZRJlChpSZWRl",
+          "ZW1Cb3VuZEFydGlmYWN0Vm91Y2hlchIiLlJlZGVlbUJvdW5kQXJ0aWZhY3RW",
+          "b3VjaGVyUmVxdWVzdBojLlJlZGVlbUJvdW5kQXJ0aWZhY3RWb3VjaGVyUmVz",
+          "cG9uc2UaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::PlayerTrialJournalCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalSealView), global::TrialJournalSealView.Parser, new[]{ "SealId", "SealSlotKind", "ConditionType", "ConditionParam", "Title", "Desc", "Lit" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalEntryView), global::TrialJournalEntryView.Parser, new[]{ "EntryId", "ChapterId", "SeasonId", "SourceKind", "Difficulty", "VariantKey", "RuleVersion", "RuleVersionName", "SortOrder", "DisplayName", "IconKey", "Desc", "Seals", "LitSealCount", "TotalSealCount", "SoloRecorded", "SoloBest", "CoopRecorded", "CoopBest", "HasLegacyRecordOnly", "CanEnter", "EnterBlockedReason", "JumpTarget" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalChapterView), global::TrialJournalChapterView.Parser, new[]{ "ChapterId", "SeasonId", "ChapterName", "LitSealCount", "TotalSealCount", "Entries" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalMilestoneView), global::TrialJournalMilestoneView.Parser, new[]{ "MilestoneId", "ScopeChapterId", "SeasonId", "RequiredSeals", "CurrentSeals", "Title", "Desc", "BoundSandCount", "BoundArtifactVoucherCount", "BadgeKey", "BadgeName", "CommentaryKey", "CommentaryTitle", "CommentaryBody", "GrantAppearanceId", "GrantAppearanceName", "Reached", "Claimed", "Claimable" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalMilestoneView), global::TrialJournalMilestoneView.Parser, new[]{ "MilestoneId", "ScopeChapterId", "SeasonId", "RequiredSeals", "CurrentSeals", "Title", "Desc", "BoundSandCount", "BoundArtifactVoucherCount", "BadgeKey", "BadgeName", "CommentaryKey", "CommentaryTitle", "CommentaryBody", "GrantAppearanceId", "GrantAppearanceName", "Reached", "Claimed", "Claimable", "GrantPetCosmeticId", "GrantPetCosmeticName", "GrantSkillVfxId", "GrantSkillVfxName" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialRedeemableArtifactOption), global::TrialRedeemableArtifactOption.Parser, new[]{ "ItemConfigId", "ArtifactEffectId", "Name", "Description", "IconKey", "OwnedCount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalSnapshot), global::TrialJournalSnapshot.Parser, new[]{ "Available", "UnavailableReason", "StateRevision", "ServerNowMs", "TotalPermanentLitSeals", "TotalPermanentSeals", "VoucherBalance", "BoundSandBalance", "CanOperate", "ActionUnavailableReason", "Chapters", "Milestones", "RedeemableArtifacts", "HardBossTrialUnlocked" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetTrialJournalRequest), global::GetTrialJournalRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetTrialJournalResponse), global::GetTrialJournalResponse.Parser, new[]{ "ErrorMessage", "Snapshot" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ClaimTrialJournalMilestoneRequest), global::ClaimTrialJournalMilestoneRequest.Parser, new[]{ "ClientRequestId", "MilestoneId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ClaimTrialJournalMilestoneResponse), global::ClaimTrialJournalMilestoneResponse.Parser, new[]{ "ErrorMessage", "Snapshot", "Replayed", "GrantedSandCount", "GrantedVoucherCount", "GrantedAppearanceId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ClaimTrialJournalMilestoneResponse), global::ClaimTrialJournalMilestoneResponse.Parser, new[]{ "ErrorMessage", "Snapshot", "Replayed", "GrantedSandCount", "GrantedVoucherCount", "GrantedAppearanceId", "GrantedPetCosmeticId", "GrantedSkillVfxId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RedeemBoundArtifactVoucherRequest), global::RedeemBoundArtifactVoucherRequest.Parser, new[]{ "ClientRequestId", "ArtifactItemConfigId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RedeemBoundArtifactVoucherResponse), global::RedeemBoundArtifactVoucherResponse.Parser, new[]{ "ErrorMessage", "Snapshot", "Replayed", "CreatedItemId", "ArtifactItemConfigId" }, null, null, null, null)
         }));
@@ -1987,6 +1991,10 @@ public sealed partial class TrialJournalMilestoneView : pb::IMessage<TrialJourna
     reached_ = other.reached_;
     claimed_ = other.claimed_;
     claimable_ = other.claimable_;
+    grantPetCosmeticId_ = other.grantPetCosmeticId_;
+    grantPetCosmeticName_ = other.grantPetCosmeticName_;
+    grantSkillVfxId_ = other.grantSkillVfxId_;
+    grantSkillVfxName_ = other.grantSkillVfxName_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2230,6 +2238,54 @@ public sealed partial class TrialJournalMilestoneView : pb::IMessage<TrialJourna
     }
   }
 
+  /// <summary>Field number for the "grant_pet_cosmetic_id" field.</summary>
+  public const int GrantPetCosmeticIdFieldNumber = 20;
+  private uint grantPetCosmeticId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint GrantPetCosmeticId {
+    get { return grantPetCosmeticId_; }
+    set {
+      grantPetCosmeticId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "grant_pet_cosmetic_name" field.</summary>
+  public const int GrantPetCosmeticNameFieldNumber = 21;
+  private string grantPetCosmeticName_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string GrantPetCosmeticName {
+    get { return grantPetCosmeticName_; }
+    set {
+      grantPetCosmeticName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "grant_skill_vfx_id" field.</summary>
+  public const int GrantSkillVfxIdFieldNumber = 22;
+  private uint grantSkillVfxId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint GrantSkillVfxId {
+    get { return grantSkillVfxId_; }
+    set {
+      grantSkillVfxId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "grant_skill_vfx_name" field.</summary>
+  public const int GrantSkillVfxNameFieldNumber = 23;
+  private string grantSkillVfxName_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string GrantSkillVfxName {
+    get { return grantSkillVfxName_; }
+    set {
+      grantSkillVfxName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2264,6 +2320,10 @@ public sealed partial class TrialJournalMilestoneView : pb::IMessage<TrialJourna
     if (Reached != other.Reached) return false;
     if (Claimed != other.Claimed) return false;
     if (Claimable != other.Claimable) return false;
+    if (GrantPetCosmeticId != other.GrantPetCosmeticId) return false;
+    if (GrantPetCosmeticName != other.GrantPetCosmeticName) return false;
+    if (GrantSkillVfxId != other.GrantSkillVfxId) return false;
+    if (GrantSkillVfxName != other.GrantSkillVfxName) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2290,6 +2350,10 @@ public sealed partial class TrialJournalMilestoneView : pb::IMessage<TrialJourna
     if (Reached != false) hash ^= Reached.GetHashCode();
     if (Claimed != false) hash ^= Claimed.GetHashCode();
     if (Claimable != false) hash ^= Claimable.GetHashCode();
+    if (GrantPetCosmeticId != 0) hash ^= GrantPetCosmeticId.GetHashCode();
+    if (GrantPetCosmeticName.Length != 0) hash ^= GrantPetCosmeticName.GetHashCode();
+    if (GrantSkillVfxId != 0) hash ^= GrantSkillVfxId.GetHashCode();
+    if (GrantSkillVfxName.Length != 0) hash ^= GrantSkillVfxName.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2384,6 +2448,22 @@ public sealed partial class TrialJournalMilestoneView : pb::IMessage<TrialJourna
       output.WriteRawTag(152, 1);
       output.WriteBool(Claimable);
     }
+    if (GrantPetCosmeticId != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(GrantPetCosmeticId);
+    }
+    if (GrantPetCosmeticName.Length != 0) {
+      output.WriteRawTag(170, 1);
+      output.WriteString(GrantPetCosmeticName);
+    }
+    if (GrantSkillVfxId != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(GrantSkillVfxId);
+    }
+    if (GrantSkillVfxName.Length != 0) {
+      output.WriteRawTag(186, 1);
+      output.WriteString(GrantSkillVfxName);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2470,6 +2550,22 @@ public sealed partial class TrialJournalMilestoneView : pb::IMessage<TrialJourna
       output.WriteRawTag(152, 1);
       output.WriteBool(Claimable);
     }
+    if (GrantPetCosmeticId != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(GrantPetCosmeticId);
+    }
+    if (GrantPetCosmeticName.Length != 0) {
+      output.WriteRawTag(170, 1);
+      output.WriteString(GrantPetCosmeticName);
+    }
+    if (GrantSkillVfxId != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(GrantSkillVfxId);
+    }
+    if (GrantSkillVfxName.Length != 0) {
+      output.WriteRawTag(186, 1);
+      output.WriteString(GrantSkillVfxName);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2536,6 +2632,18 @@ public sealed partial class TrialJournalMilestoneView : pb::IMessage<TrialJourna
     }
     if (Claimable != false) {
       size += 2 + 1;
+    }
+    if (GrantPetCosmeticId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(GrantPetCosmeticId);
+    }
+    if (GrantPetCosmeticName.Length != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeStringSize(GrantPetCosmeticName);
+    }
+    if (GrantSkillVfxId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(GrantSkillVfxId);
+    }
+    if (GrantSkillVfxName.Length != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeStringSize(GrantSkillVfxName);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2605,6 +2713,18 @@ public sealed partial class TrialJournalMilestoneView : pb::IMessage<TrialJourna
     }
     if (other.Claimable != false) {
       Claimable = other.Claimable;
+    }
+    if (other.GrantPetCosmeticId != 0) {
+      GrantPetCosmeticId = other.GrantPetCosmeticId;
+    }
+    if (other.GrantPetCosmeticName.Length != 0) {
+      GrantPetCosmeticName = other.GrantPetCosmeticName;
+    }
+    if (other.GrantSkillVfxId != 0) {
+      GrantSkillVfxId = other.GrantSkillVfxId;
+    }
+    if (other.GrantSkillVfxName.Length != 0) {
+      GrantSkillVfxName = other.GrantSkillVfxName;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2701,6 +2821,22 @@ public sealed partial class TrialJournalMilestoneView : pb::IMessage<TrialJourna
           Claimable = input.ReadBool();
           break;
         }
+        case 160: {
+          GrantPetCosmeticId = input.ReadUInt32();
+          break;
+        }
+        case 170: {
+          GrantPetCosmeticName = input.ReadString();
+          break;
+        }
+        case 176: {
+          GrantSkillVfxId = input.ReadUInt32();
+          break;
+        }
+        case 186: {
+          GrantSkillVfxName = input.ReadString();
+          break;
+        }
       }
     }
   #endif
@@ -2794,6 +2930,22 @@ public sealed partial class TrialJournalMilestoneView : pb::IMessage<TrialJourna
         }
         case 152: {
           Claimable = input.ReadBool();
+          break;
+        }
+        case 160: {
+          GrantPetCosmeticId = input.ReadUInt32();
+          break;
+        }
+        case 170: {
+          GrantPetCosmeticName = input.ReadString();
+          break;
+        }
+        case 176: {
+          GrantSkillVfxId = input.ReadUInt32();
+          break;
+        }
+        case 186: {
+          GrantSkillVfxName = input.ReadString();
           break;
         }
       }
@@ -4543,6 +4695,8 @@ public sealed partial class ClaimTrialJournalMilestoneResponse : pb::IMessage<Cl
     grantedSandCount_ = other.grantedSandCount_;
     grantedVoucherCount_ = other.grantedVoucherCount_;
     grantedAppearanceId_ = other.grantedAppearanceId_;
+    grantedPetCosmeticId_ = other.grantedPetCosmeticId_;
+    grantedSkillVfxId_ = other.grantedSkillVfxId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -4624,6 +4778,30 @@ public sealed partial class ClaimTrialJournalMilestoneResponse : pb::IMessage<Cl
     }
   }
 
+  /// <summary>Field number for the "granted_pet_cosmetic_id" field.</summary>
+  public const int GrantedPetCosmeticIdFieldNumber = 7;
+  private uint grantedPetCosmeticId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint GrantedPetCosmeticId {
+    get { return grantedPetCosmeticId_; }
+    set {
+      grantedPetCosmeticId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "granted_skill_vfx_id" field.</summary>
+  public const int GrantedSkillVfxIdFieldNumber = 8;
+  private uint grantedSkillVfxId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint GrantedSkillVfxId {
+    get { return grantedSkillVfxId_; }
+    set {
+      grantedSkillVfxId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -4645,6 +4823,8 @@ public sealed partial class ClaimTrialJournalMilestoneResponse : pb::IMessage<Cl
     if (GrantedSandCount != other.GrantedSandCount) return false;
     if (GrantedVoucherCount != other.GrantedVoucherCount) return false;
     if (GrantedAppearanceId != other.GrantedAppearanceId) return false;
+    if (GrantedPetCosmeticId != other.GrantedPetCosmeticId) return false;
+    if (GrantedSkillVfxId != other.GrantedSkillVfxId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -4658,6 +4838,8 @@ public sealed partial class ClaimTrialJournalMilestoneResponse : pb::IMessage<Cl
     if (GrantedSandCount != 0) hash ^= GrantedSandCount.GetHashCode();
     if (GrantedVoucherCount != 0) hash ^= GrantedVoucherCount.GetHashCode();
     if (GrantedAppearanceId.Length != 0) hash ^= GrantedAppearanceId.GetHashCode();
+    if (GrantedPetCosmeticId != 0) hash ^= GrantedPetCosmeticId.GetHashCode();
+    if (GrantedSkillVfxId != 0) hash ^= GrantedSkillVfxId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -4700,6 +4882,14 @@ public sealed partial class ClaimTrialJournalMilestoneResponse : pb::IMessage<Cl
       output.WriteRawTag(50);
       output.WriteString(GrantedAppearanceId);
     }
+    if (GrantedPetCosmeticId != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(GrantedPetCosmeticId);
+    }
+    if (GrantedSkillVfxId != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(GrantedSkillVfxId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -4734,6 +4924,14 @@ public sealed partial class ClaimTrialJournalMilestoneResponse : pb::IMessage<Cl
       output.WriteRawTag(50);
       output.WriteString(GrantedAppearanceId);
     }
+    if (GrantedPetCosmeticId != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(GrantedPetCosmeticId);
+    }
+    if (GrantedSkillVfxId != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(GrantedSkillVfxId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -4761,6 +4959,12 @@ public sealed partial class ClaimTrialJournalMilestoneResponse : pb::IMessage<Cl
     }
     if (GrantedAppearanceId.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(GrantedAppearanceId);
+    }
+    if (GrantedPetCosmeticId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GrantedPetCosmeticId);
+    }
+    if (GrantedSkillVfxId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GrantedSkillVfxId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -4797,6 +5001,12 @@ public sealed partial class ClaimTrialJournalMilestoneResponse : pb::IMessage<Cl
     }
     if (other.GrantedAppearanceId.Length != 0) {
       GrantedAppearanceId = other.GrantedAppearanceId;
+    }
+    if (other.GrantedPetCosmeticId != 0) {
+      GrantedPetCosmeticId = other.GrantedPetCosmeticId;
+    }
+    if (other.GrantedSkillVfxId != 0) {
+      GrantedSkillVfxId = other.GrantedSkillVfxId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -4847,6 +5057,14 @@ public sealed partial class ClaimTrialJournalMilestoneResponse : pb::IMessage<Cl
           GrantedAppearanceId = input.ReadString();
           break;
         }
+        case 56: {
+          GrantedPetCosmeticId = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          GrantedSkillVfxId = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -4894,6 +5112,14 @@ public sealed partial class ClaimTrialJournalMilestoneResponse : pb::IMessage<Cl
         }
         case 50: {
           GrantedAppearanceId = input.ReadString();
+          break;
+        }
+        case 56: {
+          GrantedPetCosmeticId = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          GrantedSkillVfxId = input.ReadUInt32();
           break;
         }
       }

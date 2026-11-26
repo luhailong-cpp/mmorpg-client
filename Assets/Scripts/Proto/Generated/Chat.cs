@@ -49,24 +49,44 @@ namespace Chatpb {
             "ChBzZW5kZXJfcGxheWVyX2lkGAEgASgEEhQKDHNlbmRfdGltZV9tcxgCIAEo",
             "AxIOCgZyZWFzb24YAyABKAkiVQoYUmV0cmFjdFdvcmxkQ2hhdFJlc3BvbnNl",
             "EiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIRCgly",
-            "ZXRyYWN0ZWQYAiABKAgqqgEKD0NoYXRDaGFubmVsVHlwZRIhCh1DSEFUX0NI",
-            "QU5ORUxfVFlQRV9VTlNQRUNJRklFRBAAEhsKF0NIQVRfQ0hBTk5FTF9UWVBF",
-            "X1dPUkxEEAESGgoWQ0hBVF9DSEFOTkVMX1RZUEVfVEVBTRACEh0KGUNIQVRf",
-            "Q0hBTk5FTF9UWVBFX1BSSVZBVEUQAxIcChhDSEFUX0NIQU5ORUxfVFlQRV9T",
-            "WVNURU0QBDLOAwoQQ2xpZW50UGxheWVyQ2hhdBI9CghTZW5kQ2hhdBIXLmNo",
-            "YXRwYi5TZW5kQ2hhdFJlcXVlc3QaGC5jaGF0cGIuU2VuZENoYXRSZXNwb25z",
-            "ZRJSCg9QdWxsQ2hhdEhpc3RvcnkSHi5jaGF0cGIuUHVsbENoYXRIaXN0b3J5",
-            "UmVxdWVzdBofLmNoYXRwYi5QdWxsQ2hhdEhpc3RvcnlSZXNwb25zZRJDCgpS",
-            "ZXBvcnRDaGF0EhkuY2hhdHBiLlJlcG9ydENoYXRSZXF1ZXN0GhouY2hhdHBi",
-            "LlJlcG9ydENoYXRSZXNwb25zZRJcChBSZXRyYWN0V29ybGRDaGF0Eh8uY2hh",
-            "dHBiLlJldHJhY3RXb3JsZENoYXRSZXF1ZXN0GiAuY2hhdHBiLlJldHJhY3RX",
-            "b3JsZENoYXRSZXNwb25zZSIFiJnIAQMSNQoPTm90aWZ5V29ybGRDaGF0EhMu",
-            "Y2hhdHBiLkNoYXRNZXNzYWdlGgYuRW1wdHkiBYiZyAECEkYKGE5vdGlmeVdv",
-            "cmxkQ2hhdFJldHJhY3RlZBIbLmNoYXRwYi5DaGF0UmV0cmFjdGVkTm90aWZ5",
-            "GgYuRW1wdHkiBYiZyAECGgWIqMMBAUINWgRjaGF0gAEAmNRhDmIGcHJvdG8z"));
+            "ZXRyYWN0ZWQYAiABKAgi6gEKH1B1Ymxpc2hTeXN0ZW1Xb3JsZE5vdGljZVJl",
+            "cXVlc3QSEQoJbm90aWNlX2lkGAEgASgJEjYKC3RlbXBsYXRlX2lkGAIgASgO",
+            "MiEuY2hhdHBiLlN5c3RlbVdvcmxkTm90aWNlVGVtcGxhdGUSEQoJYmF0dGxl",
+            "X2lkGAMgASgEEhQKDGFjdG9yX2FfbmFtZRgEIAEoCRIUCgxhY3Rvcl9iX25h",
+            "bWUYBSABKAkSFAoMdG90YWxfcm91bmRzGAYgASgNEhQKDHN0cmVha19jb3Vu",
+            "dBgHIAEoDRIRCgl0ZWFtX3NpemUYCCABKA0iYAogUHVibGlzaFN5c3RlbVdv",
+            "cmxkTm90aWNlUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRp",
+            "cEluZm9NZXNzYWdlEhQKDGRlZHVwbGljYXRlZBgCIAEoCCqqAQoPQ2hhdENo",
+            "YW5uZWxUeXBlEiEKHUNIQVRfQ0hBTk5FTF9UWVBFX1VOU1BFQ0lGSUVEEAAS",
+            "GwoXQ0hBVF9DSEFOTkVMX1RZUEVfV09STEQQARIaChZDSEFUX0NIQU5ORUxf",
+            "VFlQRV9URUFNEAISHQoZQ0hBVF9DSEFOTkVMX1RZUEVfUFJJVkFURRADEhwK",
+            "GENIQVRfQ0hBTk5FTF9UWVBFX1NZU1RFTRAEKqMDChlTeXN0ZW1Xb3JsZE5v",
+            "dGljZVRlbXBsYXRlEiwKKFNZU1RFTV9XT1JMRF9OT1RJQ0VfVEVNUExBVEVf",
+            "VU5TUEVDSUZJRUQQABIxCi1TWVNURU1fV09STERfTk9USUNFX0pJQU5HSFVf",
+            "RFVFTF9TVEFSVF9TSUxWRVIQARIvCitTWVNURU1fV09STERfTk9USUNFX0pJ",
+            "QU5HSFVfRFVFTF9TVEFSVF9HT0xEEAISLworU1lTVEVNX1dPUkxEX05PVElD",
+            "RV9KSUFOR0hVX0RVRUxfV0lOX1NJTFZFUhADEi0KKVNZU1RFTV9XT1JMRF9O",
+            "T1RJQ0VfSklBTkdIVV9EVUVMX1dJTl9HT0xEEAQSKQolU1lTVEVNX1dPUkxE",
+            "X05PVElDRV9KSUFOR0hVX0RVRUxfRFJBVxAFEjUKMVNZU1RFTV9XT1JMRF9O",
+            "T1RJQ0VfSklBTkdIVV9EVUVMX1NUUkVBS19NSUxFU1RPTkUQBhIyCi5TWVNU",
+            "RU1fV09STERfTk9USUNFX0pJQU5HSFVfRFVFTF9TVFJFQUtfQlJPS0VOEAcy",
+            "xAQKEENsaWVudFBsYXllckNoYXQSPQoIU2VuZENoYXQSFy5jaGF0cGIuU2Vu",
+            "ZENoYXRSZXF1ZXN0GhguY2hhdHBiLlNlbmRDaGF0UmVzcG9uc2USUgoPUHVs",
+            "bENoYXRIaXN0b3J5Eh4uY2hhdHBiLlB1bGxDaGF0SGlzdG9yeVJlcXVlc3Qa",
+            "Hy5jaGF0cGIuUHVsbENoYXRIaXN0b3J5UmVzcG9uc2USQwoKUmVwb3J0Q2hh",
+            "dBIZLmNoYXRwYi5SZXBvcnRDaGF0UmVxdWVzdBoaLmNoYXRwYi5SZXBvcnRD",
+            "aGF0UmVzcG9uc2USXAoQUmV0cmFjdFdvcmxkQ2hhdBIfLmNoYXRwYi5SZXRy",
+            "YWN0V29ybGRDaGF0UmVxdWVzdBogLmNoYXRwYi5SZXRyYWN0V29ybGRDaGF0",
+            "UmVzcG9uc2UiBYiZyAEDEnQKGFB1Ymxpc2hTeXN0ZW1Xb3JsZE5vdGljZRIn",
+            "LmNoYXRwYi5QdWJsaXNoU3lzdGVtV29ybGROb3RpY2VSZXF1ZXN0GiguY2hh",
+            "dHBiLlB1Ymxpc2hTeXN0ZW1Xb3JsZE5vdGljZVJlc3BvbnNlIgWImcgBAxI1",
+            "Cg9Ob3RpZnlXb3JsZENoYXQSEy5jaGF0cGIuQ2hhdE1lc3NhZ2UaBi5FbXB0",
+            "eSIFiJnIAQISRgoYTm90aWZ5V29ybGRDaGF0UmV0cmFjdGVkEhsuY2hhdHBi",
+            "LkNoYXRSZXRyYWN0ZWROb3RpZnkaBi5FbXB0eSIFiJnIAQIaBYiowwEBQg1a",
+            "BGNoYXSAAQCY1GEOYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Chatpb.ChatChannelType), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Chatpb.ChatChannelType), typeof(global::Chatpb.SystemWorldNoticeTemplate), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Chatpb.ChatMessage), global::Chatpb.ChatMessage.Parser, new[]{ "SenderPlayerId", "TargetPlayerId", "Channel", "Content", "SendTimeMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Chatpb.SendChatRequest), global::Chatpb.SendChatRequest.Parser, new[]{ "Message", "RequestId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Chatpb.SendChatResponse), global::Chatpb.SendChatResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
@@ -76,7 +96,9 @@ namespace Chatpb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Chatpb.ReportChatRequest), global::Chatpb.ReportChatRequest.Parser, new[]{ "Channel", "TargetSenderPlayerId", "SendTimeMs", "Reason", "Detail" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Chatpb.ReportChatResponse), global::Chatpb.ReportChatResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Chatpb.RetractWorldChatRequest), global::Chatpb.RetractWorldChatRequest.Parser, new[]{ "SenderPlayerId", "SendTimeMs", "Reason" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Chatpb.RetractWorldChatResponse), global::Chatpb.RetractWorldChatResponse.Parser, new[]{ "ErrorMessage", "Retracted" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Chatpb.RetractWorldChatResponse), global::Chatpb.RetractWorldChatResponse.Parser, new[]{ "ErrorMessage", "Retracted" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Chatpb.PublishSystemWorldNoticeRequest), global::Chatpb.PublishSystemWorldNoticeRequest.Parser, new[]{ "NoticeId", "TemplateId", "BattleId", "ActorAName", "ActorBName", "TotalRounds", "StreakCount", "TeamSize" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Chatpb.PublishSystemWorldNoticeResponse), global::Chatpb.PublishSystemWorldNoticeResponse.Parser, new[]{ "ErrorMessage", "Deduplicated" }, null, null, null, null)
           }));
     }
     #endregion
@@ -89,6 +111,41 @@ namespace Chatpb {
     [pbr::OriginalName("CHAT_CHANNEL_TYPE_TEAM")] Team = 2,
     [pbr::OriginalName("CHAT_CHANNEL_TYPE_PRIVATE")] Private = 3,
     [pbr::OriginalName("CHAT_CHANNEL_TYPE_SYSTEM")] System = 4,
+  }
+
+  /// <summary>
+  /// 内部白名单模板全服系统播报（绝不接受客户端自由文本，供 match 天墉生死状开战/战果播报使用）。
+  /// </summary>
+  public enum SystemWorldNoticeTemplate {
+    [pbr::OriginalName("SYSTEM_WORLD_NOTICE_TEMPLATE_UNSPECIFIED")] Unspecified = 0,
+    /// <summary>
+    /// 普通战书开战
+    /// </summary>
+    [pbr::OriginalName("SYSTEM_WORLD_NOTICE_JIANGHU_DUEL_START_SILVER")] SystemWorldNoticeJianghuDuelStartSilver = 1,
+    /// <summary>
+    /// 金帖生死状开战
+    /// </summary>
+    [pbr::OriginalName("SYSTEM_WORLD_NOTICE_JIANGHU_DUEL_START_GOLD")] SystemWorldNoticeJianghuDuelStartGold = 2,
+    /// <summary>
+    /// 普通战书胜负
+    /// </summary>
+    [pbr::OriginalName("SYSTEM_WORLD_NOTICE_JIANGHU_DUEL_WIN_SILVER")] SystemWorldNoticeJianghuDuelWinSilver = 3,
+    /// <summary>
+    /// 金帖生死状胜负
+    /// </summary>
+    [pbr::OriginalName("SYSTEM_WORLD_NOTICE_JIANGHU_DUEL_WIN_GOLD")] SystemWorldNoticeJianghuDuelWinGold = 4,
+    /// <summary>
+    /// 生死状平局
+    /// </summary>
+    [pbr::OriginalName("SYSTEM_WORLD_NOTICE_JIANGHU_DUEL_DRAW")] SystemWorldNoticeJianghuDuelDraw = 5,
+    /// <summary>
+    /// 达成宿敌 >=3 连胜高光
+    /// </summary>
+    [pbr::OriginalName("SYSTEM_WORLD_NOTICE_JIANGHU_DUEL_STREAK_MILESTONE")] SystemWorldNoticeJianghuDuelStreakMilestone = 6,
+    /// <summary>
+    /// 雪耻终结宿敌 >=3 连胜高光
+    /// </summary>
+    [pbr::OriginalName("SYSTEM_WORLD_NOTICE_JIANGHU_DUEL_STREAK_BROKEN")] SystemWorldNoticeJianghuDuelStreakBroken = 7,
   }
 
   #endregion
@@ -2781,6 +2838,725 @@ namespace Chatpb {
           }
           case 16: {
             Retracted = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class PublishSystemWorldNoticeRequest : pb::IMessage<PublishSystemWorldNoticeRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<PublishSystemWorldNoticeRequest> _parser = new pb::MessageParser<PublishSystemWorldNoticeRequest>(() => new PublishSystemWorldNoticeRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<PublishSystemWorldNoticeRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Chatpb.ChatReflection.Descriptor.MessageTypes[10]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PublishSystemWorldNoticeRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PublishSystemWorldNoticeRequest(PublishSystemWorldNoticeRequest other) : this() {
+      noticeId_ = other.noticeId_;
+      templateId_ = other.templateId_;
+      battleId_ = other.battleId_;
+      actorAName_ = other.actorAName_;
+      actorBName_ = other.actorBName_;
+      totalRounds_ = other.totalRounds_;
+      streakCount_ = other.streakCount_;
+      teamSize_ = other.teamSize_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PublishSystemWorldNoticeRequest Clone() {
+      return new PublishSystemWorldNoticeRequest(this);
+    }
+
+    /// <summary>Field number for the "notice_id" field.</summary>
+    public const int NoticeIdFieldNumber = 1;
+    private string noticeId_ = "";
+    /// <summary>
+    /// 幂等去重键（如 "jh_duel:&lt;battle_id>:start"）
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string NoticeId {
+      get { return noticeId_; }
+      set {
+        noticeId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "template_id" field.</summary>
+    public const int TemplateIdFieldNumber = 2;
+    private global::Chatpb.SystemWorldNoticeTemplate templateId_ = global::Chatpb.SystemWorldNoticeTemplate.Unspecified;
+    /// <summary>
+    /// 严格白名单模板枚举
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Chatpb.SystemWorldNoticeTemplate TemplateId {
+      get { return templateId_; }
+      set {
+        templateId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "battle_id" field.</summary>
+    public const int BattleIdFieldNumber = 3;
+    private ulong battleId_;
+    /// <summary>
+    /// 关联公开观战 battle_id
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong BattleId {
+      get { return battleId_; }
+      set {
+        battleId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "actor_a_name" field.</summary>
+    public const int ActorANameFieldNumber = 4;
+    private string actorAName_ = "";
+    /// <summary>
+    /// 服务端权威展示名（胜方/发起方）
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string ActorAName {
+      get { return actorAName_; }
+      set {
+        actorAName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "actor_b_name" field.</summary>
+    public const int ActorBNameFieldNumber = 5;
+    private string actorBName_ = "";
+    /// <summary>
+    /// 服务端权威展示名（败方/应战方）
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string ActorBName {
+      get { return actorBName_; }
+      set {
+        actorBName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "total_rounds" field.</summary>
+    public const int TotalRoundsFieldNumber = 6;
+    private uint totalRounds_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint TotalRounds {
+      get { return totalRounds_; }
+      set {
+        totalRounds_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "streak_count" field.</summary>
+    public const int StreakCountFieldNumber = 7;
+    private uint streakCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint StreakCount {
+      get { return streakCount_; }
+      set {
+        streakCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "team_size" field.</summary>
+    public const int TeamSizeFieldNumber = 8;
+    private uint teamSize_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint TeamSize {
+      get { return teamSize_; }
+      set {
+        teamSize_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as PublishSystemWorldNoticeRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(PublishSystemWorldNoticeRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (NoticeId != other.NoticeId) return false;
+      if (TemplateId != other.TemplateId) return false;
+      if (BattleId != other.BattleId) return false;
+      if (ActorAName != other.ActorAName) return false;
+      if (ActorBName != other.ActorBName) return false;
+      if (TotalRounds != other.TotalRounds) return false;
+      if (StreakCount != other.StreakCount) return false;
+      if (TeamSize != other.TeamSize) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (NoticeId.Length != 0) hash ^= NoticeId.GetHashCode();
+      if (TemplateId != global::Chatpb.SystemWorldNoticeTemplate.Unspecified) hash ^= TemplateId.GetHashCode();
+      if (BattleId != 0UL) hash ^= BattleId.GetHashCode();
+      if (ActorAName.Length != 0) hash ^= ActorAName.GetHashCode();
+      if (ActorBName.Length != 0) hash ^= ActorBName.GetHashCode();
+      if (TotalRounds != 0) hash ^= TotalRounds.GetHashCode();
+      if (StreakCount != 0) hash ^= StreakCount.GetHashCode();
+      if (TeamSize != 0) hash ^= TeamSize.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (NoticeId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(NoticeId);
+      }
+      if (TemplateId != global::Chatpb.SystemWorldNoticeTemplate.Unspecified) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) TemplateId);
+      }
+      if (BattleId != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(BattleId);
+      }
+      if (ActorAName.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(ActorAName);
+      }
+      if (ActorBName.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(ActorBName);
+      }
+      if (TotalRounds != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(TotalRounds);
+      }
+      if (StreakCount != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(StreakCount);
+      }
+      if (TeamSize != 0) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(TeamSize);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (NoticeId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(NoticeId);
+      }
+      if (TemplateId != global::Chatpb.SystemWorldNoticeTemplate.Unspecified) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) TemplateId);
+      }
+      if (BattleId != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(BattleId);
+      }
+      if (ActorAName.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(ActorAName);
+      }
+      if (ActorBName.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(ActorBName);
+      }
+      if (TotalRounds != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(TotalRounds);
+      }
+      if (StreakCount != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(StreakCount);
+      }
+      if (TeamSize != 0) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(TeamSize);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (NoticeId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(NoticeId);
+      }
+      if (TemplateId != global::Chatpb.SystemWorldNoticeTemplate.Unspecified) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) TemplateId);
+      }
+      if (BattleId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BattleId);
+      }
+      if (ActorAName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ActorAName);
+      }
+      if (ActorBName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ActorBName);
+      }
+      if (TotalRounds != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TotalRounds);
+      }
+      if (StreakCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(StreakCount);
+      }
+      if (TeamSize != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TeamSize);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(PublishSystemWorldNoticeRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.NoticeId.Length != 0) {
+        NoticeId = other.NoticeId;
+      }
+      if (other.TemplateId != global::Chatpb.SystemWorldNoticeTemplate.Unspecified) {
+        TemplateId = other.TemplateId;
+      }
+      if (other.BattleId != 0UL) {
+        BattleId = other.BattleId;
+      }
+      if (other.ActorAName.Length != 0) {
+        ActorAName = other.ActorAName;
+      }
+      if (other.ActorBName.Length != 0) {
+        ActorBName = other.ActorBName;
+      }
+      if (other.TotalRounds != 0) {
+        TotalRounds = other.TotalRounds;
+      }
+      if (other.StreakCount != 0) {
+        StreakCount = other.StreakCount;
+      }
+      if (other.TeamSize != 0) {
+        TeamSize = other.TeamSize;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            NoticeId = input.ReadString();
+            break;
+          }
+          case 16: {
+            TemplateId = (global::Chatpb.SystemWorldNoticeTemplate) input.ReadEnum();
+            break;
+          }
+          case 24: {
+            BattleId = input.ReadUInt64();
+            break;
+          }
+          case 34: {
+            ActorAName = input.ReadString();
+            break;
+          }
+          case 42: {
+            ActorBName = input.ReadString();
+            break;
+          }
+          case 48: {
+            TotalRounds = input.ReadUInt32();
+            break;
+          }
+          case 56: {
+            StreakCount = input.ReadUInt32();
+            break;
+          }
+          case 64: {
+            TeamSize = input.ReadUInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            NoticeId = input.ReadString();
+            break;
+          }
+          case 16: {
+            TemplateId = (global::Chatpb.SystemWorldNoticeTemplate) input.ReadEnum();
+            break;
+          }
+          case 24: {
+            BattleId = input.ReadUInt64();
+            break;
+          }
+          case 34: {
+            ActorAName = input.ReadString();
+            break;
+          }
+          case 42: {
+            ActorBName = input.ReadString();
+            break;
+          }
+          case 48: {
+            TotalRounds = input.ReadUInt32();
+            break;
+          }
+          case 56: {
+            StreakCount = input.ReadUInt32();
+            break;
+          }
+          case 64: {
+            TeamSize = input.ReadUInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class PublishSystemWorldNoticeResponse : pb::IMessage<PublishSystemWorldNoticeResponse>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<PublishSystemWorldNoticeResponse> _parser = new pb::MessageParser<PublishSystemWorldNoticeResponse>(() => new PublishSystemWorldNoticeResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<PublishSystemWorldNoticeResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Chatpb.ChatReflection.Descriptor.MessageTypes[11]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PublishSystemWorldNoticeResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PublishSystemWorldNoticeResponse(PublishSystemWorldNoticeResponse other) : this() {
+      errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+      deduplicated_ = other.deduplicated_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PublishSystemWorldNoticeResponse Clone() {
+      return new PublishSystemWorldNoticeResponse(this);
+    }
+
+    /// <summary>Field number for the "error_message" field.</summary>
+    public const int ErrorMessageFieldNumber = 1;
+    private global::TipInfoMessage errorMessage_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::TipInfoMessage ErrorMessage {
+      get { return errorMessage_; }
+      set {
+        errorMessage_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "deduplicated" field.</summary>
+    public const int DeduplicatedFieldNumber = 2;
+    private bool deduplicated_;
+    /// <summary>
+    /// true = 命中幂等键未重复广播
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Deduplicated {
+      get { return deduplicated_; }
+      set {
+        deduplicated_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as PublishSystemWorldNoticeResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(PublishSystemWorldNoticeResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+      if (Deduplicated != other.Deduplicated) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+      if (Deduplicated != false) hash ^= Deduplicated.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (errorMessage_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(ErrorMessage);
+      }
+      if (Deduplicated != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Deduplicated);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (errorMessage_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(ErrorMessage);
+      }
+      if (Deduplicated != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Deduplicated);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (errorMessage_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+      }
+      if (Deduplicated != false) {
+        size += 1 + 1;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(PublishSystemWorldNoticeResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.errorMessage_ != null) {
+        if (errorMessage_ == null) {
+          ErrorMessage = new global::TipInfoMessage();
+        }
+        ErrorMessage.MergeFrom(other.ErrorMessage);
+      }
+      if (other.Deduplicated != false) {
+        Deduplicated = other.Deduplicated;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (errorMessage_ == null) {
+              ErrorMessage = new global::TipInfoMessage();
+            }
+            input.ReadMessage(ErrorMessage);
+            break;
+          }
+          case 16: {
+            Deduplicated = input.ReadBool();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (errorMessage_ == null) {
+              ErrorMessage = new global::TipInfoMessage();
+            }
+            input.ReadMessage(ErrorMessage);
+            break;
+          }
+          case 16: {
+            Deduplicated = input.ReadBool();
             break;
           }
         }

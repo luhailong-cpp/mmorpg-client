@@ -394,8 +394,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
                 string badge = isDummy ? "[无损验招]" : (cleared ? $"[已破 · {enc.ClearBadgeName}]" : "[未破阵]");
                 Text(_featureBody, $"{enc.Title}  {badge}", 60f, y, 580f, 28f, 20, cleared ? Gold : Ink);
-                string desc = cleared && !string.IsNullOrEmpty(enc.HiddenEpilogueBody) ? enc.HiddenEpilogueBody : enc.StoryIntro;
-                Text(_featureBody, desc, 60f, y + 28f, 584f, isDummy ? 56f : 38f, 16, Muted, true);
+                string desc;
+                if (isDummy && _lastState != null && _lastState.TryGetDummyRecord(enc.DungeonConfigId, out var dummyRec))
+                {
+                    desc = dummyRec.FormatCompactSummary();
+                }
+                else
+                {
+                    desc = cleared && !string.IsNullOrEmpty(enc.HiddenEpilogueBody) ? enc.HiddenEpilogueBody : enc.StoryIntro;
+                }
+                Text(_featureBody, desc, 60f, y + 28f, 584f, isDummy ? 56f : 38f, 16,
+                    isDummy && _lastState != null && _lastState.TryGetDummyRecord(enc.DungeonConfigId, out _) ? Ink : Muted, true);
 
                 string btnLabel = isDummy ? "本人试招" : (_useFreePresetForOptional ? "预设破局" : "本人破局");
                 DedicatedButton(_featureBody, btnLabel, 658f, y + 8f, 178f, 48f,

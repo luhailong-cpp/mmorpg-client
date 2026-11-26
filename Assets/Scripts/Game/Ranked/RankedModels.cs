@@ -127,6 +127,143 @@ namespace MmorpgClient.Game.Ranked
         public static string StreakBreakBannerText(uint endedStreak)
             => endedStreak >= 3u ? $"破势终结 · 终结 {endedStreak} 连胜" : string.Empty;
 
+        public static string PrepRivalryTagText(RankedRivalryEncounter encounter)
+        {
+            if (encounter == null || encounter.OpponentId == 0UL || (encounter.Wins + encounter.Losses) == 0u)
+                return string.Empty;
+            string name = string.IsNullOrEmpty(encounter.OpponentName) ? "老对手" : encounter.OpponentName;
+            string record = $"{encounter.Wins}胜{encounter.Losses}负";
+            return encounter.RevengeTarget
+                ? $"宿敌 · {name} {record}(可雪耻)"
+                : $"宿敌 · {name} {record}";
+        }
+
+        public static string RevengeStampText(bool revenged, string opponentName, uint winsAfter, uint lossesAfter)
+        {
+            if (!revenged) return string.Empty;
+            if (string.IsNullOrEmpty(opponentName))
+                return "雪耻复仇";
+            return (winsAfter + lossesAfter) > 0u
+                ? $"雪耻复仇 · 胜{opponentName} ({winsAfter}胜{lossesAfter}负)"
+                : $"雪耻复仇 · 胜{opponentName}";
+        }
+
+        public static string FormatWinRatePercent(uint wins, uint appearances)
+        {
+            if (appearances == 0u) return "0%";
+            uint pct = (uint)Math.Round(wins * 100.0 / appearances);
+            if (pct > 100u) pct = 100u;
+            return pct.ToString(CultureInfo.InvariantCulture) + "%";
+        }
+
+        /// <summary>按玩家当前真实拥有的赛季印与灵宠，纯只读计算「一键抄配招」可执行动作与差异说明。</summary>
+        public static FeaturedBuildCopyPlan EvaluateFeaturedBuildCopyPlan(
+            RankedFeaturedBuildView build,
+            global::SeasonStateSnapshot season,
+            global::PetListInfo pets,
+            Func<uint, string> sealNameLookup = null,
+            Func<uint, string> petNameLookup = null)
+        {
+            if (build == null)
+                return new FeaturedBuildCopyPlan { SummaryMessage = "未选择有效流派方案。" };
+
+            var plan = new FeaturedBuildCopyPlan();
+            var notes = new List<string>(3);
+
+            if (build.SeasonSealId != 0u)
+            {
+                string sealName = sealNameLookup?.Invoke(build.SeasonSealId);
+                if (string.IsNullOrEmpty(sealName)) sealName = $"赛季印 #{build.SeasonSealId}";
+                if (season == null)
+                {
+                    plan.MissingSeal = true;
+                    notes.Add($"赛季印「{sealName}」待同步赛季状态");
+                }
+                else if (season.EquippedSealId == build.SeasonSealId)
+                {
+                    plan.AlreadyEquippedSeal = true;
+                    notes.Add($"赛季印「{sealName}」已佩戴");
+                }
+                else
+                {
+                    bool owned = false;
+                    for (int i = 0; i < season.Seals.Count; i++)
+                    {
+                        var opt = season.Seals[i];
+                        if (opt != null && opt.SealId == build.SeasonSealId)
+                        {
+                            owned = true;
+                            if (!string.IsNullOrEmpty(opt.Name)) sealName = opt.Name;
+                            break;
+                        }
+                    }
+                    if (owned)
+                    {
+                        plan.CanEquipSeal = true;
+                        plan.TargetSealId = build.SeasonSealId;
+                        notes.Add($"将切换赛季印「{sealName}」");
+                    }
+                    else
+                    {
+                        plan.MissingSeal = true;
+                        notes.Add($"缺少赛季印「{sealName}」");
+                    }
+                }
+            }
+
+            if (build.StarterPetTableId != 0u)
+            {
+                string speciesName = petNameLookup?.Invoke(build.StarterPetTableId);
+                if (string.IsNullOrEmpty(speciesName)) speciesName = $"灵宠 #{build.StarterPetTableId}";
+                if (pets == null)
+                {
+                    plan.MissingPet = true;
+                    notes.Add($"首发宠「{speciesName}」待同步灵宠栏");
+                }
+                else
+                {
+                    global::PetInfo bestMatch = null;
+                    for (int i = 0; i < pets.Pets.Count; i++)
+                    {
+                        var p = pets.Pets[i];
+                        if (p == null || p.PetId == 0UL || p.PetTableId != build.StarterPetTableId) continue;
+                        if (bestMatch == null
+                            || p.PetId == pets.ActivePetId
+                            || (bestMatch.PetId != pets.ActivePetId && (p.Level > bestMatch.Level || (p.Level == bestMatch.Level && p.PetId < bestMatch.PetId))))
+                        {
+                            bestMatch = p;
+                        }
+                    }
+                    if (bestMatch == null)
+                    {
+                        plan.MissingPet = true;
+                        notes.Add($"未拥有首发宠「{speciesName}」");
+                    }
+                    else
+                    {
+                        string petLabel = !string.IsNullOrEmpty(bestMatch.Name) ? bestMatch.Name : speciesName;
+                        if (bestMatch.PetId == pets.ActivePetId)
+                        {
+                            plan.AlreadyActivePet = true;
+                            notes.Add($"首发宠「{petLabel}」已出战");
+                        }
+                        else
+                        {
+                            plan.CanSummonPet = true;
+                            plan.TargetPetId = bestMatch.PetId;
+                            notes.Add($"将出战「{petLabel}」");
+                        }
+                    }
+                }
+            }
+
+            if (notes.Count == 0)
+                plan.SummaryMessage = "该流派仅含技能配招参考，请按核心招式前往技能书搭配。";
+            else
+                plan.SummaryMessage = string.Join(" · ", notes);
+            return plan;
+        }
+
         public static string FormatElapsedClock(uint seconds)
         {
             uint mm = seconds / 60u;
@@ -246,6 +383,20 @@ namespace MmorpgClient.Game.Ranked
         };
     }
 
+    public sealed class FeaturedBuildCopyPlan
+    {
+        public bool CanEquipSeal { get; set; }
+        public bool AlreadyEquippedSeal { get; set; }
+        public bool MissingSeal { get; set; }
+        public uint TargetSealId { get; set; }
+        public bool CanSummonPet { get; set; }
+        public bool AlreadyActivePet { get; set; }
+        public bool MissingPet { get; set; }
+        public ulong TargetPetId { get; set; }
+        public string SummaryMessage { get; set; } = string.Empty;
+        public bool HasAnyWriteAction => CanEquipSeal || CanSummonPet;
+    }
+
     /// <summary>RPC 448 GetRankedProfile 的只读客户端快照，所有对象均为独立副本。</summary>
     public sealed class RankedProfileSnapshot
     {
@@ -258,6 +409,8 @@ namespace MmorpgClient.Game.Ranked
         public IReadOnlyList<RankedRewardEntitlement> Entitlements { get; }
         public IReadOnlyList<RankedPlayerSeasonSummary> History { get; }
         public IReadOnlyList<RankedSeasonInfo> PastSeasons { get; }
+        public IReadOnlyList<RankedFeaturedBuildView> FeaturedBuilds { get; }
+        public IReadOnlyList<RankedRivalrySummary> TopRivals { get; }
         public ulong ServerTimeMs { get; }
 
         public bool HasSeason => CurrentSeason != null && CurrentSeason.SeasonId != 0;
@@ -349,7 +502,9 @@ namespace MmorpgClient.Game.Ranked
             IReadOnlyList<RankedRewardEntitlement> entitlements,
             IReadOnlyList<RankedPlayerSeasonSummary> history,
             IReadOnlyList<RankedSeasonInfo> pastSeasons,
-            ulong serverTimeMs)
+            ulong serverTimeMs,
+            IReadOnlyList<RankedFeaturedBuildView> featuredBuilds = null,
+            IReadOnlyList<RankedRivalrySummary> topRivals = null)
         {
             CurrentSeason = currentSeason;
             CurrentProgress = currentProgress;
@@ -359,11 +514,13 @@ namespace MmorpgClient.Game.Ranked
                 PetPresetId = RankedFormatting.DefaultPetPresetId,
             };
             CosmeticLoadout = cosmeticLoadout ?? new RankedCosmeticLoadout();
-            CharacterPresets = characterPresets;
-            PetPresets = petPresets;
-            Entitlements = entitlements;
-            History = history;
-            PastSeasons = pastSeasons;
+            CharacterPresets = characterPresets ?? Array.Empty<RankedPresetView>();
+            PetPresets = petPresets ?? Array.Empty<RankedPresetView>();
+            Entitlements = entitlements ?? Array.Empty<RankedRewardEntitlement>();
+            History = history ?? Array.Empty<RankedPlayerSeasonSummary>();
+            PastSeasons = pastSeasons ?? Array.Empty<RankedSeasonInfo>();
+            FeaturedBuilds = featuredBuilds ?? Array.Empty<RankedFeaturedBuildView>();
+            TopRivals = topRivals ?? Array.Empty<RankedRivalrySummary>();
             ServerTimeMs = serverTimeMs;
         }
 
@@ -391,6 +548,12 @@ namespace MmorpgClient.Game.Ranked
             var past = new List<RankedSeasonInfo>(resp.PastSeasons.Count);
             foreach (var s in resp.PastSeasons) if (s != null) past.Add(s.Clone());
 
+            var featured = new List<RankedFeaturedBuildView>(resp.FeaturedBuilds.Count);
+            foreach (var b in resp.FeaturedBuilds) if (b != null) featured.Add(b.Clone());
+
+            var rivals = new List<RankedRivalrySummary>(resp.TopRivals.Count);
+            foreach (var r in resp.TopRivals) if (r != null) rivals.Add(r.Clone());
+
             return new RankedProfileSnapshot(
                 resp.CurrentSeason?.Clone(),
                 resp.CurrentProgress?.Clone(),
@@ -401,7 +564,9 @@ namespace MmorpgClient.Game.Ranked
                 entitlements,
                 history,
                 past,
-                resp.ServerTimeMs);
+                resp.ServerTimeMs,
+                featured,
+                rivals);
         }
 
         public RankedProfileSnapshot WithPresets(RankedPresetSelection selection)
@@ -415,7 +580,9 @@ namespace MmorpgClient.Game.Ranked
                 Entitlements,
                 History,
                 PastSeasons,
-                ServerTimeMs);
+                ServerTimeMs,
+                FeaturedBuilds,
+                TopRivals);
 
         public RankedProfileSnapshot WithCosmetic(RankedCosmeticLoadout loadout)
             => new RankedProfileSnapshot(
@@ -428,7 +595,9 @@ namespace MmorpgClient.Game.Ranked
                 Entitlements,
                 History,
                 PastSeasons,
-                ServerTimeMs);
+                ServerTimeMs,
+                FeaturedBuilds,
+                TopRivals);
 
         public RankedRewardEntitlement FindEntitlement(RankedRewardKind kind)
         {
@@ -496,6 +665,12 @@ namespace MmorpgClient.Game.Ranked
         public BattleHighlightKind HighlightKind { get; set; }
         public uint EndedOpponentStreak { get; set; }
 
+        // 论剑 V6 宿敌雪耻复仇荣誉印章（合并战斗服现场与 match 权威结算）
+        public bool RevengedRival { get; set; }
+        public string RevengedOpponentName { get; set; } = string.Empty;
+        public uint RevengedWinsAfter { get; set; }
+        public uint RevengedLossesAfter { get; set; }
+
         public bool HasCombatHighlight =>
             !IsVoid && (HighlightKind != BattleHighlightKind.BattleHighlightNone
                 || TotalDamageDealt > 0 || TotalSupportValue > 0 || DamageTaken > 0 || ControlAndDispelCount > 0);
@@ -508,6 +683,24 @@ namespace MmorpgClient.Game.Ranked
                 return EndedOpponentStreak >= fromMatch ? EndedOpponentStreak : fromMatch;
             }
         }
+
+        public bool EffectiveRevengedRival =>
+            !IsVoid && (RevengedRival || (AuthoritativeView != null && AuthoritativeView.RevengedRival));
+
+        public string EffectiveRevengedOpponentName =>
+            AuthoritativeView != null && AuthoritativeView.RevengedRival && !string.IsNullOrEmpty(AuthoritativeView.RevengedOpponentName)
+                ? AuthoritativeView.RevengedOpponentName
+                : RevengedOpponentName;
+
+        public uint EffectiveRevengedWinsAfter =>
+            AuthoritativeView != null && AuthoritativeView.RevengedRival
+                ? AuthoritativeView.RevengedWinsAfter
+                : RevengedWinsAfter;
+
+        public uint EffectiveRevengedLossesAfter =>
+            AuthoritativeView != null && AuthoritativeView.RevengedRival
+                ? AuthoritativeView.RevengedLossesAfter
+                : RevengedLossesAfter;
 
         // Match RPC 451 权威结算结果
         public RankedBattleSettlementView AuthoritativeView { get; set; }

@@ -188,6 +188,56 @@ namespace MmorpgClient.Game.CityNpc
         }
     }
 
+    /// <summary>齐问锋演武木桩（301 单桩 / 302 三才群桩）单次权威战报回执与历史最佳对照（零数值加成、纯配装验招）。</summary>
+    public readonly struct PracticeDummyRecord
+    {
+        public uint DungeonConfigId { get; }
+        public uint Rounds { get; }
+        public ulong TotalDamage { get; }
+        public ulong AvgDamagePerRound { get; }
+        public ulong SupportValue { get; }
+        public uint ControlAndDispelCount { get; }
+        public ulong DamageTaken { get; }
+        public ulong BestTotalDamage { get; }
+        public ulong BestAvgDamagePerRound { get; }
+        public bool HasPreviousComparison { get; }
+        public int DeltaAvgDamagePercent { get; }
+
+        public PracticeDummyRecord(
+            uint dungeonConfigId,
+            uint rounds,
+            ulong totalDamage,
+            ulong avgDamagePerRound,
+            ulong supportValue,
+            uint controlAndDispelCount,
+            ulong damageTaken,
+            ulong bestTotalDamage,
+            ulong bestAvgDamagePerRound,
+            bool hasPreviousComparison,
+            int deltaAvgDamagePercent)
+        {
+            DungeonConfigId = dungeonConfigId;
+            Rounds = rounds;
+            TotalDamage = totalDamage;
+            AvgDamagePerRound = avgDamagePerRound;
+            SupportValue = supportValue;
+            ControlAndDispelCount = controlAndDispelCount;
+            DamageTaken = damageTaken;
+            BestTotalDamage = bestTotalDamage;
+            BestAvgDamagePerRound = bestAvgDamagePerRound;
+            HasPreviousComparison = hasPreviousComparison;
+            DeltaAvgDamagePercent = deltaAvgDamagePercent;
+        }
+
+        public string FormatCompactSummary()
+        {
+            string delta = HasPreviousComparison
+                ? (DeltaAvgDamagePercent >= 0 ? $"（较上次 +{DeltaAvgDamagePercent}%）" : $"（较上次 {DeltaAvgDamagePercent}%）")
+                : "";
+            return $"上次 {Rounds} 回合：总伤 {TotalDamage:N0}｜均伤 {AvgDamagePerRound:N0}/回合{delta}｜疗盾 {SupportValue:N0}｜控驱 {ControlAndDispelCount}｜历史最佳 {BestTotalDamage:N0}";
+        }
+    }
+
     /// <summary>莫听风「灵潮五行签文」纯趣味结果（确定性派生、零战力数值）。</summary>
     public readonly struct WuxingFortuneResult
     {

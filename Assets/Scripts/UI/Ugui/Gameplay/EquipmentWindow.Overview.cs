@@ -82,7 +82,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var derived = _panel?.Derived; var effects = _panel?.EquipmentEffects;
             var summary = derived == null ? "人物属性尚未同步" :
                 $"气血 {derived.MaxHealth}\n物攻 {derived.PhysicalAttack}\n法攻 {derived.MagicAttack}\n治疗加成 {(effects?.OutgoingHealBps ?? 0) / 100m:0.##}%\n护盾加成 {(effects?.ShieldCapacityBps ?? 0) / 100m:0.##}%";
-            Label(_body, "EquipmentCharacterSummary", summary, 840, 1070, 390, 300, 35, true, Jade);
+            Label(_body, "EquipmentCharacterSummary", summary, 840, 1070, 390, 280, 34, true, Jade);
+            RenderOverviewLoadoutQuickBar();
             var current = FindItem(_selectedItem);
             Panel(_body, "EquipmentDetailPaper", 1980, 305, 1100, 1040);
             Label(_body, "EquipmentDetailHeading", "装备详情", 2110, 370, 800, 75, 56, color: Jade);
@@ -141,7 +142,59 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Button(_body, "EquipmentMaterialEntry", "材料自选", 3480, 1345, 355, OpenMaterials);
             // Occupied historic fixture slots must remain accessible through the original bag view.
             if (slots.Any(s => !official.Any(o => o.Slot == s.Slot) && s.Item != null))
-                Label(_body, "EquipmentLegacySlots", "其他旧装备可在背包「已穿戴」中查看和卸下", 230, 1405, 1670, 65, 34, color: Muted);
+                Label(_body, "EquipmentLegacySlots", "其他旧装备可在背包「已穿戴」中查看和卸下", 200, 1456, 1670, 36, 26, color: Muted);
+        }
+
+        /// <summary>装备主界面 1..5 方案快捷切换栏：点击已解锁方案一键切换，点击当前方案进管理弹窗，点击未解锁进解锁弹窗。</summary>
+        private void RenderOverviewLoadoutQuickBar()
+        {
+            Label(_body, "OverviewLoadoutQuickTitle", "流派方案", 160f, 1384f, 176f, 72f, 34f, false, Jade);
+            var snap = _client?.EquipLoadouts;
+            const float tabW = 296f, tabH = 76f, gap = 16f, startX = 344f, barY = 1380f;
+            bool busy = WriteBlocked || _client?.BusyEquip == true || _client?.BusyEquipLoadoutUnlock == true;
+            for (int i = 0; i < 5; ++i)
+            {
+                uint schemeId = (uint)(i + 1);
+                var scheme = snap?.Schemes.FirstOrDefault(s => s != null && s.SchemeId == schemeId);
+                bool unlocked = scheme != null ? scheme.Unlocked : schemeId == 1u;
+                bool active = unlocked && (snap != null ? snap.ActiveSchemeId == schemeId : schemeId == 1u);
+                string spriteKey = !unlocked
+                    ? EquipLoadoutModel.TabLockedKey
+                    : (active ? EquipLoadoutModel.TabActiveKey : EquipLoadoutModel.TabUnlockedKey);
+                var sprite = LoadEquipLoadoutSprite(spriteKey);
+                var btn = QdaoUguiFactory.CreateArtButton("OverviewLoadoutQuick_" + schemeId, _body,
+                    startX + i * (tabW + gap), barY, tabW, tabH, sprite, out var img);
+                if (sprite != null) SeasonEconomyUiArt.ApplyHorizontalSlice(img, sprite, tabH);
+                else img.color = !unlocked ? new Color(0.84f, 0.80f, 0.72f, 0.92f) : (active ? Jade : Cream);
+                btn.interactable = snap != null && (!unlocked || active || !busy);
+                uint capturedId = schemeId;
+                bool capturedUnlocked = unlocked;
+                bool capturedActive = active;
+                btn.onClick.AddListener(() =>
+                {
+                    if (!capturedUnlocked)
+                    {
+                        _modal = Modal.EquipLoadoutUnlock;
+                        Render();
+                    }
+                    else if (capturedActive)
+                    {
+                        OpenEquipLoadouts();
+                    }
+                    else if (!WriteBlocked && _client != null && !_client.BusyEquip && !_client.BusyEquipLoadoutUnlock)
+                    {
+                        _client.SwitchEquipLoadout(capturedId, _loadoutApplyLinked);
+                    }
+                });
+                string text = scheme != null
+                    ? EquipLoadoutModel.FormatQuickBarLabel(scheme)
+                    : (unlocked ? EquipLoadoutModel.DefaultSchemeName(schemeId) : "+ " + EquipLoadoutModel.DefaultSchemeName(schemeId));
+                var lbl = Label(btn.transform, "Lbl", text, 16f, 0f, tabW - 32f, tabH, 28f, false, active ? Cream : Ink);
+                lbl.alignment = TextAlignmentOptions.Center;
+                lbl.enableAutoSizing = true;
+                lbl.fontSizeMin = 18f;
+                lbl.fontSizeMax = 28f;
+            }
         }
 
         /// <summary>在八部位永久装备旁仅放置唯一的「赛季印」单槽入口（方案 A，绝不画多部位赛季装备栏）。</summary>

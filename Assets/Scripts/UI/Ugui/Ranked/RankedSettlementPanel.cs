@@ -42,6 +42,8 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private readonly TMP_Text _highlightTitle, _highlightStatsText;
         private readonly Image _streakBreakPlate;
         private readonly TMP_Text _streakBreakText;
+        private readonly Image _revengeStampPlate;
+        private readonly TMP_Text _revengeStampText;
 
         // 底部三卡（panel-paper：150 / 705 / 1260, y=570, 510x259）
         private readonly TMP_Text _card1Main, _card1Sub;
@@ -103,6 +105,19 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _streakBreakText.fontSizeMin = 15f;
             _streakBreakText.fontSizeMax = 19f;
             _streakBreakPlate.gameObject.SetActive(false);
+
+            // 论剑 V6 左侧宿敌「雪耻复仇」荣誉印章（原尺寸 280×68，预绑 RankedPlayV6/rivalry_revenge_stamp，纯荣誉不改分）
+            _revengeStampPlate = QdaoUguiFactory.CreateImage("RevengeRivalStamp", _root, 172f, 460f, 280f, 68f, null, false);
+            var revengeSprite = SeasonEconomyUiArt.LoadRankedPlayV6Asset("rivalry_revenge_stamp");
+            bool hasRevengeArt = revengeSprite != null;
+            if (hasRevengeArt) SeasonEconomyUiArt.ApplyFixedControlSprite(_revengeStampPlate, revengeSprite, SeasonEconomyUiArt.BattleArenaVermilion);
+            else _revengeStampPlate.color = SeasonEconomyUiArt.BattleArenaVermilion;
+            _revengeStampText = CreateLabel("RevengeRivalText", _revengeStampPlate.transform, 14f, 0f, 252f, 68f,
+                string.Empty, 19f, hasRevengeArt ? JadeDark : GoldCream, TextAlignmentOptions.Center, bold: true);
+            _revengeStampText.enableAutoSizing = true;
+            _revengeStampText.fontSizeMin = 14f;
+            _revengeStampText.fontSizeMax = 19f;
+            _revengeStampPlate.gameObject.SetActive(false);
 
             // 论剑 V4 右侧战术复盘高光卡（与中部段位卡等高齐平 [1446, 292, 324, 250]）
             var highlightPanel = CreateGuildArt("SettlementHighlightCard", _root, 1446f, 292f, 324f, 250f, "guild_row_self");
@@ -222,15 +237,33 @@ namespace MmorpgClient.UI.Ugui.Ranked
             if (_surrenderBadgePlate != null)
                 _surrenderBadgePlate.gameObject.SetActive(state.Surrendered && !state.IsVoid);
 
-            // 论剑 V4 破势终结印章与战术复盘高光卡（纯荣誉，不改分、不改材料）
+            // 论剑 V4 破势终结印章、V6 雪耻复仇印章与战术复盘高光卡（纯荣誉，不改分、不改材料）
+            bool showBreak = false;
             if (_streakBreakPlate != null && _streakBreakText != null)
             {
                 string breakText = !state.IsVoid
                     ? RankedFormatting.StreakBreakBannerText(state.EffectiveEndedOpponentStreak)
                     : string.Empty;
-                bool showBreak = !string.IsNullOrEmpty(breakText);
+                showBreak = !string.IsNullOrEmpty(breakText);
                 _streakBreakPlate.gameObject.SetActive(showBreak);
                 if (showBreak) _streakBreakText.text = breakText;
+            }
+            if (_revengeStampPlate != null && _revengeStampText != null)
+            {
+                string revengeText = !state.IsVoid
+                    ? RankedFormatting.RevengeStampText(
+                        state.EffectiveRevengedRival,
+                        state.EffectiveRevengedOpponentName,
+                        state.EffectiveRevengedWinsAfter,
+                        state.EffectiveRevengedLossesAfter)
+                    : string.Empty;
+                bool showRevenge = !string.IsNullOrEmpty(revengeText);
+                _revengeStampPlate.gameObject.SetActive(showRevenge);
+                if (showRevenge)
+                {
+                    _revengeStampText.text = revengeText;
+                    _revengeStampPlate.rectTransform.anchoredPosition = new Vector2(172f, showBreak ? -460f : -382f);
+                }
             }
             if (_highlightCard != null && _highlightTitle != null && _highlightStatsText != null)
             {

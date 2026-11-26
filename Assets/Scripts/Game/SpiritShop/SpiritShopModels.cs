@@ -56,7 +56,7 @@ namespace MmorpgClient.Game.SpiritShop
     }
 
     /// <summary>
-    /// 购买瞬间向服务端回传的报价快照，用于服务端防热更改价/改内容防呆核验（V-3）。
+    /// 购买瞬间向服务端回传的报价快照，用于服务端防热更改价/改内容/换顺序防呆核验（V-3 / V2-2）。
     /// </summary>
     public readonly struct SpiritShopPurchaseQuote : IEquatable<SpiritShopPurchaseQuote>
     {
@@ -65,20 +65,33 @@ namespace MmorpgClient.Game.SpiritShop
         public uint GoodsId { get; }
         public uint CurrencyType { get; }
         public ulong UnitPrice { get; }
+        public uint ChosenItemIndex { get; }
         public IReadOnlyList<SpiritShopQuoteItem> Items => _items ?? Array.Empty<SpiritShopQuoteItem>();
         public bool IsValid => GoodsId != 0 && UnitPrice != 0 && _items != null && _items.Length > 0;
 
-        private SpiritShopPurchaseQuote(uint goodsId, uint currencyType, ulong unitPrice, SpiritShopQuoteItem[] items)
+        private SpiritShopPurchaseQuote(uint goodsId, uint currencyType, ulong unitPrice, uint chosenItemIndex,
+            SpiritShopQuoteItem[] items)
         {
             GoodsId = goodsId;
             CurrencyType = currencyType;
             UnitPrice = unitPrice;
+            ChosenItemIndex = chosenItemIndex;
             _items = items;
         }
 
-        public static SpiritShopPurchaseQuote Of(global::SpiritShopGoodsView goods)
+        public static SpiritShopPurchaseQuote Of(global::SpiritShopGoodsView goods, uint chosenItemIndex = 0)
         {
             if (goods == null || goods.GoodsId == 0 || goods.UnitPrice == 0 || goods.Items == null || goods.Items.Count == 0)
+                return default;
+            if (goods.GrantMode == SpiritShopModels.GrantModeChooseOne)
+            {
+                if (goods.Items.Count < 2 || chosenItemIndex >= (uint)goods.Items.Count) return default;
+                var chosen = goods.Items[(int)chosenItemIndex];
+                if (chosen == null || chosen.ItemConfigId == 0 || chosen.ItemCount == 0) return default;
+                return new SpiritShopPurchaseQuote(goods.GoodsId, goods.CurrencyType, goods.UnitPrice, chosenItemIndex,
+                    new[] { new SpiritShopQuoteItem(chosen.ItemConfigId, chosen.ItemCount, chosen.Bound) });
+            }
+            if (goods.GrantMode != SpiritShopModels.GrantModeAll || chosenItemIndex != 0)
                 return default;
             var copied = new SpiritShopQuoteItem[goods.Items.Count];
             for (int i = 0; i < goods.Items.Count; i++)
@@ -87,7 +100,7 @@ namespace MmorpgClient.Game.SpiritShop
                 if (entry == null || entry.ItemConfigId == 0 || entry.ItemCount == 0) return default;
                 copied[i] = new SpiritShopQuoteItem(entry.ItemConfigId, entry.ItemCount, entry.Bound);
             }
-            return new SpiritShopPurchaseQuote(goods.GoodsId, goods.CurrencyType, goods.UnitPrice, copied);
+            return new SpiritShopPurchaseQuote(goods.GoodsId, goods.CurrencyType, goods.UnitPrice, 0u, copied);
         }
 
         public void WriteExpectedItems(Google.Protobuf.Collections.RepeatedField<global::SpiritShopItemEntry> target)
@@ -106,7 +119,8 @@ namespace MmorpgClient.Game.SpiritShop
 
         public bool Equals(SpiritShopPurchaseQuote other)
         {
-            if (GoodsId != other.GoodsId || CurrencyType != other.CurrencyType || UnitPrice != other.UnitPrice)
+            if (GoodsId != other.GoodsId || CurrencyType != other.CurrencyType
+                || UnitPrice != other.UnitPrice || ChosenItemIndex != other.ChosenItemIndex)
                 return false;
             int leftLen = _items?.Length ?? 0;
             int rightLen = other._items?.Length ?? 0;
@@ -126,6 +140,7 @@ namespace MmorpgClient.Game.SpiritShop
             hc.Add(GoodsId);
             hc.Add(CurrencyType);
             hc.Add(UnitPrice);
+            hc.Add(ChosenItemIndex);
             if (_items != null)
             {
                 for (int i = 0; i < _items.Length; i++) hc.Add(_items[i]);
@@ -146,6 +161,7 @@ namespace MmorpgClient.Game.SpiritShop
         InvalidCount = 4,
         LimitReached = 5,
         GroupLimitReached = 6,
+        SaleEnded = 7,
     }
 
     /// <summary>
@@ -156,6 +172,10 @@ namespace MmorpgClient.Game.SpiritShop
         public const uint TabStarterPacks = 1;
         public const uint TabAdvancement = 2;
         public const uint TabAppearanceAndConvenience = 3;
+        public const uint TabFestival = 4;
+
+        public const uint GrantModeAll = 0;
+        public const uint GrantModeChooseOne = 1;
 
         public const uint CurrencyGold = 0;
         public const uint CurrencyDiamond = 1;
@@ -170,6 +190,8 @@ namespace MmorpgClient.Game.SpiritShop
         public const uint GoodsRenameCard = 302;
         public const uint GoodsPetMorphCard = 303;
         public const uint GoodsSkillVfxCard = 304;
+        public const uint GoodsSpringBundle401 = 401;
+        public const uint GoodsSpringChoice402 = 402;
 
         public const uint ItemCraftMaterial = 3001;
         public const uint ItemRefineStone = 3002;
@@ -188,8 +210,52 @@ namespace MmorpgClient.Game.SpiritShop
             TabStarterPacks => "首套提速",
             TabAdvancement => "精进配套",
             TabAppearanceAndConvenience => "外观便利",
+            TabFestival => "节庆特惠",
             _ => "百宝阁",
         };
+
+        public static bool IsChooseOne(global::SpiritShopGoodsView goods)
+            => goods != null && goods.GrantMode == GrantModeChooseOne;
+
+        public static bool HasTabGoods(global::SpiritShopInfo info, uint tabId)
+        {
+            if (info?.Goods == null || tabId == 0) return false;
+            for (int i = 0; i < info.Goods.Count; i++)
+            {
+                var g = info.Goods[i];
+                if (g != null && g.TabId == tabId) return true;
+            }
+            return false;
+        }
+
+        public static bool IsExpired(global::SpiritShopGoodsView goods, ulong serverNowMs)
+            => goods != null && goods.EndTimeMs > 0 && serverNowMs > 0 && serverNowMs >= goods.EndTimeMs;
+
+        public static string ComputeDiscountLabel(ulong unitPrice, ulong originalPrice)
+        {
+            if (originalPrice == 0 || unitPrice == 0 || originalPrice <= unitPrice) return string.Empty;
+            double fold = Math.Round((double)unitPrice * 10.0 / originalPrice, 1, MidpointRounding.AwayFromZero);
+            fold = Math.Max(0.1, Math.Min(9.9, fold));
+            double roundedInt = Math.Round(fold);
+            if (Math.Abs(fold - roundedInt) < 0.05)
+                return $"{((int)roundedInt).ToString(CultureInfo.InvariantCulture)}折";
+            return $"{fold.ToString("0.0", CultureInfo.InvariantCulture)}折";
+        }
+
+        public static string FormatRemainingTime(ulong endTimeMs, ulong serverNowMs)
+        {
+            if (endTimeMs == 0) return string.Empty;
+            if (serverNowMs == 0 || serverNowMs >= endTimeMs) return "活动已结束";
+            ulong sec = (endTimeMs - serverNowMs) / 1000UL;
+            ulong days = sec / 86400UL;
+            ulong hours = (sec % 86400UL) / 3600UL;
+            ulong mins = (sec % 3600UL) / 60UL;
+            ulong remSec = sec % 60UL;
+            if (days > 0) return $"剩余 {days}天{hours}小时";
+            if (hours > 0) return $"剩余 {hours}小时{mins}分";
+            if (mins > 0) return $"剩余 {mins}分{remSec}秒";
+            return $"剩余 {Math.Max(1UL, remSec)}秒";
+        }
 
         public static string CurrencyName(uint currencyType) => MmorpgClient.Game.Common.CurrencyLabels.Name(currencyType);
 
@@ -269,12 +335,15 @@ namespace MmorpgClient.Game.SpiritShop
             global::SpiritShopLimitGroupView group,
             uint count,
             bool ready,
-            bool inBattle)
+            bool inBattle,
+            ulong serverNowMs = 0)
         {
             if (!ready) return SpiritShopBuyBlock.NotReady;
             if (inBattle) return SpiritShopBuyBlock.InBattle;
             if (goods == null || goods.GoodsId == 0 || goods.UnitPrice == 0 || goods.Items == null || goods.Items.Count == 0)
                 return SpiritShopBuyBlock.InvalidGoods;
+            if (IsExpired(goods, serverNowMs))
+                return SpiritShopBuyBlock.SaleEnded;
             uint perRequestMax = EffectiveMaxBuyPerRequest(goods);
             if (count == 0 || count > perRequestMax) return SpiritShopBuyBlock.InvalidCount;
             if (goods.LimitCount > 0 && RemainingGoodsQuota(goods) < count)
@@ -296,6 +365,7 @@ namespace MmorpgClient.Game.SpiritShop
             SpiritShopBuyBlock.InvalidCount => "购买数量不合法。",
             SpiritShopBuyBlock.LimitReached => "该商品已达限购上限。",
             SpiritShopBuyBlock.GroupLimitReached => "该类提速包已达终身限购总额。",
+            SpiritShopBuyBlock.SaleEnded => "该限时商品活动已结束，请刷新货架。",
             _ => string.Empty,
         };
 
@@ -312,6 +382,9 @@ namespace MmorpgClient.Game.SpiritShop
             (uint)spirit_shop_error.KSpiritShopFrozen => "角色当前状态无法购买，请稍后再试。",
             (uint)spirit_shop_error.KSpiritShopInBattle => "战斗中无法购买，请待战斗结束后再试。",
             (uint)spirit_shop_error.KSpiritShopItemBlocked => "该物品当前被禁止获取。",
+            (uint)spirit_shop_error.KSpiritShopNotInSaleWindow => "该商品暂未开售或活动已结束。",
+            (uint)spirit_shop_error.KSpiritShopLevelNotMet => "角色等级未满足该商品购买条件。",
+            (uint)spirit_shop_error.KSpiritShopInvalidChoice => "所选礼盒物品无效，请重新选择。",
             (uint)common_error.KRateLimitExceeded => "操作太快了，请稍候再试。",
             (uint)common_error.KServiceUnavailable => "百宝阁服务暂时不可用，请稍后再试。",
             (uint)common_error.KInvalidParameter => "请求参数无效，请刷新货架后重试。",
@@ -323,7 +396,10 @@ namespace MmorpgClient.Game.SpiritShop
             || tipId == (uint)spirit_shop_error.KSpiritShopPriceChanged
             || tipId == (uint)spirit_shop_error.KSpiritShopInvalidCount
             || tipId == (uint)spirit_shop_error.KSpiritShopLimitReached
-            || tipId == (uint)spirit_shop_error.KSpiritShopGroupLimitReached;
+            || tipId == (uint)spirit_shop_error.KSpiritShopGroupLimitReached
+            || tipId == (uint)spirit_shop_error.KSpiritShopNotInSaleWindow
+            || tipId == (uint)spirit_shop_error.KSpiritShopLevelNotMet
+            || tipId == (uint)spirit_shop_error.KSpiritShopInvalidChoice;
 
         public static string ResolveItemName(uint itemConfigId)
         {
@@ -343,21 +419,43 @@ namespace MmorpgClient.Game.SpiritShop
             };
         }
 
-        public static string FormatItemsSummary(global::SpiritShopGoodsView goods, uint count = 1)
+        public static string FormatSingleItem(global::SpiritShopItemEntry item, uint count = 1)
+        {
+            if (item == null || item.ItemConfigId == 0) return string.Empty;
+            uint safeCount = Math.Max(1u, count);
+            ulong total = (ulong)item.ItemCount * safeCount;
+            string suffix = item.Bound ? "(绑定)" : string.Empty;
+            return $"{ResolveItemName(item.ItemConfigId)}×{total.ToString(CultureInfo.InvariantCulture)}{suffix}";
+        }
+
+        public static string FormatItemsSummary(global::SpiritShopGoodsView goods, uint count = 1, int chosenIndex = -1)
         {
             if (goods?.Items == null || goods.Items.Count == 0) return string.Empty;
             uint safeCount = Math.Max(1u, count);
+            if (IsChooseOne(goods))
+            {
+                if (chosenIndex >= 0 && chosenIndex < goods.Items.Count)
+                    return FormatSingleItem(goods.Items[chosenIndex], safeCount);
+                var sbChoice = new StringBuilder(96);
+                sbChoice.Append("任选 1 项：");
+                bool first = true;
+                for (int i = 0; i < goods.Items.Count; i++)
+                {
+                    string part = FormatSingleItem(goods.Items[i], safeCount);
+                    if (string.IsNullOrEmpty(part)) continue;
+                    if (!first) sbChoice.Append(" / ");
+                    sbChoice.Append(part);
+                    first = false;
+                }
+                return sbChoice.ToString();
+            }
             var sb = new StringBuilder(64);
             for (int i = 0; i < goods.Items.Count; i++)
             {
-                var item = goods.Items[i];
-                if (item == null || item.ItemConfigId == 0) continue;
+                string part = FormatSingleItem(goods.Items[i], safeCount);
+                if (string.IsNullOrEmpty(part)) continue;
                 if (sb.Length > 0) sb.Append(" + ");
-                ulong total = (ulong)item.ItemCount * safeCount;
-                sb.Append(ResolveItemName(item.ItemConfigId))
-                    .Append('×')
-                    .Append(total.ToString(CultureInfo.InvariantCulture));
-                if (item.Bound) sb.Append("(绑定)");
+                sb.Append(part);
             }
             return sb.ToString();
         }
