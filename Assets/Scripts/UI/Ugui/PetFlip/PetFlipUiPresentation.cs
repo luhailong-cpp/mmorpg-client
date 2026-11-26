@@ -385,6 +385,12 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             return new PetFlipPixelRect(478f + patternIndex * 154f, 365f, 112f, 112f);
         }
 
+        /// <summary>完成页“一气呵成”完美通关徽章位置（对齐 pet-memory-ui-v2/manifest.json）。</summary>
+        public static PetFlipPixelRect GetPerfectStampRect(bool isPortrait)
+            => isPortrait
+                ? new PetFlipPixelRect(448f, 298f, 128f, 128f)
+                : new PetFlipPixelRect(745f, 222f, 128f, 128f);
+
         public static string FormatBestText(PetFlipLocalRecordSnapshot record)
         {
             if (record == null || !record.HasBestRecord || !record.BestFlipCount.HasValue)

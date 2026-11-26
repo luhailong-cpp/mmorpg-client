@@ -226,6 +226,15 @@ namespace MmorpgClient.Game.Battle
         /// <summary>当前是否处于论剑 V3 战前 15 秒明牌变阵期。</summary>
         public bool IsInPrepPhase => CurrentPrepState != null && CurrentPrepState.Active;
 
+        private readonly System.Collections.Generic.List<BattleTacticalPing> _teamPings =
+            new System.Collections.Generic.List<BattleTacticalPing>();
+
+        /// <summary>论剑 V4 本队当前有效战术标点列表（按发送者去重，回合推进自动清空，敌方与观众恒为空）。</summary>
+        public System.Collections.Generic.IReadOnlyList<BattleTacticalPing> CurrentTeamPings => _teamPings;
+
+        /// <summary>本局队内战术标点本地静音开关（仅隐藏本地展示，不影响服务端）。</summary>
+        public bool TeamPingsMuted { get; set; }
+
         /// <summary>本地判定当前是否可点击「投降」或「参与表决」（服务端仍是最终权威）。</summary>
         public bool CanSurrenderNow =>
             _battleId != 0
@@ -323,6 +332,8 @@ namespace MmorpgClient.Game.Battle
         public event Action<BattleSurrenderVoteState> OnSurrenderVoteChanged;
         /// <summary>论剑 V3 战前 15 秒明牌变阵状态变化（开局变阵/本人换印换宠/同队实时同步/亮牌开打清空）。</summary>
         public event Action<BattlePrepState> OnBattlePrepChanged;
+        /// <summary>论剑 V4 本队一键战术标点变化（提交/队友推送/回合推进清空）。</summary>
+        public event Action<System.Collections.Generic.IReadOnlyList<BattleTacticalPing>> OnTeamPingsChanged;
         public event Action<string> OnError;
 
         /// <summary>
@@ -1167,6 +1178,60 @@ namespace MmorpgClient.Game.Battle
         }
 
         /// <summary>
+        /// 论剑 V4 队内一键战术标点提交（RPC 532 SendBattlePing，走战斗直连；每回合至多 2 次，仅同队可见）。
+        /// </summary>
+        public bool SendBattlePing(ulong targetActorId, BattlePingKind kind, Action<bool> completed = null)
+        {
+            if (_battleId == 0 || IsBattleDecided || targetActorId == 0 || kind == BattlePingKind.BattlePingUnspecified)
+            {
+                OnError?.Invoke("当前无法发送战术标点");
+                completed?.Invoke(false);
+                return false;
+            }
+            if (!IsBattleChannelReady)
+            {
+                OnError?.Invoke(_channelFailed ? BattleChannelFailedText : BattleChannelConnectingText);
+                completed?.Invoke(false);
+                return false;
+            }
+
+            ulong battleId = _battleId;
+            var req = new SendBattlePingRequest
+            {
+                BattleId = battleId,
+                TargetActorId = targetActorId,
+                Kind = kind,
+            };
+            _net.Call(MessageIds.SendBattlePing, req, SendBattlePingResponse.Parser,
+                resp =>
+                {
+                    if (_battleId != battleId)
+                    {
+                        completed?.Invoke(false);
+                        return;
+                    }
+                    bool ok = !HasTip(resp?.ErrorMessage);
+                    if (!ok)
+                    {
+                        OnError?.Invoke(resp.ErrorMessage.Id == (uint)common_error.KRateLimitExceeded
+                            ? "本回合战术标点次数已用完（每回合至多 2 次）"
+                            : DescribeBattleTip("战术标点失败", resp.ErrorMessage));
+                    }
+                    else if (resp?.Ping != null && resp.Ping.SenderPlayerId != 0)
+                    {
+                        UpsertTeamPing(resp.Ping);
+                    }
+                    completed?.Invoke(ok);
+                },
+                err =>
+                {
+                    OnError?.Invoke($"战术标点失败:{err}");
+                    completed?.Invoke(false);
+                });
+            return true;
+        }
+
+        /// <summary>
         /// UI「重新连接」(turn-based §22 D74):重置直连恢复预算并立即补签重建直连。
         /// 不在战斗中 / 无直连通道 / 该局直连已在连接或已就绪时无事。
         /// 结果经 <see cref="OnBattleChannelReady"/> 或再次的 <see cref="OnBattleChannelFailed"/> 回来。
@@ -1273,6 +1338,8 @@ namespace MmorpgClient.Game.Battle
                 mc => HandleSurrenderVote(SurrenderVoteS2C.Parser.ParseFrom(mc.SerializedMessage)));
             _net.RegisterNotify(MessageIds.NotifyBattlePrepUpdate,
                 mc => HandleBattlePrepUpdate(BattlePrepUpdateS2C.Parser.ParseFrom(mc.SerializedMessage)));
+            _net.RegisterNotify(MessageIds.NotifyBattlePing,
+                mc => HandleBattlePing(BattlePingS2C.Parser.ParseFrom(mc.SerializedMessage)));
             _net.RegisterNotify(MessageIds.NotifyChallengeInvite,
                 mc => OnChallengeInvite?.Invoke(Match.ChallengeInviteS2C.Parser.ParseFrom(mc.SerializedMessage)));
             _net.RegisterNotify(MessageIds.NotifyChallengeResult,
@@ -1308,6 +1375,7 @@ namespace MmorpgClient.Game.Battle
             SetPhase(phase);
             RefreshMyAutoState();
             ApplySurrenderVoteState(ev.State?.SurrenderVote);
+            ApplyTeamPings(ev.State?.TeamPings);
 
             // 开局自愈:分配包与开局包同 key 有序,开局包到了直连却不服务该局 = 分配包丢了,补签;
             // 同局已在连 / 已验证时无事(turn-based §22 D74)
@@ -1332,6 +1400,7 @@ namespace MmorpgClient.Game.Battle
             ApplyPrepState(ev.State?.PrepState);
             RefreshMyAutoState();
             ApplySurrenderVoteState(ev.State?.SurrenderVote);
+            ApplyTeamPings(ev.State?.TeamPings);
             SetPhase(BattlePhase.Resolving);
             OnTurnResult?.Invoke(ev); // UI 播完调 AckTurnPlayed() 回 WaitingAction
         }
@@ -1490,6 +1559,7 @@ namespace MmorpgClient.Game.Battle
             RefreshMyAutoState();
             ApplySurrenderVoteState(state.SurrenderVote);
             ApplyPrepState(state.PrepState);
+            ApplyTeamPings(state.TeamPings);
             OnStateUpdated?.Invoke(state);
         }
 
@@ -1523,6 +1593,45 @@ namespace MmorpgClient.Game.Battle
             if (Equals(CurrentPrepState, next)) return;
             CurrentPrepState = next;
             OnBattlePrepChanged?.Invoke(CurrentPrepState);
+        }
+
+        private void HandleBattlePing(BattlePingS2C ev)
+        {
+            if (ev == null || _battleId == 0 || ev.Ping == null || ev.Ping.SenderPlayerId == 0) return;
+            if (ev.BattleId != 0 && ev.BattleId != _battleId) return;
+            UpsertTeamPing(ev.Ping);
+        }
+
+        private void UpsertTeamPing(BattleTacticalPing ping)
+        {
+            if (ping == null || ping.SenderPlayerId == 0) return;
+            var clone = ping.Clone();
+            for (int i = 0; i < _teamPings.Count; i++)
+            {
+                if (_teamPings[i].SenderPlayerId == clone.SenderPlayerId)
+                {
+                    if (Equals(_teamPings[i], clone)) return;
+                    _teamPings[i] = clone;
+                    OnTeamPingsChanged?.Invoke(_teamPings);
+                    return;
+                }
+            }
+            _teamPings.Add(clone);
+            OnTeamPingsChanged?.Invoke(_teamPings);
+        }
+
+        private void ApplyTeamPings(System.Collections.Generic.IEnumerable<BattleTacticalPing> pings)
+        {
+            bool hadAny = _teamPings.Count > 0;
+            _teamPings.Clear();
+            if (pings != null)
+            {
+                foreach (var p in pings)
+                {
+                    if (p != null && p.SenderPlayerId != 0) _teamPings.Add(p.Clone());
+                }
+            }
+            if (hadAny || _teamPings.Count > 0) OnTeamPingsChanged?.Invoke(_teamPings);
         }
 
         /// <summary>
@@ -1670,6 +1779,8 @@ namespace MmorpgClient.Game.Battle
             _lastUsedSkillByActor.Clear();
             ApplySurrenderVoteState(null);
             ApplyPrepState(null);
+            TeamPingsMuted = false;
+            ApplyTeamPings(null);
             ResetStatePullRetry();      // 收尾 / 断线:自动重拉计划随本局作废
         }
 

@@ -30,6 +30,7 @@
     <Compile Include="../../../Assets/Scripts/Net/MessageIds.cs" Link="Production/MessageIds.cs" />
     <Compile Include="../../../Assets/Scripts/Proto/Generated/PlayerAppearance.cs" Link="Generated/PlayerAppearance.cs" />
     <Compile Include="../../../Assets/Scripts/Proto/Generated/AppearanceErrorTip.cs" Link="Generated/AppearanceErrorTip.cs" />
+    <Compile Include="../../../Assets/Scripts/Proto/Generated/PetErrorTip.cs" Link="Generated/PetErrorTip.cs" />
     <Compile Include="../../../Assets/Scripts/Proto/Generated/CommonErrorTip.cs" Link="Generated/CommonErrorTip.cs" />
     <Compile Include="../../../Assets/Scripts/Proto/Generated/ProtoOption.cs" Link="Generated/ProtoOption.cs" />
     <Compile Include="../../../Assets/Scripts/Proto/Generated/Tip.cs" Link="Generated/Tip.cs" />

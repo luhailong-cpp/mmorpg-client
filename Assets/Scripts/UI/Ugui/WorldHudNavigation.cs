@@ -525,7 +525,8 @@ namespace MmorpgClient.UI.Ugui
         private static Sprite EntryIcon(WorldHudEntry id)
         {
             if (id == WorldHudEntry.PetFlip)
-                return PetFlip.PetFlipArtCatalog.LoadUiSprite("card-back")
+                return PetFlip.PetFlipArtCatalog.LoadUiSprite("hud-entry-petflip")
+                    ?? PetFlip.PetFlipArtCatalog.LoadUiSprite("card-back")
                     ?? QdaoUguiTheme.RequireSprite("UI/Ugui/RefreshV8/round_badge_taiji");
             if (id == WorldHudEntry.Tournament)
                 return Resources.Load<Sprite>("UI/Ugui/MailV1/round_badge_taiji")

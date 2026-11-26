@@ -602,5 +602,64 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_client.SubmitAction(new BattleAction { ActionType = eBattleActionType.BattleActionDefend }), Is.True);
             Assert.That(prepEvents, Has.Count.GreaterThanOrEqualTo(4));
         }
+
+        [Test]
+        public void RankedV4_TeamTacticalPing_SendPushOverwriteRateLimitAndRoundClear()
+        {
+            Assert.That(DirectRoutingBattleTransport.IsDirectMessage(MessageIds.SendBattlePing), Is.True);
+            Assert.That(RpcGuard.DefaultResolveService(MessageIds.SendBattlePing), Is.EqualTo("battle"));
+
+            int pingEventCount = 0;
+            _client.OnTeamPingsChanged += _ => pingEventCount++;
+            PushBattleStart();
+
+            // 1. 本人发送「集火」标点
+            bool? pingOk = null;
+            Assert.That(_client.SendBattlePing(EnemyId, BattlePingKind.BattlePingFocus, ok => pingOk = ok), Is.True);
+            var calls = _net.CallsOf(MessageIds.SendBattlePing);
+            Assert.That(calls, Has.Count.EqualTo(1));
+            calls[0].Respond(new SendBattlePingResponse
+            {
+                Ping = new BattleTacticalPing
+                {
+                    SenderPlayerId = MyId,
+                    TargetActorId = EnemyId,
+                    Kind = BattlePingKind.BattlePingFocus,
+                    RoundIndex = 1u,
+                },
+            });
+            Assert.That(pingOk, Is.True);
+            Assert.That(_client.CurrentTeamPings, Has.Count.EqualTo(1));
+            Assert.That(_client.CurrentTeamPings[0].Kind, Is.EqualTo(BattlePingKind.BattlePingFocus));
+
+            // 2. 队友推送「保核」+ 自己更新为「封控」（覆盖旧标点）
+            _net.PushNotify(MessageIds.NotifyBattlePing, new BattlePingS2C
+            {
+                BattleId = TheBattleId,
+                Ping = new BattleTacticalPing { SenderPlayerId = 777UL, TargetActorId = MyId, Kind = BattlePingKind.BattlePingProtect, RoundIndex = 1u },
+            });
+            _net.PushNotify(MessageIds.NotifyBattlePing, new BattlePingS2C
+            {
+                BattleId = TheBattleId,
+                Ping = new BattleTacticalPing { SenderPlayerId = MyId, TargetActorId = EnemyId, Kind = BattlePingKind.BattlePingControl, RoundIndex = 1u },
+            });
+            Assert.That(_client.CurrentTeamPings, Has.Count.EqualTo(2));
+            Assert.That(_client.CurrentTeamPings[0].Kind, Is.EqualTo(BattlePingKind.BattlePingControl));
+
+            // 3. 限频返回 KRateLimitExceeded 给出明确文案
+            bool? limitedOk = null;
+            Assert.That(_client.SendBattlePing(EnemyId, BattlePingKind.BattlePingDispel, ok => limitedOk = ok), Is.True);
+            _net.CallsOf(MessageIds.SendBattlePing)[1].Respond(new SendBattlePingResponse
+            {
+                ErrorMessage = new TipInfoMessage { Id = (uint)common_error.KRateLimitExceeded },
+            });
+            Assert.That(limitedOk, Is.False);
+            Assert.That(_errors[_errors.Count - 1], Does.Contain("至多 2 次"));
+
+            // 4. 回合推进新状态 TeamPings 为空 -> 自动清空旧回合标点
+            PushTurnResult(myAuto: false);
+            Assert.That(_client.CurrentTeamPings, Is.Empty);
+            Assert.That(pingEventCount, Is.GreaterThanOrEqualTo(4));
+        }
     }
 }

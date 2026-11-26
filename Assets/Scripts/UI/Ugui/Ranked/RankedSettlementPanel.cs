@@ -36,6 +36,12 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private readonly Image _tierBadge;
         private readonly TMP_Text _ratingMainText, _tierTransitionText;
         private readonly Button _refreshRatingBtn;
+        // 论剑 V4 战后复盘高光卡（右侧对称槽 [1446, 292, 324, 250]）与破势终结印章（左侧对称槽 [150, 292, 324, 68]）
+        private readonly RectTransform _highlightCard;
+        private readonly Image _highlightIcon;
+        private readonly TMP_Text _highlightTitle, _highlightStatsText;
+        private readonly Image _streakBreakPlate;
+        private readonly TMP_Text _streakBreakText;
 
         // 底部三卡（panel-paper：150 / 705 / 1260, y=570, 510x259）
         private readonly TMP_Text _card1Main, _card1Sub;
@@ -84,6 +90,27 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _refreshRatingBtn = CreateGuildButton("RefreshRatingBtn", rankPanel.transform, 738f, 192f, 170f, 44f,
                 "guild_button_secondary", "刷新确认", 19f, JadeDark, out _, out _);
             _refreshRatingBtn.onClick.AddListener(() => RefreshRatingRequested?.Invoke());
+
+            // 论剑 V4 左侧破势终结印章（终结对手 >=3 连胜时显示，预绑 RankedPlayV4/streak_break_stamp）
+            _streakBreakPlate = QdaoUguiFactory.CreateImage("StreakBreakStamp", _root, 150f, 382f, 324f, 68f, null, false);
+            var streakBreakSprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset("streak_break_stamp");
+            if (streakBreakSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(_streakBreakPlate, streakBreakSprite, SeasonEconomyUiArt.BattleArenaAmber);
+            else _streakBreakPlate.color = SeasonEconomyUiArt.BattleArenaAmber;
+            _streakBreakText = CreateLabel("StreakBreakText", _streakBreakPlate.transform, 10f, 0f, 304f, 68f,
+                string.Empty, 20f, GoldCream, TextAlignmentOptions.Center, bold: true);
+            _streakBreakPlate.gameObject.SetActive(false);
+
+            // 论剑 V4 右侧战术复盘高光卡（与中部段位卡等高齐平 [1446, 292, 324, 250]）
+            var highlightPanel = CreateGuildArt("SettlementHighlightCard", _root, 1446f, 292f, 324f, 250f, "guild_row_self");
+            _highlightCard = highlightPanel.rectTransform;
+            _highlightIcon = QdaoUguiFactory.CreateImage("HighlightIcon", _highlightCard, 18f, 18f, 64f, 64f, null, false);
+            _highlightIcon.preserveAspect = true;
+            _highlightIcon.gameObject.SetActive(false);
+            _highlightTitle = CreateLabel("HighlightTitle", _highlightCard, 92f, 24f, 214f, 52f,
+                "本局复盘", 26f, JadeDark, TextAlignmentOptions.MidlineLeft, bold: true);
+            _highlightStatsText = CreateLabel("HighlightStats", _highlightCard, 20f, 92f, 284f, 146f,
+                string.Empty, 19f, InkSecondary, TextAlignmentOptions.TopLeft, wrap: true);
+            _highlightCard.gameObject.SetActive(false);
 
             // 底部 3 张说明卡：x = 150 / 705 / 1260, y = 570, w = 510, h = 259（与 CoreSettlementRewardSection 对齐）
             _legacyRewardCards[0] = (RectTransform)BuildCard(150f, "本季有效场次", out _card1Main, out _card1Sub, 122f);
@@ -186,6 +213,41 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _metaLine.text = $"论剑 {_lastTeamSize}V{_lastTeamSize} · 共 {state.TotalRounds} 回合 · 对局 #{state.BattleId}{surrenderTag}{recTag}";
             if (_surrenderBadgePlate != null)
                 _surrenderBadgePlate.gameObject.SetActive(state.Surrendered && !state.IsVoid);
+
+            // 论剑 V4 破势终结印章与战术复盘高光卡（纯荣誉，不改分、不改材料）
+            if (_streakBreakPlate != null && _streakBreakText != null)
+            {
+                string breakText = !state.IsVoid
+                    ? RankedFormatting.StreakBreakBannerText(state.EffectiveEndedOpponentStreak)
+                    : string.Empty;
+                bool showBreak = !string.IsNullOrEmpty(breakText);
+                _streakBreakPlate.gameObject.SetActive(showBreak);
+                if (showBreak) _streakBreakText.text = breakText;
+            }
+            if (_highlightCard != null && _highlightTitle != null && _highlightStatsText != null)
+            {
+                bool showHighlight = state.HasCombatHighlight;
+                _highlightCard.gameObject.SetActive(showHighlight);
+                if (showHighlight)
+                {
+                    string medal = RankedFormatting.HighlightDisplayName(state.HighlightKind);
+                    _highlightTitle.text = string.IsNullOrEmpty(medal) ? "本局复盘" : $"徽记 · {medal}";
+                    var medalSprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset(
+                        RankedFormatting.HighlightAssetKey(state.HighlightKind));
+                    if (_highlightIcon != null)
+                    {
+                        _highlightIcon.sprite = medalSprite;
+                        _highlightIcon.gameObject.SetActive(medalSprite != null);
+                        _highlightTitle.rectTransform.anchoredPosition = new Vector2(medalSprite != null ? 92f : 20f, -24f);
+                        _highlightTitle.rectTransform.sizeDelta = new Vector2(medalSprite != null ? 214f : 284f, 52f);
+                    }
+                    _highlightStatsText.text =
+                        $"总伤害：{state.TotalDamageDealt:N0}\n" +
+                        $"凝锋主目标：{state.PrimaryFocusDamageDealt:N0}\n" +
+                        $"疗盾支援：{state.TotalSupportValue:N0}\n" +
+                        $"控驱：{state.ControlAndDispelCount} 次  ·  承伤：{state.DamageTaken:N0}";
+                }
+            }
 
             // 中部：权威积分与段位
             var view = state.AuthoritativeView;

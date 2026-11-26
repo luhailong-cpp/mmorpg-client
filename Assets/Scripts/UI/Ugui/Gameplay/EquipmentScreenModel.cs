@@ -456,6 +456,41 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private static bool IsIcon(string key, string name)
             => string.Equals(key, name, StringComparison.Ordinal) || string.Equals(key, IconRoot + name, StringComparison.Ordinal);
 
+        public enum TooltipLineTone : byte { Muted, Normal, Rare, Precious, Supreme }
+
+        /// <summary>供普通背包悬浮卡复用的 V1 固定词条品相、保底、法宝与宗师署名行；旧装备返回空列表。</summary>
+        public static IReadOnlyList<(string Text, TooltipLineTone Tone)> BagTooltipV1Lines(BagItemInfo item)
+        {
+            var lines = new List<(string Text, TooltipLineTone Tone)>();
+            if (item == null) return lines;
+            foreach (var slot in item.FixedAffixSlots.OrderBy(entry => entry.Slot).ThenBy(entry => entry.Pool))
+            {
+                string label = $"{PoolName(slot.Pool)} {Number(slot.Slot)}";
+                if (slot.Selected == null)
+                {
+                    lines.Add(($"{label}：空位（未选择）", TooltipLineTone.Muted));
+                    continue;
+                }
+                var affix = slot.Selected;
+                var tone = affix.QualityTier >= 5 ? TooltipLineTone.Supreme
+                    : affix.QualityTier == 4 ? TooltipLineTone.Precious
+                    : TooltipLineTone.Rare;
+                lines.Add(($"{label}：{AffixName(affix)} {AffixValue(affix)}{FormatAffixQualityTag(affix)}", tone));
+                string pity = FormatPolishPity(affix);
+                if (!string.IsNullOrEmpty(pity))
+                    lines.Add((pity, TooltipLineTone.Muted));
+            }
+            if (item.Artifact != null)
+            {
+                lines.Add(($"法宝：{ArtifactName(item.Artifact)}", TooltipLineTone.Supreme));
+                if (!string.IsNullOrWhiteSpace(item.Artifact.Description))
+                    lines.Add((item.Artifact.Description, TooltipLineTone.Normal));
+            }
+            if (!string.IsNullOrWhiteSpace(item.CrafterName))
+                lines.Add(($"宗师·{item.CrafterName} 亲手铸造", TooltipLineTone.Supreme));
+            return lines;
+        }
+
         private static void CollectInstances(BagInfo bag, uint configId, HashSet<ulong> ids)
         {
             if (bag == null || configId == 0) return;

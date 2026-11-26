@@ -83,6 +83,50 @@ namespace MmorpgClient.Game.Ranked
             return won ? "论剑得胜" : "论剑惜败";
         }
 
+        public static string PingDisplayName(BattlePingKind kind) => kind switch
+        {
+            BattlePingKind.BattlePingFocus => "集火",
+            BattlePingKind.BattlePingControl => "封控",
+            BattlePingKind.BattlePingProtect => "保核",
+            BattlePingKind.BattlePingDispel => "驱散",
+            _ => string.Empty,
+        };
+
+        public static string PingAssetKey(BattlePingKind kind) => kind switch
+        {
+            BattlePingKind.BattlePingFocus => "ping_focus",
+            BattlePingKind.BattlePingControl => "ping_control",
+            BattlePingKind.BattlePingProtect => "ping_protect",
+            BattlePingKind.BattlePingDispel => "ping_dispel",
+            _ => string.Empty,
+        };
+
+        public static string HighlightDisplayName(BattleHighlightKind kind) => kind switch
+        {
+            BattleHighlightKind.BattleHighlightPrimaryFocus => "凝锋破核",
+            BattleHighlightKind.BattleHighlightTacticalControl => "妙手控场",
+            BattleHighlightKind.BattleHighlightSaviorSupport => "仁心济世",
+            BattleHighlightKind.BattleHighlightIronGuard => "铁壁护主",
+            BattleHighlightKind.BattleHighlightClutchComeback => "绝境翻盘",
+            _ => string.Empty,
+        };
+
+        public static string HighlightAssetKey(BattleHighlightKind kind) => kind switch
+        {
+            BattleHighlightKind.BattleHighlightPrimaryFocus => "highlight_focus",
+            BattleHighlightKind.BattleHighlightTacticalControl => "highlight_control",
+            BattleHighlightKind.BattleHighlightSaviorSupport => "highlight_support",
+            BattleHighlightKind.BattleHighlightIronGuard => "highlight_guard",
+            BattleHighlightKind.BattleHighlightClutchComeback => "highlight_comeback",
+            _ => string.Empty,
+        };
+
+        public static string WinStreakBannerText(uint streak)
+            => streak >= 3u ? $"连胜势 ×{streak}" : string.Empty;
+
+        public static string StreakBreakBannerText(uint endedStreak)
+            => endedStreak >= 3u ? $"破势终结 · 终结 {endedStreak} 连胜" : string.Empty;
+
         public static string FormatElapsedClock(uint seconds)
         {
             uint mm = seconds / 60u;
@@ -439,6 +483,28 @@ namespace MmorpgClient.Game.Ranked
         public uint MaterialCreditUnitsAdded { get; set; }
         public uint MaterialTradableUnitsAdded { get; set; }
         public bool MaterialPvpLossIneligible { get; set; }
+
+        // 论剑 V4 本局复盘高光统计与战术徽记（纯荣誉展示，来自权威 BattleSettlementData）
+        public ulong TotalDamageDealt { get; set; }
+        public ulong PrimaryFocusDamageDealt { get; set; }
+        public ulong TotalSupportValue { get; set; }
+        public uint ControlAndDispelCount { get; set; }
+        public ulong DamageTaken { get; set; }
+        public BattleHighlightKind HighlightKind { get; set; }
+        public uint EndedOpponentStreak { get; set; }
+
+        public bool HasCombatHighlight =>
+            !IsVoid && (HighlightKind != BattleHighlightKind.BattleHighlightNone
+                || TotalDamageDealt > 0 || TotalSupportValue > 0 || DamageTaken > 0 || ControlAndDispelCount > 0);
+
+        public uint EffectiveEndedOpponentStreak
+        {
+            get
+            {
+                uint fromMatch = AuthoritativeView != null ? AuthoritativeView.EndedOpponentStreak : 0u;
+                return EndedOpponentStreak >= fromMatch ? EndedOpponentStreak : fromMatch;
+            }
+        }
 
         // Match RPC 451 权威结算结果
         public RankedBattleSettlementView AuthoritativeView { get; set; }

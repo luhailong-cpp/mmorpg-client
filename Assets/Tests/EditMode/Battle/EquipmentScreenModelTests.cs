@@ -409,5 +409,47 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3407 }), Does.EndWith("item_rare_scroll_fragment"));
             Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3408 }), Does.EndWith("item_celestial_ink"));
         }
+
+        [Test]
+        public void EquipTooltipBuildData_ShowsV1QualityPityAndMasterSignatureWithoutBreakingLegacyItems()
+        {
+            var v1Item = new BagItemInfo
+            {
+                ItemId = 9001,
+                ConfigId = 3101,
+                Name = "青云灵剑",
+                EquipKind = 11,
+                EquipLevel = 80,
+                EnhanceLevel = 5,
+                CrafterName = "欧冶子",
+            };
+            v1Item.FixedAffixSlots.Add(new EquipFixedAffixSlotInfo
+            {
+                Slot = 1,
+                Pool = 1,
+                Selected = new EquipFixedAffixInfo
+                {
+                    AffixId = 101,
+                    Name = "物理攻击",
+                    ValueBps = 760,
+                    MaxValueBps = 800,
+                    Unit = 1,
+                    QualityTier = 4,
+                    QualityName = "珍品",
+                    PolishPityCount = 5,
+                    PolishPityLimit = 8,
+                },
+            });
+
+            var lines = EquipmentScreenModel.BagTooltipV1Lines(v1Item);
+            Assert.That(lines.Select(l => l.Text), Has.Some.Contains("方向词条 1：物理攻击 +7.6%").And.Some.Contains("珍品"));
+            Assert.That(lines.Select(l => l.Text), Has.Some.Contains("5 / 8"));
+            Assert.That(lines.Select(l => l.Text), Has.Member("宗师·欧冶子 亲手铸造"));
+            Assert.That(lines[0].Tone, Is.EqualTo(EquipmentScreenModel.TooltipLineTone.Precious));
+            Assert.That(lines[lines.Count - 1].Tone, Is.EqualTo(EquipmentScreenModel.TooltipLineTone.Supreme));
+
+            var legacyItem = new BagItemInfo { ItemId = 9002, ConfigId = 1001, Name = "玄铁剑", EquipKind = 11, EquipLevel = 60 };
+            Assert.That(EquipmentScreenModel.BagTooltipV1Lines(legacyItem), Is.Empty);
+        }
     }
 }

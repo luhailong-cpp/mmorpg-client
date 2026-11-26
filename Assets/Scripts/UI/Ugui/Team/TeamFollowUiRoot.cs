@@ -177,12 +177,15 @@ namespace MmorpgClient.UI.Ugui.Team
             bg.sprite = GameplayUiArt.Load("hud_panel");
             if (bg.sprite != null && bg.sprite.border.sqrMagnitude > 0f) bg.type = Image.Type.Sliced;
             bg.color = new Color(0.11f, 0.20f, 0.16f, 0.94f);
+            GameplayUiArt.ApplyOptionalAfkTeamSprite(bg, "team_recall_banner_bg");
             _recallBannerText = QdaoUguiFactory.CreateText("RecallText", rect, 22f, 16f, 360f, 52f,
                 "队长发起了集合召集，是否立即归队？", 22f, QdaoUguiTheme.Cream, TextAlignmentOptions.MidlineLeft);
             var accept = GameplayUiArt.Button(rect, "立即归队", 394f, 16f, 140f, 52f, AcceptLeaderRecall, true, fontSize: 22);
             accept.name = RecallAcceptName;
+            GameplayUiArt.ApplyOptionalAfkTeamSprite(accept.image, "team_recall_btn_accept");
             var dismiss = GameplayUiArt.Button(rect, "稍后", 546f, 16f, 94f, 52f, DismissLeaderRecall, false, fontSize: 22);
             dismiss.name = "TeamFollowRecallDismiss";
+            GameplayUiArt.ApplyOptionalAfkTeamSprite(dismiss.image, "team_recall_btn_dismiss");
             _recallBanner = rect.gameObject;
             _recallBanner.SetActive(false);
         }

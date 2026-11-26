@@ -21,6 +21,7 @@ namespace MmorpgClient.UI.Ugui.Team
         private readonly TMP_Text _summary, _status, _followStatus, _summonLabel, _formationLabel, _footerHint;
         private readonly Button _list, _leave, _summon, _follow, _formation;
         private readonly TMP_Text _followLabel;
+        private readonly Image _formationIcon;
         private readonly ScrollRect _scroll;
         private TeamUiRoot _owner;
         private TeamUiState _state;
@@ -75,11 +76,13 @@ namespace MmorpgClient.UI.Ugui.Team
             _leave = Control("离队", "TeamHudLeave", 142, 414, 132, Leave);
             _summon = Control("召集", "TeamHudSummon", 284, 414, 132, Summon, true);
             _summonLabel = _summon.GetComponentInChildren<TMP_Text>(true);
+            AttachOptionalButtonIcon(_summon, "icon_team_recall");
             _summon.interactable = false;
             _follow = Control(TeamFollowUiRoot.LabelAway, "TeamHudFollow", 0, 474, 132, ToggleFollow);
             _followLabel = _follow.GetComponentInChildren<TMP_Text>(true);
             _formation = Control("阵·长蛇", "TeamHudFormation", 142, 474, 132, CycleFormation);
             _formationLabel = _formation.GetComponentInChildren<TMP_Text>(true);
+            _formationIcon = AttachOptionalButtonIcon(_formation, "icon_formation_column");
             _formation.interactable = false;
             _followStatus = Label("", "TeamHudFollowStatus", _root, 282, 476, 134, 42, 18, GameplayUiArt.Muted);
             _footerHint = Label(SummonUnavailableReason, "TeamHudSummonReason", _root, 8, 532, 400, 45, 18, GameplayUiArt.Muted);
@@ -160,6 +163,13 @@ namespace MmorpgClient.UI.Ugui.Team
                 _formationLabel.text = hasTeam
                     ? "阵·" + TeamViewMapper.FormatFormationShortName(_state.Snapshot.FollowFormation)
                     : "阵型";
+            if (_formationIcon != null)
+            {
+                string key = hasTeam ? FormationIconKey(_state.Snapshot.FollowFormation) : "icon_formation_column";
+                var sprite = GameplayUiArt.TryLoadAfkTeamArt(key);
+                _formationIcon.sprite = sprite;
+                _formationIcon.gameObject.SetActive(sprite != null);
+            }
             if (_footerHint != null)
             {
                 _footerHint.text = !hasTeam
@@ -248,9 +258,37 @@ namespace MmorpgClient.UI.Ugui.Team
             Color presenceColor = !role.OnlineStatusKnown ? GameplayUiArt.Muted
                 : role.IsOnline ? GameplayUiArt.Ink
                 : role.IsHosted ? HostedJade : GameplayUiArt.Muted;
+            if (role.OnlineStatusKnown && !role.IsOnline && role.IsHosted)
+            {
+                var hostedSprite = GameplayUiArt.TryLoadAfkTeamArt("icon_team_hosted");
+                if (hostedSprite != null)
+                {
+                    var hostedIcon = QdaoUguiFactory.CreateImage("TeamHudHostedIcon_" + role.PlayerId, row, 294, 41, 22, 22, hostedSprite);
+                    hostedIcon.preserveAspect = true;
+                    hostedIcon.raycastTarget = false;
+                }
+            }
             Label(presence, "TeamHudPresence_" + role.PlayerId, row, 296, 39, 90, 28, 18,
                 presenceColor, TextAlignmentOptions.MidlineRight);
         }
+
+        private static Image AttachOptionalButtonIcon(Button button, string key)
+        {
+            if (button == null) return null;
+            var sprite = GameplayUiArt.TryLoadAfkTeamArt(key);
+            var icon = QdaoUguiFactory.CreateImage("Icon_" + key, button.transform, 10, 11, 24, 24, sprite);
+            icon.preserveAspect = true;
+            icon.raycastTarget = false;
+            icon.gameObject.SetActive(sprite != null);
+            return icon;
+        }
+
+        private static string FormationIconKey(Teampb.TeamFollowFormationStyle style) => style switch
+        {
+            Teampb.TeamFollowFormationStyle.TeamFollowFormationEchelon => "icon_formation_echelon",
+            Teampb.TeamFollowFormationStyle.TeamFollowFormationWuxing => "icon_formation_wuxing",
+            _ => "icon_formation_column",
+        };
 
         private void Portrait(RectTransform row, TeamRole role)
         {

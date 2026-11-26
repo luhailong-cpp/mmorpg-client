@@ -73,14 +73,15 @@ namespace MmorpgClient.Game.Battle
 
         // ── IBattleTransport ────────────────────────────────
 
-        /// <summary>只有 BattleClientPlayer 的六条客户端 RPC 走直连(服务端白名单,D27 + V2 SurrenderBattle + V3 UpdateBattlePrep)。</summary>
+        /// <summary>只有 BattleClientPlayer 的七条客户端 RPC 走直连(服务端白名单,D27 + V2 SurrenderBattle + V3 UpdateBattlePrep + V4 SendBattlePing)。</summary>
         public static bool IsDirectMessage(uint messageId)
             => messageId == MessageIds.SubmitBattleAction
             || messageId == MessageIds.GetBattleState
             || messageId == MessageIds.StopWatchBattle
             || messageId == MessageIds.SetAutoBattle
             || messageId == MessageIds.SurrenderBattle
-            || messageId == MessageIds.UpdateBattlePrep;
+            || messageId == MessageIds.UpdateBattlePrep
+            || messageId == MessageIds.SendBattlePing;
 
         public void RegisterNotify(uint messageId, Action<MessageContent> handler)
         {

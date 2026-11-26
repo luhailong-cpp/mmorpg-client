@@ -9,11 +9,24 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     public static class GameplayUiArt
     {
         public const string Root = "UI/Ugui/GameplayV1/";
+        /// <summary>挂机月卡 / 离线托管收获简报 / 队伍召集与阵型专属切片目录（缺图时各界面自动回退到现有功能底图）。</summary>
+        public const string AfkPassTeamArtRoot = "UI/Ugui/AfkPassTeamV1/";
         public static readonly Color Ink = QdaoUguiTheme.Html("#294F41");
         public static readonly Color Muted = QdaoUguiTheme.Html("#77664D");
         public static readonly Color Cream = QdaoUguiTheme.Html("#FFF3D6");
         public static readonly Color Gold = QdaoUguiTheme.Html("#AA803E");
         public static Sprite Load(string key) => QdaoUguiTheme.RequireSprite(Root + key);
+        public static Sprite TryLoadAfkTeamArt(string key) => Resources.Load<Sprite>(AfkPassTeamArtRoot + key);
+
+        public static void ApplyOptionalAfkTeamSprite(Image image, string key)
+        {
+            if (image == null) return;
+            var sprite = TryLoadAfkTeamArt(key);
+            if (sprite == null) return;
+            image.sprite = sprite;
+            image.type = sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+            image.color = Color.white;
+        }
 
         public static Image Art(UnityEngine.Transform parent, string key, float x, float y, float w, float h, bool aspect = false)
         {

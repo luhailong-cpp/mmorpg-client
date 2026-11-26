@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using MmorpgClient.Game.PlayerFeatures;
 using UnityEngine;
 using static MmorpgClient.UI.Ugui.Gameplay.GameplayUiArt;
@@ -29,38 +28,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             foreach (var line in EquipDisplay.LinesOf(item))
                 data.Lines.Add(new EquipDetailLine(EquipDisplay.FormatLine(line),
                     EquipUiStyle.TierColor(EquipDisplay.TierOf(line.Tier))));
-            foreach (var slot in item.FixedAffixSlots.OrderBy(entry => entry.Slot).ThenBy(entry => entry.Pool))
-            {
-                string label = $"{EquipmentScreenModel.PoolName(slot.Pool)} {slot.Slot}";
-                if (slot.Selected == null)
-                {
-                    data.Lines.Add(new EquipDetailLine($"{label}：空位（未选择）", EquipUiSkin.Muted));
-                    continue;
-                }
-                var affix = slot.Selected;
-                string quality = EquipmentScreenModel.FormatAffixQualityTag(affix);
-                Color color = affix.QualityTier >= 5 ? EquipUiSkin.Gold
-                    : affix.QualityTier == 4 ? EquipUiStyle.TierPink
-                    : EquipUiStyle.TierBlue;
-                data.Lines.Add(new EquipDetailLine(
-                    $"{label}：{affix.Name} {EquipmentScreenModel.AffixValue(affix)}{quality}", color));
-                string pity = EquipmentScreenModel.FormatPolishPity(affix);
-                if (!string.IsNullOrEmpty(pity))
-                    data.Lines.Add(new EquipDetailLine(pity, EquipUiSkin.Muted));
-            }
-            if (item.Artifact != null)
-            {
-                data.Lines.Add(new EquipDetailLine($"法宝：{item.Artifact.Name}", EquipUiSkin.Gold));
-                if (!string.IsNullOrWhiteSpace(item.Artifact.Description))
-                    data.Lines.Add(new EquipDetailLine(item.Artifact.Description, EquipUiSkin.Ink));
-            }
+            foreach (var v1 in EquipmentScreenModel.BagTooltipV1Lines(item))
+                data.Lines.Add(new EquipDetailLine(v1.Text, ToneColor(v1.Tone)));
             foreach (var socket in EquipDisplay.SocketsOf(item))
                 data.Lines.Add(new EquipDetailLine(EquipDisplay.FormatSocketLine(socket),
                     socket.GemConfigId != 0 && socket.Attr != null ? EquipUiSkin.Green : EquipUiSkin.Muted));
-            if (!string.IsNullOrWhiteSpace(item.CrafterName))
-                data.Lines.Add(new EquipDetailLine($"宗师·{item.CrafterName} 亲手铸造", EquipUiSkin.Gold));
             return data;
         }
+
+        private static Color ToneColor(EquipmentScreenModel.TooltipLineTone tone) => tone switch
+        {
+            EquipmentScreenModel.TooltipLineTone.Supreme => EquipUiSkin.Gold,
+            EquipmentScreenModel.TooltipLineTone.Precious => EquipUiStyle.TierPink,
+            EquipmentScreenModel.TooltipLineTone.Rare => EquipUiStyle.TierBlue,
+            EquipmentScreenModel.TooltipLineTone.Muted => EquipUiSkin.Muted,
+            _ => EquipUiSkin.Ink,
+        };
 
         public void Show(BagItemInfo item, bool worn, bool actionEnabled, uint characterLevel, Action action,
             Action more = null, Action share = null)

@@ -293,6 +293,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _client.OnAutoStateChanged += HandleAutoStateChanged;
             _client.OnSurrenderVoteChanged += HandleSurrenderVoteChanged;
             _client.OnBattlePrepChanged += HandleBattlePrepChanged;
+            _client.OnTeamPingsChanged += HandleTeamPingsChanged;
             _client.OnError += HandleClientError;
             _client.OnBattleChannelReady += HandleBattleChannelReady;
             _client.OnBattleChannelFailed += HandleBattleChannelFailed;
@@ -335,6 +336,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _client.OnAutoStateChanged -= HandleAutoStateChanged;
             _client.OnSurrenderVoteChanged -= HandleSurrenderVoteChanged;
             _client.OnBattlePrepChanged -= HandleBattlePrepChanged;
+            _client.OnTeamPingsChanged -= HandleTeamPingsChanged;
             _client.OnError -= HandleClientError;
             _client.OnBattleChannelReady -= HandleBattleChannelReady;
             _client.OnBattleChannelFailed -= HandleBattleChannelFailed;
@@ -740,6 +742,12 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (!_battleOpen || _battleScreen == null) return;
             _battleScreen.OnBattlePrepChanged(prep);
+        }
+
+        private void HandleTeamPingsChanged(IReadOnlyList<BattleTacticalPing> pings)
+        {
+            if (!_battleOpen || _battleScreen == null) return;
+            _battleScreen.OnTeamPingsChanged(pings);
         }
 
         // ── SpectateClient 事件 ─────────────────────────────

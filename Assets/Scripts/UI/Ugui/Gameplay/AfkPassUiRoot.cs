@@ -111,7 +111,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             shade.raycastTarget = true;
             _window.gameObject.AddComponent<GameplayInputBlocker>();
             var frame = QdaoUguiFactory.CreateCenteredRect("AfkPassFrame", _window, FrameWidth, FrameHeight);
-            GameplayUiArt.Art(frame, "main_frame", 0, 0, FrameWidth, FrameHeight);
+            GameplayUiArt.ApplyOptionalAfkTeamSprite(GameplayUiArt.Art(frame, "main_frame", 0, 0, FrameWidth, FrameHeight), "afk_pass_panel_bg");
+            var infoCardSprite = GameplayUiArt.TryLoadAfkTeamArt("afk_pass_info_card");
+            if (infoCardSprite != null)
+            {
+                var infoCard = QdaoUguiFactory.CreateImage("AfkPassInfoCard", frame, 80, 114, 920, 250, infoCardSprite);
+                infoCard.type = infoCardSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                infoCard.raycastTarget = false;
+            }
             GameplayUiArt.Text(frame, EntryText, 80, 38, 600, 60, 40);
             _state = GameplayUiArt.Text(frame, "", 80, 118, 920, 56, 36);
             _price = GameplayUiArt.Text(frame, "", 80, 182, 920, 44, 26, GameplayUiArt.Muted);
@@ -122,19 +129,30 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _autoReturnButton = GameplayUiArt.Button(frame, "离队/解散自动回主城：关闭", 80, 390, 460, 62,
                 HandleAutoReturnToggle, false, fontSize: 24);
             _autoReturnButton.name = AutoReturnToggleName;
+            GameplayUiArt.ApplyOptionalAfkTeamSprite(_autoReturnButton.image, "afk_pass_toggle_off");
             _autoReturnLabel = _autoReturnButton.GetComponentInChildren<TMP_Text>(true);
 
             _battleScriptButton = GameplayUiArt.Button(frame, "配置托管剧本", 564, 390, 260, 62,
                 OpenBattleScriptPanel, false, fontSize: 24);
             _battleScriptButton.name = OpenBattleScriptButtonName;
+            GameplayUiArt.ApplyOptionalAfkTeamSprite(_battleScriptButton.image, "afk_pass_btn_secondary");
 
+            var scriptBarSprite = GameplayUiArt.TryLoadAfkTeamArt("afk_pass_script_bar");
+            if (scriptBarSprite != null)
+            {
+                var scriptBar = QdaoUguiFactory.CreateImage("AfkPassScriptBar", frame, 80, 462, 920, 52, scriptBarSprite);
+                scriptBar.type = scriptBarSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                scriptBar.raycastTarget = false;
+            }
             _battleScriptSummary = GameplayUiArt.Text(frame, "组队副本托管剧本：默认出招", 80, 466, 920, 44, 24, AccentJade);
 
             _status = GameplayUiArt.Text(frame, "", 80, 526, 920, 48, 25, GameplayUiArt.Muted);
             var close = GameplayUiArt.Button(frame, "关闭", 80, 628, 240, 80, HidePanel);
             close.name = CloseButtonName;
+            GameplayUiArt.ApplyOptionalAfkTeamSprite(close.image, "afk_pass_btn_secondary");
             _buy = GameplayUiArt.Button(frame, "开通", 600, 628, 400, 80, HandleBuyClicked, true);
             _buy.name = BuyButtonName;
+            GameplayUiArt.ApplyOptionalAfkTeamSprite(_buy.image, "afk_pass_btn_primary");
             _buyLabel = _buy.GetComponentInChildren<TMP_Text>(true);
             _window.gameObject.SetActive(false);
         }
@@ -147,22 +165,48 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             shade.raycastTarget = true;
             _recapWindow.gameObject.AddComponent<GameplayInputBlocker>();
             var frame = QdaoUguiFactory.CreateCenteredRect("HostedRecapFrame", _recapWindow, RecapWidth, RecapHeight);
-            GameplayUiArt.Art(frame, "main_frame", 0, 0, RecapWidth, RecapHeight);
+            GameplayUiArt.ApplyOptionalAfkTeamSprite(GameplayUiArt.Art(frame, "main_frame", 0, 0, RecapWidth, RecapHeight), "hosted_recap_bg");
             GameplayUiArt.Text(frame, "离线托管收获简报", 70, 40, 780, 60, 40, alignment: TextAlignmentOptions.Center);
             _recapSubtitle = GameplayUiArt.Text(frame, "", 70, 112, 780, 56, 23, GameplayUiArt.Muted,
                 alignment: TextAlignmentOptions.Center, wrap: true);
-            _recapBattles = GameplayUiArt.Text(frame, "", 96, 198, 728, 52, 28);
-            _recapExp = GameplayUiArt.Text(frame, "", 96, 260, 728, 52, 28, AccentJade);
-            _recapSilver = GameplayUiArt.Text(frame, "", 96, 322, 728, 52, 28, AccentJade);
-            _recapItems = GameplayUiArt.Text(frame, "", 96, 384, 728, 52, 28);
+            _recapBattles = BuildRecapRow(frame, 198, "icon_recap_battle", null);
+            _recapExp = BuildRecapRow(frame, 260, "icon_recap_exp", AccentJade);
+            _recapSilver = BuildRecapRow(frame, 322, "icon_recap_silver", AccentJade);
+            _recapItems = BuildRecapRow(frame, 384, "icon_recap_item", null);
 
             var scriptBtn = GameplayUiArt.Button(frame, "配置剧本", 70, 496, 210, 72, OpenBattleScriptFromRecap, false, fontSize: 25);
             scriptBtn.name = "HostedRecapBattleScript";
+            GameplayUiArt.ApplyOptionalAfkTeamSprite(scriptBtn.image, "hosted_recap_btn_secondary");
             var passBtn = GameplayUiArt.Button(frame, "挂机月卡", 304, 496, 210, 72, OpenPassFromRecap, false, fontSize: 25);
             passBtn.name = "HostedRecapOpenPass";
+            GameplayUiArt.ApplyOptionalAfkTeamSprite(passBtn.image, "hosted_recap_btn_secondary");
             _recapConfirmButton = GameplayUiArt.Button(frame, "收下确认", 548, 496, 302, 72, ConfirmRecap, true, fontSize: 28);
             _recapConfirmButton.name = RecapConfirmButtonName;
+            GameplayUiArt.ApplyOptionalAfkTeamSprite(_recapConfirmButton.image, "hosted_recap_btn_confirm");
             _recapWindow.gameObject.SetActive(false);
+        }
+
+        private static TMP_Text BuildRecapRow(RectTransform frame, float y, string iconKey, Color? color)
+        {
+            var rowSprite = GameplayUiArt.TryLoadAfkTeamArt("hosted_recap_row_bg");
+            if (rowSprite != null)
+            {
+                var bg = QdaoUguiFactory.CreateImage("RecapRowBg_" + iconKey, frame, 96, y, 728, 52, rowSprite);
+                bg.type = rowSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                bg.raycastTarget = false;
+            }
+            var iconSprite = GameplayUiArt.TryLoadAfkTeamArt(iconKey);
+            float textX = 96f;
+            float textW = 728f;
+            if (iconSprite != null)
+            {
+                var icon = QdaoUguiFactory.CreateImage("RecapIcon_" + iconKey, frame, 108, y + 4, 44, 44, iconSprite);
+                icon.preserveAspect = true;
+                icon.raycastTarget = false;
+                textX = 164f;
+                textW = 648f;
+            }
+            return GameplayUiArt.Text(frame, "", textX, y, textW, 52, 28, color);
         }
 
         private void Update()
@@ -362,10 +406,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 : action;
 
             bool settingsReady = _client != null && _client.Ready && _client.SupportsSettings && !_client.SettingsPending && info != null;
-            if (_autoReturnButton != null) _autoReturnButton.interactable = settingsReady;
+            bool autoReturn = _client != null && _client.AutoReturnCityOnTeamEnd;
+            if (_autoReturnButton != null)
+            {
+                _autoReturnButton.interactable = settingsReady;
+                var toggleSprite = GameplayUiArt.TryLoadAfkTeamArt(autoReturn ? "afk_pass_toggle_on" : "afk_pass_toggle_off");
+                if (toggleSprite != null && _autoReturnButton.image != null)
+                {
+                    _autoReturnButton.image.sprite = toggleSprite;
+                    _autoReturnButton.image.type = toggleSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                }
+            }
             if (_autoReturnLabel != null)
             {
-                bool autoReturn = _client != null && _client.AutoReturnCityOnTeamEnd;
                 _autoReturnLabel.text = _client?.SettingsPending == true
                     ? "保存托管设置中…"
                     : autoReturn ? "离队/解散自动回主城：已开启" : "离队/解散自动回主城：已关闭";

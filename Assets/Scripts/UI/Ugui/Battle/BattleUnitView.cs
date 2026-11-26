@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Battle.Presentation;
+using MmorpgClient.Game.Ranked;
 // UI 图统一显式使用 UnityEngine.UI.Image。
 using Image = UnityEngine.UI.Image;
 
@@ -176,6 +177,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly Image _targetFocusPlate;
         private readonly Image _targetFocusIcon;
         private readonly TMP_Text _targetFocusLabel;
+        private readonly Image _tacticalPingPlate;
+        private readonly Image _tacticalPingIcon;
+        private readonly TMP_Text _tacticalPingLabel;
         private bool _coreTargetMarked;
         private string _coreTargetLabelText = "重击目标";
         private bool _coreGuardMarked;
@@ -391,6 +395,20 @@ namespace MmorpgClient.UI.Ugui.Battle
             _targetFocusLabel.raycastTarget = false;
             _targetFocusPlate.gameObject.SetActive(false);
 
+            _tacticalPingPlate = BattleUiWidgets.CreatePanel("TacticalPingPlate", _plate, barX + 12f, 4f, BarWidth - 24f, 26f,
+                SeasonEconomyUiArt.BattleArenaJade, false);
+            _tacticalPingPlate.raycastTarget = false;
+            _tacticalPingIcon = QdaoUguiFactory.CreateImage("TacticalPingIcon", _tacticalPingPlate.transform,
+                4f, 3f, 20f, 20f, null);
+            _tacticalPingIcon.preserveAspect = true;
+            _tacticalPingIcon.raycastTarget = false;
+            _tacticalPingIcon.gameObject.SetActive(false);
+            _tacticalPingLabel = QdaoUguiFactory.CreateText("TacticalPingLabel", _tacticalPingPlate.transform,
+                4f, 0f, BarWidth - 32f, 26f, string.Empty, 15f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
+            _tacticalPingLabel.fontStyle = FontStyles.Bold;
+            _tacticalPingLabel.raycastTarget = false;
+            _tacticalPingPlate.gameObject.SetActive(false);
+
             ApplyBodySprite(null, false);
         }
 
@@ -427,6 +445,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 new Vector2(_coreGuardMarker.rectTransform.anchoredPosition.x, -(hpY - 26f));
             if (_targetFocusPlate != null) _targetFocusPlate.rectTransform.anchoredPosition =
                 new Vector2(_targetFocusPlate.rectTransform.anchoredPosition.x, -(hpY - 58f));
+            if (_tacticalPingPlate != null) _tacticalPingPlate.rectTransform.anchoredPosition =
+                new Vector2(_tacticalPingPlate.rectTransform.anchoredPosition.x, -(hpY - 86f));
         }
 
         public void SetCoreMarkers(bool telegraphTarget, bool protectedGuard, string targetLabel = null)
@@ -463,6 +483,33 @@ namespace MmorpgClient.UI.Ugui.Battle
                 var labelRt = _targetFocusLabel.rectTransform;
                 labelRt.anchoredPosition = new Vector2(focusIcon != null ? 24f : 2f, 0f);
                 labelRt.sizeDelta = new Vector2(focusIcon != null ? BarWidth - 22f : BarWidth, 24f);
+            }
+        }
+
+        public void SetTacticalPing(BattlePingKind kind)
+        {
+            if (_tacticalPingPlate == null || _tacticalPingLabel == null) return;
+            string label = RankedFormatting.PingDisplayName(kind);
+            bool show = !string.IsNullOrEmpty(label) && !IsDead && !Fled;
+            _tacticalPingPlate.gameObject.SetActive(show);
+            if (!show) return;
+            _tacticalPingLabel.text = label;
+            _tacticalPingPlate.color = kind switch
+            {
+                BattlePingKind.BattlePingFocus => SeasonEconomyUiArt.BattleArenaVermilion,
+                BattlePingKind.BattlePingControl => SeasonEconomyUiArt.SkillControlColor,
+                BattlePingKind.BattlePingProtect => SeasonEconomyUiArt.BattleArenaJade,
+                BattlePingKind.BattlePingDispel => SeasonEconomyUiArt.BattleArenaAmber,
+                _ => SeasonEconomyUiArt.BattleArenaJade,
+            };
+            if (_tacticalPingIcon != null)
+            {
+                var sprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset(RankedFormatting.PingAssetKey(kind));
+                _tacticalPingIcon.sprite = sprite;
+                _tacticalPingIcon.gameObject.SetActive(sprite != null);
+                var labelRt = _tacticalPingLabel.rectTransform;
+                labelRt.anchoredPosition = new Vector2(sprite != null ? 24f : 4f, 0f);
+                labelRt.sizeDelta = new Vector2(sprite != null ? BarWidth - 52f : BarWidth - 32f, 26f);
             }
         }
 

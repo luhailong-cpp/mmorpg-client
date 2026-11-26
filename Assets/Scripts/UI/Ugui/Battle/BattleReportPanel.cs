@@ -142,12 +142,26 @@ namespace MmorpgClient.UI.Ugui.Battle
         public void Show()
         {
             if (_root != null) _root.gameObject.SetActive(true);
+            var season = SeasonClient.Instance;
+            if (season != null)
+            {
+                season.Changed -= HandleSeasonBookmarksChanged;
+                season.Changed += HandleSeasonBookmarksChanged;
+            }
             RefreshInteractable();
         }
 
         public void Hide()
         {
+            var season = SeasonClient.Instance;
+            if (season != null) season.Changed -= HandleSeasonBookmarksChanged;
             if (_root != null) _root.gameObject.SetActive(false);
+        }
+
+        private void HandleSeasonBookmarksChanged()
+        {
+            if (IsVisible && _showingBookmarks && _inspectedReplay == null)
+                RenderFiltered();
         }
 
         public void Toggle()
@@ -291,13 +305,26 @@ namespace MmorpgClient.UI.Ugui.Battle
                 : $"模式：{BattleReportClient.ModeName(_modeFilter)}");
 
             bool filtered = _verdictFilter != BattleReportVerdictFilter.All || _modeFilter != Match.MatchMode.Unspecified;
-            _emptyText.text = _allReports.Count == 0 ? "暂无 PVP 战报" : "当前筛选条件下暂无战报";
-            _emptyText.gameObject.SetActive(_rows.Count == 0);
-            SetStatus(_allReports.Count == 0
-                ? string.Empty
-                : filtered
-                    ? $"已筛选 {_rows.Count} / {_allReports.Count} 场战报"
-                    : $"共 {_rows.Count} 场战报");
+            if (_inspectedReplay != null)
+            {
+                _emptyText.text = "该场旧战报未记录公开配装摘要";
+                _emptyText.gameObject.SetActive(_inspectedReplay.ActorBuilds.Count == 0);
+            }
+            else if (_showingBookmarks)
+            {
+                _emptyText.text = "暂无收藏配装，点击战报「看配装」即可一键收藏";
+                _emptyText.gameObject.SetActive(_rows.Count == 0);
+            }
+            else
+            {
+                _emptyText.text = _allReports.Count == 0 ? "暂无 PVP 战报" : "当前筛选条件下暂无战报";
+                _emptyText.gameObject.SetActive(_rows.Count == 0);
+                SetStatus(_allReports.Count == 0
+                    ? string.Empty
+                    : filtered
+                        ? $"已筛选 {_rows.Count} / {_allReports.Count} 场战报"
+                        : $"共 {_rows.Count} 场战报");
+            }
             RefreshInteractable();
             BattleFidelityArt.ApplyPanel(_root);
         }
@@ -585,9 +612,22 @@ namespace MmorpgClient.UI.Ugui.Battle
                 applyBtn.Button.onClick.AddListener(() =>
                 {
                     if (season == null) return;
-                    if (formId <= 5u) season.EquipFormation(formId);
-                    else if (sealId > 0u) season.EquipSeal(sealId);
-                    SetStatus($"已应用配装阵法：{WuxingExpansionModels.FormationName(formId)}");
+                    bool needFormation = formId <= 5u && formId != season.EquippedFormationId;
+                    if (needFormation)
+                    {
+                        season.EquipFormation(formId);
+                        SetStatus($"已切换阵法：{WuxingExpansionModels.FormationName(formId)}" +
+                            (sealId > 0u ? "（再点一次可套用赛季印）" : string.Empty));
+                    }
+                    else if (sealId > 0u)
+                    {
+                        season.EquipSeal(sealId);
+                        SetStatus($"已套用赛季印 #{sealId}");
+                    }
+                    else
+                    {
+                        SetStatus("当前阵法与赛季印已与该收藏一致");
+                    }
                 });
                 var delBtn = BattleUiWidgets.CreateTextButton("DelBm", rRect, ListWidth - 144f, 30f, 128f, 54f,
                     "删除", 17f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);

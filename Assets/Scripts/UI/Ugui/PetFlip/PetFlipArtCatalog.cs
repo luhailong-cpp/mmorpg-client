@@ -34,6 +34,10 @@ namespace MmorpgClient.UI.Ugui.PetFlip
         public Sprite ButtonPrimary { get; }
         public Sprite ButtonSecondary { get; }
         public IReadOnlyList<PetFlipResolvedFace> Faces { get; }
+        public Sprite CardSpiritPeekFrame { get; }
+        public Sprite SpiritEyeIcon { get; }
+        public Sprite StampPerfect { get; }
+        public Sprite HudEntryIcon { get; }
 
         public PetFlipResolvedAssets(
             Sprite windowFrameLandscape,
@@ -43,7 +47,11 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             Sprite matchedMark,
             Sprite buttonPrimary,
             Sprite buttonSecondary,
-            IReadOnlyList<PetFlipResolvedFace> faces)
+            IReadOnlyList<PetFlipResolvedFace> faces,
+            Sprite cardSpiritPeekFrame = null,
+            Sprite spiritEyeIcon = null,
+            Sprite stampPerfect = null,
+            Sprite hudEntryIcon = null)
         {
             WindowFrameLandscape = windowFrameLandscape;
             WindowFramePortrait = windowFramePortrait;
@@ -53,6 +61,10 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             ButtonPrimary = buttonPrimary;
             ButtonSecondary = buttonSecondary;
             Faces = faces ?? Array.Empty<PetFlipResolvedFace>();
+            CardSpiritPeekFrame = cardSpiritPeekFrame;
+            SpiritEyeIcon = spiritEyeIcon;
+            StampPerfect = stampPerfect;
+            HudEntryIcon = hudEntryIcon;
         }
 
         public PetFlipResolvedFace GetFace(SpiritPetCardPattern pattern)
@@ -178,7 +190,11 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 matchedMark,
                 buttonPrimary,
                 buttonSecondary,
-                Array.AsReadOnly(faces));
+                Array.AsReadOnly(faces),
+                LoadUiSprite("card-spirit-peek-frame"),
+                LoadUiSprite("spirit-eye-icon"),
+                LoadUiSprite("stamp-perfect"),
+                LoadUiSprite("hud-entry-petflip"));
             return true;
         }
 
@@ -256,9 +272,18 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             return _roundedLabelSprite;
         }
 
-        /// <summary>难度/玩法选中胶囊底图（玉绿漆底 + 暖金边，9-slice；待 Codex V2 视觉定稿可无感替换）。</summary>
+        /// <summary>难度/玩法常态胶囊底图（优先加载 V2 切片 pill-normal，缺省回落程序圆角底图）。</summary>
+        public static Sprite GetNormalPillSprite()
+        {
+            Sprite art = LoadUiSprite("pill-normal");
+            return art != null ? art : GetRoundedLabelSprite();
+        }
+
+        /// <summary>难度/玩法选中胶囊底图（优先加载 V2 切片 pill-selected，缺省回落程序圆角底图）。</summary>
         public static Sprite GetSelectedPillSprite()
         {
+            Sprite art = LoadUiSprite("pill-selected");
+            if (art != null) return art;
             if (_selectedPillSprite != null) return _selectedPillSprite;
             _selectedPillSprite = CreateRoundedBoxSprite("PetFlip_SelectedPill", 48, 12f, 2f, PillSelectedFill, PillSelectedBorder);
             return _selectedPillSprite;

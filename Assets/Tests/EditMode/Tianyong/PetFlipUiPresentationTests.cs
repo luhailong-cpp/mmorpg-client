@@ -313,5 +313,22 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                     Assert.That(Overlaps(medalRects[a], medalRects[b]), Is.False, $"进阶终局头像 {a} 与 {b} 重叠");
             }
         }
+
+        [Test]
+        public void V2ArtSpritesAndBorders_AllSixLoadCleanly()
+        {
+            Assert.That(PetFlipArtCatalog.TryLoadAndValidate(out PetFlipResolvedAssets resolved, out string reason), Is.True, reason);
+            Assert.That(resolved.HudEntryIcon, Is.Not.Null, "hud-entry-petflip");
+            Assert.That(resolved.CardSpiritPeekFrame, Is.Not.Null, "card-spirit-peek-frame");
+            Assert.That(resolved.SpiritEyeIcon, Is.Not.Null, "spirit-eye-icon");
+            Assert.That(resolved.StampPerfect, Is.Not.Null, "stamp-perfect");
+
+            UnityEngine.Sprite pillNormal = PetFlipArtCatalog.LoadUiSprite("pill-normal");
+            UnityEngine.Sprite pillSelected = PetFlipArtCatalog.LoadUiSprite("pill-selected");
+            Assert.That(pillNormal, Is.Not.Null, "pill-normal");
+            Assert.That(pillSelected, Is.Not.Null, "pill-selected");
+            Assert.That(pillNormal.border, Is.EqualTo(new UnityEngine.Vector4(42f, 38f, 42f, 38f)));
+            Assert.That(pillSelected.border, Is.EqualTo(new UnityEngine.Vector4(42f, 38f, 42f, 38f)));
+        }
     }
 }

@@ -421,7 +421,14 @@ namespace MmorpgClient.UI.Ugui.Team
                 }
                 bool hostedOffline=role.OnlineStatusKnown&&!role.IsOnline&&role.IsHosted;
                 bool originalOnlineState=role.OnlineStatusKnown&&!hostedOffline&&(!role.IsOnline||!role.InBattle);
+                Sprite hostedBadge=hostedOffline?Gameplay.GameplayUiArt.TryLoadAfkTeamArt("status_hosted_badge"):null;
                 if(originalOnlineState)ExactArt(row,role.IsOnline?"status-online":"status-offline",702,29,138,46);
+                else if(hostedBadge!=null)
+                {
+                    var badge=QdaoUguiFactory.CreateImage("HostedStatusBadge_"+role.PlayerId,row,702,29,138,46,hostedBadge);
+                    badge.type=hostedBadge.border.sqrMagnitude>0f?Image.Type.Sliced:Image.Type.Simple;
+                    badge.raycastTarget=false;
+                }
                 else if(role.OnlineStatusKnown)Art(row,role.IsOnline||hostedOffline?"status_online":"status_offline",710,38,23,23,true);
                 string presenceText=!role.OnlineStatusKnown?"待同步"
                     :hostedOffline?"托管中"

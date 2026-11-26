@@ -341,6 +341,13 @@ namespace MmorpgClient.Game.Ranked
                 MaterialCreditUnitsAdded = end.MaterialCreditUnitsAdded,
                 MaterialTradableUnitsAdded = end.MaterialTradableUnitsAdded,
                 MaterialPvpLossIneligible = end.MaterialPvpLossIneligible,
+                TotalDamageDealt = end.Settlement?.TotalDamageDealt ?? 0ul,
+                PrimaryFocusDamageDealt = end.Settlement?.PrimaryFocusDamageDealt ?? 0ul,
+                TotalSupportValue = end.Settlement?.TotalHealingDone ?? 0ul,
+                ControlAndDispelCount = (end.Settlement?.TotalControlsLanded ?? 0u) + (end.Settlement?.TotalDispelsLanded ?? 0u),
+                DamageTaken = end.Settlement?.DamageTaken ?? 0ul,
+                HighlightKind = end.Settlement?.HighlightKind ?? BattleHighlightKind.BattleHighlightNone,
+                EndedOpponentStreak = end.Settlement?.EndedOpponentStreak ?? 0u,
                 RatingLoading = !isVoid,
             };
             ActiveSettlement = state;
@@ -368,6 +375,7 @@ namespace MmorpgClient.Game.Ranked
                 PlayerTeamIndex = result.TeamIndex,
                 TotalRounds = result.TotalRounds,
                 IsVoid = isVoid,
+                Surrendered = result.Surrendered,
                 FromRecovery = true,
                 MaterialCreditConfirmed = true,
                 MaterialCreditUnitsAdded = result.MaterialCreditUnitsAdded,

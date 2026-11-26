@@ -355,5 +355,64 @@ namespace MmorpgClient.Tests.EditMode.Ranked
             Assert.That(titleEnt.Kind, Is.EqualTo(RankedRewardKind.RankedRewardWinMilestone));
             Assert.That(snap.ResolveTitleDisplayName("s1_win6_title"), Is.EqualTo("锋芒称号"));
         }
+
+        [Test]
+        public void RankedV4_HighlightsStreakBreakerAndRecoverySurrendered()
+        {
+            Assert.That(RankedFormatting.PingDisplayName(BattlePingKind.BattlePingFocus), Is.EqualTo("集火"));
+            Assert.That(RankedFormatting.PingAssetKey(BattlePingKind.BattlePingProtect), Is.EqualTo("ping_protect"));
+            Assert.That(RankedFormatting.HighlightDisplayName(BattleHighlightKind.BattleHighlightClutchComeback), Is.EqualTo("绝境翻盘"));
+            Assert.That(RankedFormatting.HighlightAssetKey(BattleHighlightKind.BattleHighlightPrimaryFocus), Is.EqualTo("highlight_focus"));
+            Assert.That(RankedFormatting.WinStreakBannerText(2u), Is.Empty);
+            Assert.That(RankedFormatting.WinStreakBannerText(5u), Is.EqualTo("连胜势 ×5"));
+            Assert.That(RankedFormatting.StreakBreakBannerText(4u), Is.EqualTo("破势终结 · 终结 4 连胜"));
+
+            var liveEnd = new BattleEndS2C
+            {
+                BattleId = 88001UL,
+                SeasonId = 1u,
+                Outcome = eBattleOutcome.BattleOutcomeSideAWin,
+                Settlement = new BattleSettlementData
+                {
+                    BattleId = 88001UL,
+                    CompetitiveRanked = true,
+                    SeasonId = 1u,
+                    MatchMode = (uint)MatchMode.PvpTeam,
+                    Outcome = eBattleOutcome.BattleOutcomeSideAWin,
+                    TotalRounds = 14u,
+                    TotalDamageDealt = 12800UL,
+                    PrimaryFocusDamageDealt = 5400UL,
+                    TotalHealingDone = 3200UL,
+                    TotalControlsLanded = 2u,
+                    TotalDispelsLanded = 1u,
+                    DamageTaken = 6100UL,
+                    HighlightKind = BattleHighlightKind.BattleHighlightClutchComeback,
+                    EndedOpponentStreak = 5u,
+                },
+            };
+            var liveState = _client.BeginSettlementFromBattleEnd(liveEnd, 0u, 3u);
+            Assert.That(liveState.HasCombatHighlight, Is.True);
+            Assert.That(liveState.TotalDamageDealt, Is.EqualTo(12800UL));
+            Assert.That(liveState.PrimaryFocusDamageDealt, Is.EqualTo(5400UL));
+            Assert.That(liveState.TotalSupportValue, Is.EqualTo(3200UL));
+            Assert.That(liveState.ControlAndDispelCount, Is.EqualTo(3u));
+            Assert.That(liveState.DamageTaken, Is.EqualTo(6100UL));
+            Assert.That(liveState.HighlightKind, Is.EqualTo(BattleHighlightKind.BattleHighlightClutchComeback));
+            Assert.That(liveState.EffectiveEndedOpponentStreak, Is.EqualTo(5u));
+
+            // V4-4 尾项闭环：断线重登补查保留 Surrendered=true
+            var recovered = _client.BeginSettlementFromRecovery(new PlayerBattleResult
+            {
+                BattleId = 88002UL,
+                SeasonId = 1u,
+                MatchMode = (uint)MatchMode.PvpTeam,
+                Outcome = (uint)eBattleOutcome.BattleOutcomeSideBWin,
+                TeamIndex = 0u,
+                TotalRounds = 5u,
+                Surrendered = true,
+            });
+            Assert.That(recovered.FromRecovery, Is.True);
+            Assert.That(recovered.Surrendered, Is.True);
+        }
     }
 }

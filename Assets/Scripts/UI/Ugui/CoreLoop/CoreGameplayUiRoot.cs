@@ -75,6 +75,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         private CoreSettlementRewardSection _battleSettlement;
         private CoreSettlementRewardSection _rankedSettlement;
         private int _pendingMaterialClaimFrame = -1;
+        private bool _lastBattleWasWuxingTower;
+        private bool _pendingWuxingTowerReopen;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn() => EnsureSpawned();
@@ -131,6 +133,11 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             {
                 _pendingMaterialClaimFrame = -1;
                 GameplayUiRoot.Instance?.OpenEquipmentMaterials();
+            }
+            if (_pendingWuxingTowerReopen && CanOpenWorldPanel)
+            {
+                _pendingWuxingTowerReopen = false;
+                OpenWuxingTower();
             }
             HandleEscapeKey();
         }
@@ -341,6 +348,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             _playerId = 0;
             _connectionIdentity = null;
             _pendingMaterialClaimFrame = -1;
+            _lastBattleWasWuxingTower = false;
+            _pendingWuxingTowerReopen = false;
             _marketPreviewActive = false;
             if (_marketPreviewBanner != null) _marketPreviewBanner.gameObject.SetActive(false);
             DestroyPanel(ref _mainCity);
@@ -390,7 +399,14 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         }
 
         private void HandleBattlePhaseChanged(BattlePhase _) { if (HasLiveSession) { SyncVisibility(); RefreshAll(); } }
-        private void HandleBattleStart(global::BattleStartS2C _) { if (HasLiveSession) { SyncVisibility(); if (_battleHud != null && _battleHud.IsVisible) _battleHud.Refresh(); } }
+        private void HandleBattleStart(global::BattleStartS2C _)
+        {
+            if (!HasLiveSession) return;
+            var tc = _game?.Battle?.State?.TowerContext;
+            if (tc != null && tc.Floor > 0u) _lastBattleWasWuxingTower = true;
+            SyncVisibility();
+            if (_battleHud != null && _battleHud.IsVisible) _battleHud.Refresh();
+        }
         private void HandleTurnResult(global::TurnResultS2C result)
         {
             if (!HasLiveSession || _battleHud == null) return;
@@ -406,11 +422,23 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             }
             if (_battleHud.IsVisible) _battleHud.Refresh();
         }
-        private void HandleBattleStateUpdated(global::BattleStateS2C _) { if (HasLiveSession) { SyncVisibility(); if (_battleHud != null && _battleHud.IsVisible) _battleHud.Refresh(); } }
+        private void HandleBattleStateUpdated(global::BattleStateS2C state)
+        {
+            if (!HasLiveSession) return;
+            if (state?.TowerContext != null && state.TowerContext.Floor > 0u) _lastBattleWasWuxingTower = true;
+            SyncVisibility();
+            if (_battleHud != null && _battleHud.IsVisible) _battleHud.Refresh();
+        }
         private void HandleBattleEnd(global::BattleEndS2C _)
         {
             if (!HasLiveSession) return;
             _game?.Features?.RequestEquipmentMaterialReward();
+            if (_lastBattleWasWuxingTower)
+            {
+                _lastBattleWasWuxingTower = false;
+                _pendingWuxingTowerReopen = true;
+                _game?.Season?.RequestWuxingTowerState(force: true);
+            }
             SyncVisibility();
             RefreshAll();
         }

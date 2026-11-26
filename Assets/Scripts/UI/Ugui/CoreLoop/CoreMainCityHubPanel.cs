@@ -98,8 +98,6 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             CoreLoopUiArt.Button("OpenPets", transform, 2434, 588, 82, 34,
                 "灵宠", _root.OpenPets, true, false, 18);
             DrawEntry("WuxingTower", 642, "五行幻境", "十层肉鸽符印 · 免费阵法", "icon_hub_rotation", _root.OpenWuxingTower);
-            CoreLoopUiArt.Button("OpenCustomDuel", transform, 2434, 696, 82, 34,
-                "切磋坊", () => _root.OpenCustomDuel(), true, false, 16);
             CoreLoopUiArt.Button("OpenWuxingFormations", transform, 2178, 744, 170, 38,
                 "五行阵法", _root.OpenWuxingFormations, true, false, 18);
             CoreLoopUiArt.Button("OpenCustomDuelWide", transform, 2358, 744, 170, 38,

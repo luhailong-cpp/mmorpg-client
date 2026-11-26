@@ -5,6 +5,7 @@ using UnityEngine;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Battle.Presentation;
 using MmorpgClient.Game.CoreLoop;
+using MmorpgClient.Game.Ranked;
 using MmorpgClient.Table;
 using MmorpgClient.UI.Ugui.CoreLoop;
 using MmorpgClient.UI.Ugui.Tweening;
@@ -266,6 +267,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         private bool _replay;
         private uint _observerCount;
         private eBattleOutcome _shownOutcome = eBattleOutcome.BattleOutcomeOngoing;
+        // 论剑 V4 队内快捷战术标点浮条与连胜势旗标（多人同队对局可见，缺图时安全回退程序底色）
+        private RectTransform _pingBarRoot;
+        private readonly UiTextButton[] _pingKindButtons = new UiTextButton[4];
+        private UiTextButton _pingMuteButton;
+        private TMP_Text _pingArmedHint;
+        private BattlePingKind _armedPingKind = BattlePingKind.BattlePingUnspecified;
+        private RectTransform _winStreakBanner;
+        private TMP_Text _winStreakBannerText;
 
         private bool IsReadOnly => _spectate || _replay;
 
@@ -859,6 +868,61 @@ namespace MmorpgClient.UI.Ugui.Battle
             _spectatorPrepText.raycastTarget = false;
             _spectatorPrepBanner.gameObject.SetActive(false);
 
+            // 论剑 V4 队内快捷战术标点浮条（[40, 868, 420, 84]，预绑 RankedPlayV4/ping_bar_base + 4 枚图标，缺图安全回退）
+            var pingBarBg = BattleUiWidgets.CreatePanel("TacticalPingBar", _hudRoot, 40f, 868f, 420f, 84f,
+                SeasonEconomyUiArt.BattleArenaPaper, raycastTarget: true);
+            var pingBarSprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset("ping_bar_base");
+            if (pingBarSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(pingBarBg, pingBarSprite, SeasonEconomyUiArt.BattleArenaPaper);
+            else BattleRoundCounter.ApplyNineSlice(pingBarBg, "panel_9slice");
+            _pingBarRoot = pingBarBg.rectTransform;
+            var pingKinds = new[]
+            {
+                BattlePingKind.BattlePingFocus,
+                BattlePingKind.BattlePingControl,
+                BattlePingKind.BattlePingProtect,
+                BattlePingKind.BattlePingDispel,
+            };
+            for (int i = 0; i < pingKinds.Length; i++)
+            {
+                var capturedKind = pingKinds[i];
+                var btn = BattleUiWidgets.CreateTextButton($"PingBtn_{i}", _pingBarRoot,
+                    12f + i * 78f, 12f, 72f, 60f, RankedFormatting.PingDisplayName(capturedKind), 20f,
+                    SeasonEconomyUiArt.BattleArenaJade, QdaoUguiTheme.Cream);
+                var iconSprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset(RankedFormatting.PingAssetKey(capturedKind));
+                if (iconSprite != null)
+                {
+                    var iconImg = QdaoUguiFactory.CreateImage("Icon", btn.Rect, 20f, 4f, 32f, 32f, iconSprite, false);
+                    iconImg.preserveAspect = true;
+                    btn.Label.rectTransform.anchoredPosition = new Vector2(0f, -34f);
+                    btn.Label.rectTransform.sizeDelta = new Vector2(72f, 24f);
+                    btn.Label.fontSize = 15f;
+                }
+                btn.Button.onClick.AddListener(() => OnPingButtonClicked(capturedKind));
+                _pingKindButtons[i] = btn;
+            }
+            _pingMuteButton = BattleUiWidgets.CreateTextButton("PingMuteBtn", _pingBarRoot,
+                332f, 12f, 76f, 60f, "屏蔽", 18f, SeasonEconomyUiArt.BattleArenaDisabled, QdaoUguiTheme.Cream);
+            _pingMuteButton.Button.onClick.AddListener(OnPingMuteClicked);
+            _pingArmedHint = QdaoUguiFactory.CreateText("PingArmedHint", _pingBarRoot, 0f, -26f, 420f, 24f,
+                string.Empty, 17f, QdaoUguiTheme.Gold, TextAlignmentOptions.MidlineLeft);
+            _pingArmedHint.fontStyle = FontStyles.Bold;
+            _pingArmedHint.raycastTarget = false;
+            _pingArmedHint.gameObject.SetActive(false);
+            _pingBarRoot.gameObject.SetActive(false);
+
+            // 论剑 V4 连胜势旗标（>=3 连胜时在战前变阵与开局展示，预绑 RankedPlayV4/streak_banner_base）
+            var streakBg = BattleUiWidgets.CreatePanel("WinStreakBanner", _hudRoot, 190f, 96f, 320f, 64f,
+                SeasonEconomyUiArt.BattleArenaAmber, raycastTarget: false);
+            var streakSprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset("streak_banner_base");
+            if (streakSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(streakBg, streakSprite, SeasonEconomyUiArt.BattleArenaAmber);
+            else BattleRoundCounter.ApplyNineSlice(streakBg, "panel_9slice");
+            _winStreakBanner = streakBg.rectTransform;
+            _winStreakBannerText = QdaoUguiFactory.CreateText("WinStreakBannerText", _winStreakBanner,
+                14f, 0f, 292f, 64f, string.Empty, 22f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
+            _winStreakBannerText.fontStyle = FontStyles.Bold;
+            _winStreakBannerText.raycastTarget = false;
+            _winStreakBanner.gameObject.SetActive(false);
+
             BattleFidelityArt.ApplyHud(_hudRoot);
             _statusPopup = QdaoUguiFactory.CreateStretch("UnitStatusPopup", _hudRoot, Vector4.zero);
             var statusDismiss = QdaoUguiFactory.CreateHitButton("DismissStatus", _statusPopup,
@@ -1263,6 +1327,9 @@ namespace MmorpgClient.UI.Ugui.Battle
             RefreshPendingText();
             RefreshActionBar();
             RefreshPrepUi();
+            RefreshTacticalPingBar();
+            RefreshWinStreakBanner(state);
+            RefreshUnitTacticalPings(_owner?.Client?.CurrentTeamPings ?? state.TeamPings);
             RefreshUnitStatusPopup();
         }
 
@@ -1638,6 +1705,14 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void OnUnitClicked(ulong actorId)
         {
+            if (_armedPingKind != BattlePingKind.BattlePingUnspecified && !IsReadOnly && _owner?.Client != null)
+            {
+                var pingKind = _armedPingKind;
+                _armedPingKind = BattlePingKind.BattlePingUnspecified;
+                RefreshTacticalPingBar();
+                _owner.Client.SendBattlePing(actorId, pingKind);
+                return;
+            }
             if (_pending == PendingKind.None)
             {
                 var clickedActor = FindActor(actorId);
@@ -2422,6 +2497,134 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_prepState == null) _prepRequestPending = false;
             RefreshActionBar();
             RefreshPrepUi();
+            RefreshTacticalPingBar();
+        }
+
+        public void OnTeamPingsChanged(IReadOnlyList<BattleTacticalPing> pings)
+        {
+            RefreshUnitTacticalPings(pings);
+        }
+
+        private void OnPingButtonClicked(BattlePingKind kind)
+        {
+            if (IsReadOnly || _owner?.Client == null) return;
+            _armedPingKind = _armedPingKind == kind ? BattlePingKind.BattlePingUnspecified : kind;
+            RefreshTacticalPingBar();
+        }
+
+        private void OnPingMuteClicked()
+        {
+            if (_owner?.Client == null) return;
+            _owner.Client.TeamPingsMuted = !_owner.Client.TeamPingsMuted;
+            RefreshTacticalPingBar();
+            RefreshUnitTacticalPings(_owner.Client.CurrentTeamPings);
+        }
+
+        private void RefreshTacticalPingBar()
+        {
+            if (_pingBarRoot == null) return;
+            int myTeamPlayers = 0;
+            if (_state != null)
+            {
+                for (int i = 0; i < _state.Actors.Count; i++)
+                {
+                    var a = _state.Actors[i];
+                    if (a != null && a.ActorType == eBattleActorType.BattleActorTypePlayer && a.TeamIndex == _myTeam)
+                        myTeamPlayers++;
+                }
+            }
+            bool show = !IsReadOnly && _state != null && _state.Outcome == eBattleOutcome.BattleOutcomeOngoing && myTeamPlayers >= 2;
+            _pingBarRoot.gameObject.SetActive(show);
+            if (!show)
+            {
+                _armedPingKind = BattlePingKind.BattlePingUnspecified;
+                return;
+            }
+            var kinds = new[]
+            {
+                BattlePingKind.BattlePingFocus,
+                BattlePingKind.BattlePingControl,
+                BattlePingKind.BattlePingProtect,
+                BattlePingKind.BattlePingDispel,
+            };
+            for (int i = 0; i < _pingKindButtons.Length; i++)
+            {
+                if (_pingKindButtons[i] == null) continue;
+                bool armed = _armedPingKind == kinds[i];
+                _pingKindButtons[i].Plate.color = armed
+                    ? SeasonEconomyUiArt.BattleArenaVermilion
+                    : SeasonEconomyUiArt.BattleArenaJade;
+            }
+            bool muted = _owner?.Client?.TeamPingsMuted == true;
+            if (_pingMuteButton != null)
+            {
+                _pingMuteButton.Label.text = muted ? "已静音" : "屏蔽";
+                _pingMuteButton.Plate.color = muted
+                    ? SeasonEconomyUiArt.BattleArenaAmber
+                    : SeasonEconomyUiArt.BattleArenaDisabled;
+            }
+            if (_pingArmedHint != null)
+            {
+                bool hasArmed = _armedPingKind != BattlePingKind.BattlePingUnspecified;
+                _pingArmedHint.gameObject.SetActive(hasArmed);
+                if (hasArmed)
+                    _pingArmedHint.text = $"点击目标发送「{RankedFormatting.PingDisplayName(_armedPingKind)}」队内标点";
+            }
+        }
+
+        private void RefreshUnitTacticalPings(IReadOnlyList<BattleTacticalPing> pings)
+        {
+            for (int i = 0; i < _views.Count; i++)
+                _views[i].SetTacticalPing(BattlePingKind.BattlePingUnspecified);
+            if (IsReadOnly || _owner?.Client?.TeamPingsMuted == true || pings == null) return;
+            for (int i = 0; i < pings.Count; i++)
+            {
+                var p = pings[i];
+                if (p == null || p.TargetActorId == 0) continue;
+                if (_viewById.TryGetValue(p.TargetActorId, out var view))
+                    view.SetTacticalPing(p.Kind);
+            }
+        }
+
+        private void RefreshWinStreakBanner(BattleStateS2C state)
+        {
+            if (_winStreakBanner == null || _winStreakBannerText == null) return;
+            bool inIntro = state != null && state.Outcome == eBattleOutcome.BattleOutcomeOngoing
+                && ((state.PrepState != null && state.PrepState.Active) || state.RoundIndex <= 1u);
+            if (!inIntro)
+            {
+                _winStreakBanner.gameObject.SetActive(false);
+                return;
+            }
+            uint bestAlly = 0u;
+            uint bestEnemy = 0u;
+            for (int i = 0; i < state.Actors.Count; i++)
+            {
+                var a = state.Actors[i];
+                if (a == null || a.ActorType != eBattleActorType.BattleActorTypePlayer || a.WinStreak < 3u) continue;
+                if (a.TeamIndex == _myTeam)
+                {
+                    if (a.WinStreak > bestAlly) bestAlly = a.WinStreak;
+                }
+                else
+                {
+                    if (a.WinStreak > bestEnemy) bestEnemy = a.WinStreak;
+                }
+            }
+            if (bestEnemy >= 3u)
+            {
+                _winStreakBannerText.text = $"敌方{RankedFormatting.WinStreakBannerText(bestEnemy)}";
+                _winStreakBanner.gameObject.SetActive(true);
+            }
+            else if (bestAlly >= 3u)
+            {
+                _winStreakBannerText.text = $"己方{RankedFormatting.WinStreakBannerText(bestAlly)}";
+                _winStreakBanner.gameObject.SetActive(true);
+            }
+            else
+            {
+                _winStreakBanner.gameObject.SetActive(false);
+            }
         }
 
         private void RefreshPrepUi()

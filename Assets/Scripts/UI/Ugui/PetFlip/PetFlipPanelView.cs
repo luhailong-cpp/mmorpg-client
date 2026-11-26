@@ -80,6 +80,7 @@ namespace MmorpgClient.UI.Ugui.PetFlip
         private readonly Button _primaryButton;
         private readonly Image _primaryHitImage;
         private readonly TMP_Text _primaryLabel;
+        private readonly Image _primarySpiritEyeIcon;
         private readonly Button _secondaryButton;
         private readonly Image _secondaryHitImage;
         private readonly TMP_Text _secondaryLabel;
@@ -111,6 +112,7 @@ namespace MmorpgClient.UI.Ugui.PetFlip
 
         private readonly GameObject _completeRoot;
         private readonly TMP_Text _completeHeadline;
+        private readonly Image _completePerfectStamp;
         private readonly TMP_Text _completeSummary;
         private readonly TMP_Text _completeUnsavedText;
         private readonly PillButtonView _switchConfigButton;
@@ -149,6 +151,11 @@ namespace MmorpgClient.UI.Ugui.PetFlip
 
             _primaryButton = CreateOverlayButton("PetFlipPrimaryAction", FrameRoot, out _primaryLabel, out _primaryHitImage, PetFlipUiPresentation.StartButtonText, 29f, PetFlipArtCatalog.PaperText);
             _primaryButton.onClick.AddListener(HandlePrimaryClicked);
+            var eyeIconRect = QdaoUguiFactory.CreateRect("SpiritEyeIcon", (RectTransform)_primaryButton.transform, 18f, 25f, 36f, 36f);
+            _primarySpiritEyeIcon = eyeIconRect.gameObject.AddComponent<Image>();
+            _primarySpiritEyeIcon.preserveAspect = true;
+            _primarySpiritEyeIcon.raycastTarget = false;
+            _primarySpiritEyeIcon.gameObject.SetActive(false);
 
             _secondaryButton = CreateOverlayButton("PetFlipSecondaryAction", FrameRoot, out _secondaryLabel, out _secondaryHitImage, PetFlipUiPresentation.BackButtonText, 28f, PetFlipArtCatalog.JadeText);
             _secondaryButton.onClick.AddListener(() => CloseClicked?.Invoke());
@@ -213,6 +220,11 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             // 3. 完成结果页
             _completeRoot = CreateLayer("CompletePage", FrameRoot);
             _completeHeadline = CreateCenteredLabel("Headline", _completeRoot.transform, string.Empty, 42f, PetFlipArtCatalog.JadeText, bold: true, wrap: true);
+            var perfectStampRect = QdaoUguiFactory.CreateRect("PerfectStamp", _completeRoot.transform, 1440f, 212f, 112f, 112f);
+            _completePerfectStamp = perfectStampRect.gameObject.AddComponent<Image>();
+            _completePerfectStamp.preserveAspect = true;
+            _completePerfectStamp.raycastTarget = false;
+            _completePerfectStamp.gameObject.SetActive(false);
             _completeSummary = CreateCenteredLabel("Summary", _completeRoot.transform, string.Empty, 31f, PetFlipArtCatalog.GoldText, bold: true);
             _completeUnsavedText = CreateCenteredLabel("CompleteUnsaved", _completeRoot.transform, PetFlipUiPresentation.UnsavedRecordNoticeText, 24f, PetFlipArtCatalog.WarnText, bold: true);
             _completeUnsavedText.gameObject.SetActive(false);
@@ -240,6 +252,8 @@ namespace MmorpgClient.UI.Ugui.PetFlip
 
             _frameImage.sprite = IsPortrait ? assets.WindowFramePortrait : assets.WindowFrameLandscape;
             _entryPreviewCardBack.sprite = assets.CardBack;
+            _primarySpiritEyeIcon.sprite = assets.SpiritEyeIcon;
+            _completePerfectStamp.sprite = assets.StampPerfect;
 
             for (int i = 0; i < _cardSlots.Length; i++)
             {
@@ -307,6 +321,7 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 // 完成页竖排
                 Place(_completeHeadline.rectTransform, 102f, 320f, 820f, 150f);
                 _completeHeadline.fontSize = 42f;
+                Place(_completePerfectStamp.rectTransform, 796f, 294f, 112f, 112f);
                 Place(_completeSummary.rectTransform, 112f, 1020f, 800f, 72f);
                 _completeSummary.fontSize = 34f;
                 Place(_completeUnsavedText.rectTransform, 112f, 1106f, 800f, 52f);
@@ -360,6 +375,7 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 // 完成页横排
                 Place(_completeHeadline.rectTransform, 320f, 238f, 1282f, 78f);
                 _completeHeadline.fontSize = 42f;
+                Place(_completePerfectStamp.rectTransform, 1460f, 212f, 112f, 112f);
                 Place(_completeSummary.rectTransform, 420f, 540f, 1082f, 58f);
                 _completeSummary.fontSize = 31f;
                 Place(_completeUnsavedText.rectTransform, 511f, 596f, 900f, 38f);
@@ -610,7 +626,10 @@ namespace MmorpgClient.UI.Ugui.PetFlip
 
                 view.BackImage.gameObject.SetActive(!isFaceUp);
                 view.FrontGroup.gameObject.SetActive(isFaceUp);
-                view.FrontFrame.color = isSpiritPeek ? PetFlipArtCatalog.SpiritEyePeekTint : Color.white;
+                bool usePeekFrame = isSpiritPeek && _assets?.CardSpiritPeekFrame != null;
+                if (_assets != null)
+                    view.FrontFrame.sprite = usePeekFrame ? _assets.CardSpiritPeekFrame : _assets.CardFront;
+                view.FrontFrame.color = isSpiritPeek && !usePeekFrame ? PetFlipArtCatalog.SpiritEyePeekTint : Color.white;
                 if (isFaceUp && face != null)
                 {
                     view.PortraitImage.sprite = face.Portrait;
@@ -635,6 +654,7 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             _rightPillText.text = PetFlipUiPresentation.FormatFlipCounter(flips);
 
             _completeHeadline.text = PetFlipUiPresentation.FormatCompletionHeadline(result);
+            _completePerfectStamp.gameObject.SetActive(result != null && result.IsPerfectRun && _completePerfectStamp.sprite != null);
             _completeSummary.text = PetFlipUiPresentation.FormatCompletionSummary(result);
             _completeUnsavedText.gameObject.SetActive(PetFlipUiPresentation.ShouldShowUnsavedNotice(snapshot));
             _switchConfigButton.Button.interactable = snapshot.CanChangeConfiguration;
@@ -650,6 +670,12 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             _primaryLabel.text = label;
             _primaryButton.interactable = interactive;
             _primaryHitImage.raycastTarget = interactive;
+            bool showSpiritIcon = CurrentPage == PetFlipUiPage.Board
+                && _lastSnapshot != null
+                && _lastSnapshot.Mode == PetFlipGameMode.SpiritEye
+                && _primarySpiritEyeIcon.sprite != null;
+            _primarySpiritEyeIcon.gameObject.SetActive(showSpiritIcon);
+            _primaryLabel.rectTransform.offsetMin = new Vector2(showSpiritIcon ? 56f : 12f, 0f);
             _primaryLabel.color = interactive
                 ? PetFlipArtCatalog.PaperText
                 : new Color(PetFlipArtCatalog.PaperText.r, PetFlipArtCatalog.PaperText.g, PetFlipArtCatalog.PaperText.b, 0.88f);
@@ -959,8 +985,9 @@ namespace MmorpgClient.UI.Ugui.PetFlip
         {
             var rect = QdaoUguiFactory.CreateRect(name, parent, 0f, 0f, 180f, 42f);
             var bg = rect.gameObject.AddComponent<Image>();
-            bg.sprite = PetFlipArtCatalog.GetRoundedLabelSprite();
+            bg.sprite = PetFlipArtCatalog.GetNormalPillSprite();
             bg.type = Image.Type.Sliced;
+            bg.pixelsPerUnitMultiplier = bg.sprite != null && bg.sprite.rect.height >= 72f ? 2f : 1f;
             bg.raycastTarget = true;
 
             var button = rect.gameObject.AddComponent<Button>();
@@ -988,7 +1015,9 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             if (pill == null) return;
             pill.Background.sprite = selected
                 ? PetFlipArtCatalog.GetSelectedPillSprite()
-                : PetFlipArtCatalog.GetRoundedLabelSprite();
+                : PetFlipArtCatalog.GetNormalPillSprite();
+            pill.Background.pixelsPerUnitMultiplier =
+                pill.Background.sprite != null && pill.Background.sprite.rect.height >= 72f ? 2f : 1f;
             pill.Label.color = selected ? PetFlipArtCatalog.PaperText : PetFlipArtCatalog.JadeText;
             // 非色相勾选前缀，确保色觉障碍玩家同样清晰辨识当前选中档位/模式。
             pill.Label.text = selected ? "✓ " + baseLabel : baseLabel;
