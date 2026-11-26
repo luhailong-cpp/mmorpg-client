@@ -189,7 +189,7 @@ namespace MmorpgClient.Tests.EditMode.Role
             }
 
             string itemIconsRoot = Path.Combine(assetsRoot, "Resources", "UI", "Icons");
-            foreach (string itemFile in new[] { "item_reforge_sand.png", "item_bound_artifact_voucher.png" })
+            foreach (string itemFile in new[] { "item_reforge_sand.png", "item_bound_artifact_voucher.png", "item_sealed_skill_book.png" })
             {
                 string pngPath = Path.Combine(itemIconsRoot, itemFile);
                 string metaPath = pngPath + ".meta";

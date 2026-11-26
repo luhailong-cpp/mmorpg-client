@@ -500,6 +500,14 @@ namespace MmorpgClient.Game
             {
                 if (InGame && IsGateReady) Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
             };
+            SkillCraft.BookSealed += _ =>
+            {
+                if (InGame && IsGateReady) Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
+            };
+            SkillCraft.BookUnsealed += _ =>
+            {
+                if (InGame && IsGateReady) Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
+            };
             SkillCraft.BookLearned += _ =>
             {
                 if (!InGame || !IsGateReady) return;

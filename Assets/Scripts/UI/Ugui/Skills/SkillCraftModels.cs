@@ -15,6 +15,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         public const ulong ProxyFeeMinGold = 50;
         public const ulong ProxyFeeMaxGold = 100;
         public const uint MasterTier = 3;
+        public const uint SealedSkillBookConfigId = 3414;
 
         public static string FormatMastery(SkillCraftMasterySnapshot mastery, bool isScroll)
         {
@@ -75,6 +76,24 @@ namespace MmorpgClient.UI.Ugui.Skills
         }
 
         public static bool CanDismantleBook(CraftedSkillBookEntry book) => book != null && book.RarityTier == 0;
+
+        public static bool CanSealBook(CraftedSkillBookEntry book) => book != null && book.RarityTier == 0 && !book.Bound;
+
+        public static string DescribeSealedBook(BagItemInfo item, Func<uint, string> skillNameResolver = null)
+        {
+            var sealedInfo = item?.SealedSkillBook;
+            if (sealedInfo == null) return string.Empty;
+            string skillName = !string.IsNullOrWhiteSpace(sealedInfo.SkillName)
+                ? sealedInfo.SkillName
+                : skillNameResolver?.Invoke(sealedInfo.SkillTableId);
+            if (string.IsNullOrWhiteSpace(skillName)) skillName = $"技能 · {sealedInfo.SkillTableId}";
+            string scrollName = !string.IsNullOrWhiteSpace(sealedInfo.ScrollName)
+                ? sealedInfo.ScrollName
+                : (sealedInfo.ScrollId != 0 ? $"卷宗 · {sealedInfo.ScrollId.ToString(CultureInfo.InvariantCulture)}" : "常规卷宗");
+            string bind = item.Bound ? "仅自用" : "可交易";
+            string signer = string.IsNullOrWhiteSpace(sealedInfo.CrafterName) ? string.Empty : $" · 宗师·{sealedInfo.CrafterName} 亲手撰";
+            return $"【背包封卷】{skillName}（{scrollName} · {bind}{signer}）";
+        }
 
         public static bool CanOpenProxyStall(SkillCraftingStateSnapshot state) => state != null &&
             ((state.ForgeMastery?.Tier ?? 0) >= MasterTier || (state.ScrollMastery?.Tier ?? 0) >= MasterTier);

@@ -429,7 +429,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             return card;
         }
 
-        /// <summary>V3 皮肤按钮（加载到新切片时贴图，缺图时回退道家标准样式）。</summary>
+        /// <summary>V3 皮肤按钮（加载到深玉金边切片时固定配暖金高亮字并留出左右雕饰安全区，缺图时回退道家标准样式）。</summary>
         public static Button V3SkinnedButton(string name, Transform parent, float x, float y, float w, float h,
             string spriteKey, string labelText, Action onClick, bool primaryFallback = false,
             bool interactable = true, float fontSize = 18f)
@@ -442,8 +442,9 @@ namespace MmorpgClient.UI.Ugui.Tournament
             img.preserveAspect = false;
             btn.interactable = interactable;
             if (onClick != null) btn.onClick.AddListener(() => onClick());
-            var txt = Label(name + "_Label", btn.transform, 8f, 0f, w - 16f, h, labelText,
-                fontSize, primaryFallback ? PrimaryBtnText : JadeDeep, TextAlignmentOptions.Center, bold: true);
+            float padX = Mathf.Min(18f, w * 0.12f);
+            var txt = Label(name + "_Label", btn.transform, padX, 0f, w - padX * 2f, h, labelText,
+                fontSize, PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
             txt.enableAutoSizing = true;
             txt.fontSizeMin = Mathf.Max(11f, fontSize - 6f);
             txt.fontSizeMax = fontSize;

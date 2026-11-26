@@ -100,5 +100,15 @@ namespace MmorpgClient.Net.Generated
         public static void SwitchSkillLoadout(IRpcChannel channel, global::SwitchSkillLoadoutRequest request,
             RpcDone<global::SwitchSkillLoadoutResponse> done)
             => channel.CallMethod(SwitchSkillLoadoutMessageId, request, global::SwitchSkillLoadoutResponse.Parser, done);
+
+        public const uint SealSkillBookMessageId = 543;
+        public static void SealSkillBook(IRpcChannel channel, global::SealSkillBookRequest request,
+            RpcDone<global::SealSkillBookResponse> done)
+            => channel.CallMethod(SealSkillBookMessageId, request, global::SealSkillBookResponse.Parser, done);
+
+        public const uint UnsealSkillBookMessageId = 544;
+        public static void UnsealSkillBook(IRpcChannel channel, global::UnsealSkillBookRequest request,
+            RpcDone<global::UnsealSkillBookResponse> done)
+            => channel.CallMethod(UnsealSkillBookMessageId, request, global::UnsealSkillBookResponse.Parser, done);
     }
 }

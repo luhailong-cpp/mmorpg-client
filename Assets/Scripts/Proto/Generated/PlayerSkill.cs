@@ -136,48 +136,64 @@ public static partial class PlayerSkillReflection {
           "ZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3Nh",
           "Z2USGQoRY2xpZW50X3JlcXVlc3RfaWQYAiABKAQSEAoIcmVwbGF5ZWQYAyAB",
           "KAgSGgoScmVmdW5kZWRfZnJhZ21lbnRzGAQgASgNEioKBXN0YXRlGAUgASgL",
-          "MhsuU2tpbGxDcmFmdGluZ1N0YXRlU25hcHNob3QiZgoZU2V0Q3JhZnRQcm94",
-          "eVN0YWxsUmVxdWVzdBIMCgRvcGVuGAEgASgIEhwKFHByb3h5X2ZvcmdlX2Zl",
-          "ZV9nb2xkGAIgASgEEh0KFXByb3h5X3Njcm9sbF9mZWVfZ29sZBgDIAEoBCJw",
-          "ChpTZXRDcmFmdFByb3h5U3RhbGxSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdl",
-          "GAEgASgLMg8uVGlwSW5mb01lc3NhZ2USKgoFc3RhdGUYAiABKAsyGy5Ta2ls",
-          "bENyYWZ0aW5nU3RhdGVTbmFwc2hvdCL3AQoTQ3JhZnRQcm94eVN0YWxsSW5m",
-          "bxIYChBtYXN0ZXJfcGxheWVyX2lkGAEgASgEEhMKC21hc3Rlcl9uYW1lGAIg",
-          "ASgJEhoKEmZvcmdlX21hc3RlcnlfdGllchgDIAEoDRIbChNzY3JvbGxfbWFz",
-          "dGVyeV90aWVyGAQgASgNEhwKFHRvcF9xdWFsaXR5X3JhdGVfYnBzGAUgASgN",
-          "Eh0KFXNjcm9sbF9ib251c19yYXRlX2JwcxgGIAEoDRIcChRwcm94eV9mb3Jn",
-          "ZV9mZWVfZ29sZBgHIAEoBBIdChVwcm94eV9zY3JvbGxfZmVlX2dvbGQYCCAB",
-          "KAQiHQobTGlzdENyYWZ0UHJveHlTdGFsbHNSZXF1ZXN0ImwKHExpc3RDcmFm",
-          "dFByb3h5U3RhbGxzUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIP",
-          "LlRpcEluZm9NZXNzYWdlEiQKBnN0YWxscxgCIAMoCzIULkNyYWZ0UHJveHlT",
-          "dGFsbEluZm8iYwoTVXBncmFkZVNraWxsUmVxdWVzdBIWCg5za2lsbF90YWJs",
-          "ZV9pZBgBIAEoDRIVCg1leHBlY3RlZF9yYW5rGAIgASgNEg0KBWNvdW50GAMg",
-          "ASgNEg4KBnBldF9pZBgEIAEoBCKPAQoUVXBncmFkZVNraWxsUmVzcG9uc2US",
-          "JgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiIKBXN0",
-          "YXRlGAIgASgLMhMuTGlzdFNraWxsc1Jlc3BvbnNlEhYKDnVwZ3JhZGVkX2Nv",
-          "dW50GAMgASgNEhMKC3N0b3BfdGlwX2lkGAQgASgNMq4HChZTY2VuZVNraWxs",
-          "Q2xpZW50UGxheWVyEjsKDFJlbGVhc2VTa2lsbBIULlJlbGVhc2VTa2lsbFJl",
-          "cXVlc3QaFS5SZWxlYXNlU2tpbGxSZXNwb25zZRIvCg9Ob3RpZnlTa2lsbFVz",
-          "ZWQSDS5Ta2lsbFVzZWRTMkMaBi5FbXB0eSIFiJnIAQISPQoWTm90aWZ5U2tp",
-          "bGxJbnRlcnJ1cHRlZBIULlNraWxsSW50ZXJydXB0ZWRTMkMaBi5FbXB0eSIF",
-          "iJnIAQISNQoKTGlzdFNraWxscxISLkxpc3RTa2lsbHNSZXF1ZXN0GhMuTGlz",
-          "dFNraWxsc1Jlc3BvbnNlEjsKDFVwZ3JhZGVTa2lsbBIULlVwZ3JhZGVTa2ls",
-          "bFJlcXVlc3QaFS5VcGdyYWRlU2tpbGxSZXNwb25zZRJWChVHZXRTa2lsbENy",
-          "YWZ0aW5nU3RhdGUSHS5HZXRTa2lsbENyYWZ0aW5nU3RhdGVSZXF1ZXN0Gh4u",
-          "R2V0U2tpbGxDcmFmdGluZ1N0YXRlUmVzcG9uc2USQQoOQ3JhZnRTa2lsbEJv",
-          "b2sSFi5DcmFmdFNraWxsQm9va1JlcXVlc3QaFy5DcmFmdFNraWxsQm9va1Jl",
-          "c3BvbnNlEkEKDkxlYXJuU2tpbGxCb29rEhYuTGVhcm5Ta2lsbEJvb2tSZXF1",
-          "ZXN0GhcuTGVhcm5Ta2lsbEJvb2tSZXNwb25zZRJNChJEaXNtYW50bGVTa2ls",
-          "bEJvb2sSGi5EaXNtYW50bGVTa2lsbEJvb2tSZXF1ZXN0GhsuRGlzbWFudGxl",
-          "U2tpbGxCb29rUmVzcG9uc2USTQoSU2V0Q3JhZnRQcm94eVN0YWxsEhouU2V0",
-          "Q3JhZnRQcm94eVN0YWxsUmVxdWVzdBobLlNldENyYWZ0UHJveHlTdGFsbFJl",
-          "c3BvbnNlElMKFExpc3RDcmFmdFByb3h5U3RhbGxzEhwuTGlzdENyYWZ0UHJv",
-          "eHlTdGFsbHNSZXF1ZXN0Gh0uTGlzdENyYWZ0UHJveHlTdGFsbHNSZXNwb25z",
-          "ZRJHChBTYXZlU2tpbGxMb2Fkb3V0EhguU2F2ZVNraWxsTG9hZG91dFJlcXVl",
-          "c3QaGS5TYXZlU2tpbGxMb2Fkb3V0UmVzcG9uc2USTQoSU3dpdGNoU2tpbGxM",
-          "b2Fkb3V0EhouU3dpdGNoU2tpbGxMb2Fkb3V0UmVxdWVzdBobLlN3aXRjaFNr",
-          "aWxsTG9hZG91dFJlc3BvbnNlGgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRh",
-          "A2IGcHJvdG8z"));
+          "MhsuU2tpbGxDcmFmdGluZ1N0YXRlU25hcHNob3QiXQoUU2VhbFNraWxsQm9v",
+          "a1JlcXVlc3QSDwoHYm9va19pZBgBIAEoBBIZChFleHBlY3RlZF9yZXZpc2lv",
+          "bhgCIAEoBBIZChFjbGllbnRfcmVxdWVzdF9pZBgDIAEoBCLBAQoVU2VhbFNr",
+          "aWxsQm9va1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJ",
+          "bmZvTWVzc2FnZRIZChFjbGllbnRfcmVxdWVzdF9pZBgCIAEoBBIQCghyZXBs",
+          "YXllZBgDIAEoCBIPCgdpdGVtX2lkGAQgASgEEhYKDnNraWxsX3RhYmxlX2lk",
+          "GAUgASgNEioKBXN0YXRlGAYgASgLMhsuU2tpbGxDcmFmdGluZ1N0YXRlU25h",
+          "cHNob3QiXwoWVW5zZWFsU2tpbGxCb29rUmVxdWVzdBIPCgdpdGVtX2lkGAEg",
+          "ASgEEhkKEWV4cGVjdGVkX3JldmlzaW9uGAIgASgEEhkKEWNsaWVudF9yZXF1",
+          "ZXN0X2lkGAMgASgEIskBChdVbnNlYWxTa2lsbEJvb2tSZXNwb25zZRImCg1l",
+          "cnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USGQoRY2xpZW50",
+          "X3JlcXVlc3RfaWQYAiABKAQSEAoIcmVwbGF5ZWQYAyABKAgSLQoNdW5zZWFs",
+          "ZWRfYm9vaxgEIAEoCzIWLkNyYWZ0ZWRTa2lsbEJvb2tFbnRyeRIqCgVzdGF0",
+          "ZRgFIAEoCzIbLlNraWxsQ3JhZnRpbmdTdGF0ZVNuYXBzaG90ImYKGVNldENy",
+          "YWZ0UHJveHlTdGFsbFJlcXVlc3QSDAoEb3BlbhgBIAEoCBIcChRwcm94eV9m",
+          "b3JnZV9mZWVfZ29sZBgCIAEoBBIdChVwcm94eV9zY3JvbGxfZmVlX2dvbGQY",
+          "AyABKAQicAoaU2V0Q3JhZnRQcm94eVN0YWxsUmVzcG9uc2USJgoNZXJyb3Jf",
+          "bWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEioKBXN0YXRlGAIgASgL",
+          "MhsuU2tpbGxDcmFmdGluZ1N0YXRlU25hcHNob3Qi9wEKE0NyYWZ0UHJveHlT",
+          "dGFsbEluZm8SGAoQbWFzdGVyX3BsYXllcl9pZBgBIAEoBBITCgttYXN0ZXJf",
+          "bmFtZRgCIAEoCRIaChJmb3JnZV9tYXN0ZXJ5X3RpZXIYAyABKA0SGwoTc2Ny",
+          "b2xsX21hc3RlcnlfdGllchgEIAEoDRIcChR0b3BfcXVhbGl0eV9yYXRlX2Jw",
+          "cxgFIAEoDRIdChVzY3JvbGxfYm9udXNfcmF0ZV9icHMYBiABKA0SHAoUcHJv",
+          "eHlfZm9yZ2VfZmVlX2dvbGQYByABKAQSHQoVcHJveHlfc2Nyb2xsX2ZlZV9n",
+          "b2xkGAggASgEIh0KG0xpc3RDcmFmdFByb3h5U3RhbGxzUmVxdWVzdCJsChxM",
+          "aXN0Q3JhZnRQcm94eVN0YWxsc1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
+          "ASABKAsyDy5UaXBJbmZvTWVzc2FnZRIkCgZzdGFsbHMYAiADKAsyFC5DcmFm",
+          "dFByb3h5U3RhbGxJbmZvImMKE1VwZ3JhZGVTa2lsbFJlcXVlc3QSFgoOc2tp",
+          "bGxfdGFibGVfaWQYASABKA0SFQoNZXhwZWN0ZWRfcmFuaxgCIAEoDRINCgVj",
+          "b3VudBgDIAEoDRIOCgZwZXRfaWQYBCABKAQijwEKFFVwZ3JhZGVTa2lsbFJl",
+          "c3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2Fn",
+          "ZRIiCgVzdGF0ZRgCIAEoCzITLkxpc3RTa2lsbHNSZXNwb25zZRIWCg51cGdy",
+          "YWRlZF9jb3VudBgDIAEoDRITCgtzdG9wX3RpcF9pZBgEIAEoDTK0CAoWU2Nl",
+          "bmVTa2lsbENsaWVudFBsYXllchI7CgxSZWxlYXNlU2tpbGwSFC5SZWxlYXNl",
+          "U2tpbGxSZXF1ZXN0GhUuUmVsZWFzZVNraWxsUmVzcG9uc2USLwoPTm90aWZ5",
+          "U2tpbGxVc2VkEg0uU2tpbGxVc2VkUzJDGgYuRW1wdHkiBYiZyAECEj0KFk5v",
+          "dGlmeVNraWxsSW50ZXJydXB0ZWQSFC5Ta2lsbEludGVycnVwdGVkUzJDGgYu",
+          "RW1wdHkiBYiZyAECEjUKCkxpc3RTa2lsbHMSEi5MaXN0U2tpbGxzUmVxdWVz",
+          "dBoTLkxpc3RTa2lsbHNSZXNwb25zZRI7CgxVcGdyYWRlU2tpbGwSFC5VcGdy",
+          "YWRlU2tpbGxSZXF1ZXN0GhUuVXBncmFkZVNraWxsUmVzcG9uc2USVgoVR2V0",
+          "U2tpbGxDcmFmdGluZ1N0YXRlEh0uR2V0U2tpbGxDcmFmdGluZ1N0YXRlUmVx",
+          "dWVzdBoeLkdldFNraWxsQ3JhZnRpbmdTdGF0ZVJlc3BvbnNlEkEKDkNyYWZ0",
+          "U2tpbGxCb29rEhYuQ3JhZnRTa2lsbEJvb2tSZXF1ZXN0GhcuQ3JhZnRTa2ls",
+          "bEJvb2tSZXNwb25zZRJBCg5MZWFyblNraWxsQm9vaxIWLkxlYXJuU2tpbGxC",
+          "b29rUmVxdWVzdBoXLkxlYXJuU2tpbGxCb29rUmVzcG9uc2USTQoSRGlzbWFu",
+          "dGxlU2tpbGxCb29rEhouRGlzbWFudGxlU2tpbGxCb29rUmVxdWVzdBobLkRp",
+          "c21hbnRsZVNraWxsQm9va1Jlc3BvbnNlEk0KElNldENyYWZ0UHJveHlTdGFs",
+          "bBIaLlNldENyYWZ0UHJveHlTdGFsbFJlcXVlc3QaGy5TZXRDcmFmdFByb3h5",
+          "U3RhbGxSZXNwb25zZRJTChRMaXN0Q3JhZnRQcm94eVN0YWxscxIcLkxpc3RD",
+          "cmFmdFByb3h5U3RhbGxzUmVxdWVzdBodLkxpc3RDcmFmdFByb3h5U3RhbGxz",
+          "UmVzcG9uc2USRwoQU2F2ZVNraWxsTG9hZG91dBIYLlNhdmVTa2lsbExvYWRv",
+          "dXRSZXF1ZXN0GhkuU2F2ZVNraWxsTG9hZG91dFJlc3BvbnNlEk0KElN3aXRj",
+          "aFNraWxsTG9hZG91dBIaLlN3aXRjaFNraWxsTG9hZG91dFJlcXVlc3QaGy5T",
+          "d2l0Y2hTa2lsbExvYWRvdXRSZXNwb25zZRI+Cg1TZWFsU2tpbGxCb29rEhUu",
+          "U2VhbFNraWxsQm9va1JlcXVlc3QaFi5TZWFsU2tpbGxCb29rUmVzcG9uc2US",
+          "RAoPVW5zZWFsU2tpbGxCb29rEhcuVW5zZWFsU2tpbGxCb29rUmVxdWVzdBoY",
+          "LlVuc2VhbFNraWxsQm9va1Jlc3BvbnNlGgqAqMMBAYiowwEBQg5aBXNjZW5l",
+          "gAEBmNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::BaseCompReflection.Descriptor, global::EmptyReflection.Descriptor, global::PlayerSkillCompReflection.Descriptor, global::PlayerCraftCompReflection.Descriptor, global::ActorCompReflection.Descriptor, global::SupportEffectsReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -205,6 +221,10 @@ public static partial class PlayerSkillReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::LearnSkillBookResponse), global::LearnSkillBookResponse.Parser, new[]{ "ErrorMessage", "ClientRequestId", "Replayed", "LearnedSkillTableId", "State" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::DismantleSkillBookRequest), global::DismantleSkillBookRequest.Parser, new[]{ "BookId", "ExpectedRevision", "ClientRequestId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::DismantleSkillBookResponse), global::DismantleSkillBookResponse.Parser, new[]{ "ErrorMessage", "ClientRequestId", "Replayed", "RefundedFragments", "State" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SealSkillBookRequest), global::SealSkillBookRequest.Parser, new[]{ "BookId", "ExpectedRevision", "ClientRequestId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SealSkillBookResponse), global::SealSkillBookResponse.Parser, new[]{ "ErrorMessage", "ClientRequestId", "Replayed", "ItemId", "SkillTableId", "State" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::UnsealSkillBookRequest), global::UnsealSkillBookRequest.Parser, new[]{ "ItemId", "ExpectedRevision", "ClientRequestId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::UnsealSkillBookResponse), global::UnsealSkillBookResponse.Parser, new[]{ "ErrorMessage", "ClientRequestId", "Replayed", "UnsealedBook", "State" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SetCraftProxyStallRequest), global::SetCraftProxyStallRequest.Parser, new[]{ "Open", "ProxyForgeFeeGold", "ProxyScrollFeeGold" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SetCraftProxyStallResponse), global::SetCraftProxyStallResponse.Parser, new[]{ "ErrorMessage", "State" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::CraftProxyStallInfo), global::CraftProxyStallInfo.Parser, new[]{ "MasterPlayerId", "MasterName", "ForgeMasteryTier", "ScrollMasteryTier", "TopQualityRateBps", "ScrollBonusRateBps", "ProxyForgeFeeGold", "ProxyScrollFeeGold" }, null, null, null, null),
@@ -10099,6 +10119,1336 @@ public sealed partial class DismantleSkillBookResponse : pb::IMessage<DismantleS
 
 }
 
+/// <summary>
+/// 书架内未绑定常规技能书封卷入包（生成可交易 3414 封卷道籍实体道具，可上架聚宝斋/集市或面对面交易）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SealSkillBookRequest : pb::IMessage<SealSkillBookRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SealSkillBookRequest> _parser = new pb::MessageParser<SealSkillBookRequest>(() => new SealSkillBookRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SealSkillBookRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[24]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SealSkillBookRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SealSkillBookRequest(SealSkillBookRequest other) : this() {
+    bookId_ = other.bookId_;
+    expectedRevision_ = other.expectedRevision_;
+    clientRequestId_ = other.clientRequestId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SealSkillBookRequest Clone() {
+    return new SealSkillBookRequest(this);
+  }
+
+  /// <summary>Field number for the "book_id" field.</summary>
+  public const int BookIdFieldNumber = 1;
+  private ulong bookId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong BookId {
+    get { return bookId_; }
+    set {
+      bookId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "expected_revision" field.</summary>
+  public const int ExpectedRevisionFieldNumber = 2;
+  private ulong expectedRevision_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ExpectedRevision {
+    get { return expectedRevision_; }
+    set {
+      expectedRevision_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 3;
+  private ulong clientRequestId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SealSkillBookRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SealSkillBookRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (BookId != other.BookId) return false;
+    if (ExpectedRevision != other.ExpectedRevision) return false;
+    if (ClientRequestId != other.ClientRequestId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (BookId != 0UL) hash ^= BookId.GetHashCode();
+    if (ExpectedRevision != 0UL) hash ^= ExpectedRevision.GetHashCode();
+    if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (BookId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(BookId);
+    }
+    if (ExpectedRevision != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(ExpectedRevision);
+    }
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (BookId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(BookId);
+    }
+    if (ExpectedRevision != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(ExpectedRevision);
+    }
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (BookId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BookId);
+    }
+    if (ExpectedRevision != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedRevision);
+    }
+    if (ClientRequestId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SealSkillBookRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.BookId != 0UL) {
+      BookId = other.BookId;
+    }
+    if (other.ExpectedRevision != 0UL) {
+      ExpectedRevision = other.ExpectedRevision;
+    }
+    if (other.ClientRequestId != 0UL) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          BookId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          ExpectedRevision = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          BookId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          ExpectedRevision = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SealSkillBookResponse : pb::IMessage<SealSkillBookResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SealSkillBookResponse> _parser = new pb::MessageParser<SealSkillBookResponse>(() => new SealSkillBookResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SealSkillBookResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[25]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SealSkillBookResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SealSkillBookResponse(SealSkillBookResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    clientRequestId_ = other.clientRequestId_;
+    replayed_ = other.replayed_;
+    itemId_ = other.itemId_;
+    skillTableId_ = other.skillTableId_;
+    state_ = other.state_ != null ? other.state_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SealSkillBookResponse Clone() {
+    return new SealSkillBookResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 2;
+  private ulong clientRequestId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "replayed" field.</summary>
+  public const int ReplayedFieldNumber = 3;
+  private bool replayed_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Replayed {
+    get { return replayed_; }
+    set {
+      replayed_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "item_id" field.</summary>
+  public const int ItemIdFieldNumber = 4;
+  private ulong itemId_;
+  /// <summary>
+  /// 新生成的背包 3414 封卷道籍实例 ID。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ItemId {
+    get { return itemId_; }
+    set {
+      itemId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "skill_table_id" field.</summary>
+  public const int SkillTableIdFieldNumber = 5;
+  private uint skillTableId_;
+  /// <summary>
+  /// 封存的 SkillTable.id。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SkillTableId {
+    get { return skillTableId_; }
+    set {
+      skillTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "state" field.</summary>
+  public const int StateFieldNumber = 6;
+  private global::SkillCraftingStateSnapshot state_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::SkillCraftingStateSnapshot State {
+    get { return state_; }
+    set {
+      state_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SealSkillBookResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SealSkillBookResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (ClientRequestId != other.ClientRequestId) return false;
+    if (Replayed != other.Replayed) return false;
+    if (ItemId != other.ItemId) return false;
+    if (SkillTableId != other.SkillTableId) return false;
+    if (!object.Equals(State, other.State)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
+    if (Replayed != false) hash ^= Replayed.GetHashCode();
+    if (ItemId != 0UL) hash ^= ItemId.GetHashCode();
+    if (SkillTableId != 0) hash ^= SkillTableId.GetHashCode();
+    if (state_ != null) hash ^= State.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(Replayed);
+    }
+    if (ItemId != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(ItemId);
+    }
+    if (SkillTableId != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(SkillTableId);
+    }
+    if (state_ != null) {
+      output.WriteRawTag(50);
+      output.WriteMessage(State);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(Replayed);
+    }
+    if (ItemId != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(ItemId);
+    }
+    if (SkillTableId != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(SkillTableId);
+    }
+    if (state_ != null) {
+      output.WriteRawTag(50);
+      output.WriteMessage(State);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (ClientRequestId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
+    }
+    if (Replayed != false) {
+      size += 1 + 1;
+    }
+    if (ItemId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ItemId);
+    }
+    if (SkillTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SkillTableId);
+    }
+    if (state_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(State);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SealSkillBookResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.ClientRequestId != 0UL) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    if (other.Replayed != false) {
+      Replayed = other.Replayed;
+    }
+    if (other.ItemId != 0UL) {
+      ItemId = other.ItemId;
+    }
+    if (other.SkillTableId != 0) {
+      SkillTableId = other.SkillTableId;
+    }
+    if (other.state_ != null) {
+      if (state_ == null) {
+        State = new global::SkillCraftingStateSnapshot();
+      }
+      State.MergeFrom(other.State);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 32: {
+          ItemId = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          SkillTableId = input.ReadUInt32();
+          break;
+        }
+        case 50: {
+          if (state_ == null) {
+            State = new global::SkillCraftingStateSnapshot();
+          }
+          input.ReadMessage(State);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 32: {
+          ItemId = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          SkillTableId = input.ReadUInt32();
+          break;
+        }
+        case 50: {
+          if (state_ == null) {
+            State = new global::SkillCraftingStateSnapshot();
+          }
+          input.ReadMessage(State);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 背包中的 3414 封卷道籍开卷回书架（继承原物品绑定性，防洗白）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class UnsealSkillBookRequest : pb::IMessage<UnsealSkillBookRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<UnsealSkillBookRequest> _parser = new pb::MessageParser<UnsealSkillBookRequest>(() => new UnsealSkillBookRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<UnsealSkillBookRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[26]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UnsealSkillBookRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UnsealSkillBookRequest(UnsealSkillBookRequest other) : this() {
+    itemId_ = other.itemId_;
+    expectedRevision_ = other.expectedRevision_;
+    clientRequestId_ = other.clientRequestId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UnsealSkillBookRequest Clone() {
+    return new UnsealSkillBookRequest(this);
+  }
+
+  /// <summary>Field number for the "item_id" field.</summary>
+  public const int ItemIdFieldNumber = 1;
+  private ulong itemId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ItemId {
+    get { return itemId_; }
+    set {
+      itemId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "expected_revision" field.</summary>
+  public const int ExpectedRevisionFieldNumber = 2;
+  private ulong expectedRevision_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ExpectedRevision {
+    get { return expectedRevision_; }
+    set {
+      expectedRevision_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 3;
+  private ulong clientRequestId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as UnsealSkillBookRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(UnsealSkillBookRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ItemId != other.ItemId) return false;
+    if (ExpectedRevision != other.ExpectedRevision) return false;
+    if (ClientRequestId != other.ClientRequestId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ItemId != 0UL) hash ^= ItemId.GetHashCode();
+    if (ExpectedRevision != 0UL) hash ^= ExpectedRevision.GetHashCode();
+    if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ItemId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ItemId);
+    }
+    if (ExpectedRevision != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(ExpectedRevision);
+    }
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ItemId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ItemId);
+    }
+    if (ExpectedRevision != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(ExpectedRevision);
+    }
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ItemId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ItemId);
+    }
+    if (ExpectedRevision != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedRevision);
+    }
+    if (ClientRequestId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(UnsealSkillBookRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ItemId != 0UL) {
+      ItemId = other.ItemId;
+    }
+    if (other.ExpectedRevision != 0UL) {
+      ExpectedRevision = other.ExpectedRevision;
+    }
+    if (other.ClientRequestId != 0UL) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ItemId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          ExpectedRevision = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ItemId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          ExpectedRevision = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class UnsealSkillBookResponse : pb::IMessage<UnsealSkillBookResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<UnsealSkillBookResponse> _parser = new pb::MessageParser<UnsealSkillBookResponse>(() => new UnsealSkillBookResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<UnsealSkillBookResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[27]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UnsealSkillBookResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UnsealSkillBookResponse(UnsealSkillBookResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    clientRequestId_ = other.clientRequestId_;
+    replayed_ = other.replayed_;
+    unsealedBook_ = other.unsealedBook_ != null ? other.unsealedBook_.Clone() : null;
+    state_ = other.state_ != null ? other.state_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UnsealSkillBookResponse Clone() {
+    return new UnsealSkillBookResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 2;
+  private ulong clientRequestId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "replayed" field.</summary>
+  public const int ReplayedFieldNumber = 3;
+  private bool replayed_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Replayed {
+    get { return replayed_; }
+    set {
+      replayed_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "unsealed_book" field.</summary>
+  public const int UnsealedBookFieldNumber = 4;
+  private global::CraftedSkillBookEntry unsealedBook_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::CraftedSkillBookEntry UnsealedBook {
+    get { return unsealedBook_; }
+    set {
+      unsealedBook_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "state" field.</summary>
+  public const int StateFieldNumber = 5;
+  private global::SkillCraftingStateSnapshot state_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::SkillCraftingStateSnapshot State {
+    get { return state_; }
+    set {
+      state_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as UnsealSkillBookResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(UnsealSkillBookResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (ClientRequestId != other.ClientRequestId) return false;
+    if (Replayed != other.Replayed) return false;
+    if (!object.Equals(UnsealedBook, other.UnsealedBook)) return false;
+    if (!object.Equals(State, other.State)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
+    if (Replayed != false) hash ^= Replayed.GetHashCode();
+    if (unsealedBook_ != null) hash ^= UnsealedBook.GetHashCode();
+    if (state_ != null) hash ^= State.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(Replayed);
+    }
+    if (unsealedBook_ != null) {
+      output.WriteRawTag(34);
+      output.WriteMessage(UnsealedBook);
+    }
+    if (state_ != null) {
+      output.WriteRawTag(42);
+      output.WriteMessage(State);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(Replayed);
+    }
+    if (unsealedBook_ != null) {
+      output.WriteRawTag(34);
+      output.WriteMessage(UnsealedBook);
+    }
+    if (state_ != null) {
+      output.WriteRawTag(42);
+      output.WriteMessage(State);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (ClientRequestId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
+    }
+    if (Replayed != false) {
+      size += 1 + 1;
+    }
+    if (unsealedBook_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(UnsealedBook);
+    }
+    if (state_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(State);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(UnsealSkillBookResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.ClientRequestId != 0UL) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    if (other.Replayed != false) {
+      Replayed = other.Replayed;
+    }
+    if (other.unsealedBook_ != null) {
+      if (unsealedBook_ == null) {
+        UnsealedBook = new global::CraftedSkillBookEntry();
+      }
+      UnsealedBook.MergeFrom(other.UnsealedBook);
+    }
+    if (other.state_ != null) {
+      if (state_ == null) {
+        State = new global::SkillCraftingStateSnapshot();
+      }
+      State.MergeFrom(other.State);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 34: {
+          if (unsealedBook_ == null) {
+            UnsealedBook = new global::CraftedSkillBookEntry();
+          }
+          input.ReadMessage(UnsealedBook);
+          break;
+        }
+        case 42: {
+          if (state_ == null) {
+            State = new global::SkillCraftingStateSnapshot();
+          }
+          input.ReadMessage(State);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 34: {
+          if (unsealedBook_ == null) {
+            UnsealedBook = new global::CraftedSkillBookEntry();
+          }
+          input.ReadMessage(UnsealedBook);
+          break;
+        }
+        case 42: {
+          if (state_ == null) {
+            State = new global::SkillCraftingStateSnapshot();
+          }
+          input.ReadMessage(State);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class SetCraftProxyStallRequest : pb::IMessage<SetCraftProxyStallRequest>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -10114,7 +11464,7 @@ public sealed partial class SetCraftProxyStallRequest : pb::IMessage<SetCraftPro
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[24]; }
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[28]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10392,7 +11742,7 @@ public sealed partial class SetCraftProxyStallResponse : pb::IMessage<SetCraftPr
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[25]; }
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[29]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10645,7 +11995,7 @@ public sealed partial class CraftProxyStallInfo : pb::IMessage<CraftProxyStallIn
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[26]; }
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[30]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11102,7 +12452,7 @@ public sealed partial class ListCraftProxyStallsRequest : pb::IMessage<ListCraft
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[27]; }
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[31]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11263,7 +12613,7 @@ public sealed partial class ListCraftProxyStallsResponse : pb::IMessage<ListCraf
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[28]; }
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[32]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11499,7 +12849,7 @@ public sealed partial class UpgradeSkillRequest : pb::IMessage<UpgradeSkillReque
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[29]; }
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[33]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11817,7 +13167,7 @@ public sealed partial class UpgradeSkillResponse : pb::IMessage<UpgradeSkillResp
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[30]; }
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[34]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

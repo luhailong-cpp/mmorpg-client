@@ -126,8 +126,11 @@ namespace MmorpgClient.UI.Ugui.Tournament
             {
                 var wb = QdaoUguiFactory.CreateImage("TopWarmupBadge", _topBanner, 502f, 6f, 114f, 32f, warmBadgeSprite, false);
                 wb.preserveAspect = false;
-                TournamentArtCatalog.Label("Txt", wb.transform, 4f, 0f, 106f, 32f, "零积分演练", 12f,
-                    TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
+                var wbTxt = TournamentArtCatalog.Label("Txt", wb.transform, 12f, 0f, 90f, 32f, "零积分演练", 12f,
+                    TournamentArtCatalog.PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
+                wbTxt.enableAutoSizing = true;
+                wbTxt.fontSizeMin = 9.5f;
+                wbTxt.fontSizeMax = 12f;
                 _topWarmupBadge = wb.rectTransform;
             }
             else

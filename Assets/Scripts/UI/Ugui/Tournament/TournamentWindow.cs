@@ -812,11 +812,11 @@ namespace MmorpgClient.UI.Ugui.Tournament
             var head = TournamentArtCatalog.BorderedCard("SquadHeader", _pageRoot, 0f, 0f, InnerW, 92f,
                 TournamentArtCatalog.CardBg, TournamentArtCatalog.Line, 1.5f);
             TournamentArtCatalog.EmblemBadge("SqEmblem", head, 20f, 16f, 60f, sq.EmblemId);
-            TournamentArtCatalog.Label("SqTitle", head, 92f, 12f, 440f, 40f, sq.Name, 30f, TournamentArtCatalog.JadeDeep, bold: true);
-            TournamentArtCatalog.Label("SqMeta", head, 92f, 54f, 410f, 26f,
+            TournamentArtCatalog.Label("SqTitle", head, 92f, 12f, 408f, 40f, sq.Name, 30f, TournamentArtCatalog.JadeDeep, bold: true);
+            TournamentArtCatalog.Label("SqMeta", head, 92f, 54f, 408f, 26f,
                 $"战队编号 {sq.SquadId} · {TournamentFormatting.GetEmblemInfo(sq.EmblemId).Name}旗 · {TournamentFormatting.SquadStateDisplayName(sq.State)}",
                 15f, TournamentArtCatalog.Muted);
-            TournamentArtCatalog.FlatButton("CopyIdBtn", head, 506f, 52f, 72f, 28f, "复制",
+            TournamentArtCatalog.FlatButton("CopyIdBtn", head, 506f, 44f, 72f, 44f, "复制",
                 TournamentArtCatalog.Ivory, TournamentArtCatalog.Line, TournamentArtCatalog.JadeDeep,
                 () =>
                 {
@@ -825,7 +825,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 }, fontSize: 14f);
             if (isCaptain && season.Stage != TournamentStage.Settled)
             {
-                TournamentArtCatalog.FlatButton("ChangeEmblemBtn", head, 588f, 52f, 98f, 28f, "更换战旗",
+                TournamentArtCatalog.FlatButton("ChangeEmblemBtn", head, 588f, 44f, 100f, 44f, "更换战旗",
                     TournamentArtCatalog.GoldTagBg, TournamentArtCatalog.Gold, TournamentArtCatalog.GoldTagText,
                     () =>
                     {
@@ -1003,7 +1003,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
         {
             // 双子页签 + 赛季切换
             bool isRanking = _model.BoardMode == TournamentBoardMode.Ranking;
-            TournamentArtCatalog.FlatButton("SubRanking", _pageRoot, 0f, 0f, 156f, 42f, "海选积分榜",
+            TournamentArtCatalog.FlatButton("SubRanking", _pageRoot, 0f, 0f, 156f, 44f, "海选积分榜",
                 isRanking ? TournamentArtCatalog.Jade : TournamentArtCatalog.CardAltBg,
                 isRanking ? TournamentArtCatalog.Gold : TournamentArtCatalog.Line,
                 isRanking ? TournamentArtCatalog.PrimaryBtnText : TournamentArtCatalog.SecondaryBtnText,
@@ -1014,7 +1014,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 _lastInviteCandidates, _lastInviteSourceStatus, _lastPredictionBoard, _lastHighlights);
                 }, fontSize: 18f);
 
-            TournamentArtCatalog.FlatButton("SubBracket", _pageRoot, 166f, 0f, 170f, 42f, "淘汰赛对阵树",
+            TournamentArtCatalog.FlatButton("SubBracket", _pageRoot, 166f, 0f, 170f, 44f, "淘汰赛对阵树",
                 !isRanking ? TournamentArtCatalog.Jade : TournamentArtCatalog.CardAltBg,
                 !isRanking ? TournamentArtCatalog.Gold : TournamentArtCatalog.Line,
                 !isRanking ? TournamentArtCatalog.PrimaryBtnText : TournamentArtCatalog.SecondaryBtnText,
@@ -1026,7 +1026,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 }, fontSize: 18f);
 
             // V3 模块 E：神机问道榜入口（零消耗免费竞猜总榜）
-            TournamentArtCatalog.FlatButton("OpenPredictBoardBtn", _pageRoot, 352f, 0f, 168f, 42f, "神机问道榜",
+            TournamentArtCatalog.FlatButton("OpenPredictBoardBtn", _pageRoot, 352f, 0f, 168f, 44f, "神机问道榜",
                 TournamentArtCatalog.GoldTagBg, TournamentArtCatalog.Gold, TournamentArtCatalog.GoldTagText,
                 () =>
                 {
@@ -1036,7 +1036,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 }, interactable: !isBusy, fontSize: 17f);
 
             // V4 模块 I：本季名局录入口（全服公开淘汰赛 Top 10 精选回放）
-            TournamentArtCatalog.FlatButton("OpenHighlightsBtn", _pageRoot, 532f, 0f, 168f, 42f, "本季名局录",
+            TournamentArtCatalog.FlatButton("OpenHighlightsBtn", _pageRoot, 532f, 0f, 168f, 44f, "本季名局录",
                 TournamentArtCatalog.JadeSoft, TournamentArtCatalog.Jade, TournamentArtCatalog.JadeDeep,
                 () =>
                 {
@@ -1053,9 +1053,9 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 if (choices[i].SeasonId == _model.SelectedStandingsSeasonId) { curIdx = i; break; }
             }
             var currentChoice = choices[curIdx];
-            TournamentArtCatalog.Label("SeasonFilterLbl", _pageRoot, InnerW - 350f, 6f, 70f, 30f,
+            TournamentArtCatalog.Label("SeasonFilterLbl", _pageRoot, InnerW - 350f, 7f, 70f, 30f,
                 "赛季：", 16f, TournamentArtCatalog.Muted, TextAlignmentOptions.MidlineRight);
-            TournamentArtCatalog.FlatButton("SeasonCycleBtn", _pageRoot, InnerW - 274f, 2f, 274f, 38f,
+            TournamentArtCatalog.FlatButton("SeasonCycleBtn", _pageRoot, InnerW - 274f, 0f, 274f, 44f,
                 choices.Count > 1 ? $"{currentChoice.Label}  ▾" : currentChoice.Label,
                 TournamentArtCatalog.Ivory, TournamentArtCatalog.Line, TournamentArtCatalog.JadeDeep,
                 () =>
@@ -1244,13 +1244,13 @@ namespace MmorpgClient.UI.Ugui.Tournament
             TournamentArtCatalog.CreateScrollView("BracketScroll", _pageRoot, 0f, 98f, InnerW, 488f,
                 horizontal: true, vertical: true, out var content);
 
-            float colW = 336f;
-            float colGap = 44f;
-            float cardH = 134f;
+            float colW = 364f;
+            float colGap = 40f;
+            float cardH = 172f;
             int maxMatchesInCol = 1;
             for (int c = 0; c < columns.Count; c++)
                 if (columns[c].Count > maxMatchesInCol) maxMatchesInCol = columns[c].Count;
-            float contentH = Mathf.Max(480f, 56f + maxMatchesInCol * (cardH + 18f));
+            float contentH = Mathf.Max(480f, 56f + maxMatchesInCol * (cardH + 16f));
             float totalW = Mathf.Max(InnerW, columns.Count * colW + (columns.Count - 1) * colGap + 40f);
             float startX = columns.Count <= 2 ? Mathf.Max(20f, (InnerW - (columns.Count * colW + (columns.Count - 1) * colGap)) * 0.5f) : 12f;
 
@@ -1318,30 +1318,37 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     RenderBracketTeamLine(mCard, 32f, colW, m.SquadAId, m.SquadAName, m.SquadASeed, m.SquadAEmblemId,
                         m.ReadyA, m.WinnerSquadId, m.State, isByeSlot: m.SquadAId == 0UL && m.State == TournamentMatchState.Bye,
                         canPredict, isBusy, m.MatchId, m.MyPredictedSquadId, m.PredictCountA);
-                    RenderBracketTeamLine(mCard, 62f, colW, m.SquadBId, m.SquadBName, m.SquadBSeed, m.SquadBEmblemId,
+                    RenderBracketTeamLine(mCard, 76f, colW, m.SquadBId, m.SquadBName, m.SquadBSeed, m.SquadBEmblemId,
                         m.ReadyB, m.WinnerSquadId, m.State, isByeSlot: m.SquadBId == 0UL && m.State == TournamentMatchState.Bye,
                         canPredict, isBusy, m.MatchId, m.MyPredictedSquadId, m.PredictCountB);
 
-                    // 底部栏（y=96f）：BO3 局分 + 灵脉章 + V3 竞猜印章(中/惜) + V3 MVP 印章 + 观战/换阵/回放
+                    // 底部栏（y=124f，保证所有可点击按钮命中高度 >= 44px）：BO3 局分 + 灵脉章 + 竞猜印章(中/惜) + MVP 印章 + 观战/换阵/回放
+                    const float barY = 124f;
                     float bottomLeftX = 10f;
                     if (m.BestOf >= 3u)
                     {
-                        var boPill = TournamentArtCatalog.SpriteBox("Bo3Pill", mCard, bottomLeftX, 96f, 96f, 26f,
+                        var boPill = TournamentArtCatalog.SpriteBox("Bo3Pill", mCard, bottomLeftX, barY + 9f, 88f, 26f,
                             "v2-a-score-bo3", preserveAspect: true);
-                        TournamentArtCatalog.Label("Bo3Score", boPill.transform, 4f, 0f, 88f, 26f,
+                        TournamentArtCatalog.Label("Bo3Score", boPill.transform, 4f, 0f, 80f, 26f,
                             TournamentFormatting.FormatBo3Score(m), 12f, TournamentArtCatalog.PrimaryBtnText,
                             TextAlignmentOptions.Center, bold: true);
-                        bottomLeftX += 100f;
+                        bottomLeftX += 92f;
                     }
                     if (m.CurrentLeylineElement != TournamentLeylineElement.TournamentLeylineUnspecified)
                     {
                         var leyInfo = TournamentFormatting.GetLeylineInfo(m.CurrentLeylineElement);
-                        var leyBtn = QdaoUguiFactory.CreateArtButton("LeylineBadge", mCard, bottomLeftX, 96f, 26f, 26f,
-                            TournamentArtCatalog.Load(leyInfo.SpriteKey), out var lImg);
+                        var leyHit = QdaoUguiFactory.CreateRect("LeylineBadge", mCard, bottomLeftX, barY, 36f, 44f);
+                        var leyHitImg = leyHit.gameObject.AddComponent<Image>();
+                        leyHitImg.color = new Color(1f, 1f, 1f, 0f);
+                        leyHitImg.raycastTarget = true;
+                        var leyBtn = leyHit.gameObject.AddComponent<Button>();
+                        var lImg = QdaoUguiFactory.CreateImage("Icon", leyHit, 5f, 9f, 26f, 26f,
+                            TournamentArtCatalog.Load(leyInfo.SpriteKey), false);
                         lImg.preserveAspect = true;
+                        leyBtn.targetGraphic = lImg;
                         string tipMsg = $"{leyInfo.FullName}：{leyInfo.EffectSummary}";
                         leyBtn.onClick.AddListener(() => ShowToast(tipMsg, isError: false, Time.realtimeSinceStartup));
-                        bottomLeftX += 30f;
+                        bottomLeftX += 38f;
                     }
 
                     // V3 模块 E：已决出对局若本人曾预测，盖「中/惜」印章（加载成功时严禁叠字）
@@ -1352,12 +1359,12 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         var sealSprite = TournamentArtCatalog.Load(hit ? "v3-e-predict-hit" : "v3-e-predict-miss");
                         if (sealSprite != null)
                         {
-                            var sImg = QdaoUguiFactory.CreateImage("PredSeal", mCard, bottomLeftX, 93f, 32f, 32f, sealSprite, false);
+                            var sImg = QdaoUguiFactory.CreateImage("PredSeal", mCard, bottomLeftX, barY + 6f, 32f, 32f, sealSprite, false);
                             sImg.preserveAspect = true;
                         }
                         else
                         {
-                            TournamentArtCatalog.Tag("PredSealFallback", mCard, bottomLeftX, 96f, 30f, 26f,
+                            TournamentArtCatalog.Tag("PredSealFallback", mCard, bottomLeftX, barY + 9f, 30f, 26f,
                                 hit ? "中" : "惜",
                                 hit ? TournamentArtCatalog.GoldTagBg : TournamentArtCatalog.TagGrayBg,
                                 hit ? TournamentArtCatalog.Gold : TournamentArtCatalog.Line,
@@ -1366,26 +1373,31 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         bottomLeftX += 34f;
                     }
 
-                    // V3 模块 F：已决出且评出 MVP 时显示鎏金 MVP 印章（点击展开高光战报卡；加载原图时严禁叠字）
+                    // V3 模块 F：已决出且评出 MVP 时显示鎏金 MVP 印章（44×44 透明点击热区包 36×36 原图，严禁叠字）
                     if (m.MvpPlayerId != 0UL)
                     {
                         var mvpMatch = m;
                         var mvpSprite = TournamentArtCatalog.Load("v3-f-mvp-seal");
                         if (mvpSprite != null)
                         {
-                            var mvpBtn = QdaoUguiFactory.CreateArtButton("MvpSealBtn", mCard, bottomLeftX, 93f, 34f, 34f,
-                                mvpSprite, out var mImg);
+                            var mvpHit = QdaoUguiFactory.CreateRect("MvpSealBtn", mCard, bottomLeftX, barY, 44f, 44f);
+                            var mvpHitImg = mvpHit.gameObject.AddComponent<Image>();
+                            mvpHitImg.color = new Color(1f, 1f, 1f, 0f);
+                            mvpHitImg.raycastTarget = true;
+                            var mvpBtn = mvpHit.gameObject.AddComponent<Button>();
+                            var mImg = QdaoUguiFactory.CreateImage("Visual", mvpHit, 4f, 4f, 36f, 36f, mvpSprite, false);
                             mImg.preserveAspect = true;
+                            mvpBtn.targetGraphic = mImg;
                             mvpBtn.onClick.AddListener(() =>
                             {
                                 _model.OpenMvpHighlightModal(mvpMatch);
                                 SyncModalVisual(_lastOverview, _lastBusy);
                             });
-                            bottomLeftX += 38f;
+                            bottomLeftX += 46f;
                         }
                         else
                         {
-                            TournamentArtCatalog.FlatButton("MvpSealFallback", mCard, bottomLeftX, 96f, 48f, 26f, "MVP",
+                            TournamentArtCatalog.FlatButton("MvpSealFallback", mCard, bottomLeftX, barY, 48f, 44f, "MVP",
                                 TournamentArtCatalog.GoldTagBg, TournamentArtCatalog.Gold, TournamentArtCatalog.GoldTagText,
                                 () =>
                                 {
@@ -1400,14 +1412,14 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     if (m.State == TournamentMatchState.InBattle && m.BattleId != 0UL)
                     {
                         ulong bid = m.BattleId;
-                        TournamentArtCatalog.ArtButton("WatchBtn", mCard, colW - 88f, 96f, 78f, 26f, "围观",
+                        TournamentArtCatalog.ArtButton("WatchBtn", mCard, colW - 88f, barY, 78f, 44f, "围观",
                             () => WatchBattleClicked?.Invoke(bid), primary: true, fontSize: 14f);
                     }
                     else if (m.State == TournamentMatchState.Intermission
                         && overview.HasSquad && (m.SquadAId == overview.MySquad.SquadId || m.SquadBId == overview.MySquad.SquadId))
                     {
                         var capturedMatch = m;
-                        TournamentArtCatalog.ArtButton("IntermissionBtn", mCard, colW - 94f, 96f, 84f, 26f, "局间换阵",
+                        TournamentArtCatalog.ArtButton("IntermissionBtn", mCard, colW - 94f, barY, 84f, 44f, "局间换阵",
                             () =>
                             {
                                 _model.OpenIntermissionModal(overview.MySquad, overview.Season.BattleTeamSize, capturedMatch);
@@ -1424,7 +1436,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                             {
                                 ulong gBid = m.GameBattleIds[g];
                                 if (gBid == 0UL) continue;
-                                TournamentArtCatalog.FlatButton($"ReplayG{g + 1}", mCard, bx + g * 40f, 96f, 36f, 26f,
+                                TournamentArtCatalog.FlatButton($"ReplayG{g + 1}", mCard, bx + g * 40f, barY, 38f, 44f,
                                     $"G{g + 1}", TournamentArtCatalog.Ivory, TournamentArtCatalog.Jade, TournamentArtCatalog.JadeDeep,
                                     () => WatchReplayClicked?.Invoke(gBid), fontSize: 12f);
                             }
@@ -1432,14 +1444,14 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         else
                         {
                             ulong bid = TournamentUiModel.ResolveLatestReplayBattleId(m);
-                            TournamentArtCatalog.FlatButton("ReplayBtn", mCard, colW - 84f, 96f, 74f, 26f, "回放",
+                            TournamentArtCatalog.FlatButton("ReplayBtn", mCard, colW - 84f, barY, 74f, 44f, "回放",
                                 TournamentArtCatalog.Ivory, TournamentArtCatalog.Jade, TournamentArtCatalog.JadeDeep,
                                 () => WatchReplayClicked?.Invoke(bid), fontSize: 13f);
                         }
                     }
                     else if (m.State == TournamentMatchState.Bye)
                     {
-                        TournamentArtCatalog.Label("ByeNote", mCard, bottomLeftX, 98f, colW - bottomLeftX - 12f, 22f,
+                        TournamentArtCatalog.Label("ByeNote", mCard, bottomLeftX, barY + 11f, colW - bottomLeftX - 12f, 22f,
                             "轮空晋级", 13f, TournamentArtCatalog.GoldTagText, TextAlignmentOptions.MidlineRight);
                     }
                     else if (m.State == TournamentMatchState.WaitingOpponent || m.State == TournamentMatchState.Ready)
@@ -1448,7 +1460,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         if (canBan)
                         {
                             var capturedBanMatch = m;
-                            TournamentArtCatalog.FlatButton("BanLeylineBtn", mCard, colW - 88f, 96f, 78f, 26f, "灵脉禁选",
+                            TournamentArtCatalog.FlatButton("BanLeylineBtn", mCard, colW - 88f, barY, 78f, 44f, "灵脉禁选",
                                 TournamentArtCatalog.TagRedBg, TournamentArtCatalog.WarnRed, TournamentArtCatalog.WarnRed,
                                 () =>
                                 {
@@ -1468,7 +1480,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                                 : (canPredict ? "免费猜胜 · 零消耗" : "双方就绪后开战"));
                         float rightLimit = canBan ? (colW - 94f) : (colW - 12f);
                         float noteW = Mathf.Max(40f, rightLimit - bottomLeftX);
-                        TournamentArtCatalog.Label("WaitNote", mCard, bottomLeftX, 98f, noteW, 22f,
+                        TournamentArtCatalog.Label("WaitNote", mCard, bottomLeftX, barY + 11f, noteW, 22f,
                             note, 12f, hasBans ? TournamentArtCatalog.WarnRed : TournamentArtCatalog.Muted,
                             canBan ? TextAlignmentOptions.MidlineLeft : TextAlignmentOptions.MidlineRight);
                     }
@@ -1492,31 +1504,45 @@ namespace MmorpgClient.UI.Ugui.Tournament
             float textX = 12f;
             if (squadId != 0UL)
             {
-                TournamentArtCatalog.EmblemBadge("Emblem", card, 10f, y + 2f, 22f, emblemId);
-                textX = 36f;
+                TournamentArtCatalog.EmblemBadge("Emblem", card, 10f, y + 10f, 24f, emblemId);
+                textX = 38f;
             }
             float rightReserve = canPredict ? 104f : 56f;
-            TournamentArtCatalog.Label("Team", card, textX, y, cardW - textX - rightReserve, 26f, seedTxt + display, 15f, txtCol, bold: isWinner);
+            TournamentArtCatalog.Label("Team", card, textX, y + 9f, cardW - textX - rightReserve, 26f, seedTxt + display, 15f, txtCol, bold: isWinner);
 
             if (canPredict && squadId != 0UL)
             {
                 bool picked = myPredictedSquadId == squadId;
-                string btnLbl = picked ? $"已猜({predictCount})" : (predictCount > 0 ? $"猜胜({predictCount})" : "猜胜");
+                string btnLbl = picked ? $"✓已猜({predictCount})" : (predictCount > 0 ? $"猜胜({predictCount})" : "猜胜");
                 ulong capMatch = matchId;
                 ulong capSquad = squadId;
                 var pickSprite = TournamentArtCatalog.Load("v3-e-predict-pick");
                 if (pickSprite != null)
                 {
-                    var btn = QdaoUguiFactory.CreateArtButton("PickBtn", card, cardW - 96f, y + 1f, 86f, 24f, pickSprite, out var pImg);
-                    pImg.color = picked ? TournamentArtCatalog.GoldSoft : Color.white;
+                    // 交接规范：84×32 图像外包 88×44 透明 Button 点击热区，文字居中在安全区内且保持深玉高对比暖金字
+                    var hitRect = QdaoUguiFactory.CreateRect("PickBtn", card, cardW - 96f, y, 88f, 44f);
+                    var hitImg = hitRect.gameObject.AddComponent<Image>();
+                    hitImg.color = new Color(1f, 1f, 1f, 0f);
+                    hitImg.raycastTarget = true;
+                    var btn = hitRect.gameObject.AddComponent<Button>();
+                    if (picked)
+                        TournamentArtCatalog.Box("PickRing", hitRect, 1f, 5f, 86f, 34f, TournamentArtCatalog.Gold, false);
+                    var pImg = QdaoUguiFactory.CreateImage("PickVisual", hitRect, 2f, 6f, 84f, 32f, pickSprite, false);
+                    pImg.type = Image.Type.Simple;
+                    pImg.preserveAspect = false;
+                    pImg.color = picked ? new Color(1f, 0.94f, 0.78f, 1f) : Color.white;
+                    btn.targetGraphic = pImg;
                     btn.interactable = !isBusy;
                     btn.onClick.AddListener(() => PredictMatchClicked?.Invoke(capMatch, capSquad));
-                    TournamentArtCatalog.Label("Lbl", btn.transform, 4f, 0f, 78f, 24f, btnLbl, 12f,
-                        picked ? TournamentArtCatalog.JadeDeep : TournamentArtCatalog.PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
+                    var lbl = TournamentArtCatalog.Label("Lbl", pImg.transform, 10f, 0f, 64f, 32f, btnLbl, 11.5f,
+                        TournamentArtCatalog.PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
+                    lbl.enableAutoSizing = true;
+                    lbl.fontSizeMin = 9f;
+                    lbl.fontSizeMax = 11.5f;
                 }
                 else
                 {
-                    TournamentArtCatalog.FlatButton("PickBtn", card, cardW - 96f, y + 1f, 86f, 24f, btnLbl,
+                    TournamentArtCatalog.FlatButton("PickBtn", card, cardW - 96f, y, 88f, 44f, btnLbl,
                         picked ? TournamentArtCatalog.GoldTagBg : TournamentArtCatalog.JadeSoft,
                         picked ? TournamentArtCatalog.Gold : TournamentArtCatalog.Jade,
                         picked ? TournamentArtCatalog.GoldTagText : TournamentArtCatalog.JadeDeep,
@@ -1527,7 +1553,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
 
             string suffix = isWinner ? "✓" : ((state == TournamentMatchState.WaitingOpponent || state == TournamentMatchState.Ready) && ready ? "就绪" : string.Empty);
             if (!string.IsNullOrEmpty(suffix))
-                TournamentArtCatalog.Label("Flag", card, cardW - 56f, y, 44f, 26f, suffix, 14f, TournamentArtCatalog.Jade, TextAlignmentOptions.MidlineRight, bold: true);
+                TournamentArtCatalog.Label("Flag", card, cardW - 56f, y + 9f, 44f, 26f, suffix, 14f, TournamentArtCatalog.Jade, TextAlignmentOptions.MidlineRight, bold: true);
         }
 
         // ==================== 分页 4：赛季奖励与免费助威 ====================
@@ -1955,7 +1981,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             TournamentArtCatalog.SpriteBox("ModalFrame", _modalContent, 0f, 0f, w, h, "window-frame", sliced: true, raycast: true);
             TournamentArtCatalog.Label("ModalTitle", _modalContent, 48f, 34f, w - 96f, 44f,
                 title, 30f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
-            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 76f, 30f, 42f, 42f,
+            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 78f, 28f, 44f, 44f,
                 TournamentArtCatalog.Load("close-button"), out var ci);
             ci.preserveAspect = true;
             close.onClick.AddListener(() =>
@@ -2276,7 +2302,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             if (titleImg.sprite == null)
                 TournamentArtCatalog.Label("FallbackTitle", _modalContent, 60f, 24f, w - 120f, 40f, "局间灵脉换阵", 28f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
 
-            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 66f, 22f, 40f, 40f,
+            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 68f, 20f, 44f, 44f,
                 TournamentArtCatalog.Load("close-button"), out var ci);
             ci.preserveAspect = true;
             close.onClick.AddListener(() =>
@@ -2434,7 +2460,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             if (titleImg.sprite == null)
                 TournamentArtCatalog.Label("FallbackTitle", _modalContent, 60f, 28f, w - 120f, 40f, "观道致敬", 28f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
 
-            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 64f, 22f, 40f, 40f,
+            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 66f, 20f, 44f, 44f,
                 TournamentArtCatalog.Load("close-button"), out var ci);
             ci.preserveAspect = true;
             close.onClick.AddListener(() =>
@@ -2520,7 +2546,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             if (titleImg.sprite == null)
                 TournamentArtCatalog.Label("FallbackTitle", _modalContent, 60f, 26f, w - 120f, 40f, "择选战旗", 28f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
 
-            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 66f, 24f, 40f, 40f,
+            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 68f, 22f, 44f, 44f,
                 TournamentArtCatalog.Load("close-button"), out var ci);
             ci.preserveAspect = true;
             close.onClick.AddListener(() =>
@@ -2594,7 +2620,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             if (titleImg.sprite == null)
                 TournamentArtCatalog.Label("FallbackTitle", _modalContent, 60f, 26f, w - 120f, 40f, "热身约战", 28f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
 
-            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 66f, 22f, 40f, 40f,
+            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 68f, 20f, 44f, 44f,
                 TournamentArtCatalog.Load("close-button"), out var ci);
             ci.preserveAspect = true;
             close.onClick.AddListener(() =>
@@ -2603,12 +2629,15 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 ForceCloseModalVisual();
             });
 
-            // 零积分演练状态胶囊（v3-d-warmup-badge 无字深玉底皮，配浅金字防低对比度）
+            // 零积分演练状态胶囊（v3-d-warmup-badge 原尺寸 140×36 无字深玉底皮，配暖金高亮字与安全内距）
             var badgeSprite = TournamentArtCatalog.Load("v3-d-warmup-badge");
             if (badgeSprite != null)
             {
-                var bImg = QdaoUguiFactory.CreateImage("WarmBadge", _modalContent, 52f, 74f, 140f, 32f, badgeSprite, false);
-                TournamentArtCatalog.Label("Txt", bImg.transform, 4f, 0f, 132f, 32f, "零积分演练", 13f, TournamentArtCatalog.PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
+                var bImg = QdaoUguiFactory.CreateImage("WarmBadge", _modalContent, 52f, 72f, 140f, 36f, badgeSprite, false);
+                var bTxt = TournamentArtCatalog.Label("Txt", bImg.transform, 16f, 0f, 108f, 36f, "零积分演练", 13f, TournamentArtCatalog.PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
+                bTxt.enableAutoSizing = true;
+                bTxt.fontSizeMin = 10f;
+                bTxt.fontSizeMax = 13f;
             }
             else
             {
@@ -2628,8 +2657,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
             _warmupTargetInput.text = _model.WarmupTargetSquadIdDraft;
             _warmupTargetInput.onValueChanged.AddListener(v => _model.WarmupTargetSquadIdDraft = v ?? string.Empty);
 
-            // 演练五行灵脉自选（无脉 + 金木水火土）
-            TournamentArtCatalog.Label("LeyLbl", _modalContent, 52f, 194f, 360f, 24f, "演练五行灵脉（与对手一致生效）", 15f, TournamentArtCatalog.JadeDeep, bold: true);
+            // 演练五行灵脉自选（无脉 + 金木水火土，按钮高 44px 满足移动端触控下限）
+            TournamentArtCatalog.Label("LeyLbl", _modalContent, 52f, 192f, 360f, 24f, "演练五行灵脉（与对手一致生效）", 15f, TournamentArtCatalog.JadeDeep, bold: true);
             var leyOptions = new (TournamentLeylineElement elem, string label)[]
             {
                 (TournamentLeylineElement.TournamentLeylineUnspecified, "无脉"),
@@ -2644,7 +2673,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             {
                 var opt = leyOptions[i];
                 bool sel = _model.WarmupLeylineDraft == opt.elem;
-                TournamentArtCatalog.FlatButton($"WarmLey_{i}", _modalContent, 52f + i * (lw + 10f), 222f, lw, 34f, opt.label,
+                TournamentArtCatalog.FlatButton($"WarmLey_{i}", _modalContent, 52f + i * (lw + 10f), 218f, lw, 44f, opt.label,
                     sel ? TournamentArtCatalog.Jade : TournamentArtCatalog.Ivory,
                     sel ? TournamentArtCatalog.Gold : TournamentArtCatalog.Line,
                     sel ? TournamentArtCatalog.PrimaryBtnText : TournamentArtCatalog.JadeDeep,
@@ -2656,12 +2685,12 @@ namespace MmorpgClient.UI.Ugui.Tournament
             }
 
             var selLeyInfo = TournamentFormatting.GetLeylineInfo(_model.WarmupLeylineDraft);
-            TournamentArtCatalog.Label("LeyEffect", _modalContent, 52f, 260f, w - 104f, 22f,
+            TournamentArtCatalog.Label("LeyEffect", _modalContent, 52f, 266f, w - 104f, 22f,
                 $"{selLeyInfo.FullName}：{selLeyInfo.EffectSummary}", 13f, TournamentArtCatalog.GoldTagText);
 
             // 出战阵容勾选（2×2 紧凑排布）
             uint teamSize = overview?.Season?.BattleTeamSize > 0 ? overview.Season.BattleTeamSize : 3u;
-            TournamentArtCatalog.Label("LineupLbl", _modalContent, 52f, 290f, w - 104f, 24f,
+            TournamentArtCatalog.Label("LineupLbl", _modalContent, 52f, 294f, w - 104f, 24f,
                 $"本场热身出战阵容（已选 {_model.LineupDraft.Count}/{teamSize}）", 15f, TournamentArtCatalog.JadeDeep, bold: true);
             var members = overview?.MySquad?.Members;
             if (members != null)
@@ -2672,7 +2701,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 {
                     var m = members[i];
                     float rx = 52f + (i % 2) * (rw + 12f);
-                    float ry = 320f + (i / 2) * 62f;
+                    float ry = 322f + (i / 2) * 60f;
                     bool sel = _model.IsMemberSelectedInDraft(m.PlayerId);
                     ulong pid = m.PlayerId;
                     var rBtn = TournamentArtCatalog.FlatButton($"WarmMem_{i}", _modalContent, rx, ry, rw, 52f, string.Empty,
@@ -2698,18 +2727,18 @@ namespace MmorpgClient.UI.Ugui.Tournament
 
             if (!string.IsNullOrEmpty(_model.ModalInlineError))
             {
-                TournamentArtCatalog.Label("Err", _modalContent, 52f, h - 108f, w - 104f, 24f,
+                TournamentArtCatalog.Label("Err", _modalContent, 52f, h - 106f, w - 104f, 24f,
                     _model.ModalInlineError, 14f, TournamentArtCatalog.WarnRed, TextAlignmentOptions.Center);
             }
 
-            TournamentArtCatalog.ArtButton("WarmCancelBtn", _modalContent, 166f, h - 74f, 152f, 46f, "取消", () =>
+            TournamentArtCatalog.ArtButton("WarmCancelBtn", _modalContent, 174f, h - 74f, 152f, 48f, "取消", () =>
             {
                 _model.CloseModal();
                 ForceCloseModalVisual();
             }, primary: false, fontSize: 18f);
 
             bool complete = _model.IsLineupDraftComplete(teamSize);
-            TournamentArtCatalog.V3SkinnedButton("WarmSubmitBtn", _modalContent, 342f, h - 74f, 212f, 46f,
+            TournamentArtCatalog.V3SkinnedButton("WarmSubmitBtn", _modalContent, 350f, h - 74f, 196f, 48f,
                 "v3-d-warmup-btn", "发起零积分热身",
                 () =>
                 {
@@ -2761,7 +2790,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             if (titleImg.sprite == null)
                 TournamentArtCatalog.Label("FallbackTitle", _modalContent, 60f, 24f, w - 120f, 40f, "神机问道榜", 28f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
 
-            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 66f, 20f, 40f, 40f,
+            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 68f, 18f, 44f, 44f,
                 TournamentArtCatalog.Load("close-button"), out var ci);
             ci.preserveAspect = true;
             close.onClick.AddListener(() =>
@@ -2772,7 +2801,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
 
             var board = _lastPredictionBoard;
             string summaryLine = board == null
-                ? "正在同步《神机问道榜》…（零消耗免费预测，绝无付费押注）"
+                ? "正在同步《神机问道榜》…（零消耗免费预测，全程免费参与）"
                 : $"我的命中 {board.MyHitCount} 场 · 神机分 {board.MyTotalPoints} · 全服排名 {(board.MyRank > 0 ? $"第 {board.MyRank} 名" : "未上榜")} · 满 {Math.Max(1u, board.MinHitsForReward)} 场必得绑定纪念礼";
             var sumBar = TournamentArtCatalog.BorderedCard("PredSumBar", _modalContent, 42f, 72f, w - 84f, 40f,
                 TournamentArtCatalog.GoldTagBg, TournamentArtCatalog.Gold, 1.2f);
@@ -2849,10 +2878,10 @@ namespace MmorpgClient.UI.Ugui.Tournament
             }
             topContent.sizeDelta = new Vector2(rightW - 12f, Mathf.Max(colH - 44f, ty));
 
-            TournamentArtCatalog.FlatButton("RefreshPredBtn", _modalContent, 224f, h - 66f, 152f, 42f, "刷新神机榜",
+            TournamentArtCatalog.FlatButton("RefreshPredBtn", _modalContent, 224f, h - 68f, 152f, 44f, "刷新神机榜",
                 TournamentArtCatalog.Ivory, TournamentArtCatalog.Gold, TournamentArtCatalog.JadeDeep,
                 () => RequestPredictionBoardRequested?.Invoke(_model.SelectedStandingsSeasonId), interactable: !isBusy, fontSize: 16f);
-            TournamentArtCatalog.ArtButton("ClosePredBtn", _modalContent, 404f, h - 66f, 152f, 42f, "关闭", () =>
+            TournamentArtCatalog.ArtButton("ClosePredBtn", _modalContent, 404f, h - 68f, 152f, 44f, "关闭", () =>
             {
                 _model.CloseModal();
                 ForceCloseModalVisual();
@@ -2881,7 +2910,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 TournamentArtCatalog.SpriteBox("MvpBgFallback", _modalContent, 0f, 0f, w, h, "window-frame", sliced: true, raycast: true);
             }
 
-            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 58f, 18f, 38f, 38f,
+            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 62f, 16f, 44f, 44f,
                 TournamentArtCatalog.Load("close-button"), out var ci);
             ci.preserveAspect = true;
             close.onClick.AddListener(() =>
@@ -2928,16 +2957,16 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 $"累计成功硬控：{m.MvpControls} 次", 16f, TournamentArtCatalog.JadeDeep);
 
             ulong replayBid = TournamentUiModel.ResolveLatestReplayBattleId(m);
-            if (replayBid != 0UL && TournamentUiModel.CanWatchReplay(m, overview?.MySquad))
-            {
-                TournamentArtCatalog.ArtButton("MvpReplayBtn", _modalContent, 224f, h - 68f, 184f, 42f, "观看高光战报", () =>
+            bool canReplay = replayBid != 0UL && TournamentUiModel.CanWatchReplay(m, overview?.MySquad);
+            TournamentArtCatalog.ArtButton("MvpReplayBtn", _modalContent, 224f, h - 68f, 184f, 44f,
+                canReplay ? "观看高光战报" : "暂无公开战报", () =>
                 {
+                    if (!canReplay) return;
                     _model.CloseModal();
                     ForceCloseModalVisual();
                     WatchReplayClicked?.Invoke(replayBid);
-                }, primary: true, fontSize: 17f);
-            }
-            TournamentArtCatalog.ArtButton("MvpCloseBtn", _modalContent, 434f, h - 68f, 148f, 42f, "关闭", () =>
+                }, primary: true, interactable: canReplay, fontSize: 17f);
+            TournamentArtCatalog.ArtButton("MvpCloseBtn", _modalContent, 434f, h - 68f, 148f, 44f, "关闭", () =>
             {
                 _model.CloseModal();
                 ForceCloseModalVisual();
@@ -3040,7 +3069,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 seqParts.Count > 0 ? $"当前 BO3 灵脉序列：{string.Join("   →   ", seqParts)}" : "待生成 BO3 灵脉序列",
                 15f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
 
-            TournamentArtCatalog.ArtButton("CloseBanBtn", host, (w - 156f) * 0.5f, h - 66f, 156f, 42f, "关闭", () =>
+            TournamentArtCatalog.ArtButton("CloseBanBtn", host, (w - 156f) * 0.5f, h - 68f, 156f, 44f, "关闭", () =>
             {
                 _model.CloseModal();
                 ForceCloseModalVisual();
@@ -3076,7 +3105,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     "本季名局录", 28f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
             }
 
-            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 66f, 20f, 40f, 40f,
+            var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 68f, 18f, 44f, 44f,
                 TournamentArtCatalog.Load("close-button"), out var ci);
             ci.preserveAspect = true;
             close.onClick.AddListener(() =>
@@ -3129,21 +3158,25 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     string nameA = !string.IsNullOrEmpty(m.SquadAName) ? m.SquadAName : $"战队 #{m.SquadAId}";
                     string nameB = !string.IsNullOrEmpty(m.SquadBName) ? m.SquadBName : $"战队 #{m.SquadBId}";
                     string scoreText = m.BestOf >= 3u ? $"{m.WinsA}:{m.WinsB}" : (m.WinnerSquadId == m.SquadAId ? "胜:负" : "负:胜");
-                    TournamentArtCatalog.EmblemBadge("EmbA", row, 138f, 10f, 26f, m.SquadAEmblemId);
-                    TournamentArtCatalog.Label("Vs", row, 170f, 8f, rowW - 356f, 30f,
-                        $"{nameA}  {scoreText}  {nameB}", 17f, TournamentArtCatalog.JadeDeep, bold: true);
+                    TournamentArtCatalog.EmblemBadge("EmbA", row, 136f, 10f, 26f, m.SquadAEmblemId);
+                    var vsLbl = TournamentArtCatalog.Label("Vs", row, 168f, 8f, rowW - 298f, 30f,
+                        $"{nameA}  {scoreText}  {nameB}", 17f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
+                    vsLbl.enableAutoSizing = true;
+                    vsLbl.fontSizeMin = 12f;
+                    vsLbl.fontSizeMax = 17f;
+                    TournamentArtCatalog.EmblemBadge("EmbB", row, rowW - 124f, 10f, 26f, m.SquadBEmblemId);
 
                     string winnerName = m.WinnerSquadId == m.SquadAId ? nameA : (m.WinnerSquadId == m.SquadBId ? nameB : string.Empty);
                     string mvpLine = m.MvpPlayerId != 0UL
                         ? $"胜方：{winnerName}  ·  问鼎之星：{(!string.IsNullOrEmpty(m.MvpPlayerName) ? m.MvpPlayerName : $"#{m.MvpPlayerId}")}（战功 {m.MvpScore}）"
                         : $"胜方：{winnerName}  ·  公开淘汰赛完整战报";
-                    TournamentArtCatalog.Label("Sub", row, 14f, 48f, rowW - 220f, 40f, mvpLine, 13f, TournamentArtCatalog.Muted, wrap: true);
+                    TournamentArtCatalog.Label("Sub", row, 14f, 52f, rowW - 180f, 40f, mvpLine, 13f, TournamentArtCatalog.Muted, wrap: true);
 
-                    // 右侧：MVP 卡按钮 + 各小局回放按钮
+                    // 右侧：MVP 卡按钮 + 各小局回放按钮（均满足 >= 44px 触控高度）
                     if (m.MvpPlayerId != 0UL)
                     {
                         var capM = m;
-                        TournamentArtCatalog.FlatButton("MvpBtn", row, rowW - 178f, 12f, 64f, 28f, "MVP卡",
+                        TournamentArtCatalog.FlatButton("MvpBtn", row, rowW - 88f, 6f, 76f, 44f, "MVP卡",
                             TournamentArtCatalog.GoldTagBg, TournamentArtCatalog.Gold, TournamentArtCatalog.GoldTagText,
                             () =>
                             {
@@ -3159,7 +3192,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         {
                             ulong gBid = m.GameBattleIds[g];
                             if (gBid == 0UL) continue;
-                            TournamentArtCatalog.FlatButton($"PlayG{g + 1}", row, bx + g * 48f, 54f, 44f, 32f, $"G{g + 1}",
+                            TournamentArtCatalog.FlatButton($"PlayG{g + 1}", row, bx + g * 48f, 54f, 44f, 44f, $"G{g + 1}",
                                 TournamentArtCatalog.Ivory, TournamentArtCatalog.Jade, TournamentArtCatalog.JadeDeep,
                                 () =>
                                 {
@@ -3174,7 +3207,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         ulong bid = TournamentUiModel.ResolveLatestReplayBattleId(m);
                         if (bid != 0UL)
                         {
-                            TournamentArtCatalog.ArtButton("PlayOne", row, rowW - 108f, 52f, 96f, 34f, "看回放", () =>
+                            TournamentArtCatalog.ArtButton("PlayOne", row, rowW - 108f, 54f, 96f, 44f, "看回放", () =>
                             {
                                 _model.CloseModal();
                                 ForceCloseModalVisual();
@@ -3187,10 +3220,10 @@ namespace MmorpgClient.UI.Ugui.Tournament
             }
             content.sizeDelta = new Vector2(rowW, Mathf.Max(350f, y));
 
-            TournamentArtCatalog.FlatButton("RefreshHighBtn", _modalContent, 224f, h - 66f, 152f, 42f, "刷新名局录",
+            TournamentArtCatalog.FlatButton("RefreshHighBtn", _modalContent, 224f, h - 68f, 152f, 44f, "刷新名局录",
                 TournamentArtCatalog.Ivory, TournamentArtCatalog.Jade, TournamentArtCatalog.JadeDeep,
                 () => RequestHighlightsRequested?.Invoke(_model.SelectedStandingsSeasonId), interactable: !isBusy, fontSize: 16f);
-            TournamentArtCatalog.ArtButton("CloseHighBtn", _modalContent, 404f, h - 66f, 152f, 42f, "关闭", () =>
+            TournamentArtCatalog.ArtButton("CloseHighBtn", _modalContent, 404f, h - 68f, 152f, 44f, "关闭", () =>
             {
                 _model.CloseModal();
                 ForceCloseModalVisual();

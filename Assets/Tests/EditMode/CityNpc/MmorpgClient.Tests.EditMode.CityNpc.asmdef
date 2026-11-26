@@ -1,0 +1,26 @@
+{
+  "name": "MmorpgClient.Tests.EditMode.CityNpc",
+  "rootNamespace": "MmorpgClient.Tests.EditMode.CityNpc",
+  "references": [
+    "MmorpgClient",
+    "MmorpgClient.Tests.EditMode.Tianyong",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "Google.Protobuf.dll"
+  ],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false,
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}

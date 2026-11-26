@@ -198,7 +198,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 {
                     SeasonEconomyUiArt.CreateSlicedOrSimple(topBanners, "BossPhaseBadgePlate", 772f, nextY, 314f, 56f,
                         phaseSprite, CoreLoopUiArt.Warning, raycast: false);
-                    var phaseLbl = CoreLoopUiArt.Text("BossPhaseBadge", topBanners, 818f, nextY + 6f, 222f, 44f,
+                    var phaseLbl = CoreLoopUiArt.Text("BossPhaseBadge", topBanners, 824f, nextY + 6f, 210f, 44f,
                         "二阶段 · 破釜决战", 22f, CoreLoopUiArt.Ivory, true, false, TextAlignmentOptions.Center);
                     phaseLbl.enableAutoSizing = true;
                     phaseLbl.fontSizeMin = 15f;
@@ -261,7 +261,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 bool pos = _activeMechanicBanner.IsPositiveForPlayer;
                 var mechanicSprite = pos ? CoreLoopUiArt.LoadV2("banner_boss_exposed") : null;
                 float bannerHeight = mechanicSprite != null ? 56f : 44f;
-                float bannerInset = mechanicSprite != null ? 64f : 16f;
+                float bannerInset = mechanicSprite != null ? 72f : 16f;
                 if (mechanicSprite != null)
                 {
                     SeasonEconomyUiArt.CreateSlicedOrSimple(topBanners, "BossMechanicBack", 860f, nextY, 840f, bannerHeight,

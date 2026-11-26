@@ -25,7 +25,7 @@ namespace MmorpgClient.Game.Skills
         private const int MaxAutoRecoveryAttempts = 3;
         private const long MinWriteIntervalMs = 800;
 
-        private enum PendingKind { None = 0, Craft = 1, Learn = 2, Dismantle = 3 }
+        private enum PendingKind { None = 0, Craft = 1, Learn = 2, Dismantle = 3, Seal = 4, Unseal = 5 }
 
         private sealed class PendingRequest
         {
@@ -33,12 +33,16 @@ namespace MmorpgClient.Game.Skills
             public CraftSkillBookRequest Craft;
             public LearnSkillBookRequest Learn;
             public DismantleSkillBookRequest Dismantle;
+            public SealSkillBookRequest Seal;
+            public UnsealSkillBookRequest Unseal;
             public string EncodedRecord;
             public ulong ClientRequestId => Kind switch
             {
                 PendingKind.Craft => Craft?.ClientRequestId ?? 0,
                 PendingKind.Learn => Learn?.ClientRequestId ?? 0,
                 PendingKind.Dismantle => Dismantle?.ClientRequestId ?? 0,
+                PendingKind.Seal => Seal?.ClientRequestId ?? 0,
+                PendingKind.Unseal => Unseal?.ClientRequestId ?? 0,
                 _ => 0,
             };
             public string Label => Kind switch
@@ -46,6 +50,8 @@ namespace MmorpgClient.Game.Skills
                 PendingKind.Craft => "拓印制书",
                 PendingKind.Learn => "研习技能书",
                 PendingKind.Dismantle => "拆解技能书",
+                PendingKind.Seal => "技能书封卷入包",
+                PendingKind.Unseal => "封卷道籍开卷",
                 _ => "制书操作",
             };
         }
@@ -111,6 +117,8 @@ namespace MmorpgClient.Game.Skills
         public event Action<CraftSkillBookResponse> BookCrafted;
         public event Action<LearnSkillBookResponse> BookLearned;
         public event Action<DismantleSkillBookResponse> BookDismantled;
+        public event Action<SealSkillBookResponse> BookSealed;
+        public event Action<UnsealSkillBookResponse> BookUnsealed;
 
         public SkillCraftClient(IBattleTransport transport, IRpcChannel rpc,
             Func<object> connectionIdentity = null, Func<bool> writesBlocked = null)
@@ -256,6 +264,36 @@ namespace MmorpgClient.Game.Skills
                 ClientRequestId = key,
             };
             StartIdempotentWrite(playerId, new PendingRequest { Kind = PendingKind.Dismantle, Dismantle = request });
+        }
+
+        public void SealBook(ulong bookId)
+        {
+            if (!PrepareWrite(out ulong playerId)) return;
+            if (bookId == 0) { Fail("请选择有效的可交易常规技能书"); return; }
+            if (!ClientRequestKeys.TryCreate(out ulong key)) { Fail(ClientRequestKeys.UnavailableText); return; }
+
+            var request = new SealSkillBookRequest
+            {
+                BookId = bookId,
+                ExpectedRevision = _state.ScrollCraftRevision,
+                ClientRequestId = key,
+            };
+            StartIdempotentWrite(playerId, new PendingRequest { Kind = PendingKind.Seal, Seal = request });
+        }
+
+        public void UnsealBook(ulong itemId)
+        {
+            if (!PrepareWrite(out ulong playerId)) return;
+            if (itemId == 0) { Fail("请选择有效的封卷道籍"); return; }
+            if (!ClientRequestKeys.TryCreate(out ulong key)) { Fail(ClientRequestKeys.UnavailableText); return; }
+
+            var request = new UnsealSkillBookRequest
+            {
+                ItemId = itemId,
+                ExpectedRevision = _state.ScrollCraftRevision,
+                ClientRequestId = key,
+            };
+            StartIdempotentWrite(playerId, new PendingRequest { Kind = PendingKind.Unseal, Unseal = request });
         }
 
         public void SetProxyStall(bool open, ulong forgeFeeGold, ulong scrollFeeGold)
@@ -416,6 +454,14 @@ namespace MmorpgClient.Game.Skills
                     SceneSkillClientPlayerRpc.DismantleSkillBook(_rpc, pending.Dismantle.Clone(),
                         (status, response) => HandleDismantleReply(stamp, playerId, pending, status, response));
                     break;
+                case PendingKind.Seal:
+                    SceneSkillClientPlayerRpc.SealSkillBook(_rpc, pending.Seal.Clone(),
+                        (status, response) => HandleSealReply(stamp, playerId, pending, status, response));
+                    break;
+                case PendingKind.Unseal:
+                    SceneSkillClientPlayerRpc.UnsealSkillBook(_rpc, pending.Unseal.Clone(),
+                        (status, response) => HandleUnsealReply(stamp, playerId, pending, status, response));
+                    break;
             }
         }
 
@@ -484,6 +530,48 @@ namespace MmorpgClient.Game.Skills
             if (Current(stamp)) BookDismantled?.Invoke(response.Clone());
         }
 
+        private void HandleSealReply(RequestStamp stamp, ulong playerId, PendingRequest pending,
+            RpcStatus status, SealSkillBookResponse response)
+        {
+            if (!CurrentWrite(stamp)) return;
+            _activeWrite = 0;
+            if (!status.IsOk) { HandleTransportFailure(playerId, pending, status); return; }
+            if (response == null || response.ClientRequestId != pending.ClientRequestId)
+            { DeferPending($"{pending.Label}回执身份不符，原请求已保留"); return; }
+            if (response.State != null) _state = response.State.Clone();
+            if (!ClearPending(playerId, pending.EncodedRecord)) return;
+            if (HasTip(response.ErrorMessage))
+            {
+                Notice(SkillBookMapper.DescribeTip("封卷未成功", response.ErrorMessage));
+                return;
+            }
+            Error = string.Empty;
+            Message = response.Replayed ? "已恢复上次封卷结果，封卷道籍已存入背包" : "封卷完成，已存入背包（可挂集市或面对面交易）";
+            Changed?.Invoke();
+            if (Current(stamp)) BookSealed?.Invoke(response.Clone());
+        }
+
+        private void HandleUnsealReply(RequestStamp stamp, ulong playerId, PendingRequest pending,
+            RpcStatus status, UnsealSkillBookResponse response)
+        {
+            if (!CurrentWrite(stamp)) return;
+            _activeWrite = 0;
+            if (!status.IsOk) { HandleTransportFailure(playerId, pending, status); return; }
+            if (response == null || response.ClientRequestId != pending.ClientRequestId)
+            { DeferPending($"{pending.Label}回执身份不符，原请求已保留"); return; }
+            if (response.State != null) _state = response.State.Clone();
+            if (!ClearPending(playerId, pending.EncodedRecord)) return;
+            if (HasTip(response.ErrorMessage))
+            {
+                Notice(SkillBookMapper.DescribeTip("开卷未成功", response.ErrorMessage));
+                return;
+            }
+            Error = string.Empty;
+            Message = response.Replayed ? "已恢复上次开卷结果，技能书已回到书架" : "开卷完成，技能书已放入未学书架";
+            Changed?.Invoke();
+            if (Current(stamp)) BookUnsealed?.Invoke(response.Clone());
+        }
+
         private void HandleTransportFailure(ulong playerId, PendingRequest pending, RpcStatus status)
         {
             // 明确未发到服务端（断线/未就绪/网关明确信封拒绝）才安全清除原请求；超时与未知故障必须原样保留幂等键。
@@ -545,6 +633,8 @@ namespace MmorpgClient.Game.Skills
             PendingKind.Craft => "craft:" + Convert.ToBase64String(pending.Craft.ToByteArray()),
             PendingKind.Learn => "learn:" + Convert.ToBase64String(pending.Learn.ToByteArray()),
             PendingKind.Dismantle => "dismantle:" + Convert.ToBase64String(pending.Dismantle.ToByteArray()),
+            PendingKind.Seal => "seal:" + Convert.ToBase64String(pending.Seal.ToByteArray()),
+            PendingKind.Unseal => "unseal:" + Convert.ToBase64String(pending.Unseal.ToByteArray()),
             _ => string.Empty,
         };
 
@@ -559,6 +649,8 @@ namespace MmorpgClient.Game.Skills
                 "craft" => new PendingRequest { Kind = PendingKind.Craft, Craft = CraftSkillBookRequest.Parser.ParseFrom(bytes) },
                 "learn" => new PendingRequest { Kind = PendingKind.Learn, Learn = LearnSkillBookRequest.Parser.ParseFrom(bytes) },
                 "dismantle" => new PendingRequest { Kind = PendingKind.Dismantle, Dismantle = DismantleSkillBookRequest.Parser.ParseFrom(bytes) },
+                "seal" => new PendingRequest { Kind = PendingKind.Seal, Seal = SealSkillBookRequest.Parser.ParseFrom(bytes) },
+                "unseal" => new PendingRequest { Kind = PendingKind.Unseal, Unseal = UnsealSkillBookRequest.Parser.ParseFrom(bytes) },
                 _ => null,
             };
         }
@@ -647,6 +739,8 @@ namespace MmorpgClient.Game.Skills
             BookCrafted = null;
             BookLearned = null;
             BookDismantled = null;
+            BookSealed = null;
+            BookUnsealed = null;
         }
     }
 }

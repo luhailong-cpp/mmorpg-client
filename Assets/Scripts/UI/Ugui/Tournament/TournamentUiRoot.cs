@@ -342,7 +342,9 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 if (string.IsNullOrEmpty(_client.LastError))
                 {
                     _autoRefreshArmed = false;
-                    _model.CloseModal();
+                    // BO3 灵脉禁选成功后留在窗内实时刷新「禁」印与重算后的 3 局序列，便于队长核对或开战前改禁
+                    if (_model.ActiveModal != TournamentModalKind.BanLeyline)
+                        _model.CloseModal();
                     if (!string.IsNullOrEmpty(_client.Status))
                         _window?.ShowToast(_client.Status, isError: false, now);
                 }

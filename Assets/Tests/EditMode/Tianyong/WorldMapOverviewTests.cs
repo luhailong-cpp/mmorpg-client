@@ -234,6 +234,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(habitatIcon.sprite.name, Is.EqualTo("wild_habitat_icon"));
                 Assert.That(habitatBtn.sprite.name, Is.EqualTo("wild_habitat_btn"));
                 Assert.That(habitatBg.transform.parent.gameObject.activeSelf, Is.False);
+                Assert.That(Resources.Load<Sprite>("UI/Ugui/WorldMapV2/wild_habitat_bar_tide"), Is.Not.Null);
+                Assert.That(Resources.Load<Sprite>("UI/Ugui/WorldMapV2/wild_habitat_btn_tide"), Is.Not.Null);
+                Assert.That(Resources.Load<Sprite>("UI/Ugui/WorldMapV2/wild_habitat_icon_tide"), Is.Not.Null);
 
                 PushTide(3600, true);
                 Assert.That(badge.gameObject.activeSelf, Is.True);

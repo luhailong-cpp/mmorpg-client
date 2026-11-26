@@ -277,5 +277,82 @@ namespace MmorpgClient.Tests.EditMode.Skills
                 state, _ => "玄镜映法"),
                 Is.EqualTo("玄镜映法（首发绝学卷 · 稀世绝学 · 仅自用 · 宗师·玄机子 亲手撰）"));
         }
+
+        [Test]
+        public void SealAndUnsealBookFlowUsesRevisionIdempotencyAndGuardsBoundBooks()
+        {
+            Assert.That(SkillCraftModels.CanSealBook(new CraftedSkillBookEntry { RarityTier = 0, Bound = false }), Is.True);
+            Assert.That(SkillCraftModels.CanSealBook(new CraftedSkillBookEntry { RarityTier = 0, Bound = true }), Is.False);
+            Assert.That(SkillCraftModels.CanSealBook(new CraftedSkillBookEntry { RarityTier = 1, Bound = false }), Is.False);
+
+            var init = MakeState(revision: 3);
+            init.SkillBooks.Add(new CraftedSkillBookEntry
+            {
+                BookId = 55, SkillTableId = 12020, ScrollId = 3, RarityTier = 0, Bound = false, CrafterName = "欧冶子",
+            });
+            LoadState(init);
+
+            SealSkillBookResponse sealedResp = null;
+            UnsealSkillBookResponse unsealedResp = null;
+            _client.BookSealed += r => sealedResp = r;
+            _client.BookUnsealed += r => unsealedResp = r;
+
+            // 1. 封卷入包：超时断线后保留原幂等键恢复重放。
+            _client.SealBook(55);
+            Assert.That(_net.Calls[^1], Is.EqualTo(SceneSkillClientPlayerRpc.SealSkillBookMessageId));
+            var sealReq = (SealSkillBookRequest)_net.LastRequest;
+            Assert.That(sealReq.BookId, Is.EqualTo(55UL));
+            Assert.That(sealReq.ExpectedRevision, Is.EqualTo(3UL));
+            Assert.That(sealReq.ClientRequestId, Is.Not.Zero);
+
+            _net.Fail(RpcStatus.Timeout("timeout"));
+            Assert.That(_client.HasPendingWrite, Is.True);
+            Assert.That(_store.Load(Player), Does.StartWith("seal:"));
+
+            _client.Dispose();
+            CreateClient();
+            _client.BookSealed += r => sealedResp = r;
+            _client.BookUnsealed += r => unsealedResp = r;
+            _now += 5000;
+            _client.RetryPendingWrite();
+            var replayedSeal = (SealSkillBookRequest)_net.LastRequest;
+            Assert.That(replayedSeal.ClientRequestId, Is.EqualTo(sealReq.ClientRequestId));
+            _net.Reply(new SealSkillBookResponse
+            {
+                ClientRequestId = sealReq.ClientRequestId,
+                Replayed = true,
+                ItemId = 888001,
+                SkillTableId = 12020,
+                State = MakeState(revision: 4),
+            });
+            Assert.That(sealedResp.ItemId, Is.EqualTo(888001UL));
+            Assert.That(_client.HasPendingWrite, Is.False);
+
+            // 2. 背包封卷道籍开卷回书架。
+            _now += 5000;
+            _client.UnsealBook(888001);
+            Assert.That(_net.Calls[^1], Is.EqualTo(SceneSkillClientPlayerRpc.UnsealSkillBookMessageId));
+            var unsealReq = (UnsealSkillBookRequest)_net.LastRequest;
+            Assert.That(unsealReq.ItemId, Is.EqualTo(888001UL));
+            Assert.That(unsealReq.ExpectedRevision, Is.EqualTo(4UL));
+            var restoredState = MakeState(revision: 5);
+            restoredState.SkillBooks.Add(new CraftedSkillBookEntry
+            {
+                BookId = 56, SkillTableId = 12020, ScrollId = 3, RarityTier = 0, Bound = false, CrafterName = "欧冶子",
+            });
+            _net.Reply(new UnsealSkillBookResponse
+            {
+                ClientRequestId = unsealReq.ClientRequestId,
+                UnsealedBook = restoredState.SkillBooks[0],
+                State = restoredState,
+            });
+            Assert.That(unsealedResp.UnsealedBook.BookId, Is.EqualTo(56UL));
+            Assert.That(_client.State.SkillBooks.Count, Is.EqualTo(1));
+            Assert.That(SkillCraftModels.DescribeSealedBook(new BagItemInfo
+            {
+                ItemId = 888001, ConfigId = 3414, Bound = false,
+                SealedSkillBook = new SealedSkillBookInfo { SkillTableId = 12020, SkillName = "愈战愈勇", ScrollId = 3, ScrollName = "兵法成长卷", CrafterName = "欧冶子" },
+            }), Is.EqualTo("【背包封卷】愈战愈勇（兵法成长卷 · 可交易 · 宗师·欧冶子 亲手撰）"));
+        }
     }
 }

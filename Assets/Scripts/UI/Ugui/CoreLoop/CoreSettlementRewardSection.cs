@@ -196,7 +196,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                         highlightSprite, highlightFallback);
                 else
                     CoreLoopUiArt.Image("BossTrialHighlightBack", body, 0, cursorY, 820, 36, "hud-strip", highlightFallback);
-                float highlightPad = highlightSprite != null ? 38f : 14f;
+                float highlightPad = highlightSprite != null ? 42f : 14f;
                 Color highlightInk = highlightSprite != null ? CoreLoopUiArt.Ink : SeasonEconomyUiArt.GoldHighlight;
                 var hlText = CoreLoopUiArt.Text("BossTrialHighlightText", body, highlightPad, cursorY + 2f, 820f - highlightPad * 2f, 32,
                     sb.ToString(), 17, highlightInk, true, false, TextAlignmentOptions.MidlineLeft);
@@ -222,18 +222,18 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     CoreLoopUiArt.Image("TacticalReviewAccent", body, 0, reviewY, 6, 52, null, reviewAccent);
                 }
 
-                // 避让九宫格左右金色云纹端帽（约 30px）与上下金框（约 6px）
-                float reviewTextX = reviewSprite != null ? 34f : 14f;
+                // 避让九宫格左右云纹端帽（约 46px）与上下边框（约 6px）
+                float reviewTextX = reviewSprite != null ? 48f : 14f;
                 var reviewIconSprite = CoreLoopUiArt.LoadV2("icon_tactical_review");
                 if (reviewIconSprite != null)
                 {
-                    float iconX = reviewSprite != null ? 32f : 14f;
+                    float iconX = reviewSprite != null ? 48f : 14f;
                     var reviewIcon = QdaoUguiFactory.CreateImage("TacticalReviewIcon", body, iconX, reviewY + 10, 32, 32,
                         reviewIconSprite, false);
                     reviewIcon.preserveAspect = true;
                     reviewTextX = iconX + 38f;
                 }
-                float reviewTextW = (reviewSprite != null ? 786f : 810f) - reviewTextX;
+                float reviewTextW = (reviewSprite != null ? 772f : 810f) - reviewTextX;
                 string reasonLine = string.IsNullOrEmpty(review.ModeTag)
                     ? $"胜负复盘：{review.ReasonHeadline}"
                     : $"[{review.ModeTag}] 复盘：{review.ReasonHeadline}";

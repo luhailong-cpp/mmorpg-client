@@ -55,7 +55,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (item.EquipKind != 0) AddEnhanceLines(item, lines);
             foreach (var socket in EquipDisplay.SocketsOf(item)) lines.Add(EquipDisplay.FormatSocketLine(socket));
             if (item.GemAttr != null) lines.Add(EquipDisplay.FormatGemAttr(item.GemAttr));
-            if (!string.IsNullOrWhiteSpace(item.CrafterName)) lines.Add($"宗师·{item.CrafterName} 亲手铸造");
+            if (item.SealedSkillBook != null)
+            {
+                var sb = item.SealedSkillBook;
+                string skillName = string.IsNullOrWhiteSpace(sb.SkillName) ? $"技能 · {sb.SkillTableId}" : sb.SkillName;
+                string scrollName = string.IsNullOrWhiteSpace(sb.ScrollName) ? "常规卷宗" : sb.ScrollName;
+                lines.Add($"封存技能：{skillName}（{scrollName}）");
+                lines.Add(item.Bound ? "状态：仅自用（开卷回书架后保持仅自用）" : "状态：可交易（可上架集市或面对面交易，开卷回书架后可研习）");
+                if (!string.IsNullOrWhiteSpace(sb.CrafterName)) lines.Add($"宗师·{sb.CrafterName} 亲手撰");
+            }
+            else if (!string.IsNullOrWhiteSpace(item.CrafterName))
+            {
+                lines.Add($"宗师·{item.CrafterName} 亲手铸造");
+            }
             return lines;
         }
 
@@ -377,6 +389,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 if (item.ConfigId == 3408) return CraftIconRoot + "item_celestial_ink";
                 if (item.ConfigId == 3409) return SeasonEconomyUiArt.EconomyTradeRoot + "icon_unseal_talisman";
                 if (item.ConfigId == 3410) return SeasonEconomyUiArt.EconomyTradeV2Root + "icon_inherit_talisman";
+                if (item.ConfigId == 3414) return "UI/Icons/item_sealed_skill_book";
                 return IsIcon(item.IconKey, "reward_choice") ? IconRoot + "reward_choice" : null;
             }
             if (item.EquipProfile == 1)
@@ -527,8 +540,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 if (!string.IsNullOrWhiteSpace(item.Artifact.Description))
                     lines.Add((item.Artifact.Description, TooltipLineTone.Normal));
             }
-            if (!string.IsNullOrWhiteSpace(item.CrafterName))
+            if (item.SealedSkillBook != null)
+            {
+                var sb = item.SealedSkillBook;
+                string skillName = string.IsNullOrWhiteSpace(sb.SkillName) ? $"技能 · {sb.SkillTableId}" : sb.SkillName;
+                string scrollName = string.IsNullOrWhiteSpace(sb.ScrollName) ? "常规卷宗" : sb.ScrollName;
+                lines.Add(($"封存技能：{skillName}（{scrollName}）", TooltipLineTone.Rare));
+                lines.Add((item.Bound ? "仅自用：开卷回书架后保持仅自用" : "可交易：可挂集市/面对面交易，开卷回书架后研习", TooltipLineTone.Muted));
+                if (!string.IsNullOrWhiteSpace(sb.CrafterName))
+                    lines.Add(($"宗师·{sb.CrafterName} 亲手撰", TooltipLineTone.Supreme));
+            }
+            else if (!string.IsNullOrWhiteSpace(item.CrafterName))
+            {
                 lines.Add(($"宗师·{item.CrafterName} 亲手铸造", TooltipLineTone.Supreme));
+            }
             return lines;
         }
 

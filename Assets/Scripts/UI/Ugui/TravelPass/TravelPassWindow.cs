@@ -83,7 +83,8 @@ namespace MmorpgClient.UI.Ugui.TravelPass
             CreateSkinOrFallbackArt(_frame, "TravelPassFrameBg", "window_frame", "main_frame", 0f, 0f, FrameWidth, FrameHeight);
 
             var plaque = CreateSkinOrFallbackArt(_frame, "TravelPassTitlePlaque", "title_plate", "title_plate", 90f, 20f, 520f, 110f);
-            _titleText = Text(plaque.transform, "青云游历手记", 28f, 12f, 464f, 84f, 40f, Cream, alignment: TextAlignmentOptions.Center);
+            // 标题文字收束在卷云端头与垂穗内侧玉绿匾面（左右留 76px、底部避开垂穗）
+            _titleText = Text(plaque.transform, "青云游历手记", 76f, 14f, 368f, 68f, 32f, Cream, alignment: TextAlignmentOptions.Center);
             _titleText.raycastTarget = false;
 
             // 双余额独立展示：严禁把绑定灵石混算成可解锁额度
@@ -136,12 +137,12 @@ namespace MmorpgClient.UI.Ugui.TravelPass
             fillImg.gameObject.SetActive(false);
             _progressFill = fillImg.rectTransform;
 
-            _claimAllButton = Button(bannerBg.transform, "一键领取", 1174f, 39f, 260f, 70f,
-                HandleClaimAllClicked, primary: true, fontSize: 25f);
+            _claimAllButton = Button(bannerBg.transform, "一键领取", 1188f, 41f, 240f, 66f,
+                HandleClaimAllClicked, primary: false, fontSize: 25f);
             _claimAllButton.name = ClaimAllButtonName;
             _claimAllLabel = _claimAllButton.GetComponentInChildren<TMP_Text>(true);
 
-            _unlockButton = Button(bannerBg.transform, "解锁典藏 (180灵石)", 1448f, 39f, 280f, 70f,
+            _unlockButton = Button(bannerBg.transform, "解锁典藏 (180灵石)", 1444f, 41f, 276f, 66f,
                 OpenUnlockConfirmModal, primary: true, fontSize: 25f);
             _unlockButton.name = UnlockButtonName;
             _unlockLabel = _unlockButton.GetComponentInChildren<TMP_Text>(true);

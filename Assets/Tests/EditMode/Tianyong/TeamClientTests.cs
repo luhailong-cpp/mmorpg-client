@@ -1817,7 +1817,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
     /// 组队用的假传输,照 GuildFakeTransport 扩展:记录请求体、可同步失败、可推原始字节。
     /// 回复先序列化再用 parser 解析,与 GameClient.Call 的线上路径一致。
     /// </summary>
-    internal sealed class TeamFakeTransport : IBattleTransport
+    public sealed class TeamFakeTransport : IBattleTransport
     {
         public ulong PlayerId { get; set; } = 10;
         public bool IsReady { get; set; } = true;

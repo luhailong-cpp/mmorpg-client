@@ -32,6 +32,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         private ulong _draftScrollFee = 80;
         private bool _draftFeesInitialized;
         private bool _rendering, _renderAgain, _disposed;
+        private PlayerFeaturesClient _bagSource;
 
         public event Action Closed;
         public event Action<ulong> RequestProxyEquipmentPolish;
@@ -76,6 +77,9 @@ namespace MmorpgClient.UI.Ugui.Skills
             _dismantleConfirmBookId = 0;
             _root.SetAsLastSibling();
             _root.gameObject.SetActive(true);
+            BindBagSource(PlayerFeaturesClient.Instance);
+            if (_bagSource != null && _bagSource.CharacterBag == null)
+                _bagSource.RequestBag(PlayerFeaturesClient.CharacterBagType);
             _client?.RefreshState();
             _client?.RefreshProxyStalls();
             Render();
@@ -84,9 +88,18 @@ namespace MmorpgClient.UI.Ugui.Skills
         public void Hide()
         {
             if (!IsVisible) return;
+            BindBagSource(null);
             _dismantleConfirmBookId = 0;
             _root.gameObject.SetActive(false);
             Closed?.Invoke();
+        }
+
+        private void BindBagSource(PlayerFeaturesClient source)
+        {
+            if (ReferenceEquals(_bagSource, source)) return;
+            if (_bagSource != null) _bagSource.OnChanged -= Render;
+            _bagSource = source;
+            if (_bagSource != null) _bagSource.OnChanged += Render;
         }
 
         private void Render()
@@ -354,7 +367,12 @@ namespace MmorpgClient.UI.Ugui.Skills
             Button(_body, "BookshelfTargetCycle", learnTargetText, 2610, 520, 1150, CycleLearnTarget);
 
             var books = state?.SkillBooks.ToList() ?? new List<CraftedSkillBookEntry>();
-            var bookList = Scroll(_body, "BookshelfViewport", 2610, 680, 1160, 690, Math.Max(690, books.Count * 225));
+            var sealedBagBooks = (_bagSource?.CharacterBag?.Items ?? (IReadOnlyList<BagItemInfo>)Array.Empty<BagItemInfo>())
+                .Where(it => it != null && it.ItemId != 0 && it.Count > 0 &&
+                    it.ConfigId == SkillCraftModels.SealedSkillBookConfigId && it.SealedSkillBook != null)
+                .ToList();
+            int totalShelfRows = books.Count + sealedBagBooks.Count;
+            var bookList = Scroll(_body, "BookshelfViewport", 2610, 680, 1160, 690, Math.Max(690, totalShelfRows * 225));
             bool bookLocked = _client == null || _client.IsBusy || _client.HasPendingWrite;
             for (int i = 0; i < books.Count; ++i)
             {
@@ -362,16 +380,42 @@ namespace MmorpgClient.UI.Ugui.Skills
                 float y = i * 225;
                 Label(bookList, "BookDesc_" + book.BookId, SkillCraftModels.DescribeBook(book, state, ResolveSkillName),
                     10, y, 1120, 70, 34, true, Ink);
-                Button(bookList, "BookLearn_" + book.BookId, "研习", 10, y + 75, 480,
-                    () => _client?.LearnBook(book.BookId, _learnPetId), true, !bookLocked);
-                if (SkillCraftModels.CanDismantleBook(book))
+                bool canDismantle = SkillCraftModels.CanDismantleBook(book);
+                bool canSeal = SkillCraftModels.CanSealBook(book);
+                if (canSeal && canDismantle)
                 {
                     uint refund = SkillCraftModels.DismantleRefundOf(state, book);
-                    Button(bookList, "BookDismantle_" + book.BookId, $"拆页（返{refund}残页）", 520, y + 75, 580,
+                    Button(bookList, "BookLearn_" + book.BookId, "研习", 10, y + 75, 320,
+                        () => _client?.LearnBook(book.BookId, _learnPetId), true, !bookLocked);
+                    Button(bookList, "BookSeal_" + book.BookId, "封卷入包", 345, y + 75, 360,
+                        () => _client?.SealBook(book.BookId), false, !bookLocked);
+                    Button(bookList, "BookDismantle_" + book.BookId, $"拆页(返{refund})", 720, y + 75, 400,
                         () => { _dismantleConfirmBookId = book.BookId; Render(); }, false, !bookLocked);
                 }
+                else
+                {
+                    Button(bookList, "BookLearn_" + book.BookId, "研习", 10, y + 75, 480,
+                        () => _client?.LearnBook(book.BookId, _learnPetId), true, !bookLocked);
+                    if (canDismantle)
+                    {
+                        uint refund = SkillCraftModels.DismantleRefundOf(state, book);
+                        Button(bookList, "BookDismantle_" + book.BookId, $"拆页（返{refund}残页）", 520, y + 75, 580,
+                            () => { _dismantleConfirmBookId = book.BookId; Render(); }, false, !bookLocked);
+                    }
+                }
             }
-            if (books.Count == 0)
+            for (int i = 0; i < sealedBagBooks.Count; ++i)
+            {
+                var sealedItem = sealedBagBooks[i];
+                float y = (books.Count + i) * 225;
+                Label(bookList, "SealedBookDesc_" + sealedItem.ItemId,
+                    SkillCraftModels.DescribeSealedBook(sealedItem, ResolveSkillName),
+                    10, y, 1120, 70, 34, true, Jade);
+                ulong sealedItemId = sealedItem.ItemId;
+                Button(bookList, "SealedBookUnseal_" + sealedItemId, "开卷入书架", 10, y + 75, 560,
+                    () => _client?.UnsealBook(sealedItemId), true, !bookLocked);
+            }
+            if (totalShelfRows == 0)
                 Label(_body, "BookshelfEmpty", "书架暂无未学技能书，可在左侧拓印制书。", 2630, 790, 1100, 160, 40, true, Muted);
         }
 
@@ -590,6 +634,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         {
             if (_disposed) return;
             Hide();
+            BindBagSource(null);
             Bind(null);
             _disposed = true;
             Closed = null;

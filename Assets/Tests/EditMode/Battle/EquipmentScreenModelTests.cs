@@ -512,6 +512,26 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3404 }), Is.EqualTo("UI/Icons/item_bound_artifact_voucher"));
             Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3405 }), Is.EqualTo("UI/Ugui/CraftQualitySkill/Icons/item_star_guarantee_charm"));
             Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3410 }), Is.EqualTo("UI/Ugui/EconomyTradeV2/icon_inherit_talisman"));
+            Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3414 }), Is.EqualTo("UI/Icons/item_sealed_skill_book"));
+
+            var sealedBook = new BagItemInfo
+            {
+                ItemId = 9001,
+                ConfigId = 3414,
+                Count = 1,
+                Bound = false,
+                SealedSkillBook = new SealedSkillBookInfo
+                {
+                    SkillTableId = 12020,
+                    SkillName = "愈战愈勇",
+                    ScrollId = 3,
+                    ScrollName = "兵法成长卷",
+                    CrafterName = "欧冶子",
+                },
+            };
+            var tooltipLines = EquipmentScreenModel.BagTooltipV1Lines(sealedBook);
+            Assert.That(tooltipLines.Any(l => l.Text.Contains("愈战愈勇") && l.Text.Contains("兵法成长卷")), Is.True);
+            Assert.That(tooltipLines.Any(l => l.Text.Contains("宗师·欧冶子 亲手撰")), Is.True);
         }
     }
 }

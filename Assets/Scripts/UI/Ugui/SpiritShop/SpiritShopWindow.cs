@@ -635,6 +635,16 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
                 var rename = QdaoUguiTheme.LoadSprite("UI/Icons/item_rename_card");
                 if (rename != null) return rename;
             }
+            if (firstItemId == SpiritShopModels.ItemPetMorphCard)
+            {
+                var morph = QdaoUguiTheme.LoadSprite("UI/Ugui/WardrobeCosmetics/item_pet_morph_charm");
+                if (morph != null) return morph;
+            }
+            if (firstItemId == SpiritShopModels.ItemSkillVfxCard)
+            {
+                var vfx = QdaoUguiTheme.LoadSprite("UI/Ugui/WardrobeCosmetics/item_skill_vfx_scroll");
+                if (vfx != null) return vfx;
+            }
             return Load("icon_scroll");
         }
 
