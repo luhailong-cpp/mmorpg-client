@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using MmorpgClient.Game;
+using MmorpgClient.World;
+using MmorpgClient.World.Tianyong;
 using NUnit.Framework;
+using UnityEngine;
 
 namespace MmorpgClient.Tests.EditMode.Role
 {
@@ -204,6 +207,42 @@ namespace MmorpgClient.Tests.EditMode.Role
             }
             finally
             {
+                client.Presentation.Dispose();
+                if (client.World.Root != null) UnityEngine.Object.DestroyImmediate(client.World.Root.gameObject);
+            }
+        }
+
+        [Test]
+        public void ControlledSilenceModeBlocksLocalControllerDestinationAndStopsQueuedWalk()
+        {
+            var client = new GameClient("http://127.0.0.1:18080");
+            var actor = new GameObject("LocalControlledActor");
+            try
+            {
+                var nav = new TianyongNavigationGrid();
+                var camGo = new GameObject("TestCam");
+                try
+                {
+                    var cam = camGo.AddComponent<Camera>();
+                    var ctrl = actor.AddComponent<TianyongPlayerController>();
+                    ctrl.Initialize(client, nav, cam);
+
+                    string rejectedMessage = null;
+                    ctrl.NavigationRejected += msg => rejectedMessage = msg;
+
+                    Assert.IsTrue(client.ApplySelfActorStateFlags(0UL, (ulong)ActorCombatStateFlags.Silence, 1UL));
+                    Assert.AreEqual(ProtagonistPresentationMode.Controlled, client.Presentation.CurrentMode);
+                    Assert.IsFalse(ctrl.SetDestination(UnityEngine.Vector3.zero));
+                    Assert.IsFalse(string.IsNullOrEmpty(rejectedMessage));
+                }
+                finally
+                {
+                    UnityEngine.Object.DestroyImmediate(camGo);
+                }
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(actor);
                 client.Presentation.Dispose();
                 if (client.World.Root != null) UnityEngine.Object.DestroyImmediate(client.World.Root.gameObject);
             }

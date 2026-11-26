@@ -49,7 +49,7 @@
       "sprite_mode": "Single"
     }
   },
-  "file_count": 48,
+  "file_count": 51,
   "fx": [
     {
       "path": "Fx/slash_arc_strip.png",
@@ -298,6 +298,54 @@
       ],
       "loop": false,
       "desc": "寒星凝魄短霜纹命中:目标胸口播放一次,零基第3帧唯一结果表现事件,不承载持续减速Buff"
+    },
+    {
+      "path": "Fx/boss_exposed_crack_strip.png",
+      "kind": "fx_strip",
+      "width": 2048,
+      "height": 256,
+      "frames": 8,
+      "cell_width": 256,
+      "cell_height": 256,
+      "fps_hint": 12,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": true,
+      "desc": "首领试炼V2破绽裂纹环:暖金碎甲裂纹环绕受破绽敌方脚底"
+    },
+    {
+      "path": "Fx/boss_stance_break_strip.png",
+      "kind": "fx_strip",
+      "width": 5120,
+      "height": 512,
+      "frames": 10,
+      "cell_width": 512,
+      "cell_height": 512,
+      "fps_hint": 12,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": false,
+      "desc": "首领试炼V2崩势破盾:玉青暖金联防阵瓦解碎裂波纹"
+    },
+    {
+      "path": "Fx/boss_phase2_enrage_strip.png",
+      "kind": "fx_strip",
+      "width": 5120,
+      "height": 512,
+      "frames": 10,
+      "cell_width": 512,
+      "cell_height": 512,
+      "fps_hint": 12,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": false,
+      "desc": "首领试炼V2决战姿态切换:绯金气浪自脚底升腾冲天"
     }
   ],
   "ui": [

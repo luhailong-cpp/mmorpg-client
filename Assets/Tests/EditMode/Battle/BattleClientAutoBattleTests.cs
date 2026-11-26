@@ -521,5 +521,86 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_client.CurrentSurrenderVote, Is.Null, "终局清场后必须清空投降状态");
             Assert.That(voteEvents, Has.Count.GreaterThanOrEqualTo(3));
         }
+
+        [Test]
+        public void TacticalPrep_SwapSealAndPet_BlockActionsDuringPrep_AndRevealToRound1()
+        {
+            Assert.That(DirectRoutingBattleTransport.IsDirectMessage(MessageIds.UpdateBattlePrep), Is.True,
+                "UpdateBattlePrep 必须走战斗直连通道");
+
+            var prepEvents = new List<BattlePrepState>();
+            _client.OnBattlePrepChanged += p => prepEvents.Add(p);
+
+            // 1. 收到带战前 15 秒变阵态的开局包：即使 AutoBattleLatched=true 也不得在变阵期发 SetAutoBattle。
+            _client.AutoBattleLatched = true;
+            var prep = new BattlePrepState
+            {
+                Active = true,
+                DeadlineMs = 999999999UL,
+                DurationSeconds = 15u,
+            };
+            prep.SelfAvailableSeals.Add(new BattlePrepSealOption { SealId = 101u, EffectId = 1u, Name = "破阵锐印" });
+            prep.SelfAvailableSeals.Add(new BattlePrepSealOption { SealId = 103u, EffectId = 6u, Name = "固阵守印" });
+            prep.SelfAvailablePets.Add(new BattlePrepPetOption { PetId = 5001UL, PetTableId = 1u, PetName = "灵狐", Level = 30u });
+            prep.SelfAvailablePets.Add(new BattlePrepPetOption { PetId = 5002UL, PetTableId = 2u, PetName = "石灵", Level = 30u });
+            prep.TeamStates.Add(new BattlePrepPlayerState
+            {
+                PlayerId = MyId,
+                TeamIndex = 0u,
+                SelectedSealId = 101u,
+                SelectedPetId = 5001UL,
+                SelectedPetTableId = 1u,
+                SelectedPetName = "灵狐",
+                Ready = false,
+            });
+
+            var prepStartState = MakeState(false, MyId, EnemyId);
+            prepStartState.RoundIndex = 1u;
+            prepStartState.PendingActorIds.Clear();
+            prepStartState.PrepState = prep;
+            _net.PushNotify(MessageIds.NotifyBattleStart, new BattleStartS2C { BattleId = TheBattleId, State = prepStartState });
+
+            Assert.That(_client.IsInPrepPhase, Is.True);
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction));
+            Assert.That(_net.CallsOf(MessageIds.SetAutoBattle), Is.Empty, "变阵期不得补发自动战斗");
+            Assert.That(_client.SubmitAction(new BattleAction { ActionType = eBattleActionType.BattleActionDefend }), Is.False,
+                "变阵期本地必须拦截普通回合指令");
+
+            // 2. 临场切换赛季印 103 + 首发宠 5002 并锁定出战。
+            bool? prepOk = null;
+            Assert.That(_client.UpdateBattlePrep(103u, 5002UL, true, ok => prepOk = ok), Is.True);
+            var prepCalls = _net.CallsOf(MessageIds.UpdateBattlePrep);
+            Assert.That(prepCalls, Has.Count.EqualTo(1));
+            var req = (UpdateBattlePrepRequest)prepCalls[0].Request;
+            Assert.That(req.SelectedSealId, Is.EqualTo(103u));
+            Assert.That(req.SelectedPetId, Is.EqualTo(5002UL));
+            Assert.That(req.Ready, Is.True);
+
+            var lockedPrep = prep.Clone();
+            lockedPrep.TeamStates[0].SelectedSealId = 103u;
+            lockedPrep.TeamStates[0].SelectedPetId = 5002UL;
+            lockedPrep.TeamStates[0].SelectedPetName = "石灵";
+            lockedPrep.TeamStates[0].Ready = true;
+            prepCalls[0].Respond(new UpdateBattlePrepResponse { PrepState = lockedPrep });
+            Assert.That(prepOk, Is.True);
+            Assert.That(_client.CurrentPrepState.TeamStates[0].SelectedSealId, Is.EqualTo(103u));
+            Assert.That(_client.CurrentPrepState.TeamStates[0].Ready, Is.True);
+
+            // 3. 收到同队实时变阵推送。
+            var teamPush = lockedPrep.Clone();
+            teamPush.TeamStates.Add(new BattlePrepPlayerState { PlayerId = 777UL, TeamIndex = 0u, SelectedSealId = 104u, Ready = true });
+            _net.PushNotify(MessageIds.NotifyBattlePrepUpdate, new BattlePrepUpdateS2C { BattleId = TheBattleId, PrepState = teamPush });
+            Assert.That(_client.CurrentPrepState.TeamStates, Has.Count.EqualTo(2));
+
+            // 4. 双方锁定后服务端下发亮牌开局帧（PrepState 为空）：退出变阵期，恢复自动战斗补发与首回合指令提交。
+            var revealedState = MakeState(false, MyId, EnemyId);
+            revealedState.RoundIndex = 1u;
+            _net.PushNotify(MessageIds.NotifyBattleStart, new BattleStartS2C { BattleId = TheBattleId, State = revealedState });
+            Assert.That(_client.IsInPrepPhase, Is.False);
+            Assert.That(_client.CurrentPrepState, Is.Null);
+            Assert.That(_net.CallsOf(MessageIds.SetAutoBattle), Has.Count.EqualTo(1), "亮牌进第 1 回合后应正常补发自动战斗");
+            Assert.That(_client.SubmitAction(new BattleAction { ActionType = eBattleActionType.BattleActionDefend }), Is.True);
+            Assert.That(prepEvents, Has.Count.GreaterThanOrEqualTo(4));
+        }
     }
 }

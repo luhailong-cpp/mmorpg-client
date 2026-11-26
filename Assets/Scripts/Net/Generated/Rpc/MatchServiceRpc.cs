@@ -250,5 +250,23 @@ namespace MmorpgClient.Net.Generated
         public static void ClaimTournamentReward(IRpcChannel channel, global::Match.ClaimTournamentRewardRequest request,
             RpcDone<global::Match.ClaimTournamentRewardResponse> done)
             => channel.CallMethod(ClaimTournamentRewardMessageId, request, global::Match.ClaimTournamentRewardResponse.Parser, done);
+
+        public const uint SaluteTournamentChampionMessageId = 506;
+        /// <summary>
+        /// ---- 全服赛季战队锦标赛《群仙问道赛》V2(docs/design/season-team-tournament-v2.md):请求只认会话本人 ----
+        /// </summary>
+        public static void SaluteTournamentChampion(IRpcChannel channel, global::Match.SaluteTournamentChampionRequest request,
+            RpcDone<global::Match.SaluteTournamentChampionResponse> done)
+            => channel.CallMethod(SaluteTournamentChampionMessageId, request, global::Match.SaluteTournamentChampionResponse.Parser, done);
+
+        public const uint SendTournamentSpectateCheerMessageId = 507;
+        public static void SendTournamentSpectateCheer(IRpcChannel channel, global::Match.SendTournamentSpectateCheerRequest request,
+            RpcDone<global::Match.SendTournamentSpectateCheerResponse> done)
+            => channel.CallMethod(SendTournamentSpectateCheerMessageId, request, global::Match.SendTournamentSpectateCheerResponse.Parser, done);
+
+        public const uint GetTournamentSpectateCheerMessageId = 508;
+        public static void GetTournamentSpectateCheer(IRpcChannel channel, global::Match.GetTournamentSpectateCheerRequest request,
+            RpcDone<global::Match.GetTournamentSpectateCheerResponse> done)
+            => channel.CallMethod(GetTournamentSpectateCheerMessageId, request, global::Match.GetTournamentSpectateCheerResponse.Parser, done);
     }
 }

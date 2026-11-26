@@ -230,6 +230,81 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(SkillBookContext.Character().Matches(SkillBookContext.Pet(11, "角色技能")), Is.False);
         }
 
+        [Test]
+        public void LoadoutTabHiddenForPetAndReplacesExclusiveGroupBeforeSaving()
+        {
+            var loadoutSource = new FixtureLoadoutSource();
+            var canvas = new GameObject("LoadoutTestCanvas", typeof(RectTransform), typeof(Canvas));
+            try
+            {
+                var state = Ready();
+                state.Snapshot.Loadout = new SkillLoadoutView { CustomEnabled = true, ActiveSchemeId = 1, StateVersion = 2 };
+                var scheme1 = new SkillLoadoutSchemeView { SchemeId = 1, RoleTag = 1 };
+                scheme1.PassiveSkillIds.Add(12101u);
+                state.Snapshot.Loadout.Schemes.Add(scheme1);
+                state.Snapshot.Loadout.Schemes.Add(new SkillLoadoutSchemeView { SchemeId = 2, RoleTag = 2 });
+                state.Snapshot.Loadout.Schemes.Add(new SkillLoadoutSchemeView { SchemeId = 3, RoleTag = 3 });
+                state.Snapshot.Entries.Add(new SkillEntryState
+                {
+                    Id = 12101u, Rank = 1, RankLimit = 10, Equipped = true,
+                    Definition = new SkillDefinition { id = 12101u, name = "兵锋专精", type = "passive", abilityKind = 2u, exclusiveGroup = 1u },
+                });
+                state.Snapshot.Entries.Add(new SkillEntryState
+                {
+                    Id = 12102u, Rank = 1, RankLimit = 10,
+                    Definition = new SkillDefinition { id = 12102u, name = "玄法专精", type = "passive", abilityKind = 2u, exclusiveGroup = 1u },
+                });
+
+                var panel = new SkillPanel(canvas.transform, () => { }, (_, _, _) => { },
+                    getLoadoutSource: () => loadoutSource);
+                panel.Apply(state);
+                panel.Show();
+
+                var loadoutTab = canvas.GetComponentsInChildren<Button>(true).Single(b => b.name == "LoadoutTabPlate");
+                Assert.That(loadoutTab.gameObject.activeInHierarchy, Is.True, "角色技能书应展示战法装配页签");
+                loadoutTab.onClick.Invoke();
+
+                // 点击互斥组战法 12102 自动替换 12101 并保存提交
+                canvas.GetComponentsInChildren<Button>(true).Single(b => b.name == "LoadoutPool_12102").onClick.Invoke();
+                canvas.GetComponentsInChildren<Button>(true).Single(b => b.name == "LoadoutSaveBtnPlate").onClick.Invoke();
+                Assert.That(loadoutSource.SaveCalls, Is.EqualTo(1));
+                Assert.That(loadoutSource.LastSavedPassive, Is.EqualTo(new[] { 12102u }));
+
+                // 战斗中锁定写入
+                panel.SetBattleLocked(true);
+                Assert.That(canvas.GetComponentsInChildren<Button>(true).Single(b => b.name == "LoadoutSaveBtnPlate").IsInteractable(), Is.False);
+                panel.SetBattleLocked(false);
+
+                // 切宠物上下文自动隐藏战法装配页签
+                state.Context = SkillBookContext.Pet(88, "小狐");
+                panel.Apply(state);
+                Assert.That(loadoutTab.gameObject.activeInHierarchy, Is.False, "宝宝技能页不得展示人物战法装配页签");
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(canvas);
+            }
+        }
+
+        private sealed class FixtureLoadoutSource : ISkillLoadoutSource
+        {
+            public int SaveCalls, SwitchCalls;
+            public uint[] LastSavedPassive = Array.Empty<uint>();
+            public void SaveLoadout(uint schemeId, uint roleTag, System.Collections.Generic.IReadOnlyList<uint> passiveSkillIds,
+                System.Collections.Generic.IReadOnlyList<uint> pursuitSkillIds, System.Collections.Generic.IReadOnlyList<uint> openingSkillIds,
+                Action<bool, string> completed = null)
+            {
+                SaveCalls++;
+                LastSavedPassive = passiveSkillIds.ToArray();
+                completed?.Invoke(true, "已保存");
+            }
+            public void SwitchLoadout(uint schemeId, Action<bool, string> completed = null)
+            {
+                SwitchCalls++;
+                completed?.Invoke(true, "已切换");
+            }
+        }
+
         private static SkillBookViewState Ready()
         {
             var snapshot = new SkillBookSnapshot { ClassId = 1, PlayerLevel = 68, CurrencyBalance = 265800 };

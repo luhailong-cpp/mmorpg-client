@@ -96,5 +96,40 @@ namespace MmorpgClient.Tests.EditMode.Battle
    Assert.That(client.Pets.Pets[0].Entries.StateVersion,Is.EqualTo(2));
    Assert.That(client.Pets.Pets[0].Entries.Entries[0].Allocated,Is.EqualTo(5));
   }
+  [Test] public void SwitchEntryPresetRetainsExactRequestOnTimeoutAndCommitsActiveSlot(){
+   bool ok=false;PetEntriesInfo updated=null;
+   client.SwitchEntryPreset(PetId,2,2,1,1,(s,info,err)=>{ok=s;updated=info;});
+   var first=(SwitchPetEntryPresetRequest)net.Calls.Last().Request;
+   Assert.That(first.SlotId,Is.EqualTo(2));Assert.That(first.Tag,Is.EqualTo(2));
+   net.Calls.Last().FailWith("timeout");
+   Assert.That(client.HasPendingPresetSwitch(PetId),Is.True);
+   client.SwitchEntryPreset(PetId,3,1,99,99,(s,info,err)=>{ok=s;updated=info;});
+   var retry=(SwitchPetEntryPresetRequest)net.Calls.Last().Request;
+   Assert.That(retry,Is.EqualTo(first));
+   var respEntries=Info(0,2,first.RequestId);respEntries.ActivePresetSlot=2;
+   net.Calls.Last().Respond(new SwitchPetEntryPresetResponse{RequestId=first.RequestId,Entries=respEntries,Replayed=true});
+   Assert.That(ok,Is.True);Assert.That(client.HasPendingPresetSwitch(PetId),Is.False);
+   Assert.That(updated.ActivePresetSlot,Is.EqualTo(2));
+   Assert.That(client.Pets.Pets[0].Entries.ActivePresetSlot,Is.EqualTo(2));
+  }
+  [Test] public void AscendTierRetainsExactRequestOnTimeoutAndBlocksInBattle(){
+   locked=true;bool ok=false;string err=null;
+   client.AscendTier(PetId,1,(s,t,l,e)=>{ok=s;err=e;});
+   Assert.That(ok,Is.False);Assert.That(net.Calls,Is.Empty);Assert.That(client.HasPendingTierAscension(PetId),Is.False);
+
+   locked=false;uint newTier=0;
+   client.AscendTier(PetId,1,(s,t,l,e)=>{ok=s;newTier=t;err=e;});
+   var first=(AscendPetTierRequest)net.Calls.Last().Request;
+   Assert.That(first.ClientRequestId,Is.Not.Zero);
+   net.Calls.Last().FailWith("timeout");
+   Assert.That(client.HasPendingTierAscension(PetId),Is.True);
+   client.AscendTier(PetId,1,(s,t,l,e)=>{ok=s;newTier=t;err=e;});
+   var retry=(AscendPetTierRequest)net.Calls.Last().Request;
+   Assert.That(retry,Is.EqualTo(first));
+   var list=new PetListInfo();list.Pets.Add(new PetInfo{PetId=PetId,CultivationTier=2,Entries=Info(0,2)});
+   net.Calls.Last().Respond(new AscendPetTierResponse{ClientRequestId=first.ClientRequestId,NewTier=2,Pets=list,Replayed=true});
+   Assert.That(ok,Is.True);Assert.That(newTier,Is.EqualTo(2));Assert.That(client.HasPendingTierAscension(PetId),Is.False);
+   Assert.That(client.Pets.Pets[0].CultivationTier,Is.EqualTo(2));
+  }
  }
 }

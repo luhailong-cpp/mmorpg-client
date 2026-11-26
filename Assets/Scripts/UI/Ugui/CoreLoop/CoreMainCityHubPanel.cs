@@ -85,6 +85,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             if (view.ClaimableMaterialUnits > 0)
                 CoreLoopUiArt.Button("ClaimMaterials", transform, 314, 266, 144, 38,
                     "去领取", _root.OpenMaterialClaim, true, false, 18);
+            SeasonV1UiArt.CreateFixedIcon(transform, "SeasonSealHubIcon", 1152f, 265f, 40f, 40f,
+                SeasonV1UiArt.LoadHudSealIcon(), Color.clear);
             CoreLoopUiArt.Button("SeasonJournalOpen", transform, 1196, 266, 160, 38,
                 "查看赛季印", _root.OpenSeasonSeal, true, false, 18);
 

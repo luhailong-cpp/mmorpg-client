@@ -457,6 +457,28 @@ namespace MmorpgClient.Game
                 System.IO.Path.Combine(Application.persistentDataPath, "festival-beast-launch-intents"), gatewayBaseUrl, ownerRevision);
             FestivalBeast.ClaimRecoveryStore = DurableRequestFileStore.ForOrigin(
                 System.IO.Path.Combine(Application.persistentDataPath, "festival-beast-claim-intents"), gatewayBaseUrl, ownerRevision);
+
+            // 跨模块权威刷新：制书/拆页刷新背包，研习技能书刷新对应角色或灵宠技能/属性，装备打磨刷新铸器熟练度。
+            SkillCraft.BookCrafted += _ =>
+            {
+                if (InGame && IsGateReady) Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
+            };
+            SkillCraft.BookDismantled += _ =>
+            {
+                if (InGame && IsGateReady) Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
+            };
+            SkillCraft.BookLearned += _ =>
+            {
+                if (!InGame || !IsGateReady) return;
+                Skills?.Refresh(MmorpgClient.UI.Ugui.Skills.SkillBookContext.Character());
+                Attributes?.RequestPanel();
+                Pets?.RequestList();
+            };
+            Features.OnEquipmentCraftApplied += _ =>
+            {
+                if (InGame && IsGateReady && SkillCraft != null && !SkillCraft.IsBusy && !SkillCraft.IsLoading)
+                    SkillCraft.RefreshState();
+            };
             ZoneTravel = new ZoneTravelClient(this);
             // 落地判定用「在游戏中」+ 传输就绪(IsGateReady)+ (PlayerId, 连接身份);缓存按 (gateway 地址哈希, 玩家) 分键存 PlayerPrefs。
             LandingSync = new LandingSyncClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
@@ -466,6 +488,14 @@ namespace MmorpgClient.Game
             PetFlip = PetFlipClient.Attach(new PlayerPrefsPetFlipBestRecordStore());
             Presentation = new ProtagonistPresentationHfsm();
             Presentation.Bind(this);
+            Presentation.OnCastPresentationEnded += HandleCastPresentationEnded;
+        }
+
+        private void HandleCastPresentationEnded(uint _, bool completed)
+        {
+            if (completed || World == null || !World.HasLocalPlayer) return;
+            if (World.TryGetActor(World.LocalEntity, out var local) && local.Go != null)
+                local.Go.GetComponent<MmorpgClient.World.QdaoBoySpriteAnimator>()?.StopAction();
         }
 
         public GatewayHttpClient Http => _http;

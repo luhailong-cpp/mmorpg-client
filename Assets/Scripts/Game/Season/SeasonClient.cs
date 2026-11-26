@@ -224,8 +224,9 @@ namespace MmorpgClient.Game.Season
                             HandleWriteTip("CatchupSeasonSeal", tipId);
                             return;
                         }
-                        SetStatus(CatchupDoneMessage, false);
-                        Notice?.Invoke(CatchupDoneMessage);
+                        string doneMsg = response.Replayed ? "赛季印进度已确认更新。" : CatchupDoneMessage;
+                        SetStatus(doneMsg, false);
+                        Notice?.Invoke(doneMsg);
                         SealCatchupCompleted?.Invoke(new SeasonSealCatchupEvent(
                             request.SeasonId,
                             response.AddedPoints,

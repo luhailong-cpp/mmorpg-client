@@ -173,5 +173,57 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
         private static bool Overlaps(PetFlipPixelRect a, PetFlipPixelRect b)
             => a.X < b.X + b.Width && a.X + a.Width > b.X && a.Y < b.Y + b.Height && a.Y + a.Height > b.Y;
+
+        [Test]
+        public void StreakBadgesPetQuotesAndHintPriority_WorkAcrossStates()
+        {
+            // 6 种灵宠各有非空专属配对小语
+            for (int i = 0; i < PetFlipConstants.PairCount; i++)
+            {
+                string quote = PetFlipUiPresentation.GetPetMatchFlavorText((SpiritPetCardPattern)i);
+                Assert.That(string.IsNullOrWhiteSpace(quote), Is.False);
+            }
+
+            Assert.That(PetFlipUiPresentation.FormatStreakBadge(0), Is.EqualTo(string.Empty));
+            Assert.That(PetFlipUiPresentation.FormatStreakBadge(1), Is.EqualTo(string.Empty));
+            Assert.That(PetFlipUiPresentation.FormatStreakBadge(2), Is.EqualTo("二连妙手！"));
+            Assert.That(PetFlipUiPresentation.FormatStreakBadge(6), Is.EqualTo("六连一气呵成！"));
+
+            var store = new InMemoryPetFlipBestRecordStore();
+            using var client = PetFlipClient.CreateForTesting(store, () => new[]
+            {
+                SpiritPetCardPattern.A, SpiritPetCardPattern.B, SpiritPetCardPattern.C,
+                SpiritPetCardPattern.D, SpiritPetCardPattern.E, SpiritPetCardPattern.F,
+                SpiritPetCardPattern.A, SpiritPetCardPattern.B, SpiritPetCardPattern.C,
+                SpiritPetCardPattern.D, SpiritPetCardPattern.E, SpiritPetCardPattern.F
+            });
+            client.NotifySessionRestored(10001, 1);
+            client.StartOrResume();
+
+            // 第 1 对配中：显示对应灵宠小语
+            client.FlipCard(0);
+            client.FlipCard(6);
+            string afterFirstMatch = PetFlipUiPresentation.FormatBoardHint(client.GetSnapshot(), isPortrait: false);
+            Assert.That(afterFirstMatch, Does.Contain("烛翎"));
+
+            // 第 2 对连配：显示二连妙手 + 霜团貂小语
+            client.FlipCard(1);
+            client.FlipCard(7);
+            string afterSecondMatch = PetFlipUiPresentation.FormatBoardHint(client.GetSnapshot(), isPortrait: true);
+            Assert.That(afterSecondMatch, Does.Contain("二连妙手"));
+            Assert.That(afterSecondMatch, Does.Contain("霜团貂"));
+
+            // 失配优先级高于一切小语，严格显示规范失配文案
+            client.FlipCard(2);
+            client.FlipCard(3);
+            Assert.That(PetFlipUiPresentation.FormatBoardHint(client.GetSnapshot(), isPortrait: true),
+                Is.EqualTo(PetFlipUiPresentation.MismatchHintText));
+
+            // 完美局与连击局终局次行汇总
+            var perfectResult = new PetFlipCompletionResult(1, 6, 6, null, 6, PetFlipRecordComparison.FirstRecord, PetFlipRecordPersistenceStatus.Saved, maxStreak: 6);
+            var streakResult = new PetFlipCompletionResult(2, 8, 6, 6, 6, PetFlipRecordComparison.NormalCompletion, PetFlipRecordPersistenceStatus.Saved, maxStreak: 3);
+            Assert.That(PetFlipUiPresentation.FormatCompletionSummary(perfectResult), Is.EqualTo("本局 6 次  ·  本机最佳 6 次  ·  一气呵成"));
+            Assert.That(PetFlipUiPresentation.FormatCompletionSummary(streakResult), Is.EqualTo("本局 8 次  ·  本机最佳 6 次  ·  最高 3 连配"));
+        }
     }
 }

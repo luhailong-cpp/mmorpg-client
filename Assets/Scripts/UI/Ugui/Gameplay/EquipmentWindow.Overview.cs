@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MmorpgClient.Game.Season;
+using MmorpgClient.UI.Ugui.CoreLoop;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -64,6 +66,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Label(button.transform, "EquipmentSlotItem", slot.Item == null ? "尚未装备" : Name(slot.Item), 205, 95, 380, 105, 36, true, Muted);
                 if (slot.Item?.EnhanceMaxLevel > 0) Label(button.transform, "EquipmentEnhanceBadge", "+" + slot.Item.EnhanceLevel, 125, 10, 90, 50, 35, color: Jade);
             }
+            RenderSeasonSealSingleSlot();
             var game = AppBootstrap.Instance?.GameClient;
             string appearance = game == null ? null : game.ResolveCharacterId(game.PlayerId);
             if (!string.IsNullOrEmpty(appearance))
@@ -71,7 +74,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var portrait = MmorpgClient.World.QdaoCharacterCatalog.LoadPortrait(appearance);
                 if (portrait != null)
                 {
-                    var image = QdaoUguiFactory.CreateImage("EquipmentCurrentCharacter", _body, 820, 430, 430, 650, portrait);
+                    var image = QdaoUguiFactory.CreateImage("EquipmentCurrentCharacter", _body, 820, 468, 430, 590, portrait);
                     image.preserveAspect = true;
                 }
             }
@@ -85,11 +88,39 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (current != null)
             {
                 Icon(_body, current, 2100, 475, 230);
-                Label(_body, "EquipmentDetailName", Name(current), 2370, 495, 560, 155, 48, true);
+                bool hasSignature = !string.IsNullOrWhiteSpace(current.CrafterName);
+                Label(_body, "EquipmentDetailName", Name(current), 2370, 495, 560, hasSignature ? 135 : 155, 48, true);
+                if (hasSignature)
+                {
+                    var sealSprite = SeasonEconomyUiArt.LoadCraftControl("seal_master_signature");
+                    if (sealSprite != null)
+                    {
+                        SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "EquipmentDetailMasterSealBg",
+                            2370, 636, 560, 64, sealSprite, new Color(0.95f, 0.91f, 0.80f, 0.95f));
+                        Label(_body, "EquipmentDetailMasterSealText", $"宗师·{current.CrafterName} 亲手铸造",
+                            2428, 640, 450, 56, 32, false, Jade);
+                    }
+                    else
+                    {
+                        Label(_body, "EquipmentDetailMasterSealText", $"宗师·{current.CrafterName} 亲手铸造",
+                            2370, 638, 560, 60, 34, false, Jade);
+                    }
+                }
                 TextLines(_body, "EquipmentDetailScroll", EquipmentScreenModel.DetailLines(current), 2100, 735, 840, 495);
-                Button(_body, "EquipmentDetailOpen", "查看详情", 2000, 1345, 500, () => { _detailProduct = null; _detailItemId = current.ItemId; _modal = Modal.Detail; Render(); });
                 bool worn = _client.Equipment.Items.Any(i => i.ItemId == current.ItemId);
-                if (worn) Button(_body, "EquipmentUnequip", "卸下", 2520, 1345, 500, () => _client.UnequipItem(current.ItemId), enabled: !WriteBlocked);
+                bool canPolish = current.Artifact == null && current.FixedAffixSlots.Any(s => s.Selected != null);
+                if (worn && canPolish)
+                {
+                    Button(_body, "EquipmentDetailOpen", "查看详情", 1980, 1345, 355, () => { _detailProduct = null; _detailItemId = current.ItemId; _modal = Modal.Detail; Render(); });
+                    Button(_body, "EquipmentQuickPolish", "打磨换词", 2350, 1345, 355, () => OpenPolishForItem(current.ItemId, 0), true, !WriteBlocked);
+                    Button(_body, "EquipmentUnequip", "卸下", 2720, 1345, 355, () => _client.UnequipItem(current.ItemId), enabled: !WriteBlocked);
+                }
+                else
+                {
+                    Button(_body, "EquipmentDetailOpen", "查看详情", 2000, 1345, 500, () => { _detailProduct = null; _detailItemId = current.ItemId; _modal = Modal.Detail; Render(); });
+                    if (worn) Button(_body, "EquipmentUnequip", "卸下", 2520, 1345, 500, () => _client.UnequipItem(current.ItemId), enabled: !WriteBlocked);
+                    else if (canPolish) Button(_body, "EquipmentQuickPolish", "打磨换词", 2520, 1345, 500, () => OpenPolishForItem(current.ItemId, 0), true, !WriteBlocked);
+                }
             }
             else Label(_body, "EquipmentEmptyDetail", "选择左侧位置，再从背包中挑选装备。", 2110, 560, 840, 360, 48, true, Muted);
             Panel(_body, "EquipmentCandidatePaper", 3110, 305, 720, 1040);
@@ -108,6 +139,35 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             // Occupied historic fixture slots must remain accessible through the original bag view.
             if (slots.Any(s => !official.Any(o => o.Slot == s.Slot) && s.Item != null))
                 Label(_body, "EquipmentLegacySlots", "其他旧装备可在背包「已穿戴」中查看和卸下", 230, 1405, 1670, 65, 34, color: Muted);
+        }
+
+        /// <summary>在八部位永久装备旁仅放置唯一的「赛季印」单槽入口（方案 A，绝不画多部位赛季装备栏）。</summary>
+        private void RenderSeasonSealSingleSlot()
+        {
+            var seasonState = (_season ?? AppBootstrap.Instance?.GameClient?.Season)?.Snapshot;
+            bool available = seasonState != null && seasonState.Available;
+            var equipped = available ? SeasonModels.FindEquippedSeal(seasonState) : null;
+            var slotBtn = ChoiceRow(_body, "EquipmentSeasonSealSlot", "", 835, 330, 400, 128, () =>
+            {
+                Hide();
+                CoreGameplayUiRoot.EnsureSpawned();
+                CoreGameplayUiRoot.Instance?.OpenSeasonSeal();
+            }, selected: false, enabled: true);
+
+            SeasonV1UiArt.CreateFixedIcon(slotBtn.transform, "SeasonSealSlotFrame", 12, 14, 100, 100,
+                SeasonV1UiArt.LoadControl("season_seal_slot_frame"), new Color(0.76f, 0.62f, 0.32f, 1f));
+            var iconSprite = available
+                ? SeasonV1UiArt.LoadSealIcon(equipped?.SealId ?? seasonState.EquippedSealId, equipped?.IconKey)
+                : SeasonV1UiArt.LoadHudSealIcon();
+            SeasonV1UiArt.CreateFixedIcon(slotBtn.transform, "SeasonSealSlotIcon", 24, 26, 76, 76,
+                iconSprite, Jade);
+
+            string title = available ? (equipped?.Name ?? "赛季印") : "单槽赛季印";
+            string sub = available
+                ? $"赛季印 · 进度 {seasonState.ProgressPoints}/{seasonState.MaxPoints}"
+                : seasonState == null ? "同步赛季印中…" : "当前暂无赛季";
+            Label(slotBtn.transform, "SeasonSealSlotTitle", title, 124, 16, 264, 48, 36, color: Jade);
+            Label(slotBtn.transform, "SeasonSealSlotSub", sub, 124, 68, 264, 46, 26, true, Muted);
         }
 
         private void BeginCompare(ulong itemId)
@@ -132,6 +192,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 case Modal.PolishOdds: RenderPolishOddsModal(); break;
                 case Modal.Reforge: RenderReforgeModal(); break;
                 case Modal.BindConfirm: RenderBindConfirmModal(); break;
+                case Modal.EnhanceBindConfirm: RenderEnhanceBindConfirmModal(); break;
+                case Modal.UnsealConfirm: RenderUnsealConfirmModal(); break;
+                case Modal.InheritEnhance: RenderInheritEnhanceModal(); break;
             }
         }
 

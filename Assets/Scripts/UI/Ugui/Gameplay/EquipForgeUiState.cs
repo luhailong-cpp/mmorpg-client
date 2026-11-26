@@ -343,11 +343,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Rebuild();
         }
 
+        public bool RequiresBindConfirmationForEnhance => FindTarget(out _)?.EnhanceNext?.WillBindOnEnhance == true;
+
         /// <summary>
         /// 点「强化」。按钮置灰时不做任何事。下一级的失败规则会降级时先进入确认这一步(<see cref="EquipForgeView.Confirm"/>),
-        /// 否则直接发出。
+        /// 否则直接发出。可交易装备仅剩绑定石时须经长按 2 秒确认传入 allowBoundMaterials=true。
         /// </summary>
-        public void Enhance()
+        public void Enhance(bool allowBoundMaterials = false)
         {
             var view = Build();
             if (view.Stage != EquipForgeStage.Ready || !view.EnhanceButton.Enabled) return;
@@ -359,17 +361,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Rebuild();
                 return;
             }
-            SendEnhance(item);
+            SendEnhance(item, allowBoundMaterials);
         }
 
         /// <summary>确认那次会降级的强化。不在确认这一步,或此刻不能发,都不做任何事(确认框保持原样)。</summary>
-        public void ConfirmEnhance()
+        public void ConfirmEnhance(bool allowBoundMaterials = false)
         {
             if (!_confirming) return;
             var view = Build();
             if (view.Confirm == null || !view.Confirm.CanConfirm) return;
             _confirming = false;
-            SendEnhance(FindTarget(out _));
+            SendEnhance(FindTarget(out _), allowBoundMaterials);
         }
 
         public void CancelConfirm()
@@ -490,7 +492,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         // ── 发出 ──────────────────────────────────────────
 
-        private void SendEnhance(BagItemInfo item)
+        private void SendEnhance(BagItemInfo item, bool allowBoundMaterials = false)
         {
             if (item == null) return;
             _pickingSocket = null;
@@ -499,7 +501,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _enhanceLevelBefore = item.EnhanceLevel;
             _enhanceName = ItemName(item);
             ulong itemId = item.ItemId;
-            Call(EquipForgeOperation.Enhance, () => _client.EnhanceEquip(itemId));
+            Call(EquipForgeOperation.Enhance, () => _client.EnhanceEquip(itemId, allowBoundMaterials));
         }
 
         private void Call(EquipForgeOperation operation, Action call)

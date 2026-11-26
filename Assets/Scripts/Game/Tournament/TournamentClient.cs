@@ -37,15 +37,19 @@ namespace MmorpgClient.Game.Tournament
         private bool _overviewLoading;
         private bool _standingsLoading;
         private bool _mutating;
+        private bool _cheerLoading;
+        private bool _cheerSending;
 
         public ulong PlayerId => _net.PlayerId;
         public TournamentOverviewSnapshot Overview { get; private set; }
         public TournamentStandingsSnapshot Standings { get; private set; }
+        public TournamentSpectateCheerSnapshot SpectateCheer { get; private set; }
         public ulong LastLaunchedBattleId { get; private set; }
 
         public bool IsLoading => _overviewLoading || _standingsLoading;
         public bool IsMutating => _mutating;
         public bool IsBusy => IsLoading || IsMutating;
+        public bool IsSpectateCheerSending => _cheerSending;
         public string Status { get; private set; } = string.Empty;
         public string LastError { get; private set; } = string.Empty;
         /// <summary>最近一次服务端业务错误对应的结构化 Tip ID（0 表示无服务端 Tip 错误），供 UI 精准决策恢复路径。</summary>
@@ -53,6 +57,8 @@ namespace MmorpgClient.Game.Tournament
 
         public event Action Changed;
         public event Action<ulong> MatchBattleLaunched;
+        public event Action<TournamentSaluteOutcome> ChampionSaluted;
+        public event Action SpectateCheerChanged;
 
         public TournamentClient(
             IBattleTransport net,
@@ -108,14 +114,28 @@ namespace MmorpgClient.Game.Tournament
             ++_generation;
             Overview = null;
             Standings = null;
+            SpectateCheer = null;
             LastLaunchedBattleId = 0UL;
             _overviewLoading = false;
             _standingsLoading = false;
             _mutating = false;
+            _cheerLoading = false;
+            _cheerSending = false;
             Status = string.Empty;
             LastError = string.Empty;
             LastErrorTipId = 0u;
             Changed?.Invoke();
+            SpectateCheerChanged?.Invoke();
+        }
+
+        public void ClearSpectateCheer()
+        {
+            if (_disposed) return;
+            if (SpectateCheer == null && !_cheerLoading && !_cheerSending) return;
+            SpectateCheer = null;
+            _cheerLoading = false;
+            _cheerSending = false;
+            SpectateCheerChanged?.Invoke();
         }
 
         public void Dispose()
@@ -542,6 +562,152 @@ namespace MmorpgClient.Game.Tournament
             return true;
         }
 
+        /// <summary>V2 RPC 506：每日免费向总冠军观道致敬（每人每天 UTC+8 1 次，绑定银两与灵兽口粮发至邮箱）。</summary>
+        public bool SaluteChampion(uint seasonId = 0u)
+        {
+            if (!BeginMutation(MatchServiceRpc.SaluteTournamentChampionMessageId, "正在向总冠军观道致敬…", out int gen, out ulong player))
+                return false;
+
+            _net.Call(MatchServiceRpc.SaluteTournamentChampionMessageId,
+                new SaluteTournamentChampionRequest { SeasonId = seasonId },
+                SaluteTournamentChampionResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _mutating = false;
+                    if (HasTip(resp?.ErrorMessage))
+                    {
+                        FailServer(resp.ErrorMessage);
+                        return;
+                    }
+                    uint effSeason = resp?.SeasonId ?? seasonId;
+                    ulong saluteCount = resp?.ChampionSaluteCount ?? 0UL;
+                    if (Overview != null)
+                        Overview = Overview.WithSaluted(effSeason, saluteCount);
+                    var items = new List<TournamentRewardItem>();
+                    if (resp != null)
+                    {
+                        for (int i = 0; i < resp.Items.Count; i++)
+                            if (resp.Items[i] != null) items.Add(resp.Items[i].Clone());
+                    }
+                    var outcome = new TournamentSaluteOutcome(effSeason, saluteCount, resp?.GoldAmount ?? 0UL, items, resp?.MailId ?? 0UL);
+                    LastError = string.Empty;
+                    Status = "观道致敬成功，绑定薄礼已发至仙笺邮箱。";
+                    Changed?.Invoke();
+                    ChampionSaluted?.Invoke(outcome);
+                },
+                err =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _mutating = false;
+                    FailTransport("观道致敬失败", err);
+                });
+            return true;
+        }
+
+        /// <summary>V2 RPC 507：观战底部预设喝彩（严格白名单 phraseId 1..6、阵营 0/1，5 秒冷却，绝不本地臆造人气）。</summary>
+        public bool SendSpectateCheer(ulong battleId, uint phraseId, uint side)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (!_net.IsReady || PlayerId == 0UL)
+            {
+                FailLocal(NotInGameMessage);
+                return false;
+            }
+            if (battleId == 0UL || phraseId < 1u || phraseId > 6u || side > 1u)
+            {
+                FailLocal("无效的喝彩选项。");
+                return false;
+            }
+            if (_cheerSending) return false;
+            if (!TryConsumeBudget(MatchServiceRpc.SendTournamentSpectateCheerMessageId)) return false;
+
+            int gen = _generation;
+            ulong player = PlayerId;
+            _cheerSending = true;
+            LastError = string.Empty;
+            LastErrorTipId = 0u;
+            SpectateCheerChanged?.Invoke();
+
+            _net.Call(MatchServiceRpc.SendTournamentSpectateCheerMessageId,
+                new SendTournamentSpectateCheerRequest { BattleId = battleId, PhraseId = phraseId, Side = side },
+                SendTournamentSpectateCheerResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _cheerSending = false;
+                    if (resp != null && resp.BattleId != 0UL)
+                    {
+                        SpectateCheer = TournamentSpectateCheerSnapshot.Merge(
+                            SpectateCheer, resp.BattleId, resp.CountA, resp.CountB,
+                            resp.CooldownUntilMs, resp.RecentCheers, resp.ServerTimeMs, _clock());
+                    }
+                    if (HasTip(resp?.ErrorMessage))
+                    {
+                        LastErrorTipId = resp.ErrorMessage.Id;
+                        LastError = DescribeTip(resp.ErrorMessage);
+                        Status = LastError;
+                        SpectateCheerChanged?.Invoke();
+                        return;
+                    }
+                    LastError = string.Empty;
+                    LastErrorTipId = 0u;
+                    SpectateCheerChanged?.Invoke();
+                },
+                err =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _cheerSending = false;
+                    LastErrorTipId = TryExtractServerTipId(err);
+                    LastError = DescribeTransport("发送观战喝彩失败", err);
+                    Status = LastError;
+                    SpectateCheerChanged?.Invoke();
+                });
+            return true;
+        }
+
+        /// <summary>V2 RPC 508：增量拉取观战双方人气与近期预设喝彩（按 seq 增量拉取）。</summary>
+        public bool RequestSpectateCheer(ulong battleId, ulong afterSeq = 0UL)
+        {
+            if (_disposed || battleId == 0UL) return false;
+            ObserveConnection();
+            if (!_net.IsReady || PlayerId == 0UL) return false;
+            if (_cheerLoading) return false;
+            if (!TryConsumeBudget(MatchServiceRpc.GetTournamentSpectateCheerMessageId)) return false;
+
+            int gen = _generation;
+            ulong player = PlayerId;
+            _cheerLoading = true;
+            ulong effAfter = afterSeq;
+            if (effAfter == 0UL && SpectateCheer != null && SpectateCheer.BattleId == battleId)
+                effAfter = SpectateCheer.LatestSeq;
+
+            _net.Call(MatchServiceRpc.GetTournamentSpectateCheerMessageId,
+                new GetTournamentSpectateCheerRequest { BattleId = battleId, AfterSeq = effAfter },
+                GetTournamentSpectateCheerResponse.Parser,
+                resp =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _cheerLoading = false;
+                    if (HasTip(resp?.ErrorMessage)) return;
+                    if (resp != null)
+                    {
+                        ulong bid = resp.BattleId != 0UL ? resp.BattleId : battleId;
+                        SpectateCheer = TournamentSpectateCheerSnapshot.Merge(
+                            SpectateCheer, bid, resp.CountA, resp.CountB,
+                            resp.CooldownUntilMs, resp.RecentCheers, resp.ServerTimeMs, _clock());
+                        SpectateCheerChanged?.Invoke();
+                    }
+                },
+                _ =>
+                {
+                    if (!IsCurrent(gen, player)) return;
+                    _cheerLoading = false;
+                });
+            return true;
+        }
+
         public static string DescribeTip(TipInfoMessage tip)
         {
             if (tip == null || tip.Id == 0) return string.Empty;
@@ -577,6 +743,14 @@ namespace MmorpgClient.Game.Tournament
                     return "本赛季免费助威机会已使用（每人每季 1 票）。";
                 case (uint)match_error.KMatchTournamentRewardUnavailable:
                     return "暂无可领取的赛季奖励或奖励已发放。";
+                case (uint)match_error.KMatchTournamentAlreadySalutedToday:
+                    return "今日已向总冠军观道致敬，明日 0 点后可再次致敬。";
+                case (uint)match_error.KMatchTournamentNoChampionToSalute:
+                    return "当前暂无已诞生的总冠军可供观道致敬。";
+                case (uint)match_error.KMatchTournamentSpectateCheerCooldown:
+                    return "喝彩过于频繁，请稍候片刻再为道友加油。";
+                case (uint)match_error.KMatchTournamentSpectateCheerInvalid:
+                    return "当前对局不支持该喝彩选项，请稍后重试。";
                 case (uint)common_error.KRateLimitExceeded:
                     return "操作过于频繁，请稍后再试。";
                 case (uint)common_error.KServiceUnavailable:

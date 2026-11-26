@@ -16,6 +16,22 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.AreEqual("+35", DamageNumberLayout.FormatText(35, NumberKind.Heal));
             Assert.AreEqual("闪", DamageNumberLayout.FormatText(0, NumberKind.Miss));
             Assert.AreEqual("暴击-999", DamageNumberLayout.FormatText(999, NumberKind.Crit));
+            // 凝锋主目标仅展示角标，不改变服务端事件原始数值
+            Assert.AreEqual("凝锋 +20% -360", DamageNumberLayout.FormatText(360, NumberKind.Normal, DamageNumberFocusMode.PrimaryFocus));
+            Assert.AreEqual("凝锋 +20% 暴击-720", DamageNumberLayout.FormatText(720, NumberKind.Crit, DamageNumberFocusMode.PrimaryFocus));
+            Assert.AreEqual("溅射 -180", DamageNumberLayout.FormatText(180, NumberKind.Normal, DamageNumberFocusMode.SplashReduced));
+        }
+
+        [Test]
+        public void RoundWarningLevel_DistinguishesNormalAmberAndFinalVermilion()
+        {
+            Assert.AreEqual(0, BattleRoundCounter.ResolveRoundWarningLevel(1u, 0u));
+            Assert.AreEqual(0, BattleRoundCounter.ResolveRoundWarningLevel(17u, 20u));
+            Assert.AreEqual(1, BattleRoundCounter.ResolveRoundWarningLevel(18u, 20u));
+            Assert.AreEqual(1, BattleRoundCounter.ResolveRoundWarningLevel(19u, 20u));
+            Assert.AreEqual(2, BattleRoundCounter.ResolveRoundWarningLevel(20u, 20u));
+            Assert.AreEqual(1, BattleRoundCounter.ResolveRoundWarningLevel(14u, 16u));
+            Assert.AreEqual(2, BattleRoundCounter.ResolveRoundWarningLevel(16u, 16u));
         }
 
         [Test]

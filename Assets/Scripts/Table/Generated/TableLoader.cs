@@ -22,7 +22,7 @@ namespace MmorpgClient.Table
     public static class TableLoader
     {
         /// <summary>Number of generated tables.</summary>
-        public const int TableCount = 70;
+        public const int TableCount = 74;
 
         private static Action s_loadSuccessCallback;
 
@@ -77,6 +77,8 @@ namespace MmorpgClient.Table
                 GuildLevelTableManager.FileName(useBinary),
                 GuildRuleTableManager.FileName(useBinary),
                 GuildShopTableManager.FileName(useBinary),
+                GuildWarMilestoneTableManager.FileName(useBinary),
+                GuildWarRuleTableManager.FileName(useBinary),
                 ItemTableManager.FileName(useBinary),
                 MessageLimiterTableManager.FileName(useBinary),
                 MirrorTableManager.FileName(useBinary),
@@ -99,6 +101,8 @@ namespace MmorpgClient.Table
                 SkillTableManager.FileName(useBinary),
                 SkillPermissionTableManager.FileName(useBinary),
                 SkillScrollCraftTableManager.FileName(useBinary),
+                SpiritShopGoodsTableManager.FileName(useBinary),
+                SpiritShopLimitGroupTableManager.FileName(useBinary),
                 TestTableManager.FileName(useBinary),
                 TestMultiKeyTableManager.FileName(useBinary),
                 TournamentRewardTableManager.FileName(useBinary),
@@ -154,6 +158,8 @@ namespace MmorpgClient.Table
             GuildLevelTableManager.Instance.Load(configDir, useBinary);
             GuildRuleTableManager.Instance.Load(configDir, useBinary);
             GuildShopTableManager.Instance.Load(configDir, useBinary);
+            GuildWarMilestoneTableManager.Instance.Load(configDir, useBinary);
+            GuildWarRuleTableManager.Instance.Load(configDir, useBinary);
             ItemTableManager.Instance.Load(configDir, useBinary);
             MessageLimiterTableManager.Instance.Load(configDir, useBinary);
             MirrorTableManager.Instance.Load(configDir, useBinary);
@@ -176,6 +182,8 @@ namespace MmorpgClient.Table
             SkillTableManager.Instance.Load(configDir, useBinary);
             SkillPermissionTableManager.Instance.Load(configDir, useBinary);
             SkillScrollCraftTableManager.Instance.Load(configDir, useBinary);
+            SpiritShopGoodsTableManager.Instance.Load(configDir, useBinary);
+            SpiritShopLimitGroupTableManager.Instance.Load(configDir, useBinary);
             TestTableManager.Instance.Load(configDir, useBinary);
             TestMultiKeyTableManager.Instance.Load(configDir, useBinary);
             TournamentRewardTableManager.Instance.Load(configDir, useBinary);
@@ -287,6 +295,10 @@ namespace MmorpgClient.Table
                 GuildRuleTableManager.Instance.LoadFromBytes, GuildRuleTableManager.Instance.LoadFromJson);
             LoadOne(GuildShopTableManager.FileName(useBinary), byteProvider, useBinary,
                 GuildShopTableManager.Instance.LoadFromBytes, GuildShopTableManager.Instance.LoadFromJson);
+            LoadOne(GuildWarMilestoneTableManager.FileName(useBinary), byteProvider, useBinary,
+                GuildWarMilestoneTableManager.Instance.LoadFromBytes, GuildWarMilestoneTableManager.Instance.LoadFromJson);
+            LoadOne(GuildWarRuleTableManager.FileName(useBinary), byteProvider, useBinary,
+                GuildWarRuleTableManager.Instance.LoadFromBytes, GuildWarRuleTableManager.Instance.LoadFromJson);
             LoadOne(ItemTableManager.FileName(useBinary), byteProvider, useBinary,
                 ItemTableManager.Instance.LoadFromBytes, ItemTableManager.Instance.LoadFromJson);
             LoadOne(MessageLimiterTableManager.FileName(useBinary), byteProvider, useBinary,
@@ -331,6 +343,10 @@ namespace MmorpgClient.Table
                 SkillPermissionTableManager.Instance.LoadFromBytes, SkillPermissionTableManager.Instance.LoadFromJson);
             LoadOne(SkillScrollCraftTableManager.FileName(useBinary), byteProvider, useBinary,
                 SkillScrollCraftTableManager.Instance.LoadFromBytes, SkillScrollCraftTableManager.Instance.LoadFromJson);
+            LoadOne(SpiritShopGoodsTableManager.FileName(useBinary), byteProvider, useBinary,
+                SpiritShopGoodsTableManager.Instance.LoadFromBytes, SpiritShopGoodsTableManager.Instance.LoadFromJson);
+            LoadOne(SpiritShopLimitGroupTableManager.FileName(useBinary), byteProvider, useBinary,
+                SpiritShopLimitGroupTableManager.Instance.LoadFromBytes, SpiritShopLimitGroupTableManager.Instance.LoadFromJson);
             LoadOne(TestTableManager.FileName(useBinary), byteProvider, useBinary,
                 TestTableManager.Instance.LoadFromBytes, TestTableManager.Instance.LoadFromJson);
             LoadOne(TestMultiKeyTableManager.FileName(useBinary), byteProvider, useBinary,

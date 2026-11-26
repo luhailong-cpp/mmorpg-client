@@ -331,7 +331,16 @@ namespace MmorpgClient.Game.PlayerFeatures
                     choice.ConfigId == 0 && choice.ItemId != 0 && choice.AffixId != 0
                     && !choice.UseGuaranteeCharm && choice.ProxyMasterPlayerId == 0 && !choice.HasExpectedPolishPityCount,
                 EquipmentCraftChoice.Types.Operation.PolishAffix =>
-                    choice.ConfigId == 0 && choice.ItemId != 0 && choice.AffixId == 0,
+                    choice.ConfigId == 0 && choice.ItemId != 0 && choice.AffixId == 0 && choice.SourceItemId == 0,
+                EquipmentCraftChoice.Types.Operation.UnsealToTradable =>
+                    choice.ConfigId == 0 && choice.ItemId != 0 && choice.SourceItemId == 0 && choice.AffixSlot == 0
+                    && choice.AffixId == 0 && !choice.UseGuaranteeCharm && choice.ProxyMasterPlayerId == 0
+                    && !choice.HasExpectedPolishPityCount,
+                EquipmentCraftChoice.Types.Operation.InheritEnhance =>
+                    choice.ConfigId == 0 && choice.ItemId != 0 && choice.SourceItemId != 0
+                    && choice.SourceItemId != choice.ItemId && choice.AffixSlot == 0 && choice.AffixId == 0
+                    && !choice.UseGuaranteeCharm && choice.ProxyMasterPlayerId == 0
+                    && !choice.HasExpectedPolishPityCount,
                 _ => false,
             };
         }

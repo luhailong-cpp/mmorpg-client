@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using MmorpgClient.UI.Ugui;
 using NUnit.Framework;
 
@@ -33,7 +34,11 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(SeasonEconomyUiArt.BossAvatarIconKey(2u), Is.EqualTo("boss_break_avatar"));
             Assert.That(SeasonEconomyUiArt.BossAvatarIconKey(3u), Is.EqualTo("boss_barrier_avatar"));
             Assert.That(SeasonEconomyUiArt.BossAvatarIconKey(4u), Is.EqualTo("boss_venom_avatar"));
+            Assert.That(SeasonEconomyUiArt.BossAvatarIconKey(8u), Is.EqualTo("boss_avatar_dual_guard"));
             Assert.That(SeasonEconomyUiArt.BossAvatarIconKey(99u), Is.EqualTo("boss_break_avatar"));
+            SeasonEconomyUiArt.BossCardIntentIcons(8u, out string dualPrimary, out string dualSecondary);
+            Assert.That(dualPrimary, Is.EqualTo("intent_guard_heal"));
+            Assert.That(dualSecondary, Is.EqualTo("intent_stance_phys"));
         }
 
         [Test]
@@ -97,6 +102,91 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(SeasonEconomyUiArt.ComputeProgressRatio(7UL, 20UL), Is.EqualTo(0.35f).Within(0.001f));
             Assert.That(SeasonEconomyUiArt.ComputeProgressRatio(19UL, 20UL, forceFull: true), Is.EqualTo(1f));
             Assert.That(SeasonEconomyUiArt.ComputeProgressRatio(999UL, 660UL), Is.EqualTo(1f));
+
+            Assert.That(SeasonEconomyUiArt.IsMaxEnhanced(0u, 0u), Is.False);
+            Assert.That(SeasonEconomyUiArt.IsMaxEnhanced(10u, 11u), Is.False);
+            Assert.That(SeasonEconomyUiArt.IsMaxEnhanced(11u, 11u), Is.True);
+            Assert.That(SeasonEconomyUiArt.IsMaxEnhanced(12u, 11u), Is.True);
+            Assert.That(SeasonEconomyUiArt.SeasonFrame9SliceControlKey, Is.EqualTo("window_frame_season_9slice"));
+            Assert.That(SeasonEconomyUiArt.SeasonTitlePlaqueControlKey, Is.EqualTo("season_title_plaque"));
+            Assert.That(SeasonEconomyUiArt.Plus11SlotHaloIconKey, Is.EqualTo("plus11_slot_halo"));
+        }
+
+        [Test]
+        public void CraftQualitySkillAssets_All26RuntimeSpritesAndBordersExistWithMeta()
+        {
+            string cwd = Directory.GetCurrentDirectory();
+            string assetsRoot = Directory.Exists(Path.Combine(cwd, "Assets", "Resources"))
+                ? Path.Combine(cwd, "Assets")
+                : Path.Combine(cwd, "mmorpg-client", "Assets");
+            string craftRoot = Path.Combine(assetsRoot, "Resources", "UI", "Ugui", "CraftQualitySkill");
+            string skillsRoot = Path.Combine(assetsRoot, "Resources", "UI", "Skills");
+            Assert.That(Directory.Exists(craftRoot), Is.True, $"Missing CraftQualitySkill directory at {craftRoot}");
+
+            var expectedControls = new (string File, string Border)[]
+            {
+                ("quality_tag_1_common.png", "spriteBorder: {x: 64, y: 0, z: 64, w: 0}"),
+                ("quality_tag_2_good.png", "spriteBorder: {x: 64, y: 0, z: 64, w: 0}"),
+                ("quality_tag_3_fine.png", "spriteBorder: {x: 64, y: 0, z: 64, w: 0}"),
+                ("quality_tag_4_precious.png", "spriteBorder: {x: 64, y: 0, z: 64, w: 0}"),
+                ("quality_tag_5_supreme.png", "spriteBorder: {x: 68, y: 0, z: 68, w: 0}"),
+                ("pity_bar_bg.png", "spriteBorder: {x: 32, y: 0, z: 32, w: 0}"),
+                ("pity_bar_fill_normal.png", "spriteBorder: {x: 28, y: 0, z: 28, w: 0}"),
+                ("pity_bar_fill_ready.png", "spriteBorder: {x: 28, y: 0, z: 28, w: 0}"),
+                ("seal_master_signature.png", "spriteBorder: {x: 53, y: 0, z: 53, w: 0}"),
+                ("banner_safe_escrow.png", "spriteBorder: {x: 62, y: 0, z: 62, w: 0}"),
+                ("mastery_badge_apprentice.png", "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("mastery_badge_artisan.png", "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("mastery_badge_grandmaster.png", "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("scroll_tab_normal.png", "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("scroll_tab_selected.png", "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                ("badge_rare_skill.png", "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+            };
+
+            foreach (var (file, border) in expectedControls)
+            {
+                string pngPath = Path.Combine(craftRoot, file);
+                string metaPath = pngPath + ".meta";
+                Assert.That(File.Exists(pngPath), Is.True, $"Missing control PNG: {file}");
+                Assert.That(File.Exists(metaPath), Is.True, $"Missing control meta: {file}.meta");
+                string meta = File.ReadAllText(metaPath);
+                Assert.That(meta, Does.Contain("textureType: 8"), file);
+                Assert.That(meta, Does.Contain("spriteMode: 1"), file);
+                Assert.That(meta, Does.Contain(border), file);
+            }
+
+            string[] expectedIcons =
+            {
+                "item_star_guarantee_charm.png",
+                "item_enlightenment_page.png",
+                "item_rare_scroll_fragment.png",
+                "item_celestial_ink.png",
+                "skill_yu_zhan_yu_yong.png",
+                "skill_shen_mou_yuan_lv.png",
+                "skill_bu_bu_wei_ying.png",
+            };
+            foreach (string icon in expectedIcons)
+            {
+                string pngPath = Path.Combine(craftRoot, "Icons", icon);
+                string metaPath = pngPath + ".meta";
+                Assert.That(File.Exists(pngPath), Is.True, $"Missing icon PNG: {icon}");
+                Assert.That(File.Exists(metaPath), Is.True, $"Missing icon meta: {icon}.meta");
+                string meta = File.ReadAllText(metaPath);
+                Assert.That(meta, Does.Contain("textureType: 8"), icon);
+                Assert.That(meta, Does.Contain("spriteMode: 1"), icon);
+                Assert.That(meta, Does.Contain("spriteBorder: {x: 0, y: 0, z: 0, w: 0}"), icon);
+            }
+
+            foreach (string sid in new[] { "12020.png", "12021.png", "12022.png" })
+            {
+                string pngPath = Path.Combine(skillsRoot, sid);
+                string metaPath = pngPath + ".meta";
+                Assert.That(File.Exists(pngPath), Is.True, $"Missing UI/Skills icon: {sid}");
+                Assert.That(File.Exists(metaPath), Is.True, $"Missing UI/Skills meta: {sid}.meta");
+                string meta = File.ReadAllText(metaPath);
+                Assert.That(meta, Does.Contain("textureType: 8"), sid);
+                Assert.That(meta, Does.Contain("spriteMode: 1"), sid);
+            }
         }
     }
 }

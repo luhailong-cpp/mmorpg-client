@@ -19,7 +19,9 @@ namespace MmorpgClient.UI.Ugui
         Appearance, // 角色形象切换与 1 小时免费试用(AppearanceUiRoot);落在「修行」
         Ranked, // 论剑排位首发 V1(RankedUiRoot);落在「历练」
         PetFlip, // 灵宠翻牌休闲小游戏(PetFlipUiRoot);落在「历练」
-        Tournament // 全服赛季战队锦标赛《群仙问道赛》V1(TournamentUiRoot);落在「历练」
+        Tournament, // 全服赛季战队锦标赛《群仙问道赛》V1(TournamentUiRoot);落在「历练」
+        SkillCraft, // 率土式分卷宗技能制书与未学书架(SkillUiRoot.OpenCrafting);落在「修行」
+        ProxyCraft // 主城西市名匠代打摊位(SkillUiRoot.OpenProxyStalls);落在「交易」
     }
 
     /// <summary>
@@ -74,7 +76,7 @@ namespace MmorpgClient.UI.Ugui
         private TMP_Text _title, _description;
         private Image _categoryIllustration;
         private GameObject _locationBoard;
-        private Slot _skills;
+        private Slot _skills, _skillCraft, _proxyCraft;
         private WorldHudLayout _layout;
 
         public static WorldHudNavigation Instance { get; private set; }
@@ -200,6 +202,20 @@ namespace MmorpgClient.UI.Ugui
             skills.onClick.AddListener(Skills.SkillUiRoot.Open);
             _skills = CreateSlot(WorldHudEntry.Skills, (RectTransform)skills.transform, skills, skillLabel);
             skills.onClick.AddListener(() => ShowCategory(null));
+
+            var skillCraft = QdaoUguiFactory.CreateHitButton("SkillCraftEntry", Root, 0, 0, TileWidth, TileHeight);
+            var skillCraftLabel = QdaoUguiFactory.CreateText("SkillCraftLabel", skillCraft.transform, 0, 0,
+                TileWidth, 36, "典籍制书", 28, QdaoCoreFidelityArt.Ink, TextAlignmentOptions.Center);
+            skillCraft.onClick.AddListener(() => Skills.SkillUiRoot.OpenCrafting());
+            _skillCraft = CreateSlot(WorldHudEntry.SkillCraft, (RectTransform)skillCraft.transform, skillCraft, skillCraftLabel);
+            skillCraft.onClick.AddListener(() => ShowCategory(null));
+
+            var proxyCraft = QdaoUguiFactory.CreateHitButton("ProxyCraftEntry", Root, 0, 0, TileWidth, TileHeight);
+            var proxyCraftLabel = QdaoUguiFactory.CreateText("ProxyCraftLabel", proxyCraft.transform, 0, 0,
+                TileWidth, 36, "名匠代打", 28, QdaoCoreFidelityArt.Ink, TextAlignmentOptions.Center);
+            proxyCraft.onClick.AddListener(Skills.SkillUiRoot.OpenProxyStalls);
+            _proxyCraft = CreateSlot(WorldHudEntry.ProxyCraft, (RectTransform)proxyCraft.transform, proxyCraft, proxyCraftLabel);
+            proxyCraft.onClick.AddListener(() => ShowCategory(null));
             RefreshPresentation();
         }
 
@@ -357,7 +373,8 @@ namespace MmorpgClient.UI.Ugui
         {
             if (_chrome == null) return;
             // 原生Canvas可比托管布局/子控件存活更久；退出阶段不再刷新残留视图。
-            if (_layout == null || _skills == null || _dismiss == null || _panel == null ||
+            if (_layout == null || _skills == null || _skillCraft == null || _proxyCraft == null ||
+                _dismiss == null || _panel == null ||
                 _locationBoard == null || _socialNotice == null || _title == null ||
                 _description == null || _categoryIllustration == null || _close == null)
             {
@@ -389,7 +406,11 @@ namespace MmorpgClient.UI.Ugui
                 if ((slot.Id == WorldHudEntry.Team || slot.Id == WorldHudEntry.Mail) &&
                     slot.Label != null && slot.Label.text.Contains("·")) socialNotice = true;
             }
-            if(roleAvailable)_categoryAvailable[(int)WorldHudCategory.Cultivation]=true;
+            if (roleAvailable)
+            {
+                _categoryAvailable[(int)WorldHudCategory.Cultivation] = true;
+                _categoryAvailable[(int)WorldHudCategory.Trade] = true;
+            }
             if (!available || (CurrentCategory.HasValue && !_categoryAvailable[(int)CurrentCategory.Value]))
                 CurrentCategory = null;
             _chrome.gameObject.SetActive(available);
@@ -424,6 +445,13 @@ namespace MmorpgClient.UI.Ugui
             SetShown(_skills, skillsShown);
             _layout.Entry(WorldHudEntry.Skills, skillsShown);
             if (skillsShown) position++;
+            SetShown(_skillCraft, skillsShown);
+            _layout.Entry(WorldHudEntry.SkillCraft, skillsShown);
+            if (skillsShown) position++;
+            bool proxyShown = roleAvailable && CurrentCategory == WorldHudCategory.Trade;
+            SetShown(_proxyCraft, proxyShown);
+            _layout.Entry(WorldHudEntry.ProxyCraft, proxyShown);
+            if (proxyShown) position++;
             _layout.Rebuild(position, locationAvailable, available && CurrentCategory.HasValue);
             SyncAllLayout();
             WorldSideHudRoot.Instance?.ApplyResponsiveLayout(_layout.Side);
@@ -463,6 +491,8 @@ namespace MmorpgClient.UI.Ugui
         {
             foreach (var slot in _slots) SyncLayout(slot);
             SyncLayout(_skills);
+            SyncLayout(_skillCraft);
+            SyncLayout(_proxyCraft);
         }
 
         private static bool IsQuick(WorldHudEntry id)
@@ -474,9 +504,9 @@ namespace MmorpgClient.UI.Ugui
 
         private static WorldHudCategory Category(WorldHudEntry id) => id switch
         {
-            WorldHudEntry.Role or WorldHudEntry.Pet or WorldHudEntry.Skills or WorldHudEntry.Appearance => WorldHudCategory.Cultivation,
+            WorldHudEntry.Role or WorldHudEntry.Pet or WorldHudEntry.Skills or WorldHudEntry.Appearance or WorldHudEntry.SkillCraft => WorldHudCategory.Cultivation,
             WorldHudEntry.Team or WorldHudEntry.Guild or WorldHudEntry.Social or WorldHudEntry.Mail => WorldHudCategory.Social,
-            WorldHudEntry.Trade => WorldHudCategory.Trade,
+            WorldHudEntry.Trade or WorldHudEntry.ProxyCraft => WorldHudCategory.Trade,
             _ => WorldHudCategory.Adventure
         };
 
@@ -499,6 +529,12 @@ namespace MmorpgClient.UI.Ugui
             if (id == WorldHudEntry.Tournament)
                 return Resources.Load<Sprite>("UI/Ugui/MailV1/round_badge_taiji")
                     ?? QdaoUguiTheme.RequireSprite("UI/Ugui/RefreshV8/round_badge_taiji");
+            if (id == WorldHudEntry.SkillCraft)
+                return SeasonEconomyUiArt.LoadCraftIcon("item_enlightenment_page")
+                    ?? QdaoUguiTheme.RequireSprite("UI/Ugui/RefreshV8/round_badge_taiji");
+            if (id == WorldHudEntry.ProxyCraft)
+                return SeasonEconomyUiArt.LoadCraftControl("mastery_badge_grandmaster")
+                    ?? QdaoUguiTheme.RequireSprite("UI/Ugui/RefreshV8/round_badge_taiji");
 
             var path = NewArt + id.ToString().ToLowerInvariant();
             return LoadIcon(path, "UI/Ugui/RefreshV8/round_badge_taiji");
@@ -518,6 +554,8 @@ namespace MmorpgClient.UI.Ugui
             WorldHudEntry.Ranked => "论剑排位",
             WorldHudEntry.PetFlip => PetFlip.PetFlipUiPresentation.EntryPurposeText,
             WorldHudEntry.Tournament => "全服战队赛",
+            WorldHudEntry.SkillCraft => "道籍拓印",
+            WorldHudEntry.ProxyCraft => "官府托管",
             _ => string.Empty
         };
 

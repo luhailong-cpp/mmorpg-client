@@ -9,15 +9,18 @@ namespace MmorpgClient.UI.Ugui.Ranked
 {
     using Transform = UnityEngine.Transform;
     /// <summary>
-    /// 论剑排位 V1 UGUI 美术资源目录与无 9-slice 控件工厂。
-    /// 仅加载交接包内已验收导入的 47 张无字 PNG（Assets/Resources/UI/Ugui/LunjianV1/），
-    /// 严格禁用 ui-window / button-primary-cloud 与任何九宫格拉伸，动态中文统一走项目内置字体。
+    /// 论剑排位 UGUI 美术资源目录与无 9-slice 控件工厂。
+    /// 2026-11-25 起按 designs/lunjian-ui-v1/RETIRED_STYLE.md 与 ranked-play-v2-ui-20261125：
+    /// - 严禁复用已退场的旧论剑主窗框（ui-window / ui-window-clean）与错误人物素材（avatar-pozheng/kongchang/shouxin、role-*-full）；
+    /// - 主窗框、页签、按钮、表头与列表行统一复用已验收同源帮会控件（UI/Ugui/GuildFidelity20261016/）；
+    /// - 人物头像由客户端绑定真实角色（QdaoCharacterCatalog），缺图时显示中性道家占位；动态中文统一走项目内置字体。
     /// </summary>
     public static class RankedArtCatalog
     {
         public const float DesignWidth = 1920f;
         public const float DesignHeight = 1080f;
         public const string ResourcePrefix = "UI/Ugui/LunjianV1/";
+        public const string GuildApprovedPrefix = "UI/Ugui/GuildFidelity20261016/";
 
         public static readonly Color GoldCream = QdaoUguiTheme.Html("#FFEFC2");
         public static readonly Color GoldSoft = QdaoUguiTheme.Html("#F5E5B4");
@@ -43,23 +46,24 @@ namespace MmorpgClient.UI.Ugui.Ranked
             return sprite;
         }
 
+        /// <summary>加载已验收同源帮会道家 Q 版控件（与 ranked-play-v2-ui-20261125/assets 逐字节一致）。</summary>
+        public static Sprite LoadGuildApproved(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return null;
+            string cacheKey = "guild:" + key;
+            if (Cache.TryGetValue(cacheKey, out var cached) && cached != null) return cached;
+            var sprite = Resources.Load<Sprite>(GuildApprovedPrefix + key);
+            if (sprite != null) Cache[cacheKey] = sprite;
+            return sprite;
+        }
+
         public static Sprite RankBadge(RankedTier tier) => Load(RankedFormatting.TierBadgeKey(tier));
 
-        public static Sprite CharacterAvatar(uint presetId) => presetId switch
-        {
-            101 => Load("avatar-pozheng"),
-            102 => Load("avatar-kongchang"),
-            103 => Load("avatar-shouxin"),
-            _ => Load("avatar-pozheng"),
-        };
+        /// <summary>旧论剑角色头像已按 RETIRED_STYLE.md 禁用；真实玩家头像须经 QdaoCharacterCatalog.LoadPortrait 绑定。</summary>
+        public static Sprite CharacterAvatar(uint presetId) => null;
 
-        public static Sprite CharacterFull(uint presetId) => presetId switch
-        {
-            101 => Load("role-pozheng-full"),
-            102 => Load("role-kongchang-full"),
-            103 => Load("role-shouxin-full"),
-            _ => Load("role-pozheng-full"),
-        };
+        /// <summary>旧论剑角色全身图已按 RETIRED_STYLE.md 禁用；真实角色立绘由客户端动态绑定。</summary>
+        public static Sprite CharacterFull(uint presetId) => null;
 
         public static Sprite PetPortrait(uint presetId) => presetId switch
         {
@@ -68,6 +72,33 @@ namespace MmorpgClient.UI.Ugui.Ranked
             203 => Load("pet-shiling"),
             _ => Load("pet-shiling"),
         };
+
+        public static Image CreateGuildArt(string name, Transform parent, float x, float y, float w, float h,
+            string guildKey, bool preserveAspect = false, bool raycastTarget = false)
+        {
+            var img = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, LoadGuildApproved(guildKey), raycastTarget);
+            img.type = Image.Type.Simple;
+            img.preserveAspect = preserveAspect;
+            if (img.sprite == null) img.color = SeasonEconomyUiArt.BattleArenaPaper;
+            return img;
+        }
+
+        public static Button CreateGuildButton(string name, Transform parent, float x, float y, float w, float h,
+            string guildKey, string labelText, float fontSize, Color labelColor,
+            out Image image, out TMP_Text label, bool preserveAspect = false)
+        {
+            var btn = QdaoUguiFactory.CreateArtButton(name, parent, x, y, w, h, LoadGuildApproved(guildKey), out image);
+            image.type = Image.Type.Simple;
+            image.preserveAspect = preserveAspect;
+            if (image.sprite == null) image.color = SeasonEconomyUiArt.BattleArenaPaper;
+            label = QdaoUguiFactory.CreateText(name + "_Label", btn.transform, 10f, 0f, w - 20f, h,
+                labelText, fontSize, labelColor, TextAlignmentOptions.Center);
+            label.fontStyle = FontStyles.Bold;
+            label.enableAutoSizing = true;
+            label.fontSizeMin = Mathf.Max(14f, fontSize - 8f);
+            label.fontSizeMax = fontSize;
+            return btn;
+        }
 
         public static Image CreateArt(string name, Transform parent, float x, float y, float w, float h,
             string spriteKey, bool preserveAspect = false, bool raycastTarget = false)

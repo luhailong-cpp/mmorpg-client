@@ -1,3 +1,4 @@
+using MmorpgClient.Game;
 using MmorpgClient.Game.Team;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.Gameplay;
@@ -44,7 +45,11 @@ namespace MmorpgClient.UI.Ugui.Team
         private RectTransform _hud;
         private Button _toggle;
         private TMP_Text _toggleLabel;
+        private GameObject _stateBadge;
+        private TMP_Text _stateBadgeLabel;
         private TeamFollowStatus _shownStatus = TeamFollowStatus.None;
+        private ProtagonistPresentationMode _shownStateBadgeMode = ProtagonistPresentationMode.Free;
+        private MmorpgClient.Game.GameClient _boundGameClient;
         private bool _available;
         private float _nextHintAt;
 
@@ -81,6 +86,7 @@ namespace MmorpgClient.UI.Ugui.Team
             _toggle.gameObject.SetActive(false);
             WorldHudNavigation.Register(WorldHudEntry.TeamFollow,
                 (RectTransform)_toggle.transform, _toggle, _toggleLabel);
+            BuildStateBadge();
             _hud.gameObject.SetActive(false);
             _follow.InputRejected += ShowInputHint;
             // 联机验收排障:环境变量 MMORPG_FOLLOW_TRACE=1 时把跟随驱动的诊断行写进播放器日志([follow] 前缀)。
@@ -96,8 +102,10 @@ namespace MmorpgClient.UI.Ugui.Team
             // 但此时新会话还没进游戏,_available 为假,不会据旧视图发声明。
             var client = TeamUiRoot.Instance?.Client;
             bool inGame = game != null && game.InGame && game.IsGateReady;
+            BindGameState(inGame ? game : null);
             _available = inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
             _hud.gameObject.SetActive(_available);
+            RefreshStateBadge(game);
 
             bool trusted = client != null && client.HasView;
             // allowed 只看「是否已进游戏且不在战斗」,不与 trusted 绑在一起:托管重连接回时服务器先推 driven=true,
@@ -135,8 +143,76 @@ namespace MmorpgClient.UI.Ugui.Team
             BattleUiRoot.Instance?.ShowToast(InputHint);
         }
 
+        private void BuildStateBadge()
+        {
+            if (_hud == null) return;
+            var rect = QdaoUguiFactory.CreateRect("ProtagonistStateBadge", _hud,
+                ToggleX, ToggleY + BattleUiStyle.HudEntryHeight + 8f, ToggleWidth, 34f);
+            var bg = rect.gameObject.AddComponent<Image>();
+            bg.sprite = GameplayUiArt.Load("hud_panel");
+            if (bg.sprite != null && bg.sprite.border.sqrMagnitude > 0f) bg.type = Image.Type.Sliced;
+            bg.color = new Color(0.14f, 0.17f, 0.16f, 0.88f);
+            bg.raycastTarget = false;
+            _stateBadgeLabel = QdaoUguiFactory.CreateText("Text", rect, 8f, 2f, ToggleWidth - 16f, 30f,
+                string.Empty, 18f, BattleUiStyle.WarnText, TextAlignmentOptions.Center);
+            _stateBadgeLabel.raycastTarget = false;
+            _stateBadge = rect.gameObject;
+            _stateBadge.SetActive(false);
+        }
+
+        private void BindGameState(MmorpgClient.Game.GameClient game)
+        {
+            if (ReferenceEquals(_boundGameClient, game)) return;
+            UnbindGameState();
+            if (game == null) return;
+            _boundGameClient = game;
+            _boundGameClient.OnSelfActorStateChanged += HandleSelfActorStateChanged;
+        }
+
+        private void UnbindGameState()
+        {
+            if (_boundGameClient == null) return;
+            _boundGameClient.OnSelfActorStateChanged -= HandleSelfActorStateChanged;
+            _boundGameClient = null;
+        }
+
+        private void HandleSelfActorStateChanged(SelfActorStateSnapshot prev, SelfActorStateSnapshot next)
+        {
+            if (BattleUiRoot.Instance?.IsBattleLayerVisible ?? false) return;
+            if (!prev.IsSilenced && next.IsSilenced)
+                BattleUiRoot.Instance?.ShowToast("已进入受控/沉默状态，行动与技能受限", true);
+            else if (prev.IsSilenced && !next.IsSilenced)
+                BattleUiRoot.Instance?.ShowToast("受控/沉默状态已解除");
+        }
+
+        private void RefreshStateBadge(MmorpgClient.Game.GameClient game)
+        {
+            if (_stateBadge == null || _stateBadgeLabel == null) return;
+            var mode = _available && game?.Presentation != null
+                ? game.Presentation.CurrentMode
+                : ProtagonistPresentationMode.Free;
+            if (mode == _shownStateBadgeMode) return;
+            _shownStateBadgeMode = mode;
+            string text = mode switch
+            {
+                ProtagonistPresentationMode.Controlled => "状态：沉默受控",
+                ProtagonistPresentationMode.Mounted => "状态：骑乘中",
+                ProtagonistPresentationMode.TeamFollow => "状态：组队跟随",
+                _ => string.Empty,
+            };
+            bool visible = !string.IsNullOrEmpty(text);
+            if (_stateBadge.activeSelf != visible) _stateBadge.SetActive(visible);
+            if (visible) _stateBadgeLabel.text = text;
+        }
+
+        private void OnDisable()
+        {
+            UnbindGameState();
+        }
+
         private void OnDestroy()
         {
+            UnbindGameState();
             _follow.InputRejected -= ShowInputHint;
             _follow.Release();
             if (Instance == this) Instance = null;

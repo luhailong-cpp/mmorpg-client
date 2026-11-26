@@ -465,5 +465,27 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(received.ResultQualityTier, Is.EqualTo(5u));
             Assert.That(_ui.LastApplied.GuaranteedByPity, Is.True);
         }
+
+        [Test]
+        public void UnsealAndInheritEnhanceForwardExactOperationsAndSourceItem()
+        {
+            _ui.SelectUnsealToTradable(ItemId);
+            var unsealChoice = ((PreviewEquipmentCraftRequest)Last.Request).Choice;
+            Assert.That(unsealChoice.Operation, Is.EqualTo(EquipmentCraftChoice.Types.Operation.UnsealToTradable));
+            Assert.That(unsealChoice.ItemId, Is.EqualTo(ItemId));
+            Last.Respond(new PreviewEquipmentCraftResponse { Preview = PreviewFor(unsealChoice, available: true) });
+            Assert.That(_ui.CanCommit, Is.True);
+
+            _ui.SelectInheritEnhance(ItemId, 7777UL);
+            var inheritChoice = ((PreviewEquipmentCraftRequest)Last.Request).Choice;
+            Assert.That(inheritChoice.Operation, Is.EqualTo(EquipmentCraftChoice.Types.Operation.InheritEnhance));
+            Assert.That(inheritChoice.ItemId, Is.EqualTo(ItemId));
+            Assert.That(inheritChoice.SourceItemId, Is.EqualTo(7777UL));
+            Last.Respond(new PreviewEquipmentCraftResponse { Preview = PreviewFor(inheritChoice, available: true) });
+            Assert.That(_ui.CanCommit, Is.True);
+            _ui.Commit();
+            Assert.That(Write.Choice.Operation, Is.EqualTo(EquipmentCraftChoice.Types.Operation.InheritEnhance));
+            Assert.That(Write.Choice.SourceItemId, Is.EqualTo(7777UL));
+        }
     }
 }

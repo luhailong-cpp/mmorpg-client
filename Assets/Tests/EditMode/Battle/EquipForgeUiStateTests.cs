@@ -1355,6 +1355,27 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(View.Confirm, Is.Null, "换一件:不带着上一件的确认框");
         }
 
+        [Test]
+        public void EnhanceForwardsAllowBoundMaterialsAndExposesBindConfirmationRequirement()
+        {
+            var tradable = Weapon(Sword);
+            tradable.Bound = false;
+            tradable.EnhanceNext.WillBindOnEnhance = true;
+            tradable.EnhanceNext.TradableMaterialAvailable = 0;
+            Load(StandardBag(sword: tradable), StandardEquipment());
+            _ui.Open(Sword);
+
+            Assert.That(_ui.RequiresBindConfirmationForEnhance, Is.True);
+            _ui.Enhance(allowBoundMaterials: false);
+            Assert.That(((EnhanceEquipRequest)LastEnhance(Sword).Request).AllowBoundMaterials, Is.False);
+            LastEnhance(Sword).Respond(new EnhanceEquipResponse { ErrorMessage = new TipInfoMessage { Id = (uint)equip_error.KEquipBindConfirmRequired } });
+
+            _now += 2000;
+            _ui.Tick();
+            _ui.Enhance(allowBoundMaterials: true);
+            Assert.That(((EnhanceEquipRequest)LastEnhance(Sword).Request).AllowBoundMaterials, Is.True);
+        }
+
         /// <summary>真实传输没连上时会在 Call 内部同步回调 onError;其余调用照常交给 <see cref="FakeBattleTransport"/>。</summary>
         private sealed class SyncFailingTransport : IBattleTransport
         {

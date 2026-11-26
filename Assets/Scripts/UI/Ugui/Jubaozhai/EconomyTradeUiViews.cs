@@ -402,5 +402,118 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             GameplayUiArt.Text(card, "物品与唯一实例：\n" + FaceToFaceTradeDiffModel.DescribeInstances(assets, instances, pet),
                 20f, 100f, w - 40f, Math.Max(80f, h - 112f), 22f, GameplayUiArt.Ink, wrap: true);
         }
+
+        /// <summary>珍宝阁(RMB)寄售浏览页：展示分层公示（0–2h / 48h）、定向专属标、卖家信用入口与购买/撤回。</summary>
+        public static void RenderRmbListings(
+            RectTransform body,
+            IReadOnlyList<RmbConsignmentView> listings,
+            ulong myPlayerId,
+            Action onOpenIncomes,
+            Action onOpenPublish,
+            Action<ulong> onViewSellerCredit,
+            Action<RmbConsignmentView> onBuy,
+            Action<RmbConsignmentView> onCancel,
+            Action<Button> registerWriteButton)
+        {
+            DrawPanelBackdrop(body, "panel_05_market_order", 0.20f);
+            GameplayUiArt.Text(body, "珍宝阁（人民币官方托管寄售）· 资金与公示期由官方担保，禁止站外微信裸转", 24f, 6f, 1340f, 44f, 23f, JadeTint);
+            GameplayUiArt.Button(body, "我的收益与提现", 1380f, 4f, 340f, 50f, onOpenIncomes, fontSize: 22f);
+            GameplayUiArt.Button(body, "上架RMB寄售/定向单", 1740f, 4f, 360f, 50f, onOpenPublish, primary: true, fontSize: 22f);
+
+            if (listings == null || listings.Count == 0)
+            {
+                GameplayUiArt.Text(body, "当前暂无人民币官方托管寄售单；点击右上「上架RMB寄售/定向单」可按当前所选资产上架。", 24f, 84f, 1980f, 60f, 24f, GameplayUiArt.Muted);
+                return;
+            }
+            int maxRows = Math.Min(listings.Count, 7);
+            for (int i = 0; i < maxRows; i++)
+            {
+                var item = listings[i].Clone();
+                float y = 70f + i * 70f;
+                bool uniqueValuable = item.AssetKind == "CHARACTER" || item.AssetKind == "PET" || item.PriceFen > MarketP50DisplayModel.QuickNoticeMaxFen;
+                string notice = MarketP50DisplayModel.DescribeNoticeTier(uniqueValuable, item.PriceFen);
+                string designatedTag = item.DesignatedOnly ? " · 【指定买家定向单】" : "";
+                string line = $"#{item.ListingId} · {item.Title} · {EconomyFormat.FormatMoney(item.PriceFen, "CNY")} · {notice} · {item.Phase}/{item.State}{designatedTag}";
+                GameplayUiArt.Text(body, line, 24f, y, 1340f, 54f, 22f);
+                if (item.SellerPlayerId != 0UL)
+                {
+                    ulong sid = item.SellerPlayerId;
+                    GameplayUiArt.Button(body, "卖家信用", 1380f, y, 220f, 52f, () => onViewSellerCredit(sid), fontSize: 21f);
+                }
+                if (item.SellerPlayerId == myPlayerId)
+                {
+                    var cancelBtn = GameplayUiArt.Button(body, "撤回上架", 1620f, y, 360f, 52f, () => onCancel(item), fontSize: 22f);
+                    registerWriteButton?.Invoke(cancelBtn);
+                }
+                else
+                {
+                    var buyBtn = GameplayUiArt.Button(body, "官方担保购买", 1620f, y, 360f, 52f, () => onBuy(item), primary: true, fontSize: 22f);
+                    registerWriteButton?.Invoke(buyBtn);
+                }
+            }
+        }
+
+        /// <summary>卖家 RMB 托管收益与提现页：若存在争议冻结，用朱砂警示横幅明文高亮工单号与冻结金额。</summary>
+        public static void RenderRmbSellerIncomes(
+            RectTransform body,
+            IReadOnlyList<RmbSellerIncome> incomes,
+            Action<ulong> onWithdrawFen,
+            Action onBackListings,
+            Action<Button> registerWriteButton)
+        {
+            DrawPanelBackdrop(body, "panel_04_credit_alerts", 0.18f);
+            GameplayUiArt.Text(body, "我的 RMB 托管收益与提现（争议冻结期间对应金额自动锁止提现）", 24f, 6f, 1680f, 44f, 24f, JadeTint);
+            GameplayUiArt.Button(body, "返回寄售列表", 1740f, 4f, 340f, 50f, onBackListings, fontSize: 22f);
+
+            ulong totalFrozen = 0UL;
+            string frozenCase = "";
+            if (incomes != null)
+            {
+                for (int i = 0; i < incomes.Count; i++)
+                {
+                    totalFrozen += incomes[i].DisputeFrozenFen;
+                    if (incomes[i].DisputeFrozenFen > 0UL && string.IsNullOrEmpty(frozenCase))
+                        frozenCase = incomes[i].DisputeCaseId;
+                }
+            }
+
+            float listTop = 64f;
+            if (totalFrozen > 0UL)
+            {
+                DrawAlertBanner(body, "RmbDisputeFrozenBanner", 24f, 60f, 2056f, 76f,
+                    $"存在核查争议冻结金额：{EconomyFormat.FormatMoney(totalFrozen, "CNY")}（工单：{frozenCase}）；争议结案前该部分资金不可提现。",
+                    highDanger: true);
+                listTop = 148f;
+            }
+
+            if (incomes == null || incomes.Count == 0)
+            {
+                GameplayUiArt.Text(body, "暂无 RMB 托管收益记录。", 24f, listTop + 16f, 1600f, 50f, 24f, GameplayUiArt.Muted);
+            }
+            else
+            {
+                int maxRows = Math.Min(incomes.Count, totalFrozen > 0UL ? 4 : 5);
+                for (int i = 0; i < maxRows; i++)
+                {
+                    var inc = incomes[i];
+                    string frozenPart = inc.DisputeFrozenFen > 0UL
+                        ? $" · 争议冻结 {EconomyFormat.FormatMoney(inc.DisputeFrozenFen, "CNY")}({inc.DisputeCaseId})"
+                        : "";
+                    string rowText = $"订单 {inc.OrderId} · 净收益 {EconomyFormat.FormatMoney(inc.NetFen, "CNY")} · 已提 {EconomyFormat.FormatMoney(inc.PaidFen, "CNY")} · 预留 {EconomyFormat.FormatMoney(inc.ReservedFen, "CNY")}{frozenPart}";
+                    GameplayUiArt.Text(body, rowText, 24f, listTop + i * 58f, 2040f, 48f, 21f,
+                        inc.DisputeFrozenFen > 0UL ? CinnabarText : GameplayUiArt.Ink);
+                }
+            }
+
+            GameplayUiArt.Text(body, "申请提现金额（单位：分，例如 1000 表示 10.00 元）：", 24f, 456f, 880f, 38f, 22f);
+            var amtField = QdaoUguiFactory.CreateInputField("WithdrawFen", body, 24f, 498f, 520f, 54f, "输入提现金额(分)", 20);
+            amtField.textComponent.richText = false;
+            var wdBtn = GameplayUiArt.Button(body, "申请官方提现", 574f, 498f, 360f, 54f, () =>
+            {
+                if (ulong.TryParse((amtField.text ?? "").Trim(), out ulong fen) && fen > 0UL)
+                    onWithdrawFen(fen);
+            }, primary: true, fontSize: 22f);
+            registerWriteButton?.Invoke(wdBtn);
+        }
     }
 }

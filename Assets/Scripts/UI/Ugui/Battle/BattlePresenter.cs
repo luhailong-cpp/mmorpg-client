@@ -111,7 +111,34 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             PreparePlan(plan);
             _fastForward = false;
+            PresentArtifactAndSeasonSealTriggers(plan);
             _sequencer.Run(plan);
+        }
+
+        /// <summary>播放本回合内触发的永久法宝与单槽赛季印战报与飘字（按 SeasonSealId 与永久法宝严格分通道）。</summary>
+        private void PresentArtifactAndSeasonSealTriggers(TurnPlan plan)
+        {
+            if (plan == null || plan.ArtifactEvents == null || plan.ArtifactEvents.Count == 0) return;
+            for (int i = 0; i < plan.ArtifactEvents.Count; ++i)
+            {
+                var ev = plan.ArtifactEvents[i].Input;
+                bool isSeasonSeal = ev.SeasonSealId != 0u && ev.ArtifactItemId == 0UL;
+                string label = isSeasonSeal
+                    ? MmorpgClient.Game.Season.SeasonModels.FormatSeasonSealTriggerText(
+                        ev.SeasonSealId, ev.ArtifactEffectId, ev.Value)
+                    : MmorpgClient.Game.Season.SeasonModels.FormatArtifactTriggerText(
+                        ev.ArtifactEffectId, ev.Value);
+                ulong ownerId = ev.SourceId != 0UL ? ev.SourceId : ev.TargetId;
+                Log(ownerId != 0UL ? $"{Name(ownerId)} {label}" : label);
+                var view = ownerId != 0UL ? _resolveView(ownerId) : null;
+                if (view != null)
+                {
+                    Color tint = isSeasonSeal
+                        ? new Color(0.56f, 0.94f, 0.74f, 1f)
+                        : new Color(1f, 0.88f, 0.44f, 1f);
+                    view.SpawnFloatText(label, tint, true);
+                }
+            }
         }
 
         /// <summary>Include authored clip lengths before the screen computes its deadline budget.</summary>
@@ -350,6 +377,9 @@ namespace MmorpgClient.UI.Ugui.Battle
                     Log($"{Name(beat.ActorId)} 的 buff{beat.BuffId} 生效");
                     ApplyOutcomes(beat);
                     break;
+                case BeatKind.BossMechanic:
+                    PlayBossMechanic(beat);
+                    break;
                 default:
                     // 孤立 Hit/Miss/Heal/BuffAdd/BuffRemove/Mana:直接结算
                     ApplyOutcomes(beat);
@@ -387,6 +417,38 @@ namespace MmorpgClient.UI.Ugui.Battle
                 if (beat.Kind == BeatKind.Capture && beat.Success) _resolveView(beat.CaptureTargetId)?.PlayCaptured();
                 if (beat.HasActorManaAfter) _resolveView(beat.ActorId)?.SetManaDuringPlayback(beat.ActorManaAfter);
             }
+        }
+
+        private void PlayBossMechanic(Beat beat)
+        {
+            ulong targetId = beat.MechanicTargetId != 0 ? beat.MechanicTargetId : beat.ActorId;
+            var view = targetId != 0 ? _resolveView(targetId) : null;
+            var banner = MmorpgClient.Game.CoreLoop.CoreGameplayLoopModels.DescribeBossMechanicEvent(new global::BattleEventItem
+            {
+                EventType = eBattleEventType.BattleEventBossMechanic,
+                SourceId = beat.ActorId,
+                TargetId = targetId,
+                MechanicKind = beat.MechanicKind,
+                Value = beat.MechanicValue > 0 ? (ulong)beat.MechanicValue : 0UL,
+            });
+            if (banner == null) return;
+            Log(string.IsNullOrEmpty(banner.Subtitle) ? banner.Title : $"{banner.Title} · {banner.Subtitle}");
+            if (view == null) return;
+            string fxId = beat.MechanicKind switch
+            {
+                1u or 2u => "boss_exposed_crack",
+                3u => "boss_stance_break",
+                5u => "boss_phase2_enrage",
+                _ => null,
+            };
+            if (!string.IsNullOrEmpty(fxId))
+                view.SpawnFx(fxId, beat.MechanicKind != 5u, beat.MechanicKind == 5u ? 420f : 340f);
+            Color tint = banner.IsPositiveForPlayer
+                ? new Color(1f, 0.86f, 0.36f, 1f)
+                : new Color(1f, 0.42f, 0.34f, 1f);
+            view.SpawnFloatText(banner.Title, tint, beat.MechanicKind == 1u || beat.MechanicKind == 3u || beat.MechanicKind == 5u);
+            if (beat.MechanicKind == 3u || beat.MechanicKind == 5u)
+                Camera.Shake(BattleCameraFx.CritShakePixels * 0.8f, BattleCameraFx.CritShakeSeconds);
         }
 
         private void PlayAttack(Beat beat, BattleUnitView actor)
@@ -533,9 +595,13 @@ namespace MmorpgClient.UI.Ugui.Battle
                                 Delay(delay, () => v.PlayHit(crit));
                             }
                             else view.PlayHit(target.IsCrit);
-                            view.ShowNumber(target.Value, target.IsCrit ? NumberKind.Crit : NumberKind.Normal, groupX, delay);
+                            var focusMode = target.IsPrimaryFocus ? DamageNumberFocusMode.PrimaryFocus
+                                : target.IsSplashReduced ? DamageNumberFocusMode.SplashReduced
+                                : DamageNumberFocusMode.None;
+                            view.ShowNumber(target.Value, target.IsCrit ? NumberKind.Crit : NumberKind.Normal, groupX, delay, focusMode);
                         }
-                        Log($"{Name(target.ActorId)} 受到 {target.Value} 伤害{(target.IsCrit ? "(暴击)" : string.Empty)}");
+                        string focusTag = target.IsPrimaryFocus ? "(聚火)" : target.IsSplashReduced ? "(溅射60%)" : string.Empty;
+                        Log($"{Name(target.ActorId)} 受到 {target.Value} 伤害{(target.IsCrit ? "(暴击)" : string.Empty)}{focusTag}");
                         if (target.IsCrit) anyCrit = true;
                         break;
                     case TargetEffect.Tick:

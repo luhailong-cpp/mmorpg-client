@@ -10,6 +10,13 @@ namespace MmorpgClient.UI.Ugui.Battle
 {
     using Vector3 = UnityEngine.Vector3;
 
+    public enum DamageNumberFocusMode
+    {
+        None = 0,
+        PrimaryFocus = 1,
+        SplashReduced = 2,
+    }
+
     /// <summary>
     /// 伤害数字的纯逻辑部分(文案 / 尺寸 / 多目标错位避让),EditMode 可测。
     /// </summary>
@@ -40,22 +47,36 @@ namespace MmorpgClient.UI.Ugui.Battle
         public const float AvoidStepY = 30f;
 
         /// <summary>文案:伤害 "-N"、治疗 "+N"、闪避 "闪"、暴击 "暴击-N"(字集含 暴/击)。</summary>
-        public static string FormatText(long value, NumberKind kind)
+        public static string FormatText(long value, NumberKind kind, DamageNumberFocusMode focus = DamageNumberFocusMode.None)
         {
-            switch (kind)
+            string baseText = kind switch
             {
-                case NumberKind.Miss: return "闪";
-                case NumberKind.Heal: return "+" + Math.Abs(value);
-                case NumberKind.Crit: return "暴击-" + Math.Abs(value);
-                default: return "-" + Math.Abs(value);
+                NumberKind.Miss => "闪",
+                NumberKind.Heal => "+" + Math.Abs(value),
+                NumberKind.Crit => "暴击-" + Math.Abs(value),
+                _ => "-" + Math.Abs(value),
+            };
+            if (kind == NumberKind.Normal || kind == NumberKind.Crit)
+            {
+                // 仅作凝锋角标展示，保持服务端原始事件伤害值，绝不二次乘算 1.2。
+                if (focus == DamageNumberFocusMode.PrimaryFocus) return "凝锋 +20% " + baseText;
+                if (focus == DamageNumberFocusMode.SplashReduced) return "溅射 " + baseText;
             }
+            return baseText;
         }
 
-        public static float GlyphScale(NumberKind kind)
-            => kind == NumberKind.Crit ? BaseGlyphScale * CritScale : BaseGlyphScale;
+        public static float GlyphScale(NumberKind kind, DamageNumberFocusMode focus = DamageNumberFocusMode.None)
+        {
+            float s = kind == NumberKind.Crit ? BaseGlyphScale * CritScale : BaseGlyphScale;
+            if (focus == DamageNumberFocusMode.PrimaryFocus) s *= 1.15f;
+            else if (focus == DamageNumberFocusMode.SplashReduced) s *= 0.85f;
+            return s;
+        }
 
         /// <summary>普通伤害的字色(digits_normal 字集是"白字黑边",按 Image.color 乘成红字黑边)。</summary>
         public static readonly Color DamageTint = new Color(1f, 0.2f, 0.16f, 1f);
+        public static readonly Color PrimaryFocusTint = new Color(1f, 0.72f, 0.24f, 1f);
+        public static readonly Color SplashReducedTint = new Color(0.76f, 0.80f, 0.85f, 1f);
 
         /// <summary>
         /// 字格着色:普通伤害红(spec §1:红色粗体、深色厚描边),暴击/治疗/闪避字集本身已是金/绿/灰,不再乘色。
@@ -136,7 +157,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// 在 head(设计坐标,单位头顶点)上方弹出一个数字;delay 用于多段/多目标错拍。
         /// delay / 弹出 / 寿命全部按 BattleTempo 倍率缩放,与拍时长同步。
         /// </summary>
-        public void Show(Vector2 head, long value, NumberKind kind, float delay = 0f)
+        public void Show(Vector2 head, long value, NumberKind kind, float delay = 0f,
+            DamageNumberFocusMode focus = DamageNumberFocusMode.None)
         {
             if (_layer == null) return;
             delay = delay > 0f ? BattleTempo.Scale(delay) : 0f;
@@ -148,14 +170,15 @@ namespace MmorpgClient.UI.Ugui.Battle
             _recent.Add((head.x, now));
             var offset = DamageNumberLayout.AvoidOffset(collisions);
 
-            string text = DamageNumberLayout.FormatText(value, kind);
+            string text = DamageNumberLayout.FormatText(value, kind, focus);
             var entry = Rent();
             var root = entry.Root;
             root.name = $"Number_{text}";
             entry.Group.alpha = 0f;
 
-            float glyphScale = DamageNumberLayout.GlyphScale(kind);
-            var font = BattleArtCatalog.LoadDigits(VariantOf(kind));
+            float glyphScale = DamageNumberLayout.GlyphScale(kind, focus);
+            bool useTextMode = focus != DamageNumberFocusMode.None && (kind == NumberKind.Normal || kind == NumberKind.Crit);
+            var font = useTextMode ? null : BattleArtCatalog.LoadDigits(VariantOf(kind));
             float width = 0f, height = 64f * glyphScale;
             if (font != null && LayoutGlyphs(entry, font, text, glyphScale, DamageNumberLayout.GlyphTint(kind), out width))
             {
@@ -167,8 +190,13 @@ namespace MmorpgClient.UI.Ugui.Battle
                 HideGlyphs(entry);
                 entry.Fallback.gameObject.SetActive(true);
                 entry.Fallback.text = text;
-                entry.Fallback.fontSize = kind == NumberKind.Crit ? 48f * DamageNumberLayout.CritScale : 44f;
-                entry.Fallback.color = kind == NumberKind.Heal ? BattleUiStyle.HealText
+                float fontSize = kind == NumberKind.Crit ? 48f * DamageNumberLayout.CritScale : 44f;
+                if (focus == DamageNumberFocusMode.PrimaryFocus) fontSize *= 1.15f;
+                else if (focus == DamageNumberFocusMode.SplashReduced) fontSize *= 0.85f;
+                entry.Fallback.fontSize = fontSize;
+                entry.Fallback.color = focus == DamageNumberFocusMode.PrimaryFocus ? DamageNumberLayout.PrimaryFocusTint
+                    : focus == DamageNumberFocusMode.SplashReduced ? DamageNumberLayout.SplashReducedTint
+                    : kind == NumberKind.Heal ? BattleUiStyle.HealText
                     : kind == NumberKind.Miss ? BattleUiStyle.BuffCutText : DamageNumberLayout.DamageTint;
                 width = 400f;
                 height = 80f;

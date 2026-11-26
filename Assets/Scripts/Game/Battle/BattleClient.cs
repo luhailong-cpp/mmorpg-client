@@ -220,11 +220,18 @@ namespace MmorpgClient.Game.Battle
         /// <summary>己方队伍当前的投降表决态（含冷却期信息；敌方与观众永为 null，本局结束清空）。</summary>
         public BattleSurrenderVoteState CurrentSurrenderVote { get; private set; }
 
+        /// <summary>论剑 V3 战前 15 秒明牌变阵状态（非变阵期或本局结束为 null）。</summary>
+        public BattlePrepState CurrentPrepState { get; private set; }
+
+        /// <summary>当前是否处于论剑 V3 战前 15 秒明牌变阵期。</summary>
+        public bool IsInPrepPhase => CurrentPrepState != null && CurrentPrepState.Active;
+
         /// <summary>本地判定当前是否可点击「投降」或「参与表决」（服务端仍是最终权威）。</summary>
         public bool CanSurrenderNow =>
             _battleId != 0
             && (Phase == BattlePhase.WaitingAction || Phase == BattlePhase.Resolving)
             && !IsBattleDecided
+            && !IsInPrepPhase
             && IsBattleChannelReady
             && State != null
             && State.SurrenderUnlockRound > 0
@@ -314,6 +321,8 @@ namespace MmorpgClient.Game.Battle
         public event Action<bool> OnAutoStateChanged;
         /// <summary>己方 PVP 投降表决进度变化（发起/队友表决/否决/通过/清场时触发；null 表示已清除）。</summary>
         public event Action<BattleSurrenderVoteState> OnSurrenderVoteChanged;
+        /// <summary>论剑 V3 战前 15 秒明牌变阵状态变化（开局变阵/本人换印换宠/同队实时同步/亮牌开打清空）。</summary>
+        public event Action<BattlePrepState> OnBattlePrepChanged;
         public event Action<string> OnError;
 
         /// <summary>
@@ -927,6 +936,11 @@ namespace MmorpgClient.Game.Battle
                 OnError?.Invoke("当前不能提交行动");
                 return false;
             }
+            if (IsInPrepPhase)
+            {
+                OnError?.Invoke("当前处于战前明牌变阵期，锁定或倒计时结束后开始首回合");
+                return false;
+            }
             if (action == null)
             {
                 OnError?.Invoke("行动指令为空");
@@ -1091,6 +1105,61 @@ namespace MmorpgClient.Game.Battle
         }
 
         /// <summary>
+        /// 论剑 V3 战前 15 秒明牌变阵提交（RPC 504 UpdateBattlePrep，走战斗直连；换赛季印 / 换首发宠 / 锁定出战）。
+        /// 返回 true 表示请求已发出；false 表示本地拦截（已通过 OnError 提示）。
+        /// </summary>
+        public bool UpdateBattlePrep(uint selectedSealId = 0u, ulong selectedPetId = 0ul,
+            bool ready = false, Action<bool> completed = null)
+        {
+            if (_battleId == 0 || !IsInPrepPhase || IsBattleDecided)
+            {
+                OnError?.Invoke("当前不在战前变阵阶段");
+                completed?.Invoke(false);
+                return false;
+            }
+            if (!IsBattleChannelReady)
+            {
+                OnError?.Invoke(_channelFailed ? BattleChannelFailedText : BattleChannelConnectingText);
+                completed?.Invoke(false);
+                return false;
+            }
+
+            ulong battleId = _battleId;
+            var req = new UpdateBattlePrepRequest
+            {
+                BattleId = battleId,
+                SelectedSealId = selectedSealId,
+                SelectedPetId = selectedPetId,
+                Ready = ready,
+            };
+            _net.Call(MessageIds.UpdateBattlePrep, req, UpdateBattlePrepResponse.Parser,
+                resp =>
+                {
+                    if (_battleId != battleId)
+                    {
+                        completed?.Invoke(false);
+                        return;
+                    }
+                    bool ok = !HasTip(resp?.ErrorMessage);
+                    if (!ok)
+                    {
+                        OnError?.Invoke(DescribeBattleTip("战前变阵失败", resp.ErrorMessage));
+                    }
+                    else if (resp?.PrepState != null)
+                    {
+                        ApplyPrepState(resp.PrepState);
+                    }
+                    completed?.Invoke(ok);
+                },
+                err =>
+                {
+                    OnError?.Invoke($"战前变阵失败:{err}");
+                    completed?.Invoke(false);
+                });
+            return true;
+        }
+
+        /// <summary>
         /// UI「重新连接」(turn-based §22 D74):重置直连恢复预算并立即补签重建直连。
         /// 不在战斗中 / 无直连通道 / 该局直连已在连接或已就绪时无事。
         /// 结果经 <see cref="OnBattleChannelReady"/> 或再次的 <see cref="OnBattleChannelFailed"/> 回来。
@@ -1173,6 +1242,7 @@ namespace MmorpgClient.Game.Battle
             if (state == null) return BattlePhase.None;
             // protoc 的 C# 代码生成保留 proto 原始枚举名(eBattleOutcome,小写 e 开头)
             if (state.Outcome != eBattleOutcome.BattleOutcomeOngoing) return BattlePhase.None;
+            if (state.PrepState != null && state.PrepState.Active) return BattlePhase.WaitingAction;
             foreach (ulong id in state.PendingActorIds)
             {
                 if (id == myPlayerId) return BattlePhase.WaitingAction;
@@ -1194,6 +1264,8 @@ namespace MmorpgClient.Game.Battle
                 mc => HandleBattleReconnect(BattleReconnectS2C.Parser.ParseFrom(mc.SerializedMessage)));
             _net.RegisterNotify(MessageIds.NotifySurrenderVote,
                 mc => HandleSurrenderVote(SurrenderVoteS2C.Parser.ParseFrom(mc.SerializedMessage)));
+            _net.RegisterNotify(MessageIds.NotifyBattlePrepUpdate,
+                mc => HandleBattlePrepUpdate(BattlePrepUpdateS2C.Parser.ParseFrom(mc.SerializedMessage)));
             _net.RegisterNotify(MessageIds.NotifyChallengeInvite,
                 mc => OnChallengeInvite?.Invoke(Match.ChallengeInviteS2C.Parser.ParseFrom(mc.SerializedMessage)));
             _net.RegisterNotify(MessageIds.NotifyChallengeResult,
@@ -1216,6 +1288,7 @@ namespace MmorpgClient.Game.Battle
             _settleDeadline = 0;          // 上一局等结算包的时限随之作废
             _lastUsedSkillByActor.Clear();
             ResetStatePullRetry();        // 换局:上一局的自动重拉计划作废
+            ApplyPrepState(ev.State?.PrepState);
 
             // 排队中收到开战:补发 Preparing 让 UI 收起排队面板(Queued→Preparing→WaitingAction)
             if (Phase == BattlePhase.Queued) SetPhase(BattlePhase.Preparing);
@@ -1233,9 +1306,8 @@ namespace MmorpgClient.Game.Battle
             // 同局已在连 / 已验证时无事(turn-based §22 D74)
             _channel?.EnsureBattle(_battleId);
 
-            // 自动战斗记忆补发(§11.2):新战斗引擎侧 is_auto 归零,由本地记忆续上。
-            // 开局瞬间直连通常还没握手完:挂起,直连就绪时补发(不能发大厅,gate 不中继战斗)
-            if (AutoBattleLatched)
+            // 自动战斗记忆补发(§11.2):变阵期间暂缓补发，待亮牌进第 1 回合的 NotifyBattleStart 再补发。
+            if (AutoBattleLatched && !IsInPrepPhase)
             {
                 if (IsBattleChannelReady) SendSetAutoBattle(true, revertLatchOnFailure: false);
                 else _autoResendPending = true;
@@ -1250,6 +1322,7 @@ namespace MmorpgClient.Game.Battle
             if (_battleId != 0 && ev.BattleId != 0 && ev.BattleId != _battleId) return;
 
             if (ev.State != null) State = ev.State;
+            ApplyPrepState(ev.State?.PrepState);
             RefreshMyAutoState();
             ApplySurrenderVoteState(ev.State?.SurrenderVote);
             SetPhase(BattlePhase.Resolving);
@@ -1409,6 +1482,7 @@ namespace MmorpgClient.Game.Battle
             SetPhase(phase);
             RefreshMyAutoState();
             ApplySurrenderVoteState(state.SurrenderVote);
+            ApplyPrepState(state.PrepState);
             OnStateUpdated?.Invoke(state);
         }
 
@@ -1427,6 +1501,21 @@ namespace MmorpgClient.Game.Battle
             if (Equals(CurrentSurrenderVote, next)) return;
             CurrentSurrenderVote = next;
             OnSurrenderVoteChanged?.Invoke(CurrentSurrenderVote);
+        }
+
+        private void HandleBattlePrepUpdate(BattlePrepUpdateS2C ev)
+        {
+            if (ev == null || _battleId == 0) return;
+            if (ev.BattleId != 0 && ev.BattleId != _battleId) return;
+            ApplyPrepState(ev.PrepState);
+        }
+
+        private void ApplyPrepState(BattlePrepState prep)
+        {
+            var next = prep != null && prep.Active ? prep.Clone() : null;
+            if (Equals(CurrentPrepState, next)) return;
+            CurrentPrepState = next;
+            OnBattlePrepChanged?.Invoke(CurrentPrepState);
         }
 
         /// <summary>
@@ -1573,6 +1662,7 @@ namespace MmorpgClient.Game.Battle
             _settleDeadline = 0;
             _lastUsedSkillByActor.Clear();
             ApplySurrenderVoteState(null);
+            ApplyPrepState(null);
             ResetStatePullRetry();      // 收尾 / 断线:自动重拉计划随本局作废
         }
 

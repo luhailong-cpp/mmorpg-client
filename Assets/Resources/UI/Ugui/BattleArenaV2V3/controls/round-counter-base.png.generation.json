@@ -1,0 +1,30 @@
+{
+  "recordSchema": 1,
+  "recordType": "byte-identical-unity-import-copy",
+  "copiedAtUtc": "2026-11-25T15:07:52.696666+00:00",
+  "sourceGeneratedAtUtc": null,
+  "file": "integration/Assets/Resources/UI/Ugui/BattleArenaV2V3/controls/round-counter-base.png",
+  "sha256": "aead3e6e8b88f82051e943a4d66d9c4f7bba4316526ffbc7761016522c6796be",
+  "width": 524,
+  "height": 78,
+  "route": "local-byte-copy",
+  "newAiCalls": 0,
+  "submittedParameters": {
+    "model": null,
+    "quality": null
+  },
+  "actualModel": null,
+  "actualQuality": null,
+  "configuredTargetNotUsed": {
+    "model": "gpt-image-2.6-sunburst",
+    "quality": "max",
+    "source": "config/image-generation.json"
+  },
+  "note": "Byte-identical import copy; no new image request. Original model, quality and generation evidence remain in the linked source record.",
+  "source": {
+    "file": "controls/round-counter-base.png",
+    "sha256": "aead3e6e8b88f82051e943a4d66d9c4f7bba4316526ffbc7761016522c6796be",
+    "generationRecord": "controls/round-counter-base.png.generation.json",
+    "generationRecordSha256": "888c5fc61b0bfaea6f3138dbad4d48361df2b876778fb75a9e1d72b73a643def"
+  }
+}

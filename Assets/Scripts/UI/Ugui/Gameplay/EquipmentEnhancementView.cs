@@ -15,7 +15,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private const float ListRowHeight = 174;
 
         public static void Render(RectTransform parent, PlayerFeaturesClient client, EquipForgeUiState forge,
-            Action<ulong> selectItem, bool blocked)
+            Action<ulong> selectItem, bool blocked,
+            Action<ulong> onRequestEnhanceBindConfirm = null,
+            Action<ulong> onOpenUnseal = null,
+            Action<ulong> onOpenInherit = null)
         {
             var candidates = Candidates(client);
             var view = forge?.View ?? EquipForgeView.Closed;
@@ -25,22 +28,29 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var right = EquipmentUiArt.Panel(parent, "EnhancementPreview", 2410, PanelTop, 1406, PanelHeight).transform;
 
             RenderCandidates(left, client, candidates, selected?.ItemId ?? 0, selectItem);
-            RenderSelected(center, selected, view);
+            RenderSelected(center, selected, view, candidates, blocked, onOpenUnseal, onOpenInherit);
             RenderPreview(right, selected, view);
 
             bool writeBlocked = WriteBlocked(client, blocked);
             bool canEnhance = selected != null && view.Stage == EquipForgeStage.Ready
                 && view.EnhanceButton.Enabled && !writeBlocked;
+            bool willBindOnEnhance = selected != null && view.HasNextLevel && selected.EnhanceNext?.WillBindOnEnhance == true;
             bool pityGuaranteed = selected != null && view.Stage == EquipForgeStage.Ready
                 && view.HasNextLevel && selected.EnhanceNext?.PityGuaranteedNext == true;
             EquipmentUiArt.Button(parent, "EnhancementRefresh", "刷新", 150, 1350, 420,
                 () => forge?.Refresh(), enabled: forge != null && view.RefreshButton.Enabled);
-            string commitLabel = pityGuaranteed ? view.EnhanceButton.Label + "（必成）" : view.EnhanceButton.Label;
+            string commitLabel = willBindOnEnhance
+                ? "强化（混用绑定石）"
+                : (pityGuaranteed ? view.EnhanceButton.Label + "（必成）" : view.EnhanceButton.Label);
             var commitBtn = EquipmentUiArt.Button(parent, "EnhancementCommit", commitLabel, 3216, 1350, 600,
                 () =>
                 {
                     // 控件创建后状态仍可能改变；业务层会再次校验，窗口也不把旧选择发给新目标。
-                    if (selected != null && forge != null && forge.TargetItemId == selected.ItemId && !WriteBlocked(client, blocked))
+                    if (selected == null || forge == null || forge.TargetItemId != selected.ItemId || WriteBlocked(client, blocked))
+                        return;
+                    if (willBindOnEnhance && onRequestEnhanceBindConfirm != null)
+                        onRequestEnhanceBindConfirm(selected.ItemId);
+                    else
                         forge.Enhance();
                 }, primary: true, enabled: canEnhance);
             if (pityGuaranteed)
@@ -149,7 +159,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Filter(0);
         }
 
-        private static void RenderSelected(UnityEngine.Transform parent, BagItemInfo item, EquipForgeView view)
+        private static void RenderSelected(UnityEngine.Transform parent, BagItemInfo item, EquipForgeView view,
+            List<BagItemInfo> candidates, bool blocked, Action<ulong> onOpenUnseal, Action<ulong> onOpenInherit)
         {
             if (item == null)
             {
@@ -158,31 +169,46 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             EquipmentUiArt.Label(parent, "EnhancementSelectedName", view.Title, 60, 40, 940, 140, 54, true);
             EquipmentUiArt.Label(parent, "EnhancementSelectedLocation", view.LocationText, 60, 192, 940, 62, 42);
-            EquipmentUiArt.Icon(parent, item, 260, 300, 540);
+            EquipmentUiArt.Icon(parent, item, 260, 280, 460);
             var selectedBadge = SeasonEconomyUiArt.LoadTradeSlice(item.Bound ? "badge_item_bound_b" : "badge_item_tradable_t");
             if (selectedBadge != null)
             {
                 var badge = QdaoUguiFactory.CreateImage("EnhancementSelectedTradeBadge", parent, 60, 266, 84, 84, selectedBadge, false);
                 badge.preserveAspect = true;
             }
-            string isolationRule = item.Bound
-                ? "绑定装备 B · 如需恢复可交易原胚请使用「解封剥离符」（清空绑定养成，绝不洗白 B 材料）"
-                : "可交易装备 T · 系统默认仅消耗可交易材料，防止误绑";
-            EquipmentUiArt.Label(parent, "EnhancementTradeIsolationRule", isolationRule,
-                60, 932, 940, 62, 28, true, item.Bound ? SeasonEconomyUiArt.SoftWarnText : EquipmentUiArt.Jade);
             bool isMaxEnhanced = item.EnhanceMaxLevel > 0 && item.EnhanceLevel >= item.EnhanceMaxLevel;
             if (isMaxEnhanced)
             {
                 var crownSprite = SeasonEconomyUiArt.LoadIcon("badge_plus11_crown");
                 if (crownSprite != null)
                 {
-                    var crown = QdaoUguiFactory.CreateImage("EnhancementMaxCrown", parent, 700, 270, 160, 160, crownSprite, false);
+                    var crown = QdaoUguiFactory.CreateImage("EnhancementMaxCrown", parent, 700, 260, 140, 140, crownSprite, false);
                     crown.preserveAspect = true;
                 }
                 EquipmentUiArt.Label(parent, "EnhancementMaxStamp", $"+{item.EnhanceLevel} 满配",
-                    650, 434, 260, 56, 40, false, SeasonEconomyUiArt.GoldHighlight);
+                    650, 404, 260, 52, 38, false, SeasonEconomyUiArt.GoldHighlight);
             }
-            EquipmentUiArt.Label(parent, "EnhancementSelectedLevel", view.EnhanceLevelText, 60, 864, 940, 72, 48);
+            EquipmentUiArt.Label(parent, "EnhancementSelectedLevel", view.EnhanceLevelText, 60, 748, 940, 60, 44);
+            string isolationRule = item.Bound
+                ? "绑定装备 B · 可用「解封剥离符」清空绑定养成恢复纯 T 原胚"
+                : "可交易装备 T · 默认仅耗可交易强化石，防误绑";
+            EquipmentUiArt.Label(parent, "EnhancementTradeIsolationRule", isolationRule,
+                60, 808, 940, 46, 26, true, item.Bound ? SeasonEconomyUiArt.SoftWarnText : EquipmentUiArt.Jade);
+
+            bool hasHigherSource = candidates != null && candidates.Any(src =>
+                src.ItemId != item.ItemId && src.EquipKind == item.EquipKind &&
+                src.EquipProfile == item.EquipProfile && src.EquipLevel == item.EquipLevel &&
+                src.EnhanceLevel > item.EnhanceLevel);
+            if (item.Bound && onOpenUnseal != null)
+            {
+                EquipmentUiArt.Button(parent, "EnhancementUnsealBtn", "解封剥离 (纯T)", 60, 862, 445,
+                    () => onOpenUnseal(item.ItemId), primary: false, enabled: !blocked);
+            }
+            if (hasHigherSource && onOpenInherit != null)
+            {
+                EquipmentUiArt.Button(parent, "EnhancementInheritBtn", "流派副套继承", item.Bound ? 535 : 60, 862, 465,
+                    () => onOpenInherit(item.ItemId), primary: false, enabled: !blocked);
+            }
         }
 
         private static void RenderPreview(UnityEngine.Transform parent, BagItemInfo item, EquipForgeView view)

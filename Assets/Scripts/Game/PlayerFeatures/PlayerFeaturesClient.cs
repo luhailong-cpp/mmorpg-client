@@ -302,7 +302,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         /// expected_level = 发包那一刻快照里这件装备的强化等级(0 级也填 0),对不上服务器整笔拒绝(kEquipEnhanceLevelChanged);
         /// client_request_id = 这一次点击的幂等键,结果不明(超时 / 信封 1003)、连接没变时原样重发一次,服务端按键去重。
         /// </summary>
-        public void EnhanceEquip(ulong itemId)
+        public void EnhanceEquip(ulong itemId, bool allowBoundMaterials = false)
         {
             // 发包那一刻本地快照对「金币 / 材料够不够」的判断。被这两个码拒绝时据此区分
             // 「本来就知道不够」(不重拉)与「本地以为够」(快照过期,重拉)。
@@ -343,7 +343,13 @@ namespace MmorpgClient.Game.PlayerFeatures
                     // 只构造一次:结果不明时的重发必须逐字节相同(同一个键、同一个期望等级与保底次数),服务端按参数指纹认重发。
                     if (request == null)
                     {
-                        request = new EnhanceEquipRequest { ItemId = itemId, ExpectedLevel = expectedLevel, ClientRequestId = requestKey };
+                        request = new EnhanceEquipRequest
+                        {
+                            ItemId = itemId,
+                            ExpectedLevel = expectedLevel,
+                            ClientRequestId = requestKey,
+                            AllowBoundMaterials = allowBoundMaterials,
+                        };
                         if (expectedPityCount.HasValue) request.ExpectedPityCount = expectedPityCount.Value;
                     }
                     _net.Call(MessageIds.EnhanceEquip, request, EnhanceEquipResponse.Parser,

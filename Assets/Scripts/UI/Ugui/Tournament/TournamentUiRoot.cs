@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using MmorpgClient.Game;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.Guild;
+using MmorpgClient.Game.Team;
 using MmorpgClient.Game.Tournament;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.Gameplay;
+using MmorpgClient.UI.Ugui.Guild;
 using MmorpgClient.UI.Ugui.Mail;
 using MmorpgClient.World.Tianyong;
 using TMPro;
@@ -37,6 +40,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
 
         private GameClient _game;
         private TournamentClient _client;
+        private TeamInvitationDirectory _inviteDirectory;
+        private GuildClient _guildObserved;
         private ulong _playerId;
         private object _gateIdentity;
         private bool _available;
@@ -53,6 +58,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
         private Button _entryButton;
         private TMP_Text _entryLabel;
         private TournamentWindow _window;
+        private TournamentSpectateCheerOverlay _spectateCheerOverlay;
+        private TournamentChampionStageController _championStage;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
@@ -84,13 +91,19 @@ namespace MmorpgClient.UI.Ugui.Tournament
         private void OnDisable()
         {
             Hide();
+            _spectateCheerOverlay?.ResetAndHide();
+            _championStage?.Dispose();
             UnbindClient();
         }
 
         private void OnDestroy()
         {
             CityPanelRegistry.Unregister(this);
+            _spectateCheerOverlay?.UnbindClient();
+            _spectateCheerOverlay?.ResetAndHide();
+            _championStage?.Dispose();
             UnbindClient();
+            UnbindInviteSources();
             if (Instance == this) Instance = null;
         }
 
@@ -132,6 +145,9 @@ namespace MmorpgClient.UI.Ugui.Tournament
             _window = new TournamentWindow(_fittedRoot, _model, ResolveCharacterId);
             WireWindowEvents();
             _backdrop.gameObject.SetActive(false);
+
+            _spectateCheerOverlay = new TournamentSpectateCheerOverlay(transform);
+            _championStage = new TournamentChampionStageController(_hud, OpenSaluteModalFromCity);
         }
 
         private void WireWindowEvents()
@@ -159,9 +175,11 @@ namespace MmorpgClient.UI.Ugui.Tournament
             _window.StartMatchSubmitted += (matchId, lineup) => SubmitMutation(() => _client?.StartMatch(matchId, lineup) == true);
             _window.CheerSquadClicked += sid => SubmitMutation(() => _client?.CheerSquad(sid) == true);
             _window.ClaimRewardClicked += sid => SubmitMutation(() => _client?.ClaimReward(sid) == true);
+            _window.SaluteChampionConfirmed += sid => SubmitMutation(() => _client?.SaluteChampion(sid) == true);
             _window.WatchBattleClicked += HandleWatchBattle;
             _window.WatchReplayClicked += HandleWatchReplay;
             _window.OpenMailClicked += HandleOpenMail;
+            _window.InviteSourceRequested += HandleInviteSourceRequested;
         }
 
         private void SubmitMutation(System.Func<bool> action)
@@ -180,11 +198,17 @@ namespace MmorpgClient.UI.Ugui.Tournament
             if (!ReferenceEquals(_game, game))
             {
                 _game = game;
+                RebindInviteDirectory(game);
                 BindClient(game?.Tournament ?? TournamentClient.Instance);
             }
             else if (!ReferenceEquals(_client, game?.Tournament ?? TournamentClient.Instance))
             {
                 BindClient(game?.Tournament ?? TournamentClient.Instance);
+            }
+            SyncGuildObserver();
+            if (IsWindowVisible && _model.ActiveModal == TournamentModalKind.InviteMember)
+            {
+                _inviteDirectory?.ObserveConnection();
             }
 
             bool inGame = _game != null && _game.InGame && _game.IsGateReady;
@@ -197,12 +221,16 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 _awaitingMutationResult = false;
                 _autoRefreshArmed = false;
                 _model.ResetSession();
+                _spectateCheerOverlay?.ResetAndHide();
                 Hide();
             }
 
             bool battleVisible = BattleUiRoot.Instance?.IsBattleLayerVisible ?? false;
             _available = inGame && !battleVisible;
             if (_hud != null) _hud.gameObject.SetActive(_available);
+            float nowTime = Time.realtimeSinceStartup;
+            _spectateCheerOverlay?.Tick(nowTime, inGame);
+            _championStage?.Tick(_client?.Overview, _available && !IsWindowVisible);
             if (!inGame)
             {
                 Hide();
@@ -218,14 +246,26 @@ namespace MmorpgClient.UI.Ugui.Tournament
 
             if (IsWindowVisible)
             {
-                float now = Time.realtimeSinceStartup;
-                if (now >= _nextCountdownTickAt)
+                if (nowTime >= _nextCountdownTickAt)
                 {
-                    _nextCountdownTickAt = now + 0.5f;
-                    _window.Tick(now);
+                    _nextCountdownTickAt = nowTime + 0.5f;
+                    _window.Tick(nowTime);
                 }
                 HandleEscapeKey();
             }
+        }
+
+        public void OpenSaluteModalFromCity(uint seasonId = 0u)
+        {
+            if (!_available || _window == null) return;
+            BindClient(_game?.Tournament ?? TournamentClient.Instance);
+            CityPanelRegistry.HideOthers(this);
+            _model.ActiveTab = TournamentTab.Hall;
+            _model.OpenSaluteModal(seasonId);
+            _backdrop.gameObject.SetActive(true);
+            _window.Show();
+            RenderWindow();
+            _client?.RequestOverview(includeHistory: true);
         }
 
         public void Toggle()
@@ -261,6 +301,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             if (ReferenceEquals(_client, next)) return;
             UnbindClient();
             _client = next;
+            _spectateCheerOverlay?.BindClient(_client);
             if (_client != null)
             {
                 _client.Changed += HandleClientChanged;
@@ -270,6 +311,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
 
         private void UnbindClient()
         {
+            _spectateCheerOverlay?.UnbindClient();
             if (_client == null) return;
             _client.Changed -= HandleClientChanged;
             _client.MatchBattleLaunched -= HandleMatchBattleLaunched;
@@ -311,7 +353,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     {
                         _model.ModalInlineError = _client.LastError;
                     }
-                    else if (recovery.KeepLineupModalInline && _model.ActiveModal == TournamentModalKind.ConfirmLineup)
+                    else if (recovery.KeepLineupModalInline
+                        && (_model.ActiveModal == TournamentModalKind.ConfirmLineup || _model.ActiveModal == TournamentModalKind.IntermissionSwap))
                     {
                         _model.ModalInlineError = _client.LastError;
                     }
@@ -387,13 +430,147 @@ namespace MmorpgClient.UI.Ugui.Tournament
         private void RenderWindow()
         {
             if (!IsWindowVisible || _window == null) return;
+            IReadOnlyList<TournamentInviteCandidate> inviteCandidates = null;
+            string inviteStatus = null;
+            if (_model.ActiveModal == TournamentModalKind.InviteMember)
+            {
+                BuildInviteCandidatesSnapshot(out inviteCandidates, out inviteStatus);
+            }
             _window.Render(
                 _client?.Overview,
                 _client?.Standings,
                 _client?.PlayerId ?? _playerId,
                 _client?.IsBusy == true,
                 _client?.Status,
-                Time.realtimeSinceStartup);
+                Time.realtimeSinceStartup,
+                inviteCandidates,
+                inviteStatus);
+        }
+
+        private void RebindInviteDirectory(GameClient game)
+        {
+            if (_inviteDirectory != null)
+            {
+                _inviteDirectory.Changed -= HandleInviteCandidatesChanged;
+                _inviteDirectory.Dispose();
+                _inviteDirectory = null;
+            }
+            if (game != null)
+            {
+                _inviteDirectory = new TeamInvitationDirectory(game, null);
+                _inviteDirectory.Changed += HandleInviteCandidatesChanged;
+            }
+        }
+
+        private void SyncGuildObserver()
+        {
+            var next = GuildUiRoot.Instance?.Client;
+            if (ReferenceEquals(_guildObserved, next)) return;
+            if (_guildObserved != null) _guildObserved.Changed -= HandleInviteCandidatesChanged;
+            _guildObserved = next;
+            if (_guildObserved != null) _guildObserved.Changed += HandleInviteCandidatesChanged;
+        }
+
+        private void UnbindInviteSources()
+        {
+            if (_inviteDirectory != null)
+            {
+                _inviteDirectory.Changed -= HandleInviteCandidatesChanged;
+                _inviteDirectory.Dispose();
+                _inviteDirectory = null;
+            }
+            if (_guildObserved != null)
+            {
+                _guildObserved.Changed -= HandleInviteCandidatesChanged;
+                _guildObserved = null;
+            }
+        }
+
+        private void HandleInviteSourceRequested(TournamentInviteQuickSource source)
+        {
+            _model.InviteSource = source;
+            if (source == TournamentInviteQuickSource.Guild)
+            {
+                SyncGuildObserver();
+                if (_guildObserved != null && !_guildObserved.Busy && !_guildObserved.HasLoaded)
+                    _guildObserved.Refresh();
+                RenderWindow();
+                return;
+            }
+            if (_inviteDirectory == null && _game != null) RebindInviteDirectory(_game);
+            if (_inviteDirectory != null)
+            {
+                var teamSource = source == TournamentInviteQuickSource.Nearby
+                    ? TeamInvitationSource.Nearby
+                    : TeamInvitationSource.Friends;
+                _inviteDirectory.Refresh(teamSource);
+            }
+            RenderWindow();
+        }
+
+        private void HandleInviteCandidatesChanged()
+        {
+            if (IsWindowVisible && _model.ActiveModal == TournamentModalKind.InviteMember)
+                RenderWindow();
+        }
+
+        private void BuildInviteCandidatesSnapshot(
+            out IReadOnlyList<TournamentInviteCandidate> candidates,
+            out string status)
+        {
+            var raw = new List<TournamentInviteCandidate>();
+            if (_model.InviteSource == TournamentInviteQuickSource.Guild)
+            {
+                SyncGuildObserver();
+                var info = _guildObserved?.Info;
+                if (info == null)
+                {
+                    status = _guildObserved == null
+                        ? "帮会服务未就绪，可直接输入角色 ID 邀请。"
+                        : (_guildObserved.Busy ? "正在同步同帮成员名单…" : (_guildObserved.HasLoaded ? "你尚未加入帮会。" : "点击「刷新」读取同帮成员。"));
+                }
+                else
+                {
+                    for (int i = 0; i < info.Members.Count; i++)
+                    {
+                        var m = info.Members[i];
+                        if (m == null) continue;
+                        raw.Add(new TournamentInviteCandidate(
+                            m.PlayerId,
+                            GuildClient.DisplayName(m.PlayerId, m.Name),
+                            "同帮",
+                            m.Online,
+                            onlineStatusKnown: true));
+                    }
+                    status = raw.Count > 0 ? $"帮会「{info.Name}」成员名单，点击即可发起跨区邀请。" : "当前帮会暂无其他可邀请成员。";
+                }
+            }
+            else
+            {
+                string tag = _model.InviteSource == TournamentInviteQuickSource.Nearby ? "附近" : "好友";
+                if (_inviteDirectory != null)
+                {
+                    for (int i = 0; i < _inviteDirectory.Candidates.Count; i++)
+                    {
+                        var role = _inviteDirectory.Candidates[i];
+                        if (role == null) continue;
+                        raw.Add(new TournamentInviteCandidate(
+                            role.PlayerId,
+                            role.Name,
+                            tag,
+                            role.IsOnline,
+                            role.OnlineStatusKnown,
+                            role.CharacterId));
+                    }
+                    status = _inviteDirectory.Status;
+                }
+                else
+                {
+                    status = "名单服务尚未就绪，可直接在上方输入角色 ID 邀请。";
+                }
+            }
+            ulong selfId = _client?.PlayerId ?? _playerId;
+            candidates = TournamentUiModel.FilterInviteCandidates(raw, selfId, _client?.Overview?.MySquad);
         }
 
         private void UpdateHudEntryLabel()

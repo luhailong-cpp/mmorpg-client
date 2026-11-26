@@ -138,6 +138,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Select(choice);
         }
 
+        /// <summary>解封剥离符(3409)：清空绑定装备的全部绑定养成，仅恢复纯可交易 T 原胚。</summary>
+        public void SelectUnsealToTradable(ulong itemId) => Select(new EquipmentCraftChoice
+        {
+            Operation = EquipmentCraftChoice.Types.Operation.UnsealToTradable,
+            ItemId = itemId,
+        });
+
+        /// <summary>流派副套继承符(3410)：将源装备的强化等级与保底进度无损继承给同部位目标副套装备（目标转为仅自用绑定）。</summary>
+        public void SelectInheritEnhance(ulong targetItemId, ulong sourceItemId) => Select(new EquipmentCraftChoice
+        {
+            Operation = EquipmentCraftChoice.Types.Operation.InheritEnhance,
+            ItemId = targetItemId,
+            SourceItemId = sourceItemId,
+        });
+
         private void Select(EquipmentCraftChoice choice)
         {
             if (_disposed || _client == null || Busy || Pending) return;

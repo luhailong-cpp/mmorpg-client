@@ -160,6 +160,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             if (_game == null || !_game.InGame || !_game.IsGateReady) return;
             _game.Features.RequestBag();
             _game.Pets.RequestList();
+            _game.SkillCraft?.RefreshState();
             MmorpgClient.UI.Ugui.Gameplay.AppearanceUiRoot.Instance?.Client?.RequestInfo(force: true);
         }
         public void HidePanel() { _window?.Hide(); _commerceWindow?.Hide(); }

@@ -50,7 +50,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var preview = _craft.Preview;
             var product = _craftOwnedMode ? owned.FirstOrDefault(i => i.ItemId == _selectedItem) :
                 preview?.Choice?.ConfigId == _recipeConfig ? preview.Result : recipes.FirstOrDefault(r => r.Product.ConfigId == _recipeConfig)?.Product;
-            Label(_body, "CraftPreviewTitle", _craftOwnedMode ? "首次安装词条" : "本体预览", 1740, 375, 1850, 90, 60, color: Jade);
+            Label(_body, "CraftPreviewTitle", _craftOwnedMode ? "首次安装词条" : "本体预览", 1740, 375, 620, 90, 60, color: Jade);
+            var craftMasterySprite = SeasonEconomyUiArt.LoadCraftControl(
+                SeasonEconomyUiArt.MasteryBadgeKey(rules?.ForgeMastery?.Tier ?? 1u));
+            float craftMasteryX = 2400f;
+            if (craftMasterySprite != null)
+            {
+                var badge = QdaoUguiFactory.CreateImage("CraftMasteryIcon", _body, 2390, 372, 84, 84, craftMasterySprite, false);
+                badge.preserveAspect = true;
+                craftMasteryX = 2486f;
+            }
+            Label(_body, "CraftMasterySummary", EquipmentScreenModel.FormatForgeMastery(rules?.ForgeMastery),
+                craftMasteryX, 384, 3770f - craftMasteryX, 72, 34, color: Jade);
             if (product == null)
             {
                 Label(_body, "CraftSelectHint", "先选择部位，再选择装备档位。\n数值、材料和资格以当前预览为准。", 1810, 600, 1730, 300, 52, true, Muted);

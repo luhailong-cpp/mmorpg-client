@@ -17,9 +17,33 @@ namespace MmorpgClient.UI.Ugui
     {
         public const string IconsRoot = "UI/Ugui/SeasonEconomyV1/Icons/";
         public const string ControlsRoot = "UI/Ugui/SeasonEconomyV1/Controls/";
+        public const string SeasonFrame9SliceControlKey = "window_frame_season_9slice";
+        public const string SeasonTitlePlaqueControlKey = "season_title_plaque";
+        public const string Plus11SlotHaloIconKey = "plus11_slot_halo";
         public const string CraftQualityRoot = "UI/Ugui/CraftQualitySkill/";
         public const string CraftIconsRoot = "UI/Ugui/CraftQualitySkill/Icons/";
         public const string EconomyTradeRoot = "UI/Ugui/EconomyTradeV1/";
+        public const string BossTrialV2IconsRoot = "UI/Ugui/Battle/BossTrialV2/";
+        public const string TrialJournalBadgesRoot = "UI/Ugui/TrialJournal/Badges/";
+        public const string BattleArenaV2V3AssetsRoot = "UI/Ugui/BattleArenaV2V3/assets/";
+        public const string BattleArenaV2V3ControlsRoot = "UI/Ugui/BattleArenaV2V3/controls/";
+        public const string RankedV3GuildFidelityUiRoot = "UI/Ugui/RankedV3GuildFidelity/ui/";
+        public const string RankedPlayV2ControlsRoot = "UI/Ugui/RankedPlayV2/";
+        public const string GuildFidelityRoot = "UI/Ugui/GuildFidelity20261016/";
+
+        // 论剑 V2+V3 统一道家配色（对应 BattleArenaV2V3 layout-contract.json）
+        public static readonly Color BattleArenaInk = new Color32(0x26, 0x3F, 0x34, 255);
+        public static readonly Color BattleArenaJade = new Color32(0x28, 0x6D, 0x59, 255);
+        public static readonly Color BattleArenaJadeLight = new Color32(0xD9, 0xE7, 0xD6, 255);
+        public static readonly Color BattleArenaPaper = new Color32(0xF4, 0xEC, 0xD8, 255);
+        public static readonly Color BattleArenaWarmGold = new Color32(0xB7, 0x95, 0x52, 255);
+        public static readonly Color BattleArenaVermilion = new Color32(0xA9, 0x47, 0x35, 255);
+        public static readonly Color BattleArenaAmber = new Color32(0xA3, 0x6A, 0x2D, 255);
+        public static readonly Color BattleArenaDisabled = new Color32(0x7B, 0x81, 0x75, 255);
+        public static readonly Color SkillPhysicalColor = new Color32(0xA6, 0x78, 0x3B, 255);
+        public static readonly Color SkillMagicColor = new Color32(0x4A, 0x82, 0x91, 255);
+        public static readonly Color SkillControlColor = new Color32(0x7B, 0x6B, 0x90, 255);
+        public static readonly Color SkillSupportColor = new Color32(0x4F, 0x82, 0x62, 255);
 
         // CONTROL-USAGE.md 实测：pity_bar_bg 为 535x88，视觉内槽为 [39, 26, 497, 62]（458x36）。
         private const float PityLeftRatio = 39f / 535f;
@@ -47,6 +71,61 @@ namespace MmorpgClient.UI.Ugui
         public static Sprite LoadCraftIcon(string name) => LoadCached(CraftIconsRoot + name);
 
         public static Sprite LoadTradeSlice(string name) => LoadCached(EconomyTradeRoot + name);
+
+        public static Sprite LoadBossTrialV2Icon(string name) => LoadCached(BossTrialV2IconsRoot + name);
+
+        public static Sprite LoadTrialJournalBadge(string name) => LoadCached(TrialJournalBadgesRoot + name);
+
+        public static Sprite LoadBattleArenaAsset(string name) => LoadCached(BattleArenaV2V3AssetsRoot + name);
+
+        public static Sprite LoadBattleArenaControl(string name) => LoadCached(BattleArenaV2V3ControlsRoot + name);
+
+        /// <summary>加载 d129182 帮会原图返修版论剑 V3 战前变阵专属切片（RankedV3GuildFidelity/ui/），缺图回退 BattleArenaV2V3/controls/。</summary>
+        public static Sprite LoadRankedV3PrepControl(string name)
+            => LoadCached(RankedV3GuildFidelityUiRoot + name) ?? LoadBattleArenaControl(name);
+
+        /// <summary>加载 Ranked Play V2 独立透明无字控件（escalation-badge-base / fangmang-progress-track / four-skill-detail-card-base）。</summary>
+        public static Sprite LoadRankedPlayV2Control(string name) => LoadCached(RankedPlayV2ControlsRoot + name);
+
+        /// <summary>加载已验收的帮会原图同源道家 Q 版通用控件（与 ranked-play-v2-ui-20261125/assets 逐字节一致）。</summary>
+        public static Sprite LoadGuildFidelityAsset(string name) => LoadCached(GuildFidelityRoot + name);
+
+        /// <summary>仅映射已确认 S1 赛季印（101~104）的专属图标，未知 ID 返回 null 以便展示中性玉符占位。</summary>
+        public static Sprite LoadBattleArenaSealIcon(uint sealId) => sealId switch
+        {
+            101u => LoadBattleArenaAsset("seal_101"),
+            102u => LoadBattleArenaAsset("seal_102"),
+            103u => LoadBattleArenaAsset("seal_103"),
+            104u => LoadBattleArenaAsset("seal_104"),
+            _ => null,
+        };
+
+        public static Sprite LoadBattleArenaSkillCategoryIcon(string categoryKey) => categoryKey switch
+        {
+            "physical" => LoadBattleArenaAsset("skill_physical"),
+            "magic" => LoadBattleArenaAsset("skill_magic"),
+            "control" => LoadBattleArenaAsset("skill_control"),
+            "support" => LoadBattleArenaAsset("skill_support"),
+            _ => null,
+        };
+
+        /// <summary>论剑 V2+V3 固定比例无九宫格控件：严格按 Image.Type.Simple 绘制，缺图回退纯色底。</summary>
+        public static void ApplyFixedControlSprite(Image image, Sprite sprite, Color fallbackColor)
+        {
+            if (image == null) return;
+            if (sprite != null)
+            {
+                image.sprite = sprite;
+                image.type = Image.Type.Simple;
+                image.preserveAspect = false;
+                image.color = Color.white;
+            }
+            else
+            {
+                image.sprite = null;
+                image.color = fallbackColor;
+            }
+        }
 
         /// <summary>新增 3 本兵法成长战法（12020/12021/12022）的 512×512 专属技能图标键。</summary>
         public static string GrowthSkillIconKey(uint skillId) => skillId switch
@@ -98,6 +177,7 @@ namespace MmorpgClient.UI.Ugui
             2u => "boss_break_avatar",
             3u => "boss_barrier_avatar",
             4u => "boss_venom_avatar",
+            8u => "boss_avatar_dual_guard",
             _ => "boss_break_avatar",
         };
 
@@ -135,6 +215,10 @@ namespace MmorpgClient.UI.Ugui
                 case 4u:
                     primaryIcon = "intent_guard_bind";
                     secondaryIcon = "intent_venom_aoe";
+                    break;
+                case 8u:
+                    primaryIcon = "intent_guard_heal";
+                    secondaryIcon = "intent_stance_phys";
                     break;
                 default:
                     primaryIcon = "intent_slow_cleave";
@@ -179,6 +263,10 @@ namespace MmorpgClient.UI.Ugui
             if (hours > 0UL) return $"剩余 {hours}小时{minutes}分";
             return $"剩余 {Math.Max(1UL, minutes)}分";
         }
+
+        /// <summary>判定装备是否已达满配强化上限（例如 +11/+11），用于叠加外圈柔和玉金光环与满配皇冠。</summary>
+        public static bool IsMaxEnhanced(uint enhanceLevel, uint enhanceMaxLevel)
+            => enhanceMaxLevel > 0u && enhanceLevel >= enhanceMaxLevel;
 
         /// <summary>计算保底或材料总账的归一化进度比例（0..1）。</summary>
         public static float ComputeProgressRatio(ulong current, ulong limit, bool forceFull = false)
@@ -240,7 +328,7 @@ namespace MmorpgClient.UI.Ugui
         }
 
         /// <summary>
-        /// 在赛季玩法大厅顶栏左侧空白区（x=290..1014, y=172..238，避开居中标题牌与下方说明条）绘制统一三页签切换条。
+        /// 在赛季玩法大厅顶栏左侧空白区（x=285..981, y=172..238，避开居中独立标题牌左红穗 x=1016 与下方说明条）绘制统一三页签切换条。
         /// </summary>
         public static void DrawSeasonLobbyTabs(
             Transform parent,
@@ -251,11 +339,11 @@ namespace MmorpgClient.UI.Ugui
         {
             var labels = new[] { "首领试炼", "轮换娱乐", "人宠会武" };
             var actions = new[] { onBossTrials, onRotations, onFormalPvp };
-            const float startX = 290f;
+            const float startX = 285f;
             const float y = 172f;
-            const float tabW = 232f;
+            const float tabW = 224f;
             const float tabH = 66f;
-            const float gap = 14f;
+            const float gap = 12f;
             for (int i = 0; i < 3; ++i)
             {
                 bool active = i == activeIndex;

@@ -1,20 +1,25 @@
+using System.Collections.Generic;
 using MmorpgClient.Game;
 using MmorpgClient.Game.CoreLoop;
 using MmorpgClient.UI.Ugui.Battle;
+using MmorpgClient.UI.Ugui.Tweening;
 using TMPro;
 using UnityEngine;
 
 namespace MmorpgClient.UI.Ugui.CoreLoop
 {
     /// <summary>
-    /// 战斗内公开预告、物法易势和护卫保全的纯只读轻量叠加层（零 raycast，绝不拦截舞台点选与确认按钮）。
-    /// 顶部条紧贴计时环之下（y=132+，x=760..1860，避开左上回合/记录与右上角色卡/胶囊）；
+    /// 战斗内公开预告、首领试炼 V2 机制条、战意渐盛、物法易势和护卫保全的纯只读轻量叠加层（零 raycast，绝不拦截舞台点选与确认按钮）。
+    /// 顶部条紧贴计时环之下（y=122+，x=760..1860，避开左上回合/记录与右上角色卡/胶囊）；
     /// 宝宝一招提示置左下角（x=36..668, y=1010..1062，避开居中 Confirm/Cancel 目标确认条与右下命令环）。
     /// </summary>
     public sealed class BattleCoreHudOverlay : MonoBehaviour
     {
         private CoreGameplayLoopClient _core;
         private GameClient _game;
+        private uint _lastEscalationStacks;
+        private BossMechanicBannerView _activeMechanicBanner;
+        private float _mechanicBannerUntil;
 
         public bool IsVisible => gameObject.activeSelf;
 
@@ -22,6 +27,8 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         {
             _core = core;
             _game = game;
+            _lastEscalationStacks = 0u;
+            _activeMechanicBanner = null;
             Refresh();
             Hide();
         }
@@ -29,33 +36,224 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         public void Show() { if (IsVisible) return; gameObject.SetActive(true); Refresh(); }
         public void Hide()
         {
-            BattleUiRoot.Instance?.ActiveBattleScreen?.SetCoreLoopActorMarkers(0ul, 0ul, 0ul);
+            _activeMechanicBanner = null;
+            _lastEscalationStacks = 0u;
+            KillChildTweens();
+            BattleUiRoot.Instance?.ActiveBattleScreen?.SetCoreLoopActorMarkers((IReadOnlyList<ulong>)null, 0ul);
             gameObject.SetActive(false);
+        }
+
+        private void KillChildTweens()
+        {
+            for (int i = 0; i < transform.childCount; ++i)
+                RealtimeTween.Kill(transform.GetChild(i).gameObject);
+        }
+
+        public void ShowMechanicBanner(BossMechanicBannerView banner)
+        {
+            if (banner == null || string.IsNullOrEmpty(banner.Title)) return;
+            _activeMechanicBanner = banner;
+            _mechanicBannerUntil = Time.unscaledTime + 2.2f;
+            if (IsVisible) Refresh();
+        }
+
+        private void Update()
+        {
+            if (_activeMechanicBanner != null && Time.unscaledTime >= _mechanicBannerUntil)
+            {
+                _activeMechanicBanner = null;
+                if (IsVisible) Refresh();
+            }
         }
 
         public void Refresh()
         {
             if (_core == null) return;
             var hud = _core.BuildBattleHud();
+            KillChildTweens();
             CoreLoopUiArt.Clear(transform);
             if (hud == null) return;
-            ulong firstTelegraphTargetId = 0ul;
-            ulong secondTelegraphTargetId = 0ul;
+            var targets = new List<ulong>(4);
             if (hud.Telegraphs != null)
-                for (int i = 0; i < hud.Telegraphs.Count && i < 2; ++i)
+            {
+                for (int i = 0; i < hud.Telegraphs.Count; ++i)
                 {
                     var entry = hud.Telegraphs[i];
-                    if (entry == null || entry.TargetActorId == 0ul || entry.Status == 4u) continue;
-                    if (firstTelegraphTargetId == 0ul) firstTelegraphTargetId = entry.TargetActorId;
-                    else if (entry.TargetActorId != firstTelegraphTargetId)
-                    { secondTelegraphTargetId = entry.TargetActorId; break; }
+                    if (entry == null || entry.Status == 4u || entry.Status == 5u) continue;
+                    if (entry.TargetActorIds != null && entry.TargetActorIds.Count > 0)
+                    {
+                        for (int t = 0; t < entry.TargetActorIds.Count; ++t)
+                        {
+                            ulong tid = entry.TargetActorIds[t];
+                            if (tid != 0ul && !targets.Contains(tid)) targets.Add(tid);
+                        }
+                    }
+                    else if (entry.TargetActorId != 0ul && !targets.Contains(entry.TargetActorId))
+                    {
+                        targets.Add(entry.TargetActorId);
+                    }
                 }
+            }
             if (IsVisible)
                 BattleUiRoot.Instance?.ActiveBattleScreen?.SetCoreLoopActorMarkers(
-                    firstTelegraphTargetId, secondTelegraphTargetId, hud.ProtectedGuardActorId);
+                    targets, hud.ProtectedGuardActorId);
 
             // 顶部居中信息带：严格在 TimerRect (y=24..114) 之下、左列 (x<=740) 之右、右上角色卡 (x>=2190) 之左
             float nextY = 122f;
+            if (hud.IsBossTrial)
+            {
+                string phaseLabel = hud.IsBossPhaseTwo ? "二阶段 · 决战姿态" : "一阶段";
+                CoreLoopUiArt.Badge(transform, "BossPhaseBadge", 772f, nextY, 240f,
+                    phaseLabel, hud.IsBossPhaseTwo ? CoreLoopUiArt.Warning : CoreLoopUiArt.DeepJade);
+                var chips = new List<string>(3);
+                if (hud.IsBossExposed)
+                    chips.Add($"破绽 +{hud.BossExposedPct}%（至 R{hud.BossExposedUntilRound} 末）");
+                if (hud.BossMomentumStacks > 0u)
+                    chips.Add($"蓄势 {hud.BossMomentumStacks}/3（可驱散）");
+                if (hud.HasBossStance)
+                {
+                    string stanceName = hud.BossStanceType == 1u ? "物防联防阵" : "法防联防阵";
+                    chips.Add($"{stanceName} · 余 {hud.BossStanceRemainRounds} 回合（可驱散）");
+                }
+                string summary = chips.Count > 0 ? string.Join("   |   ", chips) : hud.BossStatusSummaryText;
+                if (!string.IsNullOrEmpty(summary))
+                {
+                    CoreLoopUiArt.Image("BossStatusPlate", transform, 1022f, nextY, 836f, 40f,
+                        "hud-strip", hud.IsBossExposed
+                            ? new Color(.99f, .92f, .72f, .94f)
+                            : new Color(.94f, .92f, .84f, .92f), raycast: false);
+                    var statusIcon = hud.IsBossExposed
+                        ? SeasonEconomyUiArt.LoadBossTrialV2Icon("icon_exposed")
+                        : hud.BossMomentumStacks > 0u
+                            ? SeasonEconomyUiArt.LoadBossTrialV2Icon("icon_momentum")
+                            : null;
+                    float statusTextX = 1036f;
+                    if (statusIcon != null)
+                    {
+                        var iconImg = QdaoUguiFactory.CreateImage("BossStatusIcon", transform, 1030f, nextY + 6f, 28f, 28f, statusIcon, false);
+                        iconImg.preserveAspect = true;
+                        statusTextX = 1064f;
+                    }
+                    var chipLbl = CoreLoopUiArt.Text("BossStatusText", transform, statusTextX, nextY + 2f, 1844f - statusTextX, 36f,
+                        summary, 18f, hud.IsBossExposed ? SeasonEconomyUiArt.GoldHighlight : CoreLoopUiArt.DeepJade,
+                        true, false, TextAlignmentOptions.MidlineLeft);
+                    chipLbl.enableAutoSizing = true;
+                    chipLbl.fontSizeMin = 13f;
+                    chipLbl.fontSizeMax = 18f;
+                }
+                nextY += 46f;
+            }
+
+            if (_activeMechanicBanner != null && Time.unscaledTime < _mechanicBannerUntil)
+            {
+                bool pos = _activeMechanicBanner.IsPositiveForPlayer;
+                CoreLoopUiArt.Image("BossMechanicBack", transform, 860f, nextY, 840f, 44f,
+                    "hud-strip", pos ? new Color(.98f, .92f, .71f, .95f) : new Color(.94f, .78f, .75f, .95f),
+                    raycast: false);
+                string mechIconKey = _activeMechanicBanner.MechanicKind switch
+                {
+                    1u or 2u or 3u => "icon_exposed",
+                    6u => "icon_momentum",
+                    7u => "icon_sunder",
+                    9u => "icon_dishearten",
+                    _ => null,
+                };
+                var mechIcon = string.IsNullOrEmpty(mechIconKey)
+                    ? null
+                    : SeasonEconomyUiArt.LoadBossTrialV2Icon(mechIconKey);
+                float bannerTextX = 876f;
+                float bannerTextW = 808f;
+                if (mechIcon != null)
+                {
+                    var mImg = QdaoUguiFactory.CreateImage("BossMechanicIcon", transform, 872f, nextY + 8f, 28f, 28f, mechIcon, false);
+                    mImg.preserveAspect = true;
+                    bannerTextX = 906f;
+                    bannerTextW = 778f;
+                }
+                string bannerText = string.IsNullOrEmpty(_activeMechanicBanner.Subtitle)
+                    ? _activeMechanicBanner.Title
+                    : $"{_activeMechanicBanner.Title} · {_activeMechanicBanner.Subtitle}";
+                var bannerLbl = CoreLoopUiArt.Text("BossMechanicText", transform, bannerTextX, nextY + 2f, bannerTextW, 40f,
+                    bannerText, 19f, pos ? SeasonEconomyUiArt.GoldHighlight : CoreLoopUiArt.Warning,
+                    true, false, TextAlignmentOptions.Center);
+                bannerLbl.enableAutoSizing = true;
+                bannerLbl.fontSizeMin = 14f;
+                bannerLbl.fontSizeMax = 19f;
+                nextY += 50f;
+            }
+
+            var battle = _game?.Battle;
+            uint stacks = battle?.EscalationStacks ?? 0u;
+            uint escStart = battle?.EscalationStartRound ?? 0u;
+            bool nextRoundStartsEsc = stacks == 0u && escStart > 0u && hud.RoundIndex + 1u == escStart;
+            if (stacks > 0u || nextRoundStartsEsc)
+            {
+                bool stackedUp = stacks > _lastEscalationStacks && stacks > 0u;
+                _lastEscalationStacks = stacks;
+                uint dmgPct = stacks * 10u;
+                uint healCut = stacks * 10u > 80u ? 80u : stacks * 10u;
+                string escTitle = stacks > 0u ? $"战意渐盛 · 第 {stacks} 层" : $"下一回合（第 {escStart} 回合）开启「战意渐盛」";
+                string escSub = stacks > 0u ? $"伤害 +{dmgPct}% · 治疗与新盾 -{healCut}%" : "伤害每回合 +10% · 治疗与新盾 -10%";
+                var escSprite = SeasonEconomyUiArt.LoadRankedPlayV2Control("escalation-badge-base")
+                    ?? SeasonEconomyUiArt.LoadBattleArenaControl("escalation-cinnabar");
+                RectTransform pulseRoot;
+                if (escSprite != null)
+                {
+                    // 优先使用 ranked-play-v2-ui-20261125 低光污 escalation-badge-base.png（550:110 原比例 -> 490x98 居中），全程 raycastTarget=false。
+                    const float ex = 1035f;
+                    const float ew = 490f;
+                    const float eh = 98f;
+                    var container = QdaoUguiFactory.CreateRect("EscalationGroup", transform, ex, nextY, ew, eh);
+                    container.pivot = new Vector2(0.5f, 0.5f);
+                    container.anchoredPosition = new Vector2(ex + ew * 0.5f, -(nextY + eh * 0.5f));
+                    var escImg = QdaoUguiFactory.CreateImage("EscalationBanner", container, 0f, 0f, ew, eh, escSprite, false);
+                    escImg.type = UnityEngine.UI.Image.Type.Simple;
+                    escImg.color = Color.white;
+                    var titleLbl = CoreLoopUiArt.Text("EscalationTitle", container, 78f, 16f, 392f, 34f,
+                        escTitle, 22f, stacks > 0u ? SeasonEconomyUiArt.BattleArenaVermilion : SeasonEconomyUiArt.BattleArenaJade,
+                        true, false, TextAlignmentOptions.Center);
+                    titleLbl.enableAutoSizing = true; titleLbl.fontSizeMin = 14f; titleLbl.fontSizeMax = 22f;
+                    var subLbl = CoreLoopUiArt.Text("EscalationSub", container, 78f, 52f, 392f, 28f,
+                        escSub, 17f, SeasonEconomyUiArt.BattleArenaInk, false, false, TextAlignmentOptions.Center);
+                    subLbl.enableAutoSizing = true; subLbl.fontSizeMin = 12f; subLbl.fontSizeMax = 17f;
+                    pulseRoot = container;
+                    nextY += eh + 6f;
+                }
+                else
+                {
+                    string escText = stacks > 0u ? $"{escTitle}（{escSub}）" : $"{escTitle}（{escSub}）";
+                    var escStrip = CoreLoopUiArt.Image("EscalationBanner", transform, 900f, nextY, 760f, 40f,
+                        "hud-strip", stacks > 0u ? new Color(.97f, .86f, .72f, .94f) : new Color(.95f, .92f, .83f, .9f),
+                        raycast: false);
+                    var escLbl = CoreLoopUiArt.Text("EscalationText", transform, 916f, nextY + 2f, 728f, 36f,
+                        escText, 19f, stacks > 0u ? CoreLoopUiArt.Warning : CoreLoopUiArt.DeepJade,
+                        true, false, TextAlignmentOptions.Center);
+                    escLbl.enableAutoSizing = true; escLbl.fontSizeMin = 13f; escLbl.fontSizeMax = 19f;
+                    pulseRoot = escStrip != null ? escStrip.rectTransform : null;
+                    nextY += 46f;
+                }
+                if (stackedUp && pulseRoot != null)
+                {
+                    // 层数真实递增时触发一次 0.18s 1->1.08->1 局部缩放脉冲，同层快照刷新不重播。
+                    var rt = pulseRoot;
+                    RealtimeTween.To(0f, 1f, 0.18f).SetEase(RealtimeEase.SineInOut)
+                        .SetIgnoreEngineTimeScale(true).SetTarget(rt.gameObject)
+                        .OnUpdate((RealtimeTweenCallback1)(t =>
+                        {
+                            if (rt == null) return;
+                            float s = 1f + 0.08f * Mathf.Sin(t.Value.x * Mathf.PI);
+                            rt.localScale = new UnityEngine.Vector3(s, s, 1f);
+                        }))
+                        .OnComplete((RealtimeTweenCallback)(() =>
+                        {
+                            if (rt != null) rt.localScale = UnityEngine.Vector3.one;
+                        }));
+                }
+            }
+            else
+            {
+                _lastEscalationStacks = 0u;
+            }
             if (hud.HasPolarity)
             {
                 bool phys = hud.ActivePolarity == 1u;

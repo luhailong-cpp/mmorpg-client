@@ -1,0 +1,30 @@
+{
+  "recordSchema": 1,
+  "recordType": "byte-identical-unity-import-copy",
+  "copiedAtUtc": "2026-11-25T15:07:52.696666+00:00",
+  "sourceGeneratedAtUtc": null,
+  "file": "integration/Assets/Resources/UI/Ugui/BattleArenaV2V3/controls/escalation-cinnabar.png",
+  "sha256": "2d0ef8b85adb38674ca9c6ec8eec0253c8682c88822d09d0397f2cf88544f4b9",
+  "width": 600,
+  "height": 116,
+  "route": "local-byte-copy",
+  "newAiCalls": 0,
+  "submittedParameters": {
+    "model": null,
+    "quality": null
+  },
+  "actualModel": null,
+  "actualQuality": null,
+  "configuredTargetNotUsed": {
+    "model": "gpt-image-2.6-sunburst",
+    "quality": "max",
+    "source": "config/image-generation.json"
+  },
+  "note": "Byte-identical import copy; no new image request. Original model, quality and generation evidence remain in the linked source record.",
+  "source": {
+    "file": "controls/escalation-cinnabar.png",
+    "sha256": "2d0ef8b85adb38674ca9c6ec8eec0253c8682c88822d09d0397f2cf88544f4b9",
+    "generationRecord": "controls/escalation-cinnabar.png.generation.json",
+    "generationRecordSha256": "cbb03a3d98038918a155c5cc8e384e12aeb01340d7d9736160fe324c2436dee1"
+  }
+}

@@ -254,7 +254,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         {
             bool shield = _skillId == CharacterSupportModel.ShieldSkillId;
             var entry = CharacterSupportModel.FindSkill(_lastBook, _skillId);
-            _skillName.text = entry?.Definition?.name ?? (shield ? "独立护盾" : "青莲润生");
+            _skillName.text = entry?.Definition?.name ?? (shield ? "太清灵盾" : "青莲润生");
             _skillCategory.text = shield ? "主动 · 护盾" : "主动 · 治疗";
             _skillIcon.sprite = CharacterPetArt.Skill(_skillId, 256); _skillIcon.enabled = _skillIcon.sprite != null;
             var labels = shield ? new[] { "主要效果", "作用目标", "护盾容量 / 吸收类型", "持续回合 / 耗蓝 / 冷却" } :
@@ -301,7 +301,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             uint id = shield ? CharacterSupportModel.ShieldSkillId : CharacterSupportModel.HealingSkillId;
             var button = Action(shield ? "ShieldSkill" : "HealSkill", _details, 188, y, 503, 124, "", "mail_row_normal", () => ShowSkill(id));
             var icon = Picture("Icon", button.transform, 19, 14, 96, 96, null); icon.sprite = CharacterPetArt.Skill(id, 128); icon.enabled = icon.sprite != null;
-            Label("Name", button.transform, 138, 20, 340, 41, shield ? "独立护盾" : "青莲润生", 30, Green);
+            Label("Name", button.transform, 138, 20, 340, 41, shield ? "太清灵盾" : "青莲润生", 30, Green);
             Label("Category", button.transform, 138, 67, 340, 34, shield ? "主动 · 护盾" : "主动 · 治疗", 24, Muted);
             return button;
         }

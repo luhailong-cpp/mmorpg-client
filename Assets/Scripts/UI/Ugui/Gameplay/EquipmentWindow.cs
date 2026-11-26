@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MmorpgClient.Game.Attribute;
 using MmorpgClient.Game.PlayerFeatures;
+using MmorpgClient.Game.Season;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,7 +17,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     /// <summary>Live equipment UI. Painted screens are references only; every value comes from a server snapshot.</summary>
     public sealed partial class EquipmentWindow : IDisposable
     {
-        private enum Modal { None, Compare, Affix, Detail, Materials, PolishOdds, Reforge, BindConfirm }
+        private enum Modal { None, Compare, Affix, Detail, Materials, PolishOdds, Reforge, BindConfirm, EnhanceBindConfirm, UnsealConfirm, InheritEnhance }
         private readonly RectTransform _root, _frame, _surface, _body, _modalLayer;
         private readonly CanvasGroup _surfaceInput;
         private readonly EquipWishDialogInput _input;
@@ -25,6 +26,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private readonly EquipForgeDialog _legacyForge;
         private PlayerFeaturesClient _client;
         private AttributeClient _attributes;
+        private SeasonClient _season;
         private AttributePanelInfo _panel;
         private EquipmentPage _page;
         private Modal _modal;
@@ -82,6 +84,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (_disposed) return;
             if (!IsVisible) _returnFocus = EventSystem.current?.currentSelectedGameObject;
+            BindSeason(AppBootstrap.Instance?.GameClient?.Season);
             _input.enabled = true;
             _root.SetAsLastSibling(); _root.gameObject.SetActive(true);
             _page = page; _modal = Modal.None; _notice = string.Empty;
@@ -91,11 +94,26 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void Hide()
         {
             if (!IsVisible) return;
+            BindSeason(null);
             _legacyForge.Close(); _forge.Close(); _craft.ClearSelection();
             _modal = Modal.None; _input.Controls.Clear(); _root.gameObject.SetActive(false);
             EventSystem.current?.SetSelectedGameObject(_returnFocus != null && _returnFocus.activeInHierarchy ? _returnFocus : null);
             _returnFocus = null; Closed?.Invoke();
         }
+
+        private void BindSeason(SeasonClient season)
+        {
+            if (ReferenceEquals(_season, season)) return;
+            if (_season != null) _season.Changed -= OnSeasonChanged;
+            _season = season;
+            if (_season != null)
+            {
+                _season.Changed += OnSeasonChanged;
+                if (_season.Snapshot == null && !_season.StatePending) _season.RequestState();
+            }
+        }
+
+        private void OnSeasonChanged() { if (IsVisible) Render(); }
 
         public void Back()
         {
@@ -201,7 +219,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     {
                         case EquipmentPage.Overview: RenderOverview(); break;
                         case EquipmentPage.Craft: RenderCraft(); break;
-                        case EquipmentPage.Enhance: EquipmentEnhancementView.Render(_body, _client, _forge, SelectEnhancement, WriteBlocked); break;
+                        case EquipmentPage.Enhance:
+                            EquipmentEnhancementView.Render(_body, _client, _forge, SelectEnhancement, WriteBlocked,
+                                onRequestEnhanceBindConfirm: OpenEnhanceBindConfirm,
+                                onOpenUnseal: OpenUnsealConfirm,
+                                onOpenInherit: OpenInheritEnhance);
+                            break;
                         case EquipmentPage.Artifacts: RenderArtifacts(); break;
                         case EquipmentPage.Polish: RenderPolish(); break;
                     }
@@ -247,7 +270,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void Dispose()
         {
             if (_disposed) return;
-            Hide(); Bind(null, null); _disposed = true;
+            Hide(); BindSeason(null); Bind(null, null); _disposed = true;
             _craft.Changed -= Render; _craft.Applied -= Applied; _craft.AppliedReceipt -= AppliedCraftReceipt; _forge.Changed -= Render;
             _legacyForge.Dispose(); _craft.Dispose(); _forge.Dispose();
             if (_root != null) { if (Application.isPlaying) UnityEngine.Object.Destroy(_root.gameObject); else UnityEngine.Object.DestroyImmediate(_root.gameObject); }

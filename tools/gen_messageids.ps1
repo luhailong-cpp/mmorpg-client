@@ -155,6 +155,9 @@ $whitelist = @{
     "SceneSkillClientPlayerListSkills"             = "ListSkills"
     # 四职业技能修习(服务端 docs/design/class-skills.md §4)
     "SceneSkillClientPlayerUpgradeSkill"           = "UpgradeSkill"
+    # 人物战法构筑装配 3 套流派方案(服务端 docs/design/battle-skill-and-pet-cultivation-expansion.md)
+    "SceneSkillClientPlayerSaveSkillLoadout"       = "SaveSkillLoadout"
+    "SceneSkillClientPlayerSwitchSkillLoadout"     = "SwitchSkillLoadout"
 
     "SceneMovementClientPlayerMoveStart"           = "MoveStart"
     "SceneMovementClientPlayerMoveStop"            = "MoveStop"
@@ -226,6 +229,8 @@ $whitelist = @{
     "ScenePetClientPlayerGetPetEntries"                      = "GetPetEntries"
     "ScenePetClientPlayerPreviewPetEntries"                  = "PreviewPetEntries"
     "ScenePetClientPlayerSavePetEntries"                     = "SavePetEntries"
+    "ScenePetClientPlayerSwitchPetEntryPreset"               = "SwitchPetEntryPreset"
+    "ScenePetClientPlayerAscendPetTier"                      = "AscendPetTier"
     "ScenePetClientPlayerSummonPet"                          = "SummonPet"
     "ScenePetClientPlayerRecallPet"                          = "RecallPet"
     "ScenePetClientPlayerAllocatePetPoints"                  = "AllocatePetPoints"
@@ -251,6 +256,8 @@ $whitelist = @{
 
     # 客户端直连 battle 节点(turn-based-battle-server.md §18):落点分配推送 + 丢票补签
     "BattleClientPlayerNotifyBattleAssigned"       = "NotifyBattleAssigned"
+    "BattleClientPlayerUpdateBattlePrep"           = "UpdateBattlePrep"
+    "BattleClientPlayerNotifyBattlePrepUpdate"     = "NotifyBattlePrepUpdate"
     "MatchServiceRequestBattleTicket"              = "RequestBattleTicket"
 
     # 组队(proto/team/team.proto, service ClientPlayerTeam;docs/design/team-system.md §H.1)。

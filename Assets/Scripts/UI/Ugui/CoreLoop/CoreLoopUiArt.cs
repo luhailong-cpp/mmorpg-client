@@ -136,9 +136,29 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         internal static void Frame(UnityEngine.Transform parent, string title, Action close)
         {
             // CoreGameplayUiRoot 的窗口层已有整屏遮罩，面板只负责有形内容。
-            Image("Frame", parent, 190, 95, 2180, 923, "frame", Ivory, true);
-            Image("TitlePlaque", parent, 1061, 132, 437, 152, "title-plaque", DeepJade);
-            Text("Title", parent, 1093, 164, 373, 78, title, 43, Ivory, true, false, TextAlignmentOptions.Center);
+            // 优先使用赛季专属拆分九宫格主框（1024×768，边距左/右 130、上 160、下 125）与独立太极标题牌（640×220，0.9 倍等比挂件）。
+            var seasonFrame = SeasonEconomyUiArt.LoadControl(SeasonEconomyUiArt.SeasonFrame9SliceControlKey);
+            if (seasonFrame != null)
+                SeasonEconomyUiArt.CreateSlicedOrSimple(parent, "Frame", 180f, 58f, 2200f, 972f, seasonFrame, Ivory, raycast: true);
+            else
+                Image("Frame", parent, 190, 95, 2180, 923, "frame", Ivory, true);
+
+            var seasonPlaque = SeasonEconomyUiArt.LoadControl(SeasonEconomyUiArt.SeasonTitlePlaqueControlKey);
+            if (seasonPlaque != null)
+            {
+                var plaque = QdaoUguiFactory.CreateImage("TitlePlaque", parent, 992f, 66f, 576f, 198f, seasonPlaque, false);
+                plaque.preserveAspect = true;
+                var titleLabel = Text("Title", parent, 1100f, 142f, 360f, 50f, title, 36f, Ivory, true, false, TextAlignmentOptions.Center);
+                titleLabel.enableAutoSizing = true;
+                titleLabel.fontSizeMin = 24f;
+                titleLabel.fontSizeMax = 38f;
+            }
+            else
+            {
+                Image("TitlePlaque", parent, 1061, 132, 437, 152, "title-plaque", DeepJade);
+                Text("Title", parent, 1093, 164, 373, 78, title, 43, Ivory, true, false, TextAlignmentOptions.Center);
+            }
+
             var closeButton = QdaoUguiFactory.CreateArtButton("Close", parent, 2090, 168, 74, 74,
                 Load("close"), out _);
             if (close != null) closeButton.onClick.AddListener(() => close());

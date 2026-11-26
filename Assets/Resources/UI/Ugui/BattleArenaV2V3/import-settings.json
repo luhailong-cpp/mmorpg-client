@@ -1,0 +1,428 @@
+{
+  "schema": "battle-arena-v2v3-import-v1",
+  "spriteCount": 28,
+  "sliceStatus": "fixed-size; zero borders; Unity stretch validation not performed",
+  "excludedReviewImage": "assets/guild_portrait_1.png",
+  "sprites": [
+    {
+      "file": "assets/guild_button_primary.png",
+      "width": 414,
+      "height": 80,
+      "sha256": "8e8e685b75502e20ef737b92c5f5796223271fd9b99778f1ed4e3fdbdae71339",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/guild_button_primary",
+      "source": "assets/guild_button_primary.png",
+      "provenance": "assets/guild_button_primary.png.generation.json"
+    },
+    {
+      "file": "assets/guild_button_secondary.png",
+      "width": 229,
+      "height": 58,
+      "sha256": "047b7a751931003a12a3ba6c208e710a80e2f4dcd3910ddd13d1125279ac7f82",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/guild_button_secondary",
+      "source": "assets/guild_button_secondary.png",
+      "provenance": "assets/guild_button_secondary.png.generation.json"
+    },
+    {
+      "file": "assets/guild_empty_shell.png",
+      "width": 1932,
+      "height": 814,
+      "sha256": "457fcd99a8c1514899228e3d9b06685786996a19ec30e06955b5e88ee273f77c",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/guild_empty_shell",
+      "source": "assets/guild_empty_shell.png",
+      "provenance": "assets/guild_empty_shell.png.generation.json"
+    },
+    {
+      "file": "assets/guild_progress_fill.png",
+      "width": 250,
+      "height": 22,
+      "sha256": "fb16d28d50737c81e55aebe0b2cb46552a7286ee06563db95a2b07f474e45471",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/guild_progress_fill",
+      "source": "assets/guild_progress_fill.png",
+      "provenance": "assets/guild_progress_fill.png.generation.json"
+    },
+    {
+      "file": "assets/guild_progress_track.png",
+      "width": 392,
+      "height": 37,
+      "sha256": "2f2b7b759e0b44dcf6a64372a202d8277ee23b4d2f04366ff3df96bf06efb286",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/guild_progress_track",
+      "source": "assets/guild_progress_track.png",
+      "provenance": "assets/guild_progress_track.png.generation.json"
+    },
+    {
+      "file": "assets/guild_row_normal.png",
+      "width": 957,
+      "height": 55,
+      "sha256": "737ba743836e0a290a2c1f1104698e27a0508852350f360ba4f6e9401c84555c",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/guild_row_normal",
+      "source": "assets/guild_row_normal.png",
+      "provenance": "assets/guild_row_normal.png.generation.json"
+    },
+    {
+      "file": "assets/guild_row_self.png",
+      "width": 957,
+      "height": 57,
+      "sha256": "d177aa57e0531511bdafa08c42804226cb6fac289f80172b4dc26ca5ed4959dd",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/guild_row_self",
+      "source": "assets/guild_row_self.png",
+      "provenance": "assets/guild_row_self.png.generation.json"
+    },
+    {
+      "file": "assets/guild_tab_normal.png",
+      "width": 273,
+      "height": 62,
+      "sha256": "9ecbdaed30a843442867e2d3a6c8279f44a017b2e8086d23b3f6af6e2464fd07",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/guild_tab_normal",
+      "source": "assets/guild_tab_normal.png",
+      "provenance": "assets/guild_tab_normal.png.generation.json"
+    },
+    {
+      "file": "assets/guild_tab_selected.png",
+      "width": 316,
+      "height": 65,
+      "sha256": "26e213487c0690aae7e2c63a35a0f1e4540607873346b92ae73ea2a2f446c24b",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/guild_tab_selected",
+      "source": "assets/guild_tab_selected.png",
+      "provenance": "assets/guild_tab_selected.png.generation.json"
+    },
+    {
+      "file": "assets/guild_table_header.png",
+      "width": 957,
+      "height": 40,
+      "sha256": "241deefd5d2ef5673026ffc56648e6a5cfe2609c4ec95d18901775cada8929e3",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/guild_table_header",
+      "source": "assets/guild_table_header.png",
+      "provenance": "assets/guild_table_header.png.generation.json"
+    },
+    {
+      "file": "assets/seal_101.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "2fbc7513deb07b1208c9390f6e62100f008624e7e885dbefdbe988b5958db025",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/seal_101",
+      "source": "assets/seal_101.png",
+      "provenance": "assets/seal_101.png.generation.json"
+    },
+    {
+      "file": "assets/seal_102.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "59fab4d52be853f0b832746141820b09c80c9407c626afc1d58ba2134413f5ae",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/seal_102",
+      "source": "assets/seal_102.png",
+      "provenance": "assets/seal_102.png.generation.json"
+    },
+    {
+      "file": "assets/seal_103.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "5cc8b4ada801d1b5d05722f51e726959c841243c64d8e773230c6c3776342cd5",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/seal_103",
+      "source": "assets/seal_103.png",
+      "provenance": "assets/seal_103.png.generation.json"
+    },
+    {
+      "file": "assets/seal_104.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "0e025ac4b1d792ece393275de4953b211f92d29435dce3c4d0b50cb3b6d71699",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/seal_104",
+      "source": "assets/seal_104.png",
+      "provenance": "assets/seal_104.png.generation.json"
+    },
+    {
+      "file": "assets/skill_control.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "59fab4d52be853f0b832746141820b09c80c9407c626afc1d58ba2134413f5ae",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/skill_control",
+      "source": "assets/skill_control.png",
+      "provenance": "assets/skill_control.png.generation.json"
+    },
+    {
+      "file": "assets/skill_magic.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "4a68ee87f3071944f87a0f206483e056be6c4258dfa1b351a84837a8a93dd1f7",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/skill_magic",
+      "source": "assets/skill_magic.png",
+      "provenance": "assets/skill_magic.png.generation.json"
+    },
+    {
+      "file": "assets/skill_physical.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "20902bb3194d37ed7102f233a8373deb3391e8a915886b5cde690fcc8284380c",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/skill_physical",
+      "source": "assets/skill_physical.png",
+      "provenance": "assets/skill_physical.png.generation.json"
+    },
+    {
+      "file": "assets/skill_support.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "5cc8b4ada801d1b5d05722f51e726959c841243c64d8e773230c6c3776342cd5",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/assets/skill_support",
+      "source": "assets/skill_support.png",
+      "provenance": "assets/skill_support.png.generation.json"
+    },
+    {
+      "file": "controls/no-pet-modal-base.png",
+      "width": 840,
+      "height": 440,
+      "sha256": "96af6d823f99fd8f7020b3db9446508f7b85af1220f5bd23d51f4afafbfa7186",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/controls/no-pet-modal-base",
+      "source": "controls/no-pet-modal-base.png",
+      "provenance": "controls/no-pet-modal-base.png.generation.json"
+    },
+    {
+      "file": "controls/round-counter-base.png",
+      "width": 524,
+      "height": 78,
+      "sha256": "aead3e6e8b88f82051e943a4d66d9c4f7bba4316526ffbc7761016522c6796be",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/controls/round-counter-base",
+      "source": "controls/round-counter-base.png",
+      "provenance": "controls/round-counter-base.png.generation.json"
+    },
+    {
+      "file": "controls/surrender-button-base.png",
+      "width": 250,
+      "height": 62,
+      "sha256": "a5f8ff105cefbc33b7db37f8dbeedbef9873d84606985d0c0c2c5761535532c6",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/controls/surrender-button-base",
+      "source": "controls/surrender-button-base.png",
+      "provenance": "controls/surrender-button-base.png.generation.json"
+    },
+    {
+      "file": "controls/surrender-vote-strip-base.png",
+      "width": 865,
+      "height": 138,
+      "sha256": "de60be3d480eba91f5383db5fecc80231e0d247a29e78beed10f404480b1303c",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/controls/surrender-vote-strip-base",
+      "source": "controls/surrender-vote-strip-base.png",
+      "provenance": "controls/surrender-vote-strip-base.png.generation.json"
+    },
+    {
+      "file": "controls/escalation-cinnabar.png",
+      "width": 600,
+      "height": 116,
+      "sha256": "2d0ef8b85adb38674ca9c6ec8eec0253c8682c88822d09d0397f2cf88544f4b9",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/controls/escalation-cinnabar",
+      "source": "controls/escalation-cinnabar.png",
+      "provenance": "controls/escalation-cinnabar.png.generation.json"
+    },
+    {
+      "file": "controls/prep-shell.png",
+      "width": 1960,
+      "height": 370,
+      "sha256": "3d80fad00ce4a145d3bee0a0f0d7c36ba08dbf8e63fc627800eaeef3870a2bcc",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/controls/prep-shell",
+      "source": "controls/prep-shell.png",
+      "provenance": "controls/prep-shell.png.generation.json"
+    },
+    {
+      "file": "controls/prep-seal-normal.png",
+      "width": 426,
+      "height": 68,
+      "sha256": "3c1eb6f6c640f088dbb51dd998ab70bce2792dcc29bd83253bee4ef089010426",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/controls/prep-seal-normal",
+      "source": "controls/prep-seal-normal.png",
+      "provenance": "controls/prep-seal-normal.png.generation.json"
+    },
+    {
+      "file": "controls/prep-seal-selected.png",
+      "width": 426,
+      "height": 68,
+      "sha256": "c8b53e4c4c5327ff85878fe3c14d658f35bccefd9e0c587cccfeb6b8124e3796",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/controls/prep-seal-selected",
+      "source": "controls/prep-seal-selected.png",
+      "provenance": "controls/prep-seal-selected.png.generation.json"
+    },
+    {
+      "file": "controls/prep-pet-normal.png",
+      "width": 282,
+      "height": 94,
+      "sha256": "5107907cad1cc2506b1d0ed646a846809bc34a1d59d784ac166364216244c930",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/controls/prep-pet-normal",
+      "source": "controls/prep-pet-normal.png",
+      "provenance": "controls/prep-pet-normal.png.generation.json"
+    },
+    {
+      "file": "controls/prep-pet-selected.png",
+      "width": 282,
+      "height": 94,
+      "sha256": "3da5d973f85678b6d4614cf6154895434747ce260e694c95c94f1cebca4cc216",
+      "border": {
+        "left": 0,
+        "bottom": 0,
+        "right": 0,
+        "top": 0
+      },
+      "resourcePath": "UI/Ugui/BattleArenaV2V3/controls/prep-pet-selected",
+      "source": "controls/prep-pet-selected.png",
+      "provenance": "controls/prep-pet-selected.png.generation.json"
+    }
+  ]
+}

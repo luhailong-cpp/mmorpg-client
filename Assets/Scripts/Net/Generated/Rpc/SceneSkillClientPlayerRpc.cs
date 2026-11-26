@@ -90,5 +90,15 @@ namespace MmorpgClient.Net.Generated
         public static void ListCraftProxyStalls(IRpcChannel channel, global::ListCraftProxyStallsRequest request,
             RpcDone<global::ListCraftProxyStallsResponse> done)
             => channel.CallMethod(ListCraftProxyStallsMessageId, request, global::ListCraftProxyStallsResponse.Parser, done);
+
+        public const uint SaveSkillLoadoutMessageId = 502;
+        public static void SaveSkillLoadout(IRpcChannel channel, global::SaveSkillLoadoutRequest request,
+            RpcDone<global::SaveSkillLoadoutResponse> done)
+            => channel.CallMethod(SaveSkillLoadoutMessageId, request, global::SaveSkillLoadoutResponse.Parser, done);
+
+        public const uint SwitchSkillLoadoutMessageId = 503;
+        public static void SwitchSkillLoadout(IRpcChannel channel, global::SwitchSkillLoadoutRequest request,
+            RpcDone<global::SwitchSkillLoadoutResponse> done)
+            => channel.CallMethod(SwitchSkillLoadoutMessageId, request, global::SwitchSkillLoadoutResponse.Parser, done);
     }
 }

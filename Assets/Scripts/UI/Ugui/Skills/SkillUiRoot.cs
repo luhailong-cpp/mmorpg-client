@@ -70,6 +70,7 @@ namespace MmorpgClient.UI.Ugui.Skills
                     targetTeam = MmorpgClient.Game.Skills.SkillBookMapper.TargetTeamName(row.TargetTeam),
                     allowDeadTarget = row.AllowDeadTarget != 0, maxTargets = row.MaxTargets,
                     manaPercent = row.ManaPercent, cooldownRounds = row.CooldownRounds,
+                    abilityKind = row.AbilityKind, secondaryTargetPolicy = row.SecondaryTargetPolicy, exclusiveGroup = row.ExclusiveGroup,
                     iconResource = MmorpgClient.Game.Skills.SkillBookMapper.NormalizeIconKey(row.IconKey, id) };
             return SkillCatalog.Find(id);
         }

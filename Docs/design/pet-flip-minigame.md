@@ -430,3 +430,25 @@
 - **样例预览完成**：`D:\work\image\designs\pet-memory-ui-v1\previews\01-entry.png`～`06-narrow-board.png`（设计稿参考）。
 - **真实逻辑已接入**：`PetFlipUiRoot` 与 `PetFlipPanelView` 全部绑定 `GameClient.PetFlip`，离线 Roslyn 编译与纯逻辑/UI 展示单测已通过。
 - **实际平台已验证**：尚未在 Unity 编辑器 PlayMode 截图逐像素核验、iOS/Android App 真机与微信/抖音小游戏宿主实测；需在 Unity 运行环境完成端到端截图与交互验收后才可标记平台验证完成。
+
+---
+
+## 9. V1.1 玩感扩展（零新 UI、零服务端）与 V2 美术需求单（2026-11-25）
+
+### 9.1 已落地玩感扩展（不破坏 V1 原图布局与规则口径）
+- **妙手连珠连击与完美通关评价**：
+  - `PetFlipBoardModel` / `PetFlipSnapshot` / `PetFlipActionResult` / `PetFlipCompletionResult` 新增 `CurrentStreak`、`MaxStreak`、`LastMatchedPattern`、`IsPerfectRun`（6 次零失误）；暂停/断线续盘保留连击，失配立即清零 `CurrentStreak`，新开盘归零。
+  - 配对轻弹动画振幅随连击微幅递增（`0.08`→`0.13` 封顶，`RealtimeTween` unscaled 时间），不改变逻辑同步落定语义。
+- **6 只灵宠专属道家配对小语**：
+  - 每次配对成功在既有提示位展示对应灵宠一句短语（2 连及以上叠加“二连妙手 / 三连贯珠 / … / 六连一气呵成”）；提示优先级严格为 `断线 > 失配 > 配对连击与小语 > 默认提示`，不覆盖 V1 失配文案规范。
+  - 终局次行汇总：完美 6 次附“一气呵成”，非完美但最高连配 ≥ 2 附“最高 N 连配”，四类主结果反馈文案保持原样。
+- **纯本地跨平台确定性日期种子洗牌**：
+  - 新增 `PetFlipDeckFactory.CreateDailySeededDeck(int year, int month, int day)`（FNV-1a 稳定哈希），为后续 V2“今日灵签”每日同盘挑战提供即用底座；正式开局默认仍走随机洗牌。
+
+### 9.2 后续 V2 如需升级，交由另一台 Codex 产出的美术清单
+1. **主城入口专用图标（可选）**：`WorldHud20261022/petflip.png`（84×84 RGBA 透明，统一道家 Q 版主城图标画风，替换当前复用的 `card-back.png`）。
+2. **16 张（8 对）进阶难度与“今日灵签”模式 UI（如开启 V2）**：
+   - 入口页顶部/中部的两档难度（12 张 / 16 张）与模式（自由翻牌 / 今日灵签）切换胶囊样式及横屏 `1922×818` / 竖屏 `1024×1536` 坐标预览；
+   - 16 张 4×4 牌盘横竖屏预览图（确保触控点击面积与名称可读）；
+   - 第 7、8 只灵宠头像目录 ID 映射确认（复用 `QdaoPetCatalog` 已有保留灵宠，如 `02-jiangling` 绛铃、`15-landuoxian` 岚铎仙）；
+   - （可选）128×128 透明朱红“一气呵成”完美通关印章 PNG。

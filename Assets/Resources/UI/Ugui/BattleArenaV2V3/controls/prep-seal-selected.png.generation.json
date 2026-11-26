@@ -1,0 +1,30 @@
+{
+  "recordSchema": 1,
+  "recordType": "byte-identical-unity-import-copy",
+  "copiedAtUtc": "2026-11-25T15:07:52.696666+00:00",
+  "sourceGeneratedAtUtc": null,
+  "file": "integration/Assets/Resources/UI/Ugui/BattleArenaV2V3/controls/prep-seal-selected.png",
+  "sha256": "c8b53e4c4c5327ff85878fe3c14d658f35bccefd9e0c587cccfeb6b8124e3796",
+  "width": 426,
+  "height": 68,
+  "route": "local-byte-copy",
+  "newAiCalls": 0,
+  "submittedParameters": {
+    "model": null,
+    "quality": null
+  },
+  "actualModel": null,
+  "actualQuality": null,
+  "configuredTargetNotUsed": {
+    "model": "gpt-image-2.6-sunburst",
+    "quality": "max",
+    "source": "config/image-generation.json"
+  },
+  "note": "Byte-identical import copy; no new image request. Original model, quality and generation evidence remain in the linked source record.",
+  "source": {
+    "file": "controls/prep-seal-selected.png",
+    "sha256": "c8b53e4c4c5327ff85878fe3c14d658f35bccefd9e0c587cccfeb6b8124e3796",
+    "generationRecord": "controls/prep-seal-selected.png.generation.json",
+    "generationRecordSha256": "0095847303cf870e2076487d27d6cebdcd8b8d344f8490fe4e86e6b09c7b5c29"
+  }
+}

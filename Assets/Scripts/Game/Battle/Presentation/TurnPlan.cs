@@ -31,6 +31,7 @@ namespace MmorpgClient.Game.Battle.Presentation
         public const int PetRetreat = 19;
         public const int Shield = 20;
         public const int Artifact = 21;
+        public const int BossMechanic = 22;
     }
 
     /// <summary>一拍演出的类型。</summary>
@@ -61,6 +62,7 @@ namespace MmorpgClient.Game.Battle.Presentation
         MaxHealth,
         PetRetreat,
         Shield,
+        BossMechanic,
     }
 
     /// <summary>拍内每个目标承受的效果类型。</summary>
@@ -115,6 +117,10 @@ namespace MmorpgClient.Game.Battle.Presentation
         public ulong Absorbed;
         public ulong ArtifactItemId;
         public uint ArtifactEffectId;
+        public uint SeasonSealId;
+        public bool IsPrimaryFocus;
+        public bool IsSplashReduced;
+        public uint MechanicKind;
 
         public static TurnEventInput From(BattleEventItem ev)
         {
@@ -137,6 +143,10 @@ namespace MmorpgClient.Game.Battle.Presentation
                 Absorbed = ev.Absorbed,
                 ArtifactItemId = ev.ArtifactItemId,
                 ArtifactEffectId = ev.ArtifactEffectId,
+                SeasonSealId = ev.SeasonSealId,
+                IsPrimaryFocus = ev.IsPrimaryFocus,
+                IsSplashReduced = ev.IsSplashReduced,
+                MechanicKind = ev.MechanicKind,
                 GroupId = ev.GroupId,
                 HitIndex = unchecked((int)ev.HitIndex),
                 ManaAfter = ev.TargetManaAfter,
@@ -175,6 +185,8 @@ namespace MmorpgClient.Game.Battle.Presentation
         public ulong MaxHealthAfter;
         public ulong ShieldAfter;
         public ulong Absorbed;
+        public bool IsPrimaryFocus;
+        public bool IsSplashReduced;
     }
 
     /// <summary>演出指令的最小单位:一拍(拍内多目标并行,拍间串行)。</summary>
@@ -196,6 +208,9 @@ namespace MmorpgClient.Game.Battle.Presentation
         /// <summary>FLEE 等带成败的事件结果(拍级)。</summary>
         public bool Success;
         public ulong CaptureTargetId;
+        public uint MechanicKind;
+        public ulong MechanicTargetId;
+        public long MechanicValue;
         /// <summary>出手者是否我方(Build(TurnResultS2C, myTeam) 按 state.actors 判定;未知为 false)。</summary>
         public bool ActorIsMine;
         /// <summary>出手者自身的 MP 变化(施法耗蓝);HasActorManaAfter=false 表示本拍无此信息。</summary>
@@ -559,6 +574,17 @@ namespace MmorpgClient.Game.Battle.Presentation
                         plan.ArtifactEvents.Add((i, ev));
                         break;
 
+                    case BattleEventCodes.BossMechanic:
+                    {
+                        FlushDeaths();
+                        var beat = NewBeat(plan, BeatKind.BossMechanic, ev.SourceId, LoneBuffSeconds, ev, i, isMine);
+                        beat.MechanicKind = ev.MechanicKind;
+                        beat.MechanicTargetId = ev.TargetId != 0 ? ev.TargetId : ev.SourceId;
+                        beat.MechanicValue = ev.Value;
+                        current = null;
+                        break;
+                    }
+
                     default:
                         // 未知/NONE:忽略
                         break;
@@ -645,6 +671,8 @@ namespace MmorpgClient.Game.Battle.Presentation
                 BuffId = ev.BuffId,
                 HitIndex = ev.HitIndex,
                 Success = ev.Success,
+                IsPrimaryFocus = ev.IsPrimaryFocus,
+                IsSplashReduced = ev.IsSplashReduced,
             };
             if (effect == TargetEffect.BuffAdd || effect == TargetEffect.BuffRemove)
             {

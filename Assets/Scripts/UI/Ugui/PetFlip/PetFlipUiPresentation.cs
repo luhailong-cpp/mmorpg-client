@@ -99,6 +99,42 @@ namespace MmorpgClient.UI.Ugui.PetFlip
         public const string LoadFailedTitleText = "灵宠牌面未能载入";
         public const string LoadFailedSubtext = "请重试，或先返回历练";
         public const string UnsavedRecordNoticeText = "本机纪录未保存";
+        public const string PerfectRunBadgeText = "一气呵成";
+
+        private static readonly string[] PetMatchFlavorQuotes =
+        {
+            "烛翎振羽：灯火照处，灵犀相通！",
+            "霜团貂甩尾：毛茸茸的一对，找得好准！",
+            "桂灯童提灯：桂香引路，再接再厉！",
+            "竹风狸轻跃：穿竹过风，眼明手快！",
+            "玄潮龟点头：稳中求胜，水到渠成！",
+            "霞角鹿踏云：霞光映双影，好记性！"
+        };
+
+        /// <summary>返回指定灵宠配对成功时的一句道家 Q 版趣味小语。</summary>
+        public static string GetPetMatchFlavorText(SpiritPetCardPattern pattern)
+        {
+            int index = (int)pattern;
+            return index >= 0 && index < PetMatchFlavorQuotes.Length
+                ? PetMatchFlavorQuotes[index]
+                : string.Empty;
+        }
+
+        /// <summary>返回连续配对 2 次及以上的称赞短语；不足 2 连返回空串。</summary>
+        public static string FormatStreakBadge(int currentStreak)
+        {
+            if (currentStreak < 2)
+                return string.Empty;
+
+            return currentStreak switch
+            {
+                2 => "二连妙手！",
+                3 => "三连贯珠！",
+                4 => "四连灵犀！",
+                5 => "五连天成！",
+                _ => "六连一气呵成！"
+            };
+        }
 
         /// <summary>
         /// 逻辑枚举 <see cref="SpiritPetCardPattern"/> (0..5) 与客户端 <c>QdaoPetCatalog</c> 身份的固定映射，
@@ -265,6 +301,16 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             if (snapshot.HandState == PetFlipHandState.MismatchShowing)
                 return isPortrait ? MismatchHintText : "点任一未配对的牌\n继续翻";
 
+            if (snapshot.HandState == PetFlipHandState.WaitingFirstCard && snapshot.LastMatchedPattern.HasValue)
+            {
+                string quote = GetPetMatchFlavorText(snapshot.LastMatchedPattern.Value);
+                string streak = FormatStreakBadge(snapshot.CurrentStreak);
+                if (!string.IsNullOrEmpty(streak))
+                    return isPortrait ? streak + " " + quote : streak + "\n" + quote;
+                if (!string.IsNullOrEmpty(quote))
+                    return quote;
+            }
+
             return isPortrait ? PortraitDefaultHintText : BoardDefaultHintText;
         }
 
@@ -299,7 +345,12 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             if (result == null)
                 return string.Empty;
 
-            return $"本局 {result.FlipCount.ToString(CultureInfo.InvariantCulture)} 次  ·  本机最佳 {result.BestFlipCount.ToString(CultureInfo.InvariantCulture)} 次";
+            string baseText = $"本局 {result.FlipCount.ToString(CultureInfo.InvariantCulture)} 次  ·  本机最佳 {result.BestFlipCount.ToString(CultureInfo.InvariantCulture)} 次";
+            if (result.IsPerfectRun)
+                return baseText + "  ·  " + PerfectRunBadgeText;
+            if (result.MaxStreak >= 2)
+                return baseText + $"  ·  最高 {result.MaxStreak.ToString(CultureInfo.InvariantCulture)} 连配";
+            return baseText;
         }
 
         public static bool ShouldShowUnsavedNotice(PetFlipSnapshot snapshot)

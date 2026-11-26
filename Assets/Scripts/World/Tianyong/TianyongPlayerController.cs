@@ -65,6 +65,9 @@ namespace MmorpgClient.World.Tianyong
 
         // ── 组队跟随:服务器驱动(服务端 docs/design/team-follow-server-trail.md §5)──────────
         private bool _serverDriven;
+        private ProtagonistPresentationHfsm _presentation;
+        private float _nextControlledHintAt = -100f;
+        private const float ControlledHintIntervalSeconds = 1.5f;
 
         public CharacterController Motor => _motor;
         public bool IsMoving => _moving;
@@ -223,6 +226,44 @@ namespace MmorpgClient.World.Tianyong
             WarpTo(initialFeet);
             // 再按 ActorWorld 的当前状态对齐:服务器驱动的通知可能早于控制器挂上(换图后服务端先把人接到队长身后)。
             SetServerDriven(client?.World != null && client.World.LocalServerDriven);
+            BindPresentation(client?.Presentation);
+        }
+
+        private void BindPresentation(ProtagonistPresentationHfsm presentation)
+        {
+            if (ReferenceEquals(_presentation, presentation)) return;
+            if (_presentation != null)
+                _presentation.OnModeChanged -= HandlePresentationModeChanged;
+            _presentation = presentation;
+            if (_presentation != null)
+            {
+                _presentation.OnModeChanged += HandlePresentationModeChanged;
+                if (!_serverDriven && _presentation.CurrentMode == ProtagonistPresentationMode.Controlled)
+                    CancelPath(true);
+            }
+        }
+
+        private void UnbindPresentation()
+        {
+            if (_presentation == null) return;
+            _presentation.OnModeChanged -= HandlePresentationModeChanged;
+            _presentation = null;
+        }
+
+        private void HandlePresentationModeChanged(ProtagonistPresentationMode _, ProtagonistPresentationMode next)
+        {
+            if (!_serverDriven && next == ProtagonistPresentationMode.Controlled)
+                CancelPath(true);
+        }
+
+        private void NotifyControlledInputBlocked()
+        {
+            float now = Time.realtimeSinceStartup;
+            if (now < _nextControlledHintAt) return;
+            _nextControlledHintAt = now + ControlledHintIntervalSeconds;
+            const string message = "当前处于沉默/受控状态，无法自由移动";
+            NavigationRejected?.Invoke(message);
+            MmorpgClient.UI.Ugui.Battle.BattleUiRoot.Instance?.ShowToast(message, true);
         }
 
         private void ConfigureMotor(IMapNavigation navigation)
@@ -442,6 +483,11 @@ namespace MmorpgClient.World.Tianyong
                 FollowInputRejected?.Invoke();
                 return false;
             }
+            if (_presentation != null && _presentation.CurrentMode == ProtagonistPresentationMode.Controlled)
+            {
+                NotifyControlledInputBlocked();
+                return false;
+            }
 
             _replanOnBlock = 0;
             return PlanPath(feetDestination);
@@ -496,6 +542,18 @@ namespace MmorpgClient.World.Tianyong
                 // 组队跟随由服务器驱动:位置由 ActorWorld 按发给自己的移动写,这里不走、不上报、不做落地兜底;
                 // 玩家的点击 / 按键只换一句提示。
                 NoticeRejectedFollowInput(pointerBlocked, keyboardBlocked);
+                return;
+            }
+            var scriptedControl = _debugDirection.sqrMagnitude > 0.01f;
+            if (!scriptedControl && _presentation != null && _presentation.CurrentMode == ProtagonistPresentationMode.Controlled)
+            {
+                CancelPath(true);
+                if (!_ignoreLocalInput)
+                {
+                    var clicked = !pointerBlocked && _camera != null && Input.GetMouseButtonDown(0);
+                    var keyed = !keyboardBlocked && ReadKeyboardDirection().sqrMagnitude > 0.01f;
+                    if (clicked || keyed) NotifyControlledInputBlocked();
+                }
                 return;
             }
 
@@ -767,6 +825,11 @@ namespace MmorpgClient.World.Tianyong
             StopMoving();
             // 服务器驱动的标记不在这里清:它归 ActorWorld 管,禁用期间照样会被切换(SetServerDriven 是普通方法),
             // 重新挂上时 Initialize 再对齐一次。
+        }
+
+        private void OnDestroy()
+        {
+            UnbindPresentation();
         }
     }
 }

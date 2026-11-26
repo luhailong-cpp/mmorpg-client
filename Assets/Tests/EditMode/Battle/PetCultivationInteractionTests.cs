@@ -403,5 +403,52 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Click("EntryRestore");
             Assert.That(_panel.HasDraft, Is.False); Assert.That(Text("EntryValue503").text, Is.EqualTo("5"));
         }
+
+        [Test]
+        public void EntryPresetsClearAllAndFiveTierAscensionDialogUseServerAuthority()
+        {
+            PublishEntries(2, 1);
+            var entries = _list.Pets[0].Entries;
+            entries.ActivePresetSlot = 1;
+            entries.Presets.Add(new PetEntryPresetSummary { SlotId = 1, Tag = 1, UsedPoints = 2 });
+            entries.Presets.Add(new PetEntryPresetSummary { SlotId = 2, Tag = 2, UsedPoints = 0 });
+            entries.Presets.Add(new PetEntryPresetSummary { SlotId = 3, Tag = 3, UsedPoints = 0 });
+            _list.Pets[0].NextTier = new PetTierAscensionInfo
+            {
+                NextTier = 5, NextTierName = "圣兽", MinPetLevel = 10,
+                CostItemId = 3406, CostItemCount = 5, OwnedItemCount = 8,
+                CostGold = 5000, BonusEntryPoints = 8, CanAscend = true,
+            };
+            _net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = _list });
+
+            // UI-2: 切换至方案 2
+            Click("EntryPreset2");
+            var switchCall = _net.CallsOf(MessageIds.SwitchPetEntryPreset).Last();
+            var switchReq = (SwitchPetEntryPresetRequest)switchCall.Request;
+            Assert.That(switchReq.SlotId, Is.EqualTo(2u));
+            Assert.That(switchReq.Tag, Is.EqualTo(PetClient.KeepPresetTag));
+            var switched = entries.Clone(); switched.StateVersion = 2; switched.ActivePresetSlot = 2; switched.LastRequestId = switchReq.RequestId;
+            switchCall.Respond(new SwitchPetEntryPresetResponse { RequestId = switchReq.RequestId, Entries = switched });
+
+            // UI-2: 一键清零提交空 Target
+            Click("EntryClearAll");
+            var clearCall = _net.CallsOf(MessageIds.SavePetEntries).Last();
+            var clearReq = (SavePetEntriesRequest)clearCall.Request;
+            Assert.That(clearReq.Target, Is.Empty);
+            var cleared = switched.Clone(); cleared.StateVersion = 3; cleared.Entries[0].Allocated = 0; cleared.LastRequestId = clearReq.RequestId;
+            clearCall.Respond(new SavePetEntriesResponse { RequestId = clearReq.RequestId, Entries = cleared });
+
+            // UI-3: 打开灵阶突破确认窗并提交
+            Click("PetAscendTier");
+            Assert.That(Text("PetAscendNextName").text, Does.Contain("圣兽"));
+            Click("PetAscendConfirm");
+            var ascendCall = _net.CallsOf(MessageIds.AscendPetTier).Last();
+            var ascendReq = (AscendPetTierRequest)ascendCall.Request;
+            Assert.That(ascendReq.ExpectedTier, Is.EqualTo(4u));
+            var upgradedList = _list.Clone();
+            upgradedList.Pets[0].CultivationTier = 5; upgradedList.Pets[0].CultivationTierName = "圣兽"; upgradedList.Pets[0].NextTier = null;
+            ascendCall.Respond(new AscendPetTierResponse { ClientRequestId = ascendReq.ClientRequestId, NewTier = 5, Pets = upgradedList });
+            Assert.That(_client.Pets.Pets[0].CultivationTier, Is.EqualTo(5u));
+        }
     }
 }

@@ -27,6 +27,42 @@ namespace MmorpgClient.Game.Tournament
         InviteMember = 2,
         ConfirmLineup = 3,
         ConfirmLock = 4,
+        IntermissionSwap = 5,
+        SaluteChampion = 6,
+    }
+
+    public enum TournamentInviteQuickSource
+    {
+        Friends = 0,
+        Guild = 1,
+        Nearby = 2,
+    }
+
+    /// <summary>邀请弹窗快捷选人条目（来自好友 / 同帮 / 附近道友，纯不可变只读值）。</summary>
+    public readonly struct TournamentInviteCandidate
+    {
+        public ulong PlayerId { get; }
+        public string Name { get; }
+        public string SourceTag { get; }
+        public bool IsOnline { get; }
+        public bool OnlineStatusKnown { get; }
+        public string CharacterId { get; }
+
+        public TournamentInviteCandidate(
+            ulong playerId,
+            string name,
+            string sourceTag,
+            bool isOnline,
+            bool onlineStatusKnown,
+            string characterId = null)
+        {
+            PlayerId = playerId;
+            Name = name ?? string.Empty;
+            SourceTag = sourceTag ?? string.Empty;
+            IsOnline = isOnline;
+            OnlineStatusKnown = onlineStatusKnown;
+            CharacterId = characterId ?? string.Empty;
+        }
     }
 
     public enum TournamentPrimaryCtaKind
@@ -38,6 +74,7 @@ namespace MmorpgClient.Game.Tournament
         StartKnockoutMatch = 4,
         ClaimReward = 5,
         PreviewSquad = 6,
+        IntermissionSwap = 7,
     }
 
     public readonly struct TournamentPrimaryCta
@@ -115,8 +152,11 @@ namespace MmorpgClient.Game.Tournament
         public uint StandingsPage { get; set; } = 1u;
 
         public TournamentModalKind ActiveModal { get; private set; } = TournamentModalKind.None;
+        public TournamentInviteQuickSource InviteSource { get; set; } = TournamentInviteQuickSource.Friends;
         public ulong PendingMatchId { get; private set; }
         public bool LineupModalIsForMatchStart { get; private set; }
+        public TournamentLeylineElement SelectedLeylineInspect { get; set; } = TournamentLeylineElement.TournamentLeylineUnspecified;
+        public uint SaluteTargetSeasonId { get; private set; }
 
         public string CreateNameDraft { get; set; } = string.Empty;
         public string InvitePlayerIdDraft { get; set; } = string.Empty;
@@ -133,6 +173,7 @@ namespace MmorpgClient.Game.Tournament
         {
             ActiveTab = TournamentTab.Overview;
             BoardMode = TournamentBoardMode.Ranking;
+            InviteSource = TournamentInviteQuickSource.Friends;
             SelectedStandingsSeasonId = 0u;
             StandingsPage = 1u;
             CloseModal();
@@ -160,6 +201,37 @@ namespace MmorpgClient.Game.Tournament
             ObserveOverview(overview, nowRealtimeSeconds);
             float elapsed = Math.Max(0f, nowRealtimeSeconds - _overviewObservedRealtime);
             return overview.CurrentStageRemainingMs(overview.CapturedAtLocalSeconds + elapsed);
+        }
+
+        /// <summary>V2：校准计算 BO3 局间换阵剩余毫秒数（以服务端 ServerTimeMs 校准本地单调时间，绝不逐秒递减漂移）。</summary>
+        public ulong ComputeIntermissionRemainingMs(
+            TournamentOverviewSnapshot overview,
+            TournamentMatchView match,
+            float nowRealtimeSeconds)
+        {
+            if (overview == null || match == null) return 0UL;
+            ObserveOverview(overview, nowRealtimeSeconds);
+            float elapsed = Math.Max(0f, nowRealtimeSeconds - _overviewObservedRealtime);
+            return overview.IntermissionRemainingMs(match, overview.CapturedAtLocalSeconds + elapsed);
+        }
+
+        public void OpenIntermissionModal(TournamentSquadView squad, uint battleTeamSize, TournamentMatchView match)
+        {
+            ActiveModal = TournamentModalKind.IntermissionSwap;
+            PendingMatchId = match?.MatchId ?? 0UL;
+            LineupModalIsForMatchStart = true;
+            SelectedLeylineInspect = match != null && match.CurrentLeylineElement != TournamentLeylineElement.TournamentLeylineUnspecified
+                ? match.CurrentLeylineElement
+                : TournamentLeylineElement.TournamentLeylineMetal;
+            ModalInlineError = string.Empty;
+            SeedLineupDraft(squad, battleTeamSize);
+        }
+
+        public void OpenSaluteModal(uint seasonId = 0u)
+        {
+            ActiveModal = TournamentModalKind.SaluteChampion;
+            SaluteTargetSeasonId = seasonId;
+            ModalInlineError = string.Empty;
         }
 
         public void OpenCreateModal()
@@ -249,6 +321,7 @@ namespace MmorpgClient.Game.Tournament
             ActiveModal = TournamentModalKind.None;
             PendingMatchId = 0UL;
             LineupModalIsForMatchStart = false;
+            SaluteTargetSeasonId = 0u;
             ModalInlineError = string.Empty;
         }
 
@@ -351,6 +424,17 @@ namespace MmorpgClient.Game.Tournament
                         if (active.State == TournamentMatchState.InBattle)
                             return new TournamentPrimaryCta(TournamentPrimaryCtaKind.None, "淘汰赛激战中",
                                 "本队对阵正在进行中", false, active.MatchId);
+                        if (active.State == TournamentMatchState.Intermission)
+                        {
+                            bool myReady = (active.SquadAId == squad.SquadId && active.ReadyA)
+                                || (active.SquadBId == squad.SquadId && active.ReadyB);
+                            string boScore = TournamentFormatting.FormatBo3Score(active);
+                            string label = myReady ? "查看局间灵脉" : (isCaptain ? "局间换阵备战" : "查看局间灵脉");
+                            string note = myReady
+                                ? $"本队已确认第 {active.CurrentGameIndex} 局阵容（{boScore}），静候倒计时或对手确认"
+                                : $"第 {active.CurrentGameIndex} 局即将开战（{boScore}），可按新灵脉调整首发替补";
+                            return new TournamentPrimaryCta(TournamentPrimaryCtaKind.IntermissionSwap, label, note, !isBusy, active.MatchId);
+                        }
                         if (active.State == TournamentMatchState.WaitingOpponent || active.State == TournamentMatchState.Ready)
                         {
                             bool myReady = (active.SquadAId == squad.SquadId && active.ReadyA)
@@ -416,6 +500,8 @@ namespace MmorpgClient.Game.Tournament
                     return "海选积分赛 · 随时开战";
                 }
                 case TournamentStage.Knockout:
+                    if (overview.MyActiveMatch != null && overview.MyActiveMatch.State == TournamentMatchState.Intermission)
+                        return "淘汰赛 · 局间换阵中";
                     return overview.FeaturedMatches.Count > 0 ? "淘汰赛 · 直播围观中" : "全服淘汰赛";
                 case TournamentStage.Settled:
                     return overview.HasClaimableReward ? "本季封榜 · 可领奖" : "本季总冠军诞生";
@@ -446,18 +532,34 @@ namespace MmorpgClient.Game.Tournament
                 case (uint)match_error.KMatchTournamentMatchNotReady:
                 case (uint)match_error.KMatchTournamentAlreadyCheered:
                 case (uint)match_error.KMatchTournamentRewardUnavailable:
+                case (uint)match_error.KMatchTournamentAlreadySalutedToday:
+                case (uint)match_error.KMatchTournamentNoChampionToSalute:
                     return new TournamentTipRecovery(false, false, true, false);
                 default:
                     return new TournamentTipRecovery(false, false, false, false);
             }
         }
 
-        /// <summary>仅当玩家所属战队参与了该已结束场次且 battle_id 非 0 时允许触发战报回放。</summary>
+        /// <summary>V2：淘汰赛公开战报允许全服观看；海选/私密局仅参战方本队允许回放。</summary>
         public static bool CanWatchReplay(TournamentMatchView match, TournamentSquadView mySquad)
         {
-            if (match == null || mySquad == null) return false;
-            if (match.State != TournamentMatchState.Finished || match.BattleId == 0UL) return false;
+            if (match == null) return false;
+            ulong bid = ResolveLatestReplayBattleId(match);
+            if (bid == 0UL) return false;
+            if (match.PublicReplayAvailable) return true;
+            if (mySquad == null || match.State != TournamentMatchState.Finished) return false;
             return match.SquadAId == mySquad.SquadId || match.SquadBId == mySquad.SquadId;
+        }
+
+        /// <summary>解析该场可播放的最新一局战报 battle_id（兼容 BO3 多局与 BO1 单局）。</summary>
+        public static ulong ResolveLatestReplayBattleId(TournamentMatchView match)
+        {
+            if (match == null) return 0UL;
+            for (int i = match.GameBattleIds.Count - 1; i >= 0; i--)
+            {
+                if (match.GameBattleIds[i] != 0UL) return match.GameBattleIds[i];
+            }
+            return match.BattleId;
         }
 
         /// <summary>生成榜单赛季切换选项（首项恒为当前赛季，其余来自历届冠军殿堂）。</summary>
@@ -479,6 +581,41 @@ namespace MmorpgClient.Game.Tournament
                 list.Add(new TournamentSeasonChoice(past.SeasonId, label, false));
             }
             return list;
+        }
+
+        /// <summary>过滤邀请弹窗候选道友：剔除本人与已在队成员、按角色 ID 去重、在线优先排列。</summary>
+        public static List<TournamentInviteCandidate> FilterInviteCandidates(
+            IEnumerable<TournamentInviteCandidate> raw,
+            ulong localPlayerId,
+            TournamentSquadView mySquad)
+        {
+            var result = new List<TournamentInviteCandidate>();
+            if (raw == null) return result;
+            var excluded = new HashSet<ulong>();
+            if (localPlayerId != 0UL) excluded.Add(localPlayerId);
+            if (mySquad != null)
+            {
+                for (int i = 0; i < mySquad.Members.Count; i++)
+                {
+                    var m = mySquad.Members[i];
+                    if (m != null && m.PlayerId != 0UL) excluded.Add(m.PlayerId);
+                }
+            }
+            var seen = new HashSet<ulong>();
+            foreach (var c in raw)
+            {
+                if (c.PlayerId == 0UL || excluded.Contains(c.PlayerId) || !seen.Add(c.PlayerId)) continue;
+                result.Add(c);
+            }
+            result.Sort((a, b) =>
+            {
+                int oa = a.OnlineStatusKnown && a.IsOnline ? 0 : (a.OnlineStatusKnown ? 2 : 1);
+                int ob = b.OnlineStatusKnown && b.IsOnline ? 0 : (b.OnlineStatusKnown ? 2 : 1);
+                int cmp = oa.CompareTo(ob);
+                if (cmp != 0) return cmp;
+                return string.Compare(a.Name, b.Name, StringComparison.Ordinal);
+            });
+            return result;
         }
     }
 }

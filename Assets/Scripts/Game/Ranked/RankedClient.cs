@@ -335,6 +335,7 @@ namespace MmorpgClient.Game.Ranked
                 PlayerTeamIndex = playerTeamIndex,
                 TotalRounds = totalRounds,
                 IsVoid = isVoid,
+                Surrendered = end.Settlement?.Surrendered == true,
                 FromRecovery = false,
                 MaterialCreditConfirmed = true,
                 MaterialCreditUnitsAdded = end.MaterialCreditUnitsAdded,

@@ -121,6 +121,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (string.IsNullOrWhiteSpace(key)) key = GameplayUiArt.Root + "icon_scroll";
             var image = Artwork(parent, "ItemIcon", Load(key), x, y, size, size, Cream);
             image.preserveAspect = true;
+            if (item != null && SeasonEconomyUiArt.IsMaxEnhanced(item.EnhanceLevel, item.EnhanceMaxLevel))
+            {
+                var haloSprite = SeasonEconomyUiArt.LoadIcon(SeasonEconomyUiArt.Plus11SlotHaloIconKey);
+                if (haloSprite != null)
+                {
+                    var halo = QdaoUguiFactory.CreateImage("Plus11SlotHalo", parent, x, y, size, size, haloSprite, false);
+                    halo.preserveAspect = true;
+                }
+            }
             return image;
         }
 

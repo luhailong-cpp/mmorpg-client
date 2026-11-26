@@ -300,8 +300,10 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
             tabs.Add((TrialJournalNavTab.Overview, "总览", "全卷道印与试炼", 0));
             if (snapshot == null || TrialJournalModels.FindChapter(snapshot, TrialJournalModels.ChapterBreakthrough) != null)
             {
+                var ch1 = TrialJournalModels.FindChapter(snapshot, TrialJournalModels.ChapterBreakthrough);
+                uint ch1Seals = ch1 != null && ch1.TotalSealCount > 0u ? ch1.TotalSealCount : 15u;
                 int c1 = TrialJournalModels.CountClaimableMilestones(snapshot, TrialJournalModels.ChapterBreakthrough);
-                tabs.Add((TrialJournalNavTab.Breakthrough, "卷一 · 破阵", "回春与护势 · 12印", c1));
+                tabs.Add((TrialJournalNavTab.Breakthrough, "卷一 · 破阵", $"回春/护势/双卫 · {ch1Seals}印", c1));
             }
             if (snapshot != null && TrialJournalModels.FindChapter(snapshot, TrialJournalModels.ChapterThreeRealms) != null)
             {
@@ -537,7 +539,23 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                     var bossSprite = BattleArtCatalog.LoadMonsterPortrait(bossId);
                     var bossImg = TrialJournalUiArt.FixedArt("BossPortrait", rowImg.transform,
                         16f, 12f, 66f, 66f, bossSprite, Color.clear, preserveAspect: true);
-                    if (guardId != 0u)
+                    var guards = TrialJournalModels.GetEntryGuardMonsterIds(entry.EntryId);
+                    if (guards != null && guards.Count >= 2)
+                    {
+                        var leftBg = QdaoUguiFactory.CreateImage("GuardBg_0", rowImg.transform,
+                            8f, 54f, 26f, 26f, TrialJournalUiArt.CircleSprite());
+                        leftBg.color = TrialJournalUiArt.Paper;
+                        TrialJournalUiArt.FixedArt("GuardPortrait_0", leftBg.transform,
+                            2f, 2f, 22f, 22f, BattleArtCatalog.LoadMonsterPortrait(guards[0]),
+                            Color.clear, preserveAspect: true);
+                        var rightBg = QdaoUguiFactory.CreateImage("GuardBg_1", rowImg.transform,
+                            60f, 54f, 26f, 26f, TrialJournalUiArt.CircleSprite());
+                        rightBg.color = TrialJournalUiArt.Paper;
+                        TrialJournalUiArt.FixedArt("GuardPortrait_1", rightBg.transform,
+                            2f, 2f, 22f, 22f, BattleArtCatalog.LoadMonsterPortrait(guards[1]),
+                            Color.clear, preserveAspect: true);
+                    }
+                    else if (guardId != 0u)
                     {
                         var guardBg = QdaoUguiFactory.CreateImage("GuardBg", rowImg.transform,
                             60f, 54f, 28f, 28f, TrialJournalUiArt.CircleSprite());
@@ -703,7 +721,16 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                     TrialJournalModels.ChapterSeasonal => $"季游 S{m.SeasonId}",
                     _ => "试炼",
                 };
-                TrialJournalUiArt.Label("Title", card.transform, 18f, 10f, 470f, 28f,
+                var badgeSprite = !string.IsNullOrEmpty(m.BadgeKey)
+                    ? SeasonEconomyUiArt.LoadTrialJournalBadge(m.BadgeKey)
+                    : null;
+                float textX = badgeSprite != null ? 82f : 18f;
+                if (badgeSprite != null)
+                {
+                    TrialJournalUiArt.FixedArt("BadgeIcon", card.transform, 16f, 20f, 56f, 56f,
+                        badgeSprite, Color.clear, preserveAspect: true);
+                }
+                TrialJournalUiArt.Label("Title", card.transform, textX, 10f, 540f - (textX - 18f), 28f,
                     $"[{scopeTag}] {m.Title}  （{m.CurrentSeals}/{m.RequiredSeals} 印）", 19f,
                     TrialJournalUiArt.Jade, bold: true);
 
@@ -713,9 +740,9 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 if (!string.IsNullOrEmpty(m.BadgeName)) rewardParts.Add($"印戳「{m.BadgeName}」");
                 if (!string.IsNullOrEmpty(m.GrantAppearanceName)) rewardParts.Add($"专属形象「{m.GrantAppearanceName}」");
                 if (!string.IsNullOrEmpty(m.CommentaryTitle)) rewardParts.Add($"《{m.CommentaryTitle}》");
-                TrialJournalUiArt.Label("Rewards", card.transform, 18f, 40f, 610f, 24f,
+                TrialJournalUiArt.Label("Rewards", card.transform, textX, 40f, 610f - (textX - 18f), 24f,
                     string.Join("  ·  ", rewardParts), 14f, TrialJournalUiArt.Ink, bold: false);
-                TrialJournalUiArt.Label("Desc", card.transform, 18f, 66f, 610f, 22f,
+                TrialJournalUiArt.Label("Desc", card.transform, textX, 66f, 610f - (textX - 18f), 22f,
                     m.Desc, 12.5f, TrialJournalUiArt.Sub);
 
                 bool hasCommentary = m.Claimed && !string.IsNullOrWhiteSpace(m.CommentaryTitle);
@@ -866,9 +893,12 @@ namespace MmorpgClient.UI.Ugui.TrialJournal
                 primary: true, interactable: view.GrandmasterButtonEnabled,
                 onClick: () => HandleGrandmasterCta(gmMilestone, view));
 
+            uint totalPermanentSeals = snapshot != null && snapshot.TotalPermanentSeals > 0u
+                ? snapshot.TotalPermanentSeals
+                : 27u;
             string footnote = view.GrandmasterClaimed
                 ? "点击前往易容衣柜即可随时切换「星阵宗师」"
-                : "里程碑 M901 · 永久 18/24 印免费解锁（零战力）";
+                : $"里程碑 M901 · 永久 18/{totalPermanentSeals} 印免费解锁（零战力）";
             var footLabel = TrialJournalUiArt.Label("MasterFoot", _rightPane, 18f, 566f, 480f, 26f,
                 footnote, 12.5f, TrialJournalUiArt.MutedLabel, alignment: TextAlignmentOptions.Center);
             if (view.GrandmasterClaimed)

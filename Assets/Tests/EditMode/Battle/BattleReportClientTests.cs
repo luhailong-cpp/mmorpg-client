@@ -274,12 +274,15 @@ namespace MmorpgClient.Tests.EditMode.Battle
         {
             var pvp = new PlayerBattleResult { BattleId = 10, MatchMode = (uint)Match.MatchMode._1V1, Outcome = (uint)eBattleOutcome.BattleOutcomeSideAWin };
             var challenge = new PlayerBattleResult { BattleId = 11, MatchMode = (uint)Match.MatchMode.PvpChallenge, Outcome = (uint)eBattleOutcome.BattleOutcomeDraw };
+            var tournament = new PlayerBattleResult { BattleId = 14, MatchMode = (uint)Match.MatchMode.SeasonTournament, Outcome = (uint)eBattleOutcome.BattleOutcomeSideAWin };
             var pve = new PlayerBattleResult { BattleId = 12, MatchMode = (uint)Match.MatchMode.PveSolo, Outcome = (uint)eBattleOutcome.BattleOutcomeSideAWin };
             var voided = new PlayerBattleResult { BattleId = 13, MatchMode = (uint)Match.MatchMode._1V1, Outcome = (uint)eBattleOutcome.BattleOutcomeVoid };
             var zeroId = new PlayerBattleResult { BattleId = 0, MatchMode = (uint)Match.MatchMode._1V1, Outcome = (uint)eBattleOutcome.BattleOutcomeSideAWin };
 
             Assert.IsTrue(BattleReportClient.CanWatchReplayFromRecovered(pvp));
             Assert.IsTrue(BattleReportClient.CanWatchReplayFromRecovered(challenge));
+            Assert.IsTrue(BattleReportClient.CanWatchReplayFromRecovered(tournament));
+            Assert.AreEqual("赛季锦标赛", BattleReportClient.ModeName(Match.MatchMode.SeasonTournament));
             Assert.IsFalse(BattleReportClient.CanWatchReplayFromRecovered(pve));
             Assert.IsFalse(BattleReportClient.CanWatchReplayFromRecovered(voided));
             Assert.IsFalse(BattleReportClient.CanWatchReplayFromRecovered(zeroId));

@@ -122,6 +122,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             SyncVisibility();
             _mainCity?.Tick();
             _formalPvp?.Tick();
+            _rotations?.Tick();
             SyncMarketPreview();
             if (_pendingMaterialClaimFrame >= 0 && Time.frameCount >= _pendingMaterialClaimFrame &&
                 !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false))
@@ -380,7 +381,21 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
 
         private void HandleBattlePhaseChanged(BattlePhase _) { if (HasLiveSession) { SyncVisibility(); RefreshAll(); } }
         private void HandleBattleStart(global::BattleStartS2C _) { if (HasLiveSession) { SyncVisibility(); if (_battleHud != null && _battleHud.IsVisible) _battleHud.Refresh(); } }
-        private void HandleTurnResult(global::TurnResultS2C _) { if (HasLiveSession && _battleHud != null && _battleHud.IsVisible) _battleHud.Refresh(); }
+        private void HandleTurnResult(global::TurnResultS2C result)
+        {
+            if (!HasLiveSession || _battleHud == null) return;
+            if (result?.Events != null)
+            {
+                BossMechanicBannerView latest = null;
+                for (int i = 0; i < result.Events.Count; ++i)
+                {
+                    var view = CoreGameplayLoopModels.DescribeBossMechanicEvent(result.Events[i]);
+                    if (view != null) latest = view;
+                }
+                if (latest != null) _battleHud.ShowMechanicBanner(latest);
+            }
+            if (_battleHud.IsVisible) _battleHud.Refresh();
+        }
         private void HandleBattleStateUpdated(global::BattleStateS2C _) { if (HasLiveSession) { SyncVisibility(); if (_battleHud != null && _battleHud.IsVisible) _battleHud.Refresh(); } }
         private void HandleBattleEnd(global::BattleEndS2C _)
         {
@@ -389,7 +404,12 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             SyncVisibility();
             RefreshAll();
         }
-        private void HandleQueueStatus(Match.GetQueueStatusResponse _) { if (HasLiveSession && _formalPvp != null && _formalPvp.IsVisible) _formalPvp.Refresh(); }
+        private void HandleQueueStatus(Match.GetQueueStatusResponse _)
+        {
+            if (!HasLiveSession) return;
+            if (_formalPvp != null && _formalPvp.IsVisible) _formalPvp.Refresh();
+            if (_rotations != null && _rotations.IsVisible) _rotations.Refresh();
+        }
 
         private void SyncVisibility()
         {
@@ -595,7 +615,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         public bool ShowRankedSettlement(RectTransform resultPanel)
         {
             return ShowSettlement(ref _rankedSettlement, resultPanel,
-                "CoreRankedSettlementReward", 150f, 570f, 1620f, 259f);
+                "CoreRankedSettlementReward", 964f, 570f, 806f, 259f);
         }
 
         private bool ShowSettlement(ref CoreSettlementRewardSection section, RectTransform resultPanel,
@@ -618,6 +638,12 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
 
         public void HideBattleSettlement() => _battleSettlement?.Hide();
         public void HideRankedSettlement() => _rankedSettlement?.Hide();
+
+        public void OpenRankedDrawer(RankedDrawerTab tab = RankedDrawerTab.Leaderboard)
+        {
+            if (!CanOpenWorldPanel) return;
+            RankedUiRoot.Instance?.OpenDrawer(tab);
+        }
 
         public void OpenAppearance()
         {
@@ -651,6 +677,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
 
         private void HideWindows()
         {
+            RankedUiRoot.Instance?.CloseDrawerIfOpen();
             _bossTrials?.Hide();
             _formalPvp?.Hide();
             _rotations?.Hide();
@@ -685,6 +712,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         private void HandleEscapeKey()
         {
             if (_windowLayer == null || !_windowLayer.gameObject.activeSelf) return;
+            if (RankedUiRoot.Instance?.IsDrawerVisible == true) return;
             bool pressed = false;
 #if ENABLE_INPUT_SYSTEM
             pressed = Keyboard.current?.escapeKey.wasPressedThisFrame == true;

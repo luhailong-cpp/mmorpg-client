@@ -4,6 +4,7 @@ using MmorpgClient.UI.Ugui.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Battle.Presentation;
 // UI 图统一显式使用 UnityEngine.UI.Image。
 using Image = UnityEngine.UI.Image;
@@ -85,6 +86,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         /// <summary>头顶条宽(spec §1:约单位宽的 60%)。</summary>
         private const float BarWidth = 120f;
+        private const float ShieldBarHeight = 5f;
         private const float HpBarHeight = 8f;
         private const float MpBarHeight = 6f;
         private const float BuffIconSize = 26f;
@@ -150,9 +152,15 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly Image _hpFill;
         private readonly RectTransform _hpFillRect;
         private readonly RectTransform _hpGhostRect;
+        private readonly RectTransform _shieldBgRect;
+        private readonly RectTransform _shieldFillRect;
+        private readonly Image _chargePlate;
+        private readonly TMP_Text _chargeLabel;
         private readonly Image _mpFill;
         private readonly RectTransform _mpFillRect;
         private readonly RectTransform _buffRow;
+        private bool _hasShield;
+        public BattleUnitStatusSummary LastStatusSummary { get; private set; }
         private readonly RectTransform _plate;
         private readonly CanvasGroup _plateGroup;
         private readonly RectTransform _hpBgRect;
@@ -163,6 +171,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly Image _coreTargetMarker;
         private readonly TMP_Text _coreTargetLabel;
         private readonly Image _coreGuardMarker;
+        private readonly Image _targetFocusPlate;
+        private readonly Image _targetFocusIcon;
+        private readonly TMP_Text _targetFocusLabel;
         private bool _coreTargetMarked;
         private string _coreTargetLabelText = "重击目标";
         private bool _coreGuardMarked;
@@ -264,6 +275,12 @@ namespace MmorpgClient.UI.Ugui.Battle
             float barX = RootWidth * 0.5f - BarWidth * 0.5f;
             var hpBg = BattleUiWidgets.CreatePanel("HpBg", _plate, barX, 36f, BarWidth, HpBarHeight, BattleUiStyle.BarBg, false);
             _hpBgRect = hpBg.rectTransform;
+            var shieldBg = BattleUiWidgets.CreatePanel("ShieldBg", _plate, barX, 29f, BarWidth, ShieldBarHeight, BattleUiStyle.BarBg, false);
+            _shieldBgRect = shieldBg.rectTransform;
+            var shieldFill = BattleUiWidgets.CreatePanel("ShieldFill", shieldBg.transform, 1f, 1f, 0f, ShieldBarHeight - 2f,
+                QdaoUguiTheme.Html("#5CE1D3"), false);
+            _shieldFillRect = shieldFill.rectTransform;
+            shieldBg.gameObject.SetActive(false);
             _hpGhost = BattleUiWidgets.CreatePanel("HpGhost", hpBg.transform, 1f, 1f, BarWidth - 2f, HpBarHeight - 2f,
                 new Color(1f, 0.55f, 0.45f, 0.85f), false);
             _hpGhostRect = _hpGhost.rectTransform;
@@ -274,8 +291,27 @@ namespace MmorpgClient.UI.Ugui.Battle
             _mpFill = BattleUiWidgets.CreatePanel("MpFill", mpBg.transform, 1f, 1f, BarWidth - 2f, MpBarHeight - 2f, BattleUiStyle.MpFill, false);
             _mpFillRect = _mpFill.rectTransform;
 
-            // buff 图标行(条上方,左对齐)
+            // buff 图标行(条上方,左对齐)与蓄力脉冲徽标(Buff 行上方)
             _buffRow = QdaoUguiFactory.CreateRect("Buffs", _plate, barX, 4f, BarWidth + 60f, BuffIconSize + 2f);
+            _chargePlate = BattleUiWidgets.CreatePanel("ChargingBadge", _plate, RootWidth * 0.5f - 88f, -24f, 176f, 24f,
+                new Color(0.56f, 0.15f, 0.13f, 0.94f), false);
+            _chargePlate.raycastTarget = false;
+            var chargeIcon = SeasonEconomyUiArt.LoadBossTrialV2Icon("icon_charging");
+            float chargeTextX = chargeIcon != null ? 24f : 4f;
+            if (chargeIcon != null)
+            {
+                var cImg = QdaoUguiFactory.CreateImage("ChargingIcon", _chargePlate.transform, 4f, 3f, 18f, 18f, chargeIcon);
+                cImg.preserveAspect = true;
+                cImg.raycastTarget = false;
+            }
+            _chargeLabel = QdaoUguiFactory.CreateText("ChargingLabel", _chargePlate.transform,
+                chargeTextX, 0f, 176f - chargeTextX - 4f, 24f, string.Empty, 13f, QdaoUguiTheme.Html("#FFE6A0"), TextAlignmentOptions.Center);
+            _chargeLabel.fontStyle = FontStyles.Bold;
+            _chargeLabel.enableAutoSizing = true;
+            _chargeLabel.fontSizeMin = 10f;
+            _chargeLabel.fontSizeMax = 13f;
+            _chargeLabel.raycastTarget = false;
+            _chargePlate.gameObject.SetActive(false);
 
             // 名字随名牌层固定在脚下，触摸由立绘上的 Hit 按钮处理。
             _name = QdaoUguiFactory.CreateText("Name", _plate, NameAnchor.x, -NameAnchor.y, 220f, 34f, string.Empty, 24f,
@@ -328,6 +364,20 @@ namespace MmorpgClient.UI.Ugui.Battle
             _coreGuardMarker.raycastTarget = false;
             _coreGuardMarker.gameObject.SetActive(false);
 
+            _targetFocusPlate = BattleUiWidgets.CreatePanel("TargetFocusPlate", _plate, barX - 2f, 4f, BarWidth + 4f, 24f,
+                BattleUiStyle.PanelBg, false);
+            _targetFocusPlate.raycastTarget = false;
+            _targetFocusIcon = QdaoUguiFactory.CreateImage("TargetFocusIcon", _targetFocusPlate.transform,
+                4f, 3f, 18f, 18f, null);
+            _targetFocusIcon.preserveAspect = true;
+            _targetFocusIcon.raycastTarget = false;
+            _targetFocusIcon.gameObject.SetActive(false);
+            _targetFocusLabel = QdaoUguiFactory.CreateText("TargetFocusLabel", _targetFocusPlate.transform,
+                2f, 0f, BarWidth, 24f, string.Empty, 14f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
+            _targetFocusLabel.fontStyle = FontStyles.Bold;
+            _targetFocusLabel.raycastTarget = false;
+            _targetFocusPlate.gameObject.SetActive(false);
+
             ApplyBodySprite(null, false);
         }
 
@@ -340,11 +390,15 @@ namespace MmorpgClient.UI.Ugui.Battle
             float top = Mathf.Clamp(_visibleTop, MinVisibleTop, MaxVisibleTop);
             float mpY = GroundY - top - OverheadGap - MpBarHeight;
             float hpY = mpY - 2f - HpBarHeight;
-            float buffY = hpY - 4f - (BuffIconSize + 2f);
-            _hpY = hpY;
+            float shieldY = hpY - 2f - ShieldBarHeight;
+            float buffY = (_hasShield ? shieldY : hpY) - 4f - (BuffIconSize + 2f);
+            float chargeY = buffY - 26f;
+            _hpY = _hasShield ? shieldY : hpY;
             if (_mpBgRect != null) _mpBgRect.anchoredPosition = new Vector2(_mpBgRect.anchoredPosition.x, -mpY);
             if (_hpBgRect != null) _hpBgRect.anchoredPosition = new Vector2(_hpBgRect.anchoredPosition.x, -hpY);
+            if (_shieldBgRect != null) _shieldBgRect.anchoredPosition = new Vector2(_shieldBgRect.anchoredPosition.x, -shieldY);
             if (_buffRow != null) _buffRow.anchoredPosition = new Vector2(_buffRow.anchoredPosition.x, -buffY);
+            if (_chargePlate != null) _chargePlate.rectTransform.anchoredPosition = new Vector2(_chargePlate.rectTransform.anchoredPosition.x, -chargeY);
             if (_badgePlate != null) _badgePlate.rectTransform.anchoredPosition = new Vector2(_badgePlate.rectTransform.anchoredPosition.x, -(hpY - 5f));
             if (_coreTargetMarker != null)
             {
@@ -358,6 +412,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
             if (_coreGuardMarker != null) _coreGuardMarker.rectTransform.anchoredPosition =
                 new Vector2(_coreGuardMarker.rectTransform.anchoredPosition.x, -(hpY - 26f));
+            if (_targetFocusPlate != null) _targetFocusPlate.rectTransform.anchoredPosition =
+                new Vector2(_targetFocusPlate.rectTransform.anchoredPosition.x, -(hpY - 58f));
         }
 
         public void SetCoreMarkers(bool telegraphTarget, bool protectedGuard, string targetLabel = null)
@@ -373,6 +429,26 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _coreTargetLabel.gameObject.SetActive(showTarget);
             }
             if (_coreGuardMarker != null) _coreGuardMarker.gameObject.SetActive(_coreGuardMarked && !IsDead && !Fled);
+        }
+
+        public void SetTargetFocusTag(string label, bool isPrimaryFocus)
+        {
+            if (_targetFocusPlate == null || _targetFocusLabel == null) return;
+            bool show = !string.IsNullOrEmpty(label) && !IsDead && !Fled;
+            _targetFocusPlate.gameObject.SetActive(show);
+            if (!show) return;
+            _targetFocusLabel.text = label;
+            _targetFocusLabel.color = isPrimaryFocus ? new Color(1f, 0.92f, 0.56f, 1f) : new Color(0.84f, 0.87f, 0.90f, 1f);
+            _targetFocusPlate.color = isPrimaryFocus ? new Color(0.58f, 0.41f, 0.08f, 0.94f) : new Color(0.20f, 0.23f, 0.27f, 0.88f);
+            if (_targetFocusIcon != null)
+            {
+                var focusIcon = SeasonEconomyUiArt.LoadBossTrialV2Icon(isPrimaryFocus ? "icon_focus" : "icon_splash");
+                _targetFocusIcon.sprite = focusIcon;
+                _targetFocusIcon.gameObject.SetActive(focusIcon != null);
+                var labelRt = _targetFocusLabel.rectTransform;
+                labelRt.anchoredPosition = new Vector2(focusIcon != null ? 24f : 2f, 0f);
+                labelRt.sizeDelta = new Vector2(focusIcon != null ? BarWidth - 22f : BarWidth, 24f);
+            }
         }
 
         // ── 布局 ────────────────────────────────────────────
@@ -442,6 +518,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             SetBarsImmediate();
             RebuildBuffIcons(state);
+            RefreshStatusOverlay(state);
 
             bool dead = state.IsDead;
             bool captured = state.CapturedByPlayerId != 0;
@@ -1081,21 +1158,19 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// 伤害/治疗数字(digits 字集;缺字集退回 TMP 飘字):头顶弹出缩放 → 上飘 60px → 淡出,约 1.2s;
         /// xOffset/delay 用于群攻多目标错位。
         /// </summary>
-        public void ShowNumber(long value, NumberKind kind, float xOffset = 0f, float delay = 0f)
+        public void ShowNumber(long value, NumberKind kind, float xOffset = 0f, float delay = 0f,
+            DamageNumberFocusMode focus = DamageNumberFocusMode.None)
         {
             if (_parent == null) return;
             if (Numbers != null)
             {
                 var headPos = HeadPosition;
-                Numbers.Show(new Vector2(headPos.x + xOffset, headPos.y), value, kind, delay);
+                Numbers.Show(new Vector2(headPos.x + xOffset, headPos.y), value, kind, delay, focus);
                 return;
             }
             string variant = kind == NumberKind.Crit ? "crit" : kind == NumberKind.Heal ? "heal" : kind == NumberKind.Miss ? "miss" : "normal";
             var font = BattleArtCatalog.LoadDigits(variant);
-            string text = kind == NumberKind.Miss ? "闪"
-                : kind == NumberKind.Heal ? $"+{Math.Abs(value)}"
-                : $"-{Math.Abs(value)}";
-            if (kind == NumberKind.Crit) text = "暴击" + text;
+            string text = DamageNumberLayout.FormatText(value, kind, focus);
 
             if (font == null)
             {
@@ -1587,14 +1662,39 @@ namespace MmorpgClient.UI.Ugui.Battle
                         buff.BuffTableId.ToString(), 12f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
                     go = plate.gameObject;
                 }
-                if (buff.Layer > 1)
+                uint stacks = buff.Stacks > 0 ? buff.Stacks : buff.Layer;
+                if (stacks > 1)
                 {
                     QdaoUguiFactory.CreateText("Layer", go.transform, BuffIconSize - 14f, BuffIconSize - 14f, 14f, 14f,
-                        buff.Layer.ToString(), 11f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
+                        stacks.ToString(), 11f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
                 }
                 _buffIcons.Add(go);
                 index++;
             }
+        }
+
+        private void RefreshStatusOverlay(BattleActorState state)
+        {
+            var summary = BattleUnitStatusInspector.Inspect(state,
+                skillId => Skills.SkillUiRoot.FindPresentation(skillId)?.name);
+            LastStatusSummary = summary;
+            bool deadOrFled = state.IsDead || state.Fled || state.CapturedByPlayerId != 0;
+            bool hasShield = !deadOrFled && summary.TotalShieldCapacity > 0UL;
+            bool shieldLayoutChanged = hasShield != _hasShield;
+            _hasShield = hasShield;
+            if (_shieldBgRect != null)
+            {
+                _shieldBgRect.gameObject.SetActive(hasShield);
+                if (hasShield) SetWidth(_shieldFillRect, (BarWidth - 2f) * summary.ShieldRatio);
+            }
+            if (_chargePlate != null)
+            {
+                bool charging = !deadOrFled && summary.IsCharging;
+                _chargePlate.gameObject.SetActive(charging);
+                if (charging && _chargeLabel != null)
+                    _chargeLabel.text = $"蓄力中 · {summary.ChargingSkillName}";
+            }
+            if (shieldLayoutChanged) LayoutOverhead();
         }
 
         private void ShowBadge(string text, Color color)

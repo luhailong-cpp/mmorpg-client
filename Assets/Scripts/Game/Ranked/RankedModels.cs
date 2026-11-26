@@ -153,6 +153,28 @@ namespace MmorpgClient.Game.Ranked
         public static string ActivePetWarning(ulong activePetId) =>
             activePetId == 0 ? "当前未出战灵宠，正式会武将缺少宝宝参战，建议先前往灵宠栏出战。" : string.Empty;
 
+        public static string FormatAllowedSizesLabel(IReadOnlyList<uint> allowedSizes)
+        {
+            if (allowedSizes == null || allowedSizes.Count == 0)
+                return "开放规模共用积分与榜";
+            var parts = new string[allowedSizes.Count];
+            for (int i = 0; i < allowedSizes.Count; i++)
+                parts[i] = $"{allowedSizes[i]}V{allowedSizes[i]}";
+            return string.Join(" / ", parts) + " 共用积分与榜";
+        }
+
+        public static string FormatLocalDateRange(ulong startMs, ulong endMs)
+        {
+            if (startMs == 0UL && endMs == 0UL) return string.Empty;
+            string start = startMs > 0UL
+                ? DateTimeOffset.FromUnixTimeMilliseconds((long)startMs).ToLocalTime().ToString("MM-dd", CultureInfo.InvariantCulture)
+                : "--";
+            string end = endMs > 0UL
+                ? DateTimeOffset.FromUnixTimeMilliseconds((long)endMs).ToLocalTime().ToString("MM-dd", CultureInfo.InvariantCulture)
+                : "--";
+            return $"{start} ~ {end}";
+        }
+
         public static string CharacterPresetTitle(uint presetId, string serverName) =>
             !string.IsNullOrEmpty(serverName) ? serverName : presetId switch
             {
@@ -374,6 +396,24 @@ namespace MmorpgClient.Game.Ranked
         }
 
         public bool HasEntitlement(RankedRewardKind kind) => FindEntitlement(kind) != null;
+
+        public RankedRewardEntitlement FindEquippableTitleEntitlement()
+        {
+            var winTitle = FindEntitlement(RankedRewardKind.RankedRewardWinMilestone);
+            if (winTitle != null) return winTitle;
+            return FindEntitlement(RankedRewardKind.RankedRewardTierTitle);
+        }
+
+        public string ResolveTitleDisplayName(string itemCode)
+        {
+            if (string.IsNullOrEmpty(itemCode)) return string.Empty;
+            for (int i = 0; i < Entitlements.Count; i++)
+            {
+                if (string.Equals(Entitlements[i].ItemCode, itemCode, StringComparison.Ordinal))
+                    return RankedFormatting.RewardKindName(Entitlements[i].Kind);
+            }
+            return "赛季称号";
+        }
     }
 
     /// <summary>
@@ -391,6 +431,7 @@ namespace MmorpgClient.Game.Ranked
         public uint PlayerTeamIndex { get; set; }
         public uint TotalRounds { get; set; }
         public bool IsVoid { get; set; }
+        public bool Surrendered { get; set; }
         public bool FromRecovery { get; set; }
 
         // Scene 权威材料额度增量（仅记入可自选额度账，玩家需走既有领取才入包）

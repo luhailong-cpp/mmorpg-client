@@ -115,6 +115,8 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         /// <summary>战斗层(参战屏、观战屏或战报回放屏)正在显示；资料窗口据此进入战斗只读状态。</summary>
         public bool IsBattleLayerVisible => _battleOpen || _spectateOpen || _replayOpen;
+        /// <summary>当前是否处于实时观战屏（不含参战与离线回放，供锦标赛观战喝彩浮条精准挂载）。</summary>
+        public bool IsSpectating => _spectateOpen;
         internal BattleScreen ActiveBattleScreen => _battleOpen ? _battleScreen : null;
 
         /// <summary>核心玩法 HUD 的可见单位角标入口；只更新表现，不改战斗状态。</summary>
@@ -289,6 +291,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _client.OnChallengeResult += HandleChallengeResult;
             _client.OnQueueStatus += HandleQueueStatus;
             _client.OnAutoStateChanged += HandleAutoStateChanged;
+            _client.OnSurrenderVoteChanged += HandleSurrenderVoteChanged;
+            _client.OnBattlePrepChanged += HandleBattlePrepChanged;
             _client.OnError += HandleClientError;
             _client.OnBattleChannelReady += HandleBattleChannelReady;
             _client.OnBattleChannelFailed += HandleBattleChannelFailed;
@@ -329,6 +333,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _client.OnChallengeResult -= HandleChallengeResult;
             _client.OnQueueStatus -= HandleQueueStatus;
             _client.OnAutoStateChanged -= HandleAutoStateChanged;
+            _client.OnSurrenderVoteChanged -= HandleSurrenderVoteChanged;
+            _client.OnBattlePrepChanged -= HandleBattlePrepChanged;
             _client.OnError -= HandleClientError;
             _client.OnBattleChannelReady -= HandleBattleChannelReady;
             _client.OnBattleChannelFailed -= HandleBattleChannelFailed;
@@ -595,12 +601,16 @@ namespace MmorpgClient.UI.Ugui.Battle
             _recoveredShowingId = 0; // 开新局收起了面板上的补弹局:它弹出时已经确认过,不再排回去
             _resultPanel?.Hide();
             RefreshModalDim();
-            OpenBattle(start?.State ?? _client?.State);
+            var startState = start?.State ?? _client?.State;
+            OpenBattle(startState);
             // 开局包经大厅到,直连这时通常还在握手(turn-based §22 D74):「战斗开始!」推迟到就绪再弹。
             // 未就绪期间不弹「正在连接」toast —— 底部提示与相位文字已在说明,超过宽限期还有横幅,同句两处只是噪音
+            string startToast = startState?.PrepState != null && startState.PrepState.Active
+                ? "战前明牌变阵（15秒）"
+                : "战斗开始!";
             bool channelReady = _client == null || _client.IsBattleChannelReady;
-            _channelReadyToast = channelReady ? null : "战斗开始!";
-            if (channelReady) ShowToast("战斗开始!");
+            _channelReadyToast = channelReady ? null : startToast;
+            if (channelReady) ShowToast(startToast);
         }
 
         private void HandleBattleChannelReady()
@@ -715,6 +725,21 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void HandleAutoStateChanged(bool isAuto)
         {
             if (_battleOpen) _battleScreen?.OnAutoStateChanged(isAuto);
+        }
+
+        private void HandleSurrenderVoteChanged(BattleSurrenderVoteState vote)
+        {
+            if (!_battleOpen || _battleScreen == null) return;
+            _battleScreen.OnSurrenderVoteChanged(vote);
+            uint round = _client?.State?.RoundIndex ?? 0u;
+            if (vote != null && !vote.Active && !vote.Passed && vote.NextAllowedRound > round)
+                ShowToast($"投降表决未通过（第 {vote.NextAllowedRound} 回合后可再次发起）");
+        }
+
+        private void HandleBattlePrepChanged(BattlePrepState prep)
+        {
+            if (!_battleOpen || _battleScreen == null) return;
+            _battleScreen.OnBattlePrepChanged(prep);
         }
 
         // ── SpectateClient 事件 ─────────────────────────────

@@ -208,6 +208,24 @@ namespace MmorpgClient.Game.CoreLoop
         }
     }
 
+    /// <summary>权威战后战术复盘视图：帮助玩家 3 秒看懂胜负原因与下一局能改变的一手（零本地推算）。</summary>
+    public sealed class BattleTacticalReviewView
+    {
+        public bool IsVictory { get; }
+        public string ModeTag { get; }
+        public string ReasonHeadline { get; }
+        public string NextMoveTip { get; }
+        public bool HasContent => !string.IsNullOrEmpty(ReasonHeadline) || !string.IsNullOrEmpty(NextMoveTip);
+
+        public BattleTacticalReviewView(bool isVictory, string modeTag, string reasonHeadline, string nextMoveTip)
+        {
+            IsVictory = isVictory;
+            ModeTag = modeTag ?? "";
+            ReasonHeadline = reasonHeadline ?? "";
+            NextMoveTip = nextMoveTip ?? "";
+        }
+    }
+
     /// <summary>战斗内核心玩法 HUD 派生视图（预告 + 首领试炼 V2 破绽/蓄势/护势/二阶段 + 物法易势换势条 + 护卫救援保全目标）。</summary>
     public sealed class BattleCoreHudView
     {
@@ -443,14 +461,14 @@ namespace MmorpgClient.Game.CoreLoop
                 new BossTrialCardView(
                     3u, Boss2ShieldNormalDungeonId, Boss2ShieldHardDungeonId,
                     "玄盾首领", "灵障护卫",
-                    "灵障护卫周期蓄盾，首领预告慢速法术重击；主目标聚火高效破盾，化解重击触发破绽。",
-                    "优先主点首领集中破盾，被灵障重击点名时防御或套护罩化劲反打。",
+                    "灵障护卫周期蓄盾，击破护盾立即触发「碎障破绽 +35%」；首领预告慢速法术重击，化解同样触发破绽。",
+                    "主点首领聚火破盾打爆发；被法术重击点名时一键化劲防御或控断灵障护卫。",
                     10u, 15u, hardUnlocked, lockHint),
                 new BossTrialCardView(
                     4u, Boss3PoisonNormalDungeonId, Boss3PoisonHardDungeonId,
                     "幽毒首领", "玄毒护卫",
-                    "玄毒护卫封灵吸蓝，首领预告慢速群体玄毒；控断或净化稳血线，半血后转入决战姿态。",
-                    "及时净化减益与破甲，利用控场打断群体玄毒触发破绽窗口集中收割。",
+                    "玄毒护卫封灵吸蓝，首领预告慢速群体玄毒；全员防御/护盾或控断触发破绽 +35%（半数化劲 +20%）。",
+                    "群体玄毒当回合用一键化劲防御或控场打断触发破绽窗口；及时净化破甲与控断缚灵护卫。",
                     10u, 15u, hardUnlocked, lockHint),
             };
         }
@@ -688,12 +706,18 @@ namespace MmorpgClient.Game.CoreLoop
 
             var pending = new HashSet<ulong>(state.PendingActorIds);
             var threatened = new HashSet<ulong>();
+            bool allOwnedThreatened = false;
             for (int i = 0; i < state.Telegraphs.Count; i++)
             {
                 var t = state.Telegraphs[i];
                 if (t == null) continue;
                 bool executingNow = t.Status == 2u || (t.ExecuteRound != 0u && t.ExecuteRound == state.RoundIndex);
                 if (!executingNow) continue;
+                if (t.IntentKind == 8u)
+                {
+                    allOwnedThreatened = true;
+                    continue;
+                }
                 if (t.IntentKind != 1u && t.IntentKind != 7u && t.IntentKind != 9u) continue;
                 if (t.TargetActorIds != null && t.TargetActorIds.Count > 0)
                 {
@@ -707,7 +731,7 @@ namespace MmorpgClient.Game.CoreLoop
                     threatened.Add(t.TargetActorId);
                 }
             }
-            if (threatened.Count == 0) return Array.Empty<ulong>();
+            if (!allOwnedThreatened && threatened.Count == 0) return Array.Empty<ulong>();
 
             var result = new List<ulong>(2);
             for (int i = 0; i < state.Actors.Count; i++)
@@ -717,7 +741,7 @@ namespace MmorpgClient.Game.CoreLoop
                 bool isOwned = a.ActorId == myPlayerId
                     || (a.ActorType == eBattleActorType.BattleActorTypePet && a.OwnerPlayerId == myPlayerId);
                 if (!isOwned) continue;
-                if (pending.Contains(a.ActorId) && threatened.Contains(a.ActorId))
+                if (pending.Contains(a.ActorId) && (allOwnedThreatened || threatened.Contains(a.ActorId)))
                     result.Add(a.ActorId);
             }
             return result;
@@ -735,7 +759,8 @@ namespace MmorpgClient.Game.CoreLoop
             {
                 1u => new BossMechanicBannerView(1u, $"化劲破绽 +{ev.Value}%", "成功化解首领慢速重劈，全队爆发窗口开启", ev.Value, true),
                 2u => new BossMechanicBannerView(2u, "断疗反噬 · 破绽 +35%", $"中断回春灵力反噬首领 {ev.Value} 点气血", ev.Value, true),
-                3u => new BossMechanicBannerView(3u, "崩势破盾 · 双破绽 +35%", "驱散或控断护势联防阵，清空首领蓄势", ev.Value, true),
+                3u => new BossMechanicBannerView(3u, $"崩势破盾 · 破绽 +{ev.Value}%",
+                    ev.Value >= 35ul ? "破除敌方护势或灵障，首领陷入完整破绽窗口" : "控断敌方护卫蓄力，首领陷入破绽窗口", ev.Value, true),
                 4u => new BossMechanicBannerView(4u, "阵脚震荡", ev.Value > 1ul ? $"鼓噪卫阵亡震荡首领 {ev.Value} 点气血并清空蓄势" : "破军卫阵亡削减首领 1 层蓄势", ev.Value, true),
                 5u => new BossMechanicBannerView(5u, "决战姿态 · 破釜", "首领易伤 +15%，慢速重劈加快为每 2 回合循环", ev.Value, false),
                 6u => new BossMechanicBannerView(6u, $"首领蓄势 {ev.Value}/3", $"下一次重劈伤害额外 +{ev.Value * 12ul}%（可驱散）", ev.Value, false),
@@ -767,6 +792,270 @@ namespace MmorpgClient.Game.CoreLoop
             return badges;
         }
 
+        /// <summary>
+        /// 从终局权威 BattleEndS2C + BattleSettlementData + BattleTrialJournalFacts 派生战后复盘卡：
+        /// 明确交代胜负关键原因与「下一局可立即改变的一手」；非核心循环战斗返回 null 避免干扰。
+        /// </summary>
+        public static BattleTacticalReviewView BuildTacticalReview(global::BattleEndS2C end)
+        {
+            if (end == null) return null;
+            var s = end.Settlement;
+            if (s == null)
+            {
+                return end.MaterialPvpLossIneligible
+                    ? new BattleTacticalReviewView(
+                        false,
+                        "对抗复盘",
+                        "本局未满足有效对抗门槛",
+                        "打满至少 3 回合、2 次手动操作并产生有效伤害/治疗/控制，负场也可领取绑定材料。")
+                    : null;
+            }
+
+            eBattleOutcome outcome = s.Outcome != eBattleOutcome.BattleOutcomeOngoing ? s.Outcome : end.Outcome;
+            if (outcome == eBattleOutcome.BattleOutcomeVoid)
+            {
+                return new BattleTacticalReviewView(
+                    false,
+                    "对局作废",
+                    "本局已由服务端判定作废，不计胜负与奖励扣次",
+                    "可立即重新发起挑战或匹配，无任何进度损失。");
+            }
+            if (s.Fled)
+            {
+                return new BattleTacticalReviewView(
+                    false,
+                    "主动撤离",
+                    "主动撤离提前结束了本局战斗",
+                    "调整装备词条、灵宠技能或赛季印后可随时重开，无次数惩罚。");
+            }
+
+            bool won = (outcome == eBattleOutcome.BattleOutcomeSideAWin && s.PlayerTeamIndex == 0u)
+                || (outcome == eBattleOutcome.BattleOutcomeSideBWin && s.PlayerTeamIndex == 1u);
+            bool draw = outcome == eBattleOutcome.BattleOutcomeDraw;
+            var f = s.TrialFacts;
+            uint bossKind = s.BossTrialKind;
+            uint matchMode = s.MatchMode;
+
+            // 1. 首领试炼（1..4 及 8 困难·双卫同阵）
+            if (IsBossTrialKind(bossKind))
+            {
+                string tag = s.BattleDifficulty >= 2u ? "首领试炼 · 困难" : "首领试炼 · 普通";
+                if (won)
+                {
+                    string reason;
+                    if (f != null && f.AllSelfCleavesParried && f.CleaveParryCount > 0u)
+                        reason = $"全程零漏防，化劲破招 {f.CleaveParryCount} 次打满爆发窗口";
+                    else if (f != null && f.HealInterruptBacklashCount > 0u)
+                        reason = $"精准控断回春触发 {f.HealInterruptBacklashCount} 次反噬破绽";
+                    else if (f != null && f.StanceBreakCount > 0u)
+                        reason = $"成功崩势破盾 {f.StanceBreakCount} 次压制首领联防";
+                    else if (f != null && f.CleaveParryCount > 0u)
+                        reason = $"通过 {f.CleaveParryCount} 次化劲破招稳步建立胜势";
+                    else if (f != null && !f.SelfOrPetEverDied)
+                        reason = $"人宠全员零阵亡，历时 {s.TotalRounds} 回合稳健过关";
+                    else
+                        reason = $"历时 {s.TotalRounds} 回合攻克首领试炼";
+
+                    string next = s.BattleDifficulty <= 1u
+                        ? "已可挑战困难难度（+15 份材料，含可交易份额）或尝试「困难·双卫同阵」。"
+                        : (bossKind != 8u
+                            ? "可前往「困难·双卫同阵」或携本套自养阵容进入正式人宠会武检验战力。"
+                            : "高难双卫已克！可在试炼志领奖，或携带本套装备征战正式人宠会武。");
+                    return new BattleTacticalReviewView(true, tag, reason, next);
+                }
+
+                if ((bossKind == 1u || bossKind == 8u) && f != null && f.BossGuardHealTotal > 0ul && f.HealInterruptBacklashCount == 0u)
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        tag,
+                        $"回春护卫累计回血 {f.BossGuardHealTotal}，拖慢了推进节奏",
+                        "优先主点聚火回春护卫，或在预告回合用封灵/眩晕打断，直接触发 6% 反噬与破绽 +35%。");
+                }
+                if ((bossKind == 2u || bossKind == 8u) && f != null && !f.GuardStanceDispelled && f.StanceBreakCount == 0u)
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        tag,
+                        "未能及时破除护势联防阵，伤害被高额减免",
+                        "携带驱散技（A34）或留控打断护卫蓄力，崩势瞬间触发全队破绽窗口。");
+                }
+                if (bossKind == 3u && f != null && !f.SelfTriggeredShieldBreak)
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        tag,
+                        "灵障护盾未能及时击破，压血节奏受阻",
+                        "选用破盾单点技能，或在点名回合用「一键化劲防御」借破绽集中爆盾。");
+                }
+                if (bossKind == 4u && f != null && !f.SelfTriggeredAntiControlOrSeasonSkill)
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        tag,
+                        "玄毒与封灵持续打乱了队伍出手节奏",
+                        "装备净化/解控技能或切换防控赛季印，群攻预告回合人宠同步化劲防御。");
+                }
+                if (f != null && f.CleaveParryCount == 0u)
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        tag,
+                        "未在慢速重劈点名回合化劲破招，错失 +35% 破绽窗口",
+                        "看到「本回合发动」红框点名时直接点「一键化劲防御」，减伤同时开启全队爆发。");
+                }
+                if (s.TotalRounds >= 12u)
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        tag,
+                        $"苦战 {s.TotalRounds} 回合未能抢在回合上限前击杀首领",
+                        "群攻主点聚火（主目标 100%）压低护卫并抓住破绽爆发，或先用材料升级武器词条。");
+                }
+                if (f != null && f.SelfOrPetEverDied)
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        tag,
+                        "战中出现人宠阵亡，中后期输出或续航断档",
+                        "及时净化破军破甲，首领进二阶段加快重劈时提前稳住主力人宠血线。");
+                }
+                return new BattleTacticalReviewView(
+                    false,
+                    tag,
+                    $"历时 {s.TotalRounds} 回合惜败首领试炼",
+                    "按顶部预告做好点名化劲防御与护卫反制，或先打普通难度攒材料强化装备。");
+            }
+
+            // 2. 娱乐轮换：护卫救援（109，boss_trial_kind = 5）
+            if (bossKind == 5u)
+            {
+                if (won)
+                {
+                    return new BattleTacticalReviewView(
+                        true,
+                        "轮换 · 护卫救援",
+                        $"成功护送友方护卫存活至终局（共 {s.TotalRounds} 回合）",
+                        "可换用其他免费 3×3 人宠组合试玩，或挑战正式人宠会武检验自养阵容。");
+                }
+                if (f != null && !f.GuardSurvived)
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        "轮换 · 护卫救援",
+                        "友方护卫未能保全导致失利",
+                        "优先单点集火威胁护卫的首领，并换用带护盾/治疗的免费预设稳守护卫血线。");
+                }
+                return new BattleTacticalReviewView(
+                    false,
+                    "轮换 · 护卫救援",
+                    $"护卫救援历时 {s.TotalRounds} 回合惜败",
+                    "尝试铁御或灵疗免费预设，控住敌方爆发并配合队友保全护卫。");
+            }
+
+            // 3. 娱乐轮换：物法易势 5V5（110，boss_trial_kind = 6 或 MatchMode.Polarity5V5）
+            if (bossKind == 6u || matchMode == (uint)MatchMode.Polarity5V5)
+            {
+                if (end.MaterialPvpLossIneligible)
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        "轮换 · 物法易势 5V5",
+                        "未达有效对抗门槛（需 ≥3 回合、≥2 手动且有有效贡献）",
+                        "手动跟随顶部物势/法势横幅出手，打满门槛即可正常领取绑定材料。");
+                }
+                if (s.Surrendered)
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        "轮换 · 物法易势 5V5",
+                        "己方全队体面认输提前结束了本局团战",
+                        "免费 3×3 预设可随时更换，下局紧跟每 2 回合的物/法易势切换集火目标。");
+                }
+                if (won)
+                {
+                    return new BattleTacticalReviewView(
+                        true,
+                        "轮换 · 物法易势 5V5",
+                        $"顺势配合拿下 5V5 团战胜利（共 {s.TotalRounds} 回合）",
+                        "状态正好！可以去正式人宠会武亮出你的真实养成阵容冲刺段位。");
+                }
+                if (f != null && !(f.TeamDealtPhysicalDirectDamage && f.TeamDealtMagicDirectDamage))
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        "轮换 · 物法易势 5V5",
+                        "队伍伤害类型较单一，逆势回合输出受压",
+                        "人宠分别覆盖物理与法术输出，每 2 回合顺着当前强势势头集中爆发。");
+                }
+                return new BattleTacticalReviewView(
+                    false,
+                    "轮换 · 物法易势 5V5",
+                    draw ? $"势均力敌战满 {s.TotalRounds} 回合平局" : $"团战历时 {s.TotalRounds} 回合惜败",
+                    "在换势回合留好爆发技能，与队友集火同一残血目标打破僵局。");
+            }
+
+            // 4. 正式人宠会武 / 竞技 PVP
+            bool isFormalPvp = matchMode == (uint)MatchMode.PvpTeam
+                || matchMode == (uint)MatchMode._1V1
+                || matchMode == (uint)MatchMode._3V3
+                || matchMode == (uint)MatchMode._5V5
+                || matchMode == (uint)MatchMode.PvpChallenge
+                || matchMode == (uint)MatchMode.GuildWarPvp
+                || matchMode == (uint)MatchMode.SeasonTournament;
+            if (isFormalPvp)
+            {
+                string tag = matchMode == (uint)MatchMode.GuildWarPvp ? "帮会切磋"
+                    : matchMode == (uint)MatchMode.SeasonTournament ? "群仙问道赛"
+                    : "正式人宠会武";
+                if (end.MaterialPvpLossIneligible)
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        tag,
+                        "未达有效对抗门槛，本次未发放负场绑定材料（不扣 660 额度）",
+                        "至少打满 3 回合、2 次手动操作并产生有效伤害/治疗/控制即可正常计入。");
+                }
+                if (s.Surrendered)
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        tag,
+                        $"第 {s.TotalRounds} 回合全队体面认输，已正常结算场次与绑定材料",
+                        "用已获材料精进词条或免费切换赛季印，下局针对对手核心人宠抢占先手。");
+                }
+                if (won)
+                {
+                    return new BattleTacticalReviewView(
+                        true,
+                        tag,
+                        s.TotalRounds >= 12u
+                            ? $"鏖战至「战意渐盛」阶段拿下胜利（{s.TotalRounds} 回合）"
+                            : $"人宠协同配合拿下正式对局胜利（{s.TotalRounds} 回合）",
+                        "趁手感火热继续上分，或前往打造页/聚宝斋进一步优化装备词条。");
+                }
+                if (draw)
+                {
+                    return new BattleTacticalReviewView(
+                        false,
+                        tag,
+                        $"双方拉锯至 {s.TotalRounds} 回合达成平局",
+                        "在第 12 回合「战意渐盛」开启后集中爆发并压制对手治疗，抢先击倒核心宠。");
+                }
+                return new BattleTacticalReviewView(
+                    false,
+                    tag,
+                    s.TotalRounds >= 12u
+                        ? $"拉锯至第 {s.TotalRounds} 回合「战意渐盛」阶段惜败"
+                        : $"历时 {s.TotalRounds} 回合惜败对手",
+                    (f != null && !f.SelfTriggeredAntiControlOrSeasonSkill)
+                        ? "尝试切换解控或爆发类赛季印，开局优先控住或集火对手关键灵宠。"
+                        : "调整人宠集火顺序，或用本局绑定材料在打造页优化装备词条后再战。");
+            }
+
+            return null;
+        }
+
         public static string TelegraphStatusLabel(uint status) => status switch
         {
             1u => "即将发动",
@@ -796,7 +1085,7 @@ namespace MmorpgClient.Game.CoreLoop
             uint tradableTotal = ledger?.TradableEarnedTotal ?? 0u;
             uint tradableLimit = ledger != null && ledger.TradableLifetimeLimit != 0 ? ledger.TradableLifetimeLimit : 60u;
             uint earnedWeek = ledger?.EarnedThisWeek ?? 0u;
-            uint weeklyLimit = ledger != null && ledger.WeeklyLimit != 0 ? ledger.WeeklyLimit : 100u;
+            uint weeklyLimit = ledger != null && ledger.WeeklyLimit != 0 ? ledger.WeeklyLimit : 150u;
             ulong claimable = ledger?.AvailableUnits ?? 0ul;
 
             string headline;
@@ -847,7 +1136,7 @@ namespace MmorpgClient.Game.CoreLoop
             ulong claimable = materialLedger?.AvailableUnits ?? 0ul;
             if (materialLedger != null && materialLedger.WeeklyPhaseActive)
             {
-                uint weekLimit = materialLedger.WeeklyLimit != 0 ? materialLedger.WeeklyLimit : 100u;
+                uint weekLimit = materialLedger.WeeklyLimit != 0 ? materialLedger.WeeklyLimit : 150u;
                 matLabel = "周精进绑定材料";
                 matValue = $"{materialLedger.EarnedThisWeek}/{weekLimit}（待领 {claimable}）";
             }

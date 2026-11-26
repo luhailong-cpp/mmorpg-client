@@ -70,6 +70,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             {
                 var filter=_filters[i];if(!filter.Rect.gameObject.activeSelf)continue;
                 if(i<3)Button(filter,274+i*108,174.984375f,100,40,18);
+                else if(i==5)Button(filter,598,174.984375f,112,40,17);
                 else Button(filter,1050+(i-3)*90,174.984375f,82,40,16);
                 filter.Label.text=filter.Label.text.Replace("✓ ",string.Empty);
                 bool selectedFilter=_filter==i;
@@ -89,7 +90,9 @@ namespace MmorpgClient.UI.Ugui.Skills
                 row.Button.Plate.color=QdaoUguiTheme.Html(row.Id==_selectedId?"#DFE9D3":"#FFF7E7");
                 var border=row.Button.Plate.GetComponent<Outline>()??row.Button.Plate.gameObject.AddComponent<Outline>();
                 border.effectColor=QdaoUguiTheme.Html(row.Id==_selectedId?"#789770":"#D1C6A6");border.effectDistance=new Vector2(1,-1);border.useGraphicAlpha=true;
-                Place(row.Icon.rectTransform,7,8,50,50);Place(row.Name.rectTransform,73,2,674,38);Font(row.Name,23,SkillsInk);row.Name.fontStyle=FontStyles.Bold;row.Name.text=row.Name.text.Replace("✓ ",string.Empty);
+                Place(row.Icon.rectTransform,7,8,50,50);
+                if(row.SeasonCornerBadge!=null)Place(row.SeasonCornerBadge,28,0,22,22);
+                Place(row.Name.rectTransform,73,2,674,38);Font(row.Name,23,SkillsInk);row.Name.fontStyle=FontStyles.Bold;row.Name.text=row.Name.text.Replace("✓ ",string.Empty);
                 Place(row.Kind.rectTransform,73,41.796875f,674,18);Font(row.Kind,11,SkillsMuted,true);
                 Place(row.Rank.rectTransform,759,22.796875f,63,21);Font(row.Rank,13,SkillsInk,true);
                 Place(row.Mana.rectTransform,834,12.796875f,111,22);Font(row.Mana,13,SkillsInk,true);Place(row.Target.rectTransform,834,34.796875f,111,18);Font(row.Target,11,SkillsMuted,true);
@@ -97,7 +100,11 @@ namespace MmorpgClient.UI.Ugui.Skills
             }
             Label("SkillsDetailKicker",1305,104.796875f,314,25,className+(pet?" · 灵宠术法":" · 术法真传"),12,SkillsMuted).alignment=TextAlignmentOptions.Center;
             Place(_selectedIcon.rectTransform,1357,138.984375f,210,210);Place(_selectedName.rectTransform,1305,363.984375f,314,42);Font(_selectedName,32,SkillsInk);_selectedName.fontStyle=FontStyles.Bold;_selectedName.alignment=TextAlignmentOptions.Center;
-            string tags=skill==null?string.Empty:skill.KindLabel+" · "+skill.TargetLabel+(readOnly?" · 状态未同步":selected.Rank>0?" · 已修习 "+selected.Rank+" 级":" · 未学习");
+            string tags=skill==null?string.Empty:skill.KindLabel+" · "+skill.TargetLabel
+                +(selected.Equipped?" · 已装配":string.Empty)
+                +(!string.IsNullOrEmpty(skill.SecondaryTargetLabel)?" · "+skill.SecondaryTargetLabel:string.Empty)
+                +(skill.exclusiveGroup>0?$" · 互斥组#{skill.exclusiveGroup}":string.Empty)
+                +(readOnly?" · 状态未同步":selected.Rank>0?" · 已修习 "+selected.Rank+" 级":" · 未学习");
             Label("SkillsDetailTags",1305,413.578125f,314,24,tags,11,SkillsMuted).alignment=TextAlignmentOptions.Center;
             Place(_descriptionScroll.viewport,1305,457.171875f,314,70);Font(_description,15,QdaoUguiTheme.Html("#596047"),true);
             float height=Mathf.Max(70,_description.GetPreferredValues(_description.text,304,0).y+4);
@@ -109,11 +116,23 @@ namespace MmorpgClient.UI.Ugui.Skills
             Label("SkillsUnlockLabel",1469,607,150,20,"初始解锁",11,SkillsMuted);Label("SkillsUnlockValue",1469,630,150,26,skill==null?"—":skill.unlockLevel+"级",14,SkillsInk,null,true);
             Place(_condition.rectTransform,1305,695,314,48);Font(_condition,12,SkillsMuted,true);Place(_balance.rectTransform,1305,744,314,22);Font(_balance,12,SkillsInk,true);Place(_cost.rectTransform,1305,768,314,22);Font(_cost,12,SkillsInk,true);
             Button(_upgrade,1305,794.296875f,152,48,19);Button(_upgradeTen,1467,794.296875f,152,48,19);CharacterAttributeVisuals.Skin(_upgradeTen.Plate,"button_secondary");_upgradeTen.Label.color=SkillsInk;
+            if(_seasonFreeBadge!=null)Place(_seasonFreeBadge,1372,796,180,44);
             Button(_refresh,1509,879.296875f,110,39,16);Place(_status.rectTransform,41,879.296875f,1425,39);Font(_status,13,null,true);
             string[] tabs={"AttributeTab","AllocationTab","SkillTab"};for(int i=0;i<tabs.Length;i++)
             {
-                var rect=Find(tabs[i]);if(rect==null)continue;Place(rect,1310+i*102,25,94,40);CharacterAttributeVisuals.Skin(rect.GetComponent<Image>(),i==2?"button_primary":"button_secondary");
-                var label=rect.GetComponentInChildren<TMP_Text>();label.text=label.text.Replace("\n",string.Empty);Place(label.rectTransform,0,0,94,40);Font(label,18,i==2?QdaoRefreshArt.Ivory:SkillsInk);
+                var rect=Find(tabs[i]);if(rect==null)continue;Place(rect,1310+i*102,25,94,40);CharacterAttributeVisuals.Skin(rect.GetComponent<Image>(),i==2&&!_loadoutMode?"button_primary":"button_secondary");
+                var label=rect.GetComponentInChildren<TMP_Text>();label.text=label.text.Replace("\n",string.Empty);Place(label.rectTransform,0,0,94,40);Font(label,18,i==2&&!_loadoutMode?QdaoRefreshArt.Ivory:SkillsInk);
+            }
+            if(_loadoutTab!=null)
+            {
+                bool showLoadoutTab=!pet;
+                _loadoutTab.SetVisible(showLoadoutTab);
+                if(showLoadoutTab)
+                {
+                    Button(_loadoutTab,1168,25,128,40,18);
+                    CharacterAttributeVisuals.Skin(_loadoutTab.Plate,_loadoutMode?"button_primary":"button_secondary");
+                    _loadoutTab.Label.color=_loadoutMode?QdaoRefreshArt.Ivory:SkillsInk;
+                }
             }
         }
         // Only these HTML controls have CSS flat backgrounds; preserve the existing production callbacks.

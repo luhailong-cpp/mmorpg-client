@@ -65,11 +65,11 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             GameplayUiArt.Art(_frame, "main_frame", 0, 0, 2200, 960);
             GameplayUiArt.Text(_frame, "聚宝斋 · 全球交易", 36, 16, 1100, 60, 36);
             GameplayUiArt.Button(_frame, "关闭", 1990, 20, 160, 58, Hide);
-            string[] tabs = { "官方商城", "寄售", "竞拍", "材料市场", "我的订单", "上架与交易" };
+            string[] tabs = { "官方商城", "寄售", "竞拍", "材料市场", "我的订单", "上架与交易", "珍宝阁(RMB)" };
             for (int i = 0; i < tabs.Length; i++)
             {
                 int tab = i;
-                GameplayUiArt.Button(_frame, tabs[i], 36 + i * 310, 94, 296, 60, () => SelectTab(tab), fontSize: 27);
+                GameplayUiArt.Button(_frame, tabs[i], 36 + i * 304, 94, 294, 60, () => SelectTab(tab), fontSize: 25);
             }
             _body = QdaoUguiFactory.CreateRect("CommerceBody", _frame, 36, 174, 2120, 660);
             _status = GameplayUiArt.Text(_frame, "", 36, 847, 1640, 72, 25);
@@ -207,7 +207,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             else if (_tab == 1 || _tab == 2) _client.BrowseOffers(_tab == 1 ? CommerceOrderKind.Consignment : CommerceOrderKind.AuctionLot, _cursor);
             else if (_tab == 3) ShowMarket();
             else if (_tab == 4) _client.ListOrders(_cursor);
-            else ShowSellForm();
+            else if (_tab == 5) ShowSellForm();
+            else _client.ListRmbConsignments(_cursor);
             Changed();
         }
         private void Text(string value, float x, float y, float w = 1500, float h = 55, float size = 27)
@@ -343,6 +344,52 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                     ? "该订单已评价，已同步最新卖家信用。"
                     : (review.CountedForScore ? "评价已提交，已计入卖家信用档案。" : "评价已记录（命中防刷分规则，不计信用分）。");
                 ShowSellerCreditModal(review.Profile);
+            }
+            else if (response is ListRmbConsignmentsResponse rmbList && _tab == 6)
+            {
+                Clear();
+                _nextCursor = rmbList.NextCursor;
+                EconomyTradeUiViews.RenderRmbListings(
+                    _body,
+                    rmbList.Listings,
+                    _game()?.PlayerId ?? 0,
+                    () => _client.ListSellerIncomes(),
+                    () => { Clear(); ShowRmbPublishForm(); Changed(); },
+                    sid => OpenSellerCredit(sid, () => SelectTab(6)),
+                    item => Confirm(
+                        $"确认官方担保购买「{item.Title}」（#{item.ListingId}），价格 {EconomyFormat.FormatMoney(item.PriceFen, "CNY")}？\n资金由官方托管并按公示/核查规则结算，请按当前发行平台完成合规支付。",
+                        () => _client.BuyRmbConsignment(item.ListingId)),
+                    item => Confirm(
+                        $"确认撤回 RMB 托管寄售「{item.Title}」（#{item.ListingId}）？撤回后资产按服务端规则退回。",
+                        () => _client.CancelRmbConsignment(item.ListingId)),
+                    btn => _writeButtons.Add(btn));
+                Pagination();
+            }
+            else if (response is ListSellerIncomesResponse incomes)
+            {
+                Clear();
+                _nextCursor = incomes.NextCursor;
+                EconomyTradeUiViews.RenderRmbSellerIncomes(
+                    _body,
+                    incomes.Incomes,
+                    fen => Confirm(
+                        $"确认申请官方提现 {EconomyFormat.FormatMoney(fen, "CNY")}？争议冻结中的金额不可提现，到账以服务端打款状态为准。",
+                        () => _client.CreateWithdrawal(fen)),
+                    () => SelectTab(6),
+                    btn => _writeButtons.Add(btn));
+            }
+            else if (response is RmbConsignmentResponse rmbOne && rmbOne.Listing != null)
+            {
+                _status.text = $"珍宝阁单 #{rmbOne.Listing.ListingId} 状态已更新：{rmbOne.Listing.Phase} / {rmbOne.Listing.State}";
+                _client.ListRmbConsignments();
+            }
+            else if (response is WithdrawalResponse wd && wd.Withdrawal != null)
+            {
+                Clear();
+                Text($"提现申请已提交\n提现单号：{wd.Withdrawal.WithdrawalId}\n申请金额：{EconomyFormat.FormatMoney(wd.Withdrawal.AmountFen, "CNY")}\n状态：{wd.Withdrawal.State}",
+                    24, 36, 1960, 260, 27);
+                Action("返回我的收益与提现", 24, 330, 360, () => _client.ListSellerIncomes());
+                Action("返回珍宝阁列表", 410, 330, 320, () => SelectTab(6));
             }
             Changed();
         }
@@ -639,6 +686,52 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                     () => _client.CreateTrade(buyer, seller, new TradeAssetSelection { CurrencyType = 0, CurrencyAmount = gold }));
             }, true);
         }
+
+        private void ShowActivePublishForm()
+        {
+            if (_tab == 6) ShowRmbPublishForm();
+            else ShowSellForm();
+        }
+
+        private void ShowRmbPublishForm()
+        {
+            EconomyTradeUiViews.DrawPanelBackdrop(_body, "panel_05_market_order", 0.18f);
+            bool uniqueValuable = _selection.ItemUuids.Count > 0 || _selection.PetId != 0;
+            Text("珍宝阁(RMB) 官方托管上架 · 已选资产：" + _selectedName, 24, 6, 1520, 44, 24);
+            Action("返回珍宝阁列表", 1740, 4, 340, () => SelectTab(6));
+
+            Action("从背包选择", 24, 64, 320, () => ShowAssets(false, 0));
+            Action("从宠物选择", 368, 64, 320, () => ShowAssets(true, 0));
+
+            var titleField = Input("寄售展示标题", 24, 146, 520, _selectedName == "未选择" ? "" : _selectedName);
+            var priceFenField = Input("价格（单位：分，100分=1元）", 574, 146, 460, "1000");
+            var designatedBuyer = Input("指定买家角色编号（选填，留空公开）", 1064, 146, 520);
+
+            Text("分层公示说明：" + MarketP50DisplayModel.DescribeNoticeTier(uniqueValuable)
+                + "\n所有资金与货品均由官方托管，若交易触发争议核查将自动冻结对应待提现金额直至结案。",
+                24, 266, 2040, 88, 21);
+
+            Action("提交官方托管 RMB 寄售", 24, 384, 520, () =>
+            {
+                if (!HasAssets()) { _client.SetStatus("请先从背包或宠物选择要上架的资产。"); return; }
+                string title = (titleField.text ?? "").Trim();
+                if (string.IsNullOrEmpty(title)) { _client.SetStatus("请填写展示标题。"); return; }
+                if (!Positive(priceFenField, out ulong priceFen)) return;
+                ulong designatedId = 0;
+                string rawDesignated = (designatedBuyer.text ?? "").Trim();
+                if (rawDesignated.Length > 0 && (!ulong.TryParse(rawDesignated, NumberStyles.None, CultureInfo.InvariantCulture, out designatedId) || designatedId == 0))
+                {
+                    _client.SetStatus("指定买家角色编号必须为正整数，或留空公开寄售。");
+                    return;
+                }
+                var assets = _selection.Clone();
+                string noticeNote = MarketP50DisplayModel.DescribeNoticeTier(uniqueValuable, priceFen);
+                string designatedNote = designatedId != 0 ? $"\n仅限指定买家角色编号 #{designatedId} 购买。" : "";
+                Confirm($"确认上架珍宝阁 RMB 托管单「{title}」，价格 {EconomyFormat.FormatMoney(priceFen, "CNY")}？\n公示规则：{noticeNote}{designatedNote}",
+                    () => _client.CreateRmbConsignment(assets, title, priceFen, designatedId));
+            }, true);
+        }
+
         private bool HasAssets() => _selection.Items.Count != 0 || _selection.ItemUuids.Count != 0 || _selection.PetId != 0;
         private void ShowAssets(bool pets, int page)
         {
@@ -651,7 +744,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 {
                     var pet = list[i]; float y = (i - start) * 70;
                     Text(pet.Name + " · 等级 " + pet.Level + (pet.IsActive ? " · 出战中" : ""), 24, y, 1450);
-                    var button = Action("选择", 1600, y, 350, () => { _selection = new TradeAssetSelection { PetId = pet.PetId }; _selectedName = pet.Name; Clear(); ShowSellForm(); Changed(); });
+                    var button = Action("选择", 1600, y, 350, () => { _selection = new TradeAssetSelection { PetId = pet.PetId }; _selectedName = pet.Name; Clear(); ShowActivePublishForm(); Changed(); });
                     button.interactable = !pet.IsActive;
                 }
             }
@@ -673,7 +766,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                     {
                         _selection = new TradeAssetSelection();
                         if (item.MaxStack == 1) _selection.ItemUuids.Add(item.ItemId); else _selection.Items[item.ConfigId] = available;
-                        _selectedName = item.Name + " × " + available; Clear(); ShowSellForm(); Changed();
+                        _selectedName = item.Name + " × " + available; Clear(); ShowActivePublishForm(); Changed();
                     });
                     choose.interactable = available != 0;
                 }
@@ -681,7 +774,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             Action("上一页", 24, 592, 240, () => ShowAssets(pets, Math.Max(0, page - 1)));
             Action("下一页", 294, 592, 240, () => ShowAssets(pets, page + 1));
             Action("刷新", 564, 592, 240, () => { if (pets) game?.Pets?.RequestList(); else game?.Features?.RequestBag(); ShowAssets(pets, page); });
-            Action("返回", 834, 592, 240, () => { Clear(); ShowSellForm(); Changed(); });
+            Action("返回", 834, 592, 240, () => { Clear(); ShowActivePublishForm(); Changed(); });
         }
 
         // 市场目录由服务端白名单返回；不让玩家猜测或提交内部编号。

@@ -22,7 +22,7 @@ namespace MmorpgClient.Game.Skills
     ///  - 宠物技能按 pet_id 请求同一技能书接口，回包必须匹配当前查看的实例。
     ///  - <see cref="Changed"/> 只在调用方线程(UI)或传输回调(GameClient.CallMethod,主线程)里触发。
     /// </summary>
-    public sealed class SkillBookClient : Ui.ISkillBookSource, IDisposable
+    public sealed class SkillBookClient : Ui.ISkillBookSource, Ui.ISkillLoadoutSource, IDisposable
     {
         public static SkillBookClient Instance { get; private set; }
 
@@ -45,6 +45,8 @@ namespace MmorpgClient.Game.Skills
         private readonly Dictionary<uint, Ui.SkillDefinition> _battlePresentation = new();
         private readonly HashSet<ulong> _catalogSubjects = new();
         private readonly Dictionary<ulong, List<Action<bool>>> _catalogRequests = new();
+        private SaveSkillLoadoutRequest _pendingSaveLoadout;
+        private SwitchSkillLoadoutRequest _pendingSwitchLoadout;
 
         public Ui.SkillDefinition FindBattlePresentation(uint id) =>
             _battlePresentation.TryGetValue(id, out var definition) ? definition : null;
@@ -210,6 +212,163 @@ namespace MmorpgClient.Game.Skills
                 });
         }
 
+        // ── ISkillLoadoutSource ────────────────────────────
+
+        public void SaveLoadout(uint schemeId, uint roleTag, IReadOnlyList<uint> passiveSkillIds,
+            IReadOnlyList<uint> pursuitSkillIds, IReadOnlyList<uint> openingSkillIds,
+            Action<bool, string> completed = null)
+        {
+            if (_disposed) { completed?.Invoke(false, "技能服务已销毁"); return; }
+            ObserveSession();
+            var context = Ui.SkillBookContext.Character();
+            if (!Ready) { completed?.Invoke(false, NotInGameMessage); return; }
+            if (_activeWrite != 0 || _activeRead != 0) { completed?.Invoke(false, "上一次操作还在处理中"); return; }
+            var current = State;
+            if (current?.Snapshot?.Loadout == null || !context.Matches(current.Context))
+            {
+                completed?.Invoke(false, "请先刷新角色技能书");
+                return;
+            }
+            if (_writesBlocked?.Invoke() == true)
+            {
+                const string locked = "战斗中仅可查看，无法修改战法装配。";
+                Publish(Copy(current, message: locked));
+                completed?.Invoke(false, locked);
+                return;
+            }
+            if (_pendingSwitchLoadout != null)
+            {
+                completed?.Invoke(false, "请先确认未完成的方案切换请求。");
+                return;
+            }
+            if (_pendingSaveLoadout == null)
+            {
+                var req = new SaveSkillLoadoutRequest
+                {
+                    SchemeId = schemeId,
+                    RoleTag = roleTag,
+                    StateVersion = current.Snapshot.Loadout.StateVersion,
+                    RequestId = Guid.NewGuid().ToString("N"),
+                };
+                if (passiveSkillIds != null) req.PassiveSkillIds.AddRange(passiveSkillIds);
+                if (pursuitSkillIds != null) req.PursuitSkillIds.AddRange(pursuitSkillIds);
+                if (openingSkillIds != null) req.OpeningSkillIds.AddRange(openingSkillIds);
+                _pendingSaveLoadout = req;
+            }
+            var sent = _pendingSaveLoadout.Clone();
+            var stamp = Capture();
+            _activeWrite = stamp.Id;
+            Publish(new Ui.SkillBookViewState
+            {
+                Context = context,
+                Snapshot = current.Snapshot,
+                IsBusy = true,
+                IsConnected = true,
+                Message = "正在保存战法装配…",
+            });
+            SceneSkillClientPlayerRpc.SaveSkillLoadout(_rpc, sent, (status, response) =>
+            {
+                if (!CurrentWrite(stamp)) return;
+                _activeWrite = 0;
+                if (!status.IsOk || response == null)
+                {
+                    string err = "战法装配结果未确认:" + DescribeFailure(status) + ",可重试或刷新查看";
+                    PublishError(context, err);
+                    completed?.Invoke(false, err);
+                    return;
+                }
+                bool rejected = HasTip(response.ErrorMessage);
+                bool exact = !rejected && response.RequestId == sent.RequestId;
+                if (rejected || exact) _pendingSaveLoadout = null;
+                string message = rejected
+                    ? SkillBookMapper.DescribeTip("保存战法装配失败", response.ErrorMessage)
+                    : $"已保存并启用流派方案 {sent.SchemeId}";
+                if (response.State != null && !HasTip(response.State.ErrorMessage))
+                {
+                    ApplyBook(context, response.State, message);
+                }
+                else
+                {
+                    PublishError(context, rejected ? message : "服务器未返回最新战法装配状态,请刷新");
+                }
+                completed?.Invoke(exact, exact ? null : message);
+            });
+        }
+
+        public void SwitchLoadout(uint schemeId, Action<bool, string> completed = null)
+        {
+            if (_disposed) { completed?.Invoke(false, "技能服务已销毁"); return; }
+            ObserveSession();
+            var context = Ui.SkillBookContext.Character();
+            if (!Ready) { completed?.Invoke(false, NotInGameMessage); return; }
+            if (_activeWrite != 0 || _activeRead != 0) { completed?.Invoke(false, "上一次操作还在处理中"); return; }
+            var current = State;
+            if (current?.Snapshot?.Loadout == null || !context.Matches(current.Context))
+            {
+                completed?.Invoke(false, "请先刷新角色技能书");
+                return;
+            }
+            if (_writesBlocked?.Invoke() == true)
+            {
+                const string locked = "战斗中仅可查看，无法切换战法流派。";
+                Publish(Copy(current, message: locked));
+                completed?.Invoke(false, locked);
+                return;
+            }
+            if (_pendingSaveLoadout != null)
+            {
+                completed?.Invoke(false, "请先确认未完成的战法装配保存请求。");
+                return;
+            }
+            if (_pendingSwitchLoadout == null)
+            {
+                _pendingSwitchLoadout = new SwitchSkillLoadoutRequest
+                {
+                    SchemeId = schemeId,
+                    StateVersion = current.Snapshot.Loadout.StateVersion,
+                    RequestId = Guid.NewGuid().ToString("N"),
+                };
+            }
+            var sent = _pendingSwitchLoadout.Clone();
+            var stamp = Capture();
+            _activeWrite = stamp.Id;
+            Publish(new Ui.SkillBookViewState
+            {
+                Context = context,
+                Snapshot = current.Snapshot,
+                IsBusy = true,
+                IsConnected = true,
+                Message = "正在切换战法流派…",
+            });
+            SceneSkillClientPlayerRpc.SwitchSkillLoadout(_rpc, sent, (status, response) =>
+            {
+                if (!CurrentWrite(stamp)) return;
+                _activeWrite = 0;
+                if (!status.IsOk || response == null)
+                {
+                    string err = "切换战法流派结果未确认:" + DescribeFailure(status) + ",可重试或刷新查看";
+                    PublishError(context, err);
+                    completed?.Invoke(false, err);
+                    return;
+                }
+                bool rejected = HasTip(response.ErrorMessage);
+                bool exact = !rejected && response.RequestId == sent.RequestId;
+                if (rejected || exact) _pendingSwitchLoadout = null;
+                string message = rejected
+                    ? SkillBookMapper.DescribeTip("切换战法流派失败", response.ErrorMessage)
+                    : $"已切换至流派方案 {sent.SchemeId}";
+                if (response.State != null && !HasTip(response.State.ErrorMessage))
+                {
+                    ApplyBook(context, response.State, message);
+                }
+                else
+                {
+                    PublishError(context, rejected ? message : "服务器未返回最新战法装配状态,请刷新");
+                }
+                completed?.Invoke(exact, exact ? null : message);
+            });
+        }
+
         // ── 内部 ────────────────────────────────────────────
 
         private void CompleteUpgrade(RequestStamp stamp, Ui.SkillBookContext context, string skillName,
@@ -332,6 +491,8 @@ namespace MmorpgClient.Game.Skills
         {
             ++_epoch;
             _activeRead = _activeWrite = 0;
+            _pendingSaveLoadout = null;
+            _pendingSwitchLoadout = null;
             _battlePresentation.Clear();
             _catalogSubjects.Clear();
             _catalogRequests.Clear();

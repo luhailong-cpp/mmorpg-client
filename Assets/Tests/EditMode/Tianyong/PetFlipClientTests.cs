@@ -660,6 +660,73 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             }));
         }
 
+        [Test]
+        public void StreakAndPerfectRun_TrackConsecutiveMatchesResetOnMismatchAndPreserveAcrossPause()
+        {
+            using var client = CreateFixedClient();
+            client.StartOrResume();
+
+            // 连续配对 2 对：CurrentStreak=2, MaxStreak=2
+            client.FlipCard(0);
+            PetFlipActionResult m1 = client.FlipCard(6);
+            Assert.That(m1.CurrentStreak, Is.EqualTo(1));
+            Assert.That(m1.Snapshot.CurrentStreak, Is.EqualTo(1));
+            Assert.That(m1.Snapshot.LastMatchedPattern, Is.EqualTo(SpiritPetCardPattern.A));
+
+            // 翻下一手第一张清掉 LastMatchedPattern，但保留当前连击
+            PetFlipActionResult f2 = client.FlipCard(1);
+            Assert.That(f2.Snapshot.CurrentStreak, Is.EqualTo(1));
+            Assert.That(f2.Snapshot.LastMatchedPattern, Is.Null);
+
+            PetFlipActionResult m2 = client.FlipCard(7);
+            Assert.That(m2.CurrentStreak, Is.EqualTo(2));
+            Assert.That(m2.Snapshot.MaxStreak, Is.EqualTo(2));
+            Assert.That(m2.Snapshot.LastMatchedPattern, Is.EqualTo(SpiritPetCardPattern.B));
+
+            // 暂停续盘不丢连击与最近配对图案
+            client.Pause(PetFlipInterruptFlags.PanelClosed);
+            PetFlipSnapshot resumed = client.StartOrResume().Snapshot;
+            Assert.That(resumed.CurrentStreak, Is.EqualTo(2));
+            Assert.That(resumed.MaxStreak, Is.EqualTo(2));
+            Assert.That(resumed.LastMatchedPattern, Is.EqualTo(SpiritPetCardPattern.B));
+
+            // 失配清零 CurrentStreak，但保留 MaxStreak=2
+            client.FlipCard(2);
+            PetFlipActionResult miss = client.FlipCard(3);
+            Assert.That(miss.Outcome, Is.EqualTo(PetFlipActionOutcome.PairMismatched));
+            Assert.That(miss.CurrentStreak, Is.EqualTo(0));
+            Assert.That(miss.Snapshot.CurrentStreak, Is.EqualTo(0));
+            Assert.That(miss.Snapshot.MaxStreak, Is.EqualTo(2));
+            Assert.That(miss.Snapshot.LastMatchedPattern, Is.Null);
+
+            // 收尾剩余 4 对（最后连续 4 连，总 MaxStreak 升至 4，因有失配故非完美局）
+            int[] rest = { 2, 8, 3, 9, 4, 10, 5, 11 };
+            PetFlipActionResult end = null;
+            for (int i = 0; i < rest.Length; i++) end = client.FlipCard(rest[i]);
+            Assert.That(end.Outcome, Is.EqualTo(PetFlipActionOutcome.RoundCompleted));
+            Assert.That(end.Snapshot.CompletionResult.MaxStreak, Is.EqualTo(4));
+            Assert.That(end.Snapshot.CompletionResult.IsPerfectRun, Is.False);
+
+            // 再开一局 6 次零失误完成：IsPerfectRun=true, MaxStreak=6
+            client.StartNewRound();
+            PetFlipActionResult perfect = CompleteAcceptanceDeckInSixFlips(client);
+            Assert.That(perfect.Snapshot.CompletionResult.IsPerfectRun, Is.True);
+            Assert.That(perfect.Snapshot.CompletionResult.MaxStreak, Is.EqualTo(6));
+        }
+
+        [Test]
+        public void DailySeededDeck_IsDeterministicPerDateAndVariesAcrossDates()
+        {
+            SpiritPetCardPattern[] dayA1 = PetFlipDeckFactory.CreateDailySeededDeck(2026, 11, 25);
+            SpiritPetCardPattern[] dayA2 = PetFlipDeckFactory.CreateDailySeededDeck(2026, 11, 25);
+            SpiritPetCardPattern[] dayB = PetFlipDeckFactory.CreateDailySeededDeck(2026, 11, 26);
+
+            PetFlipDeckFactory.ValidateDeck(dayA1);
+            PetFlipDeckFactory.ValidateDeck(dayB);
+            Assert.That(dayA1, Is.EqualTo(dayA2));
+            Assert.That(string.Join(",", dayA1), Is.Not.EqualTo(string.Join(",", dayB)));
+        }
+
         private sealed class ThrowingBestRecordStore : IPetFlipBestRecordStore
         {
             private readonly string _persisted;

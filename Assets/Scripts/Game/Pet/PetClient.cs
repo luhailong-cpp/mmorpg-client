@@ -39,6 +39,10 @@ namespace MmorpgClient.Game.Pet
         private int _listRequestVersion;
         private int _grantRequestVersion;
         private int _allocationRequestVersion;
+        private AscendPetTierRequest _pendingAscend;
+        private ulong _ascendPlayerId;
+        private ulong _ascendRequestCounter;
+        public bool HasPendingTierAscension(ulong petId) => _pendingAscend?.PetId == petId && _ascendPlayerId == MyPlayerId;
         public bool IsReady => _net.IsReady;
 
         /// <summary>有写请求在途(UI 据此禁用提交按钮)。</summary>
@@ -114,6 +118,13 @@ namespace MmorpgClient.Game.Pet
                 26014 => "没有可用的自动加点方案",
                 26015 => "宝宝属性没有变化",
                 26016 => "宝宝创建失败,请稍后再试",
+                (uint)pet_error.KPetNameSensitive => "宝宝名称包含不允许使用的词语，请修改",
+                (uint)pet_error.KPetNotTransferable => "该宝宝绑定角色，不可交易、赠送、寄售或分解合成",
+                (uint)pet_error.KPetTierMaxReached => "该宝宝已达最高灵阶（圣兽）",
+                (uint)pet_error.KPetTierChanged => "宝宝灵阶状态已变化，请刷新后再试",
+                (uint)pet_error.KPetTierLevelNotEnough => "宝宝等级不足，暂不能进行灵阶突破",
+                (uint)pet_error.KPetTierMaterialNotEnough => "灵阶突破所需材料不足",
+                (uint)pet_error.KPetEntryPresetInvalid => "无效的宝宝条目方案",
                 _ => Attribute.AttributeClient.DescribeAssetTip(tip.Id) ?? $"tip={tip.Id}",
             };
             return $"{what}:{text}";
@@ -262,6 +273,62 @@ namespace MmorpgClient.Game.Pet
                 err => { if (session == _sessionVersion) FailWrite(err); });
         }
 
+        /// <summary>宝宝灵阶突破（普通→变异→灵兽→神兽→圣兽）；超时保留原幂等键重试，避免重复扣材扣银。</summary>
+        public void AscendTier(ulong petId, uint expectedTier, Action<bool, uint, PetListInfo, string> completed)
+        {
+            if (_pendingAscend != null && _ascendPlayerId != MyPlayerId) _pendingAscend = null;
+            if (_pendingAscend != null && _pendingAscend.PetId != petId)
+            {
+                completed?.Invoke(false, 0, null, "请先确认另一只宝宝的灵阶突破结果。");
+                return;
+            }
+            if (_pendingAscend == null && (petId == 0 || expectedTier == 0 || expectedTier >= 5))
+            {
+                completed?.Invoke(false, 0, null, expectedTier >= 5 ? "该宝宝已达最高灵阶（圣兽）。" : "未选中可突破的宝宝。");
+                return;
+            }
+            if (!BeginWrite(null))
+            {
+                completed?.Invoke(false, 0, null, CultivationWritesBlocked ? CultivationLockedMessage : "当前无法进行灵阶突破。");
+                return;
+            }
+            if (_pendingAscend == null)
+            {
+                ulong reqId = ((ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() << 12) ^ (++_ascendRequestCounter & 0xFFFu);
+                if (reqId == 0) reqId = 1;
+                _pendingAscend = new AscendPetTierRequest
+                {
+                    PetId = petId,
+                    ExpectedTier = expectedTier,
+                    ClientRequestId = reqId,
+                };
+                _ascendPlayerId = MyPlayerId;
+            }
+            var sent = _pendingAscend.Clone();
+            int session = _sessionVersion;
+            ulong owner = MyPlayerId;
+            _net.Call(MessageIds.AscendPetTier, sent, AscendPetTierResponse.Parser,
+                resp =>
+                {
+                    if (session != _sessionVersion || owner != MyPlayerId) return;
+                    bool rejected = HasTip(resp.ErrorMessage);
+                    bool exact = !rejected && resp.ClientRequestId == sent.ClientRequestId && resp.Pets != null && resp.NewTier > sent.ExpectedTier;
+                    if (rejected || exact) _pendingAscend = null;
+                    SetBusy(false);
+                    if (resp.Pets != null) ApplyList(resp.Pets);
+                    string error = exact ? null : rejected
+                        ? DescribeTip("灵阶突破失败", resp.ErrorMessage)
+                        : "灵阶突破结果尚未确认，请重试确认。";
+                    completed?.Invoke(exact, resp.NewTier, resp.Pets, error);
+                },
+                err =>
+                {
+                    if (session != _sessionVersion || owner != MyPlayerId) return;
+                    SetBusy(false);
+                    completed?.Invoke(false, 0, null, "灵阶突破结果未知，可重试确认。" + err);
+                });
+        }
+
         /// <summary>GM:发一只宝宝(开发调试用;核心线唯一获取入口,上线前经 gate GM 鉴权收口)。</summary>
         public void GmGrantPet(uint petTableId)
         {
@@ -359,6 +426,7 @@ namespace MmorpgClient.Game.Pet
         {
             InvalidateShop();
             InvalidateEntries();
+            _pendingAscend = null;
             ++_sessionVersion;
             ++_listRequestVersion;
             ++_grantRequestVersion;

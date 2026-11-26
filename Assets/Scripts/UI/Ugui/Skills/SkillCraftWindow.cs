@@ -244,6 +244,12 @@ namespace MmorpgClient.UI.Ugui.Skills
                         var iconImg = QdaoUguiFactory.CreateImage("ScrollSkillIcon_" + skillId, skillBtn.transform,
                             24, 34, 72, 72, skillIcon, false);
                         iconImg.preserveAspect = true;
+                        var btnLabel = skillBtn.transform.Find("Label") as RectTransform;
+                        if (btnLabel != null)
+                        {
+                            btnLabel.anchoredPosition = new Vector2(104f, 0f);
+                            btnLabel.sizeDelta = new Vector2(336f, 140f);
+                        }
                     }
                 }
 
@@ -252,6 +258,16 @@ namespace MmorpgClient.UI.Ugui.Skills
                 {
                     Button(_body, "ScrollProxyClear", $"当前名匠代制（手工费 {proxyFee} 银两）· 点此改回亲自制书",
                         950, 975, 1480, () => { _selectedProxyMasterId = 0; Render(); });
+                }
+                else
+                {
+                    Button(_body, "ScrollProxyPick", "亲自制书 · 点此查看主城名匠代制（5% 官府托管）",
+                        950, 975, 1480, () =>
+                        {
+                            _page = SkillCraftPage.ProxyStalls;
+                            _client?.RefreshProxyStalls();
+                            Render();
+                        });
                 }
 
                 bool locked = _client == null || _client.IsBusy || _client.HasPendingWrite;
@@ -276,12 +292,26 @@ namespace MmorpgClient.UI.Ugui.Skills
                 {
                     bool rareAllowed = SkillCraftModels.CanCraftRareTargeted(state, activeScroll, _selectedSkillId, proxyFee, out string rareReason);
                     bool canRare = !locked && rareAllowed;
+                    bool inkShort = state.RareInkOwned < activeScroll.RareInkCount;
                     Label(_body, "ScrollRareHint",
                         $"定向制书（{ResolveSkillName(_selectedSkillId)}）：{activeScroll.RareScrollCount} 绝学残卷 + {activeScroll.RareInkCount} 绑定天工秘墨 + {activeScroll.RareGoldCost + proxyFee} 银两\n" +
                         "100% 必出指定稀世绝学（不抽卡不歪书）；消耗绑定秘墨合出的稀世绝学书永久仅自用。",
                         960, 1110, 1480, 130, 34, true, Ink);
-                    Button(_body, "CraftTargetedRareBtn", "定向制书（100%必出）", 1260, 1250, 880,
-                        () => _client?.CraftRareTargeted(activeScroll.ScrollId, _selectedSkillId, _selectedProxyMasterId), true, canRare);
+                    if (inkShort)
+                    {
+                        Button(_body, "CraftTargetedRareBtn", "定向制书（100%必出）", 960, 1250, 820,
+                            () => _client?.CraftRareTargeted(activeScroll.ScrollId, _selectedSkillId, _selectedProxyMasterId), true, canRare);
+                        Button(_body, "RareMallShortcutBtn", "官方商城补秘墨", 1810, 1250, 630, () =>
+                        {
+                            Hide();
+                            Jubaozhai.JubaozhaiUiRoot.Instance?.OpenOfficialMall();
+                        }, false, true);
+                    }
+                    else
+                    {
+                        Button(_body, "CraftTargetedRareBtn", "定向制书（100%必出）", 1260, 1250, 880,
+                            () => _client?.CraftRareTargeted(activeScroll.ScrollId, _selectedSkillId, _selectedProxyMasterId), true, canRare);
+                    }
                     if (!canRare && !string.IsNullOrEmpty(rareReason))
                         Label(_body, "ScrollCraftReason", rareReason, 960, 1395, 1480, 50, 30, color: Danger);
                 }

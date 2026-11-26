@@ -205,6 +205,8 @@ namespace MmorpgClient.Game.Jubaozhai
                 bool completeReply = response is CommerceOrderResponse order ? order.Order != null
                     : response is MarketOrderResponse market ? market.Order != null
                     : response is AuctionLotResponse lot ? lot.Lot != null
+                    : response is RmbConsignmentResponse rmb ? rmb.Listing != null
+                    : response is WithdrawalResponse withdrawal ? withdrawal.Withdrawal != null
                     : response is SubmitSellerReviewResponse review && review.Profile != null;
                 bool uncertain = TipFaults.IsFault(tip) || (write && tip == 0 && !completeReply);
                 if (write && !uncertain)
@@ -255,6 +257,10 @@ namespace MmorpgClient.Game.Jubaozhai
                     case MessageIds.JubaozhaiPlaceAuctionBid: Send(method, PlaceAuctionBidRequest.Parser.ParseFrom(payload), AuctionLotResponse.Parser, true, saved); break;
                     case MessageIds.JubaozhaiCancelAuctionLot: Send(method, CancelAuctionLotRequest.Parser.ParseFrom(payload), AuctionLotResponse.Parser, true, saved); break;
                     case MessageIds.JubaozhaiSubmitSellerReview: Send(method, SubmitSellerReviewRequest.Parser.ParseFrom(payload), SubmitSellerReviewResponse.Parser, true, saved); break;
+                    case ClientPlayerJubaozhaiRpc.CreateRmbConsignmentMessageId: Send(method, CreateRmbConsignmentRequest.Parser.ParseFrom(payload), RmbConsignmentResponse.Parser, true, saved); break;
+                    case ClientPlayerJubaozhaiRpc.BuyRmbConsignmentMessageId: Send(method, BuyRmbConsignmentRequest.Parser.ParseFrom(payload), CommerceOrderResponse.Parser, true, saved); break;
+                    case ClientPlayerJubaozhaiRpc.CancelRmbConsignmentMessageId: Send(method, CancelRmbConsignmentRequest.Parser.ParseFrom(payload), RmbConsignmentResponse.Parser, true, saved); break;
+                    case ClientPlayerJubaozhaiRpc.CreateWithdrawalMessageId: Send(method, CreateWithdrawalRequest.Parser.ParseFrom(payload), WithdrawalResponse.Parser, true, saved); break;
                     default: SetStatus("交易恢复记录版本不支持，请保留记录并联系支持。"); break;
                 }
             }
@@ -285,6 +291,12 @@ namespace MmorpgClient.Game.Jubaozhai
         public void SubmitSellerReview(string orderId, SellerReviewRating rating, string comment = "") => Send(MessageIds.JubaozhaiSubmitSellerReview, new SubmitSellerReviewRequest { OrderId = orderId ?? "", Rating = rating, Comment = comment ?? "" }, SubmitSellerReviewResponse.Parser, true);
         public void GetMarketReferencePrice(uint itemConfigId, uint currencyType) => Send(MessageIds.JubaozhaiGetMarketReferencePrice, new GetMarketReferencePriceRequest { ItemConfigId = itemConfigId, CurrencyType = currencyType }, GetMarketReferencePriceResponse.Parser, false);
         public void GetPlayerTradeQuota(uint currencyType = 0) => Send(MessageIds.JubaozhaiGetPlayerTradeQuota, new GetPlayerTradeQuotaRequest { CurrencyType = currencyType }, GetPlayerTradeQuotaResponse.Parser, false);
+        public void ListRmbConsignments(string cursor = "") => Send(ClientPlayerJubaozhaiRpc.ListRmbConsignmentsMessageId, new ListRmbConsignmentsRequest { Cursor = cursor ?? "", Limit = 8 }, ListRmbConsignmentsResponse.Parser, false);
+        public void CreateRmbConsignment(TradeAssetSelection assets, string title, ulong priceFen, ulong designatedBuyerPlayerId = 0, ulong characterPlayerId = 0) => Send(ClientPlayerJubaozhaiRpc.CreateRmbConsignmentMessageId, new CreateRmbConsignmentRequest { ClientRequestId = RequestId(), Assets = assets?.Clone(), CharacterPlayerId = characterPlayerId, PriceFen = priceFen, Title = title ?? "", DesignatedBuyerPlayerId = designatedBuyerPlayerId }, RmbConsignmentResponse.Parser, true);
+        public void BuyRmbConsignment(ulong listingId) => Send(ClientPlayerJubaozhaiRpc.BuyRmbConsignmentMessageId, new BuyRmbConsignmentRequest { ListingId = listingId, ClientRequestId = RequestId() }, CommerceOrderResponse.Parser, true);
+        public void CancelRmbConsignment(ulong listingId) => Send(ClientPlayerJubaozhaiRpc.CancelRmbConsignmentMessageId, new CancelRmbConsignmentRequest { ListingId = listingId }, RmbConsignmentResponse.Parser, true);
+        public void ListSellerIncomes(string cursor = "") => Send(ClientPlayerJubaozhaiRpc.ListSellerIncomesMessageId, new ListSellerIncomesRequest { Cursor = cursor ?? "", Limit = 8 }, ListSellerIncomesResponse.Parser, false);
+        public void CreateWithdrawal(ulong amountFen) => Send(ClientPlayerJubaozhaiRpc.CreateWithdrawalMessageId, new CreateWithdrawalRequest { ClientRequestId = RequestId(), AmountFen = amountFen }, WithdrawalResponse.Parser, true);
         public void Dispose() { if (_disposed) return; _disposed = true; ++_generation; _net.Disconnected -= Disconnected; }
     }
 }

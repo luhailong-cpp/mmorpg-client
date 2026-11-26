@@ -344,6 +344,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 case 105: return 11; // 灵障护卫 → 汐螺
                 case 106: return 14; // 玄毒首领 → 赤砂魁
                 case 107: return 16; // 缚灵护卫 → 月弦师
+                // 109(策应卫·破军)、110(策应卫·鼓噪)已接入专属 Battle/Monsters/{109,110} 帧条与头像，不再借用宝宝视觉
                 default: return 0;
             }
         }
@@ -360,6 +361,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 case 105: return "灵障护卫";
                 case 106: return "玄毒首领";
                 case 107: return "缚灵护卫";
+                case 109: return "破军卫";
+                case 110: return "鼓噪卫";
                 default: return null;
             }
         }

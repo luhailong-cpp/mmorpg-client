@@ -1,0 +1,30 @@
+{
+  "recordSchema": 1,
+  "recordType": "byte-identical-unity-import-copy",
+  "copiedAtUtc": "2026-11-25T15:07:52.696666+00:00",
+  "sourceGeneratedAtUtc": null,
+  "file": "integration/Assets/Resources/UI/Ugui/BattleArenaV2V3/controls/surrender-button-base.png",
+  "sha256": "a5f8ff105cefbc33b7db37f8dbeedbef9873d84606985d0c0c2c5761535532c6",
+  "width": 250,
+  "height": 62,
+  "route": "local-byte-copy",
+  "newAiCalls": 0,
+  "submittedParameters": {
+    "model": null,
+    "quality": null
+  },
+  "actualModel": null,
+  "actualQuality": null,
+  "configuredTargetNotUsed": {
+    "model": "gpt-image-2.6-sunburst",
+    "quality": "max",
+    "source": "config/image-generation.json"
+  },
+  "note": "Byte-identical import copy; no new image request. Original model, quality and generation evidence remain in the linked source record.",
+  "source": {
+    "file": "controls/surrender-button-base.png",
+    "sha256": "a5f8ff105cefbc33b7db37f8dbeedbef9873d84606985d0c0c2c5761535532c6",
+    "generationRecord": "controls/surrender-button-base.png.generation.json",
+    "generationRecordSha256": "00b48fbbbaef45837e549fd4178614e1d272b8b79578415cda2fc2a7b12c8f56"
+  }
+}

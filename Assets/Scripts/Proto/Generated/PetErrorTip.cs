@@ -23,7 +23,7 @@ public static partial class PetErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "CixnZW5lcmF0ZWQvY29kZS9wcm90by90aXAvcGV0X2Vycm9yX3RpcC5wcm90",
-          "byqEBAoJcGV0X2Vycm9yEhAKDGtQZXRfZXJyb3JPSxAAEhIKDGtQZXROb3RG",
+          "byqSBQoJcGV0X2Vycm9yEhAKDGtQZXRfZXJyb3JPSxAAEhIKDGtQZXROb3RG",
           "b3VuZBCQywESGQoTa1BldFRhYmxlUm93TWlzc2luZxCRywESEgoMa1BldFNs",
           "b3RGdWxsEJLLARIdChdrUGV0T3duZXJMZXZlbE5vdEVub3VnaBCTywESFwoR",
           "a1BldEFscmVhZHlBY3RpdmUQlMsBEhMKDWtQZXROb3RBY3RpdmUQlcsBEhgK",
@@ -34,8 +34,11 @@ public static partial class PetErrorTipReflection {
           "bmQQnMsBEhcKEWtQZXRHb2xkTm90RW5vdWdoEJ3LARIUCg5rUGV0Tm9BdXRv",
           "UGxhbhCeywESGQoTa1BldE5vdGhpbmdUb0NoYW5nZRCfywESGgoUa1BldElk",
           "R2VuZXJhdGVGYWlsZWQQoMsBEhcKEWtQZXROYW1lU2Vuc2l0aXZlEKHLARIZ",
-          "ChNrUGV0Tm90VHJhbnNmZXJhYmxlEKLLAUIkCg5jb20uZ2FtZS50YWJsZVoS",
-          "Z2VuZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
+          "ChNrUGV0Tm90VHJhbnNmZXJhYmxlEKLLARIYChJrUGV0VGllck1heFJlYWNo",
+          "ZWQQo8sBEhUKD2tQZXRUaWVyQ2hhbmdlZBCkywESHAoWa1BldFRpZXJMZXZl",
+          "bE5vdEVub3VnaBClywESHwoZa1BldFRpZXJNYXRlcmlhbE5vdEVub3VnaBCm",
+          "ywESHAoWa1BldEVudHJ5UHJlc2V0SW52YWxpZBCnywFCJAoOY29tLmdhbWUu",
+          "dGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::pet_error), }, null, null));
@@ -65,6 +68,11 @@ public enum pet_error {
   [pbr::OriginalName("kPetIdGenerateFailed")] KPetIdGenerateFailed = 26016,
   [pbr::OriginalName("kPetNameSensitive")] KPetNameSensitive = 26017,
   [pbr::OriginalName("kPetNotTransferable")] KPetNotTransferable = 26018,
+  [pbr::OriginalName("kPetTierMaxReached")] KPetTierMaxReached = 26019,
+  [pbr::OriginalName("kPetTierChanged")] KPetTierChanged = 26020,
+  [pbr::OriginalName("kPetTierLevelNotEnough")] KPetTierLevelNotEnough = 26021,
+  [pbr::OriginalName("kPetTierMaterialNotEnough")] KPetTierMaterialNotEnough = 26022,
+  [pbr::OriginalName("kPetEntryPresetInvalid")] KPetEntryPresetInvalid = 26023,
 }
 
 #endregion

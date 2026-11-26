@@ -231,7 +231,8 @@ namespace MmorpgClient.Game.PetFlip
                 step.CoveredFirstSlotIndex,
                 step.CoveredSecondSlotIndex,
                 step.FlippedPattern,
-                step.MatchedPattern);
+                step.MatchedPattern,
+                _board.CurrentStreak);
         }
 
         /// <summary>仅在当前局已完成（配齐 6 对）且无中断时生成新盘；盘中禁止洗牌重开。</summary>
@@ -601,7 +602,8 @@ namespace MmorpgClient.Game.PetFlip
                 previousBest,
                 _bestFlipCount.Value,
                 comparison,
-                _recordPersistenceStatus);
+                _recordPersistenceStatus,
+                _board.MaxStreak);
         }
 
         private void PersistNewBest(int newBestFlips)
@@ -677,7 +679,10 @@ namespace MmorpgClient.Game.PetFlip
                 _board.SecondSelectedSlotIndex,
                 _board.BuildCardSnapshots(boardInteractive),
                 localRecord,
-                _completionResult);
+                _completionResult,
+                _board.CurrentStreak,
+                _board.MaxStreak,
+                _board.LastMatchedPattern);
         }
 
         private PetFlipRoundPhase DerivePhase(PetFlipInterruptFlags activeInterrupts)

@@ -1,0 +1,30 @@
+{
+  "recordSchema": 1,
+  "recordType": "byte-identical-unity-import-copy",
+  "copiedAtUtc": "2026-11-25T15:07:52.696666+00:00",
+  "sourceGeneratedAtUtc": null,
+  "file": "integration/Assets/Resources/UI/Ugui/BattleArenaV2V3/controls/no-pet-modal-base.png",
+  "sha256": "96af6d823f99fd8f7020b3db9446508f7b85af1220f5bd23d51f4afafbfa7186",
+  "width": 840,
+  "height": 440,
+  "route": "local-byte-copy",
+  "newAiCalls": 0,
+  "submittedParameters": {
+    "model": null,
+    "quality": null
+  },
+  "actualModel": null,
+  "actualQuality": null,
+  "configuredTargetNotUsed": {
+    "model": "gpt-image-2.6-sunburst",
+    "quality": "max",
+    "source": "config/image-generation.json"
+  },
+  "note": "Byte-identical import copy; no new image request. Original model, quality and generation evidence remain in the linked source record.",
+  "source": {
+    "file": "controls/no-pet-modal-base.png",
+    "sha256": "96af6d823f99fd8f7020b3db9446508f7b85af1220f5bd23d51f4afafbfa7186",
+    "generationRecord": "controls/no-pet-modal-base.png.generation.json",
+    "generationRecordSha256": "7b4fed312a2c8ec1af7b381e31ecf6361850ec018cab1dce92671d732d99e658"
+  }
+}

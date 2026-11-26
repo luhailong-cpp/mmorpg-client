@@ -174,5 +174,27 @@ namespace MmorpgClient.Net.Generated
                 handler(message);
             });
         }
+
+        public const uint UpdateBattlePrepMessageId = 504;
+        /// <summary>
+        /// ---- 论剑 V3 战前 15 秒明牌变阵(docs/design/ranked-play-v3-tactical-prep.md):换赛季印/换首发宠与锁定 ----
+        /// </summary>
+        public static void UpdateBattlePrep(IRpcChannel channel, global::UpdateBattlePrepRequest request,
+            RpcDone<global::UpdateBattlePrepResponse> done)
+            => channel.CallMethod(UpdateBattlePrepMessageId, request, global::UpdateBattlePrepResponse.Parser, done);
+
+        public const uint NotifyBattlePrepUpdateMessageId = 505;
+        public static void OnNotifyBattlePrepUpdate(IRpcChannel channel, Action<global::BattlePrepUpdateS2C> handler,
+            Action<InvalidProtocolBufferException> onMalformed = null)
+        {
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
+            channel.RegisterNotify(NotifyBattlePrepUpdateMessageId, mc =>
+            {
+                global::BattlePrepUpdateS2C message;
+                try { message = global::BattlePrepUpdateS2C.Parser.ParseFrom(mc.SerializedMessage); }
+                catch (InvalidProtocolBufferException ex) { onMalformed?.Invoke(ex); return; }
+                handler(message);
+            });
+        }
     }
 }

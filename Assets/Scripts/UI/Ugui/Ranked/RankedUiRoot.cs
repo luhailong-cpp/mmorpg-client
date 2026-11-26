@@ -31,8 +31,10 @@ namespace MmorpgClient.UI.Ugui.Ranked
     {
         public static RankedUiRoot Instance { get; private set; }
         public const int CanvasSortingOrder = 188;
+        private const int DrawerOverlaySortingOrder = 195;
 
         public bool IsLobbyVisible => CoreGameplayUiRoot.Instance?.IsFormalPvpVisible ?? false;
+        public bool IsDrawerVisible => _drawer != null && _drawer.IsVisible;
         public bool IsSettlementVisible => _settlement != null && _settlement.IsVisible;
         public RankedClient Client => _ranked;
 
@@ -48,7 +50,10 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private Canvas _canvas;
         private RectTransform _hud;
         private RectTransform _window;
+        private RectTransform _windowSafeRoot;
         private RectTransform _fittedRoot;
+        private Rect _lastSafePixels;
+        private Rect _lastCanvasPixels;
         private Button _entry;
 
         private RankedLobbyPanel _lobby;
@@ -119,7 +124,8 @@ namespace MmorpgClient.UI.Ugui.Ranked
             dim.raycastTarget = true;
             _window.gameObject.AddComponent<GameplayInputBlocker>();
 
-            _fittedRoot = QdaoUguiFactory.CreateCenteredRect("RankedFittedRoot", _window,
+            _windowSafeRoot = QdaoUguiFactory.CreateStretch("RankedWindowSafeArea", _window, Vector4.zero);
+            _fittedRoot = QdaoUguiFactory.CreateCenteredRect("RankedFittedRoot", _windowSafeRoot,
                 RankedArtCatalog.DesignWidth, RankedArtCatalog.DesignHeight);
             var fit = _fittedRoot.gameObject.AddComponent<EquipmentUiFit>();
             fit.referenceSize = new Vector2(RankedArtCatalog.DesignWidth, RankedArtCatalog.DesignHeight);
@@ -129,6 +135,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _settlement = new RankedSettlementPanel(_fittedRoot);
 
             WirePanelEvents();
+            ApplySafeArea();
             _window.gameObject.SetActive(false);
         }
 
@@ -176,6 +183,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _lobby.PrimaryActionClicked += HandleLobbyPrimaryClick;
             _lobby.TimeoutCancelClicked += HandleLobbyCancelClick;
 
+            _drawer.Closed += HandleDrawerClosed;
             _drawer.LeaderboardModeRequested += around => RequestLeaderboard(around, 1u);
             _drawer.LeaderboardPageRequested += page => RequestLeaderboard(false, page);
             _drawer.LeaderboardRefreshRequested += () => RequestLeaderboard(false, 1u);
@@ -202,8 +210,37 @@ namespace MmorpgClient.UI.Ugui.Ranked
             };
         }
 
+        private void OnEnable() => ApplySafeArea();
+
+        private void ApplySafeArea()
+        {
+            if (_canvas == null || _windowSafeRoot == null) return;
+            var pixels = _canvas.pixelRect;
+            if (pixels.width <= 0f || pixels.height <= 0f) return;
+            var screenSafe = Screen.safeArea;
+            var safe = screenSafe.width > 0f && screenSafe.height > 0f
+                ? Rect.MinMaxRect(Mathf.Max(pixels.xMin, screenSafe.xMin), Mathf.Max(pixels.yMin, screenSafe.yMin),
+                    Mathf.Min(pixels.xMax, screenSafe.xMax), Mathf.Min(pixels.yMax, screenSafe.yMax))
+                : pixels;
+            if (safe.width <= 0f || safe.height <= 0f) safe = pixels;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            // 微信/抖音小游戏右上宿主胶囊保守避让（不依赖尚未装入客户端的宿主 JS 接口）
+            float capsuleTop = Mathf.Min(safe.height * 0.12f, 76f);
+            safe = Rect.MinMaxRect(safe.xMin, safe.yMin, safe.xMax, Mathf.Max(safe.yMin + 1f, safe.yMax - capsuleTop));
+#endif
+            if (pixels == _lastCanvasPixels && safe == _lastSafePixels) return;
+            _lastCanvasPixels = pixels;
+            _lastSafePixels = safe;
+            _windowSafeRoot.anchorMin = new Vector2((safe.xMin - pixels.xMin) / pixels.width,
+                (safe.yMin - pixels.yMin) / pixels.height);
+            _windowSafeRoot.anchorMax = new Vector2((safe.xMax - pixels.xMin) / pixels.width,
+                (safe.yMax - pixels.yMin) / pixels.height);
+            _windowSafeRoot.offsetMin = _windowSafeRoot.offsetMax = Vector2.zero;
+        }
+
         private void Update()
         {
+            ApplySafeArea();
             var game = AppBootstrap.Instance?.GameClient;
             if (!ReferenceEquals(_game, game))
             {
@@ -258,11 +295,39 @@ namespace MmorpgClient.UI.Ugui.Ranked
 
         public void OpenLobby(uint teamSize = 0)
         {
-            if (!_available || _ranked == null) return;
+            if (_ranked == null) return;
             if (teamSize >= 1 && teamSize <= 5)
                 _ranked.SelectedTeamSize = teamSize;
+            bool inGame = _game != null && _game.InGame && _game.IsGateReady;
+            bool battleVisible = BattleUiRoot.Instance?.IsBattleLayerVisible ?? false;
+            if (!inGame || battleVisible) return;
             CoreGameplayUiRoot.EnsureSpawned();
             CoreGameplayUiRoot.Instance?.OpenFormalPvp();
+        }
+
+        /// <summary>在正式会武大厅之上打开既有论剑档案抽屉（排行榜 / 赛季记录 / 已获外观）。</summary>
+        public void OpenDrawer(RankedDrawerTab tab = RankedDrawerTab.Leaderboard)
+        {
+            if (!_available || _ranked == null || _drawer == null) return;
+            if (_settlement != null && _settlement.IsVisible) return;
+            _lobby?.SetVisible(false);
+            if (_canvas != null) _canvas.sortingOrder = DrawerOverlaySortingOrder;
+            if (_window != null) _window.gameObject.SetActive(true);
+            _ranked.RequestProfile(includeHistory: true);
+            _drawer.Show(tab);
+            RefreshDrawer();
+        }
+
+        public void CloseDrawerIfOpen()
+        {
+            if (_drawer != null && _drawer.IsVisible) _drawer.Hide();
+        }
+
+        private void HandleDrawerClosed()
+        {
+            if (_canvas != null) _canvas.sortingOrder = CanvasSortingOrder;
+            if (_window != null && (_lobby == null || !_lobby.IsVisible) && (_settlement == null || !_settlement.IsVisible))
+                _window.gameObject.SetActive(false);
         }
 
         private void HideLobbyOnly()
@@ -272,6 +337,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             {
                 _drawer?.Hide();
                 _lobby?.SetVisible(false);
+                if (_canvas != null) _canvas.sortingOrder = CanvasSortingOrder;
                 if (_window != null) _window.gameObject.SetActive(false);
                 return;
             }
@@ -284,6 +350,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _drawer?.Hide();
             _settlement?.Hide();
             _lobby?.SetVisible(false);
+            if (_canvas != null) _canvas.sortingOrder = CanvasSortingOrder;
             if (_window != null) _window.gameObject.SetActive(false);
         }
 
@@ -313,7 +380,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _drawer?.Hide();
             _lobby?.SetVisible(false);
             _window.gameObject.SetActive(true);
-            _settlement.Show(state);
+            _settlement.Show(state, _ranked?.Profile);
             if (_settlementFromRecovery)
             {
                 CoreGameplayUiRoot.Instance?.HideRankedSettlement();
@@ -350,9 +417,16 @@ namespace MmorpgClient.UI.Ugui.Ranked
             var entry = TeamUiRoot.Instance?.MatchEntry;
             var battle = _game?.Battle;
             if (entry == null || battle == null || battle.Phase != BattlePhase.None) return;
-            uint size = _pendingRequeueSize >= 1 && _pendingRequeueSize <= 5 ? _pendingRequeueSize : _lobby.SelectedTeamSize;
+            uint size = _pendingRequeueSize >= 1 && _pendingRequeueSize <= 5
+                ? _pendingRequeueSize
+                : (_ranked?.SelectedTeamSize ?? _lobby.SelectedTeamSize);
+            if (_ranked != null && size >= 1 && size <= 5) _ranked.SelectedTeamSize = size;
+            if (CoreGameplayUiRoot.Instance?.IsFormalPvpVisible != true)
+                CoreGameplayUiRoot.Instance?.OpenFormalPvp();
             if (CoreGameplayUiRoot.Instance?.EnterFormalPvp(size) != true) return;
             _waitingForSettlementRequeue = false;
+            if (_window != null && (_drawer == null || !_drawer.IsVisible) && (_settlement == null || !_settlement.IsVisible))
+                _window.gameObject.SetActive(false);
             RenderAll();
         }
 
@@ -434,12 +508,13 @@ namespace MmorpgClient.UI.Ugui.Ranked
 
             if (_settlement != null && _settlement.IsVisible)
             {
-                _settlement.Render(_ranked?.ActiveSettlement);
+                _settlement.Render(_ranked?.ActiveSettlement, _ranked?.Profile);
                 return;
             }
 
-            _lobby?.Render(_ranked, TeamUiRoot.Instance?.Client, _game?.Battle,
-                TeamUiRoot.Instance?.MatchEntry, _game?.Pets, playerName, gateReady);
+            if (_lobby != null && _lobby.IsVisible)
+                _lobby.Render(_ranked, TeamUiRoot.Instance?.Client, _game?.Battle,
+                    TeamUiRoot.Instance?.MatchEntry, _game?.Pets, playerName, gateReady);
             if (_drawer != null && _drawer.IsVisible) RefreshDrawer();
         }
 
@@ -447,7 +522,9 @@ namespace MmorpgClient.UI.Ugui.Ranked
         {
             if (_drawer == null || !_drawer.IsVisible) return;
             string playerName = _game != null ? _game.ResolveRoleName(_game.PlayerId) : string.Empty;
-            _drawer.RenderProfile(_ranked?.Profile, playerName, _ranked?.CosmeticSaving == true, _ranked?.Status);
+            string charId = _game != null ? _game.ResolveCharacterId(_game.PlayerId) : null;
+            Sprite portrait = string.IsNullOrEmpty(charId) ? null : MmorpgClient.World.QdaoCharacterCatalog.LoadPortrait(charId);
+            _drawer.RenderProfile(_ranked?.Profile, playerName, _ranked?.CosmeticSaving == true, _ranked?.Status, portrait);
             _drawer.RenderLeaderboard(_rankClient, _ranked?.Profile);
         }
 

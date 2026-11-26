@@ -228,6 +228,47 @@ namespace MmorpgClient.Tests.EditMode.Jubaozhai
         }
 
         [Test]
+        public void CommerceClientRmbConsignmentAndWithdrawalFollowDurableRecoveryContract()
+        {
+            var net = new JubaozhaiFakeTransport();
+            var store = new MemoryRecovery();
+            object connection = new();
+            using var client = new CommerceClient(net, store, () => connection);
+
+            // 1) CreateRmbConsignment forwards designated buyer and clears recovery on RmbConsignmentResponse
+            var assets = new TradeAssetSelection();
+            assets.ItemUuids.Add(99001);
+            client.CreateRmbConsignment(assets, "青云灵剑 +10", 12800, designatedBuyerPlayerId: 8888);
+            Assert.That(client.HasPendingWrite, Is.True);
+            var createReq = (CreateRmbConsignmentRequest)net.LastRequest;
+            Assert.That(createReq.PriceFen, Is.EqualTo(12800UL));
+            Assert.That(createReq.DesignatedBuyerPlayerId, Is.EqualTo(8888UL));
+            net.Reply(new RmbConsignmentResponse { Listing = new RmbConsignmentView { ListingId = 701, Title = "青云灵剑 +10", PriceFen = 12800, DesignatedOnly = true } });
+            Assert.That(client.HasPendingWrite, Is.False);
+
+            // 2) ListRmbConsignments + BuyRmbConsignment + ListSellerIncomes + CreateWithdrawal
+            client.ListRmbConsignments();
+            net.Reply(new ListRmbConsignmentsResponse { Listings = { new RmbConsignmentView { ListingId = 701, PriceFen = 12800 } } });
+            Assert.That(client.Busy, Is.False);
+
+            client.BuyRmbConsignment(701);
+            Assert.That(client.HasPendingWrite, Is.True);
+            net.Reply(new CommerceOrderResponse { Order = new CommerceOrderView { OrderId = "rmb:701", State = CommerceOrderState.AwaitingPayment } });
+            Assert.That(client.HasPendingWrite, Is.False);
+
+            client.ListSellerIncomes();
+            net.Reply(new ListSellerIncomesResponse { Incomes = { new RmbSellerIncome { OrderId = "rmb:701", NetFen = 12000, DisputeFrozenFen = 3000, DisputeCaseId = "DISP-1" } } });
+            Assert.That(client.Busy, Is.False);
+
+            client.CreateWithdrawal(5000);
+            Assert.That(client.HasPendingWrite, Is.True);
+            var wdReq = (CreateWithdrawalRequest)net.LastRequest;
+            Assert.That(wdReq.AmountFen, Is.EqualTo(5000UL));
+            net.Reply(new WithdrawalResponse { Withdrawal = new RmbWithdrawalView { WithdrawalId = "wd:1", AmountFen = 5000, State = "PENDING" } });
+            Assert.That(client.HasPendingWrite, Is.False);
+        }
+
+        [Test]
         public void AllNineteenEconomyTradeV1SlicesAndMetasExistInResources()
         {
             string assetsDir = ResolveAssetsDirectory();

@@ -72,11 +72,14 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private TMP_Text _rewardSummaryText;
         private TMP_Text _pastSeasonsText;
 
-        // Tab 2: 已获外观
+        // Tab 2: 玉符与称号
         private Image _previewCardBg, _previewAvatar, _previewFrame, _previewTalisman;
+        private TMP_Text _previewAvatarGlyph;
         private TMP_Text _previewNameText, _previewSubtitleText;
-        private readonly CosmeticRowView[] _cosmeticRows = new CosmeticRowView[3];
+        private readonly CosmeticRowView[] _cosmeticRows = new CosmeticRowView[4];
+        private readonly TMP_Text[] _seasonHonorStatus = new TMP_Text[3];
         private TMP_Text _cosmeticStatusText;
+        private Sprite _portraitOverride;
 
         private RankedProfileSnapshot _profile;
         private string _playerName = "道友";
@@ -91,25 +94,29 @@ namespace MmorpgClient.UI.Ugui.Ranked
             var backdrop = QdaoUguiFactory.CreateHitButton("DrawerBackdrop", _root, 0f, 0f, DesignWidth, DesignHeight);
             backdrop.onClick.AddListener(Hide);
 
-            // 抽屉底板：严格使用 pngDisplayRect [918, 268, 854, 708]
-            var panel = CreateArt("DrawerPanel", _root, 918f, 268f, 854f, 708f, "drawer-panel", preserveAspect: false, raycastTarget: true);
+            // 抽屉底板：采用已验收帮会同源宣纸底 + 细腻金边，避免旧论剑高光杂框（[918, 268, 854, 708]）
+            var outerBorder = QdaoUguiFactory.CreateImage("DrawerBorder", _root, 915f, 265f, 860f, 714f, null, true);
+            outerBorder.color = SeasonEconomyUiArt.BattleArenaWarmGold;
+            var panel = QdaoUguiFactory.CreateImage("DrawerPanel", _root, 918f, 268f, 854f, 708f, null, true);
+            panel.color = SeasonEconomyUiArt.BattleArenaPaper;
             panel.gameObject.AddComponent<Button>().transition = Selectable.Transition.None;
 
+            CreateGuildArt("DrawerHeaderBar", _root, 938f, 282f, 814f, 56f, "guild_table_header");
             CreateLabel("DrawerTitle", _root, 956f, 286f, 420f, 48f, "论剑档案", 30f, JadeHeading, bold: true);
 
-            // 收起按钮：pngDisplayRect [1618, 285, 122, 52]
-            var collapse = CreateArtButton("DrawerCollapse", _root, 1618f, 285f, 122f, 52f,
-                "drawer-collapse", "收起", 22f, JadeDark, out _, out _);
+            // 收起按钮：统一使用已验收帮会次按钮
+            var collapse = CreateGuildButton("DrawerCollapse", _root, 1618f, 285f, 122f, 50f,
+                "guild_button_secondary", "收起", 21f, JadeDark, out _, out _);
             collapse.onClick.AddListener(Hide);
 
-            // 3 个顶栏页签：pngDisplayRect y=348, w=248, h=59, x=950 / 1211 / 1472
-            string[] tabTitles = { "排行榜", "赛季记录", "已获外观" };
+            // 3 个顶栏页签：统一使用已验收帮会页签切片（guild_tab_selected / guild_tab_normal）
+            string[] tabTitles = { "排行榜", "赛季记录", "玉符与称号" };
             float[] tabXs = { 950f, 1211f, 1472f };
             for (int i = 0; i < 3; i++)
             {
                 int idx = i;
-                var tabBtn = CreateArtButton("DrawerTab_" + i, _root, tabXs[i], 348f, 248f, 59f,
-                    i == 0 ? "drawer-tab-selected" : "drawer-tab-idle",
+                var tabBtn = CreateGuildButton("DrawerTab_" + i, _root, tabXs[i], 348f, 248f, 59f,
+                    i == 0 ? "guild_tab_selected" : "guild_tab_normal",
                     tabTitles[i], 23f, i == 0 ? ButtonGoldText : InkSecondary,
                     out _tabImages[i], out _tabLabels[i]);
                 tabBtn.onClick.AddListener(() => SelectTab((RankedDrawerTab)idx));
@@ -142,7 +149,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             for (int i = 0; i < 3; i++)
             {
                 bool active = (int)tab == i;
-                _tabImages[i].sprite = Load(active ? "drawer-tab-selected" : "drawer-tab-idle");
+                _tabImages[i].sprite = LoadGuildApproved(active ? "guild_tab_selected" : "guild_tab_normal");
                 _tabLabels[i].color = active ? ButtonGoldText : InkSecondary;
                 _tabBodies[i].SetActive(active);
             }
@@ -150,10 +157,12 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 LeaderboardModeRequested?.Invoke(_aroundMode);
         }
 
-        public void RenderProfile(RankedProfileSnapshot profile, string playerName, bool cosmeticSaving, string statusText)
+        public void RenderProfile(RankedProfileSnapshot profile, string playerName, bool cosmeticSaving, string statusText,
+            Sprite portraitOverride = null)
         {
             _profile = profile;
             _playerName = string.IsNullOrEmpty(playerName) ? "道友" : playerName;
+            _portraitOverride = portraitOverride;
             RenderSeasonRecord();
             RenderCosmetics(cosmeticSaving, statusText);
         }
@@ -181,7 +190,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             else if (settling)
                 _rankStatusText.text = "上季结算中，当前展示既有快照，封榜后切换新季榜。";
             else if (!qualified)
-                _rankStatusText.text = "完成 1 场有效论剑即可亮段上榜（五档人数共用一榜）。";
+                _rankStatusText.text = $"完成 1 场有效论剑即可亮段上榜（{RankedFormatting.FormatAllowedSizesLabel(profile?.AllowedTeamSizes)}）。";
             else
                 _rankStatusText.text = _aroundMode ? "当前展示：我的附近名次" : "当前展示：本季前 100 名（精确排名）";
 
@@ -238,16 +247,16 @@ namespace MmorpgClient.UI.Ugui.Ranked
             var body = QdaoUguiFactory.CreateRect("TabLeaderboard", _root, 0f, 0f, DesignWidth, DesignHeight);
             _tabBodies[0] = body.gameObject;
 
-            var topBtn = CreateArtButton("RankFilterTop100", body, 950f, 418f, 132f, 48f,
-                "rank-filter-top100", "前 100", 20f, ButtonGoldText, out _filterTopImg, out _filterTopLabel);
+            var topBtn = CreateGuildButton("RankFilterTop100", body, 950f, 418f, 132f, 48f,
+                "guild_tab_selected", "前 100", 20f, ButtonGoldText, out _filterTopImg, out _filterTopLabel);
             topBtn.onClick.AddListener(() => SetLeaderboardMode(false));
 
-            var selfBtn = CreateArtButton("RankFilterSelf", body, 1090f, 418f, 116f, 48f,
-                "rank-filter-self", "我的附近", 20f, JadeDark, out _filterSelfImg, out _filterSelfLabel);
+            var selfBtn = CreateGuildButton("RankFilterSelf", body, 1090f, 418f, 132f, 48f,
+                "guild_tab_normal", "我的附近", 20f, JadeDark, out _filterSelfImg, out _filterSelfLabel);
             selfBtn.onClick.AddListener(() => SetLeaderboardMode(true));
 
-            _rankRefreshBtn = CreateArtButton("RankRefresh", body, 1618f, 418f, 118f, 48f,
-                "drawer-collapse", "刷新", 20f, JadeDark, out _, out _);
+            _rankRefreshBtn = CreateGuildButton("RankRefresh", body, 1618f, 418f, 118f, 48f,
+                "guild_button_secondary", "刷新", 20f, JadeDark, out _, out _);
             _rankRefreshBtn.onClick.AddListener(() => LeaderboardRefreshRequested?.Invoke());
 
             _rankStatusText = CreateLabel("RankStatus", body, 954f, 472f, 780f, 32f,
@@ -256,8 +265,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             for (int i = 0; i < 5; i++)
             {
                 float y = 508f + i * 54f;
-                string key = (i % 2 == 0) ? "rank-row-light" : "rank-row-alternate";
-                var bg = CreateArt("RankRow_" + i, body, 950f, y, 786f, 52f, key);
+                var bg = CreateGuildArt("RankRow_" + i, body, 950f, y, 786f, 52f, "guild_row_normal");
                 var rankTxt = CreateLabel("RankNo", bg.transform, 20f, 0f, 130f, 52f, "", 22f, JadeDark, bold: true);
                 var nameTxt = CreateLabel("RankName", bg.transform, 160f, 0f, 410f, 52f, "", 22f, InkSecondary);
                 var scoreTxt = CreateLabel("RankScore", bg.transform, 580f, 0f, 184f, 52f, "", 22f, JadeAccent,
@@ -266,29 +274,31 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 bg.gameObject.SetActive(false);
             }
 
-            // 固定本人行：pngDisplayRect [950, 799, 786, 72]
-            var selfBg = CreateArt("RankSelfRow", body, 950f, 799f, 786f, 72f, "rank-self-row");
+            // 固定本人行：采用已验收帮会高亮行（guild_row_self）
+            var selfBg = CreateGuildArt("RankSelfRow", body, 950f, 799f, 786f, 72f, "guild_row_self");
             _selfRankText = CreateLabel("SelfRank", selfBg.transform, 22f, 0f, 170f, 72f, "未亮段", 22f, JadeSelected, bold: true);
             _selfNameText = CreateLabel("SelfName", selfBg.transform, 200f, 0f, 320f, 72f, "道友", 22f, JadeDark, bold: true);
             _selfScoreText = CreateLabel("SelfScore", selfBg.transform, 530f, 0f, 234f, 72f, "1500 分", 22f, BronzeHint,
                 TextAlignmentOptions.MidlineRight, bold: true);
 
             // 翻页栏
-            _rankPrevBtn = CreateArtButton("RankPrevPage", body, 950f, 888f, 128f, 48f,
-                "drawer-collapse", "上一页", 19f, JadeDark, out _, out _);
+            _rankPrevBtn = CreateGuildButton("RankPrevPage", body, 950f, 888f, 128f, 48f,
+                "guild_button_secondary", "上一页", 19f, JadeDark, out _, out _);
             _rankPrevBtn.onClick.AddListener(() => { if (_currentPage > 1) LeaderboardPageRequested?.Invoke(_currentPage - 1); });
 
             _rankPageText = CreateLabel("RankPageNo", body, 1100f, 888f, 490f, 48f,
                 "第 1 / 1 页", 20f, InkMuted, TextAlignmentOptions.Center);
 
-            _rankNextBtn = CreateArtButton("RankNextPage", body, 1608f, 888f, 128f, 48f,
-                "drawer-collapse", "下一页", 19f, JadeDark, out _, out _);
+            _rankNextBtn = CreateGuildButton("RankNextPage", body, 1608f, 888f, 128f, 48f,
+                "guild_button_secondary", "下一页", 19f, JadeDark, out _, out _);
             _rankNextBtn.onClick.AddListener(() => { if (_currentPage < _pageCount) LeaderboardPageRequested?.Invoke(_currentPage + 1); });
         }
 
         private void SetLeaderboardMode(bool around)
         {
             _aroundMode = around;
+            if (_filterTopImg != null) _filterTopImg.sprite = LoadGuildApproved(around ? "guild_tab_normal" : "guild_tab_selected");
+            if (_filterSelfImg != null) _filterSelfImg.sprite = LoadGuildApproved(around ? "guild_tab_selected" : "guild_tab_normal");
             _filterTopLabel.color = around ? JadeDark : ButtonGoldText;
             _filterSelfLabel.color = around ? ButtonGoldText : JadeDark;
             LeaderboardModeRequested?.Invoke(_aroundMode);
@@ -304,26 +314,29 @@ namespace MmorpgClient.UI.Ugui.Ranked
             var body = QdaoUguiFactory.CreateRect("TabSeasonRecord", _root, 0f, 0f, DesignWidth, DesignHeight);
             _tabBodies[1] = body.gameObject;
 
-            // 本季摘要卡：pngDisplayRect [950, 428, 786, 136]
-            var curCard = CreateArt("SeasonCurrentCard", body, 950f, 428f, 786f, 136f, "season-current-card");
-            _seasonTitleText = CreateLabel("SeasonCurTitle", curCard.transform, 28f, 16f, 730f, 38f,
-                "当前赛季加载中…", 24f, JadeHeading, bold: true);
-            _seasonStatsText = CreateLabel("SeasonCurStats", curCard.transform, 28f, 60f, 730f, 64f,
+            // 本季摘要卡：采用帮会宣纸卡 + 表头栏
+            var curCard = CreateGuildArt("SeasonCurrentCard", body, 950f, 428f, 786f, 136f, "guild_row_normal");
+            CreateGuildArt("SeasonCurrentHeader", curCard.transform, 0f, 0f, 786f, 46f, "guild_table_header");
+            _seasonTitleText = CreateLabel("SeasonCurTitle", curCard.transform, 28f, 6f, 730f, 36f,
+                "当前赛季加载中…", 22f, JadeHeading, bold: true);
+            _seasonStatsText = CreateLabel("SeasonCurStats", curCard.transform, 28f, 54f, 730f, 72f,
                 "", 20f, InkSecondary, wrap: true);
 
-            // 里程碑展示权益卡：pngDisplayRect [950, 580, 786, 176]
-            var rewardCard = CreateArt("SeasonRewardCard", body, 950f, 580f, 786f, 176f, "season-reward-card");
-            CreateLabel("SeasonRewardTitle", rewardCard.transform, 28f, 14f, 730f, 36f,
-                "赛季累计有效场次奖励（永久展示外观，不加任何数值）", 21f, JadeHeading, bold: true);
-            _rewardSummaryText = CreateLabel("SeasonRewardBody", rewardCard.transform, 28f, 54f, 730f, 110f,
-                "", 19f, InkSecondary, wrap: true);
+            // 里程碑展示权益卡
+            var rewardCard = CreateGuildArt("SeasonRewardCard", body, 950f, 580f, 786f, 176f, "guild_row_normal");
+            CreateGuildArt("SeasonRewardHeader", rewardCard.transform, 0f, 0f, 786f, 44f, "guild_table_header");
+            CreateLabel("SeasonRewardTitle", rewardCard.transform, 28f, 6f, 730f, 34f,
+                "赛季荣誉与展示奖励（永久展示外观，不加任何数值）", 20f, JadeHeading, bold: true);
+            _rewardSummaryText = CreateLabel("SeasonRewardBody", rewardCard.transform, 28f, 50f, 730f, 118f,
+                "", 18f, InkSecondary, wrap: true);
 
-            // 历届赛季与榜首卡：pngDisplayRect [950, 772, 786, 135]
-            var pastCard = CreateArt("PreviousSeasonsCard", body, 950f, 772f, 786f, 135f, "previous-seasons-card");
-            CreateLabel("PastSeasonsTitle", pastCard.transform, 28f, 12f, 730f, 34f,
-                "历届赛季与榜首记录", 21f, JadeHeading, bold: true);
-            _pastSeasonsText = CreateLabel("PastSeasonsBody", pastCard.transform, 28f, 48f, 730f, 78f,
-                "暂无已封榜的历届赛季记录。", 19f, InkMuted, wrap: true);
+            // 历届赛季与榜首卡
+            var pastCard = CreateGuildArt("PreviousSeasonsCard", body, 950f, 772f, 786f, 148f, "guild_row_normal");
+            CreateGuildArt("PastSeasonsHeader", pastCard.transform, 0f, 0f, 786f, 42f, "guild_table_header");
+            CreateLabel("PastSeasonsTitle", pastCard.transform, 28f, 6f, 730f, 32f,
+                "历届赛季与榜首记录", 20f, JadeHeading, bold: true);
+            _pastSeasonsText = CreateLabel("PastSeasonsBody", pastCard.transform, 28f, 48f, 730f, 92f,
+                "暂无已封榜的历届赛季记录。", 18f, InkMuted, wrap: true);
 
             body.gameObject.SetActive(false);
         }
@@ -343,24 +356,35 @@ namespace MmorpgClient.UI.Ugui.Ranked
             var p = _profile.CurrentProgress;
             string stateTag = s.State == RankedSeasonState.Settling ? "上季结算中"
                 : s.State == RankedSeasonState.Closed ? "已封榜" : "进行中";
-            _seasonTitleText.text = $"{s.SeasonName}（{s.SeasonKey}） · {stateTag}";
+            string periodTag = FormatSeasonWindow(s.StartMs, s.EndMs);
+            _seasonTitleText.text = string.IsNullOrEmpty(periodTag)
+                ? $"{s.SeasonName}（{s.SeasonKey}） · {stateTag}"
+                : $"{s.SeasonName}（{periodTag}） · {stateTag}";
             if (p != null)
             {
                 string tier = RankedFormatting.TierDisplayName(p.CurrentTier, p.Qualified);
                 string peakTier = RankedFormatting.TierDisplayName(p.PeakTier, p.Qualified);
+                string openSizes = FormatOpenTeamSizes(_profile.AllowedTeamSizes);
                 _seasonStatsText.text =
                     $"当前：{tier} {RankedFormatting.FormatRating(p.RatingCenti)} 分 · 最高：{peakTier} {RankedFormatting.FormatRating(p.PeakRatingCenti)} 分\n" +
-                    $"有效场次：{p.ValidMatches} 场（{p.Wins} 胜 / {p.Losses} 负 / {p.Draws} 平）· 五档人数共用积分与场次";
+                    $"有效场次：{p.ValidMatches} 场（{p.Wins} 胜 / {p.Losses} 负 / {p.Draws} 平）· 当前开放 {openSizes} 共用积分";
             }
 
             bool hasAvatar = _profile.HasEntitlement(RankedRewardKind.RankedRewardAvatarPattern);
             bool hasCard = _profile.HasEntitlement(RankedRewardKind.RankedRewardCardBackground);
             bool hasTalisman = _profile.HasEntitlement(RankedRewardKind.RankedRewardTalisman);
+            bool hasWinTitle = _profile.HasEntitlement(RankedRewardKind.RankedRewardWinMilestone);
+            bool hasRankHonor = _profile.HasEntitlement(RankedRewardKind.RankedRewardTierBadge)
+                || _profile.HasEntitlement(RankedRewardKind.RankedRewardTierTitle);
             uint valid = p?.ValidMatches ?? 0u;
+            uint winTarget = _profile.MilestoneWinMatches;
+            uint wins = p?.Wins ?? 0u;
             _rewardSummaryText.text =
-                $"• 4 场 · 主题头像纹样：{(hasAvatar ? "已取得（永久）" : $"{Math.Min(valid, 4u)}/4")}\n" +
-                $"• 8 场 · 主题名片底纹：{(hasCard ? "已取得（永久）" : $"{Math.Min(valid, 8u)}/8")}\n" +
-                $"• 12 场 · 永久青云玉符：{(hasTalisman ? "已取得（永久）" : $"{Math.Min(valid, 12u)}/12")}";
+                $"• 4/8/12 场永久外观：头像纹样({(hasAvatar ? "已获" : $"{Math.Min(valid, 4u)}/4")}) · " +
+                $"名片底纹({(hasCard ? "已获" : $"{Math.Min(valid, 8u)}/8")}) · " +
+                $"青云玉符({(hasTalisman ? "已获" : $"{Math.Min(valid, 12u)}/12")})\n" +
+                $"• {winTarget} 胜永久「锋芒」称号：{(hasWinTitle ? "已取得（可于已获外观佩戴）" : $"{Math.Min(wins, winTarget)}/{winTarget}")}\n" +
+                $"• 封榜荣誉（云章 / 天枢 / 无双）：{(hasRankHonor ? "已取得永久段位徽章与称号" : "赛季封榜达云章及以上永久解锁")}";
 
             if (_profile.PastSeasons.Count == 0)
             {
@@ -403,11 +427,15 @@ namespace MmorpgClient.UI.Ugui.Ranked
             var body = QdaoUguiFactory.CreateRect("TabCosmetics", _root, 0f, 0f, DesignWidth, DesignHeight);
             _tabBodies[2] = body.gameObject;
 
-            // 顶部实景预览卡：pngDisplayRect [950, 428, 786, 123]
-            var previewCard = CreateArt("NamePreviewCard", body, 950f, 428f, 786f, 123f, "name-preview-card");
+            // 顶部实景预览卡（真实玩家头像由 QdaoCharacterCatalog.LoadPortrait 绑定，严禁回退旧论剑错误人物素材）
+            var previewCard = CreateGuildArt("NamePreviewCard", body, 950f, 428f, 786f, 123f, "guild_row_normal");
             _previewCardBg = CreateArt("PreviewCardPattern", previewCard.transform, 16f, 12f, 754f, 99f, "namecard-pattern");
             _previewCardBg.color = new Color(1f, 1f, 1f, 0.35f);
-            _previewAvatar = CreateArt("PreviewAvatar", previewCard.transform, 32f, 22f, 78f, 78f, "avatar-pozheng", preserveAspect: true);
+            _previewAvatar = QdaoUguiFactory.CreateImage("PreviewAvatar", previewCard.transform, 32f, 22f, 78f, 78f, null, false);
+            _previewAvatar.preserveAspect = true;
+            _previewAvatar.color = SeasonEconomyUiArt.BattleArenaJade;
+            _previewAvatarGlyph = CreateLabel("PreviewAvatarGlyph", _previewAvatar.transform, 0f, 0f, 78f, 78f,
+                "道", 32f, GoldCream, TextAlignmentOptions.Center, bold: true);
             _previewFrame = CreateArt("PreviewFrame", previewCard.transform, 24f, 14f, 94f, 94f, "frame-pattern", preserveAspect: true);
             _previewNameText = CreateLabel("PreviewPlayerName", previewCard.transform, 134f, 22f, 360f, 40f,
                 "道友", 26f, JadeDark, bold: true);
@@ -415,21 +443,20 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _previewSubtitleText = CreateLabel("PreviewSubtitle", previewCard.transform, 134f, 66f, 610f, 36f,
                 "所有赛季外观仅用于展示，不提供任何战斗数值", 18f, InkMuted);
 
-            string[] iconKeys = { "frame-pattern", "namecard-pattern", "talisman" };
-            string[] titles = { "主题头像纹样", "主题名片底纹", "永久青云玉符" };
-            string[] subs = { "累计 4 场有效论剑解锁", "累计 8 场有效论剑解锁", "累计 12 场有效论剑解锁（支持一键隐藏）" };
-            for (int i = 0; i < 3; i++)
+            string[] iconKeys = { "frame-pattern", "namecard-pattern", "talisman", "rank-3" };
+            string[] titles = { "主题头像纹样", "主题名片底纹", "永久青云玉符", "永久「锋芒」称号" };
+            string[] subs = { "累计 4 场有效论剑解锁", "累计 8 场有效论剑解锁", "累计 12 场有效论剑解锁（支持一键隐藏）", "累计 6 胜或封榜云章以上解锁（可佩戴）" };
+            for (int i = 0; i < 4; i++)
             {
                 int idx = i;
-                float rowY = 564f + i * 112f;
-                var rowBg = CreateArt("CosmeticRow_" + i, body, 950f, rowY, 786f, 104f, "appearance-row-locked");
-                var icon = CreateArt("CosmeticIcon_" + i, rowBg.transform, 26f, 16f, 72f, 72f, iconKeys[i], preserveAspect: true);
-                var title = CreateLabel("CosmeticTitle_" + i, rowBg.transform, 114f, 16f, 430f, 36f, titles[i], 23f, JadeDark, bold: true);
-                var sub = CreateLabel("CosmeticSub_" + i, rowBg.transform, 114f, 54f, 430f, 34f, subs[i], 18f, InkMuted);
+                float rowY = 556f + i * 68f;
+                var rowBg = CreateGuildArt("CosmeticRow_" + i, body, 950f, rowY, 786f, 62f, "guild_row_normal");
+                var icon = CreateArt("CosmeticIcon_" + i, rowBg.transform, 18f, 8f, 46f, 46f, iconKeys[i], preserveAspect: true);
+                var title = CreateLabel("CosmeticTitle_" + i, rowBg.transform, 78f, 6f, 480f, 28f, titles[i], 20f, JadeDark, bold: true);
+                var sub = CreateLabel("CosmeticSub_" + i, rowBg.transform, 78f, 34f, 480f, 24f, subs[i], 16f, InkMuted);
 
-                // 操作按钮：相对设计坐标 x=1548 -> 相对 row(950) 为 598, y=23, w=160, h=57
-                var btn = CreateArtButton("CosmeticAction_" + i, rowBg.transform, 598f, 23f, 160f, 57f,
-                    "appearance-action-idle", "未解锁", 20f, JadeDark, out var btnImg, out var btnLabel);
+                var btn = CreateGuildButton("CosmeticAction_" + i, rowBg.transform, 598f, 9f, 160f, 44f,
+                    "guild_button_secondary", "未解锁", 18f, JadeDark, out var btnImg, out var btnLabel);
                 btn.onClick.AddListener(() => OnCosmeticActionClicked(idx));
                 _cosmeticRows[i] = new CosmeticRowView
                 {
@@ -438,8 +465,24 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 };
             }
 
-            _cosmeticStatusText = CreateLabel("CosmeticStatus", body, 956f, 906f, 774f, 38f,
-                "", 19f, BronzeHint);
+            // 季末荣誉三卡（云章 / 天枢 / 无双，与上方 4 项永久展示外观分区展示，数据完全取自权威档案）
+            CreateLabel("SeasonHonorHeading", body, 954f, 830f, 774f, 24f,
+                "季末封榜荣誉（云章 / 天枢 / 无双 · 赛季结算永久颁发）", 17f, JadeHeading, bold: true);
+            string[] honorTitles = { "云章", "天枢", "无双" };
+            string[] honorIcons = { "rank-3", "rank-4", "rank-5" };
+            for (int i = 0; i < 3; i++)
+            {
+                float cardX = 950f + i * 266f;
+                var hBg = QdaoUguiFactory.CreateImage("SeasonHonorCard_" + i, body, cardX, 856f, 254f, 64f, null, false);
+                hBg.color = SeasonEconomyUiArt.BattleArenaPaper;
+                CreateArt("SeasonHonorIcon_" + i, hBg.transform, 8f, 10f, 44f, 44f, honorIcons[i], preserveAspect: true);
+                CreateLabel("SeasonHonorTitle_" + i, hBg.transform, 58f, 8f, 188f, 24f, honorTitles[i] + " 荣誉", 18f, JadeDark, bold: true);
+                _seasonHonorStatus[i] = CreateLabel("SeasonHonorSub_" + i, hBg.transform, 58f, 34f, 188f, 22f,
+                    "赛季封榜达标解锁", 15f, InkMuted);
+            }
+
+            _cosmeticStatusText = CreateLabel("CosmeticStatus", body, 954f, 924f, 774f, 30f,
+                "", 17f, BronzeHint);
 
             body.gameObject.SetActive(false);
         }
@@ -450,20 +493,32 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _cosmeticStatusText.text = statusText ?? string.Empty;
             var loadout = _profile?.CosmeticLoadout ?? new RankedCosmeticLoadout();
 
-            uint charPreset = _profile?.SelectedPresets?.CharacterPresetId ?? RankedFormatting.DefaultCharacterPresetId;
-            _previewAvatar.sprite = CharacterAvatar(charPreset);
+            _previewAvatar.sprite = _portraitOverride;
+            _previewAvatar.color = _portraitOverride != null ? Color.white : SeasonEconomyUiArt.BattleArenaJade;
+            if (_previewAvatarGlyph != null)
+            {
+                _previewAvatarGlyph.gameObject.SetActive(_portraitOverride == null);
+                if (_portraitOverride == null)
+                    _previewAvatarGlyph.text = !string.IsNullOrEmpty(_playerName) ? _playerName.Substring(0, 1) : "道";
+            }
 
             var avatarEnt = _profile?.FindEntitlement(RankedRewardKind.RankedRewardAvatarPattern);
             var cardEnt = _profile?.FindEntitlement(RankedRewardKind.RankedRewardCardBackground);
             var talismanEnt = _profile?.FindEntitlement(RankedRewardKind.RankedRewardTalisman);
+            var titleEnt = _profile?.FindEntitlement(RankedRewardKind.RankedRewardWinMilestone)
+                ?? _profile?.FindEntitlement(RankedRewardKind.RankedRewardTierTitle);
 
             bool avatarEquipped = avatarEnt != null && !string.IsNullOrEmpty(loadout.EquippedAvatarPatternCode);
             bool cardEquipped = cardEnt != null && !string.IsNullOrEmpty(loadout.EquippedCardBgCode);
             bool talismanEquipped = talismanEnt != null && !string.IsNullOrEmpty(loadout.EquippedTalismanCode) && !loadout.HideTalisman;
+            bool titleEquipped = titleEnt != null && !string.IsNullOrEmpty(loadout.EquippedTitleCode);
 
             _previewFrame.gameObject.SetActive(avatarEquipped);
             _previewCardBg.gameObject.SetActive(cardEquipped);
             _previewTalisman.gameObject.SetActive(talismanEquipped);
+            _previewSubtitleText.text = titleEquipped
+                ? $"当前佩戴称号：{RankedFormatting.RewardKindName(titleEnt.Kind)}（仅展示，不加战斗数值）"
+                : "所有赛季外观与称号仅用于展示，不提供任何战斗数值";
 
             UpdateCosmeticRow(0, avatarEnt != null, avatarEquipped, saving,
                 avatarEquipped ? "取消佩戴" : "佩戴", "4 场解锁");
@@ -471,13 +526,30 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 cardEquipped ? "取消佩戴" : "佩戴", "8 场解锁");
             UpdateCosmeticRow(2, talismanEnt != null, talismanEquipped, saving,
                 talismanEquipped ? "隐藏玉符" : "显示玉符", "12 场解锁");
+            uint winTarget = _profile?.MilestoneWinMatches ?? RankedFormatting.DefaultMilestoneWinMatches;
+            UpdateCosmeticRow(3, titleEnt != null, titleEquipped, saving,
+                titleEquipped ? "卸下称号" : "佩戴称号", $"{winTarget} 胜解锁");
+
+            bool hasTierHonor = _profile?.HasEntitlement(RankedRewardKind.RankedRewardTierBadge) == true
+                || _profile?.HasEntitlement(RankedRewardKind.RankedRewardTierTitle) == true;
+            var curTier = _profile?.CurrentProgress?.CurrentTier ?? RankedTier.Unspecified;
+            var requiredTiers = new[] { RankedTier.Yunzhang, RankedTier.Tianshu, RankedTier.Wushuang };
+            for (int i = 0; i < 3; i++)
+            {
+                if (_seasonHonorStatus[i] == null) continue;
+                bool reachedNow = _profile?.CurrentProgress?.Qualified == true && curTier >= requiredTiers[i];
+                _seasonHonorStatus[i].text = hasTierHonor && reachedNow
+                    ? "已获段位荣誉"
+                    : reachedNow ? "当前段位已达标" : "封榜达标解锁";
+                _seasonHonorStatus[i].color = reachedNow ? JadeAccent : InkMuted;
+            }
         }
 
         private void UpdateCosmeticRow(int idx, bool owned, bool active, bool saving, string ownedLabel, string lockedLabel)
         {
             var row = _cosmeticRows[idx];
-            row.RowBg.sprite = Load(owned ? "appearance-row-owned" : "appearance-row-locked");
-            row.ActionBg.sprite = Load(active ? "appearance-action-selected" : "appearance-action-idle");
+            row.RowBg.sprite = LoadGuildApproved(owned ? "guild_row_self" : "guild_row_normal");
+            row.ActionBg.sprite = LoadGuildApproved(active ? "guild_button_primary" : "guild_button_secondary");
             row.ActionLabel.text = saving ? "保存中…" : (owned ? ownedLabel : lockedLabel);
             row.ActionLabel.color = active ? ButtonGoldText : (owned ? JadeDark : InkMuted);
             row.ActionBtn.interactable = owned && !saving;
@@ -513,7 +585,30 @@ namespace MmorpgClient.UI.Ugui.Ranked
                     next.HideTalisman = !next.HideTalisman;
                 }
             }
+            else if (idx == 3)
+            {
+                var ent = _profile.FindEntitlement(RankedRewardKind.RankedRewardWinMilestone)
+                    ?? _profile.FindEntitlement(RankedRewardKind.RankedRewardTierTitle);
+                if (ent == null) return;
+                next.EquippedTitleCode = string.IsNullOrEmpty(next.EquippedTitleCode) ? ent.ItemCode : string.Empty;
+            }
             CosmeticUpdateRequested?.Invoke(next);
+        }
+
+        private static string FormatOpenTeamSizes(IReadOnlyList<uint> sizes)
+        {
+            if (sizes == null || sizes.Count == 0) return "1V1 / 3V3";
+            var labels = new List<string>(sizes.Count);
+            for (int i = 0; i < sizes.Count; i++) labels.Add($"{sizes[i]}V{sizes[i]}");
+            return string.Join(" / ", labels);
+        }
+
+        private static string FormatSeasonWindow(ulong startMs, ulong endMs)
+        {
+            if (startMs == 0 || endMs == 0) return string.Empty;
+            var start = DateTimeOffset.FromUnixTimeMilliseconds((long)startMs).ToLocalTime();
+            var end = DateTimeOffset.FromUnixTimeMilliseconds((long)endMs).ToLocalTime();
+            return $"{start:yyyy-MM-dd} ~ {end:MM-dd}";
         }
     }
 }

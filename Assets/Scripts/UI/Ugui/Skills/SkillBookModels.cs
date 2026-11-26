@@ -26,6 +26,47 @@ namespace MmorpgClient.UI.Ugui.Skills
         void Upgrade(SkillBookContext context, uint skillId, uint expectedRank, uint count);
     }
 
+    /// <summary>人物战法构筑装配（3 套流派方案：3 被动 + 1 追击 + 1 开场）写接口，与 ISkillBookSource 隔离避免破坏旧夹具。</summary>
+    public interface ISkillLoadoutSource
+    {
+        void SaveLoadout(uint schemeId, uint roleTag, IReadOnlyList<uint> passiveSkillIds,
+            IReadOnlyList<uint> pursuitSkillIds, IReadOnlyList<uint> openingSkillIds,
+            Action<bool, string> completed = null);
+        void SwitchLoadout(uint schemeId, Action<bool, string> completed = null);
+    }
+
+    public sealed class SkillLoadoutSchemeView
+    {
+        public uint SchemeId;
+        public uint RoleTag;
+        public readonly List<uint> PassiveSkillIds = new();
+        public readonly List<uint> PursuitSkillIds = new();
+        public readonly List<uint> OpeningSkillIds = new();
+    }
+
+    public sealed class SkillLoadoutView
+    {
+        public bool CustomEnabled;
+        public uint ActiveSchemeId;
+        public ulong StateVersion;
+        public uint MaxPassiveSlots = 3;
+        public uint MaxPursuitSlots = 1;
+        public uint MaxOpeningSlots = 1;
+        public string LastRequestId;
+        public readonly List<SkillLoadoutSchemeView> Schemes = new();
+
+        public SkillLoadoutSchemeView FindScheme(uint schemeId) =>
+            Schemes.Find(s => s != null && s.SchemeId == schemeId);
+
+        public static string DescribeRoleTag(uint roleTag) => roleTag switch
+        {
+            1 => "输出",
+            2 => "控场",
+            3 => "辅助",
+            _ => "默认",
+        };
+    }
+
     /// <summary>纯展示状态。默认断线；本地图鉴不能充当已学习技能或钱包。</summary>
     public sealed class SkillBookViewState
     {
@@ -42,7 +83,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         public static bool CanUpgrade(SkillBookViewState state, SkillEntryState entry) =>
             state != null && state.IsConnected && !state.IsReadOnly && !state.IsLoading && !state.IsBusy &&
             string.IsNullOrEmpty(state.Error) &&
-            state.Snapshot != null && entry?.Definition != null && !entry.NeedsCraftUnlock &&
+            state.Snapshot != null && entry?.Definition != null && !entry.IsSeasonal && !entry.NeedsCraftUnlock &&
             entry.Rank < entry.RankLimit &&
             (entry.Definition.maxRank == 0 || entry.Rank < entry.Definition.maxRank) &&
             string.IsNullOrEmpty(entry.LockedReason) && entry.NextRankCost <= state.Snapshot.CurrencyBalance;
@@ -61,6 +102,8 @@ namespace MmorpgClient.UI.Ugui.Skills
         public uint RarityTier;
         public bool CraftUnlockRequired;
         public bool UnlockedByBook;
+        public bool Equipped;
+        public bool IsSeasonal => SeasonId > 0u;
         public bool IsRare => RarityTier == 1;
         public bool NeedsCraftUnlock => CraftUnlockRequired && !UnlockedByBook;
     }
@@ -72,6 +115,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         public uint PlayerLevel;
         public ulong CurrencyBalance;
         public string Title;
+        public SkillLoadoutView Loadout;
         public readonly List<SkillEntryState> Entries = new();
         public SkillEntryState Find(uint id) => Entries.Find(entry => entry != null && entry.Id == id);
     }
@@ -102,8 +146,22 @@ namespace MmorpgClient.UI.Ugui.Skills
         public string iconResource;
         public uint scrollId;
         public uint rarityTier;
+        public uint abilityKind;
+        public uint secondaryTargetPolicy;
+        public uint exclusiveGroup;
         public uint skillId => id;
         public bool IsRare => rarityTier == 1;
+        public string SecondaryTargetLabel => secondaryTargetPolicy switch
+        {
+            1 => "副目标：物攻最高",
+            2 => "副目标：法攻最高",
+            3 => "副目标：气血最低",
+            4 => "副目标：血线比例最低",
+            5 => "副目标：物防最低",
+            6 => "副目标：法防最低",
+            7 => "副目标：排速最低",
+            _ => null,
+        };
         public bool IsPassive => string.Equals(type, "passive", StringComparison.OrdinalIgnoreCase);
         public string IconResource => CharacterPetArt.SkillPath(id) ??
             (string.IsNullOrEmpty(iconResource) ? "UI/Skills/" + id : iconResource);

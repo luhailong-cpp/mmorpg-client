@@ -8,7 +8,7 @@
 
 1. **核心玩法定位（「有空就玩，永不清零」）**：
    - 玩家上线 10 分钟即可单人带灵狐打 1 场首领试炼或 1 场正式人宠会武；隔几天/几周回来从原处继续，无每日必清红点与回归补课清单。
-   - 永久首套装备材料奖励 **660 份**（600 份造首套 + 60 份余量，含至多 60 份胜局/PVE 通关可交易），满 660 后自然进入阶段二（每周 100 份绑定精进池），正式评分、试炼志与赛季印始终正常累计。
+   - 永久首套装备材料奖励 **660 份**（600 份造首套 + 60 份余量，含至多 60 份胜局/PVE 通关可交易），满 660 后自然进入阶段二（每周 150 份绑定精进池），正式评分、试炼志与赛季印始终正常累计。
 2. **四大核心拍板规则（必须在 UI 明确传达）**：
    - **正式人宠会武（`PVP_TEAM`）= 本人真实养成**：进场使用真实 8 槽装备、+10/+11、词条、法宝、已学技能、赛季印与真实宝宝；**免费 3×3 预设严禁出现在正式会武页**，仅用于娱乐轮换（护卫救援 / 物法易势 5V5）。
    - **正式人宠会武五档规模开关化**：协议与 UI 完整支持 `1V1 / 2V2 / 3V3 / 4V4 / 5V5`。主力常驻为 `1V1 / 3V3 / 5V5`（冷启动默认仅开 `1V1 / 3V3` 保秒排，`5V5` 标「即将开放」），`2V2 / 4V4` 明确标注「特殊玩法」（按服务端开关启停），绝不前端写死开放态。
@@ -78,7 +78,7 @@
 | **正式会武档案与排位结算** | `GameClient.Ranked` (`RankedClient.Instance`) | `Profile` (`RankedProfileSnapshot`: `CurrentSeason`, `CurrentProgress`, `AllowedTeamSizes`, `PrimaryTeamSizes`, `SpecialTeamSizes`, `UsesOwnProgression`, `DefaultOpenTeamSize`, `IsTeamSizeOpen(size)`, `IsSpecialTeamSize(size)`, `CharacterPresets`, `PetPresets`)<br>`ActiveSettlement` (`MaterialCreditUnitsAdded`, `MaterialTradableUnitsAdded`, `MaterialPvpLossIneligible`, `AuthoritativeView`) | `RequestProfile(bool includeHistory = true)`<br>`SavePreset(uint charPreset, uint petPreset)`（仅娱乐轮换默认预设偏好）<br>`UpdateCosmetic(RankedCosmeticLoadout)`<br>`DismissSettlement()` | `Changed`<br>`SettlementOpened` |
 | **五行试炼志 & 困难解锁** | `GameClient.TrialJournal` (`TrialJournalClient`) | `Snapshot` (`TrialJournalSnapshot`: `HardBossTrialUnlocked`, `Chapters`, `Milestones`, `BoundSandBalance`, `VoucherBalance`, `RedeemableArtifacts`)<br>`ClaimableMilestoneCount` | `RequestSnapshot(bool force = false)`<br>`ClaimMilestone(uint milestoneId)`<br>`RedeemArtifactVoucher(uint artifactItemConfigId)` | `Changed`<br>`Notice`<br>`MilestoneClaimed`<br>`ArtifactRedeemed` |
 | **战斗状态与终局快照** | `GameClient.Battle` (`BattleClient.Instance`) | `Phase`, `State` (`BattleStateS2C`: `RoundIndex`, `Telegraphs`, `ActivePolarity`, `NextPolaritySwitchRound`, `ProtectedGuardActorId`), `LastBattleEnd` (`BattleEndS2C`), `LastQueueStatus` (`QueuedSeconds`, `WaitPromptThresholdSeconds`, `CurrentRatingGap`), `IsCancellingQueue`, `AutoBattleLatched` | `SubmitAction(...)`, `SetAutoBattle(bool)`, `CancelQueue()`, `AckTurnPlayed()`, `AckBattleEnd()` | `OnPhaseChanged`<br>`OnBattleStart`<br>`OnTurnResult`<br>`OnBattleEnd`<br>`OnQueueStatus`<br>`OnError` |
-| **材料自选领取与装备打造** | `GameClient.Features` (`PlayerFeaturesClient.Instance`) | `EquipmentMaterialReward` (`EquipmentMaterialRewardSnapshot`: `LifetimeEarned`/`660`, `TradableEarnedTotal`/`60`, `AvailableUnits`, `AvailableTradableUnits`, `BatchUnits`, `BatchTradableUnits`, `WeeklyPhaseActive`, `EarnedThisWeek`/`100`, `CanClaim`) | `RequestEquipmentMaterialReward()`<br>`ClaimEquipmentMaterialReward(uint craftCount, uint stoneCount)` | `OnChanged`<br>`OnMaterialRewardClaimed` |
+| **材料自选领取与装备打造** | `GameClient.Features` (`PlayerFeaturesClient.Instance`) | `EquipmentMaterialReward` (`EquipmentMaterialRewardSnapshot`: `LifetimeEarned`/`660`, `TradableEarnedTotal`/`60`, `AvailableUnits`, `AvailableTradableUnits`, `BatchUnits`, `BatchTradableUnits`, `WeeklyPhaseActive`, `EarnedThisWeek`/`150`, `CanClaim`) | `RequestEquipmentMaterialReward()`<br>`ClaimEquipmentMaterialReward(uint craftCount, uint stoneCount)` | `OnChanged`<br>`OnMaterialRewardClaimed` |
 | **灵宠出战与 20 点条目** | `GameClient.Pets` (`PetClient.Instance`) | 既有宝宝列表与出战宠快照（新号进场景自动获得 1 只灵狐 `pet_table_id=1` 并自动出战） | 既有 `PetClient` 换出战/条目分配接口 | 既有 `PetClient` 事件 |
 | **小额外观与托管卡** | `AppearanceUiRoot` / `AfkPassClient` | 10 元易容卡（`Item 3402`）1 小时试用与永久解锁；轻享挂机月卡 `Active` / `RemainingText` | 复用既有 `AppearanceUiRoot.ShowPanel()`、`AfkPassClient.Buy()` 与聚宝斋入口 | 既有事件 |
 
@@ -89,7 +89,7 @@
 #### 屏 1：主城总览 HUD（`CoreMainCityHubPanel`）
 - **布局原则**：东方志怪清雅水墨/玉青质感，低密度、无弹窗轰炸；顶部条必须避开 `Screen.safeArea` 与小游戏右上角胶囊。
 - **顶部「3 个核心数字条」**（来自 `MainCityHubView`）：
-  1. `MaterialProgressLabel` + `MaterialProgressValue`（如 `永久首套材料 · 120/660（待领 20）`，阶段二自动切换 `周精进绑定材料 · 30/100`）；`ClaimableMaterialUnits > 0` 时右侧挂柔和「去自选领取」胶囊按钮（不用刺眼抖动红点）。
+  1. `MaterialProgressLabel` + `MaterialProgressValue`（如 `永久首套材料 · 120/660（待领 20）`，阶段二自动切换 `周精进绑定材料 · 30/150`）；`ClaimableMaterialUnits > 0` 时右侧挂柔和「去自选领取」胶囊按钮（不用刺眼抖动红点）。
   2. `FormalPvpLabel` + `FormalPvpValue`（如 `青锋 · 1540 分`）。
   3. `SeasonAndJournalLabel` + `SeasonAndJournalValue`（如 `破军印 40/100 · 试炼志可领 1`），点击打开赛季印与试炼志抽屉。
 - **主入口区（4 张主玩法/养成入口按钮）**：
@@ -144,7 +144,7 @@
 
 #### 屏 6：结算奖励拆解块（`CoreSettlementRewardSection`）与赛季印抽屉（`SeasonSealPanel`）
 - **通用结算材料卡**（绑定 `core.BuildLastSettlementReward()`）：
-  - 正常获得材料：主行显示 `view.Headline`（例如 `材料自选额度 +15（基础 10 + 加量 5）`），副行显示 `view.DetailNote`（明确拆出可交易与仅自用份数），并附阶段进度条（阶段一 `lifetime_earned/660` + `可交易 tradable_earned_total/60`；阶段二 `本周绑定 earned_this_week/100`）与「去自选领取（待领 {ClaimableUnits}）」快捷按钮。
+  - 正常获得材料：主行显示 `view.Headline`（例如 `材料自选额度 +15（基础 10 + 加量 5）`），副行显示 `view.DetailNote`（明确拆出可交易与仅自用份数），并附阶段进度条（阶段一 `lifetime_earned/660` + `可交易 tradable_earned_total/60`；阶段二 `本周绑定 earned_this_week/150`）与「去自选领取（待领 {ClaimableUnits}）」快捷按钮。
   - **PVP 反挂机未达标（`view.PvpLossIneligible == true`）**：用琥珀色说明卡高亮显示 `view.Headline` 与 `view.DetailNote`，明确写清「需满 3 回合、至少 2 回合手动且有有效贡献；本次不扣除永久 660 额度」。
 - **赛季印与赛季技能抽屉**（绑定 `GameClient.Season`）：
   - 展示 `Snapshot.SeasonName`、当前装配赛季印（`SeasonModels.FindEquippedSeal`）、气血/防御轻加成百分比（`SeasonModels.FormatBpsPercent`）、4 个当季免费赛季技能只读卡片（无需升级），底部提供「免费切换赛季印」（`Season.EquipSeal`）与「一键追赶至满进度」（`Season.CatchupSeal`，显示服务端报价并走幂等保护）。
@@ -168,3 +168,37 @@
 - 严禁在小额消费位放入任何加攻击/速度/防御/暴击/控制或额外材料额度的付费项。
 - 严禁本地推测段位分、材料余量或困难解锁态；一切以服务端快照为准。
 - 严禁在首领试炼/会武等待时伪造机器人对手或强制踢出匹配队列。
+
+---
+
+## 七、V2 进阶玩法与战后复盘补完（供 Codex 视觉精修交接）
+
+> 以下纯 C# 逻辑与功能性 uGUI 均已接入并通过 20/20 NUnit 单测与 `tools/client_compile_check.ps1`（727 文件 0 错误），本节供 Codex 在另一台电脑上做专属美术资产与视觉精修替换（无需改动任何协议或纯 C# 逻辑）。
+
+### 7.1 新增/升级的权威纯 C# API
+- **首领试炼 V2 五卡视图**：`CoreGameplayLoopClient.BuildBossTrialsV2()`（在 4 组常规试炼基础上追加第 5 张仅困难卡 `Dungeon 112`「重甲首领 · 双卫同阵」，`BossTrialKind = 8`，`IsHardOnly == true`，胜 `+15`）。
+- **战斗内一键化劲防御 & 群攻聚火标签**：
+  - `CoreGameplayLoopClient.CollectMyQuickParryActorIds()` / `BattleClient.SubmitQuickParryDefend(ulong actorId)`（严禁代队友提交，仅本人或本人存活宠）。
+  - `CoreGameplayLoopModels.IsSplashFocusApplicable(BattleStateS2C state, uint skillMaxTargets)`（首领试炼群攻展示「聚火 100% / 溅射 60%」）。
+  - `CoreGameplayLoopModels.DescribeBossMechanicEvent(BattleEventItem ev)`（`BATTLE_EVENT_BOSS_MECHANIC(22)` 9 种机制横幅播报）。
+  - `BattleCoreHudView` 新增 `BossPhase / BossMomentumStacks / BossStanceType / BossExposedPct / BossPhaseBannerText / BossStatusSummaryText` 及 `BattleTelegraphView.TargetActorIds / IsDualTarget`。
+- **结算战法高光 + 权威战后复盘卡（本次新增）**：
+  - `CoreGameplayLoopClient.BuildLastBossTrialHighlights()` → `IReadOnlyList<BossTrialHighlightBadge>`。
+  - `CoreGameplayLoopClient.BuildLastTacticalReview()` → `BattleTacticalReviewView`（字段：`bool IsVictory`、`string ModeTag`、`string ReasonHeadline`、`string NextMoveTip`、`bool HasContent`），完全派生自服务端 `BattleEndS2C` + `BattleSettlementData` + `BattleTrialJournalFacts`，覆盖首领试炼胜/败根因、护卫救援、物法易势 5V5、正式人宠会武体面认输与反挂机门槛。
+
+### 7.2 建议 Codex 补齐的高价值美术资产（统一道家 Q 版玉青/宣纸/暖金风格，输出至 `Assets/Resources/UI/Ugui/CoreLoopV2/` 并配 `.meta`）
+1. **结算复盘与高光精绘（接入 `CoreSettlementRewardSection.cs`）**：
+   - `review_strip_win.png`（820×56，九宫格，青玉宣纸金边）
+   - `review_strip_loss.png`（820×56，九宫格，暖琥珀策书底）
+   - `icon_tactical_review.png`（64×64，兵书/算筹徽标）
+   - `highlight_strip_gold.png`（820×40，九宫格，金色战法高光底带）
+2. **首领试炼 V2 专属演出与双卫头像（接入 `BossTrialPrepPanel.cs`、`BattleCoreHudOverlay.cs`、`BattleScreen.cs`）**：
+   - `boss_dual_guard_avatar.png`（256×256，重甲双卫同阵独立首领头像，替换目前对 `boss_break_avatar` 的复用）
+   - `badge_hard_only_seal.png`（128×44，朱砂金印「仅限困难」徽章）
+   - `banner_boss_phase2.png`（540×56，九宫格，赤金燃战二阶段横幅底）
+   - `banner_boss_exposed.png`（540×56，九宫格，碎盾青金「破绽窗口」正面机制横幅底）
+   - `badge_quick_parry.png`（64×64，化劲金盾小标，用于「⚠ 点名预警 · 一键化劲防御」按钮）
+3. **PVP 终局加速 & 主城 4 入口专属玉牌图标（接入 `BattleCoreHudOverlay.cs`、`CoreMainCityHubPanel.cs`）**：
+   - `banner_escalation_fire.png`（420×44，九宫格，第 12 回合「战意渐盛」赤金焰纹条）
+   - `icon_hub_boss.png`、`icon_hub_pvp.png`、`icon_hub_rotation.png`、`icon_hub_equip_pet.png`（各 96×96，主城 4 大主入口专属图标）
+

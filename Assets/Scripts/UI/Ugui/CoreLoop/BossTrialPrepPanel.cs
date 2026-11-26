@@ -50,10 +50,14 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
         public void Refresh()
         {
             if (_root == null || _core == null) return;
-            var cards = _core.BuildBossTrials();
+            var cards = _core.BuildBossTrialsV2();
             if (cards == null) return;
             if (_selectedIndex >= cards.Count) _selectedIndex = 0;
-            if (cards.Count > 0 && _selectedHard && !cards[_selectedIndex].HardUnlocked) _selectedHard = false;
+            if (cards.Count > 0)
+            {
+                if (cards[_selectedIndex].IsHardOnly) _selectedHard = true;
+                else if (_selectedHard && !cards[_selectedIndex].HardUnlocked) _selectedHard = false;
+            }
 
             CoreLoopUiArt.Clear(transform);
             CoreLoopUiArt.Frame(transform, "首领试炼 · 备战", _root.OpenHub);
@@ -67,76 +71,106 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             CoreLoopUiArt.Button("OpenTrialJournal", transform, 1740, 268, 420, 56,
                 journalLabel, _root.OpenTrialJournal, true, claimable > 0, 24);
 
+            bool compactFive = cards.Count >= 5;
+            float startX = compactFive ? 286f : 320f;
+            float stepX = compactFive ? 404f : 475f;
+            float cardW = compactFive ? 386f : 400f;
+            float innerW = cardW - 50f;
+            float intentX1 = cardW - 118f;
+            float intentX2 = cardW - 70f;
+
             for (int i = 0; i < cards.Count; ++i)
             {
                 var card = cards[i];
                 if (card == null) continue;
-                float x = 320 + i * 475;
+                float x = startX + i * stepX;
                 bool selected = i == _selectedIndex;
                 var cardSprite = SeasonEconomyUiArt.LoadControl(selected ? "card_trial_selected" : "card_trial_normal");
                 if (cardSprite != null)
-                    SeasonEconomyUiArt.CreateSlicedOrSimple(transform, "BossCard" + i, x, 345, 400, 488, cardSprite, CoreLoopUiArt.Ivory);
+                    SeasonEconomyUiArt.CreateSlicedOrSimple(transform, "BossCard" + i, x, 345, cardW, 488, cardSprite, CoreLoopUiArt.Ivory);
                 else
-                    CoreLoopUiArt.Card(transform, "BossCard" + i, x, 345, 400, 488, selected);
-                var bossAvatar = SeasonEconomyUiArt.LoadIcon(SeasonEconomyUiArt.BossAvatarIconKey(card.BossTrialKind));
+                    CoreLoopUiArt.Card(transform, "BossCard" + i, x, 345, cardW, 488, selected);
+                var bossAvatar = SeasonEconomyUiArt.LoadIcon(SeasonEconomyUiArt.BossAvatarIconKey(card.BossTrialKind))
+                    ?? (card.BossTrialKind == CoreGameplayLoopModels.BossTrialKindDualGuard
+                        ? SeasonEconomyUiArt.LoadIcon("boss_break_avatar")
+                        : null);
                 if (bossAvatar != null)
                 {
-                    var portrait = QdaoUguiFactory.CreateImage("BossPortrait" + i, transform, x + 25, 374, 110, 110, bossAvatar, false);
+                    var portrait = QdaoUguiFactory.CreateImage("BossPortrait" + i, transform, x + 22, 374, 106, 106, bossAvatar, false);
                     portrait.preserveAspect = true;
                 }
                 else
                 {
-                    CoreLoopUiArt.Image("BossPortrait" + i, transform, x + 25, 374, 110, 110,
+                    CoreLoopUiArt.Image("BossPortrait" + i, transform, x + 22, 374, 106, 106,
                         BossIllustrationKey(card.BossTrialKind), new Color(.82f, .9f, .82f, .9f));
                 }
-                CoreLoopUiArt.Text("BossName" + i, transform, x + 145, 378, 230, 63,
-                    card.BossName, 27, CoreLoopUiArt.DeepJade, true, true);
-                CoreLoopUiArt.Badge(transform, "GuardTag" + i, x + 145, 451, 215,
+                CoreLoopUiArt.Text("BossName" + i, transform, x + 136, 376, cardW - 150f, 64,
+                    card.BossName, compactFive ? 24 : 27, CoreLoopUiArt.DeepJade, true, true);
+                CoreLoopUiArt.Badge(transform, "GuardTag" + i, x + 136, 448, cardW - 154f,
                     card.GuardTag, CoreLoopUiArt.Ink);
-                CoreLoopUiArt.Text("Mechanic" + i, transform, x + 25, 512, 350, 105,
-                    card.CoreMechanicSummary, 21, CoreLoopUiArt.Ink, false, true);
-                CoreLoopUiArt.Text("CounterLabel" + i, transform, x + 25, 620, 230, 30,
+                CoreLoopUiArt.Text("Mechanic" + i, transform, x + 25, 512, innerW, 105,
+                    card.CoreMechanicSummary, 20, CoreLoopUiArt.Ink, false, true);
+                CoreLoopUiArt.Text("CounterLabel" + i, transform, x + 25, 620, innerW - 110f, 30,
                     "反制提示", 22, CoreLoopUiArt.Gold, true);
                 SeasonEconomyUiArt.BossCardIntentIcons(card.BossTrialKind, out string primaryIntent, out string secondaryIntent);
-                var intent1 = QdaoUguiFactory.CreateImage("BossIntentPrimary" + i, transform, x + 282, 612, 42, 42,
+                var intent1 = QdaoUguiFactory.CreateImage("BossIntentPrimary" + i, transform, x + intentX1, 612, 42, 42,
                     SeasonEconomyUiArt.LoadIcon(primaryIntent), false);
                 intent1.preserveAspect = true;
                 intent1.gameObject.SetActive(intent1.sprite != null);
-                var intent2 = QdaoUguiFactory.CreateImage("BossIntentSecondary" + i, transform, x + 330, 612, 42, 42,
+                var intent2 = QdaoUguiFactory.CreateImage("BossIntentSecondary" + i, transform, x + intentX2, 612, 42, 42,
                     SeasonEconomyUiArt.LoadIcon(secondaryIntent), false);
                 intent2.preserveAspect = true;
                 intent2.gameObject.SetActive(intent2.sprite != null);
-                CoreLoopUiArt.Text("Counter" + i, transform, x + 25, 656, 350, 88,
-                    card.CounterHint, 20, CoreLoopUiArt.Muted, false, true);
+                CoreLoopUiArt.Text("Counter" + i, transform, x + 25, 656, innerW, 88,
+                    card.CounterHint, 19, CoreLoopUiArt.Muted, false, true);
 
                 int index = i;
-                CoreLoopUiArt.Button("Normal" + i, transform, x + 18, 760, 174, 61,
-                    "普通  +" + card.NormalRewardUnits,
-                    () => Select(index, false), true, selected && !_selectedHard, 21);
-                CoreLoopUiArt.Button("Hard" + i, transform, x + 207, 760, 174, 61,
-                    card.HardUnlocked ? "困难  +" + card.HardRewardUnits : "困难 +" + card.HardRewardUnits + " · 锁",
-                    () => Select(index, true), card.HardUnlocked, selected && _selectedHard, 21);
-                if (!card.HardUnlocked)
+                if (card.IsHardOnly)
                 {
-                    var hint = QdaoUguiFactory.CreateHitButton("HardHint" + i,
-                        transform, x + 207, 760, 174, 61);
-                    hint.onClick.AddListener(() => _root.ShowToast(card.HardLockHint));
+                    CoreLoopUiArt.Button("Hard" + i, transform, x + 18, 760, cardW - 36f, 61,
+                        card.HardUnlocked ? $"困难 +{card.HardRewardUnits} · 专属徽章" : $"困难 +{card.HardRewardUnits} · 锁",
+                        () => Select(index, true), card.HardUnlocked, selected && _selectedHard, 20);
+                    if (!card.HardUnlocked)
+                    {
+                        var hint = QdaoUguiFactory.CreateHitButton("HardHint" + i,
+                            transform, x + 18, 760, cardW - 36f, 61);
+                        hint.onClick.AddListener(() => _root.ShowToast(card.HardLockHint));
+                    }
+                }
+                else
+                {
+                    float btnW = (cardW - 50f) * 0.5f;
+                    CoreLoopUiArt.Button("Normal" + i, transform, x + 18, 760, btnW, 61,
+                        "普通 +" + card.NormalRewardUnits,
+                        () => Select(index, false), true, selected && !_selectedHard, 20);
+                    CoreLoopUiArt.Button("Hard" + i, transform, x + 32f + btnW, 760, btnW, 61,
+                        card.HardUnlocked ? "困难 +" + card.HardRewardUnits : "困难 +" + card.HardRewardUnits + " · 锁",
+                        () => Select(index, true), card.HardUnlocked, selected && _selectedHard, 20);
+                    if (!card.HardUnlocked)
+                    {
+                        var hint = QdaoUguiFactory.CreateHitButton("HardHint" + i,
+                            transform, x + 32f + btnW, 760, btnW, 61);
+                        hint.onClick.AddListener(() => _root.ShowToast(card.HardLockHint));
+                    }
                 }
             }
 
             if (cards.Count == 0) return;
             var selectedCard = cards[_selectedIndex];
             uint selectedDungeon = _selectedHard ? selectedCard.HardDungeonId : selectedCard.NormalDungeonId;
+            bool difficultyUnlocked = !_selectedHard || selectedCard.HardUnlocked;
             var team = CurrentTeam();
             bool teamReady = team?.HasFreshView == true && team.ServiceAvailable;
             bool hasTeam = teamReady && team.HasTeam;
             int partySize = hasTeam ? team.Snapshot.Members.Count : 1;
-            bool canLead = teamReady && (!hasTeam || team.IsLeader);
-            string enterLabel = !teamReady ? "队伍状态同步中"
+            bool canLead = teamReady && (!hasTeam || team.IsLeader) && selectedDungeon != 0u && difficultyUnlocked;
+            string enterLabel = !difficultyUnlocked ? "尚未解锁困难难度"
+                : !teamReady ? "队伍状态同步中"
                 : hasTeam && !team.IsLeader ? "请队长发起试炼"
                 : hasTeam ? $"按当前队伍 {partySize} 人立即开战"
                 : "单人带出战灵宠立即开战";
-            string teamHint = !teamReady ? "当前队伍信息待同步"
+            string teamHint = !difficultyUnlocked ? selectedCard.HardLockHint
+                : !teamReady ? "当前队伍信息待同步"
                 : hasTeam ? $"当前队伍 {partySize}/{team.Snapshot.Capacity} 人 · 无需凑满 5 人 · {(team.IsLeader ? "你是队长" : "请队长发起")}"
                 : "当前单人 · 可直接入场";
             var tradableIcon = QdaoUguiFactory.CreateImage("RewardTradableBadge", transform, 295, 844, 40, 40,
@@ -144,12 +178,15 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             tradableIcon.preserveAspect = true;
             tradableIcon.gameObject.SetActive(tradableIcon.sprite != null);
             CoreLoopUiArt.Text("RewardRule", transform, tradableIcon.sprite != null ? 344 : 295, 842, 1265, 45,
-                _selectedHard ? "困难胜局：基础 10 + 困难绑定加量 5（含至多 1 份可交易）；全队成员均须已解锁困难。"
-                    : "普通胜局：基础材料奖励，含至多 1 份可交易。", 23, CoreLoopUiArt.Muted);
+                selectedCard.IsHardOnly
+                    ? "双卫同阵（仅困难）：与困难单卫共享 15 份材料上限，额外解锁试炼志「破阵双绝」徽章。"
+                    : _selectedHard
+                        ? "困难胜局：基础 10 + 困难绑定加量 5（含至多 1 份可交易）；全队成员均须已解锁困难。"
+                        : "普通胜局：基础材料奖励，含至多 1 份可交易。", 23, CoreLoopUiArt.Muted);
             CoreLoopUiArt.Button("EnterTrial", transform, 1740, 834, 420, 80,
-                enterLabel, () => _core.EnterBossTrial(selectedDungeon), canLead, true, 30, "btn_primary_gold");
+                enterLabel, () => _core.EnterBossTrial(selectedDungeon), canLead, true, 28, "btn_primary_gold");
             CoreLoopUiArt.Text("PartyStatus", transform, 1740, 919, 420, 35,
-                teamHint, 20, teamReady ? CoreLoopUiArt.Muted : CoreLoopUiArt.Warning,
+                teamHint, 20, teamReady && difficultyUnlocked ? CoreLoopUiArt.Muted : CoreLoopUiArt.Warning,
                 false, false, TextAlignmentOptions.Center);
         }
 
@@ -161,8 +198,9 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
 
         private void Select(int index, bool hard)
         {
-            var cards = _core.BuildBossTrials();
+            var cards = _core.BuildBossTrialsV2();
             if (cards == null || index < 0 || index >= cards.Count) return;
+            if (cards[index].IsHardOnly) hard = true;
             if (hard && !cards[index].HardUnlocked)
             {
                 _root.ShowToast(cards[index].HardLockHint);

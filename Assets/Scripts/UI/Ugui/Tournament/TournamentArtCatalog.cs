@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Match;
 using MmorpgClient.Table;
 using MmorpgClient.World;
 using TMPro;
@@ -77,6 +78,39 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 "icon-pill" => "UI/Ugui/MailV1/icon-pill",
                 "icon-scroll" => "UI/Ugui/MailV1/icon-scroll",
                 "icon-talisman" => "UI/Ugui/MailV1/icon-talisman",
+                // V2 Module A（BO3 对阵、五行灵脉、局间换阵）
+                "v2-a-element-metal" => "UI/Ugui/TournamentV2/a/element-metal",
+                "v2-a-element-wood" => "UI/Ugui/TournamentV2/a/element-wood",
+                "v2-a-element-water" => "UI/Ugui/TournamentV2/a/element-water",
+                "v2-a-element-fire" => "UI/Ugui/TournamentV2/a/element-fire",
+                "v2-a-element-earth" => "UI/Ugui/TournamentV2/a/element-earth",
+                "v2-a-intermission-panel" => "UI/Ugui/TournamentV2/a/intermission-panel",
+                "v2-a-score-bo3" => "UI/Ugui/TournamentV2/a/score-bo3",
+                "v2-a-button-primary" => "UI/Ugui/TournamentV2/a/button-primary",
+                // V2 Module B（冠军基座、牌匾、观道致敬气泡与轻窗）
+                "v2-b-champion-pedestal" => "UI/Ugui/TournamentV2/b/champion-pedestal",
+                "v2-b-champion-plaque" => "UI/Ugui/TournamentV2/b/champion-plaque",
+                "v2-b-salute-bubble" => "UI/Ugui/TournamentV2/b/salute-bubble",
+                "v2-b-salute-panel" => "UI/Ugui/TournamentV2/b/salute-panel",
+                // V2 Module C（观战底部喝彩条、6 预设完整短语图、对推条与飘字）
+                "v2-c-cheer-bar" => "UI/Ugui/TournamentV2/c/cheer-bar",
+                "v2-c-cheer-float" => "UI/Ugui/TournamentV2/c/cheer-float",
+                "v2-c-cheer-pill-disabled" => "UI/Ugui/TournamentV2/c/cheer-pill-disabled",
+                "v2-c-cheer-pill-normal" => "UI/Ugui/TournamentV2/c/cheer-pill-normal",
+                "v2-c-cheer-pill-selected" => "UI/Ugui/TournamentV2/c/cheer-pill-selected",
+                "v2-c-phrase-01" => "UI/Ugui/TournamentV2/c/phrase-01",
+                "v2-c-phrase-02" => "UI/Ugui/TournamentV2/c/phrase-02",
+                "v2-c-phrase-03" => "UI/Ugui/TournamentV2/c/phrase-03",
+                "v2-c-phrase-04" => "UI/Ugui/TournamentV2/c/phrase-04",
+                "v2-c-phrase-05" => "UI/Ugui/TournamentV2/c/phrase-05",
+                "v2-c-phrase-06" => "UI/Ugui/TournamentV2/c/phrase-06",
+                "v2-c-popularity-coral" => "UI/Ugui/TournamentV2/c/popularity-coral",
+                "v2-c-popularity-jade" => "UI/Ugui/TournamentV2/c/popularity-jade",
+                "v2-c-popularity-track" => "UI/Ugui/TournamentV2/c/popularity-track",
+                // V2 原生毛笔题字（严禁叠字）
+                "v2-title-intermission" => "UI/Ugui/TournamentV2/titles/a-intermission-title",
+                "v2-title-salute" => "UI/Ugui/TournamentV2/titles/b-salute-title",
+                "v2-title-cheer" => "UI/Ugui/TournamentV2/titles/c-cheer-title",
                 _ => key,
             };
             var sprite = Resources.Load<Sprite>(path);
@@ -92,6 +126,51 @@ namespace MmorpgClient.UI.Ugui.Tournament
             if (string.IsNullOrEmpty(charId)) return null;
             if (QdaoCharacterCatalog.Find(charId) == null) return null;
             return QdaoCharacterCatalog.LoadPortrait(charId);
+        }
+
+        public static Sprite ResolveCharacterPortrait(string charId, Func<ulong, string> resolveCharacterId, ulong playerId)
+        {
+            if (!string.IsNullOrEmpty(charId) && QdaoCharacterCatalog.Find(charId) != null)
+                return QdaoCharacterCatalog.LoadPortrait(charId);
+            return ResolvePlayerPortrait(resolveCharacterId, playerId);
+        }
+
+        /// <summary>V2：优先按成员权威外观快照（AppearanceId / ClassId+Gender）解析真实获批立绘；缺数据时严格返回 null（中性太极占位，绝不用演示图冒充）。</summary>
+        public static Sprite ResolveMemberPortrait(TournamentMemberView member, Func<ulong, string> resolveCharacterId)
+        {
+            if (member == null) return null;
+            if (!string.IsNullOrEmpty(member.AppearanceId))
+            {
+                string vis = QdaoCharacterCatalog.ResolveVisualId(member.AppearanceId);
+                if (!string.IsNullOrEmpty(vis) && QdaoCharacterCatalog.Find(vis) != null)
+                    return QdaoCharacterCatalog.LoadPortrait(vis);
+            }
+            if (member.ClassId >= 1u && member.ClassId <= 4u)
+            {
+                string vis = QdaoCharacterCatalog.ResolveRole(member.ClassId, member.Gender);
+                if (!string.IsNullOrEmpty(vis) && QdaoCharacterCatalog.Find(vis) != null)
+                    return QdaoCharacterCatalog.LoadPortrait(vis);
+            }
+            return ResolvePlayerPortrait(resolveCharacterId, member.PlayerId);
+        }
+
+        /// <summary>V2 主操作按钮（使用 v2-a-button-primary 184×44 原图皮肤 + 独立楷体字）。</summary>
+        public static Button V2PrimaryButton(string name, Transform parent, float x, float y, float w, float h,
+            string labelText, Action onClick, bool interactable = true, float fontSize = 20f)
+        {
+            var sprite = Load("v2-a-button-primary") ?? Load("button-primary");
+            var btn = QdaoUguiFactory.CreateArtButton(name, parent, x, y, w, h, sprite, out var img);
+            img.type = Image.Type.Simple;
+            img.preserveAspect = false;
+            if (sprite == null) img.color = Jade;
+            btn.interactable = interactable;
+            if (onClick != null) btn.onClick.AddListener(() => onClick());
+            var txt = Label(name + "_Label", btn.transform, 10f, 0f, w - 20f, h, labelText,
+                fontSize, PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
+            txt.enableAutoSizing = true;
+            txt.fontSizeMin = Mathf.Max(13f, fontSize - 6f);
+            txt.fontSizeMax = fontSize;
+            return btn;
         }
 
         /// <summary>现查 ItemTable 获取物品中文名，不缓存行引用，防热更失效。</summary>

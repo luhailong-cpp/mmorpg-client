@@ -1,0 +1,30 @@
+{
+  "recordSchema": 1,
+  "recordType": "byte-identical-unity-import-copy",
+  "copiedAtUtc": "2026-11-25T15:07:52.696666+00:00",
+  "sourceGeneratedAtUtc": null,
+  "file": "integration/Assets/Resources/UI/Ugui/BattleArenaV2V3/assets/skill_control.png",
+  "sha256": "59fab4d52be853f0b832746141820b09c80c9407c626afc1d58ba2134413f5ae",
+  "width": 512,
+  "height": 512,
+  "route": "local-byte-copy",
+  "newAiCalls": 0,
+  "submittedParameters": {
+    "model": null,
+    "quality": null
+  },
+  "actualModel": null,
+  "actualQuality": null,
+  "configuredTargetNotUsed": {
+    "model": "gpt-image-2.6-sunburst",
+    "quality": "max",
+    "source": "config/image-generation.json"
+  },
+  "note": "Byte-identical import copy; no new image request. Original model, quality and generation evidence remain in the linked source record.",
+  "source": {
+    "file": "assets/skill_control.png",
+    "sha256": "59fab4d52be853f0b832746141820b09c80c9407c626afc1d58ba2134413f5ae",
+    "generationRecord": "assets/skill_control.png.generation.json",
+    "generationRecordSha256": "c5d174643e63ef1bcffe7625a10986db89de4b984ff2063ae98e44881fc702f1"
+  }
+}

@@ -182,5 +182,72 @@ namespace MmorpgClient.Net.Generated
         public static void RespondGuildTrialInvite(IRpcChannel channel, global::Guildpb.RespondGuildTrialInviteRequest request,
             RpcDone<global::Guildpb.RespondGuildTrialInviteResponse> done)
             => channel.CallMethod(RespondGuildTrialInviteMessageId, request, global::Guildpb.RespondGuildTrialInviteResponse.Parser, done);
+
+        public const uint GetGuildWarOverviewMessageId = 485;
+        /// <summary>
+        /// 帮会全天帮战 V2(docs/design/guild-play-v2.md):无匹配池直打、三座灵脉、守旗阵、4 层奖励与江湖追杀令。
+        /// </summary>
+        public static void GetGuildWarOverview(IRpcChannel channel, global::Guildpb.GetGuildWarOverviewRequest request,
+            RpcDone<global::Guildpb.GetGuildWarOverviewResponse> done)
+            => channel.CallMethod(GetGuildWarOverviewMessageId, request, global::Guildpb.GetGuildWarOverviewResponse.Parser, done);
+
+        public const uint SetGuildWarStanceMessageId = 486;
+        public static void SetGuildWarStance(IRpcChannel channel, global::Guildpb.SetGuildWarStanceRequest request,
+            RpcDone<global::Guildpb.SetGuildWarStanceResponse> done)
+            => channel.CallMethod(SetGuildWarStanceMessageId, request, global::Guildpb.SetGuildWarStanceResponse.Parser, done);
+
+        public const uint RegisterGuildWarGarrisonMessageId = 487;
+        public static void RegisterGuildWarGarrison(IRpcChannel channel, global::Guildpb.RegisterGuildWarGarrisonRequest request,
+            RpcDone<global::Guildpb.RegisterGuildWarGarrisonResponse> done)
+            => channel.CallMethod(RegisterGuildWarGarrisonMessageId, request, global::Guildpb.RegisterGuildWarGarrisonResponse.Parser, done);
+
+        public const uint StartGuildWarBattleMessageId = 488;
+        public static void StartGuildWarBattle(IRpcChannel channel, global::Guildpb.StartGuildWarBattleRequest request,
+            RpcDone<global::Guildpb.StartGuildWarBattleResponse> done)
+            => channel.CallMethod(StartGuildWarBattleMessageId, request, global::Guildpb.StartGuildWarBattleResponse.Parser, done);
+
+        public const uint ClaimGuildWarMilestoneMessageId = 489;
+        public static void ClaimGuildWarMilestone(IRpcChannel channel, global::Guildpb.ClaimGuildWarMilestoneRequest request,
+            RpcDone<global::Guildpb.ClaimGuildWarMilestoneResponse> done)
+            => channel.CallMethod(ClaimGuildWarMilestoneMessageId, request, global::Guildpb.ClaimGuildWarMilestoneResponse.Parser, done);
+
+        public const uint ClaimGuildWarDividendMessageId = 490;
+        public static void ClaimGuildWarDividend(IRpcChannel channel, global::Guildpb.ClaimGuildWarDividendRequest request,
+            RpcDone<global::Guildpb.ClaimGuildWarDividendResponse> done)
+            => channel.CallMethod(ClaimGuildWarDividendMessageId, request, global::Guildpb.ClaimGuildWarDividendResponse.Parser, done);
+
+        public const uint PostGuildWarBountyMessageId = 491;
+        public static void PostGuildWarBounty(IRpcChannel channel, global::Guildpb.PostGuildWarBountyRequest request,
+            RpcDone<global::Guildpb.PostGuildWarBountyResponse> done)
+            => channel.CallMethod(PostGuildWarBountyMessageId, request, global::Guildpb.PostGuildWarBountyResponse.Parser, done);
+
+        public const uint TrackGuildWarBountyMessageId = 492;
+        public static void TrackGuildWarBounty(IRpcChannel channel, global::Guildpb.TrackGuildWarBountyRequest request,
+            RpcDone<global::Guildpb.TrackGuildWarBountyResponse> done)
+            => channel.CallMethod(TrackGuildWarBountyMessageId, request, global::Guildpb.TrackGuildWarBountyResponse.Parser, done);
+
+        public const uint GetGuildWarBattleResultMessageId = 493;
+        public static void GetGuildWarBattleResult(IRpcChannel channel, global::Guildpb.GetGuildWarBattleResultRequest request,
+            RpcDone<global::Guildpb.GetGuildWarBattleResultResponse> done)
+            => channel.CallMethod(GetGuildWarBattleResultMessageId, request, global::Guildpb.GetGuildWarBattleResultResponse.Parser, done);
+
+        public const uint NotifyGuildWarAlertMessageId = 494;
+        public static void OnNotifyGuildWarAlert(IRpcChannel channel, Action<global::Guildpb.GuildWarAlertS2C> handler,
+            Action<InvalidProtocolBufferException> onMalformed = null)
+        {
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
+            channel.RegisterNotify(NotifyGuildWarAlertMessageId, mc =>
+            {
+                global::Guildpb.GuildWarAlertS2C message;
+                try { message = global::Guildpb.GuildWarAlertS2C.Parser.ParseFrom(mc.SerializedMessage); }
+                catch (InvalidProtocolBufferException ex) { onMalformed?.Invoke(ex); return; }
+                handler(message);
+            });
+        }
+
+        public const uint InspectFieldWarTargetsMessageId = 499;
+        public static void InspectFieldWarTargets(IRpcChannel channel, global::Guildpb.InspectFieldWarTargetsRequest request,
+            RpcDone<global::Guildpb.InspectFieldWarTargetsResponse> done)
+            => channel.CallMethod(InspectFieldWarTargetsMessageId, request, global::Guildpb.InspectFieldWarTargetsResponse.Parser, done);
     }
 }

@@ -4,6 +4,10 @@ using TMPro;
 using UnityEngine;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Battle.Presentation;
+using MmorpgClient.Game.CoreLoop;
+using MmorpgClient.Table;
+using MmorpgClient.UI.Ugui.Tweening;
+using MmorpgClient.World;
 using Image = UnityEngine.UI.Image;
 
 namespace MmorpgClient.UI.Ugui.Battle
@@ -105,6 +109,17 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly Image _timerRing;
         private readonly TMP_Text _timerText;
         private float _safeTopOffsetDesign = -1f;
+        public static readonly Rect SurrenderButtonRect = new Rect(40f, 576f, 220f, 56f);
+        public static readonly Rect PrepPanelRect = new Rect(300f, 680f, 1960f, 370f);
+        private readonly UiTextButton _surrenderButton;
+        private readonly RectTransform _surrenderConfirmStrip;
+        private readonly TMP_Text _surrenderConfirmText;
+        private readonly RectTransform _surrenderVoteStrip;
+        private readonly TMP_Text _surrenderVoteText;
+        private readonly UiTextButton _surrenderAgreeButton;
+        private readonly UiTextButton _surrenderRejectButton;
+        private readonly UiTextButton _quickParryButton;
+        private bool _surrenderRequestPending;
 
         // 观战 / 回放只读模式
         private readonly TMP_Text _spectateText;
@@ -141,6 +156,65 @@ namespace MmorpgClient.UI.Ugui.Battle
         // 底部提示
         private readonly TMP_Text _hintText;
 
+        // 论剑 V3 战前 15 秒明牌变阵浮层（精确对齐 d129182 帮会原图返修版 [300, 680, 1960, 370] 与 RankedV3GuildFidelity 切片）
+        private sealed class PrepSealSlotView
+        {
+            public UiTextButton Button;
+            public Image Icon;
+            public Image FallbackPlaque;
+            public TMP_Text FallbackGlyph;
+            public TMP_Text NameText;
+            public TMP_Text TagText;
+            public TMP_Text SelectedStamp;
+        }
+
+        private sealed class PrepPetSlotView
+        {
+            public UiTextButton Button;
+            public Image Portrait;
+            public Image FallbackPlaque;
+            public TMP_Text FallbackGlyph;
+            public TMP_Text NameText;
+            public TMP_Text LevelText;
+            public TMP_Text StatsText;
+            public TMP_Text SelectedCheck;
+        }
+
+        private readonly RectTransform _prepPanel;
+        private readonly CanvasGroup _prepCanvasGroup;
+        private readonly TMP_Text _prepTitleText;
+        private readonly TMP_Text _prepCountdownText;
+        private readonly Image _prepCountdownFillImg;
+        private readonly RectTransform _prepCountdownFill;
+        private readonly TMP_Text _prepTeamReadyText;
+        private readonly Image[] _prepReadyDots = new Image[5];
+        private readonly TMP_Text _prepEnemySummaryText;
+        private readonly RectTransform _prepTeamContent;
+        private readonly UnityEngine.UI.ScrollRect _prepTeamScroll;
+        private readonly List<GameObject> _prepTeamChips = new();
+        private readonly HashSet<ulong> _expandedPrepTeamIds = new();
+        private readonly TMP_Text _prepLockHintText;
+        private readonly TMP_Text _prepSealEmptyText;
+        private readonly TMP_Text _prepPetEmptyText;
+        private readonly PrepSealSlotView[] _prepSealSlots = new PrepSealSlotView[4];
+        private readonly uint[] _prepSealIds = new uint[4];
+        private readonly PrepPetSlotView[] _prepPetSlots = new PrepPetSlotView[6];
+        private readonly ulong[] _prepPetIds = new ulong[6];
+        private readonly UiTextButton _prepLockButton;
+        private readonly RectTransform _spectatorPrepBanner;
+        private readonly TMP_Text _spectatorPrepText;
+        private BattlePrepState _prepState;
+        private bool _prepRequestPending;
+        private bool _prepPanelWasVisible;
+        private bool _prepExpiredShown;
+        private float _prepPulseOriginTime;
+
+        // 单位状态详情小卡（触控/点击单位打开，消费 BattleUnitStatusInspector 只读投影）
+        private readonly Image _statusPopup;
+        private readonly TMP_Text _statusPopupTitle;
+        private readonly TMP_Text _statusPopupBody;
+        private ulong _inspectedActorId;
+
         // 战斗直连提示(turn-based §22 D74)
         private readonly Image _channelBanner;
         private readonly TMP_Text _channelBannerText;
@@ -153,8 +227,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         // 单位
         private readonly List<BattleUnitView> _views = new();
         private readonly Dictionary<ulong, BattleUnitView> _viewById = new();
-        private ulong _coreTelegraphTargetId;
-        private ulong _coreSecondTelegraphTargetId;
+        private readonly HashSet<ulong> _coreTelegraphTargetIds = new();
         private ulong _coreProtectedGuardActorId;
         private ulong _festivalTelegraphTargetId;
         private string _festivalTelegraphLabel;
@@ -390,6 +463,371 @@ namespace MmorpgClient.UI.Ugui.Battle
             _channelBanner.gameObject.SetActive(false);
             _reconnectButton.SetVisible(false);
 
+            // ── PVP 延迟投降入口与确认/表决浮条（ranked-play-v2-ui-20261125 宣纸金框切片，左侧布局远离技能环与胶囊） + 首领试炼 V2 一键化劲防御 ──
+            _surrenderButton = BattleUiWidgets.CreateTextButton("SurrenderBtn", _hudRoot,
+                SurrenderButtonRect.x, SurrenderButtonRect.y, SurrenderButtonRect.width, SurrenderButtonRect.height,
+                "认输 / 投降", 21f, BattleUiStyle.ButtonPlate, SeasonEconomyUiArt.BattleArenaInk);
+            var surrenderBtnSprite = SeasonEconomyUiArt.LoadBattleArenaControl("surrender-button-base");
+            if (surrenderBtnSprite != null)
+            {
+                SeasonEconomyUiArt.ApplyFixedControlSprite(_surrenderButton.Plate, surrenderBtnSprite, SeasonEconomyUiArt.BattleArenaPaper);
+                _surrenderButton.Label.color = SeasonEconomyUiArt.BattleArenaInk;
+                _surrenderButton.Label.fontStyle = FontStyles.Bold;
+            }
+            else
+            {
+                BattleRoundCounter.ApplyNineSlice(_surrenderButton.Plate, "button_9slice");
+                _surrenderButton.Label.color = BattleUiStyle.ButtonText;
+            }
+            _surrenderButton.Button.onClick.AddListener(OnSurrenderClicked);
+            _surrenderButton.SetVisible(false);
+
+            var voteStripSprite = SeasonEconomyUiArt.LoadBattleArenaControl("surrender-vote-strip-base");
+            var primaryBtnSprite = SeasonEconomyUiArt.LoadBattleArenaAsset("guild_button_primary");
+            var secondaryBtnSprite = SeasonEconomyUiArt.LoadBattleArenaAsset("guild_button_secondary");
+
+            var confirmBg = BattleUiWidgets.CreatePanel("SurrenderConfirmStrip", _hudRoot, 280f, 480f, 880f, 92f,
+                SeasonEconomyUiArt.BattleArenaPaper, raycastTarget: false);
+            if (voteStripSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(confirmBg, voteStripSprite, SeasonEconomyUiArt.BattleArenaPaper);
+            else BattleRoundCounter.ApplyNineSlice(confirmBg, "panel_9slice");
+            _surrenderConfirmStrip = confirmBg.rectTransform;
+            _surrenderConfirmText = QdaoUguiFactory.CreateText("ConfirmText", _surrenderConfirmStrip, 34f, 16f, 520f, 60f,
+                string.Empty, 20f, voteStripSprite != null ? SeasonEconomyUiArt.BattleArenaInk : QdaoUguiTheme.Cream, TextAlignmentOptions.MidlineLeft);
+            _surrenderConfirmText.fontStyle = FontStyles.Bold;
+            _surrenderConfirmText.textWrappingMode = TextWrappingModes.Normal;
+            _surrenderConfirmText.enableAutoSizing = true;
+            _surrenderConfirmText.fontSizeMin = 15f;
+            _surrenderConfirmText.fontSizeMax = 20f;
+            _surrenderConfirmText.raycastTarget = false;
+            var confirmYes = BattleUiWidgets.CreateTextButton("SurrenderConfirmYes", _surrenderConfirmStrip, 566f, 18f, 140f, 56f,
+                "确认认输", 20f, BattleUiStyle.ButtonPlateAccent, SeasonEconomyUiArt.GoldText);
+            if (primaryBtnSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(confirmYes.Plate, primaryBtnSprite, SeasonEconomyUiArt.BattleArenaJade);
+            else BattleRoundCounter.ApplyNineSlice(confirmYes.Plate, "button_9slice");
+            confirmYes.Button.onClick.AddListener(OnConfirmSurrenderClicked);
+            var confirmNo = BattleUiWidgets.CreateTextButton("SurrenderConfirmNo", _surrenderConfirmStrip, 718f, 18f, 134f, 56f,
+                "取消", 20f, BattleUiStyle.ButtonPlate, secondaryBtnSprite != null ? SeasonEconomyUiArt.BattleArenaInk : BattleUiStyle.ButtonText);
+            if (secondaryBtnSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(confirmNo.Plate, secondaryBtnSprite, SeasonEconomyUiArt.BattleArenaPaper);
+            else BattleRoundCounter.ApplyNineSlice(confirmNo.Plate, "button_9slice");
+            confirmNo.Button.onClick.AddListener(() => _surrenderConfirmStrip.gameObject.SetActive(false));
+            _surrenderConfirmStrip.gameObject.SetActive(false);
+
+            var voteBg = BattleUiWidgets.CreatePanel("SurrenderVoteStrip", _hudRoot, 280f, 480f, 940f, 92f,
+                SeasonEconomyUiArt.BattleArenaPaper, raycastTarget: false);
+            if (voteStripSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(voteBg, voteStripSprite, SeasonEconomyUiArt.BattleArenaPaper);
+            else BattleRoundCounter.ApplyNineSlice(voteBg, "panel_9slice");
+            _surrenderVoteStrip = voteBg.rectTransform;
+            _surrenderVoteText = QdaoUguiFactory.CreateText("VoteText", _surrenderVoteStrip, 34f, 14f, 568f, 64f,
+                string.Empty, 20f, voteStripSprite != null ? SeasonEconomyUiArt.BattleArenaInk : QdaoUguiTheme.Cream, TextAlignmentOptions.MidlineLeft);
+            _surrenderVoteText.fontStyle = FontStyles.Bold;
+            _surrenderVoteText.textWrappingMode = TextWrappingModes.Normal;
+            _surrenderVoteText.enableAutoSizing = true;
+            _surrenderVoteText.fontSizeMin = 14f;
+            _surrenderVoteText.fontSizeMax = 20f;
+            _surrenderVoteText.raycastTarget = false;
+            _surrenderAgreeButton = BattleUiWidgets.CreateTextButton("SurrenderAgree", _surrenderVoteStrip, 614f, 18f, 146f, 56f,
+                "同意投降", 20f, BattleUiStyle.ButtonPlateAccent, SeasonEconomyUiArt.GoldText);
+            if (primaryBtnSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(_surrenderAgreeButton.Plate, primaryBtnSprite, SeasonEconomyUiArt.BattleArenaJade);
+            else BattleRoundCounter.ApplyNineSlice(_surrenderAgreeButton.Plate, "button_9slice");
+            _surrenderAgreeButton.Button.onClick.AddListener(() => SendSurrenderVote(true));
+            _surrenderRejectButton = BattleUiWidgets.CreateTextButton("SurrenderReject", _surrenderVoteStrip, 770f, 18f, 142f, 56f,
+                "继续战斗", 20f, BattleUiStyle.ButtonPlate, secondaryBtnSprite != null ? SeasonEconomyUiArt.BattleArenaInk : BattleUiStyle.ButtonText);
+            if (secondaryBtnSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(_surrenderRejectButton.Plate, secondaryBtnSprite, SeasonEconomyUiArt.BattleArenaPaper);
+            else BattleRoundCounter.ApplyNineSlice(_surrenderRejectButton.Plate, "button_9slice");
+            _surrenderRejectButton.Button.onClick.AddListener(() => SendSurrenderVote(false));
+            _surrenderVoteStrip.gameObject.SetActive(false);
+
+            _quickParryButton = BattleUiWidgets.CreateTextButton("QuickParryBtn", _hudRoot, 1660f, 926f, 320f, 54f,
+                "一键化劲防御", 22f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
+            BattleRoundCounter.ApplyNineSlice(_quickParryButton.Plate, "button_9slice");
+            _quickParryButton.Button.onClick.AddListener(OnQuickParryClicked);
+            _quickParryButton.SetVisible(false);
+
+            // ── 论剑 V3 战前 15 秒明牌变阵浮层（d129182 帮会原图风格返修版：[300, 680, 1960, 370]，太极青玉标题牌 + 深玉底米白字选中态 + 三态帮会锁定键）──
+            var prepShellSprite = SeasonEconomyUiArt.LoadRankedV3PrepControl("prep-shell");
+            var prepBg = BattleUiWidgets.CreatePanel("TacticalPrepPanel", _hudRoot,
+                PrepPanelRect.x, PrepPanelRect.y, PrepPanelRect.width, PrepPanelRect.height,
+                SeasonEconomyUiArt.BattleArenaPaper, raycastTarget: false);
+            if (prepShellSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(prepBg, prepShellSprite, SeasonEconomyUiArt.BattleArenaPaper);
+            else BattleRoundCounter.ApplyNineSlice(prepBg, "panel_9slice");
+            _prepPanel = prepBg.rectTransform;
+            _prepCanvasGroup = _prepPanel.gameObject.AddComponent<CanvasGroup>();
+            var kaiFont = QdaoUguiTheme.ResolveFont();
+            Color prepInk = QdaoUguiTheme.Html("#142F21");
+            Color prepSubInk = QdaoUguiTheme.Html("#363B2C");
+            Color prepNoteInk = QdaoUguiTheme.Html("#71583B");
+            Color prepJade = QdaoUguiTheme.Html("#235E42");
+
+            // 顶中太极青玉标题牌 [680, 0, 600, 92]
+            var plaqueSprite = SeasonEconomyUiArt.LoadRankedV3PrepControl("prep-title-plaque");
+            var titlePlaque = QdaoUguiFactory.CreateImage("PrepTitlePlaque", _prepPanel, 680f, 0f, 600f, 92f, plaqueSprite, false);
+            if (plaqueSprite != null)
+            {
+                titlePlaque.type = Image.Type.Simple;
+                titlePlaque.color = Color.white;
+            }
+            else
+            {
+                titlePlaque.color = SeasonEconomyUiArt.BattleArenaJade;
+            }
+            _prepTitleText = QdaoUguiFactory.CreateText("PrepTitle", _prepPanel, 680f, 26f, 600f, 58f,
+                "战前明牌变阵", 42f, QdaoUguiTheme.Html("#FFF4D6"), TextAlignmentOptions.Center);
+            _prepTitleText.font = kaiFont;
+            _prepTitleText.fontStyle = FontStyles.Bold;
+            _prepTitleText.fontWeight = FontWeight.Bold;
+            _prepTitleText.characterSpacing = 3f;
+            _prepTitleText.raycastTarget = false;
+
+            // 左上双行提示 [34, 54, 610, 48]
+            var prepHintMain = QdaoUguiFactory.CreateText("PrepSubtitle", _prepPanel, 34f, 52f, 610f, 28f,
+                "观敌初阵，临场易印换宠", 24f, prepSubInk, TextAlignmentOptions.MidlineLeft);
+            prepHintMain.font = kaiFont;
+            prepHintMain.raycastTarget = false;
+            var prepHintSub = QdaoUguiFactory.CreateText("PrepSubtitleNote", _prepPanel, 34f, 80f, 610f, 24f,
+                "（仅本场生效，不改城内默认配置）", 18f, prepNoteInk, TextAlignmentOptions.MidlineLeft);
+            prepHintSub.raycastTarget = false;
+
+            // 右上沙漏倒计时 [1450, 46, 180, 50]
+            var clockRing = QdaoUguiFactory.CreateImage("PrepClockRing", _prepPanel, 1450f, 50f, 40f, 40f, null, false);
+            clockRing.color = QdaoUguiTheme.Html("#BD9D60");
+            var clockInner = QdaoUguiFactory.CreateImage("PrepClockInner", clockRing.transform, 2f, 2f, 36f, 36f, null, false);
+            clockInner.color = QdaoUguiTheme.Html("#FFF8E7");
+            var sandglassSprite = SeasonEconomyUiArt.LoadRankedV3PrepControl("countdown-sandglass");
+            var sandglassImg = QdaoUguiFactory.CreateImage("PrepSandglass", clockRing.transform, 7.5f, 5.5f, 25f, 29f, sandglassSprite, false);
+            sandglassImg.preserveAspect = true;
+            sandglassImg.gameObject.SetActive(sandglassSprite != null);
+
+            _prepCountdownText = QdaoUguiFactory.CreateText("PrepCountdown", _prepPanel, 1494f, 46f, 136f, 44f,
+                "15 秒", 34f, prepJade, TextAlignmentOptions.Center);
+            _prepCountdownText.fontStyle = FontStyles.Bold;
+            _prepCountdownText.raycastTarget = false;
+            var prepTrack = QdaoUguiFactory.CreateImage("PrepCountdownTrack", _prepPanel, 1498f, 92f, 126f, 4f, null, false);
+            prepTrack.color = QdaoUguiTheme.Html("#D7CCB4");
+            _prepCountdownFillImg = QdaoUguiFactory.CreateImage("PrepCountdownFill", prepTrack.transform, 0f, 0f, 126f, 4f, null, false);
+            _prepCountdownFillImg.color = QdaoUguiTheme.Html("#528567");
+            _prepCountdownFill = _prepCountdownFillImg.rectTransform;
+
+            // 右上分隔线 + 本队已锁定 X/N + 5 枚竖丸状态点 [1650, 52, 274, 44]
+            var readyDivider = QdaoUguiFactory.CreateImage("PrepReadyDivider", _prepPanel, 1646f, 54f, 1f, 38f, null, false);
+            readyDivider.color = QdaoUguiTheme.Html("#C9B58A");
+            _prepTeamReadyText = QdaoUguiFactory.CreateText("PrepTeamReadyCount", _prepPanel, 1656f, 52f, 192f, 42f,
+                "本队已锁定 0/1", 23f, QdaoUguiTheme.Html("#364E32"), TextAlignmentOptions.MidlineRight);
+            _prepTeamReadyText.font = kaiFont;
+            _prepTeamReadyText.fontStyle = FontStyles.Bold;
+            _prepTeamReadyText.raycastTarget = false;
+            for (int i = 0; i < _prepReadyDots.Length; i++)
+            {
+                var dot = QdaoUguiFactory.CreateImage($"PrepReadyDot_{i}", _prepPanel, 1854f + i * 15f, 65f, 11f, 16f, null, false);
+                dot.color = QdaoUguiTheme.Html("#E3D6B7");
+                dot.gameObject.SetActive(false);
+                _prepReadyDots[i] = dot;
+            }
+
+            // 第一排：临场赛季印（y=110, h=64）
+            var sealLbl = QdaoUguiFactory.CreateText("PrepSealLabel", _prepPanel, 30f, 112f, 126f, 34f,
+                "临场赛季印", 27f, prepInk, TextAlignmentOptions.Center);
+            sealLbl.font = kaiFont;
+            sealLbl.fontStyle = FontStyles.Bold;
+            sealLbl.fontWeight = FontWeight.Bold;
+            sealLbl.raycastTarget = false;
+            var sealSubLbl = QdaoUguiFactory.CreateText("PrepSealSubLabel", _prepPanel, 30f, 146f, 126f, 24f,
+                "点选即提交", 19f, QdaoUguiTheme.Html("#77613F"), TextAlignmentOptions.Center);
+            sealSubLbl.raycastTarget = false;
+
+            _prepSealEmptyText = QdaoUguiFactory.CreateText("PrepSealEmpty", _prepPanel, 168f, 110f, 1752f, 64f,
+                "当前无可调整的赛季印，可直接锁定出战", 24f, QdaoUguiTheme.Html("#6D5735"), TextAlignmentOptions.Center);
+            _prepSealEmptyText.raycastTarget = false;
+            _prepSealEmptyText.gameObject.SetActive(false);
+            var sealNormalSprite = SeasonEconomyUiArt.LoadRankedV3PrepControl("prep-seal-normal");
+            for (int i = 0; i < _prepSealSlots.Length; i++)
+            {
+                int slotIdx = i;
+                var btn = BattleUiWidgets.CreateTextButton($"PrepSeal_{i}", _prepPanel,
+                    168f + i * 438f, 110f, 426f, 64f, string.Empty, 22f, SeasonEconomyUiArt.BattleArenaPaper, prepInk);
+                btn.Label.gameObject.SetActive(false);
+                SeasonEconomyUiArt.ApplyFixedControlSprite(btn.Plate, sealNormalSprite, SeasonEconomyUiArt.BattleArenaPaper);
+                var iconRing = QdaoUguiFactory.CreateImage("SealIconRing", btn.Rect, 15f, 7f, 50f, 50f, null, false);
+                iconRing.color = QdaoUguiTheme.Html("#FFF7E4");
+                var icon = QdaoUguiFactory.CreateImage("SealIcon", iconRing.transform, 1f, 1f, 48f, 48f, null, false);
+                icon.preserveAspect = true;
+                var plaque = QdaoUguiFactory.CreateImage("SealPlaque", btn.Rect, 15f, 7f, 50f, 50f, null, false);
+                plaque.color = QdaoUguiTheme.Html("#F4ECD9");
+                var glyph = QdaoUguiFactory.CreateText("SealGlyph", plaque.transform, 0f, 0f, 50f, 50f,
+                    "印", 24f, QdaoUguiTheme.Html("#8C764B"), TextAlignmentOptions.Center);
+                glyph.font = kaiFont;
+                glyph.fontStyle = FontStyles.Bold;
+                glyph.raycastTarget = false;
+                var nameTxt = QdaoUguiFactory.CreateText("SealName", btn.Rect, 76f, 14f, 160f, 36f,
+                    string.Empty, 29f, QdaoUguiTheme.Html("#172D20"), TextAlignmentOptions.MidlineLeft);
+                nameTxt.font = kaiFont;
+                nameTxt.fontStyle = FontStyles.Bold;
+                nameTxt.fontWeight = FontWeight.Bold;
+                nameTxt.overflowMode = TextOverflowModes.Ellipsis;
+                nameTxt.raycastTarget = false;
+                var tagTxt = QdaoUguiFactory.CreateText("SealTag", btn.Rect, 240f, 19f, 112f, 26f,
+                    string.Empty, 20f, QdaoUguiTheme.Html("#6E5134"), TextAlignmentOptions.MidlineRight);
+                tagTxt.overflowMode = TextOverflowModes.Ellipsis;
+                tagTxt.raycastTarget = false;
+                var stampTxt = QdaoUguiFactory.CreateText("SealSelectedStamp", btn.Rect, 358f, 17f, 54f, 28f,
+                    "已选", 18f, QdaoUguiTheme.Html("#FFF3D9"), TextAlignmentOptions.MidlineRight);
+                stampTxt.font = kaiFont;
+                stampTxt.fontStyle = FontStyles.Bold;
+                stampTxt.raycastTarget = false;
+                stampTxt.gameObject.SetActive(false);
+                btn.Button.onClick.AddListener(() => OnPrepSealClicked(slotIdx));
+                btn.SetVisible(false);
+                _prepSealSlots[i] = new PrepSealSlotView
+                {
+                    Button = btn, Icon = icon, FallbackPlaque = plaque, FallbackGlyph = glyph,
+                    NameText = nameTxt, TagText = tagTxt, SelectedStamp = stampTxt,
+                };
+            }
+
+            // 第二排：临场首发宠（y=184, h=86）
+            var petLbl = QdaoUguiFactory.CreateText("PrepPetLabel", _prepPanel, 30f, 192f, 126f, 34f,
+                "临场首发宠", 27f, prepInk, TextAlignmentOptions.Center);
+            petLbl.font = kaiFont;
+            petLbl.fontStyle = FontStyles.Bold;
+            petLbl.fontWeight = FontWeight.Bold;
+            petLbl.raycastTarget = false;
+            var petSubLbl = QdaoUguiFactory.CreateText("PrepPetSubLabel", _prepPanel, 30f, 228f, 126f, 24f,
+                "速 / 血优先", 19f, QdaoUguiTheme.Html("#77613F"), TextAlignmentOptions.Center);
+            petSubLbl.raycastTarget = false;
+
+            _prepPetEmptyText = QdaoUguiFactory.CreateText("PrepPetEmpty", _prepPanel, 168f, 184f, 1752f, 86f,
+                "当前无可替换备选灵宠，可直接调整赛季印并锁定", 25f, QdaoUguiTheme.Html("#6F5938"), TextAlignmentOptions.MidlineLeft);
+            _prepPetEmptyText.raycastTarget = false;
+            var petNormalSprite = SeasonEconomyUiArt.LoadRankedV3PrepControl("prep-pet-normal");
+            for (int i = 0; i < _prepPetSlots.Length; i++)
+            {
+                int slotIdx = i;
+                var btn = BattleUiWidgets.CreateTextButton($"PrepPet_{i}", _prepPanel,
+                    168f + i * 294f, 184f, 282f, 86f, string.Empty, 20f, SeasonEconomyUiArt.BattleArenaPaper, prepInk);
+                btn.Label.gameObject.SetActive(false);
+                SeasonEconomyUiArt.ApplyFixedControlSprite(btn.Plate, petNormalSprite, SeasonEconomyUiArt.BattleArenaPaper);
+                var portraitFrame = QdaoUguiFactory.CreateImage("PetPortraitFrame", btn.Rect, 13f, 10f, 66f, 66f, null, false);
+                portraitFrame.color = QdaoUguiTheme.Html("#C5A25B");
+                var portraitInner = QdaoUguiFactory.CreateImage("PetPortraitInner", portraitFrame.transform, 2f, 2f, 62f, 62f, null, false);
+                portraitInner.color = QdaoUguiTheme.Html("#F6EDDA");
+                var portrait = QdaoUguiFactory.CreateImage("PetPortrait", portraitInner.transform, 0f, 0f, 62f, 62f, null, false);
+                portrait.preserveAspect = true;
+                var plaque = QdaoUguiFactory.CreateImage("PetPlaque", portraitInner.transform, 0f, 0f, 62f, 62f, null, false);
+                plaque.color = QdaoUguiTheme.Html("#F4ECD9");
+                var glyph = QdaoUguiFactory.CreateText("PetGlyph", plaque.transform, 0f, 0f, 62f, 62f,
+                    "灵", 28f, QdaoUguiTheme.Html("#8C764B"), TextAlignmentOptions.Center);
+                glyph.font = kaiFont;
+                glyph.fontStyle = FontStyles.Bold;
+                glyph.raycastTarget = false;
+                var nameTxt = QdaoUguiFactory.CreateText("PetName", btn.Rect, 90f, 8f, 158f, 32f,
+                    string.Empty, 27f, QdaoUguiTheme.Html("#173522"), TextAlignmentOptions.MidlineLeft);
+                nameTxt.font = kaiFont;
+                nameTxt.fontStyle = FontStyles.Bold;
+                nameTxt.fontWeight = FontWeight.Bold;
+                nameTxt.overflowMode = TextOverflowModes.Ellipsis;
+                nameTxt.raycastTarget = false;
+                var lvlTxt = QdaoUguiFactory.CreateText("PetLevel", btn.Rect, 91f, 37f, 150f, 20f,
+                    string.Empty, 17f, QdaoUguiTheme.Html("#765C3E"), TextAlignmentOptions.MidlineLeft);
+                lvlTxt.raycastTarget = false;
+                var statsTxt = QdaoUguiFactory.CreateText("PetStats", btn.Rect, 90f, 57f, 182f, 24f,
+                    string.Empty, 21f, QdaoUguiTheme.Html("#182C20"), TextAlignmentOptions.MidlineLeft);
+                statsTxt.overflowMode = TextOverflowModes.Ellipsis;
+                statsTxt.raycastTarget = false;
+                var checkTxt = QdaoUguiFactory.CreateText("PetSelectedCheck", btn.Rect, 250f, 8f, 22f, 22f,
+                    "✓", 19f, QdaoUguiTheme.Html("#FFF4D4"), TextAlignmentOptions.Center);
+                checkTxt.fontStyle = FontStyles.Bold;
+                checkTxt.raycastTarget = false;
+                checkTxt.gameObject.SetActive(false);
+                btn.Button.onClick.AddListener(() => OnPrepPetClicked(slotIdx));
+                btn.SetVisible(false);
+                _prepPetSlots[i] = new PrepPetSlotView
+                {
+                    Button = btn, Portrait = portrait, FallbackPlaque = plaque, FallbackGlyph = glyph,
+                    NameText = nameTxt, LevelText = lvlTxt, StatsText = statsTxt, SelectedCheck = checkTxt,
+                };
+            }
+
+            // 底部分隔金线 + 敌方初阵 + 己方协同横向条（紧贴内金边之上）
+            var coordRule = QdaoUguiFactory.CreateImage("PrepCoordDivider", _prepPanel, 31f, 274f, 1518f, 1f, null, false);
+            coordRule.color = QdaoUguiTheme.Html("#CBB68C");
+
+            var enemyLbl = QdaoUguiFactory.CreateText("PrepEnemyLabel", _prepPanel, 31f, 275f, 114f, 26f,
+                "敌方初阵", 24f, QdaoUguiTheme.Html("#163C27"), TextAlignmentOptions.Center);
+            enemyLbl.font = kaiFont;
+            enemyLbl.fontStyle = FontStyles.Bold;
+            enemyLbl.fontWeight = FontWeight.Bold;
+            enemyLbl.raycastTarget = false;
+            _prepEnemySummaryText = QdaoUguiFactory.CreateText("PrepEnemySummary", _prepPanel, 168f, 275f, 1380f, 26f,
+                string.Empty, 22f, QdaoUguiTheme.Html("#3E412C"), TextAlignmentOptions.MidlineLeft);
+            _prepEnemySummaryText.overflowMode = TextOverflowModes.Ellipsis;
+            _prepEnemySummaryText.raycastTarget = false;
+
+            var teamLbl = QdaoUguiFactory.CreateText("PrepTeamLabel", _prepPanel, 31f, 304f, 114f, 44f,
+                "己方协同", 24f, QdaoUguiTheme.Html("#163C27"), TextAlignmentOptions.Center);
+            teamLbl.font = kaiFont;
+            teamLbl.fontStyle = FontStyles.Bold;
+            teamLbl.fontWeight = FontWeight.Bold;
+            teamLbl.raycastTarget = false;
+            var teamViewport = QdaoUguiFactory.CreateRect("PrepTeamScroll", _prepPanel, 168f, 300f, 1380f, 52f);
+            var teamViewportImg = teamViewport.gameObject.AddComponent<Image>();
+            teamViewportImg.color = new Color(0f, 0f, 0f, 0.001f);
+            teamViewportImg.raycastTarget = true;
+            teamViewport.gameObject.AddComponent<UnityEngine.UI.RectMask2D>();
+            _prepTeamContent = QdaoUguiFactory.CreateRect("PrepTeamContent", teamViewport, 0f, 0f, 1380f, 52f);
+            _prepTeamScroll = teamViewport.gameObject.AddComponent<UnityEngine.UI.ScrollRect>();
+            _prepTeamScroll.viewport = teamViewport;
+            _prepTeamScroll.content = _prepTeamContent;
+            _prepTeamScroll.horizontal = true;
+            _prepTeamScroll.vertical = false;
+            _prepTeamScroll.movementType = UnityEngine.UI.ScrollRect.MovementType.Clamped;
+
+            // 右下锁定提示 + 三态帮会锁定主按钮 [1580, 294, 352, 62]
+            _prepLockHintText = QdaoUguiFactory.CreateText("PrepLockHint", _prepPanel, 1580f, 271f, 352f, 23f,
+                "一点易印换宠，锁定后不可更改", 19f, QdaoUguiTheme.Html("#735A36"), TextAlignmentOptions.Center);
+            _prepLockHintText.raycastTarget = false;
+
+            var lockNormalSprite = SeasonEconomyUiArt.LoadRankedV3PrepControl("lock-button-normal") ?? primaryBtnSprite;
+            _prepLockButton = BattleUiWidgets.CreateTextButton("PrepLockBtn", _prepPanel, 1580f, 294f, 352f, 62f,
+                "锁定出战", 32f, SeasonEconomyUiArt.BattleArenaJade, QdaoUguiTheme.Html("#FFF3D4"));
+            if (lockNormalSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(_prepLockButton.Plate, lockNormalSprite, SeasonEconomyUiArt.BattleArenaJade);
+            else BattleRoundCounter.ApplyNineSlice(_prepLockButton.Plate, "button_9slice");
+            _prepLockButton.Label.font = kaiFont;
+            _prepLockButton.Label.fontStyle = FontStyles.Bold;
+            _prepLockButton.Label.fontWeight = FontWeight.Bold;
+            _prepLockButton.Button.onClick.AddListener(OnPrepLockClicked);
+            _prepPanel.gameObject.SetActive(false);
+
+            // 观战者战前明牌变阵顶部专属只读提示（帮会页签风，零按钮、零 raycast、绝不透出任何私密选择）
+            var specBannerSprite = SeasonEconomyUiArt.LoadBattleArenaAsset("guild_tab_normal")
+                ?? SeasonEconomyUiArt.LoadBattleArenaControl("round-counter-base");
+            var specBanner = BattleUiWidgets.CreatePanel("SpectatorPrepBanner", _hudRoot, 920f, 122f, 720f, 66f,
+                SeasonEconomyUiArt.BattleArenaPaper, raycastTarget: false);
+            if (specBannerSprite != null) SeasonEconomyUiArt.ApplyFixedControlSprite(specBanner, specBannerSprite, SeasonEconomyUiArt.BattleArenaPaper);
+            else BattleRoundCounter.ApplyNineSlice(specBanner, "panel_9slice");
+            _spectatorPrepBanner = specBanner.rectTransform;
+            _spectatorPrepText = QdaoUguiFactory.CreateText("SpectatorPrepText", _spectatorPrepBanner, 20f, 0f, 680f, 66f,
+                "战前明牌变阵中…", 30f, QdaoUguiTheme.Html("#173F28"), TextAlignmentOptions.Center);
+            _spectatorPrepText.font = kaiFont;
+            _spectatorPrepText.fontStyle = FontStyles.Bold;
+            _spectatorPrepText.fontWeight = FontWeight.Bold;
+            _spectatorPrepText.raycastTarget = false;
+            _spectatorPrepBanner.gameObject.SetActive(false);
+
+            _statusPopup = BattleUiWidgets.CreatePanel("UnitStatusPopup", _hudRoot, 36f, 224f, 468f, 326f,
+                new Color(0.11f, 0.14f, 0.16f, 0.94f), true);
+            BattleRoundCounter.ApplyNineSlice(_statusPopup, "panel_9slice");
+            _statusPopupTitle = QdaoUguiFactory.CreateText("UnitStatusTitle", _statusPopup.transform,
+                18f, 12f, 384f, 32f, string.Empty, 20f, QdaoUguiTheme.Html("#FFE6A0"), TextAlignmentOptions.MidlineLeft);
+            _statusPopupTitle.fontStyle = FontStyles.Bold;
+            _statusPopupTitle.enableAutoSizing = true;
+            _statusPopupTitle.fontSizeMin = 14f;
+            _statusPopupTitle.fontSizeMax = 20f;
+            var statusClose = BattleUiWidgets.CreateTextButton("UnitStatusClose", _statusPopup.transform,
+                412f, 10f, 44f, 36f, "×", 22f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            statusClose.Button.onClick.AddListener(HideUnitStatusPopup);
+            _statusPopupBody = BattleUiWidgets.CreateWrappedText("UnitStatusBody", _statusPopup.transform,
+                18f, 52f, 432f, 260f, string.Empty, 16f, QdaoUguiTheme.Cream);
+            _statusPopupBody.overflowMode = TextOverflowModes.Ellipsis;
+            _statusPopup.gameObject.SetActive(false);
+
             _skillPanel.gameObject.SetActive(false);
             _itemPanel.gameObject.SetActive(false);
             BattleFidelityArt.ApplyHud(_hudRoot);
@@ -464,8 +902,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _deadlineStartMs = 0;
             _pending = PendingKind.None;
             _selectedTargetId = 0;
-            _coreTelegraphTargetId = 0;
-            _coreSecondTelegraphTargetId = 0;
+            _coreTelegraphTargetIds.Clear();
             _coreProtectedGuardActorId = 0;
             _shownOutcome = eBattleOutcome.BattleOutcomeOngoing;
             _notReadySince = -1f;   // 宽限期从本局第一次观察到未就绪起算
@@ -476,7 +913,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _logPanel.SetVisible(false);
             _orderBar.Clear();
             ApplyState(state);
-            _roundCounter.SetRound(state?.RoundIndex ?? 0, false);
+            _roundCounter.SetRound(state?.RoundIndex ?? 0, false, roundLimit: CurrentRoundLimit());
             ExitTargetMode();
             RefreshSpectateHeader();
             SetReplayControlsVisible(replay);
@@ -492,9 +929,28 @@ namespace MmorpgClient.UI.Ugui.Battle
             foreach (var view in _views) view.Destroy();
             _views.Clear();
             _viewById.Clear();
-            _coreTelegraphTargetId = 0;
-            _coreSecondTelegraphTargetId = 0;
+            _coreTelegraphTargetIds.Clear();
             _coreProtectedGuardActorId = 0;
+            _surrenderRequestPending = false;
+            _surrenderButton?.SetVisible(false);
+            if (_surrenderConfirmStrip != null) _surrenderConfirmStrip.gameObject.SetActive(false);
+            if (_surrenderVoteStrip != null) _surrenderVoteStrip.gameObject.SetActive(false);
+            _quickParryButton?.SetVisible(false);
+            _prepState = null;
+            _prepRequestPending = false;
+            _prepPanelWasVisible = false;
+            _prepExpiredShown = false;
+            _expandedPrepTeamIds.Clear();
+            ClearPrepTeamChips();
+            if (_prepPanel != null)
+            {
+                RealtimeTween.Kill(_prepPanel.gameObject);
+                _prepPanel.anchoredPosition = new Vector2(PrepPanelRect.x, -PrepPanelRect.y);
+                if (_prepCanvasGroup != null) _prepCanvasGroup.alpha = 1f;
+                _prepPanel.gameObject.SetActive(false);
+            }
+            if (_spectatorPrepBanner != null) _spectatorPrepBanner.gameObject.SetActive(false);
+            HideUnitStatusPopup();
             _orderBar.Clear();
             _partyCards.Clear();
             _state = null;
@@ -532,8 +988,23 @@ namespace MmorpgClient.UI.Ugui.Battle
         public void SetCoreLoopActorMarkers(ulong firstTargetId, ulong secondTargetId,
             ulong protectedGuardActorId)
         {
-            _coreTelegraphTargetId = firstTargetId;
-            _coreSecondTelegraphTargetId = secondTargetId;
+            _coreTelegraphTargetIds.Clear();
+            if (firstTargetId != 0UL) _coreTelegraphTargetIds.Add(firstTargetId);
+            if (secondTargetId != 0UL) _coreTelegraphTargetIds.Add(secondTargetId);
+            _coreProtectedGuardActorId = protectedGuardActorId;
+            RefreshActorMarkers();
+        }
+
+        public void SetCoreLoopActorMarkers(IReadOnlyList<ulong> telegraphTargetIds, ulong protectedGuardActorId)
+        {
+            _coreTelegraphTargetIds.Clear();
+            if (telegraphTargetIds != null)
+            {
+                for (int i = 0; i < telegraphTargetIds.Count; i++)
+                {
+                    if (telegraphTargetIds[i] != 0UL) _coreTelegraphTargetIds.Add(telegraphTargetIds[i]);
+                }
+            }
             _coreProtectedGuardActorId = protectedGuardActorId;
             RefreshActorMarkers();
         }
@@ -550,7 +1021,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             foreach (var pair in _viewById)
             {
                 bool festivalMarked = pair.Key != 0UL && pair.Key == _festivalTelegraphTargetId;
-                bool coreMarked = pair.Key != 0UL && (pair.Key == _coreTelegraphTargetId || pair.Key == _coreSecondTelegraphTargetId);
+                bool coreMarked = pair.Key != 0UL && _coreTelegraphTargetIds.Contains(pair.Key);
                 pair.Value.SetCoreMarkers(
                     festivalMarked || coreMarked,
                     pair.Key == _coreProtectedGuardActorId && _coreProtectedGuardActorId != 0UL,
@@ -558,8 +1029,9 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
         }
 
-        private static uint CurrentRoundLimit()
+        private uint CurrentRoundLimit()
         {
+            if (_state != null && _state.RoundLimit > 0u) return _state.RoundLimit;
             if (!(FestivalBeast.FestivalBeastUiRoot.Instance?.IsActiveFestivalBeastBattle ?? false)) return 0u;
             uint configured = Game.FestivalBeast.FestivalBeastClient.Instance?.Detail?.RoundLimit ?? 0u;
             return configured == 0u ? 12u : configured;
@@ -603,7 +1075,18 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 foreach (var actor in state.Actors)
                 {
-                    if (!_viewById.ContainsKey(actor.ActorId)) { structural = true; break; }
+                    if (!_viewById.TryGetValue(actor.ActorId, out var existing))
+                    {
+                        structural = true;
+                        break;
+                    }
+                    // 论剑 V3 战前换首发宠原地复用 actor_id，pet_id 或 pet_table_id 变化时须重建单位立绘与名牌。
+                    if (actor.ActorType == eBattleActorType.BattleActorTypePet && existing.LastState != null &&
+                        (existing.LastState.PetId != actor.PetId || existing.LastState.PetTableId != actor.PetTableId))
+                    {
+                        structural = true;
+                        break;
+                    }
                 }
             }
             if (structural) RebuildUnits(state);
@@ -645,8 +1128,11 @@ namespace MmorpgClient.UI.Ugui.Battle
                 }
             }
 
+            _prepState = state.PrepState != null && state.PrepState.Active ? state.PrepState.Clone() : null;
             RefreshPendingText();
             RefreshActionBar();
+            RefreshPrepUi();
+            RefreshUnitStatusPopup();
         }
 
         private void RebuildUnits(BattleStateS2C state)
@@ -684,8 +1170,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _views.Add(view);
                 _viewById[actor.ActorId] = view;
             }
-            SetCoreLoopActorMarkers(_coreTelegraphTargetId, _coreSecondTelegraphTargetId,
-                _coreProtectedGuardActorId);
+            RefreshActorMarkers();
 
             // 绘制顺序:脚底 y 升序(下方的后画,盖住上方的);宝宝脚底在主人左上方,自然被主人盖住(与视频一致)
             _views.Sort((a, b) => BattleStage.CompareDepth(a.FootPosition, b.FootPosition));
@@ -719,7 +1204,17 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_spectate)
             {
                 // 观众没有本地相位,顶部信息完全由权威状态推导
-                if (_state != null && _state.Outcome == eBattleOutcome.BattleOutcomeOngoing)
+                if (_prepState != null && _prepState.Active)
+                {
+                    long prepRemainMs = (long)_prepState.DeadlineMs - BattleUiWidgets.NowUnixMs();
+                    float totalMs = System.Math.Max(1000f, (_prepState.DurationSeconds > 0 ? _prepState.DurationSeconds : 15u) * 1000f);
+                    string specCaption = prepRemainMs > 0 ? "战前明牌变阵中…" : "等待开局…";
+                    _phaseText.text = specCaption;
+                    if (_spectatorPrepText != null) _spectatorPrepText.text = specCaption;
+                    SetTimer(_prepState.DeadlineMs != 0 ? System.Math.Max(0, prepRemainMs) : -1,
+                        prepRemainMs > 0 ? Mathf.Clamp01(prepRemainMs / totalMs) : 0f);
+                }
+                else if (_state != null && _state.Outcome == eBattleOutcome.BattleOutcomeOngoing)
                 {
                     long remainMs = (long)_deadlineMs - BattleUiWidgets.NowUnixMs();
                     _phaseText.text = remainMs > 0
@@ -732,6 +1227,25 @@ namespace MmorpgClient.UI.Ugui.Battle
                     _phaseText.text = "战斗已结束";
                     SetTimer(-1, 0f);
                 }
+                return;
+            }
+            if (_prepState != null && _prepState.Active)
+            {
+                long prepRemainMs = (long)_prepState.DeadlineMs - BattleUiWidgets.NowUnixMs();
+                float totalMs = System.Math.Max(1000f, (_prepState.DurationSeconds > 0 ? _prepState.DurationSeconds : 15u) * 1000f);
+                int sec = prepRemainMs > 0 ? (int)((prepRemainMs + 999L) / 1000L) : 0;
+                float ratio = prepRemainMs > 0 ? Mathf.Clamp01(prepRemainMs / totalMs) : 0f;
+                bool expired = _prepState.DeadlineMs != 0 && prepRemainMs <= 0;
+                if (expired != _prepExpiredShown)
+                {
+                    _prepExpiredShown = expired;
+                    RefreshPrepUi();
+                }
+                _phaseText.text = IsChannelFailed() ? ChannelFailedPhaseText
+                    : !IsChannelReady() ? "等待战斗连接…"
+                    : !expired ? "战前明牌变阵" : "等待开局…";
+                SetTimer(_prepState.DeadlineMs != 0 ? System.Math.Max(0, prepRemainMs) : -1, ratio);
+                UpdatePrepCountdownLabel(sec, ratio);
                 return;
             }
             switch (_phase)
@@ -796,6 +1310,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _orderBar.Root.anchoredPosition = new Vector2(0f, -(BattleActionOrderBar.Top + offset));
             _timerRoot.anchoredPosition = new Vector2(TimerRect.x, -(TimerRect.y + offset));
             _phaseText.rectTransform.anchoredPosition = new Vector2(40f, -(98f + offset));
+            if (_spectatorPrepBanner != null)
+                _spectatorPrepBanner.anchoredPosition = new Vector2(920f, -(122f + offset));
             _pendingText.rectTransform.anchoredPosition = new Vector2(PendingTextRect.x,
                 -(PendingTextRect.y + offset));
             float partyOffset = offset;
@@ -885,6 +1401,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                     if (FindMyActor()?.ActorType == eBattleActorType.BattleActorTypePet) { SetHint("宝宝只能攻击、施放技能或防御"); return; }
                     if (!IsPveBattle()) { SetHint("PVP 战斗不可逃跑"); return; }
                     CloseSubPanels();
+                    if (CoreGameplayLoopModels.IsBossTrialKind(_state?.BossTrialKind ?? 0u))
+                        SetHint("确认退出试炼（100% 确定离场，不消耗任何场外资产）");
                     Submit(new BattleAction { ActionType = eBattleActionType.BattleActionFlee });
                     break;
                 case BattleCommand.Auto:
@@ -982,7 +1500,16 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (_pending == PendingKind.None)
             {
-                SelectActingActor(actorId);
+                var clickedActor = FindActor(actorId);
+                bool canSwitchActing = !IsReadOnly && !_playing && _phase == BattlePhase.WaitingAction &&
+                    IsControlled(clickedActor) && _actingId != actorId;
+                if (canSwitchActing)
+                {
+                    SelectActingActor(actorId);
+                    HideUnitStatusPopup();
+                    return;
+                }
+                ToggleUnitStatusPopup(actorId);
                 return;
             }
             if (!CanAct()) return;
@@ -991,6 +1518,68 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             _selectedTargetId = actorId;
             RefreshTargetSelection();
+        }
+
+        private void ToggleUnitStatusPopup(ulong actorId)
+        {
+            if (_statusPopup == null || actorId == 0) return;
+            if (_statusPopup.gameObject.activeSelf && _inspectedActorId == actorId)
+            {
+                HideUnitStatusPopup();
+                return;
+            }
+            _inspectedActorId = actorId;
+            _statusPopup.gameObject.SetActive(true);
+            _statusPopup.transform.SetAsLastSibling();
+            RefreshUnitStatusPopup();
+        }
+
+        private void HideUnitStatusPopup()
+        {
+            _inspectedActorId = 0;
+            if (_statusPopup != null) _statusPopup.gameObject.SetActive(false);
+        }
+
+        private void RefreshUnitStatusPopup()
+        {
+            if (_statusPopup == null || !_statusPopup.gameObject.activeSelf) return;
+            var actor = FindActor(_inspectedActorId);
+            if (actor == null) { HideUnitStatusPopup(); return; }
+            var summary = BattleUnitStatusInspector.Inspect(actor,
+                skillId => Skills.SkillUiRoot.FindPresentation(skillId)?.name);
+            string actorName = ResolveName(_inspectedActorId);
+            _statusPopupTitle.text = summary.IsCharging
+                ? $"{actorName} · 蓄力：{summary.ChargingSkillName}"
+                : $"{actorName} · 状态详情";
+            _statusPopupBody.text = FormatUnitStatusBody(actor, summary);
+        }
+
+        public static string FormatUnitStatusBody(BattleActorState actor, BattleUnitStatusSummary summary)
+        {
+            if (actor == null || summary == null) return string.Empty;
+            var sb = new System.Text.StringBuilder(192);
+            ulong hp = actor.Attributes?.Health ?? 0UL;
+            ulong mp = actor.Attributes?.Mana ?? 0UL;
+            sb.Append($"气血 {hp}/{actor.MaxHealth}   法力 {mp}/{actor.MaxMana}");
+            if (summary.TotalShieldCapacity > 0UL) sb.Append($"\n持久护盾：{summary.TotalShieldCapacity}");
+            if (summary.IsCharging) sb.Append($"\n蓄力中：{summary.ChargingSkillName}（可打断 / 驱散 / 护盾应对）");
+            if (summary.Buffs.Count == 0)
+            {
+                sb.Append("\n\n当前无生效状态");
+                return sb.ToString();
+            }
+            sb.Append('\n');
+            for (int i = 0; i < summary.Buffs.Count; i++)
+            {
+                var b = summary.Buffs[i];
+                sb.Append($"\n• {b.SourceName}");
+                if (b.Stacks > 1) sb.Append($" ×{b.Stacks}层");
+                if (b.RemainingCapacity > 0UL) sb.Append($" 盾{b.RemainingCapacity}");
+                if (b.RemainingHits > 0) sb.Append($" 余{b.RemainingHits}次");
+                if (b.RemainingTicks > 0) sb.Append($" 余{b.RemainingTicks}跳");
+                if (b.RemainRounds > 0) sb.Append($" ({b.RemainRounds}回合)");
+            }
+            return sb.ToString();
         }
 
         private bool IsTargetable(BattleUnitView view)
@@ -1019,14 +1608,34 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _selectedTargetId = 0;
             // 临时断线只收起高亮与确认，保留本回合的选择，连接恢复后可以继续确认。
             bool ready = IsChannelReady();
+            var pendingDef = _pending == PendingKind.Skill ? Skills.SkillUiRoot.FindPresentation(_pendingSkillId) : null;
+            bool splashFocus = _pending == PendingKind.Skill && ready &&
+                CoreGameplayLoopModels.IsSplashFocusApplicable(_state, pendingDef?.maxTargets ?? 0u);
             foreach (var view in _views)
-                view.SetHighlight(!ready || !IsTargetable(view) ? SlotHighlight.None :
+            {
+                bool targetable = IsTargetable(view);
+                view.SetHighlight(!ready || !targetable ? SlotHighlight.None :
                     view.ActorId == _selectedTargetId ? SlotHighlight.Selected : SlotHighlight.Targetable);
+                if (splashFocus && targetable && view.TeamIndex != _myTeam)
+                {
+                    if (view.ActorId == _selectedTargetId)
+                        view.SetTargetFocusTag("聚火 100%", true);
+                    else if (_selectedTargetId != 0UL)
+                        view.SetTargetFocusTag("溅射 60%", false);
+                    else
+                        view.SetTargetFocusTag(null, false);
+                }
+                else
+                {
+                    view.SetTargetFocusTag(null, false);
+                }
+            }
             _confirmButton.SetVisible(ready && _selectedTargetId != 0);
         }
 
         private void EnterTargetMode(string hint)
         {
+            HideUnitStatusPopup();
             _selectedTargetId = 0;
             _targetHintText.text = hint ?? string.Empty;
             RefreshTargetSelection();
@@ -1040,7 +1649,11 @@ namespace MmorpgClient.UI.Ugui.Battle
             _pendingItemId = 0;
             _selectedTargetId = 0;
             _targetHintText.text = string.Empty;
-            foreach (var view in _views) view.SetHighlight(SlotHighlight.None);
+            foreach (var view in _views)
+            {
+                view.SetHighlight(SlotHighlight.None);
+                view.SetTargetFocusTag(null, false);
+            }
             _confirmButton.SetVisible(false);
             _cancelButton.SetVisible(false);
             CloseSubPanels();
@@ -1385,11 +1998,17 @@ namespace MmorpgClient.UI.Ugui.Battle
                     : _petSkillTab == 1 ? "暂无可施放的障碍技能" : "暂无可施放的辅助技能"
                 : "暂无可施放技能";
             int index = 0;
+            uint lastUsedSkillId = _owner?.Client?.GetLastUsedSkillId(_actingId) ?? 0u;
             if (me != null)
             {
                 var skillIds = new List<uint>(me.SkillTableIds);
                 skillIds.Sort((a, b) =>
                 {
+                    var defA = Skills.SkillUiRoot.FindPresentation(a);
+                    var defB = Skills.SkillUiRoot.FindPresentation(b);
+                    int passA = defA?.IsPassive == true ? 1 : 0;
+                    int passB = defB?.IsPassive == true ? 1 : 0;
+                    if (passA != passB) return passA.CompareTo(passB);
                     int group = SkillCategory(a).CompareTo(SkillCategory(b));
                     return group != 0 ? group : a.CompareTo(b);
                 });
@@ -1397,34 +2016,49 @@ namespace MmorpgClient.UI.Ugui.Battle
                 {
                     // 列表归属仍来自战斗快照；这里只补显示元数据，不授予技能或计算战斗规则。
                     var definition = Skills.SkillUiRoot.FindPresentation(skillId);
-                    if (definition?.IsPassive == true) continue;
-                    if (isPet && SkillCategory(skillId) != _petSkillTab) continue;
+                    bool isPassive = definition?.IsPassive == true;
+                    if (isPet && !isPassive && SkillCategory(skillId) != _petSkillTab) continue;
                     me.SkillCooldownRounds.TryGetValue(skillId, out uint cooldown);
+                    string blockReason = ResolveSkillBlockReason(me, cooldown, definition);
+                    bool canUse = string.IsNullOrEmpty(blockReason);
+                    bool isLastUsed = !isPassive && lastUsedSkillId != 0u && skillId == lastUsedSkillId;
+
                     int row = index / 3;
                     int col = index % 3;
                     uint captured = skillId;
+                    var plateColor = isLastUsed ? BattleUiStyle.PveSizeSelectedPlate : BattleUiStyle.ButtonPlate;
                     var button = BattleUiWidgets.CreateTextButton($"Skill_{skillId}", _skillContent,
                         col * 284f, row * 100f, 270f, 88f,
-                        string.Empty, 24f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+                        string.Empty, 24f, plateColor, BattleUiStyle.ButtonText);
                     button.Label.gameObject.SetActive(false);
                     BattleRoundCounter.ApplyNineSlice(button.Plate, "button_9slice");
                     var iconSprite = CharacterPetArt.Skill(skillId, 64) ??
-                        (definition == null ? null : QdaoUguiTheme.LoadSprite(definition.IconResource));
+                        (definition == null ? null : QdaoUguiTheme.LoadSprite(definition.IconResource)) ??
+                        SeasonV1UiArt.LoadSkillIcon(skillId);
                     var icon = QdaoUguiFactory.CreateImage("Icon", button.Rect, 10f, 14f, 60f, 60f,
                         iconSprite != null ? iconSprite : QdaoRefreshArt.Load("round_badge_taiji"));
                     icon.preserveAspect = true;
                     icon.raycastTarget = false;
+                    if (MmorpgClient.Game.Season.SeasonModels.IsSeasonalSkill(skillId))
+                        SeasonV1UiArt.CreateSeasonCornerBadge(icon.transform, "SeasonCornerBadge", 38f, 2f, 20f);
                     var skillName = QdaoUguiFactory.CreateText("Name", button.Rect, 80f, 7f, 182f, 36f,
                         definition?.name ?? $"技能{skillId}", 24f, QdaoUguiTheme.Cream);
                     skillName.raycastTarget = false;
                     skillName.textWrappingMode = TextWrappingModes.NoWrap;
                     skillName.overflowMode = TextOverflowModes.Ellipsis;
-                    var detail = cooldown > 0 ? $"冷却 {cooldown} 回合" :
+                    if (isLastUsed)
+                    {
+                        var lastTag = QdaoUguiFactory.CreateText("LastUsed", button.Rect, 198f, 4f, 66f, 20f,
+                            "上回合", 13f, new Color(1f, 0.88f, 0.42f, 1f), TextAlignmentOptions.MidlineRight);
+                        lastTag.fontStyle = FontStyles.Bold;
+                        lastTag.raycastTarget = false;
+                    }
+                    var detail = !canUse ? blockReason :
                         definition == null ? "选择目标后施放" : $"{definition.KindLabel} · {definition.TargetLabel} · {definition.manaPercent * 100:0.#}%法力";
                     var caption = QdaoUguiFactory.CreateText("Detail", button.Rect, 80f, 45f, 182f, 30f,
-                        detail, 19f, cooldown > 0 ? BattleUiStyle.WarnText : QdaoUguiTheme.Cream);
+                        detail, 18f, !canUse ? BattleUiStyle.WarnText : QdaoUguiTheme.Cream);
                     caption.raycastTarget = false;
-                    button.SetInteractable(cooldown == 0);
+                    button.SetInteractable(canUse);
                     button.Button.onClick.AddListener(() => OnSkillPicked(captured));
                     BattleFidelityArt.Button(button.Button);
                     _skillButtons.Add(button);
@@ -1435,6 +2069,37 @@ namespace MmorpgClient.UI.Ugui.Battle
                 Mathf.Max(isPet ? 220f : 300f, ((index + 2) / 3) * 100f));
             _skillScroll.verticalNormalizedPosition = 1f;
             _skillEmptyText.gameObject.SetActive(index == 0);
+        }
+
+        private static string ResolveSkillBlockReason(BattleActorState me, uint cooldown, Skills.SkillDefinition definition)
+        {
+            if (definition?.IsPassive == true) return "被动 · 条件触发";
+            if (cooldown > 0u) return $"冷却 {cooldown} 回合";
+            if (me == null) return string.Empty;
+            if (definition != null && definition.manaPercent > 0d && me.MaxMana > 0ul)
+            {
+                ulong cost = (ulong)System.Math.Ceiling(me.MaxMana * definition.manaPercent);
+                if ((me.Attributes?.Mana ?? 0ul) < cost) return "法力不足";
+            }
+            if (me.Buffs != null)
+            {
+                var mgr = BuffTableManager.Instance;
+                for (int i = 0; i < me.Buffs.Count; i++)
+                {
+                    var row = mgr?.FindById(me.Buffs[i].BuffTableId);
+                    if (row == null) continue;
+                    switch (row.StateKind)
+                    {
+                        case 4u:
+                        case 5u:
+                        case 6u: return "受控不可施放";
+                        case 1u: return "被封灵不可施放";
+                        case 2u when definition != null && (definition.actionTags & 2u) != 0u: return "被封法不可施放";
+                        case 3u when definition != null && (definition.actionTags & 1u) != 0u: return "被封物不可施放";
+                    }
+                }
+            }
+            return string.Empty;
         }
 
         private static int SkillCategory(uint skillId)
@@ -1472,11 +2137,23 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void RefreshActionBar()
         {
             if (_pending != PendingKind.None) RefreshTargetSelection();
-            // 观战 / 回放只读:命令环整体隐藏(不是置灰,没有行动语义)
-            _commandRing.SetVisible(!IsReadOnly);
-            if (IsReadOnly)
+            bool inPrep = _prepState != null && _prepState.Active;
+            // 观战 / 回放只读或战前变阵期:命令环整体隐藏
+            _commandRing.SetVisible(!IsReadOnly && !inPrep);
+            if (IsReadOnly || inPrep)
             {
-                if (_spectate) SetHint(string.Empty);
+                CloseSubPanels();
+                _quickParryButton?.SetVisible(false);
+                _surrenderButton?.SetVisible(false);
+                if (_surrenderConfirmStrip != null) _surrenderConfirmStrip.gameObject.SetActive(false);
+                if (_surrenderVoteStrip != null) _surrenderVoteStrip.gameObject.SetActive(false);
+                if (inPrep)
+                {
+                    _channelReadyShown = IsChannelReady();
+                    _channelFailedShown = IsChannelFailed();
+                    RefreshPrepUi();
+                }
+                if (_spectate || inPrep) SetHint(string.Empty);
                 return;
             }
 
@@ -1499,6 +2176,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _commandRing.SetAutoMode(myAuto);
             _commandRing.SetState(canAct, canFlee, autoInteractable, myAuto, HasCaptureTarget(), !petCommand, FindRecallablePet() != null);
             _commandRing.SetAutoKeysInteractable(true);
+            RefreshQuickParryUi(channelReady);
+            RefreshSurrenderUi();
 
             if (me == null) SetHint(string.Empty);
             else if (me.IsDead) SetHint("你已阵亡,等待战斗结束…");
@@ -1513,6 +2192,626 @@ namespace MmorpgClient.UI.Ugui.Battle
                 SetHint($"正在为 {ResolveName(_actingId)} 选择行动 · 点击自己的角色或宝宝切换" +
                     (petCommand ? " · 宝宝可攻击、技能、防御" : RecallWaitHint() + (canFlee ? "" : " · PVP 不可逃跑")));
             else SetHint(string.Empty);
+        }
+
+        public void OnSurrenderVoteChanged(BattleSurrenderVoteState vote)
+        {
+            _surrenderRequestPending = false;
+            RefreshSurrenderUi();
+        }
+
+        public void OnBattlePrepChanged(BattlePrepState prep)
+        {
+            _prepState = prep != null && prep.Active ? prep.Clone() : null;
+            if (_prepState == null) _prepRequestPending = false;
+            RefreshActionBar();
+            RefreshPrepUi();
+        }
+
+        private void RefreshPrepUi()
+        {
+            if (_prepPanel == null) return;
+            bool prepActive = _prepState != null && _prepState.Active;
+            if (_spectatorPrepBanner != null)
+                _spectatorPrepBanner.gameObject.SetActive(_spectate && prepActive);
+
+            bool show = !IsReadOnly && prepActive;
+            if (!show)
+            {
+                _prepExpiredShown = false;
+                if (_prepPanelWasVisible && _prepPanel.gameObject.activeSelf)
+                {
+                    _prepPanelWasVisible = false;
+                    StartPrepExitAnimation();
+                }
+                else
+                {
+                    _prepPanelWasVisible = false;
+                    _prepPanel.gameObject.SetActive(false);
+                }
+                return;
+            }
+
+            RealtimeTween.Kill(_prepPanel.gameObject);
+            _prepPanel.anchoredPosition = new Vector2(PrepPanelRect.x, -PrepPanelRect.y);
+            if (_prepCanvasGroup != null)
+            {
+                _prepCanvasGroup.alpha = 1f;
+                _prepCanvasGroup.interactable = true;
+                _prepCanvasGroup.blocksRaycasts = true;
+            }
+            if (!_prepPanelWasVisible)
+            {
+                _prepPanelWasVisible = true;
+                _prepPulseOriginTime = Time.unscaledTime;
+            }
+            _prepPanel.gameObject.SetActive(true);
+            _prepPanel.SetAsLastSibling();
+
+            var selfState = FindPrepPlayerState(_prepState, _myId);
+            uint selectedSeal = selfState?.SelectedSealId ?? 0u;
+            ulong selectedPet = selfState?.SelectedPetId ?? 0ul;
+            bool locked = selfState?.Ready == true;
+            bool channelReady = IsChannelReady();
+            long remainMs = (long)_prepState.DeadlineMs - BattleUiWidgets.NowUnixMs();
+            float totalMs = System.Math.Max(1000f, (_prepState.DurationSeconds > 0 ? _prepState.DurationSeconds : 15u) * 1000f);
+            int sec = remainMs > 0 ? (int)((remainMs + 999L) / 1000L) : 0;
+            float ratio = remainMs > 0 ? Mathf.Clamp01(remainMs / totalMs) : 0f;
+            bool expired = _prepState.DeadlineMs != 0 && remainMs <= 0;
+            _prepExpiredShown = expired;
+            bool canEdit = channelReady && !locked && !expired && !_prepRequestPending;
+
+            // 1. 赛季印临场切换（至多 4 枚，d129182 深玉底米白字选中态 + 象牙纸面常态）
+            var sealNormalSprite = SeasonEconomyUiArt.LoadRankedV3PrepControl("prep-seal-normal");
+            var sealSelectedSprite = SeasonEconomyUiArt.LoadRankedV3PrepControl("prep-seal-selected");
+            Color selectedCream = QdaoUguiTheme.Html("#FFF3D9");
+            Color selectedTagGold = QdaoUguiTheme.Html("#F1E5BD");
+            Color sealNormalInk = QdaoUguiTheme.Html("#172D20");
+            int sealCount = _prepState.SelfAvailableSeals.Count;
+            if (_prepSealEmptyText != null) _prepSealEmptyText.gameObject.SetActive(sealCount == 0);
+            for (int i = 0; i < _prepSealSlots.Length; i++)
+            {
+                var slot = _prepSealSlots[i];
+                if (i < sealCount)
+                {
+                    var opt = _prepState.SelfAvailableSeals[i];
+                    _prepSealIds[i] = opt.SealId;
+                    bool active = opt.SealId == selectedSeal;
+                    SeasonEconomyUiArt.ApplyFixedControlSprite(slot.Button.Plate,
+                        active ? sealSelectedSprite : sealNormalSprite,
+                        active ? SeasonEconomyUiArt.BattleArenaJade : SeasonEconomyUiArt.BattleArenaPaper);
+                    if (!canEdit)
+                        slot.Button.Plate.color = locked ? new Color(0.88f, 0.90f, 0.87f, 0.90f) : new Color(0.82f, 0.84f, 0.82f, 0.78f);
+                    var sealIcon = SeasonEconomyUiArt.LoadBattleArenaSealIcon(opt.SealId);
+                    slot.Icon.sprite = sealIcon;
+                    slot.Icon.gameObject.SetActive(sealIcon != null);
+                    slot.FallbackPlaque.gameObject.SetActive(sealIcon == null);
+                    slot.NameText.text = opt.Name;
+                    slot.NameText.color = active ? selectedCream
+                        : !canEdit ? SeasonEconomyUiArt.BattleArenaDisabled : sealNormalInk;
+                    slot.TagText.text = PrepSealTag(opt.EffectId);
+                    slot.TagText.rectTransform.anchoredPosition = new Vector2(active ? 236f : 272f, -19f);
+                    slot.TagText.rectTransform.sizeDelta = new Vector2(active ? 116f : 136f, 26f);
+                    slot.TagText.color = active ? selectedTagGold
+                        : !canEdit ? SeasonEconomyUiArt.BattleArenaDisabled : PrepSealTagColor(opt.EffectId);
+                    if (slot.SelectedStamp != null) slot.SelectedStamp.gameObject.SetActive(active);
+                    slot.Button.SetInteractable(canEdit && !active);
+                    slot.Button.SetVisible(true);
+                }
+                else
+                {
+                    _prepSealIds[i] = 0u;
+                    slot.Button.SetVisible(false);
+                }
+            }
+
+            // 2. 首发灵宠临场切换（至多 6 只，d129182 深玉底米白字选中态；缺头像显示中性「灵」玉符，严禁借别宠肖像）
+            var petNormalSprite = SeasonEconomyUiArt.LoadRankedV3PrepControl("prep-pet-normal");
+            var petSelectedSprite = SeasonEconomyUiArt.LoadRankedV3PrepControl("prep-pet-selected");
+            Color petSelectedName = QdaoUguiTheme.Html("#FFF4DC");
+            Color petSelectedLvl = QdaoUguiTheme.Html("#EADFBE");
+            Color petSelectedStats = QdaoUguiTheme.Html("#FFF1CD");
+            Color petNormalName = QdaoUguiTheme.Html("#173522");
+            Color petNormalLvl = QdaoUguiTheme.Html("#765C3E");
+            Color petNormalStats = QdaoUguiTheme.Html("#182C20");
+            int petCount = _prepState.SelfAvailablePets.Count;
+            bool showPetButtons = petCount > 1 || (petCount == 1 && selectedPet == 0ul);
+            if (_prepPetEmptyText != null) _prepPetEmptyText.gameObject.SetActive(!showPetButtons);
+            for (int i = 0; i < _prepPetSlots.Length; i++)
+            {
+                var slot = _prepPetSlots[i];
+                if (showPetButtons && i < petCount)
+                {
+                    var opt = _prepState.SelfAvailablePets[i];
+                    _prepPetIds[i] = opt.PetId;
+                    bool active = opt.PetId == selectedPet;
+                    SeasonEconomyUiArt.ApplyFixedControlSprite(slot.Button.Plate,
+                        active ? petSelectedSprite : petNormalSprite,
+                        active ? SeasonEconomyUiArt.BattleArenaJade : SeasonEconomyUiArt.BattleArenaPaper);
+                    if (!canEdit)
+                        slot.Button.Plate.color = locked ? new Color(0.88f, 0.90f, 0.87f, 0.90f) : new Color(0.82f, 0.84f, 0.82f, 0.78f);
+                    var petEntry = QdaoPetCatalog.Resolve(opt.PetTableId);
+                    var portrait = petEntry != null ? QdaoPetCatalog.LoadPortrait(petEntry.id) : null;
+                    slot.Portrait.sprite = portrait;
+                    slot.Portrait.gameObject.SetActive(portrait != null);
+                    slot.FallbackPlaque.gameObject.SetActive(portrait == null);
+                    slot.NameText.text = opt.PetName;
+                    slot.NameText.color = active ? petSelectedName
+                        : !canEdit ? SeasonEconomyUiArt.BattleArenaDisabled : petNormalName;
+                    slot.LevelText.text = $"Lv.{opt.Level}";
+                    slot.LevelText.color = active ? petSelectedLvl : petNormalLvl;
+                    slot.StatsText.text = $"速 {opt.Speed}  血 {opt.MaxHealth}";
+                    slot.StatsText.color = active ? petSelectedStats
+                        : !canEdit ? SeasonEconomyUiArt.BattleArenaDisabled : petNormalStats;
+                    if (slot.SelectedCheck != null) slot.SelectedCheck.gameObject.SetActive(active);
+                    slot.Button.SetInteractable(canEdit && !active);
+                    slot.Button.SetVisible(true);
+                }
+                else
+                {
+                    _prepPetIds[i] = 0ul;
+                    slot.Button.SetVisible(false);
+                }
+            }
+
+            // 3. 敌方公开初阵速览（仅读公开初阵单位，绝不推测或读取敌方变阵选择）
+            if (_prepEnemySummaryText != null)
+            {
+                var enemies = new List<string>();
+                if (_state != null)
+                {
+                    foreach (var actor in _state.Actors)
+                    {
+                        if (actor == null || actor.TeamIndex == _myTeam) continue;
+                        string roleTag = actor.ActorType == eBattleActorType.BattleActorTypePet ? "[宠]" : "[人]";
+                        enemies.Add($"{roleTag}{actor.Name} Lv.{actor.Level}");
+                    }
+                }
+                _prepEnemySummaryText.text = enemies.Count > 0 ? string.Join("  ·  ", enemies) : "初阵信息待同步";
+            }
+
+            // 4. 己方同队横向协同条 + 锁定统计竖丸（仅统计 TeamStates）
+            RebuildPrepTeamChips();
+
+            // 5. 状态提示、三态帮会锁定主按钮与倒计时
+            if (_prepLockHintText != null)
+            {
+                if (!channelReady)
+                {
+                    _prepLockHintText.text = "等待战斗连接…";
+                    _prepLockHintText.color = QdaoUguiTheme.Html("#A73E2B");
+                }
+                else if (locked)
+                {
+                    _prepLockHintText.text = "已锁定，本场选择不可再改";
+                    _prepLockHintText.color = QdaoUguiTheme.Html("#3B7045");
+                }
+                else if (expired)
+                {
+                    _prepLockHintText.text = "变阵已截止，等待开局…";
+                    _prepLockHintText.color = SeasonEconomyUiArt.BattleArenaAmber;
+                }
+                else if (_prepRequestPending)
+                {
+                    _prepLockHintText.text = "选择同步中…";
+                    _prepLockHintText.color = QdaoUguiTheme.Html("#235E42");
+                }
+                else
+                {
+                    _prepLockHintText.text = "一点易印换宠，锁定后不可更改";
+                    _prepLockHintText.color = QdaoUguiTheme.Html("#735A36");
+                }
+            }
+            if (_prepLockButton != null)
+            {
+                var lockSprite = locked
+                    ? SeasonEconomyUiArt.LoadRankedV3PrepControl("lock-button-locked")
+                    : canEdit
+                        ? SeasonEconomyUiArt.LoadRankedV3PrepControl("lock-button-normal")
+                        : SeasonEconomyUiArt.LoadRankedV3PrepControl("lock-button-disabled");
+                if (lockSprite != null)
+                    SeasonEconomyUiArt.ApplyFixedControlSprite(_prepLockButton.Plate, lockSprite, SeasonEconomyUiArt.BattleArenaJade);
+                _prepLockButton.SetText(locked ? "已锁定 · 等待对手…" : _prepRequestPending ? "正在锁定…" : "锁定出战");
+                _prepLockButton.Label.fontSize = locked ? 24f : 32f;
+                _prepLockButton.Label.color = locked || canEdit ? QdaoUguiTheme.Html("#FFF3D4") : QdaoUguiTheme.Html("#F2EFE6");
+                _prepLockButton.SetInteractable(canEdit);
+            }
+            UpdatePrepCountdownLabel(sec, ratio);
+        }
+
+        private void StartPrepExitAnimation()
+        {
+            if (_prepPanel == null) return;
+            RealtimeTween.Kill(_prepPanel.gameObject);
+            if (_prepCanvasGroup != null)
+            {
+                _prepCanvasGroup.interactable = false;
+                _prepCanvasGroup.blocksRaycasts = false;
+            }
+            float startY = -PrepPanelRect.y;
+            RealtimeTween.To(0f, 1f, 0.2f).SetEase(RealtimeEase.QuadIn)
+                .SetIgnoreEngineTimeScale(true).SetTarget(_prepPanel.gameObject)
+                .OnUpdate((RealtimeTweenCallback1)(t =>
+                {
+                    if (_prepPanel == null) return;
+                    float k = t.Value.x;
+                    _prepPanel.anchoredPosition = new Vector2(PrepPanelRect.x, startY - 28f * k);
+                    if (_prepCanvasGroup != null) _prepCanvasGroup.alpha = 1f - k;
+                }))
+                .OnComplete((RealtimeTweenCallback)(() =>
+                {
+                    if (_prepPanel == null) return;
+                    _prepPanel.anchoredPosition = new Vector2(PrepPanelRect.x, startY);
+                    if (_prepCanvasGroup != null) _prepCanvasGroup.alpha = 1f;
+                    _prepPanel.gameObject.SetActive(false);
+                }));
+        }
+
+        private void ClearPrepTeamChips()
+        {
+            for (int i = 0; i < _prepTeamChips.Count; i++)
+            {
+                if (_prepTeamChips[i] != null) UnityEngine.Object.Destroy(_prepTeamChips[i]);
+            }
+            _prepTeamChips.Clear();
+        }
+
+        private void RebuildPrepTeamChips()
+        {
+            ClearPrepTeamChips();
+            if (_prepState == null || _prepTeamContent == null) return;
+
+            var kaiFont = QdaoUguiTheme.ResolveFont();
+            Color readyDotColor = QdaoUguiTheme.Html("#47895B");
+            Color idleDotColor = QdaoUguiTheme.Html("#E3D6B7");
+            Color chipReadyDot = QdaoUguiTheme.Html("#438D55");
+            Color chipAdjustDot = QdaoUguiTheme.Html("#B18A45");
+            Color dividerColor = QdaoUguiTheme.Html("#D3C19B");
+
+            int readyCount = 0;
+            int total = _prepState.TeamStates.Count;
+            float cursorX = 0f;
+            for (int i = 0; i < total; i++)
+            {
+                var ps = _prepState.TeamStates[i];
+                if (ps.Ready) readyCount++;
+                if (i < _prepReadyDots.Length && _prepReadyDots[i] != null)
+                {
+                    _prepReadyDots[i].gameObject.SetActive(true);
+                    _prepReadyDots[i].color = ps.Ready ? readyDotColor : idleDotColor;
+                }
+
+                ulong pid = ps.PlayerId;
+                bool expanded = _expandedPrepTeamIds.Contains(pid);
+                float chipW = expanded ? 430f : 264f;
+                var chipBg = BattleUiWidgets.CreatePanel($"PrepTeamChip_{i}", _prepTeamContent, cursorX, 2f, chipW, 48f,
+                    expanded ? new Color(0.90f, 0.92f, 0.84f, 0.55f) : new Color(0f, 0f, 0f, 0.001f), raycastTarget: true);
+                var chipBtn = chipBg.gameObject.AddComponent<UnityEngine.UI.Button>();
+                chipBtn.transition = UnityEngine.UI.Selectable.Transition.None;
+                chipBtn.onClick.AddListener(() =>
+                {
+                    if (!_expandedPrepTeamIds.Add(pid)) _expandedPrepTeamIds.Remove(pid);
+                    RebuildPrepTeamChips();
+                });
+
+                if (i > 0)
+                {
+                    var leftBar = QdaoUguiFactory.CreateImage("Div", chipBg.transform, 0f, 4f, 1f, 40f, null, false);
+                    leftBar.color = dividerColor;
+                }
+                float padLeft = i > 0 ? 12f : 2f;
+                var dot = QdaoUguiFactory.CreateImage("Dot", chipBg.transform, padLeft, 8f, 10f, 10f, null, false);
+                dot.color = ps.Ready ? chipReadyDot : chipAdjustDot;
+                string who = pid == _myId ? "自己" : ResolveName(pid);
+                string sealName = ResolvePrepSealName(_prepState, ps.SelectedSealId);
+                string petName = string.IsNullOrEmpty(ps.SelectedPetName) ? "未出战灵宠" : ps.SelectedPetName;
+                string stateLabel = ps.Ready ? "已锁" : "调整中";
+
+                var topLine = QdaoUguiFactory.CreateText("Top", chipBg.transform, padLeft + 16f, 0f, chipW - padLeft - 88f, 24f,
+                    who, 22f, QdaoUguiTheme.Html("#142F21"), TextAlignmentOptions.MidlineLeft);
+                topLine.font = kaiFont;
+                topLine.fontStyle = FontStyles.Bold;
+                topLine.fontWeight = FontWeight.Bold;
+                topLine.overflowMode = expanded ? TextOverflowModes.Overflow : TextOverflowModes.Ellipsis;
+                topLine.raycastTarget = false;
+
+                var stateTxt = QdaoUguiFactory.CreateText("State", chipBg.transform, chipW - 72f, 0f, 66f, 24f,
+                    stateLabel, 20f, ps.Ready ? QdaoUguiTheme.Html("#3B7045") : QdaoUguiTheme.Html("#8B672C"), TextAlignmentOptions.MidlineRight);
+                stateTxt.font = kaiFont;
+                stateTxt.raycastTarget = false;
+
+                var buildTxt = QdaoUguiFactory.CreateText("Build", chipBg.transform, padLeft, 24f, chipW - padLeft - 6f, 22f,
+                    $"{sealName} · {petName}", 20f, QdaoUguiTheme.Html("#6C593A"), TextAlignmentOptions.MidlineLeft);
+                buildTxt.overflowMode = expanded ? TextOverflowModes.Truncate : TextOverflowModes.Ellipsis;
+                buildTxt.raycastTarget = false;
+
+                _prepTeamChips.Add(chipBg.gameObject);
+                cursorX += chipW + 12f;
+            }
+            for (int i = total; i < _prepReadyDots.Length; i++)
+            {
+                if (_prepReadyDots[i] != null) _prepReadyDots[i].gameObject.SetActive(false);
+            }
+            _prepTeamContent.sizeDelta = new Vector2(Mathf.Max(1380f, cursorX), 52f);
+            if (_prepTeamReadyText != null)
+                _prepTeamReadyText.text = total > 0 ? $"本队已锁定 {readyCount}/{total}" : "队伍信息待同步";
+        }
+
+        private void UpdatePrepCountdownLabel(int remainSeconds, float ratio)
+        {
+            if (_prepCountdownText == null || _prepState == null) return;
+            _prepCountdownText.text = $"{remainSeconds} 秒";
+            bool warn = remainSeconds > 0 && remainSeconds <= 5;
+            _prepCountdownText.color = warn ? QdaoUguiTheme.Html("#A73E2B")
+                : remainSeconds == 0 ? SeasonEconomyUiArt.BattleArenaAmber
+                : QdaoUguiTheme.Html("#235E42");
+            if (warn)
+            {
+                float wave = 0.5f - 0.5f * Mathf.Cos((Time.unscaledTime - _prepPulseOriginTime) * (2f * Mathf.PI / 0.8f));
+                float scale = 1f + 0.035f * wave;
+                _prepCountdownText.rectTransform.localScale = new UnityEngine.Vector3(scale, scale, 1f);
+            }
+            else
+            {
+                _prepCountdownText.rectTransform.localScale = UnityEngine.Vector3.one;
+            }
+            if (_prepCountdownFill != null)
+            {
+                _prepCountdownFill.sizeDelta = new Vector2(126f * Mathf.Clamp01(ratio), _prepCountdownFill.sizeDelta.y);
+                if (_prepCountdownFillImg != null)
+                    _prepCountdownFillImg.color = warn ? QdaoUguiTheme.Html("#B45636") : QdaoUguiTheme.Html("#528567");
+            }
+        }
+
+        private void OnPrepSealClicked(int slotIdx)
+        {
+            if (slotIdx < 0 || slotIdx >= _prepSealIds.Length) return;
+            uint sealId = _prepSealIds[slotIdx];
+            if (sealId == 0u) return;
+            SendPrepUpdate(sealId, 0ul, false);
+        }
+
+        private void OnPrepPetClicked(int slotIdx)
+        {
+            if (slotIdx < 0 || slotIdx >= _prepPetIds.Length) return;
+            ulong petId = _prepPetIds[slotIdx];
+            if (petId == 0ul) return;
+            SendPrepUpdate(0u, petId, false);
+        }
+
+        private void OnPrepLockClicked() => SendPrepUpdate(0u, 0ul, true);
+
+        private void SendPrepUpdate(uint sealId, ulong petId, bool ready)
+        {
+            if (_prepRequestPending || _owner?.Client == null) return;
+            ulong battleId = _state?.BattleId ?? 0ul;
+            _prepRequestPending = true;
+            RefreshPrepUi();
+            _owner.Client.UpdateBattlePrep(sealId, petId, ready, _ =>
+            {
+                if (_state?.BattleId != battleId) return;
+                _prepRequestPending = false;
+                RefreshPrepUi();
+            });
+        }
+
+        private static BattlePrepPlayerState FindPrepPlayerState(BattlePrepState prep, ulong playerId)
+        {
+            if (prep == null || playerId == 0ul) return null;
+            for (int i = 0; i < prep.TeamStates.Count; i++)
+            {
+                if (prep.TeamStates[i].PlayerId == playerId) return prep.TeamStates[i];
+            }
+            return null;
+        }
+
+        private static string ResolvePrepSealName(BattlePrepState prep, uint sealId)
+        {
+            if (sealId == 0u) return "无印";
+            if (prep != null)
+            {
+                for (int i = 0; i < prep.SelfAvailableSeals.Count; i++)
+                {
+                    if (prep.SelfAvailableSeals[i].SealId == sealId) return prep.SelfAvailableSeals[i].Name;
+                }
+            }
+            return sealId switch
+            {
+                101u => "破阵锐印",
+                102u => "破阵玄印",
+                103u => "固阵守印",
+                104u => "聚息援印",
+                _ => $"印#{sealId}",
+            };
+        }
+
+        private static string PrepSealTag(uint effectId) => effectId switch
+        {
+            1u => "物攻破盾",
+            2u => "法攻破盾",
+            6u => "防开局秒",
+            7u => "防御回蓝",
+            _ => string.Empty,
+        };
+
+        private static Color PrepSealTagColor(uint effectId) => effectId switch
+        {
+            1u => QdaoUguiTheme.Html("#8B5036"),
+            2u => QdaoUguiTheme.Html("#565581"),
+            6u => QdaoUguiTheme.Html("#436C45"),
+            7u => QdaoUguiTheme.Html("#376F68"),
+            _ => QdaoUguiTheme.Html("#6E5134"),
+        };
+
+        private void RefreshQuickParryUi(bool channelReady)
+        {
+            if (_quickParryButton == null) return;
+            if (IsReadOnly || _playing || _phase != BattlePhase.WaitingAction || !channelReady || _state == null)
+            {
+                _quickParryButton.SetVisible(false);
+                return;
+            }
+            var rawIds = CoreGameplayLoopModels.CollectQuickParryDefendActorIds(_myId, _state);
+            if (rawIds == null || rawIds.Count == 0)
+            {
+                _quickParryButton.SetVisible(false);
+                return;
+            }
+            int pendingParry = 0;
+            for (int i = 0; i < rawIds.Count; i++)
+            {
+                if (!IsSubmitted(rawIds[i])) pendingParry++;
+            }
+            if (pendingParry == 0)
+            {
+                _quickParryButton.SetVisible(false);
+                return;
+            }
+            _quickParryButton.SetVisible(true);
+            _quickParryButton.SetInteractable(true);
+            _quickParryButton.SetText(pendingParry > 1 ? $"⚠ 点名预警 · 一键化劲({pendingParry})" : "⚠ 点名预警 · 一键化劲防御");
+        }
+
+        private void OnQuickParryClicked()
+        {
+            if (IsReadOnly || _playing || _phase != BattlePhase.WaitingAction || _state == null) return;
+            var client = _owner?.Client;
+            var rawIds = CoreGameplayLoopModels.CollectQuickParryDefendActorIds(_myId, _state);
+            if (client == null || rawIds == null || rawIds.Count == 0)
+            {
+                RefreshQuickParryUi(IsChannelReady());
+                return;
+            }
+            ulong battleId = _state.BattleId;
+            uint round = _state.RoundIndex;
+            bool dispatched = false;
+            for (int i = 0; i < rawIds.Count; i++)
+            {
+                ulong actorId = rawIds[i];
+                if (actorId == 0 || IsSubmitted(actorId)) continue;
+                _submittedActors.Add(actorId);
+                if (!client.SubmitQuickParryDefend(actorId, success =>
+                {
+                    if (_state?.BattleId != battleId || _lastRound != round) return;
+                    if (!success) _submittedActors.Remove(actorId);
+                    SelectNextActorIfNeeded();
+                    RefreshActionBar();
+                }))
+                {
+                    _submittedActors.Remove(actorId);
+                }
+                else
+                {
+                    dispatched = true;
+                }
+            }
+            if (dispatched)
+            {
+                ExitTargetMode();
+                SelectNextActorIfNeeded();
+            }
+            RefreshActionBar();
+        }
+
+        private void RefreshSurrenderUi()
+        {
+            if (_surrenderButton == null) return;
+            if (IsReadOnly || _state == null || _state.SurrenderUnlockRound == 0u ||
+                _phase == BattlePhase.Ended || _phase == BattlePhase.None)
+            {
+                _surrenderButton.SetVisible(false);
+                if (_surrenderConfirmStrip != null) _surrenderConfirmStrip.gameObject.SetActive(false);
+                if (_surrenderVoteStrip != null) _surrenderVoteStrip.gameObject.SetActive(false);
+                return;
+            }
+
+            _surrenderButton.SetVisible(true);
+            var client = _owner?.Client;
+            var vote = client?.CurrentSurrenderVote;
+            if (vote != null && vote.Active)
+            {
+                _surrenderButton.SetText("投降 · 表决中");
+                _surrenderButton.SetInteractable(false);
+                _surrenderButton.Label.color = SeasonEconomyUiArt.BattleArenaDisabled;
+                if (_surrenderConfirmStrip != null) _surrenderConfirmStrip.gameObject.SetActive(false);
+                if (_surrenderVoteStrip != null)
+                {
+                    _surrenderVoteStrip.gameObject.SetActive(true);
+                    bool alreadyAgreed = _myId != 0 && vote.AgreedPlayerIds.Contains(_myId);
+                    if (_surrenderVoteText != null)
+                        _surrenderVoteText.text = alreadyAgreed
+                            ? $"已同意投降（{vote.AgreedPlayerIds.Count}/{vote.RequiredAgrees}），等待队友表决…"
+                            : $"队友发起投降表决 · 已同意 {vote.AgreedPlayerIds.Count}/{vote.RequiredAgrees}\n连续 2 回合未手动队友不计入票数 · 本轮仍可下指令";
+                    _surrenderAgreeButton?.SetInteractable(!alreadyAgreed && !_surrenderRequestPending);
+                    _surrenderRejectButton?.SetInteractable(!alreadyAgreed && !_surrenderRequestPending);
+                }
+                return;
+            }
+
+            if (_surrenderVoteStrip != null) _surrenderVoteStrip.gameObject.SetActive(false);
+            uint round = _state.RoundIndex;
+            uint unlock = _state.SurrenderUnlockRound;
+            uint cooldownRound = vote != null ? vote.NextAllowedRound : 0u;
+            bool canSurrender = client != null && client.CanSurrenderNow && !_surrenderRequestPending;
+
+            if (round < unlock)
+            {
+                _surrenderButton.SetText($"R{unlock} 解锁投降");
+                _surrenderButton.SetInteractable(false);
+                _surrenderButton.Label.color = SeasonEconomyUiArt.BattleArenaDisabled;
+            }
+            else if (cooldownRound > round)
+            {
+                _surrenderButton.SetText($"冷却中(R{cooldownRound})");
+                _surrenderButton.SetInteractable(false);
+                _surrenderButton.Label.color = SeasonEconomyUiArt.BattleArenaDisabled;
+            }
+            else
+            {
+                _surrenderButton.SetText("认输 / 投降");
+                _surrenderButton.SetInteractable(canSurrender);
+                _surrenderButton.Label.color = canSurrender ? SeasonEconomyUiArt.BattleArenaInk : SeasonEconomyUiArt.BattleArenaDisabled;
+            }
+            if (!canSurrender && _surrenderConfirmStrip != null)
+                _surrenderConfirmStrip.gameObject.SetActive(false);
+        }
+
+        private void OnSurrenderClicked()
+        {
+            if (_owner?.Client == null || !_owner.Client.CanSurrenderNow || _surrenderConfirmStrip == null || _state == null)
+                return;
+            int allyPlayers = 0;
+            for (int i = 0; i < _state.Actors.Count; i++)
+            {
+                var actor = _state.Actors[i];
+                if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer && actor.TeamIndex == _myTeam)
+                    allyPlayers++;
+            }
+            if (_surrenderConfirmText != null)
+            {
+                _surrenderConfirmText.text = allyPlayers <= 1
+                    ? "确认体面认输？本局按正常战败结算，不计逃跑惩罚"
+                    : "发起投降表决？需全部活跃队友同意（连续 2 回合未手动不计入）";
+            }
+            _surrenderConfirmStrip.gameObject.SetActive(!_surrenderConfirmStrip.gameObject.activeSelf);
+        }
+
+        private void OnConfirmSurrenderClicked()
+        {
+            if (_surrenderConfirmStrip != null) _surrenderConfirmStrip.gameObject.SetActive(false);
+            SendSurrenderVote(true);
+        }
+
+        private void SendSurrenderVote(bool agree)
+        {
+            if (_surrenderRequestPending || _owner?.Client == null) return;
+            _surrenderRequestPending = true;
+            RefreshSurrenderUi();
+            _owner.Client.SurrenderBattle(agree, _ =>
+            {
+                _surrenderRequestPending = false;
+                RefreshSurrenderUi();
+            });
         }
 
         private void RefreshSpectateHeader()

@@ -314,5 +314,46 @@ namespace MmorpgClient.Tests.EditMode.Ranked
             Assert.That(RankedClient.DescribeTip(new TipInfoMessage { Id = (uint)match_error.KMatchBattleSurrenderCooldown }),
                 Does.Contain("冷却"));
         }
+
+        [Test]
+        public void V2SettlementSurrenderFlag_And_DrawerHelpers()
+        {
+            var surrenderedEnd = new BattleEndS2C
+            {
+                BattleId = 9912UL,
+                Outcome = eBattleOutcome.BattleOutcomeSideBWin,
+                SeasonId = 1,
+                Settlement = new BattleSettlementData
+                {
+                    BattleId = 9912UL,
+                    Outcome = eBattleOutcome.BattleOutcomeSideBWin,
+                    CompetitiveRanked = true,
+                    SeasonId = 1,
+                    MatchMode = (uint)MatchMode.PvpTeam,
+                    TotalRounds = 5,
+                    Surrendered = true,
+                },
+            };
+            var state = _client.BeginSettlementFromBattleEnd(surrenderedEnd, 0, 1);
+            Assert.That(state, Is.Not.Null);
+            Assert.That(state.Surrendered, Is.True);
+            Assert.That(RankedFormatting.FormatAllowedSizesLabel(new uint[] { 1u, 3u }), Is.EqualTo("1V1 / 3V3 共用积分与榜"));
+            Assert.That(RankedFormatting.FormatAllowedSizesLabel(null), Is.EqualTo("开放规模共用积分与榜"));
+            Assert.That(RankedFormatting.FormatLocalDateRange(0UL, 0UL), Is.Empty);
+
+            var snap = new RankedProfileSnapshot(
+                new RankedSeasonInfo { SeasonId = 1 },
+                null, null, null, null, null,
+                new[]
+                {
+                    new RankedRewardEntitlement { Kind = RankedRewardKind.RankedRewardTierTitle, ItemCode = "s1_yunzhang_title" },
+                    new RankedRewardEntitlement { Kind = RankedRewardKind.RankedRewardWinMilestone, ItemCode = "s1_win6_title" },
+                },
+                null, null, 0UL);
+            var titleEnt = snap.FindEquippableTitleEntitlement();
+            Assert.That(titleEnt, Is.Not.Null);
+            Assert.That(titleEnt.Kind, Is.EqualTo(RankedRewardKind.RankedRewardWinMilestone));
+            Assert.That(snap.ResolveTitleDisplayName("s1_win6_title"), Is.EqualTo("锋芒称号"));
+        }
     }
 }

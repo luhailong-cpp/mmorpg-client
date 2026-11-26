@@ -82,7 +82,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _socketScroll = SocketScroll(_ready, out _sockets);
             _enhanceHint = Label(_ready, "EquipForgeEnhanceHint", "", 84, 742, 620, 38, 24, EquipUiSkin.Muted, true);
             Fit(_enhanceHint, 20, 24);
-            _enhance = EquipUiSkin.Button(_ready, "EquipForgeEnhance", "强化", 84, 789, 300, 68, _forge.Enhance, true);
+            _enhance = EquipUiSkin.Button(_ready, "EquipForgeEnhance", "强化", 84, 789, 300, 68, () => _forge.Enhance(), true);
             _refreshHint = Label(_frame, "EquipForgeRefreshHint", "", 760, 742, 636, 38, 24, EquipUiSkin.Muted, true);
             Fit(_refreshHint, 20, 24);
             _refresh = EquipUiSkin.Button(_frame, "EquipForgeRefresh", "刷新", 798, 789, 280, 68, _forge.Refresh);
@@ -129,7 +129,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _cancelConfirm = EquipUiSkin.Button(confirmFrame, "EquipForgeCancelConfirm", "取消", 110, 474, 360, 70,
                 _forge.CancelConfirm);
             _confirmEnhance = EquipUiSkin.Button(confirmFrame, "EquipForgeConfirmEnhance", "确认强化", 590, 474, 360, 70,
-                _forge.ConfirmEnhance, true);
+                () => _forge.ConfirmEnhance(), true);
             _confirmLayer.gameObject.SetActive(false);
             _forge.Changed += OnChanged;
         }

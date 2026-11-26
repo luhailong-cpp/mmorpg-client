@@ -267,6 +267,19 @@ namespace MmorpgClient.World
             return true;
         }
 
+        /// <summary>Stops any active E/W action overlay immediately (e.g., server interrupt or control state) and restores idle/locomotion.</summary>
+        public void StopAction()
+        {
+            if (_action == null && ActiveAction == null) return;
+            _action?.Dispose();
+            _action = null;
+            _actionSeconds = 0f;
+            ActiveAction = null;
+            if (_renderer != null && _frames != null && State == LocomotionState.Idle)
+                _renderer.sprite = _frames.Idle?[_lastDirection];
+            ApplyBillboardScale();
+        }
+
         private Vector3 ResolveBillboardScale()
             => _useCurrentRun && State == LocomotionState.Idle && _action == null
                 ? Vector3.one * QdaoRunVariants.IdleDisplayScale

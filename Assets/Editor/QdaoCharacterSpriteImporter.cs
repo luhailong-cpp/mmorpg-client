@@ -17,12 +17,20 @@ namespace MmorpgClient.Editor.Tianyong
         /// </summary>
         private const string BattleFolder = "Assets/Resources/Battle/";
 
-        /// <summary>Only a complete sixteen-cell V13 review strip needs the 8192 import cap.</summary>
+        /// <summary>16-cell V13 character strips and 10-cell 512px Battle/Fx strips need the 8192 import cap so cells stay exact squares.</summary>
         public static int RequiredMaxTextureSize(string path, int width, int height)
-            => (path.StartsWith(CharacterFolder + "QdaoRosterV13/", System.StringComparison.OrdinalIgnoreCase) ||
-                path.StartsWith(CharacterFolder + "QdaoOriginalRosterV13/", System.StringComparison.OrdinalIgnoreCase)) &&
-               path.EndsWith("/strip.png", System.StringComparison.OrdinalIgnoreCase) &&
-               path.Contains("/walk/") && width == 8192 && height == 512 ? 8192 : 4096;
+        {
+            if ((path.StartsWith(CharacterFolder + "QdaoRosterV13/", System.StringComparison.OrdinalIgnoreCase) ||
+                 path.StartsWith(CharacterFolder + "QdaoOriginalRosterV13/", System.StringComparison.OrdinalIgnoreCase)) &&
+                path.EndsWith("/strip.png", System.StringComparison.OrdinalIgnoreCase) &&
+                path.Contains("/walk/") && width == 8192 && height == 512)
+                return 8192;
+            if (path.StartsWith(BattleFolder + "Fx/", System.StringComparison.OrdinalIgnoreCase) &&
+                path.EndsWith("_strip.png", System.StringComparison.OrdinalIgnoreCase) &&
+                width > 4096 && width <= 8192 && height > 0 && width % height == 0)
+                return 8192;
+            return 4096;
+        }
 
         private static void OnPostprocessAllAssets(string[] imported, string[] deleted, string[] moved, string[] movedFrom)
         {

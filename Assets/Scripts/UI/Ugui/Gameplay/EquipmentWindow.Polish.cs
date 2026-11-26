@@ -25,6 +25,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private bool _reforgeAllowBound;
         private bool _bindConfirmForReforge;
         private bool _bindConfirmAcknowledged;
+        private ulong _enhanceBindItemId;
+        private ulong _talismanTargetItemId;
+        private ulong _inheritSourceItemId;
 
         public void OpenPolishForItem(ulong itemId = 0, ulong proxyMasterPlayerId = 0)
         {
@@ -263,17 +266,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             string masterLabel = _polishProxyMasterId == 0
                 ? "当前方式：亲自打磨（点击切换主城名匠代打）"
                 : FormatSelectedForgeMaster(forgeMasters, _polishProxyMasterId);
-            Button(_body, "PolishProxyCycle", masterLabel, 2330, 845, 1020, () =>
+            Button(_body, "PolishProxyCycle", masterLabel, 2330, 845, 700, () =>
             {
                 if (_craft.Busy || _craft.Pending) return;
                 CycleForgeMaster(forgeMasters);
                 RequestPolishPreview(current, selectedSlot);
                 Render();
             }, _polishProxyMasterId != 0, !_craft.Busy && !_craft.Pending);
-            Button(_body, "PolishProxyRefresh", "刷新名匠", 3380, 845, 370, () =>
+            Button(_body, "PolishProxyRefresh", "刷新名匠", 3045, 845, 350, () =>
             {
                 SkillCraftClient.Instance?.RefreshProxyStalls();
                 Render();
+            });
+            Button(_body, "PolishOpenStalls", "名匠摊位", 3405, 845, 350, () =>
+            {
+                Hide();
+                SkillUiRoot.OpenProxyStalls();
             });
 
             var preview = _craft.Preview;
@@ -388,7 +396,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             bool canCommit = _craft.CanCommit && !WriteBlocked
                 && preview?.Choice?.Operation == EquipmentCraftChoice.Types.Operation.ReforgeAffix
                 && preview.Choice.ItemId == _polishItemId && preview.Choice.AffixSlot == _polishSlot
-                && preview.Choice.AffixId == _reforgeTargetAffixId;
+                && preview.Choice.AffixId == _reforgeTargetAffixId
+                && preview.Choice.AllowBoundMaterials == _reforgeAllowBound;
             Button(_modalLayer, "ReforgeCancel", "取消", 870, 1280, 700, CloseModal);
             Button(_modalLayer, "ReforgeCommit", _craft.Busy ? "更换中…" : "确认更换", 2280, 1280, 850,
                 () => { if (canCommit) _craft.Commit(); }, true, canCommit);
@@ -499,6 +508,177 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
             Label(_modalLayer, "BindConfirmHoldHint", "按住不松手，进度满 2 秒后执行；松手或移出即刻取消。",
                 2060, 1344, holdW, 56, 30, false, Muted).alignment = TMPro.TextAlignmentOptions.Center;
+        }
+
+        private void OpenEnhanceBindConfirm(ulong itemId)
+        {
+            if (WriteBlocked || itemId == 0) return;
+            _enhanceBindItemId = itemId;
+            _bindConfirmAcknowledged = false;
+            _modal = Modal.EnhanceBindConfirm;
+            Render();
+        }
+
+        private void OpenUnsealConfirm(ulong itemId)
+        {
+            if (WriteBlocked || itemId == 0) return;
+            _talismanTargetItemId = itemId;
+            _craft.SelectUnsealToTradable(itemId);
+            _modal = Modal.UnsealConfirm;
+            Render();
+        }
+
+        private void OpenInheritEnhance(ulong targetItemId)
+        {
+            if (WriteBlocked || targetItemId == 0) return;
+            _talismanTargetItemId = targetItemId;
+            _inheritSourceItemId = 0;
+            _craft.ClearSelection();
+            _modal = Modal.InheritEnhance;
+            Render();
+        }
+
+        private void RenderEnhanceBindConfirmModal()
+        {
+            var item = FindItem(_enhanceBindItemId);
+            Label(_modalLayer, "EnhanceBindTitle", "装备强化 · 混用绑定石二次确认", 750, 190, 2380, 90, 62, color: Danger);
+            var alertBanner = SeasonEconomyUiArt.LoadTradeSlice("diff_alert_banner");
+            if (alertBanner != null)
+                SeasonEconomyUiArt.CreateSlicedOrSimple(_modalLayer, "EnhanceBindAlertBanner", 760, 286, 2380, 96,
+                    alertBanner, new Color(0.98f, 0.90f, 0.84f, 0.95f));
+            var badgeT = SeasonEconomyUiArt.LoadTradeSlice("badge_item_tradable_t");
+            var badgeB = SeasonEconomyUiArt.LoadTradeSlice("badge_item_bound_b");
+            if (badgeT != null && badgeB != null)
+            {
+                QdaoUguiFactory.CreateImage("EnhanceBindFromT", _modalLayer, 1520, 296, 76, 76, badgeT, false).preserveAspect = true;
+                var arrow = Label(_modalLayer, "EnhanceBindArrow", "可交易 T  →  绑定仅自用 B", 1620, 306, 620, 56, 38, false, Danger);
+                arrow.alignment = TMPro.TextAlignmentOptions.Center;
+                QdaoUguiFactory.CreateImage("EnhanceBindToB", _modalLayer, 2260, 296, 76, 76, badgeB, false).preserveAspect = true;
+            }
+            ulong tradableStone = item?.EnhanceNext?.TradableMaterialAvailable ?? 0;
+            uint needStone = item?.EnhanceNext?.MaterialCount ?? 0;
+            Label(_modalLayer, "EnhanceBindBody",
+                $"当前装备「{Name(item)}」为【可交易 T】；背包中可交易强化石不足（当前可用 {tradableStone} / 需求 {needStone}）。\n\n"
+                + "系统默认锁死仅消耗可交易石。若确认混用绑定强化石，强化后装备将立即转为【绑定仅自用 B】；日后如需重新交易，只能使用「解封剥离符」清空全部绑定养成并恢复纯 T 原胚。",
+                760, 412, 2380, 320, 42, true, Ink);
+
+            Button(_modalLayer, "EnhanceBindToggle",
+                _bindConfirmAcknowledged ? "✓ 我已知晓：混用绑定强化石后装备将转为绑定仅自用" : "□ 我已知晓并允许混用绑定强化石（装备将转为绑定）",
+                760, 776, 2380, () => { _bindConfirmAcknowledged = !_bindConfirmAcknowledged; Render(); }, _bindConfirmAcknowledged);
+
+            Button(_modalLayer, "EnhanceBindCancel", "返回检查", 820, 1180, 680, CloseModal);
+
+            const float holdW = 1040f;
+            const float holdH = 160f;
+            var holdRoot = QdaoUguiFactory.CreateRect("EnhanceBindHoldProceed", _modalLayer, 2060, 1170, holdW, holdH);
+            var trackSprite = SeasonEconomyUiArt.LoadTradeSlice("hold_confirm_button_track");
+            var trackImg = holdRoot.gameObject.AddComponent<Image>();
+            trackImg.sprite = trackSprite;
+            trackImg.color = trackSprite != null ? Color.white : new Color(0.84f, 0.72f, 0.52f, 1f);
+            trackImg.type = Image.Type.Simple;
+            trackImg.raycastTarget = true;
+
+            float padX = 28f, padY = 22f, innerW = holdW - padX * 2f, innerH = holdH - padY * 2f;
+            var fillClip = QdaoUguiFactory.CreateRect("EnhanceHoldClip", holdRoot, padX, padY, 0f, innerH);
+            fillClip.gameObject.AddComponent<RectMask2D>();
+            var fillBar = QdaoUguiFactory.CreateImage("EnhanceHoldFill", fillClip, 0f, 0f, innerW, innerH, null, false);
+            fillBar.color = new Color(0.76f, 0.30f, 0.20f, 0.72f);
+
+            var holdLabel = Label(holdRoot, "EnhanceHoldLabel",
+                _bindConfirmAcknowledged ? "长按 2 秒确认绑定强化" : "请先勾选上方风险确认",
+                30f, 0f, holdW - 60f, holdH, 42, false, Ink);
+            holdLabel.alignment = TMPro.TextAlignmentOptions.Center;
+
+            holdRoot.gameObject.AddComponent<HoldToConfirmButtonBehaviour>().Configure(
+                fillClip, innerW, holdLabel, trackImg,
+                idleLabel: "长按 2 秒确认绑定强化",
+                disabledLabel: "请先勾选上方风险确认",
+                interactable: _bindConfirmAcknowledged && !WriteBlocked,
+                onCompleted: () =>
+                {
+                    if (!_bindConfirmAcknowledged || WriteBlocked) return;
+                    _modal = Modal.None;
+                    _forge.Enhance(allowBoundMaterials: true);
+                    Render();
+                });
+            Label(_modalLayer, "EnhanceBindHoldHint", "按住不松手，进度满 2 秒后执行；松手或移出即刻取消。",
+                2060, 1344, holdW, 56, 30, false, Muted).alignment = TMPro.TextAlignmentOptions.Center;
+        }
+
+        private void RenderUnsealConfirmModal()
+        {
+            var item = FindItem(_talismanTargetItemId);
+            Label(_modalLayer, "UnsealTitle", "解封剥离符 · 恢复纯可交易原胚", 750, 195, 2380, 90, 60, color: Jade);
+            var unsealIcon = SeasonEconomyUiArt.LoadTradeSlice("icon_unseal_talisman");
+            if (unsealIcon != null)
+                QdaoUguiFactory.CreateImage("UnsealIconArt", _modalLayer, 760, 320, 220, 220, unsealIcon, false).preserveAspect = true;
+            Label(_modalLayer, "UnsealDesc",
+                $"目标装备：{Name(item)}（当前强化 +{item?.EnhanceLevel ?? 0} · 绑定 B）\n\n"
+                + "• 消耗 1 张「解封剥离符」\n"
+                + "• 清空全部绑定养成：强化等级归 +0、保底清零、清空已装词条与宗师署名\n"
+                + "• 仅恢复为纯可交易（T）原胚，绝不把绑定材料洗白为可交易\n"
+                + "• 若装备上镶嵌了宝石，需先取下宝石再执行剥离",
+                1020, 315, 2100, 440, 40, true, Ink);
+
+            var preview = _craft.Preview;
+            string costText = EquipmentScreenModel.FormatCraftPreviewSummary(preview);
+            if (preview != null && !preview.Available && preview.UnavailableTip != 0)
+                costText += "\n" + PlayerFeaturesClient.DescribeEquipTip("不可剥离", new TipInfoMessage { Id = preview.UnavailableTip });
+            Label(_modalLayer, "UnsealPreview", costText, 760, 790, 2360, 240, 38, true, preview?.Available == true ? Jade : Danger);
+
+            bool canCommit = _craft.CanCommit && !WriteBlocked
+                && preview?.Choice?.Operation == EquipmentCraftChoice.Types.Operation.UnsealToTradable
+                && preview.Choice.ItemId == _talismanTargetItemId;
+            Button(_modalLayer, "UnsealCancel", "返回检查", 860, 1220, 720, CloseModal);
+            Button(_modalLayer, "UnsealCommit", _craft.Busy ? "剥离中…" : "确认剥离为纯 T 原胚", 2160, 1220, 960,
+                () => { if (canCommit) _craft.Commit(); }, true, canCommit);
+        }
+
+        private void RenderInheritEnhanceModal()
+        {
+            var target = FindItem(_talismanTargetItemId);
+            Label(_modalLayer, "InheritTitle", "流派副套继承符 · 强化等级无损继承", 750, 195, 2380, 90, 60, color: Jade);
+            Label(_modalLayer, "InheritBanner",
+                $"目标副套：{Name(target)}（当前 +{target?.EnhanceLevel ?? 0}）  |  继承后目标副套转为仅自用绑定，源装备保持原样不降级",
+                750, 296, 2380, 80, 36, true, Jade);
+
+            var sources = OwnedEquipment().Where(src =>
+                target != null && src.ItemId != target.ItemId &&
+                src.EquipKind == target.EquipKind && src.EquipProfile == target.EquipProfile &&
+                src.EquipLevel == target.EquipLevel && src.EnhanceLevel > target.EnhanceLevel).ToList();
+
+            var list = Scroll(_modalLayer, "InheritSourceList", 750, 396, 1260, 740, Math.Max(740, sources.Count * 155));
+            for (int i = 0; i < sources.Count; i++)
+            {
+                var src = sources[i];
+                string label = $"{Name(src)}  +{src.EnhanceLevel}（{(src.Bound ? "绑定" : "可交易")}）";
+                ChoiceRow(list, "InheritSource_" + src.ItemId, label, 5, i * 155, 1200, 138, () =>
+                {
+                    if (_craft.Busy || _craft.Pending) return;
+                    _inheritSourceItemId = src.ItemId;
+                    _craft.SelectInheritEnhance(_talismanTargetItemId, _inheritSourceItemId);
+                    Render();
+                }, _inheritSourceItemId == src.ItemId, !_craft.Busy && !_craft.Pending);
+            }
+            if (sources.Count == 0)
+                Label(list, "InheritSourceEmpty", "当前没有同部位同等级且强化更高的源装备。", 24, 48, 1180, 120, 40, true, Muted);
+
+            var preview = _craft.Preview;
+            string previewText = _inheritSourceItemId == 0
+                ? "请先在左侧选择一件强化等级更高的同部位装备作为源装备。"
+                : EquipmentScreenModel.FormatCraftPreviewSummary(preview);
+            if (preview != null && !preview.Available && preview.UnavailableTip != 0)
+                previewText += "\n" + PlayerFeaturesClient.DescribeEquipTip("不可继承", new TipInfoMessage { Id = preview.UnavailableTip });
+            Label(_modalLayer, "InheritPreview", previewText, 2060, 420, 1080, 560, 38, true,
+                preview?.Available == true ? Jade : Danger);
+
+            bool canCommit = _craft.CanCommit && !WriteBlocked
+                && preview?.Choice?.Operation == EquipmentCraftChoice.Types.Operation.InheritEnhance
+                && preview.Choice.ItemId == _talismanTargetItemId
+                && preview.Choice.SourceItemId == _inheritSourceItemId;
+            Button(_modalLayer, "InheritCancel", "取消", 860, 1240, 720, CloseModal);
+            Button(_modalLayer, "InheritCommit", _craft.Busy ? "继承中…" : "确认消耗继承符", 2160, 1240, 960,
+                () => { if (canCommit) _craft.Commit(); }, true, canCommit);
         }
     }
 }

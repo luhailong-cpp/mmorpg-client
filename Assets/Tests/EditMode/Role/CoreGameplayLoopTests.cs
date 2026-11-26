@@ -150,7 +150,7 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(afkLossView.Headline, Does.Contain("+0"));
             Assert.That(afkLossView.DetailNote, Does.Contain("3 回合"));
 
-            // 6. 主城总览：3 数字 + 4 个零卖数值预留位
+            // 6. 主城总览：3 数字 + 4 个零卖数值预留位（含阶段二周上限 150 兜底）
             var hub = CoreGameplayLoopModels.BuildMainCityHub(
                 new EquipmentMaterialRewardSnapshot { LifetimeEarned = 120u, LifetimeLimit = 660u, AvailableUnits = 20ul },
                 profile,
@@ -161,6 +161,19 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(hub.SmallSpendSlots.Count, Is.EqualTo(4));
             foreach (var slot in hub.SmallSpendSlots)
                 Assert.That(slot.ZeroStatGuarantee, Is.True);
+
+            var weeklyHub = CoreGameplayLoopModels.BuildMainCityHub(
+                new EquipmentMaterialRewardSnapshot { WeeklyPhaseActive = true, EarnedThisWeek = 45u, AvailableUnits = 15ul },
+                profile,
+                new SeasonStateSnapshot { Available = true, ProgressPoints = 30, MaxPoints = 100 },
+                new TrialJournalSnapshot(),
+                paymentEnabled: false);
+            Assert.That(weeklyHub.MaterialProgressValue, Is.EqualTo("45/150（待领 15）"));
+            var weeklyCappedView = CoreGameplayLoopModels.BuildSettlementRewardView(
+                new BattleEndS2C { MaterialCreditUnitsAdded = 0u },
+                new EquipmentMaterialRewardSnapshot { WeeklyPhaseActive = true, EarnedThisWeek = 150u });
+            Assert.That(weeklyCappedView.WeeklyLimit, Is.EqualTo(150u));
+            Assert.That(weeklyCappedView.Headline, Does.Contain("150/150"));
         }
 
         [Test]
@@ -403,6 +416,21 @@ namespace MmorpgClient.Tests.EditMode.Role
             battleNet.Calls[1].Reply(new SubmitBattleActionResponse());
             Assert.That(battle.GetLastUsedSkillId(3001UL), Is.EqualTo(10034u));
 
+            // 幽毒首领群体玄毒（IntentKind=8）当回合也为本人与存活出战宠提供一键化劲防御（不含队友 3002）
+            var venomState = state.Clone();
+            venomState.BossTrialKind = 4u;
+            venomState.Telegraphs.Clear();
+            venomState.Telegraphs.Add(new BattleTelegraphEntry
+            {
+                SourceActorId = 9001UL,
+                TargetActorId = 0UL,
+                ExecuteRound = 5u,
+                IntentKind = 8u,
+                Status = 2u,
+            });
+            var venomParryIds = CoreGameplayLoopModels.CollectQuickParryDefendActorIds(3001UL, venomState);
+            Assert.That(venomParryIds, Is.EqualTo(new[] { 3001UL, 300101UL }));
+
             // 3. 机制横幅播报与结算战法高光徽章
             var banner = CoreGameplayLoopModels.DescribeBossMechanicEvent(new BattleEventItem
             {
@@ -412,7 +440,18 @@ namespace MmorpgClient.Tests.EditMode.Role
             });
             Assert.That(banner, Is.Not.Null);
             Assert.That(banner.Title, Does.Contain("崩势破盾"));
+            Assert.That(banner.Title, Does.Contain("+35%"));
             Assert.That(banner.IsPositiveForPlayer, Is.True);
+
+            var interruptBanner = CoreGameplayLoopModels.DescribeBossMechanicEvent(new BattleEventItem
+            {
+                EventType = eBattleEventType.BattleEventBossMechanic,
+                MechanicKind = 3u,
+                Value = 20ul,
+            });
+            Assert.That(interruptBanner, Is.Not.Null);
+            Assert.That(interruptBanner.Title, Does.Contain("+20%"));
+            Assert.That(interruptBanner.IsPositiveForPlayer, Is.True);
 
             var highlights = CoreGameplayLoopModels.BuildBossTrialHighlightBadges(new BattleSettlementData
             {
@@ -431,6 +470,157 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(highlights[0].Title, Is.EqualTo("化劲破招 ×2"));
             Assert.That(highlights[3].Title, Is.EqualTo("化劲宗师"));
             Assert.That(highlights[4].Title, Is.EqualTo("单骑破阵"));
+        }
+
+        [Test]
+        public void BuildTacticalReview_CoversBossDefeatCauses_BossVictory_GuardRescue_Polarity_And_PvpSurrender()
+        {
+            // 1. 首领试炼失败：回春回血未打断 -> 指向聚火与断疗反噬
+            var bossHealLoss = CoreGameplayLoopModels.BuildTacticalReview(new BattleEndS2C
+            {
+                Settlement = new BattleSettlementData
+                {
+                    Outcome = eBattleOutcome.BattleOutcomeSideBWin,
+                    PlayerTeamIndex = 0u,
+                    TotalRounds = 9u,
+                    BossTrialKind = 1u,
+                    BattleDifficulty = 2u,
+                    TrialFacts = new BattleTrialJournalFacts
+                    {
+                        BossGuardHealTotal = 4200ul,
+                        HealInterruptBacklashCount = 0u,
+                    },
+                },
+            });
+            Assert.That(bossHealLoss, Is.Not.Null);
+            Assert.That(bossHealLoss.IsVictory, Is.False);
+            Assert.That(bossHealLoss.ModeTag, Is.EqualTo("首领试炼 · 困难"));
+            Assert.That(bossHealLoss.ReasonHeadline, Does.Contain("4200"));
+            Assert.That(bossHealLoss.NextMoveTip, Does.Contain("反噬"));
+
+            // 2. 首领试炼失败：双卫同阵护势未破 -> 指向驱散 A34
+            var dualStanceLoss = CoreGameplayLoopModels.BuildTacticalReview(new BattleEndS2C
+            {
+                Settlement = new BattleSettlementData
+                {
+                    Outcome = eBattleOutcome.BattleOutcomeSideBWin,
+                    PlayerTeamIndex = 0u,
+                    TotalRounds = 7u,
+                    BossTrialKind = 8u,
+                    BattleDifficulty = 2u,
+                    TrialFacts = new BattleTrialJournalFacts
+                    {
+                        GuardStanceDispelled = false,
+                        StanceBreakCount = 0u,
+                    },
+                },
+            });
+            Assert.That(dualStanceLoss, Is.Not.Null);
+            Assert.That(dualStanceLoss.ReasonHeadline, Does.Contain("护势联防阵"));
+            Assert.That(dualStanceLoss.NextMoveTip, Does.Contain("A34"));
+
+            // 3. 普通首领胜利（全程化劲破招）-> 引导进阶困难难度
+            var bossNormalWin = CoreGameplayLoopModels.BuildTacticalReview(new BattleEndS2C
+            {
+                Settlement = new BattleSettlementData
+                {
+                    Outcome = eBattleOutcome.BattleOutcomeSideAWin,
+                    PlayerTeamIndex = 0u,
+                    TotalRounds = 6u,
+                    BossTrialKind = 1u,
+                    BattleDifficulty = 1u,
+                    TrialFacts = new BattleTrialJournalFacts
+                    {
+                        AllSelfCleavesParried = true,
+                        CleaveParryCount = 2u,
+                    },
+                },
+            });
+            Assert.That(bossNormalWin, Is.Not.Null);
+            Assert.That(bossNormalWin.IsVictory, Is.True);
+            Assert.That(bossNormalWin.ReasonHeadline, Does.Contain("化劲破招 2 次"));
+            Assert.That(bossNormalWin.NextMoveTip, Does.Contain("困难难度"));
+
+            // 4. 护卫救援失败：护卫阵亡 -> 提示保护护卫
+            var guardLoss = CoreGameplayLoopModels.BuildTacticalReview(new BattleEndS2C
+            {
+                Settlement = new BattleSettlementData
+                {
+                    Outcome = eBattleOutcome.BattleOutcomeSideBWin,
+                    PlayerTeamIndex = 0u,
+                    TotalRounds = 5u,
+                    BossTrialKind = 5u,
+                    TrialFacts = new BattleTrialJournalFacts { GuardSurvived = false },
+                },
+            });
+            Assert.That(guardLoss, Is.Not.Null);
+            Assert.That(guardLoss.ModeTag, Does.Contain("护卫救援"));
+            Assert.That(guardLoss.ReasonHeadline, Does.Contain("未能保全"));
+
+            // 5. 物法易势 5V5 失败：单一伤害类型 -> 提示覆盖物法双伤
+            var polarityLoss = CoreGameplayLoopModels.BuildTacticalReview(new BattleEndS2C
+            {
+                Settlement = new BattleSettlementData
+                {
+                    Outcome = eBattleOutcome.BattleOutcomeSideBWin,
+                    PlayerTeamIndex = 0u,
+                    TotalRounds = 8u,
+                    BossTrialKind = 6u,
+                    MatchMode = (uint)MatchMode.Polarity5V5,
+                    TrialFacts = new BattleTrialJournalFacts
+                    {
+                        TeamDealtPhysicalDirectDamage = true,
+                        TeamDealtMagicDirectDamage = false,
+                    },
+                },
+            });
+            Assert.That(polarityLoss, Is.Not.Null);
+            Assert.That(polarityLoss.ReasonHeadline, Does.Contain("伤害类型较单一"));
+
+            // 6. 正式人宠会武体面认输 & 反挂机门槛
+            var pvpSurrender = CoreGameplayLoopModels.BuildTacticalReview(new BattleEndS2C
+            {
+                Settlement = new BattleSettlementData
+                {
+                    Outcome = eBattleOutcome.BattleOutcomeSideBWin,
+                    PlayerTeamIndex = 0u,
+                    TotalRounds = 5u,
+                    MatchMode = (uint)MatchMode.PvpTeam,
+                    Surrendered = true,
+                },
+            });
+            Assert.That(pvpSurrender, Is.Not.Null);
+            Assert.That(pvpSurrender.ModeTag, Is.EqualTo("正式人宠会武"));
+            Assert.That(pvpSurrender.ReasonHeadline, Does.Contain("体面认输"));
+
+            var pvpIneligible = CoreGameplayLoopModels.BuildTacticalReview(new BattleEndS2C
+            {
+                MaterialPvpLossIneligible = true,
+                Settlement = new BattleSettlementData
+                {
+                    Outcome = eBattleOutcome.BattleOutcomeSideBWin,
+                    PlayerTeamIndex = 0u,
+                    TotalRounds = 2u,
+                    MatchMode = (uint)MatchMode.PvpTeam,
+                },
+            });
+            Assert.That(pvpIneligible, Is.Not.Null);
+            Assert.That(pvpIneligible.ReasonHeadline, Does.Contain("不扣 660"));
+            Assert.That(pvpIneligible.NextMoveTip, Does.Contain("3 回合"));
+
+            // 7. 非核心循环普通战斗返回 null，避免干扰
+            var regularMob = CoreGameplayLoopModels.BuildTacticalReview(new BattleEndS2C
+            {
+                Settlement = new BattleSettlementData
+                {
+                    Outcome = eBattleOutcome.BattleOutcomeSideAWin,
+                    PlayerTeamIndex = 0u,
+                    TotalRounds = 3u,
+                    MatchMode = (uint)MatchMode.PveSolo,
+                    BossTrialKind = 0u,
+                },
+            });
+            Assert.That(regularMob, Is.Null);
         }
     }
 }

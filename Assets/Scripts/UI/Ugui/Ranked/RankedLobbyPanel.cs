@@ -70,14 +70,15 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private uint _waitPromptDismissedAtSec;
         private bool _wasQueued;
 
+        public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public string ActiveStateKey { get; private set; } = "idle";
 
         public RankedLobbyPanel(Transform designParent)
         {
             _root = QdaoUguiFactory.CreateRect("RankedLobbyPanel", designParent, 0f, 0f, DesignWidth, DesignHeight);
 
-            // 1. 主窗口底板（严禁使用旧 ui-window.png；严格 preserveAspect）
-            CreateArt("WindowBase", _root, 0f, 0f, DesignWidth, DesignHeight, "ui-window-clean", preserveAspect: true, raycastTarget: true);
+            // 1. 主窗口底板（严禁使用已退场的旧 ui-window / ui-window-clean；统一复用已验收帮会原图同源窗框）
+            CreateGuildArt("WindowBase", _root, 0f, 128f, DesignWidth, 824f, "guild_empty_shell", preserveAspect: true, raycastTarget: true);
 
             // 2. 顶部标题与导航
             CreateLabel("LobbyTitle", _root, 760f, 74f, 400f, 70f, "论剑", 56f, GoldCream, TextAlignmentOptions.Center, bold: true);
@@ -482,6 +483,12 @@ namespace MmorpgClient.UI.Ugui.Ranked
             btn.onClick.AddListener(() => onClick?.Invoke());
             var portrait = QdaoUguiFactory.CreateImage(name + "_Portrait", btn.transform, 22f, 19f, 76f, 76f, portraitSprite);
             portrait.preserveAspect = true;
+            if (portrait.sprite == null)
+            {
+                portrait.color = SeasonEconomyUiArt.BattleArenaJade;
+                CreateLabel(name + "_Glyph", portrait.transform, 0f, 0f, 82f, 82f,
+                    titleText.Length > 0 ? titleText.Substring(0, 1) : "道", 32f, GoldCream, TextAlignmentOptions.Center, bold: true);
+            }
             var title = CreateLabel(name + "_Title", btn.transform, 114f, 18f, 190f, 38f, titleText, 26f, InkSecondary, bold: true);
             var sub = CreateLabel(name + "_Sub", btn.transform, 114f, 58f, 214f, 32f, subText, 19f, InkMuted);
             var check = CreateArt(name + "_Check", btn.transform, 304f, 14f, 28f, 28f, "selected-check", preserveAspect: true);

@@ -45,8 +45,107 @@ namespace MmorpgClient.Game.Tournament
             TournamentMatchState.Finished => "已决出",
             TournamentMatchState.Bye => "轮空晋级",
             TournamentMatchState.Forfeit => "超时裁决",
+            TournamentMatchState.Intermission => "局间换阵",
             _ => "待开赛",
         };
+
+        /// <summary>V2 五行地脉展示元数据（文字说明与配色解耦，绝不单靠颜色区分）。</summary>
+        public readonly struct TournamentLeylineInfo
+        {
+            public TournamentLeylineElement Element { get; }
+            public string ShortName { get; }
+            public string FullName { get; }
+            public string EffectSummary { get; }
+            public string SpriteKey { get; }
+
+            public TournamentLeylineInfo(
+                TournamentLeylineElement element,
+                string shortName,
+                string fullName,
+                string effectSummary,
+                string spriteKey)
+            {
+                Element = element;
+                ShortName = shortName;
+                FullName = fullName;
+                EffectSummary = effectSummary;
+                SpriteKey = spriteKey;
+            }
+        }
+
+        public static readonly TournamentLeylineInfo[] AllLeylines =
+        {
+            new TournamentLeylineInfo(TournamentLeylineElement.TournamentLeylineMetal, "金锐", "金锐灵脉", "全体暴击率 +5%，破防直伤 +4%", "v2-a-element-metal"),
+            new TournamentLeylineInfo(TournamentLeylineElement.TournamentLeylineWood,  "木生", "木生灵脉", "全体治疗与护盾效果 +10%", "v2-a-element-wood"),
+            new TournamentLeylineInfo(TournamentLeylineElement.TournamentLeylineWater, "水润", "水润灵脉", "每回合初恢复 5% 法力，控制抗性 +8%", "v2-a-element-water"),
+            new TournamentLeylineInfo(TournamentLeylineElement.TournamentLeylineFire,  "火炽", "火炽灵脉", "全体技能与普攻伤害 +6%", "v2-a-element-fire"),
+            new TournamentLeylineInfo(TournamentLeylineElement.TournamentLeylineEarth, "土厚", "土厚灵脉", "全体受击伤害 -5%，首回合开场护盾 +8%", "v2-a-element-earth"),
+        };
+
+        public static TournamentLeylineInfo GetLeylineInfo(TournamentLeylineElement element) => element switch
+        {
+            TournamentLeylineElement.TournamentLeylineMetal => AllLeylines[0],
+            TournamentLeylineElement.TournamentLeylineWood => AllLeylines[1],
+            TournamentLeylineElement.TournamentLeylineWater => AllLeylines[2],
+            TournamentLeylineElement.TournamentLeylineFire => AllLeylines[3],
+            TournamentLeylineElement.TournamentLeylineEarth => AllLeylines[4],
+            _ => new TournamentLeylineInfo(TournamentLeylineElement.TournamentLeylineUnspecified, "无脉", "常规赛场", "本场未启用五行灵脉加成", string.Empty),
+        };
+
+        /// <summary>V2 观战预设喝彩条目（严格白名单 1..6，与服务端及 phrase-01..06 完整对应）。</summary>
+        public readonly struct TournamentSpectateCheerPreset
+        {
+            public uint PhraseId { get; }
+            public string Label { get; }
+            public string SpriteKey { get; }
+            public bool HasNativeFloatArt { get; }
+
+            public TournamentSpectateCheerPreset(uint phraseId, string label, string spriteKey, bool hasNativeFloatArt)
+            {
+                PhraseId = phraseId;
+                Label = label;
+                SpriteKey = spriteKey;
+                HasNativeFloatArt = hasNativeFloatArt;
+            }
+        }
+
+        public static readonly TournamentSpectateCheerPreset[] SpectateCheerPresets =
+        {
+            new TournamentSpectateCheerPreset(1u, "道友加油", "v2-c-phrase-01", false),
+            new TournamentSpectateCheerPreset(2u, "稳住阵脚", "v2-c-phrase-02", false),
+            new TournamentSpectateCheerPreset(3u, "妙法天成", "v2-c-phrase-03", true),
+            new TournamentSpectateCheerPreset(4u, "配合无间", "v2-c-phrase-04", false),
+            new TournamentSpectateCheerPreset(5u, "逆转乾坤", "v2-c-phrase-05", false),
+            new TournamentSpectateCheerPreset(6u, "一战封神", "v2-c-phrase-06", false),
+        };
+
+        public static bool TryGetCheerPreset(uint phraseId, out TournamentSpectateCheerPreset preset)
+        {
+            if (phraseId >= 1u && phraseId <= (uint)SpectateCheerPresets.Length)
+            {
+                preset = SpectateCheerPresets[phraseId - 1u];
+                return true;
+            }
+            preset = default;
+            return false;
+        }
+
+        /// <summary>计算双方真实观战人气对推比例；总和为 0 时返回中性均衡态（绝不伪造领先）。</summary>
+        public static (float ratioA, float ratioB, bool isNeutral) ComputePopularitySplit(ulong countA, ulong countB)
+        {
+            ulong total = countA + countB;
+            if (total == 0UL) return (0.5f, 0.5f, true);
+            float a = (float)((double)countA / total);
+            return (a, 1f - a, false);
+        }
+
+        public static string FormatBo3Score(TournamentMatchView match)
+        {
+            if (match == null) return string.Empty;
+            uint bestOf = match.BestOf == 0 ? 1u : match.BestOf;
+            if (bestOf <= 1u) return string.Empty;
+            return $"BO{bestOf} {match.WinsA}:{match.WinsB}";
+        }
 
         public static string RewardTierDisplayName(TournamentRewardTierKind tier) => tier switch
         {
@@ -167,6 +266,38 @@ namespace MmorpgClient.Game.Tournament
                 _ => 0UL,
             };
             return targetMs > nowMs ? targetMs - nowMs : 0UL;
+        }
+
+        /// <summary>V2：计算 BO3 局间换阵剩余毫秒数（以服务端 ServerTimeMs 校准本地单调时间，绝不使用系统壁钟）。</summary>
+        public ulong IntermissionRemainingMs(TournamentMatchView match, float nowLocalSeconds)
+        {
+            if (match == null || match.IntermissionDeadlineMs == 0UL) return 0UL;
+            ulong nowMs = EstimateServerNowMs(nowLocalSeconds);
+            return match.IntermissionDeadlineMs > nowMs ? match.IntermissionDeadlineMs - nowMs : 0UL;
+        }
+
+        /// <summary>V2：查找最近一届已诞生总冠军的赛季视图（优先本季，其次历届冠军殿堂首项）。</summary>
+        public TournamentSeasonView FindLatestChampionSeason()
+        {
+            if (Season != null && Season.ChampionSquadId != 0UL) return Season;
+            for (int i = 0; i < HallOfFame.Count; i++)
+            {
+                if (HallOfFame[i] != null && HallOfFame[i].ChampionSquadId != 0UL)
+                    return HallOfFame[i];
+            }
+            return null;
+        }
+
+        public TournamentSeasonView FindChampionSeason(uint seasonId)
+        {
+            if (seasonId == 0u) return FindLatestChampionSeason();
+            if (Season != null && Season.SeasonId == seasonId && Season.ChampionSquadId != 0UL) return Season;
+            for (int i = 0; i < HallOfFame.Count; i++)
+            {
+                if (HallOfFame[i] != null && HallOfFame[i].SeasonId == seasonId && HallOfFame[i].ChampionSquadId != 0UL)
+                    return HallOfFame[i];
+            }
+            return FindLatestChampionSeason();
         }
 
         public TournamentOverviewSnapshot(
@@ -325,6 +456,153 @@ namespace MmorpgClient.Game.Tournament
                 HallOfFame,
                 ServerTimeMs,
                 CapturedAtLocalSeconds);
+        }
+
+        public TournamentOverviewSnapshot WithSaluted(uint seasonId, ulong championSaluteCount)
+        {
+            var nextSeason = Season?.Clone();
+            if (nextSeason != null)
+            {
+                nextSeason.SalutedToday = true;
+                if (nextSeason.SeasonId == seasonId) nextSeason.ChampionSaluteCount = championSaluteCount;
+            }
+            var nextHof = new List<TournamentSeasonView>(HallOfFame.Count);
+            for (int i = 0; i < HallOfFame.Count; i++)
+            {
+                var h = HallOfFame[i].Clone();
+                h.SalutedToday = true;
+                if (h.SeasonId == seasonId) h.ChampionSaluteCount = championSaluteCount;
+                nextHof.Add(h);
+            }
+            return new TournamentOverviewSnapshot(
+                nextSeason,
+                MySquad?.Clone(),
+                PendingInvites,
+                MyActiveMatch?.Clone(),
+                FeaturedMatches,
+                MyCheeredSquadId,
+                MyCheeredSquadName,
+                RewardTiers,
+                MyRewards,
+                nextHof,
+                ServerTimeMs,
+                CapturedAtLocalSeconds);
+        }
+    }
+
+    /// <summary>V2 RPC 506 观道致敬结果不可变摘要。</summary>
+    public readonly struct TournamentSaluteOutcome
+    {
+        public uint SeasonId { get; }
+        public ulong ChampionSaluteCount { get; }
+        public ulong GoldAmount { get; }
+        public IReadOnlyList<TournamentRewardItem> Items { get; }
+        public ulong MailId { get; }
+
+        public TournamentSaluteOutcome(
+            uint seasonId,
+            ulong championSaluteCount,
+            ulong goldAmount,
+            IReadOnlyList<TournamentRewardItem> items,
+            ulong mailId)
+        {
+            SeasonId = seasonId;
+            ChampionSaluteCount = championSaluteCount;
+            GoldAmount = goldAmount;
+            Items = items ?? Array.Empty<TournamentRewardItem>();
+            MailId = mailId;
+        }
+    }
+
+    /// <summary>V2 RPC 507/508 观战底部喝彩条的权威聚合快照（按 seq 增量合并，不本地臆造人气）。</summary>
+    public sealed class TournamentSpectateCheerSnapshot
+    {
+        public const int MaxRetainedCheers = 32;
+
+        public ulong BattleId { get; }
+        public ulong CountA { get; }
+        public ulong CountB { get; }
+        public ulong CooldownUntilMs { get; }
+        public IReadOnlyList<TournamentSpectateCheerItem> RecentCheers { get; }
+        public ulong LatestSeq { get; }
+        public ulong ServerTimeMs { get; }
+        public float CapturedAtLocalSeconds { get; }
+
+        public TournamentSpectateCheerSnapshot(
+            ulong battleId,
+            ulong countA,
+            ulong countB,
+            ulong cooldownUntilMs,
+            IReadOnlyList<TournamentSpectateCheerItem> recentCheers,
+            ulong serverTimeMs,
+            float capturedAtLocalSeconds)
+        {
+            BattleId = battleId;
+            CountA = countA;
+            CountB = countB;
+            CooldownUntilMs = cooldownUntilMs;
+            RecentCheers = recentCheers ?? Array.Empty<TournamentSpectateCheerItem>();
+            ulong maxSeq = 0UL;
+            for (int i = 0; i < RecentCheers.Count; i++)
+            {
+                if (RecentCheers[i].Seq > maxSeq) maxSeq = RecentCheers[i].Seq;
+            }
+            LatestSeq = maxSeq;
+            ServerTimeMs = serverTimeMs;
+            CapturedAtLocalSeconds = capturedAtLocalSeconds;
+        }
+
+        public ulong EstimateServerNowMs(float nowLocalSeconds)
+        {
+            if (ServerTimeMs == 0UL) return 0UL;
+            float delta = nowLocalSeconds - CapturedAtLocalSeconds;
+            if (delta <= 0f) return ServerTimeMs;
+            return ServerTimeMs + (ulong)(delta * 1000.0);
+        }
+
+        public ulong CooldownRemainingMs(float nowLocalSeconds)
+        {
+            if (CooldownUntilMs == 0UL) return 0UL;
+            ulong nowMs = EstimateServerNowMs(nowLocalSeconds);
+            return CooldownUntilMs > nowMs ? CooldownUntilMs - nowMs : 0UL;
+        }
+
+        public static TournamentSpectateCheerSnapshot Merge(
+            TournamentSpectateCheerSnapshot previous,
+            ulong battleId,
+            ulong countA,
+            ulong countB,
+            ulong cooldownUntilMs,
+            IList<TournamentSpectateCheerItem> incoming,
+            ulong serverTimeMs,
+            float localSeconds)
+        {
+            var merged = new List<TournamentSpectateCheerItem>();
+            var seen = new HashSet<ulong>();
+            if (previous != null && previous.BattleId == battleId)
+            {
+                for (int i = 0; i < previous.RecentCheers.Count; i++)
+                {
+                    var item = previous.RecentCheers[i];
+                    if (item != null && seen.Add(item.Seq)) merged.Add(item);
+                }
+            }
+            if (incoming != null)
+            {
+                for (int i = 0; i < incoming.Count; i++)
+                {
+                    var item = incoming[i];
+                    if (item != null && seen.Add(item.Seq)) merged.Add(item.Clone());
+                }
+            }
+            merged.Sort((a, b) => a.Seq.CompareTo(b.Seq));
+            if (merged.Count > MaxRetainedCheers)
+                merged.RemoveRange(0, merged.Count - MaxRetainedCheers);
+            ulong effCooldown = cooldownUntilMs;
+            if (effCooldown == 0UL && previous != null && previous.BattleId == battleId && previous.CooldownUntilMs > serverTimeMs)
+                effCooldown = previous.CooldownUntilMs;
+            return new TournamentSpectateCheerSnapshot(
+                battleId, countA, countB, effCooldown, merged, serverTimeMs, localSeconds);
         }
     }
 

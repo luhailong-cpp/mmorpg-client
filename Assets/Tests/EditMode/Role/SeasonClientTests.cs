@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using Google.Protobuf;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.Battle.Presentation;
 using MmorpgClient.Game.Season;
+using MmorpgClient.Game.Skills;
 using MmorpgClient.Net;
 using MmorpgClient.Net.Generated;
+using MmorpgClient.UI.Ugui.Skills;
 using NUnit.Framework;
 
 namespace MmorpgClient.Tests.EditMode.Role
@@ -193,6 +196,168 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(SeasonModels.FormatBpsPercent(600u), Is.EqualTo("6%"));
             Assert.That(SeasonModels.FormatBpsPercent(450u), Is.EqualTo("4.5%"));
             Assert.That(SeasonModels.DescribeTip((uint)season_error.KSeasonInBattle), Does.Contain("战斗中"));
+        }
+
+        [Test]
+        public void SeasonModels_FormatsTimeBreakdownRulesIconsAndCatchupQuotes()
+        {
+            Assert.That(SeasonModels.FormatBpsOneDecimal(0u), Is.EqualTo("0.0%"));
+            Assert.That(SeasonModels.FormatBpsOneDecimal(150u), Is.EqualTo("1.5%"));
+            Assert.That(SeasonModels.FormatBpsOneDecimal(300u), Is.EqualTo("3.0%"));
+
+            Assert.That(SeasonModels.FormatSeasonTimeLabel(0UL, 1_000_000UL), Is.EqualTo("首测常开"));
+            Assert.That(SeasonModels.FormatSeasonTimeLabel(1_000UL, 2_000UL), Is.EqualTo("本季已结束"));
+            Assert.That(SeasonModels.FormatSeasonTimeLabel(1_000UL + (2UL * 86400UL + 3UL * 3600UL) * 1000UL, 1_000UL),
+                Is.EqualTo("剩余 2天3时"));
+
+            Assert.That(SeasonModels.NormalizeIconResource("Assets/Resources/UI/SeasonSeals/101.png", "UI/SeasonSeals/", 101u),
+                Is.EqualTo("UI/SeasonSeals/101"));
+            Assert.That(SeasonModels.NormalizeIconResource("../evil/path", "UI/SeasonSeals/", 102u),
+                Is.EqualTo("UI/SeasonSeals/102"));
+
+            var snap = new SeasonStateSnapshot
+            {
+                Available = true,
+                SeasonId = 1u,
+                ProgressPoints = 6u,
+                MaxPoints = 12u,
+                BattlePoints = 4u,
+                CatchupPoints = 2u,
+                PvpWinPoints = 2u,
+                PvpOtherPoints = 1u,
+                PveWinPoints = 1u,
+                CanCatchup = true,
+                CatchupCurrencyType = 1u,
+                CatchupPricePerPoint = 10UL,
+                CatchupRemainingTotalPrice = 60UL,
+            };
+            Assert.That(SeasonModels.DescribeProgressBreakdown(snap), Is.EqualTo("战斗 4 点 + 追赶 2 点"));
+            Assert.That(SeasonModels.DescribeSourceRuleLine(snap), Is.EqualTo("正规排位胜+2/完赛+1 · 首领试炼胜+1 · 无每日上限"));
+
+            Assert.That(SeasonModels.TryBuildCatchupQuote(snap, 1u, out var oneQuote), Is.True);
+            Assert.That(oneQuote.PointsToBuy, Is.EqualTo(1u));
+            Assert.That(oneQuote.RequestPoints, Is.EqualTo(1u));
+            Assert.That(oneQuote.TotalPrice, Is.EqualTo(10UL));
+            Assert.That(oneQuote.ProgressAfter, Is.EqualTo(7u));
+            Assert.That(oneQuote.IsFullFill, Is.False);
+
+            Assert.That(SeasonModels.TryBuildCatchupQuote(snap, 0u, out var fullQuote), Is.True);
+            Assert.That(fullQuote.PointsToBuy, Is.EqualTo(6u));
+            Assert.That(fullQuote.RequestPoints, Is.EqualTo(0u));
+            Assert.That(fullQuote.TotalPrice, Is.EqualTo(60UL));
+            Assert.That(fullQuote.ProgressAfter, Is.EqualTo(12u));
+            Assert.That(fullQuote.IsFullFill, Is.True);
+
+            snap.ProgressPoints = 12u;
+            Assert.That(SeasonModels.TryBuildCatchupQuote(snap, 1u, out _), Is.False);
+
+            Assert.That(SeasonModels.FormatSeasonSealTriggerText(101u, 1u, 120L, _ => "破阵锐印"),
+                Is.EqualTo("破阵锐印 · 破盾 -120"));
+            Assert.That(SeasonModels.FormatSeasonSealTriggerText(103u, 6u, 80L, _ => "固阵守印"),
+                Is.EqualTo("固阵守印 · 减伤 -80"));
+            Assert.That(SeasonModels.FormatSeasonSealTriggerText(104u, 7u, 45L, _ => "聚息援印"),
+                Is.EqualTo("聚息援印 · 回蓝 +45"));
+        }
+
+        [Test]
+        public void TurnPlan_CarriesSeasonSealId_And_SkillBookBlocksSeasonalUpgrade()
+        {
+            var protoEv = new BattleEventItem
+            {
+                EventType = eBattleEventType.BattleEventArtifact,
+                SourceId = 1001UL,
+                TargetId = 2001UL,
+                ArtifactItemId = 0UL,
+                ArtifactEffectId = 1u,
+                SeasonSealId = 101u,
+                Value = 150UL,
+            };
+            var turnResult = new TurnResultS2C();
+            turnResult.Events.Add(protoEv);
+            var plan = TurnPlan.Build(turnResult, 0u);
+            Assert.That(plan.ArtifactEvents.Count, Is.EqualTo(1));
+            Assert.That(plan.ArtifactEvents[0].Input.SeasonSealId, Is.EqualTo(101u));
+            Assert.That(plan.ArtifactEvents[0].Input.ArtifactItemId, Is.EqualTo(0UL));
+
+            var skillState = new SkillBookViewState
+            {
+                IsConnected = true,
+                IsReadOnly = false,
+                Snapshot = new SkillBookSnapshot { CurrencyBalance = 999999UL },
+            };
+            var seasonalEntry = new SkillEntryState
+            {
+                Id = 15001u,
+                SeasonId = 1u,
+                Rank = 4u,
+                RankLimit = 10u,
+                NextRankCost = 0UL,
+                Definition = new SkillDefinition { id = 15001u, maxRank = 10u, name = "破阵裂锋" },
+            };
+            Assert.That(seasonalEntry.IsSeasonal, Is.True);
+            Assert.That(SkillBookViewState.CanUpgrade(skillState, seasonalEntry), Is.False);
+            Assert.That(SkillBookMapper.DescribeTip((uint)season_error.KSeasonSkillNoUpgrade), Does.Contain("免费"));
+        }
+
+        [Test]
+        public void CatchupSeal_ReplayedResponseUpdatesSnapshotCleanly()
+        {
+            var net = new FakeTransport();
+            object conn = new object();
+            net.Responder = (msgId, req) =>
+            {
+                if (msgId == SceneSeasonClientPlayerRpc.GetSeasonStateMessageId)
+                {
+                    return (new GetSeasonStateResponse
+                    {
+                        State = new SeasonStateSnapshot
+                        {
+                            Available = true,
+                            SeasonId = 1u,
+                            ProgressPoints = 11u,
+                            MaxPoints = 12u,
+                            CanCatchup = true,
+                            CatchupCurrencyType = 1u,
+                            CatchupPricePerPoint = 10UL,
+                            CatchupRemainingTotalPrice = 10UL,
+                            Revision = 3UL,
+                        },
+                    }, null);
+                }
+                return (new CatchupSeasonSealResponse
+                {
+                    AddedPoints = 1u,
+                    SpentCurrency = 10UL,
+                    Replayed = true,
+                    State = new SeasonStateSnapshot
+                    {
+                        Available = true,
+                        SeasonId = 1u,
+                        ProgressPoints = 12u,
+                        MaxPoints = 12u,
+                        CanCatchup = false,
+                        CatchupCurrencyType = 1u,
+                        CatchupPricePerPoint = 10UL,
+                        CatchupRemainingTotalPrice = 0UL,
+                        Revision = 4UL,
+                    },
+                }, null);
+            };
+
+            float now = 10f;
+            using var client = new SeasonClient(net, () => conn, () => now);
+            SeasonSealCatchupEvent? ev = null;
+            client.SealCatchupCompleted += e => ev = e;
+            client.RequestState(force: true);
+            net.Flush();
+
+            now = 20f;
+            Assert.That(client.CatchupSeal(1u), Is.True);
+            net.Flush();
+            Assert.That(ev.HasValue, Is.True);
+            Assert.That(ev.Value.Replayed, Is.True);
+            Assert.That(client.Snapshot?.ProgressPoints, Is.EqualTo(12u));
+            Assert.That(client.StatusIsError, Is.False);
         }
     }
 }

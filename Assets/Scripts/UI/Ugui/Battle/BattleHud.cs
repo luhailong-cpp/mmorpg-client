@@ -20,26 +20,61 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly RectTransform _root;
         private readonly TMP_Text _a;
         private readonly TMP_Text _b;
+        private readonly bool _usesLightPaperBase;
         private TMP_Text _front;
         private uint _round;
 
         public uint Round => _round;
         public RectTransform Root => _root;
 
+        /// <summary>返回回合剩余告警档位：0 正常，1 倒数第 2/3 回合（琥珀），2 最后一回合（朱红）。</summary>
+        public static int ResolveRoundWarningLevel(uint round, uint roundLimit)
+        {
+            if (roundLimit == 0u || round == 0u || round > roundLimit) return 0;
+            uint remaining = roundLimit - round;
+            if (remaining == 0u) return 2;
+            if (remaining <= 2u) return 1;
+            return 0;
+        }
+
         public BattleRoundCounter(UnityEngine.Transform parent, float x, float y)
         {
             var plate = BattleUiWidgets.CreatePanel("RoundFrame", parent, x, y, Width, Height, BattleUiStyle.PanelBg, false);
-            ApplyNineSlice(plate, "panel_9slice");
+            var paintedBase = SeasonEconomyUiArt.LoadBattleArenaControl("round-counter-base");
+            if (paintedBase != null)
+            {
+                plate.sprite = paintedBase;
+                plate.type = Image.Type.Simple;
+                plate.preserveAspect = false;
+                plate.color = Color.white;
+                _usesLightPaperBase = true;
+            }
+            else
+            {
+                ApplyNineSlice(plate, "panel_9slice");
+            }
             _root = plate.rectTransform;
             var frame = BattleUiWidgets.CreatePanel("Gold", _root, 0f, 0f, Width, Height, new Color(0.93f, 0.76f, 0.32f, 0.9f), false);
             var inner = BattleUiWidgets.CreatePanel("Inner", _root, 3f, 3f, Width - 6f, Height - 6f, BattleUiStyle.PanelBg, false);
             inner.transform.SetAsLastSibling();
+            if (_usesLightPaperBase)
+            {
+                frame.gameObject.SetActive(false);
+                inner.gameObject.SetActive(false);
+            }
             var clip = QdaoUguiFactory.CreateRect("Clip", _root, 0f, 0f, Width, Height);
             clip.gameObject.AddComponent<RectMask2D>();
-            _a = QdaoUguiFactory.CreateText("RoundA", clip, 0f, 0f, Width, Height, string.Empty, 32f, BattleUiStyle.WarnText, TextAlignmentOptions.Center);
-            _b = QdaoUguiFactory.CreateText("RoundB", clip, 0f, Height, Width, Height, string.Empty, 32f, BattleUiStyle.WarnText, TextAlignmentOptions.Center);
+            Color defaultTextColor = _usesLightPaperBase ? SeasonEconomyUiArt.BattleArenaInk : BattleUiStyle.WarnText;
+            _a = QdaoUguiFactory.CreateText("RoundA", clip, 0f, 0f, Width, Height, string.Empty, 30f, defaultTextColor, TextAlignmentOptions.Center);
+            _b = QdaoUguiFactory.CreateText("RoundB", clip, 0f, Height, Width, Height, string.Empty, 30f, defaultTextColor, TextAlignmentOptions.Center);
             _a.fontStyle = FontStyles.Bold;
             _b.fontStyle = FontStyles.Bold;
+            _a.enableAutoSizing = true;
+            _a.fontSizeMin = 20f;
+            _a.fontSizeMax = 30f;
+            _b.enableAutoSizing = true;
+            _b.fontSizeMin = 20f;
+            _b.fontSizeMax = 30f;
             _front = _a;
             frame.transform.SetAsFirstSibling();
         }
@@ -47,12 +82,19 @@ namespace MmorpgClient.UI.Ugui.Battle
         public void SetRound(uint round, bool animate, string suffix = null, uint roundLimit = 0u)
         {
             string text = roundLimit > 0u
-                ? $"第{round}/{roundLimit}回合{suffix ?? string.Empty}"
+                ? $"第 {round}/{roundLimit} 回合{suffix ?? string.Empty}"
                 : $"第 {round} 回合{suffix ?? string.Empty}";
+            int warnLevel = ResolveRoundWarningLevel(round, roundLimit);
+            Color roundColor = warnLevel == 2
+                ? SeasonEconomyUiArt.BattleArenaVermilion
+                : warnLevel == 1
+                    ? SeasonEconomyUiArt.BattleArenaAmber
+                    : (_usesLightPaperBase ? SeasonEconomyUiArt.BattleArenaInk : BattleUiStyle.WarnText);
             if (!animate || _front.text == text || (_round == round && string.IsNullOrEmpty(suffix) && roundLimit == 0u))
             {
                 _round = round;
                 _front.text = text;
+                _front.color = roundColor;
                 return;
             }
             _round = round;
@@ -60,6 +102,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             var outgoing = _front;
             _front = back;
             back.text = text;
+            back.color = roundColor;
             RealtimeTween.Kill(_root);
             var outRect = outgoing.rectTransform;
             var inRect = back.rectTransform;

@@ -183,6 +183,9 @@ namespace MmorpgClient.Game.CoreLoop
         public IReadOnlyList<BossTrialHighlightBadge> BuildLastBossTrialHighlights() =>
             CoreGameplayLoopModels.BuildBossTrialHighlightBadges(_battle.LastBattleEnd?.Settlement);
 
+        public BattleTacticalReviewView BuildLastTacticalReview() =>
+            CoreGameplayLoopModels.BuildTacticalReview(_battle.LastBattleEnd);
+
         public IReadOnlyList<PvpScaleSlotView> BuildFormalPvpScales() =>
             CoreGameplayLoopModels.BuildFormalPvpScales(_ranked?.Profile, _matchEntry.CurrentSize);
 

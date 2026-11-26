@@ -189,6 +189,78 @@ namespace MmorpgClient.Tests.EditMode.Tournament
             Assert.That(choices.Count, Is.EqualTo(2));
             Assert.That(choices[0].SeasonId, Is.EqualTo(0u));
             Assert.That(choices[1].SeasonId, Is.EqualTo(1u));
+
+            // 好友/同帮/附近邀请候选过滤：剔除本人与已在队成员、去重、在线优先
+            var filtered = TournamentUiModel.FilterInviteCandidates(new[]
+            {
+                new TournamentInviteCandidate(1001UL, "本人", "好友", true, true),
+                new TournamentInviteCandidate(1002UL, "已在队", "好友", true, true),
+                new TournamentInviteCandidate(3001UL, "离线道友", "同帮", false, true),
+                new TournamentInviteCandidate(3002UL, "在线道友", "好友", true, true),
+                new TournamentInviteCandidate(3002UL, "重复条目", "同帮", true, true),
+            }, localPlayerId: 1001UL, mySquad: sq);
+            Assert.That(filtered.Count, Is.EqualTo(2));
+            Assert.That(filtered[0].PlayerId, Is.EqualTo(3002UL));
+            Assert.That(filtered[1].PlayerId, Is.EqualTo(3001UL));
+        }
+
+        [Test]
+        public void V2_IntermissionCountdown_PublicKnockoutReplay_Leylines_And_PopularitySplit()
+        {
+            var model = new TournamentUiModel();
+            var sq = MakeSquad(TournamentSquadState.Registered, memberCount: 4);
+            var interMatch = new TournamentMatchView
+            {
+                MatchId = 8802UL,
+                Phase = TournamentMatchPhase.Knockout,
+                State = TournamentMatchState.Intermission,
+                SquadAId = sq.SquadId,
+                SquadBId = 6002UL,
+                BestOf = 3u,
+                CurrentGameIndex = 2u,
+                WinsA = 1u,
+                WinsB = 0u,
+                CurrentLeylineElement = TournamentLeylineElement.TournamentLeylineFire,
+                IntermissionDeadlineMs = 210_000UL,
+                PublicReplayAvailable = true,
+            };
+            interMatch.GameBattleIds.Add(71001UL);
+
+            var ov = MakeOverview(TournamentStage.Knockout, sq, interMatch); // ServerTimeMs=150_000
+            // 校准倒计时：初始精确 60s，走 15s 后精确剩 45s，不漂移、不用壁钟
+            Assert.That(model.ComputeIntermissionRemainingMs(ov, interMatch, nowRealtimeSeconds: 5000f), Is.EqualTo(60_000UL));
+            Assert.That(model.ComputeIntermissionRemainingMs(ov, interMatch, nowRealtimeSeconds: 5015f), Is.EqualTo(45_000UL));
+            Assert.That(model.ComputeIntermissionRemainingMs(ov, interMatch, nowRealtimeSeconds: 5100f), Is.EqualTo(0UL));
+
+            // 局间换阵 CTA
+            var ctaCap = TournamentUiModel.DerivePrimaryCta(ov, 1001UL, false);
+            Assert.That(ctaCap.Kind, Is.EqualTo(TournamentPrimaryCtaKind.IntermissionSwap));
+            Assert.That(ctaCap.Label, Is.EqualTo("局间换阵备战"));
+            Assert.That(TournamentFormatting.FormatBo3Score(interMatch), Is.EqualTo("BO3 1:0"));
+
+            // 公开淘汰赛战报：路人（无战队/非参战方）允许回放，且取最新小局 battle_id
+            Assert.That(TournamentUiModel.CanWatchReplay(interMatch, mySquad: null), Is.True);
+            Assert.That(TournamentUiModel.ResolveLatestReplayBattleId(interMatch), Is.EqualTo(71001UL));
+
+            // 五行灵脉与 6 条确认预设短语完整无缺失
+            Assert.That(TournamentFormatting.AllLeylines.Length, Is.EqualTo(5));
+            Assert.That(TournamentFormatting.GetLeylineInfo(TournamentLeylineElement.TournamentLeylineEarth).EffectSummary, Does.Contain("护盾"));
+            Assert.That(TournamentFormatting.SpectateCheerPresets.Length, Is.EqualTo(6));
+            Assert.That(TournamentFormatting.SpectateCheerPresets[2].Label, Is.EqualTo("妙法天成"));
+            Assert.That(TournamentFormatting.SpectateCheerPresets[2].HasNativeFloatArt, Is.True);
+
+            // 人气对推比例：0:0 中性 50/50；有数据时按真实比例计算
+            var zero = TournamentFormatting.ComputePopularitySplit(0UL, 0UL);
+            Assert.That(zero.isNeutral, Is.True);
+            Assert.That(zero.ratioA, Is.EqualTo(0.5f));
+            var real = TournamentFormatting.ComputePopularitySplit(3UL, 1UL);
+            Assert.That(real.isNeutral, Is.False);
+            Assert.That(real.ratioA, Is.EqualTo(0.75f).Within(0.001f));
+            Assert.That(real.ratioB, Is.EqualTo(0.25f).Within(0.001f));
+
+            // V2 新增 Tip 恢复策略
+            Assert.That(TournamentUiModel.ClassifyTipRecovery((uint)match_error.KMatchTournamentAlreadySalutedToday).AutoRefreshOverviewOnce, Is.True);
+            Assert.That(TournamentUiModel.ClassifyTipRecovery((uint)match_error.KMatchTournamentNoChampionToSalute).AutoRefreshOverviewOnce, Is.True);
         }
     }
 }

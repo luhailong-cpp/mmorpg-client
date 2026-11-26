@@ -56,6 +56,7 @@ namespace MmorpgClient.Game.Skills
                 PlayerLevel = response.PlayerLevel,
                 CurrencyBalance = response.CurrencyBalance,
                 Title = CharacterTitle,
+                Loadout = ToLoadoutView(response.Loadout),
             };
             foreach (var row in response.Catalog)
             {
@@ -73,6 +74,7 @@ namespace MmorpgClient.Game.Skills
                     RarityTier = row.RarityTier,
                     CraftUnlockRequired = row.CraftUnlockRequired,
                     UnlockedByBook = row.UnlockedByBook,
+                    Equipped = row.Equipped,
                     Definition = new Ui.SkillDefinition
                     {
                         id = row.SkillTableId,
@@ -97,11 +99,44 @@ namespace MmorpgClient.Game.Skills
                         iconResource = NormalizeIconKey(row.IconKey, row.SkillTableId),
                         scrollId = row.ScrollId,
                         rarityTier = row.RarityTier,
+                        abilityKind = row.AbilityKind,
+                        secondaryTargetPolicy = row.SecondaryTargetPolicy,
+                        exclusiveGroup = row.ExclusiveGroup,
                     },
                 });
             }
             snapshot.Entries.Sort((a, b) => a.Id.CompareTo(b.Id));
             return snapshot;
+        }
+
+        private static Ui.SkillLoadoutView ToLoadoutView(SkillLoadoutSnapshot proto)
+        {
+            if (proto == null || proto.StateVersion == 0) return null;
+            var view = new Ui.SkillLoadoutView
+            {
+                CustomEnabled = proto.CustomEnabled,
+                ActiveSchemeId = proto.ActiveSchemeId,
+                StateVersion = proto.StateVersion,
+                MaxPassiveSlots = proto.MaxPassiveSlots > 0 ? proto.MaxPassiveSlots : 3u,
+                MaxPursuitSlots = proto.MaxPursuitSlots > 0 ? proto.MaxPursuitSlots : 1u,
+                MaxOpeningSlots = proto.MaxOpeningSlots > 0 ? proto.MaxOpeningSlots : 1u,
+                LastRequestId = proto.LastRequestId,
+            };
+            foreach (var scheme in proto.Schemes)
+            {
+                if (scheme == null || scheme.SchemeId == 0) continue;
+                var item = new Ui.SkillLoadoutSchemeView
+                {
+                    SchemeId = scheme.SchemeId,
+                    RoleTag = scheme.RoleTag,
+                };
+                item.PassiveSkillIds.AddRange(scheme.PassiveSkillIds);
+                item.PursuitSkillIds.AddRange(scheme.PursuitSkillIds);
+                item.OpeningSkillIds.AddRange(scheme.OpeningSkillIds);
+                view.Schemes.Add(item);
+            }
+            view.Schemes.Sort((a, b) => a.SchemeId.CompareTo(b.SchemeId));
+            return view;
         }
 
         /// <summary>
@@ -126,7 +161,13 @@ namespace MmorpgClient.Game.Skills
             (uint)skill_error.KSkillAlreadyBookUnlocked => "该技能已通过技能书永久解锁",
             (uint)skill_error.KSkillProxyStallRequiresMaster => "铸器或制卷达到宗师后方可开设代打摊位",
             (uint)skill_error.KSkillProxyFeeInvalid => "代打手工费须在 50 至 100 银两之间",
+            (uint)skill_error.KSkillLoadoutSlotLimitReached => "该战法分类的装配槽位已满",
+            (uint)skill_error.KSkillLoadoutConflict => "所选战法存在互斥冲突，不可同时装配",
+            (uint)skill_error.KSkillLoadoutNotLearned => "请先修习该战法后再进行装配",
+            (uint)skill_error.KSkillLoadoutSchemeInvalid => "无效的战法流派方案",
+            (uint)skill_error.KSkillLoadoutVersionChanged => "战法装配状态已变化，请刷新后再试",
             (uint)equip_error.KEquipProxyMasterUnavailable => "该名匠代打摊位当前不可用，请刷新列表",
+            (uint)season_error.KSeasonSkillNoUpgrade => "本季全员免费生效，随角色等级自动成长，季末随赛季轮换",
             (uint)common_error.KInvalidTableId => "技能不存在",
             (uint)common_error.KServiceUnavailable => "技能服务暂不可用,请稍后再试",
             (uint)common_error.KEntityIsNull => "角色尚未就绪",

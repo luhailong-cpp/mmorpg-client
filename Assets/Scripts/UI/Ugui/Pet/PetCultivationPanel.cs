@@ -44,7 +44,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         private float _width = 2560f;
         private string _message;
         private Text _status, _remaining, _budget;
-        private Button _save, _discard, _more;
+        private Button _save, _discard, _more, _ascendEntry;
         private RectTransform _leaveDialog;
         private Action _afterDiscard;
 
@@ -102,7 +102,13 @@ namespace MmorpgClient.UI.Ugui.Pet
             if (BattleLocked) Hide(); else Navigate(Hide);
         }
         // External battle/window transitions may hide the view, but never silently discard its draft.
-        public void Hide() { _leaveDialog?.gameObject.SetActive(false); _root.gameObject.SetActive(false); }
+        public void Hide()
+        {
+            _leaveDialog?.gameObject.SetActive(false);
+            _ascendVisible = false;
+            _ascendDialog?.gameObject.SetActive(false);
+            _root.gameObject.SetActive(false);
+        }
 
         public void Tick()
         {
@@ -234,7 +240,8 @@ namespace MmorpgClient.UI.Ugui.Pet
         {
             if (_disposed) return;
             for (int i = _root.childCount - 1; i >= 0; --i) DestroyUi(_root.GetChild(i).gameObject);
-            _statRows.Clear(); _leaveDialog = null; _remaining = _budget = null; _save = _discard = _more = null;
+            _statRows.Clear(); _leaveDialog = null; _remaining = _budget = null; _save = _discard = _more = _ascendEntry = null;
+            _entryClearAll = _entryTagButton = null; _entryPresetButtons.Clear(); _ascendConfirm = null;
             _skillUpgrade = _skillUpgradeTen = null;
             float t = Mathf.InverseLerp(1920, 2560, _width);
             float margin = Mathf.Lerp(76, 133, t), leftW = Mathf.Lerp(392, 535, t), leftX = margin + 39;
@@ -258,10 +265,23 @@ namespace MmorpgClient.UI.Ugui.Pet
                     _page == page ? "mail_tab_selected" : "mail_tab_normal", 27);
             }
             if (_openMore != null)
-                _more = ActionButton("PetMore", _root, leftX + 14, 915, 210, 60, "更多培养", false,
-                    () => { if (!BattleLocked) Navigate(() => { Hide(); _openMore(); }); }, null, 25);
-            ActionButton("PetBadgeExplain", _root, leftX + 240, 915, 150, 60, "徽章说明", false,
-                () => { _badgesVisible = true; BuildBadges(); }, null, 25);
+            {
+                float btnW = Mathf.Floor((leftW - 28f) / 3f);
+                _more = ActionButton("PetMore", _root, leftX + 6, 915, btnW, 60, "更多培养", false,
+                    () => { if (!BattleLocked) Navigate(() => { Hide(); _openMore(); }); }, null, 22);
+                ActionButton("PetBadgeExplain", _root, leftX + 14 + btnW, 915, btnW, 60, "五阶徽章", false,
+                    () => { _badgesVisible = true; BuildBadges(); }, null, 22);
+                _ascendEntry = ActionButton("PetAscendTier", _root, leftX + 22 + btnW * 2f, 915, btnW, 60, "灵阶突破", true,
+                    () => { _ascendVisible = true; BuildAscendDialog(); }, null, 22);
+            }
+            else
+            {
+                float btnW = Mathf.Floor((leftW - 24f) * 0.5f);
+                ActionButton("PetBadgeExplain", _root, leftX + 8, 915, btnW, 60, "徽章说明", false,
+                    () => { _badgesVisible = true; BuildBadges(); }, null, 24);
+                _ascendEntry = ActionButton("PetAscendTier", _root, leftX + 16 + btnW, 915, btnW, 60, "灵阶突破", true,
+                    () => { _ascendVisible = true; BuildAscendDialog(); }, null, 24);
+            }
             _status = Label("PetCultivationStatus", _root, contentX + 24, 886, contentW - 48, 28, "", 20, Muted);
             switch (_page)
             {
@@ -272,6 +292,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             }
             RefreshFields();
             if (_badgesVisible) BuildBadges();
+            if (_ascendVisible) BuildAscendDialog();
         }
 
         private void BuildRoster(float x, float width)
@@ -387,6 +408,8 @@ namespace MmorpgClient.UI.Ugui.Pet
             if (_save != null) _save.interactable = _page == PetCultivationPage.FourStats && CanWrite && _draft.Count != 0;
             if (_discard != null) _discard.interactable = _page == PetCultivationPage.FourStats && CanWrite && _draft.Count != 0;
             if (_more != null) _more.interactable = !BattleLocked;
+            if (_ascendEntry != null) _ascendEntry.interactable = Selected != null;
+            RefreshAscendDialogButtons();
             var skillEntry = SkillState?.Snapshot?.Find(_selectedSkillId);
             bool canLearn = !BattleLocked && SkillBookViewState.CanUpgrade(SkillState, skillEntry);
             if (_skillUpgrade != null) _skillUpgrade.interactable = canLearn;
@@ -450,7 +473,21 @@ namespace MmorpgClient.UI.Ugui.Pet
                 Label("PetOverviewLabel" + i, row, 40, 12, 260, 44, names[i], 28, Ink);
                 Label("PetOverviewValue" + i, row, width - 450, 12, 350, 44, values[i], 28, Green, TextAnchor.MiddleRight);
             }
-            Label("PetOverviewGrowth", _root, x + 30, 790, width - 60, 60, pet == null ? "等级 —   成长率 —" : $"等级 {pet.Level}   成长率 {pet.Growth / 100f:0.##}%", 24, Muted);
+            Label("PetOverviewGrowth", _root, x + 30, 772, width - 290, 44,
+                pet == null ? "等级 —   成长率 —" : $"等级 {pet.Level}   成长率 {pet.Growth / 100f:0.##}%   灵阶：{(string.IsNullOrEmpty(pet.CultivationTierName) ? "—" : pet.CultivationTierName)}",
+                24, Muted);
+            string tierHint = pet == null ? "" : pet.NextTier == null || pet.NextTier.NextTier == 0
+                ? "已达巅峰 · 圣兽（+8 条目预算）"
+                : $"下阶：{pet.NextTier.NextTierName}（+{pet.NextTier.BonusEntryPoints} 条目预算 · 需 {pet.NextTier.MinPetLevel} 级）";
+            Label("PetOverviewTierHint", _root, x + 30, 818, width - 290, 36, tierHint, 21, Green);
+            if (pet != null)
+            {
+                var btn = ActionButton("PetOverviewAscend", _root, x + width - 246, 784, 216, 60,
+                    pet.NextTier == null || pet.NextTier.NextTier == 0 ? "查看灵阶" : "灵阶突破",
+                    pet.NextTier?.CanAscend == true,
+                    () => { _ascendVisible = true; BuildAscendDialog(); }, null, 24);
+                btn.interactable = true;
+            }
         }
 
         private static Sprite Portrait(PetInfo pet)

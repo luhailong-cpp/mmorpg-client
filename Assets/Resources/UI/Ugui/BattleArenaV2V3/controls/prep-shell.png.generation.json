@@ -1,0 +1,30 @@
+{
+  "recordSchema": 1,
+  "recordType": "byte-identical-unity-import-copy",
+  "copiedAtUtc": "2026-11-25T15:07:52.696666+00:00",
+  "sourceGeneratedAtUtc": null,
+  "file": "integration/Assets/Resources/UI/Ugui/BattleArenaV2V3/controls/prep-shell.png",
+  "sha256": "3d80fad00ce4a145d3bee0a0f0d7c36ba08dbf8e63fc627800eaeef3870a2bcc",
+  "width": 1960,
+  "height": 370,
+  "route": "local-byte-copy",
+  "newAiCalls": 0,
+  "submittedParameters": {
+    "model": null,
+    "quality": null
+  },
+  "actualModel": null,
+  "actualQuality": null,
+  "configuredTargetNotUsed": {
+    "model": "gpt-image-2.6-sunburst",
+    "quality": "max",
+    "source": "config/image-generation.json"
+  },
+  "note": "Byte-identical import copy; no new image request. Original model, quality and generation evidence remain in the linked source record.",
+  "source": {
+    "file": "controls/prep-shell.png",
+    "sha256": "3d80fad00ce4a145d3bee0a0f0d7c36ba08dbf8e63fc627800eaeef3870a2bcc",
+    "generationRecord": "controls/prep-shell.png.generation.json",
+    "generationRecordSha256": "fa0df71c883bea1a11040cb1acacd88dbb835e9b22218d950e3ace9a7edc4f5c"
+  }
+}

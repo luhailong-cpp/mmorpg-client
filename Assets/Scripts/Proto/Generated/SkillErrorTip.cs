@@ -23,7 +23,7 @@ public static partial class SkillErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvc2tpbGxfZXJyb3JfdGlwLnBy",
-          "b3RvKtcFCgtza2lsbF9lcnJvchISCg5rU2tpbGxfZXJyb3JPSxAAEhoKFWtT",
+          "b3RvKvgGCgtza2lsbF9lcnJvchISCg5rU2tpbGxfZXJyb3JPSxAAEhoKFWtT",
           "a2lsbFVuSW50ZXJydXB0aWJsZRDYNhIaChVrU2tpbGxJbnZhbGlkVGFyZ2V0",
           "SWQQ2TYSGAoTa1NraWxsSW52YWxpZFRhcmdldBDaNhIbChZrU2tpbGxDb29s",
           "ZG93bk5vdFJlYWR5ENs2EiUKIGtTa2lsbENhbm5vdEJlQ2FzdEluQ3VycmVu",
@@ -39,8 +39,11 @@ public static partial class SkillErrorTipReflection {
           "YWZ0UmV2aXNpb25DaGFuZ2VkEOo2EhwKF2tTa2lsbENyYWZ0Qm9va1JlcXVp",
           "cmVkEOs2Eh4KGWtTa2lsbEFscmVhZHlCb29rVW5sb2NrZWQQ7DYSIwoea1Nr",
           "aWxsUHJveHlTdGFsbFJlcXVpcmVzTWFzdGVyEO02EhoKFWtTa2lsbFByb3h5",
-          "RmVlSW52YWxpZBDuNkIkCg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJhdGVkL3Bi",
-          "L3RhYmxlYgZwcm90bzM="));
+          "RmVlSW52YWxpZBDuNhIiCh1rU2tpbGxMb2Fkb3V0U2xvdExpbWl0UmVhY2hl",
+          "ZBDvNhIaChVrU2tpbGxMb2Fkb3V0Q29uZmxpY3QQ8DYSHAoXa1NraWxsTG9h",
+          "ZG91dE5vdExlYXJuZWQQ8TYSHwoaa1NraWxsTG9hZG91dFNjaGVtZUludmFs",
+          "aWQQ8jYSIAoba1NraWxsTG9hZG91dFZlcnNpb25DaGFuZ2VkEPM2QiQKDmNv",
+          "bS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::skill_error), }, null, null));
@@ -74,6 +77,11 @@ public enum skill_error {
   [pbr::OriginalName("kSkillAlreadyBookUnlocked")] KSkillAlreadyBookUnlocked = 7020,
   [pbr::OriginalName("kSkillProxyStallRequiresMaster")] KSkillProxyStallRequiresMaster = 7021,
   [pbr::OriginalName("kSkillProxyFeeInvalid")] KSkillProxyFeeInvalid = 7022,
+  [pbr::OriginalName("kSkillLoadoutSlotLimitReached")] KSkillLoadoutSlotLimitReached = 7023,
+  [pbr::OriginalName("kSkillLoadoutConflict")] KSkillLoadoutConflict = 7024,
+  [pbr::OriginalName("kSkillLoadoutNotLearned")] KSkillLoadoutNotLearned = 7025,
+  [pbr::OriginalName("kSkillLoadoutSchemeInvalid")] KSkillLoadoutSchemeInvalid = 7026,
+  [pbr::OriginalName("kSkillLoadoutVersionChanged")] KSkillLoadoutVersionChanged = 7027,
 }
 
 #endregion

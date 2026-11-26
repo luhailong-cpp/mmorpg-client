@@ -67,21 +67,30 @@ namespace MmorpgClient.UI.Ugui.Battle
         internal static void ApplyHud(RectTransform root)
         {
             if(root==null)return;
+            bool hasArenaRoundBase=SeasonEconomyUiArt.LoadBattleArenaControl("round-counter-base")!=null;
             foreach(var image in root.GetComponentsInChildren<Image>(true))
             {
-                if(image.name=="RoundFrame")Skin(image,"tab_horizontal");
+                if(image.name=="RoundFrame"&&!hasArenaRoundBase)Skin(image,"tab_horizontal");
                 if((image.name=="Gold"||image.name=="Inner")&&image.transform.parent?.name=="RoundFrame")image.gameObject.SetActive(false);
                 if(image.name=="RingBase")image.color=new Color(1,1,1,.35f);
             }
             foreach(var button in root.GetComponentsInChildren<Button>(true))
+            {
+                if(button.name.StartsWith("Prep",StringComparison.Ordinal)||button.name.StartsWith("Surrender",StringComparison.Ordinal))
+                    continue;
                 Button(button,button.name.StartsWith("Cmd_",StringComparison.Ordinal)||button.name.Contains("ConfirmAction")||button.name.Contains("ChannelReconnect"));
+            }
             foreach(var panelName in new[]{"BattleLogPanel","SkillPanel","ItemPanel"})
             {
                 var panel=root.Find(panelName) as RectTransform;if(panel!=null)ApplyPanel(panel);
             }
             foreach(var label in root.GetComponentsInChildren<TMP_Text>(true))
             {
-                if(label.name=="RoundA"||label.name=="RoundB"){label.font=QdaoUguiTheme.ResolveFont();label.color=QdaoRefreshArt.Ivory;}
+                if(label.name=="RoundA"||label.name=="RoundB")
+                {
+                    label.font=QdaoUguiTheme.ResolveFont();
+                    if(!hasArenaRoundBase)label.color=QdaoRefreshArt.Ivory;
+                }
                 if(label.name=="Hint"||label.name=="TargetHint"||label.name=="Phase")label.color=Ink;
             }
         }

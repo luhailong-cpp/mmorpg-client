@@ -33,10 +33,15 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             var rect = transform as RectTransform;
             float width = rect != null && rect.rect.width > 0 ? rect.rect.width : 820;
             float height = rect != null && rect.rect.height > 0 ? rect.rect.height : 180;
-            float scale = Mathf.Min(width / 820f, height / 180f);
+            var highlights = _core.BuildLastBossTrialHighlights();
+            bool hasHighlights = highlights != null && highlights.Count > 0;
+            var review = _core.BuildLastTacticalReview();
+            bool hasReview = review != null && review.HasContent;
+            float baseH = 180f + (hasHighlights ? 38f : 0f) + (hasReview ? 52f : 0f);
+            float scale = Mathf.Min(width / 820f, height / baseH);
             float offsetX = (width - 820f * scale) * .5f;
-            float offsetY = (height - 180f * scale) * .5f;
-            var body = CoreLoopUiArt.Rect("RewardBody", transform, offsetX, offsetY, 820, 180);
+            float offsetY = (height - baseH * scale) * .5f;
+            var body = CoreLoopUiArt.Rect("RewardBody", transform, offsetX, offsetY, 820, baseH);
             body.localScale = new UnityEngine.Vector3(scale, scale, 1);
 
             CoreLoopUiArt.Image("RewardBackground", body, 0, 0, 820, 180,
@@ -90,6 +95,48 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             CoreLoopUiArt.Button("Claim", body, 631, 137, 168, 38,
                 "自选领取 " + view.ClaimableUnits, _root.OpenMaterialClaim,
                 view.ClaimableUnits > 0, false, 18);
+
+            if (hasHighlights)
+            {
+                var sb = new System.Text.StringBuilder("本场战法高光：");
+                int count = Mathf.Min(5, highlights.Count);
+                for (int i = 0; i < count; ++i)
+                {
+                    if (i > 0) sb.Append(" · ");
+                    sb.Append(highlights[i].Title);
+                }
+                CoreLoopUiArt.Image("BossTrialHighlightBack", body, 0, 184, 820, 34,
+                    "hud-strip", new Color(.98f, .93f, .76f, .95f));
+                var hlText = CoreLoopUiArt.Text("BossTrialHighlightText", body, 14, 185, 792, 32,
+                    sb.ToString(), 17, SeasonEconomyUiArt.GoldHighlight, true, false, TextAlignmentOptions.MidlineLeft);
+                hlText.enableAutoSizing = true;
+                hlText.fontSizeMin = 13f;
+                hlText.fontSizeMax = 17f;
+            }
+
+            if (hasReview)
+            {
+                float reviewY = hasHighlights ? 222f : 184f;
+                Color reviewBg = review.IsVictory
+                    ? new Color(.91f, .96f, .92f, .96f)
+                    : new Color(.97f, .93f, .86f, .96f);
+                Color reviewAccent = review.IsVictory ? CoreLoopUiArt.DeepJade : CoreLoopUiArt.Warning;
+                CoreLoopUiArt.Image("TacticalReviewBack", body, 0, reviewY, 820, 48, "hud-strip", reviewBg);
+                CoreLoopUiArt.Image("TacticalReviewAccent", body, 0, reviewY, 6, 48, null, reviewAccent);
+                string reasonLine = string.IsNullOrEmpty(review.ModeTag)
+                    ? $"胜负复盘：{review.ReasonHeadline}"
+                    : $"[{review.ModeTag}] 复盘：{review.ReasonHeadline}";
+                var reasonText = CoreLoopUiArt.Text("TacticalReviewReason", body, 14, reviewY + 2, 796, 22,
+                    reasonLine, 16, reviewAccent, true, false, TextAlignmentOptions.MidlineLeft);
+                reasonText.enableAutoSizing = true;
+                reasonText.fontSizeMin = 12f;
+                reasonText.fontSizeMax = 16f;
+                var nextText = CoreLoopUiArt.Text("TacticalReviewNext", body, 14, reviewY + 24, 796, 22,
+                    "下一手建议：" + review.NextMoveTip, 15, CoreLoopUiArt.Ink, false, false, TextAlignmentOptions.MidlineLeft);
+                nextText.enableAutoSizing = true;
+                nextText.fontSizeMin = 11f;
+                nextText.fontSizeMax = 15f;
+            }
         }
 
         private static void DrawAmount(UnityEngine.Transform body, string key, float x, string title, uint amount,

@@ -160,12 +160,18 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             _boardBestValue = CreateCenteredLabel("Value", _boardRightNote, PetFlipUiPresentation.NoRecordText, 42f, PetFlipArtCatalog.GoldText, bold: true);
             Place(_boardBestValue.rectTransform, 16f, 82f, 238f, 70f);
             _boardHintText = CreateCenteredLabel("Hint", _boardRightNote, PetFlipUiPresentation.BoardDefaultHintText, 20f, PetFlipArtCatalog.JadeText, bold: false, wrap: true);
-            Place(_boardHintText.rectTransform, 10f, 156f, 250f, 68f);
+            _boardHintText.enableAutoSizing = true;
+            _boardHintText.fontSizeMin = 15f;
+            _boardHintText.fontSizeMax = 20f;
+            Place(_boardHintText.rectTransform, 10f, 152f, 250f, 70f);
             _boardUnsavedText = CreateCenteredLabel("UnsavedNotice", _boardRightNote, PetFlipUiPresentation.UnsavedRecordNoticeText, 18f, PetFlipArtCatalog.WarnText, bold: true);
             Place(_boardUnsavedText.rectTransform, 10f, 222f, 250f, 28f);
             _boardUnsavedText.gameObject.SetActive(false);
 
             _portraitHintText = CreateCenteredLabel("PortraitBoardHint", _boardRoot.transform, PetFlipUiPresentation.PortraitDefaultHintText, 25f, PetFlipArtCatalog.JadeText, bold: false, wrap: true);
+            _portraitHintText.enableAutoSizing = true;
+            _portraitHintText.fontSizeMin = 18f;
+            _portraitHintText.fontSizeMax = 25f;
 
             for (int i = 0; i < PetFlipConstants.BoardCardCount; i++)
                 _cardSlots[i] = BuildCardSlot(_boardRoot.transform, i);
@@ -404,9 +410,9 @@ namespace MmorpgClient.UI.Ugui.PetFlip
                 case PetFlipActionOutcome.RoundCompleted:
                     _inputLockedUntilUnscaledTime = Time.unscaledTime + FlipAnimDurationSeconds;
                     if (action.FirstHandSlotIndex >= 0 && action.FirstHandSlotIndex < _cardSlots.Length)
-                        AnimateCardMatchBounce(_cardSlots[action.FirstHandSlotIndex].Root);
+                        AnimateCardMatchBounce(_cardSlots[action.FirstHandSlotIndex].Root, action.CurrentStreak);
                     if (action.SecondHandSlotIndex >= 0 && action.SecondHandSlotIndex < _cardSlots.Length)
-                        AnimateCardMatchBounce(_cardSlots[action.SecondHandSlotIndex].Root);
+                        AnimateCardMatchBounce(_cardSlots[action.SecondHandSlotIndex].Root, action.CurrentStreak);
                     break;
             }
         }
@@ -544,17 +550,19 @@ namespace MmorpgClient.UI.Ugui.PetFlip
             _activeTweens.Add(tween);
         }
 
-        private void AnimateCardMatchBounce(RectTransform target)
+        private void AnimateCardMatchBounce(RectTransform target, int currentStreak)
         {
             if (target == null) return;
             target.localScale = Vector3.one;
+            // 连击越高弹跳略轻快（0.08 -> 0.13 封顶），避免遮挡相邻牌面。
+            float amplitude = Mathf.Min(0.13f, 0.08f + Mathf.Max(0, currentStreak - 1) * 0.012f);
             var tween = RealtimeTween.To(0f, 1f, MatchBounceDurationSeconds)
                 .SetTarget(target)
                 .SetEase(RealtimeEase.SineInOut)
                 .OnUpdate(tw =>
                 {
                     if (target == null) return;
-                    float s = 1f + 0.08f * Mathf.Sin(tw.Value.x * Mathf.PI);
+                    float s = 1f + amplitude * Mathf.Sin(tw.Value.x * Mathf.PI);
                     target.localScale = new Vector3(s, s, 1f);
                 });
             _activeTweens.Add(tween);

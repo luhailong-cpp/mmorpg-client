@@ -9,8 +9,19 @@ namespace MmorpgClient.Game.Pet
     {
         private int _entriesGeneration;
         private SavePetEntriesRequest _pendingEntries;
+        private SwitchPetEntryPresetRequest _pendingPresetSwitch;
         private ulong _entriesPlayerId;
+        public const uint KeepPresetTag = 0xFFFFFFFFu;
         public bool HasPendingEntries(ulong petId) => _pendingEntries?.PetId == petId && _entriesPlayerId == MyPlayerId;
+        public bool HasPendingPresetSwitch(ulong petId) => _pendingPresetSwitch?.PetId == petId && _entriesPlayerId == MyPlayerId;
+
+        public static string DescribePresetTag(uint tag) => tag switch
+        {
+            1 => "输出",
+            2 => "控场",
+            3 => "辅助",
+            _ => "默认",
+        };
 
         public void RequestEntries(ulong petId)
         {
@@ -79,6 +90,71 @@ namespace MmorpgClient.Game.Pet
                 });
         }
 
+        /// <summary>切换宝宝条目预设方案（1..3）或更新其用途标签（0默认/1输出/2控场/3辅助，KeepPresetTag 保持原标签）。</summary>
+        public void SwitchEntryPreset(ulong petId, uint slotId, uint tag, ulong stateVersion, uint configVersion,
+            Action<bool, PetEntriesInfo, string> completed)
+        {
+            if (_pendingPresetSwitch != null && _entriesPlayerId != MyPlayerId) _pendingPresetSwitch = null;
+            if (_pendingEntries != null && _entriesPlayerId == MyPlayerId)
+            {
+                completed?.Invoke(false, null, "请先确认未完成的条目保存结果。");
+                return;
+            }
+            if (_pendingPresetSwitch != null && _pendingPresetSwitch.PetId != petId)
+            {
+                completed?.Invoke(false, null, "请先确认另一只宝宝的方案切换结果。");
+                return;
+            }
+            if (_pendingPresetSwitch == null && (petId == 0 || slotId < 1 || slotId > 3 || stateVersion == 0 || configVersion == 0))
+            {
+                completed?.Invoke(false, null, "无效的宝宝条目方案或规则尚未同步。");
+                return;
+            }
+            if (!BeginWrite(null))
+            {
+                completed?.Invoke(false, null, CultivationWritesBlocked ? CultivationLockedMessage : "当前无法切换条目方案。");
+                return;
+            }
+            if (_pendingPresetSwitch == null)
+            {
+                _pendingPresetSwitch = new SwitchPetEntryPresetRequest
+                {
+                    PetId = petId,
+                    SlotId = slotId,
+                    Tag = tag,
+                    StateVersion = stateVersion,
+                    ConfigVersion = configVersion,
+                    RequestId = Guid.NewGuid().ToString("N"),
+                };
+                _entriesPlayerId = MyPlayerId;
+            }
+            ++_listRequestVersion; ListRequestPending = false;
+            var sent = _pendingPresetSwitch.Clone(); int generation = ++_entriesGeneration; ulong owner = MyPlayerId;
+            _net.Call(MessageIds.SwitchPetEntryPreset, sent, SwitchPetEntryPresetResponse.Parser,
+                response =>
+                {
+                    if (generation != _entriesGeneration || owner != MyPlayerId) return;
+                    bool rejected = HasTip(response.ErrorMessage);
+                    bool exact = !rejected && response.RequestId == sent.RequestId && response.Entries?.PetId == petId &&
+                        response.Entries.StateVersion == sent.StateVersion + 1 &&
+                        response.Entries.ActivePresetSlot == sent.SlotId &&
+                        response.Entries.LastRequestId == sent.RequestId;
+                    if (rejected || exact) _pendingPresetSwitch = null;
+                    SetBusy(false);
+                    string error = exact ? null : rejected
+                        ? DescribeTip("切换条目方案失败", response.ErrorMessage)
+                        : "切换方案结果尚未确认，请重试同一请求。";
+                    completed?.Invoke(exact, response.Entries, error);
+                    PublishEntries(response.Entries, petId);
+                },
+                error =>
+                {
+                    if (generation != _entriesGeneration || owner != MyPlayerId) return;
+                    SetBusy(false);
+                    completed?.Invoke(false, null, "切换方案结果未知，可重试确认。" + error);
+                });
+        }
+
         private void PublishEntries(PetEntriesInfo info, ulong petId)
         {
             if (info?.PetId != petId || info.ConfigVersion == 0 || info.StateVersion == 0 || info.Entries.Count == 0 || Pets == null) return;
@@ -86,6 +162,6 @@ namespace MmorpgClient.Game.Pet
             if (pet == null || (pet.Entries != null && (pet.Entries.StateVersion > info.StateVersion || pet.Entries.ConfigVersion > info.ConfigVersion))) return;
             pet.Entries = info.Clone(); OnList?.Invoke(Pets);
         }
-        private void InvalidateEntries() { ++_entriesGeneration; }
+        private void InvalidateEntries() { ++_entriesGeneration; _pendingPresetSwitch = null; }
     }
 }
