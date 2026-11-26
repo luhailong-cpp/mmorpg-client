@@ -38,10 +38,21 @@ namespace MmorpgClient.World
             return null;
         }
 
+        internal static QdaoPetCatalog.Entry ResolveVisualEntry(PetInfo pet)
+        {
+            if (pet == null) return null;
+            if (!string.IsNullOrEmpty(pet.CosmeticArtKey))
+            {
+                var cosmetic = QdaoPetCatalog.Find(pet.CosmeticArtKey);
+                if (cosmetic != null) return cosmetic;
+            }
+            return QdaoPetCatalog.Resolve(pet.PetTableId, pet.ModelId);
+        }
+
         private void LateUpdate()
         {
             var pet = ActivePet(_pets?.Pets);
-            var entry = pet != null ? QdaoPetCatalog.Resolve(pet.PetTableId, pet.ModelId) : null;
+            var entry = ResolveVisualEntry(pet);
             if (entry == null || _world == null || !_world.HasLocalPlayer ||
                 !_world.Actors.TryGetValue(_world.LocalEntity, out var actor) || actor.Go == null)
             { Hide(); return; }

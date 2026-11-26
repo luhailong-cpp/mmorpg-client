@@ -334,7 +334,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var currency = characterBag?.Currency;
                 if (currency == null || currency.Values.Count <= PlayerFeaturesClient.GoldCurrencyIndex)
                     return EquipEnhanceCheck.Unknown;
-                if (currency.Values[PlayerFeaturesClient.GoldCurrencyIndex] < next.CostGold) return EquipEnhanceCheck.GoldNotEnough;
+                ulong gold = currency.Values[PlayerFeaturesClient.GoldCurrencyIndex];
+                // A/B 防洗白分流：仅已绑定装备强化优先折算绑定银两，可交易装备严格校验流通银两。
+                ulong bindGold = item.Bound && currency.Values.Count > PlayerFeaturesClient.BindGoldCurrencyIndex
+                    ? currency.Values[PlayerFeaturesClient.BindGoldCurrencyIndex]
+                    : 0UL;
+                ulong available = gold > ulong.MaxValue - bindGold ? ulong.MaxValue : gold + bindGold;
+                if (available < next.CostGold) return EquipEnhanceCheck.GoldNotEnough;
             }
             return EquipEnhanceCheck.None;
         }

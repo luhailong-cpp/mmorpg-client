@@ -739,8 +739,8 @@ namespace MmorpgClient.UI.Ugui.Guild
                     () => Confirm("确认捐献", description, () => DonateRequested?.Invoke(id)), true, enabled, fontSize: 28);
             }
         }
-        /// <summary>与服务端 kCurrencyGold(0) / kCurrencyDiamond(1) 同序,契约 §0-1 的叫法。</summary>
-        public static string CurrencyName(uint currencyType) => currencyType switch { 0 => "银两", 1 => "灵石", _ => "货币" };
+        /// <summary>与服务端 CurrencyType 同序,契约 §0-1 的叫法。</summary>
+        public static string CurrencyName(uint currencyType) => MmorpgClient.Game.Common.CurrencyLabels.Name(currencyType);
 
         // ── 商店(B5,§5.35.2)────────────────────────────────────────────────
         private void RenderShop()

@@ -486,6 +486,8 @@ namespace MmorpgClient.Game
                 System.IO.Path.Combine(Application.persistentDataPath, "equipment-craft-intents"), gatewayBaseUrl, ownerRevision);
             Features.MaterialRewardRecovery = DurableRequestFileStore.ForOrigin(
                 System.IO.Path.Combine(Application.persistentDataPath, "equipment-material-intents"), gatewayBaseUrl, ownerRevision);
+            Features.EquipLoadoutUnlockRecovery = DurableRequestFileStore.ForOrigin(
+                System.IO.Path.Combine(Application.persistentDataPath, "equipment-loadout-unlock-intents"), gatewayBaseUrl, ownerRevision);
             FestivalBeast.LaunchRecoveryStore = DurableRequestFileStore.ForOrigin(
                 System.IO.Path.Combine(Application.persistentDataPath, "festival-beast-launch-intents"), gatewayBaseUrl, ownerRevision);
             FestivalBeast.ClaimRecoveryStore = DurableRequestFileStore.ForOrigin(
@@ -625,6 +627,7 @@ namespace MmorpgClient.Game
             if (InGame) Features?.TickEquipmentCraftRecovery();
             if (InGame) SkillCraft?.TickRecovery();
             if (InGame) Features?.TickMaterialRewardRecovery();
+            if (InGame) Features?.TickEquipLoadoutUnlockRecovery();
             if (InGame) Features?.TickActivityRewardRecovery();
             if (InGame) FestivalBeast?.Tick();
             MaybeRefreshToken();

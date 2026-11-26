@@ -146,13 +146,7 @@ namespace MmorpgClient.Game.Season
             return (bps / 100.0).ToString("0.##", CultureInfo.InvariantCulture) + "%";
         }
 
-        public static string CurrencyName(uint currencyType) => currencyType switch
-        {
-            0u => "银两",
-            1u => "灵石",
-            2u => "绑定灵石",
-            _ => "货币",
-        };
+        public static string CurrencyName(uint currencyType) => MmorpgClient.Game.Common.CurrencyLabels.Name(currencyType);
 
         public static global::SeasonSealOption FindEquippedSeal(global::SeasonStateSnapshot state)
         {

@@ -249,14 +249,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     }
                     string status = _craft.Pending ? "正在确认结果。关闭页面不会取消操作，请恢复原操作。" :
                         _client?.HasPendingMaterialReward == true ? "正在确认材料领取。关闭页面不会取消领取，请确认上次结果。" :
+                        _client?.HasPendingEquipLoadoutUnlock == true ? "正在确认装备方案位解锁。关闭页面不会取消解锁，请确认上次结果。" :
                         _craft.Busy ? "正在处理装备…" : _craft.LoadingPreview ? "正在读取成品预览…" :
                         !string.IsNullOrEmpty(_craft.Error) ? _craft.Error :
+                        !string.IsNullOrEmpty(_client?.EquipLoadoutError) ? _client.EquipLoadoutError :
                         !string.IsNullOrEmpty(_client?.EquipmentError) ? _client.EquipmentError :
                         !string.IsNullOrEmpty(_client?.BagError) ? _client.BagError : _notice;
                     Label(_body, "EquipmentStatus", status, 200, 1490, 2950, 65, 36, color: _craft.Pending ? Jade : Danger);
                     if (_craft.Pending) Button(_body, "EquipmentRecover", "确认上次结果", 3130, 1360, 620, _craft.Recover, true, !_craft.Busy);
                     else if (_client?.HasPendingMaterialReward == true)
                         Button(_body, "EquipmentRecover", "确认领取结果", 3130, 1360, 620, () => _client.RetryPendingMaterialReward(), true, !_client.BusyMaterialReward);
+                    else if (_client?.HasPendingEquipLoadoutUnlock == true)
+                        Button(_body, "EquipmentRecover", "确认方案解锁", 3130, 1360, 620, () => _client.RetryPendingEquipLoadoutUnlock(), true, !_client.BusyEquipLoadout);
                     if (_modal != Modal.None) RenderModal();
                     _surfaceInput.interactable = _modal == Modal.None; _surfaceInput.blocksRaycasts = _modal == Modal.None;
                     _modalLayer.gameObject.SetActive(_modal != Modal.None);

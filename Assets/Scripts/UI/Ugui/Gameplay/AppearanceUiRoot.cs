@@ -1589,6 +1589,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     () => Time.realtimeSinceStartup);
                 _client.Changed += Render;
                 _client.Notice += HandleNotice;
+                _client.PetCosmeticEquipped += HandlePetCosmeticEquipped;
                 game.OnSceneEntered += HandleSceneEntered;
                 game.OnDisconnected += HandleDisconnected;
                 if (game.InGame && game.IsGateReady && game.CurrentSceneId != 0) _client.RequestInfo();
@@ -1608,6 +1609,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 _client.Changed -= Render;
                 _client.Notice -= HandleNotice;
+                _client.PetCosmeticEquipped -= HandlePetCosmeticEquipped;
                 if (!_externalVerificationClient) _client.Dispose();
                 _client = null;
             }

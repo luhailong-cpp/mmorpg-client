@@ -137,6 +137,7 @@ namespace MmorpgClient.Game.Appearance
 
         public event Action Changed;
         public event Action<string> Notice;
+        public event Action<ulong, uint> PetCosmeticEquipped;
 
         public global::PlayerAppearanceInfo Info { get; private set; }
         public bool InfoPending { get; private set; }
@@ -426,6 +427,7 @@ namespace MmorpgClient.Game.Appearance
                         }
                         if (response.Info != null) ApplyInfo(response.Info);
                         SetStatus(response.EquippedCosmeticId == 0u ? "已恢复灵宠原形。" : (expectFreeEquip ? "已穿戴灵宠幻化。" : "已永久解锁并穿戴灵宠幻化。"), false);
+                        PetCosmeticEquipped?.Invoke(response.PetId != 0ul ? response.PetId : petId, response.EquippedCosmeticId);
                         Changed?.Invoke();
                     },
                     error =>

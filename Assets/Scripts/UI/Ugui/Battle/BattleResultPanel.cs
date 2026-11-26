@@ -512,13 +512,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         }
 
         /// <summary>货币显示名(契约 §0-1 的叫法);不认识的类型原样带编号。</summary>
-        private static string CurrencyName(uint currencyType) => currencyType switch
-        {
-            0 => "银两",
-            1 => "灵石",
-            2 => "绑定灵石",
-            _ => $"货币{currencyType}"
-        };
+        private static string CurrencyName(uint currencyType)
+            => MmorpgClient.Game.Common.CurrencyLabels.Name(currencyType, $"货币{currencyType}");
 
         private void KillTweens()
         {

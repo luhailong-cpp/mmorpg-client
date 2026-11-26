@@ -55,10 +55,11 @@ namespace MmorpgClient.Game.PlayerFeatures
         public const uint CharacterBagType = 0;
         public const uint EquipmentBagType = 2;
         /// <summary>
-        /// 金币在 BagInfo.Currency.Values 里的下标;镜像服务端
-        /// cpp/libs/modules/currency/constants/currency.h 的 kCurrencyGold。
+        /// 银两 / 绑定银两在 BagInfo.Currency.Values 里的下标;镜像服务端
+        /// cpp/libs/modules/currency/constants/currency.h 的 kCurrencyGold / kCurrencyBindGold。
         /// </summary>
         public const int GoldCurrencyIndex = 0;
+        public const int BindGoldCurrencyIndex = 3;
         /// <summary>
         /// 强化 / 镶嵌 / 取下 两次发包的最小间隔(毫秒)。超限的包会被 gate 计成非法包,累计到阈值就断线,
         /// 所以数据层自己把连点压在限流档位之内。取 700 是按**默认档**留的:服务端限流器是「相邻两秒合计 N 个」,

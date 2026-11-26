@@ -156,14 +156,8 @@ namespace MmorpgClient.Game.MysteryMerchant
                 : tens.ToString(CultureInfo.InvariantCulture) + "." + ones.ToString(CultureInfo.InvariantCulture) + "折";
         }
 
-        /// <summary>货币叫法,与背包窗 / 帮会窗一致:0 银两、1 灵石、2 绑定灵石。</summary>
-        public static string CurrencyName(uint currencyType) => currencyType switch
-        {
-            0 => "银两",
-            1 => "灵石",
-            2 => "绑定灵石",
-            _ => "货币",
-        };
+        /// <summary>货币叫法,与背包窗 / 帮会窗一致:0 银两、1 灵石、2 绑定灵石、3 绑定银两。</summary>
+        public static string CurrencyName(uint currencyType) => MmorpgClient.Game.Common.CurrencyLabels.Name(currencyType);
 
         /// <summary>金额千分位。固定用不变区域(理由同 GuildClient.FormatAmount)。</summary>
         public static string FormatAmount(ulong value) => value.ToString("N0", CultureInfo.InvariantCulture);

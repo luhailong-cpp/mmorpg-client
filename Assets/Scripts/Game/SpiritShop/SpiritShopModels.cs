@@ -191,13 +191,7 @@ namespace MmorpgClient.Game.SpiritShop
             _ => "百宝阁",
         };
 
-        public static string CurrencyName(uint currencyType) => currencyType switch
-        {
-            CurrencyGold => "银两",
-            CurrencyDiamond => "灵石",
-            CurrencyBindDiamond => "绑定灵石",
-            _ => "货币",
-        };
+        public static string CurrencyName(uint currencyType) => MmorpgClient.Game.Common.CurrencyLabels.Name(currencyType);
 
         public static uint EffectiveMaxBuyPerRequest(global::SpiritShopGoodsView goods)
         {

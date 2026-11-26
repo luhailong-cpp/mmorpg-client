@@ -782,4 +782,8 @@ namespace MmorpgClient.Game.Jubaozhai
         public static bool IsSkuRowHighlighted(OfficialSkuView sku, ulong selectedSkuId, int rowIndex)
         {
             if (sku == null) return false;
-            if (selectedSkuId != 0UL) return sku.SkuId
+            if (selectedSkuId != 0UL) return sku.SkuId == selectedSkuId;
+            return rowIndex == 0 && sku.Available > 0UL;
+        }
+    }
+}
