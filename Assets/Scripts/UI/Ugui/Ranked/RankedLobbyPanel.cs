@@ -80,69 +80,70 @@ namespace MmorpgClient.UI.Ugui.Ranked
             // 1. 主窗口底板（严禁使用已退场的旧 ui-window / ui-window-clean；统一复用已验收帮会原图同源窗框）
             CreateGuildArt("WindowBase", _root, 0f, 128f, DesignWidth, 824f, "guild_empty_shell", preserveAspect: true, raycastTarget: true);
 
-            // 2. 顶部标题与导航
-            CreateLabel("LobbyTitle", _root, 760f, 74f, 400f, 70f, "论剑", 56f, GoldCream, TextAlignmentOptions.Center, bold: true);
-            CreateLabel("BrandTag", _root, 140f, 146f, 240f, 38f, "五行奇谈", 26f, JadeHeading, bold: true);
-            _seasonSubtitle = CreateLabel("SeasonSubtitle", _root, 140f, 198f, 640f, 38f, "首测赛季 · 八周", 23f, InkMuted);
+            // 2. 顶部标题与导航（对齐 guild_empty_shell 翡翠题额 y=[162..222] 与右上关闭圆章）
+            CreateLabel("LobbyTitle", _root, 760f, 162f, 400f, 58f, "论剑", 44f, GoldCream, TextAlignmentOptions.Center, bold: true);
+            CreateLabel("BrandTag", _root, 140f, 212f, 152f, 34f, "五行奇谈", 24f, JadeHeading, bold: true);
+            _seasonSubtitle = CreateLabel("SeasonSubtitle", _root, 296f, 214f, 336f, 32f, "首测赛季 · 八周", 21f, InkMuted);
 
-            // 复用已有 10 元易容外观入口：pngDisplayRect [1208, 201, 194, 48]
-            var appearanceBtn = CreateArtButton("AppearanceEntry", _root, 1208f, 201f, 194f, 48f,
-                "appearance-entry", "易容形象", 21f, JadeDark, out _, out _);
+            // 复用已有 10 元易容外观入口与帮会同源手绘次按钮
+            var appearanceBtn = CreateGuildButton("AppearanceEntry", _root, 1300f, 208f, 164f, 46f,
+                "guild_button_secondary", "易容形象", 20f, JadeDark, out _, out _);
             appearanceBtn.onClick.AddListener(() => AppearanceEntryRequested?.Invoke());
 
-            var rankNavBtn = QdaoUguiFactory.CreateHitButton("NavLeaderboard", _root, 1432f, 202f, 130f, 44f);
-            CreateLabel("NavLeaderboardText", rankNavBtn.transform, 0f, 0f, 130f, 44f, "排行榜", 24f, JadeDark, TextAlignmentOptions.Center, bold: true);
+            var rankNavBtn = QdaoUguiFactory.CreateHitButton("NavLeaderboard", _root, 1476f, 209f, 124f, 44f);
+            CreateLabel("NavLeaderboardText", rankNavBtn.transform, 0f, 0f, 124f, 44f, "排行榜", 23f, JadeDark, TextAlignmentOptions.Center, bold: true);
             rankNavBtn.onClick.AddListener(() => DrawerRequested?.Invoke(RankedDrawerTab.Leaderboard));
 
-            var recordNavBtn = QdaoUguiFactory.CreateHitButton("NavSeasonRecord", _root, 1574f, 202f, 126f, 44f);
-            CreateLabel("NavSeasonRecordText", recordNavBtn.transform, 0f, 0f, 126f, 44f, "赛季记录", 24f, JadeDark, TextAlignmentOptions.Center, bold: true);
+            var recordNavBtn = QdaoUguiFactory.CreateHitButton("NavSeasonRecord", _root, 1610f, 209f, 126f, 44f);
+            CreateLabel("NavSeasonRecordText", recordNavBtn.transform, 0f, 0f, 126f, 44f, "赛季记录", 23f, JadeDark, TextAlignmentOptions.Center, bold: true);
             recordNavBtn.onClick.AddListener(() => DrawerRequested?.Invoke(RankedDrawerTab.SeasonRecord));
 
-            // 关闭按钮：pngDisplayRect [1708, 201, 74, 48]
-            var closeBtn = CreateArtButton("LobbyClose", _root, 1708f, 201f, 74f, 48f,
-                "lobby-close", "×", 28f, JadeDark, out _, out _);
+            // 关闭按钮：贴合 guild_empty_shell 右上角手绘朱红金边圆章（避免在下方叠旧扁平白框）
+            var closeBtn = CreateGuildButton("LobbyClose", _root, 1776f, 164f, 83f, 78f,
+                "guild_close", "", 24f, Color.clear, out _, out _, preserveAspect: true);
             closeBtn.onClick.AddListener(() => CloseRequested?.Invoke());
 
-            // 3. 左上：当前段位卡（130, 270, 500, 357）
-            var rankCardBtn = CreateArtButton("RankCard", _root, 130f, 270f, 500f, 357f,
-                "panel-rank", "", 18f, Color.clear, out var rankCardImg, out _, preserveAspect: true);
-            rankCardImg.preserveAspect = true;
+            // 3. 左上：当前段位卡（130, 270, 500, 357，改用已验收帮会同源宣纸底 + 表头）
+            var rankCardBtn = CreateGuildButton("RankCard", _root, 130f, 270f, 500f, 357f,
+                "guild_row_self", "", 18f, Color.clear, out _, out _);
             rankCardBtn.onClick.AddListener(() => DrawerRequested?.Invoke(RankedDrawerTab.Leaderboard));
-            CreateLabel("RankCardHeader", rankCardBtn.transform, 100f, 16f, 300f, 34f, "当前段位", 22f, SageLight, TextAlignmentOptions.Center);
-            _rankBadge = CreateArt("RankBadge", rankCardBtn.transform, 100f, 26f, 300f, 260f, "rank-1", preserveAspect: true);
-            _rankTierText = CreateLabel("RankTier", rankCardBtn.transform, 40f, 244f, 420f, 56f, "未亮段", 46f, GoldCream, TextAlignmentOptions.Center, bold: true);
-            _rankScoreText = CreateLabel("RankScore", rankCardBtn.transform, 40f, 298f, 420f, 44f, "1500 分", 34f, GoldSoft, TextAlignmentOptions.Center, bold: true);
+            CreateGuildArt("RankCardHeaderBg", rankCardBtn.transform, 0f, 0f, 500f, 48f, "guild_table_header");
+            CreateLabel("RankCardHeader", rankCardBtn.transform, 100f, 7f, 300f, 34f, "当前段位", 22f, JadeHeading, TextAlignmentOptions.Center, bold: true);
+            _rankBadge = CreateArt("RankBadge", rankCardBtn.transform, 130f, 54f, 240f, 194f, "rank-1", preserveAspect: true);
+            _rankTierText = CreateLabel("RankTier", rankCardBtn.transform, 40f, 248f, 420f, 52f, "未亮段", 42f, JadeDark, TextAlignmentOptions.Center, bold: true);
+            _rankScoreText = CreateLabel("RankScore", rankCardBtn.transform, 40f, 302f, 420f, 40f, "1500 分", 32f, BronzeHint, TextAlignmentOptions.Center, bold: true);
 
-            // 4. 左下：赛季进度与三档永久展示奖励卡（130, 650, 500, 260）
-            var seasonCardBtn = CreateArtButton("SeasonProgressCard", _root, 130f, 650f, 500f, 260f,
-                "panel-paper", "", 18f, Color.clear, out _, out _);
+            // 4. 左下：赛季进度与三档永久展示奖励卡（130, 650, 500, 260，改用已验收帮会同源宣纸底 + 表头）
+            var seasonCardBtn = CreateGuildButton("SeasonProgressCard", _root, 130f, 650f, 500f, 260f,
+                "guild_row_normal", "", 18f, Color.clear, out _, out _);
             seasonCardBtn.onClick.AddListener(() => DrawerRequested?.Invoke(RankedDrawerTab.Cosmetics));
-            CreateLabel("SeasonProgressPrefix", seasonCardBtn.transform, 24f, 16f, 70f, 42f, "本季", 25f, JadeDark, bold: true);
-            _matchesNumText = CreateLabel("SeasonMatchesNum", seasonCardBtn.transform, 94f, 12f, 190f, 48f, "0 / 12 场", 30f, JadeAccent, bold: true);
-            _matchesNextBadge = CreateLabel("SeasonNextBadge", seasonCardBtn.transform, 286f, 20f, 192f, 32f, "点击查看外观", 18f, BronzeHint, TextAlignmentOptions.MidlineRight);
+            CreateGuildArt("SeasonProgressHeaderBg", seasonCardBtn.transform, 0f, 0f, 500f, 56f, "guild_table_header");
+            CreateLabel("SeasonProgressPrefix", seasonCardBtn.transform, 24f, 10f, 70f, 38f, "本季", 24f, JadeDark, bold: true);
+            _matchesNumText = CreateLabel("SeasonMatchesNum", seasonCardBtn.transform, 94f, 8f, 190f, 42f, "0 / 12 场", 28f, JadeAccent, bold: true);
+            _matchesNextBadge = CreateLabel("SeasonNextBadge", seasonCardBtn.transform, 286f, 12f, 192f, 32f, "点击查看外观", 18f, BronzeHint, TextAlignmentOptions.MidlineRight);
 
             string[] mIcons = { "frame-pattern", "namecard-pattern", "talisman" };
             string[] mNames = { "头像纹样", "名片底纹", "青云玉符" };
             float[] mCenterXs = { 85f, 250f, 415f };
             for (int i = 0; i < 3; i++)
             {
-                CreateArt("MilestoneIcon_" + i, seasonCardBtn.transform, mCenterXs[i] - 36f, 88f, 72f, 63f, mIcons[i], preserveAspect: true);
-                CreateLabel("MilestoneName_" + i, seasonCardBtn.transform, mCenterXs[i] - 72f, 158f, 144f, 28f,
+                CreateArt("MilestoneIcon_" + i, seasonCardBtn.transform, mCenterXs[i] - 36f, 84f, 72f, 63f, mIcons[i], preserveAspect: true);
+                CreateLabel("MilestoneName_" + i, seasonCardBtn.transform, mCenterXs[i] - 72f, 154f, 144f, 28f,
                     mNames[i], 19f, InkSecondary, TextAlignmentOptions.Center);
-                _milestoneStatus[i] = CreateLabel("MilestoneState_" + i, seasonCardBtn.transform, mCenterXs[i] - 78f, 186f, 156f, 26f,
+                _milestoneStatus[i] = CreateLabel("MilestoneState_" + i, seasonCardBtn.transform, mCenterXs[i] - 78f, 182f, 156f, 26f,
                     $"{(i + 1) * 4} 场", 17f, BronzeHint, TextAlignmentOptions.Center);
             }
-            _matchesNextFooter = CreateLabel("SeasonNextFooter", seasonCardBtn.transform, 20f, 220f, 460f, 30f,
+            _matchesNextFooter = CreateLabel("SeasonNextFooter", seasonCardBtn.transform, 20f, 218f, 460f, 30f,
                 "累计 4 / 8 / 12 场永久取得展示外观", 18f, BronzeHint, TextAlignmentOptions.Center);
 
-            // 5. 右上：五档人数选择（1V1..5V5，x=675+i*223, y=319, 204x77）
+            // 5. 右上：五档人数选择（1V1..5V5，统一采用帮会同源手绘页签）
             CreateLabel("SizeHeading", _root, 675f, 266f, 320f, 38f, "选择对局人数", 28f, JadeHeading, bold: true);
             CreateLabel("SizeSub", _root, 1460f, 268f, 310f, 34f, "数字表示每边真人数", 19f, InkMuted, TextAlignmentOptions.MidlineRight);
             for (int i = 0; i < 5; i++)
             {
                 uint size = (uint)(i + 1);
-                var btn = CreateArtButton("SizeTab_" + size, _root, 675f + i * 223f, 319f, 204f, 77f,
-                    size == _selectedSize ? "tab-selected" : "tab-idle",
+                var btn = CreateGuildButton("SizeTab_" + size, _root, 675f + i * 223f, 319f, 204f, 77f,
+                    size == _selectedSize ? "guild_tab_selected" : "guild_tab_normal",
                     $"{size}V{size}", 34f, size == _selectedSize ? ButtonGoldText : InkSecondary,
                     out _sizeImages[i], out _sizeLabels[i]);
                 btn.onClick.AddListener(() =>
@@ -154,21 +155,18 @@ namespace MmorpgClient.UI.Ugui.Ranked
             }
 
             // 6. 队伍复用条 + 就地队列状态槽（teamStrip: [675,415,1096,58], queueStatus: [1230,423,520,42]）
-            var stripBg = QdaoUguiFactory.CreateRect("TeamStrip", _root, 675f, 415f, 1096f, 58f);
-            var stripImg = stripBg.gameObject.AddComponent<Image>();
-            stripImg.color = new Color(0.95f, 0.93f, 0.87f, 0.72f);
-            stripImg.raycastTarget = false;
+            var stripBg = CreateGuildArt("TeamStrip", _root, 675f, 415f, 1096f, 58f, "guild_table_header").rectTransform;
 
             _teamLeftText = CreateLabel("TeamStripPlayer", stripBg, 16f, 8f, 260f, 42f, "听风道友", 22f, JadeDark, bold: true);
             _teamReadyPillText = CreateLabel("TeamReadyPill", stripBg, 280f, 10f, 130f, 38f, "已就绪", 18f, BronzeHint, TextAlignmentOptions.Center, bold: true);
 
-            _teamConfirmBtn = CreateArtButton("TeamConfirmPresetBtn", stripBg, 416f, 8f, 126f, 42f,
-                "appearance-action-idle", "确认预设", 17f, JadeDark, out _, out _teamConfirmLabel);
+            _teamConfirmBtn = CreateGuildButton("TeamConfirmPresetBtn", stripBg, 416f, 8f, 126f, 42f,
+                "guild_button_secondary", "确认预设", 17f, JadeDark, out _, out _teamConfirmLabel);
             _teamConfirmBtn.onClick.AddListener(() => TeamConfirmPresetRequested?.Invoke());
             _teamConfirmBtn.gameObject.SetActive(false);
 
-            _teamOpenBtn = CreateArtButton("TeamOpenBtn", stripBg, 548f, 8f, 90f, 42f,
-                "drawer-collapse", "队伍", 17f, JadeDark, out _, out _);
+            _teamOpenBtn = CreateGuildButton("TeamOpenBtn", stripBg, 548f, 8f, 90f, 42f,
+                "guild_button_secondary", "队伍", 17f, JadeDark, out _, out _);
             _teamOpenBtn.onClick.AddListener(() => OpenTeamRequested?.Invoke());
 
             _queueStatusText = CreateLabel("QueueStatusText", _root, 1230f, 423f, 520f, 42f,
@@ -203,19 +201,19 @@ namespace MmorpgClient.UI.Ugui.Ranked
                     () => SelectPreset(_selectedChar, pid));
             }
 
-            // 9. 底部主操作与 120s 超时次取消按钮（state-layout.json 槽位）
+            // 9. 底部主操作与 120s 超时次取消按钮（统一帮会同源手绘按钮）
             CreateLabel("RuleLine1", _root, 675f, 862f, 410f, 32f, "五档共用积分、段位与赛季进度", 20f, InkMuted);
             CreateLabel("RuleLine2", _root, 675f, 898f, 410f, 30f, "报名、六种预设与赛季奖励均免费", 18f, InkMuted);
 
             // 超时次按钮（仅 waiting_120_seconds 态显示）：[1100, 875, 200, 60]
-            _timeoutCancelBtn = CreateArtButton("TimeoutCancelBtn", _root, 1100f, 875f, 200f, 60f,
-                "timeout-cancel", "取消", 24f, JadeDark, out _, out _);
+            _timeoutCancelBtn = CreateGuildButton("TimeoutCancelBtn", _root, 1100f, 875f, 200f, 60f,
+                "guild_button_secondary", "取消", 24f, JadeDark, out _, out _);
             _timeoutCancelBtn.onClick.AddListener(() => TimeoutCancelClicked?.Invoke());
             _timeoutCancelBtn.gameObject.SetActive(false);
 
-            // 主按钮：[1337, 858, 430, 89]，preserveAspect = true，禁用 button-primary-cloud
-            _primaryBtn = CreateArtButton("PrimaryQueueBtn", _root, 1337f, 858f, 430f, 89f,
-                "button-primary", "开始匹配", 31f, ButtonGoldText, out _, out _primaryLabel, preserveAspect: true);
+            // 主按钮：[1337, 858, 430, 89]，采用帮会同源鎏金玉绿主按钮
+            _primaryBtn = CreateGuildButton("PrimaryQueueBtn", _root, 1337f, 858f, 430f, 89f,
+                "guild_button_primary", "开始匹配", 31f, ButtonGoldText, out _, out _primaryLabel);
             _primaryBtn.onClick.AddListener(OnPrimaryClicked);
 
             CreateLabel("FooterRule", _root, 260f, 956f, 1400f, 34f,
@@ -302,7 +300,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             {
                 uint size = (uint)(i + 1);
                 bool selected = size == _selectedSize;
-                _sizeImages[i].sprite = Load(selected ? "tab-selected" : "tab-idle");
+                _sizeImages[i].sprite = LoadGuildApproved(selected ? "guild_tab_selected" : "guild_tab_normal");
                 _sizeLabels[i].color = selected ? ButtonGoldText : InkSecondary;
                 // 排队/开局期间锁定档位；组队时允许点选 5V5 以展示 4人排5V5 引导态，低于当前人数档置灰
                 _sizeButtons[i].interactable = !queued && !preparing && size >= partySize;
@@ -449,7 +447,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
                     if (!string.IsNullOrEmpty(pv.RoleTag)) card.Sub.text = pv.RoleTag;
                 }
                 bool selected = card.PresetId == _selectedChar;
-                card.Bg.sprite = Load(selected ? "selection-selected" : "selection-idle");
+                card.Bg.sprite = LoadGuildApproved(selected ? "guild_row_self" : "guild_row_normal");
                 card.CheckMark.gameObject.SetActive(selected);
                 card.Title.color = selected ? JadeSelected : InkSecondary;
                 card.Button.interactable = interactable;
@@ -468,7 +466,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 if (pv != null && !string.IsNullOrEmpty(pv.RoleTag))
                     card.Sub.text = string.IsNullOrEmpty(activePetName) ? $"{pv.RoleTag}（默认宝宝）" : pv.RoleTag;
                 bool selected = card.PresetId == _selectedPet;
-                card.Bg.sprite = Load(selected ? "selection-selected" : "selection-idle");
+                card.Bg.sprite = LoadGuildApproved(selected ? "guild_row_self" : "guild_row_normal");
                 card.CheckMark.gameObject.SetActive(selected);
                 card.Title.color = selected ? JadeSelected : InkSecondary;
                 card.Button.interactable = interactable;
@@ -478,20 +476,20 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private PresetCardView BuildPresetCard(string name, float x, float y, uint presetId,
             Sprite portraitSprite, string titleText, string subText, Action onClick)
         {
-            var btn = CreateArtButton(name, _root, x, y, 345f, 114f,
-                "selection-idle", "", 18f, Color.clear, out var bg, out _);
+            var btn = CreateGuildButton(name, _root, x, y, 345f, 114f,
+                "guild_row_normal", "", 18f, Color.clear, out var bg, out _);
             btn.onClick.AddListener(() => onClick?.Invoke());
             var portrait = QdaoUguiFactory.CreateImage(name + "_Portrait", btn.transform, 22f, 19f, 76f, 76f, portraitSprite);
             portrait.preserveAspect = true;
             if (portrait.sprite == null)
             {
                 portrait.color = SeasonEconomyUiArt.BattleArenaJade;
-                CreateLabel(name + "_Glyph", portrait.transform, 0f, 0f, 82f, 82f,
+                CreateLabel(name + "_Glyph", portrait.transform, 0f, 0f, 76f, 76f,
                     titleText.Length > 0 ? titleText.Substring(0, 1) : "道", 32f, GoldCream, TextAlignmentOptions.Center, bold: true);
             }
             var title = CreateLabel(name + "_Title", btn.transform, 114f, 18f, 190f, 38f, titleText, 26f, InkSecondary, bold: true);
             var sub = CreateLabel(name + "_Sub", btn.transform, 114f, 58f, 214f, 32f, subText, 19f, InkMuted);
-            var check = CreateArt(name + "_Check", btn.transform, 304f, 14f, 28f, 28f, "selected-check", preserveAspect: true);
+            var check = CreateGuildArt(name + "_Check", btn.transform, 304f, 14f, 28f, 28f, "guild_self_mark", preserveAspect: true);
             check.gameObject.SetActive(false);
             return new PresetCardView
             {

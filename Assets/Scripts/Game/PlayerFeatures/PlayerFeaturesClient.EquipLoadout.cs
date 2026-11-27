@@ -87,7 +87,9 @@ namespace MmorpgClient.Game.PlayerFeatures
             bool captureCurrentEquipped,
             IEnumerable<EquipLoadoutSlotBinding> explicitSlots = null,
             uint linkedSkillSchemeId = 0,
-            uint linkedAttributeSchemeId = 0)
+            uint linkedAttributeSchemeId = 0,
+            ulong linkedPetId = 0UL,
+            uint linkedFormationId = 0u)
         {
             if (!PrepareRequest(out var playerId)) return;
             if (BusyEquipLoadout || BusyEquipLoadoutUnlock) return;
@@ -109,6 +111,8 @@ namespace MmorpgClient.Game.PlayerFeatures
                 CaptureCurrentEquipped = captureCurrentEquipped,
                 LinkedSkillSchemeId = linkedSkillSchemeId,
                 LinkedAttributeSchemeId = linkedAttributeSchemeId,
+                LinkedPetId = linkedPetId,
+                LinkedFormationId = linkedFormationId,
                 StateVersion = _equipLoadouts.StateVersion,
                 RequestId = Guid.NewGuid().ToString("N"),
             };

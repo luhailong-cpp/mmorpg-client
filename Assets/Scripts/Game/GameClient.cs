@@ -561,6 +561,8 @@ namespace MmorpgClient.Game
                 if (!InGame || !IsGateReady) return;
                 Attributes?.RequestPanel();
                 Skills?.Refresh(MmorpgClient.UI.Ugui.Skills.SkillBookContext.Character());
+                Pets?.RequestList();
+                Season?.RequestState(force: true);
             };
             Skills.LoadoutSlotsRented += _ =>
             {

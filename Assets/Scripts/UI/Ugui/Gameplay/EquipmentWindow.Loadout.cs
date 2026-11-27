@@ -29,6 +29,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private uint _loadoutRoleTagDraft;
         private uint _loadoutLinkedSkillDraft;
         private uint _loadoutLinkedAttrDraft;
+        private ulong _loadoutLinkedPetDraft;
+        private uint _loadoutLinkedFormationDraft;
         private bool _loadoutApplyLinked = true;
         private bool _loadoutDraftSynced;
         private TMP_InputField _loadoutNameInput;
@@ -139,6 +141,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _loadoutRoleTagDraft = scheme.RoleTag;
             _loadoutLinkedSkillDraft = scheme.LinkedSkillSchemeId;
             _loadoutLinkedAttrDraft = scheme.LinkedAttributeSchemeId;
+            _loadoutLinkedPetDraft = scheme.LinkedPetId;
+            _loadoutLinkedFormationDraft = scheme.LinkedFormationId;
             _loadoutDraftSynced = true;
         }
 
@@ -425,32 +429,62 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 }
             }
 
-            string linkedSkillLabel = "联动战法方案：" + FormatLinkedOptionLabel(snap.SkillSchemes, _loadoutLinkedSkillDraft, "战法");
+            // 原图两道长框 (998,410,651,54) 与 (998,476,651,54) 各左右等分为两格：上排[战法|加点]，下排[灵宠|阵法]
+            string linkedSkillLabel = "战法：" + FormatLinkedOptionLabel(snap.SkillSchemes, _loadoutLinkedSkillDraft, "战法");
             CreatePaintedHotspot(_modalLayer, "LinkSkillCycle",
-                x0 + 998f * s, y0 + 410f * s, 651f * s, 54f * s,
-                linkedSkillLabel, 28f, Ink, () =>
+                x0 + 998f * s, y0 + 410f * s, 318f * s, 54f * s,
+                linkedSkillLabel, 25f, Ink, () =>
                 {
                     if (!editable) return;
                     _loadoutLinkedSkillDraft = CycleLinkedScheme(snap.SkillSchemes, _loadoutLinkedSkillDraft);
                     Render();
-                }, editable, TextAlignmentOptions.MidlineLeft, 22f * s);
+                }, editable, TextAlignmentOptions.MidlineLeft, 16f * s);
 
-            string linkedAttrLabel = "联动加点方案：" + FormatLinkedOptionLabel(snap.AttributeSchemes, _loadoutLinkedAttrDraft, "加点");
+            var row3Div = QdaoUguiFactory.CreateImage("LinkRow3Divider", _modalLayer,
+                x0 + 1322f * s, y0 + 420f * s, 2f * s, 34f * s, null, false);
+            row3Div.color = new Color(0.68f, 0.59f, 0.44f, 0.55f);
+
+            string linkedAttrLabel = "加点：" + FormatLinkedOptionLabel(snap.AttributeSchemes, _loadoutLinkedAttrDraft, "加点");
             CreatePaintedHotspot(_modalLayer, "LinkAttrCycle",
-                x0 + 998f * s, y0 + 476f * s, 651f * s, 54f * s,
-                linkedAttrLabel, 28f, Ink, () =>
+                x0 + 1331f * s, y0 + 410f * s, 318f * s, 54f * s,
+                linkedAttrLabel, 25f, Ink, () =>
                 {
                     if (!editable) return;
                     _loadoutLinkedAttrDraft = CycleLinkedScheme(snap.AttributeSchemes, _loadoutLinkedAttrDraft);
                     Render();
-                }, editable, TextAlignmentOptions.MidlineLeft, 22f * s);
+                }, editable, TextAlignmentOptions.MidlineLeft, 16f * s);
+
+            string linkedPetLabel = "灵宠：" + EquipLoadoutModel.FormatLinkedPetLabel(snap.Pets, _loadoutLinkedPetDraft);
+            bool petMissing = _loadoutLinkedPetDraft != 0UL && !snap.Pets.Any(p => p != null && p.PetId == _loadoutLinkedPetDraft);
+            CreatePaintedHotspot(_modalLayer, "LinkPetCycle",
+                x0 + 998f * s, y0 + 476f * s, 318f * s, 54f * s,
+                linkedPetLabel, 25f, petMissing ? Danger : Ink, () =>
+                {
+                    if (!editable) return;
+                    _loadoutLinkedPetDraft = EquipLoadoutModel.CycleLinkedPet(snap.Pets, _loadoutLinkedPetDraft);
+                    Render();
+                }, editable, TextAlignmentOptions.MidlineLeft, 16f * s);
+
+            var row4Div = QdaoUguiFactory.CreateImage("LinkRow4Divider", _modalLayer,
+                x0 + 1322f * s, y0 + 486f * s, 2f * s, 34f * s, null, false);
+            row4Div.color = new Color(0.68f, 0.59f, 0.44f, 0.55f);
+
+            string linkedFormationLabel = "阵法：" + EquipLoadoutModel.FormatLinkedFormationLabel(snap.Formations, _loadoutLinkedFormationDraft);
+            CreatePaintedHotspot(_modalLayer, "LinkFormationCycle",
+                x0 + 1331f * s, y0 + 476f * s, 318f * s, 54f * s,
+                linkedFormationLabel, 25f, Ink, () =>
+                {
+                    if (!editable) return;
+                    _loadoutLinkedFormationDraft = EquipLoadoutModel.CycleLinkedFormation(snap.Formations, _loadoutLinkedFormationDraft);
+                    Render();
+                }, editable, TextAlignmentOptions.MidlineLeft, 16f * s);
 
             // 切装同步联动开关放在「副套强化继承」左侧留白区 (998, 559, 252, 62)
             CreatePaintedHotspot(_modalLayer, "ApplyLinkedToggle",
-                x0 + 998f * s, y0 + 559f * s, 252f * s, 62f * s,
-                _loadoutApplyLinked ? "✓ 同步切战法/加点" : "□ 仅切换装备",
-                26f, _loadoutApplyLinked ? Jade : Muted,
-                () => { _loadoutApplyLinked = !_loadoutApplyLinked; Render(); }, true, TextAlignmentOptions.MidlineLeft, 8f);
+                x0 + 998f * s, y0 + 559f * s, 258f * s, 62f * s,
+                _loadoutApplyLinked ? "✓ 同步切战法/加点/宠/阵" : "□ 仅切换装备",
+                24f, _loadoutApplyLinked ? Jade : Muted,
+                () => { _loadoutApplyLinked = !_loadoutApplyLinked; Render(); }, true, TextAlignmentOptions.MidlineLeft, 6f);
 
             var targetForInherit = FindItem(_selectedItem) ?? _client?.Equipment?.Items.FirstOrDefault(x => x.EquipProfile > 0);
             CreatePaintedHotspot(_modalLayer, "LoadoutInheritShortcut",
@@ -494,7 +528,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                         return;
                     }
                     _client.SaveEquipLoadout(currentScheme.SchemeId, rawName, _loadoutRoleTagDraft,
-                        captureCurrentEquipped: true, explicitSlots: null, _loadoutLinkedSkillDraft, _loadoutLinkedAttrDraft);
+                        captureCurrentEquipped: true, explicitSlots: null,
+                        _loadoutLinkedSkillDraft, _loadoutLinkedAttrDraft,
+                        _loadoutLinkedPetDraft, _loadoutLinkedFormationDraft);
                 }, editable && !busy);
 
             if (!editable)
@@ -594,6 +630,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _loadoutNameInput.text = _loadoutNameDraft;
             _loadoutNameInput.onValueChanged.AddListener(v => { if (editable) _loadoutNameDraft = v ?? string.Empty; });
 
+            ChoiceRow(_modalLayer, "FallbackLinkSkill", "联动战法：" + FormatLinkedOptionLabel(snap.SkillSchemes, _loadoutLinkedSkillDraft, "战法"),
+                rightX, leftY + 296f, rightW, 84f, () => { if (!editable) return; _loadoutLinkedSkillDraft = CycleLinkedScheme(snap.SkillSchemes, _loadoutLinkedSkillDraft); Render(); }, enabled: editable);
+            ChoiceRow(_modalLayer, "FallbackLinkAttr", "联动加点：" + FormatLinkedOptionLabel(snap.AttributeSchemes, _loadoutLinkedAttrDraft, "加点"),
+                rightX, leftY + 400f, rightW, 84f, () => { if (!editable) return; _loadoutLinkedAttrDraft = CycleLinkedScheme(snap.AttributeSchemes, _loadoutLinkedAttrDraft); Render(); }, enabled: editable);
+            ChoiceRow(_modalLayer, "FallbackLinkPet", "联动灵宠：" + EquipLoadoutModel.FormatLinkedPetLabel(snap.Pets, _loadoutLinkedPetDraft),
+                rightX, leftY + 504f, rightW, 84f, () => { if (!editable) return; _loadoutLinkedPetDraft = EquipLoadoutModel.CycleLinkedPet(snap.Pets, _loadoutLinkedPetDraft); Render(); }, enabled: editable);
+            ChoiceRow(_modalLayer, "FallbackLinkFormation", "联动阵法：" + EquipLoadoutModel.FormatLinkedFormationLabel(snap.Formations, _loadoutLinkedFormationDraft),
+                rightX, leftY + 608f, rightW, 84f, () => { if (!editable) return; _loadoutLinkedFormationDraft = EquipLoadoutModel.CycleLinkedFormation(snap.Formations, _loadoutLinkedFormationDraft); Render(); }, enabled: editable);
+
             bool busy = _client.BusyEquipLoadout || _client.BusyEquipLoadoutUnlock || _client.BusyEquip || WriteBlocked;
             Button(_modalLayer, "LoadoutSaveBtn", !editable ? "已锁定 · 只读" : (_client.BusyEquipLoadout ? "保存中…" : "保存当前穿着到此方案"),
                 mx + 180f, my + 1218f, 840f, () =>
@@ -602,7 +647,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     string rawName = (_loadoutNameInput != null ? _loadoutNameInput.text : _loadoutNameDraft)?.Trim() ?? string.Empty;
                     if (!EquipLoadoutModel.ValidateNameDraft(rawName, out string nameErr)) { _notice = nameErr; Render(); return; }
                     _client.SaveEquipLoadout(currentScheme.SchemeId, rawName, _loadoutRoleTagDraft,
-                        captureCurrentEquipped: true, explicitSlots: null, _loadoutLinkedSkillDraft, _loadoutLinkedAttrDraft);
+                        captureCurrentEquipped: true, explicitSlots: null,
+                        _loadoutLinkedSkillDraft, _loadoutLinkedAttrDraft,
+                        _loadoutLinkedPetDraft, _loadoutLinkedFormationDraft);
                 }, false, editable && !busy);
             if (!editable)
             {

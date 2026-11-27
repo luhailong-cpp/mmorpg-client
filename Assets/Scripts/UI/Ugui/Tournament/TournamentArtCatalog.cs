@@ -441,8 +441,11 @@ namespace MmorpgClient.UI.Ugui.Tournament
             img.preserveAspect = false;
             btn.interactable = interactable;
             if (onClick != null) btn.onClick.AddListener(() => onClick());
-            float padX = Mathf.Min(18f, w * 0.12f);
-            var txt = Label(name + "_Label", btn.transform, padX, 0f, w - padX * 2f, h, labelText,
+            float borderL = sprite.border.x > 0f ? Mathf.Min(sprite.border.x, w * 0.22f) : 0f;
+            float borderR = sprite.border.z > 0f ? Mathf.Min(sprite.border.z, w * 0.22f) : 0f;
+            float padL = Mathf.Max(Mathf.Min(18f, w * 0.12f), borderL);
+            float padR = Mathf.Max(Mathf.Min(18f, w * 0.12f), borderR);
+            var txt = Label(name + "_Label", btn.transform, padL, 0f, Mathf.Max(20f, w - padL - padR), h, labelText,
                 fontSize, PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
             txt.enableAutoSizing = true;
             txt.fontSizeMin = Mathf.Max(11f, fontSize - 6f);

@@ -1312,7 +1312,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                             var bImg = QdaoUguiFactory.CreateImage("BronzeBanner", mCard, 10f, 4f, 118f, 24f, bronzeSprite, false);
                             bImg.type = bronzeSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
                             bImg.preserveAspect = false;
-                            var bTxt = TournamentArtCatalog.Label("BronzeTxt", bImg.transform, 10f, 0f, 98f, 24f, "季军争夺战",
+                            var bTxt = TournamentArtCatalog.Label("BronzeTxt", bImg.transform, 15f, 0f, 88f, 24f, "季军争夺战",
                                 12f, TournamentArtCatalog.PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
                             bTxt.enableAutoSizing = true;
                             bTxt.fontSizeMin = 9f;

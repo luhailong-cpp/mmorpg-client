@@ -287,7 +287,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _net.Calls.Last().Respond(new GetEquipLoadoutsResponse { Snapshot = MakeSnapshot(free: 2u, active: 1u, version: 9UL) });
 
             _client.SaveEquipLoadout(2u, "PVP控场套", 2u, captureCurrentEquipped: false,
-                explicitSlots: new[] { new EquipLoadoutSlotBinding { Slot = 3u, ItemGuid = 5001UL } }, linkedSkillSchemeId: 2u, linkedAttributeSchemeId: 1u);
+                explicitSlots: new[] { new EquipLoadoutSlotBinding { Slot = 3u, ItemGuid = 5001UL } },
+                linkedSkillSchemeId: 2u, linkedAttributeSchemeId: 1u, linkedPetId: 88002UL, linkedFormationId: 5u);
             var saveCall = _net.CallsOf(SceneBagClientPlayerRpc.SaveEquipLoadoutMessageId).Last();
             var saveReq = (SaveEquipLoadoutRequest)saveCall.Request;
             Assert.That(saveReq.SchemeId, Is.EqualTo(2u));
@@ -295,6 +296,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(saveReq.RoleTag, Is.EqualTo(2u));
             Assert.That(saveReq.CaptureCurrentEquipped, Is.False);
             Assert.That(saveReq.Slots.Count, Is.EqualTo(1));
+            Assert.That(saveReq.LinkedPetId, Is.EqualTo(88002UL));
+            Assert.That(saveReq.LinkedFormationId, Is.EqualTo(5u));
             Assert.That(saveReq.StateVersion, Is.EqualTo(9UL));
 
             // 模拟切连接代次后才收到旧回包：必须丢弃，绝不覆盖新会话状态
@@ -441,6 +444,36 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(toast, Does.Contain("方案二"));
             Assert.That(toast, Does.Contain("法宝一"));
             Assert.That(toast, Does.Contain("战法方案 2"));
+        }
+
+        [Test]
+        public void LinkedPetAndFormationHelpersFormatCycleAndDetectMissingPet()
+        {
+            var pets = new[]
+            {
+                new EquipLoadoutLinkedPetOption { PetId = 701UL, PetTableId = 1u, Name = "群攻灵狐", Active = true },
+                new EquipLoadoutLinkedPetOption { PetId = 702UL, PetTableId = 2u, Name = "高速控宠", Active = false },
+            };
+            var formations = new[]
+            {
+                new EquipLoadoutLinkedOption { SchemeId = 1u, Name = "天覆阵", RoleTag = 1u },
+                new EquipLoadoutLinkedOption { SchemeId = 5u, Name = "虎翼阵", RoleTag = 4u },
+            };
+
+            Assert.That(EquipLoadoutModel.FormatLinkedPetLabel(pets, 0UL), Is.EqualTo("不联动灵宠"));
+            Assert.That(EquipLoadoutModel.FormatLinkedPetLabel(pets, 701UL), Is.EqualTo("群攻灵狐"));
+            Assert.That(EquipLoadoutModel.FormatLinkedPetLabel(pets, 999UL), Does.Contain("已不在栏"));
+            Assert.That(EquipLoadoutModel.CycleLinkedPet(pets, 0UL), Is.EqualTo(701UL));
+            Assert.That(EquipLoadoutModel.CycleLinkedPet(pets, 701UL), Is.EqualTo(702UL));
+            Assert.That(EquipLoadoutModel.CycleLinkedPet(pets, 702UL), Is.EqualTo(0UL));
+            Assert.That(EquipLoadoutModel.CycleLinkedPet(pets, 999UL), Is.EqualTo(701UL));
+
+            Assert.That(EquipLoadoutModel.FormatLinkedFormationLabel(formations, 0u), Is.EqualTo("不联动阵法"));
+            Assert.That(EquipLoadoutModel.FormatLinkedFormationLabel(formations, 5u), Is.EqualTo("虎翼阵"));
+            Assert.That(EquipLoadoutModel.FormatLinkedFormationLabel(null, 3u), Is.EqualTo("风扬阵"));
+            Assert.That(EquipLoadoutModel.CycleLinkedFormation(formations, 0u), Is.EqualTo(1u));
+            Assert.That(EquipLoadoutModel.CycleLinkedFormation(formations, 1u), Is.EqualTo(5u));
+            Assert.That(EquipLoadoutModel.CycleLinkedFormation(formations, 5u), Is.EqualTo(0u));
         }
     }
 }

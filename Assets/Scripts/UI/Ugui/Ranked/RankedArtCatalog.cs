@@ -9,7 +9,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
 {
     using Transform = UnityEngine.Transform;
     /// <summary>
-    /// 论剑排位 UGUI 美术资源目录与无 9-slice 控件工厂。
+    /// 论剑排位 UGUI 美术资源目录与控件工厂（已验收帮会切片按 spriteBorder 自动启用九宫格）。
     /// 2026-11-25 起按 designs/lunjian-ui-v1/RETIRED_STYLE.md 与 ranked-play-v2-ui-20261125：
     /// - 严禁复用已退场的旧论剑主窗框（ui-window / ui-window-clean）与错误人物素材（avatar-pozheng/kongchang/shouxin、role-*-full）；
     /// - 主窗框、页签、按钮、表头与列表行统一复用已验收同源帮会控件（UI/Ugui/GuildFidelity20261016/）；
@@ -76,8 +76,11 @@ namespace MmorpgClient.UI.Ugui.Ranked
         public static Image CreateGuildArt(string name, Transform parent, float x, float y, float w, float h,
             string guildKey, bool preserveAspect = false, bool raycastTarget = false)
         {
-            var img = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, LoadGuildApproved(guildKey), raycastTarget);
-            img.type = Image.Type.Simple;
+            var sprite = LoadGuildApproved(guildKey);
+            var img = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, sprite, raycastTarget);
+            img.type = !preserveAspect && sprite != null && sprite.border.sqrMagnitude > 0f
+                ? Image.Type.Sliced
+                : Image.Type.Simple;
             img.preserveAspect = preserveAspect;
             if (img.sprite == null) img.color = SeasonEconomyUiArt.BattleArenaPaper;
             return img;
@@ -87,8 +90,11 @@ namespace MmorpgClient.UI.Ugui.Ranked
             string guildKey, string labelText, float fontSize, Color labelColor,
             out Image image, out TMP_Text label, bool preserveAspect = false)
         {
-            var btn = QdaoUguiFactory.CreateArtButton(name, parent, x, y, w, h, LoadGuildApproved(guildKey), out image);
-            image.type = Image.Type.Simple;
+            var sprite = LoadGuildApproved(guildKey);
+            var btn = QdaoUguiFactory.CreateArtButton(name, parent, x, y, w, h, sprite, out image);
+            image.type = !preserveAspect && sprite != null && sprite.border.sqrMagnitude > 0f
+                ? Image.Type.Sliced
+                : Image.Type.Simple;
             image.preserveAspect = preserveAspect;
             if (image.sprite == null) image.color = SeasonEconomyUiArt.BattleArenaPaper;
             label = QdaoUguiFactory.CreateText(name + "_Label", btn.transform, 10f, 0f, w - 20f, h,

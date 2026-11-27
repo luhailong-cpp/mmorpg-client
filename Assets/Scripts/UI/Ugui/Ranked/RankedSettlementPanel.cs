@@ -70,8 +70,8 @@ namespace MmorpgClient.UI.Ugui.Ranked
             // 严禁复用已退场旧窗框 ui-window-clean；统一使用已验收帮会同源道家窗框（guild_empty_shell，1932x814）
             CreateGuildArt("SettlementBase", _root, 0f, 118f, DesignWidth, 844f, "guild_empty_shell", preserveAspect: true, raycastTarget: true);
 
-            _outcomeTitle = CreateLabel("OutcomeTitle", _root, 560f, 132f, 800f, 62f,
-                "论剑结算", 44f, GoldCream, TextAlignmentOptions.Center, bold: true);
+            _outcomeTitle = CreateLabel("OutcomeTitle", _root, 560f, 160f, 800f, 54f,
+                "论剑结算", 42f, GoldCream, TextAlignmentOptions.Center, bold: true);
             _metaLine = CreateLabel("OutcomeMeta", _root, 360f, 214f, 1200f, 36f,
                 "", 22f, InkSecondary, TextAlignmentOptions.Center);
             _confirmBadge = CreateLabel("ConfirmBadge", _root, 640f, 250f, 640f, 32f,
@@ -161,7 +161,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 "guild_button_primary", "同规模再排", 28f, ButtonGoldText, out _, out _requeueLabel);
             _requeueBtn.onClick.AddListener(() => RequeueSameSizeRequested?.Invoke(_lastTeamSize));
 
-            // 论剑 V7：正式 1V1 战后「不服再战」切磋复仇入口（240×68 玉绿金边底，内区 x=29..211, y=14..52，暖金高对比字）
+            // 论剑 V7：正式 1V1 战后「不服再战」切磋复仇入口（240×68 三段 [50,50] 玉绿金边底，图标 (38,20,28×28)、文案 (76,20,124×28)）
             var rematchBtnSprite = SeasonEconomyUiArt.LoadRankedPlayV7Asset("btn_rematch_duel");
             var rematchIconSprite = SeasonEconomyUiArt.LoadRankedPlayV7Asset("icon_rematch_swords");
             bool hasRematchArt = rematchBtnSprite != null;
@@ -169,9 +169,10 @@ namespace MmorpgClient.UI.Ugui.Ranked
             {
                 _rematchBtn = QdaoUguiFactory.CreateArtButton("SettlementRematchBtn", _root, 1028f, 846f, 240f, 68f,
                     rematchBtnSprite, out var rImg);
-                rImg.type = Image.Type.Simple;
+                rImg.type = rematchBtnSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                rImg.pixelsPerUnitMultiplier = 1f;
                 _rematchLabel = CreateLabel("SettlementRematchBtn_Label", _rematchBtn.transform,
-                    rematchIconSprite != null ? 68f : 32f, 14f, rematchIconSprite != null ? 138f : 176f, 40f,
+                    rematchIconSprite != null ? 76f : 50f, 14f, rematchIconSprite != null ? 124f : 140f, 40f,
                     "不服再战", 22f, ButtonGoldText, TextAlignmentOptions.Center, bold: true);
             }
             else
@@ -181,10 +182,8 @@ namespace MmorpgClient.UI.Ugui.Ranked
             }
             if (rematchIconSprite != null)
             {
-                float iconX = hasRematchArt ? 34f : 18f;
-                float iconY = hasRematchArt ? 19f : 20f;
-                float iconSize = hasRematchArt ? 30f : 28f;
-                var rIcon = QdaoUguiFactory.CreateImage("RematchSwordsIcon", _rematchBtn.transform, iconX, iconY, iconSize, iconSize, rematchIconSprite, false);
+                float iconX = hasRematchArt ? 38f : 18f;
+                var rIcon = QdaoUguiFactory.CreateImage("RematchSwordsIcon", _rematchBtn.transform, iconX, 20f, 28f, 28f, rematchIconSprite, false);
                 rIcon.preserveAspect = true;
             }
             _rematchLabel.enableAutoSizing = true;

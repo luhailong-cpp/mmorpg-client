@@ -722,24 +722,16 @@ namespace MmorpgClient.UI.Ugui.Skills
 
         private void RenderTopHotMastersStrip(List<CraftProxyStallInfo> topHot)
         {
-            // banner_hot_masters 为 1400x96 横向三段（左右端帽各 120px，禁止纵向拉伸），居中作区段标题条。
+            // banner_hot_masters 为 1400x96 浅宣纸金框九宫格 [36,28,36,28]（无字），深玉绿叠字保证高对比可读。
             var bannerBg = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("banner_hot_masters");
-            if (bannerBg != null)
-            {
-                SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "HotMastersBannerBg", 963, 716, 2040, 78,
-                    bannerBg, Jade);
-            }
-            else
-            {
-                SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "HotMastersBannerBg", 963, 716, 2040, 78,
-                    null, Jade);
-            }
+            SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "HotMastersBannerBg", 963, 716, 2040, 78,
+                bannerBg, Jade);
             var stripTitle = Label(_body, "HotMastersStripTitle", "西市极品热榜 Top 3 · 近24小时全区热度排行",
-                1090, 716, 1786, 78, 36, false, Cream);
+                1090, 716, 1786, 78, 36, false, bannerBg != null ? Jade : Cream);
             stripTitle.fontStyle = TMPro.FontStyles.Bold;
             stripTitle.alignment = TMPro.TextAlignmentOptions.Center;
 
-            // 3 张 card_hot_master（440x168，四边 32px 九宫格）横向并排铺满 190..3770。
+            // 3 张 card_hot_master（520x136，九宫格 [36,28,36,28]）横向并排铺满 190..3770。
             var cardBg = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("card_hot_master");
             const float startX = 190f;
             const float cardW = 1174f;
@@ -761,6 +753,7 @@ namespace MmorpgClient.UI.Ugui.Skills
                 }
 
                 var rankBadge = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("badge_hot_rank_" + stall.HotRank);
+                string rankTag = SkillCraftModels.HotRankLabel(stall.HotRank);
                 if (rankBadge != null)
                 {
                     var badgeImg = QdaoUguiFactory.CreateImage("HotRankBadge_" + stall.HotRank, _body,
@@ -769,14 +762,15 @@ namespace MmorpgClient.UI.Ugui.Skills
                 }
                 else
                 {
-                    var rankLbl = Label(_body, "HotRankText_" + stall.HotRank, SkillCraftModels.HotRankLabel(stall.HotRank),
+                    var rankLbl = Label(_body, "HotRankText_" + stall.HotRank, rankTag,
                         cx + 24f, cardY + 56f, 136f, 72f, 34, false, SeasonEconomyUiArt.GoldHighlight);
                     rankLbl.alignment = TMPro.TextAlignmentOptions.Center;
                 }
 
                 string mName = string.IsNullOrWhiteSpace(stall.MasterName) ? $"宗师#{stall.MasterPlayerId}" : stall.MasterName;
                 string titlePrefix = stall.EquippedCraftTitleId != 0 ? SkillCraftModels.CraftTitleName(stall.EquippedCraftTitleId) + "·" : string.Empty;
-                var nameLbl = Label(_body, "HotMasterName_" + stall.HotRank, $"{titlePrefix}{mName}",
+                string rankPrefix = !string.IsNullOrEmpty(rankTag) ? $"{rankTag} · " : string.Empty;
+                var nameLbl = Label(_body, "HotMasterName_" + stall.HotRank, $"{rankPrefix}{titlePrefix}{mName}",
                     cx + 174f, cardY + 28f, 640f, 52f, 36, false, Jade);
                 nameLbl.fontStyle = TMPro.FontStyles.Bold;
 
@@ -820,7 +814,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             shade.color = new Color(.02f, .07f, .055f, .85f);
             shade.raycastTarget = true;
 
-            // panel_proxy_digest 为 1200x820 四边 64px 九宫格无字弹窗底板，居中放置。
+            // panel_proxy_digest 为 1300x540 九宫格 [120,80,120,80] 无字弹窗底板，居中放置。
             var panelBg = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("panel_proxy_digest");
             if (panelBg != null)
             {
@@ -832,29 +826,30 @@ namespace MmorpgClient.UI.Ugui.Skills
                 Panel(_modalLayer, "ProxyDigestPaper", 983, 273, 2000, 1040, true);
             }
 
-            // 顶部玉绿云纹标题牌 + 营业账册图标（横向三段不拉伸端帽）
+            // 顶部浅宣纸金框标题条 + 112x112 营业账册等比图标（深玉绿叠字确保高对比可读）
             var headerPlaque = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("banner_hot_masters");
-            SeasonEconomyUiArt.CreateSlicedOrSimple(_modalLayer, "ProxyDigestHeaderBar", 1383, 306, 1200, 92,
+            SeasonEconomyUiArt.CreateSlicedOrSimple(_modalLayer, "ProxyDigestHeaderBar", 1383, 330, 1200, 96,
                 headerPlaque, Jade);
+            Color headerTitleColor = headerPlaque != null ? Jade : Cream;
             var scrollIcon = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("icon_digest_scroll");
             if (scrollIcon != null)
             {
-                var iconImg = QdaoUguiFactory.CreateImage("ProxyDigestIcon", _modalLayer, 1665, 302, 100, 100, scrollIcon, false);
+                var iconImg = QdaoUguiFactory.CreateImage("ProxyDigestIcon", _modalLayer, 1652, 322, 112, 112, scrollIcon, false);
                 iconImg.preserveAspect = true;
-                var titleLbl = Label(_modalLayer, "ProxyDigestTitle", "名匠离线营业战报", 1778, 306, 520, 92, 48, false, Cream);
+                var titleLbl = Label(_modalLayer, "ProxyDigestTitle", "名匠离线营业战报", 1778, 330, 540, 96, 48, false, headerTitleColor);
                 titleLbl.fontStyle = TMPro.FontStyles.Bold;
             }
             else
             {
-                var titleLbl = Label(_modalLayer, "ProxyDigestTitle", "名匠离线营业战报", 1483, 306, 1000, 92, 48, false, Cream);
+                var titleLbl = Label(_modalLayer, "ProxyDigestTitle", "名匠离线营业战报", 1483, 330, 1000, 96, 48, false, headerTitleColor);
                 titleLbl.fontStyle = TMPro.FontStyles.Bold;
                 titleLbl.alignment = TMPro.TextAlignmentOptions.Center;
             }
 
-            var subLbl = Label(_modalLayer, "ProxyDigestSubtitle", "离线期间，匠心未歇", 1103, 416, 1760, 52, 36, false, Jade);
+            var subLbl = Label(_modalLayer, "ProxyDigestSubtitle", "离线期间，匠心未歇", 1103, 434, 1760, 44, 34, false, Jade);
             subLbl.alignment = TMPro.TextAlignmentOptions.Center;
 
-            // 中部四项战报数据并排展示卡（复用 card_hot_master 32px 九宫格细金边底卡）
+            // 中部四项战报数据并排展示卡（复用 card_hot_master 九宫格 [36,28,36,28] 细金边底卡）
             var digest = _client?.State?.UnreadProxyDigest;
             var statsFrame = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("card_hot_master");
             SeasonEconomyUiArt.CreateSlicedOrSimple(_modalLayer, "ProxyDigestStatsCard", 1093, 486, 1780, 280,
@@ -879,23 +874,32 @@ namespace MmorpgClient.UI.Ugui.Skills
             string buyerLine = !string.IsNullOrWhiteSpace(digest?.LastBuyerName)
                 ? $"最近下单侠士：{digest.LastBuyerName}"
                 : "全部代打净收益（已扣 5% 税）均已安全寄往邮箱，请随时查收。";
-            var buyerLbl = Label(_modalLayer, "ProxyDigestBuyer", buyerLine, 1103, 794, 1760, 56, 36, false, Ink);
+            var buyerLbl = Label(_modalLayer, "ProxyDigestBuyer", buyerLine, 1103, 790, 1760, 54, 36, false, Ink);
             buyerLbl.alignment = TMPro.TextAlignmentOptions.Center;
 
-            // badge_title_unlocked 为 480x76 横向三段（左右端帽 72px，禁止纵向拉伸），作新解锁雅号喜报横幅底条。
+            // badge_title_unlocked 为 128x128 等比喜报徽标（展示 92x92），左侧等比叠放于细金边雅号行，严禁横向拉伸。
             var unlockedTitles = digest != null
                 ? SkillCraftModels.DecodeUnlockedTitleNames(digest.NewlyUnlockedTitleMask)
                 : new List<string>();
             if (unlockedTitles.Count > 0)
             {
+                SeasonEconomyUiArt.CreateSlicedOrSimple(_modalLayer, "ProxyDigestTitleRowBg", 1223, 872, 1520, 112,
+                    statsFrame, new Color(0.97f, 0.91f, 0.77f, 0.98f));
                 var titleBadge = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("badge_title_unlocked");
-                SeasonEconomyUiArt.CreateSlicedOrSimple(_modalLayer, "ProxyDigestTitleBadge", 1223, 882, 1520, 96,
-                    titleBadge, new Color(0.97f, 0.91f, 0.77f, 0.98f));
+                float textX = 1283f;
+                float textW = 1400f;
+                if (titleBadge != null)
+                {
+                    var badgeImg = QdaoUguiFactory.CreateImage("ProxyDigestTitleBadge", _modalLayer, 1264, 882, 92, 92, titleBadge, false);
+                    badgeImg.preserveAspect = true;
+                    textX = 1376f;
+                    textW = 1326f;
+                }
                 var unlockedLbl = Label(_modalLayer, "ProxyDigestUnlockedBanner",
                     $"新解锁零属性雅号：{string.Join("、", unlockedTitles)}",
-                    1323, 882, 1320, 96, 38, false, Jade);
+                    textX, 872, textW, 112, 38, false, Jade);
                 unlockedLbl.fontStyle = TMPro.FontStyles.Bold;
-                unlockedLbl.alignment = TMPro.TextAlignmentOptions.Center;
+                unlockedLbl.alignment = titleBadge != null ? TMPro.TextAlignmentOptions.MidlineLeft : TMPro.TextAlignmentOptions.Center;
             }
             else
             {

@@ -24,22 +24,23 @@ public static partial class PlayerEquipLoadoutCompReflection {
         string.Concat(
           "CjZwcm90by9jb21tb24vY29tcG9uZW50L3BsYXllcl9lcXVpcF9sb2Fkb3V0",
           "X2NvbXAucHJvdG8iOgoXRXF1aXBMb2Fkb3V0U2xvdEJpbmRpbmcSDAoEc2xv",
-          "dBgBIAEoDRIRCglpdGVtX2d1aWQYAiABKAQitAEKEkVxdWlwTG9hZG91dFNj",
+          "dBgBIAEoDRIRCglpdGVtX2d1aWQYAiABKAQi6AEKEkVxdWlwTG9hZG91dFNj",
           "aGVtZRIRCglzY2hlbWVfaWQYASABKA0SDAoEbmFtZRgCIAEoCRIQCghyb2xl",
           "X3RhZxgDIAEoDRInCgVzbG90cxgEIAMoCzIYLkVxdWlwTG9hZG91dFNsb3RC",
           "aW5kaW5nEh4KFmxpbmtlZF9za2lsbF9zY2hlbWVfaWQYBSABKA0SIgoabGlu",
-          "a2VkX2F0dHJpYnV0ZV9zY2hlbWVfaWQYBiABKA0i2gEKFlBsYXllckVxdWlw",
-          "TG9hZG91dENvbXASHQoVdW5sb2NrZWRfc2NoZW1lX2NvdW50GAEgASgNEhgK",
-          "EGFjdGl2ZV9zY2hlbWVfaWQYAiABKA0SJAoHc2NoZW1lcxgDIAMoCzITLkVx",
-          "dWlwTG9hZG91dFNjaGVtZRIVCg1zdGF0ZV92ZXJzaW9uGAQgASgEEhcKD2xh",
-          "c3RfcmVxdWVzdF9pZBgFIAEoCRIZChFsYXN0X2Jhc2VfdmVyc2lvbhgGIAEo",
-          "BBIWCg5sYXN0X3NjaGVtZV9pZBgHIAEoDUISWhBjb21tb24vY29tcG9uZW50",
-          "YgZwcm90bzM="));
+          "a2VkX2F0dHJpYnV0ZV9zY2hlbWVfaWQYBiABKA0SFQoNbGlua2VkX3BldF9p",
+          "ZBgHIAEoBBIbChNsaW5rZWRfZm9ybWF0aW9uX2lkGAggASgNItoBChZQbGF5",
+          "ZXJFcXVpcExvYWRvdXRDb21wEh0KFXVubG9ja2VkX3NjaGVtZV9jb3VudBgB",
+          "IAEoDRIYChBhY3RpdmVfc2NoZW1lX2lkGAIgASgNEiQKB3NjaGVtZXMYAyAD",
+          "KAsyEy5FcXVpcExvYWRvdXRTY2hlbWUSFQoNc3RhdGVfdmVyc2lvbhgEIAEo",
+          "BBIXCg9sYXN0X3JlcXVlc3RfaWQYBSABKAkSGQoRbGFzdF9iYXNlX3ZlcnNp",
+          "b24YBiABKAQSFgoObGFzdF9zY2hlbWVfaWQYByABKA1CEloQY29tbW9uL2Nv",
+          "bXBvbmVudGIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipLoadoutSlotBinding), global::EquipLoadoutSlotBinding.Parser, new[]{ "Slot", "ItemGuid" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipLoadoutScheme), global::EquipLoadoutScheme.Parser, new[]{ "SchemeId", "Name", "RoleTag", "Slots", "LinkedSkillSchemeId", "LinkedAttributeSchemeId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipLoadoutScheme), global::EquipLoadoutScheme.Parser, new[]{ "SchemeId", "Name", "RoleTag", "Slots", "LinkedSkillSchemeId", "LinkedAttributeSchemeId", "LinkedPetId", "LinkedFormationId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerEquipLoadoutComp), global::PlayerEquipLoadoutComp.Parser, new[]{ "UnlockedSchemeCount", "ActiveSchemeId", "Schemes", "StateVersion", "LastRequestId", "LastBaseVersion", "LastSchemeId" }, null, null, null, null)
         }));
   }
@@ -335,6 +336,8 @@ public sealed partial class EquipLoadoutScheme : pb::IMessage<EquipLoadoutScheme
     slots_ = other.slots_.Clone();
     linkedSkillSchemeId_ = other.linkedSkillSchemeId_;
     linkedAttributeSchemeId_ = other.linkedAttributeSchemeId_;
+    linkedPetId_ = other.linkedPetId_;
+    linkedFormationId_ = other.linkedFormationId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -433,6 +436,36 @@ public sealed partial class EquipLoadoutScheme : pb::IMessage<EquipLoadoutScheme
     }
   }
 
+  /// <summary>Field number for the "linked_pet_id" field.</summary>
+  public const int LinkedPetIdFieldNumber = 7;
+  private ulong linkedPetId_;
+  /// <summary>
+  /// 0 = 不联动；>0 = 联动首发灵宠永久 pet_id
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong LinkedPetId {
+    get { return linkedPetId_; }
+    set {
+      linkedPetId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "linked_formation_id" field.</summary>
+  public const int LinkedFormationIdFieldNumber = 8;
+  private uint linkedFormationId_;
+  /// <summary>
+  /// 0 = 不联动；1..5 = 联动免费五行阵法 ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint LinkedFormationId {
+    get { return linkedFormationId_; }
+    set {
+      linkedFormationId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -454,6 +487,8 @@ public sealed partial class EquipLoadoutScheme : pb::IMessage<EquipLoadoutScheme
     if(!slots_.Equals(other.slots_)) return false;
     if (LinkedSkillSchemeId != other.LinkedSkillSchemeId) return false;
     if (LinkedAttributeSchemeId != other.LinkedAttributeSchemeId) return false;
+    if (LinkedPetId != other.LinkedPetId) return false;
+    if (LinkedFormationId != other.LinkedFormationId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -467,6 +502,8 @@ public sealed partial class EquipLoadoutScheme : pb::IMessage<EquipLoadoutScheme
     hash ^= slots_.GetHashCode();
     if (LinkedSkillSchemeId != 0) hash ^= LinkedSkillSchemeId.GetHashCode();
     if (LinkedAttributeSchemeId != 0) hash ^= LinkedAttributeSchemeId.GetHashCode();
+    if (LinkedPetId != 0UL) hash ^= LinkedPetId.GetHashCode();
+    if (LinkedFormationId != 0) hash ^= LinkedFormationId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -506,6 +543,14 @@ public sealed partial class EquipLoadoutScheme : pb::IMessage<EquipLoadoutScheme
       output.WriteRawTag(48);
       output.WriteUInt32(LinkedAttributeSchemeId);
     }
+    if (LinkedPetId != 0UL) {
+      output.WriteRawTag(56);
+      output.WriteUInt64(LinkedPetId);
+    }
+    if (LinkedFormationId != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(LinkedFormationId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -537,6 +582,14 @@ public sealed partial class EquipLoadoutScheme : pb::IMessage<EquipLoadoutScheme
       output.WriteRawTag(48);
       output.WriteUInt32(LinkedAttributeSchemeId);
     }
+    if (LinkedPetId != 0UL) {
+      output.WriteRawTag(56);
+      output.WriteUInt64(LinkedPetId);
+    }
+    if (LinkedFormationId != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(LinkedFormationId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -562,6 +615,12 @@ public sealed partial class EquipLoadoutScheme : pb::IMessage<EquipLoadoutScheme
     }
     if (LinkedAttributeSchemeId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LinkedAttributeSchemeId);
+    }
+    if (LinkedPetId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(LinkedPetId);
+    }
+    if (LinkedFormationId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LinkedFormationId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -590,6 +649,12 @@ public sealed partial class EquipLoadoutScheme : pb::IMessage<EquipLoadoutScheme
     }
     if (other.LinkedAttributeSchemeId != 0) {
       LinkedAttributeSchemeId = other.LinkedAttributeSchemeId;
+    }
+    if (other.LinkedPetId != 0UL) {
+      LinkedPetId = other.LinkedPetId;
+    }
+    if (other.LinkedFormationId != 0) {
+      LinkedFormationId = other.LinkedFormationId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -634,6 +699,14 @@ public sealed partial class EquipLoadoutScheme : pb::IMessage<EquipLoadoutScheme
           LinkedAttributeSchemeId = input.ReadUInt32();
           break;
         }
+        case 56: {
+          LinkedPetId = input.ReadUInt64();
+          break;
+        }
+        case 64: {
+          LinkedFormationId = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -675,6 +748,14 @@ public sealed partial class EquipLoadoutScheme : pb::IMessage<EquipLoadoutScheme
         }
         case 48: {
           LinkedAttributeSchemeId = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          LinkedPetId = input.ReadUInt64();
+          break;
+        }
+        case 64: {
+          LinkedFormationId = input.ReadUInt32();
           break;
         }
       }

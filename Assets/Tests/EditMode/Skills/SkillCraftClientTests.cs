@@ -560,13 +560,13 @@ namespace MmorpgClient.Tests.EditMode.Skills
 
             var expectedSpecs = new Dictionary<string, (int W, int H, string Border)>
             {
-                ["panel_proxy_digest"] = (1200, 820, "{x: 64, y: 64, z: 64, w: 64}"),
-                ["banner_hot_masters"] = (1400, 96, "{x: 120, y: 0, z: 120, w: 0}"),
-                ["card_hot_master"] = (440, 168, "{x: 32, y: 32, z: 32, w: 32}"),
+                ["panel_proxy_digest"] = (1300, 540, "{x: 120, y: 80, z: 120, w: 80}"),
+                ["banner_hot_masters"] = (1400, 96, "{x: 36, y: 28, z: 36, w: 28}"),
+                ["card_hot_master"] = (520, 136, "{x: 36, y: 28, z: 36, w: 28}"),
                 ["badge_hot_rank_1"] = (128, 128, "{x: 0, y: 0, z: 0, w: 0}"),
                 ["badge_hot_rank_2"] = (128, 128, "{x: 0, y: 0, z: 0, w: 0}"),
                 ["badge_hot_rank_3"] = (128, 128, "{x: 0, y: 0, z: 0, w: 0}"),
-                ["badge_title_unlocked"] = (480, 76, "{x: 72, y: 0, z: 72, w: 0}"),
+                ["badge_title_unlocked"] = (128, 128, "{x: 0, y: 0, z: 0, w: 0}"),
                 ["icon_digest_scroll"] = (256, 256, "{x: 0, y: 0, z: 0, w: 0}"),
             };
 

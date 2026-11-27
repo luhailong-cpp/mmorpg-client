@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.CoreLoop;
 using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.UI.Ugui.Skills;
 
@@ -519,7 +520,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             else if (switching)
             {
-                statusText = "正在切换整套流派（同步战法/加点）…";
+                statusText = "正在切换整套流派（装备/战法/加点/灵宠/阵法）…";
             }
             else if (!synced)
             {
@@ -537,7 +538,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             else
             {
-                statusText = $"点选 1..{maxSlots} 一键切整套流派（装备/战法/加点三合一共享）";
+                statusText = $"点选 1..{maxSlots} 一键切整套流派（装备/战法/加点/灵宠/阵法）";
             }
 
             return new PreBattleLoadoutBarState(
@@ -551,6 +552,64 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (slot == null) return string.Empty;
             if (narrow && !slot.Unlocked && !slot.Active) return "+方案" + slot.SchemeId;
             return slot.Label;
+        }
+
+        public static string FormatLinkedPetLabel(IReadOnlyList<EquipLoadoutLinkedPetOption> pets, ulong selectedPetId)
+        {
+            if (selectedPetId == 0UL) return "不联动灵宠";
+            if (pets != null)
+            {
+                for (int i = 0; i < pets.Count; ++i)
+                {
+                    var p = pets[i];
+                    if (p != null && p.PetId == selectedPetId)
+                        return string.IsNullOrWhiteSpace(p.Name) ? $"灵宠#{p.PetTableId}" : p.Name;
+                }
+            }
+            return "已不在栏(点重选)";
+        }
+
+        public static ulong CycleLinkedPet(IReadOnlyList<EquipLoadoutLinkedPetOption> pets, ulong currentPetId)
+        {
+            if (pets == null || pets.Count == 0) return 0UL;
+            if (currentPetId == 0UL) return pets[0].PetId;
+            for (int i = 0; i < pets.Count; ++i)
+            {
+                if (pets[i]?.PetId == currentPetId)
+                    return i + 1 < pets.Count ? pets[i + 1].PetId : 0UL;
+            }
+            // 当前记录的灵宠已离栏时，点击一次切回第一只可用灵宠（再点可循环至不联动）
+            return pets[0].PetId;
+        }
+
+        public static string FormatLinkedFormationLabel(IReadOnlyList<EquipLoadoutLinkedOption> formations, uint selectedFormationId)
+        {
+            if (selectedFormationId == 0u) return "不联动阵法";
+            if (formations != null)
+            {
+                for (int i = 0; i < formations.Count; ++i)
+                {
+                    var f = formations[i];
+                    if (f != null && f.SchemeId == selectedFormationId && !string.IsNullOrWhiteSpace(f.Name))
+                        return f.Name;
+                }
+            }
+            return WuxingExpansionModels.FormationName(selectedFormationId);
+        }
+
+        public static uint CycleLinkedFormation(IReadOnlyList<EquipLoadoutLinkedOption> formations, uint currentFormationId)
+        {
+            if (formations != null && formations.Count > 0)
+            {
+                if (currentFormationId == 0u) return formations[0].SchemeId;
+                for (int i = 0; i < formations.Count; ++i)
+                {
+                    if (formations[i]?.SchemeId == currentFormationId)
+                        return i + 1 < formations.Count ? formations[i + 1].SchemeId : 0u;
+                }
+                return 0u;
+            }
+            return currentFormationId >= WuxingExpansionModels.MaxFormationId ? 0u : currentFormationId + 1u;
         }
 
         /// <summary>计算快捷条视图签名，供弹窗（如群仙问道赛）仅在流派状态真实变化时重建，避免打断输入焦点。</summary>

@@ -20,8 +20,13 @@ namespace MmorpgClient.UI
         public string Password = "";
         public string GatewayBaseUrl;
 
-        /// <summary>Stable per-device id for risk control / queue reconnect bypass.</summary>
-        public readonly string DeviceId = SystemInfo.deviceUniqueIdentifier;
+        private string _deviceId;
+
+        /// <summary>
+        /// Stable per-device id for risk control / queue reconnect bypass. 第一次进区时才读:SessionModel 在启动时就建好,
+        /// 同意《隐私政策》之前不能读设备标识(安卓上是 Android ID,国内应用商店的合规检测会查,服务端设计稿 §3.9)。
+        /// </summary>
+        public string DeviceId => _deviceId ??= SystemInfo.deviceUniqueIdentifier;
 
         public readonly List<ServerListZone> Zones = new();
 

@@ -85,13 +85,13 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             DrawRuleToggle("Spectate", 1040f, 482f, "允许全服公开观战", _allowPublicSpectate, "spectate",
                 () => { _allowPublicSpectate = !_allowPublicSpectate; Refresh(); });
             DrawRuleToggle("SkillBan", 1600f, 408f,
-                _useFreePreset ? "战前各禁 3 招（需关闭公平模板）" : "战前各禁 3 招（25 秒盲禁）",
+                _useFreePreset ? "战前 3 禁 1 保（需关闭公平模板）" : "战前 3 禁 1 保（25 秒暗选）",
                 !_useFreePreset && _enableSkillBan, null,
                 () =>
                 {
                     if (_useFreePreset)
                     {
-                        _root.ShowToast("请先关闭「公平 3×3 免费模板」后再开启战前 3 禁招");
+                        _root.ShowToast("请先关闭「公平 3×3 免费模板」后再开启战前 3 禁 1 保");
                         return;
                     }
                     _enableSkillBan = !_enableSkillBan;

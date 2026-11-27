@@ -384,5 +384,96 @@ namespace MmorpgClient.Tests.EditMode.Role
             }
             Assert.That(seenGuids.Count, Is.EqualTo(5));
         }
+
+        [Test]
+        public void UiSlices41StyleRepair_All41SpritesDimensionsBordersAndUniqueGuidsMatchContract()
+        {
+            string cwd = Directory.GetCurrentDirectory();
+            string resourcesRoot = Directory.Exists(Path.Combine(cwd, "Assets", "Resources"))
+                ? Path.Combine(cwd, "Assets", "Resources")
+                : Path.Combine(cwd, "mmorpg-client", "Assets", "Resources");
+
+            const string noBorder = "spriteBorder: {x: 0, y: 0, z: 0, w: 0}";
+            var expected = new (string RelPath, int Width, int Height, string Border)[]
+            {
+                // TournamentV3 (29)
+                ("UI/Ugui/TournamentV3/d/warmup-badge.png", 96, 96, noBorder),
+                ("UI/Ugui/TournamentV3/d/warmup-btn.png", 260, 72, "spriteBorder: {x: 30, y: 12, z: 30, w: 12}"),
+                ("UI/Ugui/TournamentV3/e/predict-hit.png", 96, 96, noBorder),
+                ("UI/Ugui/TournamentV3/e/predict-miss.png", 96, 96, noBorder),
+                ("UI/Ugui/TournamentV3/e/predict-panel.png", 800, 520, "spriteBorder: {x: 84, y: 84, z: 84, w: 84}"),
+                ("UI/Ugui/TournamentV3/e/predict-pick.png", 64, 64, noBorder),
+                ("UI/Ugui/TournamentV3/f/mvp-card-bg.png", 520, 220, "spriteBorder: {x: 84, y: 84, z: 84, w: 84}"),
+                ("UI/Ugui/TournamentV3/f/mvp-seal.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/g/bronze-banner.png", 640, 96, "spriteBorder: {x: 16, y: 14, z: 16, w: 14}"),
+                ("UI/Ugui/TournamentV3/g/emblem-01-sword.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/g/emblem-02-taiji.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/g/emblem-03-furnace.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/g/emblem-04-lotus.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/g/emblem-05-crane.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/g/emblem-06-thunder.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/g/emblem-07-bagua.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/g/emblem-08-cauldron.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/h/ban-seal.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/i/highlights-panel.png", 960, 560, "spriteBorder: {x: 84, y: 84, z: 84, w: 84}"),
+                ("UI/Ugui/TournamentV3/j/honor-01-debut.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/j/honor-02-streak.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/j/honor-03-unbeaten.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/j/honor-04-comeback.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/j/honor-05-sweep.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/j/honor-06-champion.png", 128, 128, noBorder),
+                ("UI/Ugui/TournamentV3/titles/d-warmup-title.png", 320, 64, noBorder),
+                ("UI/Ugui/TournamentV3/titles/e-predict-title.png", 320, 64, noBorder),
+                ("UI/Ugui/TournamentV3/titles/g-emblem-title.png", 320, 64, noBorder),
+                ("UI/Ugui/TournamentV3/titles/i-highlights-title.png", 320, 64, noBorder),
+                // RankedPlayV4 (12)
+                ("UI/Ugui/RankedPlayV4/ping_focus.png", 96, 96, noBorder),
+                ("UI/Ugui/RankedPlayV4/ping_control.png", 96, 96, noBorder),
+                ("UI/Ugui/RankedPlayV4/ping_protect.png", 96, 96, noBorder),
+                ("UI/Ugui/RankedPlayV4/ping_dispel.png", 96, 96, noBorder),
+                ("UI/Ugui/RankedPlayV4/ping_bar_base.png", 420, 84, "spriteBorder: {x: 32, y: 23, z: 32, w: 23}"),
+                ("UI/Ugui/RankedPlayV4/highlight_focus.png", 128, 128, noBorder),
+                ("UI/Ugui/RankedPlayV4/highlight_control.png", 128, 128, noBorder),
+                ("UI/Ugui/RankedPlayV4/highlight_support.png", 128, 128, noBorder),
+                ("UI/Ugui/RankedPlayV4/highlight_guard.png", 128, 128, noBorder),
+                ("UI/Ugui/RankedPlayV4/highlight_comeback.png", 128, 128, noBorder),
+                ("UI/Ugui/RankedPlayV4/streak_banner_base.png", 320, 64, noBorder),
+                ("UI/Ugui/RankedPlayV4/streak_break_stamp.png", 280, 68, noBorder),
+            };
+
+            var seenGuids = new HashSet<string>();
+            foreach (var (rel, wantW, wantH, border) in expected)
+            {
+                string pngPath = Path.Combine(resourcesRoot, rel.Replace('/', Path.DirectorySeparatorChar));
+                string metaPath = pngPath + ".meta";
+                Assert.That(File.Exists(pngPath), Is.True, $"Missing 41-slice repaired PNG: {rel}");
+                Assert.That(File.Exists(metaPath), Is.True, $"Missing 41-slice repaired meta: {rel}.meta");
+
+                byte[] header = new byte[26];
+                using (var fs = File.OpenRead(pngPath))
+                    Assert.That(fs.Read(header, 0, header.Length), Is.EqualTo(header.Length), rel);
+                int w = (header[16] << 24) | (header[17] << 16) | (header[18] << 8) | header[19];
+                int h = (header[20] << 24) | (header[21] << 16) | (header[22] << 8) | header[23];
+                Assert.That(w, Is.EqualTo(wantW), $"{rel} width");
+                Assert.That(h, Is.EqualTo(wantH), $"{rel} height");
+                Assert.That(header[25], Is.EqualTo((byte)6), $"{rel} must be transparent RGBA PNG-32");
+
+                string meta = File.ReadAllText(metaPath);
+                Assert.That(meta, Does.Contain("enableMipMap: 0"), rel);
+                Assert.That(meta, Does.Contain("alphaIsTransparency: 1"), rel);
+                Assert.That(meta, Does.Contain("textureType: 8"), rel);
+                Assert.That(meta, Does.Contain("spriteMode: 1"), rel);
+                Assert.That(meta, Does.Contain(border), rel);
+
+                string guidLine = null;
+                foreach (string line in File.ReadAllLines(metaPath))
+                {
+                    if (line.StartsWith("guid: ")) { guidLine = line.Substring(6).Trim(); break; }
+                }
+                Assert.That(guidLine, Is.Not.Null.And.Not.Empty, rel);
+                Assert.That(seenGuids.Add(guidLine), Is.True, $"Duplicate GUID {guidLine} on {rel}");
+            }
+            Assert.That(seenGuids.Count, Is.EqualTo(41));
+        }
     }
 }
