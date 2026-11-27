@@ -91,15 +91,63 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             CreateRule(root, "BorderBottom", 0f, height - 1.5f, width, 1.5f, borderCol);
 
             bool twoRow = height >= 72f;
+            bool compactMultiRow = !twoRow && width < 760f && state.Slots.Count > 5;
             if (twoRow)
             {
                 RenderTwoRow(root, width, height, state, onSwitchScheme, onLockedClicked, onRefreshClicked, darkBackdrop);
+            }
+            else if (compactMultiRow)
+            {
+                RenderCompactMultiRow(root, width, height, state, onSwitchScheme, onLockedClicked, onRefreshClicked, darkBackdrop);
             }
             else
             {
                 RenderSingleRow(root, width, height, state, onSwitchScheme, onLockedClicked, onRefreshClicked, darkBackdrop);
             }
             return root;
+        }
+
+        /// <summary>窄栏（544~759px）排 6..7 槽：顶栏 14~16px 放标题/状态，下方全宽排满 7 签，避免左侧标题挤压 9-slice 端头并保底 40px 触控高。</summary>
+        private static void RenderCompactMultiRow(
+            RectTransform root,
+            float width,
+            float height,
+            PreBattleLoadoutBarState state,
+            Action<uint> onSwitchScheme,
+            Action<uint> onLockedClicked,
+            Action onRefreshClicked,
+            bool darkBackdrop)
+        {
+            const float padX = 6f;
+            float innerW = Mathf.Max(120f, width - padX * 2f);
+            float topH = height >= 60f ? 16f : 14f;
+            Color headColor = darkBackdrop ? Cream : HeadingJade;
+            Color subColor = state.StatusIsError
+                ? (darkBackdrop ? DangerLight : Danger)
+                : (darkBackdrop ? QdaoUguiTheme.StatusCream : Muted);
+
+            bool alertMode = state.StatusIsError || state.BlockedByBattleState || state.Switching || !state.Synced;
+            if (alertMode)
+            {
+                var alert = CreateSafeLabel(root, "CompactAlert", padX, 1f, innerW, topH,
+                    state.StatusText, 12f, subColor, TextAlignmentOptions.Center, bold: state.StatusIsError);
+                alert.fontSizeMin = 9.5f;
+            }
+            else
+            {
+                float headW = Mathf.Min(innerW * 0.56f, 260f);
+                var head = CreateSafeLabel(root, "CompactHeader", padX, 1f, headW, topH,
+                    state.HeaderText, 12f, headColor, TextAlignmentOptions.MidlineLeft, bold: true);
+                head.fontSizeMin = 9.5f;
+
+                var hint = CreateSafeLabel(root, "CompactHint", padX + headW + 4f, 1f, Mathf.Max(40f, innerW - headW - 4f), topH,
+                    "点选切换整套流派", 11.5f, subColor, TextAlignmentOptions.MidlineRight, bold: false);
+                hint.fontSizeMin = 9.5f;
+            }
+
+            float rowY = topH + 1f;
+            float btnH = Mathf.Clamp(height - rowY - 1f, 38f, 42f);
+            RenderSlotsOrRefresh(root, padX, rowY, innerW, btnH, state, onSwitchScheme, onLockedClicked, onRefreshClicked, darkBackdrop);
         }
 
         private static void RenderTwoRow(
@@ -248,10 +296,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             int count = state.Slots.Count;
             if (count <= 0) return;
 
-            float gap = width >= 900f ? 10f : (width >= 640f ? 6f : 4f);
+            float gap = width >= 900f ? 10f : (width >= 660f ? 6f : (count > 5 ? 3f : 4f));
             float tabW = (width - gap * (count - 1)) / count;
-            float baseFont = tabW >= 180f ? 20f : (tabW >= 120f ? 17f : (tabW >= 84f ? 14f : 13f));
-            float minFont = tabW >= 120f ? 12f : 10f;
+            float baseFont = tabW >= 180f ? 20f : (tabW >= 120f ? 17f : (tabW >= 84f ? 14f : 12.5f));
+            float minFont = tabW >= 120f ? 12f : 9.5f;
+            bool narrowSlot = tabW < 86f;
 
             for (int i = 0; i < count; ++i)
             {
@@ -286,12 +335,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     }
                 });
 
-                Color textColor = slot.Active
+                // 与 EquipmentWindow.Overview / SkillLoadoutSubPanel 严格同口径：
+                // 激活已解锁签与深底租用签(tab_build_rented)用浅色 Cream 字；到期只锁不删的激活签落浅灰锁底用深墨 Ink。
+                bool isRentedVisual = slot.Unlocked && !slot.Active
+                    && string.Equals(slot.SpriteKey, EquipLoadoutModel.TabRentedKey, StringComparison.Ordinal);
+                bool lightInk = (slot.Active && slot.Unlocked) || (isRentedVisual && sprite != null);
+                Color textColor = lightInk
                     ? Cream
-                    : (!slot.Unlocked ? Muted : (slot.CanClick ? Ink : Muted));
-                float textPad = tabW >= 140f ? 10f : (tabW >= 90f ? 6f : 4f);
-                var lbl = CreateSafeLabel(btn.transform, "Lbl", textPad, 0f, Mathf.Max(20f, tabW - textPad * 2f), height,
-                    slot.Label, baseFont, textColor, TextAlignmentOptions.Center, bold: slot.Active);
+                    : (slot.Active ? Ink : (!slot.Unlocked ? Muted : (slot.CanClick ? Ink : Muted)));
+
+                float leftPad = tabW >= 140f ? 10f : (tabW >= 90f ? 6f : 3f);
+                // tab_build_rented 右侧自带沙漏装饰图标，文本右缘适度左让避免叠字。
+                float rightPad = leftPad + (isRentedVisual && sprite != null ? Mathf.Min(16f, tabW * 0.18f) : 0f);
+                string displayLabel = EquipLoadoutModel.FormatCompactSlotLabel(slot, narrowSlot);
+                var lbl = CreateSafeLabel(btn.transform, "Lbl", leftPad, 0f,
+                    Mathf.Max(20f, tabW - leftPad - rightPad), height,
+                    displayLabel, baseFont, textColor, TextAlignmentOptions.Center, bold: slot.Active);
                 lbl.fontSizeMin = minFont;
             }
         }

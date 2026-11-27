@@ -492,6 +492,11 @@ namespace MmorpgClient.UI.Ugui.Tournament
             {
                 _featuresObserved.OnChanged += HandleFeaturesChanged;
                 _featuresObserved.OnEquipLoadoutSwitched += HandleEquipLoadoutSwitched;
+                if (IsWindowVisible)
+                {
+                    PreBattleLoadoutQuickBar.EnsureRequested(_featuresObserved);
+                    RenderWindow();
+                }
             }
         }
 

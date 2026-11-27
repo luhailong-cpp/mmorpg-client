@@ -545,6 +545,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 activeId, unlockedCount, headerText, statusText, statusIsError, slots);
         }
 
+        /// <summary>窄栏（如群仙问道赛 544~648px 弹层排 7 签）压缩未解锁方案标签，避免 9-slice 端头挤压文字。</summary>
+        public static string FormatCompactSlotLabel(PreBattleLoadoutSlotView slot, bool narrow)
+        {
+            if (slot == null) return string.Empty;
+            if (narrow && !slot.Unlocked && !slot.Active) return "+方案" + slot.SchemeId;
+            return slot.Label;
+        }
+
         /// <summary>计算快捷条视图签名，供弹窗（如群仙问道赛）仅在流派状态真实变化时重建，避免打断输入焦点。</summary>
         public static int ComputePreBattleBarSignature(PreBattleLoadoutBarState state)
         {
@@ -571,6 +579,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     hash = hash * 31 + (s.CanClick ? 1 : 0);
                     hash = hash * 31 + (int)s.MissingCount;
                     hash = hash * 31 + StringComparer.Ordinal.GetHashCode(s.Label ?? string.Empty);
+                    hash = hash * 31 + StringComparer.Ordinal.GetHashCode(s.SpriteKey ?? string.Empty);
                 }
                 return hash;
             }

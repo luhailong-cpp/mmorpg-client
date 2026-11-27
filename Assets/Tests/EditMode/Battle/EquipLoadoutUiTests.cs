@@ -366,7 +366,13 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(expiredBar.Slots[4].Label, Does.Contain("·锁"));
             Assert.That(expiredBar.StatusText, Does.Contain("只锁不删"));
 
-            // 未解锁轻提示与签名变更校验
+            // 窄栏紧凑标签压缩：仅未解锁非激活槽位压缩为 "+方案N"，不截断已解锁或到期只锁不删激活槽
+            Assert.That(EquipLoadoutModel.FormatCompactSlotLabel(queued.Slots[5], narrow: true), Is.EqualTo("+方案6"));
+            Assert.That(EquipLoadoutModel.FormatCompactSlotLabel(queued.Slots[5], narrow: false), Is.EqualTo("+ 方案六"));
+            Assert.That(EquipLoadoutModel.FormatCompactSlotLabel(queued.Slots[1], narrow: true), Is.EqualTo(queued.Slots[1].Label));
+            Assert.That(EquipLoadoutModel.FormatCompactSlotLabel(expiredBar.Slots[4], narrow: true), Does.Contain("·锁"));
+
+            // 未解锁轻提示与签名变更校验（含同解锁状态但租用/免费切片变化时的签名失效）
             string lockHint = EquipLoadoutModel.FormatLockedPreBattleHint(6u, snap);
             Assert.That(lockHint, Does.Contain("方案六"));
             Assert.That(lockHint, Does.Contain("30 灵石"));
@@ -376,8 +382,18 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 EquipLoadoutModel.BuildPreBattleBarState(
                     snap, loading: false, switching: false, hasPendingUnlock: false, BattlePhase.Queued, string.Empty));
             int sigPrep = EquipLoadoutModel.ComputePreBattleBarSignature(preparing);
+            var lv85Snap = MakeSnapshot(free: 3u, cardBonus: 2u, rented: 0u, active: 1u,
+                serverNowSec: 1000000UL, rentExpiresAtSec: 0UL);
+            lv85Snap.Schemes[1].Name = "PVP控场";
+            lv85Snap.Schemes[1].MissingCount = 2u;
+            var lv85Bar = EquipLoadoutModel.BuildPreBattleBarState(
+                lv85Snap, loading: false, switching: false, hasPendingUnlock: false, BattlePhase.Queued, string.Empty);
+            Assert.That(lv85Bar.Slots[2].SpriteKey, Is.EqualTo(EquipLoadoutModel.TabUnlockedKey));
+            Assert.That(queued.Slots[2].SpriteKey, Is.EqualTo(EquipLoadoutModel.TabRentedKey));
+            int sigLv85 = EquipLoadoutModel.ComputePreBattleBarSignature(lv85Bar);
             Assert.That(sigQueuedAgain, Is.EqualTo(sigQueued));
             Assert.That(sigPrep, Is.Not.EqualTo(sigQueued));
+            Assert.That(sigLv85, Is.Not.EqualTo(sigQueued));
         }
 
         [Test]

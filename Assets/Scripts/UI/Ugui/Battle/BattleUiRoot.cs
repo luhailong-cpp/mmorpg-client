@@ -916,6 +916,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void CloseSpectate()
         {
             _pendingSpectateEnd = null;
+            // 挂起的 166 被开战 / 回放清掉时也要 Ack,否则停在 Ended,入口与养成写操作一直被挡(AckEnd 幂等)
+            if (_spectate?.Phase == SpectatePhase.Ended) _spectate.AckEnd();
             if (!_spectateOpen) return;
             _spectateOpen = false;
             _battleScreen?.Close();
@@ -1191,6 +1193,12 @@ namespace MmorpgClient.UI.Ugui.Battle
                 AbortSpectatePlayback();
                 CloseSpectate();
             }
+            // LOBBY 档只有软互斥(§15.1):客户端开战必须自己退订(352),否则 gate 继续推 158,战斗结束后观战屏会被重新拉起
+            if (_spectate != null && _spectate.Delivery == Match.eSpectateDelivery.SpectateDeliveryLobby &&
+                (_spectate.Phase == SpectatePhase.Requesting || _spectate.Phase == SpectatePhase.Watching))
+                _spectate.StopWatch();
+            else if (_spectate?.Phase == SpectatePhase.Ended)
+                _spectate.AckEnd();
             if (_replayOpen) CloseReplay();
             _battleOpen = true;
             _battleLayerGo.SetActive(true);
