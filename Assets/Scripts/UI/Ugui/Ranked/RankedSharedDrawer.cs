@@ -110,8 +110,11 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private TMP_Text _liveBannerTitle;
         private TMP_Text _liveBannerBody;
         private Button _liveCycleBtn;
+        private TMP_Text _liveCycleLabel;
         private Button _liveRefreshBtn;
         private Button _liveWatchBtn;
+        private TMP_Text _liveWatchLabel;
+        private bool _liveBannerHasArt;
         private readonly List<BattleWatchSummary> _liveRankedMatches = new List<BattleWatchSummary>();
         private int _liveRankedIndex;
         private readonly FeaturedBuildRowView[] _featuredRows = new FeaturedBuildRowView[FeaturedCardsPerPage];
@@ -683,36 +686,70 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _featuredStatusText.fontSizeMin = 12f;
             _featuredStatusText.fontSizeMax = 16f;
 
-            // V7 擂台直播横幅（760×76，位于问道名局顶部，预绑 RankedPlayV7/live_ranked_spectate_banner + icon_live_spectate）
+            // V7 擂台直播横幅（760×76，左圆井 x=33..75，中信息区 x=88..372，右内置三槽 x=400..490 / 501..583 / 602..728）
             var liveBannerSprite = SeasonEconomyUiArt.LoadRankedPlayV7Asset("live_ranked_spectate_banner");
             var liveIconSprite = SeasonEconomyUiArt.LoadRankedPlayV7Asset("icon_live_spectate");
+            _liveBannerHasArt = liveBannerSprite != null;
             var liveBg = QdaoUguiFactory.CreateImage("LiveRankedSpectateBanner", body, 963f, 448f, 760f, 76f,
-                liveBannerSprite ?? LoadGuildApproved("guild_row_self"), false);
+                _liveBannerHasArt ? liveBannerSprite : LoadGuildApproved("guild_row_self"), false);
             liveBg.type = Image.Type.Simple;
             if (liveBg.sprite == null) liveBg.color = SeasonEconomyUiArt.BattleArenaJadeLight;
 
-            float liveTextX = 20f;
             if (liveIconSprite != null)
             {
-                var liveIcon = QdaoUguiFactory.CreateImage("LiveSpectateIcon", liveBg.transform, 16f, 20f, 36f, 36f, liveIconSprite, false);
+                float iconX = _liveBannerHasArt ? 32f : 16f;
+                float iconY = _liveBannerHasArt ? 16f : 20f;
+                float iconSize = _liveBannerHasArt ? 44f : 36f;
+                var liveIcon = QdaoUguiFactory.CreateImage("LiveSpectateIcon", liveBg.transform, iconX, iconY, iconSize, iconSize, liveIconSprite, false);
                 liveIcon.preserveAspect = true;
-                liveTextX = 60f;
             }
-            float liveTextW = 474f - liveTextX;
-            _liveBannerTitle = CreateLabel("LiveBannerTitle", liveBg.transform, liveTextX, 10f, liveTextW, 26f,
-                "擂台直播 · 高段排位实时围观", 17f, JadeDark, bold: true);
+            float liveTextX = _liveBannerHasArt ? 88f : (liveIconSprite != null ? 60f : 20f);
+            float liveTextW = _liveBannerHasArt ? 284f : (474f - liveTextX);
+            _liveBannerTitle = CreateLabel("LiveBannerTitle", liveBg.transform, liveTextX, 12f, liveTextW, 25f,
+                "擂台直播 · 高段排位", 17f, JadeDark, bold: true);
             _liveBannerTitle.enableAutoSizing = true;
-            _liveBannerTitle.fontSizeMin = 13f;
+            _liveBannerTitle.fontSizeMin = 12f;
             _liveBannerTitle.fontSizeMax = 17f;
 
-            _liveBannerBody = CreateLabel("LiveBannerBody", liveBg.transform, liveTextX, 40f, liveTextW, 26f,
+            _liveBannerBody = CreateLabel("LiveBannerBody", liveBg.transform, liveTextX, 40f, liveTextW, 24f,
                 "正在查询当前高段排位激战…", 15f, InkSecondary);
             _liveBannerBody.enableAutoSizing = true;
-            _liveBannerBody.fontSizeMin = 12f;
+            _liveBannerBody.fontSizeMin = 11f;
             _liveBannerBody.fontSizeMax = 15f;
 
-            _liveCycleBtn = CreateGuildButton("LiveCycleBtn", liveBg.transform, 480f, 19f, 78f, 38f,
-                "guild_button_secondary", "换一场", 16f, JadeDark, out _, out _);
+            if (_liveBannerHasArt)
+            {
+                // 横幅 PNG 已手绘右侧三枚按钮槽，叠透明点击层与文字，避免双框重叠
+                _liveCycleBtn = QdaoUguiFactory.CreateHitButton("LiveCycleBtn", liveBg.transform, 400f, 18f, 90f, 40f);
+                _liveCycleLabel = CreateLabel("LiveCycleBtn_Label", _liveCycleBtn.transform, 4f, 0f, 82f, 40f,
+                    "换一场", 16f, InkMuted, TextAlignmentOptions.Center, bold: true);
+                _liveCycleLabel.enableAutoSizing = true;
+                _liveCycleLabel.fontSizeMin = 12f;
+                _liveCycleLabel.fontSizeMax = 16f;
+
+                _liveRefreshBtn = QdaoUguiFactory.CreateHitButton("LiveRefreshBtn", liveBg.transform, 501f, 18f, 82f, 40f);
+                var refreshLbl = CreateLabel("LiveRefreshBtn_Label", _liveRefreshBtn.transform, 4f, 0f, 74f, 40f,
+                    "刷新", 16f, JadeDark, TextAlignmentOptions.Center, bold: true);
+                refreshLbl.enableAutoSizing = true;
+                refreshLbl.fontSizeMin = 12f;
+                refreshLbl.fontSizeMax = 16f;
+
+                _liveWatchBtn = QdaoUguiFactory.CreateHitButton("LiveWatchBtn", liveBg.transform, 602f, 16f, 126f, 44f);
+                _liveWatchLabel = CreateLabel("LiveWatchBtn_Label", _liveWatchBtn.transform, 6f, 0f, 114f, 44f,
+                    "实时围观", 17f, ButtonGoldText, TextAlignmentOptions.Center, bold: true);
+                _liveWatchLabel.enableAutoSizing = true;
+                _liveWatchLabel.fontSizeMin = 12f;
+                _liveWatchLabel.fontSizeMax = 17f;
+            }
+            else
+            {
+                _liveCycleBtn = CreateGuildButton("LiveCycleBtn", liveBg.transform, 480f, 19f, 78f, 38f,
+                    "guild_button_secondary", "换一场", 16f, JadeDark, out _, out _liveCycleLabel);
+                _liveRefreshBtn = CreateGuildButton("LiveRefreshBtn", liveBg.transform, 564f, 19f, 68f, 38f,
+                    "guild_button_secondary", "刷新", 16f, JadeDark, out _, out _);
+                _liveWatchBtn = CreateGuildButton("LiveWatchBtn", liveBg.transform, 638f, 19f, 106f, 38f,
+                    "guild_button_primary", "实时围观", 16f, ButtonGoldText, out _, out _liveWatchLabel);
+            }
             _liveCycleBtn.onClick.AddListener(() =>
             {
                 if (_liveRankedMatches.Count > 1)
@@ -721,14 +758,11 @@ namespace MmorpgClient.UI.Ugui.Ranked
                     RefreshLiveBannerView();
                 }
             });
-            _liveCycleBtn.gameObject.SetActive(false);
+            _liveCycleBtn.interactable = false;
+            if (!_liveBannerHasArt) _liveCycleBtn.gameObject.SetActive(false);
 
-            _liveRefreshBtn = CreateGuildButton("LiveRefreshBtn", liveBg.transform, 564f, 19f, 68f, 38f,
-                "guild_button_secondary", "刷新", 16f, JadeDark, out _, out _);
             _liveRefreshBtn.onClick.AddListener(() => RefreshLiveRankedRequested?.Invoke());
 
-            _liveWatchBtn = CreateGuildButton("LiveWatchBtn", liveBg.transform, 638f, 19f, 106f, 38f,
-                "guild_button_primary", "实时围观", 16f, ButtonGoldText, out _, out _);
             _liveWatchBtn.onClick.AddListener(() =>
             {
                 if (_liveRankedMatches.Count == 0) return;
@@ -848,10 +882,9 @@ namespace MmorpgClient.UI.Ugui.Ranked
         {
             if (loading)
             {
-                if (_liveBannerTitle != null) _liveBannerTitle.text = "擂台直播 · 高段排位实时围观";
+                if (_liveBannerTitle != null) _liveBannerTitle.text = "擂台直播 · 高段排位";
                 if (_liveBannerBody != null) _liveBannerBody.text = "正在刷新当前高段排位激战…";
-                if (_liveWatchBtn != null) _liveWatchBtn.interactable = false;
-                if (_liveCycleBtn != null) _liveCycleBtn.gameObject.SetActive(false);
+                ApplyLiveButtonStates(canWatch: false, canCycle: false);
                 return;
             }
             _liveRankedMatches.Clear();
@@ -872,10 +905,9 @@ namespace MmorpgClient.UI.Ugui.Ranked
             if (_liveBannerTitle == null || _liveBannerBody == null) return;
             if (_liveRankedMatches.Count == 0)
             {
-                _liveBannerTitle.text = "擂台直播 · 高段排位实时围观";
-                _liveBannerBody.text = "当前暂无高段排位激战，可稍后刷新或先观摩下方名局回放";
-                if (_liveWatchBtn != null) _liveWatchBtn.interactable = false;
-                if (_liveCycleBtn != null) _liveCycleBtn.gameObject.SetActive(false);
+                _liveBannerTitle.text = "擂台直播 · 高段排位";
+                _liveBannerBody.text = "当前暂无高段排位激战，可稍后刷新或先观摩下方回放";
+                ApplyLiveButtonStates(canWatch: false, canCycle: false);
                 return;
             }
             int idx = Mathf.Clamp(_liveRankedIndex, 0, _liveRankedMatches.Count - 1);
@@ -884,8 +916,21 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 ? $"擂台直播 · 正在激战（{idx + 1}/{_liveRankedMatches.Count}）"
                 : "擂台直播 · 正在激战";
             _liveBannerBody.text = RankedFormatting.FormatLiveRankedMatchSummary(current);
-            if (_liveWatchBtn != null) _liveWatchBtn.interactable = true;
-            if (_liveCycleBtn != null) _liveCycleBtn.gameObject.SetActive(_liveRankedMatches.Count > 1);
+            ApplyLiveButtonStates(canWatch: true, canCycle: _liveRankedMatches.Count > 1);
+        }
+
+        private void ApplyLiveButtonStates(bool canWatch, bool canCycle)
+        {
+            if (_liveWatchBtn != null) _liveWatchBtn.interactable = canWatch;
+            if (_liveWatchLabel != null)
+                _liveWatchLabel.color = canWatch ? ButtonGoldText : new Color(0.82f, 0.78f, 0.68f, 0.58f);
+            if (_liveCycleBtn != null)
+            {
+                _liveCycleBtn.interactable = canCycle;
+                if (!_liveBannerHasArt) _liveCycleBtn.gameObject.SetActive(canCycle);
+            }
+            if (_liveCycleLabel != null)
+                _liveCycleLabel.color = canCycle ? JadeDark : InkMuted;
         }
 
         private static void AttachSmallButtonIcon(Transform btnTransform, TMP_Text label, string iconName,

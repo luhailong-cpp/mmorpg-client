@@ -66,6 +66,27 @@ namespace MmorpgClient.Tests.EditMode.Net
         }
 
         [Test]
+        public void PassportCredentialChangedHasTexts()
+        {
+            // 官方通行证改密 / 停用之后(服务端 official-passport-registration.md §3.6):踢线要有文案,客户端才不会去自动重连;
+            // 用改密之前的授权登录被拒(401,message = upstream_err=<tip>)要说清原因,其余渠道 401 仍是「登录授权已失效」。
+            Assert.AreEqual(GameClient.PassportCredentialChangedMessage,
+                GameClient.DescribeKickReason((uint)login_error.KLoginPassportCredentialChanged));
+            var passportRejected = new GatewayLoginResult
+            {
+                code = GatewayLoginResult.CodeAuthRejected,
+                message = "upstream_err=" + (uint)login_error.KLoginPassportCredentialChanged,
+            };
+            Assert.AreEqual(GameClient.PassportCredentialChangedMessage, GameClient.DescribeChannelCredentialRejected(passportRejected));
+            var otherRejected = new GatewayLoginResult
+            {
+                code = GatewayLoginResult.CodeAuthRejected,
+                message = "upstream_err=" + (uint)login_error.KLoginAccountNotFound,
+            };
+            Assert.AreEqual(GameClient.ChannelCredentialRejectedMessage, GameClient.DescribeChannelCredentialRejected(otherRejected));
+        }
+
+        [Test]
         public void AccessTokenCredentialCarriesTheToken()
         {
             var credential = LoginCredential.ForAccessToken("tok");

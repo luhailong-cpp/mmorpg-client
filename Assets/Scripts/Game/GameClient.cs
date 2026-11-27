@@ -770,6 +770,12 @@ namespace MmorpgClient.Game
         public const string AccountDeletionExecutingMessage = "账号注销正在执行，已无法撤销";
 
         /// <summary>
+        /// 官方通行证里改了密码(含找回密码)、账号被停用或删除之后的文案(服务端 docs/design/official-passport-registration.md §3.6):
+        /// 在线设备被踢下线(踢线原因 kLoginPassportCredentialChanged),或用改密之前拿到的授权去登录被拒。令牌已作废,要重新登录。
+        /// </summary>
+        public const string PassportCredentialChangedMessage = "账号在官方通行证修改了密码或已被停用，请重新登录";
+
+        /// <summary>
         /// 排队之前能不能断定「这个账号在所选区要新建角色、而这个区已暂停创角」。能断定就不必去排队:
         /// 排完队、连上 gate 之后也只会在 CreatePlayer 被拒(服务端 docs/design/zone-full-handling.md §6)。
         /// <paramref name="players"/> 是 /api/login 回的账号角色列表(全服的,每个带所在区)。判据与进区后挑本区角色的过滤一致:
@@ -874,7 +880,7 @@ namespace MmorpgClient.Game
                 {
                     // 渠道凭证被拒不是「账号或密码错误」:渠道令牌一次性,要重新向渠道取,不重发旧的。
                     onError(!credential.IsPassword && r.code == GatewayLoginResult.CodeAuthRejected
-                        ? ChannelCredentialRejectedMessage
+                        ? DescribeChannelCredentialRejected(r)
                         : DescribeLoginCode(r));
                     yield break;
                 }
@@ -2024,6 +2030,8 @@ namespace MmorpgClient.Game
             // 两种都不自动重连:冷静期内进不了游戏,执行中的账号也撤不回来。
             : reasonId == (uint)login_error.KLoginAccountDeletionPending ? AccountDeletionPendingMessage
             : reasonId == (uint)login_error.KLoginAccountDeletionInProgress ? AccountDeletionExecutingMessage
+            // 官方通行证改密 / 停用(§3.6):令牌已作废,自动重连也进不来,不重连。
+            : reasonId == (uint)login_error.KLoginPassportCredentialChanged ? PassportCredentialChangedMessage
             : IsTravelFailureTip(reasonId) ? DescribeTravelTip(reasonId) + "请重新登录。" : null;
 
         /// <summary>
@@ -2343,6 +2351,15 @@ namespace MmorpgClient.Game
         /// 不能落到"账号或密码错误"。message 原样留在括号里,玩家反馈时带得出 tip 码。
         /// 测试程序集没有 InternalsVisibleTo,所以只能是 public。
         /// </summary>
+        /// <summary>
+        /// 渠道凭证被拒(401)的文案。网关把 login 的业务拒绝原样写成 message = upstream_err=&lt;tip&gt;:
+        /// 官方通行证在改密之前签的授权被拒时说清原因,其余一律「登录授权已失效」。
+        /// </summary>
+        public static string DescribeChannelCredentialRejected(GatewayLoginResult r) =>
+            r.message == "upstream_err=" + (uint)login_error.KLoginPassportCredentialChanged
+                ? PassportCredentialChangedMessage
+                : ChannelCredentialRejectedMessage;
+
         public static string DescribeLoginCode(GatewayLoginResult r) => r.code switch
         {
             GatewayLoginResult.CodeQueueTimeout => "排队超时,请稍后重试",

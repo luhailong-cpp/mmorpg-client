@@ -161,31 +161,35 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 "guild_button_primary", "同规模再排", 28f, ButtonGoldText, out _, out _requeueLabel);
             _requeueBtn.onClick.AddListener(() => RequeueSameSizeRequested?.Invoke(_lastTeamSize));
 
-            // 论剑 V7：正式 1V1 战后「不服再战」切磋复仇入口（240×68，预绑 RankedPlayV7/btn_rematch_duel + icon_rematch_swords，零排位分）
+            // 论剑 V7：正式 1V1 战后「不服再战」切磋复仇入口（240×68 玉绿金边底，内区 x=29..211, y=14..52，暖金高对比字）
             var rematchBtnSprite = SeasonEconomyUiArt.LoadRankedPlayV7Asset("btn_rematch_duel");
             var rematchIconSprite = SeasonEconomyUiArt.LoadRankedPlayV7Asset("icon_rematch_swords");
-            if (rematchBtnSprite != null)
+            bool hasRematchArt = rematchBtnSprite != null;
+            if (hasRematchArt)
             {
                 _rematchBtn = QdaoUguiFactory.CreateArtButton("SettlementRematchBtn", _root, 1028f, 846f, 240f, 68f,
                     rematchBtnSprite, out var rImg);
                 rImg.type = Image.Type.Simple;
                 _rematchLabel = CreateLabel("SettlementRematchBtn_Label", _rematchBtn.transform,
-                    rematchIconSprite != null ? 54f : 12f, 0f, rematchIconSprite != null ? 174f : 216f, 68f,
-                    "不服再战", 23f, WarnRed, TextAlignmentOptions.Center, bold: true);
+                    rematchIconSprite != null ? 68f : 32f, 14f, rematchIconSprite != null ? 138f : 176f, 40f,
+                    "不服再战", 22f, ButtonGoldText, TextAlignmentOptions.Center, bold: true);
             }
             else
             {
                 _rematchBtn = CreateGuildButton("SettlementRematchBtn", _root, 1028f, 846f, 240f, 68f,
-                    "guild_button_secondary", "不服再战", 23f, WarnRed, out _, out _rematchLabel);
+                    "guild_button_secondary", "不服再战", 22f, WarnRed, out _, out _rematchLabel);
             }
             if (rematchIconSprite != null)
             {
-                var rIcon = QdaoUguiFactory.CreateImage("RematchSwordsIcon", _rematchBtn.transform, 18f, 20f, 28f, 28f, rematchIconSprite, false);
+                float iconX = hasRematchArt ? 34f : 18f;
+                float iconY = hasRematchArt ? 19f : 20f;
+                float iconSize = hasRematchArt ? 30f : 28f;
+                var rIcon = QdaoUguiFactory.CreateImage("RematchSwordsIcon", _rematchBtn.transform, iconX, iconY, iconSize, iconSize, rematchIconSprite, false);
                 rIcon.preserveAspect = true;
             }
             _rematchLabel.enableAutoSizing = true;
-            _rematchLabel.fontSizeMin = 15f;
-            _rematchLabel.fontSizeMax = 23f;
+            _rematchLabel.fontSizeMin = 14f;
+            _rematchLabel.fontSizeMax = 22f;
             _rematchBtn.onClick.AddListener(() =>
             {
                 if (_rematchSent || _rematchBattleId == 0UL || _rematchOpponentId == 0UL) return;

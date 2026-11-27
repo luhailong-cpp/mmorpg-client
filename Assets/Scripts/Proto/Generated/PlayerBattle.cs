@@ -9633,6 +9633,7 @@ public sealed partial class BattlePingS2C : pb::IMessage<BattlePingS2C>
 /// 密钥 BaseDeployConfig.battle_token_secret,全部 battle 实例共享,与 gate 令牌密钥分域)。
 /// 签名 = hex(HMAC-SHA256(secret, 序列化后的本消息字节)),形态与 GateTokenPayload 一致。
 /// 寿命 = 房间作废期限(D25):同一票可重复用于战斗中重连;房间销毁即失效。
+/// 未成年人的票另按他当天的截止时刻封顶(提前 5 秒,与 gate 关大厅连接同一时点),到点后同一张票不能再握手。
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPayload>
@@ -9743,7 +9744,7 @@ public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPaylo
   public const int ExpireAtMsFieldNumber = 5;
   private ulong expireAtMs_;
   /// <summary>
-  /// Unix 毫秒;与房间 deadline_ms 同值
+  /// Unix 毫秒;房间 deadline_ms 与持票人截止时刻(未成年人,提前 5 秒)里较早的一个
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -10806,7 +10807,7 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
   public const int ExpireAtMsFieldNumber = 6;
   private ulong expireAtMs_;
   /// <summary>
-  /// 票据 / 房间作废期限(Unix 毫秒)
+  /// 票据期限(Unix 毫秒),与票据载荷里的 expire_at_ms 同值:通常就是房间作废期限
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

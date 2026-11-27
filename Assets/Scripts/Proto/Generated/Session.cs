@@ -22,18 +22,18 @@ public static partial class SessionReflection {
   static SessionReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Ch9wcm90by9jb21tb24vYmFzZS9zZXNzaW9uLnByb3RvIosCCg5TZXNzaW9u",
+          "Ch9wcm90by9jb21tb24vYmFzZS9zZXNzaW9uLnByb3RvIqoCCg5TZXNzaW9u",
           "RGV0YWlscxISCgpzZXNzaW9uX2lkGAEgASgNEhEKCXBsYXllcl9pZBgCIAEo",
           "BBIUCgxnYXRlX25vZGVfaWQYAyABKA0SGAoQZ2F0ZV9pbnN0YW5jZV9pZBgE",
           "IAEoCRIYChB0aWNrZXRfcGxheWVyX2lkGAUgASgEEh0KFXRpY2tldF90YXJn",
           "ZXRfem9uZV9pZBgGIAEoDRIbChNzZXNzaW9uX2luY2FybmF0aW9uGAcgASgE",
           "EhUKDWdhdGVfY2FsbF9zZXEYCCABKAQSFgoOb3duZXJfcmV2aXNpb24YCSAB",
-          "KAQSHQoVYXV0aGVudGljYXRlZF9hY2NvdW50GAogASgJQg1aC2NvbW1vbi9i",
-          "YXNlYgZwcm90bzM="));
+          "KAQSHQoVYXV0aGVudGljYXRlZF9hY2NvdW50GAogASgJEh0KFXRpY2tldF9h",
+          "Y2NvdW50X2RpZ2VzdBgLIAEoDEINWgtjb21tb24vYmFzZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::SessionDetails), global::SessionDetails.Parser, new[]{ "SessionId", "PlayerId", "GateNodeId", "GateInstanceId", "TicketPlayerId", "TicketTargetZoneId", "SessionIncarnation", "GateCallSeq", "OwnerRevision", "AuthenticatedAccount" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::SessionDetails), global::SessionDetails.Parser, new[]{ "SessionId", "PlayerId", "GateNodeId", "GateInstanceId", "TicketPlayerId", "TicketTargetZoneId", "SessionIncarnation", "GateCallSeq", "OwnerRevision", "AuthenticatedAccount", "TicketAccountDigest" }, null, null, null, null)
         }));
   }
   #endregion
@@ -85,6 +85,7 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     gateCallSeq_ = other.gateCallSeq_;
     ownerRevision_ = other.ownerRevision_;
     authenticatedAccount_ = other.authenticatedAccount_;
+    ticketAccountDigest_ = other.ticketAccountDigest_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -244,6 +245,22 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     }
   }
 
+  /// <summary>Field number for the "ticket_account_digest" field.</summary>
+  public const int TicketAccountDigestFieldNumber = 11;
+  private pb::ByteString ticketAccountDigest_ = pb::ByteString.Empty;
+  /// <summary>
+  /// 票据绑定的账号摘要:gate 验签通过后从 GateTokenPayload.account_digest 原样拷入,会话存续期内不变,gate 只透传。
+  /// 主判定在 login 的 Login:认证出的账号与它不符即拒(loginqueue.TicketIssuedTo)。空 = 票没绑账号 / 免验签的开发环境 / 旧版 gate。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pb::ByteString TicketAccountDigest {
+    get { return ticketAccountDigest_; }
+    set {
+      ticketAccountDigest_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -269,6 +286,7 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     if (GateCallSeq != other.GateCallSeq) return false;
     if (OwnerRevision != other.OwnerRevision) return false;
     if (AuthenticatedAccount != other.AuthenticatedAccount) return false;
+    if (TicketAccountDigest != other.TicketAccountDigest) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -286,6 +304,7 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     if (GateCallSeq != 0UL) hash ^= GateCallSeq.GetHashCode();
     if (OwnerRevision != 0UL) hash ^= OwnerRevision.GetHashCode();
     if (AuthenticatedAccount.Length != 0) hash ^= AuthenticatedAccount.GetHashCode();
+    if (TicketAccountDigest.Length != 0) hash ^= TicketAccountDigest.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -344,6 +363,10 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
       output.WriteRawTag(82);
       output.WriteString(AuthenticatedAccount);
     }
+    if (TicketAccountDigest.Length != 0) {
+      output.WriteRawTag(90);
+      output.WriteBytes(TicketAccountDigest);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -394,6 +417,10 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
       output.WriteRawTag(82);
       output.WriteString(AuthenticatedAccount);
     }
+    if (TicketAccountDigest.Length != 0) {
+      output.WriteRawTag(90);
+      output.WriteBytes(TicketAccountDigest);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -433,6 +460,9 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     }
     if (AuthenticatedAccount.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(AuthenticatedAccount);
+    }
+    if (TicketAccountDigest.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeBytesSize(TicketAccountDigest);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -475,6 +505,9 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     }
     if (other.AuthenticatedAccount.Length != 0) {
       AuthenticatedAccount = other.AuthenticatedAccount;
+    }
+    if (other.TicketAccountDigest.Length != 0) {
+      TicketAccountDigest = other.TicketAccountDigest;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -535,6 +568,10 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
           AuthenticatedAccount = input.ReadString();
           break;
         }
+        case 90: {
+          TicketAccountDigest = input.ReadBytes();
+          break;
+        }
       }
     }
   #endif
@@ -592,6 +629,10 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
         }
         case 82: {
           AuthenticatedAccount = input.ReadString();
+          break;
+        }
+        case 90: {
+          TicketAccountDigest = input.ReadBytes();
           break;
         }
       }

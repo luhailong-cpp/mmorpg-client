@@ -63,17 +63,18 @@ public static partial class MessageReflection {
           "BXRva2VuGAIgASgJEhwKCXNlbGZfbm9kZRgDIAEoCzIJLk5vZGVJbmZvEhoK",
           "EmV4cGVjdGVkX3BlZXJfdXVpZBgEIAEoCSJdChVOb2RlSGFuZHNoYWtlUmVz",
           "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
-          "EhwKCXBlZXJfbm9kZRgCIAEoCzIJLk5vZGVJbmZvIpgBChBHYXRlVG9rZW5Q",
+          "EhwKCXBlZXJfbm9kZRgCIAEoCzIJLk5vZGVJbmZvIrABChBHYXRlVG9rZW5Q",
           "YXlsb2FkEhQKDGdhdGVfbm9kZV9pZBgBIAEoDRIPCgd6b25lX2lkGAIgASgN",
           "EhgKEGV4cGlyZV90aW1lc3RhbXAYAyABKAMSGAoQaG1hY19zZXNzaW9uX2tl",
           "eRgEIAEoDBIRCglwbGF5ZXJfaWQYBSABKAQSFgoOdGFyZ2V0X3pvbmVfaWQY",
-          "BiABKA0iPgoYQ2xpZW50VG9rZW5WZXJpZnlSZXF1ZXN0Eg8KB3BheWxvYWQY",
-          "ASABKAwSEQoJc2lnbmF0dXJlGAIgASgMIngKGUNsaWVudFRva2VuVmVyaWZ5",
-          "UmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCBINCgVlcnJvchgCIAEoCRIdChVo",
-          "ZWFydGJlYXRfaW50ZXJ2YWxfbXMYAyABKA0SHAoUaGVhcnRiZWF0X3RpbWVv",
-          "dXRfbXMYBCABKA0iJQoWQ2xpZW50SGVhcnRiZWF0UmVxdWVzdBILCgNzZXEY",
-          "ASABKAQiJgoXQ2xpZW50SGVhcnRiZWF0UmVzcG9uc2USCwoDc2VxGAEgASgE",
-          "Qg1aC2NvbW1vbi9iYXNlYgZwcm90bzM="));
+          "BiABKA0SFgoOYWNjb3VudF9kaWdlc3QYByABKAwiPgoYQ2xpZW50VG9rZW5W",
+          "ZXJpZnlSZXF1ZXN0Eg8KB3BheWxvYWQYASABKAwSEQoJc2lnbmF0dXJlGAIg",
+          "ASgMIngKGUNsaWVudFRva2VuVmVyaWZ5UmVzcG9uc2USDwoHc3VjY2VzcxgB",
+          "IAEoCBINCgVlcnJvchgCIAEoCRIdChVoZWFydGJlYXRfaW50ZXJ2YWxfbXMY",
+          "AyABKA0SHAoUaGVhcnRiZWF0X3RpbWVvdXRfbXMYBCABKA0iJQoWQ2xpZW50",
+          "SGVhcnRiZWF0UmVxdWVzdBILCgNzZXEYASABKAQiJgoXQ2xpZW50SGVhcnRi",
+          "ZWF0UmVzcG9uc2USCwoDc2VxGAEgASgEQg1aC2NvbW1vbi9iYXNlYgZwcm90",
+          "bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, global::SessionReflection.Descriptor, global::TipReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -96,7 +97,7 @@ public static partial class MessageReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::ClientRequest), global::ClientRequest.Parser, new[]{ "Id", "Service", "Method", "Body", "MessageId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NodeHandshakeRequest), global::NodeHandshakeRequest.Parser, new[]{ "Version", "Token", "SelfNode", "ExpectedPeerUuid" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NodeHandshakeResponse), global::NodeHandshakeResponse.Parser, new[]{ "ErrorMessage", "PeerNode" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::GateTokenPayload), global::GateTokenPayload.Parser, new[]{ "GateNodeId", "ZoneId", "ExpireTimestamp", "HmacSessionKey", "PlayerId", "TargetZoneId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::GateTokenPayload), global::GateTokenPayload.Parser, new[]{ "GateNodeId", "ZoneId", "ExpireTimestamp", "HmacSessionKey", "PlayerId", "TargetZoneId", "AccountDigest" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ClientTokenVerifyRequest), global::ClientTokenVerifyRequest.Parser, new[]{ "Payload", "Signature" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ClientTokenVerifyResponse), global::ClientTokenVerifyResponse.Parser, new[]{ "Success", "Error", "HeartbeatIntervalMs", "HeartbeatTimeoutMs" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ClientHeartbeatRequest), global::ClientHeartbeatRequest.Parser, new[]{ "Seq" }, null, null, null, null),
@@ -5167,6 +5168,7 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
     hmacSessionKey_ = other.hmacSessionKey_;
     playerId_ = other.playerId_;
     targetZoneId_ = other.targetZoneId_;
+    accountDigest_ = other.accountDigest_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -5277,6 +5279,23 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
     }
   }
 
+  /// <summary>Field number for the "account_digest" field.</summary>
+  public const int AccountDigestFieldNumber = 7;
+  private pb::ByteString accountDigest_ = pb::ByteString.Empty;
+  /// <summary>
+  /// 持票账号绑定:这张票发给哪个账号,存的是账号的摘要(login 的 loginqueue.TicketAccountDigest,16 字节),不是账号原文
+  /// (载荷要经客户端转交 gate,第三方登录的账号名不下发给客户端)。gate 只透传;login 在 gate 上的 Login 认证出账号之后比对,
+  /// 不符即拒。空 = 不绑(排队关着时的匿名分配、跨 zone 重定向票)。见 docs/design/login-queue-2026-05.md §5「票据绑定账号」。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pb::ByteString AccountDigest {
+    get { return accountDigest_; }
+    set {
+      accountDigest_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -5298,6 +5317,7 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
     if (HmacSessionKey != other.HmacSessionKey) return false;
     if (PlayerId != other.PlayerId) return false;
     if (TargetZoneId != other.TargetZoneId) return false;
+    if (AccountDigest != other.AccountDigest) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -5311,6 +5331,7 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
     if (HmacSessionKey.Length != 0) hash ^= HmacSessionKey.GetHashCode();
     if (PlayerId != 0UL) hash ^= PlayerId.GetHashCode();
     if (TargetZoneId != 0) hash ^= TargetZoneId.GetHashCode();
+    if (AccountDigest.Length != 0) hash ^= AccountDigest.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -5353,6 +5374,10 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
       output.WriteRawTag(48);
       output.WriteUInt32(TargetZoneId);
     }
+    if (AccountDigest.Length != 0) {
+      output.WriteRawTag(58);
+      output.WriteBytes(AccountDigest);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -5387,6 +5412,10 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
       output.WriteRawTag(48);
       output.WriteUInt32(TargetZoneId);
     }
+    if (AccountDigest.Length != 0) {
+      output.WriteRawTag(58);
+      output.WriteBytes(AccountDigest);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -5414,6 +5443,9 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
     }
     if (TargetZoneId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetZoneId);
+    }
+    if (AccountDigest.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeBytesSize(AccountDigest);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -5444,6 +5476,9 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
     }
     if (other.TargetZoneId != 0) {
       TargetZoneId = other.TargetZoneId;
+    }
+    if (other.AccountDigest.Length != 0) {
+      AccountDigest = other.AccountDigest;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -5488,6 +5523,10 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
           TargetZoneId = input.ReadUInt32();
           break;
         }
+        case 58: {
+          AccountDigest = input.ReadBytes();
+          break;
+        }
       }
     }
   #endif
@@ -5529,6 +5568,10 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
         }
         case 48: {
           TargetZoneId = input.ReadUInt32();
+          break;
+        }
+        case 58: {
+          AccountDigest = input.ReadBytes();
           break;
         }
       }

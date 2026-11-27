@@ -17,6 +17,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private readonly BattleUiRoot _owner;
         private readonly RectTransform _root;
+        private readonly UnityEngine.UI.Image _rematchIcon;
         private readonly TMP_Text _titleText;
         private readonly TMP_Text _bodyText;
         private readonly TMP_Text _rulesText;
@@ -46,6 +47,13 @@ namespace MmorpgClient.UI.Ugui.Battle
                 x, y, PanelW, PanelH, BattleUiStyle.PanelBgLight);
             _root = (RectTransform)bg.transform;
 
+            var rematchIconSprite = SeasonEconomyUiArt.LoadRankedPlayV7Asset("icon_rematch_swords");
+            if (rematchIconSprite != null)
+            {
+                _rematchIcon = QdaoUguiFactory.CreateImage("RematchIcon", _root, 208f, 29f, 36f, 36f, rematchIconSprite, false);
+                _rematchIcon.preserveAspect = true;
+                _rematchIcon.gameObject.SetActive(false);
+            }
             _titleText = QdaoUguiFactory.CreateText("Title", _root, 0f, 24f, PanelW, 46f,
                 "道友切磋挑战", 34f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
             _bodyText = QdaoUguiFactory.CreateText("Body", _root, 36f, 84f, PanelW - 72f, 42f,
@@ -103,6 +111,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 ? $"玩家{invite.ChallengerId}"
                 : invite.ChallengerName;
             bool isRankedRematch = invite.CustomRules != null && invite.CustomRules.RematchSourceBattleId != 0UL;
+            if (_rematchIcon != null) _rematchIcon.gameObject.SetActive(isRankedRematch);
             if (_titleText != null)
                 _titleText.text = isRankedRematch ? "论剑不服再战" : "道友切磋挑战";
             _bodyText.text = isRankedRematch
