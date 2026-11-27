@@ -585,6 +585,8 @@ namespace MmorpgClient.UI.Ugui.TacticalPuzzle
                     TacticalPuzzleModels.CharacterPresetName(pid), _draftSpec.CharacterPresetId == pid, () =>
                     {
                         _draftSpec.CharacterPresetId = pid;
+                        if (!TacticalPuzzleModels.IsAllowedPresetSkill(_draftSpec.CharacterPresetId, _draftSpec.PetPresetId, _draftSpec.BannedSkillId))
+                            _draftSpec.BannedSkillId = 0u;
                         RebuildEditorBody();
                     }, 18f);
             }
@@ -598,6 +600,8 @@ namespace MmorpgClient.UI.Ugui.TacticalPuzzle
                     TacticalPuzzleModels.PetPresetName(pid), _draftSpec.PetPresetId == pid, () =>
                     {
                         _draftSpec.PetPresetId = pid;
+                        if (!TacticalPuzzleModels.IsAllowedPresetSkill(_draftSpec.CharacterPresetId, _draftSpec.PetPresetId, _draftSpec.BannedSkillId))
+                            _draftSpec.BannedSkillId = 0u;
                         RebuildEditorBody();
                     }, 17f);
             }
@@ -787,19 +791,54 @@ namespace MmorpgClient.UI.Ugui.TacticalPuzzle
                     }, 16f);
             }
 
-            // ── 底部自证说明与保存按钮 ──
-            Label("VerifyRuleNote", _editorDynamicRoot, 34f, 672f, 960f, 64f,
-                "自证铁律：新建或改题后，须由作者本人亲手打赢 1 局并存下标准解法录像，残局才会自动向全服公开，从根源杜绝无解死局。",
-                18f, GoldInk, bold: true, wrap: true);
+            // ── V1.5 盘面加深：场上五行灵脉阵眼 + 本局禁用 1 招预设技能（零新图，复用现有切片） ──
+            Label("EdLeylineLbl", _editorDynamicRoot, 34f, 662f, 126f, 40f, "灵脉阵眼：", 17f, Ink, bold: true);
+            for (int i = 0; i < TacticalPuzzleModels.LeylineElements.Length; i++)
+            {
+                var elem = TacticalPuzzleModels.LeylineElements[i];
+                ChipButton("EdLeyline_" + i, _editorDynamicRoot, 160f + i * 86f, 660f, 80f, 44f,
+                    TacticalPuzzleModels.LeylineName(elem), _draftSpec.LeylineElement == elem, () =>
+                    {
+                        _draftSpec.LeylineElement = elem;
+                        RebuildEditorBody();
+                    }, 15f);
+            }
 
-            ActionButton("EdCancelBtn", _editorDynamicRoot, 1020f, 678f, 152f, 54f,
+            Label("EdBanLbl", _editorDynamicRoot, 700f, 662f, 108f, 40f, "本局禁招：", 17f, Ink, bold: true);
+            var availBans = TacticalPuzzleModels.GetAvailableBanSkills(_draftSpec.CharacterPresetId, _draftSpec.PetPresetId);
+            float bx = 808f;
+            ChipButton("EdBan_0", _editorDynamicRoot, bx, 660f, 82f, 44f, "不禁招", _draftSpec.BannedSkillId == 0u, () =>
+            {
+                _draftSpec.BannedSkillId = 0u;
+                RebuildEditorBody();
+            }, 15f);
+            bx += 88f;
+            float banChipW = availBans.Count > 6 ? 94f : 112f;
+            for (int i = 0; i < availBans.Count && bx + banChipW <= 1692f; i++)
+            {
+                uint sid = availBans[i];
+                ChipButton("EdBan_" + sid, _editorDynamicRoot, bx, 660f, banChipW, 44f,
+                    TacticalPuzzleModels.PresetSkillName(sid), _draftSpec.BannedSkillId == sid, () =>
+                    {
+                        _draftSpec.BannedSkillId = sid;
+                        RebuildEditorBody();
+                    }, 14f);
+                bx += banChipW + 6f;
+            }
+
+            // ── 底部自证说明与保存按钮 ──
+            Label("VerifyRuleNote", _editorDynamicRoot, 34f, 714f, 960f, 56f,
+                "自证铁律：新建或改题后，须由作者本人亲手打赢 1 局并存下标准解法录像，残局才会自动向全服公开，从根源杜绝无解死局。",
+                17f, GoldInk, bold: true, wrap: true);
+
+            ActionButton("EdCancelBtn", _editorDynamicRoot, 1020f, 716f, 152f, 52f,
                 "取消", 20f, primary: false, interactable: true, CloseEditor);
-            ActionButton("EdSaveDraftBtn", _editorDynamicRoot, 1186f, 678f, 200f, 54f,
+            ActionButton("EdSaveDraftBtn", _editorDynamicRoot, 1186f, 716f, 200f, 52f,
                 "仅保存草稿", 20f, primary: false, interactable: true, () =>
                 {
                     SaveDraftRequested?.Invoke(_editingPuzzleId, _draftTitle, _draftHint, _draftTagMask, _draftSpec.Clone(), false);
                 });
-            ActionButton("EdSaveVerifyBtn", _editorDynamicRoot, 1400f, 678f, 286f, 54f,
+            ActionButton("EdSaveVerifyBtn", _editorDynamicRoot, 1400f, 716f, 286f, 52f,
                 "保存并亲自验题", 21f, primary: true, interactable: true, () =>
                 {
                     SaveDraftRequested?.Invoke(_editingPuzzleId, _draftTitle, _draftHint, _draftTagMask, _draftSpec.Clone(), true);

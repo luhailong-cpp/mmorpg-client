@@ -53,9 +53,18 @@ namespace MmorpgClient.Tests.EditMode.Role
             var spec = TacticalPuzzleModels.CreateDefaultSpec();
             Assert.That(TacticalPuzzleModels.ValidateDraft("三回合破盾反杀", "先驱散再爆发", 0x3u, spec, out string err), Is.True, err);
 
-            // 单人无宠（PetPresetId = 0）合法
+            // 单人无宠（PetPresetId = 0）+ V1.5 灵脉阵眼与本局禁招合法
             spec.PetPresetId = 0u;
+            spec.LeylineElement = TournamentLeylineElement.TournamentLeylineFire;
+            spec.BannedSkillId = 10039u; // 101 破阵自带「天崩裂岳」
             Assert.That(TacticalPuzzleModels.ValidateDraft("单人无宠破阵局", "", 1u, spec, out err), Is.True, err);
+            Assert.That(TacticalPuzzleModels.DescribeSpecBrief(spec), Does.Contain("火灵脉").And.Contain("禁:天崩裂岳"));
+
+            // V1.5 非所选预设携带技能禁止设为禁招
+            var badBan = spec.Clone(); badBan.BannedSkillId = 10020u; // 属于 102 控场，不在 101 预设内
+            Assert.That(TacticalPuzzleModels.ValidateSpec(badBan, out _), Is.False);
+            var badLeyline = spec.Clone(); badLeyline.LeylineElement = (TournamentLeylineElement)9;
+            Assert.That(TacticalPuzzleModels.ValidateSpec(badLeyline, out _), Is.False);
 
             // 题名长度与控制字符限制
             Assert.That(TacticalPuzzleModels.ValidateDraft("太短", "", 0u, spec, out _), Is.False);

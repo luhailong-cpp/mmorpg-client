@@ -659,6 +659,9 @@ namespace MmorpgClient.Tests.EditMode.Role
                 var view = TrialJournalUiState.Evaluate(snap, false, false, true, false, "", false, TrialJournalNavTab.Seasonal, 0u);
                 Assert.That(view.SeasonLabel, Is.EqualTo($"{name} · 卷三 · 季游奇谈"));
                 Assert.That(view.Phase, Is.EqualTo(TrialJournalVisualPhase.SeasonalIsolated));
+                uint rescueEntryId = sid == 1u ? 301u : 3000u + sid * 10u + 1u;
+                Assert.That(TrialJournalModels.TryGetEntryMonsterIds(rescueEntryId, out uint bossId, out uint guardId), Is.True);
+                Assert.That((bossId, guardId), Is.EqualTo((101u, 102u)));
             }
             Assert.That(TrialJournalModels.TryGetSeasonHonorBadgeFallback("badge_trial_sword", out _), Is.False);
         }

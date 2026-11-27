@@ -524,6 +524,15 @@ namespace MmorpgClient.Game.TrialJournal
                 case 101u:
                 case 103u:
                 case 301u:
+                case 3021u:
+                case 3031u:
+                case 3041u:
+                case 3051u:
+                case 3061u:
+                case 3071u:
+                case 3081u:
+                case 3091u:
+                case 3101u:
                     bossMonsterId = 101u;
                     guardMonsterId = 102u;
                     return true;

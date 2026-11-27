@@ -47,6 +47,88 @@ namespace MmorpgClient.Game.TacticalPuzzle
         public static readonly uint[] PetPresetIds = { 0u, 201u, 202u, 203u };
         public static readonly uint[] FormationIds = { 0u, 1u, 2u, 3u, 4u, 5u };
         public static readonly uint[] MonsterIds = { 311u, 312u, 313u, 314u, 315u, 316u };
+        public static readonly TournamentLeylineElement[] LeylineElements =
+        {
+            TournamentLeylineElement.TournamentLeylineUnspecified,
+            TournamentLeylineElement.TournamentLeylineMetal,
+            TournamentLeylineElement.TournamentLeylineWood,
+            TournamentLeylineElement.TournamentLeylineWater,
+            TournamentLeylineElement.TournamentLeylineFire,
+            TournamentLeylineElement.TournamentLeylineEarth,
+        };
+
+        public static List<uint> GetAvailableBanSkills(uint charPresetId, uint petPresetId)
+        {
+            var result = new List<uint>();
+            void AddRange(params uint[] ids)
+            {
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    if (!result.Contains(ids[i])) result.Add(ids[i]);
+                }
+            }
+            switch (charPresetId)
+            {
+                case 101u: AddRange(10002u, 10039u, 10025u, 10035u); break;
+                case 102u: AddRange(10006u, 10020u, 10034u, 10041u); break;
+                case 103u: AddRange(10010u, 10033u, 10040u, 10026u); break;
+            }
+            switch (petPresetId)
+            {
+                case 201u: AddRange(10002u, 10018u, 10016u, 13005u); break;
+                case 202u: AddRange(10006u, 10019u, 10034u, 13006u); break;
+                case 203u: AddRange(10014u, 10010u, 11006u, 11005u); break;
+            }
+            return result;
+        }
+
+        public static bool IsAllowedPresetSkill(uint charPresetId, uint petPresetId, uint skillId)
+        {
+            if (skillId == 0u) return true;
+            return GetAvailableBanSkills(charPresetId, petPresetId).Contains(skillId);
+        }
+
+        public static string LeylineName(TournamentLeylineElement elem)
+        {
+            return elem switch
+            {
+                TournamentLeylineElement.TournamentLeylineMetal => "金灵脉",
+                TournamentLeylineElement.TournamentLeylineWood => "木灵脉",
+                TournamentLeylineElement.TournamentLeylineWater => "水灵脉",
+                TournamentLeylineElement.TournamentLeylineFire => "火灵脉",
+                TournamentLeylineElement.TournamentLeylineEarth => "土灵脉",
+                _ => "无灵脉",
+            };
+        }
+
+        public static string PresetSkillName(uint skillId)
+        {
+            return skillId switch
+            {
+                0u => "不禁招",
+                10002u => "横戈裂岳",
+                10006u => "紫霄雷阵",
+                10010u => "青莲润生",
+                10014u => "灵鼎护元",
+                10016u => "青羽催行",
+                10018u => "碎甲击",
+                10019u => "蚀骨毒",
+                10020u => "封灵咒",
+                10025u => "战意昂扬",
+                10026u => "生生不息",
+                10033u => "清心荡秽",
+                10034u => "驱灵散势",
+                10035u => "断脉咒",
+                10039u => "天崩裂岳",
+                10040u => "太清灵盾",
+                10041u => "玄镜映法",
+                11005u => "如意灵环",
+                11006u => "神龙护体",
+                13005u => "裂甲追击",
+                13006u => "灵术回响",
+                _ => $"技能#{skillId}",
+            };
+        }
 
         public static readonly string[] TagNames =
         {
@@ -220,6 +302,17 @@ namespace MmorpgClient.Game.TacticalPuzzle
                 error = "我方开场不利状态无效。";
                 return false;
             }
+            int leylineVal = (int)spec.LeylineElement;
+            if (leylineVal < 0 || leylineVal > 5)
+            {
+                error = "场上五行灵脉阵眼配置无效。";
+                return false;
+            }
+            if (!IsAllowedPresetSkill(spec.CharacterPresetId, spec.PetPresetId, spec.BannedSkillId))
+            {
+                error = "本局禁招须属于当前选定人宠预设携带的技能。";
+                return false;
+            }
             if (spec.Enemies == null || spec.Enemies.Count < MinEnemies || spec.Enemies.Count > MaxEnemies)
             {
                 error = $"敌方人数须在 {MinEnemies}～{MaxEnemies} 名之间。";
@@ -388,7 +481,12 @@ namespace MmorpgClient.Game.TacticalPuzzle
             if (spec == null) return "标准公平模板";
             string pet = spec.PetPresetId == 0u ? "无宠" : PetPresetName(spec.PetPresetId);
             int enemies = spec.Enemies?.Count ?? 0;
-            return $"{spec.RoundLimit}回合 · {CharacterPresetName(spec.CharacterPresetId)}/{pet} · {FormationName(spec.FormationId)} · {enemies}敌";
+            string extra = "";
+            if (spec.LeylineElement != TournamentLeylineElement.TournamentLeylineUnspecified)
+                extra += " · " + LeylineName(spec.LeylineElement);
+            if (spec.BannedSkillId != 0u)
+                extra += " · 禁:" + PresetSkillName(spec.BannedSkillId);
+            return $"{spec.RoundLimit}回合 · {CharacterPresetName(spec.CharacterPresetId)}/{pet} · {FormationName(spec.FormationId)} · {enemies}敌{extra}";
         }
 
         // ── 世界聊天残局约战卡 #PUZ:<puzzle_id># ─────────────────
