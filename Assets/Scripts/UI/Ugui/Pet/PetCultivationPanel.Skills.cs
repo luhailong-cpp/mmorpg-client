@@ -12,11 +12,11 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void BuildSkills(float x, float width)
         {
-            Label("PetSkillsTitle", _body, x + 22f, 174f, width - 178f, 38f, "宝宝技能", 28f, Green);
+            Label("PetSkillsTitle", _body, x + 16f, 172f, width - 178f, 40f, "宝宝技能", 32f, Green, role: TypographyRole.Heading);
             var state = SkillState;
             bool hasAuthority = state?.IsConnected == true && !state.IsReadOnly && state.Snapshot != null;
-            var refresh = ActionButton("PetSkillsRefresh", _body, x + width - 132f, 172f, 132f, 40f, "刷新", false,
-                RefreshSkills, null, 21f);
+            var refresh = ActionButton("PetSkillsRefresh", _body, x + width - 132f, 170f, 132f, 42f, "刷新", false,
+                RefreshSkills, null, 22f);
             refresh.interactable = _client?.IsReady == true && Selected != null && state?.IsLoading != true && state?.IsBusy != true;
 
             bool hasPassive = hasAuthority && state.Snapshot.Entries.Any(e => e?.Definition?.IsPassive == true);
@@ -27,8 +27,8 @@ namespace MmorpgClient.UI.Ugui.Pet
             {
                 int index = i;
                 ActionButton("PetSkillFilter" + i, _body, x + i * (categoryWidth + 12f), 220f,
-                    categoryWidth, 42f, categories[i], _skillCategory == i,
-                    () => { _skillCategory = index; Render(); }, _skillCategory == i ? "mail_tab_selected" : "button_secondary", 22f);
+                    categoryWidth, 44f, categories[i], _skillCategory == i,
+                    () => { _skillCategory = index; Render(); }, _skillCategory == i ? "mail_tab_selected" : "button_secondary", 23f);
             }
 
             float listX = x, listW = Mathf.Floor((width - 20f) * .44f), detailX = listX + listW + 20f, detailW = width - listW - 20f;
@@ -50,10 +50,12 @@ namespace MmorpgClient.UI.Ugui.Pet
                 var icon = Art("PetSkillIcon" + entry.Id, parent, 12f, 8f, 56f, 56f, "round_badge_taiji");
                 icon.sprite = CharacterPetArt.Skill(entry.Id, 64) ?? CharacterPetArt.Get("round_badge_taiji");
                 icon.preserveAspect = true;
-                // pet_card_selected（guild_row_self）为浅玉绿纸底，须用深玉绿/墨色保高对比度
-                Label("PetSkillName" + entry.Id, parent, 82f, 6f, listW - 96f, 34f, entry.Definition.name, 25f, isSelected ? Green : Ink);
+                // pet_card_selected（guild_row_self）为浅玉绿纸底，用深玉墨绿保高对比度与帮会原图一致
+                Label("PetSkillName" + entry.Id, parent, 82f, 6f, listW - 96f, 34f, entry.Definition.name, 26f,
+                    isSelected ? Green : RichInk, role: TypographyRole.Heading);
                 Label("PetSkillSummary" + entry.Id, parent, 82f, 40f, listW - 96f, 26f,
-                    entry.Definition.KindLabel + " · " + (entry.Rank > 0 ? entry.Rank + "级" : "未学习"), 19f, isSelected ? Ink : Muted);
+                    entry.Definition.KindLabel + " · " + (entry.Rank > 0 ? entry.Rank + "级" : "未学习"), 19f,
+                    isSelected ? SelectedInk : Muted);
             }
             if (entries.Length == 0)
                 Label("PetSkillEmpty", list, 16f, 120f, listW - 32f, 120f,
@@ -76,7 +78,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             var icon = Art("PetSelectedSkillIcon", _body, x + 22f, topY + 18f, 92f, 92f, "round_badge_taiji");
             icon.sprite = CharacterPetArt.Skill(entry.Id, 128) ?? CharacterPetArt.Get("round_badge_taiji");
             icon.preserveAspect = true;
-            Label("PetSelectedSkillName", _body, x + 130f, topY + 20f, width - 150f, 46f, definition.name, 31f, Green);
+            Label("PetSelectedSkillName", _body, x + 130f, topY + 20f, width - 150f, 46f, definition.name, 33f, Green, role: TypographyRole.Heading);
             Label("PetSelectedSkillKind", _body, x + 130f, topY + 68f, width - 150f, 32f, definition.KindLabel + "技能", 21f, Muted);
 
             float scrollY = topY + 124f;
@@ -107,9 +109,9 @@ namespace MmorpgClient.UI.Ugui.Pet
                 $"下一级：{entry.NextRankCost} 银两 · 持有 {state.Snapshot.CurrencyBalance}";
             Label("PetSkillLearnCondition", _body, x + 24f, topY + panelH - 46f, width - 48f, 36f, condition, 19f, Muted);
 
-            _skillUpgrade = ActionButton("PetSkillUpgrade", _body, RightColX + RightColWidth - 410f, FooterBtnY, 198f, FooterBtnHeight, "修习一次", true,
-                () => UpgradeSelected(1), null, 24f);
-            _skillUpgradeTen = ActionButton("PetSkillUpgradeTen", _body, RightColX + RightColWidth - 198f, FooterBtnY, 198f, FooterBtnHeight, "修习十次", false,
+            _skillUpgrade = ActionButton("PetSkillUpgrade", _body, RightColX + RightColWidth - 472f, FooterPrimaryY, 250f, FooterPrimaryHeight, "修习一次", true,
+                () => UpgradeSelected(1), null, 27f);
+            _skillUpgradeTen = ActionButton("PetSkillUpgradeTen", _body, RightColX + RightColWidth - 208f, FooterSecondaryY, 208f, FooterSecondaryHeight, "修习十次", false,
                 () => UpgradeSelected(10), null, 24f);
             _skillUpgrade.interactable = _skillUpgradeTen.interactable = !BattleLocked && SkillBookViewState.CanUpgrade(state, entry);
         }

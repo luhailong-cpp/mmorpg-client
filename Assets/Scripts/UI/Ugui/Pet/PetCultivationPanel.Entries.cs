@@ -50,9 +50,9 @@ namespace MmorpgClient.UI.Ugui.Pet
             _entryRows.Clear(); _entryPresetButtons.Clear(); _entryBudget = null; _entryTagButton = _entryClearAll = null;
             if (EntryState == null) { BuildUnavailableEntries(x, width); return; }
 
-            Label("EntryPointsTitle", _body, x + 22f, 174f, 118f, 38f, "条目点", 28f, Green);
-            GuildUiArt.Line(_body, "EntryHeadingRule", x + 132f, 193f, 110f);
-            _entryBudget = Label("EntryPointsBudget", _body, x + 250f, 176f, width - 254f, 34f, "", 22f, Ink, TextAlignmentOptions.MidlineRight);
+            Label("EntryPointsTitle", _body, x + 16f, 172f, 130f, 40f, "条目点", 32f, Green, role: TypographyRole.Heading);
+            GuildUiArt.Line(_body, "EntryHeadingRule", x + 144f, 192f, 112f);
+            _entryBudget = Label("EntryPointsBudget", _body, x + 260f, 176f, width - 264f, 34f, "", 22f, RichInk, TextAlignmentOptions.MidlineRight, role: TypographyRole.Heading);
 
             // 顶部 3 套条目方案切换条 + 用途标签切换（严守安全内距与自动字号，杜绝溢框）
             uint activeSlot = ActiveEntryPresetSlot;
@@ -60,7 +60,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             bool pendingSwitch = _client?.HasPendingPresetSwitch(_selectedPetId) == true;
             const float tagW = 166f;
             const float presetGap = 10f;
-            float presetW = Mathf.Floor((width - tagW - presetGap * 3f) / 3f); // 255px
+            float presetW = Mathf.Floor((width - tagW - presetGap * 3f) / 3f); // 253px
             for (uint slot = 1; slot <= 3; slot++)
             {
                 uint capturedSlot = slot;
@@ -70,7 +70,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                     ? EntryState.TotalPoints - EntryState.RemainingPoints : 0u);
                 bool isActive = slot == activeSlot;
                 string label = $"{EntryPresetNames[slot - 1]} · {tagText} · {usedPts}点";
-                var btn = ActionButton("EntryPreset" + slot, _body, x + (slot - 1) * (presetW + presetGap), 216f, presetW, 46f,
+                var btn = ActionButton("EntryPreset" + slot, _body, x + (slot - 1) * (presetW + presetGap), 216f, presetW, 44f,
                     label, isActive, () => SwitchEntryPresetWithDraftGuard(capturedSlot, PetClient.KeepPresetTag),
                     isActive ? "mail_tab_selected" : "button_secondary", 20f, autoSize: true);
                 if (isActive)
@@ -81,7 +81,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 }
                 _entryPresetButtons.Add(btn);
             }
-            _entryTagButton = ActionButton("EntryPresetTag", _body, x + width - tagW, 216f, tagW, 46f,
+            _entryTagButton = ActionButton("EntryPresetTag", _body, x + width - tagW, 216f, tagW, 44f,
                 pendingSwitch ? "重试确认方案" : $"用途 {PetClient.DescribePresetTag(activeTag)} ▼", false,
                 pendingSwitch ? RetryEntryPreset : ShowEntryPresetTags, null, 20f, autoSize: true);
 
@@ -90,19 +90,19 @@ namespace MmorpgClient.UI.Ugui.Pet
             for (int i = 0; i < categories.Length; i++)
             {
                 int index = i;
-                ActionButton("EntryFilter" + i, _body, x + i * (catW + 12f), 268f, catW, 42f, categories[i], i == _entryCategory,
-                    () => { _entryCategory = index; Render(); }, i == _entryCategory ? "mail_tab_selected" : "button_secondary", 22f);
+                ActionButton("EntryFilter" + i, _body, x + i * (catW + 12f), 266f, catW, 40f, categories[i], i == _entryCategory,
+                    () => { _entryCategory = index; Render(); }, i == _entryCategory ? "mail_tab_selected" : "button_secondary", 23f);
             }
 
             float rowW = width, current = rowW * .43f, adjust = rowW * .66f;
-            Art("EntryTableHeader", _body, x, 314f, rowW, 32f, "guild_table_header");
-            Label("EntryDirectionHeader", _body, x + 64f, 314f, 240f, 32f, "分配方向", 20f, Muted);
-            Label("EntryCurrentHeader", _body, x + current - 80f, 314f, 160f, 32f, "已保存投入", 20f, Muted, TextAlignmentOptions.Center);
-            Label("EntryDraftHeader", _body, x + adjust - 80f, 314f, 160f, 32f, "调整后", 20f, Muted, TextAlignmentOptions.Center);
-            Label("EntryBenefitHeader", _body, x + rowW - 196f, 314f, 190f, 32f, "效果 / 详情", 20f, Muted, TextAlignmentOptions.Center);
+            Art("EntryTableHeader", _body, x, 312f, rowW, 38f, "guild_table_header");
+            Label("EntryDirectionHeader", _body, x + 64f, 312f, 240f, 38f, "分配方向", 21f, Muted);
+            Label("EntryCurrentHeader", _body, x + current - 80f, 312f, 160f, 38f, "已保存投入", 21f, Muted, TextAlignmentOptions.Center);
+            Label("EntryDraftHeader", _body, x + adjust - 80f, 312f, 160f, 38f, "调整后", 21f, Muted, TextAlignmentOptions.Center);
+            Label("EntryBenefitHeader", _body, x + rowW - 196f, 312f, 190f, 38f, "效果 / 详情", 21f, Muted, TextAlignmentOptions.Center);
 
             const float rowHeight = 52f, rowStride = 53f, viewportHeight = 318f;
-            Scroll("PetEntries", _body, x, 348f, rowW, viewportHeight, out var content);
+            Scroll("PetEntries", _body, x, 352f, rowW, viewportHeight, out var content);
             var entries = EntryState.Entries.Where(e => _entryCategory == 0 || e.Category == _entryCategory).OrderBy(e => e.Sort).ThenBy(e => e.Id).ToArray();
             content.sizeDelta = new Vector2(rowW, Mathf.Max(viewportHeight, entries.Length == 0 ? viewportHeight : (entries.Length - 1) * rowStride + rowHeight));
             for (int i = 0; i < entries.Length; i++)
@@ -113,26 +113,26 @@ namespace MmorpgClient.UI.Ugui.Pet
                 if (icon.sprite == null) icon.sprite = CharacterPetArt.Get("round_badge_taiji");
                 icon.preserveAspect = true;
                 icon.enabled = icon.sprite != null;
-                Label("EntryName" + e.Id, row, 64f, 8f, current - 120f, 36f, e.Cap == 0 ? e.Name + " · 未开放" : e.Name, 23f, Ink);
+                Label("EntryName" + e.Id, row, 64f, 8f, current - 120f, 36f, e.Cap == 0 ? e.Name + " · 未开放" : e.Name, 23f, RichInk);
                 Label("EntryCurrent" + e.Id, row, current - 44f, 8f, 88f, 36f, e.Allocated.ToString(), 22f, Ink, TextAlignmentOptions.Center);
                 var state = new EntryRow { Data = e };
                 state.Minus = ActionButton("EntryMinus" + e.Id, row, adjust - 94f, 6f, 40f, 40f, "", false, () => ChangeEntry(e.Id, -1), "step-minus-normal");
                 Art("EntryField" + e.Id, row, adjust - 46f, 8f, 74f, 36f, "stat_field");
-                state.Value = Label("EntryValue" + e.Id, row, adjust - 46f, 8f, 74f, 36f, "", 22f, Ink, TextAlignmentOptions.Center);
+                state.Value = Label("EntryValue" + e.Id, row, adjust - 46f, 8f, 74f, 36f, "", 22f, RichInk, TextAlignmentOptions.Center, role: TypographyRole.Heading);
                 state.Plus = ActionButton("EntryPlus" + e.Id, row, adjust + 36f, 6f, 40f, 40f, "", false, () => ChangeEntry(e.Id, 1), "step-plus-normal");
-                state.Benefit = Label("EntryBenefit" + e.Id, row, rowW - 196f, 8f, 102f, 36f, "", 20f, Green, TextAlignmentOptions.MidlineRight, autoSize: true, minSize: 15f);
+                state.Benefit = Label("EntryBenefit" + e.Id, row, rowW - 196f, 8f, 102f, 36f, "", 21f, Green, TextAlignmentOptions.MidlineRight, autoSize: true, minSize: 15f, role: TypographyRole.Heading);
                 ActionButton("EntryDetail" + e.Id, row, rowW - 86f, 8f, 78f, 36f, "详情", false,
-                    () => ShowEntryDetail(e), null, 19f, autoSize: false);
+                    () => ShowEntryDetail(e), null, 20f, autoSize: false);
                 GuildUiArt.Line(row, "EntryRowRule" + e.Id, 4f, rowHeight - 1f, rowW - 8f);
                 _entryRows.Add(state);
             }
 
-            Label("EntryHelp", _body, x + 4f, 710f, 290f, 36f, "各方向共用条目点。", 19f, Muted);
-            _entryClearAll = ActionButton("EntryClearAll", _body, x + width - 654f, FooterBtnY, 196f, FooterBtnHeight, "一键清零", false, ClearAllEntries, null, 23f);
-            _save = ActionButton("EntrySave", _body, x + width - 444f, FooterBtnY, 212f, FooterBtnHeight,
-                _client?.HasPendingEntries(_selectedPetId) == true ? "重试保存" : "保存分配", true, SaveEntryDraft, null, 25f);
-            _discard = ActionButton("EntryRestore", _body, x + width - 218f, FooterBtnY, 218f, FooterBtnHeight, "恢复当前分配", false,
-                () => { if (!CanWrite || _client.HasPendingEntries(_selectedPetId)) return; ClearEntryDraft(); _message = "已恢复服务器当前条目分配。"; _client.RequestEntries(_selectedPetId); Render(); }, null, 23f);
+            Label("EntryHelp", _body, x + 4f, 714f, 260f, 34f, "各方向共用条目点。", 19f, Muted);
+            _entryClearAll = ActionButton("EntryClearAll", _body, x + width - 678f, FooterSecondaryY, 180f, FooterSecondaryHeight, "一键清零", false, ClearAllEntries, null, 24f);
+            _save = ActionButton("EntrySave", _body, x + width - 484f, FooterPrimaryY, 252f, FooterPrimaryHeight,
+                _client?.HasPendingEntries(_selectedPetId) == true ? "重试保存" : "保存分配", true, SaveEntryDraft, null, 27f);
+            _discard = ActionButton("EntryRestore", _body, x + width - 218f, FooterSecondaryY, 218f, FooterSecondaryHeight, "恢复当前分配", false,
+                () => { if (!CanWrite || _client.HasPendingEntries(_selectedPetId)) return; ClearEntryDraft(); _message = "已恢复服务器当前条目分配。"; _client.RequestEntries(_selectedPetId); Render(); }, null, 24f);
             RefreshEntryFields();
         }
 

@@ -24,23 +24,35 @@ namespace MmorpgClient.UI.Ugui.Pet
         private const float ShellNativeHeight = 814f;
         private const float ShellVisibleWidth = 1915f; // guild_empty_shell.png 右侧 17px 为全透明留白
         private const float ShellTopY = 133f;          // (1080 - 814) / 2，避让小游戏右上胶囊并保留底部玉兔花丛
-        private const float LeftColX = 184f;
-        private const float LeftColWidth = 546f;
-        private const float RightColX = 788f;
-        private const float RightColWidth = 962f;
-        private const float FooterBtnY = 702f;
-        private const float FooterBtnHeight = 54f;
+        private const float LeftColX = 183f;           // 对齐帮会原图 approved-guild-reference.png 左栏
+        private const float LeftColWidth = 544f;
+        private const float RightColX = 795f;          // 对齐帮会原图右栏与 guild_table_header/guild_row 957 原宽
+        private const float RightColWidth = 957f;
+        private const float FooterSecondaryY = 702f;
+        private const float FooterSecondaryHeight = 58f; // 对齐 guild_button_secondary 原高 58
+        private const float FooterPrimaryY = 696f;
+        private const float FooterPrimaryHeight = 68f;   // 舒展呈现 guild_button_primary 金云纹与厚绿玉芯
 
-        private static readonly Color Ink = new Color32(42, 35, 27, 255);
-        private static readonly Color Muted = new Color32(91, 74, 53, 255);
-        private static readonly Color Green = new Color32(20, 74, 52, 255);
-        private static readonly Color Cream = new Color32(255, 244, 212, 255);
-        private static readonly Color Blue = new Color32(33, 92, 148, 255);
-        private static readonly Color BackdropDim = new Color(0.02f, 0.065f, 0.05f, 0.58f);
-        private static readonly Color ModalDim = new Color(0.015f, 0.05f, 0.04f, 0.64f);
+        // 从帮会首要标准原图 approved-guild-reference.png 实测提取的墨色与鎏金玉白
+        private static readonly Color RichInk = new Color32(18, 13, 8, 255);      // 顶页签常态 / 次按钮 / 未选名
+        private static readonly Color Ink = new Color32(31, 29, 27, 255);         // 列表正文与数值
+        private static readonly Color Muted = new Color32(84, 68, 48, 255);       // 表头与辅助说明
+        private static readonly Color Green = new Color32(0, 41, 19, 255);        // 栏标题 / 选中宝宝名 / 选中技能名（深玉墨绿）
+        private static readonly Color SelectedInk = new Color32(6, 34, 17, 255);  // 选中行副文
+        private static readonly Color TitleCream = new Color32(254, 250, 225, 255); // 顶部大标题玉白
+        private static readonly Color Cream = new Color32(255, 252, 202, 255);      // 选中页签与绿底主钮鎏金米白
+        private static readonly Color TabGoldRule = new Color32(227, 198, 129, 255);
+        private static readonly Color Blue = new Color32(22, 82, 136, 255);
+        private static readonly Color BackdropDim = new Color(0.02f, 0.065f, 0.05f, 0.56f);
+        private static readonly Color ModalDim = new Color(0.015f, 0.05f, 0.04f, 0.62f);
 
-        private static Material _emphasizedMat;
-        private static Material _emphasizedBaseMat;
+        private enum TypographyRole { Body, Heading, Primary, Title }
+
+        private static Material _matBase;
+        private static Material _matBody;
+        private static Material _matHeading;
+        private static Material _matPrimary;
+        private static Material _matTitle;
 
         private readonly Func<PetClient> _getClient;
         private readonly Func<ISkillBookSource> _getSkills;
@@ -89,6 +101,17 @@ namespace MmorpgClient.UI.Ugui.Pet
         private ulong DraftCount => _draft.Values.Aggregate<uint, ulong>(0, (sum, value) => sum + value);
         private uint Remaining => Selected == null ? 0 : (uint)Math.Max(0L, (long)Selected.RemainingPoints - (long)DraftCount);
         private float ShellX => Mathf.Round((_width - ShellVisibleWidth) * 0.5f);
+        private float ShellScale => _width > 1940f ? Mathf.Min((_width - 80f) / ShellVisibleWidth, (1080f - 40f) / ShellNativeHeight) : 1f;
+
+        private RectTransform CreateCenteredShell(string name, UnityEngine.Transform parent)
+        {
+            var shell = QdaoUguiFactory.CreateCenteredRect(name, parent, ShellNativeWidth, ShellNativeHeight);
+            float scale = ShellScale;
+            // 右侧 17px 为全透明留白，按视觉中心补偿 +8.5px 使灯笼与关闭钮左右完全对称
+            shell.anchoredPosition = new Vector2(Mathf.Round(8.5f * scale), 0f);
+            shell.localScale = new UnityEngine.Vector3(scale, scale, 1f);
+            return shell;
+        }
 
         public PetCultivationPanel(UnityEngine.Transform parent, Func<PetClient> client,
             Func<ISkillBookSource> skills, Func<bool> battleLocked, Action openMore = null)
@@ -307,53 +330,66 @@ namespace MmorpgClient.UI.Ugui.Pet
             backdropImg.color = BackdropDim;
             backdropImg.raycastTarget = true;
 
-            // 1932×814 原生 1:1 零拉伸底壳容器（灯笼、玉兔、圆红关闭钮、太极严守原图正圆比例）
-            _shell = Rect("PetCultivationShell", _root, ShellX, ShellTopY, ShellNativeWidth, ShellNativeHeight);
+            // 1932×814 原生零拉伸底壳容器（1920×1080 严格 1:1；2560×1080 同帮会窗等比放大铺满，灯笼/玉兔/关闭钮零变形）
+            _shell = CreateCenteredShell("PetCultivationShell", _root);
             Art("CultivationFrame", _shell, 0f, 0f, ShellNativeWidth, ShellNativeHeight, "guild_empty_shell");
             Art("CultivationFrameInput", _shell, 125f, 70f, 1660f, 712f, "shell-close-hit", true);
-            Label("CultivationTitle", _shell, 746f, 22f, 440f, 60f, "宝宝培养", 42f, Cream,
-                TextAlignmentOptions.Center, emphasized: true);
+            Label("CultivationTitle", _shell, 726f, 20f, 480f, 62f, "宝宝培养", 46f, TitleCream,
+                TextAlignmentOptions.Center, role: TypographyRole.Title);
             ActionButton("CultivationClose", _shell, 1780f, 22f, 88f, 84f, "", false, RequestClose, "shell-close-hit");
 
             _body = Rect("CultivationBody", _shell, 0f, 0f, ShellNativeWidth, ShellNativeHeight);
 
-            // 顶排 4 页签严格对齐原图 y=87、h=62（与 guild_tab_normal.png 原高 62px 1:1 吻合）
+            // 顶排 4 页签严格对齐帮会原图 guild_tab_normal 273×62 / guild_tab_selected 273×65 原生比例
             string[] tabs = { "属性", "加点", "技能", "条目点" };
             for (int i = 0; i < tabs.Length; ++i)
             {
                 var page = (PetCultivationPage)i;
-                ActionButton("Tab" + tabs[i], _shell, 188f + i * 276f, 87f, 264f, 62f, tabs[i], _page == page,
+                bool active = _page == page;
+                var tabBtn = ActionButton("Tab" + tabs[i], _shell, 188f + i * 283f, active ? 85f : 87f, 273f, active ? 65f : 62f,
+                    tabs[i], active,
                     () => { if (BattleLocked) SelectPage(page); else Navigate(() => SelectPage(page)); },
-                    _page == page ? "mail_tab_selected" : "mail_tab_normal", 28f);
+                    active ? "mail_tab_selected" : "mail_tab_normal", 31f);
+                if (active)
+                {
+                    var marker = GuildUiArt.Line(tabBtn.transform, "TabSelectedMarker", 112f, 56f, 49f, 2.5f);
+                    marker.color = TabGoldRule;
+                }
             }
 
-            // 左栏：我的宝宝（严格落在原图左金线框 x=163..746, y=162..772 内）
-            Label("PetRosterHeadingText", _shell, LeftColX + 10f, 174f, 148f, 38f, "我的宝宝", 28f, Green);
-            GuildUiArt.Line(_shell, "PetRosterHeadingRule", LeftColX + 150f, 193f, LeftColWidth - 156f);
+            // 左栏：我的宝宝（严格落在帮会原图左栏 183..727 内）
+            Label("PetRosterHeadingText", _shell, LeftColX + 10f, 172f, 160f, 40f, "我的宝宝", 32f, Green, role: TypographyRole.Heading);
+            GuildUiArt.Line(_shell, "PetRosterHeadingRule", LeftColX + 162f, 192f, LeftColWidth - 168f);
             BuildRoster(LeftColX, LeftColWidth);
 
             if (_openMore != null)
             {
-                const float btnGap = 12f;
-                float btnW = Mathf.Floor((LeftColWidth - btnGap * 2f) / 3f); // 174px
-                _more = ActionButton("PetMore", _shell, LeftColX, FooterBtnY, btnW, FooterBtnHeight, "更多培养", false,
-                    () => { if (!BattleLocked) Navigate(() => { Hide(); _openMore(); }); }, null, 22f);
-                ActionButton("PetBadgeExplain", _shell, LeftColX + btnW + btnGap, FooterBtnY, btnW, FooterBtnHeight, "五阶徽章", false,
-                    () => { _badgesVisible = true; BuildBadges(); }, null, 22f);
-                _ascendEntry = ActionButton("PetAscendTier", _shell, LeftColX + (btnW + btnGap) * 2f, FooterBtnY, btnW, FooterBtnHeight,
-                    Selected?.CultivationTier >= 5 ? "已达巅峰" : "灵阶突破", HasNextTier(Selected), OpenAscendDialog, null, 22f);
+                const float btnGap = 10f;
+                const float sideW = 152f;
+                float ascendW = LeftColWidth - sideW * 2f - btnGap * 2f; // 220px，给主绿钮留足金云纹呼吸空间
+                _more = ActionButton("PetMore", _shell, LeftColX, FooterSecondaryY, sideW, FooterSecondaryHeight, "更多培养", false,
+                    () => { if (!BattleLocked) Navigate(() => { Hide(); _openMore(); }); }, null, 23f);
+                ActionButton("PetBadgeExplain", _shell, LeftColX + sideW + btnGap, FooterSecondaryY, sideW, FooterSecondaryHeight, "五阶徽章", false,
+                    () => { _badgesVisible = true; BuildBadges(); }, null, 23f);
+                bool canAscend = HasNextTier(Selected);
+                _ascendEntry = ActionButton("PetAscendTier", _shell, LeftColX + (sideW + btnGap) * 2f,
+                    canAscend ? FooterPrimaryY : FooterSecondaryY, ascendW, canAscend ? FooterPrimaryHeight : FooterSecondaryHeight,
+                    Selected?.CultivationTier >= 5 ? "已达巅峰" : "灵阶突破", canAscend, OpenAscendDialog, null, 25f);
             }
             else
             {
-                const float btnGap = 12f;
-                float btnW = Mathf.Floor((LeftColWidth - btnGap) * 0.5f); // 267px
-                ActionButton("PetBadgeExplain", _shell, LeftColX, FooterBtnY, btnW, FooterBtnHeight, "徽章说明", false,
-                    () => { _badgesVisible = true; BuildBadges(); }, null, 24f);
-                _ascendEntry = ActionButton("PetAscendTier", _shell, LeftColX + btnW + btnGap, FooterBtnY, btnW, FooterBtnHeight,
-                    Selected?.CultivationTier >= 5 ? "已达巅峰" : "灵阶突破", HasNextTier(Selected), OpenAscendDialog, null, 24f);
+                const float btnGap = 14f;
+                const float badgeW = 246f;
+                float ascendW = LeftColWidth - badgeW - btnGap; // 284px
+                ActionButton("PetBadgeExplain", _shell, LeftColX, FooterSecondaryY, badgeW, FooterSecondaryHeight, "徽章说明", false,
+                    () => { _badgesVisible = true; BuildBadges(); }, null, 25f);
+                bool canAscend = HasNextTier(Selected);
+                _ascendEntry = ActionButton("PetAscendTier", _shell, LeftColX + badgeW + btnGap,
+                    canAscend ? FooterPrimaryY : FooterSecondaryY, ascendW, canAscend ? FooterPrimaryHeight : FooterSecondaryHeight,
+                    Selected?.CultivationTier >= 5 ? "已达巅峰" : "灵阶突破", canAscend, OpenAscendDialog, null, 26f);
             }
 
-            _status = Label("PetCultivationStatus", _shell, RightColX + 4f, 672f, RightColWidth - 8f, 26f, "", 18f, Muted);
+            _status = Label("PetCultivationStatus", _shell, RightColX + 4f, 673f, RightColWidth - 8f, 24f, "", 18f, Muted);
 
             switch (_page)
             {
@@ -369,7 +405,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void BuildRoster(float x, float width)
         {
-            const float rowHeight = 112f;
+            const float rowHeight = 114f;
             const float rowStride = 118f;
             const float viewportHeight = 472f;
             Scroll("PetRoster", _shell, x, 218f, width, viewportHeight, out var content);
@@ -386,39 +422,42 @@ namespace MmorpgClient.UI.Ugui.Pet
                 var button = ActionButton("PetItem" + i, content, 0f, i * rowStride, width, rowHeight, "", selected,
                     () => SelectPet(pet.PetId), selected ? "pet_card_selected" : "mail_row_normal");
                 var parent = (RectTransform)button.transform;
-                if (selected) Art("PetSelectedMark" + i, parent, 12f, 44f, 24f, 24f, "guild_self_mark").preserveAspect = true;
-                var portrait = Art("PetPortrait" + i, parent, 46f, 18f, 76f, 76f, "round_badge_taiji");
+                if (selected) Art("PetSelectedMark" + i, parent, 12f, 45f, 24f, 24f, "guild_self_mark").preserveAspect = true;
+                var portrait = Art("PetPortrait" + i, parent, 46f, 16f, 82f, 82f, "round_badge_taiji");
                 portrait.sprite = Portrait(pet);
                 portrait.preserveAspect = true;
-                Art("PetPortraitRing" + i, parent, 41f, 13f, 86f, 86f,
+                Art("PetPortraitRing" + i, parent, 40f, 10f, 94f, 94f,
                     string.IsNullOrEmpty(pet.CultivationArtKey) ? "portrait_frame" : "ring-" + pet.CultivationArtKey).preserveAspect = true;
-                Label("PetName" + i, parent, 140f, 15f, width - 246f, 42f, pet.Name, 30f, selected ? Green : Ink);
-                Label("PetLevel" + i, parent, 140f, 60f, width - 252f, 34f,
-                    $"{pet.Level}级 · {(string.IsNullOrEmpty(pet.CultivationTierName) ? "—" : pet.CultivationTierName)}", 21f, Ink);
+                Label("PetName" + i, parent, 148f, 14f, width - 254f, 44f, pet.Name, 31f,
+                    selected ? Green : RichInk, role: TypographyRole.Heading);
+                Label("PetLevel" + i, parent, 148f, 62f, width - 260f, 34f,
+                    $"{pet.Level}级 · {(string.IsNullOrEmpty(pet.CultivationTierName) ? "—" : pet.CultivationTierName)}", 21f,
+                    selected ? SelectedInk : Ink);
                 // 保持 18px 精确右内距，防止边框裁字并满足布局断言
-                Label("PetState" + i, parent, width - 102f, 60f, 84f, 34f, pet.IsActive ? "出战" : "休息", 20f,
-                    pet.IsActive ? Green : Muted, TextAlignmentOptions.MidlineRight);
+                Label("PetState" + i, parent, width - 102f, 62f, 84f, 34f, pet.IsActive ? "出战" : "休息", 21f,
+                    pet.IsActive ? Green : Muted, TextAlignmentOptions.MidlineRight,
+                    role: pet.IsActive ? TypographyRole.Heading : TypographyRole.Body);
                 GuildUiArt.Line(parent, "PetRosterRule" + i, 4f, rowHeight - 2f, width - 8f);
             }
         }
 
         private void BuildFourStats(float x, float width)
         {
-            Label("FourStatsTitle", _body, x + 22f, 174f, 148f, 38f, "四维加点", 28f, Green);
-            _remaining = Label("FourStatsRemaining", _body, x + 182f, 174f, 300f, 38f, "剩余属性点 —", 25f, Green);
+            Label("FourStatsTitle", _body, x + 16f, 172f, 160f, 40f, "四维加点", 32f, Green, role: TypographyRole.Heading);
+            _remaining = Label("FourStatsRemaining", _body, x + 186f, 174f, 280f, 38f, "剩余属性点 —", 25f, Green, role: TypographyRole.Heading);
             _budget = Label("FourStatsBudget", _body, x + width - 468f, 178f, 464f, 32f, "", 20f, Muted, TextAlignmentOptions.MidlineRight);
 
             float rowX = x, rowW = width, current = rowW * .36f, increment = rowW * .61f, after = rowW * .86f;
-            Art("FourStatsHeaderBg", _body, rowX, 222f, rowW, 32f, "guild_table_header");
-            Label("FourStatsNameHeader", _body, rowX + 42f, 222f, 180f, 32f, "属性", 20f, Muted);
-            Label("FourStatsCurrentHeader", _body, rowX + current - 80f, 222f, 160f, 32f, "当前投入", 20f, Muted, TextAlignmentOptions.Center);
-            Label("FourStatsIncrementHeader", _body, rowX + increment - 80f, 222f, 160f, 32f, "本次新增", 20f, Muted, TextAlignmentOptions.Center);
-            Label("FourStatsAfterHeader", _body, rowX + after - 80f, 222f, 160f, 32f, "调整后", 20f, Muted, TextAlignmentOptions.Center);
+            Art("FourStatsHeaderBg", _body, rowX, 220f, rowW, 38f, "guild_table_header");
+            Label("FourStatsNameHeader", _body, rowX + 42f, 220f, 180f, 38f, "属性", 21f, Muted);
+            Label("FourStatsCurrentHeader", _body, rowX + current - 80f, 220f, 160f, 38f, "当前投入", 21f, Muted, TextAlignmentOptions.Center);
+            Label("FourStatsIncrementHeader", _body, rowX + increment - 80f, 220f, 160f, 38f, "本次新增", 21f, Muted, TextAlignmentOptions.Center);
+            Label("FourStatsAfterHeader", _body, rowX + after - 80f, 220f, 160f, 38f, "调整后", 21f, Muted, TextAlignmentOptions.Center);
 
             const float rowHeight = 84f;
-            const float rowStride = 92f;
-            const float viewportHeight = 376f;
-            Scroll("FourStats", _body, rowX, 260f, rowW, viewportHeight, out var content);
+            const float rowStride = 91f;
+            const float viewportHeight = 374f;
+            Scroll("FourStats", _body, rowX, 262f, rowW, viewportHeight, out var content);
             int count = Selected?.Dimensions.Count ?? 0;
             content.sizeDelta = new Vector2(rowW, Mathf.Max(viewportHeight, count == 0 ? viewportHeight : (count - 1) * rowStride + rowHeight));
             for (int i = 0; i < count; ++i)
@@ -427,16 +466,16 @@ namespace MmorpgClient.UI.Ugui.Pet
                 var row = new StatRow { Dimension = d };
                 _statRows.Add(row);
                 var plate = Art("FourStatRow" + i, content, 0f, i * rowStride, rowW, rowHeight, "mail_row_normal").rectTransform;
-                Label("FourStatName" + i, plate, 42f, 20f, current - 120f, 44f, d.Name, 27f, Ink);
+                Label("FourStatName" + i, plate, 42f, 20f, current - 120f, 44f, d.Name, 28f, RichInk, role: TypographyRole.Heading);
                 row.Current = Label("FourStatCurrent" + i, plate, current - 60f, 21f, 120f, 42f, "", 25f, Ink, TextAlignmentOptions.Center);
                 row.Minus = ActionButton("Row" + i + "Minus", plate, increment - 104f, 18f, 48f, 48f, "", false,
                     () => Step(d.DimensionId, -1), "step-minus-normal");
                 Art("FourStatIncrementField" + i, plate, increment - 44f, 21f, 88f, 42f, "stat_field");
-                row.Increment = Label("FourStatIncrement" + i, plate, increment - 44f, 21f, 88f, 42f, "", 24f, Blue, TextAlignmentOptions.Center);
+                row.Increment = Label("FourStatIncrement" + i, plate, increment - 44f, 21f, 88f, 42f, "", 24f, Blue, TextAlignmentOptions.Center, role: TypographyRole.Heading);
                 row.Plus = ActionButton("Row" + i + "Plus", plate, increment + 56f, 18f, 48f, 48f, "", false,
                     () => Step(d.DimensionId, 1), "step-plus-normal");
                 Art("FourStatAfterField" + i, plate, after - 46f, 21f, 92f, 42f, "stat_field");
-                row.After = Label("FourStatAfter" + i, plate, after - 46f, 21f, 92f, 42f, "", 24f, Ink, TextAlignmentOptions.Center);
+                row.After = Label("FourStatAfter" + i, plate, after - 46f, 21f, 92f, 42f, "", 24f, RichInk, TextAlignmentOptions.Center, role: TypographyRole.Heading);
                 GuildUiArt.Line(plate, "FourStatRule" + i, 4f, rowHeight - 2f, rowW - 8f);
             }
             if (count == 0)
@@ -444,9 +483,9 @@ namespace MmorpgClient.UI.Ugui.Pet
                     Selected == null ? "请先选择宝宝" : "暂无可分配维度", 26f, Muted, TextAlignmentOptions.Center);
 
             Label("FourStatsHelp", _body, x + 4f, 642f, width - 8f, 28f, "减号仅撤回本次尚未保存的新增属性点。", 19f, Muted);
-            _save = ActionButton("Confirm", _body, x + width - 444f, FooterBtnY, 212f, FooterBtnHeight, "保存加点", true, Save, null, 25f);
-            _discard = ActionButton("Discard", _body, x + width - 218f, FooterBtnY, 218f, FooterBtnHeight, "恢复当前分配", false,
-                () => { if (!CanWrite) return; _draft.Clear(); _message = "已恢复当前分配，未发送保存请求。"; RefreshFields(); }, null, 23f);
+            _save = ActionButton("Confirm", _body, x + width - 484f, FooterPrimaryY, 252f, FooterPrimaryHeight, "保存加点", true, Save, null, 27f);
+            _discard = ActionButton("Discard", _body, x + width - 218f, FooterSecondaryY, 218f, FooterSecondaryHeight, "恢复当前分配", false,
+                () => { if (!CanWrite) return; _draft.Clear(); _message = "已恢复当前分配，未发送保存请求。"; RefreshFields(); }, null, 24f);
         }
 
         private void Step(uint dimensionId, int delta)
@@ -517,10 +556,10 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void BuildUnavailableEntries(float x, float width)
         {
-            Label("EntryPointsTitle", _body, x + 22f, 174f, 118f, 38f, "条目点", 28f, Green);
-            GuildUiArt.Line(_body, "EntryHeadingRule", x + 132f, 193f, 110f);
-            Label("EntryPointsBudget", _body, x + 250f, 176f, width - 254f, 34f, "总点数 —       已用 —       剩余 —",
-                22f, Ink, TextAlignmentOptions.MidlineRight);
+            Label("EntryPointsTitle", _body, x + 16f, 172f, 130f, 40f, "条目点", 32f, Green, role: TypographyRole.Heading);
+            GuildUiArt.Line(_body, "EntryHeadingRule", x + 144f, 192f, 112f);
+            Label("EntryPointsBudget", _body, x + 260f, 176f, width - 264f, 34f, "总点数 —       已用 —       剩余 —",
+                22f, RichInk, TextAlignmentOptions.MidlineRight, role: TypographyRole.Heading);
 
             string[] categories = { "全部", "输出", "障碍", "辅助" };
             float catW = (width - 36f) * 0.25f;
@@ -528,15 +567,15 @@ namespace MmorpgClient.UI.Ugui.Pet
             {
                 int index = i;
                 ActionButton("EntryFilter" + i, _body, x + i * (catW + 12f), 220f, catW, 42f, categories[i], i == _entryCategory,
-                    () => { _entryCategory = index; Render(); }, i == _entryCategory ? "mail_tab_selected" : "button_secondary", 22f);
+                    () => { _entryCategory = index; Render(); }, i == _entryCategory ? "mail_tab_selected" : "button_secondary", 23f);
             }
 
             float rowW = width, current = rowW * .43f, adjust = rowW * .68f, detail = rowW * .90f;
-            Art("EntryTableHeader", _body, x, 270f, rowW, 32f, "guild_table_header");
-            Label("EntryDirectionHeader", _body, x + 64f, 270f, 240f, 32f, "分配方向", 20f, Muted);
-            Label("EntryCurrentHeader", _body, x + current - 80f, 270f, 160f, 32f, "当前投入", 20f, Muted, TextAlignmentOptions.Center);
-            Label("EntryDraftHeader", _body, x + adjust - 80f, 270f, 160f, 32f, "调整后", 20f, Muted, TextAlignmentOptions.Center);
-            Label("EntryBenefitHeader", _body, x + detail - 70f, 270f, 140f, 32f, "操作", 20f, Muted, TextAlignmentOptions.Center);
+            Art("EntryTableHeader", _body, x, 270f, rowW, 38f, "guild_table_header");
+            Label("EntryDirectionHeader", _body, x + 64f, 270f, 240f, 38f, "分配方向", 21f, Muted);
+            Label("EntryCurrentHeader", _body, x + current - 80f, 270f, 160f, 38f, "当前投入", 21f, Muted, TextAlignmentOptions.Center);
+            Label("EntryDraftHeader", _body, x + adjust - 80f, 270f, 160f, 38f, "调整后", 21f, Muted, TextAlignmentOptions.Center);
+            Label("EntryBenefitHeader", _body, x + detail - 70f, 270f, 140f, 38f, "操作", 21f, Muted, TextAlignmentOptions.Center);
 
             string[] names = { "物理伤害", "法术伤害", "封物命中", "混乱命中", "治疗效果", "护盾容量" };
             string[] icons = { "physical", "magic", "seal", "confusion", "healing", "shield" };
@@ -544,31 +583,31 @@ namespace MmorpgClient.UI.Ugui.Pet
             for (int i = 0; i < names.Length; ++i)
             {
                 if (_entryCategory != 0 && i / 2 + 1 != _entryCategory) continue;
-                var row = Art("EntryRow" + i, _body, x, 306f + visible++ * 56f, rowW, 54f, "mail_row_normal").rectTransform;
+                var row = Art("EntryRow" + i, _body, x, 312f + visible++ * 56f, rowW, 54f, "mail_row_normal").rectTransform;
                 Art("EntryIcon" + i, row, 14f, 8f, 38f, 38f, "row_" + icons[i]).preserveAspect = true;
-                Label("EntryName" + i, row, 64f, 8f, current - 124f, 38f, names[i], 23f, Ink);
+                Label("EntryName" + i, row, 64f, 8f, current - 124f, 38f, names[i], 23f, RichInk);
                 Label("EntryCurrent" + i, row, current - 44f, 8f, 88f, 38f, "—", 22f, Ink, TextAlignmentOptions.Center);
                 ActionButton("EntryMinus" + i, row, adjust - 96f, 7f, 40f, 40f, "", false, null, "step-minus-disabled").interactable = false;
                 Art("EntryField" + i, row, adjust - 48f, 9f, 74f, 36f, "stat_field");
                 Label("EntryValue" + i, row, adjust - 48f, 9f, 74f, 36f, "—", 21f, Ink, TextAlignmentOptions.Center);
                 ActionButton("EntryPlus" + i, row, adjust + 34f, 7f, 40f, 40f, "", false, null, "step-plus-disabled").interactable = false;
                 ActionButton("EntryDetail" + i, row, rowW - 96f, 9f, 84f, 36f, "详情", false,
-                    () => { _message = "条目点尚未同步；请刷新宝宝列表获取服务器总点数、收益和上限。"; RefreshFields(); }, null, 19f);
+                    () => { _message = "条目点尚未同步；请刷新宝宝列表获取服务器总点数、收益和上限。"; RefreshFields(); }, null, 20f);
                 GuildUiArt.Line(row, "EntryRowRule" + i, 4f, 52f, rowW - 8f);
             }
 
-            Label("EntryHelp", _body, x + 4f, 710f, width - 464f, 36f, "各方向共用条目点；未投入也可使用已学技能。", 19f, Muted);
-            _save = ActionButton("EntrySave", _body, x + width - 444f, FooterBtnY, 212f, FooterBtnHeight, "保存分配", true, null, null, 25f);
+            Label("EntryHelp", _body, x + 4f, 714f, width - 500f, 34f, "各方向共用条目点；未投入也可使用已学技能。", 19f, Muted);
+            _save = ActionButton("EntrySave", _body, x + width - 484f, FooterPrimaryY, 252f, FooterPrimaryHeight, "保存分配", true, null, null, 27f);
             _save.interactable = false;
-            _discard = ActionButton("EntryRestore", _body, x + width - 218f, FooterBtnY, 218f, FooterBtnHeight, "恢复当前分配", false, null, null, 23f);
+            _discard = ActionButton("EntryRestore", _body, x + width - 218f, FooterSecondaryY, 218f, FooterSecondaryHeight, "恢复当前分配", false, null, null, 24f);
             _discard.interactable = false;
         }
 
         private void BuildAttributes(float x, float width)
         {
             var pet = Selected;
-            Label("PetOverviewTitle", _body, x + 22f, 174f, 260f, 38f, pet?.Name ?? "宝宝属性", 29f, Green);
-            GuildUiArt.Line(_body, "PetOverviewHeadingRule", x + 208f, 193f, width - 214f);
+            Label("PetOverviewTitle", _body, x + 16f, 172f, 260f, 40f, pet?.Name ?? "宝宝属性", 32f, Green, role: TypographyRole.Heading);
+            GuildUiArt.Line(_body, "PetOverviewHeadingRule", x + 206f, 192f, width - 212f);
             var d = pet?.Derived;
             string[] names = { "气血", "法力", "物理攻击", "法术攻击", "防御", "速度" };
             string[] values = d == null ? Enumerable.Repeat("—", 6).ToArray() : new[] {
@@ -576,15 +615,16 @@ namespace MmorpgClient.UI.Ugui.Pet
             for (int i = 0; i < names.Length; i++)
             {
                 var row = Art("PetOverview" + i, _body, x, 224f + i * 62f, width, 58f, "mail_row_normal").rectTransform;
-                Label("PetOverviewLabel" + i, row, 32f, 10f, 240f, 38f, names[i], 25f, Ink);
+                Label("PetOverviewLabel" + i, row, 32f, 10f, 240f, 38f, names[i], 25f, RichInk, role: TypographyRole.Heading);
                 Label("PetOverviewValue" + i, row, width - 380f, 10f, 348f, 38f, values[i], 25f, Ink, TextAlignmentOptions.MidlineRight);
                 GuildUiArt.Line(row, "PetOverviewRule" + i, 4f, 56f, width - 8f);
             }
             bool isMaxTier = pet?.CultivationTier >= 5;
-            float buttonWidth = isMaxTier ? 380f : 220f;
+            bool primaryAscend = pet?.NextTier?.CanAscend == true;
+            float buttonWidth = isMaxTier ? 410f : 268f;
             Label("PetOverviewGrowth", _body, x + 8f, 608f, width - 16f, 32f,
                 pet == null ? "等级 — · 成长率 —" : $"等级 {pet.Level} · 成长率 {pet.Growth / 100f:0.##}% · 灵阶：{(string.IsNullOrEmpty(pet.CultivationTierName) ? "—" : pet.CultivationTierName)}",
-                22f, Ink);
+                22f, RichInk, role: TypographyRole.Heading);
             if (pet != null)
             {
                 bool hasNextTier = HasNextTier(pet);
@@ -592,8 +632,9 @@ namespace MmorpgClient.UI.Ugui.Pet
                     ? $"下阶：{pet.NextTier.NextTierName}（需 {pet.NextTier.MinPetLevel} 级）"
                     : isMaxTier ? "已达最高灵阶，享受全部条目点加成。" : "灵阶突破条件尚未同步。";
                 Label("PetOverviewTierHint", _body, x + 8f, 642f, width - 16f, 28f, tierHint, 20f, Green);
-                var btn = ActionButton("PetOverviewAscend", _body, x + width - buttonWidth, FooterBtnY, buttonWidth, FooterBtnHeight,
-                    isMaxTier ? MaxTierLabel : "灵阶突破", pet.NextTier?.CanAscend == true, OpenAscendDialog, null, 23f);
+                var btn = ActionButton("PetOverviewAscend", _body, x + width - buttonWidth,
+                    primaryAscend ? FooterPrimaryY : FooterSecondaryY, buttonWidth, primaryAscend ? FooterPrimaryHeight : FooterSecondaryHeight,
+                    isMaxTier ? MaxTierLabel : "灵阶突破", primaryAscend, OpenAscendDialog, null, 26f);
                 btn.interactable = hasNextTier;
             }
         }
@@ -611,29 +652,63 @@ namespace MmorpgClient.UI.Ugui.Pet
             return QdaoPetCatalog.LoadPortrait(entry?.id) ?? CharacterPetArt.Get("round_badge_taiji");
         }
 
-        private static Material ResolveEmphasizedMaterial(TMP_FontAsset font)
+        private static void DestroyMaterial(ref Material mat)
+        {
+            if (mat == null) return;
+            if (Application.isPlaying) UnityEngine.Object.Destroy(mat);
+            else UnityEngine.Object.DestroyImmediate(mat);
+            mat = null;
+        }
+
+        /// <summary>
+        /// 按帮会原图 approved-guild-reference.png 实测笔画厚度（正文 2px / 标题与页签 3~4px / 牌匾 4~6px）
+        /// 派生四档 SDF 材质，用 GPU 距离场自然加厚 SimKai 笔触，告别细飘电脑字感。
+        /// </summary>
+        private static Material ResolveTypographyMaterial(TMP_FontAsset font, TypographyRole role)
         {
             if (font == null || font.material == null) return null;
-            if (_emphasizedMat != null && ReferenceEquals(_emphasizedBaseMat, font.material))
-                return _emphasizedMat;
-            if (_emphasizedMat != null)
+            if (!ReferenceEquals(_matBase, font.material) || _matBody == null || _matHeading == null || _matPrimary == null || _matTitle == null)
             {
-                if (Application.isPlaying) UnityEngine.Object.Destroy(_emphasizedMat);
-                else UnityEngine.Object.DestroyImmediate(_emphasizedMat);
+                DestroyMaterial(ref _matBody);
+                DestroyMaterial(ref _matHeading);
+                DestroyMaterial(ref _matPrimary);
+                DestroyMaterial(ref _matTitle);
+                _matBase = font.material;
+
+                _matBody = new Material(_matBase) { name = "PetSimKaiBody", hideFlags = HideFlags.DontSave };
+                _matBody.SetFloat("_FaceDilate", 0.11f);
+                _matBody.SetFloat("_OutlineSoftness", 0.02f);
+
+                _matHeading = new Material(_matBase) { name = "PetSimKaiHeading", hideFlags = HideFlags.DontSave };
+                _matHeading.SetFloat("_FaceDilate", 0.21f);
+                _matHeading.SetFloat("_OutlineSoftness", 0.02f);
+
+                _matPrimary = new Material(_matBase) { name = "PetSimKaiPrimary", hideFlags = HideFlags.DontSave };
+                _matPrimary.SetFloat("_FaceDilate", 0.23f);
+                _matPrimary.EnableKeyword("UNDERLAY_ON");
+                _matPrimary.SetColor("_UnderlayColor", new Color(0.01f, 0.09f, 0.045f, 0.86f));
+                _matPrimary.SetFloat("_UnderlayOffsetX", 0f);
+                _matPrimary.SetFloat("_UnderlayOffsetY", -0.45f);
+                _matPrimary.SetFloat("_UnderlayDilate", 0.20f);
+                _matPrimary.SetFloat("_UnderlaySoftness", 0.22f);
+
+                _matTitle = new Material(_matBase) { name = "PetSimKaiTitle", hideFlags = HideFlags.DontSave };
+                _matTitle.SetFloat("_FaceDilate", 0.29f);
+                _matTitle.EnableKeyword("UNDERLAY_ON");
+                _matTitle.SetColor("_UnderlayColor", new Color(0.01f, 0.08f, 0.04f, 0.88f));
+                _matTitle.SetFloat("_UnderlayOffsetX", 0f);
+                _matTitle.SetFloat("_UnderlayOffsetY", -0.52f);
+                _matTitle.SetFloat("_UnderlayDilate", 0.26f);
+                _matTitle.SetFloat("_UnderlaySoftness", 0.24f);
             }
-            _emphasizedBaseMat = font.material;
-            _emphasizedMat = new Material(font.material)
+
+            return role switch
             {
-                name = "PetCultivationSimKaiEmphasized",
-                hideFlags = HideFlags.DontSave,
+                TypographyRole.Title => _matTitle,
+                TypographyRole.Primary => _matPrimary,
+                TypographyRole.Heading => _matHeading,
+                _ => _matBody,
             };
-            _emphasizedMat.EnableKeyword("UNDERLAY_ON");
-            _emphasizedMat.SetColor("_UnderlayColor", new Color(0.03f, 0.12f, 0.08f, 0.72f));
-            _emphasizedMat.SetFloat("_UnderlayOffsetX", 0f);
-            _emphasizedMat.SetFloat("_UnderlayOffsetY", -0.55f);
-            _emphasizedMat.SetFloat("_UnderlayDilate", 0.12f);
-            _emphasizedMat.SetFloat("_UnderlaySoftness", 0.25f);
-            return _emphasizedMat;
         }
 
         private static RectTransform Rect(string name, UnityEngine.Transform parent, float x, float y, float w, float h)
@@ -664,16 +739,14 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private static TMP_Text Label(string name, UnityEngine.Transform parent, float x, float y, float w, float h, string value,
             float size, Color color, TextAlignmentOptions alignment = TextAlignmentOptions.MidlineLeft,
-            bool wrap = false, bool autoSize = false, float minSize = 15f, bool emphasized = false)
+            bool wrap = false, bool autoSize = false, float minSize = 15f,
+            TypographyRole role = TypographyRole.Body)
         {
             var text = QdaoUguiFactory.CreateText(name, parent, x, y, w, h, value ?? "", size, color, alignment);
             var font = QdaoUguiTheme.ResolveFont();
             text.font = font;
-            if (emphasized)
-            {
-                var mat = ResolveEmphasizedMaterial(font);
-                if (mat != null) text.fontSharedMaterial = mat;
-            }
+            var mat = ResolveTypographyMaterial(font, role);
+            if (mat != null) text.fontSharedMaterial = mat;
             text.richText = false;
             text.textWrappingMode = wrap ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
             text.overflowMode = wrap ? TextOverflowModes.Overflow : TextOverflowModes.Ellipsis;
@@ -695,8 +768,9 @@ namespace MmorpgClient.UI.Ugui.Pet
             button.targetGraphic = art;
             var colors = button.colors;
             colors.highlightedColor = new Color(1f, .98f, .86f);
-            colors.pressedColor = new Color(.84f, .92f, .86f);
-            colors.disabledColor = new Color(.74f, .74f, .74f, .84f);
+            colors.pressedColor = new Color(.86f, .93f, .88f);
+            // 柔和玉雾禁用色，避免把深玉绿主钮和金框次钮压成脏灰黑块
+            colors.disabledColor = primary ? new Color(0.82f, 0.88f, 0.84f, 0.88f) : new Color(0.90f, 0.89f, 0.85f, 0.78f);
             button.colors = colors;
             if (key == "step-plus-normal" || key == "step-minus-normal")
             {
@@ -714,10 +788,11 @@ namespace MmorpgClient.UI.Ugui.Pet
             if (!string.IsNullOrEmpty(text))
             {
                 bool ornatePrimary = primary && (key == null || key == "button_primary" || key == "guild_button_primary");
-                float padX = ornatePrimary ? (w >= 190f ? 28f : 24f) : w >= 160f ? 18f : w >= 100f ? 12f : 6f;
+                float padX = ornatePrimary ? (w >= 210f ? 36f : 28f) : w >= 160f ? 18f : w >= 100f ? 12f : 6f;
                 Label(name + "Text", art.rectTransform, padX, 2f, Mathf.Max(20f, w - padX * 2f), Mathf.Max(20f, h - 4f),
-                    text, fontSize, primary ? Cream : Ink, TextAlignmentOptions.Center,
-                    wrap: false, autoSize: autoSize, minSize: Mathf.Max(14f, fontSize - 7f), emphasized: primary);
+                    text, fontSize, primary ? Cream : RichInk, TextAlignmentOptions.Center,
+                    wrap: false, autoSize: autoSize, minSize: Mathf.Max(14f, fontSize - 7f),
+                    role: primary ? TypographyRole.Primary : TypographyRole.Heading);
             }
             return button;
         }
