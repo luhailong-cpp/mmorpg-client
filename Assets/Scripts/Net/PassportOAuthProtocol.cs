@@ -10,7 +10,7 @@ namespace MmorpgClient.Net
     /// </summary>
     public readonly struct PassportOAuthConfig
     {
-        public const int DefaultTimeoutSeconds = 180;
+        public const int DefaultTimeoutSeconds = 600; // 注册要收邮件/短信验证码,180s 不够用
         public const int DefaultTokenExchangeTimeoutSeconds = 15;
 
         public string Origin { get; }
@@ -190,6 +190,17 @@ namespace MmorpgClient.Net
                    && string.Equals(callbackUri.Host, expected.Host, StringComparison.OrdinalIgnoreCase)
                    && string.Equals(TrimTrailingSlash(callbackUri.AbsolutePath), TrimTrailingSlash(expected.AbsolutePath),
                        StringComparison.Ordinal);
+        }
+
+        /// <summary>
+        /// 回调是否属于本次授权(state 常量时间相等)。不属于的(旧标签页、本机恶意页面)应忽略并继续等待,
+        /// 而不是让本次授权失败。
+        /// </summary>
+        public static bool CallbackStateMatches(Uri callbackUri, string expectedState)
+        {
+            if (callbackUri == null || string.IsNullOrEmpty(expectedState)) return false;
+            ParseQueryString(callbackUri.Query).TryGetValue("state", out var actualState);
+            return ConstantTimeEquals(expectedState, actualState);
         }
 
         /// <summary>

@@ -520,5 +520,59 @@ namespace MmorpgClient.Tests.EditMode.Ranked
             Assert.That(missingPlan.SummaryMessage, Does.Contain("缺少赛季印「青冥印」"));
             Assert.That(missingPlan.SummaryMessage, Does.Contain("未拥有首发宠「玄龟」"));
         }
+
+        [Test]
+        public void RankedV7_LiveSpectateSortAndRematchRules()
+        {
+            // 1. 高段实时围观筛选与排序：仅保留正式排位（PvpTeam && RankedTeamSize > 0），按 Featured -> 分段 -> 开局时间倒序
+            var raw = new[]
+            {
+                new BattleWatchSummary { BattleId = 1001UL, Mode = MatchMode.PveSolo, RankedTeamSize = 0u, RankedPeakRatingCenti = 200000L },
+                new BattleWatchSummary { BattleId = 1002UL, Mode = MatchMode.PvpTeam, RankedTeamSize = 1u, RankedPeakRatingCenti = 162000L, CreatedAtMs = 5000UL, PlayerNames = { "青云", "玄烈" } },
+                new BattleWatchSummary { BattleId = 1003UL, Mode = MatchMode.PvpTeam, RankedTeamSize = 3u, RankedPeakRatingCenti = 185000L, CreatedAtMs = 4000UL, PlayerNames = { "太虚", "剑鸣", "月华", "雷音", "素心", "沧溟" } },
+                new BattleWatchSummary { BattleId = 1004UL, Mode = MatchMode.PvpTeam, RankedTeamSize = 1u, RankedPeakRatingCenti = 158000L, CreatedAtMs = 3000UL, Featured = true, PlayerNames = { "无双甲", "无双乙" } },
+            };
+            var sorted = RankedFormatting.FilterAndSortLiveRankedBattles(raw);
+            Assert.That(sorted.Count, Is.EqualTo(3));
+            Assert.That(sorted[0].BattleId, Is.EqualTo(1004UL));
+            Assert.That(sorted[1].BattleId, Is.EqualTo(1003UL));
+            Assert.That(sorted[2].BattleId, Is.EqualTo(1002UL));
+            Assert.That(RankedFormatting.FormatLiveRankedMatchSummary(sorted[2]), Is.EqualTo("1V1 · 1620分 · 青云 vs 玄烈"));
+            Assert.That(RankedFormatting.FormatLiveRankedMatchSummary(sorted[1]), Does.Contain("3V3 · 1850分 · 太虚 等 6 人激战中"));
+
+            // 2. 1V1 结算不服再战可用性与切磋规则构造（零排位分、非免费预设、公开可观战）
+            var duelRules = RankedFormatting.BuildRematchDuelRules(99701UL);
+            Assert.That(duelRules.UseFreePreset, Is.False);
+            Assert.That(duelRules.AllowPublicSpectate, Is.True);
+            Assert.That(duelRules.RematchSourceBattleId, Is.EqualTo(99701UL));
+
+            var live1v1 = _client.BeginSettlementFromBattleEnd(new BattleEndS2C
+            {
+                BattleId = 99701UL,
+                SeasonId = 1u,
+                Outcome = eBattleOutcome.BattleOutcomeSideBWin,
+                Settlement = new BattleSettlementData
+                {
+                    BattleId = 99701UL,
+                    CompetitiveRanked = true,
+                    SeasonId = 1u,
+                    MatchMode = (uint)MatchMode.PvpTeam,
+                    Outcome = eBattleOutcome.BattleOutcomeSideBWin,
+                    TotalRounds = 8u,
+                    RematchOpponentId = 2002UL,
+                    RematchOpponentName = "玄烈",
+                },
+            }, 0u, 1u);
+            Assert.That(live1v1.CanOfferRematch, Is.True);
+            Assert.That(live1v1.RematchOpponentId, Is.EqualTo(2002UL));
+            Assert.That(live1v1.RematchOpponentName, Is.EqualTo("玄烈"));
+
+            // 3V3 与重登补查不显示 1V1 再战按钮
+            live1v1.TeamSize = 3u;
+            Assert.That(live1v1.CanOfferRematch, Is.False);
+            live1v1.TeamSize = 1u;
+            live1v1.FromRecovery = true;
+            Assert.That(live1v1.CanOfferRematch, Is.False);
+        }
     }
 }

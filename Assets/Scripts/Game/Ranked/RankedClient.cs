@@ -353,6 +353,8 @@ namespace MmorpgClient.Game.Ranked
                 RevengedOpponentName = end.Settlement?.RevengedOpponentName ?? string.Empty,
                 RevengedWinsAfter = end.Settlement?.RevengedWinsAfter ?? 0u,
                 RevengedLossesAfter = end.Settlement?.RevengedLossesAfter ?? 0u,
+                RematchOpponentId = end.Settlement?.RematchOpponentId ?? 0ul,
+                RematchOpponentName = end.Settlement?.RematchOpponentName ?? string.Empty,
                 RatingLoading = !isVoid,
             };
             ActiveSettlement = state;

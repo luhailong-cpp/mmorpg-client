@@ -28,6 +28,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
         public event Action RefreshRatingRequested;
         public event Action OpenMaterialClaimRequested;
         public event Action<uint> OpenTrialJournalRequested;
+        public event Action<ulong, ulong, string> RematchRequested;
 
         private readonly RectTransform _root;
         private readonly TMP_Text _outcomeTitle, _metaLine, _confirmBadge;
@@ -52,11 +53,15 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private readonly RectTransform[] _legacyRewardCards = new RectTransform[3];
         private readonly Button _claimMaterialBtn;
 
-        private readonly Button _backBtn, _requeueBtn, _trialJournalBtn;
-        private readonly TMP_Text _requeueLabel, _trialJournalLabel;
+        private readonly Button _backBtn, _requeueBtn, _rematchBtn, _trialJournalBtn;
+        private readonly TMP_Text _requeueLabel, _rematchLabel, _trialJournalLabel;
 
         private uint _lastTeamSize = RankedFormatting.DefaultTeamSize;
         private uint _trialJournalEntryId;
+        private ulong _rematchBattleId;
+        private ulong _rematchOpponentId;
+        private string _rematchOpponentName = string.Empty;
+        private bool _rematchSent;
 
         public RankedSettlementPanel(Transform designParent)
         {
@@ -156,6 +161,41 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 "guild_button_primary", "同规模再排", 28f, ButtonGoldText, out _, out _requeueLabel);
             _requeueBtn.onClick.AddListener(() => RequeueSameSizeRequested?.Invoke(_lastTeamSize));
 
+            // 论剑 V7：正式 1V1 战后「不服再战」切磋复仇入口（240×68，预绑 RankedPlayV7/btn_rematch_duel + icon_rematch_swords，零排位分）
+            var rematchBtnSprite = SeasonEconomyUiArt.LoadRankedPlayV7Asset("btn_rematch_duel");
+            var rematchIconSprite = SeasonEconomyUiArt.LoadRankedPlayV7Asset("icon_rematch_swords");
+            if (rematchBtnSprite != null)
+            {
+                _rematchBtn = QdaoUguiFactory.CreateArtButton("SettlementRematchBtn", _root, 1028f, 846f, 240f, 68f,
+                    rematchBtnSprite, out var rImg);
+                rImg.type = Image.Type.Simple;
+                _rematchLabel = CreateLabel("SettlementRematchBtn_Label", _rematchBtn.transform,
+                    rematchIconSprite != null ? 54f : 12f, 0f, rematchIconSprite != null ? 174f : 216f, 68f,
+                    "不服再战", 23f, WarnRed, TextAlignmentOptions.Center, bold: true);
+            }
+            else
+            {
+                _rematchBtn = CreateGuildButton("SettlementRematchBtn", _root, 1028f, 846f, 240f, 68f,
+                    "guild_button_secondary", "不服再战", 23f, WarnRed, out _, out _rematchLabel);
+            }
+            if (rematchIconSprite != null)
+            {
+                var rIcon = QdaoUguiFactory.CreateImage("RematchSwordsIcon", _rematchBtn.transform, 18f, 20f, 28f, 28f, rematchIconSprite, false);
+                rIcon.preserveAspect = true;
+            }
+            _rematchLabel.enableAutoSizing = true;
+            _rematchLabel.fontSizeMin = 15f;
+            _rematchLabel.fontSizeMax = 23f;
+            _rematchBtn.onClick.AddListener(() =>
+            {
+                if (_rematchSent || _rematchBattleId == 0UL || _rematchOpponentId == 0UL) return;
+                _rematchSent = true;
+                _rematchBtn.interactable = false;
+                _rematchLabel.text = "已发再战";
+                RematchRequested?.Invoke(_rematchBattleId, _rematchOpponentId, _rematchOpponentName);
+            });
+            _rematchBtn.gameObject.SetActive(false);
+
             // 卷三 303「人宠会武」试炼志结算直达入口（仅当 trialJournalEntryId != 0 时展示）
             _trialJournalBtn = CreateGuildButton("SettlementTrialJournalBtn", _root, 1360f, 846f, 240f, 68f,
                 "guild_button_secondary", "看试炼志", 24f, JadeDark, out _, out _trialJournalLabel);
@@ -226,9 +266,36 @@ namespace MmorpgClient.UI.Ugui.Ranked
             }
         }
 
+        private static void SetBtnRect(Button btn, float x, float y, float w, float h)
+        {
+            if (btn == null || !(btn.transform is RectTransform rt)) return;
+            rt.anchoredPosition = new Vector2(x, -y);
+            rt.sizeDelta = new Vector2(w, h);
+        }
+
         public void Render(RankedBattleSettlementState state, RankedProfileSnapshot profile = null)
         {
             if (state == null) return;
+            if (state.BattleId != _rematchBattleId)
+            {
+                _rematchBattleId = state.BattleId;
+                _rematchSent = false;
+            }
+            _rematchOpponentId = state.RematchOpponentId;
+            _rematchOpponentName = state.RematchOpponentName ?? string.Empty;
+            bool showRematch = state.CanOfferRematch;
+            if (_rematchBtn != null)
+            {
+                _rematchBtn.gameObject.SetActive(showRematch);
+                _rematchBtn.interactable = showRematch && !_rematchSent;
+                if (_rematchLabel != null) _rematchLabel.text = _rematchSent ? "已发再战" : "不服再战";
+                // 有 1V1「不服再战」时 4 按钮对称铺排，避免与「同规模再排」/「看试炼志」重叠
+                SetBtnRect(_backBtn, showRematch ? 370f : 560f, 846f, showRematch ? 250f : 290f, 68f);
+                SetBtnRect(_requeueBtn, showRematch ? 644f : 900f, 840f, showRematch ? 360f : 420f, 78f);
+                SetBtnRect(_rematchBtn, 1028f, 846f, 240f, 68f);
+                SetBtnRect(_trialJournalBtn, showRematch ? 1292f : 1360f, 846f, 240f, 68f);
+            }
+
             _lastTeamSize = state.EffectiveTeamSize;
             _requeueLabel.text = $"{_lastTeamSize}V{_lastTeamSize} 同规模再排";
 

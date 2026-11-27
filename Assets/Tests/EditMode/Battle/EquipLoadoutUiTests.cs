@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Google.Protobuf;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.PlayerFeatures;
+using MmorpgClient.Game.Skills;
 using MmorpgClient.Net;
 using MmorpgClient.Net.Generated;
 using MmorpgClient.UI.Ugui.Gameplay;
+using MmorpgClient.UI.Ugui.Skills;
 using NUnit.Framework;
 
 namespace MmorpgClient.Tests.EditMode.Battle
@@ -54,23 +57,39 @@ namespace MmorpgClient.Tests.EditMode.Battle
             if (Directory.Exists(_directory)) Directory.Delete(_directory, true);
         }
 
-        private static EquipLoadoutSnapshot MakeSnapshot(uint unlocked = 1u, uint active = 1u, ulong version = 3UL,
-            ulong diamond = 100UL, ulong bindDiamond = 60UL, ulong talismans = 0UL)
+        private static EquipLoadoutSnapshot MakeSnapshot(
+            uint free = 2u,
+            uint cardBonus = 0u,
+            uint rented = 0u,
+            uint active = 1u,
+            ulong version = 3UL,
+            ulong diamond = 120UL,
+            ulong bindDiamond = 60UL,
+            ulong serverNowSec = 1000000UL,
+            ulong rentExpiresAtSec = 0UL,
+            bool savedInScheme5 = false)
         {
+            uint activeRented = rentExpiresAtSec > serverNowSec ? rented : 0u;
+            uint unlocked = Math.Min(EquipLoadoutModel.MaxSchemes, free + cardBonus + activeRented);
             var snap = new EquipLoadoutSnapshot
             {
                 UnlockedSchemeCount = unlocked,
-                MaxSchemeCount = 5u,
+                MaxSchemeCount = EquipLoadoutModel.MaxSchemes,
                 ActiveSchemeId = active,
                 StateVersion = version,
-                NextUnlockCostDiamond = unlocked < 5u ? unlocked * 60UL : 0UL,
-                NextUnlockAllowBindDiamond = unlocked == 1u,
                 UnlockItemConfigId = EquipLoadoutModel.DefaultUnlockItemConfigId,
-                UnlockItemOwned = talismans,
                 DiamondBalance = diamond,
                 BindDiamondBalance = bindDiamond,
+                FreeSchemes = free,
+                LightCardBonusSchemes = cardBonus,
+                RentedExtraSlots = activeRented,
+                RentExpiresAtSec = rentExpiresAtSec,
+                ServerNowSec = serverNowSec,
+                RentUnitPriceDiamond = SkillLoadoutRentPlanner.RentUnitPriceDiamond,
+                RentPeriodDays = SkillLoadoutRentPlanner.RentPeriodDays,
+                RentMaxRemainingDays = SkillLoadoutRentPlanner.RentMaxRemainingDays,
             };
-            for (uint id = 1u; id <= 5u; ++id)
+            for (uint id = 1u; id <= EquipLoadoutModel.MaxSchemes; ++id)
             {
                 var scheme = new EquipLoadoutSchemeInfo
                 {
@@ -81,7 +100,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
                     LinkedSkillSchemeId = id == 1u ? 2u : 0u,
                     LinkedAttributeSchemeId = id == 1u ? 1u : 0u,
                 };
-                if (id == 1u || (id == 2u && unlocked >= 2u))
+                if (id == 1u || id == 2u || (id == 5u && savedInScheme5))
                 {
                     scheme.Slots.Add(new EquipLoadoutSlotView
                     {
@@ -105,34 +124,44 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void ModelReferenceMapAndUnlockAffordabilityMatchRules()
+        public void ModelReferenceMapProtectsLockedSavedSchemesAndProjectsUnifiedRentView()
         {
-            var snap = MakeSnapshot(unlocked: 2u, active: 1u, diamond: 50UL, bindDiamond: 200UL, talismans: 0UL);
+            // 方案 5 已到期锁定但仍保留武器 5001 引用（到期只锁不删），防误卖必须覆盖
+            var snap = MakeSnapshot(free: 2u, cardBonus: 2u, rented: 0u, active: 1u, diamond: 120UL,
+                serverNowSec: 1000000UL, rentExpiresAtSec: 0UL, savedInScheme5: true);
             var refs = EquipLoadoutModel.ReferencedSchemesOf(snap, 5001UL);
-            Assert.That(EquipLoadoutModel.FormatInUseBadgeText(refs), Is.EqualTo("方案一+1"));
-            Assert.That(EquipLoadoutModel.FormatItemProtectionWarning(refs, "解封剥离"), Does.Contain("方案一、方案二"));
+            Assert.That(refs, Is.EqualTo(new[] { "方案一", "方案二", "方案五(锁)" }));
+            Assert.That(EquipLoadoutModel.FormatInUseBadgeText(refs), Is.EqualTo("方案一+2"));
+            Assert.That(EquipLoadoutModel.FormatItemProtectionWarning(refs, "解封剥离"),
+                Does.Contain("方案一、方案二、方案五(锁)"));
             Assert.That(EquipLoadoutModel.ReferencedSchemesOf(snap, 9999UL).Count, Is.EqualTo(0));
             Assert.That(EquipLoadoutModel.ValidateNameDraft("一二三四五六七八九十甲乙丙", out _), Is.False);
             Assert.That(EquipLoadoutModel.ValidateNameDraft("PVP高速控场", out _), Is.True);
 
-            // 第 3 套不可用绑定灵石，仅非绑 50 < 120 -> 不可解锁
-            Assert.That(EquipLoadoutModel.CanAffordNextUnlock(snap, useBindDiamondFirst: true), Is.False);
-            // 持有 1 枚扩容符 3413 -> 优先消耗扩容符可解锁
-            snap.UnlockItemOwned = 1UL;
-            Assert.That(EquipLoadoutModel.CanAffordNextUnlock(snap, useBindDiamondFirst: false), Is.True);
-            Assert.That(EquipLoadoutModel.FormatUnlockTalismanLine(snap), Does.Contain("持有 1"));
+            // 席位来源标签：1..2 免、3..4 卡、5..7 锁（若有有效租期则租）
+            Assert.That(EquipLoadoutModel.SchemeSeatTag(snap, 1u, true), Is.EqualTo("免"));
+            Assert.That(EquipLoadoutModel.SchemeSeatTag(snap, 3u, true), Is.EqualTo("卡"));
+            Assert.That(EquipLoadoutModel.SchemeSeatTag(snap, 5u, false), Is.EqualTo("锁"));
+            Assert.That(EquipLoadoutModel.HasSavedBindings(snap.Schemes[4]), Is.True);
+            Assert.That(EquipLoadoutModel.HasSavedBindings(snap.Schemes[5]), Is.False);
 
-            // 第 2 套允许优先扣绑定灵石 + 非绑补足
-            var slot2 = MakeSnapshot(unlocked: 1u, active: 1u, diamond: 20UL, bindDiamond: 40UL, talismans: 0UL);
-            Assert.That(EquipLoadoutModel.CanAffordNextUnlock(slot2, useBindDiamondFirst: true), Is.True);
-            Assert.That(EquipLoadoutModel.CanAffordNextUnlock(slot2, useBindDiamondFirst: false), Is.False);
+            // 投影至 SkillLoadoutRentPlanner 统一试算：2免 + 2卡 = 4套，最多再租 3 套封顶 7 套；+2套×30天 = 60 真实灵石
+            var view = EquipLoadoutModel.ToUnifiedRentView(snap);
+            Assert.That(view.UnlockedSchemes, Is.EqualTo(4u));
+            Assert.That(view.MaxRentableExtraSlots, Is.EqualTo(3u));
+            var quote = SkillLoadoutRentPlanner.Plan(view, targetRentedSlots: 2u, addPeriods: 1u);
+            Assert.That(quote.Valid, Is.True);
+            Assert.That(quote.TotalCost, Is.EqualTo(60UL));
+            Assert.That(quote.NewUnlockedSchemes, Is.EqualTo(6u));
+            var overCap = SkillLoadoutRentPlanner.Plan(view, targetRentedSlots: 4u, addPeriods: 1u);
+            Assert.That(overCap.Valid, Is.False);
         }
 
         [Test]
         public void SwitchLoadoutUpdatesBothBagsSnapshotAndMissingNotices()
         {
             _client.RequestEquipLoadouts();
-            _net.Calls.Last().Respond(new GetEquipLoadoutsResponse { Snapshot = MakeSnapshot(unlocked: 2u, active: 1u, version: 5UL) });
+            _net.Calls.Last().Respond(new GetEquipLoadoutsResponse { Snapshot = MakeSnapshot(free: 2u, active: 1u, version: 5UL) });
             Assert.That(_client.EquipLoadouts, Is.Not.Null);
 
             _client.SwitchEquipLoadout(2u, applyLinkedSchemes: true);
@@ -147,7 +176,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             {
                 Bag = MakeBag(PlayerFeaturesClient.CharacterBagType, 7001UL),
                 Equipment = MakeBag(PlayerFeaturesClient.EquipmentBagType, 7002UL),
-                Snapshot = MakeSnapshot(unlocked: 2u, active: 2u, version: 6UL),
+                Snapshot = MakeSnapshot(free: 2u, active: 2u, version: 6UL),
                 RequestId = req.RequestId,
             };
             resp.MissingSlots.Add(8u);
@@ -164,51 +193,77 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void UnlockLoadoutRetainsDurableKeyUntilConfirmedAndReplaysSameKey()
+        public void LegacyUnlockFailsClosedLocallyAndPendingRecoveryClearsOnServerRejection()
         {
             _client.RequestEquipLoadouts();
-            _net.Calls.Last().Respond(new GetEquipLoadoutsResponse { Snapshot = MakeSnapshot(unlocked: 1u, active: 1u, diamond: 100UL, bindDiamond: 60UL) });
+            _net.Calls.Last().Respond(new GetEquipLoadoutsResponse { Snapshot = MakeSnapshot(free: 2u, active: 1u) });
 
+            // 方案 A：旧单独买断入口本地直接 fail-closed，不发扣费包也不写待恢复记录
             _client.UnlockEquipLoadout(useBindDiamondFirst: true);
-            var firstCall = _net.CallsOf(SceneBagClientPlayerRpc.UnlockEquipLoadoutMessageId).Last();
-            var firstReq = (UnlockEquipLoadoutRequest)firstCall.Request;
-            Assert.That(firstReq.ClientRequestId, Is.Not.EqualTo(0UL));
-            Assert.That(firstReq.ExpectedUnlockedCount, Is.EqualTo(1u));
-            Assert.That(firstReq.UseBindDiamondFirst, Is.True);
-            Assert.That(_client.HasPendingEquipLoadoutUnlock, Is.True);
+            Assert.That(_net.CallsOf(SceneBagClientPlayerRpc.UnlockEquipLoadoutMessageId).Count(), Is.EqualTo(0));
+            Assert.That(_client.HasPendingEquipLoadoutUnlock, Is.False);
+            Assert.That(_client.EquipLoadoutError, Does.Contain("7 套三合一共享"));
 
-            // 模拟首包超时：本地持久记录必须保留，重连后按原幂等键恢复
-            firstCall.FailWith("rpc timeout");
-            Assert.That(_client.HasPendingEquipLoadoutUnlock, Is.True);
-            Assert.That(_unlocked.Count, Is.EqualTo(0));
-
+            // 兼容老版本升级遗留的待恢复文件：恢复上报后服务端 Rejected 时自动安全清理本地记录
+            var legacyReq = new UnlockEquipLoadoutRequest { ClientRequestId = 778899UL, ExpectedUnlockedCount = 1u };
+            _unlockStore.Save(Player, Convert.ToBase64String(legacyReq.ToByteArray()));
             _client.Dispose();
             _connection = new object();
             _now += 5000L;
             CreateClient();
             _client.TickEquipLoadoutUnlockRecovery();
+            Assert.That(_client.HasPendingEquipLoadoutUnlock, Is.True);
 
             var retryCall = _net.CallsOf(SceneBagClientPlayerRpc.UnlockEquipLoadoutMessageId).Last();
-            var retryReq = (UnlockEquipLoadoutRequest)retryCall.Request;
-            Assert.That(retryReq.ClientRequestId, Is.EqualTo(firstReq.ClientRequestId));
-            Assert.That(retryReq.ExpectedUnlockedCount, Is.EqualTo(1u));
-
+            var sent = (UnlockEquipLoadoutRequest)retryCall.Request;
+            Assert.That(sent.ClientRequestId, Is.EqualTo(778899UL));
             retryCall.Respond(new UnlockEquipLoadoutResponse
             {
-                ClientRequestId = retryReq.ClientRequestId,
-                Outcome = UnlockEquipLoadoutResponse.Types.Outcome.Applied,
+                ClientRequestId = sent.ClientRequestId,
+                Outcome = UnlockEquipLoadoutResponse.Types.Outcome.Rejected,
                 Durable = true,
-                Replayed = true,
-                ResultUnlockedCount = 2u,
-                CurrentUnlockedCount = 2u,
-                SpentBindDiamond = 60UL,
-                Bag = MakeBag(PlayerFeaturesClient.CharacterBagType, 8001UL),
-                Snapshot = MakeSnapshot(unlocked: 2u, active: 1u, version: 4UL, diamond: 100UL, bindDiamond: 0UL),
+                ErrorMessage = new TipInfoMessage { Id = 1005u },
+                Snapshot = MakeSnapshot(free: 2u, active: 1u, version: 4UL),
+            });
+            Assert.That(_client.HasPendingEquipLoadoutUnlock, Is.False);
+            Assert.That(_unlockStore.Load(Player), Is.EqualTo(string.Empty));
+            Assert.That(_unlocked.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void SkillBookRentLoadoutSlotsWorksDirectlyFromEquipmentWindowAndFiresEvent()
+        {
+            using var skills = new SkillBookClient(_net, _net, () => _connection, _ => null);
+            RentSkillLoadoutSlotsResponse rentedEvent = null;
+            skills.LoadoutSlotsRented += resp => rentedEvent = resp;
+
+            bool? doneOk = null;
+            string doneMsg = null;
+            // 未先打开技能书加载 State.Snapshot，也必须允许直接从装备窗发起统一按套租用
+            skills.RentLoadoutSlots(targetRentedSlots: 2u, addPeriods: 1u, expectedCostDiamond: 60UL, (ok, msg) =>
+            {
+                doneOk = ok;
+                doneMsg = msg;
             });
 
-            Assert.That(_client.HasPendingEquipLoadoutUnlock, Is.False);
-            Assert.That(_client.EquipLoadouts.UnlockedSchemeCount, Is.EqualTo(2u));
-            Assert.That(_unlocked.Count, Is.EqualTo(1));
+            var call = _net.CallsOf(SceneSkillClientPlayerRpc.RentSkillLoadoutSlotsMessageId).Last();
+            var req = (RentSkillLoadoutSlotsRequest)call.Request;
+            Assert.That(req.TargetRentedSlots, Is.EqualTo(2u));
+            Assert.That(req.AddPeriods, Is.EqualTo(1u));
+            Assert.That(req.ExpectedCostDiamond, Is.EqualTo(60UL));
+
+            call.Respond(new RentSkillLoadoutSlotsResponse
+            {
+                ClientRequestId = req.ClientRequestId,
+                RentedExtraSlots = 2u,
+                SpentDiamond = 60UL,
+                RentExpiresAtSec = 1000000UL + 30UL * 86400UL,
+            });
+
+            Assert.That(doneOk, Is.True);
+            Assert.That(doneMsg, Does.Contain("装备+战法+加点共享"));
+            Assert.That(rentedEvent, Is.Not.Null);
+            Assert.That(rentedEvent.RentedExtraSlots, Is.EqualTo(2u));
         }
 
         [Test]
@@ -218,7 +273,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(EquipmentScreenModel.IconKey(talisman), Is.EqualTo(EquipLoadoutModel.ExpandTalismanIconKey));
 
             _client.RequestEquipLoadouts();
-            _net.Calls.Last().Respond(new GetEquipLoadoutsResponse { Snapshot = MakeSnapshot(unlocked: 2u, active: 1u, version: 9UL) });
+            _net.Calls.Last().Respond(new GetEquipLoadoutsResponse { Snapshot = MakeSnapshot(free: 2u, active: 1u, version: 9UL) });
 
             _client.SaveEquipLoadout(2u, "PVP控场套", 2u, captureCurrentEquipped: false,
                 explicitSlots: new[] { new EquipLoadoutSlotBinding { Slot = 3u, ItemGuid = 5001UL } }, linkedSkillSchemeId: 2u, linkedAttributeSchemeId: 1u);
@@ -236,14 +291,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _client.RequestEquipLoadouts();
             saveCall.Respond(new SaveEquipLoadoutResponse
             {
-                Snapshot = MakeSnapshot(unlocked: 2u, active: 2u, version: 10UL),
+                Snapshot = MakeSnapshot(free: 2u, active: 2u, version: 10UL),
                 RequestId = saveReq.RequestId,
             });
             Assert.That(_client.EquipLoadouts, Is.Null);
         }
 
         [Test]
-        public void PreBattleBarStateEnforcesPhaseGateMissingSlotsAndLockedHints()
+        public void PreBattleBarStateEnforcesPhaseGateSevenSlotsAndLockedHints()
         {
             Assert.That(EquipLoadoutModel.IsPreBattleSwitchAllowed(BattlePhase.None), Is.True);
             Assert.That(EquipLoadoutModel.IsPreBattleSwitchAllowed(BattlePhase.Queued), Is.True);
@@ -251,15 +306,17 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(EquipLoadoutModel.IsPreBattleSwitchAllowed(BattlePhase.WaitingAction), Is.False);
             Assert.That(EquipLoadoutModel.IsPreBattleSwitchAllowed(BattlePhase.Resolving), Is.False);
 
-            // 未同步且非加载中：可触发刷新
+            // 未同步且非加载中：展示 7 槽占位并可触发刷新
             var unsynced = EquipLoadoutModel.BuildPreBattleBarState(
                 null, loading: false, switching: false, hasPendingUnlock: false, BattlePhase.None, string.Empty);
             Assert.That(unsynced.Synced, Is.False);
-            Assert.That(unsynced.Slots.Count, Is.EqualTo(5));
+            Assert.That(unsynced.Slots.Count, Is.EqualTo(7));
             Assert.That(unsynced.Slots[0].ClickKind, Is.EqualTo(PreBattleLoadoutClickKind.Refresh));
             Assert.That(unsynced.Slots[0].CanClick, Is.True);
 
-            var snap = MakeSnapshot(unlocked: 2u, active: 1u, diamond: 100UL, bindDiamond: 60UL, talismans: 0UL);
+            // 2 永久免费 + 2 轻享卡 + 1 租用 = 5 套解锁，方案 6..7 锁定
+            var snap = MakeSnapshot(free: 2u, cardBonus: 2u, rented: 1u, active: 1u,
+                serverNowSec: 1000000UL, rentExpiresAtSec: 1000000UL + 10UL * 86400UL);
             snap.Schemes[1].Name = "PVP控场";
             snap.Schemes[1].MissingCount = 2u;
 
@@ -267,6 +324,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var queued = EquipLoadoutModel.BuildPreBattleBarState(
                 snap, loading: false, switching: false, hasPendingUnlock: false, BattlePhase.Queued, string.Empty);
             Assert.That(queued.Synced, Is.True);
+            Assert.That(queued.Slots.Count, Is.EqualTo(7));
             Assert.That(queued.BlockedByBattleState, Is.False);
             Assert.That(queued.Slots[0].Active, Is.True);
             Assert.That(queued.Slots[0].CanClick, Is.False);
@@ -275,10 +333,12 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(queued.Slots[1].ClickKind, Is.EqualTo(PreBattleLoadoutClickKind.Switch));
             Assert.That(queued.Slots[1].SpriteKey, Is.EqualTo(EquipLoadoutModel.TabUnlockedKey));
             Assert.That(queued.Slots[1].Label, Does.Contain("缺2"));
-            Assert.That(queued.Slots[2].Unlocked, Is.False);
-            Assert.That(queued.Slots[2].CanClick, Is.True);
-            Assert.That(queued.Slots[2].ClickKind, Is.EqualTo(PreBattleLoadoutClickKind.UnlockHint));
-            Assert.That(queued.Slots[2].SpriteKey, Is.EqualTo(EquipLoadoutModel.TabLockedKey));
+            Assert.That(queued.Slots[4].Unlocked, Is.True);
+            Assert.That(queued.Slots[4].SpriteKey, Is.EqualTo(EquipLoadoutModel.TabRentedKey));
+            Assert.That(queued.Slots[5].Unlocked, Is.False);
+            Assert.That(queued.Slots[5].CanClick, Is.True);
+            Assert.That(queued.Slots[5].ClickKind, Is.EqualTo(PreBattleLoadoutClickKind.UnlockHint));
+            Assert.That(queued.Slots[5].SpriteKey, Is.EqualTo(EquipLoadoutModel.TabLockedKey));
 
             // 匹配成局进入 Preparing 后全部置灰锁死
             var preparing = EquipLoadoutModel.BuildPreBattleBarState(
@@ -287,16 +347,19 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(preparing.Slots.All(s => !s.CanClick), Is.True);
             Assert.That(preparing.StatusText, Does.Contain("锁定"));
 
-            // 待确认解锁时禁止切换方案
-            var pendingUnlock = EquipLoadoutModel.BuildPreBattleBarState(
-                snap, loading: false, switching: false, hasPendingUnlock: true, BattlePhase.None, string.Empty);
-            Assert.That(pendingUnlock.Slots[1].CanClick, Is.False);
-            Assert.That(pendingUnlock.StatusIsError, Is.True);
+            // 到期只锁不删：正在穿戴的方案 5 到期后仍保持激活标示并提示可切回已解锁方案或续期
+            var expiredActive = MakeSnapshot(free: 2u, cardBonus: 0u, rented: 0u, active: 5u, savedInScheme5: true);
+            var expiredBar = EquipLoadoutModel.BuildPreBattleBarState(
+                expiredActive, loading: false, switching: false, hasPendingUnlock: false, BattlePhase.None, string.Empty);
+            Assert.That(expiredBar.Slots[4].Active, Is.True);
+            Assert.That(expiredBar.Slots[4].Label, Does.Contain("·锁"));
+            Assert.That(expiredBar.StatusText, Does.Contain("只锁不删"));
 
             // 未解锁轻提示与签名变更校验
-            string lockHint = EquipLoadoutModel.FormatLockedPreBattleHint(3u, snap);
-            Assert.That(lockHint, Does.Contain("方案三"));
-            Assert.That(lockHint, Does.Contain("120 灵石"));
+            string lockHint = EquipLoadoutModel.FormatLockedPreBattleHint(6u, snap);
+            Assert.That(lockHint, Does.Contain("方案六"));
+            Assert.That(lockHint, Does.Contain("30 灵石"));
+            Assert.That(lockHint, Does.Contain("三合一共享"));
             int sigQueued = EquipLoadoutModel.ComputePreBattleBarSignature(queued);
             int sigQueuedAgain = EquipLoadoutModel.ComputePreBattleBarSignature(
                 EquipLoadoutModel.BuildPreBattleBarState(
@@ -316,7 +379,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_net.CallsOf(SceneBagClientPlayerRpc.GetEquipLoadoutsMessageId).Count(), Is.EqualTo(1));
 
             _net.CallsOf(SceneBagClientPlayerRpc.GetEquipLoadoutsMessageId).Last()
-                .Respond(new GetEquipLoadoutsResponse { Snapshot = MakeSnapshot(unlocked: 3u, active: 1u, version: 7UL) });
+                .Respond(new GetEquipLoadoutsResponse { Snapshot = MakeSnapshot(free: 3u, active: 1u, version: 7UL) });
 
             var before = EquipLoadoutModel.BuildPreBattleBarState(_client, BattlePhase.None);
             Assert.That(before.ActiveSchemeId, Is.EqualTo(1u));
@@ -333,7 +396,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             {
                 Bag = MakeBag(PlayerFeaturesClient.CharacterBagType, 7101UL),
                 Equipment = MakeBag(PlayerFeaturesClient.EquipmentBagType, 7102UL),
-                Snapshot = MakeSnapshot(unlocked: 3u, active: 2u, version: 8UL),
+                Snapshot = MakeSnapshot(free: 3u, active: 2u, version: 8UL),
                 RequestId = req.RequestId,
             };
             resp.MissingSlots.Add(9u);

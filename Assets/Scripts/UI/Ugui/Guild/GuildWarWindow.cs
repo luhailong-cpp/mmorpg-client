@@ -193,28 +193,28 @@ namespace MmorpgClient.UI.Ugui.Guild
                 bg = Art(_alertRoot, "AlertBg", bannerKey, 0f, 0f, 1680f, 120f);
             }
             bg.raycastTarget = false;
-            Label(_alertRoot, "AlertText", GuildWarText.FormatAlert(alert), 120f, 24f, 1140f, 72f, 26f, LightText, wrap: true);
+            Label(_alertRoot, "AlertText", GuildWarText.FormatAlert(alert), 130f, 24f, 1116f, 72f, 26f, LightText, wrap: true);
             if (alert.Kind == GuildWarAlertKind.LeylineUnderSiege)
             {
-                ActionButton(_alertRoot, "AlertActionSiege", "立即驰援", 1280f, 32f, 168f, 56f,
+                ActionButton(_alertRoot, "AlertActionSiege", "立即驰援", 1262f, 32f, 168f, 56f,
                     () => { DismissAlert(); _client?.StartLeylineSiege(alert.LeylineId); }, danger: true, fontSize: 22f);
             }
             else if (alert.Kind == GuildWarAlertKind.PursuerEnteredMap || alert.Kind == GuildWarAlertKind.BountyResolved)
             {
-                ActionButton(_alertRoot, "AlertActionBounty", "查看追杀", 1280f, 32f, 168f, 56f,
+                ActionButton(_alertRoot, "AlertActionBounty", "查看追杀", 1262f, 32f, 168f, 56f,
                     () => { DismissAlert(); Show(GuildWarPage.Bounty); }, primary: true, fontSize: 22f);
             }
             else if (alert.Kind == GuildWarAlertKind.FeudChallenge || alert.Kind == GuildWarAlertKind.FeudStarted || alert.Kind == GuildWarAlertKind.FeudEnded)
             {
-                ActionButton(_alertRoot, "AlertActionFeud", "查看约战", 1280f, 32f, 168f, 56f,
+                ActionButton(_alertRoot, "AlertActionFeud", "查看约战", 1262f, 32f, 168f, 56f,
                     () => { DismissAlert(); Show(GuildWarPage.Main); }, danger: alert.Kind != GuildWarAlertKind.FeudEnded, primary: alert.Kind == GuildWarAlertKind.FeudEnded, fontSize: 22f);
             }
             else if (alert.Kind == GuildWarAlertKind.StreakBounty)
             {
-                ActionButton(_alertRoot, "AlertActionStreak", alert.RewardSilver == 0 ? "前往围剿" : "查看战况", 1280f, 32f, 168f, 56f,
+                ActionButton(_alertRoot, "AlertActionStreak", alert.RewardSilver == 0 ? "前往围剿" : "查看战况", 1262f, 32f, 168f, 56f,
                     () => { DismissAlert(); Show(GuildWarPage.Main); }, danger: alert.RewardSilver == 0, primary: alert.RewardSilver > 0, fontSize: 22f);
             }
-            ActionButton(_alertRoot, "AlertDismiss", "忽略", 1464f, 32f, 116f, 56f, DismissAlert, fontSize: 21f);
+            ActionButton(_alertRoot, "AlertDismiss", "忽略", 1444f, 32f, 116f, 56f, DismissAlert, fontSize: 21f);
             _alertRoot.gameObject.SetActive(true);
         }
 

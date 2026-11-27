@@ -34,9 +34,9 @@ namespace MmorpgClient.Tests.EditMode.Guild
         }
 
         [Test]
-        public void GuildWarV2DeliveredAssets_LoadAll33SpritesWithExpectedThreeSliceBorders()
+        public void GuildWarV2DeliveredAssets_LoadAll36SpritesWithExpectedThreeSliceBorders()
         {
-            Assert.That(GuildWarUiArt.AllAssetKeys.Length, Is.EqualTo(33));
+            Assert.That(GuildWarUiArt.AllAssetKeys.Length, Is.EqualTo(36));
             foreach (string key in GuildWarUiArt.AllAssetKeys)
             {
                 var sprite = GuildWarUiArt.Load(key);
@@ -49,6 +49,7 @@ namespace MmorpgClient.Tests.EditMode.Guild
             AssertHorizontalBorder("bar_banner_hp_fill_enemy", 18f);
             AssertHorizontalBorder("alert_banner_siege", 110f);
             AssertHorizontalBorder("alert_banner_bounty", 110f);
+            AssertHorizontalBorder("alert_banner_feud", 110f);
             AssertHorizontalBorder("btn_danger_crimson", 35f);
         }
 

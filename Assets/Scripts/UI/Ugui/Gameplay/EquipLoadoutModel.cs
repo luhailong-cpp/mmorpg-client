@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.PlayerFeatures;
+using MmorpgClient.UI.Ugui.Skills;
 
 namespace MmorpgClient.UI.Ugui.Gameplay
 {
@@ -15,7 +16,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         Refresh = 3,
     }
 
-    /// <summary>战前 1..5 流派快捷条单槽不可变只读视图（纯 C#，零 UnityEngine 依赖）。</summary>
+    /// <summary>战前 1..7 流派快捷条单槽不可变只读视图（纯 C#，零 UnityEngine 依赖）。</summary>
     public sealed class PreBattleLoadoutSlotView
     {
         public uint SchemeId { get; }
@@ -48,7 +49,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
     }
 
-    /// <summary>战前准备期 1..5 一键换流派快捷条不可变快照（供全部进房前/局间倒计时界面复用）。</summary>
+    /// <summary>战前准备期 1..7 一键换流派快捷条不可变快照（供全部进房前/局间倒计时界面复用）。</summary>
     public sealed class PreBattleLoadoutBarState
     {
         public bool Synced { get; }
@@ -91,13 +92,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     }
 
     /// <summary>
-    /// 装备流派方案预设的纯 C# 展示与防误卖模型（不引用 UnityEngine，供 UI 与 EditMode NUnit 单测复用）。
-    /// 所有方案、槽位缺失态、持有量与价格均取自服务端 <see cref="EquipLoadoutSnapshot"/>。
+    /// 装备流派方案预设的纯 C# 展示与防误卖模型（方案 A · 7 套三合一共享流派席位，不引用 UnityEngine）。
+    /// 所有方案、席位权限、租期与缺失态均取自服务端 <see cref="EquipLoadoutSnapshot"/>。
     /// </summary>
     public static class EquipLoadoutModel
     {
         public const uint DefaultUnlockItemConfigId = 3413u;
-        public const uint MaxSchemes = 5u;
+        public const uint BaseFreeSchemes = SkillLoadoutRentPlanner.BaseFreeSchemes;
+        public const uint MaxSchemes = SkillLoadoutRentPlanner.MaxSchemes;
         public const int MaxNameCodePoints = 12;
         public const string ResourceRoot = "UI/Ugui/EquipLoadoutV1/";
 
@@ -106,11 +108,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public const string ExpandTalismanIconKey = ResourceRoot + "icon_loadout_expand_talisman";
         public const string TabActiveKey = ResourceRoot + "tab_loadout_active";
         public const string TabUnlockedKey = ResourceRoot + "tab_loadout_unlocked";
+        public const string TabRentedKey = SkillLoadoutRentPlanner.ArtBasePath + SkillLoadoutRentPlanner.ArtTabRented;
         public const string TabLockedKey = ResourceRoot + "tab_loadout_locked";
         public const string BadgeInUseKey = ResourceRoot + "badge_loadout_in_use";
         public const string BadgeSlotMissingKey = ResourceRoot + "badge_loadout_slot_missing";
 
-        private static readonly string[] SchemeOrdinals = { "一", "二", "三", "四", "五" };
+        private static readonly string[] SchemeOrdinals = { "一", "二", "三", "四", "五", "六", "七" };
         private static readonly string[] RoleTagNames = { "默认", "输出", "控场", "辅助", "生存" };
 
         public static string DefaultSchemeName(uint schemeId)
@@ -127,10 +130,74 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             return string.IsNullOrWhiteSpace(scheme.Name) ? DefaultSchemeName(scheme.SchemeId) : scheme.Name.Trim();
         }
 
+        public static uint EffectiveFreeSchemes(EquipLoadoutSnapshot snapshot)
+            => snapshot != null && snapshot.FreeSchemes >= BaseFreeSchemes ? snapshot.FreeSchemes : BaseFreeSchemes;
+
+        public static uint EffectiveMaxSchemes(EquipLoadoutSnapshot snapshot)
+            => snapshot != null && snapshot.MaxSchemeCount >= BaseFreeSchemes
+                ? Math.Min(snapshot.MaxSchemeCount, MaxSchemes)
+                : MaxSchemes;
+
+        public static uint EffectiveUnlockedSchemes(EquipLoadoutSnapshot snapshot)
+        {
+            uint max = EffectiveMaxSchemes(snapshot);
+            if (snapshot == null) return BaseFreeSchemes;
+            return Math.Min(max, Math.Max(BaseFreeSchemes, snapshot.UnlockedSchemeCount));
+        }
+
+        public static bool HasSavedBindings(EquipLoadoutSchemeInfo scheme)
+        {
+            if (scheme == null) return false;
+            for (int i = 0; i < scheme.Slots.Count; ++i)
+            {
+                if (scheme.Slots[i] != null && scheme.Slots[i].ItemGuid != 0UL) return true;
+            }
+            return false;
+        }
+
+        public static string SchemeSeatTag(EquipLoadoutSnapshot snapshot, uint schemeId, bool unlocked)
+        {
+            uint free = EffectiveFreeSchemes(snapshot);
+            if (schemeId <= free) return "免";
+            if (!unlocked) return "锁";
+            uint cardBonus = snapshot?.LightCardBonusSchemes ?? 0u;
+            if (schemeId <= free + cardBonus) return "卡";
+            return "租";
+        }
+
+        /// <summary>将装备方案快照投影为 <see cref="SkillLoadoutView"/>，直接复用 <see cref="SkillLoadoutRentPlanner"/> 统一试算。</summary>
+        public static SkillLoadoutView ToUnifiedRentView(EquipLoadoutSnapshot snapshot)
+        {
+            uint free = EffectiveFreeSchemes(snapshot);
+            uint max = EffectiveMaxSchemes(snapshot);
+            uint unlocked = EffectiveUnlockedSchemes(snapshot);
+            return new SkillLoadoutView
+            {
+                ActiveSchemeId = snapshot != null && snapshot.ActiveSchemeId >= 1u && snapshot.ActiveSchemeId <= max
+                    ? snapshot.ActiveSchemeId : 1u,
+                StateVersion = snapshot?.StateVersion ?? 1UL,
+                UnlockedSchemes = unlocked,
+                MaxSchemes = max,
+                FreeSchemes = free,
+                LightCardBonusSchemes = snapshot?.LightCardBonusSchemes ?? 0u,
+                RentedExtraSlots = snapshot?.RentedExtraSlots ?? 0u,
+                RentExpiresAtSec = snapshot?.RentExpiresAtSec ?? 0UL,
+                ServerNowSec = snapshot?.ServerNowSec ?? 0UL,
+                RentUnitPriceDiamond = snapshot != null && snapshot.RentUnitPriceDiamond > 0UL
+                    ? snapshot.RentUnitPriceDiamond : SkillLoadoutRentPlanner.RentUnitPriceDiamond,
+                RentPeriodDays = snapshot != null && snapshot.RentPeriodDays > 0u
+                    ? snapshot.RentPeriodDays : SkillLoadoutRentPlanner.RentPeriodDays,
+                RentMaxRemainingDays = snapshot != null && snapshot.RentMaxRemainingDays > 0u
+                    ? snapshot.RentMaxRemainingDays : SkillLoadoutRentPlanner.RentMaxRemainingDays,
+                DiamondBalance = snapshot?.DiamondBalance ?? 0UL,
+            };
+        }
+
         public static string FormatTabLabel(EquipLoadoutSchemeInfo scheme, bool isActive)
         {
             if (scheme == null) return DefaultSchemeName(1u);
-            if (!scheme.Unlocked) return "+ " + DefaultSchemeName(scheme.SchemeId);
+            if (!scheme.Unlocked)
+                return HasSavedBindings(scheme) ? SchemeDisplayName(scheme) + "·锁" : "+ " + DefaultSchemeName(scheme.SchemeId);
             string name = SchemeDisplayName(scheme);
             string suffix = scheme.RoleTag > 0u && scheme.RoleTag < (uint)RoleTagNames.Length
                 ? " · " + RoleTagNames[scheme.RoleTag]
@@ -138,12 +205,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             return name + suffix;
         }
 
+        public static string FormatCompactTabLabel(EquipLoadoutSnapshot snapshot, EquipLoadoutSchemeInfo scheme, bool isActive)
+        {
+            if (scheme == null) return DefaultSchemeName(1u);
+            string tag = SchemeSeatTag(snapshot, scheme.SchemeId, scheme.Unlocked);
+            string name = SchemeDisplayName(scheme);
+            string shortName = name.Length > 4 ? name.Substring(0, 4) : name;
+            string prefix = isActive ? "★" : string.Empty;
+            return $"{prefix}{shortName}·{tag}";
+        }
+
         public static string FormatQuickBarLabel(EquipLoadoutSchemeInfo scheme)
         {
             if (scheme == null) return DefaultSchemeName(1u);
             if (!scheme.Unlocked) return "+ " + DefaultSchemeName(scheme.SchemeId);
             string name = SchemeDisplayName(scheme);
-            return name.Length > 6 ? name.Substring(0, 6) : name;
+            return name.Length > 4 ? name.Substring(0, 4) : name;
         }
 
         public static string SlotLabel(EquipLoadoutSlotView slot)
@@ -172,56 +249,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _ => "空槽位",
         };
 
-        public static uint TierCostDiamond(uint targetSchemeId) => targetSchemeId switch
-        {
-            2u => 60u,
-            3u => 120u,
-            4u => 180u,
-            5u => 240u,
-            _ => 0u,
-        };
-
-        public static string FormatUnlockDescription(uint targetSchemeId)
-            => $"解锁第 {targetSchemeId} 套装备流派方案位，支持独立保存 8 槽装备引用，一键切换流派并联动战法与加点方案；仅提供切换便利，不附带额外战力属性";
-
-        public static string FormatUnlockTalismanLine(EquipLoadoutSnapshot snapshot)
-        {
-            ulong owned = snapshot?.UnlockItemOwned ?? 0UL;
-            return $"优先消耗：装备方案扩容符 ×1（持有 {owned}）";
-        }
-
-        public static string FormatUnlockCurrencyLine(EquipLoadoutSnapshot snapshot, bool useBindDiamondFirst)
-        {
-            if (snapshot == null || snapshot.UnlockedSchemeCount >= snapshot.MaxSchemeCount)
-                return "已解锁全部方案位";
-            ulong cost = snapshot.NextUnlockCostDiamond;
-            if (snapshot.UnlockItemOwned >= 1UL)
-                return $"或消耗：{cost} 灵石（本次将优先扣除扩容符，不消耗灵石）";
-            if (snapshot.NextUnlockAllowBindDiamond && useBindDiamondFirst)
-            {
-                ulong fromBind = Math.Min(snapshot.BindDiamondBalance, cost);
-                ulong fromDiamond = cost - fromBind;
-                return fromDiamond == 0UL
-                    ? $"或消耗：{cost} 绑定灵石（持有绑灵 {snapshot.BindDiamondBalance} / 灵石 {snapshot.DiamondBalance}）"
-                    : $"或消耗：{fromBind} 绑灵 + {fromDiamond} 灵石（持有绑灵 {snapshot.BindDiamondBalance} / 灵石 {snapshot.DiamondBalance}）";
-            }
-            return $"或消耗：{cost} 灵石（持有灵石 {snapshot.DiamondBalance}）";
-        }
-
-        public static bool CanAffordNextUnlock(EquipLoadoutSnapshot snapshot, bool useBindDiamondFirst)
-        {
-            if (snapshot == null || snapshot.UnlockedSchemeCount >= snapshot.MaxSchemeCount) return false;
-            if (snapshot.UnlockItemOwned >= 1UL) return true;
-            ulong cost = snapshot.NextUnlockCostDiamond;
-            if (cost == 0UL) return false;
-            if (snapshot.NextUnlockAllowBindDiamond && useBindDiamondFirst)
-            {
-                ulong fromBind = Math.Min(snapshot.BindDiamondBalance, cost);
-                return snapshot.DiamondBalance >= cost - fromBind;
-            }
-            return snapshot.DiamondBalance >= cost;
-        }
-
         public static string FormatMissingSlotsNotice(IEnumerable<uint> missingSlots, EquipLoadoutSchemeInfo scheme)
         {
             if (missingSlots == null) return string.Empty;
@@ -237,7 +264,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
 
         /// <summary>
-        /// 统计当前被任意已解锁方案引用的装备实例 item_guid -> 所属方案短标签列表（供背包角标与交易/解封防误卖保护使用）。
+        /// 统计当前被任意已保存方案（含到期暂时锁定但仍保留配置的方案）引用的装备实例 item_guid -> 所属方案短标签列表
+        /// （供背包角标与交易/解封防误卖保护使用，杜绝到期后手滑卖掉副套装备）。
         /// </summary>
         public static Dictionary<ulong, List<string>> BuildItemReferenceMap(EquipLoadoutSnapshot snapshot)
         {
@@ -245,11 +273,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (snapshot == null) return map;
             foreach (var scheme in snapshot.Schemes.OrderBy(s => s.SchemeId))
             {
-                if (!scheme.Unlocked) continue;
-                string label = DefaultSchemeName(scheme.SchemeId);
+                if (scheme == null) continue;
+                string label = scheme.Unlocked
+                    ? DefaultSchemeName(scheme.SchemeId)
+                    : DefaultSchemeName(scheme.SchemeId) + "(锁)";
                 foreach (var slot in scheme.Slots)
                 {
-                    if (slot.ItemGuid == 0UL) continue;
+                    if (slot == null || slot.ItemGuid == 0UL) continue;
                     if (!map.TryGetValue(slot.ItemGuid, out var list))
                     {
                         list = new List<string>();
@@ -376,23 +406,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             return sb.ToString();
         }
 
-        /// <summary>战前准备或倒计时期间点击未解锁方案位时的轻提示（不打断当前倒计时窗口）。</summary>
+        /// <summary>战前准备或倒计时期间点击未解锁/已到期锁定方案位时的轻提示（不打断当前倒计时窗口）。</summary>
         public static string FormatLockedPreBattleHint(uint schemeId, EquipLoadoutSnapshot snapshot)
         {
             string slotName = DefaultSchemeName(schemeId);
-            if (snapshot != null && schemeId == snapshot.UnlockedSchemeCount + 1u && snapshot.NextUnlockCostDiamond > 0UL)
-            {
-                string payText = snapshot.UnlockItemOwned >= 1UL
-                    ? $"可优先消耗扩容符（持有 {snapshot.UnlockItemOwned}）"
-                    : (snapshot.NextUnlockAllowBindDiamond
-                        ? $"{snapshot.NextUnlockCostDiamond} 绑灵/灵石或扩容符"
-                        : $"{snapshot.NextUnlockCostDiamond} 灵石或扩容符");
-                return $"【{slotName}】尚未解锁，请前往「装备 → 流派方案」解锁（{payText}）";
-            }
-            return $"【{slotName}】尚未解锁，请前往「装备 → 流派方案」按序解锁";
+            ulong unitPrice = snapshot != null && snapshot.RentUnitPriceDiamond > 0UL
+                ? snapshot.RentUnitPriceDiamond
+                : SkillLoadoutRentPlanner.RentUnitPriceDiamond;
+            uint periodDays = snapshot != null && snapshot.RentPeriodDays > 0u
+                ? snapshot.RentPeriodDays
+                : SkillLoadoutRentPlanner.RentPeriodDays;
+            uint free = EffectiveFreeSchemes(snapshot);
+            string freeTip = free < 3u ? "达 85 级自动永久免费 +1 套、" : string.Empty;
+            return $"【{slotName}】未解锁或已到期锁定（已存配置永久保留）：{freeTip}开仙途轻享卡 +2 套，或前往「装备 → 流派方案」按套租用（{unitPrice} 灵石/套/{periodDays}天，装备+战法+加点三合一共享）";
         }
 
-        /// <summary>推导战前准备期 1..5 一键换流派快捷条的完整不可变视图状态。</summary>
+        /// <summary>推导战前准备期 1..7 一键换流派快捷条的完整不可变视图状态。</summary>
         public static PreBattleLoadoutBarState BuildPreBattleBarState(
             EquipLoadoutSnapshot snapshot,
             bool loading,
@@ -403,25 +432,28 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             bool battleLocked = !IsPreBattleSwitchAllowed(battlePhase);
             bool synced = snapshot != null;
-            uint unlockedCount = synced ? Math.Max(1u, Math.Min(MaxSchemes, snapshot.UnlockedSchemeCount)) : 0u;
+            uint maxSlots = EffectiveMaxSchemes(snapshot);
+            uint unlockedCount = synced ? EffectiveUnlockedSchemes(snapshot) : 0u;
+            uint freeSchemes = EffectiveFreeSchemes(snapshot);
             uint activeId = synced
-                ? (snapshot.ActiveSchemeId >= 1u && snapshot.ActiveSchemeId <= MaxSchemes ? snapshot.ActiveSchemeId : 1u)
+                ? (snapshot.ActiveSchemeId >= 1u && snapshot.ActiveSchemeId <= maxSlots ? snapshot.ActiveSchemeId : 1u)
                 : 0u;
 
             EquipLoadoutSchemeInfo activeScheme = null;
-            var slots = new PreBattleLoadoutSlotView[MaxSchemes];
-            for (int i = 0; i < (int)MaxSchemes; ++i)
+            var slots = new PreBattleLoadoutSlotView[maxSlots];
+            for (int i = 0; i < (int)maxSlots; ++i)
             {
                 uint schemeId = (uint)(i + 1);
                 var scheme = snapshot?.Schemes.FirstOrDefault(s => s != null && s.SchemeId == schemeId);
                 bool unlocked = synced && (scheme != null ? scheme.Unlocked : schemeId <= unlockedCount);
-                bool active = unlocked && schemeId == activeId;
+                bool active = synced && schemeId == activeId;
                 if (active) activeScheme = scheme;
 
                 uint missing = unlocked && scheme != null ? scheme.MissingCount : 0u;
+                bool isRentedOrCard = unlocked && schemeId > freeSchemes;
                 string spriteKey = !unlocked
                     ? TabLockedKey
-                    : (active ? TabActiveKey : TabUnlockedKey);
+                    : (active ? TabActiveKey : (isRentedOrCard ? TabRentedKey : TabUnlockedKey));
 
                 string label;
                 if (!synced)
@@ -430,7 +462,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 }
                 else if (!unlocked)
                 {
-                    label = "+ " + DefaultSchemeName(schemeId);
+                    label = active ? SchemeDisplayName(scheme) + "·锁" : "+ " + DefaultSchemeName(schemeId);
                 }
                 else
                 {
@@ -466,7 +498,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
 
             string headerText = synced
-                ? $"战前流派 · 当前：{FormatTabLabel(activeScheme ?? new EquipLoadoutSchemeInfo { SchemeId = activeId, Unlocked = true }, true)}"
+                ? $"战前流派 · 当前：{FormatTabLabel(activeScheme ?? new EquipLoadoutSchemeInfo { SchemeId = activeId, Unlocked = activeId <= unlockedCount }, true)}"
                 : (loading ? "战前流派 · 同步中…" : "战前流派 · 未同步");
 
             string statusText = string.Empty;
@@ -482,7 +514,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             else if (hasPendingUnlock)
             {
-                statusText = "方案解锁确认中，暂不可切换";
+                statusText = "方案席位确认中，暂不可切换";
                 statusIsError = true;
             }
             else if (switching)
@@ -493,6 +525,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 statusText = loading ? "正在同步装备流派方案…" : "点击右侧刷新流派方案";
             }
+            else if (activeScheme != null && !activeScheme.Unlocked)
+            {
+                statusText = "当前方案已到期锁定（只锁不删），可切回已解锁方案或续期恢复";
+                statusIsError = true;
+            }
             else if (activeScheme != null && activeScheme.MissingCount > 0u)
             {
                 statusText = $"当前方案缺 {activeScheme.MissingCount} 槽装备，切换将跳过缺失槽";
@@ -500,7 +537,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             else
             {
-                statusText = "点选 1..5 一键切整套流派（同步战法/加点）";
+                statusText = $"点选 1..{maxSlots} 一键切整套流派（装备/战法/加点三合一共享）";
             }
 
             return new PreBattleLoadoutBarState(

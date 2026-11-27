@@ -132,6 +132,19 @@ namespace MmorpgClient.Tests.EditMode.Net
         }
 
         [Test]
+        public void CallbackStateMatches_OnlyAcceptsCurrentAttemptState()
+        {
+            var current = new Uri("http://127.0.0.1:18765/passport/callback?code=c&state=cur_state");
+            Assert.That(PassportOAuthProtocol.CallbackStateMatches(current, "cur_state"), Is.True);
+            Assert.That(PassportOAuthProtocol.CallbackStateMatches(
+                new Uri("http://127.0.0.1:18765/passport/callback?code=c&state=old_state"), "cur_state"), Is.False);
+            Assert.That(PassportOAuthProtocol.CallbackStateMatches(
+                new Uri("http://127.0.0.1:18765/passport/callback?code=c"), "cur_state"), Is.False);
+            Assert.That(PassportOAuthProtocol.CallbackStateMatches(current, ""), Is.False);
+            Assert.That(PassportOAuthProtocol.CallbackStateMatches(null, "cur_state"), Is.False);
+        }
+
+        [Test]
         public void TryExtractIdToken_ReadsCompactJwtAndRejectsMalformedResponses()
         {
             const string sampleJwt = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlcnQifQ.eyJzdWIiOiJ1dWlkLTEifQ.c2lnbmF0dXJl";

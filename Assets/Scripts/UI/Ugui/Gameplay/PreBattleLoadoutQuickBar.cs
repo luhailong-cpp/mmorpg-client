@@ -11,9 +11,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     using Transform = UnityEngine.Transform;
 
     /// <summary>
-    /// 战前准备期 1..5 一键换流派通用无状态 uGUI 快捷条（零新图）：
-    /// - 直接复用 EquipLoadoutV1 的 tab_loadout_active / tab_loadout_unlocked / tab_loadout_locked 横向 9-slice 切片；
-    /// - 严格单向数据流：输入不可变 <see cref="PreBattleLoadoutBarState"/>，点击通过回调派发 SwitchEquipLoadout / 刷新 / 解锁引导；
+    /// 战前准备期 1..7 一键换流派通用无状态 uGUI 快捷条（方案 A 三合一共享席位 · 零新图）：
+    /// - 直接复用 EquipLoadoutV1 / SkillBuildLoadoutV1 的横向 9-slice 切片；
+    /// - 严格单向数据流：输入不可变 <see cref="PreBattleLoadoutBarState"/>，点击通过回调派发 SwitchEquipLoadout / 刷新 / 席位租用轻提示；
     /// - 所有动态方案名称与状态文案强制关闭 richText，触控高度 >= 40px，不依赖 Hover。
     /// </summary>
     public static class PreBattleLoadoutQuickBar
@@ -248,10 +248,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             int count = state.Slots.Count;
             if (count <= 0) return;
 
-            float gap = width >= 900f ? 12f : (width >= 600f ? 8f : 5f);
+            float gap = width >= 900f ? 10f : (width >= 640f ? 6f : 4f);
             float tabW = (width - gap * (count - 1)) / count;
-            float baseFont = tabW >= 200f ? 21f : (tabW >= 140f ? 18f : 15f);
-            float minFont = tabW >= 140f ? 13f : 11f;
+            float baseFont = tabW >= 180f ? 20f : (tabW >= 120f ? 17f : (tabW >= 84f ? 14f : 13f));
+            float minFont = tabW >= 120f ? 12f : 10f;
 
             for (int i = 0; i < count; ++i)
             {
@@ -289,7 +289,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Color textColor = slot.Active
                     ? Cream
                     : (!slot.Unlocked ? Muted : (slot.CanClick ? Ink : Muted));
-                float textPad = tabW >= 140f ? 12f : 6f;
+                float textPad = tabW >= 140f ? 10f : (tabW >= 90f ? 6f : 4f);
                 var lbl = CreateSafeLabel(btn.transform, "Lbl", textPad, 0f, Mathf.Max(20f, tabW - textPad * 2f), height,
                     slot.Label, baseFont, textColor, TextAlignmentOptions.Center, bold: slot.Active);
                 lbl.fontSizeMin = minFont;

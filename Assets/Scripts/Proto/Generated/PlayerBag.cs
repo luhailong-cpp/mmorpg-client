@@ -239,7 +239,7 @@ public static partial class PlayerBagReflection {
           "VmlldxIeChZsaW5rZWRfc2tpbGxfc2NoZW1lX2lkGAYgASgNEiIKGmxpbmtl",
           "ZF9hdHRyaWJ1dGVfc2NoZW1lX2lkGAcgASgNEhUKDW1pc3NpbmdfY291bnQY",
           "CCABKA0iTQoYRXF1aXBMb2Fkb3V0TGlua2VkT3B0aW9uEhEKCXNjaGVtZV9p",
-          "ZBgBIAEoDRIMCgRuYW1lGAIgASgJEhAKCHJvbGVfdGFnGAMgASgNIs0DChRF",
+          "ZBgBIAEoDRIMCgRuYW1lGAIgASgJEhAKCHJvbGVfdGFnGAMgASgNIrIFChRF",
           "cXVpcExvYWRvdXRTbmFwc2hvdBIdChV1bmxvY2tlZF9zY2hlbWVfY291bnQY",
           "ASABKA0SGAoQbWF4X3NjaGVtZV9jb3VudBgCIAEoDRIYChBhY3RpdmVfc2No",
           "ZW1lX2lkGAMgASgNEhUKDXN0YXRlX3ZlcnNpb24YBCABKAQSKAoHc2NoZW1l",
@@ -250,73 +250,78 @@ public static partial class PlayerBagReflection {
           "bmNlGAogASgEEhwKFGJpbmRfZGlhbW9uZF9iYWxhbmNlGAsgASgEEjAKDXNr",
           "aWxsX3NjaGVtZXMYDCADKAsyGS5FcXVpcExvYWRvdXRMaW5rZWRPcHRpb24S",
           "NAoRYXR0cmlidXRlX3NjaGVtZXMYDSADKAsyGS5FcXVpcExvYWRvdXRMaW5r",
-          "ZWRPcHRpb24iGQoXR2V0RXF1aXBMb2Fkb3V0c1JlcXVlc3QiawoYR2V0RXF1",
-          "aXBMb2Fkb3V0c1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5U",
-          "aXBJbmZvTWVzc2FnZRInCghzbmFwc2hvdBgCIAEoCzIVLkVxdWlwTG9hZG91",
-          "dFNuYXBzaG90IoYCChdTYXZlRXF1aXBMb2Fkb3V0UmVxdWVzdBIRCglzY2hl",
-          "bWVfaWQYASABKA0SDAoEbmFtZRgCIAEoCRIQCghyb2xlX3RhZxgDIAEoDRIn",
-          "CgVzbG90cxgEIAMoCzIYLkVxdWlwTG9hZG91dFNsb3RCaW5kaW5nEiAKGGNh",
-          "cHR1cmVfY3VycmVudF9lcXVpcHBlZBgFIAEoCBIeChZsaW5rZWRfc2tpbGxf",
-          "c2NoZW1lX2lkGAYgASgNEiIKGmxpbmtlZF9hdHRyaWJ1dGVfc2NoZW1lX2lk",
-          "GAcgASgNEhUKDXN0YXRlX3ZlcnNpb24YCCABKAQSEgoKcmVxdWVzdF9pZBgJ",
-          "IAEoCSKRAQoYU2F2ZUVxdWlwTG9hZG91dFJlc3BvbnNlEiYKDWVycm9yX21l",
-          "c3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRInCghzbmFwc2hvdBgCIAEo",
-          "CzIVLkVxdWlwTG9hZG91dFNuYXBzaG90EhIKCnJlcXVlc3RfaWQYAyABKAkS",
-          "EAoIcmVwbGF5ZWQYBCABKAgidwoZU3dpdGNoRXF1aXBMb2Fkb3V0UmVxdWVz",
-          "dBIRCglzY2hlbWVfaWQYASABKA0SHAoUYXBwbHlfbGlua2VkX3NjaGVtZXMY",
-          "AiABKAgSFQoNc3RhdGVfdmVyc2lvbhgDIAEoBBISCgpyZXF1ZXN0X2lkGAQg",
-          "ASgJIvYBChpTd2l0Y2hFcXVpcExvYWRvdXRSZXNwb25zZRImCg1lcnJvcl9t",
-          "ZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USFQoDYmFnGAIgASgLMggu",
-          "QmFnSW5mbxIbCgllcXVpcG1lbnQYAyABKAsyCC5CYWdJbmZvEicKCHNuYXBz",
-          "aG90GAQgASgLMhUuRXF1aXBMb2Fkb3V0U25hcHNob3QSFQoNbWlzc2luZ19z",
-          "bG90cxgFIAMoDRIWCg5saW5rZWRfbm90aWNlcxgGIAMoCRISCgpyZXF1ZXN0",
-          "X2lkGAcgASgJEhAKCHJlcGxheWVkGAggASgIIncKGVVubG9ja0VxdWlwTG9h",
-          "ZG91dFJlcXVlc3QSGQoRY2xpZW50X3JlcXVlc3RfaWQYASABKAQSHwoXZXhw",
-          "ZWN0ZWRfdW5sb2NrZWRfY291bnQYAiABKA0SHgoWdXNlX2JpbmRfZGlhbW9u",
-          "ZF9maXJzdBgDIAEoCCK6AwoaVW5sb2NrRXF1aXBMb2Fkb3V0UmVzcG9uc2US",
-          "JgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhkKEWNs",
-          "aWVudF9yZXF1ZXN0X2lkGAIgASgEEjQKB291dGNvbWUYAyABKA4yIy5Vbmxv",
-          "Y2tFcXVpcExvYWRvdXRSZXNwb25zZS5PdXRjb21lEg8KB2R1cmFibGUYBCAB",
-          "KAgSEAoIcmVwbGF5ZWQYBSABKAgSHQoVcmVzdWx0X3VubG9ja2VkX2NvdW50",
-          "GAYgASgNEh4KFmN1cnJlbnRfdW5sb2NrZWRfY291bnQYByABKA0SGwoTdXNl",
-          "ZF9pdGVtX2NvbmZpZ19pZBgIIAEoDRIaChJzcGVudF9iaW5kX2RpYW1vbmQY",
-          "CSABKAQSFQoNc3BlbnRfZGlhbW9uZBgKIAEoBBIVCgNiYWcYCyABKAsyCC5C",
-          "YWdJbmZvEicKCHNuYXBzaG90GAwgASgLMhUuRXF1aXBMb2Fkb3V0U25hcHNo",
-          "b3QiMQoHT3V0Y29tZRILCgdVTktOT1dOEAASDAoIUkVKRUNURUQQARILCgdB",
-          "UFBMSUVEEAIqoAEKFkVxdWlwTG9hZG91dFNsb3RTdGF0dXMSHAoYRVFVSVBf",
-          "TE9BRE9VVF9TTE9UX0VNUFRZEAASHwobRVFVSVBfTE9BRE9VVF9TTE9UX0VR",
-          "VUlQUEVEEAESHQoZRVFVSVBfTE9BRE9VVF9TTE9UX0lOX0JBRxACEigKJEVR",
-          "VUlQX0xPQURPVVRfU0xPVF9NSVNTSU5HX09SX1NUT1JFRBADMqwKChRTY2Vu",
-          "ZUJhZ0NsaWVudFBsYXllchIpCgZHZXRCYWcSDi5HZXRCYWdSZXF1ZXN0Gg8u",
-          "R2V0QmFnUmVzcG9uc2USLAoHU29ydEJhZxIPLlNvcnRCYWdSZXF1ZXN0GhAu",
-          "U29ydEJhZ1Jlc3BvbnNlEjIKCUVxdWlwSXRlbRIRLkVxdWlwSXRlbVJlcXVl",
-          "c3QaEi5FcXVpcEl0ZW1SZXNwb25zZRI4CgtVbmVxdWlwSXRlbRITLlVuZXF1",
-          "aXBJdGVtUmVxdWVzdBoULlVuZXF1aXBJdGVtUmVzcG9uc2USOAoLR21HcmFu",
-          "dEl0ZW0SEy5HbUdyYW50SXRlbVJlcXVlc3QaFC5HbUdyYW50SXRlbVJlc3Bv",
-          "bnNlEjsKDEVuaGFuY2VFcXVpcBIULkVuaGFuY2VFcXVpcFJlcXVlc3QaFS5F",
-          "bmhhbmNlRXF1aXBSZXNwb25zZRIvCghJbmxheUdlbRIQLklubGF5R2VtUmVx",
-          "dWVzdBoRLklubGF5R2VtUmVzcG9uc2USMgoJUmVtb3ZlR2VtEhEuUmVtb3Zl",
-          "R2VtUmVxdWVzdBoSLlJlbW92ZUdlbVJlc3BvbnNlElkKFlJldHJpZXZlVGVt",
-          "cG9yYXJ5SXRlbXMSHi5SZXRyaWV2ZVRlbXBvcmFyeUl0ZW1zUmVxdWVzdBof",
-          "LlJldHJpZXZlVGVtcG9yYXJ5SXRlbXNSZXNwb25zZRJZChZHZXRFcXVpcG1l",
-          "bnRDcmFmdFJ1bGVzEh4uR2V0RXF1aXBtZW50Q3JhZnRSdWxlc1JlcXVlc3Qa",
-          "Hy5HZXRFcXVpcG1lbnRDcmFmdFJ1bGVzUmVzcG9uc2USVgoVUHJldmlld0Vx",
-          "dWlwbWVudENyYWZ0Eh0uUHJldmlld0VxdWlwbWVudENyYWZ0UmVxdWVzdBoe",
-          "LlByZXZpZXdFcXVpcG1lbnRDcmFmdFJlc3BvbnNlElMKFENvbW1pdEVxdWlw",
-          "bWVudENyYWZ0EhwuQ29tbWl0RXF1aXBtZW50Q3JhZnRSZXF1ZXN0Gh0uQ29t",
-          "bWl0RXF1aXBtZW50Q3JhZnRSZXNwb25zZRJlChpHZXRFcXVpcG1lbnRNYXRl",
-          "cmlhbFJld2FyZBIiLkdldEVxdWlwbWVudE1hdGVyaWFsUmV3YXJkUmVxdWVz",
-          "dBojLkdldEVxdWlwbWVudE1hdGVyaWFsUmV3YXJkUmVzcG9uc2USawocQ2xh",
-          "aW1FcXVpcG1lbnRNYXRlcmlhbFJld2FyZBIkLkNsYWltRXF1aXBtZW50TWF0",
-          "ZXJpYWxSZXdhcmRSZXF1ZXN0GiUuQ2xhaW1FcXVpcG1lbnRNYXRlcmlhbFJl",
-          "d2FyZFJlc3BvbnNlEkcKEEdldEVxdWlwTG9hZG91dHMSGC5HZXRFcXVpcExv",
-          "YWRvdXRzUmVxdWVzdBoZLkdldEVxdWlwTG9hZG91dHNSZXNwb25zZRJHChBT",
-          "YXZlRXF1aXBMb2Fkb3V0EhguU2F2ZUVxdWlwTG9hZG91dFJlcXVlc3QaGS5T",
-          "YXZlRXF1aXBMb2Fkb3V0UmVzcG9uc2USTQoSU3dpdGNoRXF1aXBMb2Fkb3V0",
-          "EhouU3dpdGNoRXF1aXBMb2Fkb3V0UmVxdWVzdBobLlN3aXRjaEVxdWlwTG9h",
-          "ZG91dFJlc3BvbnNlEk0KElVubG9ja0VxdWlwTG9hZG91dBIaLlVubG9ja0Vx",
-          "dWlwTG9hZG91dFJlcXVlc3QaGy5VbmxvY2tFcXVpcExvYWRvdXRSZXNwb25z",
-          "ZRoKgKjDAQGIqMMBAUIOWgVzY2VuZYABAZjUYQNiBnByb3RvMw=="));
+          "ZWRPcHRpb24SFAoMZnJlZV9zY2hlbWVzGA4gASgNEiAKGGxpZ2h0X2NhcmRf",
+          "Ym9udXNfc2NoZW1lcxgPIAEoDRIaChJyZW50ZWRfZXh0cmFfc2xvdHMYECAB",
+          "KA0SGwoTcmVudF9leHBpcmVzX2F0X3NlYxgRIAEoBBIWCg5zZXJ2ZXJfbm93",
+          "X3NlYxgSIAEoBBIfChdyZW50X3VuaXRfcHJpY2VfZGlhbW9uZBgTIAEoBBIY",
+          "ChByZW50X3BlcmlvZF9kYXlzGBQgASgNEh8KF3JlbnRfbWF4X3JlbWFpbmlu",
+          "Z19kYXlzGBUgASgNIhkKF0dldEVxdWlwTG9hZG91dHNSZXF1ZXN0ImsKGEdl",
+          "dEVxdWlwTG9hZG91dHNSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
+          "Mg8uVGlwSW5mb01lc3NhZ2USJwoIc25hcHNob3QYAiABKAsyFS5FcXVpcExv",
+          "YWRvdXRTbmFwc2hvdCKGAgoXU2F2ZUVxdWlwTG9hZG91dFJlcXVlc3QSEQoJ",
+          "c2NoZW1lX2lkGAEgASgNEgwKBG5hbWUYAiABKAkSEAoIcm9sZV90YWcYAyAB",
+          "KA0SJwoFc2xvdHMYBCADKAsyGC5FcXVpcExvYWRvdXRTbG90QmluZGluZxIg",
+          "ChhjYXB0dXJlX2N1cnJlbnRfZXF1aXBwZWQYBSABKAgSHgoWbGlua2VkX3Nr",
+          "aWxsX3NjaGVtZV9pZBgGIAEoDRIiChpsaW5rZWRfYXR0cmlidXRlX3NjaGVt",
+          "ZV9pZBgHIAEoDRIVCg1zdGF0ZV92ZXJzaW9uGAggASgEEhIKCnJlcXVlc3Rf",
+          "aWQYCSABKAkikQEKGFNhdmVFcXVpcExvYWRvdXRSZXNwb25zZRImCg1lcnJv",
+          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USJwoIc25hcHNob3QY",
+          "AiABKAsyFS5FcXVpcExvYWRvdXRTbmFwc2hvdBISCgpyZXF1ZXN0X2lkGAMg",
+          "ASgJEhAKCHJlcGxheWVkGAQgASgIIncKGVN3aXRjaEVxdWlwTG9hZG91dFJl",
+          "cXVlc3QSEQoJc2NoZW1lX2lkGAEgASgNEhwKFGFwcGx5X2xpbmtlZF9zY2hl",
+          "bWVzGAIgASgIEhUKDXN0YXRlX3ZlcnNpb24YAyABKAQSEgoKcmVxdWVzdF9p",
+          "ZBgEIAEoCSL2AQoaU3dpdGNoRXF1aXBMb2Fkb3V0UmVzcG9uc2USJgoNZXJy",
+          "b3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhUKA2JhZxgCIAEo",
+          "CzIILkJhZ0luZm8SGwoJZXF1aXBtZW50GAMgASgLMgguQmFnSW5mbxInCghz",
+          "bmFwc2hvdBgEIAEoCzIVLkVxdWlwTG9hZG91dFNuYXBzaG90EhUKDW1pc3Np",
+          "bmdfc2xvdHMYBSADKA0SFgoObGlua2VkX25vdGljZXMYBiADKAkSEgoKcmVx",
+          "dWVzdF9pZBgHIAEoCRIQCghyZXBsYXllZBgIIAEoCCJ3ChlVbmxvY2tFcXVp",
+          "cExvYWRvdXRSZXF1ZXN0EhkKEWNsaWVudF9yZXF1ZXN0X2lkGAEgASgEEh8K",
+          "F2V4cGVjdGVkX3VubG9ja2VkX2NvdW50GAIgASgNEh4KFnVzZV9iaW5kX2Rp",
+          "YW1vbmRfZmlyc3QYAyABKAgiugMKGlVubG9ja0VxdWlwTG9hZG91dFJlc3Bv",
+          "bnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIZ",
+          "ChFjbGllbnRfcmVxdWVzdF9pZBgCIAEoBBI0CgdvdXRjb21lGAMgASgOMiMu",
+          "VW5sb2NrRXF1aXBMb2Fkb3V0UmVzcG9uc2UuT3V0Y29tZRIPCgdkdXJhYmxl",
+          "GAQgASgIEhAKCHJlcGxheWVkGAUgASgIEh0KFXJlc3VsdF91bmxvY2tlZF9j",
+          "b3VudBgGIAEoDRIeChZjdXJyZW50X3VubG9ja2VkX2NvdW50GAcgASgNEhsK",
+          "E3VzZWRfaXRlbV9jb25maWdfaWQYCCABKA0SGgoSc3BlbnRfYmluZF9kaWFt",
+          "b25kGAkgASgEEhUKDXNwZW50X2RpYW1vbmQYCiABKAQSFQoDYmFnGAsgASgL",
+          "MgguQmFnSW5mbxInCghzbmFwc2hvdBgMIAEoCzIVLkVxdWlwTG9hZG91dFNu",
+          "YXBzaG90IjEKB091dGNvbWUSCwoHVU5LTk9XThAAEgwKCFJFSkVDVEVEEAES",
+          "CwoHQVBQTElFRBACKqABChZFcXVpcExvYWRvdXRTbG90U3RhdHVzEhwKGEVR",
+          "VUlQX0xPQURPVVRfU0xPVF9FTVBUWRAAEh8KG0VRVUlQX0xPQURPVVRfU0xP",
+          "VF9FUVVJUFBFRBABEh0KGUVRVUlQX0xPQURPVVRfU0xPVF9JTl9CQUcQAhIo",
+          "CiRFUVVJUF9MT0FET1VUX1NMT1RfTUlTU0lOR19PUl9TVE9SRUQQAzKsCgoU",
+          "U2NlbmVCYWdDbGllbnRQbGF5ZXISKQoGR2V0QmFnEg4uR2V0QmFnUmVxdWVz",
+          "dBoPLkdldEJhZ1Jlc3BvbnNlEiwKB1NvcnRCYWcSDy5Tb3J0QmFnUmVxdWVz",
+          "dBoQLlNvcnRCYWdSZXNwb25zZRIyCglFcXVpcEl0ZW0SES5FcXVpcEl0ZW1S",
+          "ZXF1ZXN0GhIuRXF1aXBJdGVtUmVzcG9uc2USOAoLVW5lcXVpcEl0ZW0SEy5V",
+          "bmVxdWlwSXRlbVJlcXVlc3QaFC5VbmVxdWlwSXRlbVJlc3BvbnNlEjgKC0dt",
+          "R3JhbnRJdGVtEhMuR21HcmFudEl0ZW1SZXF1ZXN0GhQuR21HcmFudEl0ZW1S",
+          "ZXNwb25zZRI7CgxFbmhhbmNlRXF1aXASFC5FbmhhbmNlRXF1aXBSZXF1ZXN0",
+          "GhUuRW5oYW5jZUVxdWlwUmVzcG9uc2USLwoISW5sYXlHZW0SEC5JbmxheUdl",
+          "bVJlcXVlc3QaES5JbmxheUdlbVJlc3BvbnNlEjIKCVJlbW92ZUdlbRIRLlJl",
+          "bW92ZUdlbVJlcXVlc3QaEi5SZW1vdmVHZW1SZXNwb25zZRJZChZSZXRyaWV2",
+          "ZVRlbXBvcmFyeUl0ZW1zEh4uUmV0cmlldmVUZW1wb3JhcnlJdGVtc1JlcXVl",
+          "c3QaHy5SZXRyaWV2ZVRlbXBvcmFyeUl0ZW1zUmVzcG9uc2USWQoWR2V0RXF1",
+          "aXBtZW50Q3JhZnRSdWxlcxIeLkdldEVxdWlwbWVudENyYWZ0UnVsZXNSZXF1",
+          "ZXN0Gh8uR2V0RXF1aXBtZW50Q3JhZnRSdWxlc1Jlc3BvbnNlElYKFVByZXZp",
+          "ZXdFcXVpcG1lbnRDcmFmdBIdLlByZXZpZXdFcXVpcG1lbnRDcmFmdFJlcXVl",
+          "c3QaHi5QcmV2aWV3RXF1aXBtZW50Q3JhZnRSZXNwb25zZRJTChRDb21taXRF",
+          "cXVpcG1lbnRDcmFmdBIcLkNvbW1pdEVxdWlwbWVudENyYWZ0UmVxdWVzdBod",
+          "LkNvbW1pdEVxdWlwbWVudENyYWZ0UmVzcG9uc2USZQoaR2V0RXF1aXBtZW50",
+          "TWF0ZXJpYWxSZXdhcmQSIi5HZXRFcXVpcG1lbnRNYXRlcmlhbFJld2FyZFJl",
+          "cXVlc3QaIy5HZXRFcXVpcG1lbnRNYXRlcmlhbFJld2FyZFJlc3BvbnNlEmsK",
+          "HENsYWltRXF1aXBtZW50TWF0ZXJpYWxSZXdhcmQSJC5DbGFpbUVxdWlwbWVu",
+          "dE1hdGVyaWFsUmV3YXJkUmVxdWVzdBolLkNsYWltRXF1aXBtZW50TWF0ZXJp",
+          "YWxSZXdhcmRSZXNwb25zZRJHChBHZXRFcXVpcExvYWRvdXRzEhguR2V0RXF1",
+          "aXBMb2Fkb3V0c1JlcXVlc3QaGS5HZXRFcXVpcExvYWRvdXRzUmVzcG9uc2US",
+          "RwoQU2F2ZUVxdWlwTG9hZG91dBIYLlNhdmVFcXVpcExvYWRvdXRSZXF1ZXN0",
+          "GhkuU2F2ZUVxdWlwTG9hZG91dFJlc3BvbnNlEk0KElN3aXRjaEVxdWlwTG9h",
+          "ZG91dBIaLlN3aXRjaEVxdWlwTG9hZG91dFJlcXVlc3QaGy5Td2l0Y2hFcXVp",
+          "cExvYWRvdXRSZXNwb25zZRJNChJVbmxvY2tFcXVpcExvYWRvdXQSGi5Vbmxv",
+          "Y2tFcXVpcExvYWRvdXRSZXF1ZXN0GhsuVW5sb2NrRXF1aXBMb2Fkb3V0UmVz",
+          "cG9uc2UaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::CurrencyCompReflection.Descriptor, global::PlayerEquipLoadoutCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::EquipLoadoutSlotStatus), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -372,7 +377,7 @@ public static partial class PlayerBagReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipLoadoutSlotView), global::EquipLoadoutSlotView.Parser, new[]{ "Slot", "SlotName", "EquipKind", "ItemGuid", "Status", "Item" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipLoadoutSchemeInfo), global::EquipLoadoutSchemeInfo.Parser, new[]{ "SchemeId", "Unlocked", "Name", "RoleTag", "Slots", "LinkedSkillSchemeId", "LinkedAttributeSchemeId", "MissingCount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipLoadoutLinkedOption), global::EquipLoadoutLinkedOption.Parser, new[]{ "SchemeId", "Name", "RoleTag" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipLoadoutSnapshot), global::EquipLoadoutSnapshot.Parser, new[]{ "UnlockedSchemeCount", "MaxSchemeCount", "ActiveSchemeId", "StateVersion", "Schemes", "NextUnlockCostDiamond", "NextUnlockAllowBindDiamond", "UnlockItemConfigId", "UnlockItemOwned", "DiamondBalance", "BindDiamondBalance", "SkillSchemes", "AttributeSchemes" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipLoadoutSnapshot), global::EquipLoadoutSnapshot.Parser, new[]{ "UnlockedSchemeCount", "MaxSchemeCount", "ActiveSchemeId", "StateVersion", "Schemes", "NextUnlockCostDiamond", "NextUnlockAllowBindDiamond", "UnlockItemConfigId", "UnlockItemOwned", "DiamondBalance", "BindDiamondBalance", "SkillSchemes", "AttributeSchemes", "FreeSchemes", "LightCardBonusSchemes", "RentedExtraSlots", "RentExpiresAtSec", "ServerNowSec", "RentUnitPriceDiamond", "RentPeriodDays", "RentMaxRemainingDays" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetEquipLoadoutsRequest), global::GetEquipLoadoutsRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetEquipLoadoutsResponse), global::GetEquipLoadoutsResponse.Parser, new[]{ "ErrorMessage", "Snapshot" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SaveEquipLoadoutRequest), global::SaveEquipLoadoutRequest.Parser, new[]{ "SchemeId", "Name", "RoleTag", "Slots", "CaptureCurrentEquipped", "LinkedSkillSchemeId", "LinkedAttributeSchemeId", "StateVersion", "RequestId" }, null, null, null, null),
@@ -20489,7 +20494,7 @@ public sealed partial class EquipLoadoutSchemeInfo : pb::IMessage<EquipLoadoutSc
   public const int SchemeIdFieldNumber = 1;
   private uint schemeId_;
   /// <summary>
-  /// 1..5 显式方案号
+  /// 1..7 显式方案号
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -20504,7 +20509,7 @@ public sealed partial class EquipLoadoutSchemeInfo : pb::IMessage<EquipLoadoutSc
   public const int UnlockedFieldNumber = 2;
   private bool unlocked_;
   /// <summary>
-  /// 是否已解锁
+  /// 是否在当前生效席位内（false 表示未解锁或到期只读锁定）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -20519,7 +20524,7 @@ public sealed partial class EquipLoadoutSchemeInfo : pb::IMessage<EquipLoadoutSc
   public const int NameFieldNumber = 3;
   private string name_ = "";
   /// <summary>
-  /// 自定义方案名（空则展示默认「方案一..五」）
+  /// 自定义方案名（空则展示默认「方案一..七」）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -20551,7 +20556,7 @@ public sealed partial class EquipLoadoutSchemeInfo : pb::IMessage<EquipLoadoutSc
       = pb::FieldCodec.ForMessage(42, global::EquipLoadoutSlotView.Parser);
   private readonly pbc::RepeatedField<global::EquipLoadoutSlotView> slots_ = new pbc::RepeatedField<global::EquipLoadoutSlotView>();
   /// <summary>
-  /// 8 个正式槽位按 slot 升序
+  /// 8 个正式槽位按 slot 升序（到期只锁不删，仍返回已存配置）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -21223,6 +21228,14 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
     bindDiamondBalance_ = other.bindDiamondBalance_;
     skillSchemes_ = other.skillSchemes_.Clone();
     attributeSchemes_ = other.attributeSchemes_.Clone();
+    freeSchemes_ = other.freeSchemes_;
+    lightCardBonusSchemes_ = other.lightCardBonusSchemes_;
+    rentedExtraSlots_ = other.rentedExtraSlots_;
+    rentExpiresAtSec_ = other.rentExpiresAtSec_;
+    serverNowSec_ = other.serverNowSec_;
+    rentUnitPriceDiamond_ = other.rentUnitPriceDiamond_;
+    rentPeriodDays_ = other.rentPeriodDays_;
+    rentMaxRemainingDays_ = other.rentMaxRemainingDays_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -21236,7 +21249,7 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
   public const int UnlockedSchemeCountFieldNumber = 1;
   private uint unlockedSchemeCount_;
   /// <summary>
-  /// 已解锁套数（1..5）
+  /// 当前生效已解锁套数（2..7，与战法·加点三合一共享）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -21251,7 +21264,7 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
   public const int MaxSchemeCountFieldNumber = 2;
   private uint maxSchemeCount_;
   /// <summary>
-  /// 套位总上限（固定 5）
+  /// 套位总上限（固定 7）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -21266,7 +21279,7 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
   public const int ActiveSchemeIdFieldNumber = 3;
   private uint activeSchemeId_;
   /// <summary>
-  /// 当前激活方案号（1..unlocked）
+  /// 当前激活方案号（1..7；到期锁定态允许保留直至切走）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -21298,7 +21311,7 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
       = pb::FieldCodec.ForMessage(42, global::EquipLoadoutSchemeInfo.Parser);
   private readonly pbc::RepeatedField<global::EquipLoadoutSchemeInfo> schemes_ = new pbc::RepeatedField<global::EquipLoadoutSchemeInfo>();
   /// <summary>
-  /// 1..5 全部套位，按 scheme_id 升序
+  /// 1..7 全部套位，按 scheme_id 升序
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -21310,7 +21323,7 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
   public const int NextUnlockCostDiamondFieldNumber = 6;
   private ulong nextUnlockCostDiamond_;
   /// <summary>
-  /// 下一套解锁灵石价格（已满为 0）
+  /// 历史保留字段（方案 A 合一租用模式下恒为 0）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -21325,7 +21338,7 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
   public const int NextUnlockAllowBindDiamondFieldNumber = 7;
   private bool nextUnlockAllowBindDiamond_;
   /// <summary>
-  /// 下一套是否允许优先使用绑定灵石（仅第 2 套为 true）
+  /// 历史保留字段（方案 A 合一租用模式下恒为 false）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -21340,7 +21353,7 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
   public const int UnlockItemConfigIdFieldNumber = 8;
   private uint unlockItemConfigId_;
   /// <summary>
-  /// 装备方案扩容符配置号（3413）
+  /// 历史保留字段（3413）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -21355,7 +21368,7 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
   public const int UnlockItemOwnedFieldNumber = 9;
   private ulong unlockItemOwned_;
   /// <summary>
-  /// 背包当前可用的扩容符数量
+  /// 历史保留字段
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -21402,7 +21415,7 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
       = pb::FieldCodec.ForMessage(98, global::EquipLoadoutLinkedOption.Parser);
   private readonly pbc::RepeatedField<global::EquipLoadoutLinkedOption> skillSchemes_ = new pbc::RepeatedField<global::EquipLoadoutLinkedOption>();
   /// <summary>
-  /// 可选联动的战法方案列表
+  /// 可选联动的战法方案列表（1..unlocked）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -21422,6 +21435,126 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::EquipLoadoutLinkedOption> AttributeSchemes {
     get { return attributeSchemes_; }
+  }
+
+  /// <summary>Field number for the "free_schemes" field.</summary>
+  public const int FreeSchemesFieldNumber = 14;
+  private uint freeSchemes_;
+  /// <summary>
+  /// ── 方案 A：7 套三合一共享流派席位投影（与 SkillLoadoutSnapshot 同口径）──
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint FreeSchemes {
+    get { return freeSchemes_; }
+    set {
+      freeSchemes_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "light_card_bonus_schemes" field.</summary>
+  public const int LightCardBonusSchemesFieldNumber = 15;
+  private uint lightCardBonusSchemes_;
+  /// <summary>
+  /// 仙途轻享卡生效附赠套数（0 或 2）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint LightCardBonusSchemes {
+    get { return lightCardBonusSchemes_; }
+    set {
+      lightCardBonusSchemes_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "rented_extra_slots" field.</summary>
+  public const int RentedExtraSlotsFieldNumber = 16;
+  private uint rentedExtraSlots_;
+  /// <summary>
+  /// 当前有效租期内的额外按月租用套数（0..5，到期为 0）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RentedExtraSlots {
+    get { return rentedExtraSlots_; }
+    set {
+      rentedExtraSlots_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "rent_expires_at_sec" field.</summary>
+  public const int RentExpiresAtSecFieldNumber = 17;
+  private ulong rentExpiresAtSec_;
+  /// <summary>
+  /// 统一到期 Unix 秒（0 或 &lt;= server_now_sec 表示未租/已到期）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong RentExpiresAtSec {
+    get { return rentExpiresAtSec_; }
+    set {
+      rentExpiresAtSec_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "server_now_sec" field.</summary>
+  public const int ServerNowSecFieldNumber = 18;
+  private ulong serverNowSec_;
+  /// <summary>
+  /// 服务器当前 Unix 秒（供前端倒计时与补差价试算）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ServerNowSec {
+    get { return serverNowSec_; }
+    set {
+      serverNowSec_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "rent_unit_price_diamond" field.</summary>
+  public const int RentUnitPriceDiamondFieldNumber = 19;
+  private ulong rentUnitPriceDiamond_;
+  /// <summary>
+  /// 单套 30 天真实灵石价（固定 30，装备+战法+加点共享）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong RentUnitPriceDiamond {
+    get { return rentUnitPriceDiamond_; }
+    set {
+      rentUnitPriceDiamond_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "rent_period_days" field.</summary>
+  public const int RentPeriodDaysFieldNumber = 20;
+  private uint rentPeriodDays_;
+  /// <summary>
+  /// 单期租用天数（固定 30）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RentPeriodDays {
+    get { return rentPeriodDays_; }
+    set {
+      rentPeriodDays_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "rent_max_remaining_days" field.</summary>
+  public const int RentMaxRemainingDaysFieldNumber = 21;
+  private uint rentMaxRemainingDays_;
+  /// <summary>
+  /// 最长剩余叠加天数（固定 180）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RentMaxRemainingDays {
+    get { return rentMaxRemainingDays_; }
+    set {
+      rentMaxRemainingDays_ = value;
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21452,6 +21585,14 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
     if (BindDiamondBalance != other.BindDiamondBalance) return false;
     if(!skillSchemes_.Equals(other.skillSchemes_)) return false;
     if(!attributeSchemes_.Equals(other.attributeSchemes_)) return false;
+    if (FreeSchemes != other.FreeSchemes) return false;
+    if (LightCardBonusSchemes != other.LightCardBonusSchemes) return false;
+    if (RentedExtraSlots != other.RentedExtraSlots) return false;
+    if (RentExpiresAtSec != other.RentExpiresAtSec) return false;
+    if (ServerNowSec != other.ServerNowSec) return false;
+    if (RentUnitPriceDiamond != other.RentUnitPriceDiamond) return false;
+    if (RentPeriodDays != other.RentPeriodDays) return false;
+    if (RentMaxRemainingDays != other.RentMaxRemainingDays) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -21472,6 +21613,14 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
     if (BindDiamondBalance != 0UL) hash ^= BindDiamondBalance.GetHashCode();
     hash ^= skillSchemes_.GetHashCode();
     hash ^= attributeSchemes_.GetHashCode();
+    if (FreeSchemes != 0) hash ^= FreeSchemes.GetHashCode();
+    if (LightCardBonusSchemes != 0) hash ^= LightCardBonusSchemes.GetHashCode();
+    if (RentedExtraSlots != 0) hash ^= RentedExtraSlots.GetHashCode();
+    if (RentExpiresAtSec != 0UL) hash ^= RentExpiresAtSec.GetHashCode();
+    if (ServerNowSec != 0UL) hash ^= ServerNowSec.GetHashCode();
+    if (RentUnitPriceDiamond != 0UL) hash ^= RentUnitPriceDiamond.GetHashCode();
+    if (RentPeriodDays != 0) hash ^= RentPeriodDays.GetHashCode();
+    if (RentMaxRemainingDays != 0) hash ^= RentMaxRemainingDays.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -21533,6 +21682,38 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
     }
     skillSchemes_.WriteTo(output, _repeated_skillSchemes_codec);
     attributeSchemes_.WriteTo(output, _repeated_attributeSchemes_codec);
+    if (FreeSchemes != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(FreeSchemes);
+    }
+    if (LightCardBonusSchemes != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(LightCardBonusSchemes);
+    }
+    if (RentedExtraSlots != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(RentedExtraSlots);
+    }
+    if (RentExpiresAtSec != 0UL) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt64(RentExpiresAtSec);
+    }
+    if (ServerNowSec != 0UL) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt64(ServerNowSec);
+    }
+    if (RentUnitPriceDiamond != 0UL) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt64(RentUnitPriceDiamond);
+    }
+    if (RentPeriodDays != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(RentPeriodDays);
+    }
+    if (RentMaxRemainingDays != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(RentMaxRemainingDays);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -21586,6 +21767,38 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
     }
     skillSchemes_.WriteTo(ref output, _repeated_skillSchemes_codec);
     attributeSchemes_.WriteTo(ref output, _repeated_attributeSchemes_codec);
+    if (FreeSchemes != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(FreeSchemes);
+    }
+    if (LightCardBonusSchemes != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(LightCardBonusSchemes);
+    }
+    if (RentedExtraSlots != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(RentedExtraSlots);
+    }
+    if (RentExpiresAtSec != 0UL) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt64(RentExpiresAtSec);
+    }
+    if (ServerNowSec != 0UL) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt64(ServerNowSec);
+    }
+    if (RentUnitPriceDiamond != 0UL) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt64(RentUnitPriceDiamond);
+    }
+    if (RentPeriodDays != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(RentPeriodDays);
+    }
+    if (RentMaxRemainingDays != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(RentMaxRemainingDays);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -21629,6 +21842,30 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
     }
     size += skillSchemes_.CalculateSize(_repeated_skillSchemes_codec);
     size += attributeSchemes_.CalculateSize(_repeated_attributeSchemes_codec);
+    if (FreeSchemes != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(FreeSchemes);
+    }
+    if (LightCardBonusSchemes != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LightCardBonusSchemes);
+    }
+    if (RentedExtraSlots != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RentedExtraSlots);
+    }
+    if (RentExpiresAtSec != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(RentExpiresAtSec);
+    }
+    if (ServerNowSec != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(ServerNowSec);
+    }
+    if (RentUnitPriceDiamond != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(RentUnitPriceDiamond);
+    }
+    if (RentPeriodDays != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RentPeriodDays);
+    }
+    if (RentMaxRemainingDays != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RentMaxRemainingDays);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -21674,6 +21911,30 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
     }
     skillSchemes_.Add(other.skillSchemes_);
     attributeSchemes_.Add(other.attributeSchemes_);
+    if (other.FreeSchemes != 0) {
+      FreeSchemes = other.FreeSchemes;
+    }
+    if (other.LightCardBonusSchemes != 0) {
+      LightCardBonusSchemes = other.LightCardBonusSchemes;
+    }
+    if (other.RentedExtraSlots != 0) {
+      RentedExtraSlots = other.RentedExtraSlots;
+    }
+    if (other.RentExpiresAtSec != 0UL) {
+      RentExpiresAtSec = other.RentExpiresAtSec;
+    }
+    if (other.ServerNowSec != 0UL) {
+      ServerNowSec = other.ServerNowSec;
+    }
+    if (other.RentUnitPriceDiamond != 0UL) {
+      RentUnitPriceDiamond = other.RentUnitPriceDiamond;
+    }
+    if (other.RentPeriodDays != 0) {
+      RentPeriodDays = other.RentPeriodDays;
+    }
+    if (other.RentMaxRemainingDays != 0) {
+      RentMaxRemainingDays = other.RentMaxRemainingDays;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -21745,6 +22006,38 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
           attributeSchemes_.AddEntriesFrom(input, _repeated_attributeSchemes_codec);
           break;
         }
+        case 112: {
+          FreeSchemes = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          LightCardBonusSchemes = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          RentedExtraSlots = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          RentExpiresAtSec = input.ReadUInt64();
+          break;
+        }
+        case 144: {
+          ServerNowSec = input.ReadUInt64();
+          break;
+        }
+        case 152: {
+          RentUnitPriceDiamond = input.ReadUInt64();
+          break;
+        }
+        case 160: {
+          RentPeriodDays = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          RentMaxRemainingDays = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -21814,6 +22107,38 @@ public sealed partial class EquipLoadoutSnapshot : pb::IMessage<EquipLoadoutSnap
         }
         case 106: {
           attributeSchemes_.AddEntriesFrom(ref input, _repeated_attributeSchemes_codec);
+          break;
+        }
+        case 112: {
+          FreeSchemes = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          LightCardBonusSchemes = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          RentedExtraSlots = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          RentExpiresAtSec = input.ReadUInt64();
+          break;
+        }
+        case 144: {
+          ServerNowSec = input.ReadUInt64();
+          break;
+        }
+        case 152: {
+          RentUnitPriceDiamond = input.ReadUInt64();
+          break;
+        }
+        case 160: {
+          RentPeriodDays = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          RentMaxRemainingDays = input.ReadUInt32();
           break;
         }
       }

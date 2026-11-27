@@ -20,13 +20,14 @@ namespace MmorpgClient.UI.Ugui.Skills
     /// </summary>
     public sealed class SkillCraftWindow : IDisposable
     {
-        private enum CraftModal { None = 0, DismantleSingle = 1, BatchDismantle = 2, BuildAdvisor = 3 }
+        private enum CraftModal { None = 0, DismantleSingle = 1, BatchDismantle = 2, BuildAdvisor = 3, ProxyDigest = 4 }
 
         private readonly RectTransform _root, _frame, _body, _modalLayer;
         private readonly CanvasGroup _bodyGroup;
         private SkillCraftClient _client;
         private SkillCraftPage _page;
         private CraftModal _modal;
+        private bool _autoShownDigestThisOpen;
         private uint _selectedScrollId;
         private uint _selectedSkillId;
         private ulong _selectedProxyMasterId;
@@ -39,7 +40,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         private uint _draftCraftTitleId;
         private bool _draftTeamFreeProxy;
         private bool _draftFeesInitialized;
-        private ProxyStallSortMode _stallSortMode = ProxyStallSortMode.Reputation;
+        private ProxyStallSortMode _stallSortMode = ProxyStallSortMode.HotRank;
         private ProxyStallFilterMode _stallFilterMode = ProxyStallFilterMode.All;
         private uint _wantedSkillId;
         private ulong _wantedRewardGold = 500;
@@ -49,6 +50,7 @@ namespace MmorpgClient.UI.Ugui.Skills
 
         public event Action Closed;
         public event Action<ulong> RequestProxyEquipmentPolish;
+        public event Action RequestOpenMail;
         public bool IsVisible => !_disposed && _root != null && _root.gameObject.activeSelf;
 
         public SkillCraftWindow(UnityEngine.Transform parent)
@@ -90,6 +92,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             _dismantleConfirmBookId = 0;
             _batchDismantleIds.Clear();
             _modal = CraftModal.None;
+            _autoShownDigestThisOpen = false;
             _root.SetAsLastSibling();
             _root.gameObject.SetActive(true);
             BindBagSource(PlayerFeaturesClient.Instance);
@@ -183,6 +186,11 @@ namespace MmorpgClient.UI.Ugui.Skills
                     }
 
                     if (_dismantleConfirmBookId != 0 && _modal == CraftModal.None) _modal = CraftModal.DismantleSingle;
+                    if (!_autoShownDigestThisOpen && _modal == CraftModal.None && _client?.HasUnreadProxyDigest == true)
+                    {
+                        _autoShownDigestThisOpen = true;
+                        _modal = CraftModal.ProxyDigest;
+                    }
                     bool hasModal = _modal != CraftModal.None;
                     _bodyGroup.interactable = !hasModal;
                     _bodyGroup.blocksRaycasts = !hasModal;
@@ -190,6 +198,7 @@ namespace MmorpgClient.UI.Ugui.Skills
                     if (_modal == CraftModal.DismantleSingle) RenderDismantleConfirmModal();
                     else if (_modal == CraftModal.BatchDismantle) RenderBatchDismantleModal();
                     else if (_modal == CraftModal.BuildAdvisor) RenderBuildAdvisorModal();
+                    else if (_modal == CraftModal.ProxyDigest) RenderProxyDigestModal();
                 } while (_renderAgain);
             }
             finally { _rendering = false; }
@@ -551,7 +560,17 @@ namespace MmorpgClient.UI.Ugui.Skills
                     myInfoX = 300f;
                 }
             }
-            Label(_body, "MyProxyStallInfo", myStatus, myInfoX, 405, 3450f - myInfoX, 110, 34, true, isMaster ? Jade : Muted);
+            bool hasUnreadDigest = _client?.HasUnreadProxyDigest == true;
+            float myInfoRight = hasUnreadDigest ? 3360f : 3450f;
+            Label(_body, "MyProxyStallInfo", myStatus, myInfoX, 405, myInfoRight - myInfoX, 110, 34, true, isMaster ? Jade : Muted);
+            if (hasUnreadDigest)
+            {
+                Button(_body, "OpenProxyDigestBtn", "查看营业战报", 3390, 405, 380, () =>
+                {
+                    _modal = CraftModal.ProxyDigest;
+                    Render();
+                }, true);
+            }
             if (isMaster)
             {
                 bool busy = _client.IsBusy;
@@ -585,18 +604,29 @@ namespace MmorpgClient.UI.Ugui.Skills
             }
 
             Panel(_body, "CityMastersPaper", 130, 760, 3700, 650);
-            Label(_body, "CityMastersTitle", "全区24小时营业名匠", 190, 790, 620, 66, 42, color: Jade);
-            // V2 排序与筛选按钮组
-            Button(_body, "SortReputation", "口碑优先", 820, 778, 310, () => { _stallSortMode = ProxyStallSortMode.Reputation; Render(); }, _stallSortMode == ProxyStallSortMode.Reputation);
-            Button(_body, "SortSupreme", "极品最多", 1145, 778, 310, () => { _stallSortMode = ProxyStallSortMode.SupremeCount; Render(); }, _stallSortMode == ProxyStallSortMode.SupremeCount);
-            Button(_body, "SortLowestFee", "手工费最低", 1470, 778, 330, () => { _stallSortMode = ProxyStallSortMode.LowestFee; Render(); }, _stallSortMode == ProxyStallSortMode.LowestFee);
-            Button(_body, "FilterAll", "全部", 1920, 778, 220, () => { _stallFilterMode = ProxyStallFilterMode.All; Render(); }, _stallFilterMode == ProxyStallFilterMode.All);
-            Button(_body, "FilterForge", "铸器宗师", 2155, 778, 310, () => { _stallFilterMode = ProxyStallFilterMode.ForgeMaster; Render(); }, _stallFilterMode == ProxyStallFilterMode.ForgeMaster);
-            Button(_body, "FilterScroll", "制卷宗师", 2480, 778, 310, () => { _stallFilterMode = ProxyStallFilterMode.ScrollMaster; Render(); }, _stallFilterMode == ProxyStallFilterMode.ScrollMaster);
-            Button(_body, "FilterTeamFree", "同队免税", 2805, 778, 310, () => { _stallFilterMode = ProxyStallFilterMode.TeamFree; Render(); }, _stallFilterMode == ProxyStallFilterMode.TeamFree);
+            Label(_body, "CityMastersTitle", "全区24小时营业名匠", 190, 790, 480, 66, 40, color: Jade);
+            // 极品热榜与 V2 排序、筛选按钮组
+            Button(_body, "SortHotRank", "热榜优先", 680, 778, 250, () => { _stallSortMode = ProxyStallSortMode.HotRank; Render(); }, _stallSortMode == ProxyStallSortMode.HotRank);
+            Button(_body, "SortReputation", "口碑优先", 945, 778, 250, () => { _stallSortMode = ProxyStallSortMode.Reputation; Render(); }, _stallSortMode == ProxyStallSortMode.Reputation);
+            Button(_body, "SortSupreme", "极品最多", 1210, 778, 250, () => { _stallSortMode = ProxyStallSortMode.SupremeCount; Render(); }, _stallSortMode == ProxyStallSortMode.SupremeCount);
+            Button(_body, "SortLowestFee", "手工费低", 1475, 778, 250, () => { _stallSortMode = ProxyStallSortMode.LowestFee; Render(); }, _stallSortMode == ProxyStallSortMode.LowestFee);
+            Button(_body, "FilterAll", "全部", 1810, 778, 200, () => { _stallFilterMode = ProxyStallFilterMode.All; Render(); }, _stallFilterMode == ProxyStallFilterMode.All);
+            Button(_body, "FilterForge", "铸器宗师", 2025, 778, 280, () => { _stallFilterMode = ProxyStallFilterMode.ForgeMaster; Render(); }, _stallFilterMode == ProxyStallFilterMode.ForgeMaster);
+            Button(_body, "FilterScroll", "制卷宗师", 2320, 778, 280, () => { _stallFilterMode = ProxyStallFilterMode.ScrollMaster; Render(); }, _stallFilterMode == ProxyStallFilterMode.ScrollMaster);
+            Button(_body, "FilterTeamFree", "同队免税", 2615, 778, 280, () => { _stallFilterMode = ProxyStallFilterMode.TeamFree; Render(); }, _stallFilterMode == ProxyStallFilterMode.TeamFree);
+
+            var topHot = SkillCraftModels.TopHotStalls(_client?.ProxyStalls);
+            float listTopY = 880f;
+            float listHeight = 500f;
+            if (topHot.Count > 0)
+            {
+                RenderTopHotMastersStrip(topHot);
+                listTopY = 1042f;
+                listHeight = 345f;
+            }
 
             var stalls = SkillCraftModels.SortAndFilterProxyStalls(_client?.ProxyStalls, _stallSortMode, _stallFilterMode);
-            var list = Scroll(_body, "CityMastersViewport", 190, 880, 3580, 500, Math.Max(500, stalls.Count * 165));
+            var list = Scroll(_body, "CityMastersViewport", 190, listTopY, 3580, listHeight, Math.Max(listHeight, stalls.Count * 165));
             var gmRowBadge = SeasonEconomyUiArt.LoadCraftIcon("icon_master_honor")
                 ?? SeasonEconomyUiArt.LoadTradeV2Slice("icon_master_seal")
                 ?? SeasonEconomyUiArt.LoadCraftControl("mastery_badge_grandmaster");
@@ -664,7 +694,148 @@ namespace MmorpgClient.UI.Ugui.Skills
             }
             if (stalls.Count == 0)
                 Label(_body, "CityMastersEmpty", _client?.ProxyStallsLoading == true ? "正在读取在营业名匠…" : "当前暂无宗师开设代打摊位",
-                    220, 940, 2600, 120, 44, true, Muted);
+                    220, listTopY + 60, 2600, 120, 44, true, Muted);
+        }
+
+        private void RenderTopHotMastersStrip(List<CraftProxyStallInfo> topHot)
+        {
+            var bannerBg = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("banner_hot_masters");
+            if (bannerBg != null)
+            {
+                SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "HotMastersBannerBg", 190, 872, 3580, 156,
+                    bannerBg, new Color(0.95f, 0.91f, 0.80f, 0.96f));
+            }
+            else
+            {
+                Panel(_body, "HotMastersBannerBg", 190, 872, 3580, 156);
+            }
+            Label(_body, "HotMastersStripTitle", "西市极品热榜\nTop 3", 215, 892, 430, 116, 36, true, SeasonEconomyUiArt.GoldHighlight);
+
+            var cardBg = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("card_hot_master");
+            const float cardW = 1015f;
+            const float cardGap = 18f;
+            const float startX = 675f;
+            for (int i = 0; i < topHot.Count && i < 3; ++i)
+            {
+                var stall = topHot[i];
+                float cx = startX + i * (cardW + cardGap);
+                if (cardBg != null)
+                {
+                    SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "HotMasterCard_" + stall.HotRank, cx, 882, cardW, 136,
+                        cardBg, new Color(0.97f, 0.94f, 0.86f, 0.98f));
+                }
+                else
+                {
+                    Panel(_body, "HotMasterCard_" + stall.HotRank, cx, 882, cardW, 136);
+                }
+
+                var rankBadge = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("badge_hot_rank_" + stall.HotRank);
+                float textX = cx + 112f;
+                if (rankBadge != null)
+                {
+                    var badgeImg = QdaoUguiFactory.CreateImage("HotRankBadge_" + stall.HotRank, _body, cx + 16, 906, 86, 86, rankBadge, false);
+                    badgeImg.preserveAspect = true;
+                }
+                else
+                {
+                    Label(_body, "HotRankText_" + stall.HotRank, SkillCraftModels.HotRankLabel(stall.HotRank),
+                        cx + 16, 916, 92, 66, 34, false, SeasonEconomyUiArt.GoldHighlight);
+                }
+
+                string mName = string.IsNullOrWhiteSpace(stall.MasterName) ? $"宗师#{stall.MasterPlayerId}" : stall.MasterName;
+                string titlePrefix = stall.EquippedCraftTitleId != 0 ? SkillCraftModels.CraftTitleName(stall.EquippedCraftTitleId) + "·" : string.Empty;
+                string cardDesc = $"{titlePrefix}{mName}\n近24h {stall.Recent24HOrders}单 / {stall.Recent24HSupreme}极品 · 累计 {stall.SupremeForgedCount}极品";
+                Label(_body, "HotMasterInfo_" + stall.HotRank, cardDesc, textX, 896, 640, 108, 28, true, Ink);
+
+                ulong masterId = stall.MasterPlayerId;
+                bool canForge = stall.ForgeMasteryTier >= SkillCraftModels.MasterTier && stall.ProxyForgeFeeGold > 0;
+                bool canScroll = stall.ScrollMasteryTier >= SkillCraftModels.MasterTier && stall.ProxyScrollFeeGold > 0;
+                if (canForge)
+                {
+                    Button(_body, "HotMasterGo_" + stall.HotRank, "找他代打", cx + 765, 902, 232, () =>
+                    {
+                        Hide();
+                        RequestProxyEquipmentPolish?.Invoke(masterId);
+                    }, true);
+                }
+                else if (canScroll)
+                {
+                    Button(_body, "HotMasterGo_" + stall.HotRank, "找他代制", cx + 765, 902, 232, () =>
+                    {
+                        _selectedProxyMasterId = masterId;
+                        _page = SkillCraftPage.Scrolls;
+                        Render();
+                    }, true);
+                }
+            }
+        }
+
+        private void RenderProxyDigestModal()
+        {
+            var shade = _modalLayer.GetComponent<Image>() ?? _modalLayer.gameObject.AddComponent<Image>();
+            shade.color = new Color(.02f, .07f, .055f, .85f);
+            shade.raycastTarget = true;
+
+            var panelBg = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("panel_proxy_digest");
+            if (panelBg != null)
+            {
+                SeasonEconomyUiArt.CreateSlicedOrSimple(_modalLayer, "ProxyDigestPaper", 680, 230, 2600, 1080,
+                    panelBg, new Color(0.96f, 0.93f, 0.84f, 0.98f));
+            }
+            else
+            {
+                Panel(_modalLayer, "ProxyDigestPaper", 680, 230, 2600, 1080, true);
+            }
+
+            var scrollIcon = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("icon_digest_scroll");
+            float titleX = 820f;
+            if (scrollIcon != null)
+            {
+                var iconImg = QdaoUguiFactory.CreateImage("ProxyDigestIcon", _modalLayer, 770, 305, 112, 112, scrollIcon, false);
+                iconImg.preserveAspect = true;
+                titleX = 905f;
+            }
+            Label(_modalLayer, "ProxyDigestTitle", "名匠离线营业战报", titleX, 315, 1800, 96, 62, color: Jade);
+
+            var digest = _client?.State?.UnreadProxyDigest;
+            float bodyY = 465f;
+            var unlockedTitles = digest != null
+                ? SkillCraftModels.DecodeUnlockedTitleNames(digest.NewlyUnlockedTitleMask)
+                : new List<string>();
+            if (unlockedTitles.Count > 0)
+            {
+                var titleBadge = SeasonEconomyUiArt.LoadCraftProxyDigestSlice("badge_title_unlocked");
+                float bannerTextX = 820f;
+                if (titleBadge != null)
+                {
+                    var badgeImg = QdaoUguiFactory.CreateImage("ProxyDigestTitleBadge", _modalLayer, 790, 445, 92, 92, titleBadge, false);
+                    badgeImg.preserveAspect = true;
+                    bannerTextX = 900f;
+                }
+                Label(_modalLayer, "ProxyDigestUnlockedBanner",
+                    $"★ 恭喜新解锁零属性名匠雅号：{string.Join("、", unlockedTitles)}",
+                    bannerTextX, 455, 2240f - (bannerTextX - 820f), 76, 40, false, SeasonEconomyUiArt.GoldHighlight);
+                bodyY = 555f;
+            }
+
+            Label(_modalLayer, "ProxyDigestBody", SkillCraftModels.FormatDigestLines(digest),
+                820, bodyY, 2320, 440, 42, true, Ink);
+
+            bool busy = _client == null || _client.IsBusy;
+            Button(_modalLayer, "ProxyDigestAckBtn", "收下战报", 880, 1080, 700, () =>
+            {
+                _modal = CraftModal.None;
+                _client?.AckProxyDigest();
+                Render();
+            }, false, !busy);
+            Button(_modalLayer, "ProxyDigestAckMailBtn", "收下并去邮箱领银两", 1720, 1080, 920, () =>
+            {
+                _modal = CraftModal.None;
+                _client?.AckProxyDigest();
+                Hide();
+                if (RequestOpenMail != null) RequestOpenMail.Invoke();
+                else MmorpgClient.UI.Ugui.Mail.MailUiRoot.Instance?.Toggle();
+            }, true, !busy);
         }
 
         private void RenderDismantleConfirmModal()
@@ -1000,6 +1171,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             _disposed = true;
             Closed = null;
             RequestProxyEquipmentPolish = null;
+            RequestOpenMail = null;
             if (_root != null)
             {
                 if (Application.isPlaying) UnityEngine.Object.Destroy(_root.gameObject);

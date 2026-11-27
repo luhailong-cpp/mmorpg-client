@@ -222,8 +222,8 @@ namespace MmorpgClient.UI.Ugui.Skills
                     {
                         if (hasSaved) _draft.Reset(loadout, captured);
                         _notice = hasSaved
-                            ? $"方案{captured}当前未解锁：已存战法与加点已永久保留（只读预览），达85级免费+1套、续租或开轻享卡即恢复，也可复制到已解锁方案。"
-                            : $"方案{captured}未解锁：达 85 级满级自动永久免费 +1 套（共 3 套），也可开轻享卡 +2 套或点右侧「管理槽位」按套租用（30灵钻/套/30天，到期只锁不删）。";
+                            ? $"方案{captured}当前未解锁：已存装备/战法/加点配置均永久保留（只读预览），达85级免费+1套、续租或开轻享卡即恢复，也可复制到已解锁方案。"
+                            : $"方案{captured}未解锁（装备+战法+加点三合一共享）：达 85 级满级自动永久免费 +1 套（共 3 套），也可开轻享卡 +2 套或点右侧「管理槽位」按套租用（30灵钻/套/30天，到期只锁不删）。";
                         _noticeError = true;
                         Rebuild(resetScroll: hasSaved);
                         return;
@@ -601,7 +601,7 @@ namespace MmorpgClient.UI.Ugui.Skills
                 iconImg.raycastTarget = false;
             }
             CreateText("RentModalTitle", modal.transform, titleX, 18f, 740f, 40f,
-                "方案槽位租用管理（7 套封顶 · 纯便利零战力）", 26f, JadeInk, bold: true);
+                "方案槽位租用管理（装备+战法+加点三合一 · 7套封顶）", 25f, JadeInk, bold: true);
             var closeBtn = CharacterAttributeVisuals.Button("LoadoutRentCloseBtn", modal.transform, 836f, 16f, 82f, 42f, "关闭", false, 19f);
             SkillPanel.StyleGuildControl(closeBtn, "guild_button_secondary", Ink);
             closeBtn.Button.onClick.AddListener(() => { _rentModalOpen = false; Rebuild(); });
@@ -693,7 +693,7 @@ namespace MmorpgClient.UI.Ugui.Skills
                     quote.Error ?? "请选择有效的租用方案。", 19f, Warn, bold: true);
             }
             CreateText("QuoteGuarantee", quoteBox.transform, 18f, 84f, 848f, 34f,
-                "零战力保障：仅提供更多构筑槽位，无任何属性/伤害加成；到期只锁不删，续租后已存战法与加点立即可恢复。",
+                "零战力保障：装备+战法+加点三合一共享席位、一次开通绝不重复收费，无任何属性加成；到期只锁不删，续租立即可恢复。",
                 16f, Brown);
 
             bool enoughDiamond = quote.Valid && loadout.DiamondBalance >= quote.TotalCost;

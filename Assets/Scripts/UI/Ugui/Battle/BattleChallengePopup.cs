@@ -17,6 +17,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private readonly BattleUiRoot _owner;
         private readonly RectTransform _root;
+        private readonly TMP_Text _titleText;
         private readonly TMP_Text _bodyText;
         private readonly TMP_Text _rulesText;
         private readonly TMP_Text _countdownText;
@@ -45,7 +46,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 x, y, PanelW, PanelH, BattleUiStyle.PanelBgLight);
             _root = (RectTransform)bg.transform;
 
-            QdaoUguiFactory.CreateText("Title", _root, 0f, 24f, PanelW, 46f,
+            _titleText = QdaoUguiFactory.CreateText("Title", _root, 0f, 24f, PanelW, 46f,
                 "道友切磋挑战", 34f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
             _bodyText = QdaoUguiFactory.CreateText("Body", _root, 36f, 84f, PanelW - 72f, 42f,
                 string.Empty, 25f, QdaoUguiTheme.StatusCream, TextAlignmentOptions.Center);
@@ -101,7 +102,12 @@ namespace MmorpgClient.UI.Ugui.Battle
             string name = string.IsNullOrEmpty(invite.ChallengerName)
                 ? $"玩家{invite.ChallengerId}"
                 : invite.ChallengerName;
-            _bodyText.text = $"{name} 向你发起切磋挑战！";
+            bool isRankedRematch = invite.CustomRules != null && invite.CustomRules.RematchSourceBattleId != 0UL;
+            if (_titleText != null)
+                _titleText.text = isRankedRematch ? "论剑不服再战" : "道友切磋挑战";
+            _bodyText.text = isRankedRematch
+                ? $"{name} 不服上局结果，邀你立即再战一场（切磋不计排位分）！"
+                : $"{name} 向你发起切磋挑战！";
             _rulesText.text = "约战规则：" + WuxingExpansionModels.FormatCustomDuelRulesSummary(invite.CustomRules);
             _countdownText.text = string.Empty;
             if (_presetRowRoot != null) _presetRowRoot.SetActive(_useFreePreset);
@@ -175,6 +181,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             uint charPreset = _useFreePreset ? _responderCharPreset : 0u;
             uint petPreset = _useFreePreset ? _responderPetPreset : 0u;
             HideSilently();
+            if (accept) Ranked.RankedUiRoot.Instance?.CloseSettlementForRematch();
             if (client == null || challengeId == 0) return;
             client.RespondChallenge(challengeId, accept, charPreset, petPreset);
             _owner?.ShowToast(accept ? "已应战,等待开局…" : "已拒绝切磋");

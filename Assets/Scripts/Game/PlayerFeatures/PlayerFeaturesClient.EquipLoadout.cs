@@ -229,37 +229,12 @@ namespace MmorpgClient.Game.PlayerFeatures
 
         public void UnlockEquipLoadout(bool useBindDiamondFirst = false)
         {
+            // 方案 A：装备流派方案已并入 7 套三合一共享流派席位（2永久免费 + 85级赠1 + 轻享卡+2 + RentSkillLoadoutSlots按套租用），
+            // 旧单独买断入口统一 fail-closed 拒绝，不再发起独立扣费；遗留待恢复记录仍通过 TickEquipLoadoutUnlockRecovery 清理。
             if (!PrepareRequest(out var playerId)) return;
-            if (BusyEquipLoadout || BusyEquipLoadoutUnlock) return;
             RestoreEquipLoadoutUnlock(playerId);
             if (HasPendingEquipLoadoutUnlock) { FailEquipLoadout(EquipLoadoutUnlockPendingText); return; }
-            if (_equipLoadouts == null || _equipLoadouts.UnlockedSchemeCount >= Math.Max(1u, _equipLoadouts.MaxSchemeCount))
-            { FailEquipLoadout("已达装备流派方案上限或尚未同步"); return; }
-            if (!EquipLoadoutModel.CanAffordNextUnlock(_equipLoadouts, useBindDiamondFirst))
-            { FailEquipLoadout("灵石不足且背包无装备方案扩容符"); return; }
-            if (!CanSendEquipLoadout()) { FailEquipLoadout("操作过于频繁，请稍候重试"); return; }
-            if (EquipLoadoutUnlockRecovery == null) { FailEquipLoadout("方案解锁恢复存储未就绪，暂不能提交"); return; }
-            if (!ClientRequestKeys.TryCreate(out ulong key)) { FailEquipLoadout(ClientRequestKeys.UnavailableText); return; }
-
-            var request = new UnlockEquipLoadoutRequest
-            {
-                ClientRequestId = key,
-                ExpectedUnlockedCount = _equipLoadouts.UnlockedSchemeCount,
-                UseBindDiamondFirst = useBindDiamondFirst && _equipLoadouts.NextUnlockAllowBindDiamond,
-            };
-            string record = Convert.ToBase64String(request.ToByteArray());
-            try { EquipLoadoutUnlockRecovery.Save(playerId, record); }
-            catch (Exception)
-            {
-                _equipLoadoutRecoveryPlayer = 0;
-                RestoreEquipLoadoutUnlock(playerId);
-                FailEquipLoadout("无法保存方案解锁记录，本次尚未提交；请稍后重试");
-                return;
-            }
-            _pendingEquipLoadoutUnlock = request;
-            _pendingEquipLoadoutUnlockRecord = record;
-            _equipLoadoutRecoveryAttempts = 0;
-            SendEquipLoadoutUnlock(playerId);
+            FailEquipLoadout("装备方案已并入 7 套三合一共享流派席位，请通过 85 级免费解锁、仙途轻享卡或「管理席位」按套扩展");
         }
 
         public void RecoverEquipLoadoutUnlock()

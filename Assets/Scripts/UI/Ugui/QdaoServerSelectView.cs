@@ -878,8 +878,10 @@ namespace MmorpgClient.UI.Ugui
             SetStatus("正在等待授权…");
             RequestChannel(authType, result =>
             {
-                if (this == null || runId != _enterRunId) return;
-                if (authType == LoginAuthTypes.Passport) ShowPassportWaitingDialog(false);
+                if (this == null) return;
+                // 等待窗先关:断线等路径作废 runId 后,迟到的回调也必须收起它,否则界面卡死在「通行证授权中」。
+                if (authType == LoginAuthTypes.Passport && _passportWaitingOpen) ShowPassportWaitingDialog(false);
+                if (runId != _enterRunId) return;
                 if (!result.Ok)
                 {
                     _busy = false;

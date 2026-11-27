@@ -43,14 +43,14 @@ namespace MmorpgClient.Game.AfkPass
         public const string HostingDescription =
             "开通后，断线时角色不会在 25 秒后下线：留在原地离线托管，组队时照常跟着队长走，直到重新登录或月卡到期。";
 
-        /// <summary>仙途轻享卡零战力便利权益汇总（复用单真相 afk_pass_expires_at）。</summary>
+        /// <summary>仙途轻享卡零战力便利权益汇总（复用单真相 afk_pass_expires_at；方案 A 装备/战法/加点三合一共享 7 套席位）。</summary>
         public static string LightCardBenefitsSummary(global::AfkPassInfo info)
         {
-            uint slots = info != null && info.UnlockedLoadoutSlots > 0 ? info.UnlockedLoadoutSlots : 3u;
+            uint slots = info != null && info.UnlockedLoadoutSlots > 0 ? info.UnlockedLoadoutSlots : 2u;
             bool stage2Tradable = info != null && info.Stage2TradableEnabled;
             return stage2Tradable
-                ? $"轻享卡生效：离线跟队托管 · 战法/属性配装槽 {slots} 格（3→6）· 阶段二胜局可交易资格已激活（零战力加成）"
-                : $"开通「仙途轻享卡」解锁：离线跟队托管 · 战法/属性配装槽 3→6 格（当前 {slots} 格）· 阶段二胜局可交易资格（零战力加成）";
+                ? $"轻享卡生效：离线跟队托管 · 装备/战法/加点共享流派席位 +2 套（当前 {slots} 套，上限 7 套）· 阶段二胜局可交易资格已激活（零战力加成）"
+                : $"开通「仙途轻享卡」解锁：离线跟队托管 · 装备/战法/加点共享流派席位 +2 套（当前 {slots} 套，上限 7 套）· 阶段二胜局可交易资格（零战力加成）";
         }
 
         public static string CurrencyName(uint currencyType) => MmorpgClient.Game.Common.CurrencyLabels.Name(currencyType);

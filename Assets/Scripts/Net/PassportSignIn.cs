@@ -33,6 +33,10 @@ namespace MmorpgClient.Net
             + "h1{margin:0 0 12px;font-size:22px;}p{margin:0;font-size:15px;opacity:.88;}"
             + "</style></head><body><div class=\"card\"><h1>通行证授权已完成</h1>"
             + "<p>请切回游戏继续，本页面可直接关闭。</p></div></body></html>";
+        private const string StaleCallbackHtml =
+            "<!DOCTYPE html><html lang=\"zh-CN\"><head><meta charset=\"utf-8\"><title>官方通行证</title></head>"
+            + "<body style=\"font-family:sans-serif;text-align:center;padding-top:20vh\">"
+            + "<h1>该授权页已过期</h1><p>请切回游戏，按游戏内提示重新打开授权页。</p></body></html>";
 
         private static PassportSignIn _instance;
 
@@ -43,10 +47,12 @@ namespace MmorpgClient.Net
         private float _deadlineRealtimeSec;
         private bool _exchanging;
         private Coroutine _exchangeCoroutine;
+        private UnityWebRequest _exchangeRequest;
 
 #if UNITY_STANDALONE || UNITY_EDITOR
         private readonly object _callbackLock = new object();
         private HttpListener _listener;
+        private string _expectedState;
         private Uri _receivedLoopbackUri;
         private bool _loopbackFailed;
 #endif
@@ -151,7 +157,7 @@ namespace MmorpgClient.Net
             _exchanging = false;
 
 #if UNITY_STANDALONE || UNITY_EDITOR
-            if (!TryStartLoopbackListener(config.RedirectUri))
+            if (!TryStartLoopbackListener(config.RedirectUri, pkce.State))
             {
                 Complete(PlatformSignInResult.Failure(PassportSignInErrors.PortInUse));
                 return;
@@ -207,6 +213,11 @@ namespace MmorpgClient.Net
             if (_pendingCallback == null || _exchanging || string.IsNullOrEmpty(url)) return;
             if (!Uri.TryCreate(url, UriKind.Absolute, out var uri)) return;
             if (!PassportOAuthProtocol.MatchesRedirectTarget(uri, _activeConfig.RedirectUri)) return;
+            if (!PassportOAuthProtocol.CallbackStateMatches(uri, _activePkce.State))
+            {
+                Debug.LogWarning("[passport] ignoring deep link callback with stale state");
+                return;
+            }
             HandleCallbackUri(uri);
         }
 #endif
@@ -233,7 +244,9 @@ namespace MmorpgClient.Net
             var form = PassportOAuthProtocol.BuildTokenExchangeForm(config, code, codeVerifier);
             using var req = UnityWebRequest.Post(url, form);
             req.timeout = PassportOAuthConfig.DefaultTokenExchangeTimeoutSeconds;
+            _exchangeRequest = req;
             yield return req.SendWebRequest();
+            _exchangeRequest = null;
 
             if (this == null || _pendingCallback == null) yield break;
 
@@ -256,7 +269,7 @@ namespace MmorpgClient.Net
         }
 
 #if UNITY_STANDALONE || UNITY_EDITOR
-        private bool TryStartLoopbackListener(string redirectUri)
+        private bool TryStartLoopbackListener(string redirectUri, string expectedState)
         {
             if (!PassportOAuthProtocol.TryGetLoopbackListenerPrefix(redirectUri, out var prefix, out _))
                 return false;
@@ -278,6 +291,7 @@ namespace MmorpgClient.Net
             lock (_callbackLock)
             {
                 _listener = listener;
+                _expectedState = expectedState;
                 _receivedLoopbackUri = null;
                 _loopbackFailed = false;
             }
@@ -313,16 +327,29 @@ namespace MmorpgClient.Net
             catch (InvalidOperationException) { return; }
 
             Uri requestUrl = ctx.Request?.Url;
+            string expectedState;
+            lock (_callbackLock)
+            {
+                expectedState = ReferenceEquals(_listener, listener) ? _expectedState : null;
+            }
+            // 旧标签页或本机其它页面打来的回调:回过期页并继续监听,不让本次授权失败。
+            bool accepted = expectedState != null && PassportOAuthProtocol.CallbackStateMatches(requestUrl, expectedState);
             try
             {
-                byte[] htmlBytes = Encoding.UTF8.GetBytes(CallbackHtml);
-                ctx.Response.StatusCode = 200;
+                byte[] htmlBytes = Encoding.UTF8.GetBytes(accepted ? CallbackHtml : StaleCallbackHtml);
+                ctx.Response.StatusCode = accepted ? 200 : 400;
                 ctx.Response.ContentType = "text/html; charset=utf-8";
                 ctx.Response.ContentLength64 = htmlBytes.Length;
                 ctx.Response.OutputStream.Write(htmlBytes, 0, htmlBytes.Length);
                 ctx.Response.OutputStream.Close();
             }
             catch (Exception) { }
+
+            if (!accepted)
+            {
+                if (expectedState != null) BeginAcceptNext(listener);
+                return;
+            }
 
             lock (_callbackLock)
             {
@@ -339,6 +366,7 @@ namespace MmorpgClient.Net
             {
                 listener = _listener;
                 _listener = null;
+                _expectedState = null;
                 _receivedLoopbackUri = null;
                 _loopbackFailed = false;
             }
@@ -370,11 +398,14 @@ namespace MmorpgClient.Net
             _activeConfig = default;
             _activeAuthorizeUrl = null;
             _exchanging = false;
+            var inflight = _exchangeRequest;
+            _exchangeRequest = null;
             if (_exchangeCoroutine != null)
             {
                 StopCoroutine(_exchangeCoroutine);
                 _exchangeCoroutine = null;
             }
+            inflight?.Dispose(); // 换票途中取消:StopCoroutine 不会走 using,手动中止并释放原生请求
             StopCallbackWaiters();
             callback?.Invoke(result);
         }

@@ -29,7 +29,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         public static readonly Color CrimsonText = QdaoUguiTheme.Html("#9C2B1A");
         public static readonly Color DeepBackdrop = new Color(0.027f, 0.094f, 0.114f, 0.72f);
 
-        /// <summary>全部 33 张正式运行切图名（8 张无字底板 + 25 张独立无字透明切图）。</summary>
+        /// <summary>全部 36 张正式运行切图名（8 张无字底板 + 28 张独立无字透明切图，含 V2.5 3 张新增切片）。</summary>
         public static readonly string[] AllAssetKeys =
         {
             "panel_01_guild_home",
@@ -41,6 +41,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             "panel_07_guild_shop",
             "panel_08_field_hud",
             "banner_guild_flag",
+            "banner_leyline_world_flag",
             "leyline_bg_baxian",
             "leyline_bg_biyuan",
             "leyline_bg_yuexi",
@@ -58,11 +59,13 @@ namespace MmorpgClient.UI.Ugui.Guild
             "badge_frenzy_round12",
             "badge_gold_leyline",
             "badge_rival_guild",
+            "badge_feud_edict",
             "chest_merit_locked",
             "chest_merit_ready",
             "chest_merit_claimed",
             "alert_banner_siege",
             "alert_banner_bounty",
+            "alert_banner_feud",
             "tag_exclusive_bg",
             "btn_danger_crimson",
         };

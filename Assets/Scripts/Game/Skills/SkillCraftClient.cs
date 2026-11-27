@@ -140,6 +140,10 @@ namespace MmorpgClient.Game.Skills
         public bool ProxyStallsLoading => _activeStallRead != 0;
         public bool WantedOrdersLoading => _activeWantedRead != 0;
         public bool HasPendingWrite => _pending != null || _recoveryBlocked;
+        public bool HasUnreadProxyDigest => _state?.UnreadProxyDigest != null &&
+            (_state.UnreadProxyDigest.OrdersCompleted > 0
+             || _state.UnreadProxyDigest.NetGoldEarned > 0
+             || _state.UnreadProxyDigest.NewlyUnlockedTitleMask != 0);
         public string PendingWriteLabel => _pending?.Label ?? string.Empty;
         public string Message { get; private set; } = NotInGameMessage;
         public string Error { get; private set; } = string.Empty;
@@ -155,6 +159,7 @@ namespace MmorpgClient.Game.Skills
         public event Action<PostSkillBookWantedOrderResponse> WantedOrderPosted;
         public event Action<CancelSkillBookWantedOrderResponse> WantedOrderCanceled;
         public event Action<FulfillSkillBookWantedOrderResponse> WantedOrderFulfilled;
+        public event Action<AckCraftProxyDigestResponse> ProxyDigestAcked;
 
         public SkillCraftClient(IBattleTransport transport, IRpcChannel rpc,
             Func<object> connectionIdentity = null, Func<bool> writesBlocked = null)
@@ -382,6 +387,48 @@ namespace MmorpgClient.Game.Skills
                         ? "名匠代打摊位已开启（支持跨线/离线24小时接单，95% 净银两自动经邮件入账）"
                         : "名匠代打摊位已关闭（雅号与情义设置已保存）";
                     Changed?.Invoke();
+                });
+        }
+
+        public void AckProxyDigest()
+        {
+            if (_disposed) return;
+            ObserveSession();
+            if (!IsConnected) { Fail(NotInGameMessage); return; }
+            if (_writesBlocked?.Invoke() == true) { Notice(BattleBlockedText); return; }
+            if (_activeWrite != 0 || _activeRead != 0) return;
+
+            var stamp = Capture();
+            _activeWrite = stamp.Id;
+            Error = string.Empty;
+            Message = "正在确认离线营业战报…";
+            Changed?.Invoke();
+
+            SceneSkillClientPlayerRpc.AckCraftProxyDigest(_rpc, new AckCraftProxyDigestRequest(),
+                (status, response) =>
+                {
+                    if (!CurrentWrite(stamp)) return;
+                    _activeWrite = 0;
+                    if (!status.IsOk)
+                    {
+                        Fail("确认营业战报失败：" + DescribeFailure(status));
+                        return;
+                    }
+                    if (response == null)
+                    {
+                        Fail("服务器未返回营业战报确认结果，请刷新");
+                        return;
+                    }
+                    if (response.State != null) _state = response.State.Clone();
+                    if (HasTip(response.ErrorMessage))
+                    {
+                        Fail(SkillBookMapper.DescribeTip("确认营业战报失败", response.ErrorMessage));
+                        return;
+                    }
+                    Error = string.Empty;
+                    Message = "已收下名匠营业战报，净银两收益可在邮箱领取";
+                    Changed?.Invoke();
+                    if (Current(stamp)) ProxyDigestAcked?.Invoke(response.Clone());
                 });
         }
 
@@ -1070,6 +1117,7 @@ namespace MmorpgClient.Game.Skills
             WantedOrderPosted = null;
             WantedOrderCanceled = null;
             WantedOrderFulfilled = null;
+            ProxyDigestAcked = null;
         }
     }
 }

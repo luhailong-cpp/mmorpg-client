@@ -145,23 +145,23 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Label(_body, "EquipmentLegacySlots", "其他旧装备可在背包「已穿戴」中查看和卸下", 200, 1456, 1670, 36, 26, color: Muted);
         }
 
-        /// <summary>装备主界面 1..5 方案快捷切换栏：点击已解锁方案一键切换，点击当前方案进管理弹窗，点击未解锁进解锁弹窗。</summary>
+        /// <summary>装备主界面 1..7 方案快捷切换栏（方案 A 三合一共享席位）：已解锁一键切换，当前/已存锁定进管理预览，空锁进统一租用。</summary>
         private void RenderOverviewLoadoutQuickBar()
         {
-            Label(_body, "OverviewLoadoutQuickTitle", "流派方案", 160f, 1384f, 176f, 72f, 34f, false, Jade);
+            Label(_body, "OverviewLoadoutQuickTitle", "流派方案", 150f, 1384f, 172f, 72f, 34f, false, Jade);
             var snap = _client?.EquipLoadouts;
-            const float tabW = 296f, tabH = 76f, gap = 16f, startX = 344f, barY = 1380f;
+            uint maxSlots = EquipLoadoutModel.EffectiveMaxSchemes(snap);
+            uint freeSchemes = EquipLoadoutModel.EffectiveFreeSchemes(snap);
+            const float tabW = 218f, tabH = 74f, gap = 10f, startX = 330f, barY = 1380f;
             bool busy = WriteBlocked || _client?.BusyEquip == true || _client?.BusyEquipLoadoutUnlock == true;
-            for (int i = 0; i < 5; ++i)
+            for (int i = 0; i < (int)maxSlots; ++i)
             {
                 uint schemeId = (uint)(i + 1);
                 var scheme = snap?.Schemes.FirstOrDefault(s => s != null && s.SchemeId == schemeId);
-                bool unlocked = scheme != null ? scheme.Unlocked : schemeId == 1u;
-                bool active = unlocked && (snap != null ? snap.ActiveSchemeId == schemeId : schemeId == 1u);
-                string spriteKey = !unlocked
-                    ? EquipLoadoutModel.TabLockedKey
-                    : (active ? EquipLoadoutModel.TabActiveKey : EquipLoadoutModel.TabUnlockedKey);
-                var sprite = LoadEquipLoadoutSprite(spriteKey);
+                bool unlocked = scheme != null ? scheme.Unlocked : schemeId <= freeSchemes;
+                bool active = snap != null ? snap.ActiveSchemeId == schemeId : schemeId == 1u;
+                bool isCardOrRented = unlocked && schemeId > freeSchemes;
+                var sprite = LoadLoadoutTabSprite(unlocked, active, isCardOrRented);
                 var btn = QdaoUguiFactory.CreateArtButton("OverviewLoadoutQuick_" + schemeId, _body,
                     startX + i * (tabW + gap), barY, tabW, tabH, sprite, out var img);
                 if (sprite != null) SeasonEconomyUiArt.ApplyHorizontalSlice(img, sprite, tabH);
@@ -170,16 +170,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 uint capturedId = schemeId;
                 bool capturedUnlocked = unlocked;
                 bool capturedActive = active;
+                bool capturedHasSaved = EquipLoadoutModel.HasSavedBindings(scheme);
                 btn.onClick.AddListener(() =>
                 {
                     if (!capturedUnlocked)
                     {
-                        _modal = Modal.EquipLoadoutUnlock;
-                        Render();
+                        if (capturedHasSaved || capturedActive) OpenEquipLoadoutsForScheme(capturedId);
+                        else OpenEquipLoadoutRentModal(snap);
                     }
                     else if (capturedActive)
                     {
-                        OpenEquipLoadouts();
+                        OpenEquipLoadoutsForScheme(capturedId);
                     }
                     else if (!WriteBlocked && _client != null && !_client.BusyEquip && !_client.BusyEquipLoadoutUnlock)
                     {
@@ -187,13 +188,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     }
                 });
                 string text = scheme != null
-                    ? EquipLoadoutModel.FormatQuickBarLabel(scheme)
+                    ? EquipLoadoutModel.FormatCompactTabLabel(snap, scheme, active)
                     : (unlocked ? EquipLoadoutModel.DefaultSchemeName(schemeId) : "+ " + EquipLoadoutModel.DefaultSchemeName(schemeId));
-                var lbl = Label(btn.transform, "Lbl", text, 16f, 0f, tabW - 32f, tabH, 28f, false, active ? Cream : Ink);
+                bool lightInk = (active && unlocked) || (isCardOrRented && sprite != null);
+                var lbl = Label(btn.transform, "Lbl", text, 10f, 0f, tabW - 20f, tabH, 24f, false, lightInk ? Cream : Ink);
                 lbl.alignment = TextAlignmentOptions.Center;
                 lbl.enableAutoSizing = true;
-                lbl.fontSizeMin = 18f;
-                lbl.fontSizeMax = 28f;
+                lbl.fontSizeMin = 15f;
+                lbl.fontSizeMax = 24f;
             }
         }
 

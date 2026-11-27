@@ -22,6 +22,7 @@ namespace MmorpgClient.UI.Ugui
         public const string Plus11SlotHaloIconKey = "plus11_slot_halo";
         public const string CraftQualityRoot = "UI/Ugui/CraftQualitySkill/";
         public const string CraftIconsRoot = "UI/Ugui/CraftQualitySkill/Icons/";
+        public const string CraftProxyDigestRoot = "UI/Ugui/CraftProxyDigest/";
         public const string EconomyTradeRoot = "UI/Ugui/EconomyTradeV1/";
         public const string EconomyTradeV2Root = "UI/Ugui/EconomyTradeV2/";
         public static readonly string[] EconomyTradeV2AssetKeys =
@@ -62,6 +63,7 @@ namespace MmorpgClient.UI.Ugui
         public const string RankedPlayV2ControlsRoot = "UI/Ugui/RankedPlayV2/";
         public const string RankedPlayV4Root = "UI/Ugui/RankedPlayV4/";
         public const string RankedPlayV6Root = "UI/Ugui/RankedPlayV6/";
+        public const string RankedPlayV7Root = "UI/Ugui/RankedPlayV7/";
         public const string RankedV4TacticalUiRoot = "UI/Ugui/RankedV4Tactical/ui/";
         public const string BattlePrepSkillBanRoot = "UI/Ugui/BattlePrepSkillBan/";
         public const string GuildFidelityRoot = "UI/Ugui/GuildFidelity20261016/";
@@ -104,6 +106,8 @@ namespace MmorpgClient.UI.Ugui
         public static Sprite LoadCraftControl(string name) => LoadCached(CraftQualityRoot + name);
 
         public static Sprite LoadCraftIcon(string name) => LoadCached(CraftIconsRoot + name);
+
+        public static Sprite LoadCraftProxyDigestSlice(string name) => LoadCached(CraftProxyDigestRoot + name);
 
         public static Sprite LoadTradeSlice(string name) => LoadCached(EconomyTradeRoot + name);
 
@@ -195,6 +199,9 @@ namespace MmorpgClient.UI.Ugui
 
         /// <summary>加载 Ranked Play V6 宿敌标签、雪耻复仇印章与问道名局控件（缺图返回 null 安全回退）。</summary>
         public static Sprite LoadRankedPlayV6Asset(string name) => LoadCached(RankedPlayV6Root + name);
+
+        /// <summary>加载 Ranked Play V7 擂台直播实时围观横幅与 1V1 战后不服再战控件（缺图返回 null 安全回退）。</summary>
+        public static Sprite LoadRankedPlayV7Asset(string name) => LoadCached(RankedPlayV7Root + name);
 
         /// <summary>加载论剑 V5 临阵唤灵无字透明控件（来自 Codex 交付 1471b83 ranked-play-v4-tactical-ui-20261125/ui/）。</summary>
         public static Sprite LoadRankedV4TacticalControl(string name) => LoadCached(RankedV4TacticalUiRoot + name);

@@ -555,6 +555,12 @@ namespace MmorpgClient.Game
                 Attributes?.RequestPanel();
                 Skills?.Refresh(MmorpgClient.UI.Ugui.Skills.SkillBookContext.Character());
             };
+            Skills.LoadoutSlotsRented += _ =>
+            {
+                if (!InGame || !IsGateReady) return;
+                Features?.RequestEquipLoadouts();
+                Attributes?.RequestPanel();
+            };
             ZoneTravel = new ZoneTravelClient(this);
             // 落地判定用「在游戏中」+ 传输就绪(IsGateReady)+ (PlayerId, 连接身份);缓存按 (gateway 地址哈希, 玩家) 分键存 PlayerPrefs。
             LandingSync = new LandingSyncClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,

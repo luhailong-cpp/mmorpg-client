@@ -486,5 +486,63 @@ namespace MmorpgClient.Tests.EditMode.Skills
             });
             Assert.That(fulfillResp.SellerNetGold, Is.EqualTo(950UL));
         }
+
+        [Test]
+        public void ProxyDigestAckHotRankSortTopHotAndTitleMaskDecodeWorkEndToEnd()
+        {
+            var stalls = new[]
+            {
+                new CraftProxyStallInfo { MasterPlayerId = 10, MasterName = "甲", ForgeMasteryTier = 3, ProxyForgeFeeGold = 90, ProxyOrdersCompleted = 20, SupremeForgedCount = 2, Recent24HOrders = 1, Recent24HSupreme = 0, HotRank = 3 },
+                new CraftProxyStallInfo { MasterPlayerId = 20, MasterName = "乙", ForgeMasteryTier = 3, ProxyForgeFeeGold = 80, ProxyOrdersCompleted = 5, SupremeForgedCount = 5, Recent24HOrders = 2, Recent24HSupreme = 2, HotRank = 1, EquippedCraftTitleId = 2 },
+                new CraftProxyStallInfo { MasterPlayerId = 30, MasterName = "丙", ScrollMasteryTier = 3, ProxyScrollFeeGold = 70, ProxyOrdersCompleted = 10, SupremeForgedCount = 3, Recent24HOrders = 3, Recent24HSupreme = 1, HotRank = 2 },
+                new CraftProxyStallInfo { MasterPlayerId = 40, MasterName = "丁", ForgeMasteryTier = 3, ProxyForgeFeeGold = 60, ProxyOrdersCompleted = 0, SupremeForgedCount = 0, Recent24HOrders = 0, Recent24HSupreme = 0, HotRank = 0 },
+            };
+
+            var byHot = SkillCraftModels.SortAndFilterProxyStalls(stalls, ProxyStallSortMode.HotRank, ProxyStallFilterMode.All);
+            Assert.That(byHot.Count, Is.EqualTo(4));
+            Assert.That(byHot[0].MasterPlayerId, Is.EqualTo(20UL));
+            Assert.That(byHot[1].MasterPlayerId, Is.EqualTo(30UL));
+            Assert.That(byHot[2].MasterPlayerId, Is.EqualTo(10UL));
+            Assert.That(byHot[3].MasterPlayerId, Is.EqualTo(40UL));
+
+            var topHot = SkillCraftModels.TopHotStalls(stalls);
+            Assert.That(topHot.Count, Is.EqualTo(3));
+            Assert.That((topHot[0].MasterPlayerId, topHot[0].HotRank), Is.EqualTo((20UL, 1u)));
+            Assert.That((topHot[1].MasterPlayerId, topHot[1].HotRank), Is.EqualTo((30UL, 2u)));
+            Assert.That((topHot[2].MasterPlayerId, topHot[2].HotRank), Is.EqualTo((10UL, 3u)));
+            Assert.That(SkillCraftModels.DescribeProxyStall(topHot[0]), Does.Contain("【热榜榜首】"));
+            Assert.That(SkillCraftModels.DescribeProxyStall(topHot[0]), Does.Contain("近24h 2单/2极品"));
+
+            var digest = new CraftProxyDigestSummary
+            {
+                OrdersCompleted = 3,
+                SupremeForgedCount = 2,
+                RareBooksCraftedCount = 1,
+                NetGoldEarned = 266,
+                LastBuyerName = "青云侠士",
+                NewlyUnlockedTitleMask = (1u << 1) | (1u << 5), // 百炼宗师(2) + 双绝天工(6)
+            };
+            Assert.That(SkillCraftModels.DecodeUnlockedTitleNames(digest.NewlyUnlockedTitleMask),
+                Is.EqualTo(new[] { "百炼宗师", "双绝天工" }));
+            string lines = SkillCraftModels.FormatDigestLines(digest);
+            Assert.That(lines, Does.Contain("3 单"));
+            Assert.That(lines, Does.Contain("266 银两"));
+            Assert.That(lines, Does.Contain("青云侠士"));
+            Assert.That(lines, Does.Contain("百炼宗师、双绝天工"));
+
+            var stateWithDigest = MakeState(revision: 20, fragments: 50, gold: 2000);
+            stateWithDigest.UnreadProxyDigest = digest;
+            LoadState(stateWithDigest);
+            Assert.That(_client.HasUnreadProxyDigest, Is.True);
+
+            AckCraftProxyDigestResponse acked = null;
+            _client.ProxyDigestAcked += r => acked = r;
+            _client.AckProxyDigest();
+            Assert.That(_net.LastRequest, Is.InstanceOf<AckCraftProxyDigestRequest>());
+            _net.Reply(new AckCraftProxyDigestResponse { State = MakeState(revision: 20, fragments: 50, gold: 2000) });
+            Assert.That(acked, Is.Not.Null);
+            Assert.That(_client.HasUnreadProxyDigest, Is.False);
+            Assert.That(_client.Error, Is.Empty);
+        }
     }
 }

@@ -225,7 +225,9 @@ namespace MmorpgClient.UI.Ugui
         {
             if (_passportWaitingOpen)
             {
+                // 先作废 runId 并关标志:Cancel 会同步回调,销毁中的界面不能再走刷新与失败弹窗。
                 _passportWaitingOpen = false;
+                _enterRunId++;
                 PassportSignIn.Cancel();
             }
         }

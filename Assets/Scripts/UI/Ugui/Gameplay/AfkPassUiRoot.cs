@@ -532,6 +532,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _game?.Attributes?.RequestPanel();
             _game?.Skills?.Refresh(SkillBookContext.Character());
             _game?.Features?.RequestEquipmentMaterialReward();
+            _game?.Features?.RequestEquipLoadouts();
         }
 
         private static void HandleReminder(string text) => BattleUiRoot.Instance?.ShowToast(text);

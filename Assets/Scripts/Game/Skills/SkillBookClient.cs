@@ -92,6 +92,7 @@ namespace MmorpgClient.Game.Skills
         }
 
         public event Action Changed;
+        public event Action<RentSkillLoadoutSlotsResponse> LoadoutSlotsRented;
 
         public Ui.SkillBookViewState State { get; private set; } = new Ui.SkillBookViewState
         {
@@ -435,15 +436,11 @@ namespace MmorpgClient.Game.Skills
             if (!Ready) { completed?.Invoke(false, NotInGameMessage); return; }
             if (_activeWrite != 0 || _activeRead != 0) { completed?.Invoke(false, "上一次操作还在处理中"); return; }
             var current = State;
-            if (current?.Snapshot?.Loadout == null || !context.Matches(current.Context))
-            {
-                completed?.Invoke(false, "请先刷新角色技能书");
-                return;
-            }
+            bool syncSkillView = current?.Snapshot != null && context.Matches(current.Context);
             if (_writesBlocked?.Invoke() == true)
             {
                 const string locked = "战斗中仅可查看，无法开通或续期方案槽位。";
-                Publish(Copy(current, message: locked));
+                if (syncSkillView) Publish(Copy(current, message: locked));
                 completed?.Invoke(false, locked);
                 return;
             }
@@ -474,14 +471,17 @@ namespace MmorpgClient.Game.Skills
             var sent = _pendingRentLoadout.Clone();
             var stamp = Capture();
             _activeWrite = stamp.Id;
-            Publish(new Ui.SkillBookViewState
+            if (syncSkillView)
             {
-                Context = context,
-                Snapshot = current.Snapshot,
-                IsBusy = true,
-                IsConnected = true,
-                Message = "正在开通或续期方案槽位…",
-            });
+                Publish(new Ui.SkillBookViewState
+                {
+                    Context = context,
+                    Snapshot = current.Snapshot,
+                    IsBusy = true,
+                    IsConnected = true,
+                    Message = "正在开通或续期方案槽位…",
+                });
+            }
             SceneSkillClientPlayerRpc.RentSkillLoadoutSlots(_rpc, sent, (status, response) =>
             {
                 if (!CurrentWrite(stamp)) return;
@@ -498,20 +498,19 @@ namespace MmorpgClient.Game.Skills
                 if (rejected || exact) _pendingRentLoadout = null;
                 string message = rejected
                     ? SkillBookMapper.DescribeTip("开通方案槽位失败", response.ErrorMessage)
-                    : $"方案槽位已生效：额外 +{response.RentedExtraSlots} 套（消耗 {response.SpentDiamond} 灵石）";
-                if (!context.Matches(State?.Context))
+                    : $"流派席位已生效（装备+战法+加点共享）：额外 +{response.RentedExtraSlots} 套（消耗 {response.SpentDiamond} 灵石）";
+                if (context.Matches(State?.Context))
                 {
-                    completed?.Invoke(exact, message);
-                    return;
+                    if (response.State != null && !HasTip(response.State.ErrorMessage))
+                    {
+                        ApplyBook(context, response.State, message);
+                    }
+                    else if (syncSkillView)
+                    {
+                        PublishError(context, rejected ? message : "服务器未返回最新方案槽位状态,请刷新");
+                    }
                 }
-                if (response.State != null && !HasTip(response.State.ErrorMessage))
-                {
-                    ApplyBook(context, response.State, message);
-                }
-                else
-                {
-                    PublishError(context, rejected ? message : "服务器未返回最新方案槽位状态,请刷新");
-                }
+                if (exact) LoadoutSlotsRented?.Invoke(response);
                 completed?.Invoke(exact, message);
             });
         }

@@ -391,8 +391,9 @@ namespace MmorpgClient.UI.Ugui
             SetStatus("正在等待授权…");
             RequestChannel(authType, result =>
             {
-                if (this == null || runId != _enterRunId) return;
-                if (authType == LoginAuthTypes.Passport) ShowPassportWaitingDialog(false);
+                if (this == null) return;
+                if (authType == LoginAuthTypes.Passport && _passportWaitingOpen) ShowPassportWaitingDialog(false);
+                if (runId != _enterRunId) return;
                 if (!result.Ok)
                 {
                     _busy = false;

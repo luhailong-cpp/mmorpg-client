@@ -26,8 +26,8 @@ namespace MmorpgClient.UI.Ugui.Ranked
     public sealed class RankedSharedDrawer
     {
         private const int DrawerTabCount = 4;
-        private const int MaxFeaturedCards = 4;
-        private const string DefaultFeaturedStatus = "本季高段位热门配招：可观摩公开名局回放，或一键套用已拥有的赛季印与首发宠。";
+        private const int FeaturedCardsPerPage = 3;
+        private const string DefaultFeaturedStatus = "本季高段位实时围观与热门配招：可围观正在激战的高段排位，或观摩回放并一键套用赛季印与首发宠。";
 
         private sealed class RankRowView
         {
@@ -72,6 +72,8 @@ namespace MmorpgClient.UI.Ugui.Ranked
         public event Action<RankedCosmeticLoadout> CosmeticUpdateRequested;
         public event Action<ulong> WatchFeaturedReplayRequested;
         public event Action<RankedFeaturedBuildView> ApplyFeaturedBuildRequested;
+        public event Action RefreshLiveRankedRequested;
+        public event Action<ulong> WatchLiveRankedRequested;
 
         private readonly RectTransform _root;
         private readonly Image[] _tabImages = new Image[DrawerTabCount];
@@ -102,10 +104,22 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private TMP_Text _cosmeticStatusText;
         private Sprite _portraitOverride;
 
-        // Tab 3: 问道名局（V6）
+        // Tab 3: 问道名局与擂台直播（V6 + V7）
         private TMP_Text _featuredStatusText;
         private TMP_Text _featuredEmptyText;
-        private readonly FeaturedBuildRowView[] _featuredRows = new FeaturedBuildRowView[MaxFeaturedCards];
+        private TMP_Text _liveBannerTitle;
+        private TMP_Text _liveBannerBody;
+        private Button _liveCycleBtn;
+        private Button _liveRefreshBtn;
+        private Button _liveWatchBtn;
+        private readonly List<BattleWatchSummary> _liveRankedMatches = new List<BattleWatchSummary>();
+        private int _liveRankedIndex;
+        private readonly FeaturedBuildRowView[] _featuredRows = new FeaturedBuildRowView[FeaturedCardsPerPage];
+        private GameObject _featuredPagerRoot;
+        private Button _featuredPrevBtn;
+        private Button _featuredNextBtn;
+        private TMP_Text _featuredPageText;
+        private int _featuredPageIndex;
 
         private RankedProfileSnapshot _profile;
         private string _playerName = "道友";
@@ -663,13 +677,68 @@ namespace MmorpgClient.UI.Ugui.Ranked
             var body = QdaoUguiFactory.CreateRect("TabFeaturedBuilds", _root, 0f, 0f, DesignWidth, DesignHeight);
             _tabBodies[3] = body.gameObject;
 
-            _featuredStatusText = CreateLabel("FeaturedStatus", body, 954f, 418f, 778f, 34f,
-                DefaultFeaturedStatus, 17f, BronzeHint);
+            _featuredStatusText = CreateLabel("FeaturedStatus", body, 954f, 416f, 778f, 28f,
+                DefaultFeaturedStatus, 16f, BronzeHint);
             _featuredStatusText.enableAutoSizing = true;
-            _featuredStatusText.fontSizeMin = 13f;
-            _featuredStatusText.fontSizeMax = 17f;
+            _featuredStatusText.fontSizeMin = 12f;
+            _featuredStatusText.fontSizeMax = 16f;
 
-            _featuredEmptyText = CreateLabel("FeaturedEmpty", body, 974f, 560f, 738f, 120f,
+            // V7 擂台直播横幅（760×76，位于问道名局顶部，预绑 RankedPlayV7/live_ranked_spectate_banner + icon_live_spectate）
+            var liveBannerSprite = SeasonEconomyUiArt.LoadRankedPlayV7Asset("live_ranked_spectate_banner");
+            var liveIconSprite = SeasonEconomyUiArt.LoadRankedPlayV7Asset("icon_live_spectate");
+            var liveBg = QdaoUguiFactory.CreateImage("LiveRankedSpectateBanner", body, 963f, 448f, 760f, 76f,
+                liveBannerSprite ?? LoadGuildApproved("guild_row_self"), false);
+            liveBg.type = Image.Type.Simple;
+            if (liveBg.sprite == null) liveBg.color = SeasonEconomyUiArt.BattleArenaJadeLight;
+
+            float liveTextX = 20f;
+            if (liveIconSprite != null)
+            {
+                var liveIcon = QdaoUguiFactory.CreateImage("LiveSpectateIcon", liveBg.transform, 16f, 20f, 36f, 36f, liveIconSprite, false);
+                liveIcon.preserveAspect = true;
+                liveTextX = 60f;
+            }
+            float liveTextW = 474f - liveTextX;
+            _liveBannerTitle = CreateLabel("LiveBannerTitle", liveBg.transform, liveTextX, 10f, liveTextW, 26f,
+                "擂台直播 · 高段排位实时围观", 17f, JadeDark, bold: true);
+            _liveBannerTitle.enableAutoSizing = true;
+            _liveBannerTitle.fontSizeMin = 13f;
+            _liveBannerTitle.fontSizeMax = 17f;
+
+            _liveBannerBody = CreateLabel("LiveBannerBody", liveBg.transform, liveTextX, 40f, liveTextW, 26f,
+                "正在查询当前高段排位激战…", 15f, InkSecondary);
+            _liveBannerBody.enableAutoSizing = true;
+            _liveBannerBody.fontSizeMin = 12f;
+            _liveBannerBody.fontSizeMax = 15f;
+
+            _liveCycleBtn = CreateGuildButton("LiveCycleBtn", liveBg.transform, 480f, 19f, 78f, 38f,
+                "guild_button_secondary", "换一场", 16f, JadeDark, out _, out _);
+            _liveCycleBtn.onClick.AddListener(() =>
+            {
+                if (_liveRankedMatches.Count > 1)
+                {
+                    _liveRankedIndex = (_liveRankedIndex + 1) % _liveRankedMatches.Count;
+                    RefreshLiveBannerView();
+                }
+            });
+            _liveCycleBtn.gameObject.SetActive(false);
+
+            _liveRefreshBtn = CreateGuildButton("LiveRefreshBtn", liveBg.transform, 564f, 19f, 68f, 38f,
+                "guild_button_secondary", "刷新", 16f, JadeDark, out _, out _);
+            _liveRefreshBtn.onClick.AddListener(() => RefreshLiveRankedRequested?.Invoke());
+
+            _liveWatchBtn = CreateGuildButton("LiveWatchBtn", liveBg.transform, 638f, 19f, 106f, 38f,
+                "guild_button_primary", "实时围观", 16f, ButtonGoldText, out _, out _);
+            _liveWatchBtn.onClick.AddListener(() =>
+            {
+                if (_liveRankedMatches.Count == 0) return;
+                int idx = Mathf.Clamp(_liveRankedIndex, 0, _liveRankedMatches.Count - 1);
+                ulong bid = _liveRankedMatches[idx].BattleId;
+                if (bid != 0UL) WatchLiveRankedRequested?.Invoke(bid);
+            });
+            _liveWatchBtn.interactable = false;
+
+            _featuredEmptyText = CreateLabel("FeaturedEmpty", body, 974f, 630f, 738f, 120f,
                 "本赛季暂未产生高段位公开名局样本，完成正式人宠会武对局后将自动汇总热门配招。",
                 20f, InkMuted, TextAlignmentOptions.Center, wrap: true);
 
@@ -677,9 +746,9 @@ namespace MmorpgClient.UI.Ugui.Ranked
             var replayIconSprite = SeasonEconomyUiArt.LoadRankedPlayV6Asset("icon_featured_replay");
             var copyIconSprite = SeasonEconomyUiArt.LoadRankedPlayV6Asset("icon_copy_build");
 
-            for (int i = 0; i < MaxFeaturedCards; i++)
+            for (int i = 0; i < FeaturedCardsPerPage; i++)
             {
-                float y = 456f + i * 126f;
+                float y = 532f + i * 126f;
                 bool hasCardArt = cardSprite != null;
                 var bg = QdaoUguiFactory.CreateImage("FeaturedBuildCard_" + i, body, 963f, y, 760f, 120f,
                     hasCardArt ? cardSprite : LoadGuildApproved("guild_row_normal"), false);
@@ -751,7 +820,72 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 _featuredRows[i] = row;
             }
 
+            // 热门流派分页栏（每页 3 张，完整覆盖 Top 5 流派，y=914..952）
+            var pager = QdaoUguiFactory.CreateRect("FeaturedBuildsPager", body, 963f, 914f, 760f, 38f);
+            _featuredPagerRoot = pager.gameObject;
+            _featuredPrevBtn = CreateGuildButton("FeaturedPrevPage", pager, 0f, 0f, 112f, 36f,
+                "guild_button_secondary", "上一页", 16f, JadeDark, out _, out _);
+            _featuredPrevBtn.onClick.AddListener(() =>
+            {
+                if (_featuredPageIndex > 0) { _featuredPageIndex--; RenderFeaturedBuilds(); }
+            });
+            _featuredPageText = CreateLabel("FeaturedPageText", pager, 120f, 0f, 520f, 36f,
+                "第 1 / 1 页", 17f, InkMuted, TextAlignmentOptions.Center);
+            _featuredNextBtn = CreateGuildButton("FeaturedNextPage", pager, 648f, 0f, 112f, 36f,
+                "guild_button_secondary", "下一页", 16f, JadeDark, out _, out _);
+            _featuredNextBtn.onClick.AddListener(() =>
+            {
+                int total = _profile?.FeaturedBuilds?.Count ?? 0;
+                int maxPage = Math.Max(0, (total - 1) / FeaturedCardsPerPage);
+                if (_featuredPageIndex < maxPage) { _featuredPageIndex++; RenderFeaturedBuilds(); }
+            });
+            _featuredPagerRoot.SetActive(false);
+
             body.gameObject.SetActive(false);
+        }
+
+        public void RenderLiveRankedMatches(IReadOnlyList<BattleWatchSummary> liveMatches, bool loading = false)
+        {
+            if (loading)
+            {
+                if (_liveBannerTitle != null) _liveBannerTitle.text = "擂台直播 · 高段排位实时围观";
+                if (_liveBannerBody != null) _liveBannerBody.text = "正在刷新当前高段排位激战…";
+                if (_liveWatchBtn != null) _liveWatchBtn.interactable = false;
+                if (_liveCycleBtn != null) _liveCycleBtn.gameObject.SetActive(false);
+                return;
+            }
+            _liveRankedMatches.Clear();
+            if (liveMatches != null)
+            {
+                for (int i = 0; i < liveMatches.Count; i++)
+                {
+                    if (liveMatches[i] != null && liveMatches[i].BattleId != 0UL)
+                        _liveRankedMatches.Add(liveMatches[i]);
+                }
+            }
+            if (_liveRankedIndex >= _liveRankedMatches.Count) _liveRankedIndex = 0;
+            RefreshLiveBannerView();
+        }
+
+        private void RefreshLiveBannerView()
+        {
+            if (_liveBannerTitle == null || _liveBannerBody == null) return;
+            if (_liveRankedMatches.Count == 0)
+            {
+                _liveBannerTitle.text = "擂台直播 · 高段排位实时围观";
+                _liveBannerBody.text = "当前暂无高段排位激战，可稍后刷新或先观摩下方名局回放";
+                if (_liveWatchBtn != null) _liveWatchBtn.interactable = false;
+                if (_liveCycleBtn != null) _liveCycleBtn.gameObject.SetActive(false);
+                return;
+            }
+            int idx = Mathf.Clamp(_liveRankedIndex, 0, _liveRankedMatches.Count - 1);
+            var current = _liveRankedMatches[idx];
+            _liveBannerTitle.text = _liveRankedMatches.Count > 1
+                ? $"擂台直播 · 正在激战（{idx + 1}/{_liveRankedMatches.Count}）"
+                : "擂台直播 · 正在激战";
+            _liveBannerBody.text = RankedFormatting.FormatLiveRankedMatchSummary(current);
+            if (_liveWatchBtn != null) _liveWatchBtn.interactable = true;
+            if (_liveCycleBtn != null) _liveCycleBtn.gameObject.SetActive(_liveRankedMatches.Count > 1);
         }
 
         private static void AttachSmallButtonIcon(Transform btnTransform, TMP_Text label, string iconName,
@@ -773,21 +907,34 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private void RenderFeaturedBuilds()
         {
             var builds = _profile?.FeaturedBuilds;
-            int count = builds != null ? Math.Min(builds.Count, MaxFeaturedCards) : 0;
-            if (_featuredEmptyText != null) _featuredEmptyText.gameObject.SetActive(count == 0);
+            int total = builds != null ? builds.Count : 0;
+            if (_featuredEmptyText != null) _featuredEmptyText.gameObject.SetActive(total == 0);
 
-            for (int i = 0; i < MaxFeaturedCards; i++)
+            int pageCount = total > 0 ? ((total + FeaturedCardsPerPage - 1) / FeaturedCardsPerPage) : 1;
+            if (_featuredPageIndex >= pageCount) _featuredPageIndex = Math.Max(0, pageCount - 1);
+            int startIdx = _featuredPageIndex * FeaturedCardsPerPage;
+
+            if (_featuredPagerRoot != null)
+            {
+                _featuredPagerRoot.SetActive(total > FeaturedCardsPerPage);
+                if (_featuredPageText != null) _featuredPageText.text = $"第 {_featuredPageIndex + 1} / {pageCount} 页（共 {total} 套热门流派）";
+                if (_featuredPrevBtn != null) _featuredPrevBtn.interactable = _featuredPageIndex > 0;
+                if (_featuredNextBtn != null) _featuredNextBtn.interactable = _featuredPageIndex + 1 < pageCount;
+            }
+
+            for (int i = 0; i < FeaturedCardsPerPage; i++)
             {
                 var row = _featuredRows[i];
                 if (row == null) continue;
-                if (i >= count || builds[i] == null)
+                int dataIdx = startIdx + i;
+                if (dataIdx >= total || builds[dataIdx] == null)
                 {
                     row.BoundBuild = null;
                     row.Root.SetActive(false);
                     continue;
                 }
 
-                var b = builds[i];
+                var b = builds[dataIdx];
                 row.BoundBuild = b;
                 row.Root.SetActive(true);
 
@@ -798,7 +945,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
                     ? $"{b.FeaturedTeamSize}V{b.FeaturedTeamSize}"
                     : "论剑";
                 string winRate = RankedFormatting.FormatWinRatePercent(b.Wins, b.Appearances);
-                row.TitleText.text = $"#{i + 1} 胜率 {winRate}（{b.Wins}胜/{b.Appearances}场）· {RankedFormatting.FormatRating(b.FeaturedRatingCenti)}分 {scaleTag} · {playerLabel}";
+                row.TitleText.text = $"#{dataIdx + 1} 胜率 {winRate}（{b.Wins}胜/{b.Appearances}场）· {RankedFormatting.FormatRating(b.FeaturedRatingCenti)}分 {scaleTag} · {playerLabel}";
 
                 string sealName = b.SeasonSealId != 0u
                     ? (SeasonSealTableManager.Instance?.FindById(b.SeasonSealId)?.Name ?? $"赛季印#{b.SeasonSealId}")

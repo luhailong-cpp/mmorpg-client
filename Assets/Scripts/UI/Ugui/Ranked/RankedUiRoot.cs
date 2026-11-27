@@ -43,6 +43,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private GameClient _game;
         private RankedClient _ranked;
         private RankClient _rankClient;
+        private SpectateClient _boundSpectate;
         private ulong _playerId;
         private bool _available;
         private bool _settlementFromRecovery;
@@ -193,8 +194,11 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _drawer.CosmeticUpdateRequested += loadout => _ranked?.UpdateCosmetic(loadout);
             _drawer.WatchFeaturedReplayRequested += HandleWatchFeaturedReplay;
             _drawer.ApplyFeaturedBuildRequested += HandleApplyFeaturedBuild;
+            _drawer.RefreshLiveRankedRequested += RequestLiveRankedMatches;
+            _drawer.WatchLiveRankedRequested += HandleWatchLiveRanked;
 
             _settlement.BackRequested += DismissSettlementToCityOrLobby;
+            _settlement.RematchRequested += HandleRematchRequested;
             _settlement.RefreshRatingRequested += () =>
             {
                 var active = _ranked?.ActiveSettlement;
@@ -348,6 +352,81 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 _game.Season.RequestState();
             if (_game?.Pets != null && !_game.Pets.HasList)
                 _game.Pets.RequestList();
+            RequestLiveRankedMatches();
+        }
+
+        private void RequestLiveRankedMatches()
+        {
+            var spectate = BattleUiRoot.Instance?.Spectate ?? SpectateClient.Instance;
+            BindSpectateClient(spectate);
+            if (spectate == null)
+            {
+                _drawer?.RenderLiveRankedMatches(null, loading: false);
+                return;
+            }
+            _drawer?.RenderLiveRankedMatches(null, loading: true);
+            spectate.RefreshList(20u);
+        }
+
+        private void BindSpectateClient(SpectateClient spectate)
+        {
+            if (ReferenceEquals(_boundSpectate, spectate)) return;
+            if (_boundSpectate != null) _boundSpectate.OnListUpdated -= HandleSpectateListUpdated;
+            _boundSpectate = spectate;
+            if (_boundSpectate != null) _boundSpectate.OnListUpdated += HandleSpectateListUpdated;
+        }
+
+        private void HandleSpectateListUpdated(global::Match.ListWatchableBattlesResponse resp)
+        {
+            var live = RankedFormatting.FilterAndSortLiveRankedBattles(resp?.Battles);
+            _drawer?.RenderLiveRankedMatches(live, loading: false);
+        }
+
+        private void HandleWatchLiveRanked(ulong battleId)
+        {
+            if (battleId == 0UL) return;
+            var spectate = BattleUiRoot.Instance?.Spectate ?? SpectateClient.Instance;
+            if (spectate == null)
+            {
+                _drawer?.SetFeaturedBuildStatus("实时观战通道尚未就绪，请稍后再试。", isError: true);
+                return;
+            }
+            if (spectate.Phase != SpectatePhase.None)
+            {
+                _drawer?.SetFeaturedBuildStatus("当前已在观战中，请先退出当前观战。", isError: true);
+                return;
+            }
+            if (_game?.Battle != null && _game.Battle.Phase != BattlePhase.None)
+            {
+                _drawer?.SetFeaturedBuildStatus("排队或战斗中无法发起实时围观。", isError: true);
+                return;
+            }
+            _drawer?.Hide();
+            if (CoreGameplayUiRoot.Instance?.IsFormalPvpVisible == true)
+                CoreGameplayUiRoot.Instance.CloseCurrent();
+            spectate.WatchBattle(battleId);
+        }
+
+        private void HandleRematchRequested(ulong battleId, ulong opponentId, string opponentName)
+        {
+            if (battleId == 0UL || opponentId == 0UL) return;
+            DismissSettlementToCityOrLobby();
+            var battle = _game?.Battle;
+            if (battle == null)
+            {
+                BattleUiRoot.Instance?.ShowToast("战斗通道尚未就绪，暂无法发起切磋再战");
+                return;
+            }
+            battle.ChallengePlayer(opponentId, RankedFormatting.BuildRematchDuelRules(battleId));
+            string display = string.IsNullOrEmpty(opponentName) ? $"道友 {opponentId}" : opponentName;
+            BattleUiRoot.Instance?.ShowToast($"已向 {display} 发出不服再战切磋邀请（不计排位分），15 秒内等待应战…");
+        }
+
+        /// <summary>对手接受「不服再战」邀请时，如本地仍停留在论剑结算页，先优雅收起并 AckEnd 复位战斗状态。</summary>
+        public void CloseSettlementForRematch()
+        {
+            if (_settlement != null && _settlement.IsVisible)
+                DismissSettlementToCityOrLobby();
         }
 
         private void HandleWatchFeaturedReplay(ulong battleId)
@@ -572,6 +651,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
                 _rankClient.Dispose();
                 _rankClient = null;
             }
+            BindSpectateClient(null);
         }
 
         private void RenderAll()

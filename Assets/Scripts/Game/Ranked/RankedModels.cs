@@ -264,6 +264,67 @@ namespace MmorpgClient.Game.Ranked
             return plan;
         }
 
+        /// <summary>论剑 V7：筛选并按赛事标记 / 最高分段 / 开局时间倒序排列正在进行的正式高段排位对局。</summary>
+        public static List<BattleWatchSummary> FilterAndSortLiveRankedBattles(IReadOnlyList<BattleWatchSummary> battles)
+        {
+            var result = new List<BattleWatchSummary>();
+            if (battles == null) return result;
+            for (int i = 0; i < battles.Count; i++)
+            {
+                var b = battles[i];
+                if (b == null || b.BattleId == 0UL || b.Mode != MatchMode.PvpTeam || b.RankedTeamSize == 0u)
+                    continue;
+                result.Add(b);
+            }
+            result.Sort((a, b) =>
+            {
+                int cmp = b.Featured.CompareTo(a.Featured);
+                if (cmp != 0) return cmp;
+                cmp = b.RankedPeakRatingCenti.CompareTo(a.RankedPeakRatingCenti);
+                if (cmp != 0) return cmp;
+                cmp = b.CreatedAtMs.CompareTo(a.CreatedAtMs);
+                if (cmp != 0) return cmp;
+                return b.BattleId.CompareTo(a.BattleId);
+            });
+            return result;
+        }
+
+        public static string FormatLiveRankedMatchSummary(BattleWatchSummary battle)
+        {
+            if (battle == null || battle.BattleId == 0UL) return string.Empty;
+            string scale = battle.RankedTeamSize >= 1u && battle.RankedTeamSize <= 5u
+                ? $"{battle.RankedTeamSize}V{battle.RankedTeamSize}"
+                : "论剑";
+            string rating = battle.RankedPeakRatingCenti > 0L
+                ? $" · {FormatRating(battle.RankedPeakRatingCenti)}分"
+                : string.Empty;
+            string matchup;
+            if (battle.PlayerNames.Count == 2)
+            {
+                string n1 = string.IsNullOrEmpty(battle.PlayerNames[0]) ? "道友甲" : battle.PlayerNames[0];
+                string n2 = string.IsNullOrEmpty(battle.PlayerNames[1]) ? "道友乙" : battle.PlayerNames[1];
+                matchup = $" · {n1} vs {n2}";
+            }
+            else if (battle.PlayerNames.Count > 2)
+            {
+                string n1 = string.IsNullOrEmpty(battle.PlayerNames[0]) ? "高段名家" : battle.PlayerNames[0];
+                matchup = $" · {n1} 等 {battle.PlayerNames.Count} 人激战中";
+            }
+            else
+            {
+                matchup = $" · 局 #{battle.BattleId}";
+            }
+            return $"{scale}{rating}{matchup}";
+        }
+
+        /// <summary>论剑 V7：构造 1V1 战后「不服再战」切磋规则（自养真阵容、公开可观战、零排位分、15 秒快速应答）。</summary>
+        public static global::CustomDuelRules BuildRematchDuelRules(ulong sourceBattleId) => new global::CustomDuelRules
+        {
+            UseFreePreset = false,
+            AllowPublicSpectate = true,
+            RematchSourceBattleId = sourceBattleId,
+        };
+
         public static string FormatElapsedClock(uint seconds)
         {
             uint mm = seconds / 60u;
@@ -670,6 +731,13 @@ namespace MmorpgClient.Game.Ranked
         public string RevengedOpponentName { get; set; } = string.Empty;
         public uint RevengedWinsAfter { get; set; }
         public uint RevengedLossesAfter { get; set; }
+
+        // 论剑 V7 正式 1V1 战后「不服再战」对手身份（仅现场 1V1 非作废局提供，走切磋不计排位分）
+        public ulong RematchOpponentId { get; set; }
+        public string RematchOpponentName { get; set; } = string.Empty;
+
+        public bool CanOfferRematch =>
+            !FromRecovery && !IsVoid && EffectiveTeamSize == 1u && RematchOpponentId != 0UL;
 
         public bool HasCombatHighlight =>
             !IsVoid && (HighlightKind != BattleHighlightKind.BattleHighlightNone

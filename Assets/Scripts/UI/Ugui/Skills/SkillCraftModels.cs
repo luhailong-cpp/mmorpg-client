@@ -7,7 +7,7 @@ using MmorpgClient.Game.PlayerFeatures;
 
 namespace MmorpgClient.UI.Ugui.Skills
 {
-    public enum ProxyStallSortMode { Reputation = 0, SupremeCount = 1, LowestFee = 2 }
+    public enum ProxyStallSortMode { Reputation = 0, SupremeCount = 1, LowestFee = 2, HotRank = 3 }
     public enum ProxyStallFilterMode { All = 0, ForgeMaster = 1, ScrollMaster = 2, TeamFree = 3 }
 
     /// <summary>
@@ -180,6 +180,13 @@ namespace MmorpgClient.UI.Ugui.Skills
             });
             return sortMode switch
             {
+                ProxyStallSortMode.HotRank => filtered
+                    .OrderBy(s => s.HotRank > 0 && s.HotRank <= 3 ? s.HotRank : uint.MaxValue)
+                    .ThenByDescending(s => HotRankScore(s))
+                    .ThenByDescending(s => s.Recent24HSupreme)
+                    .ThenByDescending(s => s.SupremeForgedCount)
+                    .ThenByDescending(s => s.ProxyOrdersCompleted)
+                    .ThenBy(s => s.MasterPlayerId).ToList(),
                 ProxyStallSortMode.SupremeCount => filtered
                     .OrderByDescending(s => s.SupremeForgedCount)
                     .ThenByDescending(s => s.ProxyOrdersCompleted)
@@ -194,6 +201,56 @@ namespace MmorpgClient.UI.Ugui.Skills
                     .ThenByDescending(s => s.SupremeForgedCount)
                     .ThenBy(s => s.MasterPlayerId).ToList(),
             };
+        }
+
+        public static ulong HotRankScore(CraftProxyStallInfo s)
+            => s == null ? 0UL : (ulong)s.Recent24HSupreme * 3UL + s.Recent24HOrders;
+
+        public static List<CraftProxyStallInfo> TopHotStalls(IEnumerable<CraftProxyStallInfo> stalls)
+        {
+            if (stalls == null) return new List<CraftProxyStallInfo>();
+            return stalls
+                .Where(s => s != null && s.MasterPlayerId != 0 && s.HotRank >= 1 && s.HotRank <= 3)
+                .OrderBy(s => s.HotRank)
+                .ThenBy(s => s.MasterPlayerId)
+                .Take(3)
+                .ToList();
+        }
+
+        public static string HotRankLabel(uint rank) => rank switch
+        {
+            1 => "榜首",
+            2 => "榜眼",
+            3 => "探花",
+            _ => string.Empty,
+        };
+
+        public static List<string> DecodeUnlockedTitleNames(uint newlyUnlockedTitleMask)
+        {
+            var names = new List<string>();
+            for (uint id = 1; id <= 6; ++id)
+            {
+                if ((newlyUnlockedTitleMask & (1u << (int)(id - 1))) != 0u)
+                    names.Add(CraftTitleName(id));
+            }
+            return names;
+        }
+
+        public static string FormatDigestLines(CraftProxyDigestSummary digest)
+        {
+            if (digest == null) return "暂无未读名匠代打营业战报。";
+            var lines = new List<string>
+            {
+                $"离线/跨线期间共接单：{digest.OrdersCompleted} 单",
+                $"产出金标极品：{digest.SupremeForgedCount} 件  |  撰出稀世绝学：{digest.RareBooksCraftedCount} 本",
+                $"累计税后净收益（95%）：{digest.NetGoldEarned} 银两（已自动寄往邮箱，随时可领）",
+            };
+            if (!string.IsNullOrWhiteSpace(digest.LastBuyerName))
+                lines.Add($"最近下单侠士：{digest.LastBuyerName}");
+            var titles = DecodeUnlockedTitleNames(digest.NewlyUnlockedTitleMask);
+            if (titles.Count > 0)
+                lines.Add($"新解锁零属性名匠雅号：{string.Join("、", titles)}（可在摊位设置中免费佩戴）");
+            return string.Join("\n", lines);
         }
 
         private static ulong MinActiveFee(CraftProxyStallInfo s)
@@ -211,10 +268,14 @@ namespace MmorpgClient.UI.Ugui.Skills
             string displayName = stall.EquippedCraftTitleId != 0
                 ? $"{CraftTitleName(stall.EquippedCraftTitleId)}·{name}"
                 : name;
-            var parts = new List<string> { $"{displayName}【{ShowcaseTagName(stall.MasterShowcaseTag)}】" };
+            var parts = new List<string>();
+            if (stall.HotRank >= 1 && stall.HotRank <= 3) parts.Add($"【热榜{HotRankLabel(stall.HotRank)}】");
+            parts.Add($"{displayName}【{ShowcaseTagName(stall.MasterShowcaseTag)}】");
             if (stall.ViewerGetsFreeProxy) parts.Add("★同队0费情义代打");
             else if (stall.TeamFreeProxy) parts.Add("支持同队免税");
-            parts.Add($"口碑 {stall.ProxyOrdersCompleted} 单 · 极品 {stall.SupremeForgedCount} · 稀世 {stall.RareBooksCraftedCount}");
+            string repPart = $"口碑 {stall.ProxyOrdersCompleted} 单 · 极品 {stall.SupremeForgedCount} · 稀世 {stall.RareBooksCraftedCount}";
+            if (stall.Recent24HOrders > 0) repPart += $" · 近24h {stall.Recent24HOrders}单/{stall.Recent24HSupreme}极品";
+            parts.Add(repPart);
             if (stall.ForgeMasteryTier >= MasterTier && stall.ProxyForgeFeeGold > 0)
             {
                 string feeText = stall.ViewerGetsFreeProxy ? "同队免费" : $"{stall.ProxyForgeFeeGold} 银两";

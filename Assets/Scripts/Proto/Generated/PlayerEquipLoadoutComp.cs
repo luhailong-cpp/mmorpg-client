@@ -48,9 +48,10 @@ public static partial class PlayerEquipLoadoutCompReflection {
 }
 #region Messages
 /// <summary>
-/// 装备流派方案预设（docs/planning/equipment-loadout-presets-v1.md）。
+/// 装备流派方案预设（docs/planning/equipment-loadout-presets-v1.md，方案 A · 7 套三合一共享席位）。
 /// 实例与布局严格分离：方案只记录 8 个正式槽位（EquipSlot.xlsx 3..10）指向的真实装备 guid，
 /// 绝不复制 ItemComp、绝不另建隐藏背包；未穿戴副套装备留在人物背包 kInventory。
+/// 有效席位上限（2..7）统一由 PlayerSkillListComp + AfkPassComp + LevelComp 计算，到期只锁不删。
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class EquipLoadoutSlotBinding : pb::IMessage<EquipLoadoutSlotBinding>
@@ -347,7 +348,7 @@ public sealed partial class EquipLoadoutScheme : pb::IMessage<EquipLoadoutScheme
   public const int SchemeIdFieldNumber = 1;
   private uint schemeId_;
   /// <summary>
-  /// 1..5 显式方案号
+  /// 1..7 显式方案号
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -362,7 +363,7 @@ public sealed partial class EquipLoadoutScheme : pb::IMessage<EquipLoadoutScheme
   public const int NameFieldNumber = 2;
   private string name_ = "";
   /// <summary>
-  /// UTF-8 1..12 字符（空则显示默认「方案一..五」）
+  /// UTF-8 1..12 字符（空则显示默认「方案一..七」）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -406,7 +407,7 @@ public sealed partial class EquipLoadoutScheme : pb::IMessage<EquipLoadoutScheme
   public const int LinkedSkillSchemeIdFieldNumber = 5;
   private uint linkedSkillSchemeId_;
   /// <summary>
-  /// 0 = 不联动；1..6 = 联动 SkillLoadoutScheme
+  /// 0 = 不联动；1..7 = 联动 SkillLoadoutScheme
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -738,7 +739,7 @@ public sealed partial class PlayerEquipLoadoutComp : pb::IMessage<PlayerEquipLoa
   public const int UnlockedSchemeCountFieldNumber = 1;
   private uint unlockedSchemeCount_;
   /// <summary>
-  /// 已解锁套数（0 兼容按 1 处理，上限 5）
+  /// 历史保留字段（方案 A 由统一 7 套席位权威推导，不再单独收费）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -753,7 +754,7 @@ public sealed partial class PlayerEquipLoadoutComp : pb::IMessage<PlayerEquipLoa
   public const int ActiveSchemeIdFieldNumber = 2;
   private uint activeSchemeId_;
   /// <summary>
-  /// 当前激活方案号（0 兼容按 1 处理，1..unlocked）
+  /// 当前激活方案号（0 兼容按 1 处理，1..7；到期锁定态允许保留直至切走）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -770,7 +771,7 @@ public sealed partial class PlayerEquipLoadoutComp : pb::IMessage<PlayerEquipLoa
       = pb::FieldCodec.ForMessage(26, global::EquipLoadoutScheme.Parser);
   private readonly pbc::RepeatedField<global::EquipLoadoutScheme> schemes_ = new pbc::RepeatedField<global::EquipLoadoutScheme>();
   /// <summary>
-  /// 已解锁方案明细（按 scheme_id 升序）
+  /// 已保存方案明细（1..7 按 scheme_id 升序，到期只锁不删）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
