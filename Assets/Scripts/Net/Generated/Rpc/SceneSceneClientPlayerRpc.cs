@@ -137,5 +137,18 @@ namespace MmorpgClient.Net.Generated
                 handler(message);
             });
         }
+
+        public const uint GetSpectateChatSettingMessageId = 589;
+        /// <summary>
+        /// 局外人观战交流个人开关（docs/planning/battle-spectate-chat-v1.md）：仅控观战期间能否交流，不禁止观战；下次进战斗生效。
+        /// </summary>
+        public static void GetSpectateChatSetting(IRpcChannel channel, global::GetSpectateChatSettingRequest request,
+            RpcDone<global::GetSpectateChatSettingResponse> done)
+            => channel.CallMethod(GetSpectateChatSettingMessageId, request, global::GetSpectateChatSettingResponse.Parser, done);
+
+        public const uint SetSpectateChatSettingMessageId = 590;
+        public static void SetSpectateChatSetting(IRpcChannel channel, global::SetSpectateChatSettingRequest request,
+            RpcDone<global::SetSpectateChatSettingResponse> done)
+            => channel.CallMethod(SetSpectateChatSettingMessageId, request, global::SetSpectateChatSettingResponse.Parser, done);
     }
 }

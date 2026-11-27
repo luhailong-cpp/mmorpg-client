@@ -414,5 +414,19 @@ namespace MmorpgClient.Net.Generated
         public static void GetTacticalPuzzleSolutionReplay(IRpcChannel channel, global::Match.GetTacticalPuzzleSolutionReplayRequest request,
             RpcDone<global::Match.GetTacticalPuzzleSolutionReplayResponse> done)
             => channel.CallMethod(GetTacticalPuzzleSolutionReplayMessageId, request, global::Match.GetTacticalPuzzleSolutionReplayResponse.Parser, done);
+
+        public const uint SendBattleSpectateChatMessageId = 587;
+        /// <summary>
+        /// ---- 局外人观战交流模式（docs/planning/battle-spectate-chat-v1.md）----
+        /// 只认会话本人；关闭观战交流不禁止观战，仅禁止观战期间局外人发言；全房唯一公开室 + ContentGuard 审核。
+        /// </summary>
+        public static void SendBattleSpectateChat(IRpcChannel channel, global::Match.SendBattleSpectateChatRequest request,
+            RpcDone<global::Match.SendBattleSpectateChatResponse> done)
+            => channel.CallMethod(SendBattleSpectateChatMessageId, request, global::Match.SendBattleSpectateChatResponse.Parser, done);
+
+        public const uint PullBattleSpectateChatMessageId = 588;
+        public static void PullBattleSpectateChat(IRpcChannel channel, global::Match.PullBattleSpectateChatRequest request,
+            RpcDone<global::Match.PullBattleSpectateChatResponse> done)
+            => channel.CallMethod(PullBattleSpectateChatMessageId, request, global::Match.PullBattleSpectateChatResponse.Parser, done);
     }
 }

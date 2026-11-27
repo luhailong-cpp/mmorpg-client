@@ -196,38 +196,68 @@ namespace MmorpgClient.Tests.EditMode.Role
         [Test]
         public void ImportedWuxingExpansionSpritesAndMetasMatchArtCatalog()
         {
+            VerifySpritePackAndMetas(
+                "WuxingExpansionsV1",
+                new[] { "ui.meta", "icons.meta" },
+                new (string Rel, int W, int H, string Border)[]
+                {
+                    ("ui/sigil_card_common.png", 360, 480, "spriteBorder: {x: 125, y: 120, z: 125, w: 120}"),
+                    ("ui/sigil_card_spirit.png", 360, 480, "spriteBorder: {x: 125, y: 120, z: 125, w: 120}"),
+                    ("ui/sigil_card_immortal.png", 360, 480, "spriteBorder: {x: 125, y: 120, z: 125, w: 120}"),
+                    ("ui/formation_compass_bg.png", 512, 512, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/element_metal.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/element_wood.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/element_water.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/element_fire.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/element_earth.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/formation_1_tianfu.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/formation_2_dizai.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/formation_3_fengyang.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/formation_4_yunchui.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/formation_5_huyi.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/duel_rule_polarity.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/duel_rule_blitz.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/duel_rule_ban_cc.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("icons/duel_rule_spectate.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                });
+        }
+
+        [Test]
+        public void ImportedWuxingRealmV2SpritesAndMetasMatchArtCatalog()
+        {
+            VerifySpritePackAndMetas(
+                "WuxingRealmV2",
+                System.Array.Empty<string>(),
+                new (string Rel, int W, int H, string Border)[]
+                {
+                    ("hud_entry_roguelike_realm.png", 96, 96, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("realm_route_board_bg.png", 1160, 360, "spriteBorder: {x: 80, y: 64, z: 80, w: 64}"),
+                    ("realm_boon_card_bg.png", 360, 500, "spriteBorder: {x: 72, y: 104, z: 72, w: 48}"),
+                    ("realm_node_normal.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("realm_node_elite.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("realm_node_boss.png", 144, 144, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("realm_node_event.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
+                    ("realm_resonance_banner.png", 460, 72, "spriteBorder: {x: 40, y: 0, z: 40, w: 0}"),
+                });
+        }
+
+        private static void VerifySpritePackAndMetas(
+            string folderName,
+            string[] requiredSubMetas,
+            (string Rel, int W, int H, string Border)[] expected)
+        {
             string projectRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(
-                System.IO.Directory.GetCurrentDirectory(), "Assets", "Resources", "UI", "Ugui", "WuxingExpansionsV1"));
+                System.IO.Directory.GetCurrentDirectory(), "Assets", "Resources", "UI", "Ugui", folderName));
             if (!System.IO.Directory.Exists(projectRoot))
             {
-                projectRoot = @"D:\luyuan\mmorpg-client\Assets\Resources\UI\Ugui\WuxingExpansionsV1";
+                projectRoot = $@"D:\luyuan\mmorpg-client\Assets\Resources\UI\Ugui\{folderName}";
             }
-            Assert.IsTrue(System.IO.Directory.Exists(projectRoot), "WuxingExpansionsV1 资源目录缺失");
-            Assert.IsTrue(System.IO.File.Exists(projectRoot + ".meta"), "WuxingExpansionsV1.meta 缺失");
-            Assert.IsTrue(System.IO.File.Exists(System.IO.Path.Combine(projectRoot, "ui.meta")), "ui.meta 缺失");
-            Assert.IsTrue(System.IO.File.Exists(System.IO.Path.Combine(projectRoot, "icons.meta")), "icons.meta 缺失");
-
-            var expected = new (string Rel, int W, int H, string Border)[]
+            Assert.IsTrue(System.IO.Directory.Exists(projectRoot), $"{folderName} 资源目录缺失");
+            Assert.IsTrue(System.IO.File.Exists(projectRoot + ".meta"), $"{folderName}.meta 缺失");
+            foreach (string subMeta in requiredSubMetas)
             {
-                ("ui/sigil_card_common.png", 360, 480, "spriteBorder: {x: 125, y: 120, z: 125, w: 120}"),
-                ("ui/sigil_card_spirit.png", 360, 480, "spriteBorder: {x: 125, y: 120, z: 125, w: 120}"),
-                ("ui/sigil_card_immortal.png", 360, 480, "spriteBorder: {x: 125, y: 120, z: 125, w: 120}"),
-                ("ui/formation_compass_bg.png", 512, 512, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/element_metal.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/element_wood.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/element_water.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/element_fire.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/element_earth.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/formation_1_tianfu.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/formation_2_dizai.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/formation_3_fengyang.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/formation_4_yunchui.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/formation_5_huyi.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/duel_rule_polarity.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/duel_rule_blitz.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/duel_rule_ban_cc.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-                ("icons/duel_rule_spectate.png", 128, 128, "spriteBorder: {x: 0, y: 0, z: 0, w: 0}"),
-            };
+                Assert.IsTrue(System.IO.File.Exists(System.IO.Path.Combine(projectRoot, subMeta)), $"{subMeta} 缺失");
+            }
 
             foreach (var item in expected)
             {

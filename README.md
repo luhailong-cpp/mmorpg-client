@@ -5,6 +5,26 @@ Unity 6000.6.0f1 client for the MMORPG server (server repo:
 standalone sibling of the server repo (`<workspace>/mmorpg-client` next to
 `<workspace>/mmorpg`); it is no longer a submodule at `client/unity/`.
 
+## 游戏预览与类型简介（《五行奇谈》）
+
+![《五行奇谈》5v5 人宠满编回合制战斗站位预览](Docs/assets/battle-formation-preview.jpg)
+
+> *实机研发画面（2560×1080）：5v5 人宠满编 20 单位四排阵位（双方各 5 名角色 + 5 只灵宠）、脚下名牌避让布局、队伍状态栏与回合指令轮盘。*
+
+- **游戏类型**：东方道家五行题材**人宠回合制 MMORPG**（大世界自由探索 + 1v1～5v5 独立战斗节点直连回合对战）。
+- **核心理念**：主打**“有空就玩、随时能停”**（零每日打卡签到、零日清活跃条、零固定钟点排班），强调人宠技能配合与五行阵法策略，免费玩家可达 100% 相同战力上限。
+- **双形态目标平台**：基于 Unity 6 同步面向**微信 / 抖音小游戏（WebGL2）**与 **iOS / Android 原生 App（IL2CPP）**研发，可无缝连接 C++/Go、Java 21 或 Python 任意一套兼容契约的服务端。
+
+## 项目完成进度（截至 2026-11-27，未上线研发中）
+
+| 维度 | 当前状态 | 现状说明 |
+|---|---|---|
+| **网络、登录与大世界** | ✅ 已接入 | HTTP 网关选区、Gate TCP/WebSocket 传输抽象、断线重连、多张大世界地图与 NavMesh 寻路、NPC 与组队跟随 |
+| **回合制战斗表现与直连** | ✅ 已接入 | 20 单位四排阵位舞台、战斗直连（`BattleDirectLink` 票据握手、断线自动补签与重拉）、脚下名牌避让、观战、战报回放、战前禁选与护招破禁、角色/灵宠/怪物立绘与战斗序列帧特效 |
+| **核心玩法与 UI 系统** | ✅ 主体已接入 | 490+ 非生成业务脚本、70+ uGUI 资产目录；覆盖首领试炼、人宠会武、试炼志 V4、十季赛季技印（S1–S10）、帮会与全天帮战、江湖恩怨生死状、万象残局坊、装备打造/品相/制书、交易与社交系统 |
+| **持续打磨项** | 🟡 进行中 | 五行幻境 V2 等最新玩法切片导入与验收、全量角色/宠物/地图高精美术覆盖、Addressables/CDN 分包加载与音频系统完善 |
+| **上线前待办** | ⏳ 发版前待补齐 | 小游戏 WebGL2 正式转包与 iOS/Android 真机打通、实机全栈联调（含 `tools/run_crosszone_pair.ps1`）、Refresh Token 安全存储与反作弊加固、商店合规提审（支付/广告开关默认隔离） |
+
 ## Quick start
 
 1. **Open in Unity**: use Unity `6000.6.0f1`, then select this repo's root.
@@ -116,8 +136,8 @@ still need to address:
 | Area                | Status                                              |
 | ------------------- | --------------------------------------------------- |
 | Login flow          | done (HTTP gateway + token verify + Login + Enter)  |
-| Scene rendering     | playable Tianyong map; actor models remain placeholders |
-| Skill FX            | placeholder ring/beam/flash in `SkillFx`            |
+| Scene rendering     | playable Tianyong & multi-region maps with NavMesh; full-roster art polish ongoing |
+| Battle stage & FX   | 20-unit 4-row formation, Q-style character/pet/monster sprites & battle VFX strips wired; additional polish ongoing |
 | Reconnect           | exponential backoff in `GameDemo`                   |
 | Battle direct link  | wired as the only battle path (`BattleDirectLink`, ticket handshake, no gate fallback, reissue with backoff, reconnect banner); needs a live-stack `tools/run_crosszone_pair.ps1` smoke (`direct_turns == turns`) against the server repo's battle node |
 | Refresh token       | wired (`MessageIds.RefreshToken=127`)               |

@@ -292,6 +292,8 @@ namespace MmorpgClient.Net
                 case MatchServiceRpc.StartTacticalPuzzleBattleMessageId:
                 case MatchServiceRpc.LikeTacticalPuzzleMessageId:
                 case MatchServiceRpc.GetTacticalPuzzleSolutionReplayMessageId:
+                case MatchServiceRpc.SendBattleSpectateChatMessageId:
+                case MatchServiceRpc.PullBattleSpectateChatMessageId:
                     return "match";
 
                 case MessageIds.SubmitBattleAction:
@@ -490,6 +492,8 @@ namespace MmorpgClient.Net
                     return "scene_travel";
 
                 case SceneClientPlayerCommonRpc.RenamePlayerMessageId:
+                case SceneSceneClientPlayerRpc.GetSpectateChatSettingMessageId:
+                case SceneSceneClientPlayerRpc.SetSpectateChatSettingMessageId:
                     return "scene_common";
 
                 case ClientPlayerChatRpc.SendChatMessageId:

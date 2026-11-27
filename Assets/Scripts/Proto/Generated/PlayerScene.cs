@@ -25,90 +25,104 @@ public static partial class PlayerSceneReflection {
           "Ch5wcm90by9zY2VuZS9wbGF5ZXJfc2NlbmUucHJvdG8aG3Byb3RvL2RiL3By",
           "b3RvX29wdGlvbi5wcm90bxobcHJvdG8vY29tbW9uL2Jhc2UvdGlwLnByb3Rv",
           "Gh1wcm90by9jb21tb24vYmFzZS9lbXB0eS5wcm90bxoncHJvdG8vY29tbW9u",
-          "L2NvbXBvbmVudC9hY3Rvcl9jb21wLnByb3RvGhxwcm90by9zY2VuZS9zY2Vu",
-          "ZV9pbmZvLnByb3RvIjoKFEVudGVyU2NlbmVDMlNSZXF1ZXN0EiIKCnNjZW5l",
-          "X2luZm8YASABKAsyDi5TY2VuZUluZm9Db21wIj8KFUVudGVyU2NlbmVDMlNS",
-          "ZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3Nh",
-          "Z2UiMwoNRW50ZXJTY2VuZVMyQxIiCgpzY2VuZV9pbmZvGAEgASgLMg4uU2Nl",
-          "bmVJbmZvQ29tcCJxChBTY2VuZUNoYW5uZWxJbmZvEhAKCHNjZW5lX2lkGAEg",
-          "ASgEEhIKCmNoYW5uZWxfbm8YAiABKA0SFAoMcGxheWVyX2NvdW50GAMgASgN",
-          "EiEKBXN0YXRlGAQgASgOMhIuU2NlbmVDaGFubmVsU3RhdGUi1wEKFVNjZW5l",
-          "Q2hhbm5lbERpcmVjdG9yeRIPCgd6b25lX2lkGAEgASgNEhcKD3NjZW5lX2Nv",
-          "bmZpZ19pZBgCIAEoDRIjCghjaGFubmVscxgDIAMoCzIRLlNjZW5lQ2hhbm5l",
-          "bEluZm8SFQoNdXBkYXRlZF9hdF9tcxgEIAEoBBIfChdzd2l0Y2hfY29vbGRv",
-          "d25fc2Vjb25kcxgFIAEoDRIfChdtYXhfcGxheWVyc19wZXJfY2hhbm5lbBgG",
-          "IAEoDRIWCg5zd2l0Y2hfZW5hYmxlZBgHIAEoCCL8AQoVV29ybGRNYXBPdmVy",
-          "dmlld0VudHJ5EhcKD3NjZW5lX2NvbmZpZ19pZBgBIAEoDRIaChJ0b3RhbF9w",
-          "bGF5ZXJfY291bnQYAiABKA0SFQoNY2hhbm5lbF9jb3VudBgDIAEoDRImCgpo",
-          "ZWF0X2xldmVsGAQgASgOMhIuV29ybGRNYXBIZWF0TGV2ZWwSHAoUcmVjb21t",
-          "ZW5kZWRfc2NlbmVfaWQYBSABKAQSHgoWcmVjb21tZW5kZWRfY2hhbm5lbF9u",
-          "bxgGIAEoDRITCgtpc190aWRlX21hcBgHIAEoCBIcChRoYXNfbXlzdGVyeV9t",
-          "ZXJjaGFudBgIIAEoCCLRAQoRV29ybGRUaWRlU25hcHNob3QSDgoGYWN0aXZl",
-          "GAEgASgIEhAKCHJvdW5kX2lkGAIgASgEEhcKD3NjZW5lX2NvbmZpZ19pZBgD",
-          "IAEoDRIcChRyZWNvbW1lbmRlZF9zY2VuZV9pZBgEIAEoBBIeChZyZWNvbW1l",
-          "bmRlZF9jaGFubmVsX25vGAUgASgNEhQKDHN0YXJ0c19hdF9tcxgGIAEoBBIS",
-          "CgplbmRzX2F0X21zGAcgASgEEhkKEW5leHRfc3RhcnRzX2F0X21zGAggASgE",
-          "IsEBChBXb3JsZE1hcE92ZXJ2aWV3Eg8KB3pvbmVfaWQYASABKA0SFQoNdXBk",
-          "YXRlZF9hdF9tcxgCIAEoBBIWCg5zZXJ2ZXJfdGltZV9tcxgDIAEoBBIkCgRt",
-          "YXBzGAQgAygLMhYuV29ybGRNYXBPdmVydmlld0VudHJ5EiAKBHRpZGUYBSAB",
-          "KAsyEi5Xb3JsZFRpZGVTbmFwc2hvdBIlCh1kYWlseV9ob3RzcG90X3NjZW5l",
-          "X2NvbmZpZ19pZBgGIAEoDSKUAQoMU2NlbmVJbmZvUzJDEiIKCnNjZW5lX2lu",
-          "Zm8YASADKAsyDi5TY2VuZUluZm9Db21wEjEKEWNoYW5uZWxfZGlyZWN0b3J5",
-          "GAIgASgLMhYuU2NlbmVDaGFubmVsRGlyZWN0b3J5Ei0KEndvcmxkX21hcF9v",
-          "dmVydmlldxgDIAEoCzIRLldvcmxkTWFwT3ZlcnZpZXciUwoQU2NlbmVJbmZv",
-          "UmVxdWVzdBIeChZ3aXRoX2NoYW5uZWxfZGlyZWN0b3J5GAEgASgIEh8KF3dp",
-          "dGhfd29ybGRfbWFwX292ZXJ2aWV3GAIgASgIIjcKEVNjZW5lSW5mb1Jlc3Bv",
-          "bnNlEiIKCnNjZW5lX2luZm8YASADKAsyDi5TY2VuZUluZm9Db21wIrkBCg5B",
-          "Y3RvckNyZWF0ZVMyQxIOCgZlbnRpdHkYASABKAQSHQoJdHJhbnNmb3JtGAIg",
-          "ASgLMgouVHJhbnNmb3JtEh4KCmFjdG9yX3R5cGUYAyABKA4yCi5BY3RvclR5",
-          "cGUSDAoEZ3VpZBgEIAEoBBIRCgljb25maWdfaWQYBSABKAQSFQoNYXBwZWFy",
-          "YW5jZV9pZBgGIAEoCRIQCghjbGFzc19pZBgHIAEoDRIOCgZnZW5kZXIYCCAB",
-          "KA0iIQoPQWN0b3JEZXN0cm95UzJDEg4KBmVudGl0eRgBIAEoBCI5ChJBY3Rv",
-          "ckxpc3RDcmVhdGVTMkMSIwoKYWN0b3JfbGlzdBgBIAMoCzIPLkFjdG9yQ3Jl",
-          "YXRlUzJDIiUKE0FjdG9yTGlzdERlc3Ryb3lTMkMSDgoGZW50aXR5GAEgAygE",
-          "IkYKE1RyYXZlbFRvWm9uZVJlcXVlc3QSFgoOdGFyZ2V0X3pvbmVfaWQYASAB",
-          "KA0SFwoPc2NlbmVfY29uZmlnX2lkGAIgASgNIj4KFFRyYXZlbFRvWm9uZVJl",
-          "c3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2Fn",
-          "ZSI/Cg9TeW5jRGlnZXN0RW50cnkSGwoGZG9tYWluGAEgASgOMgsuU3luY0Rv",
-          "bWFpbhIPCgd2ZXJzaW9uGAIgASgEIhYKFEdldFN5bmNEaWdlc3RSZXF1ZXN0",
-          "ImkKDVN5bmNEaWdlc3RTMkMSIQoGc3RhdHVzGAEgASgOMhEuU3luY0RpZ2Vz",
-          "dFN0YXR1cxISCgpnZW5lcmF0aW9uGAIgASgEEiEKB2VudHJpZXMYAyADKAsy",
-          "EC5TeW5jRGlnZXN0RW50cnkq1gEKEVNjZW5lQ2hhbm5lbFN0YXRlEh8KG1ND",
-          "RU5FX0NIQU5ORUxfU1RBVEVfVU5LTk9XThAAEh4KGlNDRU5FX0NIQU5ORUxf",
-          "U1RBVEVfU01PT1RIEAESHAoYU0NFTkVfQ0hBTk5FTF9TVEFURV9CVVNZEAIS",
-          "HAoYU0NFTkVfQ0hBTk5FTF9TVEFURV9GVUxMEAMSHwobU0NFTkVfQ0hBTk5F",
-          "TF9TVEFURV9DTE9TSU5HEAQSIwofU0NFTkVfQ0hBTk5FTF9TVEFURV9VTkFW",
-          "QUlMQUJMRRAFKpgBChFXb3JsZE1hcEhlYXRMZXZlbBIgChxXT1JMRF9NQVBf",
-          "SEVBVF9MRVZFTF9VTktOT1dOEAASHgoaV09STERfTUFQX0hFQVRfTEVWRUxf",
-          "UVVJRVQQARIfChtXT1JMRF9NQVBfSEVBVF9MRVZFTF9BQ1RJVkUQAhIgChxX",
-          "T1JMRF9NQVBfSEVBVF9MRVZFTF9DUk9XREVEEAMqSwoJQWN0b3JUeXBlEhMK",
-          "D0FDVE9SX1RZUEVfTk9ORRAAEhUKEUFDVE9SX1RZUEVfUExBWUVSEAESEgoO",
-          "QUNUT1JfVFlQRV9OUEMQAiqwAgoKU3luY0RvbWFpbhIbChdTWU5DX0RPTUFJ",
-          "Tl9VTlNQRUNJRklFRBAAEhsKF1NZTkNfRE9NQUlOX0ZSSUVORF9MSVNUEAES",
-          "HgoaU1lOQ19ET01BSU5fRlJJRU5EX1JFUVVFU1QQAhIcChhTWU5DX0RPTUFJ",
-          "Tl9GUklFTkRfQkxPQ0sQAxIUChBTWU5DX0RPTUFJTl9URUFNEAQSGwoXU1lO",
-          "Q19ET01BSU5fVEVBTV9JTlZJVEUQBRIVChFTWU5DX0RPTUFJTl9HVUlMRBAG",
-          "EiEKHVNZTkNfRE9NQUlOX0dVSUxEX0FQUExJQ0FUSU9OEAcSHQoZU1lOQ19E",
-          "T01BSU5fR1VJTERfRUNPTk9NWRAIEh4KGlNZTkNfRE9NQUlOX0dVSUxEX0FD",
-          "VElWSVRZEAkqUQoQU3luY0RpZ2VzdFN0YXR1cxIZChVTWU5DX0RJR0VTVF9T",
-          "VEFUVVNfT0sQABIiCh5TWU5DX0RJR0VTVF9TVEFUVVNfVU5BVkFJTEFCTEUQ",
-          "ATKGBQoWU2NlbmVTY2VuZUNsaWVudFBsYXllchI7CgpFbnRlclNjZW5lEhUu",
-          "RW50ZXJTY2VuZUMyU1JlcXVlc3QaFi5FbnRlclNjZW5lQzJTUmVzcG9uc2US",
-          "MQoQTm90aWZ5RW50ZXJTY2VuZRIOLkVudGVyU2NlbmVTMkMaBi5FbXB0eSIF",
-          "iJnIAQISMAoMU2NlbmVJbmZvQzJTEhEuU2NlbmVJbmZvUmVxdWVzdBoGLkVt",
-          "cHR5IgWImcgBARIvCg9Ob3RpZnlTY2VuZUluZm8SDS5TY2VuZUluZm9TMkMa",
-          "Bi5FbXB0eSIFiJnIAQISMwoRTm90aWZ5QWN0b3JDcmVhdGUSDy5BY3RvckNy",
-          "ZWF0ZVMyQxoGLkVtcHR5IgWImcgBAhI1ChJOb3RpZnlBY3RvckRlc3Ryb3kS",
-          "EC5BY3RvckRlc3Ryb3lTMkMaBi5FbXB0eSIFiJnIAQISOwoVTm90aWZ5QWN0",
-          "b3JMaXN0Q3JlYXRlEhMuQWN0b3JMaXN0Q3JlYXRlUzJDGgYuRW1wdHkiBYiZ",
-          "yAECEj0KFk5vdGlmeUFjdG9yTGlzdERlc3Ryb3kSFC5BY3Rvckxpc3REZXN0",
-          "cm95UzJDGgYuRW1wdHkiBYiZyAECEjsKDFRyYXZlbFRvWm9uZRIULlRyYXZl",
-          "bFRvWm9uZVJlcXVlc3QaFS5UcmF2ZWxUb1pvbmVSZXNwb25zZRI1Cg1HZXRT",
-          "eW5jRGlnZXN0EhUuR2V0U3luY0RpZ2VzdFJlcXVlc3QaBi5FbXB0eSIFiJnI",
-          "AQESMQoQTm90aWZ5U3luY0RpZ2VzdBIOLlN5bmNEaWdlc3RTMkMaBi5FbXB0",
-          "eSIFiJnIAQIaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
+          "L2NvbXBvbmVudC9hY3Rvcl9jb21wLnByb3RvGihwcm90by9jb21tb24vY29t",
+          "cG9uZW50L3BsYXllcl9jb21wLnByb3RvGhxwcm90by9zY2VuZS9zY2VuZV9p",
+          "bmZvLnByb3RvIjoKFEVudGVyU2NlbmVDMlNSZXF1ZXN0EiIKCnNjZW5lX2lu",
+          "Zm8YASABKAsyDi5TY2VuZUluZm9Db21wIj8KFUVudGVyU2NlbmVDMlNSZXNw",
+          "b25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2Ui",
+          "MwoNRW50ZXJTY2VuZVMyQxIiCgpzY2VuZV9pbmZvGAEgASgLMg4uU2NlbmVJ",
+          "bmZvQ29tcCJxChBTY2VuZUNoYW5uZWxJbmZvEhAKCHNjZW5lX2lkGAEgASgE",
+          "EhIKCmNoYW5uZWxfbm8YAiABKA0SFAoMcGxheWVyX2NvdW50GAMgASgNEiEK",
+          "BXN0YXRlGAQgASgOMhIuU2NlbmVDaGFubmVsU3RhdGUi1wEKFVNjZW5lQ2hh",
+          "bm5lbERpcmVjdG9yeRIPCgd6b25lX2lkGAEgASgNEhcKD3NjZW5lX2NvbmZp",
+          "Z19pZBgCIAEoDRIjCghjaGFubmVscxgDIAMoCzIRLlNjZW5lQ2hhbm5lbElu",
+          "Zm8SFQoNdXBkYXRlZF9hdF9tcxgEIAEoBBIfChdzd2l0Y2hfY29vbGRvd25f",
+          "c2Vjb25kcxgFIAEoDRIfChdtYXhfcGxheWVyc19wZXJfY2hhbm5lbBgGIAEo",
+          "DRIWCg5zd2l0Y2hfZW5hYmxlZBgHIAEoCCL8AQoVV29ybGRNYXBPdmVydmll",
+          "d0VudHJ5EhcKD3NjZW5lX2NvbmZpZ19pZBgBIAEoDRIaChJ0b3RhbF9wbGF5",
+          "ZXJfY291bnQYAiABKA0SFQoNY2hhbm5lbF9jb3VudBgDIAEoDRImCgpoZWF0",
+          "X2xldmVsGAQgASgOMhIuV29ybGRNYXBIZWF0TGV2ZWwSHAoUcmVjb21tZW5k",
+          "ZWRfc2NlbmVfaWQYBSABKAQSHgoWcmVjb21tZW5kZWRfY2hhbm5lbF9ubxgG",
+          "IAEoDRITCgtpc190aWRlX21hcBgHIAEoCBIcChRoYXNfbXlzdGVyeV9tZXJj",
+          "aGFudBgIIAEoCCLRAQoRV29ybGRUaWRlU25hcHNob3QSDgoGYWN0aXZlGAEg",
+          "ASgIEhAKCHJvdW5kX2lkGAIgASgEEhcKD3NjZW5lX2NvbmZpZ19pZBgDIAEo",
+          "DRIcChRyZWNvbW1lbmRlZF9zY2VuZV9pZBgEIAEoBBIeChZyZWNvbW1lbmRl",
+          "ZF9jaGFubmVsX25vGAUgASgNEhQKDHN0YXJ0c19hdF9tcxgGIAEoBBISCgpl",
+          "bmRzX2F0X21zGAcgASgEEhkKEW5leHRfc3RhcnRzX2F0X21zGAggASgEIsEB",
+          "ChBXb3JsZE1hcE92ZXJ2aWV3Eg8KB3pvbmVfaWQYASABKA0SFQoNdXBkYXRl",
+          "ZF9hdF9tcxgCIAEoBBIWCg5zZXJ2ZXJfdGltZV9tcxgDIAEoBBIkCgRtYXBz",
+          "GAQgAygLMhYuV29ybGRNYXBPdmVydmlld0VudHJ5EiAKBHRpZGUYBSABKAsy",
+          "Ei5Xb3JsZFRpZGVTbmFwc2hvdBIlCh1kYWlseV9ob3RzcG90X3NjZW5lX2Nv",
+          "bmZpZ19pZBgGIAEoDSKUAQoMU2NlbmVJbmZvUzJDEiIKCnNjZW5lX2luZm8Y",
+          "ASADKAsyDi5TY2VuZUluZm9Db21wEjEKEWNoYW5uZWxfZGlyZWN0b3J5GAIg",
+          "ASgLMhYuU2NlbmVDaGFubmVsRGlyZWN0b3J5Ei0KEndvcmxkX21hcF9vdmVy",
+          "dmlldxgDIAEoCzIRLldvcmxkTWFwT3ZlcnZpZXciUwoQU2NlbmVJbmZvUmVx",
+          "dWVzdBIeChZ3aXRoX2NoYW5uZWxfZGlyZWN0b3J5GAEgASgIEh8KF3dpdGhf",
+          "d29ybGRfbWFwX292ZXJ2aWV3GAIgASgIIjcKEVNjZW5lSW5mb1Jlc3BvbnNl",
+          "EiIKCnNjZW5lX2luZm8YASADKAsyDi5TY2VuZUluZm9Db21wIrkBCg5BY3Rv",
+          "ckNyZWF0ZVMyQxIOCgZlbnRpdHkYASABKAQSHQoJdHJhbnNmb3JtGAIgASgL",
+          "MgouVHJhbnNmb3JtEh4KCmFjdG9yX3R5cGUYAyABKA4yCi5BY3RvclR5cGUS",
+          "DAoEZ3VpZBgEIAEoBBIRCgljb25maWdfaWQYBSABKAQSFQoNYXBwZWFyYW5j",
+          "ZV9pZBgGIAEoCRIQCghjbGFzc19pZBgHIAEoDRIOCgZnZW5kZXIYCCABKA0i",
+          "IQoPQWN0b3JEZXN0cm95UzJDEg4KBmVudGl0eRgBIAEoBCI5ChJBY3Rvckxp",
+          "c3RDcmVhdGVTMkMSIwoKYWN0b3JfbGlzdBgBIAMoCzIPLkFjdG9yQ3JlYXRl",
+          "UzJDIiUKE0FjdG9yTGlzdERlc3Ryb3lTMkMSDgoGZW50aXR5GAEgAygEIkYK",
+          "E1RyYXZlbFRvWm9uZVJlcXVlc3QSFgoOdGFyZ2V0X3pvbmVfaWQYASABKA0S",
+          "FwoPc2NlbmVfY29uZmlnX2lkGAIgASgNIj4KFFRyYXZlbFRvWm9uZVJlc3Bv",
+          "bnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZSI/",
+          "Cg9TeW5jRGlnZXN0RW50cnkSGwoGZG9tYWluGAEgASgOMgsuU3luY0RvbWFp",
+          "bhIPCgd2ZXJzaW9uGAIgASgEIhYKFEdldFN5bmNEaWdlc3RSZXF1ZXN0ImkK",
+          "DVN5bmNEaWdlc3RTMkMSIQoGc3RhdHVzGAEgASgOMhEuU3luY0RpZ2VzdFN0",
+          "YXR1cxISCgpnZW5lcmF0aW9uGAIgASgEEiEKB2VudHJpZXMYAyADKAsyEC5T",
+          "eW5jRGlnZXN0RW50cnkiHwodR2V0U3BlY3RhdGVDaGF0U2V0dGluZ1JlcXVl",
+          "c3QijwEKHkdldFNwZWN0YXRlQ2hhdFNldHRpbmdSZXNwb25zZRImCg1lcnJv",
+          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USLAoKcHJlZmVyZW5j",
+          "ZRgCIAEoDjIYLmVTcGVjdGF0ZUNoYXRQcmVmZXJlbmNlEhcKD2VmZmVjdGl2",
+          "ZV9hbGxvdxgDIAEoCCJNCh1TZXRTcGVjdGF0ZUNoYXRTZXR0aW5nUmVxdWVz",
+          "dBIsCgpwcmVmZXJlbmNlGAEgASgOMhguZVNwZWN0YXRlQ2hhdFByZWZlcmVu",
+          "Y2UijwEKHlNldFNwZWN0YXRlQ2hhdFNldHRpbmdSZXNwb25zZRImCg1lcnJv",
+          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USLAoKcHJlZmVyZW5j",
+          "ZRgCIAEoDjIYLmVTcGVjdGF0ZUNoYXRQcmVmZXJlbmNlEhcKD2VmZmVjdGl2",
+          "ZV9hbGxvdxgDIAEoCCrWAQoRU2NlbmVDaGFubmVsU3RhdGUSHwobU0NFTkVf",
+          "Q0hBTk5FTF9TVEFURV9VTktOT1dOEAASHgoaU0NFTkVfQ0hBTk5FTF9TVEFU",
+          "RV9TTU9PVEgQARIcChhTQ0VORV9DSEFOTkVMX1NUQVRFX0JVU1kQAhIcChhT",
+          "Q0VORV9DSEFOTkVMX1NUQVRFX0ZVTEwQAxIfChtTQ0VORV9DSEFOTkVMX1NU",
+          "QVRFX0NMT1NJTkcQBBIjCh9TQ0VORV9DSEFOTkVMX1NUQVRFX1VOQVZBSUxB",
+          "QkxFEAUqmAEKEVdvcmxkTWFwSGVhdExldmVsEiAKHFdPUkxEX01BUF9IRUFU",
+          "X0xFVkVMX1VOS05PV04QABIeChpXT1JMRF9NQVBfSEVBVF9MRVZFTF9RVUlF",
+          "VBABEh8KG1dPUkxEX01BUF9IRUFUX0xFVkVMX0FDVElWRRACEiAKHFdPUkxE",
+          "X01BUF9IRUFUX0xFVkVMX0NST1dERUQQAypLCglBY3RvclR5cGUSEwoPQUNU",
+          "T1JfVFlQRV9OT05FEAASFQoRQUNUT1JfVFlQRV9QTEFZRVIQARISCg5BQ1RP",
+          "Ul9UWVBFX05QQxACKrACCgpTeW5jRG9tYWluEhsKF1NZTkNfRE9NQUlOX1VO",
+          "U1BFQ0lGSUVEEAASGwoXU1lOQ19ET01BSU5fRlJJRU5EX0xJU1QQARIeChpT",
+          "WU5DX0RPTUFJTl9GUklFTkRfUkVRVUVTVBACEhwKGFNZTkNfRE9NQUlOX0ZS",
+          "SUVORF9CTE9DSxADEhQKEFNZTkNfRE9NQUlOX1RFQU0QBBIbChdTWU5DX0RP",
+          "TUFJTl9URUFNX0lOVklURRAFEhUKEVNZTkNfRE9NQUlOX0dVSUxEEAYSIQod",
+          "U1lOQ19ET01BSU5fR1VJTERfQVBQTElDQVRJT04QBxIdChlTWU5DX0RPTUFJ",
+          "Tl9HVUlMRF9FQ09OT01ZEAgSHgoaU1lOQ19ET01BSU5fR1VJTERfQUNUSVZJ",
+          "VFkQCSpRChBTeW5jRGlnZXN0U3RhdHVzEhkKFVNZTkNfRElHRVNUX1NUQVRV",
+          "U19PSxAAEiIKHlNZTkNfRElHRVNUX1NUQVRVU19VTkFWQUlMQUJMRRABMrwG",
+          "ChZTY2VuZVNjZW5lQ2xpZW50UGxheWVyEjsKCkVudGVyU2NlbmUSFS5FbnRl",
+          "clNjZW5lQzJTUmVxdWVzdBoWLkVudGVyU2NlbmVDMlNSZXNwb25zZRIxChBO",
+          "b3RpZnlFbnRlclNjZW5lEg4uRW50ZXJTY2VuZVMyQxoGLkVtcHR5IgWImcgB",
+          "AhIwCgxTY2VuZUluZm9DMlMSES5TY2VuZUluZm9SZXF1ZXN0GgYuRW1wdHki",
+          "BYiZyAEBEi8KD05vdGlmeVNjZW5lSW5mbxINLlNjZW5lSW5mb1MyQxoGLkVt",
+          "cHR5IgWImcgBAhIzChFOb3RpZnlBY3RvckNyZWF0ZRIPLkFjdG9yQ3JlYXRl",
+          "UzJDGgYuRW1wdHkiBYiZyAECEjUKEk5vdGlmeUFjdG9yRGVzdHJveRIQLkFj",
+          "dG9yRGVzdHJveVMyQxoGLkVtcHR5IgWImcgBAhI7ChVOb3RpZnlBY3Rvckxp",
+          "c3RDcmVhdGUSEy5BY3Rvckxpc3RDcmVhdGVTMkMaBi5FbXB0eSIFiJnIAQIS",
+          "PQoWTm90aWZ5QWN0b3JMaXN0RGVzdHJveRIULkFjdG9yTGlzdERlc3Ryb3lT",
+          "MkMaBi5FbXB0eSIFiJnIAQISOwoMVHJhdmVsVG9ab25lEhQuVHJhdmVsVG9a",
+          "b25lUmVxdWVzdBoVLlRyYXZlbFRvWm9uZVJlc3BvbnNlEjUKDUdldFN5bmNE",
+          "aWdlc3QSFS5HZXRTeW5jRGlnZXN0UmVxdWVzdBoGLkVtcHR5IgWImcgBARIx",
+          "ChBOb3RpZnlTeW5jRGlnZXN0Eg4uU3luY0RpZ2VzdFMyQxoGLkVtcHR5IgWI",
+          "mcgBAhJZChZHZXRTcGVjdGF0ZUNoYXRTZXR0aW5nEh4uR2V0U3BlY3RhdGVD",
+          "aGF0U2V0dGluZ1JlcXVlc3QaHy5HZXRTcGVjdGF0ZUNoYXRTZXR0aW5nUmVz",
+          "cG9uc2USWQoWU2V0U3BlY3RhdGVDaGF0U2V0dGluZxIeLlNldFNwZWN0YXRl",
+          "Q2hhdFNldHRpbmdSZXF1ZXN0Gh8uU2V0U3BlY3RhdGVDaGF0U2V0dGluZ1Jl",
+          "c3BvbnNlGgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, global::ActorCompReflection.Descriptor, global::SceneInfoReflection.Descriptor, },
+        new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, global::ActorCompReflection.Descriptor, global::PlayerCompReflection.Descriptor, global::SceneInfoReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::SceneChannelState), typeof(global::WorldMapHeatLevel), typeof(global::ActorType), typeof(global::SyncDomain), typeof(global::SyncDigestStatus), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::EnterSceneC2SRequest), global::EnterSceneC2SRequest.Parser, new[]{ "SceneInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EnterSceneC2SResponse), global::EnterSceneC2SResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
@@ -129,7 +143,11 @@ public static partial class PlayerSceneReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::TravelToZoneResponse), global::TravelToZoneResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SyncDigestEntry), global::SyncDigestEntry.Parser, new[]{ "Domain", "Version" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetSyncDigestRequest), global::GetSyncDigestRequest.Parser, null, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SyncDigestS2C), global::SyncDigestS2C.Parser, new[]{ "Status", "Generation", "Entries" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::SyncDigestS2C), global::SyncDigestS2C.Parser, new[]{ "Status", "Generation", "Entries" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::GetSpectateChatSettingRequest), global::GetSpectateChatSettingRequest.Parser, null, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::GetSpectateChatSettingResponse), global::GetSpectateChatSettingResponse.Parser, new[]{ "ErrorMessage", "Preference", "EffectiveAllow" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SetSpectateChatSettingRequest), global::SetSpectateChatSettingRequest.Parser, new[]{ "Preference" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SetSpectateChatSettingResponse), global::SetSpectateChatSettingResponse.Parser, new[]{ "ErrorMessage", "Preference", "EffectiveAllow" }, null, null, null, null)
         }));
   }
   #endregion
@@ -5823,6 +5841,933 @@ public sealed partial class SyncDigestS2C : pb::IMessage<SyncDigestS2C>
         }
         case 26: {
           entries_.AddEntriesFrom(ref input, _repeated_entries_codec);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class GetSpectateChatSettingRequest : pb::IMessage<GetSpectateChatSettingRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<GetSpectateChatSettingRequest> _parser = new pb::MessageParser<GetSpectateChatSettingRequest>(() => new GetSpectateChatSettingRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<GetSpectateChatSettingRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[20]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public GetSpectateChatSettingRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public GetSpectateChatSettingRequest(GetSpectateChatSettingRequest other) : this() {
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public GetSpectateChatSettingRequest Clone() {
+    return new GetSpectateChatSettingRequest(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as GetSpectateChatSettingRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(GetSpectateChatSettingRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(GetSpectateChatSettingRequest other) {
+    if (other == null) {
+      return;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class GetSpectateChatSettingResponse : pb::IMessage<GetSpectateChatSettingResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<GetSpectateChatSettingResponse> _parser = new pb::MessageParser<GetSpectateChatSettingResponse>(() => new GetSpectateChatSettingResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<GetSpectateChatSettingResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[21]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public GetSpectateChatSettingResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public GetSpectateChatSettingResponse(GetSpectateChatSettingResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    preference_ = other.preference_;
+    effectiveAllow_ = other.effectiveAllow_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public GetSpectateChatSettingResponse Clone() {
+    return new GetSpectateChatSettingResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "preference" field.</summary>
+  public const int PreferenceFieldNumber = 2;
+  private global::eSpectateChatPreference preference_ = global::eSpectateChatPreference.SpectateChatPrefUnspecified;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::eSpectateChatPreference Preference {
+    get { return preference_; }
+    set {
+      preference_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "effective_allow" field.</summary>
+  public const int EffectiveAllowFieldNumber = 3;
+  private bool effectiveAllow_;
+  /// <summary>
+  /// 解析全局默认策略后的当前生效值（true=允许局外人观战交流，false=禁止交流但仍可观战）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool EffectiveAllow {
+    get { return effectiveAllow_; }
+    set {
+      effectiveAllow_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as GetSpectateChatSettingResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(GetSpectateChatSettingResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (Preference != other.Preference) return false;
+    if (EffectiveAllow != other.EffectiveAllow) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) hash ^= Preference.GetHashCode();
+    if (EffectiveAllow != false) hash ^= EffectiveAllow.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
+      output.WriteRawTag(16);
+      output.WriteEnum((int) Preference);
+    }
+    if (EffectiveAllow != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(EffectiveAllow);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
+      output.WriteRawTag(16);
+      output.WriteEnum((int) Preference);
+    }
+    if (EffectiveAllow != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(EffectiveAllow);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Preference);
+    }
+    if (EffectiveAllow != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(GetSpectateChatSettingResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
+      Preference = other.Preference;
+    }
+    if (other.EffectiveAllow != false) {
+      EffectiveAllow = other.EffectiveAllow;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          Preference = (global::eSpectateChatPreference) input.ReadEnum();
+          break;
+        }
+        case 24: {
+          EffectiveAllow = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          Preference = (global::eSpectateChatPreference) input.ReadEnum();
+          break;
+        }
+        case 24: {
+          EffectiveAllow = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SetSpectateChatSettingRequest : pb::IMessage<SetSpectateChatSettingRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SetSpectateChatSettingRequest> _parser = new pb::MessageParser<SetSpectateChatSettingRequest>(() => new SetSpectateChatSettingRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SetSpectateChatSettingRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[22]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SetSpectateChatSettingRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SetSpectateChatSettingRequest(SetSpectateChatSettingRequest other) : this() {
+    preference_ = other.preference_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SetSpectateChatSettingRequest Clone() {
+    return new SetSpectateChatSettingRequest(this);
+  }
+
+  /// <summary>Field number for the "preference" field.</summary>
+  public const int PreferenceFieldNumber = 1;
+  private global::eSpectateChatPreference preference_ = global::eSpectateChatPreference.SpectateChatPrefUnspecified;
+  /// <summary>
+  /// 仅接受 SPECTATE_CHAT_PREF_ALLOW(1) 或 SPECTATE_CHAT_PREF_FORBID(2)。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::eSpectateChatPreference Preference {
+    get { return preference_; }
+    set {
+      preference_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SetSpectateChatSettingRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SetSpectateChatSettingRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Preference != other.Preference) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) hash ^= Preference.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) Preference);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) Preference);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Preference);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SetSpectateChatSettingRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
+      Preference = other.Preference;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Preference = (global::eSpectateChatPreference) input.ReadEnum();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Preference = (global::eSpectateChatPreference) input.ReadEnum();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SetSpectateChatSettingResponse : pb::IMessage<SetSpectateChatSettingResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SetSpectateChatSettingResponse> _parser = new pb::MessageParser<SetSpectateChatSettingResponse>(() => new SetSpectateChatSettingResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SetSpectateChatSettingResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[23]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SetSpectateChatSettingResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SetSpectateChatSettingResponse(SetSpectateChatSettingResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    preference_ = other.preference_;
+    effectiveAllow_ = other.effectiveAllow_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SetSpectateChatSettingResponse Clone() {
+    return new SetSpectateChatSettingResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "preference" field.</summary>
+  public const int PreferenceFieldNumber = 2;
+  private global::eSpectateChatPreference preference_ = global::eSpectateChatPreference.SpectateChatPrefUnspecified;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::eSpectateChatPreference Preference {
+    get { return preference_; }
+    set {
+      preference_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "effective_allow" field.</summary>
+  public const int EffectiveAllowFieldNumber = 3;
+  private bool effectiveAllow_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool EffectiveAllow {
+    get { return effectiveAllow_; }
+    set {
+      effectiveAllow_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SetSpectateChatSettingResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SetSpectateChatSettingResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (Preference != other.Preference) return false;
+    if (EffectiveAllow != other.EffectiveAllow) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) hash ^= Preference.GetHashCode();
+    if (EffectiveAllow != false) hash ^= EffectiveAllow.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
+      output.WriteRawTag(16);
+      output.WriteEnum((int) Preference);
+    }
+    if (EffectiveAllow != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(EffectiveAllow);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
+      output.WriteRawTag(16);
+      output.WriteEnum((int) Preference);
+    }
+    if (EffectiveAllow != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(EffectiveAllow);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Preference);
+    }
+    if (EffectiveAllow != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SetSpectateChatSettingResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.Preference != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
+      Preference = other.Preference;
+    }
+    if (other.EffectiveAllow != false) {
+      EffectiveAllow = other.EffectiveAllow;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          Preference = (global::eSpectateChatPreference) input.ReadEnum();
+          break;
+        }
+        case 24: {
+          EffectiveAllow = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          Preference = (global::eSpectateChatPreference) input.ReadEnum();
+          break;
+        }
+        case 24: {
+          EffectiveAllow = input.ReadBool();
           break;
         }
       }

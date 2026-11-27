@@ -216,6 +216,7 @@ namespace MmorpgClient.Game
         /// 与同一条战斗直连。
         /// </summary>
         public SpectateClient Spectate { get; }
+        public BattleSpectateChatClient SpectateChat { get; }
 
         /// <summary>
         /// 角色属性加点网络层(docs/design/player-attribute-allocation.md)。与 Battle/Spectate
@@ -492,6 +493,8 @@ namespace MmorpgClient.Game
             TeamMatchRecovery = DurableRequestFileStore.ForOrigin(System.IO.Path.Combine(Application.persistentDataPath,"team-match-intents"),gatewayBaseUrl,ownerRevision);
             TeamActionRecovery = DurableRequestFileStore.ForOrigin(System.IO.Path.Combine(Application.persistentDataPath,"team-action-intents"),gatewayBaseUrl,ownerRevision);
             Spectate = SpectateClient.Attach(battleRoute, battleRoute);
+            SpectateChat = BattleSpectateChatClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
+                () => Time.realtimeSinceStartup, RpcGuard);
             Func<bool> cultivationWritesBlocked = () => Battle.HasActiveBattle || Spectate.Phase != SpectatePhase.None;
             Attributes = AttributeClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity, cultivationWritesBlocked);
             Pets = PetClient.Attach(new GameClientBattleTransport(this), cultivationWritesBlocked);
@@ -688,6 +691,7 @@ namespace MmorpgClient.Game
             BattleLink?.Tick(Time.realtimeSinceStartup); // 直连握手期限/重连倒计时/请求超时由主循环驱动
             Battle?.Tick(Time.realtimeSinceStartup); // 排队轮询/准备超时由主循环驱动
             Spectate?.Tick(Time.realtimeSinceStartup); // 观战首帧超时由主循环驱动
+            SpectateChat?.Tick(Time.realtimeSinceStartup); // 局外人观战交流轮询与会话边界观察
             // 传送在途的兜底:受理之后 msg 124 与失败 tip 都没等到(服务端消息丢了 / 源 scene 挂了)。
             // 只清本地状态、**不断线**:老连接大概率还是好的,玩家可以再点一次;真断了自有 OnDisconnected。
             if (_travelPending && Time.realtimeSinceStartup > _travelDeadline)

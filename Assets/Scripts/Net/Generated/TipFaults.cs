@@ -50,6 +50,7 @@ namespace MmorpgClient.Net.Generated
             14045u,
             14071u,
             16004u,
+            16078u,
             18001u,
             20017u,
             26016u,
