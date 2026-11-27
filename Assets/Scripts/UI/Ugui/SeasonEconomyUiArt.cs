@@ -181,7 +181,15 @@ namespace MmorpgClient.UI.Ugui
 
         public static Sprite LoadCanonicalBossAvatar(string name) => LoadCached(CanonicalSeasonEconomyIconsRoot + name);
 
-        public static Sprite LoadTrialJournalBadge(string name) => LoadCached(TrialJournalBadgesRoot + name);
+        public static Sprite LoadTrialJournalBadge(string name)
+        {
+            if (string.IsNullOrEmpty(name)) return null;
+            var dedicated = LoadCached(TrialJournalBadgesRoot + name);
+            if (dedicated != null) return dedicated;
+            return MmorpgClient.Game.TrialJournal.TrialJournalModels.TryGetSeasonHonorBadgeFallback(name, out var fallbackPath)
+                ? LoadCached(fallbackPath)
+                : null;
+        }
 
         public static Sprite LoadBattleArenaAsset(string name) => LoadCached(BattleArenaV2V3AssetsRoot + name);
 

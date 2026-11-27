@@ -149,21 +149,25 @@ namespace MmorpgClient.Net
             }
 
             PassportPkceSession pkce = PassportOAuthProtocol.CreatePkceSession();
-            string authorizeUrl = PassportOAuthProtocol.BuildAuthorizeUrl(config, pkce);
 
             _pendingCallback = onDone ?? (_ => { });
-            _activeConfig = config;
             _activePkce = pkce;
-            _activeAuthorizeUrl = authorizeUrl;
             _deadlineRealtimeSec = Time.realtimeSinceStartup + config.TimeoutSeconds;
             _exchanging = false;
 
 #if UNITY_STANDALONE || UNITY_EDITOR
-            if (!TryStartLoopbackListener(config.RedirectUri, pkce.State))
+            // 先占端口再拼授权地址:授权地址与换票里的 redirect_uri 必须是实际监听的那一个(通行证按原文精确比对)。
+            if (!TryStartLoopbackListenerOnAnyPort(ref config, pkce.State))
             {
                 Complete(PlatformSignInResult.Failure(PassportSignInErrors.PortInUse));
                 return;
             }
+#endif
+            string authorizeUrl = PassportOAuthProtocol.BuildAuthorizeUrl(config, pkce);
+            _activeConfig = config;
+            _activeAuthorizeUrl = authorizeUrl;
+
+#if UNITY_STANDALONE || UNITY_EDITOR
             Application.OpenURL(authorizeUrl);
 #elif UNITY_IOS
             // iOS 在 App 内弹系统认证会话,不跳到 Safari(App Store 审核指南 4.0 会拒掉跳出去登录 / 注册的做法);
@@ -306,6 +310,24 @@ namespace MmorpgClient.Net
         }
 
 #if UNITY_STANDALONE || UNITY_EDITOR
+        /// <summary>
+        /// 缺省回调地址被占时依次试后面四个端口(通行证都登记了);改过回调地址(开发覆盖)时只试它自己,别的端口通行证不认。
+        /// 占上了就把 config 换成实际监听的地址。
+        /// </summary>
+        private bool TryStartLoopbackListenerOnAnyPort(ref PassportOAuthConfig config, string expectedState)
+        {
+            var candidates = config.RedirectUri == ClientSettings.DefaultDesktopPassportRedirectUri
+                ? PassportOAuthProtocol.LoopbackRedirectCandidates(config.RedirectUri)
+                : new[] { config.RedirectUri };
+            foreach (var candidate in candidates)
+            {
+                if (!TryStartLoopbackListener(candidate, expectedState)) continue;
+                config = new PassportOAuthConfig(config.Origin, config.ClientId, candidate, config.TimeoutSeconds);
+                return true;
+            }
+            return false;
+        }
+
         private bool TryStartLoopbackListener(string redirectUri, string expectedState)
         {
             if (!PassportOAuthProtocol.TryGetLoopbackListenerPrefix(redirectUri, out var prefix, out _))

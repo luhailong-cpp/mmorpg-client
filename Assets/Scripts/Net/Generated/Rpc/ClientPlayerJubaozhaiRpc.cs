@@ -221,5 +221,23 @@ namespace MmorpgClient.Net.Generated
         public static void GetPlayerTradeQuota(IRpcChannel channel, global::Trade.GetPlayerTradeQuotaRequest request,
             RpcDone<global::Trade.GetPlayerTradeQuotaResponse> done)
             => channel.CallMethod(GetPlayerTradeQuotaMessageId, request, global::Trade.GetPlayerTradeQuotaResponse.Parser, done);
+
+        public const uint CreateWantedSkillBookOrderMessageId = 582;
+        /// <summary>
+        /// 悬赏求书求购单(kind 7):发榜托管银两、揭榜托管封卷道籍,先书后款由 trade 交付;撤单与查单走上面的通用合同入口。
+        /// </summary>
+        public static void CreateWantedSkillBookOrder(IRpcChannel channel, global::Trade.CreateWantedSkillBookOrderRequest request,
+            RpcDone<global::Trade.WantedSkillBookOrderResponse> done)
+            => channel.CallMethod(CreateWantedSkillBookOrderMessageId, request, global::Trade.WantedSkillBookOrderResponse.Parser, done);
+
+        public const uint FulfillWantedSkillBookOrderMessageId = 583;
+        public static void FulfillWantedSkillBookOrder(IRpcChannel channel, global::Trade.FulfillWantedSkillBookOrderRequest request,
+            RpcDone<global::Trade.WantedSkillBookOrderResponse> done)
+            => channel.CallMethod(FulfillWantedSkillBookOrderMessageId, request, global::Trade.WantedSkillBookOrderResponse.Parser, done);
+
+        public const uint ListWantedSkillBookOrdersMessageId = 584;
+        public static void ListWantedSkillBookOrders(IRpcChannel channel, global::Trade.ListWantedSkillBookOrdersRequest request,
+            RpcDone<global::Trade.ListWantedSkillBookOrdersResponse> done)
+            => channel.CallMethod(ListWantedSkillBookOrdersMessageId, request, global::Trade.ListWantedSkillBookOrdersResponse.Parser, done);
     }
 }

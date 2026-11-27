@@ -375,5 +375,44 @@ namespace MmorpgClient.Net.Generated
         public static void GetSharedTrialReplay(IRpcChannel channel, global::Match.GetSharedTrialReplayRequest request,
             RpcDone<global::Match.GetSharedTrialReplayResponse> done)
             => channel.CallMethod(GetSharedTrialReplayMessageId, request, global::Match.GetSharedTrialReplayResponse.Parser, done);
+
+        public const uint ListTacticalPuzzlesMessageId = 575;
+        /// <summary>
+        /// ---- 万象残局坊（UGC 回合解谜工坊 V1，docs/planning/tactical-puzzle-workshop-v1.md）----
+        /// 均为只认会话本人；出题文本必经 ContentGuard 拦截；自证通关后钉住标准解回放；0 数值通胀、0 日常打卡。
+        /// </summary>
+        public static void ListTacticalPuzzles(IRpcChannel channel, global::Match.ListTacticalPuzzlesRequest request,
+            RpcDone<global::Match.ListTacticalPuzzlesResponse> done)
+            => channel.CallMethod(ListTacticalPuzzlesMessageId, request, global::Match.ListTacticalPuzzlesResponse.Parser, done);
+
+        public const uint GetTacticalPuzzleMessageId = 576;
+        public static void GetTacticalPuzzle(IRpcChannel channel, global::Match.GetTacticalPuzzleRequest request,
+            RpcDone<global::Match.GetTacticalPuzzleResponse> done)
+            => channel.CallMethod(GetTacticalPuzzleMessageId, request, global::Match.GetTacticalPuzzleResponse.Parser, done);
+
+        public const uint SaveTacticalPuzzleDraftMessageId = 577;
+        public static void SaveTacticalPuzzleDraft(IRpcChannel channel, global::Match.SaveTacticalPuzzleDraftRequest request,
+            RpcDone<global::Match.SaveTacticalPuzzleDraftResponse> done)
+            => channel.CallMethod(SaveTacticalPuzzleDraftMessageId, request, global::Match.SaveTacticalPuzzleDraftResponse.Parser, done);
+
+        public const uint DeleteTacticalPuzzleMessageId = 578;
+        public static void DeleteTacticalPuzzle(IRpcChannel channel, global::Match.DeleteTacticalPuzzleRequest request,
+            RpcDone<global::Match.DeleteTacticalPuzzleResponse> done)
+            => channel.CallMethod(DeleteTacticalPuzzleMessageId, request, global::Match.DeleteTacticalPuzzleResponse.Parser, done);
+
+        public const uint StartTacticalPuzzleBattleMessageId = 579;
+        public static void StartTacticalPuzzleBattle(IRpcChannel channel, global::Match.StartTacticalPuzzleBattleRequest request,
+            RpcDone<global::Match.StartTacticalPuzzleBattleResponse> done)
+            => channel.CallMethod(StartTacticalPuzzleBattleMessageId, request, global::Match.StartTacticalPuzzleBattleResponse.Parser, done);
+
+        public const uint LikeTacticalPuzzleMessageId = 580;
+        public static void LikeTacticalPuzzle(IRpcChannel channel, global::Match.LikeTacticalPuzzleRequest request,
+            RpcDone<global::Match.LikeTacticalPuzzleResponse> done)
+            => channel.CallMethod(LikeTacticalPuzzleMessageId, request, global::Match.LikeTacticalPuzzleResponse.Parser, done);
+
+        public const uint GetTacticalPuzzleSolutionReplayMessageId = 581;
+        public static void GetTacticalPuzzleSolutionReplay(IRpcChannel channel, global::Match.GetTacticalPuzzleSolutionReplayRequest request,
+            RpcDone<global::Match.GetTacticalPuzzleSolutionReplayResponse> done)
+            => channel.CallMethod(GetTacticalPuzzleSolutionReplayMessageId, request, global::Match.GetTacticalPuzzleSolutionReplayResponse.Parser, done);
     }
 }

@@ -9,6 +9,10 @@
   -OutDir 可以指定一个尚不存在的输出目录。加 -Zip 会在其旁边生成 ZIP。
   默认使用 BuildOptions.None。只有显式 -Development 才启用 DEVELOPMENT_BUILD，
   结果与实际构建选项（含数值旗标）记录在输出目录的 build-manifest.json。
+  正式包必须用 -GatewayUrl 给出网关地址（https，不能是本机），-TermsUrl / -PrivacyUrl 给出《用户协议》《隐私政策》的页面（https），
+  -PassportOrigin 可选（官方通行证，同样 https）：
+  写进包里的 Assets/Resources/ClientEndpoints.json，构建完还原；正式包不认启动参数里的地址
+  （服务端 docs/design/official-passport-registration.md §3.8）。
   构建会话限制为 2 个 Job Worker、1 个导入 Worker，降低并发内存压力。
 .EXAMPLE
   pwsh -File tools/build_client.ps1
@@ -16,13 +20,19 @@
   pwsh -File tools/build_client.ps1 -OutDir 'Builds/QA Client' -Zip
 .EXAMPLE
   pwsh -File tools/build_client.ps1 -Development -Zip
+.EXAMPLE
+  pwsh -File tools/build_client.ps1 -GatewayUrl https://gateway.example.com -PassportOrigin https://passport.example.com -TermsUrl https://www.example.com/terms -PrivacyUrl https://www.example.com/privacy
 #>
 [CmdletBinding()]
 param(
     [string]$UnityExe,
     [string]$OutDir,
     [switch]$Development,
-    [switch]$Zip
+    [switch]$Zip,
+    [string]$GatewayUrl,
+    [string]$PassportOrigin,
+    [string]$TermsUrl,
+    [string]$PrivacyUrl
 )
 
 $ErrorActionPreference = 'Stop'
@@ -81,6 +91,13 @@ $unityArgs = @(
     '-logFile', $logFile
 )
 if ($Development) { $unityArgs += '-clientDevelopment' }
+if (-not $Development -and (-not $GatewayUrl -or -not $TermsUrl -or -not $PrivacyUrl)) {
+    throw 'A release build needs -GatewayUrl, -TermsUrl and -PrivacyUrl (https, not this machine); use -Development for a local build.'
+}
+if ($GatewayUrl) { $unityArgs += '-clientGatewayUrl', $GatewayUrl }
+if ($PassportOrigin) { $unityArgs += '-clientPassportOrigin', $PassportOrigin }
+if ($TermsUrl) { $unityArgs += '-clientTermsUrl', $TermsUrl }
+if ($PrivacyUrl) { $unityArgs += '-clientPrivacyUrl', $PrivacyUrl }
 
 Write-Host "[build] Unity $unityVersion | $UnityExe"
 Write-Host "[build] output=$OutDir"

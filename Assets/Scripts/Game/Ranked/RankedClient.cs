@@ -221,7 +221,7 @@ namespace MmorpgClient.Game.Ranked
             if (PresetSaving) return false;
             if (!TryConsumeBudget(MatchServiceRpc.SaveRankedPresetMessageId)) return false;
 
-            uint effectiveRuleVersion = ruleVersion != 0 ? ruleVersion : (Profile?.RuleVersion ?? 2u);
+            uint effectiveRuleVersion = ruleVersion != 0 ? ruleVersion : (Profile?.RuleVersion ?? 0u);
             int gen = _generation;
             ulong player = PlayerId;
             PresetSaving = true;

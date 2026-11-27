@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MmorpgClient.Net;
 using UnityEngine;
 
 namespace MmorpgClient.Core
@@ -26,40 +27,61 @@ namespace MmorpgClient.Core
         private const string K_PassportRedirectUri = "mmorpg.passport.redirecturi";
 
         /// <summary>
-        /// 官方通行证(Casdoor OIDC)的默认构建参数。默认 Origin 为空串 = 本安装包未启用官方通行证入口;
-        /// 可通过构建常量、启动参数(-passport-origin / -passport-client-id / -passport-redirect-uri)或设置注入。
-        /// 仅存公开端点与公开 ClientId,绝不存任何 client_secret 或用户令牌。
+        /// 网关与官方通行证的地址:正式包只认构建时写进包里的 <see cref="ClientEndpoints"/>;启动参数(-gateway / -passport-origin /
+        /// -passport-client-id / -passport-redirect-uri)与本机设置只在编辑器和开发包里生效(服务端 docs/design/official-passport-registration.md §3.8),
+        /// 免得带参数的快捷方式或改过的本机设置把正版客户端带到钓鱼站。
         /// </summary>
-        public const string DefaultPassportOrigin = "";
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        public static readonly bool EndpointOverridesAllowed = true;
+#else
+        public static readonly bool EndpointOverridesAllowed = false;
+#endif
+
+        /// <summary>官方通行证的公开 ClientId(与服务端 AuthProviders.Passport.ClientId、通行证初始化数据一致)。只存公开值,不存任何密钥。</summary>
         public const string DefaultPassportClientId = "xuanming-game-client";
+        /// <summary>桌面回调的首选地址;端口被占时依次试后面四个(PassportOAuthProtocol.LoopbackRedirectCandidates),通行证里五个都登记了。</summary>
         public const string DefaultDesktopPassportRedirectUri = "http://127.0.0.1:18765/passport/callback";
+        /// <summary>iOS 系统认证会话与安卓开发包用的回调;安卓正式包改走 App Links(<see cref="PassportOAuthProtocol.AppLinkRedirectUri"/>)。</summary>
         public const string DefaultMobilePassportRedirectUri = "xuanming://passport/callback";
 
         public static string PassportOrigin
         {
-            get => ClientLaunchArguments.PassportOriginOverride ?? PlayerPrefs.GetString(K_PassportOrigin, DefaultPassportOrigin);
+            get => Overridden(ClientLaunchArguments.PassportOriginOverride, K_PassportOrigin, ClientEndpoints.Current.passportOrigin);
             set { PlayerPrefs.SetString(K_PassportOrigin, value ?? ""); PlayerPrefs.Save(); }
         }
 
         public static string PassportClientId
         {
-            get => ClientLaunchArguments.PassportClientIdOverride ?? PlayerPrefs.GetString(K_PassportClientId, DefaultPassportClientId);
+            get => Overridden(ClientLaunchArguments.PassportClientIdOverride, K_PassportClientId, DefaultPassportClientId);
             set { PlayerPrefs.SetString(K_PassportClientId, value ?? ""); PlayerPrefs.Save(); }
         }
 
         public static string PassportRedirectUri
         {
-            get
-            {
-                string fallback =
-#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
-                    DefaultMobilePassportRedirectUri;
-#else
-                    DefaultDesktopPassportRedirectUri;
-#endif
-                return ClientLaunchArguments.PassportRedirectUriOverride ?? PlayerPrefs.GetString(K_PassportRedirectUri, fallback);
-            }
+            get => Overridden(ClientLaunchArguments.PassportRedirectUriOverride, K_PassportRedirectUri, DefaultPassportRedirectUriFor(PassportOrigin));
             set { PlayerPrefs.SetString(K_PassportRedirectUri, value ?? ""); PlayerPrefs.Save(); }
+        }
+
+        /// <summary>
+        /// 本平台缺省的通行证回调:桌面是本机回环;iOS 是系统认证会话认的自定义协议头(回调只交给发起会话的本 App);
+        /// 安卓在通行证是 https 时用 App Links(系统按 assetlinks.json 核对归属,别的 App 抢注不了),本机联调的 http 通行证退回自定义协议头。
+        /// </summary>
+        public static string DefaultPassportRedirectUriFor(string passportOrigin)
+        {
+#if UNITY_ANDROID && !UNITY_EDITOR
+            return PassportOAuthProtocol.AppLinkRedirectUri(passportOrigin) ?? DefaultMobilePassportRedirectUri;
+#elif UNITY_IOS && !UNITY_EDITOR
+            return DefaultMobilePassportRedirectUri;
+#else
+            return DefaultDesktopPassportRedirectUri;
+#endif
+        }
+
+        /// <summary>编辑器与开发包:启动参数优先,其次本机设置,最后 fallback;正式包只回 fallback。</summary>
+        private static string Overridden(string launchArgument, string prefsKey, string fallback)
+        {
+            if (!EndpointOverridesAllowed) return fallback;
+            return launchArgument ?? PlayerPrefs.GetString(prefsKey, fallback);
         }
 
         /// <summary>
@@ -81,8 +103,8 @@ namespace MmorpgClient.Core
 
         public static string GatewayBaseUrl
         {
-            // Java gateway_node listens on 8081 (application.yaml server.port).
-            get => ClientLaunchArguments.GatewayOverride ?? PlayerPrefs.GetString(K_Gateway, "http://127.0.0.1:8081");
+            // 仓库里的 ClientEndpoints.json 是本机联调的 Java gateway_node(application.yaml server.port 8081);正式包写的是构建时给的地址。
+            get => Overridden(ClientLaunchArguments.GatewayOverride, K_Gateway, ClientEndpoints.Current.gatewayBaseUrl);
             set { PlayerPrefs.SetString(K_Gateway, value ?? ""); PlayerPrefs.Save(); }
         }
 

@@ -155,6 +155,45 @@ namespace MmorpgClient.Game.TrialJournal
             _ => $"野外地图#{sceneConfigId}",
         };
 
+        /// <summary>卷三季游奇谈对应赛季显示名（对齐 SeasonRule S1–S10 权威主题名）。</summary>
+        public static string SeasonDisplayName(uint seasonId) => seasonId switch
+        {
+            1u => "破阵之季",
+            2u => "玄脉之季",
+            3u => "离火之季",
+            4u => "青木之季",
+            5u => "玄水之季",
+            6u => "厚土之季",
+            7u => "庚金之季",
+            8u => "太阴之季",
+            9u => "天雷之季",
+            10u => "混元之季",
+            0u => "常驻试炼",
+            _ => $"第{seasonId}季",
+        };
+
+        /// <summary>
+        /// 卷三 S2–S10 赛季名片印戳缺图回退路径（优先加载 TrialJournal/Badges/ 专属印戳，未落图前平滑复用已验收的十季荣誉徽章）。
+        /// </summary>
+        public static bool TryGetSeasonHonorBadgeFallback(string badgeKey, out string resourcePath)
+        {
+            resourcePath = badgeKey switch
+            {
+                "badge_season_s1_trial" => "UI/SeasonHonors/honor_s1_pozhen",
+                "badge_season_s2_trial" => "UI/SeasonHonors/honor_s2_xuanmai",
+                "badge_season_s3_trial" => "UI/SeasonHonors/honor_s3_lihuo",
+                "badge_season_s4_trial" => "UI/SeasonHonors/honor_s4_qingmu",
+                "badge_season_s5_trial" => "UI/SeasonHonors/honor_s5_xuanshui",
+                "badge_season_s6_trial" => "UI/SeasonHonors/honor_s6_houtu",
+                "badge_season_s7_trial" => "UI/SeasonHonors/honor_s7_gengjin",
+                "badge_season_s8_trial" => "UI/SeasonHonors/honor_s8_taiyin",
+                "badge_season_s9_trial" => "UI/SeasonHonors/honor_s9_tianlei",
+                "badge_season_s10_trial" => "UI/SeasonHonors/honor_s10_hunyuan",
+                _ => null,
+            };
+            return !string.IsNullOrEmpty(resourcePath);
+        }
+
         /// <summary>生成可直接投入世界/队伍/私聊频道的约战帖消息（总长严格 <= 120 字，内嵌 #TJC:card_id#）。</summary>
         public static string FormatChallengeCardChatDraft(Match.TrialChallengeCardView card, global::TrialJournalSnapshot snapshot = null)
         {

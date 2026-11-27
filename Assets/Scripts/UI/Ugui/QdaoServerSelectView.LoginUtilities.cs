@@ -42,7 +42,7 @@ namespace MmorpgClient.UI.Ugui
 
         private bool LoginUtilityOpen => (_announcementPanel != null && _announcementPanel.gameObject.activeSelf)
             || (_settingsPanel != null && _settingsPanel.gameObject.activeSelf)
-            || AccountDialogOpen || _passportWaitingOpen;
+            || AccountDialogOpen || _passportWaitingOpen || PrivacyConsentOpen;
 
         private bool AccountDialogOpen => _accountDialog != null && _accountDialog.gameObject.activeSelf;
 
@@ -234,6 +234,7 @@ namespace MmorpgClient.UI.Ugui
         private void CloseLoginUtilities()
         {
             if (_busy) return;
+            if (PrivacyConsentOpen) return; // 协议弹窗只能点「同意」或「不同意」,Esc 关不掉(§3.9)
             // 账号弹窗按它的次要按钮收起(Esc 走这里):冷静期弹窗即「退出」,其余即取消 / 关闭。
             if (AccountDialogOpen) { OnAccountDialogSecondary(); return; }
             bool settings = _settingsPanel.gameObject.activeSelf;

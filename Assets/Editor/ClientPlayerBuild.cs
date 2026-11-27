@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using MmorpgClient.Core;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
@@ -40,6 +41,10 @@ namespace MmorpgClient.Editor
             public string playerSettingsSha256;
             public int errors;
             public int warnings;
+            public string gatewayBaseUrl;
+            public string passportOrigin;
+            public string termsUrl;
+            public string privacyUrl;
             public ulong sizeBytes;
             public double durationSeconds;
             public string error;
@@ -50,17 +55,21 @@ namespace MmorpgClient.Editor
         {
             try
             {
-                string output = null;
+                string output = null, gatewayUrl = null, passportOrigin = null, termsUrl = null, privacyUrl = null;
                 bool development = false;
                 var args = Environment.GetCommandLineArgs();
                 for (int i = 0; i < args.Length; i++)
                 {
                     if (args[i] == "-clientOutputDirectory")
-                    {
-                        if (output != null || i + 1 >= args.Length || args[i + 1].StartsWith("-", StringComparison.Ordinal))
-                            throw new ArgumentException("Exactly one output directory value is required.");
-                        output = args[++i];
-                    }
+                        output = SingleValue(args, ref i, output);
+                    else if (args[i] == "-clientGatewayUrl")
+                        gatewayUrl = SingleValue(args, ref i, gatewayUrl);
+                    else if (args[i] == "-clientPassportOrigin")
+                        passportOrigin = SingleValue(args, ref i, passportOrigin);
+                    else if (args[i] == "-clientTermsUrl")
+                        termsUrl = SingleValue(args, ref i, termsUrl);
+                    else if (args[i] == "-clientPrivacyUrl")
+                        privacyUrl = SingleValue(args, ref i, privacyUrl);
                     else if (args[i] == "-clientDevelopment")
                     {
                         if (development) throw new ArgumentException("Duplicate development option.");
@@ -69,7 +78,15 @@ namespace MmorpgClient.Editor
                 }
                 if (string.IsNullOrWhiteSpace(output))
                     throw new ArgumentException("-clientOutputDirectory is required.");
-                BuildWindows64(output, development);
+                // 给了地址就写进 ClientEndpoints.json 再出包(构建完还原);没给就用工程里的(正式包会被 ClientEndpointsBuildGuard 拦下)。
+                var endpoints = gatewayUrl == null && passportOrigin == null && termsUrl == null && privacyUrl == null
+                    ? null
+                    : new ClientEndpoints.Values
+                    {
+                        gatewayBaseUrl = gatewayUrl ?? string.Empty, passportOrigin = passportOrigin ?? string.Empty,
+                        termsUrl = termsUrl ?? string.Empty, privacyUrl = privacyUrl ?? string.Empty,
+                    };
+                BuildWindows64(output, development, endpoints);
             }
             catch (Exception error)
             {
@@ -79,8 +96,21 @@ namespace MmorpgClient.Editor
             }
         }
 
+        private static string SingleValue(string[] args, ref int i, string current)
+        {
+            if (current != null || i + 1 >= args.Length || args[i + 1].StartsWith("-", StringComparison.Ordinal))
+                throw new ArgumentException("Exactly one value is required for " + args[i] + ".");
+            return args[++i];
+        }
+
         /// <summary>供已协调的编辑器任务调用；输出目录必须全新或为空，不结束交互式编辑器。</summary>
-        public static void BuildWindows64(string outputDirectory, bool development)
+        public static void BuildWindows64(string outputDirectory, bool development) => BuildWindows64(outputDirectory, development, null);
+
+        /// <summary>
+        /// endpoints 非 null 时先写进 Assets/Resources/ClientEndpoints.json 再出包,构建结束(成功或失败)还原原文
+        /// (服务端 docs/design/official-passport-registration.md §3.8)。正式包的地址由 ClientEndpointsBuildGuard 在构建前核对。
+        /// </summary>
+        public static void BuildWindows64(string outputDirectory, bool development, ClientEndpoints.Values endpoints)
         {
             var options = development ? BuildOptions.Development : BuildOptions.None;
             var manifest = new Manifest
@@ -92,8 +122,20 @@ namespace MmorpgClient.Editor
                 requestedBuildOptionsValue = (int)options
             };
             bool ownsDirectory = false;
+            string endpointsBackup = null;
             try
             {
+                if (endpoints != null)
+                {
+                    endpointsBackup = File.Exists(ClientEndpointsBuildGuard.ProjectFile) ? File.ReadAllText(ClientEndpointsBuildGuard.ProjectFile) : string.Empty;
+                    File.WriteAllText(ClientEndpointsBuildGuard.ProjectFile, JsonUtility.ToJson(endpoints) + "\n", new UTF8Encoding(false));
+                    AssetDatabase.ImportAsset(ClientEndpointsBuildGuard.ProjectFile, ImportAssetOptions.ForceUpdate);
+                }
+                var effective = ClientEndpointsBuildGuard.ReadProjectEndpoints();
+                manifest.gatewayBaseUrl = effective.gatewayBaseUrl;
+                manifest.passportOrigin = effective.passportOrigin;
+                manifest.termsUrl = effective.termsUrl;
+                manifest.privacyUrl = effective.privacyUrl;
                 if (EditorApplication.isPlayingOrWillChangePlaymode)
                     throw new InvalidOperationException("Build requires Edit mode.");
                 if (EditorUserBuildSettings.activeBuildTarget != Target)
@@ -156,6 +198,11 @@ namespace MmorpgClient.Editor
             }
             finally
             {
+                if (endpointsBackup != null)
+                {
+                    File.WriteAllText(ClientEndpointsBuildGuard.ProjectFile, endpointsBackup, new UTF8Encoding(false));
+                    AssetDatabase.ImportAsset(ClientEndpointsBuildGuard.ProjectFile, ImportAssetOptions.ForceUpdate);
+                }
                 manifest.finishedUtc = DateTime.UtcNow.ToString("O");
                 if (ownsDirectory)
                 {

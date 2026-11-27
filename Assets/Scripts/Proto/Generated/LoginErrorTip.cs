@@ -23,7 +23,7 @@ public static partial class LoginErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvbG9naW5fZXJyb3JfdGlwLnBy",
-          "b3RvKrMNCgtsb2dpbl9lcnJvchISCg5rTG9naW5fZXJyb3JPSxAAEhoKFWtM",
+          "b3RvKo8OCgtsb2dpbl9lcnJvchISCg5rTG9naW5fZXJyb3JPSxAAEhoKFWtM",
           "b2dpbkFjY291bnROb3RGb3VuZBDQDxIcChdrTG9naW5BY2NvdW50UGxheWVy",
           "RnVsbBDRDxIkCh9rTG9naW5DcmVhdGVQbGF5ZXJVbkxvYWRBY2NvdW50ENIP",
           "Ei4KKWtMb2dpbkNyZWF0ZVBsYXllckNvbm5lY3Rpb25IYXNOb3RBY2NvdW50",
@@ -61,8 +61,10 @@ public static partial class LoginErrorTipReflection {
           "bGVSZW5hbWVDb29sZG93bhCDEBIWChFrUm9sZVJlbmFtZU5vQ2FyZBCEEBIa",
           "ChVrUm9sZVJlbmFtZUluUHJvZ3Jlc3MQhRASFgoRa1JvbGVSZW5hbWVGcm96",
           "ZW4QhhASGAoTa1JvbGVSZW5hbWVTYW1lTmFtZRCHEBIXChJrUm9sZVJlbmFt",
-          "ZUV4cGlyZWQQiBBCJAoOY29tLmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90",
-          "YWJsZWIGcHJvdG8z"));
+          "ZUV4cGlyZWQQiBASGgoVa0xvZ2luUm9sZVRyYWRlRnJvemVuEIkQEhgKE2tM",
+          "b2dpbkVudGVyR2FtZUJ1c3kQihASJAofa0xvZ2luUGFzc3BvcnRDcmVkZW50",
+          "aWFsQ2hhbmdlZBCLEEIkCg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJhdGVkL3Bi",
+          "L3RhYmxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::login_error), }, null, null));
@@ -130,6 +132,9 @@ public enum login_error {
   [pbr::OriginalName("kRoleRenameFrozen")] KRoleRenameFrozen = 2054,
   [pbr::OriginalName("kRoleRenameSameName")] KRoleRenameSameName = 2055,
   [pbr::OriginalName("kRoleRenameExpired")] KRoleRenameExpired = 2056,
+  [pbr::OriginalName("kLoginRoleTradeFrozen")] KLoginRoleTradeFrozen = 2057,
+  [pbr::OriginalName("kLoginEnterGameBusy")] KLoginEnterGameBusy = 2058,
+  [pbr::OriginalName("kLoginPassportCredentialChanged")] KLoginPassportCredentialChanged = 2059,
 }
 
 #endregion

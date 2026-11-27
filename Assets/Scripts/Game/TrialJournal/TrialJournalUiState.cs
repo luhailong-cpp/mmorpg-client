@@ -149,7 +149,7 @@ namespace MmorpgClient.Game.TrialJournal
             view.BoundSandBalance = snapshot.BoundSandBalance;
 
             view.SeasonLabel = seasonChapter != null && !string.IsNullOrEmpty(seasonChapter.ChapterName)
-                ? $"破阵之季 · {seasonChapter.ChapterName}"
+                ? $"{TrialJournalModels.SeasonDisplayName(seasonChapter.SeasonId)} · {seasonChapter.ChapterName}"
                 : "常驻试炼 · 道印篇";
             view.RuleLabel = selectedEntry != null && !string.IsNullOrEmpty(selectedEntry.RuleVersionName)
                 ? $"{selectedEntry.RuleVersionName} v{selectedEntry.RuleVersion}"

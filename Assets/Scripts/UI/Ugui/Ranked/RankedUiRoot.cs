@@ -44,6 +44,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private RankedClient _ranked;
         private RankClient _rankClient;
         private SpectateClient _boundSpectate;
+        private bool _liveRankedLoading;
         private ulong _playerId;
         private bool _available;
         private bool _settlementFromRecovery;
@@ -168,7 +169,7 @@ namespace MmorpgClient.UI.Ugui.Ranked
             _lobby.PresetSelected += (charId, petId) =>
             {
                 if (_ranked == null) return;
-                uint ruleVer = _ranked.Profile?.RuleVersion ?? 1u;
+                uint ruleVer = _ranked.Profile?.RuleVersion ?? 0u;
                 _ranked.SavePreset(charId, petId, ruleVer);
                 var team = TeamUiRoot.Instance?.Client;
                 if (team != null && team.HasTeam)
@@ -361,9 +362,11 @@ namespace MmorpgClient.UI.Ugui.Ranked
             BindSpectateClient(spectate);
             if (spectate == null)
             {
+                _liveRankedLoading = false;
                 _drawer?.RenderLiveRankedMatches(null, loading: false);
                 return;
             }
+            _liveRankedLoading = true;
             _drawer?.RenderLiveRankedMatches(null, loading: true);
             spectate.RefreshList(20u);
         }
@@ -371,15 +374,33 @@ namespace MmorpgClient.UI.Ugui.Ranked
         private void BindSpectateClient(SpectateClient spectate)
         {
             if (ReferenceEquals(_boundSpectate, spectate)) return;
-            if (_boundSpectate != null) _boundSpectate.OnListUpdated -= HandleSpectateListUpdated;
+            if (_boundSpectate != null)
+            {
+                _boundSpectate.OnListUpdated -= HandleSpectateListUpdated;
+                _boundSpectate.OnError -= HandleSpectateError;
+            }
             _boundSpectate = spectate;
-            if (_boundSpectate != null) _boundSpectate.OnListUpdated += HandleSpectateListUpdated;
+            if (_boundSpectate != null)
+            {
+                _boundSpectate.OnListUpdated += HandleSpectateListUpdated;
+                _boundSpectate.OnError += HandleSpectateError;
+            }
         }
 
         private void HandleSpectateListUpdated(global::Match.ListWatchableBattlesResponse resp)
         {
+            _liveRankedLoading = false;
             var live = RankedFormatting.FilterAndSortLiveRankedBattles(resp?.Battles);
             _drawer?.RenderLiveRankedMatches(live, loading: false);
+        }
+
+        private void HandleSpectateError(string err)
+        {
+            if (!_liveRankedLoading) return;
+            _liveRankedLoading = false;
+            _drawer?.RenderLiveRankedMatches(null, loading: false);
+            _drawer?.SetFeaturedBuildStatus(
+                string.IsNullOrEmpty(err) ? "实时围观列表刷新失败，请稍后重试。" : err, isError: true);
         }
 
         private void HandleWatchLiveRanked(ulong battleId)

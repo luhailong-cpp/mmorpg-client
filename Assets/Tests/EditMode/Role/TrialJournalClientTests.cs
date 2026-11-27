@@ -620,6 +620,50 @@ namespace MmorpgClient.Tests.EditMode.Role
         }
 
         [Test]
+        public void TrialJournalV4_SeasonS2ToS10LabelsAndHonorBadgeFallbacks()
+        {
+            var expectedSeasonNames = new (uint sid, string name, string honorPath)[]
+            {
+                (1u, "破阵之季", "UI/SeasonHonors/honor_s1_pozhen"),
+                (2u, "玄脉之季", "UI/SeasonHonors/honor_s2_xuanmai"),
+                (3u, "离火之季", "UI/SeasonHonors/honor_s3_lihuo"),
+                (4u, "青木之季", "UI/SeasonHonors/honor_s4_qingmu"),
+                (5u, "玄水之季", "UI/SeasonHonors/honor_s5_xuanshui"),
+                (6u, "厚土之季", "UI/SeasonHonors/honor_s6_houtu"),
+                (7u, "庚金之季", "UI/SeasonHonors/honor_s7_gengjin"),
+                (8u, "太阴之季", "UI/SeasonHonors/honor_s8_taiyin"),
+                (9u, "天雷之季", "UI/SeasonHonors/honor_s9_tianlei"),
+                (10u, "混元之季", "UI/SeasonHonors/honor_s10_hunyuan"),
+            };
+
+            foreach (var (sid, name, honorPath) in expectedSeasonNames)
+            {
+                Assert.That(TrialJournalModels.SeasonDisplayName(sid), Is.EqualTo(name));
+                string key = $"badge_season_s{sid}_trial";
+                Assert.That(TrialJournalModels.TryGetSeasonHonorBadgeFallback(key, out string path), Is.True);
+                Assert.That(path, Is.EqualTo(honorPath));
+
+                var snap = new TrialJournalSnapshot
+                {
+                    Available = true,
+                    CanOperate = true,
+                    TotalPermanentSeals = 36u,
+                };
+                snap.Chapters.Add(new TrialJournalChapterView
+                {
+                    ChapterId = TrialJournalModels.ChapterSeasonal,
+                    SeasonId = sid,
+                    ChapterName = "卷三 · 季游奇谈",
+                    TotalSealCount = 6u,
+                });
+                var view = TrialJournalUiState.Evaluate(snap, false, false, true, false, "", false, TrialJournalNavTab.Seasonal, 0u);
+                Assert.That(view.SeasonLabel, Is.EqualTo($"{name} · 卷三 · 季游奇谈"));
+                Assert.That(view.Phase, Is.EqualTo(TrialJournalVisualPhase.SeasonalIsolated));
+            }
+            Assert.That(TrialJournalModels.TryGetSeasonHonorBadgeFallback("badge_trial_sword", out _), Is.False);
+        }
+
+        [Test]
         public void TrialJournalV2AndEquipLoadoutV1Sprites_AllLoadCleanly()
         {
             var tjExpected = new (string key, UnityEngine.Vector4 border)[]

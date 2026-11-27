@@ -170,6 +170,7 @@ namespace MmorpgClient.UI.Ugui
             if (QdaoUguiTheme.ResolveFont() == null)
                 throw new MissingReferenceException("The qdao uGUI TMP font asset is missing.");
             EnsurePassportUi();
+            EnsurePrivacyConsentUi();
             BindEvents();
             BindClientEvents();
 
@@ -193,6 +194,8 @@ namespace MmorpgClient.UI.Ugui
             _app?.Run(LoadServerList());
             _app?.Run(LoadAnnouncements());
             ShowLanding(true);
+            // 没同意当前版本的《用户协议》《隐私政策》就盖在最上层(§3.9):区服列表与公告照常加载,登录、注册都要先同意。
+            ShowPrivacyConsentIfNeeded();
         }
 
         /// <summary>Editor capture helper: opens the login dialog with its idle prompt.</summary>

@@ -111,6 +111,36 @@ namespace MmorpgClient.Tests.EditMode.Net
         }
 
         [Test]
+        public void LoopbackRedirectCandidates_FiveConsecutivePortsOnlyForLoopback()
+        {
+            // 首选端口被占(多开、别的程序)时依次换下一个;通行证初始化数据里登记了同样的五个(服务端 §3.8)。
+            Assert.That(PassportOAuthProtocol.LoopbackRedirectCandidates("http://127.0.0.1:18765/passport/callback"), Is.EqualTo(new[]
+            {
+                "http://127.0.0.1:18765/passport/callback",
+                "http://127.0.0.1:18766/passport/callback",
+                "http://127.0.0.1:18767/passport/callback",
+                "http://127.0.0.1:18768/passport/callback",
+                "http://127.0.0.1:18769/passport/callback",
+            }));
+            Assert.That(PassportOAuthProtocol.LoopbackRedirectCandidates("xuanming://passport/callback"),
+                Is.EqualTo(new[] { "xuanming://passport/callback" }));
+        }
+
+        [Test]
+        public void AppLinkRedirectUri_OnlyForHttpsPassports()
+        {
+            // 安卓正式包的回调在通行证域名下(App Links):系统按 assetlinks.json 核对归属,别的 App 抢注不了。
+            Assert.That(PassportOAuthProtocol.AppLinkRedirectUri("https://passport.example.com/"),
+                Is.EqualTo("https://passport.example.com/passport/app-callback"));
+            Assert.That(PassportOAuthProtocol.AppLinkRedirectUri("https://passport.example.com:8443"),
+                Is.EqualTo("https://passport.example.com:8443/passport/app-callback"));
+            foreach (var noAppLink in new[] { "", null, "http://127.0.0.1:8000", "http://passport.example.com", "https://127.0.0.1" })
+            {
+                Assert.That(PassportOAuthProtocol.AppLinkRedirectUri(noAppLink), Is.Null, noAppLink ?? "<null>");
+            }
+        }
+
+        [Test]
         public void MatchesRedirectTarget_ValidatesMobileCustomScheme()
         {
             const string configured = "xuanming://passport/callback";
