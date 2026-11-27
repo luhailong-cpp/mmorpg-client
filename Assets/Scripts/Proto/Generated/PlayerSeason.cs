@@ -85,84 +85,111 @@ public static partial class PlayerSeasonReflection {
           "UmVxdWVzdBIUCgxmb3JtYXRpb25faWQYASABKA0iigEKHEVxdWlwV3V4aW5n",
           "Rm9ybWF0aW9uUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRp",
           "cEluZm9NZXNzYWdlEh0KFWVxdWlwcGVkX2Zvcm1hdGlvbl9pZBgCIAEoDRIj",
-          "CgVzdGF0ZRgDIAEoCzIULlNlYXNvblN0YXRlU25hcHNob3QipQEKG1d1eGlu",
+          "CgVzdGF0ZRgDIAEoCzIULlNlYXNvblN0YXRlU25hcHNob3Qi2QEKG1d1eGlu",
           "Z1Rvd2VyTGVhZGVyYm9hcmRFbnRyeRIMCgRyYW5rGAEgASgNEhEKCXBsYXll",
           "cl9pZBgCIAEoBBITCgtwbGF5ZXJfbmFtZRgDIAEoCRISCgpiZXN0X2Zsb29y",
           "GAQgASgNEhMKC2Jlc3Rfcm91bmRzGAUgASgNEhQKDGZvcm1hdGlvbl9pZBgG",
-          "IAEoDRIRCglzaWdpbF9pZHMYByADKA0iuQMKGFd1eGluZ1Rvd2VyU3RhdGVT",
-          "bmFwc2hvdBIQCgh3ZWVrX2tleRgBIAEoDRISCgpydW5fYWN0aXZlGAIgASgI",
-          "Eg4KBnJ1bl9pZBgDIAEoBBIVCg1jdXJyZW50X2Zsb29yGAQgASgNEhIKCm1h",
-          "eF9mbG9vcnMYBSABKA0SIAoYY3VycmVudF9mbG9vcl9kdW5nZW9uX2lkGAYg",
-          "ASgNEiUKHWN1cnJlbnRfZmxvb3JfbGV5bGluZV9lbGVtZW50GAcgASgNEhgK",
-          "EHJ1bl90b3RhbF9yb3VuZHMYCCABKA0SGAoQYWN0aXZlX3NpZ2lsX2lkcxgJ",
-          "IAMoDRIfChdwZW5kaW5nX29mZmVyX3NpZ2lsX2lkcxgKIAMoDRIbChN3ZWVr",
-          "bHlfY2xlYXJlZF9tYXNrGAsgASgNEhkKEXdlZWtseV9iZXN0X2Zsb29yGAwg",
-          "ASgNEhoKEndlZWtseV9iZXN0X3JvdW5kcxgNIAEoDRIQCghyZXZpc2lvbhgO",
-          "IAEoBBI4ChJ3ZWVrbHlfbGVhZGVyYm9hcmQYDyADKAsyHC5XdXhpbmdUb3dl",
-          "ckxlYWRlcmJvYXJkRW50cnkiHAoaR2V0V3V4aW5nVG93ZXJTdGF0ZVJlcXVl",
-          "c3QibwobR2V0V3V4aW5nVG93ZXJTdGF0ZVJlc3BvbnNlEiYKDWVycm9yX21l",
-          "c3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIoCgVzdGF0ZRgCIAEoCzIZ",
-          "Lld1eGluZ1Rvd2VyU3RhdGVTbmFwc2hvdCIcChpTdGFydFd1eGluZ1Rvd2Vy",
-          "UnVuUmVxdWVzdCJvChtTdGFydFd1eGluZ1Rvd2VyUnVuUmVzcG9uc2USJgoN",
-          "ZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEigKBXN0YXRl",
-          "GAIgASgLMhkuV3V4aW5nVG93ZXJTdGF0ZVNuYXBzaG90IkgKG1BpY2tXdXhp",
-          "bmdUb3dlclNpZ2lsUmVxdWVzdBIXCg9leHBlY3RlZF9ydW5faWQYASABKAQS",
-          "EAoIc2lnaWxfaWQYAiABKA0icAocUGlja1d1eGluZ1Rvd2VyU2lnaWxSZXNw",
-          "b25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2US",
-          "KAoFc3RhdGUYAiABKAsyGS5XdXhpbmdUb3dlclN0YXRlU25hcHNob3QiNwoc",
-          "QWJhbmRvbld1eGluZ1Rvd2VyUnVuUmVxdWVzdBIXCg9leHBlY3RlZF9ydW5f",
-          "aWQYASABKAQicQodQWJhbmRvbld1eGluZ1Rvd2VyUnVuUmVzcG9uc2USJgoN",
-          "ZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEigKBXN0YXRl",
-          "GAIgASgLMhkuV3V4aW5nVG93ZXJTdGF0ZVNuYXBzaG90IlEKHlNhdmVCYXR0",
-          "bGVCdWlsZEJvb2ttYXJrUmVxdWVzdBIvCghib29rbWFyaxgBIAEoCzIdLlNh",
-          "dmVkQmF0dGxlQnVpbGRCb29rbWFya1ZpZXcirQEKH1NhdmVCYXR0bGVCdWls",
-          "ZEJvb2ttYXJrUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRp",
-          "cEluZm9NZXNzYWdlEiwKBXNhdmVkGAIgASgLMh0uU2F2ZWRCYXR0bGVCdWls",
-          "ZEJvb2ttYXJrVmlldxI0Cg1hbGxfYm9va21hcmtzGAMgAygLMh0uU2F2ZWRC",
-          "YXR0bGVCdWlsZEJvb2ttYXJrVmlldyI3CiBEZWxldGVCYXR0bGVCdWlsZEJv",
-          "b2ttYXJrUmVxdWVzdBITCgtib29rbWFya19pZBgBIAEoBCKBAQohRGVsZXRl",
-          "QmF0dGxlQnVpbGRCb29rbWFya1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
-          "ASABKAsyDy5UaXBJbmZvTWVzc2FnZRI0Cg1hbGxfYm9va21hcmtzGAIgAygL",
-          "Mh0uU2F2ZWRCYXR0bGVCdWlsZEJvb2ttYXJrVmlldyIXChVHZXRTZWFzb25T",
-          "dGF0ZVJlcXVlc3QiZQoWR2V0U2Vhc29uU3RhdGVSZXNwb25zZRImCg1lcnJv",
-          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIwoFc3RhdGUYAiAB",
-          "KAsyFC5TZWFzb25TdGF0ZVNuYXBzaG90IjwKFkVxdWlwU2Vhc29uU2VhbFJl",
-          "cXVlc3QSEQoJc2Vhc29uX2lkGAEgASgNEg8KB3NlYWxfaWQYAiABKA0iZgoX",
-          "RXF1aXBTZWFzb25TZWFsUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEo",
-          "CzIPLlRpcEluZm9NZXNzYWdlEiMKBXN0YXRlGAIgASgLMhQuU2Vhc29uU3Rh",
-          "dGVTbmFwc2hvdCKdAQoYQ2F0Y2h1cFNlYXNvblNlYWxSZXF1ZXN0EhkKEWNs",
-          "aWVudF9yZXF1ZXN0X2lkGAEgASgEEhEKCXNlYXNvbl9pZBgCIAEoDRIVCg1w",
-          "b2ludHNfdG9fYnV5GAMgASgNEh4KFmV4cGVjdGVkX2N1cnJlbmN5X3R5cGUY",
-          "BCABKA0SHAoUZXhwZWN0ZWRfdG90YWxfcHJpY2UYBSABKAQiqAEKGUNhdGNo",
-          "dXBTZWFzb25TZWFsUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIP",
-          "LlRpcEluZm9NZXNzYWdlEiMKBXN0YXRlGAIgASgLMhQuU2Vhc29uU3RhdGVT",
-          "bmFwc2hvdBIQCghyZXBsYXllZBgDIAEoCBIUCgxhZGRlZF9wb2ludHMYBCAB",
-          "KA0SFgoOc3BlbnRfY3VycmVuY3kYBSABKAQiLwoaU2V0UmV0cm9Ib25vclRh",
-          "cmdldFJlcXVlc3QSEQoJc2Vhc29uX2lkGAEgASgNImoKG1NldFJldHJvSG9u",
-          "b3JUYXJnZXRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
-          "SW5mb01lc3NhZ2USIwoFc3RhdGUYAiABKAsyFC5TZWFzb25TdGF0ZVNuYXBz",
-          "aG90MrQHChdTY2VuZVNlYXNvbkNsaWVudFBsYXllchJBCg5HZXRTZWFzb25T",
-          "dGF0ZRIWLkdldFNlYXNvblN0YXRlUmVxdWVzdBoXLkdldFNlYXNvblN0YXRl",
-          "UmVzcG9uc2USRAoPRXF1aXBTZWFzb25TZWFsEhcuRXF1aXBTZWFzb25TZWFs",
-          "UmVxdWVzdBoYLkVxdWlwU2Vhc29uU2VhbFJlc3BvbnNlEkoKEUNhdGNodXBT",
-          "ZWFzb25TZWFsEhkuQ2F0Y2h1cFNlYXNvblNlYWxSZXF1ZXN0GhouQ2F0Y2h1",
-          "cFNlYXNvblNlYWxSZXNwb25zZRJTChRFcXVpcFd1eGluZ0Zvcm1hdGlvbhIc",
-          "LkVxdWlwV3V4aW5nRm9ybWF0aW9uUmVxdWVzdBodLkVxdWlwV3V4aW5nRm9y",
-          "bWF0aW9uUmVzcG9uc2USUAoTR2V0V3V4aW5nVG93ZXJTdGF0ZRIbLkdldFd1",
-          "eGluZ1Rvd2VyU3RhdGVSZXF1ZXN0GhwuR2V0V3V4aW5nVG93ZXJTdGF0ZVJl",
-          "c3BvbnNlElAKE1N0YXJ0V3V4aW5nVG93ZXJSdW4SGy5TdGFydFd1eGluZ1Rv",
-          "d2VyUnVuUmVxdWVzdBocLlN0YXJ0V3V4aW5nVG93ZXJSdW5SZXNwb25zZRJT",
-          "ChRQaWNrV3V4aW5nVG93ZXJTaWdpbBIcLlBpY2tXdXhpbmdUb3dlclNpZ2ls",
-          "UmVxdWVzdBodLlBpY2tXdXhpbmdUb3dlclNpZ2lsUmVzcG9uc2USVgoVQWJh",
-          "bmRvbld1eGluZ1Rvd2VyUnVuEh0uQWJhbmRvbld1eGluZ1Rvd2VyUnVuUmVx",
-          "dWVzdBoeLkFiYW5kb25XdXhpbmdUb3dlclJ1blJlc3BvbnNlElwKF1NhdmVC",
-          "YXR0bGVCdWlsZEJvb2ttYXJrEh8uU2F2ZUJhdHRsZUJ1aWxkQm9va21hcmtS",
-          "ZXF1ZXN0GiAuU2F2ZUJhdHRsZUJ1aWxkQm9va21hcmtSZXNwb25zZRJiChlE",
-          "ZWxldGVCYXR0bGVCdWlsZEJvb2ttYXJrEiEuRGVsZXRlQmF0dGxlQnVpbGRC",
-          "b29rbWFya1JlcXVlc3QaIi5EZWxldGVCYXR0bGVCdWlsZEJvb2ttYXJrUmVz",
-          "cG9uc2USUAoTU2V0UmV0cm9Ib25vclRhcmdldBIbLlNldFJldHJvSG9ub3JU",
-          "YXJnZXRSZXF1ZXN0GhwuU2V0UmV0cm9Ib25vclRhcmdldFJlc3BvbnNlGgqA",
-          "qMMBAYiowwEBQg5aBXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
+          "IAEoDRIRCglzaWdpbF9pZHMYByADKA0SFwoPdXNlX2ZyZWVfcHJlc2V0GAgg",
+          "ASgIEhkKEXJlc29uYW5jZV9lbGVtZW50GAkgASgNIuMGChhXdXhpbmdUb3dl",
+          "clN0YXRlU25hcHNob3QSEAoId2Vla19rZXkYASABKA0SEgoKcnVuX2FjdGl2",
+          "ZRgCIAEoCBIOCgZydW5faWQYAyABKAQSFQoNY3VycmVudF9mbG9vchgEIAEo",
+          "DRISCgptYXhfZmxvb3JzGAUgASgNEiAKGGN1cnJlbnRfZmxvb3JfZHVuZ2Vv",
+          "bl9pZBgGIAEoDRIlCh1jdXJyZW50X2Zsb29yX2xleWxpbmVfZWxlbWVudBgH",
+          "IAEoDRIYChBydW5fdG90YWxfcm91bmRzGAggASgNEhgKEGFjdGl2ZV9zaWdp",
+          "bF9pZHMYCSADKA0SHwoXcGVuZGluZ19vZmZlcl9zaWdpbF9pZHMYCiADKA0S",
+          "GwoTd2Vla2x5X2NsZWFyZWRfbWFzaxgLIAEoDRIZChF3ZWVrbHlfYmVzdF9m",
+          "bG9vchgMIAEoDRIaChJ3ZWVrbHlfYmVzdF9yb3VuZHMYDSABKA0SEAoIcmV2",
+          "aXNpb24YDiABKAQSOAoSd2Vla2x5X2xlYWRlcmJvYXJkGA8gAygLMhwuV3V4",
+          "aW5nVG93ZXJMZWFkZXJib2FyZEVudHJ5EhQKDHJ1bl93ZWVrX2tleRgQIAEo",
+          "DRIVCg1yZWFsbV92ZXJzaW9uGBEgASgNEhcKD3VzZV9mcmVlX3ByZXNldBgS",
+          "IAEoCBIbChNjaGFyYWN0ZXJfcHJlc2V0X2lkGBMgASgNEhUKDXBldF9wcmVz",
+          "ZXRfaWQYFCABKA0SGQoRY3VycmVudF9ub2RlX2tpbmQYFSABKA0SGgoScGVu",
+          "ZGluZ19ldmVudF9raW5kGBYgASgNEiAKGGFjdGl2ZV9yZXNvbmFuY2VfZWxl",
+          "bWVudBgXIAEoDRIZChFyb3V0ZV9jaG9pY2VfbWFzaxgYIAEoDRIYChBiZXN0",
+          "X3JvdW5kc19zZWxmGBkgASgNEhoKEmJlc3Rfcm91bmRzX3ByZXNldBgaIAEo",
+          "DRIgChh3ZWVrbHlfYmVzdF9mbG9vcl9wcmVzZXQYGyABKA0SIQoZd2Vla2x5",
+          "X2Jlc3Rfcm91bmRzX3ByZXNldBgcIAEoDRI/Chl3ZWVrbHlfbGVhZGVyYm9h",
+          "cmRfcHJlc2V0GB0gAygLMhwuV3V4aW5nVG93ZXJMZWFkZXJib2FyZEVudHJ5",
+          "IhwKGkdldFd1eGluZ1Rvd2VyU3RhdGVSZXF1ZXN0Im8KG0dldFd1eGluZ1Rv",
+          "d2VyU3RhdGVSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
+          "SW5mb01lc3NhZ2USKAoFc3RhdGUYAiABKAsyGS5XdXhpbmdUb3dlclN0YXRl",
+          "U25hcHNob3QiaQoaU3RhcnRXdXhpbmdUb3dlclJ1blJlcXVlc3QSFwoPdXNl",
+          "X2ZyZWVfcHJlc2V0GAEgASgIEhsKE2NoYXJhY3Rlcl9wcmVzZXRfaWQYAiAB",
+          "KA0SFQoNcGV0X3ByZXNldF9pZBgDIAEoDSJvChtTdGFydFd1eGluZ1Rvd2Vy",
+          "UnVuUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9N",
+          "ZXNzYWdlEigKBXN0YXRlGAIgASgLMhkuV3V4aW5nVG93ZXJTdGF0ZVNuYXBz",
+          "aG90IkgKG1BpY2tXdXhpbmdUb3dlclNpZ2lsUmVxdWVzdBIXCg9leHBlY3Rl",
+          "ZF9ydW5faWQYASABKAQSEAoIc2lnaWxfaWQYAiABKA0icAocUGlja1d1eGlu",
+          "Z1Rvd2VyU2lnaWxSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8u",
+          "VGlwSW5mb01lc3NhZ2USKAoFc3RhdGUYAiABKAsyGS5XdXhpbmdUb3dlclN0",
+          "YXRlU25hcHNob3QiNwocQWJhbmRvbld1eGluZ1Rvd2VyUnVuUmVxdWVzdBIX",
+          "Cg9leHBlY3RlZF9ydW5faWQYASABKAQicQodQWJhbmRvbld1eGluZ1Rvd2Vy",
+          "UnVuUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9N",
+          "ZXNzYWdlEigKBXN0YXRlGAIgASgLMhkuV3V4aW5nVG93ZXJTdGF0ZVNuYXBz",
+          "aG90IkkKHkNob29zZVd1eGluZ1JlYWxtQnJhbmNoUmVxdWVzdBIXCg9leHBl",
+          "Y3RlZF9ydW5faWQYASABKAQSDgoGYnJhbmNoGAIgASgNInMKH0Nob29zZVd1",
+          "eGluZ1JlYWxtQnJhbmNoUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEo",
+          "CzIPLlRpcEluZm9NZXNzYWdlEigKBXN0YXRlGAIgASgLMhkuV3V4aW5nVG93",
+          "ZXJTdGF0ZVNuYXBzaG90ImcKHlJlc29sdmVXdXhpbmdSZWFsbUV2ZW50UmVx",
+          "dWVzdBIXCg9leHBlY3RlZF9ydW5faWQYASABKAQSFAoMb3B0aW9uX2luZGV4",
+          "GAIgASgNEhYKDnRhcmdldF9ib29uX2lkGAMgASgNIowBCh9SZXNvbHZlV3V4",
+          "aW5nUmVhbG1FdmVudFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
+          "Dy5UaXBJbmZvTWVzc2FnZRIoCgVzdGF0ZRgCIAEoCzIZLld1eGluZ1Rvd2Vy",
+          "U3RhdGVTbmFwc2hvdBIXCg9ncmFudGVkX2Jvb25faWQYAyABKA0iUQoeU2F2",
+          "ZUJhdHRsZUJ1aWxkQm9va21hcmtSZXF1ZXN0Ei8KCGJvb2ttYXJrGAEgASgL",
+          "Mh0uU2F2ZWRCYXR0bGVCdWlsZEJvb2ttYXJrVmlldyKtAQofU2F2ZUJhdHRs",
+          "ZUJ1aWxkQm9va21hcmtSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
+          "Mg8uVGlwSW5mb01lc3NhZ2USLAoFc2F2ZWQYAiABKAsyHS5TYXZlZEJhdHRs",
+          "ZUJ1aWxkQm9va21hcmtWaWV3EjQKDWFsbF9ib29rbWFya3MYAyADKAsyHS5T",
+          "YXZlZEJhdHRsZUJ1aWxkQm9va21hcmtWaWV3IjcKIERlbGV0ZUJhdHRsZUJ1",
+          "aWxkQm9va21hcmtSZXF1ZXN0EhMKC2Jvb2ttYXJrX2lkGAEgASgEIoEBCiFE",
+          "ZWxldGVCYXR0bGVCdWlsZEJvb2ttYXJrUmVzcG9uc2USJgoNZXJyb3JfbWVz",
+          "c2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEjQKDWFsbF9ib29rbWFya3MY",
+          "AiADKAsyHS5TYXZlZEJhdHRsZUJ1aWxkQm9va21hcmtWaWV3IhcKFUdldFNl",
+          "YXNvblN0YXRlUmVxdWVzdCJlChZHZXRTZWFzb25TdGF0ZVJlc3BvbnNlEiYK",
+          "DWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIjCgVzdGF0",
+          "ZRgCIAEoCzIULlNlYXNvblN0YXRlU25hcHNob3QiPAoWRXF1aXBTZWFzb25T",
+          "ZWFsUmVxdWVzdBIRCglzZWFzb25faWQYASABKA0SDwoHc2VhbF9pZBgCIAEo",
+          "DSJmChdFcXVpcFNlYXNvblNlYWxSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdl",
+          "GAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIwoFc3RhdGUYAiABKAsyFC5TZWFz",
+          "b25TdGF0ZVNuYXBzaG90Ip0BChhDYXRjaHVwU2Vhc29uU2VhbFJlcXVlc3QS",
+          "GQoRY2xpZW50X3JlcXVlc3RfaWQYASABKAQSEQoJc2Vhc29uX2lkGAIgASgN",
+          "EhUKDXBvaW50c190b19idXkYAyABKA0SHgoWZXhwZWN0ZWRfY3VycmVuY3lf",
+          "dHlwZRgEIAEoDRIcChRleHBlY3RlZF90b3RhbF9wcmljZRgFIAEoBCKoAQoZ",
+          "Q2F0Y2h1cFNlYXNvblNlYWxSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEg",
+          "ASgLMg8uVGlwSW5mb01lc3NhZ2USIwoFc3RhdGUYAiABKAsyFC5TZWFzb25T",
+          "dGF0ZVNuYXBzaG90EhAKCHJlcGxheWVkGAMgASgIEhQKDGFkZGVkX3BvaW50",
+          "cxgEIAEoDRIWCg5zcGVudF9jdXJyZW5jeRgFIAEoBCIvChpTZXRSZXRyb0hv",
+          "bm9yVGFyZ2V0UmVxdWVzdBIRCglzZWFzb25faWQYASABKA0iagobU2V0UmV0",
+          "cm9Ib25vclRhcmdldFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
+          "Dy5UaXBJbmZvTWVzc2FnZRIjCgVzdGF0ZRgCIAEoCzIULlNlYXNvblN0YXRl",
+          "U25hcHNob3Qy8AgKF1NjZW5lU2Vhc29uQ2xpZW50UGxheWVyEkEKDkdldFNl",
+          "YXNvblN0YXRlEhYuR2V0U2Vhc29uU3RhdGVSZXF1ZXN0GhcuR2V0U2Vhc29u",
+          "U3RhdGVSZXNwb25zZRJECg9FcXVpcFNlYXNvblNlYWwSFy5FcXVpcFNlYXNv",
+          "blNlYWxSZXF1ZXN0GhguRXF1aXBTZWFzb25TZWFsUmVzcG9uc2USSgoRQ2F0",
+          "Y2h1cFNlYXNvblNlYWwSGS5DYXRjaHVwU2Vhc29uU2VhbFJlcXVlc3QaGi5D",
+          "YXRjaHVwU2Vhc29uU2VhbFJlc3BvbnNlElMKFEVxdWlwV3V4aW5nRm9ybWF0",
+          "aW9uEhwuRXF1aXBXdXhpbmdGb3JtYXRpb25SZXF1ZXN0Gh0uRXF1aXBXdXhp",
+          "bmdGb3JtYXRpb25SZXNwb25zZRJQChNHZXRXdXhpbmdUb3dlclN0YXRlEhsu",
+          "R2V0V3V4aW5nVG93ZXJTdGF0ZVJlcXVlc3QaHC5HZXRXdXhpbmdUb3dlclN0",
+          "YXRlUmVzcG9uc2USUAoTU3RhcnRXdXhpbmdUb3dlclJ1bhIbLlN0YXJ0V3V4",
+          "aW5nVG93ZXJSdW5SZXF1ZXN0GhwuU3RhcnRXdXhpbmdUb3dlclJ1blJlc3Bv",
+          "bnNlElMKFFBpY2tXdXhpbmdUb3dlclNpZ2lsEhwuUGlja1d1eGluZ1Rvd2Vy",
+          "U2lnaWxSZXF1ZXN0Gh0uUGlja1d1eGluZ1Rvd2VyU2lnaWxSZXNwb25zZRJW",
+          "ChVBYmFuZG9uV3V4aW5nVG93ZXJSdW4SHS5BYmFuZG9uV3V4aW5nVG93ZXJS",
+          "dW5SZXF1ZXN0Gh4uQWJhbmRvbld1eGluZ1Rvd2VyUnVuUmVzcG9uc2USXAoX",
+          "U2F2ZUJhdHRsZUJ1aWxkQm9va21hcmsSHy5TYXZlQmF0dGxlQnVpbGRCb29r",
+          "bWFya1JlcXVlc3QaIC5TYXZlQmF0dGxlQnVpbGRCb29rbWFya1Jlc3BvbnNl",
+          "EmIKGURlbGV0ZUJhdHRsZUJ1aWxkQm9va21hcmsSIS5EZWxldGVCYXR0bGVC",
+          "dWlsZEJvb2ttYXJrUmVxdWVzdBoiLkRlbGV0ZUJhdHRsZUJ1aWxkQm9va21h",
+          "cmtSZXNwb25zZRJQChNTZXRSZXRyb0hvbm9yVGFyZ2V0EhsuU2V0UmV0cm9I",
+          "b25vclRhcmdldFJlcXVlc3QaHC5TZXRSZXRyb0hvbm9yVGFyZ2V0UmVzcG9u",
+          "c2USXAoXQ2hvb3NlV3V4aW5nUmVhbG1CcmFuY2gSHy5DaG9vc2VXdXhpbmdS",
+          "ZWFsbUJyYW5jaFJlcXVlc3QaIC5DaG9vc2VXdXhpbmdSZWFsbUJyYW5jaFJl",
+          "c3BvbnNlElwKF1Jlc29sdmVXdXhpbmdSZWFsbUV2ZW50Eh8uUmVzb2x2ZVd1",
+          "eGluZ1JlYWxtRXZlbnRSZXF1ZXN0GiAuUmVzb2x2ZVd1eGluZ1JlYWxtRXZl",
+          "bnRSZXNwb25zZRoKgKjDAQGIqMMBAUIOWgVzY2VuZYABAZjUYQNiBnByb3Rv",
+          "Mw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -174,16 +201,20 @@ public static partial class PlayerSeasonReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::SavedBattleBuildBookmarkView), global::SavedBattleBuildBookmarkView.Parser, new[]{ "BookmarkId", "Title", "SourceBattleId", "SourcePlayerId", "SourcePlayerName", "ClassId", "FormationId", "SeasonSealId", "ActivePetTableId", "ActivePetName", "SkillTableIds", "WuxingSigilIds", "SavedAtMs" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipWuxingFormationRequest), global::EquipWuxingFormationRequest.Parser, new[]{ "FormationId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipWuxingFormationResponse), global::EquipWuxingFormationResponse.Parser, new[]{ "ErrorMessage", "EquippedFormationId", "State" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::WuxingTowerLeaderboardEntry), global::WuxingTowerLeaderboardEntry.Parser, new[]{ "Rank", "PlayerId", "PlayerName", "BestFloor", "BestRounds", "FormationId", "SigilIds" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::WuxingTowerStateSnapshot), global::WuxingTowerStateSnapshot.Parser, new[]{ "WeekKey", "RunActive", "RunId", "CurrentFloor", "MaxFloors", "CurrentFloorDungeonId", "CurrentFloorLeylineElement", "RunTotalRounds", "ActiveSigilIds", "PendingOfferSigilIds", "WeeklyClearedMask", "WeeklyBestFloor", "WeeklyBestRounds", "Revision", "WeeklyLeaderboard" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::WuxingTowerLeaderboardEntry), global::WuxingTowerLeaderboardEntry.Parser, new[]{ "Rank", "PlayerId", "PlayerName", "BestFloor", "BestRounds", "FormationId", "SigilIds", "UseFreePreset", "ResonanceElement" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::WuxingTowerStateSnapshot), global::WuxingTowerStateSnapshot.Parser, new[]{ "WeekKey", "RunActive", "RunId", "CurrentFloor", "MaxFloors", "CurrentFloorDungeonId", "CurrentFloorLeylineElement", "RunTotalRounds", "ActiveSigilIds", "PendingOfferSigilIds", "WeeklyClearedMask", "WeeklyBestFloor", "WeeklyBestRounds", "Revision", "WeeklyLeaderboard", "RunWeekKey", "RealmVersion", "UseFreePreset", "CharacterPresetId", "PetPresetId", "CurrentNodeKind", "PendingEventKind", "ActiveResonanceElement", "RouteChoiceMask", "BestRoundsSelf", "BestRoundsPreset", "WeeklyBestFloorPreset", "WeeklyBestRoundsPreset", "WeeklyLeaderboardPreset" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetWuxingTowerStateRequest), global::GetWuxingTowerStateRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetWuxingTowerStateResponse), global::GetWuxingTowerStateResponse.Parser, new[]{ "ErrorMessage", "State" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::StartWuxingTowerRunRequest), global::StartWuxingTowerRunRequest.Parser, null, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::StartWuxingTowerRunRequest), global::StartWuxingTowerRunRequest.Parser, new[]{ "UseFreePreset", "CharacterPresetId", "PetPresetId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::StartWuxingTowerRunResponse), global::StartWuxingTowerRunResponse.Parser, new[]{ "ErrorMessage", "State" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PickWuxingTowerSigilRequest), global::PickWuxingTowerSigilRequest.Parser, new[]{ "ExpectedRunId", "SigilId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PickWuxingTowerSigilResponse), global::PickWuxingTowerSigilResponse.Parser, new[]{ "ErrorMessage", "State" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::AbandonWuxingTowerRunRequest), global::AbandonWuxingTowerRunRequest.Parser, new[]{ "ExpectedRunId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::AbandonWuxingTowerRunResponse), global::AbandonWuxingTowerRunResponse.Parser, new[]{ "ErrorMessage", "State" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ChooseWuxingRealmBranchRequest), global::ChooseWuxingRealmBranchRequest.Parser, new[]{ "ExpectedRunId", "Branch" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ChooseWuxingRealmBranchResponse), global::ChooseWuxingRealmBranchResponse.Parser, new[]{ "ErrorMessage", "State" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ResolveWuxingRealmEventRequest), global::ResolveWuxingRealmEventRequest.Parser, new[]{ "ExpectedRunId", "OptionIndex", "TargetBoonId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ResolveWuxingRealmEventResponse), global::ResolveWuxingRealmEventResponse.Parser, new[]{ "ErrorMessage", "State", "GrantedBoonId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SaveBattleBuildBookmarkRequest), global::SaveBattleBuildBookmarkRequest.Parser, new[]{ "Bookmark" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SaveBattleBuildBookmarkResponse), global::SaveBattleBuildBookmarkResponse.Parser, new[]{ "ErrorMessage", "Saved", "AllBookmarks" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::DeleteBattleBuildBookmarkRequest), global::DeleteBattleBuildBookmarkRequest.Parser, new[]{ "BookmarkId" }, null, null, null, null),
@@ -5390,6 +5421,8 @@ public sealed partial class WuxingTowerLeaderboardEntry : pb::IMessage<WuxingTow
     bestRounds_ = other.bestRounds_;
     formationId_ = other.formationId_;
     sigilIds_ = other.sigilIds_.Clone();
+    useFreePreset_ = other.useFreePreset_;
+    resonanceElement_ = other.resonanceElement_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -5482,6 +5515,30 @@ public sealed partial class WuxingTowerLeaderboardEntry : pb::IMessage<WuxingTow
     get { return sigilIds_; }
   }
 
+  /// <summary>Field number for the "use_free_preset" field.</summary>
+  public const int UseFreePresetFieldNumber = 8;
+  private bool useFreePreset_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool UseFreePreset {
+    get { return useFreePreset_; }
+    set {
+      useFreePreset_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "resonance_element" field.</summary>
+  public const int ResonanceElementFieldNumber = 9;
+  private uint resonanceElement_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ResonanceElement {
+    get { return resonanceElement_; }
+    set {
+      resonanceElement_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -5504,6 +5561,8 @@ public sealed partial class WuxingTowerLeaderboardEntry : pb::IMessage<WuxingTow
     if (BestRounds != other.BestRounds) return false;
     if (FormationId != other.FormationId) return false;
     if(!sigilIds_.Equals(other.sigilIds_)) return false;
+    if (UseFreePreset != other.UseFreePreset) return false;
+    if (ResonanceElement != other.ResonanceElement) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -5518,6 +5577,8 @@ public sealed partial class WuxingTowerLeaderboardEntry : pb::IMessage<WuxingTow
     if (BestRounds != 0) hash ^= BestRounds.GetHashCode();
     if (FormationId != 0) hash ^= FormationId.GetHashCode();
     hash ^= sigilIds_.GetHashCode();
+    if (UseFreePreset != false) hash ^= UseFreePreset.GetHashCode();
+    if (ResonanceElement != 0) hash ^= ResonanceElement.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -5561,6 +5622,14 @@ public sealed partial class WuxingTowerLeaderboardEntry : pb::IMessage<WuxingTow
       output.WriteUInt32(FormationId);
     }
     sigilIds_.WriteTo(output, _repeated_sigilIds_codec);
+    if (UseFreePreset != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(UseFreePreset);
+    }
+    if (ResonanceElement != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(ResonanceElement);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -5596,6 +5665,14 @@ public sealed partial class WuxingTowerLeaderboardEntry : pb::IMessage<WuxingTow
       output.WriteUInt32(FormationId);
     }
     sigilIds_.WriteTo(ref output, _repeated_sigilIds_codec);
+    if (UseFreePreset != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(UseFreePreset);
+    }
+    if (ResonanceElement != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(ResonanceElement);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -5625,6 +5702,12 @@ public sealed partial class WuxingTowerLeaderboardEntry : pb::IMessage<WuxingTow
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(FormationId);
     }
     size += sigilIds_.CalculateSize(_repeated_sigilIds_codec);
+    if (UseFreePreset != false) {
+      size += 1 + 1;
+    }
+    if (ResonanceElement != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ResonanceElement);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -5656,6 +5739,12 @@ public sealed partial class WuxingTowerLeaderboardEntry : pb::IMessage<WuxingTow
       FormationId = other.FormationId;
     }
     sigilIds_.Add(other.sigilIds_);
+    if (other.UseFreePreset != false) {
+      UseFreePreset = other.UseFreePreset;
+    }
+    if (other.ResonanceElement != 0) {
+      ResonanceElement = other.ResonanceElement;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -5704,6 +5793,14 @@ public sealed partial class WuxingTowerLeaderboardEntry : pb::IMessage<WuxingTow
           sigilIds_.AddEntriesFrom(input, _repeated_sigilIds_codec);
           break;
         }
+        case 64: {
+          UseFreePreset = input.ReadBool();
+          break;
+        }
+        case 72: {
+          ResonanceElement = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -5750,6 +5847,14 @@ public sealed partial class WuxingTowerLeaderboardEntry : pb::IMessage<WuxingTow
         case 58:
         case 56: {
           sigilIds_.AddEntriesFrom(ref input, _repeated_sigilIds_codec);
+          break;
+        }
+        case 64: {
+          UseFreePreset = input.ReadBool();
+          break;
+        }
+        case 72: {
+          ResonanceElement = input.ReadUInt32();
           break;
         }
       }
@@ -5809,6 +5914,20 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
     weeklyBestRounds_ = other.weeklyBestRounds_;
     revision_ = other.revision_;
     weeklyLeaderboard_ = other.weeklyLeaderboard_.Clone();
+    runWeekKey_ = other.runWeekKey_;
+    realmVersion_ = other.realmVersion_;
+    useFreePreset_ = other.useFreePreset_;
+    characterPresetId_ = other.characterPresetId_;
+    petPresetId_ = other.petPresetId_;
+    currentNodeKind_ = other.currentNodeKind_;
+    pendingEventKind_ = other.pendingEventKind_;
+    activeResonanceElement_ = other.activeResonanceElement_;
+    routeChoiceMask_ = other.routeChoiceMask_;
+    bestRoundsSelf_ = other.bestRoundsSelf_;
+    bestRoundsPreset_ = other.bestRoundsPreset_;
+    weeklyBestFloorPreset_ = other.weeklyBestFloorPreset_;
+    weeklyBestRoundsPreset_ = other.weeklyBestRoundsPreset_;
+    weeklyLeaderboardPreset_ = other.weeklyLeaderboardPreset_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -5858,7 +5977,7 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
   public const int CurrentFloorFieldNumber = 4;
   private uint currentFloor_;
   /// <summary>
-  /// 当前待挑战层（1..10）
+  /// 当前待推进关（V2 为 1..6）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -5873,7 +5992,7 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
   public const int MaxFloorsFieldNumber = 5;
   private uint maxFloors_;
   /// <summary>
-  /// 固定 10 层
+  /// V2 为 6 关
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -5888,7 +6007,7 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
   public const int CurrentFloorDungeonIdFieldNumber = 6;
   private uint currentFloorDungeonId_;
   /// <summary>
-  /// 当前层开战应传入的 PVE_SOLO battle_config_id
+  /// 当前战斗节点开战应传入的 PVE_SOLO battle_config_id
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -5903,7 +6022,7 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
   public const int CurrentFloorLeylineElementFieldNumber = 7;
   private uint currentFloorLeylineElement_;
   /// <summary>
-  /// 本层环境五行灵脉（1..5）
+  /// 本关环境五行灵脉（1..5）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -6007,6 +6126,215 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
     get { return weeklyLeaderboard_; }
   }
 
+  /// <summary>Field number for the "run_week_key" field.</summary>
+  public const int RunWeekKeyFieldNumber = 16;
+  private uint runWeekKey_;
+  /// <summary>
+  /// 本轮开局周键（跨周保留在途轮次不清空）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RunWeekKey {
+    get { return runWeekKey_; }
+    set {
+      runWeekKey_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "realm_version" field.</summary>
+  public const int RealmVersionFieldNumber = 17;
+  private uint realmVersion_;
+  /// <summary>
+  /// 2=V2 6 关奇策秘境
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RealmVersion {
+    get { return realmVersion_; }
+    set {
+      realmVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "use_free_preset" field.</summary>
+  public const int UseFreePresetFieldNumber = 18;
+  private bool useFreePreset_;
+  /// <summary>
+  /// true=公平 3x3 试炼模式
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool UseFreePreset {
+    get { return useFreePreset_; }
+    set {
+      useFreePreset_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "character_preset_id" field.</summary>
+  public const int CharacterPresetIdFieldNumber = 19;
+  private uint characterPresetId_;
+  /// <summary>
+  /// 公平模式人物预设（101..103）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CharacterPresetId {
+    get { return characterPresetId_; }
+    set {
+      characterPresetId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pet_preset_id" field.</summary>
+  public const int PetPresetIdFieldNumber = 20;
+  private uint petPresetId_;
+  /// <summary>
+  /// 公平模式灵宠预设（201..203）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PetPresetId {
+    get { return petPresetId_; }
+    set {
+      petPresetId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "current_node_kind" field.</summary>
+  public const int CurrentNodeKindFieldNumber = 21;
+  private uint currentNodeKind_;
+  /// <summary>
+  /// 当前节点类型（0=待选分岔,1=普通,2=精英,3=首领,4=奇遇,5=休整）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CurrentNodeKind {
+    get { return currentNodeKind_; }
+    set {
+      currentNodeKind_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pending_event_kind" field.</summary>
+  public const int PendingEventKindFieldNumber = 22;
+  private uint pendingEventKind_;
+  /// <summary>
+  /// 待抉择非战斗事件（0=无,1=第2关奇遇,2=第4关休整）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PendingEventKind {
+    get { return pendingEventKind_; }
+    set {
+      pendingEventKind_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "active_resonance_element" field.</summary>
+  public const int ActiveResonanceElementFieldNumber = 23;
+  private uint activeResonanceElement_;
+  /// <summary>
+  /// 当前激活的 3 同系五行奇策共鸣（0=无,1..5）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ActiveResonanceElement {
+    get { return activeResonanceElement_; }
+    set {
+      activeResonanceElement_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "route_choice_mask" field.</summary>
+  public const int RouteChoiceMaskFieldNumber = 24;
+  private uint routeChoiceMask_;
+  /// <summary>
+  /// 本轮分岔轨迹位图（bit0=第2关右路,bit1=第4关右路）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RouteChoiceMask {
+    get { return routeChoiceMask_; }
+    set {
+      routeChoiceMask_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "best_rounds_self" field.</summary>
+  public const int BestRoundsSelfFieldNumber = 25;
+  private uint bestRoundsSelf_;
+  /// <summary>
+  /// 个人历史最速全通回合（本人流派）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BestRoundsSelf {
+    get { return bestRoundsSelf_; }
+    set {
+      bestRoundsSelf_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "best_rounds_preset" field.</summary>
+  public const int BestRoundsPresetFieldNumber = 26;
+  private uint bestRoundsPreset_;
+  /// <summary>
+  /// 个人历史最速全通回合（公平试炼）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BestRoundsPreset {
+    get { return bestRoundsPreset_; }
+    set {
+      bestRoundsPreset_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "weekly_best_floor_preset" field.</summary>
+  public const int WeeklyBestFloorPresetFieldNumber = 27;
+  private uint weeklyBestFloorPreset_;
+  /// <summary>
+  /// 本周公平试炼最高通关关数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint WeeklyBestFloorPreset {
+    get { return weeklyBestFloorPreset_; }
+    set {
+      weeklyBestFloorPreset_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "weekly_best_rounds_preset" field.</summary>
+  public const int WeeklyBestRoundsPresetFieldNumber = 28;
+  private uint weeklyBestRoundsPreset_;
+  /// <summary>
+  /// 本周公平试炼全通最速回合
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint WeeklyBestRoundsPreset {
+    get { return weeklyBestRoundsPreset_; }
+    set {
+      weeklyBestRoundsPreset_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "weekly_leaderboard_preset" field.</summary>
+  public const int WeeklyLeaderboardPresetFieldNumber = 29;
+  private static readonly pb::FieldCodec<global::WuxingTowerLeaderboardEntry> _repeated_weeklyLeaderboardPreset_codec
+      = pb::FieldCodec.ForMessage(234, global::WuxingTowerLeaderboardEntry.Parser);
+  private readonly pbc::RepeatedField<global::WuxingTowerLeaderboardEntry> weeklyLeaderboardPreset_ = new pbc::RepeatedField<global::WuxingTowerLeaderboardEntry>();
+  /// <summary>
+  /// 本周公平试炼分榜 Top 20
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::WuxingTowerLeaderboardEntry> WeeklyLeaderboardPreset {
+    get { return weeklyLeaderboardPreset_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -6037,6 +6365,20 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
     if (WeeklyBestRounds != other.WeeklyBestRounds) return false;
     if (Revision != other.Revision) return false;
     if(!weeklyLeaderboard_.Equals(other.weeklyLeaderboard_)) return false;
+    if (RunWeekKey != other.RunWeekKey) return false;
+    if (RealmVersion != other.RealmVersion) return false;
+    if (UseFreePreset != other.UseFreePreset) return false;
+    if (CharacterPresetId != other.CharacterPresetId) return false;
+    if (PetPresetId != other.PetPresetId) return false;
+    if (CurrentNodeKind != other.CurrentNodeKind) return false;
+    if (PendingEventKind != other.PendingEventKind) return false;
+    if (ActiveResonanceElement != other.ActiveResonanceElement) return false;
+    if (RouteChoiceMask != other.RouteChoiceMask) return false;
+    if (BestRoundsSelf != other.BestRoundsSelf) return false;
+    if (BestRoundsPreset != other.BestRoundsPreset) return false;
+    if (WeeklyBestFloorPreset != other.WeeklyBestFloorPreset) return false;
+    if (WeeklyBestRoundsPreset != other.WeeklyBestRoundsPreset) return false;
+    if(!weeklyLeaderboardPreset_.Equals(other.weeklyLeaderboardPreset_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -6059,6 +6401,20 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
     if (WeeklyBestRounds != 0) hash ^= WeeklyBestRounds.GetHashCode();
     if (Revision != 0UL) hash ^= Revision.GetHashCode();
     hash ^= weeklyLeaderboard_.GetHashCode();
+    if (RunWeekKey != 0) hash ^= RunWeekKey.GetHashCode();
+    if (RealmVersion != 0) hash ^= RealmVersion.GetHashCode();
+    if (UseFreePreset != false) hash ^= UseFreePreset.GetHashCode();
+    if (CharacterPresetId != 0) hash ^= CharacterPresetId.GetHashCode();
+    if (PetPresetId != 0) hash ^= PetPresetId.GetHashCode();
+    if (CurrentNodeKind != 0) hash ^= CurrentNodeKind.GetHashCode();
+    if (PendingEventKind != 0) hash ^= PendingEventKind.GetHashCode();
+    if (ActiveResonanceElement != 0) hash ^= ActiveResonanceElement.GetHashCode();
+    if (RouteChoiceMask != 0) hash ^= RouteChoiceMask.GetHashCode();
+    if (BestRoundsSelf != 0) hash ^= BestRoundsSelf.GetHashCode();
+    if (BestRoundsPreset != 0) hash ^= BestRoundsPreset.GetHashCode();
+    if (WeeklyBestFloorPreset != 0) hash ^= WeeklyBestFloorPreset.GetHashCode();
+    if (WeeklyBestRoundsPreset != 0) hash ^= WeeklyBestRoundsPreset.GetHashCode();
+    hash ^= weeklyLeaderboardPreset_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -6128,6 +6484,59 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
       output.WriteUInt64(Revision);
     }
     weeklyLeaderboard_.WriteTo(output, _repeated_weeklyLeaderboard_codec);
+    if (RunWeekKey != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(RunWeekKey);
+    }
+    if (RealmVersion != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(RealmVersion);
+    }
+    if (UseFreePreset != false) {
+      output.WriteRawTag(144, 1);
+      output.WriteBool(UseFreePreset);
+    }
+    if (CharacterPresetId != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(CharacterPresetId);
+    }
+    if (PetPresetId != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(PetPresetId);
+    }
+    if (CurrentNodeKind != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(CurrentNodeKind);
+    }
+    if (PendingEventKind != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(PendingEventKind);
+    }
+    if (ActiveResonanceElement != 0) {
+      output.WriteRawTag(184, 1);
+      output.WriteUInt32(ActiveResonanceElement);
+    }
+    if (RouteChoiceMask != 0) {
+      output.WriteRawTag(192, 1);
+      output.WriteUInt32(RouteChoiceMask);
+    }
+    if (BestRoundsSelf != 0) {
+      output.WriteRawTag(200, 1);
+      output.WriteUInt32(BestRoundsSelf);
+    }
+    if (BestRoundsPreset != 0) {
+      output.WriteRawTag(208, 1);
+      output.WriteUInt32(BestRoundsPreset);
+    }
+    if (WeeklyBestFloorPreset != 0) {
+      output.WriteRawTag(216, 1);
+      output.WriteUInt32(WeeklyBestFloorPreset);
+    }
+    if (WeeklyBestRoundsPreset != 0) {
+      output.WriteRawTag(224, 1);
+      output.WriteUInt32(WeeklyBestRoundsPreset);
+    }
+    weeklyLeaderboardPreset_.WriteTo(output, _repeated_weeklyLeaderboardPreset_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -6189,6 +6598,59 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
       output.WriteUInt64(Revision);
     }
     weeklyLeaderboard_.WriteTo(ref output, _repeated_weeklyLeaderboard_codec);
+    if (RunWeekKey != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(RunWeekKey);
+    }
+    if (RealmVersion != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(RealmVersion);
+    }
+    if (UseFreePreset != false) {
+      output.WriteRawTag(144, 1);
+      output.WriteBool(UseFreePreset);
+    }
+    if (CharacterPresetId != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(CharacterPresetId);
+    }
+    if (PetPresetId != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(PetPresetId);
+    }
+    if (CurrentNodeKind != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(CurrentNodeKind);
+    }
+    if (PendingEventKind != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(PendingEventKind);
+    }
+    if (ActiveResonanceElement != 0) {
+      output.WriteRawTag(184, 1);
+      output.WriteUInt32(ActiveResonanceElement);
+    }
+    if (RouteChoiceMask != 0) {
+      output.WriteRawTag(192, 1);
+      output.WriteUInt32(RouteChoiceMask);
+    }
+    if (BestRoundsSelf != 0) {
+      output.WriteRawTag(200, 1);
+      output.WriteUInt32(BestRoundsSelf);
+    }
+    if (BestRoundsPreset != 0) {
+      output.WriteRawTag(208, 1);
+      output.WriteUInt32(BestRoundsPreset);
+    }
+    if (WeeklyBestFloorPreset != 0) {
+      output.WriteRawTag(216, 1);
+      output.WriteUInt32(WeeklyBestFloorPreset);
+    }
+    if (WeeklyBestRoundsPreset != 0) {
+      output.WriteRawTag(224, 1);
+      output.WriteUInt32(WeeklyBestRoundsPreset);
+    }
+    weeklyLeaderboardPreset_.WriteTo(ref output, _repeated_weeklyLeaderboardPreset_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -6238,6 +6700,46 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Revision);
     }
     size += weeklyLeaderboard_.CalculateSize(_repeated_weeklyLeaderboard_codec);
+    if (RunWeekKey != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RunWeekKey);
+    }
+    if (RealmVersion != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RealmVersion);
+    }
+    if (UseFreePreset != false) {
+      size += 2 + 1;
+    }
+    if (CharacterPresetId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(CharacterPresetId);
+    }
+    if (PetPresetId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(PetPresetId);
+    }
+    if (CurrentNodeKind != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(CurrentNodeKind);
+    }
+    if (PendingEventKind != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(PendingEventKind);
+    }
+    if (ActiveResonanceElement != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(ActiveResonanceElement);
+    }
+    if (RouteChoiceMask != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(RouteChoiceMask);
+    }
+    if (BestRoundsSelf != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(BestRoundsSelf);
+    }
+    if (BestRoundsPreset != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(BestRoundsPreset);
+    }
+    if (WeeklyBestFloorPreset != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(WeeklyBestFloorPreset);
+    }
+    if (WeeklyBestRoundsPreset != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(WeeklyBestRoundsPreset);
+    }
+    size += weeklyLeaderboardPreset_.CalculateSize(_repeated_weeklyLeaderboardPreset_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -6289,6 +6791,46 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
       Revision = other.Revision;
     }
     weeklyLeaderboard_.Add(other.weeklyLeaderboard_);
+    if (other.RunWeekKey != 0) {
+      RunWeekKey = other.RunWeekKey;
+    }
+    if (other.RealmVersion != 0) {
+      RealmVersion = other.RealmVersion;
+    }
+    if (other.UseFreePreset != false) {
+      UseFreePreset = other.UseFreePreset;
+    }
+    if (other.CharacterPresetId != 0) {
+      CharacterPresetId = other.CharacterPresetId;
+    }
+    if (other.PetPresetId != 0) {
+      PetPresetId = other.PetPresetId;
+    }
+    if (other.CurrentNodeKind != 0) {
+      CurrentNodeKind = other.CurrentNodeKind;
+    }
+    if (other.PendingEventKind != 0) {
+      PendingEventKind = other.PendingEventKind;
+    }
+    if (other.ActiveResonanceElement != 0) {
+      ActiveResonanceElement = other.ActiveResonanceElement;
+    }
+    if (other.RouteChoiceMask != 0) {
+      RouteChoiceMask = other.RouteChoiceMask;
+    }
+    if (other.BestRoundsSelf != 0) {
+      BestRoundsSelf = other.BestRoundsSelf;
+    }
+    if (other.BestRoundsPreset != 0) {
+      BestRoundsPreset = other.BestRoundsPreset;
+    }
+    if (other.WeeklyBestFloorPreset != 0) {
+      WeeklyBestFloorPreset = other.WeeklyBestFloorPreset;
+    }
+    if (other.WeeklyBestRoundsPreset != 0) {
+      WeeklyBestRoundsPreset = other.WeeklyBestRoundsPreset;
+    }
+    weeklyLeaderboardPreset_.Add(other.weeklyLeaderboardPreset_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -6370,6 +6912,62 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
           weeklyLeaderboard_.AddEntriesFrom(input, _repeated_weeklyLeaderboard_codec);
           break;
         }
+        case 128: {
+          RunWeekKey = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          RealmVersion = input.ReadUInt32();
+          break;
+        }
+        case 144: {
+          UseFreePreset = input.ReadBool();
+          break;
+        }
+        case 152: {
+          CharacterPresetId = input.ReadUInt32();
+          break;
+        }
+        case 160: {
+          PetPresetId = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          CurrentNodeKind = input.ReadUInt32();
+          break;
+        }
+        case 176: {
+          PendingEventKind = input.ReadUInt32();
+          break;
+        }
+        case 184: {
+          ActiveResonanceElement = input.ReadUInt32();
+          break;
+        }
+        case 192: {
+          RouteChoiceMask = input.ReadUInt32();
+          break;
+        }
+        case 200: {
+          BestRoundsSelf = input.ReadUInt32();
+          break;
+        }
+        case 208: {
+          BestRoundsPreset = input.ReadUInt32();
+          break;
+        }
+        case 216: {
+          WeeklyBestFloorPreset = input.ReadUInt32();
+          break;
+        }
+        case 224: {
+          WeeklyBestRoundsPreset = input.ReadUInt32();
+          break;
+        }
+        case 234: {
+          weeklyLeaderboardPreset_.AddEntriesFrom(input, _repeated_weeklyLeaderboardPreset_codec);
+          break;
+        }
       }
     }
   #endif
@@ -6449,6 +7047,62 @@ public sealed partial class WuxingTowerStateSnapshot : pb::IMessage<WuxingTowerS
         }
         case 122: {
           weeklyLeaderboard_.AddEntriesFrom(ref input, _repeated_weeklyLeaderboard_codec);
+          break;
+        }
+        case 128: {
+          RunWeekKey = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          RealmVersion = input.ReadUInt32();
+          break;
+        }
+        case 144: {
+          UseFreePreset = input.ReadBool();
+          break;
+        }
+        case 152: {
+          CharacterPresetId = input.ReadUInt32();
+          break;
+        }
+        case 160: {
+          PetPresetId = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          CurrentNodeKind = input.ReadUInt32();
+          break;
+        }
+        case 176: {
+          PendingEventKind = input.ReadUInt32();
+          break;
+        }
+        case 184: {
+          ActiveResonanceElement = input.ReadUInt32();
+          break;
+        }
+        case 192: {
+          RouteChoiceMask = input.ReadUInt32();
+          break;
+        }
+        case 200: {
+          BestRoundsSelf = input.ReadUInt32();
+          break;
+        }
+        case 208: {
+          BestRoundsPreset = input.ReadUInt32();
+          break;
+        }
+        case 216: {
+          WeeklyBestFloorPreset = input.ReadUInt32();
+          break;
+        }
+        case 224: {
+          WeeklyBestRoundsPreset = input.ReadUInt32();
+          break;
+        }
+        case 234: {
+          weeklyLeaderboardPreset_.AddEntriesFrom(ref input, _repeated_weeklyLeaderboardPreset_codec);
           break;
         }
       }
@@ -6907,6 +7561,9 @@ public sealed partial class StartWuxingTowerRunRequest : pb::IMessage<StartWuxin
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public StartWuxingTowerRunRequest(StartWuxingTowerRunRequest other) : this() {
+    useFreePreset_ = other.useFreePreset_;
+    characterPresetId_ = other.characterPresetId_;
+    petPresetId_ = other.petPresetId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -6914,6 +7571,51 @@ public sealed partial class StartWuxingTowerRunRequest : pb::IMessage<StartWuxin
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public StartWuxingTowerRunRequest Clone() {
     return new StartWuxingTowerRunRequest(this);
+  }
+
+  /// <summary>Field number for the "use_free_preset" field.</summary>
+  public const int UseFreePresetFieldNumber = 1;
+  private bool useFreePreset_;
+  /// <summary>
+  /// true=公平 3x3 免费试炼；false=本人流派
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool UseFreePreset {
+    get { return useFreePreset_; }
+    set {
+      useFreePreset_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "character_preset_id" field.</summary>
+  public const int CharacterPresetIdFieldNumber = 2;
+  private uint characterPresetId_;
+  /// <summary>
+  /// 公平模式人物预设（0=默认 101，白名单 101..103）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CharacterPresetId {
+    get { return characterPresetId_; }
+    set {
+      characterPresetId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pet_preset_id" field.</summary>
+  public const int PetPresetIdFieldNumber = 3;
+  private uint petPresetId_;
+  /// <summary>
+  /// 公平模式灵宠预设（0=默认 201，白名单 201..203）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PetPresetId {
+    get { return petPresetId_; }
+    set {
+      petPresetId_ = value;
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6931,6 +7633,9 @@ public sealed partial class StartWuxingTowerRunRequest : pb::IMessage<StartWuxin
     if (ReferenceEquals(other, this)) {
       return true;
     }
+    if (UseFreePreset != other.UseFreePreset) return false;
+    if (CharacterPresetId != other.CharacterPresetId) return false;
+    if (PetPresetId != other.PetPresetId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -6938,6 +7643,9 @@ public sealed partial class StartWuxingTowerRunRequest : pb::IMessage<StartWuxin
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
+    if (UseFreePreset != false) hash ^= UseFreePreset.GetHashCode();
+    if (CharacterPresetId != 0) hash ^= CharacterPresetId.GetHashCode();
+    if (PetPresetId != 0) hash ^= PetPresetId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -6956,6 +7664,18 @@ public sealed partial class StartWuxingTowerRunRequest : pb::IMessage<StartWuxin
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
+    if (UseFreePreset != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(UseFreePreset);
+    }
+    if (CharacterPresetId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(CharacterPresetId);
+    }
+    if (PetPresetId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(PetPresetId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -6966,6 +7686,18 @@ public sealed partial class StartWuxingTowerRunRequest : pb::IMessage<StartWuxin
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (UseFreePreset != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(UseFreePreset);
+    }
+    if (CharacterPresetId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(CharacterPresetId);
+    }
+    if (PetPresetId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(PetPresetId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -6976,6 +7708,15 @@ public sealed partial class StartWuxingTowerRunRequest : pb::IMessage<StartWuxin
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
+    if (UseFreePreset != false) {
+      size += 1 + 1;
+    }
+    if (CharacterPresetId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CharacterPresetId);
+    }
+    if (PetPresetId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PetPresetId);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -6987,6 +7728,15 @@ public sealed partial class StartWuxingTowerRunRequest : pb::IMessage<StartWuxin
   public void MergeFrom(StartWuxingTowerRunRequest other) {
     if (other == null) {
       return;
+    }
+    if (other.UseFreePreset != false) {
+      UseFreePreset = other.UseFreePreset;
+    }
+    if (other.CharacterPresetId != 0) {
+      CharacterPresetId = other.CharacterPresetId;
+    }
+    if (other.PetPresetId != 0) {
+      PetPresetId = other.PetPresetId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -7007,6 +7757,18 @@ public sealed partial class StartWuxingTowerRunRequest : pb::IMessage<StartWuxin
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
+        case 8: {
+          UseFreePreset = input.ReadBool();
+          break;
+        }
+        case 16: {
+          CharacterPresetId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          PetPresetId = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -7026,6 +7788,18 @@ public sealed partial class StartWuxingTowerRunRequest : pb::IMessage<StartWuxin
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
+        case 8: {
+          UseFreePreset = input.ReadBool();
+          break;
+        }
+        case 16: {
+          CharacterPresetId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          PetPresetId = input.ReadUInt32();
+          break;
+        }
       }
     }
   }
@@ -8225,6 +8999,1063 @@ public sealed partial class AbandonWuxingTowerRunResponse : pb::IMessage<Abandon
 
 }
 
+/// <summary>
+/// 五行幻境 V2：在第 2/4 关二选一分岔节点选择行进路线（1=左路精英强敌，2=右路奇遇事件/秘境休整）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class ChooseWuxingRealmBranchRequest : pb::IMessage<ChooseWuxingRealmBranchRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ChooseWuxingRealmBranchRequest> _parser = new pb::MessageParser<ChooseWuxingRealmBranchRequest>(() => new ChooseWuxingRealmBranchRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ChooseWuxingRealmBranchRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[18]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ChooseWuxingRealmBranchRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ChooseWuxingRealmBranchRequest(ChooseWuxingRealmBranchRequest other) : this() {
+    expectedRunId_ = other.expectedRunId_;
+    branch_ = other.branch_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ChooseWuxingRealmBranchRequest Clone() {
+    return new ChooseWuxingRealmBranchRequest(this);
+  }
+
+  /// <summary>Field number for the "expected_run_id" field.</summary>
+  public const int ExpectedRunIdFieldNumber = 1;
+  private ulong expectedRunId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ExpectedRunId {
+    get { return expectedRunId_; }
+    set {
+      expectedRunId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "branch" field.</summary>
+  public const int BranchFieldNumber = 2;
+  private uint branch_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Branch {
+    get { return branch_; }
+    set {
+      branch_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ChooseWuxingRealmBranchRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ChooseWuxingRealmBranchRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ExpectedRunId != other.ExpectedRunId) return false;
+    if (Branch != other.Branch) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ExpectedRunId != 0UL) hash ^= ExpectedRunId.GetHashCode();
+    if (Branch != 0) hash ^= Branch.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ExpectedRunId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ExpectedRunId);
+    }
+    if (Branch != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(Branch);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ExpectedRunId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ExpectedRunId);
+    }
+    if (Branch != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(Branch);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ExpectedRunId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedRunId);
+    }
+    if (Branch != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Branch);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ChooseWuxingRealmBranchRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ExpectedRunId != 0UL) {
+      ExpectedRunId = other.ExpectedRunId;
+    }
+    if (other.Branch != 0) {
+      Branch = other.Branch;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ExpectedRunId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          Branch = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ExpectedRunId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          Branch = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class ChooseWuxingRealmBranchResponse : pb::IMessage<ChooseWuxingRealmBranchResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ChooseWuxingRealmBranchResponse> _parser = new pb::MessageParser<ChooseWuxingRealmBranchResponse>(() => new ChooseWuxingRealmBranchResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ChooseWuxingRealmBranchResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[19]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ChooseWuxingRealmBranchResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ChooseWuxingRealmBranchResponse(ChooseWuxingRealmBranchResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    state_ = other.state_ != null ? other.state_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ChooseWuxingRealmBranchResponse Clone() {
+    return new ChooseWuxingRealmBranchResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "state" field.</summary>
+  public const int StateFieldNumber = 2;
+  private global::WuxingTowerStateSnapshot state_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::WuxingTowerStateSnapshot State {
+    get { return state_; }
+    set {
+      state_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ChooseWuxingRealmBranchResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ChooseWuxingRealmBranchResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (!object.Equals(State, other.State)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (state_ != null) hash ^= State.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (state_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(State);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (state_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(State);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (state_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(State);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ChooseWuxingRealmBranchResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.state_ != null) {
+      if (state_ == null) {
+        State = new global::WuxingTowerStateSnapshot();
+      }
+      State.MergeFrom(other.State);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (state_ == null) {
+            State = new global::WuxingTowerStateSnapshot();
+          }
+          input.ReadMessage(State);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (state_ == null) {
+            State = new global::WuxingTowerStateSnapshot();
+          }
+          input.ReadMessage(State);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 五行幻境 V2：在奇遇事件（第2关右路）或秘境休整（第4关右路）节点执行二选一抉择。
+/// option_index: 奇遇(1=道缘寻策直接领灵品奇策, 2=五行悟道三选一); 休整(1=奇策淬炼升品, 2=同源寻策偏向共鸣三选一)。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class ResolveWuxingRealmEventRequest : pb::IMessage<ResolveWuxingRealmEventRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ResolveWuxingRealmEventRequest> _parser = new pb::MessageParser<ResolveWuxingRealmEventRequest>(() => new ResolveWuxingRealmEventRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ResolveWuxingRealmEventRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[20]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ResolveWuxingRealmEventRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ResolveWuxingRealmEventRequest(ResolveWuxingRealmEventRequest other) : this() {
+    expectedRunId_ = other.expectedRunId_;
+    optionIndex_ = other.optionIndex_;
+    targetBoonId_ = other.targetBoonId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ResolveWuxingRealmEventRequest Clone() {
+    return new ResolveWuxingRealmEventRequest(this);
+  }
+
+  /// <summary>Field number for the "expected_run_id" field.</summary>
+  public const int ExpectedRunIdFieldNumber = 1;
+  private ulong expectedRunId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ExpectedRunId {
+    get { return expectedRunId_; }
+    set {
+      expectedRunId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "option_index" field.</summary>
+  public const int OptionIndexFieldNumber = 2;
+  private uint optionIndex_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint OptionIndex {
+    get { return optionIndex_; }
+    set {
+      optionIndex_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_boon_id" field.</summary>
+  public const int TargetBoonIdFieldNumber = 3;
+  private uint targetBoonId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TargetBoonId {
+    get { return targetBoonId_; }
+    set {
+      targetBoonId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ResolveWuxingRealmEventRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ResolveWuxingRealmEventRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ExpectedRunId != other.ExpectedRunId) return false;
+    if (OptionIndex != other.OptionIndex) return false;
+    if (TargetBoonId != other.TargetBoonId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ExpectedRunId != 0UL) hash ^= ExpectedRunId.GetHashCode();
+    if (OptionIndex != 0) hash ^= OptionIndex.GetHashCode();
+    if (TargetBoonId != 0) hash ^= TargetBoonId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ExpectedRunId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ExpectedRunId);
+    }
+    if (OptionIndex != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(OptionIndex);
+    }
+    if (TargetBoonId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(TargetBoonId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ExpectedRunId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ExpectedRunId);
+    }
+    if (OptionIndex != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(OptionIndex);
+    }
+    if (TargetBoonId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(TargetBoonId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ExpectedRunId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedRunId);
+    }
+    if (OptionIndex != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(OptionIndex);
+    }
+    if (TargetBoonId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetBoonId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ResolveWuxingRealmEventRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ExpectedRunId != 0UL) {
+      ExpectedRunId = other.ExpectedRunId;
+    }
+    if (other.OptionIndex != 0) {
+      OptionIndex = other.OptionIndex;
+    }
+    if (other.TargetBoonId != 0) {
+      TargetBoonId = other.TargetBoonId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ExpectedRunId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          OptionIndex = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          TargetBoonId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ExpectedRunId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          OptionIndex = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          TargetBoonId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class ResolveWuxingRealmEventResponse : pb::IMessage<ResolveWuxingRealmEventResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ResolveWuxingRealmEventResponse> _parser = new pb::MessageParser<ResolveWuxingRealmEventResponse>(() => new ResolveWuxingRealmEventResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ResolveWuxingRealmEventResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[21]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ResolveWuxingRealmEventResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ResolveWuxingRealmEventResponse(ResolveWuxingRealmEventResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    state_ = other.state_ != null ? other.state_.Clone() : null;
+    grantedBoonId_ = other.grantedBoonId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ResolveWuxingRealmEventResponse Clone() {
+    return new ResolveWuxingRealmEventResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "state" field.</summary>
+  public const int StateFieldNumber = 2;
+  private global::WuxingTowerStateSnapshot state_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::WuxingTowerStateSnapshot State {
+    get { return state_; }
+    set {
+      state_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "granted_boon_id" field.</summary>
+  public const int GrantedBoonIdFieldNumber = 3;
+  private uint grantedBoonId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint GrantedBoonId {
+    get { return grantedBoonId_; }
+    set {
+      grantedBoonId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ResolveWuxingRealmEventResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ResolveWuxingRealmEventResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (!object.Equals(State, other.State)) return false;
+    if (GrantedBoonId != other.GrantedBoonId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (state_ != null) hash ^= State.GetHashCode();
+    if (GrantedBoonId != 0) hash ^= GrantedBoonId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (state_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(State);
+    }
+    if (GrantedBoonId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(GrantedBoonId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (state_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(State);
+    }
+    if (GrantedBoonId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(GrantedBoonId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (state_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(State);
+    }
+    if (GrantedBoonId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GrantedBoonId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ResolveWuxingRealmEventResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.state_ != null) {
+      if (state_ == null) {
+        State = new global::WuxingTowerStateSnapshot();
+      }
+      State.MergeFrom(other.State);
+    }
+    if (other.GrantedBoonId != 0) {
+      GrantedBoonId = other.GrantedBoonId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (state_ == null) {
+            State = new global::WuxingTowerStateSnapshot();
+          }
+          input.ReadMessage(State);
+          break;
+        }
+        case 24: {
+          GrantedBoonId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (state_ == null) {
+            State = new global::WuxingTowerStateSnapshot();
+          }
+          input.ReadMessage(State);
+          break;
+        }
+        case 24: {
+          GrantedBoonId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class SaveBattleBuildBookmarkRequest : pb::IMessage<SaveBattleBuildBookmarkRequest>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -8240,7 +10071,7 @@ public sealed partial class SaveBattleBuildBookmarkRequest : pb::IMessage<SaveBa
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[18]; }
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[22]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8447,7 +10278,7 @@ public sealed partial class SaveBattleBuildBookmarkResponse : pb::IMessage<SaveB
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[19]; }
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[23]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8726,7 +10557,7 @@ public sealed partial class DeleteBattleBuildBookmarkRequest : pb::IMessage<Dele
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[20]; }
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[24]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8924,7 +10755,7 @@ public sealed partial class DeleteBattleBuildBookmarkResponse : pb::IMessage<Del
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[21]; }
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[25]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9157,7 +10988,7 @@ public sealed partial class GetSeasonStateRequest : pb::IMessage<GetSeasonStateR
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[22]; }
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[26]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9318,7 +11149,7 @@ public sealed partial class GetSeasonStateResponse : pb::IMessage<GetSeasonState
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[23]; }
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[27]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9574,7 +11405,7 @@ public sealed partial class EquipSeasonSealRequest : pb::IMessage<EquipSeasonSea
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[24]; }
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[28]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9809,7 +11640,7 @@ public sealed partial class EquipSeasonSealResponse : pb::IMessage<EquipSeasonSe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[25]; }
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[29]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10066,7 +11897,7 @@ public sealed partial class CatchupSeasonSealRequest : pb::IMessage<CatchupSeaso
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[26]; }
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[30]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10412,7 +12243,7 @@ public sealed partial class CatchupSeasonSealResponse : pb::IMessage<CatchupSeas
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[27]; }
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[31]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10779,7 +12610,7 @@ public sealed partial class SetRetroHonorTargetRequest : pb::IMessage<SetRetroHo
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[28]; }
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[32]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10977,7 +12808,7 @@ public sealed partial class SetRetroHonorTargetResponse : pb::IMessage<SetRetroH
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[29]; }
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[33]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

@@ -310,104 +310,108 @@ public static partial class BattleDataReflection {
           "CnNxdWFkX2JfaWQYCiABKAQSFAoMc3F1YWRfYl9uYW1lGAsgASgJEhkKEXNx",
           "dWFkX2FfZW1ibGVtX2lkGAwgASgNEhkKEXNxdWFkX2JfZW1ibGVtX2lkGA0g",
           "ASgNEhEKCWlzX3dhcm11cBgOIAEoCBIWCg5pc190aGlyZF9wbGFjZRgPIAEo",
-          "CBIgChhza2lsbF9iYW5fc2xvdHNfcGVyX3RlYW0YECABKA0imQEKGFd1eGlu",
+          "CBIgChhza2lsbF9iYW5fc2xvdHNfcGVyX3RlYW0YECABKA0i/gEKGFd1eGlu",
           "Z1Rvd2VyQmF0dGxlQ29udGV4dBIQCgh3ZWVrX2tleRgBIAEoDRIOCgZydW5f",
           "aWQYAiABKAQSDQoFZmxvb3IYAyABKA0SMgoPbGV5bGluZV9lbGVtZW50GAQg",
           "ASgOMhkuVG91cm5hbWVudExleWxpbmVFbGVtZW50EhgKEGFjdGl2ZV9zaWdp",
-          "bF9pZHMYBSADKA0iYgoZV3V4aW5nVG93ZXJTZXR0bGVtZW50RWNobxIQCgh3",
-          "ZWVrX2tleRgBIAEoDRIOCgZydW5faWQYAiABKAQSDQoFZmxvb3IYAyABKA0S",
-          "FAoMdG90YWxfcm91bmRzGAQgASgNIrMCCg9DdXN0b21EdWVsUnVsZXMSFwoP",
-          "dXNlX2ZyZWVfcHJlc2V0GAEgASgIEiAKGGVuYWJsZV9wb2xhcml0eV9yb3Rh",
-          "dGlvbhgCIAEoCBIcChRyb3VuZF9saW1pdF9vdmVycmlkZRgDIAEoDRIaChJi",
-          "YW5fY29udHJvbF9za2lsbHMYBCABKAgSHQoVYWxsb3dfcHVibGljX3NwZWN0",
-          "YXRlGAUgASgIEiYKHmNoYWxsZW5nZXJfY2hhcmFjdGVyX3ByZXNldF9pZBgG",
-          "IAEoDRIgChhjaGFsbGVuZ2VyX3BldF9wcmVzZXRfaWQYByABKA0SIAoYc2tp",
-          "bGxfYmFuX3Nsb3RzX3Blcl90ZWFtGAggASgNEiAKGHJlbWF0Y2hfc291cmNl",
-          "X2JhdHRsZV9pZBgJIAEoBCLUAgoXQmF0dGxlQWN0b3JCdWlsZFN1bW1hcnkS",
-          "EQoJcGxheWVyX2lkGAEgASgEEgwKBG5hbWUYAiABKAkSEgoKdGVhbV9pbmRl",
-          "eBgDIAEoDRIQCghjbGFzc19pZBgEIAEoDRINCgVsZXZlbBgFIAEoDRIUCgxm",
-          "b3JtYXRpb25faWQYBiABKA0SFgoOd3V4aW5nX2VsZW1lbnQYByABKA0SFgoO",
-          "c2Vhc29uX3NlYWxfaWQYCCABKA0SGwoTYWN0aXZlX3BldF90YWJsZV9pZBgJ",
-          "IAEoDRIXCg9hY3RpdmVfcGV0X25hbWUYCiABKAkSGgoSYWN0aXZlX3BldF9l",
-          "bGVtZW50GAsgASgNEhcKD3NraWxsX3RhYmxlX2lkcxgMIAMoDRIYChB3dXhp",
-          "bmdfc2lnaWxfaWRzGA0gAygNEhgKEHVzZWRfZnJlZV9wcmVzZXQYDiABKAgi",
-          "1gIKGEppYW5naHVEdWVsQmF0dGxlQ29udGV4dBIWCg5kdWVsX2ludml0ZV9p",
-          "ZBgBIAEoBBIRCgl3cml0X3RpZXIYAiABKA0SHQoVY2hhbGxlbmdlcl9jYXB0",
-          "YWluX2lkGAMgASgEEh8KF2NoYWxsZW5nZXJfY2FwdGFpbl9uYW1lGAQgASgJ",
-          "EhkKEXRhcmdldF9jYXB0YWluX2lkGAUgASgEEhsKE3RhcmdldF9jYXB0YWlu",
-          "X25hbWUYBiABKAkSFwoPc2lkZV9hX2d1aWxkX2lkGAcgASgEEhkKEXNpZGVf",
-          "YV9ndWlsZF9uYW1lGAggASgJEhcKD3NpZGVfYl9ndWlsZF9pZBgJIAEoBBIZ",
-          "ChFzaWRlX2JfZ3VpbGRfbmFtZRgKIAEoCRIcChRyb3VuZF9saW1pdF9vdmVy",
-          "cmlkZRgLIAEoDRIRCgl0ZWFtX3NpemUYDCABKA0imwEKF1RhY3RpY2FsUHV6",
-          "emxlRW5lbXlTcGVjEhgKEG1vbnN0ZXJfdGFibGVfaWQYASABKA0SFgoOaW5p",
-          "dGlhbF9ocF9wY3QYAiABKA0SGgoSaW5pdGlhbF9zaGllbGRfcGN0GAMgASgN",
-          "EhcKD3NwZWVkX2RlbHRhX3BjdBgEIAEoBRIZChFpbml0aWFsX2J1ZmZfa2lu",
-          "ZBgFIAEoDSLwAgoSVGFjdGljYWxQdXp6bGVTcGVjEhMKC3JvdW5kX2xpbWl0",
-          "GAEgASgNEhsKE2NoYXJhY3Rlcl9wcmVzZXRfaWQYAiABKA0SFQoNcGV0X3By",
-          "ZXNldF9pZBgDIAEoDRIUCgxmb3JtYXRpb25faWQYBCABKA0SHQoVcGxheWVy",
-          "X2luaXRpYWxfaHBfcGN0GAUgASgNEh0KFXBsYXllcl9pbml0aWFsX21wX3Bj",
-          "dBgGIAEoDRIhChlwbGF5ZXJfaW5pdGlhbF9zaGllbGRfcGN0GAcgASgNEiIK",
-          "GnBsYXllcl9pbml0aWFsX2RlYnVmZl9raW5kGAggASgNEikKB2VuZW1pZXMY",
-          "CSADKAsyGC5UYWN0aWNhbFB1enpsZUVuZW15U3BlYxIyCg9sZXlsaW5lX2Vs",
-          "ZW1lbnQYCiABKA4yGS5Ub3VybmFtZW50TGV5bGluZUVsZW1lbnQSFwoPYmFu",
-          "bmVkX3NraWxsX2lkGAsgASgNIskBChtUYWN0aWNhbFB1enpsZUJhdHRsZUNv",
-          "bnRleHQSEQoJcHV6emxlX2lkGAEgASgEEhUKDXNwZWNfcmV2aXNpb24YAiAB",
-          "KA0SGAoQaXNfYXV0aG9yX3ZlcmlmeRgDIAEoCBIUCgxwdXp6bGVfdGl0bGUY",
-          "BCABKAkSGAoQYXV0aG9yX3BsYXllcl9pZBgFIAEoBBITCgthdXRob3JfbmFt",
-          "ZRgGIAEoCRIhCgRzcGVjGAcgASgLMhMuVGFjdGljYWxQdXp6bGVTcGVjKoYB",
-          "ChBlQmF0dGxlQWN0b3JUeXBlEhoKFkJBVFRMRV9BQ1RPUl9UWVBFX05PTkUQ",
-          "ABIcChhCQVRUTEVfQUNUT1JfVFlQRV9QTEFZRVIQARIdChlCQVRUTEVfQUNU",
-          "T1JfVFlQRV9NT05TVEVSEAISGQoVQkFUVExFX0FDVE9SX1RZUEVfUEVUEAMq",
-          "/wEKEWVCYXR0bGVBY3Rpb25UeXBlEhYKEkJBVFRMRV9BQ1RJT05fTk9ORRAA",
-          "EhgKFEJBVFRMRV9BQ1RJT05fQVRUQUNLEAESFwoTQkFUVExFX0FDVElPTl9T",
-          "S0lMTBACEhgKFEJBVFRMRV9BQ1RJT05fREVGRU5EEAMSFgoSQkFUVExFX0FD",
-          "VElPTl9JVEVNEAQSFgoSQkFUVExFX0FDVElPTl9GTEVFEAUSGQoVQkFUVExF",
-          "X0FDVElPTl9DQVBUVVJFEAYSHAoYQkFUVExFX0FDVElPTl9SRUNBTExfUEVU",
-          "EAcSHAoYQkFUVExFX0FDVElPTl9TVU1NT05fUEVUEAgqnQUKEGVCYXR0bGVF",
-          "dmVudFR5cGUSFQoRQkFUVExFX0VWRU5UX05PTkUQABIXChNCQVRUTEVfRVZF",
-          "TlRfQVRUQUNLEAESFgoSQkFUVExFX0VWRU5UX1NLSUxMEAISFwoTQkFUVExF",
-          "X0VWRU5UX0RBTUFHRRADEhUKEUJBVFRMRV9FVkVOVF9IRUFMEAQSGQoVQkFU",
-          "VExFX0VWRU5UX0JVRkZfQUREEAUSHAoYQkFUVExFX0VWRU5UX0JVRkZfUkVN",
-          "T1ZFEAYSGgoWQkFUVExFX0VWRU5UX0JVRkZfVElDSxAHEhYKEkJBVFRMRV9F",
-          "VkVOVF9ERUFUSBAIEhcKE0JBVFRMRV9FVkVOVF9ERUZFTkQQCRIVChFCQVRU",
-          "TEVfRVZFTlRfSVRFTRAKEhUKEUJBVFRMRV9FVkVOVF9GTEVFEAsSFQoRQkFU",
-          "VExFX0VWRU5UX01JU1MQDBIWChJCQVRUTEVfRVZFTlRfQkxPQ0sQDRIVChFC",
-          "QVRUTEVfRVZFTlRfTUFOQRAOEhcKE0JBVFRMRV9FVkVOVF9SRVNJU1QQDxIY",
-          "ChRCQVRUTEVfRVZFTlRfQ0FQVFVSRRAQEhcKE0JBVFRMRV9FVkVOVF9SRVZJ",
-          "VkUQERIbChdCQVRUTEVfRVZFTlRfTUFYX0hFQUxUSBASEhwKGEJBVFRMRV9F",
-          "VkVOVF9QRVRfUkVUUkVBVBATEhcKE0JBVFRMRV9FVkVOVF9TSElFTEQQFBIZ",
-          "ChVCQVRUTEVfRVZFTlRfQVJUSUZBQ1QQFRIeChpCQVRUTEVfRVZFTlRfQk9T",
-          "U19NRUNIQU5JQxAWEh8KG0JBVFRMRV9FVkVOVF9XVVhJTkdfU1lORVJHWRAX",
-          "EhsKF0JBVFRMRV9FVkVOVF9TVU1NT05fUEVUEBgqnAEKDmVCYXR0bGVIaXRL",
-          "aW5kEhUKEUJBVFRMRV9ISVRfTk9STUFMEAASFAoQQkFUVExFX0hJVF9DT01C",
-          "TxABEhYKEkJBVFRMRV9ISVRfQ09VTlRFUhACEhYKEkJBVFRMRV9ISVRfUkVG",
-          "TEVDVBADEhYKEkJBVFRMRV9ISVRfUFVSU1VJVBAEEhUKEUJBVFRMRV9ISVRf",
-          "TUlSUk9SEAUqjgEKDkJhdHRsZVBpbmdLaW5kEhsKF0JBVFRMRV9QSU5HX1VO",
-          "U1BFQ0lGSUVEEAASFQoRQkFUVExFX1BJTkdfRk9DVVMQARIXChNCQVRUTEVf",
-          "UElOR19DT05UUk9MEAISFwoTQkFUVExFX1BJTkdfUFJPVEVDVBADEhYKEkJB",
-          "VFRMRV9QSU5HX0RJU1BFTBAEKucBChNCYXR0bGVIaWdobGlnaHRLaW5kEhkK",
-          "FUJBVFRMRV9ISUdITElHSFRfTk9ORRAAEiIKHkJBVFRMRV9ISUdITElHSFRf",
-          "UFJJTUFSWV9GT0NVUxABEiUKIUJBVFRMRV9ISUdITElHSFRfVEFDVElDQUxf",
-          "Q09OVFJPTBACEiMKH0JBVFRMRV9ISUdITElHSFRfU0FWSU9SX1NVUFBPUlQQ",
-          "AxIfChtCQVRUTEVfSElHSExJR0hUX0lST05fR1VBUkQQBBIkCiBCQVRUTEVf",
-          "SElHSExJR0hUX0NMVVRDSF9DT01FQkFDSxAFKpwBCg5lQmF0dGxlT3V0Y29t",
-          "ZRIaChZCQVRUTEVfT1VUQ09NRV9PTkdPSU5HEAASHQoZQkFUVExFX09VVENP",
-          "TUVfU0lERV9BX1dJThABEh0KGUJBVFRMRV9PVVRDT01FX1NJREVfQl9XSU4Q",
-          "AhIXChNCQVRUTEVfT1VUQ09NRV9EUkFXEAMSFwoTQkFUVExFX09VVENPTUVf",
-          "Vk9JRBAEKqcBChNlQmF0dGxlQWN0aXZpdHlLaW5kEh0KGUJBVFRMRV9BQ1RJ",
-          "VklUWV9LSU5EX05PTkUQABIkCiBCQVRUTEVfQUNUSVZJVFlfS0lORF9HVUlM",
-          "RF9UUklBTBABEicKI0JBVFRMRV9BQ1RJVklUWV9LSU5EX0ZFU1RJVkFMX0JF",
-          "QVNUEAISIgoeQkFUVExFX0FDVElWSVRZX0tJTkRfR1VJTERfV0FSEAMqewoT",
-          "ZVNwZWN0YXRlVmlzaWJpbGl0eRIjCh9TUEVDVEFURV9WSVNJQklMSVRZX1VO",
-          "U1BFQ0lGSUVEEAASHwobU1BFQ1RBVEVfVklTSUJJTElUWV9QUklWQVRFEAES",
-          "HgoaU1BFQ1RBVEVfVklTSUJJTElUWV9QVUJMSUMQAipfCg1lU3BlY3RhdGVU",
-          "aWVyEhgKFFNQRUNUQVRFX1RJRVJfRElSRUNUEAASFwoTU1BFQ1RBVEVfVElF",
-          "Ul9SRUxBWRABEhsKF1NQRUNUQVRFX1RJRVJfQlJPQURDQVNUEAIq0gEKGFRv",
-          "dXJuYW1lbnRMZXlsaW5lRWxlbWVudBIiCh5UT1VSTkFNRU5UX0xFWUxJTkVf",
-          "VU5TUEVDSUZJRUQQABIcChhUT1VSTkFNRU5UX0xFWUxJTkVfTUVUQUwQARIb",
-          "ChdUT1VSTkFNRU5UX0xFWUxJTkVfV09PRBACEhwKGFRPVVJOQU1FTlRfTEVZ",
-          "TElORV9XQVRFUhADEhsKF1RPVVJOQU1FTlRfTEVZTElORV9GSVJFEAQSHAoY",
-          "VE9VUk5BTUVOVF9MRVlMSU5FX0VBUlRIEAVCCFoGYmF0dGxlYgZwcm90bzM="));
+          "bF9pZHMYBSADKA0SFQoNcmVhbG1fdmVyc2lvbhgGIAEoDRIRCglub2RlX2tp",
+          "bmQYByABKA0SFwoPdXNlX2ZyZWVfcHJlc2V0GAggASgIEiAKGGFjdGl2ZV9y",
+          "ZXNvbmFuY2VfZWxlbWVudBgJIAEoDSKlAQoZV3V4aW5nVG93ZXJTZXR0bGVt",
+          "ZW50RWNobxIQCgh3ZWVrX2tleRgBIAEoDRIOCgZydW5faWQYAiABKAQSDQoF",
+          "Zmxvb3IYAyABKA0SFAoMdG90YWxfcm91bmRzGAQgASgNEhUKDXJlYWxtX3Zl",
+          "cnNpb24YBSABKA0SEQoJbm9kZV9raW5kGAYgASgNEhcKD3VzZV9mcmVlX3By",
+          "ZXNldBgHIAEoCCKzAgoPQ3VzdG9tRHVlbFJ1bGVzEhcKD3VzZV9mcmVlX3By",
+          "ZXNldBgBIAEoCBIgChhlbmFibGVfcG9sYXJpdHlfcm90YXRpb24YAiABKAgS",
+          "HAoUcm91bmRfbGltaXRfb3ZlcnJpZGUYAyABKA0SGgoSYmFuX2NvbnRyb2xf",
+          "c2tpbGxzGAQgASgIEh0KFWFsbG93X3B1YmxpY19zcGVjdGF0ZRgFIAEoCBIm",
+          "Ch5jaGFsbGVuZ2VyX2NoYXJhY3Rlcl9wcmVzZXRfaWQYBiABKA0SIAoYY2hh",
+          "bGxlbmdlcl9wZXRfcHJlc2V0X2lkGAcgASgNEiAKGHNraWxsX2Jhbl9zbG90",
+          "c19wZXJfdGVhbRgIIAEoDRIgChhyZW1hdGNoX3NvdXJjZV9iYXR0bGVfaWQY",
+          "CSABKAQi1AIKF0JhdHRsZUFjdG9yQnVpbGRTdW1tYXJ5EhEKCXBsYXllcl9p",
+          "ZBgBIAEoBBIMCgRuYW1lGAIgASgJEhIKCnRlYW1faW5kZXgYAyABKA0SEAoI",
+          "Y2xhc3NfaWQYBCABKA0SDQoFbGV2ZWwYBSABKA0SFAoMZm9ybWF0aW9uX2lk",
+          "GAYgASgNEhYKDnd1eGluZ19lbGVtZW50GAcgASgNEhYKDnNlYXNvbl9zZWFs",
+          "X2lkGAggASgNEhsKE2FjdGl2ZV9wZXRfdGFibGVfaWQYCSABKA0SFwoPYWN0",
+          "aXZlX3BldF9uYW1lGAogASgJEhoKEmFjdGl2ZV9wZXRfZWxlbWVudBgLIAEo",
+          "DRIXCg9za2lsbF90YWJsZV9pZHMYDCADKA0SGAoQd3V4aW5nX3NpZ2lsX2lk",
+          "cxgNIAMoDRIYChB1c2VkX2ZyZWVfcHJlc2V0GA4gASgIItYCChhKaWFuZ2h1",
+          "RHVlbEJhdHRsZUNvbnRleHQSFgoOZHVlbF9pbnZpdGVfaWQYASABKAQSEQoJ",
+          "d3JpdF90aWVyGAIgASgNEh0KFWNoYWxsZW5nZXJfY2FwdGFpbl9pZBgDIAEo",
+          "BBIfChdjaGFsbGVuZ2VyX2NhcHRhaW5fbmFtZRgEIAEoCRIZChF0YXJnZXRf",
+          "Y2FwdGFpbl9pZBgFIAEoBBIbChN0YXJnZXRfY2FwdGFpbl9uYW1lGAYgASgJ",
+          "EhcKD3NpZGVfYV9ndWlsZF9pZBgHIAEoBBIZChFzaWRlX2FfZ3VpbGRfbmFt",
+          "ZRgIIAEoCRIXCg9zaWRlX2JfZ3VpbGRfaWQYCSABKAQSGQoRc2lkZV9iX2d1",
+          "aWxkX25hbWUYCiABKAkSHAoUcm91bmRfbGltaXRfb3ZlcnJpZGUYCyABKA0S",
+          "EQoJdGVhbV9zaXplGAwgASgNIpsBChdUYWN0aWNhbFB1enpsZUVuZW15U3Bl",
+          "YxIYChBtb25zdGVyX3RhYmxlX2lkGAEgASgNEhYKDmluaXRpYWxfaHBfcGN0",
+          "GAIgASgNEhoKEmluaXRpYWxfc2hpZWxkX3BjdBgDIAEoDRIXCg9zcGVlZF9k",
+          "ZWx0YV9wY3QYBCABKAUSGQoRaW5pdGlhbF9idWZmX2tpbmQYBSABKA0i8AIK",
+          "ElRhY3RpY2FsUHV6emxlU3BlYxITCgtyb3VuZF9saW1pdBgBIAEoDRIbChNj",
+          "aGFyYWN0ZXJfcHJlc2V0X2lkGAIgASgNEhUKDXBldF9wcmVzZXRfaWQYAyAB",
+          "KA0SFAoMZm9ybWF0aW9uX2lkGAQgASgNEh0KFXBsYXllcl9pbml0aWFsX2hw",
+          "X3BjdBgFIAEoDRIdChVwbGF5ZXJfaW5pdGlhbF9tcF9wY3QYBiABKA0SIQoZ",
+          "cGxheWVyX2luaXRpYWxfc2hpZWxkX3BjdBgHIAEoDRIiChpwbGF5ZXJfaW5p",
+          "dGlhbF9kZWJ1ZmZfa2luZBgIIAEoDRIpCgdlbmVtaWVzGAkgAygLMhguVGFj",
+          "dGljYWxQdXp6bGVFbmVteVNwZWMSMgoPbGV5bGluZV9lbGVtZW50GAogASgO",
+          "MhkuVG91cm5hbWVudExleWxpbmVFbGVtZW50EhcKD2Jhbm5lZF9za2lsbF9p",
+          "ZBgLIAEoDSLJAQobVGFjdGljYWxQdXp6bGVCYXR0bGVDb250ZXh0EhEKCXB1",
+          "enpsZV9pZBgBIAEoBBIVCg1zcGVjX3JldmlzaW9uGAIgASgNEhgKEGlzX2F1",
+          "dGhvcl92ZXJpZnkYAyABKAgSFAoMcHV6emxlX3RpdGxlGAQgASgJEhgKEGF1",
+          "dGhvcl9wbGF5ZXJfaWQYBSABKAQSEwoLYXV0aG9yX25hbWUYBiABKAkSIQoE",
+          "c3BlYxgHIAEoCzITLlRhY3RpY2FsUHV6emxlU3BlYyqGAQoQZUJhdHRsZUFj",
+          "dG9yVHlwZRIaChZCQVRUTEVfQUNUT1JfVFlQRV9OT05FEAASHAoYQkFUVExF",
+          "X0FDVE9SX1RZUEVfUExBWUVSEAESHQoZQkFUVExFX0FDVE9SX1RZUEVfTU9O",
+          "U1RFUhACEhkKFUJBVFRMRV9BQ1RPUl9UWVBFX1BFVBADKv8BChFlQmF0dGxl",
+          "QWN0aW9uVHlwZRIWChJCQVRUTEVfQUNUSU9OX05PTkUQABIYChRCQVRUTEVf",
+          "QUNUSU9OX0FUVEFDSxABEhcKE0JBVFRMRV9BQ1RJT05fU0tJTEwQAhIYChRC",
+          "QVRUTEVfQUNUSU9OX0RFRkVORBADEhYKEkJBVFRMRV9BQ1RJT05fSVRFTRAE",
+          "EhYKEkJBVFRMRV9BQ1RJT05fRkxFRRAFEhkKFUJBVFRMRV9BQ1RJT05fQ0FQ",
+          "VFVSRRAGEhwKGEJBVFRMRV9BQ1RJT05fUkVDQUxMX1BFVBAHEhwKGEJBVFRM",
+          "RV9BQ1RJT05fU1VNTU9OX1BFVBAIKp0FChBlQmF0dGxlRXZlbnRUeXBlEhUK",
+          "EUJBVFRMRV9FVkVOVF9OT05FEAASFwoTQkFUVExFX0VWRU5UX0FUVEFDSxAB",
+          "EhYKEkJBVFRMRV9FVkVOVF9TS0lMTBACEhcKE0JBVFRMRV9FVkVOVF9EQU1B",
+          "R0UQAxIVChFCQVRUTEVfRVZFTlRfSEVBTBAEEhkKFUJBVFRMRV9FVkVOVF9C",
+          "VUZGX0FERBAFEhwKGEJBVFRMRV9FVkVOVF9CVUZGX1JFTU9WRRAGEhoKFkJB",
+          "VFRMRV9FVkVOVF9CVUZGX1RJQ0sQBxIWChJCQVRUTEVfRVZFTlRfREVBVEgQ",
+          "CBIXChNCQVRUTEVfRVZFTlRfREVGRU5EEAkSFQoRQkFUVExFX0VWRU5UX0lU",
+          "RU0QChIVChFCQVRUTEVfRVZFTlRfRkxFRRALEhUKEUJBVFRMRV9FVkVOVF9N",
+          "SVNTEAwSFgoSQkFUVExFX0VWRU5UX0JMT0NLEA0SFQoRQkFUVExFX0VWRU5U",
+          "X01BTkEQDhIXChNCQVRUTEVfRVZFTlRfUkVTSVNUEA8SGAoUQkFUVExFX0VW",
+          "RU5UX0NBUFRVUkUQEBIXChNCQVRUTEVfRVZFTlRfUkVWSVZFEBESGwoXQkFU",
+          "VExFX0VWRU5UX01BWF9IRUFMVEgQEhIcChhCQVRUTEVfRVZFTlRfUEVUX1JF",
+          "VFJFQVQQExIXChNCQVRUTEVfRVZFTlRfU0hJRUxEEBQSGQoVQkFUVExFX0VW",
+          "RU5UX0FSVElGQUNUEBUSHgoaQkFUVExFX0VWRU5UX0JPU1NfTUVDSEFOSUMQ",
+          "FhIfChtCQVRUTEVfRVZFTlRfV1VYSU5HX1NZTkVSR1kQFxIbChdCQVRUTEVf",
+          "RVZFTlRfU1VNTU9OX1BFVBAYKpwBCg5lQmF0dGxlSGl0S2luZBIVChFCQVRU",
+          "TEVfSElUX05PUk1BTBAAEhQKEEJBVFRMRV9ISVRfQ09NQk8QARIWChJCQVRU",
+          "TEVfSElUX0NPVU5URVIQAhIWChJCQVRUTEVfSElUX1JFRkxFQ1QQAxIWChJC",
+          "QVRUTEVfSElUX1BVUlNVSVQQBBIVChFCQVRUTEVfSElUX01JUlJPUhAFKo4B",
+          "Cg5CYXR0bGVQaW5nS2luZBIbChdCQVRUTEVfUElOR19VTlNQRUNJRklFRBAA",
+          "EhUKEUJBVFRMRV9QSU5HX0ZPQ1VTEAESFwoTQkFUVExFX1BJTkdfQ09OVFJP",
+          "TBACEhcKE0JBVFRMRV9QSU5HX1BST1RFQ1QQAxIWChJCQVRUTEVfUElOR19E",
+          "SVNQRUwQBCrnAQoTQmF0dGxlSGlnaGxpZ2h0S2luZBIZChVCQVRUTEVfSElH",
+          "SExJR0hUX05PTkUQABIiCh5CQVRUTEVfSElHSExJR0hUX1BSSU1BUllfRk9D",
+          "VVMQARIlCiFCQVRUTEVfSElHSExJR0hUX1RBQ1RJQ0FMX0NPTlRST0wQAhIj",
+          "Ch9CQVRUTEVfSElHSExJR0hUX1NBVklPUl9TVVBQT1JUEAMSHwobQkFUVExF",
+          "X0hJR0hMSUdIVF9JUk9OX0dVQVJEEAQSJAogQkFUVExFX0hJR0hMSUdIVF9D",
+          "TFVUQ0hfQ09NRUJBQ0sQBSqcAQoOZUJhdHRsZU91dGNvbWUSGgoWQkFUVExF",
+          "X09VVENPTUVfT05HT0lORxAAEh0KGUJBVFRMRV9PVVRDT01FX1NJREVfQV9X",
+          "SU4QARIdChlCQVRUTEVfT1VUQ09NRV9TSURFX0JfV0lOEAISFwoTQkFUVExF",
+          "X09VVENPTUVfRFJBVxADEhcKE0JBVFRMRV9PVVRDT01FX1ZPSUQQBCqnAQoT",
+          "ZUJhdHRsZUFjdGl2aXR5S2luZBIdChlCQVRUTEVfQUNUSVZJVFlfS0lORF9O",
+          "T05FEAASJAogQkFUVExFX0FDVElWSVRZX0tJTkRfR1VJTERfVFJJQUwQARIn",
+          "CiNCQVRUTEVfQUNUSVZJVFlfS0lORF9GRVNUSVZBTF9CRUFTVBACEiIKHkJB",
+          "VFRMRV9BQ1RJVklUWV9LSU5EX0dVSUxEX1dBUhADKnsKE2VTcGVjdGF0ZVZp",
+          "c2liaWxpdHkSIwofU1BFQ1RBVEVfVklTSUJJTElUWV9VTlNQRUNJRklFRBAA",
+          "Eh8KG1NQRUNUQVRFX1ZJU0lCSUxJVFlfUFJJVkFURRABEh4KGlNQRUNUQVRF",
+          "X1ZJU0lCSUxJVFlfUFVCTElDEAIqXwoNZVNwZWN0YXRlVGllchIYChRTUEVD",
+          "VEFURV9USUVSX0RJUkVDVBAAEhcKE1NQRUNUQVRFX1RJRVJfUkVMQVkQARIb",
+          "ChdTUEVDVEFURV9USUVSX0JST0FEQ0FTVBACKtIBChhUb3VybmFtZW50TGV5",
+          "bGluZUVsZW1lbnQSIgoeVE9VUk5BTUVOVF9MRVlMSU5FX1VOU1BFQ0lGSUVE",
+          "EAASHAoYVE9VUk5BTUVOVF9MRVlMSU5FX01FVEFMEAESGwoXVE9VUk5BTUVO",
+          "VF9MRVlMSU5FX1dPT0QQAhIcChhUT1VSTkFNRU5UX0xFWUxJTkVfV0FURVIQ",
+          "AxIbChdUT1VSTkFNRU5UX0xFWUxJTkVfRklSRRAEEhwKGFRPVVJOQU1FTlRf",
+          "TEVZTElORV9FQVJUSBAFQghaBmJhdHRsZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ActorCompReflection.Descriptor, global::ActorAttributeStateCompReflection.Descriptor, global::EquipmentEffectsReflection.Descriptor, global::SupportEffectsReflection.Descriptor, global::PetCultivationEffectsReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eBattleActorType), typeof(global::eBattleActionType), typeof(global::eBattleEventType), typeof(global::eBattleHitKind), typeof(global::BattlePingKind), typeof(global::BattleHighlightKind), typeof(global::eBattleOutcome), typeof(global::eBattleActivityKind), typeof(global::eSpectateVisibility), typeof(global::eSpectateTier), typeof(global::TournamentLeylineElement), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -444,8 +448,8 @@ public static partial class BattleDataReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialBattleContext), global::TrialBattleContext.Parser, new[]{ "JournalEntryId", "TrialRuleVersion", "SeasonId", "GuardMonsterTableId", "GuardStanceBuffId", "ChallengeVowMask" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleTrialJournalFacts), global::BattleTrialJournalFacts.Parser, new[]{ "JournalEntryId", "TrialRuleVersion", "InitialHumanCount", "SeasonId", "SelfOrPetEverDied", "BossGuardHealTotal", "GuardStanceDispelled", "TeamDealtPhysicalDirectDamage", "TeamDealtMagicDirectDamage", "GuardSurvived", "SelfTriggeredShieldBreak", "SelfTriggeredAntiControlOrSeasonSkill", "UsedPetTableId", "UsedArtifactEffectIds", "UsedSeasonSealId", "TeammateNames", "BossWindHitUnprotectedDeath", "DealtYangBellPhysicalDamage", "DealtYinDrumMagicDamage", "FinishedInEbbTide", "CleaveParryCount", "HealInterruptBacklashCount", "StanceBreakCount", "AllSelfCleavesParried", "SelfParriedCleaveAtLeastOnce", "ChallengeVowMask", "SelfCastSeasonSkill", "SelfTriggeredSeasonResonance", "SelfSeasonResonanceMask" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TournamentBattleContext), global::TournamentBattleContext.Parser, new[]{ "SeasonId", "MatchId", "BestOf", "GameIndex", "WinsA", "WinsB", "LeylineElement", "SquadAId", "SquadAName", "SquadBId", "SquadBName", "SquadAEmblemId", "SquadBEmblemId", "IsWarmup", "IsThirdPlace", "SkillBanSlotsPerTeam" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::WuxingTowerBattleContext), global::WuxingTowerBattleContext.Parser, new[]{ "WeekKey", "RunId", "Floor", "LeylineElement", "ActiveSigilIds" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::WuxingTowerSettlementEcho), global::WuxingTowerSettlementEcho.Parser, new[]{ "WeekKey", "RunId", "Floor", "TotalRounds" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::WuxingTowerBattleContext), global::WuxingTowerBattleContext.Parser, new[]{ "WeekKey", "RunId", "Floor", "LeylineElement", "ActiveSigilIds", "RealmVersion", "NodeKind", "UseFreePreset", "ActiveResonanceElement" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::WuxingTowerSettlementEcho), global::WuxingTowerSettlementEcho.Parser, new[]{ "WeekKey", "RunId", "Floor", "TotalRounds", "RealmVersion", "NodeKind", "UseFreePreset" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::CustomDuelRules), global::CustomDuelRules.Parser, new[]{ "UseFreePreset", "EnablePolarityRotation", "RoundLimitOverride", "BanControlSkills", "AllowPublicSpectate", "ChallengerCharacterPresetId", "ChallengerPetPresetId", "SkillBanSlotsPerTeam", "RematchSourceBattleId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleActorBuildSummary), global::BattleActorBuildSummary.Parser, new[]{ "PlayerId", "Name", "TeamIndex", "ClassId", "Level", "FormationId", "WuxingElement", "SeasonSealId", "ActivePetTableId", "ActivePetName", "ActivePetElement", "SkillTableIds", "WuxingSigilIds", "UsedFreePreset" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::JianghuDuelBattleContext), global::JianghuDuelBattleContext.Parser, new[]{ "DuelInviteId", "WritTier", "ChallengerCaptainId", "ChallengerCaptainName", "TargetCaptainId", "TargetCaptainName", "SideAGuildId", "SideAGuildName", "SideBGuildId", "SideBGuildName", "RoundLimitOverride", "TeamSize" }, null, null, null, null),
@@ -21922,7 +21926,7 @@ public sealed partial class TournamentBattleContext : pb::IMessage<TournamentBat
 }
 
 /// <summary>
-/// ---- 五行幻境·轻肉鸽周常爬塔上下文与结算回传(docs/design/wuxing-gameplay-expansions-v1.md) ----
+/// ---- 五行幻境 V2·五行奇策轻肉鸽秘境上下文与结算回传(docs/planning/wuxing-roguelike-realm-v2.md) ----
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerBattleContext>
@@ -21964,6 +21968,10 @@ public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerB
     floor_ = other.floor_;
     leylineElement_ = other.leylineElement_;
     activeSigilIds_ = other.activeSigilIds_.Clone();
+    realmVersion_ = other.realmVersion_;
+    nodeKind_ = other.nodeKind_;
+    useFreePreset_ = other.useFreePreset_;
+    activeResonanceElement_ = other.activeResonanceElement_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -21977,7 +21985,7 @@ public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerB
   public const int WeekKeyFieldNumber = 1;
   private uint weekKey_;
   /// <summary>
-  /// 开战冻结周键
+  /// 开局冻结轮次周键
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -22007,7 +22015,7 @@ public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerB
   public const int FloorFieldNumber = 3;
   private uint floor_;
   /// <summary>
-  /// 当前挑战层数（1..10）
+  /// 当前挑战关数（V2 为 1..6；V1 为 1..10）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -22022,7 +22030,7 @@ public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerB
   public const int LeylineElementFieldNumber = 4;
   private global::TournamentLeylineElement leylineElement_ = global::TournamentLeylineElement.TournamentLeylineUnspecified;
   /// <summary>
-  /// 本层环境五行灵脉（1..5）
+  /// 本关环境五行灵脉（1..5）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -22039,12 +22047,72 @@ public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerB
       = pb::FieldCodec.ForUInt32(42);
   private readonly pbc::RepeatedField<uint> activeSigilIds_ = new pbc::RepeatedField<uint>();
   /// <summary>
-  /// 本轮已选局内五行符印（仅本场生效）
+  /// 本轮已选局内奇策/符印（V2:601..643, V1:101..503）
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<uint> ActiveSigilIds {
     get { return activeSigilIds_; }
+  }
+
+  /// <summary>Field number for the "realm_version" field.</summary>
+  public const int RealmVersionFieldNumber = 6;
+  private uint realmVersion_;
+  /// <summary>
+  /// 2=V2 五行奇策轻肉鸽秘境；0/1=V1 爬塔
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RealmVersion {
+    get { return realmVersion_; }
+    set {
+      realmVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "node_kind" field.</summary>
+  public const int NodeKindFieldNumber = 7;
+  private uint nodeKind_;
+  /// <summary>
+  /// V2 节点类型（1=普通战, 2=精英强敌, 3=终局首领）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint NodeKind {
+    get { return nodeKind_; }
+    set {
+      nodeKind_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "use_free_preset" field.</summary>
+  public const int UseFreePresetFieldNumber = 8;
+  private bool useFreePreset_;
+  /// <summary>
+  /// true=公平 3x3 试炼模式；false=本人流派
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool UseFreePreset {
+    get { return useFreePreset_; }
+    set {
+      useFreePreset_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "active_resonance_element" field.</summary>
+  public const int ActiveResonanceElementFieldNumber = 9;
+  private uint activeResonanceElement_;
+  /// <summary>
+  /// 集齐 >=3 枚同系奇策触发的五行共鸣（0=无, 1..5）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ActiveResonanceElement {
+    get { return activeResonanceElement_; }
+    set {
+      activeResonanceElement_ = value;
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -22067,6 +22135,10 @@ public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerB
     if (Floor != other.Floor) return false;
     if (LeylineElement != other.LeylineElement) return false;
     if(!activeSigilIds_.Equals(other.activeSigilIds_)) return false;
+    if (RealmVersion != other.RealmVersion) return false;
+    if (NodeKind != other.NodeKind) return false;
+    if (UseFreePreset != other.UseFreePreset) return false;
+    if (ActiveResonanceElement != other.ActiveResonanceElement) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -22079,6 +22151,10 @@ public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerB
     if (Floor != 0) hash ^= Floor.GetHashCode();
     if (LeylineElement != global::TournamentLeylineElement.TournamentLeylineUnspecified) hash ^= LeylineElement.GetHashCode();
     hash ^= activeSigilIds_.GetHashCode();
+    if (RealmVersion != 0) hash ^= RealmVersion.GetHashCode();
+    if (NodeKind != 0) hash ^= NodeKind.GetHashCode();
+    if (UseFreePreset != false) hash ^= UseFreePreset.GetHashCode();
+    if (ActiveResonanceElement != 0) hash ^= ActiveResonanceElement.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -22114,6 +22190,22 @@ public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerB
       output.WriteEnum((int) LeylineElement);
     }
     activeSigilIds_.WriteTo(output, _repeated_activeSigilIds_codec);
+    if (RealmVersion != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(RealmVersion);
+    }
+    if (NodeKind != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(NodeKind);
+    }
+    if (UseFreePreset != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(UseFreePreset);
+    }
+    if (ActiveResonanceElement != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(ActiveResonanceElement);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -22141,6 +22233,22 @@ public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerB
       output.WriteEnum((int) LeylineElement);
     }
     activeSigilIds_.WriteTo(ref output, _repeated_activeSigilIds_codec);
+    if (RealmVersion != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(RealmVersion);
+    }
+    if (NodeKind != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(NodeKind);
+    }
+    if (UseFreePreset != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(UseFreePreset);
+    }
+    if (ActiveResonanceElement != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(ActiveResonanceElement);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -22164,6 +22272,18 @@ public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerB
       size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) LeylineElement);
     }
     size += activeSigilIds_.CalculateSize(_repeated_activeSigilIds_codec);
+    if (RealmVersion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RealmVersion);
+    }
+    if (NodeKind != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NodeKind);
+    }
+    if (UseFreePreset != false) {
+      size += 1 + 1;
+    }
+    if (ActiveResonanceElement != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ActiveResonanceElement);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -22189,6 +22309,18 @@ public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerB
       LeylineElement = other.LeylineElement;
     }
     activeSigilIds_.Add(other.activeSigilIds_);
+    if (other.RealmVersion != 0) {
+      RealmVersion = other.RealmVersion;
+    }
+    if (other.NodeKind != 0) {
+      NodeKind = other.NodeKind;
+    }
+    if (other.UseFreePreset != false) {
+      UseFreePreset = other.UseFreePreset;
+    }
+    if (other.ActiveResonanceElement != 0) {
+      ActiveResonanceElement = other.ActiveResonanceElement;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -22229,6 +22361,22 @@ public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerB
           activeSigilIds_.AddEntriesFrom(input, _repeated_activeSigilIds_codec);
           break;
         }
+        case 48: {
+          RealmVersion = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          NodeKind = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          UseFreePreset = input.ReadBool();
+          break;
+        }
+        case 72: {
+          ActiveResonanceElement = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -22267,6 +22415,22 @@ public sealed partial class WuxingTowerBattleContext : pb::IMessage<WuxingTowerB
         case 42:
         case 40: {
           activeSigilIds_.AddEntriesFrom(ref input, _repeated_activeSigilIds_codec);
+          break;
+        }
+        case 48: {
+          RealmVersion = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          NodeKind = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          UseFreePreset = input.ReadBool();
+          break;
+        }
+        case 72: {
+          ActiveResonanceElement = input.ReadUInt32();
           break;
         }
       }
@@ -22315,6 +22479,9 @@ public sealed partial class WuxingTowerSettlementEcho : pb::IMessage<WuxingTower
     runId_ = other.runId_;
     floor_ = other.floor_;
     totalRounds_ = other.totalRounds_;
+    realmVersion_ = other.realmVersion_;
+    nodeKind_ = other.nodeKind_;
+    useFreePreset_ = other.useFreePreset_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -22372,6 +22539,42 @@ public sealed partial class WuxingTowerSettlementEcho : pb::IMessage<WuxingTower
     }
   }
 
+  /// <summary>Field number for the "realm_version" field.</summary>
+  public const int RealmVersionFieldNumber = 5;
+  private uint realmVersion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RealmVersion {
+    get { return realmVersion_; }
+    set {
+      realmVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "node_kind" field.</summary>
+  public const int NodeKindFieldNumber = 6;
+  private uint nodeKind_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint NodeKind {
+    get { return nodeKind_; }
+    set {
+      nodeKind_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "use_free_preset" field.</summary>
+  public const int UseFreePresetFieldNumber = 7;
+  private bool useFreePreset_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool UseFreePreset {
+    get { return useFreePreset_; }
+    set {
+      useFreePreset_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -22391,6 +22594,9 @@ public sealed partial class WuxingTowerSettlementEcho : pb::IMessage<WuxingTower
     if (RunId != other.RunId) return false;
     if (Floor != other.Floor) return false;
     if (TotalRounds != other.TotalRounds) return false;
+    if (RealmVersion != other.RealmVersion) return false;
+    if (NodeKind != other.NodeKind) return false;
+    if (UseFreePreset != other.UseFreePreset) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -22402,6 +22608,9 @@ public sealed partial class WuxingTowerSettlementEcho : pb::IMessage<WuxingTower
     if (RunId != 0UL) hash ^= RunId.GetHashCode();
     if (Floor != 0) hash ^= Floor.GetHashCode();
     if (TotalRounds != 0) hash ^= TotalRounds.GetHashCode();
+    if (RealmVersion != 0) hash ^= RealmVersion.GetHashCode();
+    if (NodeKind != 0) hash ^= NodeKind.GetHashCode();
+    if (UseFreePreset != false) hash ^= UseFreePreset.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -22436,6 +22645,18 @@ public sealed partial class WuxingTowerSettlementEcho : pb::IMessage<WuxingTower
       output.WriteRawTag(32);
       output.WriteUInt32(TotalRounds);
     }
+    if (RealmVersion != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(RealmVersion);
+    }
+    if (NodeKind != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(NodeKind);
+    }
+    if (UseFreePreset != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(UseFreePreset);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -22462,6 +22683,18 @@ public sealed partial class WuxingTowerSettlementEcho : pb::IMessage<WuxingTower
       output.WriteRawTag(32);
       output.WriteUInt32(TotalRounds);
     }
+    if (RealmVersion != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(RealmVersion);
+    }
+    if (NodeKind != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(NodeKind);
+    }
+    if (UseFreePreset != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(UseFreePreset);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -22483,6 +22716,15 @@ public sealed partial class WuxingTowerSettlementEcho : pb::IMessage<WuxingTower
     }
     if (TotalRounds != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TotalRounds);
+    }
+    if (RealmVersion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RealmVersion);
+    }
+    if (NodeKind != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NodeKind);
+    }
+    if (UseFreePreset != false) {
+      size += 1 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -22507,6 +22749,15 @@ public sealed partial class WuxingTowerSettlementEcho : pb::IMessage<WuxingTower
     }
     if (other.TotalRounds != 0) {
       TotalRounds = other.TotalRounds;
+    }
+    if (other.RealmVersion != 0) {
+      RealmVersion = other.RealmVersion;
+    }
+    if (other.NodeKind != 0) {
+      NodeKind = other.NodeKind;
+    }
+    if (other.UseFreePreset != false) {
+      UseFreePreset = other.UseFreePreset;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -22543,6 +22794,18 @@ public sealed partial class WuxingTowerSettlementEcho : pb::IMessage<WuxingTower
           TotalRounds = input.ReadUInt32();
           break;
         }
+        case 40: {
+          RealmVersion = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          NodeKind = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          UseFreePreset = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -22576,6 +22839,18 @@ public sealed partial class WuxingTowerSettlementEcho : pb::IMessage<WuxingTower
         }
         case 32: {
           TotalRounds = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          RealmVersion = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          NodeKind = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          UseFreePreset = input.ReadBool();
           break;
         }
       }

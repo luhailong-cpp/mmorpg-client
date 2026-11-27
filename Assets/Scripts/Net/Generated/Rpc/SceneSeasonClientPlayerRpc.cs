@@ -72,5 +72,15 @@ namespace MmorpgClient.Net.Generated
         public static void SetRetroHonorTarget(IRpcChannel channel, global::SetRetroHonorTargetRequest request,
             RpcDone<global::SetRetroHonorTargetResponse> done)
             => channel.CallMethod(SetRetroHonorTargetMessageId, request, global::SetRetroHonorTargetResponse.Parser, done);
+
+        public const uint ChooseWuxingRealmBranchMessageId = 585;
+        public static void ChooseWuxingRealmBranch(IRpcChannel channel, global::ChooseWuxingRealmBranchRequest request,
+            RpcDone<global::ChooseWuxingRealmBranchResponse> done)
+            => channel.CallMethod(ChooseWuxingRealmBranchMessageId, request, global::ChooseWuxingRealmBranchResponse.Parser, done);
+
+        public const uint ResolveWuxingRealmEventMessageId = 586;
+        public static void ResolveWuxingRealmEvent(IRpcChannel channel, global::ResolveWuxingRealmEventRequest request,
+            RpcDone<global::ResolveWuxingRealmEventResponse> done)
+            => channel.CallMethod(ResolveWuxingRealmEventMessageId, request, global::ResolveWuxingRealmEventResponse.Parser, done);
     }
 }
