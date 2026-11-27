@@ -108,7 +108,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void AllEightBattlePrepSkillBanSlicesAndMetasExistInResources()
+        public void AllThirteenBattlePrepSkillBanV1AndV2SlicesAndMetasExistInResources()
         {
             string root = System.IO.Path.Combine(
                 System.IO.Directory.GetCurrentDirectory(),
@@ -123,6 +123,11 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 "prep_ban_tab_inactive",
                 "skill_banned_stamp",
                 "battle_ban_strip_bg",
+                "prep_protect_slot_empty",
+                "prep_protect_slot_filled",
+                "skill_protected_badge",
+                "battle_ban_reveal_banner_bg",
+                "prep_teammate_equipped_tag",
             };
             Assert.That(SeasonEconomyUiArt.BattlePrepSkillBanRoot, Is.EqualTo("UI/Ugui/BattlePrepSkillBan/"));
             for (int i = 0; i < expectedSlices.Length; i++)
@@ -138,6 +143,71 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 }
                 Assert.That(header, Is.EqualTo(new byte[] { 0x89, 0x50, 0x4E, 0x47 }), $"非合法 PNG 文件头: {pngPath}");
             }
+        }
+
+        [Test]
+        public void SkillBanV2_ProtectConflictAutoSwap_TeammateTag_CounteredAndDoubleBanSummary()
+        {
+            var bans = new List<uint> { 10020u, 10038u };
+            var (prot1, bansChanged1) = BattleSkillBanModels.ToggleProtectNomination(bans, 0u, 10020u);
+            Assert.That(prot1, Is.EqualTo(10020u));
+            Assert.That(bansChanged1, Is.True);
+            Assert.That(bans, Is.EqualTo(new[] { 10038u }));
+
+            // 再点一次已护招技能取消护招
+            var (prot2, bansChanged2) = BattleSkillBanModels.ToggleProtectNomination(bans, prot1, 10020u);
+            Assert.That(prot2, Is.EqualTo(0u));
+            Assert.That(bansChanged2, Is.False);
+
+            // 禁招模式下点选当前护招自动清空护招并入禁
+            var (ok, protAfterBan, protChanged) = BattleSkillBanModels.ToggleBanWithProtectClear(bans, 10040u, 10040u, 3u);
+            Assert.That(ok, Is.True);
+            Assert.That(protAfterBan, Is.EqualTo(0u));
+            Assert.That(protChanged, Is.True);
+            Assert.That(bans, Is.EqualTo(new[] { 10038u, 10040u }));
+
+            // 护招偏好持久化跳过与预填禁招冲突或退季的技能
+            var mem = new Dictionary<string, string>();
+            BattleSkillBanModels.PreferenceStore.SaveProtected(1001ul, 10040u, (k, v) => mem[k] = v);
+            Assert.That(BattleSkillBanModels.PreferenceStore.LoadProtectedFiltered(
+                1001ul, new[] { 10020u, 10040u }, new[] { 10040u },
+                k => mem.TryGetValue(k, out string v) ? v : string.Empty), Is.EqualTo(0u));
+            Assert.That(BattleSkillBanModels.PreferenceStore.LoadProtectedFiltered(
+                1001ul, new[] { 10020u, 10040u }, new[] { 10020u },
+                k => mem.TryGetValue(k, out string v) ? v : string.Empty), Is.EqualTo(10040u));
+
+            // 队友已带与护招票数
+            var prep = new BattlePrepState { Active = true, SkillBanSlotsPerTeam = 3u, SkillProtectSlotsPerTeam = 1u };
+            prep.TeammateEquippedSkillIds.Add(10023u);
+            prep.TeamStates.Add(new BattlePrepPlayerState { PlayerId = 1ul, NominatedProtectSkillId = 10040u });
+            prep.TeamStates.Add(new BattlePrepPlayerState { PlayerId = 2ul, NominatedProtectSkillId = 10040u });
+            Assert.That(BattleSkillBanModels.IsTeammateEquipped(prep, 10023u), Is.True);
+            Assert.That(BattleSkillBanModels.IsTeammateEquipped(prep, 10020u), Is.False);
+            Assert.That(BattleSkillBanModels.CountTeamProtectVotes(prep, 10040u), Is.EqualTo(2));
+
+            // 破禁化解与双边同禁汇总
+            var state = new BattleStateS2C
+            {
+                TeamAProtectedSkillId = 10040u,
+                TeamBProtectedSkillId = 10020u,
+            };
+            state.TeamABannedSkillIds.Add(10020u);
+            state.TeamABannedSkillIds.Add(10038u);
+            state.TeamBBannedSkillIds.Add(10038u);
+            state.TeamBBannedSkillIds.Add(10040u);
+            state.BannedSkillIds.Add(10038u);
+            state.CounteredBanSkillIds.Add(10020u);
+            state.CounteredBanSkillIds.Add(10040u);
+
+            Assert.That(BattleSkillBanModels.HasAnyBanOrProtectReveal(state), Is.True);
+            Assert.That(BattleSkillBanModels.IsSkillCountered(state, 10020u), Is.True);
+            Assert.That(BattleSkillBanModels.IsDoubleBanned(state, 10038u), Is.True);
+            Assert.That(BattleSkillBanModels.IsDoubleBanned(state, 10020u), Is.False);
+            string fullSummary = BattleSkillBanModels.FormatTeamBansSummary(state, id => $"技{id}");
+            Assert.That(fullSummary, Does.Contain("护：技10040"));
+            Assert.That(fullSummary, Does.Contain("护：技10020"));
+            Assert.That(fullSummary, Does.Contain("破禁化解：技10020、技10040"));
+            Assert.That(fullSummary, Does.Contain("双边同禁：技10038"));
         }
     }
 }

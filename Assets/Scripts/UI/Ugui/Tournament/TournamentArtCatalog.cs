@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Match;
 using MmorpgClient.Table;
+using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.World;
 using TMPro;
 using UnityEngine;
@@ -129,7 +130,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 "v3-g-emblem-06" => "UI/Ugui/TournamentV3/g/emblem-06-thunder",
                 "v3-g-emblem-07" => "UI/Ugui/TournamentV3/g/emblem-07-bagua",
                 "v3-g-emblem-08" => "UI/Ugui/TournamentV3/g/emblem-08-cauldron",
-                // V3 原生毛笔弹窗题字（加载成功时严禁叠字）
+                // V3 无字标题底板（320×64，按固定比例置入 300×44 区域并由运行时动态叠字）
                 "v3-title-warmup" => "UI/Ugui/TournamentV3/titles/d-warmup-title",
                 "v3-title-predict" => "UI/Ugui/TournamentV3/titles/e-predict-title",
                 "v3-title-emblem" => "UI/Ugui/TournamentV3/titles/g-emblem-title",
@@ -237,7 +238,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
             {
                 var child = parent.GetChild(i).gameObject;
                 child.SetActive(false);
-                UnityEngine.Object.Destroy(child);
+                if (Application.isPlaying) UnityEngine.Object.Destroy(child);
+                else UnityEngine.Object.DestroyImmediate(child);
             }
         }
 
@@ -446,6 +448,50 @@ namespace MmorpgClient.UI.Ugui.Tournament
             txt.fontSizeMin = Mathf.Max(11f, fontSize - 6f);
             txt.fontSizeMax = fontSize;
             return btn;
+        }
+
+        /// <summary>V3/V4 无字标题条幅（320×64 固定比例居中呈现于原 300×44 标题区，不拉伸变形，居中动态叠字）。</summary>
+        public static Image ModalTitleBanner(string name, Transform parent, float x, float y, float w, float h,
+            string spriteKey, string titleText)
+        {
+            var sprite = Load(spriteKey);
+            if (sprite == null)
+            {
+                Label(name + "Fallback", parent, x, y + 2f, w, h - 4f, titleText,
+                    28f, JadeDeep, TextAlignmentOptions.Center, bold: true);
+                return null;
+            }
+            var img = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, sprite, false);
+            img.type = Image.Type.Simple;
+            img.preserveAspect = true;
+            float aspect = sprite.rect.height > 0f ? sprite.rect.width / sprite.rect.height : (w / Mathf.Max(1f, h));
+            float drawW = Mathf.Min(w, h * aspect);
+            float drawH = Mathf.Min(h, drawW / Mathf.Max(0.01f, aspect));
+            float insetX = (w - drawW) * 0.5f + Mathf.Max(12f, drawW * 0.08f);
+            float insetY = (h - drawH) * 0.5f + 4f;
+            var txt = Label(name + "_Text", img.transform, insetX, insetY,
+                Mathf.Max(20f, w - insetX * 2f), Mathf.Max(16f, h - insetY * 2f),
+                titleText, 20f, PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
+            txt.enableAutoSizing = true;
+            txt.fontSizeMin = 13f;
+            txt.fontSizeMax = 21f;
+            txt.raycastTarget = false;
+            BattleUiWidgets.ApplyOutline(txt, 0.16f, new Color32(14, 38, 28, 220));
+            return img;
+        }
+
+        /// <summary>在无字手绘印章/徽章中央叠加高对比动态文字（带深色描边确保小尺寸清晰可读）。</summary>
+        public static TMP_Text SealOverlayLabel(Transform sealParent, float x, float y, float w, float h,
+            string text, float fontSize, float fontSizeMin, Color32 outlineColor)
+        {
+            var lbl = Label("SealTxt", sealParent, x, y, w, h, text, fontSize, PrimaryBtnText,
+                TextAlignmentOptions.Center, bold: true);
+            lbl.enableAutoSizing = true;
+            lbl.fontSizeMin = fontSizeMin;
+            lbl.fontSizeMax = fontSize;
+            lbl.raycastTarget = false;
+            BattleUiWidgets.ApplyOutline(lbl, 0.28f, outlineColor);
+            return lbl;
         }
 
         public static ScrollRect CreateScrollView(string name, Transform parent, float x, float y, float w, float h,

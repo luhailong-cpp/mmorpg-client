@@ -1182,12 +1182,13 @@ namespace MmorpgClient.Game.Battle
         }
 
         /// <summary>
-        /// 论剑 V3 战前变阵及每方 3 Ban 提交（RPC 504 UpdateBattlePrep，走战斗直连；换赛季印 / 换首发宠 / 禁招提名 / 锁定出战）。
+        /// 论剑 V3+V2 战前变阵及每方 3 禁 + 1 保提交（RPC 504 UpdateBattlePrep，走战斗直连；换赛季印 / 换首发宠 / 禁招与护招提名 / 锁定出战）。
         /// 返回 true 表示请求已发出；false 表示本地拦截（已通过 OnError 提示）。
         /// </summary>
         public bool UpdateBattlePrep(uint selectedSealId = 0u, ulong selectedPetId = 0ul,
             bool ready = false, Action<bool> completed = null,
-            bool updateBannedSkills = false, System.Collections.Generic.IReadOnlyList<uint> bannedSkillIds = null)
+            bool updateBannedSkills = false, System.Collections.Generic.IReadOnlyList<uint> bannedSkillIds = null,
+            bool updateProtectedSkill = false, uint protectedSkillId = 0u)
         {
             if (_battleId == 0 || !IsInPrepPhase || IsBattleDecided)
             {
@@ -1210,6 +1211,8 @@ namespace MmorpgClient.Game.Battle
                 SelectedPetId = selectedPetId,
                 Ready = ready,
                 UpdateBannedSkills = updateBannedSkills,
+                UpdateProtectedSkill = updateProtectedSkill,
+                ProtectedSkillId = updateProtectedSkill ? protectedSkillId : 0u,
             };
             if (updateBannedSkills && bannedSkillIds != null)
             {

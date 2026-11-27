@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using MmorpgClient.Net;
 using UnityEngine;
 
 namespace MmorpgClient.Core
@@ -41,7 +40,10 @@ namespace MmorpgClient.Core
         public const string DefaultPassportClientId = "xuanming-game-client";
         /// <summary>桌面回调的首选地址;端口被占时依次试后面四个(PassportOAuthProtocol.LoopbackRedirectCandidates),通行证里五个都登记了。</summary>
         public const string DefaultDesktopPassportRedirectUri = "http://127.0.0.1:18765/passport/callback";
-        /// <summary>iOS 系统认证会话与安卓开发包用的回调;安卓正式包改走 App Links(<see cref="PassportOAuthProtocol.AppLinkRedirectUri"/>)。</summary>
+        /// <summary>
+        /// iOS 与安卓的回调:自定义协议头 + PKCE(RFC 8252 §7.1)。安卓没用 App Links:国内多数手机核对不了 assetlinks.json、
+        /// 浏览器没有点击的跳转也不交给 App,登录会卡在浏览器里;静默登录参数由通行证公网入口拦掉(服务端设计稿 §3.8、§3.10)。
+        /// </summary>
         public const string DefaultMobilePassportRedirectUri = "xuanming://passport/callback";
 
         public static string PassportOrigin
@@ -58,24 +60,17 @@ namespace MmorpgClient.Core
 
         public static string PassportRedirectUri
         {
-            get => Overridden(ClientLaunchArguments.PassportRedirectUriOverride, K_PassportRedirectUri, DefaultPassportRedirectUriFor(PassportOrigin));
+            get => Overridden(ClientLaunchArguments.PassportRedirectUriOverride, K_PassportRedirectUri, DefaultPlatformPassportRedirectUri);
             set { PlayerPrefs.SetString(K_PassportRedirectUri, value ?? ""); PlayerPrefs.Save(); }
         }
 
-        /// <summary>
-        /// 本平台缺省的通行证回调:桌面是本机回环;iOS 是系统认证会话认的自定义协议头(回调只交给发起会话的本 App);
-        /// 安卓在通行证是 https 时用 App Links(系统按 assetlinks.json 核对归属,别的 App 抢注不了),本机联调的 http 通行证退回自定义协议头。
-        /// </summary>
-        public static string DefaultPassportRedirectUriFor(string passportOrigin)
-        {
-#if UNITY_ANDROID && !UNITY_EDITOR
-            return PassportOAuthProtocol.AppLinkRedirectUri(passportOrigin) ?? DefaultMobilePassportRedirectUri;
-#elif UNITY_IOS && !UNITY_EDITOR
-            return DefaultMobilePassportRedirectUri;
+        /// <summary>本平台缺省的通行证回调:手机是自定义协议头,桌面(含编辑器)是本机回环。</summary>
+        public const string DefaultPlatformPassportRedirectUri =
+#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+            DefaultMobilePassportRedirectUri;
 #else
-            return DefaultDesktopPassportRedirectUri;
+            DefaultDesktopPassportRedirectUri;
 #endif
-        }
 
         /// <summary>编辑器与开发包:启动参数优先,其次本机设置,最后 fallback;正式包只回 fallback。</summary>
         private static string Overridden(string launchArgument, string prefsKey, string fallback)

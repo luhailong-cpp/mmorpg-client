@@ -124,14 +124,12 @@ namespace MmorpgClient.UI.Ugui.Tournament
             var warmBadgeSprite = TournamentArtCatalog.Load("v3-d-warmup-badge");
             if (warmBadgeSprite != null)
             {
-                var wb = QdaoUguiFactory.CreateImage("TopWarmupBadge", _topBanner, 502f, 6f, 114f, 32f, warmBadgeSprite, false);
-                wb.preserveAspect = false;
-                var wbTxt = TournamentArtCatalog.Label("Txt", wb.transform, 12f, 0f, 90f, 32f, "零积分演练", 12f,
-                    TournamentArtCatalog.PrimaryBtnText, TextAlignmentOptions.Center, bold: true);
-                wbTxt.enableAutoSizing = true;
-                wbTxt.fontSizeMin = 9.5f;
-                wbTxt.fontSizeMax = 12f;
-                _topWarmupBadge = wb.rectTransform;
+                // warmup-badge 为 96×96 固定比例圆形徽章：左侧 1:1 渲染不拉伸，右侧紧跟青玉状态胶囊
+                _topWarmupBadge = QdaoUguiFactory.CreateRect("TopWarmupBadge", _topBanner, 502f, 6f, 114f, 32f);
+                var wbIcon = QdaoUguiFactory.CreateImage("Icon", _topWarmupBadge, 0f, 0f, 32f, 32f, warmBadgeSprite, false);
+                wbIcon.preserveAspect = true;
+                TournamentArtCatalog.Tag("Tag", _topWarmupBadge, 34f, 2f, 80f, 28f, "零积分演练",
+                    TournamentArtCatalog.JadeSoft, TournamentArtCatalog.Jade, TournamentArtCatalog.JadeDeep, 11.5f);
             }
             else
             {

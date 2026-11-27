@@ -12,12 +12,14 @@ namespace MmorpgClient.Game.Battle
     public static class BattleSkillBanModels
     {
         public const uint MaxBanSlotsPerTeam = 3u;
+        public const uint MaxProtectSlotsPerTeam = 1u;
         public const int CategoryCount = 4;
 
         /// <summary>对应 SkillTable.ban_pool_category = 1..4 的 4 个固定页签文案。</summary>
         public static readonly string[] CategoryTabLabels = { "控场", "输出", "辅助", "灵宠" };
 
         private const string PrefKeyPrefix = "qdao_prep_skill_bans_v1_";
+        private const string ProtectPrefKeyPrefix = "qdao_prep_skill_protect_v2_";
 
         /// <summary>判定技能在本局是否已被全局对称禁用。</summary>
         public static bool IsSkillBanned(BattleStateS2C state, uint skillId)
@@ -26,6 +28,54 @@ namespace MmorpgClient.Game.Battle
             for (int i = 0; i < state.BannedSkillIds.Count; i++)
             {
                 if (state.BannedSkillIds[i] == skillId) return true;
+            }
+            return false;
+        }
+
+        /// <summary>战前禁选 V2：判定技能是否被对方护招「破禁化解」而恢复可用。</summary>
+        public static bool IsSkillCountered(BattleStateS2C state, uint skillId)
+        {
+            if (state == null || skillId == 0u || state.CounteredBanSkillIds == null) return false;
+            for (int i = 0; i < state.CounteredBanSkillIds.Count; i++)
+            {
+                if (state.CounteredBanSkillIds[i] == skillId) return true;
+            }
+            return false;
+        }
+
+        /// <summary>战前禁选 V2：判定技能是否属于双方同时封禁且仍生效的「双边同禁」撞车。</summary>
+        public static bool IsDoubleBanned(BattleStateS2C state, uint skillId)
+        {
+            if (state == null || skillId == 0u || !IsSkillBanned(state, skillId)) return false;
+            return ContainsSkill(state.TeamABannedSkillIds, skillId)
+                && ContainsSkill(state.TeamBBannedSkillIds, skillId);
+        }
+
+        /// <summary>战前禁选 V2：本局是否存在任何禁招或护招亮牌信息（用于控制顶条、开局亮牌与战报详情展示）。</summary>
+        public static bool HasAnyBanOrProtectReveal(BattleStateS2C state)
+        {
+            if (state == null) return false;
+            return state.BannedSkillIds.Count > 0
+                || state.TeamABannedSkillIds.Count > 0
+                || state.TeamBBannedSkillIds.Count > 0
+                || state.TeamAProtectedSkillId != 0u
+                || state.TeamBProtectedSkillId != 0u
+                || state.CounteredBanSkillIds.Count > 0;
+        }
+
+        /// <summary>战前禁选 V2：判定某候选技能是否已被同队其他队友携带（仅读服务端脱敏下发的 TeammateEquippedSkillIds）。</summary>
+        public static bool IsTeammateEquipped(BattlePrepState prep, uint skillId)
+        {
+            if (prep == null || skillId == 0u || prep.TeammateEquippedSkillIds == null) return false;
+            return ContainsSkill(prep.TeammateEquippedSkillIds, skillId);
+        }
+
+        private static bool ContainsSkill(IReadOnlyList<uint> list, uint skillId)
+        {
+            if (list == null || skillId == 0u) return false;
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i] == skillId) return true;
             }
             return false;
         }
@@ -112,7 +162,28 @@ namespace MmorpgClient.Game.Battle
             return true;
         }
 
-        /// <summary>统计同队各成员对某技能的提名票数（只读己方脱敏后的 TeamStates）。</summary>
+        /// <summary>战前禁选 V2：在护招模式下点击技能，再次点已护招技能则取消，点选本方已禁招技能则自动从禁招移除并转入护招。</summary>
+        public static (uint nextProtect, bool bansModified) ToggleProtectNomination(
+            List<uint> currentBans, uint currentProtect, uint clickedSkillId)
+        {
+            if (clickedSkillId == 0u) return (currentProtect, false);
+            if (currentProtect == clickedSkillId) return (0u, false);
+            bool bansModified = currentBans != null && currentBans.Remove(clickedSkillId);
+            return (clickedSkillId, bansModified);
+        }
+
+        /// <summary>战前禁选 V2：在禁招模式下点击技能；若该技当前为本人护招，同时清空护招以免冲突。</summary>
+        public static (bool accepted, uint nextProtect, bool protectModified) ToggleBanWithProtectClear(
+            List<uint> currentBans, uint currentProtect, uint clickedSkillId, uint maxSlots)
+        {
+            if (!ToggleNomination(currentBans, clickedSkillId, maxSlots))
+                return (false, currentProtect, false);
+            if (currentProtect != 0u && currentProtect == clickedSkillId && currentBans.Contains(clickedSkillId))
+                return (true, 0u, true);
+            return (true, currentProtect, false);
+        }
+
+        /// <summary>统计同队各成员对某技能的禁招提名票数（只读己方脱敏后的 TeamStates）。</summary>
         public static int CountTeamVotes(BattlePrepState prep, uint skillId)
         {
             if (prep == null || skillId == 0u || prep.TeamStates == null) return 0;
@@ -133,7 +204,20 @@ namespace MmorpgClient.Game.Battle
             return votes;
         }
 
-        /// <summary>格式化战报配装详情与顶部禁招浮条展开态的双方禁招摘要。</summary>
+        /// <summary>战前禁选 V2：统计同队各成员对某技能的护招提名票数。</summary>
+        public static int CountTeamProtectVotes(BattlePrepState prep, uint skillId)
+        {
+            if (prep == null || skillId == 0u || prep.TeamStates == null) return 0;
+            int votes = 0;
+            for (int i = 0; i < prep.TeamStates.Count; i++)
+            {
+                var ps = prep.TeamStates[i];
+                if (ps != null && ps.NominatedProtectSkillId == skillId) votes++;
+            }
+            return votes;
+        }
+
+        /// <summary>格式化战报配装详情与顶部禁招浮条展开态的双方禁招摘要（V1 兼容重载）。</summary>
         public static string FormatTeamBansSummary(
             IReadOnlyList<uint> teamABans,
             IReadOnlyList<uint> teamBBans,
@@ -143,6 +227,34 @@ namespace MmorpgClient.Game.Battle
             string aText = FormatSkillList(teamABans, lookup);
             string bText = FormatSkillList(teamBBans, lookup);
             return $"A队禁：{aText}  |  B队禁：{bText}";
+        }
+
+        /// <summary>战前禁选 V2：格式化含双方禁招、双方护招、破禁化解与双边同禁的完整摘要。</summary>
+        public static string FormatTeamBansSummary(BattleStateS2C state, Func<uint, string> nameLookup = null)
+        {
+            if (state == null) return string.Empty;
+            Func<uint, string> lookup = nameLookup ?? ResolveSkillName;
+            string aText = FormatSkillList(state.TeamABannedSkillIds, lookup);
+            string bText = FormatSkillList(state.TeamBBannedSkillIds, lookup);
+            string aProt = state.TeamAProtectedSkillId != 0u ? $" / 护：{lookup(state.TeamAProtectedSkillId)}" : string.Empty;
+            string bProt = state.TeamBProtectedSkillId != 0u ? $" / 护：{lookup(state.TeamBProtectedSkillId)}" : string.Empty;
+            var sb = new System.Text.StringBuilder();
+            sb.Append($"A队禁：{aText}{aProt}  |  B队禁：{bText}{bProt}");
+            if (state.CounteredBanSkillIds.Count > 0)
+            {
+                sb.Append($"  ·  破禁化解：{FormatSkillList(state.CounteredBanSkillIds, lookup)}");
+            }
+            var doubles = new List<uint>();
+            for (int i = 0; i < state.TeamABannedSkillIds.Count; i++)
+            {
+                uint sid = state.TeamABannedSkillIds[i];
+                if (IsDoubleBanned(state, sid) && !doubles.Contains(sid)) doubles.Add(sid);
+            }
+            if (doubles.Count > 0)
+            {
+                sb.Append($"  ·  双边同禁：{FormatSkillList(doubles, lookup)}");
+            }
+            return sb.ToString();
         }
 
         private static string FormatSkillList(IReadOnlyList<uint> ids, Func<uint, string> lookup)
@@ -163,6 +275,7 @@ namespace MmorpgClient.Game.Battle
         public static class PreferenceStore
         {
             public static string KeyFor(ulong playerId) => PrefKeyPrefix + playerId;
+            public static string ProtectKeyFor(ulong playerId) => ProtectPrefKeyPrefix + playerId;
 
             public static List<uint> LoadFiltered(
                 ulong playerId,
@@ -189,6 +302,39 @@ namespace MmorpgClient.Game.Battle
                         result.Add(sid);
                 }
                 return result;
+            }
+
+            public static uint LoadProtectedFiltered(
+                ulong playerId,
+                IReadOnlyList<uint> candidateSkillIds,
+                IReadOnlyList<uint> excludedBanSkillIds = null,
+                Func<string, string> getter = null)
+            {
+                if (playerId == 0ul || candidateSkillIds == null || candidateSkillIds.Count == 0)
+                    return 0u;
+                string raw = getter != null
+                    ? getter(ProtectKeyFor(playerId))
+                    : PlayerPrefs.GetString(ProtectKeyFor(playerId), string.Empty);
+                if (!uint.TryParse(raw?.Trim(), out uint sid) || sid == 0u) return 0u;
+                if (!ContainsSkill(candidateSkillIds, sid)) return 0u;
+                if (excludedBanSkillIds != null && ContainsSkill(excludedBanSkillIds, sid)) return 0u;
+                return sid;
+            }
+
+            public static void SaveProtected(
+                ulong playerId,
+                uint protectedSkillId,
+                Action<string, string> setter = null)
+            {
+                if (playerId == 0ul) return;
+                string encoded = protectedSkillId != 0u ? protectedSkillId.ToString() : string.Empty;
+                if (setter != null)
+                {
+                    setter(ProtectKeyFor(playerId), encoded);
+                    return;
+                }
+                PlayerPrefs.SetString(ProtectKeyFor(playerId), encoded);
+                PlayerPrefs.Save();
             }
 
             public static void Save(

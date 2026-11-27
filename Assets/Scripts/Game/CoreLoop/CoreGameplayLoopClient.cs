@@ -214,7 +214,7 @@ namespace MmorpgClient.Game.CoreLoop
         public MainCityHubView BuildMainCityHub(
             bool paymentEnabled = false,
             bool hasAfkPass = false,
-            uint unlockedLoadoutSlots = 3u) =>
+            uint unlockedLoadoutSlots = 2u) =>
             CoreGameplayLoopModels.BuildMainCityHub(
                 _features?.EquipmentMaterialReward,
                 _ranked?.Profile,

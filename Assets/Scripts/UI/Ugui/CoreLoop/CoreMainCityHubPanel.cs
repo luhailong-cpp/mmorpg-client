@@ -50,9 +50,13 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             var afkClient = AfkPassUiRoot.Instance?.Client;
             _afkStateKnown = afkClient != null && afkClient.Ready && afkClient.Info != null;
             _afkActive = _afkStateKnown && afkClient.Active;
-            uint unlockedLoadoutSlots = afkClient?.Info != null && afkClient.Info.UnlockedLoadoutSlots > 0
+            uint afkLoadoutSlots = afkClient?.Info != null && afkClient.Info.UnlockedLoadoutSlots > 0
                 ? afkClient.Info.UnlockedLoadoutSlots
-                : (_afkActive ? 6u : 3u);
+                : (_afkActive ? 4u : 2u);
+            uint equipLoadoutSlots = _game?.Features?.EquipLoadouts != null
+                ? _game.Features.EquipLoadouts.UnlockedSchemeCount
+                : 0u;
+            uint unlockedLoadoutSlots = System.Math.Max(afkLoadoutSlots, equipLoadoutSlots);
             bool stage2Tradable = afkClient?.Info?.Stage2TradableEnabled == true || _afkActive;
             var view = _core.BuildMainCityHub(hasAfkPass: _afkActive, unlockedLoadoutSlots: unlockedLoadoutSlots);
             bool materialReady = _game?.Features?.EquipmentMaterialReward != null;
@@ -147,9 +151,9 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 string subtitle = slot.SlotKey == "convenience_loadouts"
                     ? (_afkStateKnown
                         ? (_afkActive
-                            ? $"托管生效 · 配装槽 {unlockedLoadoutSlots} 格 · 阶段二胜局{(stage2Tradable ? "可交易" : "绑定")}"
-                            : $"离线托管 + 配装槽 3→6 格（当前 {unlockedLoadoutSlots} 格）+ 阶段二可交易")
-                        : "轻享卡状态待同步 · 配装槽 3→6 格 + 阶段二可交易")
+                            ? $"托管生效 · 共享流派 {unlockedLoadoutSlots}/7 套 · 阶段二胜局{(stage2Tradable ? "可交易" : "绑定")}"
+                            : $"离线托管 + 共享流派 +2 套（当前 {unlockedLoadoutSlots}/7 套）+ 阶段二可交易")
+                        : "轻享卡状态待同步 · 装备/战法/加点共享 7 套流派 + 阶段二可交易")
                     : slot.Subtitle;
                 CoreLoopUiArt.Text("SpendSubtitle" + i, transform, x + 16, 930, 316, 54,
                     subtitle, 17, CoreLoopUiArt.Muted, false, true);

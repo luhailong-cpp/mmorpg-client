@@ -1339,7 +1339,7 @@ namespace MmorpgClient.Game.CoreLoop
             global::TrialJournalSnapshot trialJournal,
             bool paymentEnabled = false,
             bool hasAfkPass = false,
-            uint unlockedLoadoutSlots = 3u)
+            uint unlockedLoadoutSlots = 2u)
         {
             string matLabel;
             string matValue;
@@ -1390,8 +1390,8 @@ namespace MmorpgClient.Game.CoreLoop
                     "convenience_loadouts",
                     "轻享省心卡与配装槽位",
                     hasAfkPass
-                        ? $"省心托管生效中 · 当前配装方案槽位 {unlockedLoadoutSlots} 格（纯便利零数值）"
-                        : $"离线托管便利 + 配装方案槽位 3→6 格预留（当前 {unlockedLoadoutSlots} 格）",
+                        ? $"省心托管生效中 · 装备/战法/加点共享流派席位 {unlockedLoadoutSlots}/7 套（纯便利零数值）"
+                        : $"离线托管便利 + 装备/战法/加点共享流派席位 +2 套（当前 {unlockedLoadoutSlots}/7 套）",
                     hasAfkPass ? "已生效" : payTag,
                     paymentEnabled,
                     zeroStatGuarantee: true),

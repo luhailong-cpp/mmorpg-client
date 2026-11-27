@@ -627,7 +627,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                     break;
                 case "convenience_loadouts":
                     _spendPreviewTitle.text = "省心便利";
-                    _spendPreviewBody.text = "离线托管便利与配装方案槽位 3→6 的规划内容。实际开放状态以正式配装页为准；首测没有直充入口。";
+                    _spendPreviewBody.text = "离线托管便利与装备/战法/加点 7 套三合一共享流派席位（2 套永久免费 + 85 级赠 1 套 + 轻享卡 +2 套 + 按套租用，到期只锁不删、零战力加成）。";
                     break;
                 case "material_market":
                     _spendPreviewTitle.text = "材料市集";

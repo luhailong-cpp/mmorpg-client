@@ -60,7 +60,7 @@ namespace MmorpgClient.Core
 
         /// <summary>
         /// 正式包对地址的要求:网关、《用户协议》《隐私政策》必填(没有协议地址过不了商店审核),通行证可空;
-        /// 填了的都必须是 https、主机不是回环地址,不带用户信息与片段;网关与通行证还不能带查询串。
+        /// 填了的都必须是 https、主机不是回环地址、不带用户信息;网关与通行证还不能带查询串与片段。
         /// </summary>
         public static bool TryValidateForRelease(Values values, out string reason)
         {

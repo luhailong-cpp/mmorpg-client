@@ -105,6 +105,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly BattleRoundCounter _roundCounter;
         private readonly RectTransform _guildWarFrenzyRoot;
         private readonly TMP_Text _guildWarFrenzyText;
+        private readonly RectTransform _tacticalPuzzleBadgeRoot;
+        private readonly TMP_Text _tacticalPuzzleBadgeText;
         private readonly BattleLogPanel _logPanel;
         private readonly BattleActionOrderBar _orderBar;
         private readonly BattlePartyCards _partyCards;
@@ -231,7 +233,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private bool _prepExpiredShown;
         private float _prepPulseOriginTime;
 
-        // 战前每方 3 Ban 浮层（位于 _prepPanel 上方，复用全部 8 枚 BattlePrepSkillBan 切片）
+        // 战前每方 3 禁 + 1 保浮层（位于 _prepPanel 上方，复用全部 13 枚 BattlePrepSkillBan V1+V2 切片）
         private sealed class PrepBanSlotView
         {
             public Image Frame;
@@ -240,18 +242,30 @@ namespace MmorpgClient.UI.Ugui.Battle
             public TMP_Text NameText;
         }
 
+        private sealed class BanRevealSlotView
+        {
+            public Image Frame;
+            public Image Icon;
+            public Image Overlay;
+            public TMP_Text NameText;
+        }
+
         private readonly RectTransform _prepBanPanel;
         private readonly TMP_Text _prepBanCountText;
+        private readonly UiTextButton _prepBanModeButton;
         private readonly UiTextButton _prepBanClearButton;
         private readonly PrepBanSlotView[] _prepBanSlots = new PrepBanSlotView[3];
+        private readonly PrepBanSlotView _prepProtectSlot;
+        private readonly RectTransform _prepProtectSlotRoot;
         private readonly UiTextButton[] _prepBanTabs = new UiTextButton[4];
         private readonly RectTransform _prepBanContent;
         private readonly UnityEngine.UI.ScrollRect _prepBanScroll;
         private readonly List<GameObject> _prepBanCards = new();
         private int _prepBanTabIndex;
+        private bool _prepProtectMode;
         private ulong _prepBanPrefilledBattleId;
 
-        // 战斗/观战/回放顶部双方禁招浮条（battle_ban_strip_bg，点击展开完整技能名）
+        // 战斗/观战/回放顶部双方禁招浮条（battle_ban_strip_bg，点击展开完整技能名与护招/破禁详情）
         private readonly RectTransform _banStripRoot;
         private readonly Image[] _banStripIconsA = new Image[3];
         private readonly Image[] _banStripStampsA = new Image[3];
@@ -260,6 +274,15 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly RectTransform _banStripDetailRoot;
         private readonly TMP_Text _banStripDetailText;
         private bool _banStripDetailExpanded;
+
+        // 战前禁选 V2：第 1 回合开局 2.2 秒「双方禁招与护招亮牌揭示」横幅（battle_ban_reveal_banner_bg 880×200）
+        private readonly RectTransform _banRevealRoot;
+        private readonly CanvasGroup _banRevealCanvasGroup;
+        private readonly TMP_Text _banRevealTitleText;
+        private readonly TMP_Text _banRevealCenterText;
+        private readonly BanRevealSlotView[] _banRevealLeftSlots = new BanRevealSlotView[4];
+        private readonly BanRevealSlotView[] _banRevealRightSlots = new BanRevealSlotView[4];
+        private ulong _banRevealShownBattleId;
 
         // 单位状态详情小卡（触控/点击单位打开，消费 BattleUnitStatusInspector 只读投影）
         private readonly RectTransform _statusPopup;
@@ -385,6 +408,22 @@ namespace MmorpgClient.UI.Ugui.Battle
                 string.Empty, 20f, Guild.GuildWarUiArt.LightText, TextAlignmentOptions.MidlineLeft);
             _guildWarFrenzyText.raycastTarget = false;
             _guildWarFrenzyRoot.gameObject.SetActive(false);
+
+            _tacticalPuzzleBadgeRoot = QdaoUguiFactory.CreateRect("TacticalPuzzleBadge", _hudRoot,
+                RoundCounterX + BattleRoundCounter.Width + 14f, RoundCounterY + 4f, 440f, 62f);
+            var puzzleBg = _tacticalPuzzleBadgeRoot.gameObject.AddComponent<Image>();
+            puzzleBg.color = new Color(0.11f, 0.27f, 0.21f, 0.90f);
+            puzzleBg.raycastTarget = false;
+            var puzzleIcon = QdaoUguiFactory.CreateImage("Icon", _tacticalPuzzleBadgeRoot, 8f, 7f, 48f, 48f,
+                Resources.Load<Sprite>("UI/Ugui/TacticalPuzzleV1/hud_entry_puzzle"));
+            puzzleIcon.preserveAspect = true;
+            puzzleIcon.raycastTarget = false;
+            _tacticalPuzzleBadgeText = QdaoUguiFactory.CreateText("Text", _tacticalPuzzleBadgeRoot, 62f, 0f, 368f, 62f,
+                string.Empty, 19f, QdaoUguiTheme.Cream, TextAlignmentOptions.MidlineLeft);
+            _tacticalPuzzleBadgeText.richText = false;
+            _tacticalPuzzleBadgeText.overflowMode = TextOverflowModes.Ellipsis;
+            _tacticalPuzzleBadgeText.raycastTarget = false;
+            _tacticalPuzzleBadgeRoot.gameObject.SetActive(false);
             _logPanel = new BattleLogPanel(_hudRoot, LogButtonRect.x, LogButtonRect.y);
             _phaseText = QdaoUguiFactory.CreateText("Phase", _hudRoot, 40f, 98f, 620f, 36f,
                 string.Empty, 24f, BattleUiStyle.WarnText, TextAlignmentOptions.MidlineLeft);
@@ -928,24 +967,26 @@ namespace MmorpgClient.UI.Ugui.Battle
             _prepLockButton.Button.onClick.AddListener(OnPrepLockClicked);
             _prepPanel.gameObject.SetActive(false);
 
-            // 战前每方 3 Ban 浮层 [300, 248, 1960, 420]（紧贴变阵主面板上方，使用 BattlePrepSkillBan 无字切片）
+            // 战前每方 3 禁 + 1 保浮层 [300, 248, 1960, 420]（紧贴变阵主面板上方，使用 BattlePrepSkillBan V1+V2 无字切片）
             var prepBanBg = BattleUiWidgets.CreatePanel("PrepBanPanel", _hudRoot, 300f, 248f, 1960f, 420f,
                 SeasonEconomyUiArt.BattleArenaPaper, raycastTarget: true);
             BattleRoundCounter.ApplyNineSlice(prepBanBg, "panel_9slice");
             _prepBanPanel = prepBanBg.rectTransform;
 
-            var banHeaderTitle = QdaoUguiFactory.CreateText("PrepBanTitle", _prepBanPanel, 28f, 16f, 520f, 34f,
-                "战前技能禁选（每方 3 禁 · 双方对称生效）", 26f, QdaoUguiTheme.Html("#173F28"), TextAlignmentOptions.MidlineLeft);
+            var banHeaderTitle = QdaoUguiFactory.CreateText("PrepBanTitle", _prepBanPanel, 28f, 16f, 540f, 34f,
+                "战前技能禁选（每方 3 禁 + 1 保 · 破禁化解）", 25f, QdaoUguiTheme.Html("#173F28"), TextAlignmentOptions.MidlineLeft);
             banHeaderTitle.font = kaiFont;
             banHeaderTitle.fontStyle = FontStyles.Bold;
             banHeaderTitle.raycastTarget = false;
 
-            _prepBanCountText = QdaoUguiFactory.CreateText("PrepBanCount", _prepBanPanel, 28f, 52f, 520f, 26f,
-                "本队禁招 0/3 · 点选下方技能提名，锁定后对双方生效", 19f, QdaoUguiTheme.Html("#6E5434"), TextAlignmentOptions.MidlineLeft);
+            _prepBanCountText = QdaoUguiFactory.CreateText("PrepBanCount", _prepBanPanel, 28f, 52f, 540f, 26f,
+                "本队禁招 0/3 · 护招 0/1 · 点选下方技能提名", 19f, QdaoUguiTheme.Html("#6E5434"), TextAlignmentOptions.MidlineLeft);
             _prepBanCountText.raycastTarget = false;
 
             var emptySlotSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_ban_slot_empty");
             var stampSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("skill_banned_stamp");
+            var emptyProtectSlotSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_protect_slot_empty");
+            var protectBadgeSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("skill_protected_badge");
             for (int i = 0; i < _prepBanSlots.Length; i++)
             {
                 float sx = 580f + i * 86f;
@@ -967,12 +1008,36 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _prepBanSlots[i] = new PrepBanSlotView { Frame = frame, SkillIcon = icon, Stamp = stamp, NameText = nameTxt };
             }
 
+            // V2 护招单槽（x=852, y=12, 72×72；中央透明孔径按 96->72 映射为 [16.5,19.5,39,39]，点击切换禁招/护招点选模式）
+            _prepProtectSlotRoot = QdaoUguiFactory.CreateRect("PrepProtectSlot", _prepBanPanel, 852f, 12f, 72f, 92f);
+            var protHit = _prepProtectSlotRoot.gameObject.AddComponent<Image>();
+            protHit.color = new Color(0f, 0f, 0f, 0.001f);
+            protHit.raycastTarget = true;
+            var protBtn = _prepProtectSlotRoot.gameObject.AddComponent<UnityEngine.UI.Button>();
+            protBtn.transition = UnityEngine.UI.Selectable.Transition.None;
+            protBtn.onClick.AddListener(TogglePrepProtectMode);
+            var protIcon = QdaoUguiFactory.CreateImage("SkillIcon", _prepProtectSlotRoot, 16.5f, 19.5f, 39f, 39f, null, false);
+            protIcon.preserveAspect = true;
+            protIcon.gameObject.SetActive(false);
+            var protFrame = QdaoUguiFactory.CreateImage("SlotFrame", _prepProtectSlotRoot, 0f, 0f, 72f, 72f, emptyProtectSlotSprite, false);
+            protFrame.type = Image.Type.Simple;
+            protFrame.color = emptyProtectSlotSprite != null ? Color.white : SeasonEconomyUiArt.BattleArenaJade;
+            var protStamp = QdaoUguiFactory.CreateImage("ProtectBadge", _prepProtectSlotRoot, 46f, 46f, 24f, 24f, protectBadgeSprite, false);
+            protStamp.preserveAspect = true;
+            protStamp.gameObject.SetActive(false);
+            var protName = QdaoUguiFactory.CreateText("SlotName", _prepProtectSlotRoot, -4f, 72f, 80f, 20f,
+                "护招空", 13f, QdaoUguiTheme.Html("#1B5A3A"), TextAlignmentOptions.Center);
+            protName.overflowMode = TextOverflowModes.Ellipsis;
+            protName.textWrappingMode = TextWrappingModes.NoWrap;
+            protName.raycastTarget = false;
+            _prepProtectSlot = new PrepBanSlotView { Frame = protFrame, SkillIcon = protIcon, Stamp = protStamp, NameText = protName };
+
             var tabInactiveSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_ban_tab_inactive");
             for (int i = 0; i < _prepBanTabs.Length; i++)
             {
                 int tabIdx = i;
                 var tabBtn = BattleUiWidgets.CreateTextButton($"PrepBanTab_{i}", _prepBanPanel,
-                    890f + i * 148f, 26f, 136f, 42f, BattleSkillBanModels.CategoryTabLabels[i], 21f,
+                    950f + i * 144f, 26f, 136f, 42f, BattleSkillBanModels.CategoryTabLabels[i], 21f,
                     SeasonEconomyUiArt.BattleArenaPaper, QdaoUguiTheme.Html("#172D20"));
                 SeasonEconomyUiArt.ApplySlicedControlSprite(tabBtn.Plate, tabInactiveSprite, SeasonEconomyUiArt.BattleArenaPaper);
                 tabBtn.Label.font = kaiFont;
@@ -980,6 +1045,14 @@ namespace MmorpgClient.UI.Ugui.Battle
                 tabBtn.Button.onClick.AddListener(() => { _prepBanTabIndex = tabIdx; RefreshPrepBanUi(); });
                 _prepBanTabs[i] = tabBtn;
             }
+
+            _prepBanModeButton = BattleUiWidgets.CreateTextButton("PrepBanModeBtn", _prepBanPanel,
+                1544f, 26f, 196f, 42f, "切换：点选护招", 19f,
+                SeasonEconomyUiArt.BattleArenaPaper, QdaoUguiTheme.Html("#173F28"));
+            BattleRoundCounter.ApplyNineSlice(_prepBanModeButton.Plate, "button_9slice");
+            _prepBanModeButton.Label.font = kaiFont;
+            _prepBanModeButton.Label.fontStyle = FontStyles.Bold;
+            _prepBanModeButton.Button.onClick.AddListener(TogglePrepProtectMode);
 
             _prepBanClearButton = BattleUiWidgets.CreateTextButton("PrepBanClearBtn", _prepBanPanel,
                 1754f, 26f, 178f, 42f, "清空本方提名", 20f,
@@ -1049,15 +1122,49 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _banStripStampsB[i] = stB;
             }
             var banDetailBg = BattleUiWidgets.CreatePanel("BattleBanStripDetail", _hudRoot,
-                (QdaoUguiTheme.DesignWidth - 680f) * 0.5f, 178f, 680f, 76f,
+                (QdaoUguiTheme.DesignWidth - 820f) * 0.5f, 178f, 820f, 82f,
                 BattleUiStyle.PanelBg, raycastTarget: false);
             BattleRoundCounter.ApplyNineSlice(banDetailBg, "panel_9slice");
             _banStripDetailRoot = banDetailBg.rectTransform;
             _banStripDetailText = QdaoUguiFactory.CreateText("BanStripDetailText", _banStripDetailRoot,
-                16f, 8f, 648f, 60f, string.Empty, 19f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
+                16f, 8f, 788f, 66f, string.Empty, 18f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
             _banStripDetailText.raycastTarget = false;
             _banStripRoot.gameObject.SetActive(false);
             _banStripDetailRoot.gameObject.SetActive(false);
+
+            // 战前禁选 V2：第 1 回合开局 2.2 秒「双方禁招与护招亮牌揭示」横幅（880×200，居中 y=64，严格按 integration.md 坐标叠放）
+            var revealBgSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("battle_ban_reveal_banner_bg");
+            var revealBg = BattleUiWidgets.CreatePanel("BattleBanRevealBanner", _hudRoot,
+                (QdaoUguiTheme.DesignWidth - 880f) * 0.5f, 64f, 880f, 200f,
+                SeasonEconomyUiArt.BattleArenaPaper, raycastTarget: false);
+            SeasonEconomyUiArt.ApplySlicedControlSprite(revealBg, revealBgSprite, SeasonEconomyUiArt.BattleArenaPaper);
+            _banRevealRoot = revealBg.rectTransform;
+            _banRevealCanvasGroup = _banRevealRoot.gameObject.AddComponent<CanvasGroup>();
+            _banRevealCanvasGroup.interactable = false;
+            _banRevealCanvasGroup.blocksRaycasts = false;
+
+            _banRevealTitleText = QdaoUguiFactory.CreateText("BanRevealTitle", _banRevealRoot,
+                180f, 5f, 520f, 44f, "双方禁招与护招亮牌", 24f, QdaoUguiTheme.Html("#173F28"), TextAlignmentOptions.Center);
+            _banRevealTitleText.font = kaiFont;
+            _banRevealTitleText.fontStyle = FontStyles.Bold;
+            _banRevealTitleText.raycastTarget = false;
+
+            _banRevealCenterText = QdaoUguiFactory.CreateText("BanRevealCenter", _banRevealRoot,
+                360f, 55f, 160f, 125f, "A 队 vs B 队", 20f, QdaoUguiTheme.Html("#6E4826"), TextAlignmentOptions.Center);
+            _banRevealCenterText.font = kaiFont;
+            _banRevealCenterText.fontStyle = FontStyles.Bold;
+            _banRevealCenterText.raycastTarget = false;
+
+            float[] leftRevealX = { 48f, 124f, 200f, 276f };
+            float[] rightRevealX = { 540f, 616f, 692f, 768f };
+            for (int i = 0; i < 4; i++)
+            {
+                _banRevealLeftSlots[i] = CreateBanRevealSlot(_banRevealRoot, $"RevealA_{i}", leftRevealX[i], i == 3,
+                    emptySlotSprite, emptyProtectSlotSprite, stampSprite, protectBadgeSprite);
+                _banRevealRightSlots[i] = CreateBanRevealSlot(_banRevealRoot, $"RevealB_{i}", rightRevealX[i], i == 3,
+                    emptySlotSprite, emptyProtectSlotSprite, stampSprite, protectBadgeSprite);
+            }
+            _banRevealRoot.gameObject.SetActive(false);
 
             // 观战者战前明牌变阵顶部专属只读提示（帮会页签风，零按钮、零 raycast、绝不透出任何私密选择）
             var specBannerSprite = SeasonEconomyUiArt.LoadBattleArenaAsset("guild_tab_normal")
@@ -1075,12 +1182,16 @@ namespace MmorpgClient.UI.Ugui.Battle
             _spectatorPrepText.raycastTarget = false;
             _spectatorPrepBanner.gameObject.SetActive(false);
 
-            // 论剑 V4 队内快捷战术标点浮条（[40, 868, 420, 84]，原尺寸 420×84 碧玉浮条 + 4 枚 96×96 无字图标，缺图安全回退）
+            // 论剑 V4 队内快捷战术标点浮条（[40, 868, 420, 84]，420×84 九宫格 32/23/32/23 碧玉浮条 + 4 枚 96×96 无字图标，缺图安全回退）
             var pingBarBg = BattleUiWidgets.CreatePanel("TacticalPingBar", _hudRoot, 40f, 868f, 420f, 84f,
                 SeasonEconomyUiArt.BattleArenaPaper, raycastTarget: true);
             var pingBarSprite = SeasonEconomyUiArt.LoadRankedPlayV4Asset("ping_bar_base");
             _hasPingBarArt = pingBarSprite != null;
-            if (_hasPingBarArt) SeasonEconomyUiArt.ApplyFixedControlSprite(pingBarBg, pingBarSprite, SeasonEconomyUiArt.BattleArenaPaper);
+            if (_hasPingBarArt)
+            {
+                SeasonEconomyUiArt.ApplyFixedControlSprite(pingBarBg, pingBarSprite, SeasonEconomyUiArt.BattleArenaPaper);
+                if (pingBarSprite.border != Vector4.zero) pingBarBg.type = Image.Type.Sliced;
+            }
             else BattleRoundCounter.ApplyNineSlice(pingBarBg, "panel_9slice");
             _pingBarRoot = pingBarBg.rectTransform;
             var pingKinds = new[]
@@ -1332,6 +1443,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _surrenderRequestPending = false;
             _surrenderButton?.SetVisible(false);
             if (_guildWarFrenzyRoot != null) _guildWarFrenzyRoot.gameObject.SetActive(false);
+            if (_tacticalPuzzleBadgeRoot != null) _tacticalPuzzleBadgeRoot.gameObject.SetActive(false);
             if (_surrenderConfirmStrip != null) _surrenderConfirmStrip.gameObject.SetActive(false);
             if (_surrenderVoteStrip != null) _surrenderVoteStrip.gameObject.SetActive(false);
             _quickParryButton?.SetVisible(false);
@@ -1341,13 +1453,21 @@ namespace MmorpgClient.UI.Ugui.Battle
             _prepExpiredShown = false;
             _prepBanPrefilledBattleId = 0ul;
             _prepBanTabIndex = 0;
+            _prepProtectMode = false;
             _banStripDetailExpanded = false;
+            _banRevealShownBattleId = 0ul;
             _expandedPrepTeamIds.Clear();
             ClearPrepTeamChips();
             ClearPrepBanCards();
             if (_prepBanPanel != null) _prepBanPanel.gameObject.SetActive(false);
             if (_banStripRoot != null) _banStripRoot.gameObject.SetActive(false);
             if (_banStripDetailRoot != null) _banStripDetailRoot.gameObject.SetActive(false);
+            if (_banRevealRoot != null)
+            {
+                RealtimeTween.Kill(_banRevealRoot.gameObject);
+                if (_banRevealCanvasGroup != null) _banRevealCanvasGroup.alpha = 1f;
+                _banRevealRoot.gameObject.SetActive(false);
+            }
             if (_prepPanel != null)
             {
                 RealtimeTween.Kill(_prepPanel.gameObject);
@@ -1438,11 +1558,28 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private uint CurrentRoundLimit()
         {
+            if (_state?.TacticalPuzzleContext?.Spec != null && _state.TacticalPuzzleContext.Spec.RoundLimit > 0u)
+                return _state.TacticalPuzzleContext.Spec.RoundLimit;
             if (_state != null && _state.RoundLimit > 0u) return _state.RoundLimit;
             if (_state != null && (Guild.GuildUiRoot.Instance?.IsActiveGuildWarBattle(_state.BattleId) ?? false)) return 20u;
             if (!(FestivalBeast.FestivalBeastUiRoot.Instance?.IsActiveFestivalBeastBattle ?? false)) return 0u;
             uint configured = Game.FestivalBeast.FestivalBeastClient.Instance?.Detail?.RoundLimit ?? 0u;
             return configured == 0u ? 12u : configured;
+        }
+
+        private void UpdateTacticalPuzzleBadge(BattleStateS2C state)
+        {
+            if (_tacticalPuzzleBadgeRoot == null) return;
+            var ctx = state?.TacticalPuzzleContext;
+            if (ctx == null || ctx.PuzzleId == 0ul)
+            {
+                _tacticalPuzzleBadgeRoot.gameObject.SetActive(false);
+                return;
+            }
+            string modeTag = ctx.IsAuthorVerify ? "作者验题" : "万象残局";
+            string title = string.IsNullOrWhiteSpace(ctx.PuzzleTitle) ? $"#{ctx.PuzzleId}" : ctx.PuzzleTitle;
+            _tacticalPuzzleBadgeText.text = $"[{modeTag}] {title}";
+            _tacticalPuzzleBadgeRoot.gameObject.SetActive(true);
         }
 
         private void UpdateGuildWarFrenzyBadge(BattleStateS2C state)
@@ -1524,6 +1661,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _roundCounter.SetRound(state.RoundIndex, state.RoundIndex != _roundCounter.Round && _roundCounter.Round != 0,
                 roundLimit: CurrentRoundLimit());
             UpdateGuildWarFrenzyBadge(state);
+            UpdateTacticalPuzzleBadge(state);
             _partyCards.Refresh(BattleHudLogic.PartyCardOrder(state.Actors, _myId, _myTeam, BattlePartyCards.MaxCards), ResolveTile);
 
             // 新回合开始:重置本地已提交标记。目标选择只对选的那一回合有效:直连断线期间服务端可能已替本人
@@ -3226,20 +3364,62 @@ namespace MmorpgClient.UI.Ugui.Battle
                     ? (hasLoadoutChoices ? "战前禁招与变阵" : "战前技能禁选")
                     : "战前明牌变阵";
             }
-            if (hasSkillBan && canEdit && selfState != null && selfState.NominatedBanSkillIds.Count == 0
+            if (hasSkillBan && canEdit && selfState != null
+                && selfState.NominatedBanSkillIds.Count == 0 && selfState.NominatedProtectSkillId == 0u
                 && _state != null && _state.BattleId != 0ul && _prepBanPrefilledBattleId != _state.BattleId)
             {
                 _prepBanPrefilledBattleId = _state.BattleId;
                 var saved = BattleSkillBanModels.PreferenceStore.LoadFiltered(
                     _myId, _prepState.BanCandidateSkillIds, _prepState.SkillBanSlotsPerTeam);
-                if (saved.Count > 0)
+                uint savedProtect = _prepState.SkillProtectSlotsPerTeam > 0u
+                    ? BattleSkillBanModels.PreferenceStore.LoadProtectedFiltered(
+                        _myId, _prepState.BanCandidateSkillIds, saved)
+                    : 0u;
+                if (saved.Count > 0 || savedProtect != 0u)
                 {
-                    SendPrepBanUpdate(saved);
+                    SendPrepBanAndProtectUpdate(saved.Count > 0, saved, savedProtect != 0u, savedProtect);
                     return;
                 }
             }
             RefreshPrepBanUi();
             UpdatePrepCountdownLabel(sec, ratio);
+        }
+
+        private static BanRevealSlotView CreateBanRevealSlot(
+            RectTransform parent, string name, float x, bool isProtectSlot,
+            Sprite emptyBanSprite, Sprite emptyProtectSprite, Sprite stampSprite, Sprite protectBadgeSprite)
+        {
+            var slotRoot = QdaoUguiFactory.CreateRect(name, parent, x, 68f, 64f, 108f);
+            float iconPad = isProtectSlot ? 14f : 10f;
+            float iconSize = isProtectSlot ? 36f : 44f;
+            var icon = QdaoUguiFactory.CreateImage("Icon", slotRoot, iconPad, isProtectSlot ? 16f : iconPad, iconSize, iconSize, null, false);
+            icon.preserveAspect = true;
+            icon.gameObject.SetActive(false);
+            var frame = QdaoUguiFactory.CreateImage("Frame", slotRoot, 0f, 0f, 64f, 64f,
+                isProtectSlot ? emptyProtectSprite : emptyBanSprite, false);
+            frame.type = Image.Type.Simple;
+            frame.color = Color.white;
+            var overlay = QdaoUguiFactory.CreateImage("Overlay", slotRoot,
+                isProtectSlot ? 36f : 12f, isProtectSlot ? 36f : 12f,
+                isProtectSlot ? 28f : 40f, isProtectSlot ? 28f : 40f,
+                isProtectSlot ? protectBadgeSprite : stampSprite, false);
+            overlay.preserveAspect = true;
+            overlay.gameObject.SetActive(false);
+            var nameTxt = QdaoUguiFactory.CreateText("Name", slotRoot, -4f, 70f, 72f, 36f,
+                string.Empty, 13f, QdaoUguiTheme.Html("#172D20"), TextAlignmentOptions.Top);
+            nameTxt.enableAutoSizing = true;
+            nameTxt.fontSizeMin = 10f;
+            nameTxt.fontSizeMax = 13f;
+            nameTxt.overflowMode = TextOverflowModes.Ellipsis;
+            nameTxt.raycastTarget = false;
+            return new BanRevealSlotView { Frame = frame, Icon = icon, Overlay = overlay, NameText = nameTxt };
+        }
+
+        private void TogglePrepProtectMode()
+        {
+            if (_prepState == null || _prepState.SkillProtectSlotsPerTeam == 0u) return;
+            _prepProtectMode = !_prepProtectMode;
+            RefreshPrepBanUi();
         }
 
         private Sprite LoadSkillIconForBan(uint skillId)
@@ -3279,11 +3459,18 @@ namespace MmorpgClient.UI.Ugui.Battle
             bool expired = _prepState.DeadlineMs != 0 && remainMs <= 0;
             bool canEdit = IsChannelReady() && !locked && !expired && !_prepRequestPending;
             uint maxSlots = _prepState.SkillBanSlotsPerTeam;
+            bool hasProtect = _prepState.SkillProtectSlotsPerTeam > 0u;
+            if (!hasProtect) _prepProtectMode = false;
 
             var effectiveBans = _prepState.TeamEffectiveBanSkillIds;
+            uint effectiveProtect = hasProtect ? _prepState.TeamEffectiveProtectedSkillId : 0u;
             var emptySlotSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_ban_slot_empty");
             var filledSlotSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_ban_slot_filled");
+            var emptyProtectSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_protect_slot_empty");
+            var filledProtectSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_protect_slot_filled");
             var stampSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("skill_banned_stamp");
+            var protectBadgeSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("skill_protected_badge");
+            var teammateTagSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_teammate_equipped_tag");
             for (int i = 0; i < _prepBanSlots.Length; i++)
             {
                 var slot = _prepBanSlots[i];
@@ -3297,15 +3484,49 @@ namespace MmorpgClient.UI.Ugui.Battle
                 slot.NameText.text = filled ? BattleSkillBanModels.ResolveSkillName(sid) : "空槽";
             }
 
+            if (_prepProtectSlotRoot != null && _prepProtectSlot != null)
+            {
+                _prepProtectSlotRoot.gameObject.SetActive(hasProtect);
+                if (hasProtect)
+                {
+                    bool pFilled = effectiveProtect != 0u;
+                    _prepProtectSlot.Frame.sprite = pFilled ? (filledProtectSprite ?? emptyProtectSprite) : emptyProtectSprite;
+                    _prepProtectSlot.Frame.color = _prepProtectMode
+                        ? new Color(0.92f, 1f, 0.94f, 1f)
+                        : (_prepProtectSlot.Frame.sprite != null ? Color.white : SeasonEconomyUiArt.BattleArenaJade);
+                    _prepProtectSlot.SkillIcon.gameObject.SetActive(pFilled);
+                    if (pFilled) _prepProtectSlot.SkillIcon.sprite = LoadSkillIconForBan(effectiveProtect);
+                    _prepProtectSlot.Stamp.gameObject.SetActive(pFilled && protectBadgeSprite != null);
+                    _prepProtectSlot.NameText.text = pFilled
+                        ? BattleSkillBanModels.ResolveSkillName(effectiveProtect)
+                        : (_prepProtectMode ? "点选护招" : "护招空");
+                }
+            }
+
             int selfCount = selfState?.NominatedBanSkillIds.Count ?? 0;
+            uint selfProtect = selfState?.NominatedProtectSkillId ?? 0u;
             if (_prepBanCountText != null)
             {
+                string protectPart = hasProtect ? $" · 护招 {(effectiveProtect != 0u ? 1 : 0)}/1" : string.Empty;
+                string modePart = _prepProtectMode ? "【护招模式：点击下方技能护招】" : "点选下方技能提名禁招";
                 _prepBanCountText.text = locked
-                    ? $"本队生效禁招 {effectiveBans.Count}/{maxSlots} · 已锁定"
-                    : $"本队禁招 {effectiveBans.Count}/{maxSlots}（本人提名 {selfCount}/{maxSlots}）· 点选候选技能提名";
+                    ? $"本队生效禁招 {effectiveBans.Count}/{maxSlots}{protectPart} · 已锁定"
+                    : $"本队禁招 {effectiveBans.Count}/{maxSlots}{protectPart}（本人 {selfCount}/{maxSlots}）· {modePart}";
+            }
+            if (_prepBanModeButton != null)
+            {
+                _prepBanModeButton.SetVisible(hasProtect);
+                _prepBanModeButton.SetInteractable(canEdit);
+                _prepBanModeButton.SetText(_prepProtectMode ? "返回：点选禁招" : "切换：点选护招");
+                _prepBanModeButton.Plate.color = _prepProtectMode
+                    ? SeasonEconomyUiArt.BattleArenaJade
+                    : SeasonEconomyUiArt.BattleArenaPaper;
+                _prepBanModeButton.Label.color = _prepProtectMode
+                    ? QdaoUguiTheme.Html("#FFF3D9")
+                    : QdaoUguiTheme.Html("#173F28");
             }
             if (_prepBanClearButton != null)
-                _prepBanClearButton.SetInteractable(canEdit && selfCount > 0);
+                _prepBanClearButton.SetInteractable(canEdit && (selfCount > 0 || selfProtect != 0u));
 
             var tabActiveSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_ban_tab_active");
             var tabInactiveSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_ban_tab_inactive");
@@ -3347,8 +3568,12 @@ namespace MmorpgClient.UI.Ugui.Battle
             for (int i = 0; i < bucket.Count; i++)
             {
                 uint sid = bucket[i];
-                bool selected = selfNominated.Contains(sid);
+                bool isSelfBanned = selfNominated.Contains(sid);
+                bool isSelfProtected = hasProtect && selfProtect == sid;
+                bool selected = isSelfBanned || isSelfProtected;
+                bool teammateHas = BattleSkillBanModels.IsTeammateEquipped(_prepState, sid);
                 int votes = BattleSkillBanModels.CountTeamVotes(_prepState, sid);
+                int protVotes = hasProtect ? BattleSkillBanModels.CountTeamProtectVotes(_prepState, sid) : 0;
                 int row = i / cols;
                 int col = i % cols;
 
@@ -3365,15 +3590,30 @@ namespace MmorpgClient.UI.Ugui.Battle
                     LoadSkillIconForBan(sid), false);
                 icon.preserveAspect = true;
 
-                if (selected && stampSprite != null)
+                // 队友已带防误禁角标：严格按 integration.md 局部矩形 [68,2,90,24]（22×22）放右上角
+                if (teammateHas && teammateTagSprite != null)
                 {
-                    var st = QdaoUguiFactory.CreateImage("Stamp", cardBtn.Rect, 64f, 4f, 24f, 24f, stampSprite, false);
+                    var tmImg = QdaoUguiFactory.CreateImage("TeammateTag", cardBtn.Rect, 68f, 2f, 22f, 22f, teammateTagSprite, false);
+                    tmImg.preserveAspect = true;
+                }
+                if (isSelfBanned && stampSprite != null)
+                {
+                    var st = QdaoUguiFactory.CreateImage("Stamp", cardBtn.Rect, 58f, 40f, 26f, 26f, stampSprite, false);
                     st.preserveAspect = true;
                 }
-                if (votes > 0)
+                else if (isSelfProtected && protectBadgeSprite != null)
                 {
-                    var voteTxt = QdaoUguiFactory.CreateText("Votes", cardBtn.Rect, 4f, 4f, 34f, 20f,
-                        $"×{votes}", 14f, selected ? selectedCream : QdaoUguiTheme.Html("#8E3B28"), TextAlignmentOptions.MidlineLeft);
+                    var pb = QdaoUguiFactory.CreateImage("ProtectStamp", cardBtn.Rect, 58f, 40f, 26f, 26f, protectBadgeSprite, false);
+                    pb.preserveAspect = true;
+                }
+                if (votes > 0 || protVotes > 0)
+                {
+                    string badgeText = votes > 0 && protVotes > 0
+                        ? $"×{votes}/保{protVotes}"
+                        : (votes > 0 ? $"×{votes}" : $"保{protVotes}");
+                    var voteTxt = QdaoUguiFactory.CreateText("Votes", cardBtn.Rect, 4f, 4f, 60f, 20f,
+                        badgeText, 13f, selected ? selectedCream : (protVotes > 0 && votes == 0 ? QdaoUguiTheme.Html("#1B5A3A") : QdaoUguiTheme.Html("#8E3B28")),
+                        TextAlignmentOptions.MidlineLeft);
                     voteTxt.fontStyle = FontStyles.Bold;
                     voteTxt.raycastTarget = false;
                 }
@@ -3401,30 +3641,46 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (_prepState == null || _prepRequestPending) return;
             var selfState = FindPrepPlayerState(_prepState, _myId);
-            var next = new List<uint>();
+            var nextBans = new List<uint>();
             if (selfState != null)
             {
                 for (int i = 0; i < selfState.NominatedBanSkillIds.Count; i++)
-                    next.Add(selfState.NominatedBanSkillIds[i]);
+                    nextBans.Add(selfState.NominatedBanSkillIds[i]);
             }
-            if (!BattleSkillBanModels.ToggleNomination(next, skillId, _prepState.SkillBanSlotsPerTeam))
+            uint curProtect = selfState?.NominatedProtectSkillId ?? 0u;
+            if (_prepProtectMode && _prepState.SkillProtectSlotsPerTeam > 0u)
+            {
+                var (nextProtect, bansModified) = BattleSkillBanModels.ToggleProtectNomination(nextBans, curProtect, skillId);
+                BattleSkillBanModels.PreferenceStore.SaveProtected(_myId, nextProtect);
+                if (bansModified) BattleSkillBanModels.PreferenceStore.Save(_myId, nextBans);
+                SendPrepBanAndProtectUpdate(bansModified, nextBans, true, nextProtect);
+                return;
+            }
+            var (accepted, nextProtAfterBan, protModified) = BattleSkillBanModels.ToggleBanWithProtectClear(
+                nextBans, curProtect, skillId, _prepState.SkillBanSlotsPerTeam);
+            if (!accepted)
             {
                 SetHint($"最多提名 {_prepState.SkillBanSlotsPerTeam} 招，请先点击已选技能取消后再换选");
                 return;
             }
-            BattleSkillBanModels.PreferenceStore.Save(_myId, next);
-            SendPrepBanUpdate(next);
+            BattleSkillBanModels.PreferenceStore.Save(_myId, nextBans);
+            if (protModified) BattleSkillBanModels.PreferenceStore.SaveProtected(_myId, nextProtAfterBan);
+            SendPrepBanAndProtectUpdate(true, nextBans, protModified, nextProtAfterBan);
         }
 
         private void OnPrepBanClearClicked()
         {
             if (_prepState == null || _prepRequestPending) return;
             var empty = new List<uint>();
+            bool hasProtect = _prepState.SkillProtectSlotsPerTeam > 0u;
             BattleSkillBanModels.PreferenceStore.Save(_myId, empty);
-            SendPrepBanUpdate(empty);
+            if (hasProtect) BattleSkillBanModels.PreferenceStore.SaveProtected(_myId, 0u);
+            SendPrepBanAndProtectUpdate(true, empty, hasProtect, 0u);
         }
 
-        private void SendPrepBanUpdate(IReadOnlyList<uint> banIds)
+        private void SendPrepBanAndProtectUpdate(
+            bool updateBans, IReadOnlyList<uint> banIds,
+            bool updateProtect, uint protectSkillId)
         {
             if (_prepRequestPending || _owner?.Client == null) return;
             ulong battleId = _state?.BattleId ?? 0ul;
@@ -3435,14 +3691,15 @@ namespace MmorpgClient.UI.Ugui.Battle
                 if (_state?.BattleId != battleId) return;
                 _prepRequestPending = false;
                 RefreshPrepUi();
-            }, updateBannedSkills: true, bannedSkillIds: banIds);
+            }, updateBannedSkills: updateBans, bannedSkillIds: banIds,
+               updateProtectedSkill: updateProtect, protectedSkillId: protectSkillId);
         }
 
         private void RefreshBanStrip(BattleStateS2C state)
         {
             if (_banStripRoot == null) return;
             bool inPrep = _prepState != null && _prepState.Active;
-            bool show = state != null && !inPrep && state.BannedSkillIds.Count > 0;
+            bool show = state != null && !inPrep && BattleSkillBanModels.HasAnyBanOrProtectReveal(state);
             _banStripRoot.gameObject.SetActive(show);
             if (!show)
             {
@@ -3452,27 +3709,141 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
 
             var stampSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("skill_banned_stamp");
+            var protectBadgeSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("skill_protected_badge");
             for (int i = 0; i < 3; i++)
             {
                 uint sidA = i < state.TeamABannedSkillIds.Count ? state.TeamABannedSkillIds[i] : 0u;
                 bool hasA = sidA != 0u;
+                bool counteredA = hasA && BattleSkillBanModels.IsSkillCountered(state, sidA);
                 _banStripIconsA[i].gameObject.SetActive(hasA);
                 if (hasA) _banStripIconsA[i].sprite = LoadSkillIconForBan(sidA);
-                _banStripStampsA[i].gameObject.SetActive(hasA && stampSprite != null);
+                var ovA = counteredA ? (protectBadgeSprite ?? stampSprite) : stampSprite;
+                _banStripStampsA[i].sprite = ovA;
+                _banStripStampsA[i].gameObject.SetActive(hasA && ovA != null);
 
                 uint sidB = i < state.TeamBBannedSkillIds.Count ? state.TeamBBannedSkillIds[i] : 0u;
                 bool hasB = sidB != 0u;
+                bool counteredB = hasB && BattleSkillBanModels.IsSkillCountered(state, sidB);
                 _banStripIconsB[i].gameObject.SetActive(hasB);
                 if (hasB) _banStripIconsB[i].sprite = LoadSkillIconForBan(sidB);
-                _banStripStampsB[i].gameObject.SetActive(hasB && stampSprite != null);
+                var ovB = counteredB ? (protectBadgeSprite ?? stampSprite) : stampSprite;
+                _banStripStampsB[i].sprite = ovB;
+                _banStripStampsB[i].gameObject.SetActive(hasB && ovB != null);
             }
             if (_banStripDetailText != null)
             {
-                _banStripDetailText.text = BattleSkillBanModels.FormatTeamBansSummary(
-                    state.TeamABannedSkillIds, state.TeamBBannedSkillIds);
+                _banStripDetailText.text = BattleSkillBanModels.FormatTeamBansSummary(state);
             }
             if (_banStripDetailRoot != null)
                 _banStripDetailRoot.gameObject.SetActive(_banStripDetailExpanded);
+
+            if (state.BattleId != 0ul && state.RoundIndex <= 1u && _banRevealShownBattleId != state.BattleId)
+            {
+                ShowBanRevealBanner(state);
+            }
+        }
+
+        private void ShowBanRevealBanner(BattleStateS2C state)
+        {
+            if (_banRevealRoot == null || state == null) return;
+            _banRevealShownBattleId = state.BattleId;
+
+            var emptyBanSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_ban_slot_empty");
+            var filledBanSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_ban_slot_filled");
+            var emptyProtectSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_protect_slot_empty");
+            var filledProtectSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("prep_protect_slot_filled");
+            var stampSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("skill_banned_stamp");
+            var protectBadgeSprite = SeasonEconomyUiArt.LoadBattlePrepSkillBanSlice("skill_protected_badge");
+
+            int doubleCount = 0;
+            for (int i = 0; i < state.TeamABannedSkillIds.Count; i++)
+            {
+                if (BattleSkillBanModels.IsDoubleBanned(state, state.TeamABannedSkillIds[i])) doubleCount++;
+            }
+            int counterCount = state.CounteredBanSkillIds.Count;
+
+            if (_banRevealTitleText != null)
+            {
+                _banRevealTitleText.text = counterCount > 0
+                    ? "破禁化解！双方禁招与护招亮牌"
+                    : (doubleCount > 0 ? "双边撞车！双方禁招与护招亮牌" : "双方禁招与护招亮牌");
+            }
+            if (_banRevealCenterText != null)
+            {
+                string sub = counterCount > 0
+                    ? $"破禁化解 ×{counterCount}"
+                    : (doubleCount > 0 ? $"双边同禁 ×{doubleCount}" : $"生效禁招 {state.BannedSkillIds.Count} 招");
+                _banRevealCenterText.text = $"A 队 vs B 队\n{sub}";
+            }
+
+            PopulateBanRevealSide(_banRevealLeftSlots, state, state.TeamABannedSkillIds, state.TeamAProtectedSkillId,
+                emptyBanSprite, filledBanSprite, emptyProtectSprite, filledProtectSprite, stampSprite, protectBadgeSprite);
+            PopulateBanRevealSide(_banRevealRightSlots, state, state.TeamBBannedSkillIds, state.TeamBProtectedSkillId,
+                emptyBanSprite, filledBanSprite, emptyProtectSprite, filledProtectSprite, stampSprite, protectBadgeSprite);
+
+            RealtimeTween.Kill(_banRevealRoot.gameObject);
+            _banRevealRoot.gameObject.SetActive(true);
+            _banRevealRoot.SetAsLastSibling();
+            if (_banRevealCanvasGroup != null) _banRevealCanvasGroup.alpha = 0f;
+
+            // 单段 2.65 秒包络：0.18s 淡入 → 2.17s 停留 → 0.30s 淡出隐藏（无嵌套回调，WebGL2 友好）
+            RealtimeTween.To(0f, 2.65f, 2.65f).SetIgnoreEngineTimeScale(true).SetTarget(_banRevealRoot.gameObject)
+                .OnUpdate((RealtimeTweenCallback1)(t =>
+                {
+                    if (_banRevealCanvasGroup == null) return;
+                    float elapsed = t.Value.x;
+                    if (elapsed < 0.18f) _banRevealCanvasGroup.alpha = elapsed / 0.18f;
+                    else if (elapsed <= 2.35f) _banRevealCanvasGroup.alpha = 1f;
+                    else _banRevealCanvasGroup.alpha = Mathf.Clamp01((2.65f - elapsed) / 0.30f);
+                }))
+                .OnComplete((RealtimeTweenCallback)(() =>
+                {
+                    if (_banRevealRoot == null) return;
+                    if (_banRevealCanvasGroup != null) _banRevealCanvasGroup.alpha = 1f;
+                    _banRevealRoot.gameObject.SetActive(false);
+                }));
+        }
+
+        private void PopulateBanRevealSide(
+            BanRevealSlotView[] slots, BattleStateS2C state,
+            IReadOnlyList<uint> teamBans, uint teamProtectId,
+            Sprite emptyBanSprite, Sprite filledBanSprite,
+            Sprite emptyProtectSprite, Sprite filledProtectSprite,
+            Sprite stampSprite, Sprite protectBadgeSprite)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                var slot = slots[i];
+                uint sid = i < teamBans.Count ? teamBans[i] : 0u;
+                bool has = sid != 0u;
+                bool countered = has && BattleSkillBanModels.IsSkillCountered(state, sid);
+                bool doubled = has && BattleSkillBanModels.IsDoubleBanned(state, sid);
+                slot.Frame.sprite = has ? (filledBanSprite ?? emptyBanSprite) : emptyBanSprite;
+                slot.Icon.gameObject.SetActive(has);
+                if (has) slot.Icon.sprite = LoadSkillIconForBan(sid);
+                var ov = countered ? (protectBadgeSprite ?? stampSprite) : stampSprite;
+                slot.Overlay.sprite = ov;
+                slot.Overlay.gameObject.SetActive(has && ov != null);
+                slot.NameText.text = !has
+                    ? "未禁"
+                    : (countered ? $"{BattleSkillBanModels.ResolveSkillName(sid)}\n[化解]"
+                        : (doubled ? $"{BattleSkillBanModels.ResolveSkillName(sid)}\n[同禁]" : BattleSkillBanModels.ResolveSkillName(sid)));
+                slot.NameText.color = countered
+                    ? QdaoUguiTheme.Html("#1B5A3A")
+                    : (doubled ? QdaoUguiTheme.Html("#9A2D22") : QdaoUguiTheme.Html("#172D20"));
+            }
+            var pSlot = slots[3];
+            bool pHas = teamProtectId != 0u;
+            bool pCountered = pHas && BattleSkillBanModels.IsSkillCountered(state, teamProtectId);
+            pSlot.Frame.sprite = pHas ? (filledProtectSprite ?? emptyProtectSprite) : emptyProtectSprite;
+            pSlot.Icon.gameObject.SetActive(pHas);
+            if (pHas) pSlot.Icon.sprite = LoadSkillIconForBan(teamProtectId);
+            pSlot.Overlay.sprite = protectBadgeSprite;
+            pSlot.Overlay.gameObject.SetActive(pHas && protectBadgeSprite != null);
+            pSlot.NameText.text = !pHas
+                ? "未护招"
+                : (pCountered ? $"{BattleSkillBanModels.ResolveSkillName(teamProtectId)}\n[破禁]" : $"{BattleSkillBanModels.ResolveSkillName(teamProtectId)}\n[护招]");
+            pSlot.NameText.color = QdaoUguiTheme.Html("#1B5A3A");
         }
 
         private void StartPrepExitAnimation()
@@ -4059,7 +4430,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _stopWatchButton.SetVisible(readOnly);
             if (_spectate)
             {
-                _spectateText.text = $"观战中 · 观众 {_observerCount} 人";
+                _spectateText.text = _observerCount > 0 ? $"观战中 · 观众 {_observerCount} 人" : "观战中";
                 _stopWatchButton.SetText("退出观战");
             }
             else if (_replay)

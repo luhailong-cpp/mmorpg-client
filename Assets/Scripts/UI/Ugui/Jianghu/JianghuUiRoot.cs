@@ -44,6 +44,7 @@ namespace MmorpgClient.UI.Ugui.Jianghu
         private TMP_Text _popupTimer;
         private Button _popupPrimaryBtn;
         private Button _popupSecondaryBtn;
+        private Image _popupSecondaryImage;
         private TMP_Text _popupPrimaryLabel;
         private TMP_Text _popupSecondaryLabel;
         private ulong _popupInviteId;
@@ -106,36 +107,40 @@ namespace MmorpgClient.UI.Ugui.Jianghu
 
         private void BuildIncomingPopup(RectTransform design)
         {
-            _popupRoot = QdaoUguiFactory.CreateCenteredRect("JianghuIncomingPopup", design, 860f, 380f);
-            _popupRoot.anchoredPosition = new Vector2(0f, 120f);
+            _popupRoot = QdaoUguiFactory.CreateCenteredRect("JianghuIncomingPopup", design, 860f, 420f);
+            _popupRoot.anchoredPosition = new Vector2(0f, 110f);
             _popupRoot.gameObject.SetActive(false);
 
-            bool hasPopupSkin = JianghuDuelWindow.LoadOptionalSkin("popup_frame") != null;
-            JianghuDuelWindow.CreateSkinOrFallbackArt(_popupRoot, "PopupFrameBg", "popup_frame", "main_frame", 0f, 0f, 860f, 380f);
+            JianghuDuelWindow.CreateSkinOrFallbackArt(_popupRoot, "PopupFrameBg", "popup_frame", "main_frame", 0f, 0f, 860f, 420f);
 
-            _popupTitle = GameplayUiArt.Text(_popupRoot, "天墉生死状送达", 76f, 33f, 708f, 56f, 30f,
-                hasPopupSkin ? GameplayUiArt.Cream : GameplayUiArt.Ink,
-                alignment: TextAlignmentOptions.Center);
+            bool hasTitleSkin = JianghuDuelWindow.LoadOptionalSkin("title_plate") != null;
+            var plaque = JianghuDuelWindow.CreateSkinOrFallbackArt(_popupRoot, "PopupTitlePlaque", "title_plate", "title_plate",
+                190f, -34f, 480f, 96f);
+            _popupTitle = GameplayUiArt.Text(plaque.transform, "天墉生死状送达",
+                hasTitleSkin ? 104f : 48f, hasTitleSkin ? 20f : 12f,
+                hasTitleSkin ? 272f : 384f, hasTitleSkin ? 52f : 64f,
+                28f, GameplayUiArt.Cream, alignment: TextAlignmentOptions.Center);
             _popupTitle.fontStyle = FontStyles.Bold;
             _popupTitle.raycastTarget = false;
 
-            _popupBody = GameplayUiArt.Text(_popupRoot, string.Empty, 54f, 108f, 752f, 112f, 23f, GameplayUiArt.Ink, wrap: true);
+            _popupBody = GameplayUiArt.Text(_popupRoot, string.Empty, 82f, 92f, 696f, 134f, 23f, GameplayUiArt.Ink, wrap: true);
             _popupBody.raycastTarget = false;
 
-            _popupTimer = GameplayUiArt.Text(_popupRoot, string.Empty, 54f, 224f, 752f, 34f, 21f, QdaoUguiTheme.Html("#A94735"),
+            _popupTimer = GameplayUiArt.Text(_popupRoot, string.Empty, 82f, 234f, 696f, 34f, 21f, QdaoUguiTheme.Html("#A94735"),
                 alignment: TextAlignmentOptions.Center);
             _popupTimer.raycastTarget = false;
 
             _popupPrimaryBtn = JianghuDuelWindow.SkinButton(_popupRoot, "PopupPrimaryBtn", "应战开打",
-                64f, 282f, 240f, 66f, HandlePopupPrimary, "btn_primary", "button_primary", true, 24f);
+                74f, 294f, 230f, 66f, HandlePopupPrimary, "btn_primary", "button_primary", true, 23f);
             _popupPrimaryLabel = _popupPrimaryBtn.GetComponentInChildren<TMP_Text>(true);
 
             _popupSecondaryBtn = JianghuDuelWindow.SkinButton(_popupRoot, "PopupSecondaryBtn", "婉拒战书",
-                320f, 282f, 240f, 66f, HandlePopupSecondary, "btn_secondary", "button_secondary", false, 24f);
+                318f, 294f, 224f, 66f, HandlePopupSecondary, "btn_secondary", "button_secondary", false, 23f);
+            _popupSecondaryImage = _popupSecondaryBtn.GetComponent<Image>();
             _popupSecondaryLabel = _popupSecondaryBtn.GetComponentInChildren<TMP_Text>(true);
 
             JianghuDuelWindow.SkinButton(_popupRoot, "PopupLaterBtn", "稍后查看",
-                576f, 282f, 220f, 66f, HandlePopupLater, "btn_secondary", "button_secondary", false, 23f);
+                556f, 294f, 230f, 66f, HandlePopupLater, "btn_secondary", "button_secondary", false, 23f);
         }
 
         private void Update()
@@ -295,22 +300,24 @@ namespace MmorpgClient.UI.Ugui.Jianghu
             if (kind == JianghuInviteActionKind.CaptainRespond)
             {
                 _popupTitle.text = pending.WritTier == global::Match.JianghuWritTier.GoldItem
-                    ? "金帖生死状送达！"
-                    : "江湖战书送达";
+                    ? "金帖生死状送达"
+                    : "收到江湖战书";
                 _popupBody.text =
                     $"【{challenger}】向你递交了一封 [{tierLabel} · {pending.TeamSize}V{pending.TeamSize}] 天墉生死状。\n" +
                     "双方自愿方可成局开战；若暂不方便，可点击「婉拒战书」，对双方均不产生任何消耗或惩罚。";
                 if (_popupPrimaryLabel != null) _popupPrimaryLabel.text = "应战开打";
                 if (_popupSecondaryLabel != null) _popupSecondaryLabel.text = "婉拒战书";
+                ApplyPopupSecondarySkin(isDanger: false);
             }
             else
             {
-                _popupTitle.text = "小队生死状全员确认";
+                _popupTitle.text = "小队全员确认";
                 _popupBody.text =
                     $"本队参与 [{tierLabel} · {pending.TeamSize}V{pending.TeamSize}] 天墉生死擂（{challenger} 对阵 {target}）。\n" +
                     "须全队成员在 30 秒内确认同意方可成局开战；任意队员退出则整单自动作废且无任何扣费。";
                 if (_popupPrimaryLabel != null) _popupPrimaryLabel.text = "同意参战";
                 if (_popupSecondaryLabel != null) _popupSecondaryLabel.text = "退出作废";
+                ApplyPopupSecondarySkin(isDanger: true);
             }
 
             uint remSec = JianghuModels.RemainingSeconds(JianghuModels.InviteDeadlineMs(pending), _client.EstimatedServerNowMs);
@@ -345,6 +352,24 @@ namespace MmorpgClient.UI.Ugui.Jianghu
         {
             if (_popupInviteId != 0) _client?.SuppressPopupFor(_popupInviteId);
             _popupRoot.gameObject.SetActive(false);
+        }
+
+        private void ApplyPopupSecondarySkin(bool isDanger)
+        {
+            Sprite dangerSprite = isDanger ? JianghuDuelWindow.LoadOptionalSkin("btn_danger") : null;
+            if (_popupSecondaryImage != null)
+            {
+                Sprite sprite = dangerSprite
+                    ?? JianghuDuelWindow.LoadOptionalSkin("btn_secondary")
+                    ?? GameplayUiArt.Load("button_secondary");
+                if (sprite != null)
+                {
+                    _popupSecondaryImage.sprite = sprite;
+                    _popupSecondaryImage.type = sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                }
+            }
+            if (_popupSecondaryLabel != null)
+                _popupSecondaryLabel.color = dangerSprite != null ? GameplayUiArt.Cream : GameplayUiArt.Ink;
         }
     }
 }

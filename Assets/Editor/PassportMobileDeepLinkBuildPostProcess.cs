@@ -12,29 +12,16 @@ namespace MmorpgClient.Editor
     /// <summary>
     /// 移动端官方通行证(Casdoor OIDC)回调深度链接自动登记(服务端 docs/design/official-passport-registration.md §3.8):
     ///   - Android: 导出 Gradle 工程时向主 LAUNCHER Activity 的 AndroidManifest.xml 幂等追加 VIEW/DEFAULT/BROWSABLE intent-filter,
-    ///     使 Application.deepLinkActivated 生效。通行证是 https 时登记 App Links(https://通行证域名/passport/app-callback,
-    ///     autoVerify:系统按该域名的 assetlinks.json 核对归属,别的 App 抢注不了);自定义协议头 xuanming://passport/callback
-    ///     只在开发包里登记(本机联调的 http 通行证用它),正式包不登记,免得别的 App 用同名协议头截走授权回调。
+    ///     使 Application.deepLinkActivated 生效。登记的是自定义协议头 xuanming://passport/callback(开发包、正式包一样)。
+    ///     没用 App Links:国内多数手机核对不了 assetlinks.json、浏览器没有点击的跳转也不交给 App;别的 App 抢注同名协议头时
+    ///     截到的授权码没有 PKCE 校验串换不了票,静默登录参数由通行证公网入口拦掉(服务端设计稿 §3.8、§3.10)。
     ///   - iOS 不登记:走 ASWebAuthenticationSession(Assets/Plugins/iOS/MmorpgPassportWebAuth.mm),回调由系统直接交给发起会话的 App,
     ///     不需要 Info.plist 的 URL scheme;登记了反而让别的 App / 网页能用这个 scheme 把游戏拉起来。
-    /// 通行证地址取自构建时的 Assets/Resources/ClientEndpoints.json,路径取自 PassportOAuthProtocol / ClientSettings。
+    /// 协议头、主机与路径取自 ClientSettings.DefaultMobilePassportRedirectUri。
     /// </summary>
     public static class PassportMobileDeepLinkBuildPostProcess
     {
         private const string AndroidNamespace = "http://schemas.android.com/apk/res/android";
-
-        /// <summary>通行证是 https 时 App Links 的主机与路径;不是(本机联调)回 false。</summary>
-        internal static bool TryParseAppLink(string passportOrigin, out string host, out string path)
-        {
-            host = string.Empty;
-            path = string.Empty;
-            var redirect = MmorpgClient.Net.PassportOAuthProtocol.AppLinkRedirectUri(passportOrigin);
-            if (redirect == null) return false;
-            var uri = new Uri(redirect);
-            host = uri.Host;
-            path = uri.AbsolutePath;
-            return true;
-        }
 
         internal static bool TryParseMobileRedirect(out string scheme, out string host, out string path)
         {
@@ -55,8 +42,7 @@ namespace MmorpgClient.Editor
         /// 向 AndroidManifest.xml 的主 LAUNCHER Activity 幂等注入深度链接 intent-filter。
         /// 拆成纯 XML 方法便于脱离 Android Build Support 单测验证。
         /// </summary>
-        internal static bool EnsureAndroidDeepLinkFilter(XmlDocument doc, string scheme, string host, string pathPrefix,
-            bool autoVerify = false)
+        internal static bool EnsureAndroidDeepLinkFilter(XmlDocument doc, string scheme, string host, string pathPrefix)
         {
             if (doc == null || string.IsNullOrEmpty(scheme) || string.IsNullOrEmpty(host))
                 return false;
@@ -86,7 +72,6 @@ namespace MmorpgClient.Editor
             }
 
             XmlElement filter = doc.CreateElement("intent-filter");
-            if (autoVerify) filter.SetAttribute("autoVerify", AndroidNamespace, "true");
             XmlElement action = doc.CreateElement("action");
             action.SetAttribute("name", AndroidNamespace, "android.intent.action.VIEW");
             filter.AppendChild(action);
@@ -146,17 +131,10 @@ namespace MmorpgClient.Editor
             var doc = new XmlDocument();
             doc.Load(manifestPath);
             bool changed = false;
-            string origin = ClientEndpointsBuildGuard.ReadProjectEndpoints().passportOrigin;
-            if (PassportMobileDeepLinkBuildPostProcess.TryParseAppLink(origin, out var appLinkHost, out var appLinkPath))
+            if (PassportMobileDeepLinkBuildPostProcess.TryParseMobileRedirect(out var scheme, out var host, out var path))
             {
-                changed |= PassportMobileDeepLinkBuildPostProcess.EnsureAndroidDeepLinkFilter(doc, "https", appLinkHost, appLinkPath, autoVerify: true);
-                Debug.Log($"[PassportMobileDeepLink] App Link https://{appLinkHost}{appLinkPath} (autoVerify)");
-            }
-            if (UnityEditor.EditorUserBuildSettings.development &&
-                PassportMobileDeepLinkBuildPostProcess.TryParseMobileRedirect(out var scheme, out var host, out var path))
-            {
-                changed |= PassportMobileDeepLinkBuildPostProcess.EnsureAndroidDeepLinkFilter(doc, scheme, host, path);
-                Debug.Log($"[PassportMobileDeepLink] development build: custom scheme {scheme}://{host}{path}");
+                changed = PassportMobileDeepLinkBuildPostProcess.EnsureAndroidDeepLinkFilter(doc, scheme, host, path);
+                Debug.Log($"[PassportMobileDeepLink] custom scheme {scheme}://{host}{path}");
             }
             if (!changed)
             {

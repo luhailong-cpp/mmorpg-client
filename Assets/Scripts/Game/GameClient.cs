@@ -14,6 +14,7 @@ using MmorpgClient.Game.Tournament;
 using MmorpgClient.Game.Role;
 using MmorpgClient.Game.Season;
 using MmorpgClient.Game.SpiritShop;
+using MmorpgClient.Game.TacticalPuzzle;
 using MmorpgClient.Game.TravelPass;
 using MmorpgClient.Game.TrialJournal;
 using MmorpgClient.Game.Skills;
@@ -190,6 +191,9 @@ namespace MmorpgClient.Game
 
         /// <summary>五行试炼志 V2 网络层（RPC 456–458，走大厅 gate -> scene 路由）。</summary>
         public TrialJournalClient TrialJournal { get; }
+
+        /// <summary>万象残局坊 V1 网络层（RPC 575–581，走大厅 gate -> match 路由）。</summary>
+        public TacticalPuzzleClient TacticalPuzzle { get; }
 
         /// <summary>赛季技能与赛季印网络层（RPC 453–455，走大厅 gate -> scene 路由）。</summary>
         public SeasonClient Season { get; }
@@ -421,6 +425,8 @@ namespace MmorpgClient.Game
                 () => Time.realtimeSinceStartup, RpcGuard);
             TrialJournal = new TrialJournalClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
                 () => Time.realtimeSinceStartup);
+            TacticalPuzzle = new TacticalPuzzleClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
+                () => Time.realtimeSinceStartup);
             Season = SeasonClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
                 () => Time.realtimeSinceStartup);
             SpiritShop = new SpiritShopClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
@@ -459,6 +465,7 @@ namespace MmorpgClient.Game
             Battle.OnBattleEnd += end =>
             {
                 TrialJournal.HandleBattleSettled();
+                TacticalPuzzle.HandleBattleSettled();
                 Season.HandleBattleSettled();
                 TravelPass.HandleBattleSettled();
                 Jianghu.HandleBattleSettled();
@@ -650,6 +657,7 @@ namespace MmorpgClient.Game
             Ranked?.Tick(); // 论剑结算权威结果有界轮询与会话边界观察
             Tournament?.ObserveConnection(); // 群仙问道赛会话边界观察（切号/换 Gate 自动作废旧回调）
             TrialJournal?.Tick(); // 五行试炼志:快照节流队列与会话边界观察
+            TacticalPuzzle?.ObserveConnection(); // 万象残局坊:会话边界观察
             Season?.Tick(); // 赛季印与赛季技能:快照节流队列与会话边界观察
             bool inBattleOrSpectate = (Battle != null && Battle.HasActiveBattle)
                 || (Spectate != null && Spectate.Phase != SpectatePhase.None);
@@ -1804,7 +1812,10 @@ namespace MmorpgClient.Game
             // (服务端若同时推 BattleReconnectS2C,链路按 battle_id + 在途补签去重)。
             // 补签失败不会静默:链路以 BattleGone / Unreachable 终结,BattleClient 据此收敛或提示玩家。
             // 链式时上一段已 Close 链路、它的成功回调也不会再跑,battle_id 从 _redirectBattleId 接过来。
-            ulong battleIdBeforeRedirect = CarryOverOnChainedRedirect(BattleLink?.BattleId ?? 0, _redirectBattleId, chained);
+            ulong participantBattleId = BattleLink != null && BattleLink.Role != eBattleTicketRole.BattleTicketRoleObserver
+                ? BattleLink.BattleId
+                : 0;
+            ulong battleIdBeforeRedirect = CarryOverOnChainedRedirect(participantBattleId, _redirectBattleId, chained);
             _redirectBattleId = battleIdBeforeRedirect;
 
             // 从这一刻起,老连接不再驱动任何状态 —— 但**先不关**(还要留着兜底,见 ③)。
@@ -2683,6 +2694,7 @@ namespace MmorpgClient.Game
                 SceneEntryEpoch++;
                 _sceneAppearances.Clear();
                 TrialJournal?.HandleSceneEntered();
+                TacticalPuzzle?.HandleSceneEntered();
                 Season?.HandleSceneEntered();
                 SpiritShop?.HandleSceneEntered();
                 TravelPass?.HandleSceneEntered();

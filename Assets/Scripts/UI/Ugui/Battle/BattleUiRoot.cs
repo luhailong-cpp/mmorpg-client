@@ -203,6 +203,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             _stopping = true;
             UnbindClient();
+            if (_spectate?.Phase == SpectatePhase.Ended) _spectate.AckEnd();
             UnbindSpectate();
             UnbindGameClient();
             StopAllCoroutines();
@@ -947,6 +948,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             StartReplay(replay);
         }
 
+        /// <summary>供万象残局坊等外部业务模块直接播放已解码的权威录像（只读复用战报回放屏）。</summary>
+        public void PlayExternalReplay(BattleReplay replay)
+        {
+            if (replay == null) return;
+            StartReplay(replay);
+        }
+
         private void HandleBattleReportError(string message)
         {
             _reportPanel?.RefreshInteractable();
@@ -967,8 +975,11 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 AbortSpectatePlayback();
                 CloseSpectate();
-                _spectate?.StopWatch();
             }
+            if (_spectate != null && (_spectate.Phase == SpectatePhase.Requesting || _spectate.Phase == SpectatePhase.Watching))
+                _spectate.StopWatch();
+            else if (_spectate?.Phase == SpectatePhase.Ended)
+                _spectate.AckEnd();
             if (_replayOpen)
             {
                 AbortReplayPlayback();

@@ -23,7 +23,7 @@ public static partial class MatchErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvbWF0Y2hfZXJyb3JfdGlwLnBy",
-          "b3RvKroQCgttYXRjaF9lcnJvchISCg5rTWF0Y2hfZXJyb3JPSxAAEhMKDmtN",
+          "b3RvKtoSCgttYXRjaF9lcnJvchISCg5rTWF0Y2hfZXJyb3JPSxAAEhMKDmtN",
           "YXRjaEluQmF0dGxlEIB9EhgKE2tNYXRjaEFscmVhZHlRdWV1ZWQQgX0SFgoR",
           "a01hdGNoTW9kZU5vdE9wZW4Qgn0SIAoba01hdGNoVGVhbVNpemVOb3RDb25m",
           "aWd1cmVkEIN9EhMKDmtNYXRjaEludGVybmFsEIR9EhkKFGtNYXRjaFRpY2tl",
@@ -69,8 +69,15 @@ public static partial class MatchErrorTipReflection {
           "ZUNoZWVySW52YWxpZBC7fRIiCh1rTWF0Y2hUb3VybmFtZW50RW1ibGVtSW52",
           "YWxpZBC8fRIlCiBrTWF0Y2hUb3VybmFtZW50UHJlZGljdGlvbkNsb3NlZBC9",
           "fRIsCidrTWF0Y2hUb3VybmFtZW50UHJlZGljdGlvblRhcmdldEludmFsaWQQ",
-          "vn0SJgoha01hdGNoVG91cm5hbWVudFdhcm11cFVuYXZhaWxhYmxlEL99QiQK",
-          "DmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
+          "vn0SJgoha01hdGNoVG91cm5hbWVudFdhcm11cFVuYXZhaWxhYmxlEL99EhkK",
+          "FGtNYXRjaFB1enpsZU5vdEZvdW5kEMB9EhkKFGtNYXRjaFB1enpsZU5vdE93",
+          "bmVyEMF9Eh0KGGtNYXRjaFB1enpsZUxpbWl0UmVhY2hlZBDCfRIcChdrTWF0",
+          "Y2hQdXp6bGVTcGVjSW52YWxpZBDDfRIdChhrTWF0Y2hQdXp6bGVUZXh0UmVq",
+          "ZWN0ZWQQxH0SHQoYa01hdGNoUHV6emxlTm90UHVibGlzaGVkEMV9Eh4KGWtN",
+          "YXRjaFB1enpsZUNhbm5vdExpa2VPd24Qxn0SJAofa01hdGNoUHV6emxlQ2xl",
+          "YXJSZXF1aXJlZFRvTGlrZRDHfRInCiJrTWF0Y2hQdXp6bGVTb2x1dGlvblJl",
+          "cGxheU5vdEZvdW5kEMh9QiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQv",
+          "cGIvdGFibGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::match_error), }, null, null));
@@ -143,6 +150,15 @@ public enum match_error {
   [pbr::OriginalName("kMatchTournamentPredictionClosed")] KMatchTournamentPredictionClosed = 16061,
   [pbr::OriginalName("kMatchTournamentPredictionTargetInvalid")] KMatchTournamentPredictionTargetInvalid = 16062,
   [pbr::OriginalName("kMatchTournamentWarmupUnavailable")] KMatchTournamentWarmupUnavailable = 16063,
+  [pbr::OriginalName("kMatchPuzzleNotFound")] KMatchPuzzleNotFound = 16064,
+  [pbr::OriginalName("kMatchPuzzleNotOwner")] KMatchPuzzleNotOwner = 16065,
+  [pbr::OriginalName("kMatchPuzzleLimitReached")] KMatchPuzzleLimitReached = 16066,
+  [pbr::OriginalName("kMatchPuzzleSpecInvalid")] KMatchPuzzleSpecInvalid = 16067,
+  [pbr::OriginalName("kMatchPuzzleTextRejected")] KMatchPuzzleTextRejected = 16068,
+  [pbr::OriginalName("kMatchPuzzleNotPublished")] KMatchPuzzleNotPublished = 16069,
+  [pbr::OriginalName("kMatchPuzzleCannotLikeOwn")] KMatchPuzzleCannotLikeOwn = 16070,
+  [pbr::OriginalName("kMatchPuzzleClearRequiredToLike")] KMatchPuzzleClearRequiredToLike = 16071,
+  [pbr::OriginalName("kMatchPuzzleSolutionReplayNotFound")] KMatchPuzzleSolutionReplayNotFound = 16072,
 }
 
 #endregion

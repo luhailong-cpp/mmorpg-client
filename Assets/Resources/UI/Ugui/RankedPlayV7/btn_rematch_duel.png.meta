@@ -3,7 +3,7 @@ guid: 86e5c20f7813dfb595f83b9797d79967
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2782074720630849246
+      213: -7875167066860970488
     second: btn_rematch_duel_0
   externalObjects: {}
   serializedVersion: 13
@@ -48,11 +48,11 @@ TextureImporter:
   compressionQuality: 100
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 50, y: 0, z: 50, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -74,7 +74,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -98,14 +98,14 @@ TextureImporter:
         height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 50, y: 0, z: 50, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 98c4c8e51c616b65a066fa8a02decad1
-      internalID: 2782074720630849246
+      spriteID: 0bf2b80b70dd4ebe163ea1fa045537d7
+      internalID: -7875167066860970488
       vertices: []
       indices: 
       edges: []
@@ -114,7 +114,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ae935c8aa07bf99da195a6ac0c19d54e
+    spriteID: 602256d09d4e3daab62ed5c5ad1c1888
     internalID: 0
     vertices: []
     indices: 

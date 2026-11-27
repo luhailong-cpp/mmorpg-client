@@ -788,5 +788,67 @@ namespace MmorpgClient.Tests.EditMode.Battle
             EnterWatching();
             Assert.That(_client.TryCaptureLobbyReconnectContext(out _, out _), Is.False);
         }
+
+        [Test]
+        public void TurnResult_BattleIdZero_FallsBackToStateBattleId()
+        {
+            EnterWatchingLobby();
+            // ev.BattleId == 0 时回退校验 ev.State.BattleId,防它场帧串入
+            _net.PushNotify(MessageIds.NotifySpectateTurnResult, new TurnResultS2C
+            {
+                BattleId = 0,
+                RoundIndex = 1,
+                State = new BattleStateS2C { BattleId = TheBattleId + 99, RoundIndex = 2, Outcome = eBattleOutcome.BattleOutcomeOngoing },
+            });
+            Assert.That(_turns, Is.EqualTo(0), "ev.BattleId=0 但 State.BattleId 是别场时必须丢弃");
+
+            _net.PushNotify(MessageIds.NotifySpectateTurnResult, new TurnResultS2C
+            {
+                BattleId = 0,
+                RoundIndex = 1,
+                State = new BattleStateS2C { BattleId = TheBattleId, RoundIndex = 2, Outcome = eBattleOutcome.BattleOutcomeOngoing },
+            });
+            Assert.That(_turns, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void FrameDedup_SynthesizedStateRPlus1_DropsOlderTurnR_WhileNormalStateR_AcceptsTurnR()
+        {
+            _client.Tick(0);
+            _client.WatchBattle(TheBattleId);
+            _net.CallsOf(MessageIds.WatchBattle)[0].Respond(new Match.WatchBattleResponse
+            {
+                BattleId = TheBattleId,
+                Delivery = Match.eSpectateDelivery.SpectateDeliveryLobby,
+                SpectateTicket = SampleLobbyTicket,
+            });
+            _net.CallsOf(GateClientSpectateRpc.SubscribeSpectateMessageId)[0].Respond(new SubscribeSpectateResponse());
+
+            // 首帧是 gate 由缓存 TURN(3) 合成的 STATE(4)
+            _net.PushNotify(MessageIds.NotifySpectateState, new SpectateStateS2C
+            {
+                State = new BattleStateS2C { BattleId = TheBattleId, RoundIndex = 4, Outcome = eBattleOutcome.BattleOutcomeOngoing },
+                ObserverCount = 0,
+            });
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Watching));
+
+            // 升档重叠迟到一帧已结算的 TURN(3):应丢弃不重播
+            _net.PushNotify(MessageIds.NotifySpectateTurnResult, new TurnResultS2C
+            {
+                BattleId = TheBattleId,
+                RoundIndex = 3,
+                State = new BattleStateS2C { BattleId = TheBattleId, RoundIndex = 4, Outcome = eBattleOutcome.BattleOutcomeOngoing },
+            });
+            Assert.That(_turns, Is.EqualTo(0), "已推进到 STATE(4) 时迟到的 TURN(3) 应丢弃");
+
+            // 紧接着的 TURN(4) 必须正常处理(§6.1)
+            _net.PushNotify(MessageIds.NotifySpectateTurnResult, new TurnResultS2C
+            {
+                BattleId = TheBattleId,
+                RoundIndex = 4,
+                State = new BattleStateS2C { BattleId = TheBattleId, RoundIndex = 5, Outcome = eBattleOutcome.BattleOutcomeOngoing },
+            });
+            Assert.That(_turns, Is.EqualTo(1));
+        }
     }
 }

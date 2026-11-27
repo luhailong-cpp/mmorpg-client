@@ -353,31 +353,51 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void RenderSparringAndPuzzles()
         {
-            // 上方双功能切换：演武木桩 / 回合残局 + 预设开关
-            DedicatedButtonWithIcon(_actionDeckRow, "icon_sparring_dummy", "演武木桩 (2)", 0f, 4f, 236f, 56f, () =>
+            // 上方功能切换：演武木桩 / 回合残局 / 万象残局坊（玩家自创工坊）
+            DedicatedButtonWithIcon(_actionDeckRow, "icon_sparring_dummy", "演武木桩 (2)", 0f, 4f, 196f, 56f, () =>
             {
                 _sparringShowPuzzles = false;
                 RenderFeatureBody();
-            }, primary: !_sparringShowPuzzles, fontSize: 20);
+            }, primary: !_sparringShowPuzzles, fontSize: 19);
 
-            DedicatedButtonWithIcon(_actionDeckRow, "icon_tactical_puzzle", "回合残局 (3)", 248f, 4f, 236f, 56f, () =>
+            DedicatedButtonWithIcon(_actionDeckRow, "icon_tactical_puzzle", "官方残局 (3)", 204f, 4f, 196f, 56f, () =>
             {
                 _sparringShowPuzzles = true;
                 RenderFeatureBody();
-            }, primary: _sparringShowPuzzles, fontSize: 20);
+            }, primary: _sparringShowPuzzles, fontSize: 19);
+
+            var workshopBtn = DedicatedButton(_actionDeckRow, "万象残局坊", 408f, 4f, 206f, 56f, () =>
+            {
+                Hide();
+                MmorpgClient.UI.Ugui.TacticalPuzzle.TacticalPuzzleUiRoot.EnsureSpawned();
+                MmorpgClient.UI.Ugui.TacticalPuzzle.TacticalPuzzleUiRoot.Instance?.Open();
+            }, primary: true, fontSize: 19);
+            var workshopIcon = Resources.Load<Sprite>("UI/Ugui/TacticalPuzzleV1/hud_entry_puzzle");
+            if (workshopIcon != null)
+            {
+                var iconImg = QdaoUguiFactory.CreateImage("BtnIcon_Workshop", workshopBtn.transform, 10f, 10f, 36f, 36f, workshopIcon);
+                iconImg.preserveAspect = true;
+                iconImg.raycastTarget = false;
+                var txt = workshopBtn.GetComponentInChildren<TMP_Text>();
+                if (txt != null)
+                {
+                    txt.rectTransform.anchoredPosition = new Vector2(48f, 0f);
+                    txt.rectTransform.sizeDelta = new Vector2(148f, 56f);
+                }
+            }
 
             if (_sparringShowPuzzles)
             {
-                string toggleLabel = _useFreePresetForOptional ? "残局：借免费 3×3 预设" : "残局：用本人真实养成";
-                DedicatedButton(_actionDeckRow, toggleLabel, 496f, 4f, 360f, 56f, () =>
+                string toggleLabel = _useFreePresetForOptional ? "残局：借免费预设" : "残局：本人养成";
+                DedicatedButton(_actionDeckRow, toggleLabel, 622f, 4f, 238f, 56f, () =>
                 {
                     _useFreePresetForOptional = !_useFreePresetForOptional;
                     RenderFeatureBody();
-                }, primary: false, fontSize: 19);
+                }, primary: false, fontSize: 18);
             }
             else
             {
-                Text(_actionDeckRow, "演武木桩强制校验本人真实加点、战法与灵宠，0 消耗 0 刷取。", 500f, 12f, 360f, 44f, 18, Muted, true);
+                Text(_actionDeckRow, "木桩校验真实加点；残局坊支持玩家自创公平残局。", 624f, 8f, 238f, 48f, 16, Muted, true);
             }
 
             var all = CityNpcCatalog.FindEncountersForNpc("guiyuan_sparring");

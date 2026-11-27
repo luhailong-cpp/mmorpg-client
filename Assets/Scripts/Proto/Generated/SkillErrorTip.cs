@@ -23,7 +23,7 @@ public static partial class SkillErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvc2tpbGxfZXJyb3JfdGlwLnBy",
-          "b3RvKpIJCgtza2lsbF9lcnJvchISCg5rU2tpbGxfZXJyb3JPSxAAEhoKFWtT",
+          "b3RvKtIJCgtza2lsbF9lcnJvchISCg5rU2tpbGxfZXJyb3JPSxAAEhoKFWtT",
           "a2lsbFVuSW50ZXJydXB0aWJsZRDYNhIaChVrU2tpbGxJbnZhbGlkVGFyZ2V0",
           "SWQQ2TYSGAoTa1NraWxsSW52YWxpZFRhcmdldBDaNhIbChZrU2tpbGxDb29s",
           "ZG93bk5vdFJlYWR5ENs2EiUKIGtTa2lsbENhbm5vdEJlQ2FzdEluQ3VycmVu",
@@ -49,8 +49,9 @@ public static partial class SkillErrorTipReflection {
           "aWxsTG9hZG91dFJlbnRTdGFja0xpbWl0EPg2EiIKHWtTa2lsbExvYWRvdXRS",
           "ZW50U2xvdHNJbnZhbGlkEPk2EiIKHWtTa2lsbExvYWRvdXRBdHRyaWJ1dGVJ",
           "bnZhbGlkEPo2EigKI2tTa2lsbExvYWRvdXRBdHRyaWJ1dGVSZXNldFJlcXVp",
-          "cmVkEPs2QiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGVi",
-          "BnByb3RvMw=="));
+          "cmVkEPs2EhgKE2tTa2lsbEJvb2tzaGVsZkZ1bGwQ/DYSJAofa1NraWxsV2Fu",
+          "dGVkUG9zdGVyQm9va3NoZWxmRnVsbBD9NkIkCg5jb20uZ2FtZS50YWJsZVoS",
+          "Z2VuZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::skill_error), }, null, null));
@@ -97,6 +98,8 @@ public enum skill_error {
   [pbr::OriginalName("kSkillLoadoutRentSlotsInvalid")] KSkillLoadoutRentSlotsInvalid = 7033,
   [pbr::OriginalName("kSkillLoadoutAttributeInvalid")] KSkillLoadoutAttributeInvalid = 7034,
   [pbr::OriginalName("kSkillLoadoutAttributeResetRequired")] KSkillLoadoutAttributeResetRequired = 7035,
+  [pbr::OriginalName("kSkillBookshelfFull")] KSkillBookshelfFull = 7036,
+  [pbr::OriginalName("kSkillWantedPosterBookshelfFull")] KSkillWantedPosterBookshelfFull = 7037,
 }
 
 #endregion

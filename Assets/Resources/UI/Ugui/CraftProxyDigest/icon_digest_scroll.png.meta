@@ -3,7 +3,7 @@ guid: b2d7673f228057c36bce377a0aa8dad2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1764633986911366541
+      213: 6029943451591238276
     second: icon_digest_scroll_0
   externalObjects: {}
   serializedVersion: 13
@@ -47,7 +47,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 100
   spriteMode: 1
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -74,7 +74,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -104,8 +104,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 32292542965cf0af0800000000000000
-      internalID: -1764633986911366541
+      spriteID: 1a13c3f3b10b074d8938318b020ea9e3
+      internalID: 6029943451591238276
       vertices: []
       indices: 
       edges: []
@@ -114,7 +114,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 70d375716766808b487c2423612ecbdf
     internalID: 0
     vertices: []
     indices: 
@@ -126,6 +126,6 @@ TextureImporter:
     nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: craft-proxy-digest-and-ranking-v1
+  userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -100,25 +100,8 @@ namespace MmorpgClient.Net
 
         public const string AuthorizePath = "/login/oauth/authorize";
         public const string TokenExchangePath = "/api/login/oauth/access_token";
-        /// <summary>安卓 App Links 回调在通行证域名下的固定路径(服务端 docs/design/official-passport-registration.md §3.8)。</summary>
-        public const string AppLinkCallbackPath = "/passport/app-callback";
         /// <summary>桌面回环回调登记的端口个数:首选端口起连续 5 个(通行证初始化数据里都登记了)。</summary>
         public const int LoopbackRedirectCandidateCount = 5;
-
-        /// <summary>
-        /// 安卓 App Links 的回调地址:通行证域名 + <see cref="AppLinkCallbackPath"/>。通行证地址不是 https(本机联调)时回 null,
-        /// 调用方退回自定义协议头。系统按通行证域名下的 /.well-known/assetlinks.json 核对这个链接归本 App,
-        /// 别的 App 注册同样的链接也拿不到回调(RFC 8252 §7.2);那两个文件由通行证的公网入口发布(服务端 deploy/k8s/passport)。
-        /// </summary>
-        public static string AppLinkRedirectUri(string passportOrigin)
-        {
-            string trimmed = (passportOrigin ?? string.Empty).Trim().TrimEnd('/');
-            if (!Uri.TryCreate(trimmed, UriKind.Absolute, out var origin) ||
-                !string.Equals(origin.Scheme, "https", StringComparison.OrdinalIgnoreCase) || origin.IsLoopback ||
-                string.IsNullOrEmpty(origin.Host))
-                return null;
-            return origin.GetLeftPart(UriPartial.Authority) + AppLinkCallbackPath;
-        }
 
         /// <summary>
         /// 桌面回环回调的候选:给的地址在前,端口依次加 1,共 <paramref name="count"/> 个。首选端口被占(多开、别的程序)时换下一个,

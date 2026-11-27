@@ -32,29 +32,34 @@ namespace MmorpgClient.UI.Ugui.Jianghu
         private const float FrameHeight = 960f;
         private const float ContentX = 56f;
         private const float ContentWidth = FrameWidth - 112f; // 1748
-        private const float BannerY = 136f;
-        private const float BannerHeight = 104f;
-        private const float TabsY = 252f;
+        private const float BannerY = 140f;
+        private const float BannerHeight = 98f;
+        private const float TabsY = 248f;
         private const float TabsHeight = 64f;
-        private const float ContentY = 328f;
+        private const float ContentY = 322f;
         private const float ContentHeight = 566f;
 
         private static readonly Color DangerInk = QdaoUguiTheme.Html("#A94735");
+        private static readonly Color DefeatBadgeInk = QdaoUguiTheme.Html("#4A1710");
         private static readonly Color JadeAccent = QdaoUguiTheme.Html("#1F6B52");
         private static readonly Color GoldAccent = QdaoUguiTheme.Html("#9A6B22");
         private static readonly Color CardTint = new Color(0.95f, 0.92f, 0.84f, 0.95f);
+        private static readonly Color SubCardTint = new Color(0.98f, 0.96f, 0.90f, 0.28f);
         private static readonly Color GoldCardTint = new Color(0.99f, 0.94f, 0.80f, 0.98f);
 
         private readonly RectTransform _root, _frame, _contentHost, _clearOverlay;
         private RectTransform _activeInvitesHost;
         private float _activeInvitesWidth;
         private float _activeInvitesHeight;
-        private readonly TMP_Text _balanceText, _bannerText, _bannerSubText, _statusText;
+        private readonly TMP_Text _silverText, _goldWritText, _clearCharmText;
+        private readonly TMP_Text _bannerText, _bannerSubText, _statusText;
+        private readonly Image _defeatMarkBadge, _clearBreezeBadge;
         private readonly Button _peaceToggleBtn, _clearBannerBtn;
         private readonly TMP_Text _peaceToggleLabel;
         private readonly Button[] _tabButtons = new Button[3];
         private readonly TMP_Text[] _tabLabels = new TMP_Text[3];
         private readonly Image[] _tabImages = new Image[3];
+        private readonly bool _hasContentSkin;
 
         // Clear-mark modal widgets
         private readonly TMP_Text _clearBodyText, _clearNoticeText;
@@ -95,31 +100,73 @@ namespace MmorpgClient.UI.Ugui.Jianghu
             _frame = QdaoUguiFactory.CreateCenteredRect("JianghuDuelFrame", _root, FrameWidth, FrameHeight);
             CreateSkinOrFallbackArt(_frame, "JianghuFrameBg", "window_frame", "main_frame", 0f, 0f, FrameWidth, FrameHeight);
 
+            // Top centered title plaque straddling frame border (matching approved 01-03 previews)
             bool hasTitleSkin = LoadOptionalSkin("title_plate") != null;
-            var plaque = CreateSkinOrFallbackArt(_frame, "JianghuTitlePlaque", "title_plate", "title_plate", 76f, 18f, 520f, 110f);
+            var plaque = CreateSkinOrFallbackArt(_frame, "JianghuTitlePlaque", "title_plate", "title_plate",
+                (FrameWidth - 520f) * 0.5f, -32f, 520f, 110f);
             var title = Text(plaque.transform, "天墉生死擂",
-                76f, hasTitleSkin ? 24f : 14f, 368f, hasTitleSkin ? 58f : 68f,
+                hasTitleSkin ? 128f : 76f, hasTitleSkin ? 24f : 14f,
+                hasTitleSkin ? 264f : 368f, hasTitleSkin ? 56f : 68f,
                 34f, Cream, alignment: TextAlignmentOptions.Center);
             title.fontStyle = FontStyles.Bold;
             title.raycastTarget = false;
 
-            _balanceText = Text(_frame, "银两：0   ·   金帖生死状：0   ·   清风洗尘符：0", 620f, 44f, 650f, 44f, 24f, Ink);
-            _balanceText.name = "JianghuBalanceStrip";
-            _balanceText.raycastTarget = false;
+            // Header toolbar row (y=76..132, clear of top border & title_plate tassel)
+            var balanceStrip = QdaoUguiFactory.CreateRect("JianghuBalanceStrip", _frame, 68f, 80f, 1110f, 48f);
+            _silverText = Text(balanceStrip, "银两：0", 0f, 4f, 268f, 40f, 24f, Ink);
+            _silverText.raycastTarget = false;
 
-            _peaceToggleBtn = SkinButton(_frame, "JianghuPeaceToggle", "闭关免战：关", 1296f, 38f, 244f, 64f,
-                HandlePeaceToggleClicked, "btn_secondary", "button_secondary", false, 23f);
+            var goldIconSprite = LoadOptionalSkin("icon_gold_writ");
+            float goldTextX = 282f;
+            if (goldIconSprite != null)
+            {
+                var goldIcon = QdaoUguiFactory.CreateImage("GoldWritIcon", balanceStrip, 282f, 6f, 36f, 36f, goldIconSprite);
+                goldIcon.preserveAspect = true;
+                goldIcon.raycastTarget = false;
+                goldTextX = 326f;
+            }
+            _goldWritText = Text(balanceStrip, "金帖生死状：0", goldTextX, 4f, 272f, 40f, 24f, Ink);
+            _goldWritText.raycastTarget = false;
+
+            var charmIconSprite = LoadOptionalSkin("icon_clear_charm");
+            float charmTextX = 612f;
+            if (charmIconSprite != null)
+            {
+                var charmIcon = QdaoUguiFactory.CreateImage("ClearCharmIcon", balanceStrip, 612f, 6f, 36f, 36f, charmIconSprite);
+                charmIcon.preserveAspect = true;
+                charmIcon.raycastTarget = false;
+                charmTextX = 656f;
+            }
+            _clearCharmText = Text(balanceStrip, "清风洗尘符：0", charmTextX, 4f, 272f, 40f, 24f, Ink);
+            _clearCharmText.raycastTarget = false;
+
+            _peaceToggleBtn = SkinButton(_frame, "JianghuPeaceToggle", "闭关免战：已关闭", 1200f, 76f, 292f, 56f,
+                HandlePeaceToggleClicked, "btn_secondary", "button_secondary", false, 22f);
             _peaceToggleLabel = _peaceToggleBtn.GetComponentInChildren<TMP_Text>(true);
+            var peaceShieldSprite = LoadOptionalSkin("icon_peace_shield");
+            if (peaceShieldSprite != null)
+            {
+                var shieldImg = QdaoUguiFactory.CreateImage("PeaceShieldIcon", _peaceToggleBtn.transform,
+                    24f, 12f, 32f, 32f, peaceShieldSprite);
+                shieldImg.preserveAspect = true;
+                shieldImg.raycastTarget = false;
+                if (_peaceToggleLabel != null)
+                {
+                    var lr = _peaceToggleLabel.rectTransform;
+                    lr.anchoredPosition = new Vector2(60f, 0f);
+                    lr.sizeDelta = new Vector2(212f, 56f);
+                }
+            }
 
-            var refreshBtn = SkinButton(_frame, "JianghuRefresh", "刷新", 1554f, 38f, 118f, 64f,
-                () => _client?.RefreshAll(force: true), "btn_secondary", "button_secondary", false, 24f);
+            var refreshBtn = SkinButton(_frame, "JianghuRefresh", "刷新", 1506f, 76f, 138f, 56f,
+                () => _client?.RefreshAll(force: true), "btn_secondary", "button_secondary", false, 23f);
             refreshBtn.name = "JianghuRefresh";
 
-            var closeBtn = SkinButton(_frame, "JianghuClose", "关闭", 1686f, 38f, 118f, 64f,
-                Hide, "btn_secondary", "button_secondary", false, 24f);
+            var closeBtn = SkinButton(_frame, "JianghuClose", "关闭", 1658f, 76f, 146f, 56f,
+                Hide, "btn_secondary", "button_secondary", false, 23f);
             closeBtn.name = "JianghuClose";
 
-            // Top status banner (Defeat mark / Clear badge / Calm notice)
+            // Top status banner (Defeat mark / Clear badge / Calm notice) inside textSafeRect [68..1680]
             var bannerBg = QdaoUguiFactory.CreateImage("JianghuStatusBanner", _frame, ContentX, BannerY, ContentWidth, BannerHeight,
                 LoadOptionalSkin("status_banner"));
             bannerBg.type = bannerBg.sprite != null && bannerBg.sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
@@ -127,18 +174,44 @@ namespace MmorpgClient.UI.Ugui.Jianghu
             if (bannerBg.sprite == null) bannerBg.color = CardTint;
             bannerBg.raycastTarget = false;
 
+            var defeatBadgeSprite = LoadOptionalSkin("badge_defeat_mark");
+            if (defeatBadgeSprite != null)
+            {
+                _defeatMarkBadge = QdaoUguiFactory.CreateImage("DefeatMarkBadge", bannerBg.transform, 68f, 8f, 260f, 48f, defeatBadgeSprite);
+                _defeatMarkBadge.preserveAspect = true;
+                _defeatMarkBadge.raycastTarget = false;
+                var bt = Text(_defeatMarkBadge.transform, "败绩印记", 52f, 8f, 156f, 32f, 20f, DefeatBadgeInk,
+                    alignment: TextAlignmentOptions.Center);
+                bt.fontStyle = FontStyles.Bold;
+                bt.raycastTarget = false;
+                _defeatMarkBadge.gameObject.SetActive(false);
+            }
+
+            var clearBadgeSprite = LoadOptionalSkin("badge_clear_breeze");
+            if (clearBadgeSprite != null)
+            {
+                _clearBreezeBadge = QdaoUguiFactory.CreateImage("ClearBreezeBadge", bannerBg.transform, 68f, 8f, 220f, 48f, clearBadgeSprite);
+                _clearBreezeBadge.preserveAspect = true;
+                _clearBreezeBadge.raycastTarget = false;
+                var bt = Text(_clearBreezeBadge.transform, "清风拂尘", 44f, 8f, 132f, 32f, 20f, Ink,
+                    alignment: TextAlignmentOptions.Center);
+                bt.fontStyle = FontStyles.Bold;
+                bt.raycastTarget = false;
+                _clearBreezeBadge.gameObject.SetActive(false);
+            }
+
             _bannerText = Text(bannerBg.transform, "当前清净无败绩印记 · 双方自愿方可立状开战",
-                28f, 16f, 1340f, 38f, 25f, JadeAccent);
+                68f, 14f, 1348f, 36f, 24f, JadeAccent);
             _bannerText.fontStyle = FontStyles.Bold;
             _bannerText.raycastTarget = false;
 
             _bannerSubText = Text(bannerBg.transform,
                 "零强制接战 · 零战力加成 · 30 回合封顶防恶意拖局 · 拒绝/超时/变动全额零扣费",
-                28f, 58f, 1340f, 32f, 20f, Muted);
+                68f, 56f, 1348f, 30f, 19f, Muted);
             _bannerSubText.raycastTarget = false;
 
-            _clearBannerBtn = SkinButton(bannerBg.rectTransform, "JianghuOpenClearModal", "清风洗尘", 1456f, 18f, 260f, 68f,
-                OpenClearModal, "btn_primary", "button_primary", true, 25f);
+            _clearBannerBtn = SkinButton(bannerBg.rectTransform, "JianghuOpenClearModal", "清风洗尘", 1432f, 15f, 248f, 68f,
+                OpenClearModal, "btn_primary", "button_primary", true, 24f);
             _clearBannerBtn.gameObject.SetActive(false);
 
             // 3 Tabs
@@ -154,55 +227,69 @@ namespace MmorpgClient.UI.Ugui.Jianghu
                 _tabImages[i] = btn.GetComponent<Image>();
             }
 
+            _hasContentSkin = LoadOptionalSkin("content_panel") != null;
             CreateSkinOrFallbackArt(_frame, "JianghuContentBg", "content_panel", "content_panel",
                 ContentX, ContentY, ContentWidth, ContentHeight);
             _contentHost = QdaoUguiFactory.CreateRect("JianghuContentHost", _frame,
-                ContentX + 24f, ContentY + 18f, ContentWidth - 48f, ContentHeight - 36f);
+                ContentX + 28f, ContentY + 22f, ContentWidth - 56f, ContentHeight - 44f);
 
-            _statusText = Text(_frame, string.Empty, 60f, 904f, 1740f, 38f, 22f, Muted);
+            _statusText = Text(_frame, string.Empty, 68f, 898f, 1724f, 36f, 22f, Muted);
             _statusText.name = "JianghuStatus";
             _statusText.raycastTarget = false;
 
-            // Clear defeat mark modal
+            // Clear defeat mark modal (matches 04-popups.png: popup_frame + top centered title_plate)
             _clearOverlay = QdaoUguiFactory.CreateStretch("JianghuClearMarkOverlay", _root, Vector4.zero);
             _clearOverlay.gameObject.SetActive(false);
             var modalDim = _clearOverlay.gameObject.AddComponent<Image>();
             modalDim.color = new Color(0.02f, 0.06f, 0.05f, 0.72f);
             modalDim.raycastTarget = true;
 
-            bool hasPopupSkin = LoadOptionalSkin("popup_frame") != null;
             var modalFrame = QdaoUguiFactory.CreateCenteredRect("JianghuClearModalFrame", _clearOverlay, 860f, 480f);
             CreateSkinOrFallbackArt(modalFrame, "JianghuClearModalBg", "popup_frame", "main_frame", 0f, 0f, 860f, 480f);
 
-            var modalTitle = Text(modalFrame, "清风洗尘 · 提前抹去败绩印记", 76f, 33f, 708f, 56f, 32f,
-                hasPopupSkin ? Cream : Ink, alignment: TextAlignmentOptions.Center);
+            var modalPlaque = CreateSkinOrFallbackArt(modalFrame, "JianghuClearModalPlaque", "title_plate", "title_plate",
+                190f, -34f, 480f, 96f);
+            var modalTitle = Text(modalPlaque.transform, "清风洗尘确认",
+                hasTitleSkin ? 104f : 48f, hasTitleSkin ? 20f : 12f,
+                hasTitleSkin ? 272f : 384f, hasTitleSkin ? 52f : 64f,
+                30f, Cream, alignment: TextAlignmentOptions.Center);
             modalTitle.fontStyle = FontStyles.Bold;
             modalTitle.raycastTarget = false;
 
-            _clearBodyText = Text(modalFrame, string.Empty, 56f, 112f, 748f, 156f, 24f, Ink, wrap: true);
+            bool hasModalCharmIcon = charmIconSprite != null;
+            if (hasModalCharmIcon)
+            {
+                var modalCharmImg = QdaoUguiFactory.CreateImage("ClearModalCharmIcon", modalFrame, 78f, 96f, 64f, 64f, charmIconSprite);
+                modalCharmImg.preserveAspect = true;
+                modalCharmImg.raycastTarget = false;
+            }
+
+            _clearBodyText = Text(modalFrame, string.Empty,
+                hasModalCharmIcon ? 156f : 82f, 92f,
+                hasModalCharmIcon ? 622f : 696f, 166f, 23f, Ink, wrap: true);
             _clearBodyText.raycastTarget = false;
 
             _clearNoticeText = Text(modalFrame,
                 "提示：败绩印记 30 分钟后也会自动自然消散，仅作江湖趣闻，不影响任何战力与收益。",
-                56f, 276f, 748f, 70f, 21f, Muted, wrap: true);
+                82f, 268f, 696f, 64f, 20f, Muted, wrap: true);
             _clearNoticeText.raycastTarget = false;
 
             _clearSilverBtn = SkinButton(modalFrame, "JianghuClearSilver", "消耗 1000 银两洗尘",
-                56f, 376f, 256f, 68f,
-                () => ExecuteClearMark(global::JianghuClearMarkMode.Silver), "btn_secondary", "button_secondary", false, 22f);
+                74f, 354f, 248f, 68f,
+                () => ExecuteClearMark(global::JianghuClearMarkMode.Silver), "btn_secondary", "button_secondary", false, 21f);
 
             _clearCharmBtn = SkinButton(modalFrame, "JianghuClearCharm", "清风洗尘符 ×1（赠徽记）",
-                326f, 376f, 286f, 68f,
-                () => ExecuteClearMark(global::JianghuClearMarkMode.ItemCharm), "btn_primary", "button_primary", true, 22f);
+                334f, 354f, 266f, 68f,
+                () => ExecuteClearMark(global::JianghuClearMarkMode.ItemCharm), "btn_primary", "button_primary", true, 21f);
 
             _clearBuyCharmBtn = SkinButton(modalFrame, "JianghuBuyCharm", "百宝阁购符",
-                326f, 376f, 286f, 68f,
-                () => JumpToSpiritShop(JianghuModels.SpiritShopGoodsClearCharm), "btn_primary", "button_primary", true, 22f);
+                334f, 354f, 266f, 68f,
+                () => JumpToSpiritShop(JianghuModels.SpiritShopGoodsClearCharm), "btn_primary", "button_primary", true, 21f);
             _clearBuyCharmBtn.gameObject.SetActive(false);
 
             SkinButton(modalFrame, "JianghuClearCancel", "先留着",
-                626f, 376f, 178f, 68f,
-                CloseClearModal, "btn_secondary", "button_secondary", false, 23f);
+                612f, 354f, 174f, 68f,
+                CloseClearModal, "btn_secondary", "button_secondary", false, 22f);
         }
 
         public void Bind(JianghuClient client)
@@ -281,10 +368,9 @@ namespace MmorpgClient.UI.Ugui.Jianghu
             ulong silver = profile?.SilverBalance ?? 0;
             uint goldWrits = profile?.GoldWritItemCount ?? 0;
             uint clearCharms = profile?.ClearCharmItemCount ?? 0;
-            _balanceText.text =
-                $"银两：{silver.ToString(CultureInfo.InvariantCulture)}   ·   " +
-                $"金帖生死状：{goldWrits.ToString(CultureInfo.InvariantCulture)}   ·   " +
-                $"清风洗尘符：{clearCharms.ToString(CultureInfo.InvariantCulture)}";
+            _silverText.text = $"银两：{silver.ToString(CultureInfo.InvariantCulture)}";
+            _goldWritText.text = $"金帖生死状：{goldWrits.ToString(CultureInfo.InvariantCulture)}";
+            _clearCharmText.text = $"清风洗尘符：{clearCharms.ToString(CultureInfo.InvariantCulture)}";
 
             bool refuse = profile != null && profile.DuelRefuseStrangers;
             if (_peaceToggleLabel != null)
@@ -299,16 +385,25 @@ namespace MmorpgClient.UI.Ugui.Jianghu
                 ? JianghuModels.RemainingSeconds(profile.ClearBadgeExpiresAtMs, nowMs)
                 : 0;
 
-            if (profile != null && profile.HasActiveDefeatMark && markRem > 0)
+            bool showDefeat = profile != null && profile.HasActiveDefeatMark && markRem > 0;
+            bool showClear = !showDefeat && profile != null && profile.HasActiveClearBadge && clearRem > 0;
+            if (_defeatMarkBadge != null) _defeatMarkBadge.gameObject.SetActive(showDefeat);
+            if (_clearBreezeBadge != null) _clearBreezeBadge.gameObject.SetActive(showClear);
+
+            if (showDefeat)
             {
+                bool hasBadge = _defeatMarkBadge != null;
+                SetBannerTitleLayout(hasBadge ? 340f : 68f, hasBadge ? 1076f : 1348f);
                 _bannerText.text = $"{JianghuModels.FormatDefeatMark(profile)}   ·   剩余 {JianghuModels.FormatMinutesSeconds(markRem)}";
                 _bannerText.color = DangerInk;
                 _bannerSubText.text = "本印记仅持续 30 分钟后自动消散，零战力影响；也可消耗银两或清风洗尘符立即洗去。";
                 _clearBannerBtn.gameObject.SetActive(true);
                 _clearBannerBtn.interactable = _client != null && _client.Ready && !_client.WritePending && !_client.InBattle;
             }
-            else if (profile != null && profile.HasActiveClearBadge && clearRem > 0)
+            else if (showClear)
             {
+                bool hasBadge = _clearBreezeBadge != null;
+                SetBannerTitleLayout(hasBadge ? 300f : 68f, hasBadge ? 1368f : 1600f);
                 _bannerText.text = $"{JianghuModels.FormatClearBadge()}（洒脱徽记生效中）   ·   剩余 {JianghuModels.FormatMinutesSeconds(clearRem)}";
                 _bannerText.color = GoldAccent;
                 _bannerSubText.text = "清风拂尘，过往胜负已随风散；双方自愿立状方可再入天墉生死擂。";
@@ -316,11 +411,20 @@ namespace MmorpgClient.UI.Ugui.Jianghu
             }
             else
             {
+                SetBannerTitleLayout(68f, 1600f);
                 _bannerText.text = "当前清净无败绩印记 · 双方自愿方可立状开战";
                 _bannerText.color = JadeAccent;
                 _bannerSubText.text = "零强制接战 · 零战力加成 · 30 回合封顶防恶意拖局 · 拒绝/超时/队员变动全额零扣费";
                 _clearBannerBtn.gameObject.SetActive(false);
             }
+        }
+
+        private void SetBannerTitleLayout(float x, float width)
+        {
+            if (_bannerText == null) return;
+            var rt = _bannerText.rectTransform;
+            rt.anchoredPosition = new Vector2(x, -14f);
+            rt.sizeDelta = new Vector2(width, 36f);
         }
 
         private void RefreshTabStyles()
@@ -367,24 +471,25 @@ namespace MmorpgClient.UI.Ugui.Jianghu
 
         private void BuildChallengeTab()
         {
-            float hostW = ContentWidth - 48f; // 1700
-            float hostH = ContentHeight - 36f; // 530
+            float hostW = ContentWidth - 56f; // 1692
+            float hostH = ContentHeight - 44f; // 522
             float leftW = 816f;
-            float rightX = 844f;
-            float rightW = hostW - rightX;
+            float rightX = 840f;
+            float rightW = hostW - rightX; // 852
+            Color panelTint = _hasContentSkin ? SubCardTint : CardTint;
 
             // Left panel: issue duel invite
             var leftCard = QdaoUguiFactory.CreateRect("ChallengeFormCard", _contentHost, 0f, 0f, leftW, hostH);
             var leftBg = leftCard.gameObject.AddComponent<Image>();
-            leftBg.color = CardTint;
+            leftBg.color = panelTint;
             leftBg.raycastTarget = false;
 
-            var heading = Text(leftCard, "递送江湖生死状（1V1 单挑 / 2V2~5V5 小队等人数对决）", 24f, 16f, leftW - 48f, 38f, 25f, Ink);
+            var heading = Text(leftCard, "递送江湖生死状（1V1 单挑 / 2V2~5V5 小队等人数对决）", 24f, 14f, leftW - 48f, 38f, 25f, Ink);
             heading.fontStyle = FontStyles.Bold;
             heading.raycastTarget = false;
 
-            Text(leftCard, "对方玩家 ID（小队约战填对方队长 ID）：", 24f, 64f, 440f, 32f, 22f, Muted).raycastTarget = false;
-            var targetInput = QdaoUguiFactory.CreateInputField("TargetPlayerIdInput", leftCard, 24f, 100f, 430f, 52f,
+            Text(leftCard, "对方玩家 ID（小队约战填对方队长 ID）：", 24f, 60f, 440f, 32f, 22f, Muted).raycastTarget = false;
+            var targetInput = QdaoUguiFactory.CreateInputField("TargetPlayerIdInput", leftCard, 24f, 96f, 430f, 50f,
                 "输入对方角色 ID（如 10002）", 20);
             var inputBg = targetInput.GetComponent<Image>();
             inputBg.color = new Color(1f, 0.99f, 0.95f, 1f);
@@ -399,8 +504,8 @@ namespace MmorpgClient.UI.Ugui.Jianghu
             {
                 int count = teamClient.Snapshot.Members.Count;
                 Text(leftCard, $"当前已组 {count} 人小队：对方须同为 {count} 人，下方可补填对方队员 ID（逗号分隔）：",
-                    24f, 160f, leftW - 48f, 30f, 20f, JadeAccent).raycastTarget = false;
-                var membersInput = QdaoUguiFactory.CreateInputField("TargetSquadMembersInput", leftCard, 24f, 192f, leftW - 48f, 46f,
+                    24f, 154f, leftW - 48f, 30f, 20f, JadeAccent).raycastTarget = false;
+                var membersInput = QdaoUguiFactory.CreateInputField("TargetSquadMembersInput", leftCard, 24f, 186f, leftW - 48f, 46f,
                     "可选：对方其余队员 ID（如 10003,10004）", 80);
                 membersInput.GetComponent<Image>().color = new Color(1f, 0.99f, 0.95f, 1f);
                 membersInput.text = _draftTargetMembers;
@@ -409,7 +514,7 @@ namespace MmorpgClient.UI.Ugui.Jianghu
             else
             {
                 Text(leftCard, "当前为单人模式（1V1 单挑）；若已组建 2~5 人小队，将自动按小队等人数约战并触发 30 秒全员确认。",
-                    24f, 168f, leftW - 48f, 56f, 20f, Muted, wrap: true).raycastTarget = false;
+                    24f, 162f, leftW - 48f, 56f, 20f, Muted, wrap: true).raycastTarget = false;
             }
 
             // Writ tier cards
@@ -417,31 +522,31 @@ namespace MmorpgClient.UI.Ugui.Jianghu
             ulong silverCost = profile != null && profile.SilverWritCost > 0 ? profile.SilverWritCost : JianghuModels.DefaultSilverWritCost;
             uint goldCount = profile?.GoldWritItemCount ?? 0;
 
-            BuildWritTierOption(leftCard, 24f, 250f, 374f, 152f,
+            BuildWritTierOption(leftCard, 24f, 244f, 374f, 152f,
                 global::Match.JianghuWritTier.Silver,
                 "普通战书",
                 $"消耗 {silverCost.ToString(CultureInfo.InvariantCulture)} 银两（仅成局扣费）\n全服系统播报 · 完整计入恩怨录与战报",
                 "writ_card_silver", false);
 
-            BuildWritTierOption(leftCard, 418f, 250f, 374f, 152f,
+            BuildWritTierOption(leftCard, 418f, 244f, 374f, 152f,
                 global::Match.JianghuWritTier.GoldItem,
-                $"金帖生死状（持有 {goldCount.ToString(CultureInfo.InvariantCulture)}）",
+                $"金帖生死状（{goldCount.ToString(CultureInfo.InvariantCulture)}）",
                 "消耗金帖 ×1（仅成局扣费）\n全服金框开战播报 + 战报金框纪念",
                 "writ_card_gold", true);
 
             bool busy = _client.WritePending || _client.InBattle || !_client.Ready;
-            var sendBtn = SkinButton(leftCard, "JianghuSendInviteBtn", "下达战书", 24f, 430f, 320f, 70f,
-                HandleSendInviteClicked, "btn_primary", "button_primary", true, 28f);
+            var sendBtn = SkinButton(leftCard, "JianghuSendInviteBtn", "下达战书", 24f, 422f, 320f, 68f,
+                HandleSendInviteClicked, "btn_primary", "button_primary", true, 27f);
             sendBtn.interactable = !busy;
 
-            var buyGoldBtn = SkinButton(leftCard, "JianghuBuyGoldWritBtn", "百宝阁购金帖（20 灵石）", 364f, 430f, 320f, 70f,
-                () => JumpToSpiritShop(JianghuModels.SpiritShopGoodsGoldWrit), "btn_secondary", "button_secondary", false, 23f);
+            var buyGoldBtn = SkinButton(leftCard, "JianghuBuyGoldWritBtn", "百宝阁购金帖（20 灵石）", 364f, 422f, 320f, 68f,
+                () => JumpToSpiritShop(JianghuModels.SpiritShopGoodsGoldWrit), "btn_secondary", "button_secondary", false, 22f);
             buyGoldBtn.interactable = _openSpiritShopAction != null;
 
             // Right panel: Active invites list (hosted independently so 1s countdown never tears down left input fields)
             var rightCard = QdaoUguiFactory.CreateRect("ActiveInvitesCard", _contentHost, rightX, 0f, rightW, hostH);
             var rightBg = rightCard.gameObject.AddComponent<Image>();
-            rightBg.color = CardTint;
+            rightBg.color = panelTint;
             rightBg.raycastTarget = false;
 
             _activeInvitesHost = rightCard;
@@ -492,43 +597,43 @@ namespace MmorpgClient.UI.Ugui.Jianghu
 
                 string tierTag = JianghuModels.FormatWritShort(inv.WritTier);
                 string vsLine = $"[{tierTag} · {inv.TeamSize}V{inv.TeamSize}] {SafeName(inv.ChallengerCaptainName, inv.ChallengerCaptainId)}  对阵  {SafeName(inv.TargetCaptainName, inv.TargetCaptainId)}";
-                Text(row, vsLine, 36f, 12f, rightW - 198f, 32f, 23f, Ink).raycastTarget = false;
+                Text(row, vsLine, 40f, 14f, rightW - 208f, 32f, 23f, Ink).raycastTarget = false;
 
                 uint remSec = JianghuModels.RemainingSeconds(JianghuModels.InviteDeadlineMs(inv), nowMs);
-                Text(row, remSec > 0 ? $"剩余 {remSec}秒" : "即将超时", rightW - 166f, 12f, 126f, 32f, 22f, DangerInk,
+                Text(row, remSec > 0 ? $"剩余 {remSec}秒" : "即将超时", rightW - 166f, 14f, 122f, 32f, 22f, DangerInk,
                     alignment: TextAlignmentOptions.MidlineRight).raycastTarget = false;
 
-                Text(row, JianghuModels.FormatInviteState(inv.State), 36f, 48f, rightW - 86f, 28f, 20f, JadeAccent).raycastTarget = false;
+                Text(row, JianghuModels.FormatInviteState(inv.State), 40f, 50f, rightW - 92f, 28f, 20f, JadeAccent).raycastTarget = false;
 
                 if (inv.TeamSize > 1)
                 {
                     string squadProgress = FormatSquadConfirmSummary(inv);
-                    Text(row, squadProgress, 36f, 78f, rightW - 86f, 28f, 19f, Muted).raycastTarget = false;
+                    Text(row, squadProgress, 40f, 78f, rightW - 92f, 28f, 19f, Muted).raycastTarget = false;
                 }
 
                 var actionKind = JianghuModels.InviteNeedsMyAction(inv, myId);
                 ulong inviteId = inv.DuelInviteId;
                 if (actionKind == JianghuInviteActionKind.CaptainRespond)
                 {
-                    var acceptBtn = SkinButton(row, "AcceptInvite_" + inviteId, "应战开打", 36f, 108f, 186f, 48f,
+                    var acceptBtn = SkinButton(row, "AcceptInvite_" + inviteId, "应战开打", 40f, 108f, 186f, 48f,
                         () => _client?.RespondDuelInvite(inviteId, true), "btn_primary", "button_primary", true, 22f);
                     acceptBtn.interactable = !busy;
-                    var declineBtn = SkinButton(row, "DeclineInvite_" + inviteId, "婉拒战书", 236f, 108f, 186f, 48f,
+                    var declineBtn = SkinButton(row, "DeclineInvite_" + inviteId, "婉拒战书", 240f, 108f, 186f, 48f,
                         () => _client?.RespondDuelInvite(inviteId, false), "btn_secondary", "button_secondary", false, 22f);
                     declineBtn.interactable = !busy;
                 }
                 else if (actionKind == JianghuInviteActionKind.MemberConfirm)
                 {
-                    var agreeBtn = SkinButton(row, "ConfirmMember_" + inviteId, "同意参战", 36f, 108f, 186f, 48f,
+                    var agreeBtn = SkinButton(row, "ConfirmMember_" + inviteId, "同意参战", 40f, 108f, 186f, 48f,
                         () => _client?.ConfirmTeamMember(inviteId, true), "btn_primary", "button_primary", true, 22f);
                     agreeBtn.interactable = !busy;
-                    var abortBtn = SkinButton(row, "AbortMember_" + inviteId, "退出作废", 236f, 108f, 186f, 48f,
-                        () => _client?.ConfirmTeamMember(inviteId, false), "btn_secondary", "button_secondary", false, 22f);
+                    var abortBtn = SkinButton(row, "AbortMember_" + inviteId, "退出作废", 240f, 108f, 186f, 48f,
+                        () => _client?.ConfirmTeamMember(inviteId, false), "btn_danger", "button_secondary", false, 22f);
                     abortBtn.interactable = !busy;
                 }
                 else
                 {
-                    Text(row, "等待对方或队友响应中（未成局不扣任何费用）", 36f, 114f, rightW - 86f, 34f, 19f, Muted).raycastTarget = false;
+                    Text(row, "等待对方或队友响应中（未成局不扣任何费用）", 40f, 114f, rightW - 92f, 34f, 19f, Muted).raycastTarget = false;
                 }
             }
         }
@@ -571,18 +676,32 @@ namespace MmorpgClient.UI.Ugui.Jianghu
             });
 
             string prefix = selected ? "√ " : "";
-            var titleTxt = Text(rect, prefix + title, 18f, 14f, w - 36f, 34f, 24f, isGold ? GoldAccent : Ink);
+            float titleX = 28f;
+            float titleW = w - 56f;
+            if (isGold)
+            {
+                var goldIcon = LoadOptionalSkin("icon_gold_writ");
+                if (goldIcon != null)
+                {
+                    var iconImg = QdaoUguiFactory.CreateImage("GoldWritCardIcon", rect, 26f, 14f, 42f, 42f, goldIcon);
+                    iconImg.preserveAspect = true;
+                    iconImg.raycastTarget = false;
+                    titleX = 76f;
+                    titleW = w - 102f;
+                }
+            }
+            var titleTxt = Text(rect, prefix + title, titleX, 18f, titleW, 34f, 23f, isGold ? GoldAccent : Ink);
             titleTxt.fontStyle = FontStyles.Bold;
             titleTxt.raycastTarget = false;
 
-            var descTxt = Text(rect, desc, 18f, 54f, w - 36f, 84f, 19f, Muted, wrap: true);
+            var descTxt = Text(rect, desc, 28f, 60f, w - 56f, 76f, 19f, Muted, wrap: true);
             descTxt.raycastTarget = false;
         }
 
         private void BuildGrudgesTab()
         {
-            float hostW = ContentWidth - 48f; // 1700
-            float hostH = ContentHeight - 36f; // 530
+            float hostW = ContentWidth - 56f; // 1692
+            float hostH = ContentHeight - 44f; // 522
 
             if (_client.Grudges.Count == 0)
             {
@@ -602,32 +721,36 @@ namespace MmorpgClient.UI.Ugui.Jianghu
             for (int i = 0; i < _client.Grudges.Count; i++)
             {
                 var g = _client.Grudges[i];
-                var row = QdaoUguiFactory.CreateRect("GrudgeRow_" + g.PeerPlayerId, scrollContent, 0f, i * rowH, hostW - 12f, 122f);
-                var bg = QdaoUguiFactory.CreateImage("RowBg", row, 0f, 0f, hostW - 12f, 122f, LoadOptionalSkin("grudge_row_bg"));
+                var row = QdaoUguiFactory.CreateRect("GrudgeRow_" + g.PeerPlayerId, scrollContent, 0f, i * rowH, hostW - 8f, 124f);
+                var bg = QdaoUguiFactory.CreateImage("RowBg", row, 0f, 0f, hostW - 8f, 124f, LoadOptionalSkin("grudge_row_bg"));
                 bg.type = bg.sprite != null && bg.sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
                 if (bg.sprite == null) bg.color = CardTint;
                 bg.raycastTarget = false;
 
                 string onlineTag = g.PeerOnline ? "● 在线" : "○ 离线";
                 Text(row, $"{SafeName(g.PeerName, g.PeerPlayerId)}  (ID:{g.PeerPlayerId.ToString(CultureInfo.InvariantCulture)})",
-                    38f, 14f, 444f, 36f, 25f, Ink).raycastTarget = false;
-                Text(row, onlineTag, 490f, 16f, 120f, 32f, 21f, g.PeerOnline ? JadeAccent : Muted).raycastTarget = false;
+                    46f, 16f, 436f, 36f, 25f, Ink).raycastTarget = false;
+                Text(row, onlineTag, 492f, 18f, 118f, 32f, 21f, g.PeerOnline ? JadeAccent : Muted).raycastTarget = false;
 
                 string recordLine = $"历史交手：{g.Wins} 胜  {g.Losses} 负  {g.Draws} 平";
-                Text(row, recordLine, 626f, 16f, 310f, 32f, 22f, Ink).raycastTarget = false;
+                Text(row, recordLine, 622f, 18f, 310f, 32f, 22f, Ink).raycastTarget = false;
 
                 string streakBadge = JianghuModels.FormatStreakBadge(g.WinStreak, g.LoseStreak);
                 if (!string.IsNullOrEmpty(streakBadge))
                 {
                     bool isHot = g.WinStreak >= JianghuModels.StreakHighlightThreshold;
-                    var badgeImg = QdaoUguiFactory.CreateImage("StreakBadge", row, 948f, 14f, 176f, 36f,
-                        LoadOptionalSkin(isHot ? "badge_streak_hot" : "badge_revenge_ready"));
-                    badgeImg.type = badgeImg.sprite != null && badgeImg.sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                    float badgeW = isHot ? 164f : 128f;
+                    var badgeSprite = LoadOptionalSkin(isHot ? "badge_streak_hot" : "badge_revenge_ready");
+                    var badgeImg = QdaoUguiFactory.CreateImage("StreakBadge", row, 946f, 14f, badgeW, 40f, badgeSprite);
+                    badgeImg.type = Image.Type.Simple;
+                    badgeImg.preserveAspect = true;
                     badgeImg.pixelsPerUnitMultiplier = 1f;
-                    if (badgeImg.sprite == null)
+                    if (badgeSprite == null)
                         badgeImg.color = isHot ? new Color(0.86f, 0.65f, 0.24f, 0.92f) : new Color(0.75f, 0.36f, 0.28f, 0.92f);
                     badgeImg.raycastTarget = false;
-                    var badgeTxt = Text(badgeImg.transform, streakBadge, 8f, 0f, 160f, 36f, 19f, Cream,
+                    float insetX = isHot ? 24f : 18f;
+                    Color badgeTextColor = badgeSprite != null ? (isHot ? DangerInk : Ink) : Cream;
+                    var badgeTxt = Text(badgeImg.transform, streakBadge, insetX, 4f, badgeW - insetX * 2f, 30f, 18f, badgeTextColor,
                         alignment: TextAlignmentOptions.Center);
                     badgeTxt.fontStyle = FontStyles.Bold;
                     badgeTxt.raycastTarget = false;
@@ -640,31 +763,31 @@ namespace MmorpgClient.UI.Ugui.Jianghu
                     var latest = g.RecentLogs[0];
                     latestBattleId = latest.BattleId;
                     string summary = $"最近一战：{JianghuModels.FormatOutcome(latest.OutcomeForSelf)} · {JianghuModels.FormatWritShort(latest.WritTier)} {latest.TeamSize}V{latest.TeamSize} · {latest.TotalRounds} 回合";
-                    Text(row, summary, 38f, 66f, 884f, 34f, 20f, Muted).raycastTarget = false;
+                    Text(row, summary, 46f, 68f, 884f, 34f, 20f, Muted).raycastTarget = false;
                 }
                 else
                 {
-                    Text(row, "仅展示在线状态，绝不泄露和平道友位置。", 38f, 66f, 884f, 34f, 20f, Muted).raycastTarget = false;
+                    Text(row, "仅展示在线状态，绝不泄露和平道友位置。", 46f, 68f, 884f, 34f, 20f, Muted).raycastTarget = false;
                 }
 
                 ulong peerId = g.PeerPlayerId;
                 if (latestBattleId != 0 && _playReplayAction != null)
                 {
-                    var replayBtn = SkinButton(row, "GrudgeReplay_" + latestBattleId, "回放", 1150f, 30f, 126f, 60f,
+                    var replayBtn = SkinButton(row, "GrudgeReplay_" + latestBattleId, "回放", 1134f, 31f, 130f, 60f,
                         () => _playReplayAction(latestBattleId), "btn_secondary", "button_secondary", false, 22f);
                     replayBtn.interactable = !_client.InBattle;
                 }
 
-                var rematchBtn = SkinButton(row, "GrudgeRematch_" + peerId, "再递战书", 1292f, 30f, 186f, 60f,
+                var rematchBtn = SkinButton(row, "GrudgeRematch_" + peerId, "再递战书", 1278f, 31f, 184f, 60f,
                     () =>
                     {
                         _draftTargetPlayerId = peerId.ToString(CultureInfo.InvariantCulture);
                         _activeTab = JianghuWindowTab.Challenge;
                         Render();
-                    }, "btn_primary", "button_primary", true, 23f);
+                    }, "btn_primary", "button_primary", true, 22f);
                 rematchBtn.interactable = !busy;
 
-                var dismissBtn = SkinButton(row, "GrudgeDismiss_" + peerId, "一笔勾销", 1492f, 30f, 174f, 60f,
+                var dismissBtn = SkinButton(row, "GrudgeDismiss_" + peerId, "一笔勾销", 1476f, 31f, 174f, 60f,
                     () => _client?.DismissGrudge(peerId), "btn_secondary", "button_secondary", false, 22f);
                 dismissBtn.interactable = !busy;
             }
@@ -672,8 +795,9 @@ namespace MmorpgClient.UI.Ugui.Jianghu
 
         private void BuildGuildWallTab()
         {
-            float hostW = ContentWidth - 48f; // 1700
-            float hostH = ContentHeight - 36f; // 530
+            float hostW = ContentWidth - 56f; // 1692
+            float hostH = ContentHeight - 44f; // 522
+            Color panelTint = _hasContentSkin ? SubCardTint : CardTint;
 
             var wall = _client.GuildWall;
             if (wall == null || wall.GuildId == 0)
@@ -686,11 +810,11 @@ namespace MmorpgClient.UI.Ugui.Jianghu
                 return;
             }
 
-            // Left column: Rival guild summaries (560px)
+            // Left column: Rival guild summaries (556px)
             float leftW = 556f;
             var leftPanel = QdaoUguiFactory.CreateRect("GuildRivalsPanel", _contentHost, 0f, 0f, leftW, hostH);
             var leftBg = leftPanel.gameObject.AddComponent<Image>();
-            leftBg.color = CardTint;
+            leftBg.color = panelTint;
             leftBg.raycastTarget = false;
 
             var leftTitle = Text(leftPanel, $"宿敌帮派榜（{wall.Rivals.Count.ToString(CultureInfo.InvariantCulture)}）",
@@ -705,28 +829,28 @@ namespace MmorpgClient.UI.Ugui.Jianghu
             }
             else
             {
-                var rScroll = CreateVerticalScroll(leftPanel, "GuildRivalsScroll", 12f, 58f, leftW - 24f, hostH - 70f,
+                var rScroll = CreateVerticalScroll(leftPanel, "GuildRivalsScroll", 10f, 56f, leftW - 20f, hostH - 68f,
                     wall.Rivals.Count * 112f);
                 for (int i = 0; i < wall.Rivals.Count; i++)
                 {
                     var r = wall.Rivals[i];
-                    var card = QdaoUguiFactory.CreateRect("GuildRival_" + r.RivalGuildId, rScroll, 0f, i * 112f, leftW - 24f, 102f);
-                    var img = QdaoUguiFactory.CreateImage("CardBg", card, 0f, 0f, leftW - 24f, 102f, LoadOptionalSkin("guild_rival_card"));
+                    var card = QdaoUguiFactory.CreateRect("GuildRival_" + r.RivalGuildId, rScroll, 0f, i * 112f, leftW - 20f, 104f);
+                    var img = QdaoUguiFactory.CreateImage("CardBg", card, 0f, 0f, leftW - 20f, 104f, LoadOptionalSkin("guild_rival_card"));
                     img.type = img.sprite != null && img.sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
                     img.pixelsPerUnitMultiplier = 1f;
                     if (img.sprite == null) img.color = Color.white;
                     img.raycastTarget = false;
-                    Text(card, $"【{SafeName(r.RivalGuildName, r.RivalGuildId)}】", 36f, 14f, leftW - 78f, 34f, 24f, Ink).raycastTarget = false;
-                    Text(card, $"总交锋：{r.Wins} 胜  {r.Losses} 负  {r.Draws} 平", 36f, 56f, leftW - 78f, 30f, 21f, JadeAccent).raycastTarget = false;
+                    Text(card, $"【{SafeName(r.RivalGuildName, r.RivalGuildId)}】", 42f, 16f, leftW - 96f, 34f, 24f, Ink).raycastTarget = false;
+                    Text(card, $"总交锋：{r.Wins} 胜  {r.Losses} 负  {r.Draws} 平", 42f, 56f, leftW - 96f, 30f, 21f, JadeAccent).raycastTarget = false;
                 }
             }
 
             // Right column: Recent 20 guild duel records
-            float rightX = 576f;
-            float rightW = hostW - rightX;
+            float rightX = 574f;
+            float rightW = hostW - rightX; // 1118
             var rightPanel = QdaoUguiFactory.CreateRect("GuildRecordsPanel", _contentHost, rightX, 0f, rightW, hostH);
             var rightBg = rightPanel.gameObject.AddComponent<Image>();
-            rightBg.color = CardTint;
+            rightBg.color = panelTint;
             rightBg.raycastTarget = false;
 
             var rightTitle = Text(rightPanel, $"近 20 场纯帮派生死状战绩（{wall.RecentRecords.Count.ToString(CultureInfo.InvariantCulture)}）",
@@ -741,13 +865,13 @@ namespace MmorpgClient.UI.Ugui.Jianghu
             }
             else
             {
-                var lScroll = CreateVerticalScroll(rightPanel, "GuildRecordsScroll", 12f, 58f, rightW - 24f, hostH - 70f,
+                var lScroll = CreateVerticalScroll(rightPanel, "GuildRecordsScroll", 10f, 56f, rightW - 20f, hostH - 68f,
                     wall.RecentRecords.Count * 100f);
                 for (int i = 0; i < wall.RecentRecords.Count; i++)
                 {
                     var rec = wall.RecentRecords[i];
-                    var row = QdaoUguiFactory.CreateRect("GuildRec_" + rec.BattleId, lScroll, 0f, i * 100f, rightW - 24f, 92f);
-                    var img = QdaoUguiFactory.CreateImage("RowBg", row, 0f, 0f, rightW - 24f, 92f, LoadOptionalSkin("guild_record_row"));
+                    var row = QdaoUguiFactory.CreateRect("GuildRec_" + rec.BattleId, lScroll, 0f, i * 100f, rightW - 20f, 92f);
+                    var img = QdaoUguiFactory.CreateImage("RowBg", row, 0f, 0f, rightW - 20f, 92f, LoadOptionalSkin("guild_record_row"));
                     img.type = img.sprite != null && img.sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
                     img.pixelsPerUnitMultiplier = 1f;
                     if (img.sprite == null) img.color = rec.WritTier == (uint)global::Match.JianghuWritTier.GoldItem ? GoldCardTint : Color.white;
@@ -756,14 +880,14 @@ namespace MmorpgClient.UI.Ugui.Jianghu
                     string outcome = JianghuModels.FormatOutcome(rec.OutcomeForGuild);
                     Color outcomeColor = rec.OutcomeForGuild == 1 ? JadeAccent : (rec.OutcomeForGuild == 2 ? DangerInk : Muted);
                     Text(row, $"[{outcome}] 对阵【{SafeName(rec.RivalGuildName, rec.RivalGuildId)}】 · {JianghuModels.FormatWritShort(rec.WritTier)} {rec.TeamSize}V{rec.TeamSize}",
-                        18f, 12f, rightW - 200f, 34f, 22f, outcomeColor).raycastTarget = false;
+                        48f, 12f, rightW - 252f, 34f, 22f, outcomeColor).raycastTarget = false;
                     Text(row, $"领衔：{rec.OurCaptainName} vs {rec.RivalCaptainName} · {rec.TotalRounds} 回合",
-                        18f, 50f, rightW - 200f, 28f, 19f, Muted).raycastTarget = false;
+                        48f, 50f, rightW - 252f, 28f, 19f, Muted).raycastTarget = false;
 
                     ulong battleId = rec.BattleId;
                     if (battleId != 0 && _playReplayAction != null)
                     {
-                        var btn = SkinButton(row, "GuildReplay_" + battleId, "回放", rightW - 166f, 18f, 122f, 54f,
+                        var btn = SkinButton(row, "GuildReplay_" + battleId, "回放", rightW - 188f, 19f, 130f, 54f,
                             () => _playReplayAction(battleId), "btn_secondary", "button_secondary", false, 21f);
                         btn.interactable = !_client.InBattle;
                     }
@@ -947,8 +1071,11 @@ namespace MmorpgClient.UI.Ugui.Jianghu
             colors.selectedColor = new Color(1f, 0.94f, 0.77f);
             btn.colors = colors;
             if (onClick != null) btn.onClick.AddListener(() => onClick());
-            var txt = Text(btn.transform, label, 12f, 0f, w - 24f, h, fontSize,
-                primary ? Cream : Ink, alignment: TextAlignmentOptions.Center);
+            bool hasDangerSkin = string.Equals(skinRelPath, "btn_danger", StringComparison.Ordinal) && LoadOptionalSkin("btn_danger") != null;
+            bool lightLabel = primary || hasDangerSkin;
+            float padX = Mathf.Min(18f, w * 0.14f);
+            var txt = Text(btn.transform, label, padX, 0f, w - padX * 2f, h, fontSize,
+                lightLabel ? Cream : Ink, alignment: TextAlignmentOptions.Center);
             txt.raycastTarget = false;
             return btn;
         }

@@ -3,7 +3,7 @@ guid: 8410cf9688a7203d6a0a6a195a904e8b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3499132462809845484
+      213: -1632492549836856899
     second: badge_title_unlocked_0
   externalObjects: {}
   serializedVersion: 13
@@ -47,12 +47,12 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 100
   spriteMode: 1
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 72, y: 0, z: 72, w: 0}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -74,7 +74,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -94,8 +94,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 480
-        height: 76
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,8 +104,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8245a489037900770800000000000000
-      internalID: 3499132462809845484
+      spriteID: 24a5ecbfa66ccee44a46e81f0eaae3ba
+      internalID: -1632492549836856899
       vertices: []
       indices: 
       edges: []
@@ -114,7 +114,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 879fd1f14d987693890e5ca608b7ab36
     internalID: 0
     vertices: []
     indices: 
@@ -126,6 +126,6 @@ TextureImporter:
     nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: craft-proxy-digest-and-ranking-v1
+  userData: 
   assetBundleName: 
   assetBundleVariant: 

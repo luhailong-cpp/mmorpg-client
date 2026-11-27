@@ -23,6 +23,17 @@ namespace MmorpgClient.UI.Ugui
         public const string CraftQualityRoot = "UI/Ugui/CraftQualitySkill/";
         public const string CraftIconsRoot = "UI/Ugui/CraftQualitySkill/Icons/";
         public const string CraftProxyDigestRoot = "UI/Ugui/CraftProxyDigest/";
+        public static readonly string[] CraftProxyDigestAssetKeys =
+        {
+            "panel_proxy_digest",
+            "banner_hot_masters",
+            "card_hot_master",
+            "badge_hot_rank_1",
+            "badge_hot_rank_2",
+            "badge_hot_rank_3",
+            "badge_title_unlocked",
+            "icon_digest_scroll",
+        };
         public const string EconomyTradeRoot = "UI/Ugui/EconomyTradeV1/";
         public const string EconomyTradeV2Root = "UI/Ugui/EconomyTradeV2/";
         public static readonly string[] EconomyTradeV2AssetKeys =

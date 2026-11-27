@@ -285,6 +285,13 @@ namespace MmorpgClient.Net
                 case MatchServiceRpc.CreateTrialChallengeCardMessageId:
                 case MatchServiceRpc.GetTrialChallengeCardMessageId:
                 case MatchServiceRpc.GetSharedTrialReplayMessageId:
+                case MatchServiceRpc.ListTacticalPuzzlesMessageId:
+                case MatchServiceRpc.GetTacticalPuzzleMessageId:
+                case MatchServiceRpc.SaveTacticalPuzzleDraftMessageId:
+                case MatchServiceRpc.DeleteTacticalPuzzleMessageId:
+                case MatchServiceRpc.StartTacticalPuzzleBattleMessageId:
+                case MatchServiceRpc.LikeTacticalPuzzleMessageId:
+                case MatchServiceRpc.GetTacticalPuzzleSolutionReplayMessageId:
                     return "match";
 
                 case MessageIds.SubmitBattleAction:

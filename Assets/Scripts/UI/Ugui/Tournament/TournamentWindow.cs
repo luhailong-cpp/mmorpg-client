@@ -1376,7 +1376,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         bottomLeftX += 38f;
                     }
 
-                    // V3 模块 E：已决出对局若本人曾预测，盖「中/惜」印章（加载成功时严禁叠字）
+                    // V3 模块 E：已决出对局若本人曾预测，盖无字印章并动态叠「中/惜」
                     bool isSettledMatch = m.State == TournamentMatchState.Finished || m.State == TournamentMatchState.Forfeit;
                     if (isSettledMatch && m.MyPredictedSquadId != 0UL && m.WinnerSquadId != 0UL)
                     {
@@ -1386,6 +1386,9 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         {
                             var sImg = QdaoUguiFactory.CreateImage("PredSeal", mCard, bottomLeftX, barY + 6f, 32f, 32f, sealSprite, false);
                             sImg.preserveAspect = true;
+                            TournamentArtCatalog.SealOverlayLabel(sImg.transform, 2f, 2f, 28f, 28f,
+                                hit ? "中" : "惜", 15f, 11f,
+                                hit ? new Color32(16, 46, 32, 245) : new Color32(72, 22, 16, 245));
                         }
                         else
                         {
@@ -1398,7 +1401,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                         bottomLeftX += 34f;
                     }
 
-                    // V3 模块 F：已决出且评出 MVP 时显示鎏金 MVP 印章（44×44 透明点击热区包 36×36 原图，严禁叠字）
+                    // V3 模块 F：已决出且评出 MVP 时显示鎏金 MVP 印章（44×44 透明点击热区包 36×36 无字原图，动态叠「问鼎」）
                     if (m.MvpPlayerId != 0UL)
                     {
                         var mvpMatch = m;
@@ -1412,6 +1415,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
                             var mvpBtn = mvpHit.gameObject.AddComponent<Button>();
                             var mImg = QdaoUguiFactory.CreateImage("Visual", mvpHit, 4f, 4f, 36f, 36f, mvpSprite, false);
                             mImg.preserveAspect = true;
+                            TournamentArtCatalog.SealOverlayLabel(mImg.transform, 3f, 2f, 30f, 30f,
+                                "问鼎", 12f, 8.5f, new Color32(14, 42, 30, 245));
                             mvpBtn.targetGraphic = mImg;
                             mvpBtn.onClick.AddListener(() =>
                             {
@@ -2457,7 +2462,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 }, interactable: canSubmit, fontSize: 18f);
         }
 
-        /// <summary>V3 模块 G：择选道家战队战旗轻弹窗（4×2 官方预设纹章，v3-title-emblem 原生题字严禁叠字）。</summary>
+        /// <summary>V3 模块 G：择选道家战队战旗轻弹窗（4×2 官方预设纹章，v3-title-emblem 无字底板 + 动态叠字「择选战旗」）。</summary>
         private void BuildSelectEmblemModal(bool isBusy)
         {
             const float w = 640f;
@@ -2465,10 +2470,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
             _modalContent.sizeDelta = new Vector2(w, h);
             TournamentArtCatalog.SpriteBox("EmblemFrame", _modalContent, 0f, 0f, w, h, "window-frame", sliced: true, raycast: true);
 
-            var titleImg = TournamentArtCatalog.SpriteBox("EmblemTitleArt", _modalContent, (w - 300f) * 0.5f, 24f, 300f, 44f,
-                "v3-title-emblem", preserveAspect: true);
-            if (titleImg.sprite == null)
-                TournamentArtCatalog.Label("FallbackTitle", _modalContent, 60f, 26f, w - 120f, 40f, "择选战旗", 28f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
+            TournamentArtCatalog.ModalTitleBanner("EmblemTitleArt", _modalContent, (w - 300f) * 0.5f, 24f, 300f, 44f,
+                "v3-title-emblem", "择选战旗");
 
             var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 68f, 22f, 44f, 44f,
                 TournamentArtCatalog.Load("close-button"), out var ci);
@@ -2539,10 +2542,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
             _modalContent.sizeDelta = new Vector2(w, h);
             TournamentArtCatalog.SpriteBox("WarmupFrame", _modalContent, 0f, 0f, w, h, "window-frame", sliced: true, raycast: true);
 
-            var titleImg = TournamentArtCatalog.SpriteBox("WarmupTitleArt", _modalContent, (w - 300f) * 0.5f, 22f, 300f, 44f,
-                "v3-title-warmup", preserveAspect: true);
-            if (titleImg.sprite == null)
-                TournamentArtCatalog.Label("FallbackTitle", _modalContent, 60f, 26f, w - 120f, 40f, "热身约战", 28f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
+            TournamentArtCatalog.ModalTitleBanner("WarmupTitleArt", _modalContent, (w - 300f) * 0.5f, 22f, 300f, 44f,
+                "v3-title-warmup", "热身约战");
 
             var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 68f, 20f, 44f, 44f,
                 TournamentArtCatalog.Load("close-button"), out var ci);
@@ -2694,7 +2695,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 }, primaryFallback: true, interactable: !isBusy && complete, fontSize: 18f);
         }
 
-        /// <summary>V3 模块 E：《神机问道榜》免费竞猜弹窗（780×560 predict-panel + e-predict-title 原生题字严禁叠字）。</summary>
+        /// <summary>V3 模块 E：《神机问道榜》免费竞猜弹窗（780×560 predict-panel + e-predict-title 无字底板与动态叠字）。</summary>
         private void BuildPredictionBoardModal(TournamentOverviewSnapshot overview, bool isBusy)
         {
             const float w = 780f;
@@ -2710,10 +2711,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 TournamentArtCatalog.SpriteBox("PredictBgFallback", _modalContent, 0f, 0f, w, h, "window-frame", sliced: true, raycast: true);
             }
 
-            var titleImg = TournamentArtCatalog.SpriteBox("PredictTitleArt", _modalContent, (w - 300f) * 0.5f, 20f, 300f, 44f,
-                "v3-title-predict", preserveAspect: true);
-            if (titleImg.sprite == null)
-                TournamentArtCatalog.Label("FallbackTitle", _modalContent, 60f, 24f, w - 120f, 40f, "神机问道榜", 28f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
+            TournamentArtCatalog.ModalTitleBanner("PredictTitleArt", _modalContent, (w - 300f) * 0.5f, 20f, 300f, 44f,
+                "v3-title-predict", "神机问道榜");
 
             var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 68f, 18f, 44f, 44f,
                 TournamentArtCatalog.Load("close-button"), out var ci);
@@ -2844,7 +2843,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 ForceCloseModalVisual();
             });
 
-            // 左侧：真实玩家头像 + 鎏金 MVP 玉印（加载原图时严禁叠字）
+            // 左侧：真实玩家头像 + 鎏金 MVP 玉印（无字原图动态叠「问鼎」）
             Sprite portrait = ResolveMvpPortrait(overview, m.MvpPlayerId);
             TournamentArtCatalog.AvatarMedallion("MvpPortrait", _modalContent, 56f, 84f, 128f, portrait);
             var sealSprite = TournamentArtCatalog.Load("v3-f-mvp-seal");
@@ -2852,6 +2851,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
             {
                 var sImg = QdaoUguiFactory.CreateImage("MvpSeal", _modalContent, 146f, 168f, 68f, 68f, sealSprite, false);
                 sImg.preserveAspect = true;
+                TournamentArtCatalog.SealOverlayLabel(sImg.transform, 10f, 10f, 48f, 42f,
+                    "问鼎", 17f, 12f, new Color32(14, 42, 30, 245));
             }
             else
             {
@@ -2966,6 +2967,8 @@ namespace MmorpgClient.UI.Ugui.Tournament
                     {
                         var seal = QdaoUguiFactory.CreateImage("BanSeal", rect, (cardW - 44f) * 0.5f, 16f, 44f, 44f, banSealSprite, false);
                         seal.preserveAspect = true;
+                        TournamentArtCatalog.SealOverlayLabel(seal.transform, 4f, 4f, 36f, 36f,
+                            "禁", 19f, 13f, new Color32(72, 18, 14, 245));
                     }
                     else
                     {
@@ -3003,7 +3006,7 @@ namespace MmorpgClient.UI.Ugui.Tournament
             }, primary: false, fontSize: 17f);
         }
 
-        /// <summary>V4 模块 I：《本季名局录》Top 10 精选公开淘汰赛回放轻窗（780×560 highlights-panel + 原生题字）。</summary>
+        /// <summary>V4 模块 I：《本季名局录》Top 10 精选公开淘汰赛回放轻窗（780×560 highlights-panel + 无字标题底板与动态叠字）。</summary>
         private void BuildHighlightsModal(TournamentOverviewSnapshot overview, bool isBusy)
         {
             const float w = 780f;
@@ -3019,18 +3022,9 @@ namespace MmorpgClient.UI.Ugui.Tournament
                 TournamentArtCatalog.SpriteBox("HighlightsBgFallback", _modalContent, 0f, 0f, w, h, "window-frame", sliced: true, raycast: true);
             }
 
-            // 原生题字（加载成功时严禁叠字）
-            var titleSprite = TournamentArtCatalog.Load("v4-title-highlights");
-            if (titleSprite != null)
-            {
-                var tImg = QdaoUguiFactory.CreateImage("HighlightsTitleArt", _modalContent, (w - 300f) * 0.5f, 18f, 300f, 44f, titleSprite, false);
-                tImg.preserveAspect = true;
-            }
-            else
-            {
-                TournamentArtCatalog.Label("HighlightsTitleFallback", _modalContent, 48f, 20f, w - 96f, 40f,
-                    "本季名局录", 28f, TournamentArtCatalog.JadeDeep, TextAlignmentOptions.Center, bold: true);
-            }
+            // 无字标题底板（320×64 固定比例居中呈现于原 300×44 区域，动态叠字「本季名局录」）
+            TournamentArtCatalog.ModalTitleBanner("HighlightsTitleArt", _modalContent, (w - 300f) * 0.5f, 18f, 300f, 44f,
+                "v4-title-highlights", "本季名局录");
 
             var close = QdaoUguiFactory.CreateArtButton("ModalClose", _modalContent, w - 68f, 18f, 44f, 44f,
                 TournamentArtCatalog.Load("close-button"), out var ci);

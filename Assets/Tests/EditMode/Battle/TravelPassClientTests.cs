@@ -1,11 +1,18 @@
 using System;
 using System.Collections.Generic;
 using Google.Protobuf;
+using Match;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.Ranked;
+using MmorpgClient.Game.Tournament;
 using MmorpgClient.Game.TravelPass;
 using MmorpgClient.Net;
 using MmorpgClient.Net.Generated;
+using MmorpgClient.UI.Ugui.Tournament;
 using NUnit.Framework;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace MmorpgClient.Tests.EditMode.Battle
 {
@@ -299,7 +306,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             // Order: (resource path under Resources/, border Left, Bottom, Right, Top)
             var expected = new (string path, float l, float b, float r, float t)[]
             {
-                // TournamentV3 (29 — 与 ui-missing-61-redraw-20261126 正式重绘交付逐文件对齐)
+                // TournamentV3 (29 — 与 ui-slices-41-style-repair-20261126 正式画风修复包逐文件对齐)
                 ("UI/Ugui/TournamentV3/d/warmup-btn", 30, 12, 30, 12),
                 ("UI/Ugui/TournamentV3/d/warmup-badge", 0, 0, 0, 0),
                 ("UI/Ugui/TournamentV3/e/predict-panel", 84, 84, 84, 84),
@@ -329,8 +336,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 ("UI/Ugui/TournamentV3/titles/e-predict-title", 0, 0, 0, 0),
                 ("UI/Ugui/TournamentV3/titles/g-emblem-title", 0, 0, 0, 0),
                 ("UI/Ugui/TournamentV3/titles/i-highlights-title", 0, 0, 0, 0),
-                // RankedPlayV4 (12)
-                ("UI/Ugui/RankedPlayV4/ping_bar_base", 0, 0, 0, 0),
+                // RankedPlayV4 (12 — ping_bar_base 九宫格 32/23/32/23)
+                ("UI/Ugui/RankedPlayV4/ping_bar_base", 32, 23, 32, 23),
                 ("UI/Ugui/RankedPlayV4/streak_banner_base", 0, 0, 0, 0),
                 ("UI/Ugui/RankedPlayV4/streak_break_stamp", 0, 0, 0, 0),
                 ("UI/Ugui/RankedPlayV4/ping_focus", 0, 0, 0, 0),
@@ -379,6 +386,231 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 var sp = UnityEngine.Resources.Load<UnityEngine.Sprite>(path);
                 Assert.IsNotNull(sp, "missing UI-65 sprite: " + path);
                 Assert.AreEqual(new UnityEngine.Vector4(l, b, r, t), sp.border, "unexpected spriteBorder: " + path);
+            }
+        }
+
+        [Test]
+        public void StyleRepair41Slices_NativeDimensionsAndDynamicOverlaysMatchContract()
+        {
+            // Order: (path under Resources/, native width, native height, border Left, Bottom, Right, Top)
+            var expectedSpecs = new (string path, int w, int h, float l, float b, float r, float t)[]
+            {
+                ("UI/Ugui/TournamentV3/d/warmup-badge", 96, 96, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/d/warmup-btn", 260, 72, 30, 12, 30, 12),
+                ("UI/Ugui/TournamentV3/e/predict-hit", 96, 96, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/e/predict-miss", 96, 96, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/e/predict-panel", 800, 520, 84, 84, 84, 84),
+                ("UI/Ugui/TournamentV3/e/predict-pick", 64, 64, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/f/mvp-card-bg", 520, 220, 84, 84, 84, 84),
+                ("UI/Ugui/TournamentV3/f/mvp-seal", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/bronze-banner", 640, 96, 16, 14, 16, 14),
+                ("UI/Ugui/TournamentV3/g/emblem-01-sword", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-02-taiji", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-03-furnace", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-04-lotus", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-05-crane", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-06-thunder", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-07-bagua", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/g/emblem-08-cauldron", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/h/ban-seal", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/i/highlights-panel", 960, 560, 84, 84, 84, 84),
+                ("UI/Ugui/TournamentV3/j/honor-01-debut", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/j/honor-02-streak", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/j/honor-03-unbeaten", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/j/honor-04-comeback", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/j/honor-05-sweep", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/j/honor-06-champion", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/titles/d-warmup-title", 320, 64, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/titles/e-predict-title", 320, 64, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/titles/g-emblem-title", 320, 64, 0, 0, 0, 0),
+                ("UI/Ugui/TournamentV3/titles/i-highlights-title", 320, 64, 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/ping_focus", 96, 96, 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/ping_control", 96, 96, 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/ping_protect", 96, 96, 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/ping_dispel", 96, 96, 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/ping_bar_base", 420, 84, 32, 23, 32, 23),
+                ("UI/Ugui/RankedPlayV4/highlight_focus", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/highlight_control", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/highlight_support", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/highlight_guard", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/highlight_comeback", 128, 128, 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/streak_banner_base", 320, 64, 0, 0, 0, 0),
+                ("UI/Ugui/RankedPlayV4/streak_break_stamp", 280, 68, 0, 0, 0, 0),
+            };
+            Assert.AreEqual(41, expectedSpecs.Length);
+            foreach (var (path, w, h, l, b, r, t) in expectedSpecs)
+            {
+                var sp = Resources.Load<Sprite>(path);
+                Assert.IsNotNull(sp, "missing style-repair sprite: " + path);
+                Assert.AreEqual(w, Mathf.RoundToInt(sp.rect.width), "unexpected width: " + path);
+                Assert.AreEqual(h, Mathf.RoundToInt(sp.rect.height), "unexpected height: " + path);
+                Assert.AreEqual(new Vector4(l, b, r, t), sp.border, "unexpected spriteBorder: " + path);
+            }
+
+            // 核对论剑 V4 六处既有动态叠字来源保持不变
+            Assert.AreEqual("集火", RankedFormatting.PingDisplayName(BattlePingKind.BattlePingFocus));
+            Assert.AreEqual("封控", RankedFormatting.PingDisplayName(BattlePingKind.BattlePingControl));
+            Assert.AreEqual("保核", RankedFormatting.PingDisplayName(BattlePingKind.BattlePingProtect));
+            Assert.AreEqual("驱散", RankedFormatting.PingDisplayName(BattlePingKind.BattlePingDispel));
+            Assert.AreEqual("连胜势 ×5", RankedFormatting.WinStreakBannerText(5u));
+            Assert.AreEqual("破势终结 · 终结 4 连胜", RankedFormatting.StreakBreakBannerText(4u));
+
+            // 验证 9 处从烘焙字改为动态叠字的 TournamentV3 UI 节点真实渲染出文字且标题条保持固定比例不拉伸
+            var hostGo = new GameObject("TournamentStyleRepairTestHost", typeof(RectTransform));
+            try
+            {
+                var sq = new TournamentSquadView
+                {
+                    SquadId = 5001UL,
+                    SeasonId = 2u,
+                    Name = "云上问道",
+                    CaptainPlayerId = 1001UL,
+                    State = TournamentSquadState.Registered,
+                    MemberCount = 3u,
+                };
+                for (uint i = 0; i < 3; i++)
+                    sq.Members.Add(new TournamentMemberView { PlayerId = 1001UL + i, PlayerName = $"道友{i + 1}", StarterSlot = i + 1u });
+
+                var hitThirdMatch = new TournamentMatchView
+                {
+                    MatchId = 9001UL,
+                    Phase = TournamentMatchPhase.Knockout,
+                    RoundIndex = 2u,
+                    SlotIndex = 1u,
+                    IsThirdPlace = true,
+                    BestOf = 3u,
+                    SquadAId = 5001UL,
+                    SquadAName = "云上问道",
+                    SquadBId = 6001UL,
+                    SquadBName = "玉衡星河",
+                    State = TournamentMatchState.Finished,
+                    WinnerSquadId = 5001UL,
+                    MyPredictedSquadId = 5001UL,
+                    MvpPlayerId = 1001UL,
+                    MvpPlayerName = "道友1",
+                    MvpSquadId = 5001UL,
+                    MvpScore = 980u,
+                };
+                var missMatch = new TournamentMatchView
+                {
+                    MatchId = 9002UL,
+                    Phase = TournamentMatchPhase.Knockout,
+                    RoundIndex = 2u,
+                    SlotIndex = 0u,
+                    BestOf = 3u,
+                    SquadAId = 7001UL,
+                    SquadAName = "青云剑宗",
+                    SquadBId = 8001UL,
+                    SquadBName = "丹鼎长生",
+                    State = TournamentMatchState.Finished,
+                    WinnerSquadId = 7001UL,
+                    MyPredictedSquadId = 8001UL,
+                };
+                var banMatch = new TournamentMatchView
+                {
+                    MatchId = 9003UL,
+                    Phase = TournamentMatchPhase.Knockout,
+                    RoundIndex = 1u,
+                    SlotIndex = 0u,
+                    BestOf = 3u,
+                    SquadAId = 5001UL,
+                    SquadAName = "云上问道",
+                    SquadBId = 6001UL,
+                    SquadBName = "玉衡星河",
+                    State = TournamentMatchState.WaitingOpponent,
+                    BannedLeylineA = TournamentLeylineElement.TournamentLeylineFire,
+                };
+
+                var ovResp = new GetTournamentOverviewResponse
+                {
+                    CurrentSeason = new TournamentSeasonView
+                    {
+                        SeasonId = 2u,
+                        SeasonName = "第二赛季",
+                        Stage = TournamentStage.Knockout,
+                        Enabled = true,
+                        BattleTeamSize = 3u,
+                        RosterMaxSize = 4u,
+                        KnockoutTeamCount = 4u,
+                    },
+                    MySquad = sq,
+                    ServerTimeMs = 150_000UL,
+                };
+                var overview = TournamentOverviewSnapshot.FromResponse(ovResp, 10f);
+                var stResp = new ListTournamentStandingsResponse { Season = ovResp.CurrentSeason.Clone() };
+                stResp.KnockoutBracket.Add(hitThirdMatch);
+                stResp.KnockoutBracket.Add(missMatch);
+                stResp.KnockoutBracket.Add(banMatch);
+                var standings = TournamentStandingsSnapshot.FromResponse(stResp, 1u, 20u);
+
+                var model = new TournamentUiModel
+                {
+                    ActiveTab = TournamentTab.Standings,
+                    BoardMode = TournamentBoardMode.Bracket,
+                    SelectedStandingsSeasonId = 2u,
+                };
+                var window = new TournamentWindow(hostGo.transform, model, null);
+                window.Show();
+                window.Render(overview, standings, 1001UL, false, string.Empty, 10f);
+
+                var bracketTexts = new HashSet<string>();
+                foreach (var t in window.Root.GetComponentsInChildren<TMP_Text>(true))
+                    if (!string.IsNullOrEmpty(t.text)) bracketTexts.Add(t.text);
+                Assert.IsTrue(bracketTexts.Contains("季军争夺战"), "bronze-banner 缺少动态叠字「季军争夺战」");
+                Assert.IsTrue(bracketTexts.Contains("中"), "predict-hit 缺少动态叠字「中」");
+                Assert.IsTrue(bracketTexts.Contains("惜"), "predict-miss 缺少动态叠字「惜」");
+                Assert.IsTrue(bracketTexts.Contains("问鼎"), "bracket mvp-seal 缺少动态叠字「问鼎」");
+
+                void AssertTitleBanner(string objectName, string expectedTitle)
+                {
+                    Image bannerImg = null;
+                    foreach (var img in window.Root.GetComponentsInChildren<Image>(true))
+                    {
+                        if (img.gameObject.name == objectName) { bannerImg = img; break; }
+                    }
+                    Assert.IsNotNull(bannerImg, "未找到标题底板节点: " + objectName);
+                    Assert.IsTrue(bannerImg.preserveAspect, objectName + " 须保持固定比例不拉伸");
+                    Assert.AreEqual(new Vector2(300f, 44f), bannerImg.rectTransform.sizeDelta, objectName + " 显示区须保持 300×44");
+                    var lbl = bannerImg.GetComponentInChildren<TMP_Text>(true);
+                    Assert.IsNotNull(lbl, objectName + " 缺少动态叠字");
+                    Assert.AreEqual(expectedTitle, lbl.text);
+                }
+
+                model.OpenWarmupModal(sq, 3u);
+                window.Render(overview, standings, 1001UL, false, string.Empty, 10f);
+                AssertTitleBanner("WarmupTitleArt", "热身约战");
+
+                model.OpenPredictionBoardModal();
+                window.Render(overview, standings, 1001UL, false, string.Empty, 10f);
+                AssertTitleBanner("PredictTitleArt", "神机问道榜");
+
+                model.OpenSelectEmblemModal(1u);
+                window.Render(overview, standings, 1001UL, false, string.Empty, 10f);
+                AssertTitleBanner("EmblemTitleArt", "择选战旗");
+
+                model.OpenHighlightsModal();
+                window.Render(overview, standings, 1001UL, false, string.Empty, 10f);
+                AssertTitleBanner("HighlightsTitleArt", "本季名局录");
+
+                model.OpenMvpHighlightModal(hitThirdMatch);
+                window.Render(overview, standings, 1001UL, false, string.Empty, 10f);
+                Image mvpModalSeal = null;
+                foreach (var img in window.Root.GetComponentsInChildren<Image>(true))
+                    if (img.gameObject.name == "MvpSeal") { mvpModalSeal = img; break; }
+                Assert.IsNotNull(mvpModalSeal);
+                Assert.AreEqual("问鼎", mvpModalSeal.GetComponentInChildren<TMP_Text>(true)?.text);
+
+                model.OpenBanLeylineModal(banMatch);
+                window.Render(overview, standings, 1001UL, false, string.Empty, 10f);
+                Image banSeal = null;
+                foreach (var img in window.Root.GetComponentsInChildren<Image>(true))
+                    if (img.gameObject.name == "BanSeal") { banSeal = img; break; }
+                Assert.IsNotNull(banSeal);
+                Assert.AreEqual("禁", banSeal.GetComponentInChildren<TMP_Text>(true)?.text);
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(hostGo);
             }
         }
     }

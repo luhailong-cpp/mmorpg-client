@@ -3,7 +3,7 @@ guid: 35c446e3c66a80401626d8d16ee1bf9f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2782074720630849246
+      213: 1558935405887517223
     second: icon_rematch_swords_0
   externalObjects: {}
   serializedVersion: 13
@@ -74,7 +74,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -94,8 +94,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,8 +104,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 98c4c8e51c616b65a066fa8a02decad1
-      internalID: 2782074720630849246
+      spriteID: e9a21e25bf6becf46cdfa32ee7ede9ef
+      internalID: 1558935405887517223
       vertices: []
       indices: 
       edges: []
@@ -114,7 +114,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b9deeaf39da5b69a02099f1716d42a54
+    spriteID: 96a57c3890873145ed2d1994e16902a4
     internalID: 0
     vertices: []
     indices: 

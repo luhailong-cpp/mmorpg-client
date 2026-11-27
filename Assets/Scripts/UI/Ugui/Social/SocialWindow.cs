@@ -411,6 +411,20 @@ namespace MmorpgClient.UI.Ugui.Social
                 },
                 err=>State?.Notify(string.IsNullOrEmpty(err)?"该约战帖已过期或不可用。":err));
         }
+        private void HandleChallengeTacticalPuzzleCard(ulong puzzleId)
+        {
+            if(puzzleId==0ul)return;
+            Hide();
+            MmorpgClient.UI.Ugui.TacticalPuzzle.TacticalPuzzleUiRoot.EnsureSpawned();
+            MmorpgClient.UI.Ugui.TacticalPuzzle.TacticalPuzzleUiRoot.Instance?.StartPuzzleChallenge(puzzleId,false);
+        }
+        private void HandleWatchTacticalPuzzleSolutionCard(ulong puzzleId)
+        {
+            if(puzzleId==0ul)return;
+            Hide();
+            MmorpgClient.UI.Ugui.TacticalPuzzle.TacticalPuzzleUiRoot.EnsureSpawned();
+            MmorpgClient.UI.Ugui.TacticalPuzzle.TacticalPuzzleUiRoot.Instance?.WatchSolutionById(puzzleId);
+        }
         public void Dispose(){State.Changed-=Changed;Hide();_countdowns.Clear();}
     }
 }

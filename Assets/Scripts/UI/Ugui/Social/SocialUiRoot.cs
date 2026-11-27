@@ -138,6 +138,34 @@ namespace MmorpgClient.UI.Ugui.Social
             Window.FocusComposer();
             return true;
         }
+        /// <summary>万象残局坊 V1：将 #PUZ:&lt;id&gt;# 残局卡片草稿填入世界频道，发送仍须玩家确认。</summary>
+        public bool TryComposeTacticalPuzzleCard(string draft)
+        {
+            if(!HasView||string.IsNullOrWhiteSpace(draft))return false;
+            var game=AppBootstrap.Instance?.GameClient;
+            bool battleVisible=BattleUiRoot.Instance?.IsBattleLayerVisible??false;
+            if(!_available&&!battleVisible&&game!=null&&game.InGame&&game.IsGateReady
+                &&ReferenceEquals(_game,game)&&_player==game.PlayerId
+                &&ReferenceEquals(_connection,game.GateConnectionIdentity))
+            {
+                _available=true;
+                _hud.gameObject.SetActive(true);
+            }
+            if(!_available||Window==null||Client==null||State==null||game==null||!game.InGame||!game.IsGateReady
+                ||game.PlayerId==0||!ReferenceEquals(_game,game)||_player!=game.PlayerId
+                ||!ReferenceEquals(_connection,game.GateConnectionIdentity)||State.PlayerId!=game.PlayerId
+                ||battleVisible)
+            {State?.Notify("请进入可用角色会话后分享残局卡片。");return false;}
+            if(State.IsPreview||!State.CanSend(SocialChannel.World)||Client.RequiresReconnect)
+            {State.Notify(State.RequiresReconnect?SocialClient.RecoveryMessage:"聊天正在同步，请稍后再试。");return false;}
+
+            State.SetDraft(SocialChannel.World,draft);
+            State.SelectChannel(SocialChannel.World);
+            OpenPanel(SocialPage.World,false);
+            State.Notify("万象残局约战卡已填入世界频道草稿，确认后点击发送。");
+            Window.FocusComposer();
+            return true;
+        }
         private void OpenPanel(SocialPage page,bool refreshHistory=true)
         {
             if(!HasView||!_available)return;

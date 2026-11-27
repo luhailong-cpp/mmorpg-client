@@ -544,5 +544,60 @@ namespace MmorpgClient.Tests.EditMode.Skills
             Assert.That(_client.HasUnreadProxyDigest, Is.False);
             Assert.That(_client.Error, Is.Empty);
         }
+
+        [Test]
+        public void CraftProxyDigestSpriteResourcesAndSliceMetaContractsAreComplete()
+        {
+            string projectRoot = Directory.Exists(Path.Combine("Assets", "Resources", "UI", "Ugui", "CraftProxyDigest"))
+                ? "."
+                : "mmorpg-client";
+            string assetsDir = Path.Combine(projectRoot, "Assets", "Resources", "UI", "Ugui", "CraftProxyDigest");
+            Assert.That(Directory.Exists(assetsDir), Is.True, $"Missing CraftProxyDigest directory: {assetsDir}");
+            Assert.That(File.Exists(assetsDir + ".meta"), Is.True, "Missing CraftProxyDigest.meta");
+
+            string artCatalogSource = File.ReadAllText(Path.Combine(projectRoot, "Assets", "Scripts", "UI", "Ugui", "SeasonEconomyUiArt.cs"));
+            Assert.That(artCatalogSource, Does.Contain("CraftProxyDigestRoot = \"UI/Ugui/CraftProxyDigest/\";"));
+
+            var expectedSpecs = new Dictionary<string, (int W, int H, string Border)>
+            {
+                ["panel_proxy_digest"] = (1200, 820, "{x: 64, y: 64, z: 64, w: 64}"),
+                ["banner_hot_masters"] = (1400, 96, "{x: 120, y: 0, z: 120, w: 0}"),
+                ["card_hot_master"] = (440, 168, "{x: 32, y: 32, z: 32, w: 32}"),
+                ["badge_hot_rank_1"] = (128, 128, "{x: 0, y: 0, z: 0, w: 0}"),
+                ["badge_hot_rank_2"] = (128, 128, "{x: 0, y: 0, z: 0, w: 0}"),
+                ["badge_hot_rank_3"] = (128, 128, "{x: 0, y: 0, z: 0, w: 0}"),
+                ["badge_title_unlocked"] = (480, 76, "{x: 72, y: 0, z: 72, w: 0}"),
+                ["icon_digest_scroll"] = (256, 256, "{x: 0, y: 0, z: 0, w: 0}"),
+            };
+
+            foreach (var kv in expectedSpecs)
+            {
+                string key = kv.Key;
+                var spec = kv.Value;
+                Assert.That(artCatalogSource, Does.Contain($"\"{key}\""), $"SeasonEconomyUiArt.CraftProxyDigestAssetKeys missing {key}");
+
+                string pngPath = Path.Combine(assetsDir, key + ".png");
+                string metaPath = pngPath + ".meta";
+                Assert.That(File.Exists(pngPath), Is.True, $"Missing sprite PNG: {pngPath}");
+                Assert.That(File.Exists(metaPath), Is.True, $"Missing sprite meta: {metaPath}");
+
+                byte[] header = new byte[24];
+                using (var fs = File.OpenRead(pngPath))
+                {
+                    Assert.That(fs.Read(header, 0, header.Length), Is.EqualTo(24));
+                }
+                Assert.That(header[0], Is.EqualTo(0x89), $"{key} is not a PNG binary");
+                Assert.That(header[1], Is.EqualTo(0x50), $"{key} is not a PNG binary");
+                int width = (header[16] << 24) | (header[17] << 16) | (header[18] << 8) | header[19];
+                int height = (header[20] << 24) | (header[21] << 16) | (header[22] << 8) | header[23];
+                Assert.That((width, height), Is.EqualTo((spec.W, spec.H)), $"Dimension mismatch for {key}");
+
+                string meta = File.ReadAllText(metaPath);
+                Assert.That(meta, Does.Contain("textureType: 8"), $"{key} meta must import as Sprite");
+                Assert.That(meta, Does.Contain("alphaIsTransparency: 1"), $"{key} meta must keep alpha transparency");
+                Assert.That(meta, Does.Contain("enableMipMap: 0"), $"{key} meta must disable mipmaps");
+                Assert.That(meta, Does.Contain("spriteBorder: " + spec.Border), $"{key} meta border mismatch");
+            }
+        }
     }
 }

@@ -193,8 +193,7 @@ namespace MmorpgClient.Tests.EditMode.Net
                     // 脚本走完:短时间内客户端不该再发请求(断开或超时都算没有)。
                     stream.ReadTimeout = 300;
                     try { gate.Extra.Add(ReadRequest(stream, codec)); }
-                    catch (IOException) { }
-                    catch (EndOfStreamException) { }
+                    catch (IOException) { } // 含子类 EndOfStreamException
                 }
                 catch (Exception ex)
                 {

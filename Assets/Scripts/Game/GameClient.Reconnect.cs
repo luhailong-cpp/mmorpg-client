@@ -32,7 +32,10 @@ namespace MmorpgClient.Game
                 string.IsNullOrEmpty(AccessToken) || CoroutineRunner == null)
                 return false;
             uint zoneId = CurrentZoneId;
-            ulong battleId = BattleLink?.BattleId ?? 0;
+            // 只恢复参战直连;DIRECT 观众在 ResetConnectionState 已作废 SpectateClient,补签票会留僵尸直连
+            ulong battleId = BattleLink != null && BattleLink.Role != eBattleTicketRole.BattleTicketRoleObserver
+                ? BattleLink.BattleId
+                : 0;
             ulong spectateBattleId = 0;
             string spectateRequestId = null;
             Spectate?.TryCaptureLobbyReconnectContext(out spectateBattleId, out spectateRequestId);

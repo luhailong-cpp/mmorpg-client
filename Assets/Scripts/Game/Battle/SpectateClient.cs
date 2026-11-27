@@ -378,10 +378,13 @@ namespace MmorpgClient.Game.Battle
         {
             if (ev == null) return;
             if (Phase != SpectatePhase.Watching) return;
-            if (_battleId != 0 && ev.BattleId != 0 && ev.BattleId != _battleId) return;
+            ulong incoming = ev.BattleId != 0 ? ev.BattleId : (ev.State?.BattleId ?? 0);
+            if (_battleId != 0 && incoming != 0 && incoming != _battleId) return;
 
-            // 契约 §6.1:158 只与 158 比较 round_index,单调去重(L1→L2 升档重叠自愈)
+            // 契约 §6.1:158 只与 158 比较 round_index,单调去重(L1→L2 升档重叠自愈);
+            // gate 用缓存 TURN(r) 合成首帧 STATE(r+1) 时,迟到重叠的 TURN(r) 满足 RoundIndex < State.RoundIndex 也丢弃(不干扰正常 STATE(r)→TURN(r))
             if (_lastTurnRound >= 0 && (long)ev.RoundIndex <= _lastTurnRound) return;
+            if (State != null && State.RoundIndex > 0 && ev.RoundIndex < State.RoundIndex) return;
             _lastTurnRound = ev.RoundIndex;
 
             if (ev.State != null) State = ev.State;

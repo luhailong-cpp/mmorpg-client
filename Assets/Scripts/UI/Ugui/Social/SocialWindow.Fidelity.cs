@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MmorpgClient.Game.Social;
+using MmorpgClient.Game.TacticalPuzzle;
 using MmorpgClient.Game.TrialJournal;
 using TMPro;
 using UnityEngine;
@@ -124,16 +125,21 @@ namespace MmorpgClient.UI.Ugui.Social
                 bool self=message.Sender==State.PlayerId;
                 var person=State.Person(message.Sender);
                 bool hasTrialCard=TrialJournalModels.TryParseChallengeCardId(message.Text,out ulong trialCardId);
-                string displayText=hasTrialCard?TrialJournalModels.StripChallengeCardTag(message.Text):message.Text;
+                ulong puzzleCardId=0ul;
+                bool hasPuzzleCard=!hasTrialCard&&TacticalPuzzleModels.TryParsePuzzleCardId(message.Text,out puzzleCardId);
+                string displayText=hasTrialCard
+                    ? TrialJournalModels.StripChallengeCardTag(message.Text)
+                    : (hasPuzzleCard ? TacticalPuzzleModels.StripPuzzleCardTag(message.Text) : message.Text);
                 if(hasTrialCard&&string.IsNullOrEmpty(displayText))displayText="发出了一封五行试炼约战帖";
+                else if(hasPuzzleCard&&string.IsNullOrEmpty(displayText))displayText="分享了一道万象残局，点击可立即挑战或观摩标准解";
                 float bubble=Mathf.Min(width-126,Mathf.Max(220,SocialState.TextLength(displayText)*23f+36));
-                if(hasTrialCard)bubble=Mathf.Max(bubble,396);
+                if(hasTrialCard||hasPuzzleCard)bubble=Mathf.Max(bubble,430);
                 else if(!string.IsNullOrEmpty(message.Card))bubble=Mathf.Max(bubble,350);
                 var probe=FText(content,"Measure",displayText,0,0,bubble-32,100,24,wrap:true);
                 float textHeight=Mathf.Max(32,probe.GetPreferredValues(displayText,bubble-32,float.PositiveInfinity).y);
                 probe.gameObject.SetActive(false);
                 if(Application.isPlaying)UnityEngine.Object.Destroy(probe.gameObject);else UnityEngine.Object.DestroyImmediate(probe.gameObject);
-                float cardHeight=hasTrialCard?64:(string.IsNullOrEmpty(message.Card)?0:message.Card=="bamboo"?61:86);
+                float cardHeight=(hasTrialCard||hasPuzzleCard)?72:(string.IsNullOrEmpty(message.Card)?0:message.Card=="bamboo"?61:86);
                 float rowHeight=Mathf.Max(98,39+textHeight+cardHeight+18);
                 var row=QdaoUguiFactory.CreateRect("SocialMessage_"+message.Id,content,0,y,width,rowHeight);
                 float avatarX=self?width-100:0, bubbleX=self?width-116-bubble:117;
@@ -179,6 +185,40 @@ namespace MmorpgClient.UI.Ugui.Social
                     var acceptBtn=FHit(row,"SocialTrialChallenge_"+message.Id,"同誓约应战",bubbleX+184,cardY+6,184,44,
                         ()=>HandleAcceptTrialChallengeCard(capturedCardId),!State.IsPreview,size:20,color:Cream);
                     acceptBtn.targetGraphic=acceptBg;
+                }
+                else if(hasPuzzleCard)
+                {
+                    ulong capturedPuzzleId=puzzleCardId;
+                    float cardY=43+textHeight;
+                    var puzzleCardBg=Resources.Load<Sprite>("UI/Ugui/TacticalPuzzleV1/puzzle_chat_card_bg");
+                    if(puzzleCardBg!=null)
+                    {
+                        var cardBg=QdaoUguiFactory.CreateImage("SocialPuzzleCardBg_"+message.Id,row,bubbleX+14,cardY,bubble-28,64,puzzleCardBg);
+                        cardBg.type=puzzleCardBg.border.sqrMagnitude>0?Image.Type.Sliced:Image.Type.Simple;
+                    }
+                    else
+                    {
+                        FImage(row,"exact_location_card",bubbleX+14,cardY,bubble-28,64);
+                    }
+                    var puzzleIcon=Resources.Load<Sprite>("UI/Ugui/TacticalPuzzleV1/hud_entry_puzzle");
+                    if(puzzleIcon!=null)
+                    {
+                        var ic=QdaoUguiFactory.CreateImage("SocialPuzzleIcon_"+message.Id,row,bubbleX+24,cardY+12,40,40,puzzleIcon);
+                        ic.preserveAspect=true;
+                    }
+                    var solSprite=Load("button_secondary");
+                    var solBg=QdaoUguiFactory.CreateImage("SocialPuzzleSolBg_"+message.Id,row,bubbleX+74,cardY+10,148,44,solSprite);
+                    solBg.type=solSprite!=null&&solSprite.border.sqrMagnitude>0?Image.Type.Sliced:Image.Type.Simple;
+                    var solBtn=FHit(row,"SocialPuzzleSol_"+message.Id,"看标准解",bubbleX+74,cardY+10,148,44,
+                        ()=>HandleWatchTacticalPuzzleSolutionCard(capturedPuzzleId),!State.IsPreview,size:19,color:Ink);
+                    solBtn.targetGraphic=solBg;
+
+                    var chalSprite=Load("button_primary");
+                    var chalBg=QdaoUguiFactory.CreateImage("SocialPuzzleChalBg_"+message.Id,row,bubbleX+232,cardY+10,164,44,chalSprite);
+                    chalBg.type=chalSprite!=null&&chalSprite.border.sqrMagnitude>0?Image.Type.Sliced:Image.Type.Simple;
+                    var chalBtn=FHit(row,"SocialPuzzleChal_"+message.Id,"挑战残局",bubbleX+232,cardY+10,164,44,
+                        ()=>HandleChallengeTacticalPuzzleCard(capturedPuzzleId),!State.IsPreview,size:19,color:Cream);
+                    chalBtn.targetGraphic=chalBg;
                 }
                 else if(cardHeight>0)
                 {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.UI.Ugui.TacticalPuzzle;
 using MmorpgClient.UI.Ugui.TrialJournal;
 using MmorpgClient.UI.Ugui.Tweening;
 using TMPro;
@@ -43,6 +44,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly Action<ulong> _onWatchReplay;
         private readonly Action<uint> _onOpenTrialJournal;
         private readonly TrialJournalBattleResultHint _trialJournalHint;
+        private readonly TacticalPuzzleBattleResultHint _tacticalPuzzleHint;
         private ulong _replayBattleId;
         private float _currentRowsViewportHeight = RowsViewportHeight;
 
@@ -114,6 +116,8 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             // 试炼志行内提示条（仅在 TrialJournalEntryId != 0 时展示，不弹窗打断）
             _trialJournalHint = new TrialJournalBattleResultHint(_root, 40f, 510f, entryId => _onOpenTrialJournal?.Invoke(entryId));
+            // 万象残局坊结算条（仅在 TacticalPuzzleContext != null 时展示，与试炼志互斥）
+            _tacticalPuzzleHint = new TacticalPuzzleBattleResultHint(_root, 40f, 476f);
 
             BattleFidelityArt.ApplyPanel(_root);
             Hide();
@@ -130,11 +134,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             // 必须排在胜负判断之前 —— 落进下面的 else 会显示成「失败」,奖励行还会列出「HP 0 / MP 0」。
             bool voided = BattleClient.IsVoidEnd(end);
 
+            bool puzzleHintVisible = !voided && _tacticalPuzzleHint != null && _tacticalPuzzleHint.ShowForLive(end);
+            if (!puzzleHintVisible) _tacticalPuzzleHint?.Hide();
             var journalSnap = AppBootstrap.Instance?.GameClient?.TrialJournal?.Snapshot;
-            bool hintVisible = !voided && _onOpenTrialJournal != null && _trialJournalHint != null
+            bool hintVisible = !voided && !puzzleHintVisible && _onOpenTrialJournal != null && _trialJournalHint != null
                 && _trialJournalHint.ShowForLive(end, journalSnap);
             if (!hintVisible) _trialJournalHint?.Hide();
-            ApplySettlementBandLayout(coreSettlementVisible, hintVisible);
+            ApplySettlementBandLayout(coreSettlementVisible, hintVisible || puzzleHintVisible);
 
             ResolveTitle(outcome, myTeam, voided, out string title, out Color titleColor);
             string subtitle = voided ? VoidSubtitle
@@ -142,7 +148,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             var lines = voided ? BuildVoidLines() : BuildRewardLines(end);
             ConfigureActionButtons(replayBattleId: 0);
             Present(title, titleColor, subtitle, lines, LiveConfirmText,
-                coreSettlementVisible || hintVisible ? 0 : AutoReturnSeconds);
+                coreSettlementVisible || hintVisible || puzzleHintVisible ? 0 : AutoReturnSeconds);
         }
 
         /// <summary>
@@ -153,6 +159,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (result == null || _root == null) return;
             bool voided = BattleResultRecoveryClient.IsVoid(result);
+            _tacticalPuzzleHint?.Hide();
             var journalSnap = AppBootstrap.Instance?.GameClient?.TrialJournal?.Snapshot;
             bool hintVisible = !voided && _onOpenTrialJournal != null && _trialJournalHint != null
                 && _trialJournalHint.ShowForRecovered(result, journalSnap);
@@ -169,14 +176,17 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         /// <summary>权威材料拆解块占据奖励列表下方时，为它留出独立区域。</summary>
         public void SetCoreSettlementVisible(bool visible)
-            => ApplySettlementBandLayout(visible, _trialJournalHint != null && _trialJournalHint.IsVisible);
+            => ApplySettlementBandLayout(visible, (_trialJournalHint != null && _trialJournalHint.IsVisible)
+                || (_tacticalPuzzleHint != null && _tacticalPuzzleHint.IsVisible));
 
         private void ApplySettlementBandLayout(bool coreSettlementVisible, bool trialHintVisible)
         {
+            bool puzzleVisible = _tacticalPuzzleHint != null && _tacticalPuzzleHint.IsVisible;
             if (coreSettlementVisible && trialHintVisible)
             {
                 _currentRowsViewportHeight = 88f;
                 _trialJournalHint?.SetVerticalPosition(330f);
+                _tacticalPuzzleHint?.SetVerticalPosition(312f);
             }
             else if (coreSettlementVisible)
             {
@@ -184,8 +194,9 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
             else if (trialHintVisible)
             {
-                _currentRowsViewportHeight = 264f;
+                _currentRowsViewportHeight = puzzleVisible ? 228f : 264f;
                 _trialJournalHint?.SetVerticalPosition(510f);
+                _tacticalPuzzleHint?.SetVerticalPosition(476f);
             }
             else
             {
@@ -336,6 +347,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             KillTweens();
             _trialJournalHint?.Hide();
+            _tacticalPuzzleHint?.Hide();
             if (_root != null) _root.gameObject.SetActive(false);
         }
 

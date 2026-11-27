@@ -155,238 +155,258 @@ public static partial class BattleDataReflection {
           "CghwZXRfbmFtZRgDIAEoCRINCgVsZXZlbBgEIAEoDRISCgptYXhfaGVhbHRo",
           "GAUgASgEEg0KBXNwZWVkGAYgASgEEhcKD3BoeXNpY2FsX2F0dGFjaxgHIAEo",
           "BBIUCgxtYWdpY19hdHRhY2sYCCABKAQSDwoHZGVmZW5zZRgJIAEoBBIXCg9z",
-          "a2lsbF90YWJsZV9pZHMYCiADKA0i2wEKFUJhdHRsZVByZXBQbGF5ZXJTdGF0",
+          "a2lsbF90YWJsZV9pZHMYCiADKA0i/wEKFUJhdHRsZVByZXBQbGF5ZXJTdGF0",
           "ZRIRCglwbGF5ZXJfaWQYASABKAQSEgoKdGVhbV9pbmRleBgCIAEoDRIYChBz",
           "ZWxlY3RlZF9zZWFsX2lkGAMgASgNEhcKD3NlbGVjdGVkX3BldF9pZBgEIAEo",
           "BBIdChVzZWxlY3RlZF9wZXRfdGFibGVfaWQYBSABKA0SGQoRc2VsZWN0ZWRf",
           "cGV0X25hbWUYBiABKAkSDQoFcmVhZHkYByABKAgSHwoXbm9taW5hdGVkX2Jh",
-          "bl9za2lsbF9pZHMYCCADKA0ijQEKFlJhbmtlZFJpdmFscnlFbmNvdW50ZXIS",
-          "EQoJcGxheWVyX2lkGAEgASgEEhMKC29wcG9uZW50X2lkGAIgASgEEhUKDW9w",
-          "cG9uZW50X25hbWUYAyABKAkSDAoEd2lucxgEIAEoDRIOCgZsb3NzZXMYBSAB",
-          "KA0SFgoOcmV2ZW5nZV90YXJnZXQYBiABKAgi/wIKD0JhdHRsZVByZXBTdGF0",
-          "ZRIOCgZhY3RpdmUYASABKAgSEwoLZGVhZGxpbmVfbXMYAiABKAQSGAoQZHVy",
-          "YXRpb25fc2Vjb25kcxgDIAEoDRIzChRzZWxmX2F2YWlsYWJsZV9zZWFscxgE",
-          "IAMoCzIVLkJhdHRsZVByZXBTZWFsT3B0aW9uEjEKE3NlbGZfYXZhaWxhYmxl",
-          "X3BldHMYBSADKAsyFC5CYXR0bGVQcmVwUGV0T3B0aW9uEisKC3RlYW1fc3Rh",
-          "dGVzGAYgAygLMhYuQmF0dGxlUHJlcFBsYXllclN0YXRlEiAKGHNraWxsX2Jh",
-          "bl9zbG90c19wZXJfdGVhbRgHIAEoDRIfChdiYW5fY2FuZGlkYXRlX3NraWxs",
-          "X2lkcxgIIAMoDRIkChx0ZWFtX2VmZmVjdGl2ZV9iYW5fc2tpbGxfaWRzGAkg",
-          "AygNEi8KDnNlbGZfcml2YWxyaWVzGAogAygLMhcuUmFua2VkUml2YWxyeUVu",
-          "Y291bnRlciJ7ChJCYXR0bGVUYWN0aWNhbFBpbmcSGAoQc2VuZGVyX3BsYXll",
-          "cl9pZBgBIAEoBBIXCg90YXJnZXRfYWN0b3JfaWQYAiABKAQSHQoEa2luZBgD",
-          "IAEoDjIPLkJhdHRsZVBpbmdLaW5kEhMKC3JvdW5kX2luZGV4GAQgASgNIj8K",
-          "E0JhdHRsZU1vbnN0ZXJEZWZlYXQSGQoRbW9uc3Rlcl9jb25maWdfaWQYASAB",
-          "KA0SDQoFY291bnQYAiABKA0iOwoSQmF0dGxlQ3VycmVuY3lHYWluEhUKDWN1",
-          "cnJlbmN5X3R5cGUYASABKA0SDgoGYW1vdW50GAIgASgEIk4KFkJhdHRsZVJh",
-          "bmRvbUl0ZW1SZXdhcmQSFQoNaXRlbV90YWJsZV9pZBgBIAEoDRINCgVjb3Vu",
-          "dBgCIAEoDRIOCgZ3ZWlnaHQYAyABKA0iwwEKE0JhdHRsZVJld2FyZFByb2Zp",
-          "bGUSGAoQYmF0dGxlX2NvbmZpZ19pZBgBIAEoDRIUCgxzdHJhdGVneV9rZXkY",
-          "AiABKAkSEAoIZXhwX2dhaW4YAyABKAQSJwoKY3VycmVuY2llcxgEIAMoCzIT",
-          "LkJhdHRsZUN1cnJlbmN5R2FpbhISCgppdGVtX2RyYXdzGAUgASgNEi0KDHJh",
-          "bmRvbV9pdGVtcxgGIAMoCzIXLkJhdHRsZVJhbmRvbUl0ZW1SZXdhcmQiPAoS",
-          "QmF0dGxlUmV3YXJkQ29uZmlnEiYKCHByb2ZpbGVzGAEgAygLMhQuQmF0dGxl",
-          "UmV3YXJkUHJvZmlsZSKuDQoUQmF0dGxlU2V0dGxlbWVudERhdGESEQoJYmF0",
-          "dGxlX2lkGAEgASgEEhEKCXBsYXllcl9pZBgCIAEoBBIgCgdvdXRjb21lGAMg",
-          "ASgOMg8uZUJhdHRsZU91dGNvbWUSGQoRcGxheWVyX3RlYW1faW5kZXgYBCAB",
-          "KA0SDgoGaGVhbHRoGAUgASgEEgwKBG1hbmEYBiABKAQSEAoIZXhwX2dhaW4Y",
-          "ByABKAQSEQoJZ29sZF9nYWluGAggASgEEigKDml0ZW1zX2NvbnN1bWVkGAkg",
-          "AygLMhAuQmF0dGxlSXRlbUVudHJ5EiYKDGl0ZW1zX2dhaW5lZBgKIAMoCzIQ",
-          "LkJhdHRsZUl0ZW1FbnRyeRIPCgdpc19kZWFkGAsgASgIEgwKBGZsZWQYDCAB",
-          "KAgSFAoMdG90YWxfcm91bmRzGA0gASgNEiYKBHBldHMYDiADKAsyGC5CYXR0",
-          "bGVQZXRTZXR0bGVtZW50RGF0YRIvChFkZWZlYXRlZF9tb25zdGVycxgPIAMo",
-          "CzIULkJhdHRsZU1vbnN0ZXJEZWZlYXQSKwoOY3VycmVuY3lfZ2FpbnMYECAD",
-          "KAsyEy5CYXR0bGVDdXJyZW5jeUdhaW4SFgoOZmluaXNoZWRfYXRfbXMYESAB",
-          "KAQSEgoKbWF0Y2hfbW9kZRgSIAEoDRIYChBiYXR0bGVfY29uZmlnX2lkGBMg",
-          "ASgNEh4KFmNhcHR1cmVkX3BldF90YWJsZV9pZHMYFCADKA0SGgoSY29tcGV0",
-          "aXRpdmVfcmFua2VkGBUgASgIEhEKCXNlYXNvbl9pZBgWIAEoDRIbChNyYW5r",
-          "ZWRfcnVsZV92ZXJzaW9uGBcgASgNEhQKDHBhcnRpY2lwYXRlZBgYIAEoCBIt",
-          "Cgt0cmlhbF9mYWN0cxgZIAEoCzIYLkJhdHRsZVRyaWFsSm91cm5hbEZhY3Rz",
-          "EhwKFG1hbnVhbF9hY3Rpb25fcm91bmRzGBogASgNEiUKHWVmZmVjdGl2ZV9j",
-          "b21iYXRfY29udHJpYnV0aW9uGBsgASgIEhkKEWJhdHRsZV9kaWZmaWN1bHR5",
-          "GBwgASgNEhcKD2Jvc3NfdHJpYWxfa2luZBgdIAEoDRIXCg91c2VfZnJlZV9w",
-          "cmVzZXQYHiABKAgSMwoOZmVzdGl2YWxfYmVhc3QYHyABKAsyGy5GZXN0aXZh",
-          "bEJlYXN0QmF0dGxlQ29udGV4dBITCgtzdXJyZW5kZXJlZBggIAEoCBIaChJ0",
-          "b3RhbF9kYW1hZ2VfZGVhbHQYISABKAQSGgoSdG90YWxfaGVhbGluZ19kb25l",
-          "GCIgASgEEh0KFXRvdGFsX2NvbnRyb2xzX2xhbmRlZBgjIAEoDRI0ChB0b3dl",
-          "cl9zZXR0bGVtZW50GCQgASgLMhouV3V4aW5nVG93ZXJTZXR0bGVtZW50RWNo",
-          "bxIiChpwcmltYXJ5X2ZvY3VzX2RhbWFnZV9kZWFsdBglIAEoBBIcChR0b3Rh",
-          "bF9zaGllbGRfZ3JhbnRlZBgmIAEoBBIcChR0b3RhbF9kaXNwZWxzX2xhbmRl",
-          "ZBgnIAEoDRIUCgxkYW1hZ2VfdGFrZW4YKCABKAQSLAoOaGlnaGxpZ2h0X2tp",
-          "bmQYKSABKA4yFC5CYXR0bGVIaWdobGlnaHRLaW5kEh0KFWVuZGVkX29wcG9u",
-          "ZW50X3N0cmVhaxgqIAEoDRIWCg5yZXZlbmdlZF9yaXZhbBgrIAEoCBIeChZy",
-          "ZXZlbmdlZF9vcHBvbmVudF9uYW1lGCwgASgJEhsKE3JldmVuZ2VkX3dpbnNf",
-          "YWZ0ZXIYLSABKA0SHQoVcmV2ZW5nZWRfbG9zc2VzX2FmdGVyGC4gASgNEhwK",
-          "FGZpbmFsX3NlYXNvbl9zZWFsX2lkGC8gASgNEhwKFHN0YXJ0ZXJfcGV0X3Rh",
-          "YmxlX2lkGDAgASgNEhYKDmNvcmVfc2tpbGxfaWRzGDEgAygNEhsKE3BsYXll",
-          "cl9kaXNwbGF5X25hbWUYMiABKAkSLwoMamlhbmdodV9kdWVsGDMgASgLMhku",
-          "SmlhbmdodUR1ZWxCYXR0bGVDb250ZXh0EiYKHnNlYXNvbl9zZWFsX2NvbnRy",
-          "aWJ1dGlvbl92YWx1ZRg0IAEoBBIhChlzZWFzb25fc2VhbF90cmlnZ2VyX2Nv",
-          "dW50GDUgASgNEiMKG3NlYXNvbl9zZWFsX3Jlc29uYW5jZV9jb3VudBg2IAEo",
-          "DRIbChNyZW1hdGNoX29wcG9uZW50X2lkGDcgASgEEh0KFXJlbWF0Y2hfb3Bw",
-          "b25lbnRfbmFtZRg4IAEoCSJYChdCYXR0bGVQZXRTZXR0bGVtZW50RGF0YRIO",
-          "CgZwZXRfaWQYASABKAQSDgoGaGVhbHRoGAIgASgEEgwKBG1hbmEYAyABKAQS",
-          "DwoHaXNfZGVhZBgEIAEoCCK0AgoVR3VpbGRXYXJCYXR0bGVDb250ZXh0Eg8K",
-          "B3pvbmVfaWQYASABKA0SGQoRYXR0YWNrZXJfZ3VpbGRfaWQYAiABKAQSGQoR",
-          "ZGVmZW5kZXJfZ3VpbGRfaWQYAyABKAQSEgoKbGV5bGluZV9pZBgEIAEoDRIX",
-          "Cg93YXJfYmF0dGxlX2tpbmQYBSABKA0SEQoJYm91bnR5X2lkGAYgASgEEhAK",
-          "CHdlZWtfa2V5GAcgASgNEhsKE2F0dGFja2VyX3BsYXllcl9pZHMYCCADKAQS",
-          "GwoTZGVmZW5kZXJfcGxheWVyX2lkcxgJIAMoBBIaChJnb2xkX2xleWxpbmVf",
-          "Ym9udXMYCiABKAgSFQoNcml2YWxyeV9ib251cxgLIAEoCBIVCg1zdGFydGVk",
-          "X2F0X21zGAwgASgEIuoEChpGZXN0aXZhbEJlYXN0QmF0dGxlQ29udGV4dBIc",
-          "ChRhY3Rpdml0eV9pbnN0YW5jZV9pZBgBIAEoDRIXCg9jb25maWdfcmV2aXNp",
-          "b24YAiABKA0SFwoPcmV3YXJkX2lkZW50aXR5GAMgASgJEiEKGXJld2FyZF9k",
-          "ZWZpbml0aW9uX3ZlcnNpb24YBCABKA0SGwoTcmV3YXJkX3BldF90YWJsZV9p",
-          "ZBgFIAEoDRIVCg1yZXF1aXJlZF93aW5zGAYgASgNEhUKDWxvY2tlZF9wZXRf",
-          "aWQYByABKAQSGgoSbG9ja2VkX293bmVyX2xldmVsGAggASgNEg8KB3RpZXJf",
-          "aWQYCSABKA0SEwoLcm91bmRfbGltaXQYCiABKA0SFAoMY3ljbGVfcm91bmRz",
-          "GAsgASgNEhkKEWZpcnN0X2hlYXZ5X3JvdW5kGAwgASgNEh0KFXRlbGVncmFw",
-          "aF9sZWFkX3JvdW5kcxgNIAEoDRIcChRoZWF2eV9kYW1hZ2VfcGVyY2VudBgO",
-          "IAEoDRIRCglib3NzX25hbWUYDyABKAkSEwoLYm9zc19oZWFsdGgYECABKAQS",
-          "HAoUYm9zc19waHlzaWNhbF9hdHRhY2sYESABKAQSFAoMYm9zc19kZWZlbnNl",
-          "GBIgASgEEhcKD2Jvc3NfcmVzaXN0YW5jZRgTIAEoBBISCgpib3NzX3NwZWVk",
-          "GBQgASgEEh0KFWVmZmVjdGl2ZV9zdGFydF9hdF9tcxgVIAEoBBIbChNlZmZl",
-          "Y3RpdmVfZW5kX2F0X21zGBYgASgEEhkKEWNsaWVudF9yZXF1ZXN0X2lkGBcg",
-          "ASgJIqgCChVCYXR0bGVBY3Rpdml0eUNvbnRleHQSIgoEa2luZBgBIAEoDjIU",
-          "LmVCYXR0bGVBY3Rpdml0eUtpbmQSEAoIZ3VpbGRfaWQYAiABKAQSEwoLYWN0",
-          "aXZpdHlfaWQYAyABKA0SEgoKcGVyaW9kX2tleRgEIAEoDRIbChNpbml0aWF0",
-          "b3JfcGxheWVyX2lkGAUgASgEEhgKEGd1aWxkX3BlcmlvZF9rZXkYBiABKA0S",
-          "GQoRbGF1bmNoX3JlcXVlc3RfaWQYByABKAQSMwoOZmVzdGl2YWxfYmVhc3QY",
-          "CCABKAsyGy5GZXN0aXZhbEJlYXN0QmF0dGxlQ29udGV4dBIpCglndWlsZF93",
-          "YXIYCSABKAsyFi5HdWlsZFdhckJhdHRsZUNvbnRleHQiSwoVUmFua2VkUHJl",
-          "c2V0U2VsZWN0aW9uEhsKE2NoYXJhY3Rlcl9wcmVzZXRfaWQYASABKA0SFQoN",
-          "cGV0X3ByZXNldF9pZBgCIAEoDSJRChNSYW5rZWRNZW1iZXJMb2Fkb3V0EhEK",
-          "CXBsYXllcl9pZBgBIAEoBBInCgdwcmVzZXRzGAIgASgLMhYuUmFua2VkUHJl",
-          "c2V0U2VsZWN0aW9uIuoDChJSYW5rZWRNYXRjaENvbnRleHQSEQoJc2Vhc29u",
-          "X2lkGAEgASgNEhIKCnNlYXNvbl9rZXkYAiABKAkSFwoPcmFua19nZW5lcmF0",
-          "aW9uGAMgASgEEhQKDHJ1bGVfdmVyc2lvbhgEIAEoDRIRCgl0ZWFtX3NpemUY",
-          "BSABKA0SGgoSY29uZmlnX2ZpbmdlcnByaW50GAYgASgJEiUKB21lbWJlcnMY",
-          "ByADKAsyFC5SYW5rZWRNZW1iZXJMb2Fkb3V0EhcKD3VzZV9mcmVlX3ByZXNl",
-          "dBgIIAEoCBJFChJtZW1iZXJfd2luX3N0cmVha3MYCSADKAsyKS5SYW5rZWRN",
-          "YXRjaENvbnRleHQuTWVtYmVyV2luU3RyZWFrc0VudHJ5EiAKGHNraWxsX2Jh",
-          "bl9zbG90c19wZXJfdGVhbRgKIAEoDRIzChJyaXZhbHJ5X2VuY291bnRlcnMY",
-          "CyADKAsyFy5SYW5rZWRSaXZhbHJ5RW5jb3VudGVyEh0KFWFsbG93X3B1Ymxp",
-          "Y19zcGVjdGF0ZRgMIAEoCBIZChFwZWFrX3JhdGluZ19jZW50aRgNIAEoAxo3",
-          "ChVNZW1iZXJXaW5TdHJlYWtzRW50cnkSCwoDa2V5GAEgASgEEg0KBXZhbHVl",
-          "GAIgASgNOgI4ASKgAQoXQmF0dGxlUGFydGljaXBhdGlvbkZhY3QSEQoJcGxh",
-          "eWVyX2lkGAEgASgEEhQKDGVudGVyZWRfcm9vbRgCIAEoCBIeChZtYW51YWxf",
-          "YWN0aW9uX2FjY2VwdGVkGAMgASgIEh0KFWV4cGxpY2l0X2F1dG9fZW5hYmxl",
-          "ZBgEIAEoCBIdChVub19hY3Rpb25fb3Bwb3J0dW5pdHkYBSABKAgitwEKElRy",
-          "aWFsQmF0dGxlQ29udGV4dBIYChBqb3VybmFsX2VudHJ5X2lkGAEgASgNEhoK",
-          "EnRyaWFsX3J1bGVfdmVyc2lvbhgCIAEoDRIRCglzZWFzb25faWQYAyABKA0S",
-          "HgoWZ3VhcmRfbW9uc3Rlcl90YWJsZV9pZBgEIAEoDRIcChRndWFyZF9zdGFu",
-          "Y2VfYnVmZl9pZBgFIAEoDRIaChJjaGFsbGVuZ2Vfdm93X21hc2sYBiABKA0i",
-          "3gcKF0JhdHRsZVRyaWFsSm91cm5hbEZhY3RzEhgKEGpvdXJuYWxfZW50cnlf",
-          "aWQYASABKA0SGgoSdHJpYWxfcnVsZV92ZXJzaW9uGAIgASgNEhsKE2luaXRp",
-          "YWxfaHVtYW5fY291bnQYAyABKA0SEQoJc2Vhc29uX2lkGAQgASgNEh0KFXNl",
-          "bGZfb3JfcGV0X2V2ZXJfZGllZBgFIAEoCBIdChVib3NzX2d1YXJkX2hlYWxf",
-          "dG90YWwYBiABKAQSHgoWZ3VhcmRfc3RhbmNlX2Rpc3BlbGxlZBgHIAEoCBIp",
-          "CiF0ZWFtX2RlYWx0X3BoeXNpY2FsX2RpcmVjdF9kYW1hZ2UYCCABKAgSJgoe",
-          "dGVhbV9kZWFsdF9tYWdpY19kaXJlY3RfZGFtYWdlGAkgASgIEhYKDmd1YXJk",
-          "X3N1cnZpdmVkGAogASgIEiMKG3NlbGZfdHJpZ2dlcmVkX3NoaWVsZF9icmVh",
-          "axgLIAEoCBIzCitzZWxmX3RyaWdnZXJlZF9hbnRpX2NvbnRyb2xfb3Jfc2Vh",
-          "c29uX3NraWxsGAwgASgIEhkKEXVzZWRfcGV0X3RhYmxlX2lkGA0gASgNEiAK",
-          "GHVzZWRfYXJ0aWZhY3RfZWZmZWN0X2lkcxgOIAMoDRIbChN1c2VkX3NlYXNv",
-          "bl9zZWFsX2lkGA8gASgNEhYKDnRlYW1tYXRlX25hbWVzGBAgAygJEicKH2Jv",
-          "c3Nfd2luZF9oaXRfdW5wcm90ZWN0ZWRfZGVhdGgYESABKAgSJwofZGVhbHRf",
-          "eWFuZ19iZWxsX3BoeXNpY2FsX2RhbWFnZRgSIAEoCBIjChtkZWFsdF95aW5f",
-          "ZHJ1bV9tYWdpY19kYW1hZ2UYEyABKAgSHAoUZmluaXNoZWRfaW5fZWJiX3Rp",
-          "ZGUYFCABKAgSGgoSY2xlYXZlX3BhcnJ5X2NvdW50GBUgASgNEiUKHWhlYWxf",
-          "aW50ZXJydXB0X2JhY2tsYXNoX2NvdW50GBYgASgNEhoKEnN0YW5jZV9icmVh",
-          "a19jb3VudBgXIAEoDRIgChhhbGxfc2VsZl9jbGVhdmVzX3BhcnJpZWQYGCAB",
-          "KAgSKQohc2VsZl9wYXJyaWVkX2NsZWF2ZV9hdF9sZWFzdF9vbmNlGBkgASgI",
-          "EhoKEmNoYWxsZW5nZV92b3dfbWFzaxgaIAEoDRIeChZzZWxmX2Nhc3Rfc2Vh",
-          "c29uX3NraWxsGBsgASgIEicKH3NlbGZfdHJpZ2dlcmVkX3NlYXNvbl9yZXNv",
-          "bmFuY2UYHCABKAgSIgoac2VsZl9zZWFzb25fcmVzb25hbmNlX21hc2sYHSAB",
-          "KA0ijgMKF1RvdXJuYW1lbnRCYXR0bGVDb250ZXh0EhEKCXNlYXNvbl9pZBgB",
-          "IAEoDRIQCghtYXRjaF9pZBgCIAEoBBIPCgdiZXN0X29mGAMgASgNEhIKCmdh",
-          "bWVfaW5kZXgYBCABKA0SDgoGd2luc19hGAUgASgNEg4KBndpbnNfYhgGIAEo",
-          "DRIyCg9sZXlsaW5lX2VsZW1lbnQYByABKA4yGS5Ub3VybmFtZW50TGV5bGlu",
-          "ZUVsZW1lbnQSEgoKc3F1YWRfYV9pZBgIIAEoBBIUCgxzcXVhZF9hX25hbWUY",
-          "CSABKAkSEgoKc3F1YWRfYl9pZBgKIAEoBBIUCgxzcXVhZF9iX25hbWUYCyAB",
-          "KAkSGQoRc3F1YWRfYV9lbWJsZW1faWQYDCABKA0SGQoRc3F1YWRfYl9lbWJs",
-          "ZW1faWQYDSABKA0SEQoJaXNfd2FybXVwGA4gASgIEhYKDmlzX3RoaXJkX3Bs",
-          "YWNlGA8gASgIEiAKGHNraWxsX2Jhbl9zbG90c19wZXJfdGVhbRgQIAEoDSKZ",
-          "AQoYV3V4aW5nVG93ZXJCYXR0bGVDb250ZXh0EhAKCHdlZWtfa2V5GAEgASgN",
-          "Eg4KBnJ1bl9pZBgCIAEoBBINCgVmbG9vchgDIAEoDRIyCg9sZXlsaW5lX2Vs",
-          "ZW1lbnQYBCABKA4yGS5Ub3VybmFtZW50TGV5bGluZUVsZW1lbnQSGAoQYWN0",
-          "aXZlX3NpZ2lsX2lkcxgFIAMoDSJiChlXdXhpbmdUb3dlclNldHRsZW1lbnRF",
-          "Y2hvEhAKCHdlZWtfa2V5GAEgASgNEg4KBnJ1bl9pZBgCIAEoBBINCgVmbG9v",
-          "chgDIAEoDRIUCgx0b3RhbF9yb3VuZHMYBCABKA0iswIKD0N1c3RvbUR1ZWxS",
-          "dWxlcxIXCg91c2VfZnJlZV9wcmVzZXQYASABKAgSIAoYZW5hYmxlX3BvbGFy",
-          "aXR5X3JvdGF0aW9uGAIgASgIEhwKFHJvdW5kX2xpbWl0X292ZXJyaWRlGAMg",
-          "ASgNEhoKEmJhbl9jb250cm9sX3NraWxscxgEIAEoCBIdChVhbGxvd19wdWJs",
-          "aWNfc3BlY3RhdGUYBSABKAgSJgoeY2hhbGxlbmdlcl9jaGFyYWN0ZXJfcHJl",
-          "c2V0X2lkGAYgASgNEiAKGGNoYWxsZW5nZXJfcGV0X3ByZXNldF9pZBgHIAEo",
-          "DRIgChhza2lsbF9iYW5fc2xvdHNfcGVyX3RlYW0YCCABKA0SIAoYcmVtYXRj",
-          "aF9zb3VyY2VfYmF0dGxlX2lkGAkgASgEItQCChdCYXR0bGVBY3RvckJ1aWxk",
-          "U3VtbWFyeRIRCglwbGF5ZXJfaWQYASABKAQSDAoEbmFtZRgCIAEoCRISCgp0",
-          "ZWFtX2luZGV4GAMgASgNEhAKCGNsYXNzX2lkGAQgASgNEg0KBWxldmVsGAUg",
-          "ASgNEhQKDGZvcm1hdGlvbl9pZBgGIAEoDRIWCg53dXhpbmdfZWxlbWVudBgH",
-          "IAEoDRIWCg5zZWFzb25fc2VhbF9pZBgIIAEoDRIbChNhY3RpdmVfcGV0X3Rh",
-          "YmxlX2lkGAkgASgNEhcKD2FjdGl2ZV9wZXRfbmFtZRgKIAEoCRIaChJhY3Rp",
-          "dmVfcGV0X2VsZW1lbnQYCyABKA0SFwoPc2tpbGxfdGFibGVfaWRzGAwgAygN",
-          "EhgKEHd1eGluZ19zaWdpbF9pZHMYDSADKA0SGAoQdXNlZF9mcmVlX3ByZXNl",
-          "dBgOIAEoCCLWAgoYSmlhbmdodUR1ZWxCYXR0bGVDb250ZXh0EhYKDmR1ZWxf",
-          "aW52aXRlX2lkGAEgASgEEhEKCXdyaXRfdGllchgCIAEoDRIdChVjaGFsbGVu",
-          "Z2VyX2NhcHRhaW5faWQYAyABKAQSHwoXY2hhbGxlbmdlcl9jYXB0YWluX25h",
-          "bWUYBCABKAkSGQoRdGFyZ2V0X2NhcHRhaW5faWQYBSABKAQSGwoTdGFyZ2V0",
-          "X2NhcHRhaW5fbmFtZRgGIAEoCRIXCg9zaWRlX2FfZ3VpbGRfaWQYByABKAQS",
-          "GQoRc2lkZV9hX2d1aWxkX25hbWUYCCABKAkSFwoPc2lkZV9iX2d1aWxkX2lk",
-          "GAkgASgEEhkKEXNpZGVfYl9ndWlsZF9uYW1lGAogASgJEhwKFHJvdW5kX2xp",
-          "bWl0X292ZXJyaWRlGAsgASgNEhEKCXRlYW1fc2l6ZRgMIAEoDSqGAQoQZUJh",
-          "dHRsZUFjdG9yVHlwZRIaChZCQVRUTEVfQUNUT1JfVFlQRV9OT05FEAASHAoY",
-          "QkFUVExFX0FDVE9SX1RZUEVfUExBWUVSEAESHQoZQkFUVExFX0FDVE9SX1RZ",
-          "UEVfTU9OU1RFUhACEhkKFUJBVFRMRV9BQ1RPUl9UWVBFX1BFVBADKv8BChFl",
-          "QmF0dGxlQWN0aW9uVHlwZRIWChJCQVRUTEVfQUNUSU9OX05PTkUQABIYChRC",
-          "QVRUTEVfQUNUSU9OX0FUVEFDSxABEhcKE0JBVFRMRV9BQ1RJT05fU0tJTEwQ",
-          "AhIYChRCQVRUTEVfQUNUSU9OX0RFRkVORBADEhYKEkJBVFRMRV9BQ1RJT05f",
-          "SVRFTRAEEhYKEkJBVFRMRV9BQ1RJT05fRkxFRRAFEhkKFUJBVFRMRV9BQ1RJ",
-          "T05fQ0FQVFVSRRAGEhwKGEJBVFRMRV9BQ1RJT05fUkVDQUxMX1BFVBAHEhwK",
-          "GEJBVFRMRV9BQ1RJT05fU1VNTU9OX1BFVBAIKp0FChBlQmF0dGxlRXZlbnRU",
-          "eXBlEhUKEUJBVFRMRV9FVkVOVF9OT05FEAASFwoTQkFUVExFX0VWRU5UX0FU",
-          "VEFDSxABEhYKEkJBVFRMRV9FVkVOVF9TS0lMTBACEhcKE0JBVFRMRV9FVkVO",
-          "VF9EQU1BR0UQAxIVChFCQVRUTEVfRVZFTlRfSEVBTBAEEhkKFUJBVFRMRV9F",
-          "VkVOVF9CVUZGX0FERBAFEhwKGEJBVFRMRV9FVkVOVF9CVUZGX1JFTU9WRRAG",
-          "EhoKFkJBVFRMRV9FVkVOVF9CVUZGX1RJQ0sQBxIWChJCQVRUTEVfRVZFTlRf",
-          "REVBVEgQCBIXChNCQVRUTEVfRVZFTlRfREVGRU5EEAkSFQoRQkFUVExFX0VW",
-          "RU5UX0lURU0QChIVChFCQVRUTEVfRVZFTlRfRkxFRRALEhUKEUJBVFRMRV9F",
-          "VkVOVF9NSVNTEAwSFgoSQkFUVExFX0VWRU5UX0JMT0NLEA0SFQoRQkFUVExF",
-          "X0VWRU5UX01BTkEQDhIXChNCQVRUTEVfRVZFTlRfUkVTSVNUEA8SGAoUQkFU",
-          "VExFX0VWRU5UX0NBUFRVUkUQEBIXChNCQVRUTEVfRVZFTlRfUkVWSVZFEBES",
-          "GwoXQkFUVExFX0VWRU5UX01BWF9IRUFMVEgQEhIcChhCQVRUTEVfRVZFTlRf",
-          "UEVUX1JFVFJFQVQQExIXChNCQVRUTEVfRVZFTlRfU0hJRUxEEBQSGQoVQkFU",
-          "VExFX0VWRU5UX0FSVElGQUNUEBUSHgoaQkFUVExFX0VWRU5UX0JPU1NfTUVD",
-          "SEFOSUMQFhIfChtCQVRUTEVfRVZFTlRfV1VYSU5HX1NZTkVSR1kQFxIbChdC",
-          "QVRUTEVfRVZFTlRfU1VNTU9OX1BFVBAYKpwBCg5lQmF0dGxlSGl0S2luZBIV",
-          "ChFCQVRUTEVfSElUX05PUk1BTBAAEhQKEEJBVFRMRV9ISVRfQ09NQk8QARIW",
-          "ChJCQVRUTEVfSElUX0NPVU5URVIQAhIWChJCQVRUTEVfSElUX1JFRkxFQ1QQ",
-          "AxIWChJCQVRUTEVfSElUX1BVUlNVSVQQBBIVChFCQVRUTEVfSElUX01JUlJP",
-          "UhAFKo4BCg5CYXR0bGVQaW5nS2luZBIbChdCQVRUTEVfUElOR19VTlNQRUNJ",
-          "RklFRBAAEhUKEUJBVFRMRV9QSU5HX0ZPQ1VTEAESFwoTQkFUVExFX1BJTkdf",
-          "Q09OVFJPTBACEhcKE0JBVFRMRV9QSU5HX1BST1RFQ1QQAxIWChJCQVRUTEVf",
-          "UElOR19ESVNQRUwQBCrnAQoTQmF0dGxlSGlnaGxpZ2h0S2luZBIZChVCQVRU",
-          "TEVfSElHSExJR0hUX05PTkUQABIiCh5CQVRUTEVfSElHSExJR0hUX1BSSU1B",
-          "UllfRk9DVVMQARIlCiFCQVRUTEVfSElHSExJR0hUX1RBQ1RJQ0FMX0NPTlRS",
-          "T0wQAhIjCh9CQVRUTEVfSElHSExJR0hUX1NBVklPUl9TVVBQT1JUEAMSHwob",
-          "QkFUVExFX0hJR0hMSUdIVF9JUk9OX0dVQVJEEAQSJAogQkFUVExFX0hJR0hM",
-          "SUdIVF9DTFVUQ0hfQ09NRUJBQ0sQBSqcAQoOZUJhdHRsZU91dGNvbWUSGgoW",
-          "QkFUVExFX09VVENPTUVfT05HT0lORxAAEh0KGUJBVFRMRV9PVVRDT01FX1NJ",
-          "REVfQV9XSU4QARIdChlCQVRUTEVfT1VUQ09NRV9TSURFX0JfV0lOEAISFwoT",
-          "QkFUVExFX09VVENPTUVfRFJBVxADEhcKE0JBVFRMRV9PVVRDT01FX1ZPSUQQ",
-          "BCqnAQoTZUJhdHRsZUFjdGl2aXR5S2luZBIdChlCQVRUTEVfQUNUSVZJVFlf",
-          "S0lORF9OT05FEAASJAogQkFUVExFX0FDVElWSVRZX0tJTkRfR1VJTERfVFJJ",
-          "QUwQARInCiNCQVRUTEVfQUNUSVZJVFlfS0lORF9GRVNUSVZBTF9CRUFTVBAC",
-          "EiIKHkJBVFRMRV9BQ1RJVklUWV9LSU5EX0dVSUxEX1dBUhADKnsKE2VTcGVj",
-          "dGF0ZVZpc2liaWxpdHkSIwofU1BFQ1RBVEVfVklTSUJJTElUWV9VTlNQRUNJ",
-          "RklFRBAAEh8KG1NQRUNUQVRFX1ZJU0lCSUxJVFlfUFJJVkFURRABEh4KGlNQ",
-          "RUNUQVRFX1ZJU0lCSUxJVFlfUFVCTElDEAIqXwoNZVNwZWN0YXRlVGllchIY",
-          "ChRTUEVDVEFURV9USUVSX0RJUkVDVBAAEhcKE1NQRUNUQVRFX1RJRVJfUkVM",
-          "QVkQARIbChdTUEVDVEFURV9USUVSX0JST0FEQ0FTVBACKtIBChhUb3VybmFt",
-          "ZW50TGV5bGluZUVsZW1lbnQSIgoeVE9VUk5BTUVOVF9MRVlMSU5FX1VOU1BF",
-          "Q0lGSUVEEAASHAoYVE9VUk5BTUVOVF9MRVlMSU5FX01FVEFMEAESGwoXVE9V",
-          "Uk5BTUVOVF9MRVlMSU5FX1dPT0QQAhIcChhUT1VSTkFNRU5UX0xFWUxJTkVf",
-          "V0FURVIQAxIbChdUT1VSTkFNRU5UX0xFWUxJTkVfRklSRRAEEhwKGFRPVVJO",
-          "QU1FTlRfTEVZTElORV9FQVJUSBAFQghaBmJhdHRsZWIGcHJvdG8z"));
+          "bl9za2lsbF9pZHMYCCADKA0SIgoabm9taW5hdGVkX3Byb3RlY3Rfc2tpbGxf",
+          "aWQYCSABKA0ijQEKFlJhbmtlZFJpdmFscnlFbmNvdW50ZXISEQoJcGxheWVy",
+          "X2lkGAEgASgEEhMKC29wcG9uZW50X2lkGAIgASgEEhUKDW9wcG9uZW50X25h",
+          "bWUYAyABKAkSDAoEd2lucxgEIAEoDRIOCgZsb3NzZXMYBSABKA0SFgoOcmV2",
+          "ZW5nZV90YXJnZXQYBiABKAgi9QMKD0JhdHRsZVByZXBTdGF0ZRIOCgZhY3Rp",
+          "dmUYASABKAgSEwoLZGVhZGxpbmVfbXMYAiABKAQSGAoQZHVyYXRpb25fc2Vj",
+          "b25kcxgDIAEoDRIzChRzZWxmX2F2YWlsYWJsZV9zZWFscxgEIAMoCzIVLkJh",
+          "dHRsZVByZXBTZWFsT3B0aW9uEjEKE3NlbGZfYXZhaWxhYmxlX3BldHMYBSAD",
+          "KAsyFC5CYXR0bGVQcmVwUGV0T3B0aW9uEisKC3RlYW1fc3RhdGVzGAYgAygL",
+          "MhYuQmF0dGxlUHJlcFBsYXllclN0YXRlEiAKGHNraWxsX2Jhbl9zbG90c19w",
+          "ZXJfdGVhbRgHIAEoDRIfChdiYW5fY2FuZGlkYXRlX3NraWxsX2lkcxgIIAMo",
+          "DRIkChx0ZWFtX2VmZmVjdGl2ZV9iYW5fc2tpbGxfaWRzGAkgAygNEi8KDnNl",
+          "bGZfcml2YWxyaWVzGAogAygLMhcuUmFua2VkUml2YWxyeUVuY291bnRlchIk",
+          "Chxza2lsbF9wcm90ZWN0X3Nsb3RzX3Blcl90ZWFtGAsgASgNEikKIXRlYW1f",
+          "ZWZmZWN0aXZlX3Byb3RlY3RlZF9za2lsbF9pZBgMIAEoDRIjCht0ZWFtbWF0",
+          "ZV9lcXVpcHBlZF9za2lsbF9pZHMYDSADKA0iewoSQmF0dGxlVGFjdGljYWxQ",
+          "aW5nEhgKEHNlbmRlcl9wbGF5ZXJfaWQYASABKAQSFwoPdGFyZ2V0X2FjdG9y",
+          "X2lkGAIgASgEEh0KBGtpbmQYAyABKA4yDy5CYXR0bGVQaW5nS2luZBITCgty",
+          "b3VuZF9pbmRleBgEIAEoDSI/ChNCYXR0bGVNb25zdGVyRGVmZWF0EhkKEW1v",
+          "bnN0ZXJfY29uZmlnX2lkGAEgASgNEg0KBWNvdW50GAIgASgNIjsKEkJhdHRs",
+          "ZUN1cnJlbmN5R2FpbhIVCg1jdXJyZW5jeV90eXBlGAEgASgNEg4KBmFtb3Vu",
+          "dBgCIAEoBCJOChZCYXR0bGVSYW5kb21JdGVtUmV3YXJkEhUKDWl0ZW1fdGFi",
+          "bGVfaWQYASABKA0SDQoFY291bnQYAiABKA0SDgoGd2VpZ2h0GAMgASgNIsMB",
+          "ChNCYXR0bGVSZXdhcmRQcm9maWxlEhgKEGJhdHRsZV9jb25maWdfaWQYASAB",
+          "KA0SFAoMc3RyYXRlZ3lfa2V5GAIgASgJEhAKCGV4cF9nYWluGAMgASgEEicK",
+          "CmN1cnJlbmNpZXMYBCADKAsyEy5CYXR0bGVDdXJyZW5jeUdhaW4SEgoKaXRl",
+          "bV9kcmF3cxgFIAEoDRItCgxyYW5kb21faXRlbXMYBiADKAsyFy5CYXR0bGVS",
+          "YW5kb21JdGVtUmV3YXJkIjwKEkJhdHRsZVJld2FyZENvbmZpZxImCghwcm9m",
+          "aWxlcxgBIAMoCzIULkJhdHRsZVJld2FyZFByb2ZpbGUi7Q0KFEJhdHRsZVNl",
+          "dHRsZW1lbnREYXRhEhEKCWJhdHRsZV9pZBgBIAEoBBIRCglwbGF5ZXJfaWQY",
+          "AiABKAQSIAoHb3V0Y29tZRgDIAEoDjIPLmVCYXR0bGVPdXRjb21lEhkKEXBs",
+          "YXllcl90ZWFtX2luZGV4GAQgASgNEg4KBmhlYWx0aBgFIAEoBBIMCgRtYW5h",
+          "GAYgASgEEhAKCGV4cF9nYWluGAcgASgEEhEKCWdvbGRfZ2FpbhgIIAEoBBIo",
+          "Cg5pdGVtc19jb25zdW1lZBgJIAMoCzIQLkJhdHRsZUl0ZW1FbnRyeRImCgxp",
+          "dGVtc19nYWluZWQYCiADKAsyEC5CYXR0bGVJdGVtRW50cnkSDwoHaXNfZGVh",
+          "ZBgLIAEoCBIMCgRmbGVkGAwgASgIEhQKDHRvdGFsX3JvdW5kcxgNIAEoDRIm",
+          "CgRwZXRzGA4gAygLMhguQmF0dGxlUGV0U2V0dGxlbWVudERhdGESLwoRZGVm",
+          "ZWF0ZWRfbW9uc3RlcnMYDyADKAsyFC5CYXR0bGVNb25zdGVyRGVmZWF0EisK",
+          "DmN1cnJlbmN5X2dhaW5zGBAgAygLMhMuQmF0dGxlQ3VycmVuY3lHYWluEhYK",
+          "DmZpbmlzaGVkX2F0X21zGBEgASgEEhIKCm1hdGNoX21vZGUYEiABKA0SGAoQ",
+          "YmF0dGxlX2NvbmZpZ19pZBgTIAEoDRIeChZjYXB0dXJlZF9wZXRfdGFibGVf",
+          "aWRzGBQgAygNEhoKEmNvbXBldGl0aXZlX3JhbmtlZBgVIAEoCBIRCglzZWFz",
+          "b25faWQYFiABKA0SGwoTcmFua2VkX3J1bGVfdmVyc2lvbhgXIAEoDRIUCgxw",
+          "YXJ0aWNpcGF0ZWQYGCABKAgSLQoLdHJpYWxfZmFjdHMYGSABKAsyGC5CYXR0",
+          "bGVUcmlhbEpvdXJuYWxGYWN0cxIcChRtYW51YWxfYWN0aW9uX3JvdW5kcxga",
+          "IAEoDRIlCh1lZmZlY3RpdmVfY29tYmF0X2NvbnRyaWJ1dGlvbhgbIAEoCBIZ",
+          "ChFiYXR0bGVfZGlmZmljdWx0eRgcIAEoDRIXCg9ib3NzX3RyaWFsX2tpbmQY",
+          "HSABKA0SFwoPdXNlX2ZyZWVfcHJlc2V0GB4gASgIEjMKDmZlc3RpdmFsX2Jl",
+          "YXN0GB8gASgLMhsuRmVzdGl2YWxCZWFzdEJhdHRsZUNvbnRleHQSEwoLc3Vy",
+          "cmVuZGVyZWQYICABKAgSGgoSdG90YWxfZGFtYWdlX2RlYWx0GCEgASgEEhoK",
+          "EnRvdGFsX2hlYWxpbmdfZG9uZRgiIAEoBBIdChV0b3RhbF9jb250cm9sc19s",
+          "YW5kZWQYIyABKA0SNAoQdG93ZXJfc2V0dGxlbWVudBgkIAEoCzIaLld1eGlu",
+          "Z1Rvd2VyU2V0dGxlbWVudEVjaG8SIgoacHJpbWFyeV9mb2N1c19kYW1hZ2Vf",
+          "ZGVhbHQYJSABKAQSHAoUdG90YWxfc2hpZWxkX2dyYW50ZWQYJiABKAQSHAoU",
+          "dG90YWxfZGlzcGVsc19sYW5kZWQYJyABKA0SFAoMZGFtYWdlX3Rha2VuGCgg",
+          "ASgEEiwKDmhpZ2hsaWdodF9raW5kGCkgASgOMhQuQmF0dGxlSGlnaGxpZ2h0",
+          "S2luZBIdChVlbmRlZF9vcHBvbmVudF9zdHJlYWsYKiABKA0SFgoOcmV2ZW5n",
+          "ZWRfcml2YWwYKyABKAgSHgoWcmV2ZW5nZWRfb3Bwb25lbnRfbmFtZRgsIAEo",
+          "CRIbChNyZXZlbmdlZF93aW5zX2FmdGVyGC0gASgNEh0KFXJldmVuZ2VkX2xv",
+          "c3Nlc19hZnRlchguIAEoDRIcChRmaW5hbF9zZWFzb25fc2VhbF9pZBgvIAEo",
+          "DRIcChRzdGFydGVyX3BldF90YWJsZV9pZBgwIAEoDRIWCg5jb3JlX3NraWxs",
+          "X2lkcxgxIAMoDRIbChNwbGF5ZXJfZGlzcGxheV9uYW1lGDIgASgJEi8KDGpp",
+          "YW5naHVfZHVlbBgzIAEoCzIZLkppYW5naHVEdWVsQmF0dGxlQ29udGV4dBIm",
+          "Ch5zZWFzb25fc2VhbF9jb250cmlidXRpb25fdmFsdWUYNCABKAQSIQoZc2Vh",
+          "c29uX3NlYWxfdHJpZ2dlcl9jb3VudBg1IAEoDRIjChtzZWFzb25fc2VhbF9y",
+          "ZXNvbmFuY2VfY291bnQYNiABKA0SGwoTcmVtYXRjaF9vcHBvbmVudF9pZBg3",
+          "IAEoBBIdChVyZW1hdGNoX29wcG9uZW50X25hbWUYOCABKAkSPQoXdGFjdGlj",
+          "YWxfcHV6emxlX2NvbnRleHQYOSABKAsyHC5UYWN0aWNhbFB1enpsZUJhdHRs",
+          "ZUNvbnRleHQiWAoXQmF0dGxlUGV0U2V0dGxlbWVudERhdGESDgoGcGV0X2lk",
+          "GAEgASgEEg4KBmhlYWx0aBgCIAEoBBIMCgRtYW5hGAMgASgEEg8KB2lzX2Rl",
+          "YWQYBCABKAgitAIKFUd1aWxkV2FyQmF0dGxlQ29udGV4dBIPCgd6b25lX2lk",
+          "GAEgASgNEhkKEWF0dGFja2VyX2d1aWxkX2lkGAIgASgEEhkKEWRlZmVuZGVy",
+          "X2d1aWxkX2lkGAMgASgEEhIKCmxleWxpbmVfaWQYBCABKA0SFwoPd2FyX2Jh",
+          "dHRsZV9raW5kGAUgASgNEhEKCWJvdW50eV9pZBgGIAEoBBIQCgh3ZWVrX2tl",
+          "eRgHIAEoDRIbChNhdHRhY2tlcl9wbGF5ZXJfaWRzGAggAygEEhsKE2RlZmVu",
+          "ZGVyX3BsYXllcl9pZHMYCSADKAQSGgoSZ29sZF9sZXlsaW5lX2JvbnVzGAog",
+          "ASgIEhUKDXJpdmFscnlfYm9udXMYCyABKAgSFQoNc3RhcnRlZF9hdF9tcxgM",
+          "IAEoBCLqBAoaRmVzdGl2YWxCZWFzdEJhdHRsZUNvbnRleHQSHAoUYWN0aXZp",
+          "dHlfaW5zdGFuY2VfaWQYASABKA0SFwoPY29uZmlnX3JldmlzaW9uGAIgASgN",
+          "EhcKD3Jld2FyZF9pZGVudGl0eRgDIAEoCRIhChlyZXdhcmRfZGVmaW5pdGlv",
+          "bl92ZXJzaW9uGAQgASgNEhsKE3Jld2FyZF9wZXRfdGFibGVfaWQYBSABKA0S",
+          "FQoNcmVxdWlyZWRfd2lucxgGIAEoDRIVCg1sb2NrZWRfcGV0X2lkGAcgASgE",
+          "EhoKEmxvY2tlZF9vd25lcl9sZXZlbBgIIAEoDRIPCgd0aWVyX2lkGAkgASgN",
+          "EhMKC3JvdW5kX2xpbWl0GAogASgNEhQKDGN5Y2xlX3JvdW5kcxgLIAEoDRIZ",
+          "ChFmaXJzdF9oZWF2eV9yb3VuZBgMIAEoDRIdChV0ZWxlZ3JhcGhfbGVhZF9y",
+          "b3VuZHMYDSABKA0SHAoUaGVhdnlfZGFtYWdlX3BlcmNlbnQYDiABKA0SEQoJ",
+          "Ym9zc19uYW1lGA8gASgJEhMKC2Jvc3NfaGVhbHRoGBAgASgEEhwKFGJvc3Nf",
+          "cGh5c2ljYWxfYXR0YWNrGBEgASgEEhQKDGJvc3NfZGVmZW5zZRgSIAEoBBIX",
+          "Cg9ib3NzX3Jlc2lzdGFuY2UYEyABKAQSEgoKYm9zc19zcGVlZBgUIAEoBBId",
+          "ChVlZmZlY3RpdmVfc3RhcnRfYXRfbXMYFSABKAQSGwoTZWZmZWN0aXZlX2Vu",
+          "ZF9hdF9tcxgWIAEoBBIZChFjbGllbnRfcmVxdWVzdF9pZBgXIAEoCSKoAgoV",
+          "QmF0dGxlQWN0aXZpdHlDb250ZXh0EiIKBGtpbmQYASABKA4yFC5lQmF0dGxl",
+          "QWN0aXZpdHlLaW5kEhAKCGd1aWxkX2lkGAIgASgEEhMKC2FjdGl2aXR5X2lk",
+          "GAMgASgNEhIKCnBlcmlvZF9rZXkYBCABKA0SGwoTaW5pdGlhdG9yX3BsYXll",
+          "cl9pZBgFIAEoBBIYChBndWlsZF9wZXJpb2Rfa2V5GAYgASgNEhkKEWxhdW5j",
+          "aF9yZXF1ZXN0X2lkGAcgASgEEjMKDmZlc3RpdmFsX2JlYXN0GAggASgLMhsu",
+          "RmVzdGl2YWxCZWFzdEJhdHRsZUNvbnRleHQSKQoJZ3VpbGRfd2FyGAkgASgL",
+          "MhYuR3VpbGRXYXJCYXR0bGVDb250ZXh0IksKFVJhbmtlZFByZXNldFNlbGVj",
+          "dGlvbhIbChNjaGFyYWN0ZXJfcHJlc2V0X2lkGAEgASgNEhUKDXBldF9wcmVz",
+          "ZXRfaWQYAiABKA0iUQoTUmFua2VkTWVtYmVyTG9hZG91dBIRCglwbGF5ZXJf",
+          "aWQYASABKAQSJwoHcHJlc2V0cxgCIAEoCzIWLlJhbmtlZFByZXNldFNlbGVj",
+          "dGlvbiLqAwoSUmFua2VkTWF0Y2hDb250ZXh0EhEKCXNlYXNvbl9pZBgBIAEo",
+          "DRISCgpzZWFzb25fa2V5GAIgASgJEhcKD3JhbmtfZ2VuZXJhdGlvbhgDIAEo",
+          "BBIUCgxydWxlX3ZlcnNpb24YBCABKA0SEQoJdGVhbV9zaXplGAUgASgNEhoK",
+          "EmNvbmZpZ19maW5nZXJwcmludBgGIAEoCRIlCgdtZW1iZXJzGAcgAygLMhQu",
+          "UmFua2VkTWVtYmVyTG9hZG91dBIXCg91c2VfZnJlZV9wcmVzZXQYCCABKAgS",
+          "RQoSbWVtYmVyX3dpbl9zdHJlYWtzGAkgAygLMikuUmFua2VkTWF0Y2hDb250",
+          "ZXh0Lk1lbWJlcldpblN0cmVha3NFbnRyeRIgChhza2lsbF9iYW5fc2xvdHNf",
+          "cGVyX3RlYW0YCiABKA0SMwoScml2YWxyeV9lbmNvdW50ZXJzGAsgAygLMhcu",
+          "UmFua2VkUml2YWxyeUVuY291bnRlchIdChVhbGxvd19wdWJsaWNfc3BlY3Rh",
+          "dGUYDCABKAgSGQoRcGVha19yYXRpbmdfY2VudGkYDSABKAMaNwoVTWVtYmVy",
+          "V2luU3RyZWFrc0VudHJ5EgsKA2tleRgBIAEoBBINCgV2YWx1ZRgCIAEoDToC",
+          "OAEioAEKF0JhdHRsZVBhcnRpY2lwYXRpb25GYWN0EhEKCXBsYXllcl9pZBgB",
+          "IAEoBBIUCgxlbnRlcmVkX3Jvb20YAiABKAgSHgoWbWFudWFsX2FjdGlvbl9h",
+          "Y2NlcHRlZBgDIAEoCBIdChVleHBsaWNpdF9hdXRvX2VuYWJsZWQYBCABKAgS",
+          "HQoVbm9fYWN0aW9uX29wcG9ydHVuaXR5GAUgASgIIrcBChJUcmlhbEJhdHRs",
+          "ZUNvbnRleHQSGAoQam91cm5hbF9lbnRyeV9pZBgBIAEoDRIaChJ0cmlhbF9y",
+          "dWxlX3ZlcnNpb24YAiABKA0SEQoJc2Vhc29uX2lkGAMgASgNEh4KFmd1YXJk",
+          "X21vbnN0ZXJfdGFibGVfaWQYBCABKA0SHAoUZ3VhcmRfc3RhbmNlX2J1ZmZf",
+          "aWQYBSABKA0SGgoSY2hhbGxlbmdlX3Zvd19tYXNrGAYgASgNIt4HChdCYXR0",
+          "bGVUcmlhbEpvdXJuYWxGYWN0cxIYChBqb3VybmFsX2VudHJ5X2lkGAEgASgN",
+          "EhoKEnRyaWFsX3J1bGVfdmVyc2lvbhgCIAEoDRIbChNpbml0aWFsX2h1bWFu",
+          "X2NvdW50GAMgASgNEhEKCXNlYXNvbl9pZBgEIAEoDRIdChVzZWxmX29yX3Bl",
+          "dF9ldmVyX2RpZWQYBSABKAgSHQoVYm9zc19ndWFyZF9oZWFsX3RvdGFsGAYg",
+          "ASgEEh4KFmd1YXJkX3N0YW5jZV9kaXNwZWxsZWQYByABKAgSKQohdGVhbV9k",
+          "ZWFsdF9waHlzaWNhbF9kaXJlY3RfZGFtYWdlGAggASgIEiYKHnRlYW1fZGVh",
+          "bHRfbWFnaWNfZGlyZWN0X2RhbWFnZRgJIAEoCBIWCg5ndWFyZF9zdXJ2aXZl",
+          "ZBgKIAEoCBIjChtzZWxmX3RyaWdnZXJlZF9zaGllbGRfYnJlYWsYCyABKAgS",
+          "Mworc2VsZl90cmlnZ2VyZWRfYW50aV9jb250cm9sX29yX3NlYXNvbl9za2ls",
+          "bBgMIAEoCBIZChF1c2VkX3BldF90YWJsZV9pZBgNIAEoDRIgChh1c2VkX2Fy",
+          "dGlmYWN0X2VmZmVjdF9pZHMYDiADKA0SGwoTdXNlZF9zZWFzb25fc2VhbF9p",
+          "ZBgPIAEoDRIWCg50ZWFtbWF0ZV9uYW1lcxgQIAMoCRInCh9ib3NzX3dpbmRf",
+          "aGl0X3VucHJvdGVjdGVkX2RlYXRoGBEgASgIEicKH2RlYWx0X3lhbmdfYmVs",
+          "bF9waHlzaWNhbF9kYW1hZ2UYEiABKAgSIwobZGVhbHRfeWluX2RydW1fbWFn",
+          "aWNfZGFtYWdlGBMgASgIEhwKFGZpbmlzaGVkX2luX2ViYl90aWRlGBQgASgI",
+          "EhoKEmNsZWF2ZV9wYXJyeV9jb3VudBgVIAEoDRIlCh1oZWFsX2ludGVycnVw",
+          "dF9iYWNrbGFzaF9jb3VudBgWIAEoDRIaChJzdGFuY2VfYnJlYWtfY291bnQY",
+          "FyABKA0SIAoYYWxsX3NlbGZfY2xlYXZlc19wYXJyaWVkGBggASgIEikKIXNl",
+          "bGZfcGFycmllZF9jbGVhdmVfYXRfbGVhc3Rfb25jZRgZIAEoCBIaChJjaGFs",
+          "bGVuZ2Vfdm93X21hc2sYGiABKA0SHgoWc2VsZl9jYXN0X3NlYXNvbl9za2ls",
+          "bBgbIAEoCBInCh9zZWxmX3RyaWdnZXJlZF9zZWFzb25fcmVzb25hbmNlGBwg",
+          "ASgIEiIKGnNlbGZfc2Vhc29uX3Jlc29uYW5jZV9tYXNrGB0gASgNIo4DChdU",
+          "b3VybmFtZW50QmF0dGxlQ29udGV4dBIRCglzZWFzb25faWQYASABKA0SEAoI",
+          "bWF0Y2hfaWQYAiABKAQSDwoHYmVzdF9vZhgDIAEoDRISCgpnYW1lX2luZGV4",
+          "GAQgASgNEg4KBndpbnNfYRgFIAEoDRIOCgZ3aW5zX2IYBiABKA0SMgoPbGV5",
+          "bGluZV9lbGVtZW50GAcgASgOMhkuVG91cm5hbWVudExleWxpbmVFbGVtZW50",
+          "EhIKCnNxdWFkX2FfaWQYCCABKAQSFAoMc3F1YWRfYV9uYW1lGAkgASgJEhIK",
+          "CnNxdWFkX2JfaWQYCiABKAQSFAoMc3F1YWRfYl9uYW1lGAsgASgJEhkKEXNx",
+          "dWFkX2FfZW1ibGVtX2lkGAwgASgNEhkKEXNxdWFkX2JfZW1ibGVtX2lkGA0g",
+          "ASgNEhEKCWlzX3dhcm11cBgOIAEoCBIWCg5pc190aGlyZF9wbGFjZRgPIAEo",
+          "CBIgChhza2lsbF9iYW5fc2xvdHNfcGVyX3RlYW0YECABKA0imQEKGFd1eGlu",
+          "Z1Rvd2VyQmF0dGxlQ29udGV4dBIQCgh3ZWVrX2tleRgBIAEoDRIOCgZydW5f",
+          "aWQYAiABKAQSDQoFZmxvb3IYAyABKA0SMgoPbGV5bGluZV9lbGVtZW50GAQg",
+          "ASgOMhkuVG91cm5hbWVudExleWxpbmVFbGVtZW50EhgKEGFjdGl2ZV9zaWdp",
+          "bF9pZHMYBSADKA0iYgoZV3V4aW5nVG93ZXJTZXR0bGVtZW50RWNobxIQCgh3",
+          "ZWVrX2tleRgBIAEoDRIOCgZydW5faWQYAiABKAQSDQoFZmxvb3IYAyABKA0S",
+          "FAoMdG90YWxfcm91bmRzGAQgASgNIrMCCg9DdXN0b21EdWVsUnVsZXMSFwoP",
+          "dXNlX2ZyZWVfcHJlc2V0GAEgASgIEiAKGGVuYWJsZV9wb2xhcml0eV9yb3Rh",
+          "dGlvbhgCIAEoCBIcChRyb3VuZF9saW1pdF9vdmVycmlkZRgDIAEoDRIaChJi",
+          "YW5fY29udHJvbF9za2lsbHMYBCABKAgSHQoVYWxsb3dfcHVibGljX3NwZWN0",
+          "YXRlGAUgASgIEiYKHmNoYWxsZW5nZXJfY2hhcmFjdGVyX3ByZXNldF9pZBgG",
+          "IAEoDRIgChhjaGFsbGVuZ2VyX3BldF9wcmVzZXRfaWQYByABKA0SIAoYc2tp",
+          "bGxfYmFuX3Nsb3RzX3Blcl90ZWFtGAggASgNEiAKGHJlbWF0Y2hfc291cmNl",
+          "X2JhdHRsZV9pZBgJIAEoBCLUAgoXQmF0dGxlQWN0b3JCdWlsZFN1bW1hcnkS",
+          "EQoJcGxheWVyX2lkGAEgASgEEgwKBG5hbWUYAiABKAkSEgoKdGVhbV9pbmRl",
+          "eBgDIAEoDRIQCghjbGFzc19pZBgEIAEoDRINCgVsZXZlbBgFIAEoDRIUCgxm",
+          "b3JtYXRpb25faWQYBiABKA0SFgoOd3V4aW5nX2VsZW1lbnQYByABKA0SFgoO",
+          "c2Vhc29uX3NlYWxfaWQYCCABKA0SGwoTYWN0aXZlX3BldF90YWJsZV9pZBgJ",
+          "IAEoDRIXCg9hY3RpdmVfcGV0X25hbWUYCiABKAkSGgoSYWN0aXZlX3BldF9l",
+          "bGVtZW50GAsgASgNEhcKD3NraWxsX3RhYmxlX2lkcxgMIAMoDRIYChB3dXhp",
+          "bmdfc2lnaWxfaWRzGA0gAygNEhgKEHVzZWRfZnJlZV9wcmVzZXQYDiABKAgi",
+          "1gIKGEppYW5naHVEdWVsQmF0dGxlQ29udGV4dBIWCg5kdWVsX2ludml0ZV9p",
+          "ZBgBIAEoBBIRCgl3cml0X3RpZXIYAiABKA0SHQoVY2hhbGxlbmdlcl9jYXB0",
+          "YWluX2lkGAMgASgEEh8KF2NoYWxsZW5nZXJfY2FwdGFpbl9uYW1lGAQgASgJ",
+          "EhkKEXRhcmdldF9jYXB0YWluX2lkGAUgASgEEhsKE3RhcmdldF9jYXB0YWlu",
+          "X25hbWUYBiABKAkSFwoPc2lkZV9hX2d1aWxkX2lkGAcgASgEEhkKEXNpZGVf",
+          "YV9ndWlsZF9uYW1lGAggASgJEhcKD3NpZGVfYl9ndWlsZF9pZBgJIAEoBBIZ",
+          "ChFzaWRlX2JfZ3VpbGRfbmFtZRgKIAEoCRIcChRyb3VuZF9saW1pdF9vdmVy",
+          "cmlkZRgLIAEoDRIRCgl0ZWFtX3NpemUYDCABKA0imwEKF1RhY3RpY2FsUHV6",
+          "emxlRW5lbXlTcGVjEhgKEG1vbnN0ZXJfdGFibGVfaWQYASABKA0SFgoOaW5p",
+          "dGlhbF9ocF9wY3QYAiABKA0SGgoSaW5pdGlhbF9zaGllbGRfcGN0GAMgASgN",
+          "EhcKD3NwZWVkX2RlbHRhX3BjdBgEIAEoBRIZChFpbml0aWFsX2J1ZmZfa2lu",
+          "ZBgFIAEoDSKjAgoSVGFjdGljYWxQdXp6bGVTcGVjEhMKC3JvdW5kX2xpbWl0",
+          "GAEgASgNEhsKE2NoYXJhY3Rlcl9wcmVzZXRfaWQYAiABKA0SFQoNcGV0X3By",
+          "ZXNldF9pZBgDIAEoDRIUCgxmb3JtYXRpb25faWQYBCABKA0SHQoVcGxheWVy",
+          "X2luaXRpYWxfaHBfcGN0GAUgASgNEh0KFXBsYXllcl9pbml0aWFsX21wX3Bj",
+          "dBgGIAEoDRIhChlwbGF5ZXJfaW5pdGlhbF9zaGllbGRfcGN0GAcgASgNEiIK",
+          "GnBsYXllcl9pbml0aWFsX2RlYnVmZl9raW5kGAggASgNEikKB2VuZW1pZXMY",
+          "CSADKAsyGC5UYWN0aWNhbFB1enpsZUVuZW15U3BlYyLJAQobVGFjdGljYWxQ",
+          "dXp6bGVCYXR0bGVDb250ZXh0EhEKCXB1enpsZV9pZBgBIAEoBBIVCg1zcGVj",
+          "X3JldmlzaW9uGAIgASgNEhgKEGlzX2F1dGhvcl92ZXJpZnkYAyABKAgSFAoM",
+          "cHV6emxlX3RpdGxlGAQgASgJEhgKEGF1dGhvcl9wbGF5ZXJfaWQYBSABKAQS",
+          "EwoLYXV0aG9yX25hbWUYBiABKAkSIQoEc3BlYxgHIAEoCzITLlRhY3RpY2Fs",
+          "UHV6emxlU3BlYyqGAQoQZUJhdHRsZUFjdG9yVHlwZRIaChZCQVRUTEVfQUNU",
+          "T1JfVFlQRV9OT05FEAASHAoYQkFUVExFX0FDVE9SX1RZUEVfUExBWUVSEAES",
+          "HQoZQkFUVExFX0FDVE9SX1RZUEVfTU9OU1RFUhACEhkKFUJBVFRMRV9BQ1RP",
+          "Ul9UWVBFX1BFVBADKv8BChFlQmF0dGxlQWN0aW9uVHlwZRIWChJCQVRUTEVf",
+          "QUNUSU9OX05PTkUQABIYChRCQVRUTEVfQUNUSU9OX0FUVEFDSxABEhcKE0JB",
+          "VFRMRV9BQ1RJT05fU0tJTEwQAhIYChRCQVRUTEVfQUNUSU9OX0RFRkVORBAD",
+          "EhYKEkJBVFRMRV9BQ1RJT05fSVRFTRAEEhYKEkJBVFRMRV9BQ1RJT05fRkxF",
+          "RRAFEhkKFUJBVFRMRV9BQ1RJT05fQ0FQVFVSRRAGEhwKGEJBVFRMRV9BQ1RJ",
+          "T05fUkVDQUxMX1BFVBAHEhwKGEJBVFRMRV9BQ1RJT05fU1VNTU9OX1BFVBAI",
+          "Kp0FChBlQmF0dGxlRXZlbnRUeXBlEhUKEUJBVFRMRV9FVkVOVF9OT05FEAAS",
+          "FwoTQkFUVExFX0VWRU5UX0FUVEFDSxABEhYKEkJBVFRMRV9FVkVOVF9TS0lM",
+          "TBACEhcKE0JBVFRMRV9FVkVOVF9EQU1BR0UQAxIVChFCQVRUTEVfRVZFTlRf",
+          "SEVBTBAEEhkKFUJBVFRMRV9FVkVOVF9CVUZGX0FERBAFEhwKGEJBVFRMRV9F",
+          "VkVOVF9CVUZGX1JFTU9WRRAGEhoKFkJBVFRMRV9FVkVOVF9CVUZGX1RJQ0sQ",
+          "BxIWChJCQVRUTEVfRVZFTlRfREVBVEgQCBIXChNCQVRUTEVfRVZFTlRfREVG",
+          "RU5EEAkSFQoRQkFUVExFX0VWRU5UX0lURU0QChIVChFCQVRUTEVfRVZFTlRf",
+          "RkxFRRALEhUKEUJBVFRMRV9FVkVOVF9NSVNTEAwSFgoSQkFUVExFX0VWRU5U",
+          "X0JMT0NLEA0SFQoRQkFUVExFX0VWRU5UX01BTkEQDhIXChNCQVRUTEVfRVZF",
+          "TlRfUkVTSVNUEA8SGAoUQkFUVExFX0VWRU5UX0NBUFRVUkUQEBIXChNCQVRU",
+          "TEVfRVZFTlRfUkVWSVZFEBESGwoXQkFUVExFX0VWRU5UX01BWF9IRUFMVEgQ",
+          "EhIcChhCQVRUTEVfRVZFTlRfUEVUX1JFVFJFQVQQExIXChNCQVRUTEVfRVZF",
+          "TlRfU0hJRUxEEBQSGQoVQkFUVExFX0VWRU5UX0FSVElGQUNUEBUSHgoaQkFU",
+          "VExFX0VWRU5UX0JPU1NfTUVDSEFOSUMQFhIfChtCQVRUTEVfRVZFTlRfV1VY",
+          "SU5HX1NZTkVSR1kQFxIbChdCQVRUTEVfRVZFTlRfU1VNTU9OX1BFVBAYKpwB",
+          "Cg5lQmF0dGxlSGl0S2luZBIVChFCQVRUTEVfSElUX05PUk1BTBAAEhQKEEJB",
+          "VFRMRV9ISVRfQ09NQk8QARIWChJCQVRUTEVfSElUX0NPVU5URVIQAhIWChJC",
+          "QVRUTEVfSElUX1JFRkxFQ1QQAxIWChJCQVRUTEVfSElUX1BVUlNVSVQQBBIV",
+          "ChFCQVRUTEVfSElUX01JUlJPUhAFKo4BCg5CYXR0bGVQaW5nS2luZBIbChdC",
+          "QVRUTEVfUElOR19VTlNQRUNJRklFRBAAEhUKEUJBVFRMRV9QSU5HX0ZPQ1VT",
+          "EAESFwoTQkFUVExFX1BJTkdfQ09OVFJPTBACEhcKE0JBVFRMRV9QSU5HX1BS",
+          "T1RFQ1QQAxIWChJCQVRUTEVfUElOR19ESVNQRUwQBCrnAQoTQmF0dGxlSGln",
+          "aGxpZ2h0S2luZBIZChVCQVRUTEVfSElHSExJR0hUX05PTkUQABIiCh5CQVRU",
+          "TEVfSElHSExJR0hUX1BSSU1BUllfRk9DVVMQARIlCiFCQVRUTEVfSElHSExJ",
+          "R0hUX1RBQ1RJQ0FMX0NPTlRST0wQAhIjCh9CQVRUTEVfSElHSExJR0hUX1NB",
+          "VklPUl9TVVBQT1JUEAMSHwobQkFUVExFX0hJR0hMSUdIVF9JUk9OX0dVQVJE",
+          "EAQSJAogQkFUVExFX0hJR0hMSUdIVF9DTFVUQ0hfQ09NRUJBQ0sQBSqcAQoO",
+          "ZUJhdHRsZU91dGNvbWUSGgoWQkFUVExFX09VVENPTUVfT05HT0lORxAAEh0K",
+          "GUJBVFRMRV9PVVRDT01FX1NJREVfQV9XSU4QARIdChlCQVRUTEVfT1VUQ09N",
+          "RV9TSURFX0JfV0lOEAISFwoTQkFUVExFX09VVENPTUVfRFJBVxADEhcKE0JB",
+          "VFRMRV9PVVRDT01FX1ZPSUQQBCqnAQoTZUJhdHRsZUFjdGl2aXR5S2luZBId",
+          "ChlCQVRUTEVfQUNUSVZJVFlfS0lORF9OT05FEAASJAogQkFUVExFX0FDVElW",
+          "SVRZX0tJTkRfR1VJTERfVFJJQUwQARInCiNCQVRUTEVfQUNUSVZJVFlfS0lO",
+          "RF9GRVNUSVZBTF9CRUFTVBACEiIKHkJBVFRMRV9BQ1RJVklUWV9LSU5EX0dV",
+          "SUxEX1dBUhADKnsKE2VTcGVjdGF0ZVZpc2liaWxpdHkSIwofU1BFQ1RBVEVf",
+          "VklTSUJJTElUWV9VTlNQRUNJRklFRBAAEh8KG1NQRUNUQVRFX1ZJU0lCSUxJ",
+          "VFlfUFJJVkFURRABEh4KGlNQRUNUQVRFX1ZJU0lCSUxJVFlfUFVCTElDEAIq",
+          "XwoNZVNwZWN0YXRlVGllchIYChRTUEVDVEFURV9USUVSX0RJUkVDVBAAEhcK",
+          "E1NQRUNUQVRFX1RJRVJfUkVMQVkQARIbChdTUEVDVEFURV9USUVSX0JST0FE",
+          "Q0FTVBACKtIBChhUb3VybmFtZW50TGV5bGluZUVsZW1lbnQSIgoeVE9VUk5B",
+          "TUVOVF9MRVlMSU5FX1VOU1BFQ0lGSUVEEAASHAoYVE9VUk5BTUVOVF9MRVlM",
+          "SU5FX01FVEFMEAESGwoXVE9VUk5BTUVOVF9MRVlMSU5FX1dPT0QQAhIcChhU",
+          "T1VSTkFNRU5UX0xFWUxJTkVfV0FURVIQAxIbChdUT1VSTkFNRU5UX0xFWUxJ",
+          "TkVfRklSRRAEEhwKGFRPVVJOQU1FTlRfTEVZTElORV9FQVJUSBAFQghaBmJh",
+          "dHRsZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ActorCompReflection.Descriptor, global::ActorAttributeStateCompReflection.Descriptor, global::EquipmentEffectsReflection.Descriptor, global::SupportEffectsReflection.Descriptor, global::PetCultivationEffectsReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eBattleActorType), typeof(global::eBattleActionType), typeof(global::eBattleEventType), typeof(global::eBattleHitKind), typeof(global::BattlePingKind), typeof(global::BattleHighlightKind), typeof(global::eBattleOutcome), typeof(global::eBattleActivityKind), typeof(global::eSpectateVisibility), typeof(global::eSpectateTier), typeof(global::TournamentLeylineElement), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -402,16 +422,16 @@ public static partial class BattleDataReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleSurrenderVoteState), global::BattleSurrenderVoteState.Parser, new[]{ "Active", "TeamIndex", "InitiatorPlayerId", "InitiatedRound", "AgreedPlayerIds", "RequiredAgrees", "NextAllowedRound", "Rejected", "Passed" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattlePrepSealOption), global::BattlePrepSealOption.Parser, new[]{ "SealId", "EffectId", "Name" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattlePrepPetOption), global::BattlePrepPetOption.Parser, new[]{ "PetId", "PetTableId", "PetName", "Level", "MaxHealth", "Speed", "PhysicalAttack", "MagicAttack", "Defense", "SkillTableIds" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattlePrepPlayerState), global::BattlePrepPlayerState.Parser, new[]{ "PlayerId", "TeamIndex", "SelectedSealId", "SelectedPetId", "SelectedPetTableId", "SelectedPetName", "Ready", "NominatedBanSkillIds" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattlePrepPlayerState), global::BattlePrepPlayerState.Parser, new[]{ "PlayerId", "TeamIndex", "SelectedSealId", "SelectedPetId", "SelectedPetTableId", "SelectedPetName", "Ready", "NominatedBanSkillIds", "NominatedProtectSkillId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RankedRivalryEncounter), global::RankedRivalryEncounter.Parser, new[]{ "PlayerId", "OpponentId", "OpponentName", "Wins", "Losses", "RevengeTarget" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattlePrepState), global::BattlePrepState.Parser, new[]{ "Active", "DeadlineMs", "DurationSeconds", "SelfAvailableSeals", "SelfAvailablePets", "TeamStates", "SkillBanSlotsPerTeam", "BanCandidateSkillIds", "TeamEffectiveBanSkillIds", "SelfRivalries" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattlePrepState), global::BattlePrepState.Parser, new[]{ "Active", "DeadlineMs", "DurationSeconds", "SelfAvailableSeals", "SelfAvailablePets", "TeamStates", "SkillBanSlotsPerTeam", "BanCandidateSkillIds", "TeamEffectiveBanSkillIds", "SelfRivalries", "SkillProtectSlotsPerTeam", "TeamEffectiveProtectedSkillId", "TeammateEquippedSkillIds" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleTacticalPing), global::BattleTacticalPing.Parser, new[]{ "SenderPlayerId", "TargetActorId", "Kind", "RoundIndex" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleMonsterDefeat), global::BattleMonsterDefeat.Parser, new[]{ "MonsterConfigId", "Count" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleCurrencyGain), global::BattleCurrencyGain.Parser, new[]{ "CurrencyType", "Amount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleRandomItemReward), global::BattleRandomItemReward.Parser, new[]{ "ItemTableId", "Count", "Weight" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleRewardProfile), global::BattleRewardProfile.Parser, new[]{ "BattleConfigId", "StrategyKey", "ExpGain", "Currencies", "ItemDraws", "RandomItems" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleRewardConfig), global::BattleRewardConfig.Parser, new[]{ "Profiles" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleSettlementData), global::BattleSettlementData.Parser, new[]{ "BattleId", "PlayerId", "Outcome", "PlayerTeamIndex", "Health", "Mana", "ExpGain", "GoldGain", "ItemsConsumed", "ItemsGained", "IsDead", "Fled", "TotalRounds", "Pets", "DefeatedMonsters", "CurrencyGains", "FinishedAtMs", "MatchMode", "BattleConfigId", "CapturedPetTableIds", "CompetitiveRanked", "SeasonId", "RankedRuleVersion", "Participated", "TrialFacts", "ManualActionRounds", "EffectiveCombatContribution", "BattleDifficulty", "BossTrialKind", "UseFreePreset", "FestivalBeast", "Surrendered", "TotalDamageDealt", "TotalHealingDone", "TotalControlsLanded", "TowerSettlement", "PrimaryFocusDamageDealt", "TotalShieldGranted", "TotalDispelsLanded", "DamageTaken", "HighlightKind", "EndedOpponentStreak", "RevengedRival", "RevengedOpponentName", "RevengedWinsAfter", "RevengedLossesAfter", "FinalSeasonSealId", "StarterPetTableId", "CoreSkillIds", "PlayerDisplayName", "JianghuDuel", "SeasonSealContributionValue", "SeasonSealTriggerCount", "SeasonSealResonanceCount", "RematchOpponentId", "RematchOpponentName" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleSettlementData), global::BattleSettlementData.Parser, new[]{ "BattleId", "PlayerId", "Outcome", "PlayerTeamIndex", "Health", "Mana", "ExpGain", "GoldGain", "ItemsConsumed", "ItemsGained", "IsDead", "Fled", "TotalRounds", "Pets", "DefeatedMonsters", "CurrencyGains", "FinishedAtMs", "MatchMode", "BattleConfigId", "CapturedPetTableIds", "CompetitiveRanked", "SeasonId", "RankedRuleVersion", "Participated", "TrialFacts", "ManualActionRounds", "EffectiveCombatContribution", "BattleDifficulty", "BossTrialKind", "UseFreePreset", "FestivalBeast", "Surrendered", "TotalDamageDealt", "TotalHealingDone", "TotalControlsLanded", "TowerSettlement", "PrimaryFocusDamageDealt", "TotalShieldGranted", "TotalDispelsLanded", "DamageTaken", "HighlightKind", "EndedOpponentStreak", "RevengedRival", "RevengedOpponentName", "RevengedWinsAfter", "RevengedLossesAfter", "FinalSeasonSealId", "StarterPetTableId", "CoreSkillIds", "PlayerDisplayName", "JianghuDuel", "SeasonSealContributionValue", "SeasonSealTriggerCount", "SeasonSealResonanceCount", "RematchOpponentId", "RematchOpponentName", "TacticalPuzzleContext" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattlePetSettlementData), global::BattlePetSettlementData.Parser, new[]{ "PetId", "Health", "Mana", "IsDead" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GuildWarBattleContext), global::GuildWarBattleContext.Parser, new[]{ "ZoneId", "AttackerGuildId", "DefenderGuildId", "LeylineId", "WarBattleKind", "BountyId", "WeekKey", "AttackerPlayerIds", "DefenderPlayerIds", "GoldLeylineBonus", "RivalryBonus", "StartedAtMs" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::FestivalBeastBattleContext), global::FestivalBeastBattleContext.Parser, new[]{ "ActivityInstanceId", "ConfigRevision", "RewardIdentity", "RewardDefinitionVersion", "RewardPetTableId", "RequiredWins", "LockedPetId", "LockedOwnerLevel", "TierId", "RoundLimit", "CycleRounds", "FirstHeavyRound", "TelegraphLeadRounds", "HeavyDamagePercent", "BossName", "BossHealth", "BossPhysicalAttack", "BossDefense", "BossResistance", "BossSpeed", "EffectiveStartAtMs", "EffectiveEndAtMs", "ClientRequestId" }, null, null, null, null),
@@ -427,7 +447,10 @@ public static partial class BattleDataReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::WuxingTowerSettlementEcho), global::WuxingTowerSettlementEcho.Parser, new[]{ "WeekKey", "RunId", "Floor", "TotalRounds" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::CustomDuelRules), global::CustomDuelRules.Parser, new[]{ "UseFreePreset", "EnablePolarityRotation", "RoundLimitOverride", "BanControlSkills", "AllowPublicSpectate", "ChallengerCharacterPresetId", "ChallengerPetPresetId", "SkillBanSlotsPerTeam", "RematchSourceBattleId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleActorBuildSummary), global::BattleActorBuildSummary.Parser, new[]{ "PlayerId", "Name", "TeamIndex", "ClassId", "Level", "FormationId", "WuxingElement", "SeasonSealId", "ActivePetTableId", "ActivePetName", "ActivePetElement", "SkillTableIds", "WuxingSigilIds", "UsedFreePreset" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::JianghuDuelBattleContext), global::JianghuDuelBattleContext.Parser, new[]{ "DuelInviteId", "WritTier", "ChallengerCaptainId", "ChallengerCaptainName", "TargetCaptainId", "TargetCaptainName", "SideAGuildId", "SideAGuildName", "SideBGuildId", "SideBGuildName", "RoundLimitOverride", "TeamSize" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::JianghuDuelBattleContext), global::JianghuDuelBattleContext.Parser, new[]{ "DuelInviteId", "WritTier", "ChallengerCaptainId", "ChallengerCaptainName", "TargetCaptainId", "TargetCaptainName", "SideAGuildId", "SideAGuildName", "SideBGuildId", "SideBGuildName", "RoundLimitOverride", "TeamSize" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TacticalPuzzleEnemySpec), global::TacticalPuzzleEnemySpec.Parser, new[]{ "MonsterTableId", "InitialHpPct", "InitialShieldPct", "SpeedDeltaPct", "InitialBuffKind" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TacticalPuzzleSpec), global::TacticalPuzzleSpec.Parser, new[]{ "RoundLimit", "CharacterPresetId", "PetPresetId", "FormationId", "PlayerInitialHpPct", "PlayerInitialMpPct", "PlayerInitialShieldPct", "PlayerInitialDebuffKind", "Enemies" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TacticalPuzzleBattleContext), global::TacticalPuzzleBattleContext.Parser, new[]{ "PuzzleId", "SpecRevision", "IsAuthorVerify", "PuzzleTitle", "AuthorPlayerId", "AuthorName", "Spec" }, null, null, null, null)
         }));
   }
   #endregion
@@ -9922,6 +9945,7 @@ public sealed partial class BattlePrepPlayerState : pb::IMessage<BattlePrepPlaye
     selectedPetName_ = other.selectedPetName_;
     ready_ = other.ready_;
     nominatedBanSkillIds_ = other.nominatedBanSkillIds_.Clone();
+    nominatedProtectSkillId_ = other.nominatedProtectSkillId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -10029,6 +10053,21 @@ public sealed partial class BattlePrepPlayerState : pb::IMessage<BattlePrepPlaye
     get { return nominatedBanSkillIds_; }
   }
 
+  /// <summary>Field number for the "nominated_protect_skill_id" field.</summary>
+  public const int NominatedProtectSkillIdFieldNumber = 9;
+  private uint nominatedProtectSkillId_;
+  /// <summary>
+  /// 本人当前提名的本局护招技能 ID（0=未提名；须在候选池内且不与本人禁招列表冲突；仅向同队下发）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint NominatedProtectSkillId {
+    get { return nominatedProtectSkillId_; }
+    set {
+      nominatedProtectSkillId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -10052,6 +10091,7 @@ public sealed partial class BattlePrepPlayerState : pb::IMessage<BattlePrepPlaye
     if (SelectedPetName != other.SelectedPetName) return false;
     if (Ready != other.Ready) return false;
     if(!nominatedBanSkillIds_.Equals(other.nominatedBanSkillIds_)) return false;
+    if (NominatedProtectSkillId != other.NominatedProtectSkillId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -10067,6 +10107,7 @@ public sealed partial class BattlePrepPlayerState : pb::IMessage<BattlePrepPlaye
     if (SelectedPetName.Length != 0) hash ^= SelectedPetName.GetHashCode();
     if (Ready != false) hash ^= Ready.GetHashCode();
     hash ^= nominatedBanSkillIds_.GetHashCode();
+    if (NominatedProtectSkillId != 0) hash ^= NominatedProtectSkillId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -10114,6 +10155,10 @@ public sealed partial class BattlePrepPlayerState : pb::IMessage<BattlePrepPlaye
       output.WriteBool(Ready);
     }
     nominatedBanSkillIds_.WriteTo(output, _repeated_nominatedBanSkillIds_codec);
+    if (NominatedProtectSkillId != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(NominatedProtectSkillId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -10153,6 +10198,10 @@ public sealed partial class BattlePrepPlayerState : pb::IMessage<BattlePrepPlaye
       output.WriteBool(Ready);
     }
     nominatedBanSkillIds_.WriteTo(ref output, _repeated_nominatedBanSkillIds_codec);
+    if (NominatedProtectSkillId != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(NominatedProtectSkillId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -10185,6 +10234,9 @@ public sealed partial class BattlePrepPlayerState : pb::IMessage<BattlePrepPlaye
       size += 1 + 1;
     }
     size += nominatedBanSkillIds_.CalculateSize(_repeated_nominatedBanSkillIds_codec);
+    if (NominatedProtectSkillId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NominatedProtectSkillId);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -10219,6 +10271,9 @@ public sealed partial class BattlePrepPlayerState : pb::IMessage<BattlePrepPlaye
       Ready = other.Ready;
     }
     nominatedBanSkillIds_.Add(other.nominatedBanSkillIds_);
+    if (other.NominatedProtectSkillId != 0) {
+      NominatedProtectSkillId = other.NominatedProtectSkillId;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -10271,6 +10326,10 @@ public sealed partial class BattlePrepPlayerState : pb::IMessage<BattlePrepPlaye
           nominatedBanSkillIds_.AddEntriesFrom(input, _repeated_nominatedBanSkillIds_codec);
           break;
         }
+        case 72: {
+          NominatedProtectSkillId = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -10321,6 +10380,10 @@ public sealed partial class BattlePrepPlayerState : pb::IMessage<BattlePrepPlaye
         case 66:
         case 64: {
           nominatedBanSkillIds_.AddEntriesFrom(ref input, _repeated_nominatedBanSkillIds_codec);
+          break;
+        }
+        case 72: {
+          NominatedProtectSkillId = input.ReadUInt32();
           break;
         }
       }
@@ -10782,6 +10845,9 @@ public sealed partial class BattlePrepState : pb::IMessage<BattlePrepState>
     banCandidateSkillIds_ = other.banCandidateSkillIds_.Clone();
     teamEffectiveBanSkillIds_ = other.teamEffectiveBanSkillIds_.Clone();
     selfRivalries_ = other.selfRivalries_.Clone();
+    skillProtectSlotsPerTeam_ = other.skillProtectSlotsPerTeam_;
+    teamEffectiveProtectedSkillId_ = other.teamEffectiveProtectedSkillId_;
+    teammateEquippedSkillIds_ = other.teammateEquippedSkillIds_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -10926,6 +10992,50 @@ public sealed partial class BattlePrepState : pb::IMessage<BattlePrepState>
     get { return selfRivalries_; }
   }
 
+  /// <summary>Field number for the "skill_protect_slots_per_team" field.</summary>
+  public const int SkillProtectSlotsPerTeamFieldNumber = 11;
+  private uint skillProtectSlotsPerTeam_;
+  /// <summary>
+  /// 战前禁选 V2：本局每队可用护招槽数（0=未启用，1=每队保 1 招）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SkillProtectSlotsPerTeam {
+    get { return skillProtectSlotsPerTeam_; }
+    set {
+      skillProtectSlotsPerTeam_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "team_effective_protected_skill_id" field.</summary>
+  public const int TeamEffectiveProtectedSkillIdFieldNumber = 12;
+  private uint teamEffectiveProtectedSkillId_;
+  /// <summary>
+  /// 战前禁选 V2：按当前同队提名确定性聚合的本队生效护招 ID（0=未提名；仅同队可见）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TeamEffectiveProtectedSkillId {
+    get { return teamEffectiveProtectedSkillId_; }
+    set {
+      teamEffectiveProtectedSkillId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "teammate_equipped_skill_ids" field.</summary>
+  public const int TeammateEquippedSkillIdsFieldNumber = 13;
+  private static readonly pb::FieldCodec<uint> _repeated_teammateEquippedSkillIds_codec
+      = pb::FieldCodec.ForUInt32(106);
+  private readonly pbc::RepeatedField<uint> teammateEquippedSkillIds_ = new pbc::RepeatedField<uint>();
+  /// <summary>
+  /// 战前禁选 V2：本队其他队友已携带且在候选池内的技能 ID（升序去重；仅同队可见，防误禁）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<uint> TeammateEquippedSkillIds {
+    get { return teammateEquippedSkillIds_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -10951,6 +11061,9 @@ public sealed partial class BattlePrepState : pb::IMessage<BattlePrepState>
     if(!banCandidateSkillIds_.Equals(other.banCandidateSkillIds_)) return false;
     if(!teamEffectiveBanSkillIds_.Equals(other.teamEffectiveBanSkillIds_)) return false;
     if(!selfRivalries_.Equals(other.selfRivalries_)) return false;
+    if (SkillProtectSlotsPerTeam != other.SkillProtectSlotsPerTeam) return false;
+    if (TeamEffectiveProtectedSkillId != other.TeamEffectiveProtectedSkillId) return false;
+    if(!teammateEquippedSkillIds_.Equals(other.teammateEquippedSkillIds_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -10968,6 +11081,9 @@ public sealed partial class BattlePrepState : pb::IMessage<BattlePrepState>
     hash ^= banCandidateSkillIds_.GetHashCode();
     hash ^= teamEffectiveBanSkillIds_.GetHashCode();
     hash ^= selfRivalries_.GetHashCode();
+    if (SkillProtectSlotsPerTeam != 0) hash ^= SkillProtectSlotsPerTeam.GetHashCode();
+    if (TeamEffectiveProtectedSkillId != 0) hash ^= TeamEffectiveProtectedSkillId.GetHashCode();
+    hash ^= teammateEquippedSkillIds_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -11008,6 +11124,15 @@ public sealed partial class BattlePrepState : pb::IMessage<BattlePrepState>
     banCandidateSkillIds_.WriteTo(output, _repeated_banCandidateSkillIds_codec);
     teamEffectiveBanSkillIds_.WriteTo(output, _repeated_teamEffectiveBanSkillIds_codec);
     selfRivalries_.WriteTo(output, _repeated_selfRivalries_codec);
+    if (SkillProtectSlotsPerTeam != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(SkillProtectSlotsPerTeam);
+    }
+    if (TeamEffectiveProtectedSkillId != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(TeamEffectiveProtectedSkillId);
+    }
+    teammateEquippedSkillIds_.WriteTo(output, _repeated_teammateEquippedSkillIds_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -11040,6 +11165,15 @@ public sealed partial class BattlePrepState : pb::IMessage<BattlePrepState>
     banCandidateSkillIds_.WriteTo(ref output, _repeated_banCandidateSkillIds_codec);
     teamEffectiveBanSkillIds_.WriteTo(ref output, _repeated_teamEffectiveBanSkillIds_codec);
     selfRivalries_.WriteTo(ref output, _repeated_selfRivalries_codec);
+    if (SkillProtectSlotsPerTeam != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(SkillProtectSlotsPerTeam);
+    }
+    if (TeamEffectiveProtectedSkillId != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(TeamEffectiveProtectedSkillId);
+    }
+    teammateEquippedSkillIds_.WriteTo(ref output, _repeated_teammateEquippedSkillIds_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -11068,6 +11202,13 @@ public sealed partial class BattlePrepState : pb::IMessage<BattlePrepState>
     size += banCandidateSkillIds_.CalculateSize(_repeated_banCandidateSkillIds_codec);
     size += teamEffectiveBanSkillIds_.CalculateSize(_repeated_teamEffectiveBanSkillIds_codec);
     size += selfRivalries_.CalculateSize(_repeated_selfRivalries_codec);
+    if (SkillProtectSlotsPerTeam != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SkillProtectSlotsPerTeam);
+    }
+    if (TeamEffectiveProtectedSkillId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TeamEffectiveProtectedSkillId);
+    }
+    size += teammateEquippedSkillIds_.CalculateSize(_repeated_teammateEquippedSkillIds_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -11098,6 +11239,13 @@ public sealed partial class BattlePrepState : pb::IMessage<BattlePrepState>
     banCandidateSkillIds_.Add(other.banCandidateSkillIds_);
     teamEffectiveBanSkillIds_.Add(other.teamEffectiveBanSkillIds_);
     selfRivalries_.Add(other.selfRivalries_);
+    if (other.SkillProtectSlotsPerTeam != 0) {
+      SkillProtectSlotsPerTeam = other.SkillProtectSlotsPerTeam;
+    }
+    if (other.TeamEffectiveProtectedSkillId != 0) {
+      TeamEffectiveProtectedSkillId = other.TeamEffectiveProtectedSkillId;
+    }
+    teammateEquippedSkillIds_.Add(other.teammateEquippedSkillIds_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -11159,6 +11307,19 @@ public sealed partial class BattlePrepState : pb::IMessage<BattlePrepState>
           selfRivalries_.AddEntriesFrom(input, _repeated_selfRivalries_codec);
           break;
         }
+        case 88: {
+          SkillProtectSlotsPerTeam = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          TeamEffectiveProtectedSkillId = input.ReadUInt32();
+          break;
+        }
+        case 106:
+        case 104: {
+          teammateEquippedSkillIds_.AddEntriesFrom(input, _repeated_teammateEquippedSkillIds_codec);
+          break;
+        }
       }
     }
   #endif
@@ -11218,6 +11379,19 @@ public sealed partial class BattlePrepState : pb::IMessage<BattlePrepState>
         }
         case 82: {
           selfRivalries_.AddEntriesFrom(ref input, _repeated_selfRivalries_codec);
+          break;
+        }
+        case 88: {
+          SkillProtectSlotsPerTeam = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          TeamEffectiveProtectedSkillId = input.ReadUInt32();
+          break;
+        }
+        case 106:
+        case 104: {
+          teammateEquippedSkillIds_.AddEntriesFrom(ref input, _repeated_teammateEquippedSkillIds_codec);
           break;
         }
       }
@@ -12941,6 +13115,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     seasonSealResonanceCount_ = other.seasonSealResonanceCount_;
     rematchOpponentId_ = other.rematchOpponentId_;
     rematchOpponentName_ = other.rematchOpponentName_;
+    tacticalPuzzleContext_ = other.tacticalPuzzleContext_ != null ? other.tacticalPuzzleContext_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -13745,6 +13920,21 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     }
   }
 
+  /// <summary>Field number for the "tactical_puzzle_context" field.</summary>
+  public const int TacticalPuzzleContextFieldNumber = 57;
+  private global::TacticalPuzzleBattleContext tacticalPuzzleContext_;
+  /// <summary>
+  /// 万象残局坊冻结上下文回传（用于战后结算面板快速重开 / 看作者标准解 / 点赞 / 分享，非残局坊留空）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TacticalPuzzleBattleContext TacticalPuzzleContext {
+    get { return tacticalPuzzleContext_; }
+    set {
+      tacticalPuzzleContext_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -13816,6 +14006,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     if (SeasonSealResonanceCount != other.SeasonSealResonanceCount) return false;
     if (RematchOpponentId != other.RematchOpponentId) return false;
     if (RematchOpponentName != other.RematchOpponentName) return false;
+    if (!object.Equals(TacticalPuzzleContext, other.TacticalPuzzleContext)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -13879,6 +14070,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     if (SeasonSealResonanceCount != 0) hash ^= SeasonSealResonanceCount.GetHashCode();
     if (RematchOpponentId != 0UL) hash ^= RematchOpponentId.GetHashCode();
     if (RematchOpponentName.Length != 0) hash ^= RematchOpponentName.GetHashCode();
+    if (tacticalPuzzleContext_ != null) hash ^= TacticalPuzzleContext.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -14100,6 +14292,10 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
       output.WriteRawTag(194, 3);
       output.WriteString(RematchOpponentName);
     }
+    if (tacticalPuzzleContext_ != null) {
+      output.WriteRawTag(202, 3);
+      output.WriteMessage(TacticalPuzzleContext);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -14313,6 +14509,10 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
       output.WriteRawTag(194, 3);
       output.WriteString(RematchOpponentName);
     }
+    if (tacticalPuzzleContext_ != null) {
+      output.WriteRawTag(202, 3);
+      output.WriteMessage(TacticalPuzzleContext);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -14476,6 +14676,9 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     }
     if (RematchOpponentName.Length != 0) {
       size += 2 + pb::CodedOutputStream.ComputeStringSize(RematchOpponentName);
+    }
+    if (tacticalPuzzleContext_ != null) {
+      size += 2 + pb::CodedOutputStream.ComputeMessageSize(TacticalPuzzleContext);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -14654,6 +14857,12 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     }
     if (other.RematchOpponentName.Length != 0) {
       RematchOpponentName = other.RematchOpponentName;
+    }
+    if (other.tacticalPuzzleContext_ != null) {
+      if (tacticalPuzzleContext_ == null) {
+        TacticalPuzzleContext = new global::TacticalPuzzleBattleContext();
+      }
+      TacticalPuzzleContext.MergeFrom(other.TacticalPuzzleContext);
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -14912,6 +15121,13 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
           RematchOpponentName = input.ReadString();
           break;
         }
+        case 458: {
+          if (tacticalPuzzleContext_ == null) {
+            TacticalPuzzleContext = new global::TacticalPuzzleBattleContext();
+          }
+          input.ReadMessage(TacticalPuzzleContext);
+          break;
+        }
       }
     }
   #endif
@@ -15167,6 +15383,13 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
         }
         case 450: {
           RematchOpponentName = input.ReadString();
+          break;
+        }
+        case 458: {
+          if (tacticalPuzzleContext_ == null) {
+            TacticalPuzzleContext = new global::TacticalPuzzleBattleContext();
+          }
+          input.ReadMessage(TacticalPuzzleContext);
           break;
         }
       }
@@ -24185,6 +24408,1331 @@ public sealed partial class JianghuDuelBattleContext : pb::IMessage<JianghuDuelB
         }
         case 96: {
           TeamSize = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// ---- 万象残局坊（UGC 回合解谜工坊 V1，docs/planning/tactical-puzzle-workshop-v1.md）----
+/// 仅用公平模板 + 白名单预设 + 有限微调参数；出题者必须自证通关并存标准解回放后方可发布。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class TacticalPuzzleEnemySpec : pb::IMessage<TacticalPuzzleEnemySpec>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<TacticalPuzzleEnemySpec> _parser = new pb::MessageParser<TacticalPuzzleEnemySpec>(() => new TacticalPuzzleEnemySpec());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<TacticalPuzzleEnemySpec> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::BattleDataReflection.Descriptor.MessageTypes[38]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TacticalPuzzleEnemySpec() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TacticalPuzzleEnemySpec(TacticalPuzzleEnemySpec other) : this() {
+    monsterTableId_ = other.monsterTableId_;
+    initialHpPct_ = other.initialHpPct_;
+    initialShieldPct_ = other.initialShieldPct_;
+    speedDeltaPct_ = other.speedDeltaPct_;
+    initialBuffKind_ = other.initialBuffKind_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TacticalPuzzleEnemySpec Clone() {
+    return new TacticalPuzzleEnemySpec(this);
+  }
+
+  /// <summary>Field number for the "monster_table_id" field.</summary>
+  public const int MonsterTableIdFieldNumber = 1;
+  private uint monsterTableId_;
+  /// <summary>
+  /// 白名单 311..316（0经验/0银两/不可捕捉残局专用怪）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MonsterTableId {
+    get { return monsterTableId_; }
+    set {
+      monsterTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "initial_hp_pct" field.</summary>
+  public const int InitialHpPctFieldNumber = 2;
+  private uint initialHpPct_;
+  /// <summary>
+  /// 开局气血百分比（10..150，100=标准满血）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint InitialHpPct {
+    get { return initialHpPct_; }
+    set {
+      initialHpPct_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "initial_shield_pct" field.</summary>
+  public const int InitialShieldPctFieldNumber = 3;
+  private uint initialShieldPct_;
+  /// <summary>
+  /// 开局护盾百分比（0..60，对应 Buff 100400）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint InitialShieldPct {
+    get { return initialShieldPct_; }
+    set {
+      initialShieldPct_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "speed_delta_pct" field.</summary>
+  public const int SpeedDeltaPctFieldNumber = 4;
+  private int speedDeltaPct_;
+  /// <summary>
+  /// 开局速度微调百分比（-30..+30）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int SpeedDeltaPct {
+    get { return speedDeltaPct_; }
+    set {
+      speedDeltaPct_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "initial_buff_kind" field.</summary>
+  public const int InitialBuffKindFieldNumber = 5;
+  private uint initialBuffKind_;
+  /// <summary>
+  /// 0=无 1=固守(100140) 2=疾风(100160) 3=狂怒(100250) 4=回春(110070)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint InitialBuffKind {
+    get { return initialBuffKind_; }
+    set {
+      initialBuffKind_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as TacticalPuzzleEnemySpec);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(TacticalPuzzleEnemySpec other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (MonsterTableId != other.MonsterTableId) return false;
+    if (InitialHpPct != other.InitialHpPct) return false;
+    if (InitialShieldPct != other.InitialShieldPct) return false;
+    if (SpeedDeltaPct != other.SpeedDeltaPct) return false;
+    if (InitialBuffKind != other.InitialBuffKind) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (MonsterTableId != 0) hash ^= MonsterTableId.GetHashCode();
+    if (InitialHpPct != 0) hash ^= InitialHpPct.GetHashCode();
+    if (InitialShieldPct != 0) hash ^= InitialShieldPct.GetHashCode();
+    if (SpeedDeltaPct != 0) hash ^= SpeedDeltaPct.GetHashCode();
+    if (InitialBuffKind != 0) hash ^= InitialBuffKind.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (MonsterTableId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(MonsterTableId);
+    }
+    if (InitialHpPct != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(InitialHpPct);
+    }
+    if (InitialShieldPct != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(InitialShieldPct);
+    }
+    if (SpeedDeltaPct != 0) {
+      output.WriteRawTag(32);
+      output.WriteInt32(SpeedDeltaPct);
+    }
+    if (InitialBuffKind != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(InitialBuffKind);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (MonsterTableId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(MonsterTableId);
+    }
+    if (InitialHpPct != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(InitialHpPct);
+    }
+    if (InitialShieldPct != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(InitialShieldPct);
+    }
+    if (SpeedDeltaPct != 0) {
+      output.WriteRawTag(32);
+      output.WriteInt32(SpeedDeltaPct);
+    }
+    if (InitialBuffKind != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(InitialBuffKind);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (MonsterTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MonsterTableId);
+    }
+    if (InitialHpPct != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(InitialHpPct);
+    }
+    if (InitialShieldPct != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(InitialShieldPct);
+    }
+    if (SpeedDeltaPct != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(SpeedDeltaPct);
+    }
+    if (InitialBuffKind != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(InitialBuffKind);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(TacticalPuzzleEnemySpec other) {
+    if (other == null) {
+      return;
+    }
+    if (other.MonsterTableId != 0) {
+      MonsterTableId = other.MonsterTableId;
+    }
+    if (other.InitialHpPct != 0) {
+      InitialHpPct = other.InitialHpPct;
+    }
+    if (other.InitialShieldPct != 0) {
+      InitialShieldPct = other.InitialShieldPct;
+    }
+    if (other.SpeedDeltaPct != 0) {
+      SpeedDeltaPct = other.SpeedDeltaPct;
+    }
+    if (other.InitialBuffKind != 0) {
+      InitialBuffKind = other.InitialBuffKind;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          MonsterTableId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          InitialHpPct = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          InitialShieldPct = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          SpeedDeltaPct = input.ReadInt32();
+          break;
+        }
+        case 40: {
+          InitialBuffKind = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          MonsterTableId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          InitialHpPct = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          InitialShieldPct = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          SpeedDeltaPct = input.ReadInt32();
+          break;
+        }
+        case 40: {
+          InitialBuffKind = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class TacticalPuzzleSpec : pb::IMessage<TacticalPuzzleSpec>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<TacticalPuzzleSpec> _parser = new pb::MessageParser<TacticalPuzzleSpec>(() => new TacticalPuzzleSpec());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<TacticalPuzzleSpec> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::BattleDataReflection.Descriptor.MessageTypes[39]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TacticalPuzzleSpec() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TacticalPuzzleSpec(TacticalPuzzleSpec other) : this() {
+    roundLimit_ = other.roundLimit_;
+    characterPresetId_ = other.characterPresetId_;
+    petPresetId_ = other.petPresetId_;
+    formationId_ = other.formationId_;
+    playerInitialHpPct_ = other.playerInitialHpPct_;
+    playerInitialMpPct_ = other.playerInitialMpPct_;
+    playerInitialShieldPct_ = other.playerInitialShieldPct_;
+    playerInitialDebuffKind_ = other.playerInitialDebuffKind_;
+    enemies_ = other.enemies_.Clone();
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TacticalPuzzleSpec Clone() {
+    return new TacticalPuzzleSpec(this);
+  }
+
+  /// <summary>Field number for the "round_limit" field.</summary>
+  public const int RoundLimitFieldNumber = 1;
+  private uint roundLimit_;
+  /// <summary>
+  /// 破局回合上限（1..6，超时未清场权威判负）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RoundLimit {
+    get { return roundLimit_; }
+    set {
+      roundLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "character_preset_id" field.</summary>
+  public const int CharacterPresetIdFieldNumber = 2;
+  private uint characterPresetId_;
+  /// <summary>
+  /// 我方人物公平预设（白名单 101..103）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CharacterPresetId {
+    get { return characterPresetId_; }
+    set {
+      characterPresetId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pet_preset_id" field.</summary>
+  public const int PetPresetIdFieldNumber = 3;
+  private uint petPresetId_;
+  /// <summary>
+  /// 我方灵宠公平预设（0=无宠，或白名单 201..203）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PetPresetId {
+    get { return petPresetId_; }
+    set {
+      petPresetId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "formation_id" field.</summary>
+  public const int FormationIdFieldNumber = 4;
+  private uint formationId_;
+  /// <summary>
+  /// 我方阵法（0=无，或 1..5）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint FormationId {
+    get { return formationId_; }
+    set {
+      formationId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "player_initial_hp_pct" field.</summary>
+  public const int PlayerInitialHpPctFieldNumber = 5;
+  private uint playerInitialHpPct_;
+  /// <summary>
+  /// 我方开局气血百分比（15..100）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PlayerInitialHpPct {
+    get { return playerInitialHpPct_; }
+    set {
+      playerInitialHpPct_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "player_initial_mp_pct" field.</summary>
+  public const int PlayerInitialMpPctFieldNumber = 6;
+  private uint playerInitialMpPct_;
+  /// <summary>
+  /// 我方开局法力百分比（20..100）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PlayerInitialMpPct {
+    get { return playerInitialMpPct_; }
+    set {
+      playerInitialMpPct_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "player_initial_shield_pct" field.</summary>
+  public const int PlayerInitialShieldPctFieldNumber = 7;
+  private uint playerInitialShieldPct_;
+  /// <summary>
+  /// 我方开局护盾百分比（0..50，对应 Buff 100400）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PlayerInitialShieldPct {
+    get { return playerInitialShieldPct_; }
+    set {
+      playerInitialShieldPct_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "player_initial_debuff_kind" field.</summary>
+  public const int PlayerInitialDebuffKindFieldNumber = 8;
+  private uint playerInitialDebuffKind_;
+  /// <summary>
+  /// 0=无 1=卸力(100031) 2=破甲(130051) 3=玄毒(100190)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PlayerInitialDebuffKind {
+    get { return playerInitialDebuffKind_; }
+    set {
+      playerInitialDebuffKind_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "enemies" field.</summary>
+  public const int EnemiesFieldNumber = 9;
+  private static readonly pb::FieldCodec<global::TacticalPuzzleEnemySpec> _repeated_enemies_codec
+      = pb::FieldCodec.ForMessage(74, global::TacticalPuzzleEnemySpec.Parser);
+  private readonly pbc::RepeatedField<global::TacticalPuzzleEnemySpec> enemies_ = new pbc::RepeatedField<global::TacticalPuzzleEnemySpec>();
+  /// <summary>
+  /// 1..3 名敌方单位
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::TacticalPuzzleEnemySpec> Enemies {
+    get { return enemies_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as TacticalPuzzleSpec);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(TacticalPuzzleSpec other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (RoundLimit != other.RoundLimit) return false;
+    if (CharacterPresetId != other.CharacterPresetId) return false;
+    if (PetPresetId != other.PetPresetId) return false;
+    if (FormationId != other.FormationId) return false;
+    if (PlayerInitialHpPct != other.PlayerInitialHpPct) return false;
+    if (PlayerInitialMpPct != other.PlayerInitialMpPct) return false;
+    if (PlayerInitialShieldPct != other.PlayerInitialShieldPct) return false;
+    if (PlayerInitialDebuffKind != other.PlayerInitialDebuffKind) return false;
+    if(!enemies_.Equals(other.enemies_)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (RoundLimit != 0) hash ^= RoundLimit.GetHashCode();
+    if (CharacterPresetId != 0) hash ^= CharacterPresetId.GetHashCode();
+    if (PetPresetId != 0) hash ^= PetPresetId.GetHashCode();
+    if (FormationId != 0) hash ^= FormationId.GetHashCode();
+    if (PlayerInitialHpPct != 0) hash ^= PlayerInitialHpPct.GetHashCode();
+    if (PlayerInitialMpPct != 0) hash ^= PlayerInitialMpPct.GetHashCode();
+    if (PlayerInitialShieldPct != 0) hash ^= PlayerInitialShieldPct.GetHashCode();
+    if (PlayerInitialDebuffKind != 0) hash ^= PlayerInitialDebuffKind.GetHashCode();
+    hash ^= enemies_.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (RoundLimit != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(RoundLimit);
+    }
+    if (CharacterPresetId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(CharacterPresetId);
+    }
+    if (PetPresetId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(PetPresetId);
+    }
+    if (FormationId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(FormationId);
+    }
+    if (PlayerInitialHpPct != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(PlayerInitialHpPct);
+    }
+    if (PlayerInitialMpPct != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(PlayerInitialMpPct);
+    }
+    if (PlayerInitialShieldPct != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(PlayerInitialShieldPct);
+    }
+    if (PlayerInitialDebuffKind != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(PlayerInitialDebuffKind);
+    }
+    enemies_.WriteTo(output, _repeated_enemies_codec);
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (RoundLimit != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(RoundLimit);
+    }
+    if (CharacterPresetId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(CharacterPresetId);
+    }
+    if (PetPresetId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(PetPresetId);
+    }
+    if (FormationId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(FormationId);
+    }
+    if (PlayerInitialHpPct != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(PlayerInitialHpPct);
+    }
+    if (PlayerInitialMpPct != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(PlayerInitialMpPct);
+    }
+    if (PlayerInitialShieldPct != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(PlayerInitialShieldPct);
+    }
+    if (PlayerInitialDebuffKind != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(PlayerInitialDebuffKind);
+    }
+    enemies_.WriteTo(ref output, _repeated_enemies_codec);
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (RoundLimit != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RoundLimit);
+    }
+    if (CharacterPresetId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CharacterPresetId);
+    }
+    if (PetPresetId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PetPresetId);
+    }
+    if (FormationId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(FormationId);
+    }
+    if (PlayerInitialHpPct != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerInitialHpPct);
+    }
+    if (PlayerInitialMpPct != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerInitialMpPct);
+    }
+    if (PlayerInitialShieldPct != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerInitialShieldPct);
+    }
+    if (PlayerInitialDebuffKind != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerInitialDebuffKind);
+    }
+    size += enemies_.CalculateSize(_repeated_enemies_codec);
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(TacticalPuzzleSpec other) {
+    if (other == null) {
+      return;
+    }
+    if (other.RoundLimit != 0) {
+      RoundLimit = other.RoundLimit;
+    }
+    if (other.CharacterPresetId != 0) {
+      CharacterPresetId = other.CharacterPresetId;
+    }
+    if (other.PetPresetId != 0) {
+      PetPresetId = other.PetPresetId;
+    }
+    if (other.FormationId != 0) {
+      FormationId = other.FormationId;
+    }
+    if (other.PlayerInitialHpPct != 0) {
+      PlayerInitialHpPct = other.PlayerInitialHpPct;
+    }
+    if (other.PlayerInitialMpPct != 0) {
+      PlayerInitialMpPct = other.PlayerInitialMpPct;
+    }
+    if (other.PlayerInitialShieldPct != 0) {
+      PlayerInitialShieldPct = other.PlayerInitialShieldPct;
+    }
+    if (other.PlayerInitialDebuffKind != 0) {
+      PlayerInitialDebuffKind = other.PlayerInitialDebuffKind;
+    }
+    enemies_.Add(other.enemies_);
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          RoundLimit = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          CharacterPresetId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          PetPresetId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          FormationId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          PlayerInitialHpPct = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          PlayerInitialMpPct = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          PlayerInitialShieldPct = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          PlayerInitialDebuffKind = input.ReadUInt32();
+          break;
+        }
+        case 74: {
+          enemies_.AddEntriesFrom(input, _repeated_enemies_codec);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          RoundLimit = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          CharacterPresetId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          PetPresetId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          FormationId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          PlayerInitialHpPct = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          PlayerInitialMpPct = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          PlayerInitialShieldPct = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          PlayerInitialDebuffKind = input.ReadUInt32();
+          break;
+        }
+        case 74: {
+          enemies_.AddEntriesFrom(ref input, _repeated_enemies_codec);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class TacticalPuzzleBattleContext : pb::IMessage<TacticalPuzzleBattleContext>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<TacticalPuzzleBattleContext> _parser = new pb::MessageParser<TacticalPuzzleBattleContext>(() => new TacticalPuzzleBattleContext());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<TacticalPuzzleBattleContext> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::BattleDataReflection.Descriptor.MessageTypes[40]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TacticalPuzzleBattleContext() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TacticalPuzzleBattleContext(TacticalPuzzleBattleContext other) : this() {
+    puzzleId_ = other.puzzleId_;
+    specRevision_ = other.specRevision_;
+    isAuthorVerify_ = other.isAuthorVerify_;
+    puzzleTitle_ = other.puzzleTitle_;
+    authorPlayerId_ = other.authorPlayerId_;
+    authorName_ = other.authorName_;
+    spec_ = other.spec_ != null ? other.spec_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TacticalPuzzleBattleContext Clone() {
+    return new TacticalPuzzleBattleContext(this);
+  }
+
+  /// <summary>Field number for the "puzzle_id" field.</summary>
+  public const int PuzzleIdFieldNumber = 1;
+  private ulong puzzleId_;
+  /// <summary>
+  /// 残局永久 ID（发号器 biz_tag=battle）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PuzzleId {
+    get { return puzzleId_; }
+    set {
+      puzzleId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "spec_revision" field.</summary>
+  public const int SpecRevisionFieldNumber = 2;
+  private uint specRevision_;
+  /// <summary>
+  /// 开战时刻冻结的题面修订号（防改题后旧自证胜局误发布）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SpecRevision {
+    get { return specRevision_; }
+    set {
+      specRevision_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "is_author_verify" field.</summary>
+  public const int IsAuthorVerifyFieldNumber = 3;
+  private bool isAuthorVerify_;
+  /// <summary>
+  /// true=作者自证验题局（开局开启录回放，胜则原子发布并钉住标准解）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool IsAuthorVerify {
+    get { return isAuthorVerify_; }
+    set {
+      isAuthorVerify_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "puzzle_title" field.</summary>
+  public const int PuzzleTitleFieldNumber = 4;
+  private string puzzleTitle_ = "";
+  /// <summary>
+  /// 冻结题名（用于局内抬头与结算屏展示）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string PuzzleTitle {
+    get { return puzzleTitle_; }
+    set {
+      puzzleTitle_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "author_player_id" field.</summary>
+  public const int AuthorPlayerIdFieldNumber = 5;
+  private ulong authorPlayerId_;
+  /// <summary>
+  /// 作者 player_id
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong AuthorPlayerId {
+    get { return authorPlayerId_; }
+    set {
+      authorPlayerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "author_name" field.</summary>
+  public const int AuthorNameFieldNumber = 6;
+  private string authorName_ = "";
+  /// <summary>
+  /// 作者展示名
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string AuthorName {
+    get { return authorName_; }
+    set {
+      authorName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "spec" field.</summary>
+  public const int SpecFieldNumber = 7;
+  private global::TacticalPuzzleSpec spec_;
+  /// <summary>
+  /// 开战冻结题面配置（引擎按此生成敌我盘面，不依赖外部回调）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TacticalPuzzleSpec Spec {
+    get { return spec_; }
+    set {
+      spec_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as TacticalPuzzleBattleContext);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(TacticalPuzzleBattleContext other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PuzzleId != other.PuzzleId) return false;
+    if (SpecRevision != other.SpecRevision) return false;
+    if (IsAuthorVerify != other.IsAuthorVerify) return false;
+    if (PuzzleTitle != other.PuzzleTitle) return false;
+    if (AuthorPlayerId != other.AuthorPlayerId) return false;
+    if (AuthorName != other.AuthorName) return false;
+    if (!object.Equals(Spec, other.Spec)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PuzzleId != 0UL) hash ^= PuzzleId.GetHashCode();
+    if (SpecRevision != 0) hash ^= SpecRevision.GetHashCode();
+    if (IsAuthorVerify != false) hash ^= IsAuthorVerify.GetHashCode();
+    if (PuzzleTitle.Length != 0) hash ^= PuzzleTitle.GetHashCode();
+    if (AuthorPlayerId != 0UL) hash ^= AuthorPlayerId.GetHashCode();
+    if (AuthorName.Length != 0) hash ^= AuthorName.GetHashCode();
+    if (spec_ != null) hash ^= Spec.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (PuzzleId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(PuzzleId);
+    }
+    if (SpecRevision != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(SpecRevision);
+    }
+    if (IsAuthorVerify != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(IsAuthorVerify);
+    }
+    if (PuzzleTitle.Length != 0) {
+      output.WriteRawTag(34);
+      output.WriteString(PuzzleTitle);
+    }
+    if (AuthorPlayerId != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(AuthorPlayerId);
+    }
+    if (AuthorName.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(AuthorName);
+    }
+    if (spec_ != null) {
+      output.WriteRawTag(58);
+      output.WriteMessage(Spec);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (PuzzleId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(PuzzleId);
+    }
+    if (SpecRevision != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(SpecRevision);
+    }
+    if (IsAuthorVerify != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(IsAuthorVerify);
+    }
+    if (PuzzleTitle.Length != 0) {
+      output.WriteRawTag(34);
+      output.WriteString(PuzzleTitle);
+    }
+    if (AuthorPlayerId != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(AuthorPlayerId);
+    }
+    if (AuthorName.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(AuthorName);
+    }
+    if (spec_ != null) {
+      output.WriteRawTag(58);
+      output.WriteMessage(Spec);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (PuzzleId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PuzzleId);
+    }
+    if (SpecRevision != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SpecRevision);
+    }
+    if (IsAuthorVerify != false) {
+      size += 1 + 1;
+    }
+    if (PuzzleTitle.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(PuzzleTitle);
+    }
+    if (AuthorPlayerId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(AuthorPlayerId);
+    }
+    if (AuthorName.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(AuthorName);
+    }
+    if (spec_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Spec);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(TacticalPuzzleBattleContext other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PuzzleId != 0UL) {
+      PuzzleId = other.PuzzleId;
+    }
+    if (other.SpecRevision != 0) {
+      SpecRevision = other.SpecRevision;
+    }
+    if (other.IsAuthorVerify != false) {
+      IsAuthorVerify = other.IsAuthorVerify;
+    }
+    if (other.PuzzleTitle.Length != 0) {
+      PuzzleTitle = other.PuzzleTitle;
+    }
+    if (other.AuthorPlayerId != 0UL) {
+      AuthorPlayerId = other.AuthorPlayerId;
+    }
+    if (other.AuthorName.Length != 0) {
+      AuthorName = other.AuthorName;
+    }
+    if (other.spec_ != null) {
+      if (spec_ == null) {
+        Spec = new global::TacticalPuzzleSpec();
+      }
+      Spec.MergeFrom(other.Spec);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PuzzleId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          SpecRevision = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          IsAuthorVerify = input.ReadBool();
+          break;
+        }
+        case 34: {
+          PuzzleTitle = input.ReadString();
+          break;
+        }
+        case 40: {
+          AuthorPlayerId = input.ReadUInt64();
+          break;
+        }
+        case 50: {
+          AuthorName = input.ReadString();
+          break;
+        }
+        case 58: {
+          if (spec_ == null) {
+            Spec = new global::TacticalPuzzleSpec();
+          }
+          input.ReadMessage(Spec);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          PuzzleId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          SpecRevision = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          IsAuthorVerify = input.ReadBool();
+          break;
+        }
+        case 34: {
+          PuzzleTitle = input.ReadString();
+          break;
+        }
+        case 40: {
+          AuthorPlayerId = input.ReadUInt64();
+          break;
+        }
+        case 50: {
+          AuthorName = input.ReadString();
+          break;
+        }
+        case 58: {
+          if (spec_ == null) {
+            Spec = new global::TacticalPuzzleSpec();
+          }
+          input.ReadMessage(Spec);
           break;
         }
       }
