@@ -172,7 +172,8 @@ namespace MmorpgClient.Game.Role
             switch (tipId)
             {
                 case (uint)login_error.KRoleRenameCooldown:
-                    if (nextRenameUnixSec > 0)
+                    // 上界是 DateTimeOffset 能表示的最大秒数:这个数来自网络,越界时 FromUnixTimeSeconds 会抛异常。
+                    if (nextRenameUnixSec > 0 && nextRenameUnixSec < 253402300800ul)
                     {
                         var nextAt = DateTimeOffset.FromUnixTimeSeconds((long)nextRenameUnixSec).LocalDateTime;
                         return $"角色改名冷却中，最早可于 {nextAt:yyyy-MM-dd HH:mm} 再试";

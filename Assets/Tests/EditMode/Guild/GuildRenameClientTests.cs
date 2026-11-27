@@ -78,6 +78,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             });
             Assert.That(_client.NextRenameTimeUnixSec, Is.EqualTo(1_800_604_800ul));
             Assert.That(_client.Status, Does.Contain("冷却"));
+            Assert.That(_client.Status, Does.Contain("最早可于"), "冷却中要告诉帮主最早什么时候能再改");
         }
 
         [Test]

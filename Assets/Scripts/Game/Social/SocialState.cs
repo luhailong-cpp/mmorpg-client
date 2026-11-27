@@ -50,6 +50,10 @@ namespace MmorpgClient.Game.Social
         private readonly List<SocialGroup> _groups = new();
         private readonly List<SocialRumor> _rumors = new();
         private readonly Dictionary<ulong,SocialPerson> _people = new();
+        // 已撤回的消息(频道, 发送者, 发送时刻)。撤回推送之后到达的历史应答可能还带着这条:在途的拉取,或另一个聊天副本还没过期的近窗缓存;
+        // 推送也可能乱序。记下来不让它被合并回来。只在本会话内有效(Reset 清空);超过上限整体清掉:那么久以前撤回的,服务端的历史早就不再返回了。
+        private const int RetractedLimit = 512;
+        private readonly HashSet<(SocialChannel Channel, ulong Sender, long TimeMs)> _retracted = new();
         public bool IsPreview { get; }
         public ulong PlayerId { get; private set; }
         public bool IsReady { get; private set; }
@@ -93,7 +97,7 @@ namespace MmorpgClient.Game.Social
         {
             PlayerId = player; IsReady = IsPreview; Busy = false; RequiresReconnect = false;
             foreach (var c in _messages.Keys.ToArray()) { _messages[c].Clear(); _drafts[c] = ""; _unread[c] = 0; }
-            _groups.Clear(); _rumors.Clear(); _people.Clear(); SelectedGroupId = 0; RumorFilter = RumorCategory.All; RumorSearch = "";
+            _groups.Clear(); _rumors.Clear(); _people.Clear(); _retracted.Clear(); SelectedGroupId = 0; RumorFilter = RumorCategory.All; RumorSearch = "";
             Status = IsPreview ? "离线预览 · 所有操作仅在本地生效" : "频道信息尚未同步，请刷新。"; Changed?.Invoke();
         }
         public void ApplyHistory(SocialChannel channel, IEnumerable<ChatMessage> rows)
@@ -118,10 +122,12 @@ namespace MmorpgClient.Game.Social
             if (message == null || !Matches(channel, message.Channel)) return;
             if (Merge(channel, new[] { FromProto(message) }) > 0) Changed?.Invoke();
         }
-        /// <summary>收到世界频道撤回推送时按 (sender, sendTimeMs) 从本地缓存移除对应消息。</summary>
+        /// <summary>收到世界频道撤回推送时按 (sender, sendTimeMs) 从本地缓存移除对应消息,并记住它:之后的历史或推送再带着它也不收。</summary>
         public bool ApplyRetracted(SocialChannel channel, ulong senderPlayerId, long sendTimeMs)
         {
             if (IsPreview || senderPlayerId == 0 || sendTimeMs <= 0) return false;
+            if (_retracted.Count >= RetractedLimit) _retracted.Clear();
+            _retracted.Add((channel, senderPlayerId, sendTimeMs));
             var list = _messages[channel];
             int removed = list.RemoveAll(m => m.Sender == senderPlayerId && m.TimeMs == sendTimeMs);
             if (removed <= 0) return false;
@@ -136,7 +142,7 @@ namespace MmorpgClient.Game.Social
             var fresh = new HashSet<string>();
             var merged = new List<SocialMessage>(_messages[channel]);
             foreach (var m in incoming)
-                if (known.Add(m.Id)) { fresh.Add(m.Id); merged.Add(m); }
+                if (!_retracted.Contains((channel, m.Sender, m.TimeMs)) && known.Add(m.Id)) { fresh.Add(m.Id); merged.Add(m); }
             if (fresh.Count == 0) return 0;
             _messages[channel] = merged.OrderBy(m => m.TimeMs).TakeLast(HistoryLimit).ToList();
             int added = _messages[channel].Count(m => fresh.Contains(m.Id));

@@ -158,6 +158,30 @@ namespace MmorpgClient.Tests.EditMode.Social
             Assert.That(_state.Messages(SocialChannel.World).Single().Text,Is.EqualTo("正常发言"));
             Assert.That(_state.Status,Does.Contain("撤回"));
         }
+        [Test]public void RetractedMessageIsNotBroughtBackByLaterHistoryOrPush()
+        {
+            var bad=new ChatMessage{Channel=ChatChannelType.World,SenderPlayerId=44,Content="违规广告",SendTimeMs=1000};
+            _net.Push(ClientPlayerChatRpc.NotifyWorldChatMessageId,bad);
+            _net.Push(ClientPlayerChatRpc.NotifyWorldChatRetractedMessageId,new ChatRetractedNotify{Channel=ChatChannelType.World,SenderPlayerId=44,SendTimeMs=1000});
+            // 撤回之后才到的历史应答(在途的拉取,或另一个副本还没过期的缓存)和重复推送都还带着这条:不能合并回来。
+            var history=new PullChatHistoryResponse();history.Messages.Add(bad);
+            history.Messages.Add(new ChatMessage{Channel=ChatChannelType.World,SenderPlayerId=45,Content="正常发言",SendTimeMs=1001});
+            _state.ApplyHistory(SocialChannel.World,history.Messages);
+            _net.Push(ClientPlayerChatRpc.NotifyWorldChatMessageId,bad);
+            Assert.That(_state.Messages(SocialChannel.World).Single().Text,Is.EqualTo("正常发言"));
+            // 撤回先于消息本身到达(推送乱序)也一样。
+            _net.Push(ClientPlayerChatRpc.NotifyWorldChatRetractedMessageId,new ChatRetractedNotify{Channel=ChatChannelType.World,SenderPlayerId=46,SendTimeMs=2000});
+            _net.Push(ClientPlayerChatRpc.NotifyWorldChatMessageId,new ChatMessage{Channel=ChatChannelType.World,SenderPlayerId=46,Content="迟到的违规",SendTimeMs=2000});
+            Assert.That(_state.Messages(SocialChannel.World).Single().Text,Is.EqualTo("正常发言"));
+        }
+        [Test]public void ReportDetailOverTheServerByteLimitNeverReachesTransport()
+        {
+            // 67 个汉字 = 201 字节,超过服务端的 200 字节上限;66 个正好在上限内。
+            Assert.That(_client.Report(SocialChannel.World,44,1000,1,new string('字',67)),Is.False);
+            Assert.That(_net.Calls,Is.Empty);
+            Assert.That(_state.Status,Does.Contain("补充说明过长"));
+            Assert.That(_client.Report(SocialChannel.World,44,1000,1,new string('字',66)),Is.True);
+        }
         [Test]public void ReportChatSendsRequestAndHandlesNewModerationTipsWithoutReconnect()
         {
             Assert.That(_client.Report(SocialChannel.World,44,1000,1,"推广引流"),Is.True);

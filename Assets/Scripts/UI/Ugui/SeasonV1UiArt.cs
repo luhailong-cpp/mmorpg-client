@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MmorpgClient.Game.Season;
+using MmorpgClient.Table;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,12 +38,16 @@ namespace MmorpgClient.UI.Ugui
 
         public static Sprite LoadSealIcon(uint sealId, string iconKey = null)
         {
+            if (string.IsNullOrWhiteSpace(iconKey) && sealId != 0u)
+                iconKey = SeasonSealTableManager.Instance?.FindById(sealId)?.IconKey;
             string path = SeasonModels.NormalizeIconResource(iconKey, SealIconsPrefix, sealId);
             return LoadCached(path) ?? LoadHudSealIcon();
         }
 
         public static Sprite LoadSkillIcon(uint skillId, string iconKey = null)
         {
+            if (string.IsNullOrWhiteSpace(iconKey) && skillId != 0u)
+                iconKey = SkillTableManager.Instance?.FindById(skillId)?.IconKey;
             string path = SeasonModels.NormalizeIconResource(iconKey, SkillIconsPrefix, skillId);
             return LoadCached(path);
         }

@@ -798,7 +798,16 @@ namespace MmorpgClient.Game.Guild
                 RenameGuildResponse.Parser, response =>
                 {
                     if (response.NextRenameTime > 0) NextRenameTimeUnixSec = response.NextRenameTime;
-                    if (!Accept(response.ErrorMessage)) return;
+                    if (!Accept(response.ErrorMessage))
+                    {
+                        // 冷却中:服务端带回了最早可以再改的时刻,直接告诉帮主,不让他一遍遍试。上界是 DateTimeOffset 能表示的最大秒数。
+                        if (response.ErrorMessage.Id == (uint)guild_error.KGuildRenameCooldown
+                            && response.NextRenameTime > 0 && response.NextRenameTime < 253402300800ul)
+                            Status = "帮会改名冷却中，最早可于 "
+                                + DateTimeOffset.FromUnixTimeSeconds((long)response.NextRenameTime).LocalDateTime.ToString("yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture)
+                                + " 再试。";
+                        return;
+                    }
                     Apply(response.Guild);
                     Status = "帮会已更名。";
                 });

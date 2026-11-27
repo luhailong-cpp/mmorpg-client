@@ -377,8 +377,9 @@ namespace MmorpgClient.UI.Ugui.Social
                 uint code=(uint)(i+1);
                 reasonButtons[i]=Button(panel,"SocialReportReason_"+code,reasons[i],80+(i%2)*390,188+(i/2)*84,370,68,()=>{selectedReason=code;RefreshReasons();},code==selectedReason,size:26);
             }
-            Text(panel,"补充说明（选填，最多100字）",80,368,760,40,24,Jade);
-            var detail=Input(panel,"SocialReportDetail","简要描述违规情况…","",80,414,760,92,true,100);
+            // 60 个汉字 = 180 字节,落在服务端的 200 字节上限里(SocialClient.MaxReportDetailBytes;带表情时由它再按字节把关)。
+            Text(panel,"补充说明（选填，最多60字）",80,368,760,40,24,Jade);
+            var detail=Input(panel,"SocialReportDetail","简要描述违规情况…","",80,414,760,92,true,60);
             Button(panel,"SocialReportConfirm","提交举报",550,532,290,62,()=>
             {
                 string note=(detail!=null?detail.text:"").Trim();

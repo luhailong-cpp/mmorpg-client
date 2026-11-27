@@ -13,6 +13,8 @@ namespace MmorpgClient.Game.Social
     public sealed class SocialClient : IDisposable
     {
         public const string RecoveryMessage="聊天请求状态尚未确认，请重新登录角色后再试。";
+        /// <summary>举报补充说明的字节上限,与服务端 go/chat 的 maxReportDetailSize 同值(服务端按 UTF-8 字节数收)。</summary>
+        public const int MaxReportDetailBytes=200;
         private readonly IBattleTransport _net; private readonly SocialState _state; private readonly Func<object> _identity;
         private object _observed; private int _generation; private bool _busy,_reconnect,_disposed;
         private SocialChannel? _queued;
@@ -81,6 +83,9 @@ namespace MmorpgClient.Game.Social
             ObserveConnection();
             if(!Supported(channel)||targetSenderPlayerId==0||sendTimeMs<=0||reason==0||reason>4)
             {Publish("举报参数不完整。");return false;}
+            // 超过服务端的字节上限会被当成参数错误拒掉,玩家只看得到一句「未完成请求」:在这里先说清楚。
+            detail=(detail??"").Trim();
+            if(System.Text.Encoding.UTF8.GetByteCount(detail)>MaxReportDetailBytes){Publish("补充说明过长，请精简到 60 字以内。");return false;}
             if(!Ready())return false;
             var request=new ReportChatRequest
             {
@@ -88,7 +93,7 @@ namespace MmorpgClient.Game.Social
                 TargetSenderPlayerId=targetSenderPlayerId,
                 SendTimeMs=sendTimeMs,
                 Reason=reason,
-                Detail=(detail??"").Trim()
+                Detail=detail
             };
             Request(ClientPlayerChatRpc.ReportChatMessageId,request,ReportChatResponse.Parser,response=>
             {
