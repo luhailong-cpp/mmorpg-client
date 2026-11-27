@@ -15,7 +15,9 @@ namespace MmorpgClient.Game
     ///   不当成「登录会话不存在」去重新登录:重新 Login 不解除绑定,换角照样被拒。</item>
     /// <item>C++ 版 LeaveGame 会清掉本连接的登录态,之后 EnterGame 回 2028(kLoginSessionNotFound):这时在同一连接上
     ///   带原凭据重新 Login 一次再进(Java 版 LeaveGame 保留账号,不会走到这一步)。</item>
-    /// <item>同一角色重发 EnterGame(超时或信封 1003 之后)照常重发:沿用同一个 request_id,不先 LeaveGame。</item>
+    /// <item>同一角色重发 EnterGame(超时或信封 1003 之后)照常重发:沿用同一个 request_id,不先 LeaveGame。
+    ///   重发收到 2005 只可能是前一次的进场链还没结束,接着等进场结果;角色交易冻结(2057)、进场池满(2058)各有专门的码,
+    ///   按拒绝收尾(服务端 2026-11-26 起,之前这两种也回 2005,会白等 60 秒)。</item>
     /// </list>
     /// 「本连接上可能绑着的角色」= 最近一次发出 EnterGame 的那个(_enterRequestPlayerId:发出即记、断线清零、LeaveGame 成功清零)。
     /// 发出就算:应答没回来时服务端可能已经受理并绑定。
@@ -42,7 +44,7 @@ namespace MmorpgClient.Game
         {
             /// <summary>应答无错:已受理,去等进场通知。</summary>
             Accepted,
-            /// <summary>同一角色的重发撞上前一次的进场链(玩家锁被占):前一次多半已受理,接着等进场通知或进场失败。</summary>
+            /// <summary>同一角色的重发撞上前一次的进场链(玩家锁被占,2005):前一次多半已受理,接着等进场通知或进场失败。</summary>
             InProgress,
             /// <summary>响应体带码拒绝:按码收尾(调用方显示「进入游戏失败(tip=N)」)。</summary>
             Rejected,

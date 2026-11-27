@@ -53,6 +53,20 @@ namespace MmorpgClient.Tests.EditMode.Net
                 "第一次就是 2005(别处的进场还占着锁):照旧按拒绝收尾,不当成登录会话不存在去重新登录");
         }
 
+        // 2026-11-26 起 login 给交易冻结、进场池满各回专门的码,2005 只剩「这名角色的进场链还没结束」:
+        // 同一角色重发收到这两个码按拒绝收尾,不再白等 60 秒;换角时收到它们也不再先 LeaveGame 再撞一次。
+        [Test]
+        public void TradeFrozenAndBusyAreRejectionsEvenOnASameRoleResend()
+        {
+            foreach (var tip in new[] { (uint)login_error.KLoginRoleTradeFrozen, (uint)login_error.KLoginEnterGameBusy })
+            {
+                Assert.That(Classify(null, tip, RoleA, RoleA, resent: true), Is.EqualTo(GameClient.EnterGameStep.Rejected),
+                    $"tip={tip}:前一次没有在跑的进场链,不等");
+                Assert.That(Classify(null, tip, RoleA, RoleB), Is.EqualTo(GameClient.EnterGameStep.Rejected),
+                    $"tip={tip}:不是别的角色绑着,不先 LeaveGame");
+            }
+        }
+
         [Test]
         public void RoleSwitchRejectedWithLoginInProgressLeavesFirstInsteadOfLoggingInAgain()
         {
