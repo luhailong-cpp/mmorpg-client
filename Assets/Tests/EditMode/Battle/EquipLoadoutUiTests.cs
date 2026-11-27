@@ -230,10 +230,21 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_unlocked.Count, Is.EqualTo(0));
         }
 
+        private sealed class FakeRpcChannelAdapter : IRpcChannel
+        {
+            private readonly FakeBattleTransport _transport;
+            public FakeRpcChannelAdapter(FakeBattleTransport transport) => _transport = transport;
+            public void SendOneWay(uint id, IMessage request) => _transport.SendOneWay(id, request);
+            public void RegisterNotify(uint id, Action<MessageContent> action) => _transport.RegisterNotify(id, action);
+            public void CallMethod<T>(uint id, IMessage request, MessageParser<T> parser, RpcDone<T> done)
+                where T : IMessage<T>
+                => _transport.Call(id, request, parser, resp => done(RpcStatus.Ok, resp), err => done(RpcStatus.Timeout(err), default));
+        }
+
         [Test]
         public void SkillBookRentLoadoutSlotsWorksDirectlyFromEquipmentWindowAndFiresEvent()
         {
-            using var skills = new SkillBookClient(_net, _net, () => _connection, _ => null);
+            using var skills = new SkillBookClient(_net, new FakeRpcChannelAdapter(_net), () => _connection, _ => null);
             RentSkillLoadoutSlotsResponse rentedEvent = null;
             skills.LoadoutSlotsRented += resp => rentedEvent = resp;
 

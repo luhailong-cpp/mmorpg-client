@@ -138,6 +138,27 @@ namespace MmorpgClient.Tests.EditMode.Ugui
             }
         }
 
+        // Apple / Google 品牌合规守卫(account-deletion-handoff §3 第 8 步):官方文案、官方底图与标志、同尺寸且高度 >= 44pt(@2x=88px)。
+        [Test]
+        public void ChannelSignInButtons_FollowAppleAndGoogleBrandCopyAndSizing()
+        {
+            var apple = Required<Button>("AppleSignInButton");
+            var google = Required<Button>("GoogleSignInButton");
+            var appleRect = (RectTransform)apple.transform;
+            var googleRect = (RectTransform)google.transform;
+
+            Assert.That(appleRect.sizeDelta, Is.EqualTo(googleRect.sizeDelta), "App Review 4.8: Apple 与 Google 按钮必须同尺寸");
+            Assert.That(appleRect.sizeDelta.y, Is.GreaterThanOrEqualTo(88f), "Apple HIG: 按钮高度不得低于 44pt(@2x=88px)");
+
+            Assert.That(Required<TMP_Text>("AppleSignInButtonText").text, Is.EqualTo("通过 Apple 登录"));
+            Assert.That(Required<TMP_Text>("GoogleSignInButtonText").text, Is.EqualTo("使用 Google 账号登录"));
+
+            Assert.That(apple.GetComponent<Image>().sprite.name, Does.StartWith("apple_signin_button"));
+            Assert.That(google.GetComponent<Image>().sprite.name, Does.StartWith("google_signin_button"));
+            Assert.That(Required<Image>("AppleSignInButtonIcon").sprite.name, Does.StartWith("apple_logo"));
+            Assert.That(Required<Image>("GoogleSignInButtonIcon").sprite.name, Does.StartWith("google_logo"));
+        }
+
         private T Required<T>(string name) where T : Component
         {
             var result = _root.GetComponentsInChildren<T>(true).SingleOrDefault(x => x.name == name);

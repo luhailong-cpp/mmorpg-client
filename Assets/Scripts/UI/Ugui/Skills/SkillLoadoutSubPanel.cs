@@ -201,11 +201,16 @@ namespace MmorpgClient.UI.Ugui.Skills
                         ? SkillLoadoutRentPlanner.ArtTabLocked
                         : (isRentedTab ? SkillLoadoutRentPlanner.ArtTabRented : SkillLoadoutRentPlanner.ArtTabUnlocked));
                 string fallbackArt = isEditing ? "guild_tab_selected" : "guild_tab_normal";
-                bool useLightInk = isEditing || (isRentedTab && LoadCustomArt(customArt) != null);
+                var customSprite = LoadCustomArt(customArt);
+                bool useLightInk = isEditing || (isRentedTab && customSprite != null);
                 StyleCustomControl(btn, customArt, fallbackArt,
                     useLightInk ? QdaoRefreshArt.Ivory : (unlocked ? Ink : Brown), preserveReadOnlyColor: true);
-                if (!unlocked && LoadCustomArt(customArt) != null && btn?.Label != null)
-                    btn.Label.rectTransform.offsetMax -= new Vector2(20f, 0f);
+                if (customSprite != null && btn?.Label != null)
+                {
+                    // tab_build_locked 右侧带锁图标（28px）、tab_build_rented 右侧带沙漏图标（24px），动态文本左让防重叠
+                    if (!unlocked) btn.Label.rectTransform.offsetMax -= new Vector2(24f, 0f);
+                    else if (!isEditing && isRentedTab) btn.Label.rectTransform.offsetMax -= new Vector2(20f, 0f);
+                }
                 btn.SetInteractable(canChangeScheme || !unlocked);
                 btn.Button.onClick.AddListener(() =>
                 {

@@ -3,11 +3,6 @@ using System.IO;
 using System.Xml;
 using MmorpgClient.Core;
 using UnityEngine;
-#if UNITY_IOS
-using UnityEditor;
-using UnityEditor.Callbacks;
-using UnityEditor.iOS.Xcode;
-#endif
 #if UNITY_ANDROID
 using UnityEditor.Android;
 #endif
@@ -16,9 +11,10 @@ namespace MmorpgClient.Editor
 {
     /// <summary>
     /// 移动端官方通行证(Casdoor OIDC)回调深度链接自动登记(服务端 docs/design/official-passport-registration.md):
-    ///   - iOS: 导出 Xcode 工程时向 Info.plist 的 CFBundleURLTypes 幂等追加 xuanming scheme;
     ///   - Android: 导出 Gradle 工程时向主 LAUNCHER Activity 的 AndroidManifest.xml 幂等追加
-    ///     VIEW/DEFAULT/BROWSABLE intent-filter(xuanming://passport/callback),使 Application.deepLinkActivated 生效。
+    ///     VIEW/DEFAULT/BROWSABLE intent-filter(xuanming://passport/callback),使 Application.deepLinkActivated 生效;
+    ///   - iOS 不登记:走 ASWebAuthenticationSession(Assets/Plugins/iOS/MmorpgPassportWebAuth.mm),回调由系统直接交给发起会话的 App,
+    ///     不需要 Info.plist 的 URL scheme;登记了反而让别的 App / 网页能用这个 scheme 把游戏拉起来。
     /// 协议与路径单一事实源取自 ClientSettings.DefaultMobilePassportRedirectUri。
     /// </summary>
     public static class PassportMobileDeepLinkBuildPostProcess
@@ -114,55 +110,6 @@ namespace MmorpgClient.Editor
             return null;
         }
 
-#if UNITY_IOS
-        [PostProcessBuild(110)]
-        public static void AddIosUrlScheme(BuildTarget target, string buildPath)
-        {
-            if (target != BuildTarget.iOS) return;
-            if (!TryParseMobileRedirect(out var scheme, out _, out _))
-            {
-                Debug.LogWarning("[PassportMobileDeepLink] Invalid DefaultMobilePassportRedirectUri; skipping iOS URL scheme");
-                return;
-            }
-
-            string plistPath = Path.Combine(buildPath, "Info.plist");
-            if (!File.Exists(plistPath))
-            {
-                Debug.LogWarning($"[PassportMobileDeepLink] Info.plist not found at {plistPath}");
-                return;
-            }
-
-            var plist = new PlistDocument();
-            plist.ReadFromFile(plistPath);
-            PlistElementDict root = plist.root;
-
-            PlistElementArray urlTypes = root["CFBundleURLTypes"] as PlistElementArray
-                ?? root.CreateArray("CFBundleURLTypes");
-
-            foreach (PlistElement item in urlTypes.values)
-            {
-                if (item is not PlistElementDict dict) continue;
-                if (dict["CFBundleURLSchemes"] is not PlistElementArray schemes) continue;
-                foreach (PlistElement s in schemes.values)
-                {
-                    if (string.Equals(s.AsString(), scheme, StringComparison.OrdinalIgnoreCase))
-                    {
-                        Debug.Log($"[PassportMobileDeepLink] iOS URL scheme '{scheme}' already present in Info.plist");
-                        return;
-                    }
-                }
-            }
-
-            PlistElementDict entry = urlTypes.AddDict();
-            entry.SetString("CFBundleTypeRole", "Editor");
-            entry.SetString("CFBundleURLName", "com.mmorpg.passport");
-            PlistElementArray newSchemes = entry.CreateArray("CFBundleURLSchemes");
-            newSchemes.AddString(scheme);
-
-            plist.WriteToFile(plistPath);
-            Debug.Log($"[PassportMobileDeepLink] Registered iOS URL scheme '{scheme}' in Info.plist");
-        }
-#endif
     }
 
 #if UNITY_ANDROID

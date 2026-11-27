@@ -42,6 +42,12 @@ namespace MmorpgClient.Net
                 reason = "passport origin must use http or https";
                 return false;
             }
+            // 授权码、code_verifier 与换回的令牌都经这个地址走:明文 http 只允许本机回环(本地沙盒),别的一律要 https。
+            if (string.Equals(originUri.Scheme, "http", StringComparison.OrdinalIgnoreCase) && !originUri.IsLoopback)
+            {
+                reason = "passport origin must use https unless it is a loopback address";
+                return false;
+            }
             if (!string.IsNullOrEmpty(originUri.UserInfo) || !string.IsNullOrEmpty(originUri.Query) ||
                 !string.IsNullOrEmpty(originUri.Fragment))
             {

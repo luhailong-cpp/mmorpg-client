@@ -17,7 +17,9 @@ namespace MmorpgClient.Net
     ///   - 微信/抖音小游戏(UNITY_WEBGL &amp;&amp; !UNITY_EDITOR):禁用,不编译任何 HttpListener / Socket / 线程代码;
     ///   - 桌面/编辑器(UNITY_STANDALONE || UNITY_EDITOR):仅在 127.0.0.1:&lt;port&gt; 启单次 HttpListener,
     ///     收到回调后于主线程 Update 排空并经 UnityWebRequest.Post(PKCE code_verifier,无 client_secret)换取 id_token;
-    ///   - iOS / Android 真机包:走 Application.deepLinkActivated 接自定义 scheme 回调。
+    ///   - iOS 真机包:原生 ASWebAuthenticationSession(Assets/Plugins/iOS/MmorpgPassportWebAuth.mm)在 App 内弹系统认证页,
+    ///     不跳到 Safari(App Store 审核指南 4.0),回调地址由原生插件直接交回,不经 Info.plist 的 URL scheme;
+    ///   - Android 真机包:系统浏览器 + Application.deepLinkActivated 接自定义 scheme 回调。
     ///
     /// id_token 仅在内存里交给这一次登录或注销,不落盘、不写 PlayerPrefs、不打日志。
     /// </summary>
@@ -107,8 +109,8 @@ namespace MmorpgClient.Net
         /// <summary>若玩家误关浏览器,在等待授权期间再次打开同一授权页。</summary>
         public static bool ReopenBrowser()
         {
-#if UNITY_WEBGL && !UNITY_EDITOR
-            return false;
+#if (UNITY_WEBGL || UNITY_IOS) && !UNITY_EDITOR
+            return false; // 小游戏没有这条路;iOS 是 App 内的系统认证会话,关掉就是取消,没有「重新打开」
 #else
             if (_instance == null || _instance._pendingCallback == null ||
                 _instance._exchanging || string.IsNullOrEmpty(_instance._activeAuthorizeUrl))
@@ -162,11 +164,18 @@ namespace MmorpgClient.Net
                 Complete(PlatformSignInResult.Failure(PassportSignInErrors.PortInUse));
                 return;
             }
-#elif UNITY_IOS || UNITY_ANDROID
+            Application.OpenURL(authorizeUrl);
+#elif UNITY_IOS
+            // iOS 在 App 内弹系统认证会话,不跳到 Safari(App Store 审核指南 4.0 会拒掉跳出去登录 / 注册的做法);
+            // 回调由原生插件交给 OnPassportWebAuthFinished。
+            MmorpgPassportWebAuth_Start(authorizeUrl, new Uri(config.RedirectUri).Scheme, HostName, nameof(OnPassportWebAuthFinished));
+#elif UNITY_ANDROID
             Application.deepLinkActivated -= OnDeepLinkActivated;
             Application.deepLinkActivated += OnDeepLinkActivated;
-#endif
             Application.OpenURL(authorizeUrl);
+#else
+            Application.OpenURL(authorizeUrl);
+#endif
         }
 
         private void Update()
@@ -207,7 +216,35 @@ namespace MmorpgClient.Net
             }
         }
 
-#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
+        // Assets/Plugins/iOS/MmorpgPassportWebAuth.mm
+        [System.Runtime.InteropServices.DllImport("__Internal")]
+        private static extern void MmorpgPassportWebAuth_Start(string authorizeUrl, string callbackScheme, string gameObject, string method);
+
+        [System.Runtime.InteropServices.DllImport("__Internal")]
+        private static extern void MmorpgPassportWebAuth_Cancel();
+
+        /// <summary>原生系统认证会话结束时由 UnitySendMessage 调,Unity 在主线程上投递。空串 = 玩家取消或会话起不来。</summary>
+        public void OnPassportWebAuthFinished(string callbackUrl)
+        {
+            if (_pendingCallback == null || _exchanging) return;
+            if (string.IsNullOrEmpty(callbackUrl))
+            {
+                Complete(PlatformSignInResult.Failure(PlatformSignIn.ErrorCanceled));
+                return;
+            }
+            if (!Uri.TryCreate(callbackUrl, UriKind.Absolute, out var uri) ||
+                !PassportOAuthProtocol.MatchesRedirectTarget(uri, _activeConfig.RedirectUri))
+            {
+                Debug.LogWarning("[passport] web auth session returned an unexpected callback");
+                Complete(PlatformSignInResult.Failure(PlatformSignIn.ErrorFailed));
+                return;
+            }
+            HandleCallbackUri(uri); // 核 state、取授权码、换票
+        }
+#endif
+
+#if UNITY_ANDROID && !UNITY_EDITOR
         private void OnDeepLinkActivated(string url)
         {
             if (_pendingCallback == null || _exchanging || string.IsNullOrEmpty(url)) return;
@@ -385,7 +422,9 @@ namespace MmorpgClient.Net
         {
 #if UNITY_STANDALONE || UNITY_EDITOR
             StopLoopbackListener();
-#elif UNITY_IOS || UNITY_ANDROID
+#elif UNITY_IOS
+            MmorpgPassportWebAuth_Cancel();
+#elif UNITY_ANDROID
             Application.deepLinkActivated -= OnDeepLinkActivated;
 #endif
         }

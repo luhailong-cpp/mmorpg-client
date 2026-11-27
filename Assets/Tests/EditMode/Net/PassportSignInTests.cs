@@ -12,6 +12,22 @@ namespace MmorpgClient.Tests.EditMode.Net
             "http://127.0.0.1:18765/passport/callback");
 
         [Test]
+        public void PassportOrigin_RequiresHttpsExceptOnLoopback()
+        {
+            const string clientId = "xuanming-game-client";
+            const string redirect = "http://127.0.0.1:18765/passport/callback";
+            foreach (var ok in new[] { "https://passport.example.com", "http://127.0.0.1:8000", "http://localhost:8000" })
+            {
+                Assert.That(new PassportOAuthConfig(ok, clientId, redirect).IsValid, Is.True, ok);
+            }
+            // 授权码、code_verifier 与令牌都走这个地址:局域网或公网的明文 http 一律不收。
+            foreach (var bad in new[] { "http://192.168.1.10:8000", "http://passport.example.com", "ftp://127.0.0.1" })
+            {
+                Assert.That(new PassportOAuthConfig(bad, clientId, redirect).IsValid, Is.False, bad);
+            }
+        }
+
+        [Test]
         public void ComputeS256Challenge_MatchesRfc7636AppendixBVector()
         {
             // RFC 7636 Appendix B 标准测试向量

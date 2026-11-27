@@ -359,6 +359,31 @@ namespace MmorpgClient.Tests.EditMode.Battle
             }
         }
 
+        [Test]
+        public void SkillBuildLoadoutV1SpritesLoadWithExpectedDimensionsAndSliceBorders()
+        {
+            var expected = new (string key, int w, int h, bool sliced)[]
+            {
+                (SkillLoadoutRentPlanner.ArtRentModalFrame, 1932, 814, false),
+                (SkillLoadoutRentPlanner.ArtTabActive, 176, 56, true),
+                (SkillLoadoutRentPlanner.ArtTabUnlocked, 176, 56, true),
+                (SkillLoadoutRentPlanner.ArtTabRented, 176, 56, true),
+                (SkillLoadoutRentPlanner.ArtTabLocked, 176, 56, true),
+                (SkillLoadoutRentPlanner.ArtAttrBox, 640, 320, true),
+                (SkillLoadoutRentPlanner.ArtTemplatePill, 148, 44, true),
+                (SkillLoadoutRentPlanner.ArtSlotPassIcon, 512, 512, false),
+            };
+            foreach (var item in expected)
+            {
+                var sprite = Resources.Load<Sprite>(SkillLoadoutRentPlanner.ArtBasePath + item.key);
+                Assert.That(sprite, Is.Not.Null, "缺失切图资源: " + item.key);
+                Assert.That((int)sprite.rect.width, Is.EqualTo(item.w), item.key + " width");
+                Assert.That((int)sprite.rect.height, Is.EqualTo(item.h), item.key + " height");
+                if (item.sliced)
+                    Assert.That(sprite.border.sqrMagnitude, Is.GreaterThan(0f), item.key + " 必须配置九宫格保护边距");
+            }
+        }
+
         private sealed class FixtureLoadoutSource : ISkillLoadoutSource
         {
             public int SaveCalls, SwitchCalls, RentCalls;
