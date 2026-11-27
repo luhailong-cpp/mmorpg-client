@@ -798,6 +798,7 @@ namespace MmorpgClient.Game.Guild
             GuildWarBountyStatus.Completed => "已销单",
             GuildWarBountyStatus.TornByTarget => "已被反杀撕单",
             GuildWarBountyStatus.Expired => "已过期退本",
+            GuildWarBountyStatus.EscrowFailed => "扣款未成，已作废",
             _ => "未知状态",
         };
 

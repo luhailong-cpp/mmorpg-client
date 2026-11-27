@@ -555,13 +555,14 @@ namespace MmorpgClient.Game.Tournament
                 {
                     if (!IsCurrent(gen, player)) return;
                     _mutating = false;
+                    // 一条失败不挡其余:响应可能同时带错误与已领到的部分,先记已领到的,再报错误,免得界面把领到的仍显示成可领。
+                    if (Overview != null && resp != null && resp.ClaimedRewards.Count > 0)
+                        Overview = Overview.WithClaimedRewards(resp.ClaimedRewards);
                     if (HasTip(resp?.ErrorMessage))
                     {
                         FailServer(resp.ErrorMessage);
                         return;
                     }
-                    if (Overview != null && resp != null && resp.ClaimedRewards.Count > 0)
-                        Overview = Overview.WithClaimedRewards(resp.ClaimedRewards);
                     LastError = string.Empty;
                     Status = "赛季奖励已发至邮箱，请前往查收。";
                     Changed?.Invoke();

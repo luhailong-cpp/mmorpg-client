@@ -902,7 +902,7 @@ namespace Guildpb {
     /// </summary>
     [pbr::OriginalName("GUILD_WAR_BOUNTY_STATUS_TORN_BY_TARGET")] TornByTarget = 4,
     /// <summary>
-    /// 24h 过期退本(只表示到期且托管已原路退回)
+    /// 24h 到期,托管原路退回:银两档退发布者、公费档退发单帮;发布者暂时收不了时退款排队晚到,发布者角色已注销时银两退款作废
     /// </summary>
     [pbr::OriginalName("GUILD_WAR_BOUNTY_STATUS_EXPIRED")] Expired = 5,
     /// <summary>

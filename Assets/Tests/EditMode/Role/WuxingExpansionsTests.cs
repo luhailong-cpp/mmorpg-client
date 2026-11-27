@@ -256,5 +256,135 @@ namespace MmorpgClient.Tests.EditMode.Role
                 StringAssert.Contains(item.Border, meta, $"九宫格边距不匹配: {item.Rel}");
             }
         }
+
+        [Test]
+        public void WuxingRealmV2BoonsResonanceAndUpgradeHelpersMatchServer()
+        {
+            Assert.AreEqual(15, WuxingExpansionModels.RealmBoons.Length);
+            Assert.IsTrue(WuxingExpansionModels.TryFindSigil(601u, out var metalBreak));
+            Assert.AreEqual("破盾返元", metalBreak.Name);
+            Assert.AreEqual(WuxingExpansionModels.ElementMetal, metalBreak.Element);
+            Assert.AreEqual(1u, metalBreak.Rarity);
+
+            Assert.IsTrue(WuxingExpansionModels.TryFindSigil(643u, out var earthShield));
+            Assert.AreEqual("坤元借力", earthShield.Name);
+            Assert.AreEqual(3u, earthShield.Rarity);
+
+            // 2 枚同系提示还差 1 枚，3 枚同系点亮共鸣
+            var twoFire = new[] { 631u, 632u };
+            Assert.AreEqual(WuxingExpansionModels.ElementNone, WuxingExpansionModels.ComputeActiveResonanceElement(twoFire));
+            StringAssert.Contains("再选 1 枚火系奇策", WuxingExpansionModels.FormatResonanceProgressHint(twoFire));
+
+            var threeFire = new[] { 631u, 632u, 633u };
+            Assert.AreEqual(WuxingExpansionModels.ElementFire, WuxingExpansionModels.ComputeActiveResonanceElement(threeFire));
+            StringAssert.Contains("焚城烈焰", WuxingExpansionModels.FormatResonanceProgressHint(threeFire));
+
+            // 淬炼升品判定：拥有 601 时可升级为 602/603；已集齐 601/602/603 时不可再升品
+            Assert.IsTrue(WuxingExpansionModels.CanUpgradeBoon(601u, new[] { 601u }));
+            Assert.IsFalse(WuxingExpansionModels.CanUpgradeBoon(601u, new[] { 601u, 602u, 603u }));
+            Assert.IsFalse(WuxingExpansionModels.CanUpgradeBoon(603u, new[] { 603u }));
+
+            // 6 关位图统计
+            Assert.AreEqual(4, WuxingExpansionModels.CountClearedNodes(0b101101u, 6u));
+            Assert.IsTrue(WuxingExpansionModels.IsNodeCleared(0b101101u, 6u, 6u));
+            Assert.IsFalse(WuxingExpansionModels.IsNodeCleared(0b101101u, 2u, 6u));
+        }
+
+        [Test]
+        public void SeasonClientDrivesWuxingRealmV2StartBranchAndEventRpcs()
+        {
+            var net = new FakeTransport();
+            float clock = 20f;
+            var client = new SeasonClient(net, () => net, () => clock, SeasonMessageIds.Generated);
+
+            Assert.AreEqual(585u, SeasonMessageIds.Generated.ChooseWuxingRealmBranch);
+            Assert.AreEqual(586u, SeasonMessageIds.Generated.ResolveWuxingRealmEvent);
+
+            net.Handlers[SceneSeasonClientPlayerRpc.StartWuxingTowerRunMessageId] = req =>
+            {
+                var r = (global::StartWuxingTowerRunRequest)req;
+                Assert.IsTrue(r.UseFreePreset);
+                Assert.AreEqual(102u, r.CharacterPresetId);
+                Assert.AreEqual(202u, r.PetPresetId);
+                return new global::StartWuxingTowerRunResponse
+                {
+                    State = new global::WuxingTowerStateSnapshot
+                    {
+                        WeekKey = 202648u,
+                        RunWeekKey = 202648u,
+                        RealmVersion = 2u,
+                        RunActive = true,
+                        RunId = 42ul,
+                        CurrentFloor = 2u,
+                        MaxFloors = 6u,
+                        CurrentNodeKind = 0u,
+                        UseFreePreset = true,
+                        CharacterPresetId = 102u,
+                        PetPresetId = 202u,
+                        Revision = 1ul,
+                    },
+                };
+            };
+            Assert.IsTrue(client.StartWuxingTowerRun(useFreePreset: true, characterPresetId: 102u, petPresetId: 202u));
+            Assert.IsTrue(client.TowerSnapshot.UseFreePreset);
+            Assert.AreEqual(2u, client.TowerSnapshot.RealmVersion);
+
+            net.Handlers[SceneSeasonClientPlayerRpc.ChooseWuxingRealmBranchMessageId] = req =>
+            {
+                var r = (global::ChooseWuxingRealmBranchRequest)req;
+                Assert.AreEqual(42ul, r.ExpectedRunId);
+                Assert.AreEqual(2u, r.Branch);
+                return new global::ChooseWuxingRealmBranchResponse
+                {
+                    State = new global::WuxingTowerStateSnapshot
+                    {
+                        WeekKey = 202648u,
+                        RunWeekKey = 202648u,
+                        RealmVersion = 2u,
+                        RunActive = true,
+                        RunId = 42ul,
+                        CurrentFloor = 2u,
+                        MaxFloors = 6u,
+                        CurrentNodeKind = 4u,
+                        PendingEventKind = 1u,
+                        RouteChoiceMask = 1u,
+                        Revision = 2ul,
+                    },
+                };
+            };
+            Assert.IsTrue(client.ChooseWuxingRealmBranch(WuxingExpansionModels.RealmBranchSpecial));
+            Assert.AreEqual(1u, client.TowerSnapshot.PendingEventKind);
+
+            net.Handlers[SceneSeasonClientPlayerRpc.ResolveWuxingRealmEventMessageId] = req =>
+            {
+                var r = (global::ResolveWuxingRealmEventRequest)req;
+                Assert.AreEqual(42ul, r.ExpectedRunId);
+                Assert.AreEqual(1u, r.OptionIndex);
+                var state = new global::WuxingTowerStateSnapshot
+                {
+                    WeekKey = 202648u,
+                    RunWeekKey = 202648u,
+                    RealmVersion = 2u,
+                    RunActive = true,
+                    RunId = 42ul,
+                    CurrentFloor = 3u,
+                    MaxFloors = 6u,
+                    CurrentNodeKind = 1u,
+                    PendingEventKind = 0u,
+                    Revision = 3ul,
+                };
+                state.ActiveSigilIds.Add(632u);
+                return new global::ResolveWuxingRealmEventResponse
+                {
+                    State = state,
+                    GrantedBoonId = 632u,
+                };
+            };
+            Assert.IsTrue(client.ResolveWuxingRealmEvent(1u));
+            Assert.AreEqual(3u, client.TowerSnapshot.CurrentFloor);
+            Assert.AreEqual(632u, client.TowerSnapshot.ActiveSigilIds[0]);
+
+            client.Dispose();
+        }
     }
 }

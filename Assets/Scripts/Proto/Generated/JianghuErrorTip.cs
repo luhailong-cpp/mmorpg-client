@@ -23,7 +23,7 @@ public static partial class JianghuErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "CjBnZW5lcmF0ZWQvY29kZS9wcm90by90aXAvamlhbmdodV9lcnJvcl90aXAu",
-          "cHJvdG8qgAQKDWppYW5naHVfZXJyb3ISFAoQa0ppYW5naHVfZXJyb3JPSxAA",
+          "cHJvdG8qpAQKDWppYW5naHVfZXJyb3ISFAoQa0ppYW5naHVfZXJyb3JPSxAA",
           "EhoKFGtKaWFuZ2h1RHVlbERpc2FibGVkEMC4AhIbChVrSmlhbmdodUJsb2Nr",
           "ZWRCeVBlZXIQwbgCEiQKHmtKaWFuZ2h1VGFyZ2V0UmVmdXNlc1N0cmFuZ2Vy",
           "cxDCuAISIgoca0ppYW5naHVTZWxmUmVmdXNlc1N0cmFuZ2VycxDDuAISIAoa",
@@ -34,8 +34,9 @@ public static partial class JianghuErrorTipReflection {
           "SmlhbmdodUludml0ZVBlbmRpbmdPckV4cGlyZWQQybgCEiIKHGtKaWFuZ2h1",
           "Tm90SW52aXRlUGFydGljaXBhbnQQyrgCEiAKGmtKaWFuZ2h1Tm9BY3RpdmVE",
           "ZWZlYXRNYXJrEMu4AhIcChZrSmlhbmdodUdydWRnZU5vdEZvdW5kEMy4AhIZ",
-          "ChNrSmlhbmdodVNlcnZpY2VCdXN5EM24AkIkCg5jb20uZ2FtZS50YWJsZVoS",
-          "Z2VuZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
+          "ChNrSmlhbmdodVNlcnZpY2VCdXN5EM24AhIiChxrSmlhbmdodUR1ZWxTaWx2",
+          "ZXJGZWVQZW5kaW5nEM64AkIkCg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJhdGVk",
+          "L3BiL3RhYmxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::jianghu_error), }, null, null));
@@ -60,6 +61,7 @@ public enum jianghu_error {
   [pbr::OriginalName("kJianghuNoActiveDefeatMark")] KJianghuNoActiveDefeatMark = 40011,
   [pbr::OriginalName("kJianghuGrudgeNotFound")] KJianghuGrudgeNotFound = 40012,
   [pbr::OriginalName("kJianghuServiceBusy")] KJianghuServiceBusy = 40013,
+  [pbr::OriginalName("kJianghuDuelSilverFeePending")] KJianghuDuelSilverFeePending = 40014,
 }
 
 #endregion
