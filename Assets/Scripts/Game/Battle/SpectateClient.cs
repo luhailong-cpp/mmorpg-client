@@ -43,7 +43,7 @@ namespace MmorpgClient.Game.Battle
     ///    收敛回 None 并报错;
     ///  - 断线:本地观战态整体作废回 None(观战无重连恢复,重进走 WatchBattle)。
     /// </summary>
-    public sealed class SpectateClient
+    public sealed class SpectateClient : IDisposable
     {
         /// <summary>单例挂接:与 BattleClient 模式一致(实例由 GameClient 持有,静态 Instance 供 UI 路解析;测试直接 new)。</summary>
         public static SpectateClient Instance { get; private set; }
@@ -70,6 +70,7 @@ namespace MmorpgClient.Game.Battle
         // 退出时直连未就绪、只能本地放弃的那一局:分配包若晚到、直连随后为它就绪,
         // 就在就绪时补发 StopWatchBattle(服务端摘观众并关直连)。0 = 无。同样不随 ClearWatchContext 重置。
         private ulong _unsentStopBattleId;
+        private bool _disposed;
 
         // ── 契约属性 ────────────────────────────────────────
 
@@ -121,6 +122,26 @@ namespace MmorpgClient.Game.Battle
             var client = new SpectateClient(transport, channel);
             Instance = client;
             return client;
+        }
+
+        public void Dispose()
+        {
+            if (_disposed) return;
+            _disposed = true;
+            _net.Disconnected -= HandleDisconnected;
+            if (_channel != null)
+            {
+                _channel.Ready -= HandleChannelReady;
+                _channel.Lost -= HandleChannelLost;
+            }
+            _stopPending = false;
+            _unsentStopBattleId = 0;
+            _watchRequestId = null;
+            ClearWatchContext();
+            State = null;
+            ObserverCount = 0;
+            Phase = SpectatePhase.None;
+            if (ReferenceEquals(Instance, this)) Instance = null;
         }
 
         /// <summary>宿主每帧驱动(GameClient.Tick),只负责首帧超时。</summary>
@@ -336,11 +357,11 @@ namespace MmorpgClient.Game.Battle
         private void RegisterNotifies()
         {
             _net.RegisterNotify(MessageIds.NotifySpectateState,
-                mc => HandleSpectateState(SpectateStateS2C.Parser.ParseFrom(mc.SerializedMessage)));
+                mc => { if (!_disposed) HandleSpectateState(SpectateStateS2C.Parser.ParseFrom(mc.SerializedMessage)); });
             _net.RegisterNotify(MessageIds.NotifySpectateTurnResult,
-                mc => HandleSpectateTurnResult(TurnResultS2C.Parser.ParseFrom(mc.SerializedMessage)));
+                mc => { if (!_disposed) HandleSpectateTurnResult(TurnResultS2C.Parser.ParseFrom(mc.SerializedMessage)); });
             _net.RegisterNotify(MessageIds.NotifySpectateEnd,
-                mc => HandleSpectateEnd(SpectateEndS2C.Parser.ParseFrom(mc.SerializedMessage)));
+                mc => { if (!_disposed) HandleSpectateEnd(SpectateEndS2C.Parser.ParseFrom(mc.SerializedMessage)); });
         }
 
         private void HandleSpectateState(SpectateStateS2C ev)

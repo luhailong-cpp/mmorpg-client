@@ -1,4 +1,5 @@
 using MmorpgClient.Game.CityNpc;
+using MmorpgClient.World.Occlusion;
 using TMPro;
 using UnityEngine;
 
@@ -20,6 +21,10 @@ namespace MmorpgClient.World.Tianyong
         private const float DedicatedVisibleHeight = 8.4f;
 
         private CityNpcDefinition _definition;
+        private Transform _dedicatedVisual;
+        private SpriteRenderer _dedicatedRenderer;
+        private Material _dedicatedDefaultMaterial;
+        private float _dedicatedScreenUpOffset;
         private GameObject _bubbleRoot;
         private SpriteRenderer _bubbleBgRenderer;
         private TextMeshPro _bubbleText;
@@ -78,10 +83,13 @@ namespace MmorpgClient.World.Tianyong
 
             // Codex 交付的 8 位 NPC 均为底部居中锚点 (0.5, 0.04)，脚底直接贴合 y=0；
             // 若未来替换为居中锚点图，则自动补齐半高偏移。
+            // 立绘走角色同级 WorldSortingOrder 与顶视深度带，不挂 WorldLabelBillboard（避免错加 +8000 名字牌层级压在前景与玩家之上）。
             float pivotNormY = sprite.rect.height > 1f ? sprite.pivot.y / sprite.rect.height : 0.5f;
-            float localY = pivotNormY < 0.25f ? 0f : DedicatedVisibleHeight * 0.5f;
-            visual.transform.localPosition = new Vector3(0f, localY, 0f);
-            WorldLabelBillboard.Attach(visual);
+            _dedicatedVisual = visual.transform;
+            _dedicatedRenderer = sr;
+            _dedicatedScreenUpOffset = pivotNormY < 0.25f ? 0f : DedicatedVisibleHeight * 0.5f;
+            _dedicatedVisual.localPosition = new Vector3(0f, 0.1f, 0f);
+            RefreshDedicatedVisual(Camera.main);
         }
 
         private void CreateBubbleLabel()
@@ -153,6 +161,29 @@ namespace MmorpgClient.World.Tianyong
             {
                 _bubbleRoot.SetActive(false);
             }
+        }
+
+        private void LateUpdate()
+        {
+            if (_dedicatedVisual != null && _dedicatedRenderer != null)
+                RefreshDedicatedVisual(Camera.main);
+        }
+
+        public void RefreshDedicatedVisual(Camera worldCamera)
+        {
+            if (_dedicatedVisual == null || _dedicatedRenderer == null) return;
+            var feet = transform.position;
+            var rotation = worldCamera != null ? worldCamera.transform.rotation : Quaternion.Euler(90f, 0f, 0f);
+            var screenUp = worldCamera != null ? worldCamera.transform.up : Vector3.forward;
+            bool hasDepthOcclusion = MapOcclusionRenderer.TryResolveTopDownDepthY(feet, worldCamera, out float depthY);
+            MapOcclusionRenderer.SyncSpriteMaterial(_dedicatedRenderer, worldCamera, ref _dedicatedDefaultMaterial);
+
+            _dedicatedVisual.rotation = rotation;
+            var positioned = feet + screenUp * _dedicatedScreenUpOffset;
+            _dedicatedVisual.position = hasDepthOcclusion
+                ? new Vector3(positioned.x, depthY, positioned.z)
+                : new Vector3(positioned.x, feet.y + 0.1f, positioned.z);
+            _dedicatedRenderer.sortingOrder = QdaoBoySpriteAnimator.WorldSortingOrder(feet, worldCamera);
         }
 
         public bool TryGetScreenHitBox(Camera worldCamera, out Vector2 feetScreen, out Vector2 size)

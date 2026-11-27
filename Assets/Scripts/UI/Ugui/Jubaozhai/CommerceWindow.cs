@@ -1088,7 +1088,10 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             CommerceOrderKind.Consignment => "寄售",
             CommerceOrderKind.AuctionLot => "竞拍",
             CommerceOrderKind.RmbConsignment => "人民币寄售",
-            _ => "材料成交"
+            CommerceOrderKind.MarketMatch => "材料成交",
+            // 求购单(kind 7)会出现在发榜人与正在交书的揭榜人的订单里;不认识的新种类不冒充成材料成交。
+            CommerceOrderKind.SkillBookWanted => "悬赏求书",
+            _ => "交易单"
         };
         private static string State(CommerceOrderState state) => state switch {
             CommerceOrderState.WaitingConfirmation => "等待双方确认", CommerceOrderState.AwaitingPayment => "等待付款确认", CommerceOrderState.Escrowing => "资产托管中",

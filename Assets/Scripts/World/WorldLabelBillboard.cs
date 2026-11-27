@@ -1,3 +1,4 @@
+using MmorpgClient.World.Occlusion;
 using UnityEngine;
 
 namespace MmorpgClient.World
@@ -155,11 +156,14 @@ namespace MmorpgClient.World
                 closeOffset = Mathf.Max(labelTop + .08f,
                     -body.sprite.bounds.min.y * Mathf.Abs(body.transform.lossyScale.y) + labelBottom - .12f);
             }
+            float forwardClearance = MapOcclusionRenderer.TryResolveTopDownLabelClearance(worldCamera, out float occlusionClearance)
+                ? occlusionClearance
+                : 0.2f;
             transform.localScale = _normalScale * Mathf.Lerp(1f, closeScale, weight);
             transform.rotation = cameraTransform.rotation;
             transform.position = parent.position
                                  - cameraTransform.up * Mathf.Lerp(OffsetBelowFeet, closeOffset, weight)
-                                 - cameraTransform.forward * 0.2f; // keep clear of the ground/sprite
+                                 - cameraTransform.forward * forwardClearance; // keep clear of ground, sprites and occluders
 
             var order = QdaoBoySpriteAnimator.WorldSortingOrder(parent.position, worldCamera)
                         + LabelSortingBoost;

@@ -112,6 +112,41 @@ namespace MmorpgClient.World.NavigationAuthoring
             NormalizeAndValidate(copy, Math.Max(1e-8, scale * 1e-8));
         }
 
+        /// <summary>
+        /// Normalizes, validates and ear-clip triangulates a single simple 2D polygon
+        /// into CCW triangles without duplicating triangulation logic across map features.
+        /// </summary>
+        public static List<Vector2> TriangulateSimplePolygon(IReadOnlyList<Vector2> points)
+        {
+            if (points == null) throw new ArgumentNullException(nameof(points));
+            var copy = new List<Point>(points.Count);
+            double minX = double.PositiveInfinity, minY = double.PositiveInfinity;
+            double maxX = double.NegativeInfinity, maxY = double.NegativeInfinity;
+            for (int i = 0; i < points.Count; i++)
+            {
+                var p = points[i];
+                if (!Finite(p.x) || !Finite(p.y)) throw new InvalidOperationException("顶点必须是有限数字。");
+                copy.Add(new Point(p.x, p.y));
+                minX = Math.Min(minX, p.x); maxX = Math.Max(maxX, p.x);
+                minY = Math.Min(minY, p.y); maxY = Math.Max(maxY, p.y);
+            }
+            double scale = Math.Max(maxX - minX, maxY - minY);
+            double eps = Math.Max(1e-8, scale * 1e-8);
+            var normalized = NormalizeAndValidate(copy, eps);
+            var triangles = Triangulate(normalized, eps);
+            var flatVertices = new List<Vector2>(triangles.Count * 3);
+            for (int i = 0; i < triangles.Count; i++)
+            {
+                var tri = triangles[i];
+                if (tri.Count < 3 || Cross(tri[0], tri[1], tri[2]) <= eps * eps) continue;
+                flatVertices.Add(new Vector2((float)tri[0].x, (float)tri[0].y));
+                flatVertices.Add(new Vector2((float)tri[1].x, (float)tri[1].y));
+                flatVertices.Add(new Vector2((float)tri[2].x, (float)tri[2].y));
+            }
+            if (flatVertices.Count == 0) throw new InvalidOperationException("多边形没有有效三角形。");
+            return flatVertices;
+        }
+
         /// <summary>定位原始轮廓中相交的边，保留作者顶点顺序，包含最后一点到首点的闭合边。</summary>
         public static bool TryGetSelfIntersection(IReadOnlyList<Vector2> points, out int firstEdge, out int secondEdge)
         {

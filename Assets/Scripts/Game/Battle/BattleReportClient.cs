@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using MmorpgClient.Net.Generated;
 
@@ -52,6 +53,7 @@ namespace MmorpgClient.Game.Battle
         private readonly Action<string> _log;
         private readonly int _maxCachedReplays;
         private readonly List<Match.BattleReportSummary> _reports = new List<Match.BattleReportSummary>();
+        private readonly ReadOnlyCollection<Match.BattleReportSummary> _reportsView;
         // 简单有界 LRU(列表尾 = 最近使用):每份解压后最大 1 MiB,上限固定在个位数。
         private readonly List<(ulong BattleId, BattleReplay Replay)> _replayCache =
             new List<(ulong, BattleReplay)>();
@@ -71,7 +73,7 @@ namespace MmorpgClient.Game.Battle
         public bool IsListing => _listInFlight;
         public bool IsFetching => _fetchInFlight;
         public ulong FetchingBattleId => _fetchingBattleId;
-        public IReadOnlyList<Match.BattleReportSummary> Reports => _reports;
+        public IReadOnlyList<Match.BattleReportSummary> Reports => _reportsView;
 
         public event Action<IReadOnlyList<Match.BattleReportSummary>> OnListUpdated;
         public event Action<BattleReplay> OnReplayLoaded;
@@ -85,6 +87,7 @@ namespace MmorpgClient.Game.Battle
             _connectionIdentity = connectionIdentity ?? (() => _net);
             _log = log;
             _maxCachedReplays = Math.Max(0, maxCachedReplays);
+            _reportsView = _reports.AsReadOnly();
             _observedConnection = _connectionIdentity();
             _observedPlayer = _net.PlayerId;
             _net.Disconnected += HandleDisconnected;
@@ -128,7 +131,7 @@ namespace MmorpgClient.Game.Battle
                             if (item != null) _reports.Add(item.Clone());
                         }
                     }
-                    OnListUpdated?.Invoke(_reports);
+                    OnListUpdated?.Invoke(_reportsView);
                 },
                 err =>
                 {
@@ -548,7 +551,7 @@ namespace MmorpgClient.Game.Battle
             if (removed)
             {
                 OnReportRemoved?.Invoke(battleId);
-                OnListUpdated?.Invoke(_reports);
+                OnListUpdated?.Invoke(_reportsView);
             }
         }
 

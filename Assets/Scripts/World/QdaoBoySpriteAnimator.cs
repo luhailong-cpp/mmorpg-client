@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MmorpgClient.World.Occlusion;
 using UnityEngine;
 
 namespace MmorpgClient.World
@@ -129,6 +130,8 @@ namespace MmorpgClient.World
         private static Sprite _shadowSprite;
 
         private SpriteRenderer _renderer;
+        private Material _defaultSpriteMaterial;
+        private readonly ActorTranslucencyModel _translucency = new();
         private Transform _billboard;
         private SpriteRenderer _shadowRenderer;
         private Transform _shadow;
@@ -304,7 +307,13 @@ namespace MmorpgClient.World
 
         private void OnDisable()
         {
-            if (_renderer != null) _renderer.sprite = _frames?.Idle?[_lastDirection];
+            if (_renderer != null)
+            {
+                _renderer.sprite = _frames?.Idle?[_lastDirection];
+                var color = _renderer.color;
+                if (color.a < 1f) { color.a = 1f; _renderer.color = color; }
+            }
+            _translucency.Reset();
             ReleaseArchivedActions();
             if (_billboard != null)
                 _billboard.localScale = _useCurrentRun ? Vector3.one * QdaoRunVariants.IdleDisplayScale : Vector3.one;
@@ -314,6 +323,7 @@ namespace MmorpgClient.World
         {
             // Movement while pooled/disabled is placement, not a first animated stride.
             _lastPosition = transform.position;
+            _translucency.Reset();
             if (_frames == null) return;
             State = LocomotionState.Idle;
             _settleBudget = 0f;
@@ -798,11 +808,25 @@ namespace MmorpgClient.World
             // authored run frames contain all gait motion; keeping this child
             // rigid prevents the whole character card (and nearby scenery by
             // visual association) from bobbing, leaning or breathing.
+            bool hasDepthOcclusion = MapOcclusionRenderer.TryResolveTopDownDepthY(position, worldCamera, out float depthY);
+            MapOcclusionRenderer.SyncSpriteMaterial(_renderer, worldCamera, ref _defaultSpriteMaterial);
+
             _billboard.rotation = cameraRotation;
-            _billboard.position = position + new Vector3(0f, SpriteLift, 0f);
+            _billboard.position = hasDepthOcclusion
+                ? new Vector3(position.x, depthY, position.z)
+                : position + new Vector3(0f, SpriteLift, 0f);
             ApplyBillboardScale();
             var order = WorldSortingOrder(position, worldCamera);
             _renderer.sortingOrder = order;
+
+            bool insideFade = MapOcclusionRenderer.EvaluateFadeZone(position, out float fadeTarget, out float fadeDuration);
+            float nextAlpha = _translucency.Step(insideFade, fadeTarget, fadeDuration, Time.unscaledDeltaTime);
+            var bodyColor = _renderer.color;
+            if (Mathf.Abs(bodyColor.a - nextAlpha) > 1e-4f)
+            {
+                bodyColor.a = nextAlpha;
+                _renderer.color = bodyColor;
+            }
 
             if (_shadow != null)
             {
@@ -811,7 +835,10 @@ namespace MmorpgClient.World
                 var yawRad = cameraYaw * Mathf.Deg2Rad;
                 var screenDown = new Vector3(-Mathf.Sin(yawRad), 0f, -Mathf.Cos(yawRad));
                 _shadow.rotation = _groundRotation;
-                _shadow.position = position + screenDown * ShadowScreenDownOffset + new Vector3(0f, ShadowLift, 0f);
+                var shadowGround = position + screenDown * ShadowScreenDownOffset;
+                _shadow.position = hasDepthOcclusion
+                    ? new Vector3(shadowGround.x, depthY + OcclusionDepthMapper.ShadowDepthOffset, shadowGround.z)
+                    : shadowGround + new Vector3(0f, ShadowLift, 0f);
                 _shadowRenderer.sortingOrder = order + ShadowSortingOffset;
             }
         }

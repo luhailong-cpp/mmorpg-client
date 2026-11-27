@@ -254,15 +254,10 @@ namespace MmorpgClient.UI
             {
                 GameClient.CoroutineRunner = null;
                 if (_gameLogHandler != null) GameClient.OnLog -= _gameLogHandler;
-                // 先从技能界面解绑,再注销适配器的网络回调
+                // 先从技能界面解绑,再统一断开连接并释放全部子客户端事件订阅
                 MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Instance?.Unbind(GameClient.Skills);
                 MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Instance?.BindCraft(null);
-                GameClient.SkillCraft?.Dispose();
-                GameClient.Skills?.Dispose();
-                GameClient.Disconnect();
-                GameClient.Features?.Dispose();
-                GameClient.LandingSync?.Dispose();
-                GameClient.PetFlip?.Dispose();
+                GameClient.Dispose();
             }
 
             _gameLogHandler = null;

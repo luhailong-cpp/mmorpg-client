@@ -1,4 +1,5 @@
 using MmorpgClient.Game.Pet;
+using MmorpgClient.World.Occlusion;
 using UnityEngine;
 
 namespace MmorpgClient.World
@@ -65,14 +66,22 @@ namespace MmorpgClient.World
             var camera = Camera.main;
             var right = camera != null ? camera.transform.right : Vector3.right;
             right.y = 0f;
-            var target = actor.Go.transform.position - right.normalized * 3.2f + Vector3.up * .1f;
+            var target = actor.Go.transform.position - right.normalized * 3.2f;
+            float targetY = MapOcclusionRenderer.TryResolveTopDownDepthY(target, camera, out float petDepthY) ? petDepthY : .1f;
+            target.y = targetY;
             bool changed = _activePetId != pet.PetId || _visual.PetIdentity != entry.id || !_visual.gameObject.activeSelf;
             _visual.gameObject.SetActive(true);
             _visual.SetIdentity(entry.id);
             if (changed) _visual.transform.position = target;
-            var delta = target - _visual.transform.position;
-            if (delta.sqrMagnitude > 900f) _visual.transform.position = target;
-            else _visual.transform.position = Vector3.MoveTowards(_visual.transform.position, target, Time.deltaTime * 12f);
+            var current = _visual.transform.position;
+            var planarTarget = new Vector3(target.x, 0f, target.z);
+            var planarCurrent = new Vector3(current.x, 0f, current.z);
+            var delta = planarTarget - planarCurrent;
+            Vector3 nextPlanar = delta.sqrMagnitude > 900f
+                ? planarTarget
+                : Vector3.MoveTowards(planarCurrent, planarTarget, Time.deltaTime * 12f);
+            float resolvedY = MapOcclusionRenderer.TryResolveTopDownDepthY(nextPlanar, camera, out float movedDepthY) ? movedDepthY : .1f;
+            _visual.transform.position = new Vector3(nextPlanar.x, resolvedY, nextPlanar.z);
             if (Mathf.Abs(Vector3.Dot(delta, right)) > .03f) _facing = Vector3.Dot(delta, right) < 0f ? "W" : "E";
             _visual.Play(delta.sqrMagnitude > .02f ? "run" : "idle", _facing);
             _activePetId = pet.PetId;

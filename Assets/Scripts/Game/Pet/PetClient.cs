@@ -18,7 +18,7 @@ namespace MmorpgClient.Game.Pet
     ///    —— 服务器侧 Allocate 是"目标值"幂等语义,重复提交也不会多扣点,这里只是省掉无谓往返;
     ///  - 断线:清空列表与在途状态,重连后由 UI 重新 RequestList。
     /// </summary>
-    public sealed partial class PetClient
+    public sealed partial class PetClient : IDisposable
     {
         /// <summary>单例挂接(实例由 GameClient 持有,静态 Instance 供 UI 路解析;测试直接 new)。</summary>
         public static PetClient Instance { get; private set; }
@@ -42,6 +42,7 @@ namespace MmorpgClient.Game.Pet
         private AscendPetTierRequest _pendingAscend;
         private ulong _ascendPlayerId;
         private ulong _ascendRequestCounter;
+        private bool _disposed;
         public bool HasPendingTierAscension(ulong petId) => _pendingAscend?.PetId == petId && _ascendPlayerId == MyPlayerId;
         public bool IsReady => _net.IsReady;
 
@@ -417,6 +418,7 @@ namespace MmorpgClient.Game.Pet
 
         private void HandleListChanged(MessageContent content)
         {
+            if (_disposed) return;
             var message = PetListChangedS2C.Parser.ParseFrom(content.SerializedMessage);
             ApplyList(message.Pets);
         }
@@ -434,6 +436,24 @@ namespace MmorpgClient.Game.Pet
             ListRequestPending = false;
             Pets = null;
             SetBusy(false);
+        }
+
+        public void Dispose()
+        {
+            if (_disposed) return;
+            _disposed = true;
+            _net.Disconnected -= HandleDisconnected;
+            InvalidateShop();
+            InvalidateEntries();
+            _pendingAscend = null;
+            ++_sessionVersion;
+            ++_listRequestVersion;
+            ++_grantRequestVersion;
+            ++_allocationRequestVersion;
+            ListRequestPending = false;
+            Pets = null;
+            Busy = false;
+            if (ReferenceEquals(Instance, this)) Instance = null;
         }
 
         private void HandleDisconnected() => Reset();

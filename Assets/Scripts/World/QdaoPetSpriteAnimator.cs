@@ -1,13 +1,17 @@
+using MmorpgClient.World.Occlusion;
 using UnityEngine;
-using Vector3 = UnityEngine.Vector3;
 
 namespace MmorpgClient.World
 {
+    using Vector3 = UnityEngine.Vector3;
+
     /// <summary>Pet source clips have their own geometry and real directions; unavailable clips keep the idle.</summary>
     [DisallowMultipleComponent]
     public sealed class QdaoPetSpriteAnimator : MonoBehaviour
     {
         private SpriteRenderer _renderer;
+        private Material _defaultSpriteMaterial;
+        private readonly ActorTranslucencyModel _translucency = new();
         private QdaoActionResources.Lease _clip;
         private string _id, _action, _direction = "E";
         private float _elapsed;
@@ -58,14 +62,33 @@ namespace MmorpgClient.World
             var camera = Camera.main;
             if (camera != null)
             {
+                var pos = transform.position;
+                MapOcclusionRenderer.SyncSpriteMaterial(_renderer, camera, ref _defaultSpriteMaterial);
+                if (MapOcclusionRenderer.TryResolveTopDownDepthY(pos, camera, out float depthY))
+                    transform.position = new Vector3(pos.x, depthY, pos.z);
                 transform.rotation = camera.transform.rotation;
-                _renderer.sortingOrder = QdaoBoySpriteAnimator.WorldSortingOrder(transform.position, camera);
+                _renderer.sortingOrder = QdaoBoySpriteAnimator.WorldSortingOrder(pos, camera);
+
+                bool insideFade = MapOcclusionRenderer.EvaluateFadeZone(pos, out float fadeTarget, out float fadeDuration);
+                float nextAlpha = _translucency.Step(insideFade, fadeTarget, fadeDuration, Time.unscaledDeltaTime);
+                var tint = _renderer.color;
+                if (Mathf.Abs(tint.a - nextAlpha) > 1e-4f)
+                {
+                    tint.a = nextAlpha;
+                    _renderer.color = tint;
+                }
             }
         }
 
         public void Clear()
         {
-            if (_renderer != null) _renderer.sprite = null;
+            if (_renderer != null)
+            {
+                _renderer.sprite = null;
+                var tint = _renderer.color;
+                if (tint.a < 1f) { tint.a = 1f; _renderer.color = tint; }
+            }
+            _translucency.Reset();
             var previous = _clip;
             _clip = null;
             _action = null;

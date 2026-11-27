@@ -29,6 +29,11 @@ namespace MmorpgClient.World.Tianyong
         internal readonly Dictionary<Vector2Int, GameObject> _chunks = new();
         internal readonly List<Material> _materials = new();
         private MmorpgClient.World.CurrentMaps.CurrentMapTileStreaming _currentMapTiles;
+        private MmorpgClient.World.Occlusion.MapOcclusionRenderer _occlusion;
+
+        public MmorpgClient.World.Occlusion.MapOcclusionRenderer Occlusion => _occlusion;
+
+        internal void SetOcclusion(MmorpgClient.World.Occlusion.MapOcclusionRenderer occlusion) => _occlusion = occlusion;
 
         internal void ConfigureCurrentMapTiles(string key)
             => ConfigureCurrentMapTiles(MmorpgClient.World.CurrentMaps.CurrentMapCatalog.Find(key));
@@ -64,6 +69,11 @@ namespace MmorpgClient.World.Tianyong
             _authoredNavigation?.Dispose();
             _authoredNavigation = null;
             if (_currentMapTiles != null) _currentMapTiles.ReleaseAll();
+            if (_occlusion != null)
+            {
+                _occlusion.DisposeOwnedResources();
+                _occlusion = null;
+            }
             DestroyObject(Root);
             foreach (var material in _materials)
                 DestroyObject(material);

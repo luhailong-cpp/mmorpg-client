@@ -41,7 +41,7 @@ namespace MmorpgClient.Game
     /// a fixed node. Server-pushed RedirectToGateNotify (cross-zone / gate
     /// migration) is handled transparently by reconnecting to the new gate.
     /// </summary>
-    public sealed partial class GameClient : IRpcChannel
+    public sealed partial class GameClient : IRpcChannel, IDisposable
     {
         private readonly GatewayHttpClient _http;
         private readonly MuduoCodec _codec;
@@ -104,6 +104,7 @@ namespace MmorpgClient.Game
         private bool _tokenRejectedByGate;
         private bool _disconnectNotificationSent = true;
         private bool _disconnectInProgress;
+        private bool _disposed;
 
         // 管线世代:每次 EnterZone / RedirectFlow 启动时 +1。旧管线协程在每个
         // yield 恢复点比对世代,不一致立即退出(不触发任何回调),防止用户
@@ -3047,6 +3048,42 @@ namespace MmorpgClient.Game
             CancelReconnect();
             ++_pipelineGen; // 显式登出也作废尚在等 HTTP / TCP 的恢复管线。
             DisconnectInternal(notify: true, forceNotification: wasReconnecting);
+        }
+
+        /// <summary>统一释放连接与全部子领域客户端的事件订阅，避免静态单例/回调在销毁后残留。</summary>
+        public void Dispose()
+        {
+            if (_disposed) return;
+            _disposed = true;
+            CoroutineRunner = null;
+            if (Presentation != null)
+            {
+                Presentation.OnCastPresentationEnded -= HandleCastPresentationEnded;
+                Presentation.Dispose();
+            }
+            Disconnect();
+            SkillCraft?.Dispose();
+            Skills?.Dispose();
+            Battle?.Dispose();
+            BattleResults?.Dispose();
+            BattleReports?.Dispose();
+            Ranked?.Dispose();
+            Tournament?.Dispose();
+            TrialJournal?.Dispose();
+            TacticalPuzzle?.Dispose();
+            Season?.Dispose();
+            SpiritShop?.Dispose();
+            TravelPass?.Dispose();
+            Jianghu?.Dispose();
+            FestivalBeast?.Dispose();
+            Spectate?.Dispose();
+            SpectateChat?.Dispose();
+            Attributes?.Dispose();
+            Pets?.Dispose();
+            Features?.Dispose();
+            LandingSync?.Dispose();
+            PetFlip?.Dispose();
+            _notifyHandlers.Clear();
         }
 
         /// <param name="reason">给人看的断线原因;只有失败流程主动断线时才传,见 <see cref="DisconnectReason"/>。</param>

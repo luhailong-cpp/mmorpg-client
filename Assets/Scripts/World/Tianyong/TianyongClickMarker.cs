@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MmorpgClient.World.Occlusion;
 using UnityEngine;
 
 namespace MmorpgClient.World.Tianyong
@@ -156,7 +157,9 @@ namespace MmorpgClient.World.Tianyong
                 QdaoBoySpriteAnimator.WorldSortingOrder(groundPoint, worldCamera) + SortingOffset;
 
             // World anchor: set once, never updated (see class remarks).
-            go.transform.position = groundPoint + Vector3.up * GroundLift;
+            go.transform.position = MapOcclusionRenderer.TryResolveTopDownDepthY(groundPoint, worldCamera, out float depthY)
+                ? new Vector3(groundPoint.x, depthY + OcclusionDepthMapper.ClickMarkerDepthOffset, groundPoint.z)
+                : groundPoint + Vector3.up * GroundLift;
             // Flat on the ground plane; local +Y then points along world +Z (screen up).
             go.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
             marker.ApplyAge();

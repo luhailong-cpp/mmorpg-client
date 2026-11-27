@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MmorpgClient.World.Occlusion;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -92,6 +93,7 @@ namespace MmorpgClient.World.Tianyong
             public Transform Feet;
             public Transform Body;
             public SpriteRenderer Renderer;
+            public Material DefaultMaterial;
             public Transform Shadow;
             public SpriteRenderer ShadowRenderer;
         }
@@ -249,12 +251,18 @@ namespace MmorpgClient.World.Tianyong
             {
                 var position = visual.Feet.position;
                 int order = QdaoBoySpriteAnimator.WorldSortingOrder(position, worldCamera);
+                bool hasDepthOcclusion = MapOcclusionRenderer.TryResolveTopDownDepthY(position, worldCamera, out float depthY);
+                MapOcclusionRenderer.SyncSpriteMaterial(visual.Renderer, worldCamera, ref visual.DefaultMaterial);
                 visual.Body.rotation = rotation;
-                visual.Body.position = position + Vector3.up * SpriteLift;
+                visual.Body.position = hasDepthOcclusion
+                    ? new Vector3(position.x, depthY, position.z)
+                    : position + Vector3.up * SpriteLift;
                 visual.Renderer.sortingOrder = order;
                 visual.Shadow.rotation = Quaternion.Euler(90f, 0f, 0f);
-                visual.Shadow.position = position + screenDown * QdaoBoySpriteAnimator.ShadowScreenDownOffset
-                                         + Vector3.up * QdaoBoySpriteAnimator.ShadowLift;
+                var shadowGround = position + screenDown * QdaoBoySpriteAnimator.ShadowScreenDownOffset;
+                visual.Shadow.position = hasDepthOcclusion
+                    ? new Vector3(shadowGround.x, depthY + OcclusionDepthMapper.ShadowDepthOffset, shadowGround.z)
+                    : shadowGround + Vector3.up * QdaoBoySpriteAnimator.ShadowLift;
                 visual.ShadowRenderer.sortingOrder = order + QdaoBoySpriteAnimator.ShadowSortingOffset;
             }
         }

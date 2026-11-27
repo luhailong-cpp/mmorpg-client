@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using Match;
 
@@ -513,27 +514,18 @@ namespace MmorpgClient.Game.Ranked
         public string GetWinMilestoneHint() =>
             RankedFormatting.WinMilestoneHint(CurrentProgress?.Wins ?? 0u, MilestoneWinMatches);
 
-        private static readonly uint[] s_defaultAllowedSizes = { 1u, 3u };
-        private static readonly uint[] s_defaultPrimarySizes = { 1u, 3u, 5u };
-        private static readonly uint[] s_defaultSpecialSizes = { 2u, 4u };
+        private static readonly IReadOnlyList<uint> s_defaultAllowedSizes = Array.AsReadOnly(new[] { 1u, 3u });
+        private static readonly IReadOnlyList<uint> s_defaultPrimarySizes = Array.AsReadOnly(new[] { 1u, 3u, 5u });
+        private static readonly IReadOnlyList<uint> s_defaultSpecialSizes = Array.AsReadOnly(new[] { 2u, 4u });
 
         /// <summary>服务端权威开放中的正式会武人数档（冷启动默认 1V1 / 3V3）。</summary>
-        public IReadOnlyList<uint> AllowedTeamSizes =>
-            CurrentSeason != null && CurrentSeason.AllowedTeamSizes.Count > 0
-                ? (IReadOnlyList<uint>)CurrentSeason.AllowedTeamSizes
-                : s_defaultAllowedSizes;
+        public IReadOnlyList<uint> AllowedTeamSizes { get; }
 
         /// <summary>常驻主力人数档（1V1 / 3V3 / 5V5）。</summary>
-        public IReadOnlyList<uint> PrimaryTeamSizes =>
-            CurrentSeason != null && CurrentSeason.PrimaryTeamSizes.Count > 0
-                ? (IReadOnlyList<uint>)CurrentSeason.PrimaryTeamSizes
-                : s_defaultPrimarySizes;
+        public IReadOnlyList<uint> PrimaryTeamSizes { get; }
 
         /// <summary>特殊玩法人数档（2V2 / 4V4，仅活动/帮会开关开启时开放）。</summary>
-        public IReadOnlyList<uint> SpecialTeamSizes =>
-            CurrentSeason != null && CurrentSeason.SpecialTeamSizes.Count > 0
-                ? (IReadOnlyList<uint>)CurrentSeason.SpecialTeamSizes
-                : s_defaultSpecialSizes;
+        public IReadOnlyList<uint> SpecialTeamSizes { get; }
 
         /// <summary>正式人宠会武使用本人真实养成，免费人宠仅在娱乐轮换（护卫救援 / 物法易势 5V5）启用。</summary>
         public bool UsesOwnProgression => CurrentSeason == null || CurrentSeason.UsesOwnProgression;
@@ -575,14 +567,32 @@ namespace MmorpgClient.Game.Ranked
                 PetPresetId = RankedFormatting.DefaultPetPresetId,
             };
             CosmeticLoadout = cosmeticLoadout ?? new RankedCosmeticLoadout();
-            CharacterPresets = characterPresets ?? Array.Empty<RankedPresetView>();
-            PetPresets = petPresets ?? Array.Empty<RankedPresetView>();
-            Entitlements = entitlements ?? Array.Empty<RankedRewardEntitlement>();
-            History = history ?? Array.Empty<RankedPlayerSeasonSummary>();
-            PastSeasons = pastSeasons ?? Array.Empty<RankedSeasonInfo>();
-            FeaturedBuilds = featuredBuilds ?? Array.Empty<RankedFeaturedBuildView>();
-            TopRivals = topRivals ?? Array.Empty<RankedRivalrySummary>();
+            CharacterPresets = FreezeList(characterPresets);
+            PetPresets = FreezeList(petPresets);
+            Entitlements = FreezeList(entitlements);
+            History = FreezeList(history);
+            PastSeasons = FreezeList(pastSeasons);
+            FeaturedBuilds = FreezeList(featuredBuilds);
+            TopRivals = FreezeList(topRivals);
+            AllowedTeamSizes = currentSeason != null && currentSeason.AllowedTeamSizes.Count > 0
+                ? FreezeList(currentSeason.AllowedTeamSizes)
+                : s_defaultAllowedSizes;
+            PrimaryTeamSizes = currentSeason != null && currentSeason.PrimaryTeamSizes.Count > 0
+                ? FreezeList(currentSeason.PrimaryTeamSizes)
+                : s_defaultPrimarySizes;
+            SpecialTeamSizes = currentSeason != null && currentSeason.SpecialTeamSizes.Count > 0
+                ? FreezeList(currentSeason.SpecialTeamSizes)
+                : s_defaultSpecialSizes;
             ServerTimeMs = serverTimeMs;
+        }
+
+        private static IReadOnlyList<T> FreezeList<T>(IReadOnlyList<T> source)
+        {
+            if (source == null || source.Count == 0) return Array.AsReadOnly(Array.Empty<T>());
+            if (source is ReadOnlyCollection<T>) return source;
+            var copy = new T[source.Count];
+            for (int i = 0; i < source.Count; i++) copy[i] = source[i];
+            return Array.AsReadOnly(copy);
         }
 
         public static RankedProfileSnapshot FromResponse(GetRankedProfileResponse resp)

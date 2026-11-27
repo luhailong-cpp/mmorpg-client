@@ -161,8 +161,36 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 }
                 if (liveState.TowerContext != null && liveState.TowerContext.Floor > 0u)
                 {
-                    string ley = WuxingExpansionModels.ElementName((uint)liveState.TowerContext.LeylineElement);
-                    wuxingTags.Add($"五行幻境 · 第{liveState.TowerContext.Floor}层 · [{ley}脉] · {liveState.TowerContext.ActiveSigilIds.Count}符印");
+                    var tc = liveState.TowerContext;
+                    string ley = WuxingExpansionModels.ElementName((uint)tc.LeylineElement);
+                    if (tc.RealmVersion >= WuxingExpansionModels.RealmV2Version)
+                    {
+                        string nodeLbl = WuxingExpansionModels.RealmNodeKindLabel(tc.NodeKind);
+                        string tag = $"五行奇策 · 第{tc.Floor}/{WuxingExpansionModels.RealmV2MaxNodes}关({nodeLbl}) · [{ley}脉] · {tc.ActiveSigilIds.Count}奇策";
+                        if (tc.UseFreePreset) tag += " · 公平3×3";
+                        if (tc.ActiveResonanceElement > 0u)
+                        {
+                            string resName = WuxingExpansionModels.ResonanceName(tc.ActiveResonanceElement);
+                            if (!string.IsNullOrEmpty(resName)) tag += $" · ★{resName}";
+                        }
+                        wuxingTags.Add(tag);
+                    }
+                    else
+                    {
+                        wuxingTags.Add($"五行幻境 · 第{tc.Floor}层 · [{ley}脉] · {tc.ActiveSigilIds.Count}符印");
+                    }
+                }
+                if (liveState.TacticalPuzzleContext?.Spec != null)
+                {
+                    var pSpec = liveState.TacticalPuzzleContext.Spec;
+                    if (pSpec.LeylineElement != global::TournamentLeylineElement.TournamentLeylineUnspecified)
+                    {
+                        wuxingTags.Add("残局阵眼 · " + MmorpgClient.Game.TacticalPuzzle.TacticalPuzzleModels.LeylineName(pSpec.LeylineElement));
+                    }
+                    if (pSpec.BannedSkillId != 0u)
+                    {
+                        wuxingTags.Add("本局禁招 · " + MmorpgClient.Game.TacticalPuzzle.TacticalPuzzleModels.PresetSkillName(pSpec.BannedSkillId));
+                    }
                 }
                 if (liveState.CustomDuelRules != null)
                 {

@@ -2,7 +2,7 @@
 
 > 关联背景：2026-11-16 历史讨论复核与落盘（基于 2026-11-27 当前 `mmorpg-client` `main` 分支实测代码）  
 > 目标形态：同时满足「微信/抖音小游戏（WebGL2 / OpenGL ES 3.0 单线程）」与「iOS/Android 原生 App（IL2CPP / AOT）」双形态约束  
-> 当前状态：**设计定稿，暂未修改运行代码**（按既有计划，待新地图正式接入后再基于新地图实施遮挡编辑与渲染落地）
+> 当前状态：**代码、着色器、编辑器与 EditMode 单测已全部落地并通过 Unity 6000.6.0f1 验证（85/85 绿灯）**；待接入具体新地图后，即可直接在 `MMORPG → Maps → NavMesh 导航编辑器` 的「视觉遮挡层」勾画遮挡轮廓并导出 `occlusion.json` 生效。
 
 ---
 
@@ -263,3 +263,29 @@ $$t = \text{clamp01}\!\left(\frac{z_{\max} - z}{z_{\max} - z_{\min}}\right), \qq
 7. **门禁验证**：
    - 运行 `pwsh -File tools/client_compile_check.ps1` 与相关 EditMode/PlayMode 测试，保存实机走图截图证据（屋前清晰、半身入屋、全身屋后、双人前后交错、换图释放无泄漏）；
    - 确认 WebGL2（GLES 3.0）与 IL2CPP 构建下 Shader 无裁剪、DrawCall 合批生效、流式分片加载/卸载无异常。
+
+---
+
+## 7. 2026-11-27 落地实现与验证记录
+
+- **核心模块与纯 C# 几何/状态机**：
+  - `Assets/Scripts/World/NavigationAuthoring/NavigationPolygonGeometry.cs`（暴露 `TriangulateSimplePolygon` 复用既有耳切三角化）
+  - `Assets/Scripts/World/Occlusion/MapOcclusionContract.cs`（`occlusion.json` 契约、校验与默认水平底边接地线）
+  - `Assets/Scripts/World/Occlusion/OcclusionDepthMapper.cs`（顶视深度带 `[1, 21]`、斜向接地线插值、`PointInPolygon`、`ActorTranslucencyModel` 平滑渐变与重叠取最小 alpha）
+  - `Assets/Scripts/World/Occlusion/MapOcclusionMeshBuilder.cs`（全图遮挡体合批为单个深度写入 `Mesh`）
+  - `Assets/Scripts/World/Occlusion/MapOcclusionRenderer.cs`（`Resources` 按需加载、材质共享、安全注册与释放）
+- **单变体着色器与共享材质（防 WebGL2 / IL2CPP 裁剪）**：
+  - `Assets/Resources/World/Shaders/OcclusionDepthMask.shader` & `.mat`
+  - `Assets/Resources/World/Shaders/ActorOcclusionSprite.shader` & `.mat`
+- **运行时接入与现存隐患修复**：
+  - `Assets/Scripts/World/CurrentMaps/CurrentMapBuilder.cs`、`Assets/Scripts/World/Tianyong/TianyongMapBuilder.cs`（随地图按需加载 `<ResourceRoot>/occlusion.json` 并在 `Dispose()` 确定性释放）
+  - `Assets/Scripts/World/QdaoBoySpriteAnimator.cs`、`Assets/Scripts/World/QdaoPetCompanion.cs`、`Assets/Scripts/World/QdaoPetSpriteAnimator.cs`、`Assets/Scripts/World/Tianyong/TianyongCityNpcs.cs`（接入顶视深度 `Y`、双 Pass 透视材质与区域半透明；不改角色根节点 `Y=0`）
+  - `Assets/Scripts/World/Tianyong/GuiyuanCityNpcActor.cs`（修复专属 NPC 立绘错挂 `WorldLabelBillboard` 叠加 `+8000` 排序的问题）
+  - `Assets/Scripts/World/WorldLabelBillboard.cs`（遮挡启用时将名字牌/气泡前向抬升至 `22.0f` 防裁切）、`Assets/Scripts/World/Tianyong/TianyongClickMarker.cs`
+- **编辑器与 Play 离线试走**：
+  - `Assets/Editor/NavigationAuthoring/MapOcclusionAuthoringIO.cs`、`Assets/Editor/NavigationAuthoring/NavMeshAuthoringWindow.cs`（新增独立「视觉遮挡层」Tab：画遮挡轮廓、矩形遮挡、设斜向/水平接地线、画半透明区、调整顶点、独立保存 `.occlusion.json` 与导出运行用 `occlusion.json`，不触碰 `NavMeshData`）
+  - `Assets/Scripts/World/NavigationAuthoring/NavMeshDraftPreview.cs`（Play 离线试走自动挂载遮挡渲染并切出角色精灵实时验前遮/后透）
+- **实测门禁证据**：
+  - Roslyn 编译：Runtime（832 文件）、Editor（86 文件）、Tianyong EditMode（67 文件）、CityNpc EditMode（1 文件）、PlayMode（19 文件）全部 **0 错误**；
+  - Unity 6000.6.0f1 EditMode 实测：`MapOcclusionTests`（11 项）+ `TianyongClickMarkerTests` + `TianyongCityNpcTests` + `CurrentMapTests` + `QdaoBoySpriteAnimatorLogicTests` + `TianyongPaintedForegroundTests` 共 **85/85 全部通过**。
+

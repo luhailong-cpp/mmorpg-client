@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MmorpgClient.World.NavigationAuthoring;
+using MmorpgClient.World.Occlusion;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -13,15 +14,30 @@ namespace MmorpgClient.Editor.NavigationAuthoring
 {
     public sealed class NavMeshAuthoringWindow : EditorWindow
     {
+        private enum EditLayer { Navigation, Occlusion }
+        private static readonly string[] LayerLabels = { "导航层 (NavMesh)", "视觉遮挡层 (半透明)" };
         private enum Tool { WalkPolygon, BlockPolygon, WalkRect, BlockRect, Vertices, Spawn, Route }
         private static readonly string[] ToolLabels = { "圈可走区域", "圈障碍区域", "矩形可走", "矩形障碍", "调整顶点", "放出生点", "试寻路" };
+        private enum OcclusionTool { OccluderPolygon, OccluderRect, Baseline, FadeZonePolygon, Vertices }
+        private static readonly string[] OcclusionToolLabels = { "画遮挡轮廓", "矩形遮挡", "设接地线", "画半透明区", "调整顶点" };
+
         [SerializeField] private NavMeshAuthoringDraft _draft;
+        [SerializeField] private EditLayer _editLayer;
         [SerializeField] private Tool _tool;
+        [SerializeField] private OcclusionTool _occlusionTool;
         [SerializeField] private float _zoom = 1, _opacity = .3f, _snap;
         [SerializeField] private Vector2 _pan;
         private Vector2 _scroll;
         [SerializeField] private List<Vector2> _pending = new List<Vector2>();
         [SerializeField] private bool _pendingBlocked;
+        [SerializeField] private MapOcclusionAuthoringIO.EditableDocument _occlusionDoc;
+        [SerializeField] private List<Vector2> _occlusionPending = new List<Vector2>();
+        [SerializeField] private bool _occlusionPendingIsFadeZone;
+        [SerializeField] private int _occlusionSelected = -1, _fadeZoneSelected = -1, _occlusionVertex = -1;
+        [SerializeField] private bool _occlusionDirty;
+        private bool _baselineDragging;
+        private Vector2 _baselineStart, _baselineEnd;
+        private PolygonDiagnostic _occlusionPendingDiagnostic;
         private Rect _canvas, _imageRect;
         [SerializeField] private bool _fit = true;
         private bool _rectDragging, _vertexDragging;
@@ -69,6 +85,8 @@ namespace MmorpgClient.Editor.NavigationAuthoring
         private void OnEnable()
         {
             if (_pending == null) _pending = new List<Vector2>();
+            if (_occlusionPending == null) _occlusionPending = new List<Vector2>();
+            if (_draft != null && _occlusionDoc == null) _occlusionDoc = MapOcclusionAuthoringIO.LoadOrCreate(_draft);
             _areaDiagnostics.Clear();
             minSize = new Vector2(900, 580); Undo.undoRedoPerformed += OnUndo;
             EditorApplication.playModeStateChanged += OnPlayState;
@@ -153,6 +171,23 @@ namespace MmorpgClient.Editor.NavigationAuthoring
                 _draft.worldRect = new Rect(origin, new Vector2(width, height)); _draft.boundsConfirmed = confirmed; });
             if (!_draft.boundsConfirmed) EditorGUILayout.HelpBox("当前是本地作者设定的比例与范围。导出会保留未确认状态。", MessageType.Info);
             EditorGUILayout.Space();
+            var nextLayer = (EditLayer)GUILayout.Toolbar((int)_editLayer, LayerLabels);
+            if (nextLayer != _editLayer)
+            {
+                _editLayer = nextLayer;
+                _rectDragging = false;
+                _vertexDragging = false;
+                _baselineDragging = false;
+                if (_editLayer == EditLayer.Occlusion && _occlusionDoc == null)
+                    _occlusionDoc = MapOcclusionAuthoringIO.LoadOrCreate(_draft);
+                EditorUtility.SetDirty(this);
+            }
+            EditorGUILayout.Space();
+            if (_editLayer == EditLayer.Occlusion)
+            {
+                DrawOcclusionSidebar();
+                return;
+            }
             EditorGUILayout.LabelField("描绘工具", EditorStyles.boldLabel);
             var nextTool = (Tool)GUILayout.SelectionGrid((int)_tool, ToolLabels, 2);
             if (nextTool != _tool) Guard(() => { if (_pending.Count > 0) Save(); _tool = nextTool; _rectDragging = false; EditorUtility.SetDirty(this); });
@@ -177,6 +212,121 @@ namespace MmorpgClient.Editor.NavigationAuthoring
                 if (GUILayout.Button("导出同源几何给服务器")) Guard(Export);
             }
             if (GUILayout.Button("打开官方 Navigation 设置")) EditorApplication.ExecuteMenuItem("Window/AI/Navigation");
+        }
+
+        private void DrawOcclusionSidebar()
+        {
+            if (_occlusionDoc == null) _occlusionDoc = MapOcclusionAuthoringIO.LoadOrCreate(_draft);
+            EditorGUILayout.LabelField("遮挡与半透明工具（独立于 NavMesh）", EditorStyles.boldLabel);
+            var nextTool = (OcclusionTool)GUILayout.SelectionGrid((int)_occlusionTool, OcclusionToolLabels, 2);
+            if (nextTool != _occlusionTool)
+            {
+                _occlusionTool = nextTool;
+                _rectDragging = false;
+                _vertexDragging = false;
+                _baselineDragging = false;
+                EditorUtility.SetDirty(this);
+            }
+            _snap = Mathf.Max(0, EditorGUILayout.FloatField("吸附像素（0为关）", _snap));
+            EditorGUILayout.HelpBox(
+                "遮挡轮廓：沿房屋/树冠/柱子描边，Enter或双击完成，默认按最南底边水平排序。\n" +
+                "斜向屋檐/墙：选中遮挡体后切到“设接地线”，沿墙脚拖动两端点（青色线）。\n" +
+                "半透明区：进入该区域的脚点整人平滑半透明（草丛/雾区）。独立存为 occlusion.json，不触发重烘 NavMesh。",
+                MessageType.None);
+            if (_occlusionPending.Count > 0 && GUILayout.Button("完成当前遮挡/半透明轮廓")) Guard(CompleteOcclusionPolygon);
+            if (_occlusionPending.Count > 0 && GUILayout.Button("取消当前绘制"))
+            {
+                _occlusionPending.Clear();
+                _occlusionPendingDiagnostic = null;
+                _status = "已取消未完成的遮挡/半透明轮廓。";
+                Repaint();
+            }
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField($"前景遮挡体（{_occlusionDoc.occluders.Count}）", EditorStyles.boldLabel);
+            for (int i = 0; i < _occlusionDoc.occluders.Count; i++)
+            {
+                var item = _occlusionDoc.occluders[i];
+                var diag = InspectPolygon(item.points);
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    bool selected = GUILayout.Toggle(
+                        _occlusionSelected == i,
+                        $"{i + 1}. {(string.IsNullOrEmpty(item.name) ? item.id : item.name)} · {item.points.Count}点{(item.customBaseline ? " · 斜线" : "")}{(diag.valid ? "" : " · 待修复")}",
+                        "Button");
+                    if (selected) { _occlusionSelected = i; _fadeZoneSelected = -1; }
+                    if (GUILayout.Button("×", GUILayout.Width(24)))
+                    {
+                        int index = i;
+                        EditOcclusion("删除遮挡体", () => _occlusionDoc.occluders.RemoveAt(index));
+                        _occlusionSelected = -1;
+                        break;
+                    }
+                }
+            }
+            if (_occlusionSelected >= 0 && _occlusionSelected < _occlusionDoc.occluders.Count)
+            {
+                var item = _occlusionDoc.occluders[_occlusionSelected];
+                var diag = InspectPolygon(item.points);
+                if (!diag.valid)
+                    EditorGUILayout.HelpBox("待修复：" + DiagnosticText(diag, item.points.Count), MessageType.Warning);
+                EditorGUI.BeginChangeCheck();
+                string nextId = EditorGUILayout.TextField("标识 ID", item.id);
+                string nextName = EditorGUILayout.TextField("名称", item.name);
+                bool showSilhouette = EditorGUILayout.Toggle("屋后显示半透明人影", item.showSilhouette);
+                if (EditorGUI.EndChangeCheck())
+                    EditOcclusion("修改遮挡体", () => { item.id = nextId; item.name = nextName; item.showSilhouette = showSilhouette; });
+                if (item.customBaseline && GUILayout.Button("重置为最南底边水平接地线"))
+                    EditOcclusion("重置接地线", () => item.customBaseline = false);
+            }
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField($"区域半透明（{_occlusionDoc.fadeZones.Count}）", EditorStyles.boldLabel);
+            for (int i = 0; i < _occlusionDoc.fadeZones.Count; i++)
+            {
+                var zone = _occlusionDoc.fadeZones[i];
+                var diag = InspectPolygon(zone.points);
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    bool selected = GUILayout.Toggle(
+                        _fadeZoneSelected == i,
+                        $"{i + 1}. {(string.IsNullOrEmpty(zone.name) ? zone.id : zone.name)} · α={zone.targetAlpha:0.##}{(diag.valid ? "" : " · 待修复")}",
+                        "Button");
+                    if (selected) { _fadeZoneSelected = i; _occlusionSelected = -1; }
+                    if (GUILayout.Button("×", GUILayout.Width(24)))
+                    {
+                        int index = i;
+                        EditOcclusion("删除半透明区", () => _occlusionDoc.fadeZones.RemoveAt(index));
+                        _fadeZoneSelected = -1;
+                        break;
+                    }
+                }
+            }
+            if (_fadeZoneSelected >= 0 && _fadeZoneSelected < _occlusionDoc.fadeZones.Count)
+            {
+                var zone = _occlusionDoc.fadeZones[_fadeZoneSelected];
+                var diag = InspectPolygon(zone.points);
+                if (!diag.valid)
+                    EditorGUILayout.HelpBox("待修复：" + DiagnosticText(diag, zone.points.Count), MessageType.Warning);
+                EditorGUI.BeginChangeCheck();
+                string nextId = EditorGUILayout.TextField("区域 ID", zone.id);
+                string nextName = EditorGUILayout.TextField("区域名称", zone.name);
+                float nextAlpha = EditorGUILayout.Slider("目标不透明度", zone.targetAlpha, 0.1f, 1f);
+                float nextDuration = Mathf.Max(0f, EditorGUILayout.FloatField("淡入淡出秒数", zone.fadeDurationSec));
+                if (EditorGUI.EndChangeCheck())
+                    EditOcclusion("修改半透明区", () => { zone.id = nextId; zone.name = nextName; zone.targetAlpha = nextAlpha; zone.fadeDurationSec = nextDuration; });
+            }
+
+            EditorGUILayout.Space();
+            if (GUILayout.Button(_occlusionDirty ? "保存遮挡草稿* (.occlusion.json)" : "保存遮挡草稿 (.occlusion.json)", GUILayout.Height(26)))
+                Guard(SaveOcclusionSidecar);
+            if (GUILayout.Button("导出运行用 occlusion.json"))
+                Guard(ExportOcclusionJson);
+            bool current = NavMeshAuthoringAssetIO.IsBakeCurrent(_draft);
+            using (new EditorGUI.DisabledScope(!current || EditorApplication.isPlayingOrWillChangePlaymode))
+            {
+                if (GUILayout.Button("Play 离线试走（实时验遮挡）")) Guard(StartPreview);
+            }
         }
 
         private void DrawAreas()
@@ -258,7 +408,7 @@ namespace MmorpgClient.Editor.NavigationAuthoring
                 Handles.DrawDottedLine(PixelScreen(_pending[_pending.Count - 1]) - offset, PixelScreen(_pending[0]) - offset, 4);
             }
             DrawDiagnostic(_pending, _pendingDiagnostic, offset);
-            if (_rectDragging) DrawPolygon(Rectangle(_rectStart, _rectEnd), offset, true, 2);
+            if (_editLayer == EditLayer.Navigation && _rectDragging) DrawPolygon(Rectangle(_rectStart, _rectEnd), offset, true, 2);
             if (_draft.spawnSet)
             {
                 Vector2 s = PixelScreen(_draft.WorldToPixel(_draft.spawn)) - offset;
@@ -267,8 +417,87 @@ namespace MmorpgClient.Editor.NavigationAuthoring
             }
             Handles.color = Color.yellow;
             if (_route.Count > 1) Handles.DrawAAPolyLine(3, _route.Select(v => WorldScreen(v, offset)).ToArray());
+            DrawOcclusionOverlay(offset);
             Handles.EndGUI(); GUI.EndClip();
             HandleCanvasInput();
+        }
+
+        private void DrawOcclusionOverlay(Vector2 offset)
+        {
+            if (_occlusionDoc == null) return;
+            bool active = _editLayer == EditLayer.Occlusion;
+            float dim = active ? 1f : 0.35f;
+
+            for (int i = 0; i < _occlusionDoc.occluders.Count; i++)
+            {
+                var item = _occlusionDoc.occluders[i];
+                bool selected = active && i == _occlusionSelected;
+                Handles.color = new Color(0.68f, 0.32f, 1f, dim);
+                DrawPolygon(item.points, offset, true, selected ? 3f : 1.5f);
+                item.ResolveBaseline(out var p0, out var p1);
+                Vector2 s0 = PixelScreen(p0) - offset;
+                Vector2 s1 = PixelScreen(p1) - offset;
+                Handles.color = new Color(0.15f, 0.95f, 1f, dim);
+                Handles.DrawAAPolyLine(selected ? 3.5f : 2f, s0, s1);
+                if (selected)
+                {
+                    EditorGUI.DrawRect(new Rect(s0.x - 4, s0.y - 4, 8, 8), Handles.color);
+                    EditorGUI.DrawRect(new Rect(s1.x - 4, s1.y - 4, 8, 8), Handles.color);
+                    if (_occlusionTool == OcclusionTool.Vertices)
+                    {
+                        foreach (var pt in item.points)
+                        {
+                            var sp = PixelScreen(pt) - offset;
+                            EditorGUI.DrawRect(new Rect(sp.x - 4, sp.y - 4, 8, 8), new Color(0.75f, 0.4f, 1f));
+                        }
+                    }
+                    DrawDiagnostic(item.points, InspectPolygon(item.points), offset);
+                }
+            }
+
+            for (int i = 0; i < _occlusionDoc.fadeZones.Count; i++)
+            {
+                var zone = _occlusionDoc.fadeZones[i];
+                bool selected = active && i == _fadeZoneSelected;
+                Handles.color = new Color(0.1f, 0.85f, 0.85f, dim);
+                DrawPolygon(zone.points, offset, true, selected ? 3f : 1.5f);
+                if (selected)
+                {
+                    if (_occlusionTool == OcclusionTool.Vertices)
+                    {
+                        foreach (var pt in zone.points)
+                        {
+                            var sp = PixelScreen(pt) - offset;
+                            EditorGUI.DrawRect(new Rect(sp.x - 4, sp.y - 4, 8, 8), new Color(0.1f, 0.9f, 0.9f));
+                        }
+                    }
+                    DrawDiagnostic(zone.points, InspectPolygon(zone.points), offset);
+                }
+            }
+
+            if (!active) return;
+
+            if (_occlusionPending.Count > 0)
+            {
+                Handles.color = _occlusionPendingIsFadeZone ? new Color(0.1f, 0.9f, 0.9f) : new Color(0.8f, 0.4f, 1f);
+                DrawPolygon(_occlusionPending, offset, false, 2f);
+                if (_occlusionPending.Count >= 3)
+                {
+                    Handles.color = new Color(1f, 0.85f, 0.2f, 0.8f);
+                    Handles.DrawDottedLine(PixelScreen(_occlusionPending[_occlusionPending.Count - 1]) - offset, PixelScreen(_occlusionPending[0]) - offset, 4);
+                }
+                DrawDiagnostic(_occlusionPending, _occlusionPendingDiagnostic, offset);
+            }
+            if (_rectDragging)
+            {
+                Handles.color = new Color(0.8f, 0.4f, 1f);
+                DrawPolygon(Rectangle(_rectStart, _rectEnd), offset, true, 2f);
+            }
+            if (_baselineDragging)
+            {
+                Handles.color = new Color(0.15f, 0.95f, 1f);
+                Handles.DrawAAPolyLine(3.5f, PixelScreen(_baselineStart) - offset, PixelScreen(_baselineEnd) - offset);
+            }
         }
 
         private void DrawBackground(Vector2 offset)
@@ -287,7 +516,7 @@ namespace MmorpgClient.Editor.NavigationAuthoring
         private void HandleCanvasInput()
         {
             var e = Event.current;
-            if (!_canvas.Contains(e.mousePosition) && !_rectDragging && !_vertexDragging) return;
+            if (!_canvas.Contains(e.mousePosition) && !_rectDragging && !_vertexDragging && !_baselineDragging) return;
             if (e.type == EventType.ScrollWheel)
             {
                 Vector2 before = (e.mousePosition - _imageRect.position) / _zoom;
@@ -297,6 +526,11 @@ namespace MmorpgClient.Editor.NavigationAuthoring
             if (e.type == EventType.MouseDrag && (e.button == 2 || (e.alt && e.button == 0))) { _pan += e.delta; e.Use(); Repaint(); return; }
             if (EditorApplication.isPlayingOrWillChangePlaymode) return;
             if (e.alt || e.button != 0) return;
+            if (_editLayer == EditLayer.Occlusion)
+            {
+                HandleOcclusionCanvasInput(e);
+                return;
+            }
             Vector2 pixel = ScreenPixel(e.mousePosition);
             bool inside = _imageRect.Contains(e.mousePosition);
             if (e.type == EventType.MouseDown && inside)
@@ -450,6 +684,11 @@ namespace MmorpgClient.Editor.NavigationAuthoring
         private void HandleKeys()
         {
             var e = Event.current; if (e.type != EventType.KeyDown || EditorGUIUtility.editingTextField) return;
+            if (_editLayer == EditLayer.Occlusion)
+            {
+                HandleOcclusionKeys(e);
+                return;
+            }
             if (e.keyCode == KeyCode.Escape) { _pending.Clear(); _rectDragging = false; PendingChanged(); _status = "已取消未完成轮廓；已保存区域保持不变。"; e.Use(); }
             else if ((e.keyCode == KeyCode.Return || e.keyCode == KeyCode.KeypadEnter) && _pending.Count > 0) { Guard(CompletePolygon); e.Use(); }
             else if (e.keyCode == KeyCode.Backspace && _pending.Count > 0) { _pending.RemoveAt(_pending.Count - 1); PendingChanged(); e.Use(); }
@@ -495,6 +734,12 @@ namespace MmorpgClient.Editor.NavigationAuthoring
             if (_pending.Count > 0) Save();
             NavMeshAuthoringAssetIO.CheckSpawn(_draft);
             if (!NavMeshAuthoringAssetIO.IsBakeCurrent(_draft)) throw new InvalidOperationException("请先重新烘焙当前标注。");
+            string occlusionPreviewJson = null;
+            if (_occlusionDoc != null && !_occlusionDoc.IsEmpty)
+            {
+                occlusionPreviewJson = MapOcclusionAuthoringIO.BuildRuntimeJsonForPreview(_draft, _occlusionDoc);
+                if (_occlusionDirty) SaveOcclusionSidecar();
+            }
             Save(); ReleaseQuery();
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
             string directory = Path.GetDirectoryName(AssetDatabase.GetAssetPath(_draft)).Replace('\\', '/');
@@ -504,7 +749,9 @@ namespace MmorpgClient.Editor.NavigationAuthoring
             try
             {
                 var go = new GameObject("离线 NavMesh 试走"); SceneManager.MoveGameObjectToScene(go, scene);
-                go.AddComponent<NavMeshDraftPreview>().draft = _draft;
+                var preview = go.AddComponent<NavMeshDraftPreview>();
+                preview.draft = _draft;
+                preview.occlusionJsonText = occlusionPreviewJson;
                 EditorSceneManager.SaveScene(scene, path);
             }
             finally { EditorSceneManager.CloseScene(scene, true); if (active.IsValid()) SceneManager.SetActiveScene(active); }
@@ -567,8 +814,283 @@ namespace MmorpgClient.Editor.NavigationAuthoring
             }
             ReleaseQuery(); _draft = draft; _selected = _vertex = -1; _fit = true;
             _areaDiagnostics.Clear(); _pendingDiagnostic = null;
+            _occlusionDoc = draft != null ? MapOcclusionAuthoringIO.LoadOrCreate(draft) : null;
+            _occlusionPending.Clear();
+            _occlusionPendingDiagnostic = null;
+            _occlusionSelected = _fadeZoneSelected = _occlusionVertex = -1;
+            _occlusionDirty = false;
             _status = draft == null ? "请选择草稿。" : "已打开草稿，选择描绘工具开始。";
             EditorUtility.SetDirty(this); Repaint();
+        }
+
+        private void HandleOcclusionCanvasInput(Event e)
+        {
+            if (_occlusionDoc == null) _occlusionDoc = MapOcclusionAuthoringIO.LoadOrCreate(_draft);
+            Vector2 pixel = ScreenPixel(e.mousePosition);
+            bool inside = _imageRect.Contains(e.mousePosition);
+            if (e.type == EventType.MouseDown && inside)
+            {
+                GUI.FocusControl(null);
+                switch (_occlusionTool)
+                {
+                    case OcclusionTool.OccluderPolygon:
+                    case OcclusionTool.FadeZonePolygon:
+                        if (e.clickCount == 2 && _occlusionPending.Count >= 3) Guard(CompleteOcclusionPolygon);
+                        else if (_occlusionPending.Count == 0 || Vector2.Distance(_occlusionPending[_occlusionPending.Count - 1], pixel) * _zoom > 3)
+                        {
+                            if (_occlusionPending.Count == 0) _occlusionPendingIsFadeZone = _occlusionTool == OcclusionTool.FadeZonePolygon;
+                            _occlusionPending.Add(pixel);
+                            _occlusionPendingDiagnostic = null;
+                            EditorUtility.SetDirty(this);
+                        }
+                        break;
+                    case OcclusionTool.OccluderRect:
+                        _rectStart = _rectEnd = pixel;
+                        _rectDragging = true;
+                        break;
+                    case OcclusionTool.Baseline:
+                        if (_occlusionSelected < 0 || _occlusionSelected >= _occlusionDoc.occluders.Count)
+                        {
+                            _status = "请先在左侧列表选中一个前景遮挡体，再拖动接地线。";
+                        }
+                        else
+                        {
+                            _baselineStart = _baselineEnd = pixel;
+                            _baselineDragging = true;
+                        }
+                        break;
+                    case OcclusionTool.Vertices:
+                        BeginOcclusionVertex(e.mousePosition, pixel, e.shift);
+                        break;
+                }
+                e.Use(); Repaint();
+            }
+            else if (e.type == EventType.MouseDrag)
+            {
+                if (_rectDragging) _rectEnd = pixel;
+                if (_baselineDragging) _baselineEnd = pixel;
+                if (_vertexDragging && _occlusionVertex >= 0)
+                {
+                    var pts = SelectedOcclusionPoints();
+                    if (pts != null && _occlusionVertex < pts.Count)
+                    {
+                        pts[_occlusionVertex] = pixel;
+                        _occlusionDirty = true;
+                        EditorUtility.SetDirty(this);
+                    }
+                }
+                e.Use(); Repaint();
+            }
+            else if (e.type == EventType.MouseUp)
+            {
+                if (_rectDragging)
+                {
+                    _rectDragging = false;
+                    Guard(() => AddOccluderPolygon(Rectangle(_rectStart, pixel)));
+                }
+                if (_baselineDragging)
+                {
+                    _baselineDragging = false;
+                    if (_occlusionSelected >= 0 && _occlusionSelected < _occlusionDoc.occluders.Count)
+                    {
+                        var item = _occlusionDoc.occluders[_occlusionSelected];
+                        EditOcclusion("设置遮挡接地线", () =>
+                        {
+                            item.customBaseline = true;
+                            item.baselineP0 = _baselineStart;
+                            item.baselineP1 = _baselineEnd;
+                        });
+                        _status = "已更新遮挡接地线（青色线段）。";
+                    }
+                }
+                if (_vertexDragging)
+                {
+                    _vertexDragging = false;
+                    var pts = SelectedOcclusionPoints();
+                    if (pts != null) Guard(() => NavigationPolygonGeometry.ValidatePolygon(pts));
+                }
+                e.Use(); Repaint();
+            }
+        }
+
+        private void HandleOcclusionKeys(Event e)
+        {
+            if (e.keyCode == KeyCode.Escape)
+            {
+                _occlusionPending.Clear();
+                _occlusionPendingDiagnostic = null;
+                _rectDragging = false;
+                _baselineDragging = false;
+                _status = "已取消未完成的遮挡/半透明轮廓。";
+                e.Use(); Repaint();
+            }
+            else if ((e.keyCode == KeyCode.Return || e.keyCode == KeyCode.KeypadEnter) && _occlusionPending.Count > 0)
+            {
+                Guard(CompleteOcclusionPolygon);
+                e.Use();
+            }
+            else if (e.keyCode == KeyCode.Backspace && _occlusionPending.Count > 0)
+            {
+                _occlusionPending.RemoveAt(_occlusionPending.Count - 1);
+                _occlusionPendingDiagnostic = null;
+                e.Use(); Repaint();
+            }
+            else if (e.keyCode == KeyCode.Delete && _occlusionTool == OcclusionTool.Vertices && _occlusionVertex >= 0)
+            {
+                var pts = SelectedOcclusionPoints();
+                if (pts != null && pts.Count > 3 && _occlusionVertex < pts.Count)
+                {
+                    int removeAt = _occlusionVertex;
+                    EditOcclusion("删除遮挡顶点", () => pts.RemoveAt(removeAt));
+                    _occlusionVertex = -1;
+                    e.Use();
+                }
+            }
+        }
+
+        private List<Vector2> SelectedOcclusionPoints()
+        {
+            if (_occlusionDoc == null) return null;
+            if (_occlusionSelected >= 0 && _occlusionSelected < _occlusionDoc.occluders.Count)
+                return _occlusionDoc.occluders[_occlusionSelected].points;
+            if (_fadeZoneSelected >= 0 && _fadeZoneSelected < _occlusionDoc.fadeZones.Count)
+                return _occlusionDoc.fadeZones[_fadeZoneSelected].points;
+            return null;
+        }
+
+        private void BeginOcclusionVertex(Vector2 screen, Vector2 pixel, bool insert)
+        {
+            float best = 12f;
+            int foundOccluder = -1, foundFadeZone = -1, foundPoint = -1;
+            for (int i = 0; i < _occlusionDoc.occluders.Count; i++)
+                CheckVertexCandidate(_occlusionDoc.occluders[i].points, screen, insert, ref best, i, -1, ref foundOccluder, ref foundFadeZone, ref foundPoint);
+            for (int i = 0; i < _occlusionDoc.fadeZones.Count; i++)
+                CheckVertexCandidate(_occlusionDoc.fadeZones[i].points, screen, insert, ref best, -1, i, ref foundOccluder, ref foundFadeZone, ref foundPoint);
+
+            if (foundPoint < 0) return;
+            _occlusionSelected = foundOccluder;
+            _fadeZoneSelected = foundFadeZone;
+            var pts = SelectedOcclusionPoints();
+            if (pts == null) return;
+            Undo.RecordObject(this, insert ? "插入遮挡顶点" : "移动遮挡顶点");
+            if (insert)
+            {
+                pts.Insert(foundPoint + 1, pixel);
+                _occlusionVertex = foundPoint + 1;
+                _occlusionDirty = true;
+            }
+            else
+            {
+                _occlusionVertex = foundPoint;
+            }
+            _vertexDragging = true;
+            EditorUtility.SetDirty(this);
+        }
+
+        private void CheckVertexCandidate(
+            List<Vector2> points, Vector2 screen, bool insert, ref float best,
+            int occluderIdx, int fadeIdx, ref int foundOccluder, ref int foundFadeZone, ref int foundPoint)
+        {
+            for (int j = 0; j < points.Count; j++)
+            {
+                Vector2 a = PixelScreen(points[j]);
+                Vector2 b = PixelScreen(points[(j + 1) % points.Count]);
+                float dist = insert && (a - b).sqrMagnitude > .000001f
+                    ? HandleUtility.DistancePointToLineSegment(screen, a, b)
+                    : Vector2.Distance(screen, a);
+                if (dist < best)
+                {
+                    best = dist;
+                    foundOccluder = occluderIdx;
+                    foundFadeZone = fadeIdx;
+                    foundPoint = j;
+                }
+            }
+        }
+
+        private void CompleteOcclusionPolygon()
+        {
+            _occlusionPendingDiagnostic = InspectPolygon(_occlusionPending);
+            if (!_occlusionPendingDiagnostic.valid)
+            {
+                _status = "轮廓未完成：" + DiagnosticText(_occlusionPendingDiagnostic, _occlusionPending.Count) + "。可退格撤点修正。";
+                Repaint();
+                return;
+            }
+
+            var points = new List<Vector2>(_occlusionPending);
+            if (_occlusionPendingIsFadeZone) AddFadeZonePolygon(points);
+            else AddOccluderPolygon(points);
+            _occlusionPending.Clear();
+            _occlusionPendingDiagnostic = null;
+            _status = "遮挡/半透明轮廓已添加；点击“保存遮挡草稿”保存。";
+        }
+
+        private void AddOccluderPolygon(List<Vector2> points)
+        {
+            NavigationPolygonGeometry.ValidatePolygon(points);
+            string id = NextUniqueId("occluder", _occlusionDoc.occluders.Select(o => o.id));
+            int labelNo = _occlusionDoc.occluders.Count + 1;
+            EditOcclusion("添加前景遮挡体", () => _occlusionDoc.occluders.Add(new MapOcclusionAuthoringIO.EditableOccluder
+            {
+                id = id,
+                name = $"遮挡体{labelNo}",
+                showSilhouette = true,
+                points = points
+            }));
+            _occlusionSelected = _occlusionDoc.occluders.Count - 1;
+            _fadeZoneSelected = -1;
+        }
+
+        private void AddFadeZonePolygon(List<Vector2> points)
+        {
+            NavigationPolygonGeometry.ValidatePolygon(points);
+            string id = NextUniqueId("fade_zone", _occlusionDoc.fadeZones.Select(z => z.id));
+            int labelNo = _occlusionDoc.fadeZones.Count + 1;
+            EditOcclusion("添加区域半透明", () => _occlusionDoc.fadeZones.Add(new MapOcclusionAuthoringIO.EditableFadeZone
+            {
+                id = id,
+                name = $"半透明区{labelNo}",
+                targetAlpha = 0.5f,
+                fadeDurationSec = 0.2f,
+                points = points
+            }));
+            _fadeZoneSelected = _occlusionDoc.fadeZones.Count - 1;
+            _occlusionSelected = -1;
+        }
+
+        private static string NextUniqueId(string prefix, IEnumerable<string> existing)
+        {
+            var used = new HashSet<string>(existing, StringComparer.Ordinal);
+            for (int n = 1; ; n++)
+            {
+                string candidate = $"{prefix}_{n:000}";
+                if (!used.Contains(candidate)) return candidate;
+            }
+        }
+
+        private void SaveOcclusionSidecar()
+        {
+            string savedPath = MapOcclusionAuthoringIO.SaveSidecar(_draft, _occlusionDoc);
+            _occlusionDirty = false;
+            _status = "遮挡草稿已保存（未改动 NavMesh）：" + savedPath;
+        }
+
+        private void ExportOcclusionJson()
+        {
+            string file = EditorUtility.SaveFilePanel("导出运行用 occlusion.json", Path.GetFullPath("Assets/Resources/World"), "occlusion", "json");
+            if (string.IsNullOrEmpty(file)) return;
+            string written = MapOcclusionAuthoringIO.ExportRuntimeJson(_draft, _occlusionDoc, file);
+            _status = "已校验并导出 occlusion.json：" + written;
+        }
+
+        private void EditOcclusion(string label, Action change)
+        {
+            Undo.RecordObject(this, label);
+            change();
+            _occlusionDirty = true;
+            EditorUtility.SetDirty(this);
+            Repaint();
         }
         private void Edit(string label, Action change) { Undo.RecordObject(_draft, label); change(); Changed(); }
         private void Changed() { _areaDiagnostics.Clear(); EditorUtility.SetDirty(_draft); InvalidateView(); Repaint(); }

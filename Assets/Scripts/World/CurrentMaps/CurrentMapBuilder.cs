@@ -1,4 +1,5 @@
 using System;
+using MmorpgClient.World.Occlusion;
 using MmorpgClient.World.Tianyong;
 using UnityEngine;
 
@@ -54,6 +55,7 @@ namespace MmorpgClient.World.CurrentMaps
                 renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 renderer.receiveShadows = false;
                 instance.ConfigureCurrentMapTiles(definition);
+                instance.SetOcclusion(MapOcclusionRenderer.TryAttachFromResources(root, definition.ResourceFolder, definition.WorldRect));
                 return instance;
             }
             catch
@@ -119,6 +121,7 @@ namespace MmorpgClient.World.CurrentMaps
                     renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                     renderer.receiveShadows = false;
                 }
+                instance.SetOcclusion(MapOcclusionRenderer.TryAttachFromResources(root, item.textureResourceRoot, item.worldRect));
                 return instance;
             }
             catch

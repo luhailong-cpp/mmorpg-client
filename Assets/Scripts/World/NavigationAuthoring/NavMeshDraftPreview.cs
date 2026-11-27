@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MmorpgClient.World.Occlusion;
 using UnityEngine;
 using UnityEngine.AI;
 using UVector3 = UnityEngine.Vector3;
@@ -11,6 +12,7 @@ namespace MmorpgClient.World.NavigationAuthoring
     public sealed class NavMeshDraftPreview : MonoBehaviour
     {
         public NavMeshAuthoringDraft draft;
+        [TextArea(2, 6)] public string occlusionJsonText;
         private NavMeshAuthoringDraft _runtimeDraft;
 
         private readonly List<Mesh> _meshes = new List<Mesh>();
@@ -20,6 +22,7 @@ namespace MmorpgClient.World.NavigationAuthoring
         private Camera _camera;
         private NavMeshAgent _agent;
         private LineRenderer _line;
+        private MapOcclusionRenderer _occlusionRenderer;
         private NavMeshDataInstance _ownedData;
         private NavMeshQueryFilter _filter;
         private Vector2 _focus;
@@ -71,9 +74,17 @@ namespace MmorpgClient.World.NavigationAuthoring
         {
             _root = new GameObject("[NavMeshDraftPreview]");
             BuildBackground();
-            BuildAgent();
+            BuildOcclusion();
             BuildCamera();
+            BuildAgent();
             BuildPathLine();
+        }
+
+        private void BuildOcclusion()
+        {
+            if (string.IsNullOrWhiteSpace(occlusionJsonText)) return;
+            var data = MapOcclusionData.Parse(occlusionJsonText);
+            _occlusionRenderer = MapOcclusionRenderer.Attach(_root, data, _runtimeDraft.worldRect);
         }
 
         private void BuildBackground()
@@ -176,22 +187,29 @@ namespace MmorpgClient.World.NavigationAuthoring
             var material = new Material(shader) { name = "NavDraftPlayer", color = new Color(1f, .24f, .08f, 1f) };
             _materials.Add(material);
             _markerRadius = Mathf.Max(_runtimeDraft.agentRadius, Mathf.Min(_runtimeDraft.worldRect.width, _runtimeDraft.worldRect.height) * .004f);
-            var marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            marker.name = "[NavMeshAgentMarker]";
-            marker.transform.SetParent(agentObject.transform, false);
-            marker.transform.localPosition = UVector3.up * (_markerRadius + .02f);
-            marker.transform.localScale = UVector3.one * (_markerRadius * 2f);
-            var collider = marker.GetComponent<Collider>();
-            if (collider != null) { collider.enabled = false; Destroy(collider); }
-            marker.GetComponent<Renderer>().sharedMaterial = material;
+            bool attachedSpriteActor = _occlusionRenderer != null && QdaoBoySpriteAnimator.TryAttach(agentObject);
+            if (!attachedSpriteActor)
+            {
+                var marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                marker.name = "[NavMeshAgentMarker]";
+                marker.transform.SetParent(agentObject.transform, false);
+                marker.transform.localPosition = UVector3.up * (_markerRadius + .02f);
+                marker.transform.localScale = UVector3.one * (_markerRadius * 2f);
+                var collider = marker.GetComponent<Collider>();
+                if (collider != null) { collider.enabled = false; Destroy(collider); }
+                marker.GetComponent<Renderer>().sharedMaterial = material;
+            }
         }
 
         private void BuildCamera()
         {
             var go = new GameObject("[NavMeshDraftCamera]", typeof(Camera));
+            if (Camera.main == null) go.tag = "MainCamera";
             go.transform.SetParent(_root.transform, false);
             _camera = go.GetComponent<Camera>();
             _camera.orthographic = true;
+            _camera.transparencySortMode = TransparencySortMode.CustomAxis;
+            _camera.transparencySortAxis = UVector3.forward;
             _camera.clearFlags = CameraClearFlags.SolidColor;
             _camera.backgroundColor = new Color(.12f, .14f, .14f);
             _camera.nearClipPlane = .01f;
@@ -299,8 +317,11 @@ namespace MmorpgClient.World.NavigationAuthoring
             if (!_agent.hasPath || _agent.pathPending) { _line.positionCount = 0; return; }
             UVector3[] corners = _agent.path.corners;
             _line.positionCount = corners.Length;
+            float lift = _occlusionRenderer != null
+                ? OcclusionDepthMapper.LabelClearanceY + 0.1f
+                : Mathf.Max(.02f, _markerRadius * .1f);
             for (int i = 0; i < corners.Length; i++)
-                _line.SetPosition(i, corners[i] + UVector3.up * Mathf.Max(.02f, _markerRadius * .1f));
+                _line.SetPosition(i, corners[i] + UVector3.up * lift);
         }
 
         private void ClearPath()
@@ -349,6 +370,11 @@ namespace MmorpgClient.World.NavigationAuthoring
             IsReady = false;
             if (_agent != null) _agent.enabled = false;
             if (_ownedData.valid) _ownedData.Remove();
+            if (_occlusionRenderer != null)
+            {
+                _occlusionRenderer.DisposeOwnedResources();
+                _occlusionRenderer = null;
+            }
             if (_root != null) Destroy(_root);
             _root = null; _camera = null; _agent = null; _line = null;
             foreach (var mesh in _meshes) if (mesh != null) Destroy(mesh);

@@ -33,11 +33,6 @@ namespace MmorpgClient.UI.Ugui.Battle
     {
         public static BattleUiRoot Instance { get; private set; }
 
-        /// <summary>论剑排位结算接管钩子（RankedUiRoot 注册；返回 true 时由论剑结算页接管展示）。</summary>
-        public static System.Func<BattleEndS2C, uint, bool> InterceptRankedBattleEnd;
-        /// <summary>重登补查的论剑排位结算接管钩子（RankedUiRoot 注册）。</summary>
-        public static System.Func<PlayerBattleResult, bool> InterceptRankedRecoveredResult;
-
         /// <summary>
         /// 全局 toast 文字矩形(设计坐标,y 向下;ToastRoot 在战斗层之上)。战斗屏内的居中常驻提示
         /// (直连横幅 <see cref="BattleScreen.ChannelBannerRect"/>)必须让开这一带,否则 toast 期间叠字。
@@ -156,6 +151,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 return;
             }
             Instance = this;
+            MmorpgClient.Game.UiDomainEvents.ToastRequested += HandleToastRequested;
         }
 
         private void Update()
@@ -215,6 +211,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void OnDestroy()
         {
+            MmorpgClient.Game.UiDomainEvents.ToastRequested -= HandleToastRequested;
             OnDisable();
             _queuePanel?.Hide();
             _spectatePanel?.Hide();
@@ -1234,7 +1231,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void ShowResult(BattleEndS2C end)
         {
             uint localTeam = _battleScreen?.MyTeamIndex ?? 0;
-            if (end != null && InterceptRankedBattleEnd != null && InterceptRankedBattleEnd(end, localTeam))
+            if (MmorpgClient.Game.UiDomainEvents.TryInterceptRankedBattleEnd(end, localTeam))
             {
                 CoreGameplayUiRoot.Instance?.HideBattleSettlement();
                 _resultShowing = true;
@@ -1328,7 +1325,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             var result = _recoveredResults.Dequeue();
             CoreGameplayUiRoot.Instance?.HideBattleSettlement();
             FestivalBeast.FestivalBeastUiRoot.Instance?.HideBattleSettlement();
-            if (InterceptRankedRecoveredResult != null && InterceptRankedRecoveredResult(result))
+            if (MmorpgClient.Game.UiDomainEvents.TryInterceptRankedRecoveredResult(result))
             {
                 _resultShowing = true;
                 _recoveredShowingId = result.BattleId;
@@ -1524,6 +1521,12 @@ namespace MmorpgClient.UI.Ugui.Battle
         }
 
         // ── toast ───────────────────────────────────────────
+
+        private void HandleToastRequested(MmorpgClient.Game.ToastNoticeEvent ev)
+        {
+            if (_stopping) return;
+            ShowToast(ev.Message, ev.IsError);
+        }
 
         public void ShowToast(string message, bool isError = false)
         {

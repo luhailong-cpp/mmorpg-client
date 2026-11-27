@@ -83,18 +83,15 @@ namespace MmorpgClient.UI.Ugui.Ranked
             }
             Instance = this;
             CityPanelRegistry.Register(this, HideLobbyOnly);
-            BattleUiRoot.InterceptRankedBattleEnd = HandleInterceptedBattleEnd;
-            BattleUiRoot.InterceptRankedRecoveredResult = HandleInterceptedRecoveredResult;
+            UiDomainEvents.RegisterRankedSettlementHandlers(HandleInterceptedBattleEnd, HandleInterceptedRecoveredResult);
             Build();
         }
 
         private void OnDestroy()
         {
+            CityPanelRegistry.Unregister(this);
             UnbindClients();
-            if (BattleUiRoot.InterceptRankedBattleEnd == HandleInterceptedBattleEnd)
-                BattleUiRoot.InterceptRankedBattleEnd = null;
-            if (BattleUiRoot.InterceptRankedRecoveredResult == HandleInterceptedRecoveredResult)
-                BattleUiRoot.InterceptRankedRecoveredResult = null;
+            UiDomainEvents.UnregisterRankedSettlementHandlers(HandleInterceptedBattleEnd, HandleInterceptedRecoveredResult);
             if (Instance == this) Instance = null;
         }
 

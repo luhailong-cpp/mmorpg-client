@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using Match;
 
@@ -424,16 +425,25 @@ namespace MmorpgClient.Game.Tournament
         {
             Season = season;
             MySquad = mySquad;
-            PendingInvites = pendingInvites;
+            PendingInvites = FreezeList(pendingInvites);
             MyActiveMatch = myActiveMatch;
-            FeaturedMatches = featuredMatches;
+            FeaturedMatches = FreezeList(featuredMatches);
             MyCheeredSquadId = myCheeredSquadId;
             MyCheeredSquadName = myCheeredSquadName ?? string.Empty;
-            RewardTiers = rewardTiers;
-            MyRewards = myRewards;
-            HallOfFame = hallOfFame;
+            RewardTiers = FreezeList(rewardTiers);
+            MyRewards = FreezeList(myRewards);
+            HallOfFame = FreezeList(hallOfFame);
             ServerTimeMs = serverTimeMs;
             CapturedAtLocalSeconds = capturedAtLocalSeconds;
+        }
+
+        private static IReadOnlyList<T> FreezeList<T>(IReadOnlyList<T> source)
+        {
+            if (source == null || source.Count == 0) return Array.AsReadOnly(Array.Empty<T>());
+            if (source is ReadOnlyCollection<T>) return source;
+            var copy = new T[source.Count];
+            for (int i = 0; i < source.Count; i++) copy[i] = source[i];
+            return Array.AsReadOnly(copy);
         }
 
         public static TournamentOverviewSnapshot FromResponse(GetTournamentOverviewResponse resp, float localSeconds)

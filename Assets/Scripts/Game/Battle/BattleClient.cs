@@ -51,7 +51,7 @@ namespace MmorpgClient.Game.Battle
     ///  - 响应/推送里的 TipInfoMessage 错误统一走 OnError(照 GameClient 的 tip 处理,
     ///    Call 层的 MessageContent.ErrorMessage 也由 GameClient 折算成 "server tip=N" 进 onError)。
     /// </summary>
-    public sealed class BattleClient
+    public sealed class BattleClient : IDisposable
     {
         /// <summary>
         /// 单例挂接:与 GameClient 模式一致 —— 实例由 GameClient 构造时创建并持有
@@ -228,9 +228,11 @@ namespace MmorpgClient.Game.Battle
 
         private readonly System.Collections.Generic.List<BattleTacticalPing> _teamPings =
             new System.Collections.Generic.List<BattleTacticalPing>();
+        private readonly System.Collections.ObjectModel.ReadOnlyCollection<BattleTacticalPing> _teamPingsView;
+        private bool _disposed;
 
         /// <summary>论剑 V4 本队当前有效战术标点列表（按发送者去重，回合推进自动清空，敌方与观众恒为空）。</summary>
-        public System.Collections.Generic.IReadOnlyList<BattleTacticalPing> CurrentTeamPings => _teamPings;
+        public System.Collections.Generic.IReadOnlyList<BattleTacticalPing> CurrentTeamPings => _teamPingsView;
 
         /// <summary>本局队内战术标点本地静音开关（仅隐藏本地展示，不影响服务端）。</summary>
         public bool TeamPingsMuted { get; set; }
@@ -417,6 +419,7 @@ namespace MmorpgClient.Game.Battle
                 random01 = rng.NextDouble;
             }
             _random01 = random01;
+            _teamPingsView = _teamPings.AsReadOnly();
             RegisterNotifies();
             _net.Disconnected += HandleDisconnected;
             if (_channel != null)
@@ -424,6 +427,26 @@ namespace MmorpgClient.Game.Battle
                 _channel.Ready += HandleChannelReady;
                 _channel.Lost += HandleChannelLost;
             }
+        }
+
+        public void Dispose()
+        {
+            if (_disposed) return;
+            _disposed = true;
+            _net.Disconnected -= HandleDisconnected;
+            if (_channel != null)
+            {
+                _channel.Ready -= HandleChannelReady;
+                _channel.Lost -= HandleChannelLost;
+            }
+            RegionProbe?.Dispose();
+            ++_queueSession;
+            ++_queueGeneration;
+            _battleId = 0;
+            _endPendingBattleId = 0;
+            _teamPings.Clear();
+            _lastUsedSkillByActor.Clear();
+            if (ReferenceEquals(Instance, this)) Instance = null;
         }
 
         /// <summary>生产入口:创建实例并登记为单例(GameClient 构造时调用)。channel 语义同构造函数。</summary>
@@ -1398,23 +1421,23 @@ namespace MmorpgClient.Game.Battle
         private void RegisterNotifies()
         {
             _net.RegisterNotify(MessageIds.NotifyBattleStart,
-                mc => HandleBattleStart(BattleStartS2C.Parser.ParseFrom(mc.SerializedMessage)));
+                mc => { if (!_disposed) HandleBattleStart(BattleStartS2C.Parser.ParseFrom(mc.SerializedMessage)); });
             _net.RegisterNotify(MessageIds.NotifyTurnResult,
-                mc => HandleTurnResult(TurnResultS2C.Parser.ParseFrom(mc.SerializedMessage)));
+                mc => { if (!_disposed) HandleTurnResult(TurnResultS2C.Parser.ParseFrom(mc.SerializedMessage)); });
             _net.RegisterNotify(MessageIds.NotifyBattleEnd,
-                mc => HandleBattleEnd(BattleEndS2C.Parser.ParseFrom(mc.SerializedMessage)));
+                mc => { if (!_disposed) HandleBattleEnd(BattleEndS2C.Parser.ParseFrom(mc.SerializedMessage)); });
             _net.RegisterNotify(MessageIds.NotifyBattleReconnect,
-                mc => HandleBattleReconnect(BattleReconnectS2C.Parser.ParseFrom(mc.SerializedMessage)));
+                mc => { if (!_disposed) HandleBattleReconnect(BattleReconnectS2C.Parser.ParseFrom(mc.SerializedMessage)); });
             _net.RegisterNotify(MessageIds.NotifySurrenderVote,
-                mc => HandleSurrenderVote(SurrenderVoteS2C.Parser.ParseFrom(mc.SerializedMessage)));
+                mc => { if (!_disposed) HandleSurrenderVote(SurrenderVoteS2C.Parser.ParseFrom(mc.SerializedMessage)); });
             _net.RegisterNotify(MessageIds.NotifyBattlePrepUpdate,
-                mc => HandleBattlePrepUpdate(BattlePrepUpdateS2C.Parser.ParseFrom(mc.SerializedMessage)));
+                mc => { if (!_disposed) HandleBattlePrepUpdate(BattlePrepUpdateS2C.Parser.ParseFrom(mc.SerializedMessage)); });
             _net.RegisterNotify(MessageIds.NotifyBattlePing,
-                mc => HandleBattlePing(BattlePingS2C.Parser.ParseFrom(mc.SerializedMessage)));
+                mc => { if (!_disposed) HandleBattlePing(BattlePingS2C.Parser.ParseFrom(mc.SerializedMessage)); });
             _net.RegisterNotify(MessageIds.NotifyChallengeInvite,
-                mc => OnChallengeInvite?.Invoke(Match.ChallengeInviteS2C.Parser.ParseFrom(mc.SerializedMessage)));
+                mc => { if (!_disposed) OnChallengeInvite?.Invoke(Match.ChallengeInviteS2C.Parser.ParseFrom(mc.SerializedMessage)); });
             _net.RegisterNotify(MessageIds.NotifyChallengeResult,
-                mc => HandleChallengeResult(Match.ChallengeResultS2C.Parser.ParseFrom(mc.SerializedMessage)));
+                mc => { if (!_disposed) HandleChallengeResult(Match.ChallengeResultS2C.Parser.ParseFrom(mc.SerializedMessage)); });
             // 注意:不注册 MessageIds.TipToClient —— 那是 GameClient 场景层的
             // 全局提示通道(OnNotify 同 id 只保留最后一次注册,抢注会踩掉场景处理)。
         }
@@ -1683,12 +1706,12 @@ namespace MmorpgClient.Game.Battle
                 {
                     if (Equals(_teamPings[i], clone)) return;
                     _teamPings[i] = clone;
-                    OnTeamPingsChanged?.Invoke(_teamPings);
+                    OnTeamPingsChanged?.Invoke(_teamPingsView);
                     return;
                 }
             }
             _teamPings.Add(clone);
-            OnTeamPingsChanged?.Invoke(_teamPings);
+            OnTeamPingsChanged?.Invoke(_teamPingsView);
         }
 
         private void ApplyTeamPings(System.Collections.Generic.IEnumerable<BattleTacticalPing> pings)
@@ -1702,7 +1725,7 @@ namespace MmorpgClient.Game.Battle
                     if (p != null && p.SenderPlayerId != 0) _teamPings.Add(p.Clone());
                 }
             }
-            if (hadAny || _teamPings.Count > 0) OnTeamPingsChanged?.Invoke(_teamPings);
+            if (hadAny || _teamPings.Count > 0) OnTeamPingsChanged?.Invoke(_teamPingsView);
         }
 
         /// <summary>

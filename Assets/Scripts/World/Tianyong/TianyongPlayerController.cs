@@ -263,7 +263,7 @@ namespace MmorpgClient.World.Tianyong
             _nextControlledHintAt = now + ControlledHintIntervalSeconds;
             const string message = "当前处于沉默/受控状态，无法自由移动";
             NavigationRejected?.Invoke(message);
-            MmorpgClient.UI.Ugui.Battle.BattleUiRoot.Instance?.ShowToast(message, true);
+            UiDomainEvents.PublishToast(message, isError: true);
         }
 
         private void ConfigureMotor(IMapNavigation navigation)
@@ -663,7 +663,11 @@ namespace MmorpgClient.World.Tianyong
             if (!SetDestination(groundPoint))
             {
                 if (_navigation != null && _navigation.IsAuthoredFlat && !_serverDriven)
-                    MmorpgClient.UI.Ugui.Battle.BattleUiRoot.Instance?.ShowToast("目标不可到达", true);
+                {
+                    const string message = "目标不可到达";
+                    NavigationRejected?.Invoke(message);
+                    UiDomainEvents.PublishToast(message, isError: true);
+                }
                 return false;
             }
             TianyongClickMarker.Spawn(_path[^1], _camera);
