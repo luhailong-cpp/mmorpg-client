@@ -180,5 +180,30 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.IsFalse(client.SettingLoaded);
             Assert.IsFalse(client.ChatEnabled);
         }
+
+        [Test]
+        public void LocalMute_PausesTickPollingAndResumesCleanly()
+        {
+            var net = new FakeBattleTransport { PlayerId = 6006UL, IsReady = true };
+            double now = 200.0;
+            using var client = new BattleSpectateChatClient(net, () => "conn-1", () => now);
+
+            client.SyncBattleContext(8101UL, chatEnabled: true, pollingActive: true);
+            var pulls = net.CallsOf(MatchServiceRpc.PullBattleSpectateChatMessageId);
+            Assert.AreEqual(1, pulls.Count);
+            pulls[0].Respond(new PullBattleSpectateChatResponse { Enabled = true, LatestSeq = 1UL, ServerTimeMs = 200000UL });
+
+            // 本地静音：关闭轮询后多次 Tick 均不发拉取请求
+            client.SetPollingActive(false);
+            now = 210.0;
+            client.Tick(now);
+            now = 225.0;
+            client.Tick(now);
+            Assert.AreEqual(1, net.CallsOf(MatchServiceRpc.PullBattleSpectateChatMessageId).Count);
+
+            // 取消静音：立即恢复一次拉取
+            client.SetPollingActive(true);
+            Assert.AreEqual(2, net.CallsOf(MatchServiceRpc.PullBattleSpectateChatMessageId).Count);
+        }
     }
 }

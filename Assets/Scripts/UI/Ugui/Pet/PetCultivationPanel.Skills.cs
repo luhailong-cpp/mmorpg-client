@@ -12,7 +12,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void BuildSkills(float x, float width)
         {
-            Label("PetSkillsTitle", _body, x + 4f, 174f, width - 160f, 38f, "宝宝技能", 28f, Green);
+            Label("PetSkillsTitle", _body, x + 22f, 174f, width - 178f, 38f, "宝宝技能", 28f, Green);
             var state = SkillState;
             bool hasAuthority = state?.IsConnected == true && !state.IsReadOnly && state.Snapshot != null;
             var refresh = ActionButton("PetSkillsRefresh", _body, x + width - 132f, 172f, 132f, 40f, "刷新", false,
@@ -28,7 +28,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 int index = i;
                 ActionButton("PetSkillFilter" + i, _body, x + i * (categoryWidth + 12f), 220f,
                     categoryWidth, 42f, categories[i], _skillCategory == i,
-                    () => { _skillCategory = index; Render(); }, _skillCategory == i ? "mail_tab_selected" : "mail_tab_normal", 22f);
+                    () => { _skillCategory = index; Render(); }, _skillCategory == i ? "mail_tab_selected" : "button_secondary", 22f);
             }
 
             float listX = x, listW = Mathf.Floor((width - 20f) * .44f), detailX = listX + listW + 20f, detailW = width - listW - 20f;
@@ -47,8 +47,8 @@ namespace MmorpgClient.UI.Ugui.Pet
                 var button = ActionButton("PetSkill" + entry.Id, list, 0f, i * 78f, listW, 72f, "", isSelected,
                     () => { _selectedSkillId = entry.Id; Render(); }, isSelected ? "pet_card_selected" : "mail_row_normal");
                 var parent = (RectTransform)button.transform;
-                var icon = Art("PetSkillIcon" + entry.Id, parent, 12f, 8f, 56f, 56f, "stat_field");
-                icon.sprite = CharacterPetArt.Skill(entry.Id, 64);
+                var icon = Art("PetSkillIcon" + entry.Id, parent, 12f, 8f, 56f, 56f, "round_badge_taiji");
+                icon.sprite = CharacterPetArt.Skill(entry.Id, 64) ?? CharacterPetArt.Get("round_badge_taiji");
                 icon.preserveAspect = true;
                 // pet_card_selected（guild_row_self）为浅玉绿纸底，须用深玉绿/墨色保高对比度
                 Label("PetSkillName" + entry.Id, parent, 82f, 6f, listW - 96f, 34f, entry.Definition.name, 25f, isSelected ? Green : Ink);
@@ -73,8 +73,8 @@ namespace MmorpgClient.UI.Ugui.Pet
         private void BuildSkillDetail(SkillEntryState entry, SkillBookViewState state, float x, float width, float topY, float panelH)
         {
             var definition = entry.Definition;
-            var icon = Art("PetSelectedSkillIcon", _body, x + 22f, topY + 18f, 92f, 92f, "stat_field");
-            icon.sprite = CharacterPetArt.Skill(entry.Id, 128);
+            var icon = Art("PetSelectedSkillIcon", _body, x + 22f, topY + 18f, 92f, 92f, "round_badge_taiji");
+            icon.sprite = CharacterPetArt.Skill(entry.Id, 128) ?? CharacterPetArt.Get("round_badge_taiji");
             icon.preserveAspect = true;
             Label("PetSelectedSkillName", _body, x + 130f, topY + 20f, width - 150f, 46f, definition.name, 31f, Green);
             Label("PetSelectedSkillKind", _body, x + 130f, topY + 68f, width - 150f, 32f, definition.KindLabel + "技能", 21f, Muted);

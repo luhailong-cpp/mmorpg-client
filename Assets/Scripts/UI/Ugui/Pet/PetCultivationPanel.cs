@@ -404,8 +404,8 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void BuildFourStats(float x, float width)
         {
-            Label("FourStatsTitle", _body, x + 4f, 174f, 148f, 38f, "四维加点", 28f, Green);
-            _remaining = Label("FourStatsRemaining", _body, x + 164f, 174f, 300f, 38f, "剩余属性点 —", 25f, Green);
+            Label("FourStatsTitle", _body, x + 22f, 174f, 148f, 38f, "四维加点", 28f, Green);
+            _remaining = Label("FourStatsRemaining", _body, x + 182f, 174f, 300f, 38f, "剩余属性点 —", 25f, Green);
             _budget = Label("FourStatsBudget", _body, x + width - 468f, 178f, 464f, 32f, "", 20f, Muted, TextAlignmentOptions.MidlineRight);
 
             float rowX = x, rowW = width, current = rowW * .36f, increment = rowW * .61f, after = rowW * .86f;
@@ -517,8 +517,8 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void BuildUnavailableEntries(float x, float width)
         {
-            Label("EntryPointsTitle", _body, x + 4f, 174f, 118f, 38f, "条目点", 28f, Green);
-            GuildUiArt.Line(_body, "EntryHeadingRule", x + 114f, 193f, 128f);
+            Label("EntryPointsTitle", _body, x + 22f, 174f, 118f, 38f, "条目点", 28f, Green);
+            GuildUiArt.Line(_body, "EntryHeadingRule", x + 132f, 193f, 110f);
             Label("EntryPointsBudget", _body, x + 250f, 176f, width - 254f, 34f, "总点数 —       已用 —       剩余 —",
                 22f, Ink, TextAlignmentOptions.MidlineRight);
 
@@ -528,7 +528,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             {
                 int index = i;
                 ActionButton("EntryFilter" + i, _body, x + i * (catW + 12f), 220f, catW, 42f, categories[i], i == _entryCategory,
-                    () => { _entryCategory = index; Render(); }, i == _entryCategory ? "mail_tab_selected" : "mail_tab_normal", 22f);
+                    () => { _entryCategory = index; Render(); }, i == _entryCategory ? "mail_tab_selected" : "button_secondary", 22f);
             }
 
             float rowW = width, current = rowW * .43f, adjust = rowW * .68f, detail = rowW * .90f;
@@ -567,8 +567,8 @@ namespace MmorpgClient.UI.Ugui.Pet
         private void BuildAttributes(float x, float width)
         {
             var pet = Selected;
-            Label("PetOverviewTitle", _body, x + 4f, 174f, 260f, 38f, pet?.Name ?? "宝宝属性", 29f, Green);
-            GuildUiArt.Line(_body, "PetOverviewHeadingRule", x + 190f, 193f, width - 196f);
+            Label("PetOverviewTitle", _body, x + 22f, 174f, 260f, 38f, pet?.Name ?? "宝宝属性", 29f, Green);
+            GuildUiArt.Line(_body, "PetOverviewHeadingRule", x + 208f, 193f, width - 214f);
             var d = pet?.Derived;
             string[] names = { "气血", "法力", "物理攻击", "法术攻击", "防御", "速度" };
             string[] values = d == null ? Enumerable.Repeat("—", 6).ToArray() : new[] {
@@ -583,7 +583,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             bool isMaxTier = pet?.CultivationTier >= 5;
             float buttonWidth = isMaxTier ? 380f : 220f;
             Label("PetOverviewGrowth", _body, x + 8f, 608f, width - 16f, 32f,
-                pet == null ? "等级 —   成长率 —" : $"等级 {pet.Level}   ·   成长率 {pet.Growth / 100f:0.##}%   ·   灵阶：{(string.IsNullOrEmpty(pet.CultivationTierName) ? "—" : pet.CultivationTierName)}",
+                pet == null ? "等级 — · 成长率 —" : $"等级 {pet.Level} · 成长率 {pet.Growth / 100f:0.##}% · 灵阶：{(string.IsNullOrEmpty(pet.CultivationTierName) ? "—" : pet.CultivationTierName)}",
                 22f, Ink);
             if (pet != null)
             {
@@ -713,7 +713,8 @@ namespace MmorpgClient.UI.Ugui.Pet
             if (clicked != null) button.onClick.AddListener(() => clicked());
             if (!string.IsNullOrEmpty(text))
             {
-                float padX = w >= 160f ? 18f : w >= 100f ? 12f : 6f;
+                bool ornatePrimary = primary && (key == null || key == "button_primary" || key == "guild_button_primary");
+                float padX = ornatePrimary ? (w >= 190f ? 28f : 24f) : w >= 160f ? 18f : w >= 100f ? 12f : 6f;
                 Label(name + "Text", art.rectTransform, padX, 2f, Mathf.Max(20f, w - padX * 2f), Mathf.Max(20f, h - 4f),
                     text, fontSize, primary ? Cream : Ink, TextAlignmentOptions.Center,
                     wrap: false, autoSize: autoSize, minSize: Mathf.Max(14f, fontSize - 7f), emphasized: primary);

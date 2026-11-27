@@ -68,40 +68,40 @@ namespace MmorpgClient.UI.EditorTools
                 var snap = new SkillBookSnapshot { CurrencyBalance = 8600 };
                 snap.Entries.Add(new SkillEntryState
                 {
-                    Id = 1101, Rank = 5, RankLimit = 10, NextRankCost = 360,
+                    Id = 10002, Rank = 5, RankLimit = 10, NextRankCost = 360,
                     Definition = new SkillDefinition
                     {
-                        id = 1101, name = "破阵惊锋", type = "active", category = "主动", actionTags = 1,
+                        id = 10002, name = "横戈裂岳", type = "active", category = "主动", actionTags = 1,
                         maxRank = 10, targetTeam = "enemy", maxTargets = 1, manaPercent = 0.04,
                         description = "凝气化刃直击敌方前排，造成高额物理伤害并附带破甲效果。"
                     }
                 });
                 snap.Entries.Add(new SkillEntryState
                 {
-                    Id = 2101, Rank = 4, RankLimit = 10, NextRankCost = 280,
+                    Id = 10006, Rank = 4, RankLimit = 10, NextRankCost = 280,
                     Definition = new SkillDefinition
                     {
-                        id = 2101, name = "霜华灵诀", type = "active", category = "主动", actionTags = 1,
+                        id = 10006, name = "霜华灵诀", type = "active", category = "主动", actionTags = 1,
                         maxRank = 10, targetTeam = "enemy", maxTargets = 3, manaPercent = 0.08,
                         description = "召玄冰灵符席卷敌方三名目标，造成法术伤害并降低速度。"
                     }
                 });
                 snap.Entries.Add(new SkillEntryState
                 {
-                    Id = 3101, Rank = 3, RankLimit = 8, NextRankCost = 220,
+                    Id = 10010, Rank = 3, RankLimit = 8, NextRankCost = 220,
                     Definition = new SkillDefinition
                     {
-                        id = 3101, name = "青莲润心", type = "active", category = "辅助", actionTags = 4,
+                        id = 10010, name = "青莲润心", type = "active", category = "辅助", actionTags = 4,
                         maxRank = 8, targetTeam = "ally", maxTargets = 2, manaPercent = 0.06, durationRounds = 2,
                         description = "挥洒青莲生机，为气血最低的两名友方恢复生命并附加护盾。"
                     }
                 });
                 snap.Entries.Add(new SkillEntryState
                 {
-                    Id = 4101, Rank = 2, RankLimit = 8, NextRankCost = 180,
+                    Id = 13001, Rank = 2, RankLimit = 8, NextRankCost = 180,
                     Definition = new SkillDefinition
                     {
-                        id = 4101, name = "灵狐敏捷", type = "passive", category = "被动", originLabel = "追击", actionTags = 8,
+                        id = 13001, name = "灵狐追击", type = "passive", category = "被动", originLabel = "追击", actionTags = 8,
                         maxRank = 8, targetTeam = "self", maxTargets = 1,
                         description = "出手后有概率触发灵影追击，并永久提升自身速度与闪避。"
                     }

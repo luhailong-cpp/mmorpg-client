@@ -48,46 +48,48 @@ namespace MmorpgClient.UI.Ugui.Pet
             ActionButton("PetBadgeClose", shell, 1780f, 22f, 88f, 84f, "", false,
                 () => { _badgesVisible = false; _badgeDialog.gameObject.SetActive(false); }, "shell-close-hit");
 
+            // 整块玉纸底板覆盖双栏壳内中缝，并留足底缘安全距避开左下玉兔灯花
             const float startX = 184f;
             const float galleryW = 1564f;
-            Art("PetBadgePaper", shell, startX, 168f, galleryW, 514f, "guild_announcement");
+            Art("PetBadgePaper", shell, startX, 114f, galleryW, 646f, "guild_announcement");
 
             string[] ids = { "normal", "mutant", "spirit", "divine", "sacred" };
             string[] names = { "普通", "变异", "灵兽", "神兽", "圣兽" };
-            float columnW = (galleryW - 32f) / 5f;
+            float columnW = (galleryW - 40f) / 5f;
             for (int i = 0; i < ids.Length; i++)
             {
                 int index = i;
-                float colX = startX + 16f + i * columnW;
-                var panel = Rect("BadgeColumn" + i, shell, colX, 180f, columnW, 490f);
-                if (i > 0) GuildUiArt.Line(panel, "BadgeColumnRule" + i, 0f, 64f, 1.5f, 404f);
+                float colX = startX + 20f + i * columnW;
+                var panel = Rect("BadgeColumn" + i, shell, colX, 134f, columnW, 506f);
+                if (i > 0) GuildUiArt.Line(panel, "BadgeColumnRule" + i, 0f, 70f, 1.5f, 418f);
                 ActionButton("PreviewBadge" + i, panel, 28f, 12f, columnW - 56f, 48f, names[i], _previewBadge == i,
-                    () => { _previewBadge = index; BuildBadges(); }, _previewBadge == i ? "mail_tab_selected" : "mail_tab_normal", 25f);
-                const float badgeSize = 140f;
-                const float ringSize = 172f;
-                Art("BadgeArt" + i, panel, (columnW - badgeSize) * 0.5f, 72f, badgeSize, badgeSize, "badge-" + ids[i]).preserveAspect = true;
-                Label("BadgeCaption" + i, panel, 16f, 218f, columnW - 32f, 30f, "徽章", 22f, Ink, TextAlignmentOptions.Center);
-                GuildUiArt.Line(panel, "BadgeArtRule" + i, 34f, 254f, columnW - 68f);
+                    () => { _previewBadge = index; BuildBadges(); }, _previewBadge == i ? "mail_tab_selected" : "button_secondary", 25f);
+                const float badgeSize = 148f;
+                const float ringSize = 180f;
+                Art("BadgeArt" + i, panel, (columnW - badgeSize) * 0.5f, 78f, badgeSize, badgeSize, "badge-" + ids[i]).preserveAspect = true;
+                Label("BadgeCaption" + i, panel, 16f, 232f, columnW - 32f, 30f, "徽章", 22f, Ink, TextAlignmentOptions.Center);
+                GuildUiArt.Line(panel, "BadgeArtRule" + i, 34f, 268f, columnW - 68f);
                 float portraitSize = ringSize * .74f;
                 var portrait = Art("BadgePetPortrait" + i, panel, (columnW - portraitSize) * 0.5f,
-                    268f + (ringSize - portraitSize) * 0.5f, portraitSize, portraitSize, "round_badge_taiji");
+                    282f + (ringSize - portraitSize) * 0.5f, portraitSize, portraitSize, "round_badge_taiji");
                 portrait.sprite = Selected == null ? CharacterPetArt.Get("round_badge_taiji") : Portrait(Selected);
                 portrait.preserveAspect = true;
-                Art("BadgeRing" + i, panel, (columnW - ringSize) * 0.5f, 268f, ringSize, ringSize, "ring-" + ids[i]).preserveAspect = true;
-                Label("BadgeRingCaption" + i, panel, 16f, 446f, columnW - 32f, 32f, "头像框", 22f, Ink, TextAlignmentOptions.Center);
+                Art("BadgeRing" + i, panel, (columnW - ringSize) * 0.5f, 282f, ringSize, ringSize, "ring-" + ids[i]).preserveAspect = true;
+                Label("BadgeRingCaption" + i, panel, 16f, 468f, columnW - 32f, 32f, "头像框", 22f, Ink, TextAlignmentOptions.Center);
             }
 
+            GuildUiArt.Line(shell, "PetBadgeFooterRule", startX + 28f, 654f, galleryW - 56f);
             string quality = Selected == null ? "—" : Selected.Quality.ToString();
             bool isMaxTier = Selected?.CultivationTier >= 5;
             float buttonWidth = isMaxTier ? 380f : 220f;
-            Label("PetBadgeCurrent", shell, startX + 8f, 696f, galleryW - buttonWidth - 36f, 32f,
+            Label("PetBadgeCurrent", shell, startX + 34f, 672f, galleryW - buttonWidth - 82f, 32f,
                 "当前阶：" + (string.IsNullOrEmpty(Selected?.CultivationTierName) ? "—" : Selected.CultivationTierName) +
-                "    品质：" + quality + "    当前预览：" + names[_previewBadge],
+                "  ·  品质：" + quality + "  ·  当前预览：" + names[_previewBadge],
                 22f, Ink);
-            Label("PetBadgeExplanation", shell, startX + 8f, 728f, galleryW - buttonWidth - 36f, 28f,
+            Label("PetBadgeExplanation", shell, startX + 34f, 706f, galleryW - buttonWidth - 82f, 28f,
                 "当前阶由服务器独立身份确定；样式预览不改变宝宝身份、点数或成长。", 19f, Muted);
 
-            var openAscend = ActionButton("PetBadgeOpenAscend", shell, startX + galleryW - buttonWidth, FooterBtnY, buttonWidth, FooterBtnHeight,
+            var openAscend = ActionButton("PetBadgeOpenAscend", shell, startX + galleryW - buttonWidth - 28f, 676f, buttonWidth, FooterBtnHeight,
                 isMaxTier ? MaxTierLabel : "灵阶突破",
                 Selected?.NextTier?.CanAscend == true,
                 () =>
@@ -153,7 +155,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 $"悟道残页：{next.OwnedItemCount} / {next.CostItemCount}", 22f, next.OwnedItemCount >= next.CostItemCount ? Ink : new Color32(158, 56, 40, 255));
             GuildUiArt.Line(infoPlate, "PetAscendMaterialRule", 18f, 114f, boxW - 172f);
             Label("PetAscendReqGold", infoPlate, 28f, 116f, boxW - 192f, 34f,
-                $"消耗银两：{next.CostGold:N0}    ·    条目总预算：{curTotal} → {20UL + next.BonusEntryPoints} 点", 22f, Ink);
+                $"消耗银两：{next.CostGold:N0} · 条目总预算：{curTotal} → {20UL + next.BonusEntryPoints} 点", 22f, Ink);
             _ascendHint = Label("PetAscendBlockHint", infoPlate, 28f, 156f, boxW - 192f, 38f, "", 20f, Muted);
 
             bool pendingRetry = _client?.HasPendingTierAscension(pet.PetId) == true;

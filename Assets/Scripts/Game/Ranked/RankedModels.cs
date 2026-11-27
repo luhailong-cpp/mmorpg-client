@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using Match;
 
@@ -589,7 +588,7 @@ namespace MmorpgClient.Game.Ranked
         private static IReadOnlyList<T> FreezeList<T>(IReadOnlyList<T> source)
         {
             if (source == null || source.Count == 0) return Array.AsReadOnly(Array.Empty<T>());
-            if (source is ReadOnlyCollection<T>) return source;
+            // 一律拷贝:ReadOnlyCollection 只是只读包装,可能包着会变的 List,不能当作已冻结直接复用。
             var copy = new T[source.Count];
             for (int i = 0; i < source.Count; i++) copy[i] = source[i];
             return Array.AsReadOnly(copy);

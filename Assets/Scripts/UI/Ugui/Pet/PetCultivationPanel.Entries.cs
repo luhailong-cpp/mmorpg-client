@@ -50,8 +50,8 @@ namespace MmorpgClient.UI.Ugui.Pet
             _entryRows.Clear(); _entryPresetButtons.Clear(); _entryBudget = null; _entryTagButton = _entryClearAll = null;
             if (EntryState == null) { BuildUnavailableEntries(x, width); return; }
 
-            Label("EntryPointsTitle", _body, x + 4f, 174f, 118f, 38f, "条目点", 28f, Green);
-            GuildUiArt.Line(_body, "EntryHeadingRule", x + 114f, 193f, 128f);
+            Label("EntryPointsTitle", _body, x + 22f, 174f, 118f, 38f, "条目点", 28f, Green);
+            GuildUiArt.Line(_body, "EntryHeadingRule", x + 132f, 193f, 110f);
             _entryBudget = Label("EntryPointsBudget", _body, x + 250f, 176f, width - 254f, 34f, "", 22f, Ink, TextAlignmentOptions.MidlineRight);
 
             // 顶部 3 套条目方案切换条 + 用途标签切换（严守安全内距与自动字号，杜绝溢框）
@@ -72,7 +72,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 string label = $"{EntryPresetNames[slot - 1]} · {tagText} · {usedPts}点";
                 var btn = ActionButton("EntryPreset" + slot, _body, x + (slot - 1) * (presetW + presetGap), 216f, presetW, 46f,
                     label, isActive, () => SwitchEntryPresetWithDraftGuard(capturedSlot, PetClient.KeepPresetTag),
-                    isActive ? "mail_tab_selected" : "mail_tab_normal", 20f, autoSize: true);
+                    isActive ? "mail_tab_selected" : "button_secondary", 20f, autoSize: true);
                 if (isActive)
                 {
                     var colors = btn.colors;
@@ -90,8 +90,8 @@ namespace MmorpgClient.UI.Ugui.Pet
             for (int i = 0; i < categories.Length; i++)
             {
                 int index = i;
-                ActionButton("EntryFilter" + i, _body, x + i * (catW + 12f), 268f, catW, 40f, categories[i], i == _entryCategory,
-                    () => { _entryCategory = index; Render(); }, i == _entryCategory ? "mail_tab_selected" : "mail_tab_normal", 22f);
+                ActionButton("EntryFilter" + i, _body, x + i * (catW + 12f), 268f, catW, 42f, categories[i], i == _entryCategory,
+                    () => { _entryCategory = index; Render(); }, i == _entryCategory ? "mail_tab_selected" : "button_secondary", 22f);
             }
 
             float rowW = width, current = rowW * .43f, adjust = rowW * .66f;
