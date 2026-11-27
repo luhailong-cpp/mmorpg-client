@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Google.Protobuf;
 using MmorpgClient.Game.PlayerFeatures;
+using TradePb = Trade;
 
 namespace MmorpgClient.UI.Ugui.Skills
 {
@@ -420,17 +421,40 @@ namespace MmorpgClient.UI.Ugui.Skills
             return list;
         }
 
-        // ── V5 西市悬赏求书板：文案与匹配交卷来源检索 ──
-        public static string DescribeWantedOrder(SkillBookWantedOrderInfo order, Func<uint, string> skillNameResolver = null)
+        // ── V5 西市悬赏求书板(trade 求购单):文案与匹配交卷来源检索 ──
+        // 揭榜净得用服务端给的 seller_net_gold,客户端不自己算税。
+        public static string DescribeWantedOrder(TradePb.WantedSkillBookOrderView order, Func<uint, string> skillNameResolver = null)
         {
             if (order == null) return string.Empty;
-            string skill = !string.IsNullOrWhiteSpace(order.SkillName)
-                ? order.SkillName
-                : (skillNameResolver?.Invoke(order.SkillTableId) ?? $"技能 · {order.SkillTableId}");
+            string skill = ResolveWantedSkillName(order, skillNameResolver);
             string sig = order.RequireMasterSignature ? " · 须宗师署名" : string.Empty;
             string poster = string.IsNullOrWhiteSpace(order.PosterName) ? $"道友#{order.PosterPlayerId}" : order.PosterName;
             return $"求购【{skill}】{sig} | 悬赏 {order.RewardGold} 银两（揭榜净得 {order.SellerNetGold} 银两） | 发榜：{poster}";
         }
+
+        public static string ResolveWantedSkillName(TradePb.WantedSkillBookOrderView order, Func<uint, string> skillNameResolver = null)
+            => order == null ? string.Empty
+                : !string.IsNullOrWhiteSpace(order.SkillName) ? order.SkillName
+                : (skillNameResolver?.Invoke(order.SkillTableId) ?? $"技能 · {order.SkillTableId}");
+
+        /// <summary>求购单阶段文案(服务端按合同状态推导的 WantedSkillBookOrderPhase)。</summary>
+        public static string DescribeWantedPhase(TradePb.WantedSkillBookOrderPhase phase) => phase switch
+        {
+            TradePb.WantedSkillBookOrderPhase.Escrowing => "托管中",
+            TradePb.WantedSkillBookOrderPhase.Open => "挂榜中",
+            TradePb.WantedSkillBookOrderPhase.Fulfilling => "交易中",
+            TradePb.WantedSkillBookOrderPhase.Delivering => "交付中",
+            TradePb.WantedSkillBookOrderPhase.Settled => "已成交",
+            TradePb.WantedSkillBookOrderPhase.Cancelling => "撤单中",
+            TradePb.WantedSkillBookOrderPhase.Cancelled => "已撤单",
+            TradePb.WantedSkillBookOrderPhase.Manual => "转人工核对",
+            _ => "状态未知",
+        };
+
+        /// <summary>只有托管中与挂榜中可撤;有人交书(交易中)或交付中撤不了。</summary>
+        public static bool CanCancelWantedOrder(TradePb.WantedSkillBookOrderView order)
+            => order != null && (order.Phase == TradePb.WantedSkillBookOrderPhase.Escrowing
+                                 || order.Phase == TradePb.WantedSkillBookOrderPhase.Open);
 
         public readonly struct WantedFulfillMatch
         {
@@ -442,7 +466,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         }
 
         /// <summary>检索玩家当前可用于揭榜的未绑定匹配技能书（优先匹配背包 3414 封卷道籍，其次书架未绑定常规书）。</summary>
-        public static WantedFulfillMatch FindMatchingFulfillSource(SkillBookWantedOrderInfo order,
+        public static WantedFulfillMatch FindMatchingFulfillSource(TradePb.WantedSkillBookOrderView order,
             SkillCraftingStateSnapshot state, BagInfo characterBag)
         {
             if (order == null || order.SkillTableId == 0) return default;

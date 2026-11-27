@@ -1059,13 +1059,13 @@ namespace MmorpgClient.UI.Ugui.Skills
                 SeasonEconomyUiArt.CreateSlicedOrSimple(_body, "WantedSafetyBannerBg", 150, 284, 3660, 84,
                     escrowBanner, new Color(0.93f, 0.91f, 0.82f, 0.96f));
                 Label(_body, "WantedSafetyBanner",
-                    "西市封卷悬赏求书板：发榜原子托管非绑银两、随时撤单 100% 全额退还；揭榜可用背包【3414 封卷道籍】或书架未绑常规书一键交卷（成交扣 5% 银两税）。",
+                    "西市封卷悬赏求书板（全服可见）：发榜托管流通银两，托管中与挂榜中可撤单全额退回；揭榜交背包【3414 封卷道籍】或书架未绑常规书（自动先封卷），先书后款，成交扣 5% 银两税，发榜人收到背包里的封卷道籍。",
                     220, 294, 3520, 64, 30, false, Jade);
             }
             else
             {
                 Label(_body, "WantedSafetyBanner",
-                    "西市封卷悬赏求书板：发榜原子托管非绑银两、随时撤单全额退还；揭榜可用背包封卷或书架未绑常规书一键交卷（扣 5% 税）。",
+                    "西市封卷悬赏求书板（全服可见）：发榜托管流通银两，挂榜中可撤单全额退回；揭榜交背包封卷或书架未绑常规书，先书后款（扣 5% 税）。",
                     180, 290, 3600, 76, 34, true, Jade);
             }
 
@@ -1086,7 +1086,10 @@ namespace MmorpgClient.UI.Ugui.Skills
             Label(_body, "PostWantedTitle",
                 $"发布常规技能求书单（持有流通银两：{state?.GoldBalance ?? 0} · 范围 100–50000）",
                 190, 412, 1860, 62, 34, color: Jade);
-            bool writeLocked = _client == null || _client.IsBusy || _client.HasPendingWrite || state == null;
+            // 发榜或揭榜之后等服务端结论期间,悬赏页的写按钮一并锁住。
+            bool writeLocked = _client == null || _client.IsBusy || _client.HasPendingWrite || state == null
+                || _client.WantedFollowUpActive;
+            var myOrders = _client?.MyWantedOrders.ToList() ?? new List<global::Trade.WantedSkillBookOrderView>();
             Button(_body, "WantedSkillPrev", "←换技", 190, 488, 250, () =>
             {
                 if (regularSkills.Count == 0) return;
@@ -1121,24 +1124,23 @@ namespace MmorpgClient.UI.Ugui.Skills
                 Render();
             }, enabled: !writeLocked);
             bool canPost = !writeLocked && _wantedSkillId != 0 && SkillCraftModels.IsValidWantedRewardGold(_wantedRewardGold)
-                && state.GoldBalance >= _wantedRewardGold && state.MyWantedOrders.Count < SkillCraftModels.MaxActiveWantedOrders;
+                && state.GoldBalance >= _wantedRewardGold && myOrders.Count < SkillCraftModels.MaxActiveWantedOrders;
             Button(_body, "PostWantedSubmitBtn", "发榜托管求书", 1320, 610, 730,
                 () => _client?.PostWantedOrder(_wantedSkillId, _wantedRewardGold, _wantedRequireMasterSig), true, canPost);
 
             Panel(_body, "MyWantedPaper", 2140, 385, 1690, 360);
-            var myOrders = state?.MyWantedOrders.ToList() ?? new List<SkillBookWantedOrderInfo>();
-            Label(_body, "MyWantedTitle", $"我的在榜悬赏（{myOrders.Count}/{SkillCraftModels.MaxActiveWantedOrders}）",
+            Label(_body, "MyWantedTitle", $"我的悬赏（{myOrders.Count}/{SkillCraftModels.MaxActiveWantedOrders}）",
                 2200, 412, 1560, 62, 34, color: Jade);
             for (int i = 0; i < myOrders.Count && i < 3; ++i)
             {
                 var ord = myOrders[i];
                 float y = 480 + i * 86;
                 Label(_body, "MyWantedLine_" + ord.OrderId,
-                    $"#{ord.OrderId} 求【{(string.IsNullOrWhiteSpace(ord.SkillName) ? ResolveSkillName(ord.SkillTableId) : ord.SkillName)}】{(ord.RequireMasterSignature ? "[须署名]" : "")} · {ord.RewardGold} 银",
+                    $"[{SkillCraftModels.DescribeWantedPhase(ord.Phase)}] 求【{SkillCraftModels.ResolveWantedSkillName(ord, ResolveSkillName)}】{(ord.RequireMasterSignature ? "[须署名]" : "")} · {ord.RewardGold} 银",
                     2200, y + 10, 1120, 62, 28, false, Ink);
-                ulong oid = ord.OrderId;
+                string oid = ord.OrderId;
                 Button(_body, "MyWantedCancel_" + oid, "撤单全退", 3340, y, 420,
-                    () => _client?.CancelWantedOrder(oid), false, !writeLocked);
+                    () => _client?.CancelWantedOrder(oid), false, !writeLocked && SkillCraftModels.CanCancelWantedOrder(ord));
             }
             if (myOrders.Count == 0)
                 Label(_body, "MyWantedEmpty", "暂无挂单，可在左侧发榜求购心仪常规书。", 2200, 540, 1520, 80, 32, true, Muted);
@@ -1150,29 +1152,33 @@ namespace MmorpgClient.UI.Ugui.Skills
             Button(_body, "CityWantedRefreshBtn", "刷新求书榜", 3220, 785, 520,
                 () => _client?.RefreshWantedOrders(), false, _client != null && !_client.WantedOrdersLoading);
 
-            var allOrders = _client?.WantedOrders ?? Array.Empty<SkillBookWantedOrderInfo>();
-            var wantedList = Scroll(_body, "CityWantedViewport", 190, 880, 3580, 500, Math.Max(500, allOrders.Count * 145));
-            ulong selfId = _client?.SelfPlayerId ?? 0;
+            var allOrders = _client?.WantedOrders ?? Array.Empty<global::Trade.WantedSkillBookOrderView>();
+            bool hasMoreOrders = _client != null && _client.HasMoreWantedOrders;
+            var wantedList = Scroll(_body, "CityWantedViewport", 190, 880, 3580, 500,
+                Math.Max(500, (allOrders.Count + (hasMoreOrders ? 1 : 0)) * 145));
             for (int i = 0; i < allOrders.Count; ++i)
             {
                 var order = allOrders[i];
                 float y = i * 145;
-                Label(wantedList, "WantedOrderLine_" + order.PosterPlayerId + "_" + order.OrderId,
+                Label(wantedList, "WantedOrderLine_" + order.OrderId,
                     SkillCraftModels.DescribeWantedOrder(order, ResolveSkillName),
                     15, y + 18, 2680, 96, 32, true, Ink);
-                bool isMine = selfId != 0 && order.PosterPlayerId == selfId;
+                bool isMine = order.IsMine;
                 var match = isMine ? default : SkillCraftModels.FindMatchingFulfillSource(order, state, _bagSource?.CharacterBag);
                 string btnLabel = isMine ? "本人悬赏单" :
                     match.SealedItemId != 0 ? "交背包封卷揭榜" :
                     match.BookshelfBookId != 0 ? "交书架书揭榜" : "无匹配未绑书";
-                ulong posterId = order.PosterPlayerId;
-                ulong orderId = order.OrderId;
-                Button(wantedList, $"WantedFulfill_{posterId}_{orderId}", btnLabel, 2730, y + 10, 790, () =>
+                string orderId = order.OrderId;
+                Button(wantedList, $"WantedFulfill_{orderId}", btnLabel, 2730, y + 10, 790, () =>
                 {
-                    if (match.SealedItemId != 0) _client?.FulfillWantedOrderWithSealedItem(posterId, orderId, match.SealedItemId);
-                    else if (match.BookshelfBookId != 0) _client?.FulfillWantedOrderWithBookshelfBook(posterId, orderId, match.BookshelfBookId);
+                    if (match.SealedItemId != 0) _client?.FulfillWantedOrderWithSealedItem(orderId, match.SealedItemId);
+                    else if (match.BookshelfBookId != 0) _client?.FulfillWantedOrderWithBookshelfBook(orderId, match.BookshelfBookId);
                 }, match.Found && !isMine, !writeLocked && !isMine && match.Found);
             }
+            // 公开榜按游标分页(悬赏额从高到低),列表末尾一行续取下一页。
+            if (hasMoreOrders)
+                Button(wantedList, "CityWantedMoreBtn", "加载更多悬赏", 2730, allOrders.Count * 145 + 10, 790,
+                    () => _client?.RefreshWantedOrders(nextPage: true), false, !_client.WantedOrdersLoading);
             if (allOrders.Count == 0)
                 Label(_body, "CityWantedEmpty", _client?.WantedOrdersLoading == true ? "正在读取西市悬赏求书榜…" : "当前暂无悬赏求书单，可率先发榜求购心仪技能书。",
                     220, 960, 2800, 120, 40, true, Muted);

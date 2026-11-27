@@ -543,7 +543,8 @@ namespace MmorpgClient.Game
             {
                 if (InGame && IsGateReady) Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
             };
-            SkillCraft.WantedOrderFulfilled += _ =>
+            // 揭榜有了结论(成交、书不符退回、书没扣到):背包与银两以服务端为准重拉。
+            SkillCraft.WantedFulfillConcluded += () =>
             {
                 if (InGame && IsGateReady) Features?.RequestBag(PlayerFeaturesClient.CharacterBagType);
             };

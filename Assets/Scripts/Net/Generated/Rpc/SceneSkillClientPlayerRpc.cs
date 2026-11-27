@@ -121,26 +121,6 @@ namespace MmorpgClient.Net.Generated
             RpcDone<global::BatchDismantleSkillBooksResponse> done)
             => channel.CallMethod(BatchDismantleSkillBooksMessageId, request, global::BatchDismantleSkillBooksResponse.Parser, done);
 
-        public const uint PostSkillBookWantedOrderMessageId = 560;
-        public static void PostSkillBookWantedOrder(IRpcChannel channel, global::PostSkillBookWantedOrderRequest request,
-            RpcDone<global::PostSkillBookWantedOrderResponse> done)
-            => channel.CallMethod(PostSkillBookWantedOrderMessageId, request, global::PostSkillBookWantedOrderResponse.Parser, done);
-
-        public const uint CancelSkillBookWantedOrderMessageId = 561;
-        public static void CancelSkillBookWantedOrder(IRpcChannel channel, global::CancelSkillBookWantedOrderRequest request,
-            RpcDone<global::CancelSkillBookWantedOrderResponse> done)
-            => channel.CallMethod(CancelSkillBookWantedOrderMessageId, request, global::CancelSkillBookWantedOrderResponse.Parser, done);
-
-        public const uint ListSkillBookWantedOrdersMessageId = 562;
-        public static void ListSkillBookWantedOrders(IRpcChannel channel, global::ListSkillBookWantedOrdersRequest request,
-            RpcDone<global::ListSkillBookWantedOrdersResponse> done)
-            => channel.CallMethod(ListSkillBookWantedOrdersMessageId, request, global::ListSkillBookWantedOrdersResponse.Parser, done);
-
-        public const uint FulfillSkillBookWantedOrderMessageId = 563;
-        public static void FulfillSkillBookWantedOrder(IRpcChannel channel, global::FulfillSkillBookWantedOrderRequest request,
-            RpcDone<global::FulfillSkillBookWantedOrderResponse> done)
-            => channel.CallMethod(FulfillSkillBookWantedOrderMessageId, request, global::FulfillSkillBookWantedOrderResponse.Parser, done);
-
         public const uint RentSkillLoadoutSlotsMessageId = 565;
         public static void RentSkillLoadoutSlots(IRpcChannel channel, global::RentSkillLoadoutSlotsRequest request,
             RpcDone<global::RentSkillLoadoutSlotsResponse> done)

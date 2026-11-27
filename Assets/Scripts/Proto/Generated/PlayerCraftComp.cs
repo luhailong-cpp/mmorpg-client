@@ -26,37 +26,30 @@ public static partial class PlayerCraftCompReflection {
           "b3RvIqgBChVDcmFmdGVkU2tpbGxCb29rRW50cnkSDwoHYm9va19pZBgBIAEo",
           "BBIWCg5za2lsbF90YWJsZV9pZBgCIAEoDRIRCglzY3JvbGxfaWQYAyABKA0S",
           "EwoLcmFyaXR5X3RpZXIYBCABKA0SDQoFYm91bmQYBSABKAgSFAoMY3JhZnRl",
-          "cl9uYW1lGAYgASgJEhkKEWNyYWZ0ZXJfcGxheWVyX2lkGAcgASgEItEBChRT",
-          "a2lsbEJvb2tXYW50ZWRPcmRlchIQCghvcmRlcl9pZBgBIAEoBBIYChBwb3N0",
-          "ZXJfcGxheWVyX2lkGAIgASgEEhMKC3Bvc3Rlcl9uYW1lGAMgASgJEhYKDnNr",
-          "aWxsX3RhYmxlX2lkGAQgASgNEhEKCXNjcm9sbF9pZBgFIAEoDRIgChhyZXF1",
-          "aXJlX21hc3Rlcl9zaWduYXR1cmUYBiABKAgSEwoLcmV3YXJkX2dvbGQYByAB",
-          "KAQSFgoOY3JlYXRlZF9hdF9zZWMYCCABKAQitAYKD1BsYXllckNyYWZ0Q29t",
-          "cBIZChFmb3JnZV9tYXN0ZXJ5X2V4cBgBIAEoDRIaChJzY3JvbGxfbWFzdGVy",
-          "eV9leHAYAiABKA0SHQoVc2Nyb2xsX2NyYWZ0X3JldmlzaW9uGAMgASgEEhUK",
-          "DW5leHRfYm9va19zZXEYBCABKAQSKwoLc2tpbGxfYm9va3MYBSADKAsyFi5D",
-          "cmFmdGVkU2tpbGxCb29rRW50cnkSGAoQcHJveHlfc3RhbGxfb3BlbhgGIAEo",
-          "CBIcChRwcm94eV9mb3JnZV9mZWVfZ29sZBgHIAEoBBIdChVwcm94eV9zY3Jv",
-          "bGxfZmVlX2dvbGQYCCABKAQSHwoXYm9va191bmxvY2tlZF9za2lsbF9pZHMY",
-          "CSADKA0SHgoWcHJveHlfb3JkZXJzX2NvbXBsZXRlZBgKIAEoDRIcChRzdXBy",
-          "ZW1lX2ZvcmdlZF9jb3VudBgLIAEoDRIgChhyYXJlX2Jvb2tzX2NyYWZ0ZWRf",
-          "Y291bnQYDCABKA0SGwoTbWFzdGVyX3Nob3djYXNlX3RhZxgNIAEoDRIfChdl",
-          "cXVpcHBlZF9jcmFmdF90aXRsZV9pZBgOIAEoDRIlCh1jbGFpbWVkX3Njcm9s",
-          "bF9taWxlc3RvbmVfYml0cxgPIAEoDBIsCg13YW50ZWRfb3JkZXJzGBAgAygL",
-          "MhUuU2tpbGxCb29rV2FudGVkT3JkZXISHQoVbmV4dF93YW50ZWRfb3JkZXJf",
-          "c2VxGBEgASgEEhcKD3RlYW1fZnJlZV9wcm94eRgSIAEoCBIiChp1bnJlYWRf",
-          "cHJveHlfZGlnZXN0X29yZGVycxgTIAEoDRIjCht1bnJlYWRfcHJveHlfZGln",
-          "ZXN0X3N1cHJlbWUYFCABKA0SIAoYdW5yZWFkX3Byb3h5X2RpZ2VzdF9yYXJl",
-          "GBUgASgNEiQKHHVucmVhZF9wcm94eV9kaWdlc3RfbmV0X2dvbGQYFiABKAQS",
-          "JgoedW5yZWFkX3Byb3h5X2RpZ2VzdF9sYXN0X2J1eWVyGBcgASgJEisKI3Vu",
-          "cmVhZF9wcm94eV9kaWdlc3RfbmV3X3RpdGxlc19tYXNrGBggASgNQhJaEGNv",
-          "bW1vbi9jb21wb25lbnRiBnByb3RvMw=="));
+          "cl9uYW1lGAYgASgJEhkKEWNyYWZ0ZXJfcGxheWVyX2lkGAcgASgEIvMFCg9Q",
+          "bGF5ZXJDcmFmdENvbXASGQoRZm9yZ2VfbWFzdGVyeV9leHAYASABKA0SGgoS",
+          "c2Nyb2xsX21hc3RlcnlfZXhwGAIgASgNEh0KFXNjcm9sbF9jcmFmdF9yZXZp",
+          "c2lvbhgDIAEoBBIVCg1uZXh0X2Jvb2tfc2VxGAQgASgEEisKC3NraWxsX2Jv",
+          "b2tzGAUgAygLMhYuQ3JhZnRlZFNraWxsQm9va0VudHJ5EhgKEHByb3h5X3N0",
+          "YWxsX29wZW4YBiABKAgSHAoUcHJveHlfZm9yZ2VfZmVlX2dvbGQYByABKAQS",
+          "HQoVcHJveHlfc2Nyb2xsX2ZlZV9nb2xkGAggASgEEh8KF2Jvb2tfdW5sb2Nr",
+          "ZWRfc2tpbGxfaWRzGAkgAygNEh4KFnByb3h5X29yZGVyc19jb21wbGV0ZWQY",
+          "CiABKA0SHAoUc3VwcmVtZV9mb3JnZWRfY291bnQYCyABKA0SIAoYcmFyZV9i",
+          "b29rc19jcmFmdGVkX2NvdW50GAwgASgNEhsKE21hc3Rlcl9zaG93Y2FzZV90",
+          "YWcYDSABKA0SHwoXZXF1aXBwZWRfY3JhZnRfdGl0bGVfaWQYDiABKA0SJQod",
+          "Y2xhaW1lZF9zY3JvbGxfbWlsZXN0b25lX2JpdHMYDyABKAwSFwoPdGVhbV9m",
+          "cmVlX3Byb3h5GBIgASgIEiIKGnVucmVhZF9wcm94eV9kaWdlc3Rfb3JkZXJz",
+          "GBMgASgNEiMKG3VucmVhZF9wcm94eV9kaWdlc3Rfc3VwcmVtZRgUIAEoDRIg",
+          "Chh1bnJlYWRfcHJveHlfZGlnZXN0X3JhcmUYFSABKA0SJAocdW5yZWFkX3By",
+          "b3h5X2RpZ2VzdF9uZXRfZ29sZBgWIAEoBBImCh51bnJlYWRfcHJveHlfZGln",
+          "ZXN0X2xhc3RfYnV5ZXIYFyABKAkSKwojdW5yZWFkX3Byb3h5X2RpZ2VzdF9u",
+          "ZXdfdGl0bGVzX21hc2sYGCABKA1KBAgQEBFKBAgREBJCEloQY29tbW9uL2Nv",
+          "bXBvbmVudGIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::CraftedSkillBookEntry), global::CraftedSkillBookEntry.Parser, new[]{ "BookId", "SkillTableId", "ScrollId", "RarityTier", "Bound", "CrafterName", "CrafterPlayerId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SkillBookWantedOrder), global::SkillBookWantedOrder.Parser, new[]{ "OrderId", "PosterPlayerId", "PosterName", "SkillTableId", "ScrollId", "RequireMasterSignature", "RewardGold", "CreatedAtSec" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerCraftComp), global::PlayerCraftComp.Parser, new[]{ "ForgeMasteryExp", "ScrollMasteryExp", "ScrollCraftRevision", "NextBookSeq", "SkillBooks", "ProxyStallOpen", "ProxyForgeFeeGold", "ProxyScrollFeeGold", "BookUnlockedSkillIds", "ProxyOrdersCompleted", "SupremeForgedCount", "RareBooksCraftedCount", "MasterShowcaseTag", "EquippedCraftTitleId", "ClaimedScrollMilestoneBits", "WantedOrders", "NextWantedOrderSeq", "TeamFreeProxy", "UnreadProxyDigestOrders", "UnreadProxyDigestSupreme", "UnreadProxyDigestRare", "UnreadProxyDigestNetGold", "UnreadProxyDigestLastBuyer", "UnreadProxyDigestNewTitlesMask" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerCraftComp), global::PlayerCraftComp.Parser, new[]{ "ForgeMasteryExp", "ScrollMasteryExp", "ScrollCraftRevision", "NextBookSeq", "SkillBooks", "ProxyStallOpen", "ProxyForgeFeeGold", "ProxyScrollFeeGold", "BookUnlockedSkillIds", "ProxyOrdersCompleted", "SupremeForgedCount", "RareBooksCraftedCount", "MasterShowcaseTag", "EquippedCraftTitleId", "ClaimedScrollMilestoneBits", "TeamFreeProxy", "UnreadProxyDigestOrders", "UnreadProxyDigestSupreme", "UnreadProxyDigestRare", "UnreadProxyDigestNetGold", "UnreadProxyDigestLastBuyer", "UnreadProxyDigestNewTitlesMask" }, null, null, null, null)
         }));
   }
   #endregion
@@ -509,490 +502,6 @@ public sealed partial class CraftedSkillBookEntry : pb::IMessage<CraftedSkillBoo
 }
 
 /// <summary>
-/// 西市常规技能书悬赏求购单（V5：发榜时原子扣托管非绑银两，撤单全退，揭榜交卷扣 5% 银两税销毁）。
-/// </summary>
-[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-public sealed partial class SkillBookWantedOrder : pb::IMessage<SkillBookWantedOrder>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    , pb::IBufferMessage
-#endif
-{
-  private static readonly pb::MessageParser<SkillBookWantedOrder> _parser = new pb::MessageParser<SkillBookWantedOrder>(() => new SkillBookWantedOrder());
-  private pb::UnknownFieldSet _unknownFields;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pb::MessageParser<SkillBookWantedOrder> Parser { get { return _parser; } }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerCraftCompReflection.Descriptor.MessageTypes[1]; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  pbr::MessageDescriptor pb::IMessage.Descriptor {
-    get { return Descriptor; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public SkillBookWantedOrder() {
-    OnConstruction();
-  }
-
-  partial void OnConstruction();
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public SkillBookWantedOrder(SkillBookWantedOrder other) : this() {
-    orderId_ = other.orderId_;
-    posterPlayerId_ = other.posterPlayerId_;
-    posterName_ = other.posterName_;
-    skillTableId_ = other.skillTableId_;
-    scrollId_ = other.scrollId_;
-    requireMasterSignature_ = other.requireMasterSignature_;
-    rewardGold_ = other.rewardGold_;
-    createdAtSec_ = other.createdAtSec_;
-    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public SkillBookWantedOrder Clone() {
-    return new SkillBookWantedOrder(this);
-  }
-
-  /// <summary>Field number for the "order_id" field.</summary>
-  public const int OrderIdFieldNumber = 1;
-  private ulong orderId_;
-  /// <summary>
-  /// 买家维度单调悬赏号（>= 1）。
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ulong OrderId {
-    get { return orderId_; }
-    set {
-      orderId_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "poster_player_id" field.</summary>
-  public const int PosterPlayerIdFieldNumber = 2;
-  private ulong posterPlayerId_;
-  /// <summary>
-  /// 发榜买家 player_id。
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ulong PosterPlayerId {
-    get { return posterPlayerId_; }
-    set {
-      posterPlayerId_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "poster_name" field.</summary>
-  public const int PosterNameFieldNumber = 3;
-  private string posterName_ = "";
-  /// <summary>
-  /// 发榜买家角色名。
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public string PosterName {
-    get { return posterName_; }
-    set {
-      posterName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-    }
-  }
-
-  /// <summary>Field number for the "skill_table_id" field.</summary>
-  public const int SkillTableIdFieldNumber = 4;
-  private uint skillTableId_;
-  /// <summary>
-  /// 求购的常规永久技能 SkillTable.id（必须 rarity_tier == 0）。
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public uint SkillTableId {
-    get { return skillTableId_; }
-    set {
-      skillTableId_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "scroll_id" field.</summary>
-  public const int ScrollIdFieldNumber = 5;
-  private uint scrollId_;
-  /// <summary>
-  /// 所属卷宗 SkillScrollCraft.id。
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public uint ScrollId {
-    get { return scrollId_; }
-    set {
-      scrollId_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "require_master_signature" field.</summary>
-  public const int RequireMasterSignatureFieldNumber = 6;
-  private bool requireMasterSignature_;
-  /// <summary>
-  /// true = 仅收带宗师署名的可交易书/封卷。
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool RequireMasterSignature {
-    get { return requireMasterSignature_; }
-    set {
-      requireMasterSignature_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "reward_gold" field.</summary>
-  public const int RewardGoldFieldNumber = 7;
-  private ulong rewardGold_;
-  /// <summary>
-  /// 已托管的非绑定悬赏银两（100..50000）。
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ulong RewardGold {
-    get { return rewardGold_; }
-    set {
-      rewardGold_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "created_at_sec" field.</summary>
-  public const int CreatedAtSecFieldNumber = 8;
-  private ulong createdAtSec_;
-  /// <summary>
-  /// 发榜 Unix 秒。
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ulong CreatedAtSec {
-    get { return createdAtSec_; }
-    set {
-      createdAtSec_ = value;
-    }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override bool Equals(object other) {
-    return Equals(other as SkillBookWantedOrder);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool Equals(SkillBookWantedOrder other) {
-    if (ReferenceEquals(other, null)) {
-      return false;
-    }
-    if (ReferenceEquals(other, this)) {
-      return true;
-    }
-    if (OrderId != other.OrderId) return false;
-    if (PosterPlayerId != other.PosterPlayerId) return false;
-    if (PosterName != other.PosterName) return false;
-    if (SkillTableId != other.SkillTableId) return false;
-    if (ScrollId != other.ScrollId) return false;
-    if (RequireMasterSignature != other.RequireMasterSignature) return false;
-    if (RewardGold != other.RewardGold) return false;
-    if (CreatedAtSec != other.CreatedAtSec) return false;
-    return Equals(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override int GetHashCode() {
-    int hash = 1;
-    if (OrderId != 0UL) hash ^= OrderId.GetHashCode();
-    if (PosterPlayerId != 0UL) hash ^= PosterPlayerId.GetHashCode();
-    if (PosterName.Length != 0) hash ^= PosterName.GetHashCode();
-    if (SkillTableId != 0) hash ^= SkillTableId.GetHashCode();
-    if (ScrollId != 0) hash ^= ScrollId.GetHashCode();
-    if (RequireMasterSignature != false) hash ^= RequireMasterSignature.GetHashCode();
-    if (RewardGold != 0UL) hash ^= RewardGold.GetHashCode();
-    if (CreatedAtSec != 0UL) hash ^= CreatedAtSec.GetHashCode();
-    if (_unknownFields != null) {
-      hash ^= _unknownFields.GetHashCode();
-    }
-    return hash;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override string ToString() {
-    return pb::JsonFormatter.ToDiagnosticString(this);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void WriteTo(pb::CodedOutputStream output) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    output.WriteRawMessage(this);
-  #else
-    if (OrderId != 0UL) {
-      output.WriteRawTag(8);
-      output.WriteUInt64(OrderId);
-    }
-    if (PosterPlayerId != 0UL) {
-      output.WriteRawTag(16);
-      output.WriteUInt64(PosterPlayerId);
-    }
-    if (PosterName.Length != 0) {
-      output.WriteRawTag(26);
-      output.WriteString(PosterName);
-    }
-    if (SkillTableId != 0) {
-      output.WriteRawTag(32);
-      output.WriteUInt32(SkillTableId);
-    }
-    if (ScrollId != 0) {
-      output.WriteRawTag(40);
-      output.WriteUInt32(ScrollId);
-    }
-    if (RequireMasterSignature != false) {
-      output.WriteRawTag(48);
-      output.WriteBool(RequireMasterSignature);
-    }
-    if (RewardGold != 0UL) {
-      output.WriteRawTag(56);
-      output.WriteUInt64(RewardGold);
-    }
-    if (CreatedAtSec != 0UL) {
-      output.WriteRawTag(64);
-      output.WriteUInt64(CreatedAtSec);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(output);
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (OrderId != 0UL) {
-      output.WriteRawTag(8);
-      output.WriteUInt64(OrderId);
-    }
-    if (PosterPlayerId != 0UL) {
-      output.WriteRawTag(16);
-      output.WriteUInt64(PosterPlayerId);
-    }
-    if (PosterName.Length != 0) {
-      output.WriteRawTag(26);
-      output.WriteString(PosterName);
-    }
-    if (SkillTableId != 0) {
-      output.WriteRawTag(32);
-      output.WriteUInt32(SkillTableId);
-    }
-    if (ScrollId != 0) {
-      output.WriteRawTag(40);
-      output.WriteUInt32(ScrollId);
-    }
-    if (RequireMasterSignature != false) {
-      output.WriteRawTag(48);
-      output.WriteBool(RequireMasterSignature);
-    }
-    if (RewardGold != 0UL) {
-      output.WriteRawTag(56);
-      output.WriteUInt64(RewardGold);
-    }
-    if (CreatedAtSec != 0UL) {
-      output.WriteRawTag(64);
-      output.WriteUInt64(CreatedAtSec);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(ref output);
-    }
-  }
-  #endif
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int CalculateSize() {
-    int size = 0;
-    if (OrderId != 0UL) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(OrderId);
-    }
-    if (PosterPlayerId != 0UL) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PosterPlayerId);
-    }
-    if (PosterName.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeStringSize(PosterName);
-    }
-    if (SkillTableId != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SkillTableId);
-    }
-    if (ScrollId != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ScrollId);
-    }
-    if (RequireMasterSignature != false) {
-      size += 1 + 1;
-    }
-    if (RewardGold != 0UL) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RewardGold);
-    }
-    if (CreatedAtSec != 0UL) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(CreatedAtSec);
-    }
-    if (_unknownFields != null) {
-      size += _unknownFields.CalculateSize();
-    }
-    return size;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(SkillBookWantedOrder other) {
-    if (other == null) {
-      return;
-    }
-    if (other.OrderId != 0UL) {
-      OrderId = other.OrderId;
-    }
-    if (other.PosterPlayerId != 0UL) {
-      PosterPlayerId = other.PosterPlayerId;
-    }
-    if (other.PosterName.Length != 0) {
-      PosterName = other.PosterName;
-    }
-    if (other.SkillTableId != 0) {
-      SkillTableId = other.SkillTableId;
-    }
-    if (other.ScrollId != 0) {
-      ScrollId = other.ScrollId;
-    }
-    if (other.RequireMasterSignature != false) {
-      RequireMasterSignature = other.RequireMasterSignature;
-    }
-    if (other.RewardGold != 0UL) {
-      RewardGold = other.RewardGold;
-    }
-    if (other.CreatedAtSec != 0UL) {
-      CreatedAtSec = other.CreatedAtSec;
-    }
-    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(pb::CodedInputStream input) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    input.ReadRawMessage(this);
-  #else
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-    if ((tag & 7) == 4) {
-      // Abort on any end group tag.
-      return;
-    }
-    switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-        case 8: {
-          OrderId = input.ReadUInt64();
-          break;
-        }
-        case 16: {
-          PosterPlayerId = input.ReadUInt64();
-          break;
-        }
-        case 26: {
-          PosterName = input.ReadString();
-          break;
-        }
-        case 32: {
-          SkillTableId = input.ReadUInt32();
-          break;
-        }
-        case 40: {
-          ScrollId = input.ReadUInt32();
-          break;
-        }
-        case 48: {
-          RequireMasterSignature = input.ReadBool();
-          break;
-        }
-        case 56: {
-          RewardGold = input.ReadUInt64();
-          break;
-        }
-        case 64: {
-          CreatedAtSec = input.ReadUInt64();
-          break;
-        }
-      }
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-    if ((tag & 7) == 4) {
-      // Abort on any end group tag.
-      return;
-    }
-    switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-          break;
-        case 8: {
-          OrderId = input.ReadUInt64();
-          break;
-        }
-        case 16: {
-          PosterPlayerId = input.ReadUInt64();
-          break;
-        }
-        case 26: {
-          PosterName = input.ReadString();
-          break;
-        }
-        case 32: {
-          SkillTableId = input.ReadUInt32();
-          break;
-        }
-        case 40: {
-          ScrollId = input.ReadUInt32();
-          break;
-        }
-        case 48: {
-          RequireMasterSignature = input.ReadBool();
-          break;
-        }
-        case 56: {
-          RewardGold = input.ReadUInt64();
-          break;
-        }
-        case 64: {
-          CreatedAtSec = input.ReadUInt64();
-          break;
-        }
-      }
-    }
-  }
-  #endif
-
-}
-
-/// <summary>
 /// 玩家轻量化手艺熟练度、未学技能书架、已通过书解锁的永久技能及主城原子代打配置。
 /// 随 player_database.craft_component = 32（GROWTH 组）同事务落盘，旧存档缺失默认为空合法。
 /// </summary>
@@ -1011,7 +520,7 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerCraftCompReflection.Descriptor.MessageTypes[2]; }
+    get { return global::PlayerCraftCompReflection.Descriptor.MessageTypes[1]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1046,8 +555,6 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
     masterShowcaseTag_ = other.masterShowcaseTag_;
     equippedCraftTitleId_ = other.equippedCraftTitleId_;
     claimedScrollMilestoneBits_ = other.claimedScrollMilestoneBits_;
-    wantedOrders_ = other.wantedOrders_.Clone();
-    nextWantedOrderSeq_ = other.nextWantedOrderSeq_;
     teamFreeProxy_ = other.teamFreeProxy_;
     unreadProxyDigestOrders_ = other.unreadProxyDigestOrders_;
     unreadProxyDigestSupreme_ = other.unreadProxyDigestSupreme_;
@@ -1098,7 +605,7 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
   public const int ScrollCraftRevisionFieldNumber = 3;
   private ulong scrollCraftRevision_;
   /// <summary>
-  /// 技能制书/研习/拆页/里程碑/悬赏的持久防重水位，每次成功 +1。
+  /// 技能制书/研习/拆页/封卷/里程碑的持久防重水位，每次成功 +1。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1288,35 +795,6 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
     }
   }
 
-  /// <summary>Field number for the "wanted_orders" field.</summary>
-  public const int WantedOrdersFieldNumber = 16;
-  private static readonly pb::FieldCodec<global::SkillBookWantedOrder> _repeated_wantedOrders_codec
-      = pb::FieldCodec.ForMessage(130, global::SkillBookWantedOrder.Parser);
-  private readonly pbc::RepeatedField<global::SkillBookWantedOrder> wantedOrders_ = new pbc::RepeatedField<global::SkillBookWantedOrder>();
-  /// <summary>
-  /// ── V5 江湖工坊社交闭环：封卷悬赏求书单与同队情义免税代打 ──
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pbc::RepeatedField<global::SkillBookWantedOrder> WantedOrders {
-    get { return wantedOrders_; }
-  }
-
-  /// <summary>Field number for the "next_wanted_order_seq" field.</summary>
-  public const int NextWantedOrderSeqFieldNumber = 17;
-  private ulong nextWantedOrderSeq_;
-  /// <summary>
-  /// 下一条悬赏求书单本地单调 ID（0 视为 1）。
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ulong NextWantedOrderSeq {
-    get { return nextWantedOrderSeq_; }
-    set {
-      nextWantedOrderSeq_ = value;
-    }
-  }
-
   /// <summary>Field number for the "team_free_proxy" field.</summary>
   public const int TeamFreeProxyFieldNumber = 18;
   private bool teamFreeProxy_;
@@ -1452,8 +930,6 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
     if (MasterShowcaseTag != other.MasterShowcaseTag) return false;
     if (EquippedCraftTitleId != other.EquippedCraftTitleId) return false;
     if (ClaimedScrollMilestoneBits != other.ClaimedScrollMilestoneBits) return false;
-    if(!wantedOrders_.Equals(other.wantedOrders_)) return false;
-    if (NextWantedOrderSeq != other.NextWantedOrderSeq) return false;
     if (TeamFreeProxy != other.TeamFreeProxy) return false;
     if (UnreadProxyDigestOrders != other.UnreadProxyDigestOrders) return false;
     if (UnreadProxyDigestSupreme != other.UnreadProxyDigestSupreme) return false;
@@ -1483,8 +959,6 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
     if (MasterShowcaseTag != 0) hash ^= MasterShowcaseTag.GetHashCode();
     if (EquippedCraftTitleId != 0) hash ^= EquippedCraftTitleId.GetHashCode();
     if (ClaimedScrollMilestoneBits.Length != 0) hash ^= ClaimedScrollMilestoneBits.GetHashCode();
-    hash ^= wantedOrders_.GetHashCode();
-    if (NextWantedOrderSeq != 0UL) hash ^= NextWantedOrderSeq.GetHashCode();
     if (TeamFreeProxy != false) hash ^= TeamFreeProxy.GetHashCode();
     if (UnreadProxyDigestOrders != 0) hash ^= UnreadProxyDigestOrders.GetHashCode();
     if (UnreadProxyDigestSupreme != 0) hash ^= UnreadProxyDigestSupreme.GetHashCode();
@@ -1563,11 +1037,6 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
     if (ClaimedScrollMilestoneBits.Length != 0) {
       output.WriteRawTag(122);
       output.WriteBytes(ClaimedScrollMilestoneBits);
-    }
-    wantedOrders_.WriteTo(output, _repeated_wantedOrders_codec);
-    if (NextWantedOrderSeq != 0UL) {
-      output.WriteRawTag(136, 1);
-      output.WriteUInt64(NextWantedOrderSeq);
     }
     if (TeamFreeProxy != false) {
       output.WriteRawTag(144, 1);
@@ -1661,11 +1130,6 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
       output.WriteRawTag(122);
       output.WriteBytes(ClaimedScrollMilestoneBits);
     }
-    wantedOrders_.WriteTo(ref output, _repeated_wantedOrders_codec);
-    if (NextWantedOrderSeq != 0UL) {
-      output.WriteRawTag(136, 1);
-      output.WriteUInt64(NextWantedOrderSeq);
-    }
     if (TeamFreeProxy != false) {
       output.WriteRawTag(144, 1);
       output.WriteBool(TeamFreeProxy);
@@ -1745,10 +1209,6 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
     if (ClaimedScrollMilestoneBits.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeBytesSize(ClaimedScrollMilestoneBits);
     }
-    size += wantedOrders_.CalculateSize(_repeated_wantedOrders_codec);
-    if (NextWantedOrderSeq != 0UL) {
-      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(NextWantedOrderSeq);
-    }
     if (TeamFreeProxy != false) {
       size += 2 + 1;
     }
@@ -1822,10 +1282,6 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
     }
     if (other.ClaimedScrollMilestoneBits.Length != 0) {
       ClaimedScrollMilestoneBits = other.ClaimedScrollMilestoneBits;
-    }
-    wantedOrders_.Add(other.wantedOrders_);
-    if (other.NextWantedOrderSeq != 0UL) {
-      NextWantedOrderSeq = other.NextWantedOrderSeq;
     }
     if (other.TeamFreeProxy != false) {
       TeamFreeProxy = other.TeamFreeProxy;
@@ -1926,14 +1382,6 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
         }
         case 122: {
           ClaimedScrollMilestoneBits = input.ReadBytes();
-          break;
-        }
-        case 130: {
-          wantedOrders_.AddEntriesFrom(input, _repeated_wantedOrders_codec);
-          break;
-        }
-        case 136: {
-          NextWantedOrderSeq = input.ReadUInt64();
           break;
         }
         case 144: {
@@ -2042,14 +1490,6 @@ public sealed partial class PlayerCraftComp : pb::IMessage<PlayerCraftComp>
         }
         case 122: {
           ClaimedScrollMilestoneBits = input.ReadBytes();
-          break;
-        }
-        case 130: {
-          wantedOrders_.AddEntriesFrom(ref input, _repeated_wantedOrders_codec);
-          break;
-        }
-        case 136: {
-          NextWantedOrderSeq = input.ReadUInt64();
           break;
         }
         case 144: {

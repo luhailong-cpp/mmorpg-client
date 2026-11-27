@@ -7,6 +7,7 @@ using MmorpgClient.Net;
 using MmorpgClient.Net.Generated;
 using MmorpgClient.UI.Ugui.Skills;
 using NUnit.Framework;
+using TradePb = Trade;
 
 namespace MmorpgClient.Tests.EditMode.Skills
 {
@@ -394,14 +395,14 @@ namespace MmorpgClient.Tests.EditMode.Skills
             LoadState(state);
             ClaimScrollCollectionMilestoneResponse milestoneResp = null;
             BatchDismantleSkillBooksResponse batchResp = null;
-            PostSkillBookWantedOrderResponse postResp = null;
-            CancelSkillBookWantedOrderResponse cancelResp = null;
-            FulfillSkillBookWantedOrderResponse fulfillResp = null;
+            TradePb.WantedSkillBookOrderView postResp = null;
+            TradePb.CommerceOrderView cancelResp = null;
+            int fulfillConcluded = 0;
             _client.ScrollMilestoneClaimed += r => milestoneResp = r;
             _client.BooksBatchDismantled += r => batchResp = r;
             _client.WantedOrderPosted += r => postResp = r;
             _client.WantedOrderCanceled += r => cancelResp = r;
-            _client.WantedOrderFulfilled += r => fulfillResp = r;
+            _client.WantedFulfillConcluded += () => ++fulfillConcluded;
 
             _client.ClaimScrollMilestone(3, 1);
             var mReq = (ClaimScrollCollectionMilestoneRequest)_net.LastRequest;
@@ -428,40 +429,78 @@ namespace MmorpgClient.Tests.EditMode.Skills
             });
             Assert.That(batchResp.RefundedFragments, Is.EqualTo(32u));
 
-            // ── V5: 西市悬赏求书板发榜 / 撤单 / 列表 / 匹配揭榜交卷 ──
+            // ── V5: 西市悬赏求书板(trade 求购单):发榜跟到挂榜、撤单、全服榜翻页、匹配揭榜跟到成交 ──
             _now += 5000;
             _client.PostWantedOrder(12020, 1000, requireMasterSignature: true);
-            var pReq = (PostSkillBookWantedOrderRequest)_net.LastRequest;
+            Assert.That(_net.Calls[^1], Is.EqualTo(ClientPlayerJubaozhaiRpc.CreateWantedSkillBookOrderMessageId));
+            var pReq = ((TradePb.CreateWantedSkillBookOrderRequest)_net.LastRequest).Clone();
             Assert.That(pReq.RewardGold, Is.EqualTo(1000UL));
             Assert.That(pReq.RequireMasterSignature, Is.True);
-            var orderInfo = new SkillBookWantedOrderInfo
+            Assert.That(pReq.ClientRequestId.Length, Is.InRange(8, 80));
+            var mine = new TradePb.WantedSkillBookOrderView
             {
-                OrderId = 7, PosterPlayerId = 888, PosterName = "买书道友",
+                OrderId = "7", PosterPlayerId = Player, PosterName = "买书道友",
                 SkillTableId = 12020, SkillName = "愈战愈勇", ScrollId = 3,
                 RequireMasterSignature = true, RewardGold = 1000, SellerNetGold = 950,
+                Phase = TradePb.WantedSkillBookOrderPhase.Escrowing, IsMine = true,
             };
-            _net.Reply(new PostSkillBookWantedOrderResponse
-            {
-                ClientRequestId = pReq.ClientRequestId,
-                Order = orderInfo,
-                State = MakeState(revision: 13, fragments: 102, gold: 1000),
-            });
-            Assert.That(postResp.Order.OrderId, Is.EqualTo(7UL));
+            _net.Reply(new TradePb.WantedSkillBookOrderResponse { Order = mine.Clone() });
+            Assert.That(postResp.OrderId, Is.EqualTo("7"));
+            Assert.That(_client.HasPendingWrite, Is.False);
+            Assert.That(_client.WantedFollowUpActive, Is.True);
+
+            // 托管中:按同一请求号重发发榜查,查到挂榜就停,并刷新我的悬赏。
+            int callsBefore = _net.Calls.Count;
+            _now += 1000;
+            _client.TickRecovery();
+            Assert.That(_net.Calls.Count, Is.EqualTo(callsBefore)); // 没到间隔不查
+            _now += 1000;
+            _client.TickRecovery();
+            Assert.That(_net.Calls[^1], Is.EqualTo(ClientPlayerJubaozhaiRpc.CreateWantedSkillBookOrderMessageId));
+            Assert.That(((TradePb.CreateWantedSkillBookOrderRequest)_net.LastRequest).ClientRequestId, Is.EqualTo(pReq.ClientRequestId));
+            mine.Phase = TradePb.WantedSkillBookOrderPhase.Open;
+            _net.Reply(new TradePb.WantedSkillBookOrderResponse { Order = mine.Clone() });
+            Assert.That(_client.WantedFollowUpActive, Is.False);
+            Assert.That(_client.Message, Does.Contain("挂榜"));
+            Assert.That(((TradePb.ListWantedSkillBookOrdersRequest)_net.LastRequest).OnlyMine, Is.True);
+            _net.Reply(new TradePb.ListWantedSkillBookOrdersResponse { Orders = { mine.Clone() } });
+            Assert.That(_client.MyWantedOrders.Count, Is.EqualTo(1));
+            Assert.That(SkillCraftModels.CanCancelWantedOrder(_client.MyWantedOrders[0]), Is.True);
+            Assert.That(SkillCraftModels.DescribeWantedPhase(_client.MyWantedOrders[0].Phase), Is.EqualTo("挂榜中"));
 
             _now += 5000;
-            _client.CancelWantedOrder(7);
-            var cReq = (CancelSkillBookWantedOrderRequest)_net.LastRequest;
-            _net.Reply(new CancelSkillBookWantedOrderResponse
+            _client.CancelWantedOrder("7");
+            Assert.That(_net.Calls[^1], Is.EqualTo(ClientPlayerJubaozhaiRpc.CancelCommerceOrderMessageId));
+            Assert.That(((TradePb.CancelCommerceOrderRequest)_net.LastRequest).OrderId, Is.EqualTo("7"));
+            _net.Reply(new TradePb.CommerceOrderResponse
             {
-                ClientRequestId = cReq.ClientRequestId,
-                RefundedGold = 1000,
-                State = MakeState(revision: 14, fragments: 102, gold: 2000),
+                Order = new TradePb.CommerceOrderView { OrderId = "7", State = TradePb.CommerceOrderState.Cancelled },
             });
-            Assert.That(cancelResp.RefundedGold, Is.EqualTo(1000UL));
+            Assert.That(cancelResp.State, Is.EqualTo(TradePb.CommerceOrderState.Cancelled));
+            Assert.That(_client.Message, Does.Contain("全额退回"));
+            _net.Reply(new TradePb.ListWantedSkillBookOrdersResponse()); // 撤单之后刷新的我的悬赏
+            Assert.That(_client.MyWantedOrders.Count, Is.EqualTo(0));
 
+            // 全服悬赏榜按游标翻页(刷新第一页时也刷新我的悬赏,这里只回公开榜那一条)。
+            var other = new TradePb.WantedSkillBookOrderView
+            {
+                OrderId = "8", PosterPlayerId = 888, PosterName = "买书道友",
+                SkillTableId = 12020, SkillName = "愈战愈勇", ScrollId = 3,
+                RequireMasterSignature = true, RewardGold = 1000, SellerNetGold = 950,
+                Phase = TradePb.WantedSkillBookOrderPhase.Open,
+            };
             _client.RefreshWantedOrders();
-            _net.Reply(new ListSkillBookWantedOrdersResponse { Orders = { orderInfo } });
+            var boardReq = (TradePb.ListWantedSkillBookOrdersRequest)_net.LastRequest;
+            Assert.That(boardReq.OnlyMine, Is.False);
+            Assert.That(boardReq.Cursor, Is.Empty);
+            _net.Reply(new TradePb.ListWantedSkillBookOrdersResponse { Orders = { other.Clone() }, NextCursor = "1000:8" });
             Assert.That(_client.WantedOrders.Count, Is.EqualTo(1));
+            Assert.That(_client.HasMoreWantedOrders, Is.True);
+            _client.RefreshWantedOrders(nextPage: true);
+            Assert.That(((TradePb.ListWantedSkillBookOrdersRequest)_net.LastRequest).Cursor, Is.EqualTo("1000:8"));
+            _net.Reply(new TradePb.ListWantedSkillBookOrdersResponse());
+            Assert.That(_client.WantedOrders.Count, Is.EqualTo(1));
+            Assert.That(_client.HasMoreWantedOrders, Is.False);
 
             // 揭榜匹配：仅接受未绑定且满足宗师署名要求的 3414 封卷道籍
             var bag = new BagInfo();
@@ -470,21 +509,79 @@ namespace MmorpgClient.Tests.EditMode.Skills
                 ItemId = 9002, ConfigId = 3414, Count = 1, Bound = false,
                 SealedSkillBook = new SealedSkillBookInfo { SkillTableId = 12020, RarityTier = 0, CrafterName = "双绝天工·欧冶子", CrafterPlayerId = 20 },
             });
-            var match = SkillCraftModels.FindMatchingFulfillSource(orderInfo, _client.State, bag);
+            var match = SkillCraftModels.FindMatchingFulfillSource(other, _client.State, bag);
             Assert.That(match.SealedItemId, Is.EqualTo(9002UL));
 
             _now += 5000;
-            _client.FulfillWantedOrderWithSealedItem(888, 7, 9002);
-            var fReq = (FulfillSkillBookWantedOrderRequest)_net.LastRequest;
+            _client.FulfillWantedOrderWithSealedItem("8", 9002);
+            Assert.That(_net.Calls[^1], Is.EqualTo(ClientPlayerJubaozhaiRpc.FulfillWantedSkillBookOrderMessageId));
+            var fReq = ((TradePb.FulfillWantedSkillBookOrderRequest)_net.LastRequest).Clone();
+            Assert.That(fReq.OrderId, Is.EqualTo("8"));
             Assert.That(fReq.SealedItemId, Is.EqualTo(9002UL));
-            _net.Reply(new FulfillSkillBookWantedOrderResponse
+            other.Phase = TradePb.WantedSkillBookOrderPhase.Fulfilling;
+            other.FulfillerPlayerId = Player;
+            _net.Reply(new TradePb.WantedSkillBookOrderResponse { Order = other.Clone() });
+            Assert.That(_client.WantedFollowUpActive, Is.True);
+            Assert.That(fulfillConcluded, Is.EqualTo(0));
+
+            // 交易中:按同一请求号重发揭榜查结果,成交即结论;税后实得用服务端给的 seller_net_gold。
+            _now += 2000;
+            _client.TickRecovery();
+            var pollReq = (TradePb.FulfillWantedSkillBookOrderRequest)_net.LastRequest;
+            Assert.That(pollReq.ClientRequestId, Is.EqualTo(fReq.ClientRequestId));
+            Assert.That(pollReq.SealedItemId, Is.EqualTo(9002UL));
+            other.Phase = TradePb.WantedSkillBookOrderPhase.Settled;
+            _net.Reply(new TradePb.WantedSkillBookOrderResponse { Order = other.Clone() });
+            Assert.That(fulfillConcluded, Is.EqualTo(1));
+            Assert.That(_client.WantedFollowUpActive, Is.False);
+            Assert.That(_client.Message, Does.Contain("950"));
+        }
+
+        [Test]
+        public void WantedFulfillFromBookshelfSealsFirstAndUncertainReplyReplaysSameRequestIdAcrossRecreate()
+        {
+            var init = MakeState(revision: 3);
+            init.SkillBooks.Add(new CraftedSkillBookEntry { BookId = 55, SkillTableId = 12020, ScrollId = 3, RarityTier = 0, Bound = false });
+            LoadState(init);
+            int concluded = 0;
+            _client.WantedFulfillConcluded += () => ++concluded;
+
+            // 书架书揭榜 = 先在 scene 封卷,封卷回包带回道具号立刻在 trade 揭榜(界面一键)。
+            _client.FulfillWantedOrderWithBookshelfBook("8", 55);
+            Assert.That(_net.Calls[^1], Is.EqualTo(SceneSkillClientPlayerRpc.SealSkillBookMessageId));
+            var sealReq = (SealSkillBookRequest)_net.LastRequest;
+            Assert.That(sealReq.BookId, Is.EqualTo(55UL));
+            Assert.That(_client.WantedFollowUpActive, Is.True);
+            _net.Reply(new SealSkillBookResponse { ClientRequestId = sealReq.ClientRequestId, ItemId = 9100, State = MakeState(revision: 4) });
+            Assert.That(_net.Calls[^1], Is.EqualTo(ClientPlayerJubaozhaiRpc.FulfillWantedSkillBookOrderMessageId));
+            var fReq = ((TradePb.FulfillWantedSkillBookOrderRequest)_net.LastRequest).Clone();
+            Assert.That(fReq.OrderId, Is.EqualTo("8"));
+            Assert.That(fReq.SealedItemId, Is.EqualTo(9100UL));
+
+            // 结果没确认(超时):原请求留在本机,重建客户端后按同一请求号重发,不会再扣一次。
+            _net.Fail(RpcStatus.Timeout("rpc timeout"));
+            Assert.That(_client.HasPendingWrite, Is.True);
+            Assert.That(_store.Load(Player), Does.StartWith("tradewantedfulfill:"));
+            _net.Disconnect();
+            _client.Dispose();
+            _net.IsReady = true;
+            CreateClient();
+            _client.WantedFulfillConcluded += () => ++concluded;
+            _now += 10000;
+            _client.TickRecovery();
+            var replayed = (TradePb.FulfillWantedSkillBookOrderRequest)_net.LastRequest;
+            Assert.That(replayed.ClientRequestId, Is.EqualTo(fReq.ClientRequestId));
+            Assert.That(replayed.SealedItemId, Is.EqualTo(9100UL));
+
+            // 书不符:原样退回背包,这一次揭榜有了结论,恢复记录清掉。
+            _net.Reply(new TradePb.WantedSkillBookOrderResponse
             {
-                ClientRequestId = fReq.ClientRequestId,
-                OrderId = 7,
-                SellerNetGold = 950,
-                State = MakeState(revision: 15, fragments: 102, gold: 2950),
+                ErrorMessage = new TipInfoMessage { Id = (uint)trade_error.KTradeWantedBookMismatch },
             });
-            Assert.That(fulfillResp.SellerNetGold, Is.EqualTo(950UL));
+            Assert.That(_client.HasPendingWrite, Is.False);
+            Assert.That(_store.Load(Player), Is.Empty);
+            Assert.That(concluded, Is.EqualTo(1));
+            Assert.That(_client.Message, Does.Contain("原样退回"));
         }
 
         [Test]
