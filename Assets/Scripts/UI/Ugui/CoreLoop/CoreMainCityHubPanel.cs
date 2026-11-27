@@ -129,7 +129,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             DrawEntry("EquipmentPets", 534, "装备／灵宠", "养成与配装 · 随时继续", "icon_hub_equip_pet", _root.OpenEquipment);
             CoreLoopUiArt.Button("OpenPets", transform, 2434, 588, 82, 34,
                 "灵宠", _root.OpenPets, true, false, 18);
-            DrawEntry("WuxingTower", 642, "五行幻境", "十层肉鸽符印 · 免费阵法", "icon_hub_rotation", _root.OpenWuxingTower);
+            DrawEntry("WuxingTower", 642, "五行幻境", "六关奇策肉鸽 · 随时续打", "icon_hub_rotation", _root.OpenWuxingTower);
             CoreLoopUiArt.Button("OpenWuxingFormations", transform, 2178, 744, 170, 38,
                 "五行阵法", _root.OpenWuxingFormations, true, false, 18);
             CoreLoopUiArt.Button("OpenCustomDuelWide", transform, 2358, 744, 170, 38,
@@ -180,7 +180,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             const float height = 96f;
             CoreLoopUiArt.Card(transform, key + "Card", x, y, width, height);
             var icon = key == "WuxingTower"
-                ? (WuxingExpansionsUiArt.LoadFormationCompassBg() ?? CoreLoopUiArt.LoadV2(iconKey))
+                ? (WuxingExpansionsUiArt.LoadRealmEntryIcon() ?? WuxingExpansionsUiArt.LoadFormationCompassBg() ?? CoreLoopUiArt.LoadV2(iconKey))
                 : CoreLoopUiArt.LoadV2(iconKey);
             if (icon != null)
                 SeasonV1UiArt.CreateFixedIcon(transform, key + "Icon", x + 15, y + 20, 56, 56, icon, Color.clear);

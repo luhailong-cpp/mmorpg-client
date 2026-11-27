@@ -20,6 +20,8 @@ namespace MmorpgClient.Game.Season
         public uint SaveBattleBuildBookmark { get; }
         public uint DeleteBattleBuildBookmark { get; }
         public uint SetRetroHonorTarget { get; }
+        public uint ChooseWuxingRealmBranch { get; }
+        public uint ResolveWuxingRealmEvent { get; }
 
         public bool IsSupported => GetState != 0 && EquipSeal != 0 && CatchupSeal != 0;
 
@@ -34,7 +36,9 @@ namespace MmorpgClient.Game.Season
             uint abandonWuxingTowerRun = 0u,
             uint saveBattleBuildBookmark = 0u,
             uint deleteBattleBuildBookmark = 0u,
-            uint setRetroHonorTarget = 0u)
+            uint setRetroHonorTarget = 0u,
+            uint chooseWuxingRealmBranch = 0u,
+            uint resolveWuxingRealmEvent = 0u)
         {
             GetState = getState;
             EquipSeal = equipSeal;
@@ -47,6 +51,8 @@ namespace MmorpgClient.Game.Season
             SaveBattleBuildBookmark = saveBattleBuildBookmark;
             DeleteBattleBuildBookmark = deleteBattleBuildBookmark;
             SetRetroHonorTarget = setRetroHonorTarget;
+            ChooseWuxingRealmBranch = chooseWuxingRealmBranch;
+            ResolveWuxingRealmEvent = resolveWuxingRealmEvent;
         }
 
         public static SeasonMessageIds Generated => new SeasonMessageIds(
@@ -60,7 +66,9 @@ namespace MmorpgClient.Game.Season
             SceneSeasonClientPlayerRpc.AbandonWuxingTowerRunMessageId,
             SceneSeasonClientPlayerRpc.SaveBattleBuildBookmarkMessageId,
             SceneSeasonClientPlayerRpc.DeleteBattleBuildBookmarkMessageId,
-            SceneSeasonClientPlayerRpc.SetRetroHonorTargetMessageId);
+            SceneSeasonClientPlayerRpc.SetRetroHonorTargetMessageId,
+            SceneSeasonClientPlayerRpc.ChooseWuxingRealmBranchMessageId,
+            SceneSeasonClientPlayerRpc.ResolveWuxingRealmEventMessageId);
     }
 
     /// <summary>赛季印进度追赶成功回执（不可变值对象，跨模块事件传递安全）。</summary>

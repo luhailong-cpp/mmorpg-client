@@ -58,7 +58,51 @@ namespace MmorpgClient.Game.CoreLoop
 
         public const uint MaxFormationId = 5u;
         public const uint TowerMaxFloors = 10u;
+        public const uint RealmV2Version = 2u;
+        public const uint RealmV2MaxNodes = 6u;
+        public const uint RealmV2ResonanceThreshold = 3u;
         public const int MaxSavedBuildBookmarks = 12;
+
+        public const uint RealmNodeNeedBranch = 0u;
+        public const uint RealmNodeNormal = 1u;
+        public const uint RealmNodeElite = 2u;
+        public const uint RealmNodeBoss = 3u;
+        public const uint RealmNodeEvent = 4u;
+        public const uint RealmNodeRest = 5u;
+
+        public const uint RealmEventNone = 0u;
+        public const uint RealmEventEncounter = 1u;
+        public const uint RealmEventRest = 2u;
+
+        public const uint RealmBranchElite = 1u;
+        public const uint RealmBranchSpecial = 2u;
+
+        public const uint DefaultFairCharPresetId = 101u;
+        public const uint DefaultFairPetPresetId = 201u;
+
+        /// <summary>五行幻境 V2 15 枚机制改造型五行奇策（号段 601..643，与服务端 wuxing_expansion_rules.h 逐项一致）。</summary>
+        public static readonly WuxingTowerSigilDef[] RealmBoons =
+        {
+            new WuxingTowerSigilDef(601u, "破盾返元", ElementMetal, 1u, "击碎敌方护盾返还 50% 法力并追加 60% 斩击"),
+            new WuxingTowerSigilDef(602u, "绝锋连斩", ElementMetal, 2u, "暴击向另 1 名存活敌人溅射 40% 实际伤害"),
+            new WuxingTowerSigilDef(603u, "庚金斩煞", ElementMetal, 3u, "每回合己方首次直击无视 35% 防御穿透增伤"),
+
+            new WuxingTowerSigilDef(611u, "玄毒蔓延", ElementWood,  1u, "敌方持续伤害跳字向其余存活敌方传染 50%"),
+            new WuxingTowerSigilDef(612u, "生机反哺", ElementWood,  2u, "获得治疗或护盾后下 1 次直击伤害 +20%"),
+            new WuxingTowerSigilDef(613u, "灵宠协战", ElementWood,  3u, "主角攻击后出战灵宠免费追击 70% 普攻（每回合1次）"),
+
+            new WuxingTowerSigilDef(621u, "润脉免耗", ElementWater, 1u, "每回合己方首招主动技能法力消耗降至 0"),
+            new WuxingTowerSigilDef(622u, "寒渊延控", ElementWater, 2u, "硬控/封印成功持续 +1 回合；免疫则附 2 回合 18% 易伤"),
+            new WuxingTowerSigilDef(623u, "镜花水月", ElementWater, 3u, "主角每第 3 次主动进攻技能以 55% 威力连发 1 次"),
+
+            new WuxingTowerSigilDef(631u, "焚盾爆炎", ElementFire,  1u, "场上任意护盾碎裂对敌全体造成护盾 30% 真伤（封顶1800）"),
+            new WuxingTowerSigilDef(632u, "孤注焚天", ElementFire,  2u, "气血低于 60% 按已损气血获至高 +35% 伤害与 +20% 暴击"),
+            new WuxingTowerSigilDef(633u, "离火燃魂", ElementFire,  3u, "回合末对最高血敌人叠灼伤（至多3层，每层4%封顶1500）"),
+
+            new WuxingTowerSigilDef(641u, "镇岳倍反", ElementEarth, 1u, "反震伤害翻倍（×200%）并附 2 回合破甲（降防15%）"),
+            new WuxingTowerSigilDef(642u, "绝境磐石", ElementEarth, 2u, "每战首次气血跌破 35% 自动获得 25% 最大气血护盾"),
+            new WuxingTowerSigilDef(643u, "坤元借力", ElementEarth, 3u, "开局获 18% 护盾，持盾攻击附当前护盾 25% 伤害（封顶1200）"),
+        };
 
         public static readonly WuxingFormationDef[] Formations =
         {
@@ -170,8 +214,25 @@ namespace MmorpgClient.Game.CoreLoop
             return string.Empty;
         }
 
+        public static bool TryFindRealmBoon(uint boonId, out WuxingTowerSigilDef def)
+        {
+            for (int i = 0; i < RealmBoons.Length; ++i)
+            {
+                if (RealmBoons[i].Id == boonId)
+                {
+                    def = RealmBoons[i];
+                    return true;
+                }
+            }
+            def = default;
+            return false;
+        }
+
+        public static bool IsRealmBoonId(uint boonId) => TryFindRealmBoon(boonId, out _);
+
         public static bool TryFindSigil(uint sigilId, out WuxingTowerSigilDef def)
         {
+            if (TryFindRealmBoon(sigilId, out def)) return true;
             for (int i = 0; i < TowerSigils.Length; ++i)
             {
                 if (TowerSigils[i].Id == sigilId)
@@ -183,6 +244,125 @@ namespace MmorpgClient.Game.CoreLoop
             def = default;
             return false;
         }
+
+        public static uint ComputeActiveResonanceElement(IEnumerable<uint> boonIds)
+        {
+            if (boonIds == null) return ElementNone;
+            var counts = new uint[6];
+            foreach (uint id in boonIds)
+            {
+                if (TryFindRealmBoon(id, out var def) && def.Element >= 1u && def.Element <= 5u)
+                    counts[def.Element] += 1u;
+            }
+            for (uint elem = 1u; elem <= 5u; ++elem)
+            {
+                if (counts[elem] >= RealmV2ResonanceThreshold) return elem;
+            }
+            return ElementNone;
+        }
+
+        public static string ResonanceName(uint element) => element switch
+        {
+            ElementMetal => "破军锋芒",
+            ElementWood => "生生不息",
+            ElementWater => "流云千变",
+            ElementFire => "焚城烈焰",
+            ElementEarth => "不动如山",
+            _ => string.Empty,
+        };
+
+        public static string ResonanceDescription(uint element) => element switch
+        {
+            ElementMetal => "对气血 ≤ 20% 非首领（首领 ≤ 12%）直接斩杀",
+            ElementWood => "回合初敌方持续伤害额外结算 50%，己方回复 6% 气血",
+            ElementWater => "己方主动技能冷却 -1 回合（最低1），法力回复 +30%",
+            ElementFire => "己方直击附带 15% 溅射灼伤扩散至相邻敌方",
+            ElementEarth => "护盾吸收伤害同样触发反震，开局护盾不自然衰减",
+            _ => string.Empty,
+        };
+
+        public static string FormatResonanceProgressHint(IEnumerable<uint> boonIds)
+        {
+            if (boonIds == null) return "集齐 3 枚同五行奇策自动激活五行奇策共鸣";
+            var counts = new uint[6];
+            foreach (uint id in boonIds)
+            {
+                if (TryFindRealmBoon(id, out var def) && def.Element >= 1u && def.Element <= 5u)
+                    counts[def.Element] += 1u;
+            }
+            for (uint elem = 1u; elem <= 5u; ++elem)
+            {
+                if (counts[elem] >= RealmV2ResonanceThreshold)
+                    return $"已激活 {ElementName(elem)}系共鸣「{ResonanceName(elem)}」：{ResonanceDescription(elem)}";
+            }
+            uint bestElem = ElementNone;
+            uint bestCount = 0u;
+            for (uint elem = 1u; elem <= 5u; ++elem)
+            {
+                if (counts[elem] > bestCount)
+                {
+                    bestCount = counts[elem];
+                    bestElem = elem;
+                }
+            }
+            if (bestElem == ElementNone) return "集齐 3 枚同五行奇策自动激活五行奇策共鸣";
+            uint need = RealmV2ResonanceThreshold - bestCount;
+            return $"再选 {need} 枚{ElementName(bestElem)}系奇策即可激活「{ResonanceName(bestElem)}」共鸣";
+        }
+
+        public static bool CanUpgradeBoon(uint boonId, IEnumerable<uint> owned)
+        {
+            if (!TryFindRealmBoon(boonId, out var cur) || cur.Rarity >= 3u) return false;
+            var ownedSet = owned != null ? new HashSet<uint>(owned) : new HashSet<uint>();
+            for (int i = 0; i < RealmBoons.Length; ++i)
+            {
+                var candidate = RealmBoons[i];
+                if (candidate.Element == cur.Element && candidate.Rarity > cur.Rarity && !ownedSet.Contains(candidate.Id))
+                    return true;
+            }
+            return false;
+        }
+
+        public static string RealmNodeKindLabel(uint nodeKind) => nodeKind switch
+        {
+            RealmNodeNeedBranch => "待选分岔",
+            RealmNodeNormal => "普通战",
+            RealmNodeElite => "精英强敌",
+            RealmNodeBoss => "终局首领",
+            RealmNodeEvent => "奇遇事件",
+            RealmNodeRest => "秘境休整",
+            _ => "试炼节点",
+        };
+
+        public static string FairCharacterPresetName(uint presetId) => presetId switch
+        {
+            101u => "剑修·力",
+            102u => "法宗·灵",
+            103u => "道医·体",
+            _ => "剑修·力",
+        };
+
+        public static string FairPetPresetName(uint presetId) => presetId switch
+        {
+            201u => "猛攻灵宠",
+            202u => "法爆灵宠",
+            203u => "护主血宠",
+            _ => "猛攻灵宠",
+        };
+
+        public static int CountClearedNodes(uint weeklyClearedMask, uint maxNodes = RealmV2MaxNodes)
+        {
+            int limit = (int)Math.Min(maxNodes > 0u ? maxNodes : RealmV2MaxNodes, 31u);
+            int count = 0;
+            for (int bit = 0; bit < limit; ++bit)
+            {
+                if ((weeklyClearedMask & (1u << bit)) != 0u) ++count;
+            }
+            return count;
+        }
+
+        public static bool IsNodeCleared(uint weeklyClearedMask, uint nodeIndex, uint maxNodes = RealmV2MaxNodes) =>
+            nodeIndex >= 1u && nodeIndex <= maxNodes && (weeklyClearedMask & (1u << (int)(nodeIndex - 1u))) != 0u;
 
         public static int CountClearedFloors(uint weeklyClearedMask)
         {

@@ -10,10 +10,26 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
     public static class WuxingExpansionsUiArt
     {
         private const string Root = "UI/Ugui/WuxingExpansionsV1/";
-        private static readonly Dictionary<string, Sprite> Cache = new Dictionary<string, Sprite>(32);
+        private const string RealmV2Root = "UI/Ugui/WuxingRealmV2/";
+        private static readonly Dictionary<string, Sprite> Cache = new Dictionary<string, Sprite>(48);
 
-        public static Sprite LoadIcon(string key) => Load("icons/" + key);
-        public static Sprite LoadControl(string key) => Load("ui/" + key);
+        public static Sprite LoadIcon(string key) => Load(Root, "icons/" + key);
+        public static Sprite LoadControl(string key) => Load(Root, "ui/" + key);
+
+        // 五行幻境 V2（8 张 Codex 透明切片预接线，素材入库前返回 null 自动回退）
+        public static Sprite LoadRealmEntryIcon() => Load(RealmV2Root, "hud_entry_roguelike_realm");
+        public static Sprite LoadRealmRouteBoardBg() => Load(RealmV2Root, "realm_route_board_bg");
+        public static Sprite LoadRealmBoonCardBg() => Load(RealmV2Root, "realm_boon_card_bg");
+        public static Sprite LoadRealmResonanceBanner() => Load(RealmV2Root, "realm_resonance_banner");
+
+        public static Sprite LoadRealmNodeIcon(uint nodeKind) => nodeKind switch
+        {
+            1u => Load(RealmV2Root, "realm_node_normal"),
+            2u => Load(RealmV2Root, "realm_node_elite"),
+            3u => Load(RealmV2Root, "realm_node_boss"),
+            4u or 5u => Load(RealmV2Root, "realm_node_event"),
+            _ => null,
+        };
 
         public static Sprite LoadElementIcon(uint element) => element switch
         {
@@ -54,12 +70,13 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             _ => null,
         };
 
-        private static Sprite Load(string relativePath)
+        private static Sprite Load(string root, string relativePath)
         {
             if (string.IsNullOrEmpty(relativePath)) return null;
-            if (Cache.TryGetValue(relativePath, out var cached) && cached != null) return cached;
-            var sprite = Resources.Load<Sprite>(Root + relativePath);
-            if (sprite != null) Cache[relativePath] = sprite;
+            string fullKey = root + relativePath;
+            if (Cache.TryGetValue(fullKey, out var cached) && cached != null) return cached;
+            var sprite = Resources.Load<Sprite>(fullKey);
+            if (sprite != null) Cache[fullKey] = sprite;
             return sprite;
         }
     }

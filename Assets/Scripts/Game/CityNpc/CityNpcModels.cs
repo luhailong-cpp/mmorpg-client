@@ -454,7 +454,7 @@ namespace MmorpgClient.Game.CityNpc
                 new[]
                 {
                     new CityNpcShortcut("首领试炼", CityNpcShortcutKind.BossTrial),
-                    new CityNpcShortcut("五行幻境爬塔", CityNpcShortcutKind.WuxingTower),
+                    new CityNpcShortcut("五行幻境·奇策", CityNpcShortcutKind.WuxingTower),
                     new CityNpcShortcut("五行试炼志", CityNpcShortcutKind.TrialJournal)
                 },
                 new Dictionary<string, string>(StringComparer.Ordinal)

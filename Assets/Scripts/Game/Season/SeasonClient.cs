@@ -347,7 +347,9 @@ namespace MmorpgClient.Game.Season
                 });
         }
 
-        public bool StartWuxingTowerRun()
+        public bool StartWuxingTowerRun() => StartWuxingTowerRun(false, 0u, 0u);
+
+        public bool StartWuxingTowerRun(bool useFreePreset, uint characterPresetId = 0u, uint petPresetId = 0u)
         {
             if (_disposed) return false;
             ObserveConnection();
@@ -357,9 +359,15 @@ namespace MmorpgClient.Game.Season
 
             ActionPending = true;
             int generation = _generation;
+            var req = new global::StartWuxingTowerRunRequest
+            {
+                UseFreePreset = useFreePreset,
+                CharacterPresetId = useFreePreset ? characterPresetId : 0u,
+                PetPresetId = useFreePreset ? petPresetId : 0u,
+            };
             SetStatus("正在开启新一轮五行幻境…", false);
             Changed?.Invoke();
-            _net.Call(_messageIds.StartWuxingTowerRun, new global::StartWuxingTowerRunRequest(),
+            _net.Call(_messageIds.StartWuxingTowerRun, req,
                 global::StartWuxingTowerRunResponse.Parser,
                 response =>
                 {
@@ -368,8 +376,11 @@ namespace MmorpgClient.Game.Season
                     if (response.State != null) ApplyTowerSnapshot(response.State);
                     uint tipId = response.ErrorMessage?.Id ?? 0u;
                     if (tipId != 0u) { HandleWriteTip("StartWuxingTowerRun", tipId); return; }
-                    SetStatus("已开启五行幻境，可从第 1 层起挑战！", false);
-                    Notice?.Invoke("已开启五行幻境");
+                    string done = useFreePreset
+                        ? "已开启公平 3×3 试炼秘境，可从第 1 关起探索！"
+                        : "已开启五行幻境，可从第 1 关起探索！";
+                    SetStatus(done, false);
+                    Notice?.Invoke(done);
                     Changed?.Invoke();
                 },
                 _ =>
@@ -377,6 +388,93 @@ namespace MmorpgClient.Game.Season
                     if (!IsCurrent(generation)) return;
                     ActionPending = false;
                     SetStatus("开启五行幻境失败，请稍后重试。", true);
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
+        public bool ChooseWuxingRealmBranch(uint branch)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (_messageIds.ChooseWuxingRealmBranch == 0u) return RejectLocally(UnsupportedMessage);
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (ActionPending || TowerSnapshot == null || !TowerSnapshot.RunActive) return false;
+            if (branch != 1u && branch != 2u) return RejectLocally("无效的分岔路线选项。");
+
+            ActionPending = true;
+            int generation = _generation;
+            var req = new global::ChooseWuxingRealmBranchRequest
+            {
+                ExpectedRunId = TowerSnapshot.RunId,
+                Branch = branch,
+            };
+            SetStatus("正在确认秘境行进路线…", false);
+            Changed?.Invoke();
+            _net.Call(_messageIds.ChooseWuxingRealmBranch, req,
+                global::ChooseWuxingRealmBranchResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    if (response.State != null) ApplyTowerSnapshot(response.State);
+                    uint tipId = response.ErrorMessage?.Id ?? 0u;
+                    if (tipId != 0u) { HandleWriteTip("ChooseWuxingRealmBranch", tipId); return; }
+                    string done = branch == 1u ? "已选定左路：精英强敌。" : "已选定右路：秘境机缘。";
+                    SetStatus(done, false);
+                    Notice?.Invoke(done);
+                    Changed?.Invoke();
+                },
+                _ =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    SetStatus("选择秘境路线失败，请稍后重试。", true);
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
+        public bool ResolveWuxingRealmEvent(uint optionIndex, uint targetBoonId = 0u)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (_messageIds.ResolveWuxingRealmEvent == 0u) return RejectLocally(UnsupportedMessage);
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (ActionPending || TowerSnapshot == null || !TowerSnapshot.RunActive) return false;
+            if (optionIndex != 1u && optionIndex != 2u) return RejectLocally("无效的奇遇/休整抉择选项。");
+
+            ActionPending = true;
+            int generation = _generation;
+            var req = new global::ResolveWuxingRealmEventRequest
+            {
+                ExpectedRunId = TowerSnapshot.RunId,
+                OptionIndex = optionIndex,
+                TargetBoonId = targetBoonId,
+            };
+            SetStatus("正在结算秘境机缘…", false);
+            Changed?.Invoke();
+            _net.Call(_messageIds.ResolveWuxingRealmEvent, req,
+                global::ResolveWuxingRealmEventResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    if (response.State != null) ApplyTowerSnapshot(response.State);
+                    uint tipId = response.ErrorMessage?.Id ?? 0u;
+                    if (tipId != 0u) { HandleWriteTip("ResolveWuxingRealmEvent", tipId); return; }
+                    string done = response.GrantedBoonId != 0u && CoreLoop.WuxingExpansionModels.TryFindSigil(response.GrantedBoonId, out var boon)
+                        ? $"已获得五行奇策「{boon.Name}」！"
+                        : "秘境抉择已完成，请继续推进！";
+                    SetStatus(done, false);
+                    Notice?.Invoke(done);
+                    Changed?.Invoke();
+                },
+                _ =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    SetStatus("处理秘境事件失败，请稍后重试。", true);
                     Changed?.Invoke();
                 });
             return true;
@@ -397,7 +495,7 @@ namespace MmorpgClient.Game.Season
                 ExpectedRunId = TowerSnapshot.RunId,
                 SigilId = sigilId,
             };
-            SetStatus("正在铭刻局内五行符印…", false);
+            SetStatus("正在铭刻局内五行奇策…", false);
             Changed?.Invoke();
             _net.Call(_messageIds.PickWuxingTowerSigil, req, global::PickWuxingTowerSigilResponse.Parser,
                 response =>
@@ -407,15 +505,15 @@ namespace MmorpgClient.Game.Season
                     if (response.State != null) ApplyTowerSnapshot(response.State);
                     uint tipId = response.ErrorMessage?.Id ?? 0u;
                     if (tipId != 0u) { HandleWriteTip("PickWuxingTowerSigil", tipId); return; }
-                    SetStatus("已选定五行符印，准备挑战下一层！", false);
-                    Notice?.Invoke("五行符印已生效");
+                    SetStatus("已铭刻五行奇策，准备推进下一关！", false);
+                    Notice?.Invoke("五行奇策已生效");
                     Changed?.Invoke();
                 },
                 _ =>
                 {
                     if (!IsCurrent(generation)) return;
                     ActionPending = false;
-                    SetStatus("选取符印失败，请稍后重试。", true);
+                    SetStatus("选取五行奇策失败，请稍后重试。", true);
                     Changed?.Invoke();
                 });
             return true;
