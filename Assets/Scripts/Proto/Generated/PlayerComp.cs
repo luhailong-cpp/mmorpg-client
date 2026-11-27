@@ -35,7 +35,7 @@ public static partial class PlayerCompReflection {
           "aG9zdGVkX3JlY2FwX3NpbHZlcl9nYWluZWQYCSABKAQSHwoXaG9zdGVkX3Jl",
           "Y2FwX2l0ZW1fY291bnQYCiABKA0SIAoYaG9zdGVkX3JlY2FwX3BlbmRpbmdf",
           "YWNrGAsgASgIIiEKEFBsYXllclVpbnQzMkNvbXASDQoFY2xhc3MYASABKA0i",
-          "oQQKEVBsYXllclByb2ZpbGVDb21wEgwKBG5hbWUYASABKAkSFQoNYXBwZWFy",
+          "6AQKEVBsYXllclByb2ZpbGVDb21wEgwKBG5hbWUYASABKAkSFQoNYXBwZWFy",
           "YW5jZV9pZBgCIAEoCRIOCgZnZW5kZXIYAyABKA0SEgoKcmVuYW1lX3NlcRgE",
           "IAEoBBISCgpyZW5hbWVkX21zGAUgASgEEiIKCXJlbmFtZV9vcBgGIAEoCzIP",
           "LlBsYXllclJlbmFtZU9wEiIKGmFwcGVhcmFuY2VfdHJpYWxfdXNlZF9iaXRz",
@@ -45,16 +45,18 @@ public static partial class PlayerCompReflection {
           "ZXRpY19vd25lZF9iaXRzGAwgASgMEhwKFHNraWxsX3ZmeF9vd25lZF9iaXRz",
           "GA0gASgMEkQKEmVxdWlwcGVkX3NraWxsX3ZmeBgOIAMoCzIoLlBsYXllclBy",
           "b2ZpbGVDb21wLkVxdWlwcGVkU2tpbGxWZnhFbnRyeRI0ChJzcGVjdGF0ZV9j",
-          "aGF0X3ByZWYYDyABKA4yGC5lU3BlY3RhdGVDaGF0UHJlZmVyZW5jZRo3ChVF",
-          "cXVpcHBlZFNraWxsVmZ4RW50cnkSCwoDa2V5GAEgASgNEg0KBXZhbHVlGAIg",
-          "ASgNOgI4ASJ6Cg5QbGF5ZXJSZW5hbWVPcBILCgNzZXEYASABKAQSDAoEbmFt",
-          "ZRgCIAEoCRIPCgdob2xkX2lkGAMgASgEEhQKDGNhcmRfaXRlbV9pZBgEIAEo",
-          "DRISCgpjYXJkX2NvdW50GAUgASgNEhIKCnN0YXJ0ZWRfbXMYBiABKAQiOwoV",
-          "UGxheWVyU3RyZXNzVGVzdFByb2JlEhAKCHRlc3Rfc2VxGAEgASgEEhAKCHRl",
-          "c3Rfc2lnGAIgASgMKnoKF2VTcGVjdGF0ZUNoYXRQcmVmZXJlbmNlEiIKHlNQ",
-          "RUNUQVRFX0NIQVRfUFJFRl9VTlNQRUNJRklFRBAAEhwKGFNQRUNUQVRFX0NI",
-          "QVRfUFJFRl9BTExPVxABEh0KGVNQRUNUQVRFX0NIQVRfUFJFRl9GT1JCSUQQ",
-          "AkISWhBjb21tb24vY29tcG9uZW50YgZwcm90bzM="));
+          "aGF0X3ByZWYYDyABKA4yGC5lU3BlY3RhdGVDaGF0UHJlZmVyZW5jZRImCh5s",
+          "aWdodF9jYXJkX3RyaWFsX3dlZWtfc3RhcnRfbXMYECABKAQSHQoVbGlnaHRf",
+          "Y2FyZF90cmlhbF91c2VkGBEgASgNGjcKFUVxdWlwcGVkU2tpbGxWZnhFbnRy",
+          "eRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBInoKDlBsYXllclJl",
+          "bmFtZU9wEgsKA3NlcRgBIAEoBBIMCgRuYW1lGAIgASgJEg8KB2hvbGRfaWQY",
+          "AyABKAQSFAoMY2FyZF9pdGVtX2lkGAQgASgNEhIKCmNhcmRfY291bnQYBSAB",
+          "KA0SEgoKc3RhcnRlZF9tcxgGIAEoBCI7ChVQbGF5ZXJTdHJlc3NUZXN0UHJv",
+          "YmUSEAoIdGVzdF9zZXEYASABKAQSEAoIdGVzdF9zaWcYAiABKAwqegoXZVNw",
+          "ZWN0YXRlQ2hhdFByZWZlcmVuY2USIgoeU1BFQ1RBVEVfQ0hBVF9QUkVGX1VO",
+          "U1BFQ0lGSUVEEAASHAoYU1BFQ1RBVEVfQ0hBVF9QUkVGX0FMTE9XEAESHQoZ",
+          "U1BFQ1RBVEVfQ0hBVF9QUkVGX0ZPUkJJRBACQhJaEGNvbW1vbi9jb21wb25l",
+          "bnRiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eSpectateChatPreference), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -65,7 +67,7 @@ public static partial class PlayerCompReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::UnregisterPlayer), global::UnregisterPlayer.Parser, new[]{ "LogoutInitiatedMs" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerUint64Comp), global::PlayerUint64Comp.Parser, new[]{ "RegistrationTimestamp", "AfkPassExpiresAt", "AfkAutoReturnCityOnTeamEnd", "HostedRecapStartedAt", "HostedRecapEndedAt", "HostedRecapBattleCount", "HostedRecapWinCount", "HostedRecapExpGained", "HostedRecapSilverGained", "HostedRecapItemCount", "HostedRecapPendingAck" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerUint32Comp), global::PlayerUint32Comp.Parser, new[]{ "Class" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerProfileComp), global::PlayerProfileComp.Parser, new[]{ "Name", "AppearanceId", "Gender", "RenameSeq", "RenamedMs", "RenameOp", "AppearanceTrialUsedBits", "TrialAppearanceId", "TrialExpiresAt", "AppearanceSwitchSeq", "AppearanceOwnedBits", "PetCosmeticOwnedBits", "SkillVfxOwnedBits", "EquippedSkillVfx", "SpectateChatPref" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerProfileComp), global::PlayerProfileComp.Parser, new[]{ "Name", "AppearanceId", "Gender", "RenameSeq", "RenamedMs", "RenameOp", "AppearanceTrialUsedBits", "TrialAppearanceId", "TrialExpiresAt", "AppearanceSwitchSeq", "AppearanceOwnedBits", "PetCosmeticOwnedBits", "SkillVfxOwnedBits", "EquippedSkillVfx", "SpectateChatPref", "LightCardTrialWeekStartMs", "LightCardTrialUsed" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerRenameOp), global::PlayerRenameOp.Parser, new[]{ "Seq", "Name", "HoldId", "CardItemId", "CardCount", "StartedMs" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerStressTestProbe), global::PlayerStressTestProbe.Parser, new[]{ "TestSeq", "TestSig" }, null, null, null, null)
         }));
@@ -1845,6 +1847,8 @@ public sealed partial class PlayerProfileComp : pb::IMessage<PlayerProfileComp>
     skillVfxOwnedBits_ = other.skillVfxOwnedBits_;
     equippedSkillVfx_ = other.equippedSkillVfx_.Clone();
     spectateChatPref_ = other.spectateChatPref_;
+    lightCardTrialWeekStartMs_ = other.lightCardTrialWeekStartMs_;
+    lightCardTrialUsed_ = other.lightCardTrialUsed_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2080,6 +2084,36 @@ public sealed partial class PlayerProfileComp : pb::IMessage<PlayerProfileComp>
     }
   }
 
+  /// <summary>Field number for the "light_card_trial_week_start_ms" field.</summary>
+  public const int LightCardTrialWeekStartMsFieldNumber = 16;
+  private ulong lightCardTrialWeekStartMs_;
+  /// <summary>
+  /// 仙途轻享卡「衣柜随心试穿」当前自然周起点（UTC+8 周一 05:00 毫秒，抗时钟回拨）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong LightCardTrialWeekStartMs {
+    get { return lightCardTrialWeekStartMs_; }
+    set {
+      lightCardTrialWeekStartMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "light_card_trial_used" field.</summary>
+  public const int LightCardTrialUsedFieldNumber = 17;
+  private uint lightCardTrialUsed_;
+  /// <summary>
+  /// 仙途轻享卡本周已消耗的随心试穿次数（每周至多 3 次，纯临时试穿不授永久权）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint LightCardTrialUsed {
+    get { return lightCardTrialUsed_; }
+    set {
+      lightCardTrialUsed_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2110,6 +2144,8 @@ public sealed partial class PlayerProfileComp : pb::IMessage<PlayerProfileComp>
     if (SkillVfxOwnedBits != other.SkillVfxOwnedBits) return false;
     if (!EquippedSkillVfx.Equals(other.EquippedSkillVfx)) return false;
     if (SpectateChatPref != other.SpectateChatPref) return false;
+    if (LightCardTrialWeekStartMs != other.LightCardTrialWeekStartMs) return false;
+    if (LightCardTrialUsed != other.LightCardTrialUsed) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2132,6 +2168,8 @@ public sealed partial class PlayerProfileComp : pb::IMessage<PlayerProfileComp>
     if (SkillVfxOwnedBits.Length != 0) hash ^= SkillVfxOwnedBits.GetHashCode();
     hash ^= EquippedSkillVfx.GetHashCode();
     if (SpectateChatPref != global::eSpectateChatPreference.SpectateChatPrefUnspecified) hash ^= SpectateChatPref.GetHashCode();
+    if (LightCardTrialWeekStartMs != 0UL) hash ^= LightCardTrialWeekStartMs.GetHashCode();
+    if (LightCardTrialUsed != 0) hash ^= LightCardTrialUsed.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2207,6 +2245,14 @@ public sealed partial class PlayerProfileComp : pb::IMessage<PlayerProfileComp>
       output.WriteRawTag(120);
       output.WriteEnum((int) SpectateChatPref);
     }
+    if (LightCardTrialWeekStartMs != 0UL) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt64(LightCardTrialWeekStartMs);
+    }
+    if (LightCardTrialUsed != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(LightCardTrialUsed);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2274,6 +2320,14 @@ public sealed partial class PlayerProfileComp : pb::IMessage<PlayerProfileComp>
       output.WriteRawTag(120);
       output.WriteEnum((int) SpectateChatPref);
     }
+    if (LightCardTrialWeekStartMs != 0UL) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt64(LightCardTrialWeekStartMs);
+    }
+    if (LightCardTrialUsed != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(LightCardTrialUsed);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2326,6 +2380,12 @@ public sealed partial class PlayerProfileComp : pb::IMessage<PlayerProfileComp>
     size += equippedSkillVfx_.CalculateSize(_map_equippedSkillVfx_codec);
     if (SpectateChatPref != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
       size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) SpectateChatPref);
+    }
+    if (LightCardTrialWeekStartMs != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(LightCardTrialWeekStartMs);
+    }
+    if (LightCardTrialUsed != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(LightCardTrialUsed);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2384,6 +2444,12 @@ public sealed partial class PlayerProfileComp : pb::IMessage<PlayerProfileComp>
     equippedSkillVfx_.MergeFrom(other.equippedSkillVfx_);
     if (other.SpectateChatPref != global::eSpectateChatPreference.SpectateChatPrefUnspecified) {
       SpectateChatPref = other.SpectateChatPref;
+    }
+    if (other.LightCardTrialWeekStartMs != 0UL) {
+      LightCardTrialWeekStartMs = other.LightCardTrialWeekStartMs;
+    }
+    if (other.LightCardTrialUsed != 0) {
+      LightCardTrialUsed = other.LightCardTrialUsed;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2467,6 +2533,14 @@ public sealed partial class PlayerProfileComp : pb::IMessage<PlayerProfileComp>
           SpectateChatPref = (global::eSpectateChatPreference) input.ReadEnum();
           break;
         }
+        case 128: {
+          LightCardTrialWeekStartMs = input.ReadUInt64();
+          break;
+        }
+        case 136: {
+          LightCardTrialUsed = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -2547,6 +2621,14 @@ public sealed partial class PlayerProfileComp : pb::IMessage<PlayerProfileComp>
         }
         case 120: {
           SpectateChatPref = (global::eSpectateChatPreference) input.ReadEnum();
+          break;
+        }
+        case 128: {
+          LightCardTrialWeekStartMs = input.ReadUInt64();
+          break;
+        }
+        case 136: {
+          LightCardTrialUsed = input.ReadUInt32();
           break;
         }
       }

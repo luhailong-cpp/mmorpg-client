@@ -23,12 +23,13 @@ public static partial class AfkPassErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "CjFnZW5lcmF0ZWQvY29kZS9wcm90by90aXAvYWZrX3Bhc3NfZXJyb3JfdGlw",
-          "LnByb3RvKq8BCg5hZmtfcGFzc19lcnJvchIVChFrQWZrX3Bhc3NfZXJyb3JP",
+          "LnByb3RvKuEBCg5hZmtfcGFzc19lcnJvchIVChFrQWZrX3Bhc3NfZXJyb3JP",
           "SxAAEhoKFGtBZmtQYXNzUHJpY2VDaGFuZ2VkEID6ARIfChlrQWZrUGFzc0N1",
           "cnJlbmN5Tm90RW5vdWdoEIH6ARIYChJrQWZrUGFzc1N0YWNrTGltaXQQgvoB",
           "EhQKDmtBZmtQYXNzRnJvemVuEIP6ARIZChNrQWZrUGFzc1VuYXZhaWxhYmxl",
-          "EIT6AUIkCg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJhdGVkL3BiL3RhYmxlYgZw",
-          "cm90bzM="));
+          "EIT6ARIVCg9rQWZrUGFzc0JhZ0Z1bGwQhfoBEhkKE2tBZmtQYXNzUGxhbklu",
+          "dmFsaWQQhvoBQiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFi",
+          "bGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::afk_pass_error), }, null, null));
@@ -44,6 +45,8 @@ public enum afk_pass_error {
   [pbr::OriginalName("kAfkPassStackLimit")] KAfkPassStackLimit = 32002,
   [pbr::OriginalName("kAfkPassFrozen")] KAfkPassFrozen = 32003,
   [pbr::OriginalName("kAfkPassUnavailable")] KAfkPassUnavailable = 32004,
+  [pbr::OriginalName("kAfkPassBagFull")] KAfkPassBagFull = 32005,
+  [pbr::OriginalName("kAfkPassPlanInvalid")] KAfkPassPlanInvalid = 32006,
 }
 
 #endregion

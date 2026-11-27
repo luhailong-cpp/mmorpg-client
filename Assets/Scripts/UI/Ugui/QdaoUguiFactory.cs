@@ -128,13 +128,13 @@ namespace MmorpgClient.UI.Ugui
         {
             var rect = CreateRect(name, parent, x, y, width, height);
             var text = rect.gameObject.AddComponent<TextMeshProUGUI>();
-            text.font = QdaoUguiTheme.ResolveFont();
             text.fontSize = fontSize;
             text.color = color;
             text.alignment = alignment;
             text.textWrappingMode = TextWrappingModes.NoWrap;
             text.overflowMode = TextOverflowModes.Ellipsis;
             text.raycastTarget = false;
+            QdaoUguiTheme.ApplyTypographyAuto(text);
             text.text = value ?? string.Empty;
             return text;
         }
@@ -188,10 +188,11 @@ namespace MmorpgClient.UI.Ugui
             button.navigation = new Navigation { mode = Navigation.Mode.None };
             var colors = button.colors;
             colors.normalColor = Color.white;
-            colors.highlightedColor = new Color(1f, 1f, 1f, 0.96f);
-            colors.pressedColor = new Color(0.82f, 0.82f, 0.82f, 1f);
+            colors.highlightedColor = new Color(1f, 0.98f, 0.88f, 1f);
+            colors.pressedColor = new Color(0.86f, 0.92f, 0.87f, 1f);
             colors.selectedColor = Color.white;
-            colors.disabledColor = new Color(0.62f, 0.62f, 0.62f, 0.72f);
+            // 柔和米玉禁用色，避免把绿底主钮与金框次钮压成脏灰暗块
+            colors.disabledColor = new Color(0.86f, 0.85f, 0.82f, 0.82f);
             colors.colorMultiplier = 1f;
             colors.fadeDuration = 0.08f;
             button.colors = colors;
@@ -230,25 +231,25 @@ namespace MmorpgClient.UI.Ugui
 
             var textRect = CreateStretch("Text", viewport, Vector4.zero);
             var text = textRect.gameObject.AddComponent<TextMeshProUGUI>();
-            text.font = QdaoUguiTheme.ResolveFont();
             text.fontSize = 20f;
-            text.color = QdaoUguiTheme.Brown;
+            text.color = QdaoUguiTheme.GuildInk;
             text.alignment = TextAlignmentOptions.MidlineLeft;
             text.textWrappingMode = TextWrappingModes.NoWrap;
             text.raycastTarget = false;
+            QdaoUguiTheme.ApplyTypography(text, QdaoUiTypographyRole.Body);
 
             var placeholderRect = CreateStretch("Placeholder", viewport, Vector4.zero);
             var placeholder = placeholderRect.gameObject.AddComponent<TextMeshProUGUI>();
-            placeholder.font = QdaoUguiTheme.ResolveFont();
             placeholder.fontSize = 20f;
             placeholder.color = new Color(
-                QdaoUguiTheme.MutedBrown.r,
-                QdaoUguiTheme.MutedBrown.g,
-                QdaoUguiTheme.MutedBrown.b,
+                QdaoUguiTheme.GuildMuted.r,
+                QdaoUguiTheme.GuildMuted.g,
+                QdaoUguiTheme.GuildMuted.b,
                 0.78f);
             placeholder.alignment = TextAlignmentOptions.MidlineLeft;
             placeholder.textWrappingMode = TextWrappingModes.NoWrap;
             placeholder.raycastTarget = false;
+            QdaoUguiTheme.ApplyTypography(placeholder, QdaoUiTypographyRole.Body);
             placeholder.text = placeholderText;
 
             input.textViewport = viewport;

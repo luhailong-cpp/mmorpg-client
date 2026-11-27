@@ -86,5 +86,14 @@ namespace MmorpgClient.Net.Generated
         public static void EquipTravelPassCosmetic(IRpcChannel channel, global::EquipTravelPassCosmeticRequest request,
             RpcDone<global::EquipTravelPassCosmeticResponse> done)
             => channel.CallMethod(EquipTravelPassCosmeticMessageId, request, global::EquipTravelPassCosmeticResponse.Parser, done);
+
+        public const uint SelectActiveTravelPassMessageId = 591;
+        /// <summary>
+        /// ── 以下只许在末尾追加：生成的 CallMethod 按 method index 分发 ──
+        /// 零消耗自由切换当前在研游历手记期次（永不绝版书架制，战斗结算点数自动注入所选期次）。
+        /// </summary>
+        public static void SelectActiveTravelPass(IRpcChannel channel, global::SelectActiveTravelPassRequest request,
+            RpcDone<global::SelectActiveTravelPassResponse> done)
+            => channel.CallMethod(SelectActiveTravelPassMessageId, request, global::SelectActiveTravelPassResponse.Parser, done);
     }
 }

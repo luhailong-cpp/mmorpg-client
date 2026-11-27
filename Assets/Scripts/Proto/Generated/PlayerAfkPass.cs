@@ -24,53 +24,66 @@ public static partial class PlayerAfkPassReflection {
         string.Concat(
           "CiFwcm90by9zY2VuZS9wbGF5ZXJfYWZrX3Bhc3MucHJvdG8aG3Byb3RvL2Ri",
           "L3Byb3RvX29wdGlvbi5wcm90bxobcHJvdG8vY29tbW9uL2Jhc2UvdGlwLnBy",
-          "b3RvIrcBChJIb3N0ZWRSZWNhcFN1bW1hcnkSEgoKc3RhcnRlZF9hdBgBIAEo",
-          "BBIQCghlbmRlZF9hdBgCIAEoBBIUCgxiYXR0bGVfY291bnQYAyABKA0SEQoJ",
-          "d2luX2NvdW50GAQgASgNEhIKCmV4cF9nYWluZWQYBSABKAQSFQoNc2lsdmVy",
-          "X2dhaW5lZBgGIAEoBBISCgppdGVtX2NvdW50GAcgASgNEhMKC3BlbmRpbmdf",
-          "YWNrGAggASgIItICCgtBZmtQYXNzSW5mbxISCgpleHBpcmVzX2F0GAEgASgE",
-          "EhIKCnNlcnZlcl9ub3cYAiABKAQSGwoTcHJpY2VfY3VycmVuY3lfdHlwZRgD",
-          "IAEoDRINCgVwcmljZRgEIAEoBBITCgtwZXJpb2RfZGF5cxgFIAEoDRIaChJt",
-          "YXhfcmVtYWluaW5nX2RheXMYBiABKA0SGwoTcmVtaW5kX2JlZm9yZV9ob3Vy",
-          "cxgHIAEoDRIPCgdiYWxhbmNlGAggASgEEiQKHGF1dG9fcmV0dXJuX2NpdHlf",
-          "b25fdGVhbV9lbmQYCSABKAgSKQoMaG9zdGVkX3JlY2FwGAogASgLMhMuSG9z",
-          "dGVkUmVjYXBTdW1tYXJ5Eh4KFnVubG9ja2VkX2xvYWRvdXRfc2xvdHMYCyAB",
-          "KA0SHwoXc3RhZ2UyX3RyYWRhYmxlX2VuYWJsZWQYDCABKAgiEwoRR2V0QWZr",
-          "UGFzc1JlcXVlc3QiWAoSR2V0QWZrUGFzc1Jlc3BvbnNlEiYKDWVycm9yX21l",
-          "c3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIaCgRpbmZvGAIgASgLMgwu",
-          "QWZrUGFzc0luZm8iZgoRQnV5QWZrUGFzc1JlcXVlc3QSGQoRY2xpZW50X3Jl",
-          "cXVlc3RfaWQYASABKAQSHgoWZXhwZWN0ZWRfY3VycmVuY3lfdHlwZRgCIAEo",
-          "DRIWCg5leHBlY3RlZF9wcmljZRgDIAEoBCJqChJCdXlBZmtQYXNzUmVzcG9u",
-          "c2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhoK",
-          "BGluZm8YAiABKAsyDC5BZmtQYXNzSW5mbxIQCghyZXBsYXllZBgDIAEoCCIw",
-          "ChNHbVNldEFma1Bhc3NSZXF1ZXN0EhkKEXJlbWFpbmluZ19zZWNvbmRzGAEg",
-          "ASgNIloKFEdtU2V0QWZrUGFzc1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
-          "ASABKAsyDy5UaXBJbmZvTWVzc2FnZRIaCgRpbmZvGAIgASgLMgwuQWZrUGFz",
-          "c0luZm8iQQoZU2V0QWZrUGFzc1NldHRpbmdzUmVxdWVzdBIkChxhdXRvX3Jl",
-          "dHVybl9jaXR5X29uX3RlYW1fZW5kGAEgASgIImAKGlNldEFma1Bhc3NTZXR0",
-          "aW5nc1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
-          "TWVzc2FnZRIaCgRpbmZvGAIgASgLMgwuQWZrUGFzc0luZm8iKwoVQWNrSG9z",
-          "dGVkUmVjYXBSZXF1ZXN0EhIKCnN0YXJ0ZWRfYXQYASABKAQiXAoWQWNrSG9z",
-          "dGVkUmVjYXBSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
-          "SW5mb01lc3NhZ2USGgoEaW5mbxgCIAEoCzIMLkFma1Bhc3NJbmZvMuMCChhT",
-          "Y2VuZUFma1Bhc3NDbGllbnRQbGF5ZXISNQoKR2V0QWZrUGFzcxISLkdldEFm",
-          "a1Bhc3NSZXF1ZXN0GhMuR2V0QWZrUGFzc1Jlc3BvbnNlEjUKCkJ1eUFma1Bh",
-          "c3MSEi5CdXlBZmtQYXNzUmVxdWVzdBoTLkJ1eUFma1Bhc3NSZXNwb25zZRI7",
-          "CgxHbVNldEFma1Bhc3MSFC5HbVNldEFma1Bhc3NSZXF1ZXN0GhUuR21TZXRB",
-          "ZmtQYXNzUmVzcG9uc2USTQoSU2V0QWZrUGFzc1NldHRpbmdzEhouU2V0QWZr",
-          "UGFzc1NldHRpbmdzUmVxdWVzdBobLlNldEFma1Bhc3NTZXR0aW5nc1Jlc3Bv",
-          "bnNlEkEKDkFja0hvc3RlZFJlY2FwEhYuQWNrSG9zdGVkUmVjYXBSZXF1ZXN0",
-          "GhcuQWNrSG9zdGVkUmVjYXBSZXNwb25zZRoKgKjDAQGIqMMBAUIOWgVzY2Vu",
-          "ZYABAZjUYQNiBnByb3RvMw=="));
+          "b3RvGhxwcm90by9zY2VuZS9wbGF5ZXJfYmFnLnByb3RvIrcBChJIb3N0ZWRS",
+          "ZWNhcFN1bW1hcnkSEgoKc3RhcnRlZF9hdBgBIAEoBBIQCghlbmRlZF9hdBgC",
+          "IAEoBBIUCgxiYXR0bGVfY291bnQYAyABKA0SEQoJd2luX2NvdW50GAQgASgN",
+          "EhIKCmV4cF9nYWluZWQYBSABKAQSFQoNc2lsdmVyX2dhaW5lZBgGIAEoBBIS",
+          "CgppdGVtX2NvdW50GAcgASgNEhMKC3BlbmRpbmdfYWNrGAggASgIIpYCCg9B",
+          "ZmtQYXNzUGxhblZpZXcSDwoHcGxhbl9pZBgBIAEoDRIRCglwbGFuX25hbWUY",
+          "AiABKAkSEwoLcGVyaW9kX2RheXMYAyABKA0SGwoTcHJpY2VfY3VycmVuY3lf",
+          "dHlwZRgEIAEoDRINCgVwcmljZRgFIAEoBBIVCg1ib251c19pdGVtX2lkGAYg",
+          "ASgNEhgKEGJvbnVzX2l0ZW1fY291bnQYByABKA0SFwoPYm9udXNfaXRlbV9u",
+          "YW1lGAggASgJEhsKE2JvbnVzX2l0ZW1faWNvbl9rZXkYCSABKAkSFwoPYm9u",
+          "dXNfZnJhbWVfa2V5GAogASgJEhAKCGljb25fa2V5GAsgASgJEgwKBGRlc2MY",
+          "DCABKAki8AMKC0Fma1Bhc3NJbmZvEhIKCmV4cGlyZXNfYXQYASABKAQSEgoK",
+          "c2VydmVyX25vdxgCIAEoBBIbChNwcmljZV9jdXJyZW5jeV90eXBlGAMgASgN",
+          "Eg0KBXByaWNlGAQgASgEEhMKC3BlcmlvZF9kYXlzGAUgASgNEhoKEm1heF9y",
+          "ZW1haW5pbmdfZGF5cxgGIAEoDRIbChNyZW1pbmRfYmVmb3JlX2hvdXJzGAcg",
+          "ASgNEg8KB2JhbGFuY2UYCCABKAQSJAocYXV0b19yZXR1cm5fY2l0eV9vbl90",
+          "ZWFtX2VuZBgJIAEoCBIpCgxob3N0ZWRfcmVjYXAYCiABKAsyEy5Ib3N0ZWRS",
+          "ZWNhcFN1bW1hcnkSHgoWdW5sb2NrZWRfbG9hZG91dF9zbG90cxgLIAEoDRIf",
+          "ChdzdGFnZTJfdHJhZGFibGVfZW5hYmxlZBgMIAEoCBIcChRtYXJrZXRfbGlz",
+          "dGluZ19saW1pdBgNIAEoDRIcChRzdGFsbF9kdXJhdGlvbl9ob3VycxgOIAEo",
+          "DRIfChd3ZWVrbHlfZnJlZV90cmlhbF9xdW90YRgPIAEoDRIeChZ3ZWVrbHlf",
+          "ZnJlZV90cmlhbF91c2VkGBAgASgNEh8KBXBsYW5zGBEgAygLMhAuQWZrUGFz",
+          "c1BsYW5WaWV3IhMKEUdldEFma1Bhc3NSZXF1ZXN0IlgKEkdldEFma1Bhc3NS",
+          "ZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3Nh",
+          "Z2USGgoEaW5mbxgCIAEoCzIMLkFma1Bhc3NJbmZvIpUBChFCdXlBZmtQYXNz",
+          "UmVxdWVzdBIZChFjbGllbnRfcmVxdWVzdF9pZBgBIAEoBBIeChZleHBlY3Rl",
+          "ZF9jdXJyZW5jeV90eXBlGAIgASgNEhYKDmV4cGVjdGVkX3ByaWNlGAMgASgE",
+          "Eg8KB3BsYW5faWQYBCABKA0SHAoUZXhwZWN0ZWRfcGVyaW9kX2RheXMYBSAB",
+          "KA0igQEKEkJ1eUFma1Bhc3NSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEg",
+          "ASgLMg8uVGlwSW5mb01lc3NhZ2USGgoEaW5mbxgCIAEoCzIMLkFma1Bhc3NJ",
+          "bmZvEhAKCHJlcGxheWVkGAMgASgIEhUKA2JhZxgEIAEoCzIILkJhZ0luZm8i",
+          "MAoTR21TZXRBZmtQYXNzUmVxdWVzdBIZChFyZW1haW5pbmdfc2Vjb25kcxgB",
+          "IAEoDSJaChRHbVNldEFma1Bhc3NSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdl",
+          "GAEgASgLMg8uVGlwSW5mb01lc3NhZ2USGgoEaW5mbxgCIAEoCzIMLkFma1Bh",
+          "c3NJbmZvIkEKGVNldEFma1Bhc3NTZXR0aW5nc1JlcXVlc3QSJAocYXV0b19y",
+          "ZXR1cm5fY2l0eV9vbl90ZWFtX2VuZBgBIAEoCCJgChpTZXRBZmtQYXNzU2V0",
+          "dGluZ3NSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
+          "b01lc3NhZ2USGgoEaW5mbxgCIAEoCzIMLkFma1Bhc3NJbmZvIisKFUFja0hv",
+          "c3RlZFJlY2FwUmVxdWVzdBISCgpzdGFydGVkX2F0GAEgASgEIlwKFkFja0hv",
+          "c3RlZFJlY2FwUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRp",
+          "cEluZm9NZXNzYWdlEhoKBGluZm8YAiABKAsyDC5BZmtQYXNzSW5mbzLjAgoY",
+          "U2NlbmVBZmtQYXNzQ2xpZW50UGxheWVyEjUKCkdldEFma1Bhc3MSEi5HZXRB",
+          "ZmtQYXNzUmVxdWVzdBoTLkdldEFma1Bhc3NSZXNwb25zZRI1CgpCdXlBZmtQ",
+          "YXNzEhIuQnV5QWZrUGFzc1JlcXVlc3QaEy5CdXlBZmtQYXNzUmVzcG9uc2US",
+          "OwoMR21TZXRBZmtQYXNzEhQuR21TZXRBZmtQYXNzUmVxdWVzdBoVLkdtU2V0",
+          "QWZrUGFzc1Jlc3BvbnNlEk0KElNldEFma1Bhc3NTZXR0aW5ncxIaLlNldEFm",
+          "a1Bhc3NTZXR0aW5nc1JlcXVlc3QaGy5TZXRBZmtQYXNzU2V0dGluZ3NSZXNw",
+          "b25zZRJBCg5BY2tIb3N0ZWRSZWNhcBIWLkFja0hvc3RlZFJlY2FwUmVxdWVz",
+          "dBoXLkFja0hvc3RlZFJlY2FwUmVzcG9uc2UaCoCowwEBiKjDAQFCDloFc2Nl",
+          "bmWAAQGY1GEDYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, },
+        new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::PlayerBagReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::HostedRecapSummary), global::HostedRecapSummary.Parser, new[]{ "StartedAt", "EndedAt", "BattleCount", "WinCount", "ExpGained", "SilverGained", "ItemCount", "PendingAck" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::AfkPassInfo), global::AfkPassInfo.Parser, new[]{ "ExpiresAt", "ServerNow", "PriceCurrencyType", "Price", "PeriodDays", "MaxRemainingDays", "RemindBeforeHours", "Balance", "AutoReturnCityOnTeamEnd", "HostedRecap", "UnlockedLoadoutSlots", "Stage2TradableEnabled" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::AfkPassPlanView), global::AfkPassPlanView.Parser, new[]{ "PlanId", "PlanName", "PeriodDays", "PriceCurrencyType", "Price", "BonusItemId", "BonusItemCount", "BonusItemName", "BonusItemIconKey", "BonusFrameKey", "IconKey", "Desc" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::AfkPassInfo), global::AfkPassInfo.Parser, new[]{ "ExpiresAt", "ServerNow", "PriceCurrencyType", "Price", "PeriodDays", "MaxRemainingDays", "RemindBeforeHours", "Balance", "AutoReturnCityOnTeamEnd", "HostedRecap", "UnlockedLoadoutSlots", "Stage2TradableEnabled", "MarketListingLimit", "StallDurationHours", "WeeklyFreeTrialQuota", "WeeklyFreeTrialUsed", "Plans" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetAfkPassRequest), global::GetAfkPassRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetAfkPassResponse), global::GetAfkPassResponse.Parser, new[]{ "ErrorMessage", "Info" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BuyAfkPassRequest), global::BuyAfkPassRequest.Parser, new[]{ "ClientRequestId", "ExpectedCurrencyType", "ExpectedPrice" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BuyAfkPassResponse), global::BuyAfkPassResponse.Parser, new[]{ "ErrorMessage", "Info", "Replayed" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BuyAfkPassRequest), global::BuyAfkPassRequest.Parser, new[]{ "ClientRequestId", "ExpectedCurrencyType", "ExpectedPrice", "PlanId", "ExpectedPeriodDays" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BuyAfkPassResponse), global::BuyAfkPassResponse.Parser, new[]{ "ErrorMessage", "Info", "Replayed", "Bag" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GmSetAfkPassRequest), global::GmSetAfkPassRequest.Parser, new[]{ "RemainingSeconds" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GmSetAfkPassResponse), global::GmSetAfkPassResponse.Parser, new[]{ "ErrorMessage", "Info" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SetAfkPassSettingsRequest), global::SetAfkPassSettingsRequest.Parser, new[]{ "AutoReturnCityOnTeamEnd" }, null, null, null, null),
@@ -568,6 +581,650 @@ public sealed partial class HostedRecapSummary : pb::IMessage<HostedRecapSummary
 }
 
 /// <summary>
+/// 轻享卡单档套餐报价与开卡一次性直赠预览（绝不拆成每日登录领）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class AfkPassPlanView : pb::IMessage<AfkPassPlanView>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<AfkPassPlanView> _parser = new pb::MessageParser<AfkPassPlanView>(() => new AfkPassPlanView());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<AfkPassPlanView> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[1]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public AfkPassPlanView() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public AfkPassPlanView(AfkPassPlanView other) : this() {
+    planId_ = other.planId_;
+    planName_ = other.planName_;
+    periodDays_ = other.periodDays_;
+    priceCurrencyType_ = other.priceCurrencyType_;
+    price_ = other.price_;
+    bonusItemId_ = other.bonusItemId_;
+    bonusItemCount_ = other.bonusItemCount_;
+    bonusItemName_ = other.bonusItemName_;
+    bonusItemIconKey_ = other.bonusItemIconKey_;
+    bonusFrameKey_ = other.bonusFrameKey_;
+    iconKey_ = other.iconKey_;
+    desc_ = other.desc_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public AfkPassPlanView Clone() {
+    return new AfkPassPlanView(this);
+  }
+
+  /// <summary>Field number for the "plan_id" field.</summary>
+  public const int PlanIdFieldNumber = 1;
+  private uint planId_;
+  /// <summary>
+  /// AfkPassRule.id（1 = 30天月享卡，2 = 90天季享卡）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PlanId {
+    get { return planId_; }
+    set {
+      planId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "plan_name" field.</summary>
+  public const int PlanNameFieldNumber = 2;
+  private string planName_ = "";
+  /// <summary>
+  /// 套餐展示名
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string PlanName {
+    get { return planName_; }
+    set {
+      planName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "period_days" field.</summary>
+  public const int PeriodDaysFieldNumber = 3;
+  private uint periodDays_;
+  /// <summary>
+  /// 单次开通增加天数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PeriodDays {
+    get { return periodDays_; }
+    set {
+      periodDays_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "price_currency_type" field.</summary>
+  public const int PriceCurrencyTypeFieldNumber = 4;
+  private uint priceCurrencyType_;
+  /// <summary>
+  /// 结算货币（CurrencyType）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PriceCurrencyType {
+    get { return priceCurrencyType_; }
+    set {
+      priceCurrencyType_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "price" field.</summary>
+  public const int PriceFieldNumber = 5;
+  private ulong price_;
+  /// <summary>
+  /// 价格
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong Price {
+    get { return price_; }
+    set {
+      price_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "bonus_item_id" field.</summary>
+  public const int BonusItemIdFieldNumber = 6;
+  private uint bonusItemId_;
+  /// <summary>
+  /// 开卡一次性直赠绑定道具 ID（0 = 无）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BonusItemId {
+    get { return bonusItemId_; }
+    set {
+      bonusItemId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "bonus_item_count" field.</summary>
+  public const int BonusItemCountFieldNumber = 7;
+  private uint bonusItemCount_;
+  /// <summary>
+  /// 开卡一次性直赠绑定道具数量
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BonusItemCount {
+    get { return bonusItemCount_; }
+    set {
+      bonusItemCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "bonus_item_name" field.</summary>
+  public const int BonusItemNameFieldNumber = 8;
+  private string bonusItemName_ = "";
+  /// <summary>
+  /// 道具展示名
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string BonusItemName {
+    get { return bonusItemName_; }
+    set {
+      bonusItemName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "bonus_item_icon_key" field.</summary>
+  public const int BonusItemIconKeyFieldNumber = 9;
+  private string bonusItemIconKey_ = "";
+  /// <summary>
+  /// 道具图标资源键
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string BonusItemIconKey {
+    get { return bonusItemIconKey_; }
+    set {
+      bonusItemIconKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "bonus_frame_key" field.</summary>
+  public const int BonusFrameKeyFieldNumber = 10;
+  private string bonusFrameKey_ = "";
+  /// <summary>
+  /// 开卡一次性附赠的零战力纪念头像框键（空 = 无）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string BonusFrameKey {
+    get { return bonusFrameKey_; }
+    set {
+      bonusFrameKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "icon_key" field.</summary>
+  public const int IconKeyFieldNumber = 11;
+  private string iconKey_ = "";
+  /// <summary>
+  /// 套餐令牌图标资源键
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string IconKey {
+    get { return iconKey_; }
+    set {
+      iconKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "desc" field.</summary>
+  public const int DescFieldNumber = 12;
+  private string desc_ = "";
+  /// <summary>
+  /// 套餐说明
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Desc {
+    get { return desc_; }
+    set {
+      desc_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as AfkPassPlanView);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(AfkPassPlanView other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PlanId != other.PlanId) return false;
+    if (PlanName != other.PlanName) return false;
+    if (PeriodDays != other.PeriodDays) return false;
+    if (PriceCurrencyType != other.PriceCurrencyType) return false;
+    if (Price != other.Price) return false;
+    if (BonusItemId != other.BonusItemId) return false;
+    if (BonusItemCount != other.BonusItemCount) return false;
+    if (BonusItemName != other.BonusItemName) return false;
+    if (BonusItemIconKey != other.BonusItemIconKey) return false;
+    if (BonusFrameKey != other.BonusFrameKey) return false;
+    if (IconKey != other.IconKey) return false;
+    if (Desc != other.Desc) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PlanId != 0) hash ^= PlanId.GetHashCode();
+    if (PlanName.Length != 0) hash ^= PlanName.GetHashCode();
+    if (PeriodDays != 0) hash ^= PeriodDays.GetHashCode();
+    if (PriceCurrencyType != 0) hash ^= PriceCurrencyType.GetHashCode();
+    if (Price != 0UL) hash ^= Price.GetHashCode();
+    if (BonusItemId != 0) hash ^= BonusItemId.GetHashCode();
+    if (BonusItemCount != 0) hash ^= BonusItemCount.GetHashCode();
+    if (BonusItemName.Length != 0) hash ^= BonusItemName.GetHashCode();
+    if (BonusItemIconKey.Length != 0) hash ^= BonusItemIconKey.GetHashCode();
+    if (BonusFrameKey.Length != 0) hash ^= BonusFrameKey.GetHashCode();
+    if (IconKey.Length != 0) hash ^= IconKey.GetHashCode();
+    if (Desc.Length != 0) hash ^= Desc.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (PlanId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(PlanId);
+    }
+    if (PlanName.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(PlanName);
+    }
+    if (PeriodDays != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(PeriodDays);
+    }
+    if (PriceCurrencyType != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(PriceCurrencyType);
+    }
+    if (Price != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(Price);
+    }
+    if (BonusItemId != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(BonusItemId);
+    }
+    if (BonusItemCount != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(BonusItemCount);
+    }
+    if (BonusItemName.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(BonusItemName);
+    }
+    if (BonusItemIconKey.Length != 0) {
+      output.WriteRawTag(74);
+      output.WriteString(BonusItemIconKey);
+    }
+    if (BonusFrameKey.Length != 0) {
+      output.WriteRawTag(82);
+      output.WriteString(BonusFrameKey);
+    }
+    if (IconKey.Length != 0) {
+      output.WriteRawTag(90);
+      output.WriteString(IconKey);
+    }
+    if (Desc.Length != 0) {
+      output.WriteRawTag(98);
+      output.WriteString(Desc);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (PlanId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(PlanId);
+    }
+    if (PlanName.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(PlanName);
+    }
+    if (PeriodDays != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(PeriodDays);
+    }
+    if (PriceCurrencyType != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(PriceCurrencyType);
+    }
+    if (Price != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(Price);
+    }
+    if (BonusItemId != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(BonusItemId);
+    }
+    if (BonusItemCount != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(BonusItemCount);
+    }
+    if (BonusItemName.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(BonusItemName);
+    }
+    if (BonusItemIconKey.Length != 0) {
+      output.WriteRawTag(74);
+      output.WriteString(BonusItemIconKey);
+    }
+    if (BonusFrameKey.Length != 0) {
+      output.WriteRawTag(82);
+      output.WriteString(BonusFrameKey);
+    }
+    if (IconKey.Length != 0) {
+      output.WriteRawTag(90);
+      output.WriteString(IconKey);
+    }
+    if (Desc.Length != 0) {
+      output.WriteRawTag(98);
+      output.WriteString(Desc);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (PlanId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlanId);
+    }
+    if (PlanName.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(PlanName);
+    }
+    if (PeriodDays != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PeriodDays);
+    }
+    if (PriceCurrencyType != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PriceCurrencyType);
+    }
+    if (Price != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Price);
+    }
+    if (BonusItemId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BonusItemId);
+    }
+    if (BonusItemCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BonusItemCount);
+    }
+    if (BonusItemName.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(BonusItemName);
+    }
+    if (BonusItemIconKey.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(BonusItemIconKey);
+    }
+    if (BonusFrameKey.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(BonusFrameKey);
+    }
+    if (IconKey.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(IconKey);
+    }
+    if (Desc.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Desc);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(AfkPassPlanView other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PlanId != 0) {
+      PlanId = other.PlanId;
+    }
+    if (other.PlanName.Length != 0) {
+      PlanName = other.PlanName;
+    }
+    if (other.PeriodDays != 0) {
+      PeriodDays = other.PeriodDays;
+    }
+    if (other.PriceCurrencyType != 0) {
+      PriceCurrencyType = other.PriceCurrencyType;
+    }
+    if (other.Price != 0UL) {
+      Price = other.Price;
+    }
+    if (other.BonusItemId != 0) {
+      BonusItemId = other.BonusItemId;
+    }
+    if (other.BonusItemCount != 0) {
+      BonusItemCount = other.BonusItemCount;
+    }
+    if (other.BonusItemName.Length != 0) {
+      BonusItemName = other.BonusItemName;
+    }
+    if (other.BonusItemIconKey.Length != 0) {
+      BonusItemIconKey = other.BonusItemIconKey;
+    }
+    if (other.BonusFrameKey.Length != 0) {
+      BonusFrameKey = other.BonusFrameKey;
+    }
+    if (other.IconKey.Length != 0) {
+      IconKey = other.IconKey;
+    }
+    if (other.Desc.Length != 0) {
+      Desc = other.Desc;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PlanId = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          PlanName = input.ReadString();
+          break;
+        }
+        case 24: {
+          PeriodDays = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          PriceCurrencyType = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          Price = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          BonusItemId = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          BonusItemCount = input.ReadUInt32();
+          break;
+        }
+        case 66: {
+          BonusItemName = input.ReadString();
+          break;
+        }
+        case 74: {
+          BonusItemIconKey = input.ReadString();
+          break;
+        }
+        case 82: {
+          BonusFrameKey = input.ReadString();
+          break;
+        }
+        case 90: {
+          IconKey = input.ReadString();
+          break;
+        }
+        case 98: {
+          Desc = input.ReadString();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          PlanId = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          PlanName = input.ReadString();
+          break;
+        }
+        case 24: {
+          PeriodDays = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          PriceCurrencyType = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          Price = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          BonusItemId = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          BonusItemCount = input.ReadUInt32();
+          break;
+        }
+        case 66: {
+          BonusItemName = input.ReadString();
+          break;
+        }
+        case 74: {
+          BonusItemIconKey = input.ReadString();
+          break;
+        }
+        case 82: {
+          BonusFrameKey = input.ReadString();
+          break;
+        }
+        case 90: {
+          IconKey = input.ReadString();
+          break;
+        }
+        case 98: {
+          Desc = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
 /// 月卡此刻的状态与售价。所有时间都是服务器墙钟的 Unix 秒。
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
@@ -585,7 +1242,7 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[1]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[2]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -617,6 +1274,11 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     hostedRecap_ = other.hostedRecap_ != null ? other.hostedRecap_.Clone() : null;
     unlockedLoadoutSlots_ = other.unlockedLoadoutSlots_;
     stage2TradableEnabled_ = other.stage2TradableEnabled_;
+    marketListingLimit_ = other.marketListingLimit_;
+    stallDurationHours_ = other.stallDurationHours_;
+    weeklyFreeTrialQuota_ = other.weeklyFreeTrialQuota_;
+    weeklyFreeTrialUsed_ = other.weeklyFreeTrialUsed_;
+    plans_ = other.plans_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -806,6 +1468,80 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     }
   }
 
+  /// <summary>Field number for the "market_listing_limit" field.</summary>
+  public const int MarketListingLimitFieldNumber = 13;
+  private uint marketListingLimit_;
+  /// <summary>
+  /// 集市同时在售挂单上限（普通 10 / 轻享卡生效 20，纯便利零战力）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MarketListingLimit {
+    get { return marketListingLimit_; }
+    set {
+      marketListingLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "stall_duration_hours" field.</summary>
+  public const int StallDurationHoursFieldNumber = 14;
+  private uint stallDurationHours_;
+  /// <summary>
+  /// 离线摆摊单次营业时长小时数（普通 48 / 轻享卡生效 96）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint StallDurationHours {
+    get { return stallDurationHours_; }
+    set {
+      stallDurationHours_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "weekly_free_trial_quota" field.</summary>
+  public const int WeeklyFreeTrialQuotaFieldNumber = 15;
+  private uint weeklyFreeTrialQuota_;
+  /// <summary>
+  /// 轻享卡每周额外衣柜随心试穿额度（未生效 0 / 生效 3，UTC+8 周一 05:00 重置）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint WeeklyFreeTrialQuota {
+    get { return weeklyFreeTrialQuota_; }
+    set {
+      weeklyFreeTrialQuota_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "weekly_free_trial_used" field.</summary>
+  public const int WeeklyFreeTrialUsedFieldNumber = 16;
+  private uint weeklyFreeTrialUsed_;
+  /// <summary>
+  /// 本周已消耗的轻享卡衣柜随心试穿次数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint WeeklyFreeTrialUsed {
+    get { return weeklyFreeTrialUsed_; }
+    set {
+      weeklyFreeTrialUsed_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "plans" field.</summary>
+  public const int PlansFieldNumber = 17;
+  private static readonly pb::FieldCodec<global::AfkPassPlanView> _repeated_plans_codec
+      = pb::FieldCodec.ForMessage(138, global::AfkPassPlanView.Parser);
+  private readonly pbc::RepeatedField<global::AfkPassPlanView> plans_ = new pbc::RepeatedField<global::AfkPassPlanView>();
+  /// <summary>
+  /// 可选套餐列表（按 plan_id 升序：月享卡 30 天 / 季享卡 90 天）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::AfkPassPlanView> Plans {
+    get { return plans_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -833,6 +1569,11 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     if (!object.Equals(HostedRecap, other.HostedRecap)) return false;
     if (UnlockedLoadoutSlots != other.UnlockedLoadoutSlots) return false;
     if (Stage2TradableEnabled != other.Stage2TradableEnabled) return false;
+    if (MarketListingLimit != other.MarketListingLimit) return false;
+    if (StallDurationHours != other.StallDurationHours) return false;
+    if (WeeklyFreeTrialQuota != other.WeeklyFreeTrialQuota) return false;
+    if (WeeklyFreeTrialUsed != other.WeeklyFreeTrialUsed) return false;
+    if(!plans_.Equals(other.plans_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -852,6 +1593,11 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     if (hostedRecap_ != null) hash ^= HostedRecap.GetHashCode();
     if (UnlockedLoadoutSlots != 0) hash ^= UnlockedLoadoutSlots.GetHashCode();
     if (Stage2TradableEnabled != false) hash ^= Stage2TradableEnabled.GetHashCode();
+    if (MarketListingLimit != 0) hash ^= MarketListingLimit.GetHashCode();
+    if (StallDurationHours != 0) hash ^= StallDurationHours.GetHashCode();
+    if (WeeklyFreeTrialQuota != 0) hash ^= WeeklyFreeTrialQuota.GetHashCode();
+    if (WeeklyFreeTrialUsed != 0) hash ^= WeeklyFreeTrialUsed.GetHashCode();
+    hash ^= plans_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -918,6 +1664,23 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
       output.WriteRawTag(96);
       output.WriteBool(Stage2TradableEnabled);
     }
+    if (MarketListingLimit != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(MarketListingLimit);
+    }
+    if (StallDurationHours != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(StallDurationHours);
+    }
+    if (WeeklyFreeTrialQuota != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(WeeklyFreeTrialQuota);
+    }
+    if (WeeklyFreeTrialUsed != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(WeeklyFreeTrialUsed);
+    }
+    plans_.WriteTo(output, _repeated_plans_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -976,6 +1739,23 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
       output.WriteRawTag(96);
       output.WriteBool(Stage2TradableEnabled);
     }
+    if (MarketListingLimit != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(MarketListingLimit);
+    }
+    if (StallDurationHours != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(StallDurationHours);
+    }
+    if (WeeklyFreeTrialQuota != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(WeeklyFreeTrialQuota);
+    }
+    if (WeeklyFreeTrialUsed != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(WeeklyFreeTrialUsed);
+    }
+    plans_.WriteTo(ref output, _repeated_plans_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1022,6 +1802,19 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     if (Stage2TradableEnabled != false) {
       size += 1 + 1;
     }
+    if (MarketListingLimit != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MarketListingLimit);
+    }
+    if (StallDurationHours != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(StallDurationHours);
+    }
+    if (WeeklyFreeTrialQuota != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WeeklyFreeTrialQuota);
+    }
+    if (WeeklyFreeTrialUsed != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(WeeklyFreeTrialUsed);
+    }
+    size += plans_.CalculateSize(_repeated_plans_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -1073,6 +1866,19 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
     if (other.Stage2TradableEnabled != false) {
       Stage2TradableEnabled = other.Stage2TradableEnabled;
     }
+    if (other.MarketListingLimit != 0) {
+      MarketListingLimit = other.MarketListingLimit;
+    }
+    if (other.StallDurationHours != 0) {
+      StallDurationHours = other.StallDurationHours;
+    }
+    if (other.WeeklyFreeTrialQuota != 0) {
+      WeeklyFreeTrialQuota = other.WeeklyFreeTrialQuota;
+    }
+    if (other.WeeklyFreeTrialUsed != 0) {
+      WeeklyFreeTrialUsed = other.WeeklyFreeTrialUsed;
+    }
+    plans_.Add(other.plans_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -1141,6 +1947,26 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
         }
         case 96: {
           Stage2TradableEnabled = input.ReadBool();
+          break;
+        }
+        case 104: {
+          MarketListingLimit = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          StallDurationHours = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          WeeklyFreeTrialQuota = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          WeeklyFreeTrialUsed = input.ReadUInt32();
+          break;
+        }
+        case 138: {
+          plans_.AddEntriesFrom(input, _repeated_plans_codec);
           break;
         }
       }
@@ -1213,6 +2039,26 @@ public sealed partial class AfkPassInfo : pb::IMessage<AfkPassInfo>
           Stage2TradableEnabled = input.ReadBool();
           break;
         }
+        case 104: {
+          MarketListingLimit = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          StallDurationHours = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          WeeklyFreeTrialQuota = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          WeeklyFreeTrialUsed = input.ReadUInt32();
+          break;
+        }
+        case 138: {
+          plans_.AddEntriesFrom(ref input, _repeated_plans_codec);
+          break;
+        }
       }
     }
   }
@@ -1235,7 +2081,7 @@ public sealed partial class GetAfkPassRequest : pb::IMessage<GetAfkPassRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[2]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[3]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1396,7 +2242,7 @@ public sealed partial class GetAfkPassResponse : pb::IMessage<GetAfkPassResponse
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[3]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[4]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1656,7 +2502,7 @@ public sealed partial class BuyAfkPassRequest : pb::IMessage<BuyAfkPassRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[4]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1679,6 +2525,8 @@ public sealed partial class BuyAfkPassRequest : pb::IMessage<BuyAfkPassRequest>
     clientRequestId_ = other.clientRequestId_;
     expectedCurrencyType_ = other.expectedCurrencyType_;
     expectedPrice_ = other.expectedPrice_;
+    planId_ = other.planId_;
+    expectedPeriodDays_ = other.expectedPeriodDays_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1724,6 +2572,36 @@ public sealed partial class BuyAfkPassRequest : pb::IMessage<BuyAfkPassRequest>
     }
   }
 
+  /// <summary>Field number for the "plan_id" field.</summary>
+  public const int PlanIdFieldNumber = 4;
+  private uint planId_;
+  /// <summary>
+  /// 0 兼容默认套餐 1（30 天月享卡）；2 = 90 天季享卡
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PlanId {
+    get { return planId_; }
+    set {
+      planId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "expected_period_days" field.</summary>
+  public const int ExpectedPeriodDaysFieldNumber = 5;
+  private uint expectedPeriodDays_;
+  /// <summary>
+  /// 0 兼容旧客户端跳过天数校验；非 0 时防热更改天数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ExpectedPeriodDays {
+    get { return expectedPeriodDays_; }
+    set {
+      expectedPeriodDays_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1742,6 +2620,8 @@ public sealed partial class BuyAfkPassRequest : pb::IMessage<BuyAfkPassRequest>
     if (ClientRequestId != other.ClientRequestId) return false;
     if (ExpectedCurrencyType != other.ExpectedCurrencyType) return false;
     if (ExpectedPrice != other.ExpectedPrice) return false;
+    if (PlanId != other.PlanId) return false;
+    if (ExpectedPeriodDays != other.ExpectedPeriodDays) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1752,6 +2632,8 @@ public sealed partial class BuyAfkPassRequest : pb::IMessage<BuyAfkPassRequest>
     if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
     if (ExpectedCurrencyType != 0) hash ^= ExpectedCurrencyType.GetHashCode();
     if (ExpectedPrice != 0UL) hash ^= ExpectedPrice.GetHashCode();
+    if (PlanId != 0) hash ^= PlanId.GetHashCode();
+    if (ExpectedPeriodDays != 0) hash ^= ExpectedPeriodDays.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1782,6 +2664,14 @@ public sealed partial class BuyAfkPassRequest : pb::IMessage<BuyAfkPassRequest>
       output.WriteRawTag(24);
       output.WriteUInt64(ExpectedPrice);
     }
+    if (PlanId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(PlanId);
+    }
+    if (ExpectedPeriodDays != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(ExpectedPeriodDays);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1804,6 +2694,14 @@ public sealed partial class BuyAfkPassRequest : pb::IMessage<BuyAfkPassRequest>
       output.WriteRawTag(24);
       output.WriteUInt64(ExpectedPrice);
     }
+    if (PlanId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(PlanId);
+    }
+    if (ExpectedPeriodDays != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(ExpectedPeriodDays);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1822,6 +2720,12 @@ public sealed partial class BuyAfkPassRequest : pb::IMessage<BuyAfkPassRequest>
     }
     if (ExpectedPrice != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedPrice);
+    }
+    if (PlanId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlanId);
+    }
+    if (ExpectedPeriodDays != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ExpectedPeriodDays);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1843,6 +2747,12 @@ public sealed partial class BuyAfkPassRequest : pb::IMessage<BuyAfkPassRequest>
     }
     if (other.ExpectedPrice != 0UL) {
       ExpectedPrice = other.ExpectedPrice;
+    }
+    if (other.PlanId != 0) {
+      PlanId = other.PlanId;
+    }
+    if (other.ExpectedPeriodDays != 0) {
+      ExpectedPeriodDays = other.ExpectedPeriodDays;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1873,6 +2783,14 @@ public sealed partial class BuyAfkPassRequest : pb::IMessage<BuyAfkPassRequest>
         }
         case 24: {
           ExpectedPrice = input.ReadUInt64();
+          break;
+        }
+        case 32: {
+          PlanId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          ExpectedPeriodDays = input.ReadUInt32();
           break;
         }
       }
@@ -1906,6 +2824,14 @@ public sealed partial class BuyAfkPassRequest : pb::IMessage<BuyAfkPassRequest>
           ExpectedPrice = input.ReadUInt64();
           break;
         }
+        case 32: {
+          PlanId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          ExpectedPeriodDays = input.ReadUInt32();
+          break;
+        }
       }
     }
   }
@@ -1928,7 +2854,7 @@ public sealed partial class BuyAfkPassResponse : pb::IMessage<BuyAfkPassResponse
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[5]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1951,6 +2877,7 @@ public sealed partial class BuyAfkPassResponse : pb::IMessage<BuyAfkPassResponse
     errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
     info_ = other.info_ != null ? other.info_.Clone() : null;
     replayed_ = other.replayed_;
+    bag_ = other.bag_ != null ? other.bag_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2002,6 +2929,21 @@ public sealed partial class BuyAfkPassResponse : pb::IMessage<BuyAfkPassResponse
     }
   }
 
+  /// <summary>Field number for the "bag" field.</summary>
+  public const int BagFieldNumber = 4;
+  private global::BagInfo bag_;
+  /// <summary>
+  /// 开卡一次性直赠绑定道具后的最新背包快照
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::BagInfo Bag {
+    get { return bag_; }
+    set {
+      bag_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2020,6 +2962,7 @@ public sealed partial class BuyAfkPassResponse : pb::IMessage<BuyAfkPassResponse
     if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
     if (!object.Equals(Info, other.Info)) return false;
     if (Replayed != other.Replayed) return false;
+    if (!object.Equals(Bag, other.Bag)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2030,6 +2973,7 @@ public sealed partial class BuyAfkPassResponse : pb::IMessage<BuyAfkPassResponse
     if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
     if (info_ != null) hash ^= Info.GetHashCode();
     if (Replayed != false) hash ^= Replayed.GetHashCode();
+    if (bag_ != null) hash ^= Bag.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2060,6 +3004,10 @@ public sealed partial class BuyAfkPassResponse : pb::IMessage<BuyAfkPassResponse
       output.WriteRawTag(24);
       output.WriteBool(Replayed);
     }
+    if (bag_ != null) {
+      output.WriteRawTag(34);
+      output.WriteMessage(Bag);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2082,6 +3030,10 @@ public sealed partial class BuyAfkPassResponse : pb::IMessage<BuyAfkPassResponse
       output.WriteRawTag(24);
       output.WriteBool(Replayed);
     }
+    if (bag_ != null) {
+      output.WriteRawTag(34);
+      output.WriteMessage(Bag);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2100,6 +3052,9 @@ public sealed partial class BuyAfkPassResponse : pb::IMessage<BuyAfkPassResponse
     }
     if (Replayed != false) {
       size += 1 + 1;
+    }
+    if (bag_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Bag);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2127,6 +3082,12 @@ public sealed partial class BuyAfkPassResponse : pb::IMessage<BuyAfkPassResponse
     }
     if (other.Replayed != false) {
       Replayed = other.Replayed;
+    }
+    if (other.bag_ != null) {
+      if (bag_ == null) {
+        Bag = new global::BagInfo();
+      }
+      Bag.MergeFrom(other.Bag);
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2163,6 +3124,13 @@ public sealed partial class BuyAfkPassResponse : pb::IMessage<BuyAfkPassResponse
         }
         case 24: {
           Replayed = input.ReadBool();
+          break;
+        }
+        case 34: {
+          if (bag_ == null) {
+            Bag = new global::BagInfo();
+          }
+          input.ReadMessage(Bag);
           break;
         }
       }
@@ -2202,6 +3170,13 @@ public sealed partial class BuyAfkPassResponse : pb::IMessage<BuyAfkPassResponse
           Replayed = input.ReadBool();
           break;
         }
+        case 34: {
+          if (bag_ == null) {
+            Bag = new global::BagInfo();
+          }
+          input.ReadMessage(Bag);
+          break;
+        }
       }
     }
   }
@@ -2228,7 +3203,7 @@ public sealed partial class GmSetAfkPassRequest : pb::IMessage<GmSetAfkPassReque
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[6]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[7]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2426,7 +3401,7 @@ public sealed partial class GmSetAfkPassResponse : pb::IMessage<GmSetAfkPassResp
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[7]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2682,7 +3657,7 @@ public sealed partial class SetAfkPassSettingsRequest : pb::IMessage<SetAfkPassS
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[8]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2880,7 +3855,7 @@ public sealed partial class SetAfkPassSettingsResponse : pb::IMessage<SetAfkPass
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[9]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[10]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3136,7 +4111,7 @@ public sealed partial class AckHostedRecapRequest : pb::IMessage<AckHostedRecapR
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[10]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3334,7 +4309,7 @@ public sealed partial class AckHostedRecapResponse : pb::IMessage<AckHostedRecap
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[11]; }
+    get { return global::PlayerAfkPassReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

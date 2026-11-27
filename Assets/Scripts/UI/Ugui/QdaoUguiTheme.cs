@@ -8,6 +8,12 @@ using UnityEngine.UI;
 namespace MmorpgClient.UI.Ugui
 {
     /// <summary>
+    /// 按帮会首要标准原图 approved-guild-reference.png 实测笔画厚度分档：
+    /// Body(正文 2px) / Heading(栏标题与深色页签 3~4px) / Primary(绿底主钮与选中页签 3~4px+玉影) / Title(顶牌 4~6px+玉影)。
+    /// </summary>
+    public enum QdaoUiTypographyRole { Body, Heading, Primary, Title }
+
+    /// <summary>
     /// Shared visual constants and resource loading for the native uGUI screen.
     /// One design unit maps to one pixel at the 2560x1080 reference resolution.
     /// </summary>
@@ -30,6 +36,12 @@ namespace MmorpgClient.UI.Ugui
 
         private static readonly Dictionary<string, Sprite> Sprites = new();
         private static TMP_FontAsset _font;
+        private static TMP_FontAsset _symbolFallback;
+        private static Material _matBase;
+        private static Material _matBody;
+        private static Material _matHeading;
+        private static Material _matPrimary;
+        private static Material _matTitle;
 
         public static readonly Color DarkBrown = Html("#3D2914");
         public static readonly Color Brown = Html("#5A4025");
@@ -39,6 +51,15 @@ namespace MmorpgClient.UI.Ugui
         public static readonly Color StatusCream = Html("#FFF0BD");
         public static readonly Color PanelPaper = Html("#F1E6D8");
         public static readonly Color Letterbox = Html("#07181D");
+
+        // 帮会标准原图 approved-guild-reference.png 实测墨色与鎏金玉白
+        public static readonly Color GuildRichInk = new Color32(18, 13, 8, 255);
+        public static readonly Color GuildInk = new Color32(31, 29, 27, 255);
+        public static readonly Color GuildMuted = new Color32(84, 68, 48, 255);
+        public static readonly Color GuildDeepJade = new Color32(0, 41, 19, 255);
+        public static readonly Color GuildSelectedInk = new Color32(6, 34, 17, 255);
+        public static readonly Color GuildTitleCream = new Color32(254, 250, 225, 255);
+        public static readonly Color GuildTabCream = new Color32(255, 252, 202, 255);
 
         public static Sprite LoadSprite(string resourcePath)
         {
@@ -73,6 +94,7 @@ namespace MmorpgClient.UI.Ugui
             if (_font != null)
             {
                 _font.isMultiAtlasTexturesEnabled = true;
+                AttachSymbolFallback(_font);
                 return _font;
             }
 
@@ -91,13 +113,116 @@ namespace MmorpgClient.UI.Ugui
                 2048, 2048, AtlasPopulationMode.Dynamic, true);
             _font.name = "SimKai SDF (Runtime)";
             _font.isMultiAtlasTexturesEnabled = true;
+            AttachSymbolFallback(_font);
             return _font;
+        }
+
+        /// <summary>
+        /// 为 SimKai 挂接极少缺字（✓/•/▶/▸/›/① 等 UI 符号）的运行期兜底字库，
+        /// 保证汉字全部走 SimKai 楷体，同时彻底消除缺字豆腐块。
+        /// </summary>
+        private static void AttachSymbolFallback(TMP_FontAsset primary)
+        {
+            if (primary == null) return;
+            if (_symbolFallback == null)
+            {
+                _symbolFallback = Resources.Load<TMP_FontAsset>(QdaoUguiTypography.BodyFontResourcePath);
+                if (_symbolFallback != null) _symbolFallback.isMultiAtlasTexturesEnabled = true;
+            }
+            if (_symbolFallback == null || ReferenceEquals(_symbolFallback, primary)) return;
+            if (primary.fallbackFontAssetTable == null)
+                primary.fallbackFontAssetTable = new List<TMP_FontAsset>();
+            if (!primary.fallbackFontAssetTable.Contains(_symbolFallback))
+                primary.fallbackFontAssetTable.Add(_symbolFallback);
+        }
+
+        private static void DestroyMaterial(ref Material mat)
+        {
+            if (mat == null) return;
+            if (Application.isPlaying) UnityEngine.Object.Destroy(mat);
+            else UnityEngine.Object.DestroyImmediate(mat);
+            mat = null;
+        }
+
+        public static Material ResolveTypographyMaterial(TMP_FontAsset font, QdaoUiTypographyRole role)
+        {
+            if (font == null || font.material == null) return null;
+            if (!ReferenceEquals(_matBase, font.material) || _matBody == null || _matHeading == null || _matPrimary == null || _matTitle == null)
+            {
+                DestroyMaterial(ref _matBody);
+                DestroyMaterial(ref _matHeading);
+                DestroyMaterial(ref _matPrimary);
+                DestroyMaterial(ref _matTitle);
+                _matBase = font.material;
+
+                _matBody = new Material(_matBase) { name = "QdaoSimKaiBody", hideFlags = HideFlags.DontSave };
+                _matBody.SetFloat("_FaceDilate", 0.11f);
+                _matBody.SetFloat("_OutlineSoftness", 0.02f);
+
+                _matHeading = new Material(_matBase) { name = "QdaoSimKaiHeading", hideFlags = HideFlags.DontSave };
+                _matHeading.SetFloat("_FaceDilate", 0.21f);
+                _matHeading.SetFloat("_OutlineSoftness", 0.02f);
+
+                _matPrimary = new Material(_matBase) { name = "QdaoSimKaiPrimary", hideFlags = HideFlags.DontSave };
+                _matPrimary.SetFloat("_FaceDilate", 0.23f);
+                _matPrimary.EnableKeyword("UNDERLAY_ON");
+                _matPrimary.SetColor("_UnderlayColor", new Color(0.01f, 0.09f, 0.045f, 0.86f));
+                _matPrimary.SetFloat("_UnderlayOffsetX", 0f);
+                _matPrimary.SetFloat("_UnderlayOffsetY", -0.45f);
+                _matPrimary.SetFloat("_UnderlayDilate", 0.20f);
+                _matPrimary.SetFloat("_UnderlaySoftness", 0.22f);
+
+                _matTitle = new Material(_matBase) { name = "QdaoSimKaiTitle", hideFlags = HideFlags.DontSave };
+                _matTitle.SetFloat("_FaceDilate", 0.29f);
+                _matTitle.EnableKeyword("UNDERLAY_ON");
+                _matTitle.SetColor("_UnderlayColor", new Color(0.01f, 0.08f, 0.04f, 0.88f));
+                _matTitle.SetFloat("_UnderlayOffsetX", 0f);
+                _matTitle.SetFloat("_UnderlayOffsetY", -0.52f);
+                _matTitle.SetFloat("_UnderlayDilate", 0.26f);
+                _matTitle.SetFloat("_UnderlaySoftness", 0.24f);
+            }
+
+            return role switch
+            {
+                QdaoUiTypographyRole.Title => _matTitle,
+                QdaoUiTypographyRole.Primary => _matPrimary,
+                QdaoUiTypographyRole.Heading => _matHeading,
+                _ => _matBody,
+            };
+        }
+
+        public static void ApplyTypography(TMP_Text text, QdaoUiTypographyRole role)
+        {
+            if (text == null) return;
+            var font = ResolveFont();
+            if (font == null) return;
+            text.font = font;
+            var mat = ResolveTypographyMaterial(font, role);
+            if (mat != null) text.fontSharedMaterial = mat;
+        }
+
+        /// <summary>按字号与色相亮度自动匹配四档厚楷材质，让全量 uGUI 文本零改动即获帮会原图笔意。</summary>
+        public static void ApplyTypographyAuto(TMP_Text text)
+        {
+            if (text == null) return;
+            float luma = 0.299f * text.color.r + 0.587f * text.color.g + 0.114f * text.color.b;
+            bool lightText = luma >= 0.72f && text.color.a > 0.2f;
+            QdaoUiTypographyRole role = lightText
+                ? (text.fontSize >= 38f ? QdaoUiTypographyRole.Title : QdaoUiTypographyRole.Primary)
+                : (text.fontSize >= 27f ? QdaoUiTypographyRole.Heading : QdaoUiTypographyRole.Body);
+            ApplyTypography(text, role);
         }
 
         public static void ResetRuntimeCaches()
         {
             Sprites.Clear();
             _font = null;
+            _symbolFallback = null;
+            _matBase = null;
+            DestroyMaterial(ref _matBody);
+            DestroyMaterial(ref _matHeading);
+            DestroyMaterial(ref _matPrimary);
+            DestroyMaterial(ref _matTitle);
             QdaoUguiTypography.ResetRuntimeCache();
         }
 

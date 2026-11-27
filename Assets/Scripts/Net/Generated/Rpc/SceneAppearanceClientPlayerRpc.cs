@@ -75,5 +75,10 @@ namespace MmorpgClient.Net.Generated
         public static void EquipSkillVfx(IRpcChannel channel, global::EquipSkillVfxRequest request,
             RpcDone<global::EquipSkillVfxResponse> done)
             => channel.CallMethod(EquipSkillVfxMessageId, request, global::EquipSkillVfxResponse.Parser, done);
+
+        public const uint BuyAppearanceSeriesBundleMessageId = 592;
+        public static void BuyAppearanceSeriesBundle(IRpcChannel channel, global::BuyAppearanceSeriesBundleRequest request,
+            RpcDone<global::BuyAppearanceSeriesBundleResponse> done)
+            => channel.CallMethod(BuyAppearanceSeriesBundleMessageId, request, global::BuyAppearanceSeriesBundleResponse.Parser, done);
     }
 }

@@ -23,15 +23,19 @@ public static partial class AppearanceErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "CjNnZW5lcmF0ZWQvY29kZS9wcm90by90aXAvYXBwZWFyYW5jZV9lcnJvcl90",
-          "aXAucHJvdG8q1wIKEGFwcGVhcmFuY2VfZXJyb3ISFwoTa0FwcGVhcmFuY2Vf",
+          "aXAucHJvdG8qhQQKEGFwcGVhcmFuY2VfZXJyb3ISFwoTa0FwcGVhcmFuY2Vf",
           "ZXJyb3JPSxAAEhgKEmtBcHBlYXJhbmNlSW52YWxpZBDogQISHwoZa0FwcGVh",
           "cmFuY2VBbHJlYWR5Q3VycmVudBDpgQISFwoRa0FwcGVhcmFuY2VOb0NhcmQQ",
           "6oECEiEKG2tBcHBlYXJhbmNlVHJpYWxBbHJlYWR5VXNlZBDrgQISHgoYa0Fw",
           "cGVhcmFuY2VOb0FjdGl2ZVRyaWFsEOyBAhIXChFrQXBwZWFyYW5jZUZyb3pl",
           "bhDtgQISHAoWa0FwcGVhcmFuY2VVbmF2YWlsYWJsZRDugQISIgoca0FwcGVh",
           "cmFuY2VOb3RDYXJkVW5sb2NrYWJsZRDvgQISHQoXa0FwcGVhcmFuY2VBbHJl",
-          "YWR5T3duZWQQ8IECEhkKE2tBcHBlYXJhbmNlTm90T3duZWQQ8YECQiQKDmNv",
-          "bS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
+          "YWR5T3duZWQQ8IECEhkKE2tBcHBlYXJhbmNlTm90T3duZWQQ8YECEigKImtB",
+          "cHBlYXJhbmNlU2VyaWVzQnVuZGxlVW5hdmFpbGFibGUQ8oECEicKIWtBcHBl",
+          "YXJhbmNlU2VyaWVzQWxyZWFkeUNvbXBsZXRlZBDzgQISKQoja0FwcGVhcmFu",
+          "Y2VTZXJpZXNCdW5kbGVQcmljZUNoYW5nZWQQ9IECEi4KKGtBcHBlYXJhbmNl",
+          "U2VyaWVzQnVuZGxlQ3VycmVuY3lOb3RFbm91Z2gQ9YECQiQKDmNvbS5nYW1l",
+          "LnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::appearance_error), }, null, null));
@@ -52,6 +56,10 @@ public enum appearance_error {
   [pbr::OriginalName("kAppearanceNotCardUnlockable")] KAppearanceNotCardUnlockable = 33007,
   [pbr::OriginalName("kAppearanceAlreadyOwned")] KAppearanceAlreadyOwned = 33008,
   [pbr::OriginalName("kAppearanceNotOwned")] KAppearanceNotOwned = 33009,
+  [pbr::OriginalName("kAppearanceSeriesBundleUnavailable")] KAppearanceSeriesBundleUnavailable = 33010,
+  [pbr::OriginalName("kAppearanceSeriesAlreadyCompleted")] KAppearanceSeriesAlreadyCompleted = 33011,
+  [pbr::OriginalName("kAppearanceSeriesBundlePriceChanged")] KAppearanceSeriesBundlePriceChanged = 33012,
+  [pbr::OriginalName("kAppearanceSeriesBundleCurrencyNotEnough")] KAppearanceSeriesBundleCurrencyNotEnough = 33013,
 }
 
 #endregion
