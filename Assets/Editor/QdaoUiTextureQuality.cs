@@ -29,6 +29,24 @@ namespace MmorpgClient.UI.EditorTools
         private static bool IsUiTexturePath(string path)
             => path.StartsWith(UiRoot + "/", StringComparison.Ordinal);
 
+        /// <summary>
+        /// 1254×1254 超高分辨率图标/徽章/头像在界面里常缩小 6~27 倍显示，
+        /// 必须启用 Kaiser Mipmap + Trilinear 消除双线性下采样走样锯齿。
+        /// </summary>
+        private static bool RequiresHighRatioMipmaps(string path)
+        {
+            const string prefix = "Assets/Resources/UI/Ugui/CharacterPet/Controls/";
+            if (!path.StartsWith(prefix, StringComparison.Ordinal))
+                return false;
+            string name = Path.GetFileName(path);
+            if (string.Equals(name, "portrait_frame.png", StringComparison.Ordinal))
+                return false;
+            return name.StartsWith("badge-", StringComparison.Ordinal)
+                || name.StartsWith("ring-", StringComparison.Ordinal)
+                || name.StartsWith("portrait_", StringComparison.Ordinal)
+                || name.StartsWith("row_", StringComparison.Ordinal);
+        }
+
         private static List<string> PlatformNames(TextureImporter importer)
         {
             var names = new List<string>();
@@ -56,11 +74,17 @@ namespace MmorpgClient.UI.EditorTools
 
             var platforms = PlatformNames(importer);
             var defaults = importer.GetDefaultPlatformTextureSettings();
+            bool wantMips = RequiresHighRatioMipmaps(importer.assetPath);
             bool changed = importer.maxTextureSize != MaximumTextureSize ||
                 importer.textureCompression != TextureImporterCompression.Uncompressed ||
                 importer.crunchedCompression || importer.compressionQuality != 100 ||
                 importer.npotScale != TextureImporterNPOTScale.None ||
-                importer.mipmapEnabled || importer.streamingMipmaps ||
+                importer.mipmapEnabled != wantMips || importer.streamingMipmaps ||
+                (wantMips && (importer.mipmapFilter != TextureImporterMipFilter.KaiserFilter ||
+                    importer.filterMode != FilterMode.Trilinear ||
+                    importer.anisoLevel < 4 ||
+                    Math.Abs(importer.mipMapBias - (-0.35f)) > 0.01f ||
+                    !importer.alphaIsTransparency)) ||
                 defaults.maxTextureSize != MaximumTextureSize ||
                 defaults.format != TextureImporterFormat.Automatic ||
                 defaults.textureCompression != TextureImporterCompression.Uncompressed ||
@@ -72,7 +96,15 @@ namespace MmorpgClient.UI.EditorTools
             importer.crunchedCompression = false;
             importer.compressionQuality = 100;
             importer.npotScale = TextureImporterNPOTScale.None;
-            importer.mipmapEnabled = false;
+            importer.mipmapEnabled = wantMips;
+            if (wantMips)
+            {
+                importer.mipmapFilter = TextureImporterMipFilter.KaiserFilter;
+                importer.filterMode = FilterMode.Trilinear;
+                importer.anisoLevel = 4;
+                importer.mipMapBias = -0.35f;
+                importer.alphaIsTransparency = true;
+            }
             importer.streamingMipmaps = false;
             defaults.maxTextureSize = MaximumTextureSize;
             defaults.format = TextureImporterFormat.Automatic;
@@ -143,9 +175,10 @@ namespace MmorpgClient.UI.EditorTools
                         throw new InvalidOperationException("Source and imported dimensions differ, or the source exceeds 16384 pixels.");
                     if (!spriteSettingsPreserved)
                         throw new InvalidOperationException("Sprite border, PPU, import mode or sRGB changed during import.");
+                    bool expectedMips = RequiresHighRatioMipmaps(path);
                     if (maxSize != MaximumTextureSize ||
                         importer.textureCompression != TextureImporterCompression.Uncompressed ||
-                        importer.crunchedCompression || importer.mipmapEnabled || importer.streamingMipmaps ||
+                        importer.crunchedCompression || importer.mipmapEnabled != expectedMips || importer.streamingMipmaps ||
                         importer.npotScale != TextureImporterNPOTScale.None ||
                         importer.GetDefaultPlatformTextureSettings().format != TextureImporterFormat.Automatic ||
                         PlatformNames(importer).Any(platform => importer.GetPlatformTextureSettings(platform).overridden))

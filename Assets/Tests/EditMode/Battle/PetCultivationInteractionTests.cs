@@ -6,6 +6,7 @@ using MmorpgClient.Net;
 using MmorpgClient.UI.Ugui.Pet;
 using MmorpgClient.UI.Ugui.Skills;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -219,9 +220,9 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(Text("PetSkillParameters").text, Does.Contain("3/8"), "未在本地模拟升级");
             PublishSkills(900001, 4); Click("PetItem1");
             Assert.That(_skills.Reads.Last().PetId, Is.EqualTo(900002));
-            Assert.That(_root.GetComponentsInChildren<Text>(true).Any(t => t.text == "真实治疗技能"), Is.False);
+            Assert.That(_root.GetComponentsInChildren<TMP_Text>(true).Any(t => t.text == "真实治疗技能"), Is.False);
             PublishSkills(900001, 7);
-            Assert.That(_root.GetComponentsInChildren<Text>(true).Any(t => t.text == "真实治疗技能"), Is.False, "旧宝宝回包不能盖住新宝宝");
+            Assert.That(_root.GetComponentsInChildren<TMP_Text>(true).Any(t => t.text == "真实治疗技能"), Is.False, "旧宝宝回包不能盖住新宝宝");
         }
 
         [Test]
@@ -240,9 +241,9 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(Text("PetSkillFilter1Text").text, Is.EqualTo("障碍"));
             Assert.That(Text("PetSkillFilter2Text").text, Is.EqualTo("辅助"));
             Assert.That(Text("PetSkillFilter3Text").text, Is.EqualTo("被动"));
-            Assert.That(_root.GetComponentsInChildren<Text>().Where(t => t.name.StartsWith("PetSkillName")).Select(t => t.name), Is.EquivalentTo(new[] { "PetSkillName10002" }));
+            Assert.That(_root.GetComponentsInChildren<TMP_Text>().Where(t => t.name.StartsWith("PetSkillName")).Select(t => t.name), Is.EquivalentTo(new[] { "PetSkillName10002" }));
             Click("PetSkillFilter3");
-            Assert.That(_root.GetComponentsInChildren<Text>().Where(t => t.name.StartsWith("PetSkillName")).Select(t => t.name),
+            Assert.That(_root.GetComponentsInChildren<TMP_Text>().Where(t => t.name.StartsWith("PetSkillName")).Select(t => t.name),
                 Is.EquivalentTo(new[] { "PetSkillName12004", "PetSkillName13001", "PetSkillName14003" }));
             Assert.That(Text("PetSkillSummary13001").text, Does.StartWith("追击"));
             Assert.That(Text("PetSkillSummary14003").text, Does.StartWith("开场"));
@@ -262,7 +263,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _skills.Publish(state);
             Assert.That(Text("PetSkillEmpty").text, Does.Contain("尚未同步"));
             Assert.That(Text("PetSkillDetailEmpty").text, Does.Contain("—"));
-            Assert.That(_root.GetComponentsInChildren<Text>().Any(t => t.name == "PetSkillParameters"), Is.False);
+            Assert.That(_root.GetComponentsInChildren<TMP_Text>().Any(t => t.name == "PetSkillParameters"), Is.False);
             Assert.That(_skills.Writes, Is.Empty);
             PublishSkills(900001, 3);
             Assert.That(Text("PetSkillParameters").text, Does.Contain("3/8"));
@@ -341,7 +342,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _skills.Publish(new SkillBookViewState { Context = SkillBookContext.Pet(petId, "测试宝宝"), Snapshot = snapshot, IsConnected = true });
         }
         private Button Button(string name) => _root.GetComponentsInChildren<Button>(true).Single(b => b.name == name + "Plate");
-        private Text Text(string name) => _root.GetComponentsInChildren<Text>(true).Single(t => t.name == name);
+        private TMP_Text Text(string name) => _root.GetComponentsInChildren<TMP_Text>(true).Single(t => t.name == name);
         private void Click(string name) { var button = Button(name); Assert.That(button.interactable, Is.True, name); button.onClick.Invoke(); }
         private static PetListInfo MakeList()
         {
@@ -496,6 +497,53 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Click("PetBadgeExplain");
             Assert.That(Button("PetBadgeOpenAscend").interactable, Is.False);
             Assert.That(Text("PetBadgeOpenAscendText").text, Is.EqualTo("已达巅峰 · 圣兽（条目预算 +8）"));
+        }
+
+        [Test]
+        public void VisualFidelityUsesNativeUnstretchedShellAndSimKaiTmpTypography()
+        {
+            PublishEntries(4, 1);
+            var entries = _list.Pets[0].Entries;
+            entries.ActivePresetSlot = 1;
+            entries.Presets.Add(new PetEntryPresetSummary { SlotId = 1, Tag = 1, UsedPoints = 4 });
+            entries.Presets.Add(new PetEntryPresetSummary { SlotId = 2, Tag = 2, UsedPoints = 0 });
+            entries.Presets.Add(new PetEntryPresetSummary { SlotId = 3, Tag = 3, UsedPoints = 0 });
+            _net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = _list });
+
+            foreach (float width in new[] { 1920f, 2560f })
+            {
+                _panel.SetViewport(width, 1080f);
+                var frame = _root.GetComponentsInChildren<Image>(true).Single(img => img.name == "CultivationFrame");
+                Assert.That(frame.rectTransform.rect.width, Is.EqualTo(1932f), "主底壳须保持 1932×814 原生 1:1 尺寸防拉伸");
+                Assert.That(frame.rectTransform.rect.height, Is.EqualTo(814f));
+                Assert.That(frame.rectTransform.localScale, Is.EqualTo(UnityEngine.Vector3.one));
+            }
+
+            Assert.That(_root.GetComponentsInChildren<Text>(true), Is.Empty, "宠物培养窗口不得混用旧版 UnityEngine.UI.Text");
+            var labels = _root.GetComponentsInChildren<TMP_Text>(true);
+            Assert.That(labels.Length, Is.GreaterThan(10));
+            foreach (var label in labels)
+            {
+                Assert.That(label.font, Is.Not.Null, label.name);
+                Assert.That(label.font.name, Does.Contain("SimKai").IgnoreCase, label.name);
+                Assert.That(label.richText, Is.False, label.name);
+                Assert.That(label.text, Does.Not.Contain("▸"), label.name + " 不得包含 SimKai 缺字三角符号");
+            }
+
+            for (int slot = 1; slot <= 3; slot++)
+            {
+                var presetLabel = Text("EntryPreset" + slot + "Text");
+                Assert.That(presetLabel.enableAutoSizing, Is.True);
+                Assert.That(presetLabel.overflowMode, Is.Not.EqualTo(TextOverflowModes.Overflow));
+            }
+            Assert.That(Text("EntryPresetTagText").text, Does.Contain("▼"));
+
+            Click("Tab技能");
+            PublishSkills(900001, 3);
+            Click("PetSkillFilter2");
+            var selectedSkillTitle = Text("PetSkillName10010");
+            Assert.That(selectedSkillTitle.color.r + selectedSkillTitle.color.g + selectedSkillTitle.color.b, Is.LessThan(1.2f),
+                "选中技能行底板为浅绿，标题须用高对比深色字而非浅米色");
         }
     }
 }

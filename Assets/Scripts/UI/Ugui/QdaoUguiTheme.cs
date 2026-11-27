@@ -71,7 +71,10 @@ namespace MmorpgClient.UI.Ugui
 
             _font = Resources.Load<TMP_FontAsset>(SimKaiSdfPath);
             if (_font != null)
+            {
+                _font.isMultiAtlasTexturesEnabled = true;
                 return _font;
+            }
 
             // Runtime safety net. The editor builder creates a persistent SDF
             // asset, but a clean checkout remains usable before that menu item
@@ -83,8 +86,11 @@ namespace MmorpgClient.UI.Ugui
                 return null;
             }
 
-            _font = TMP_FontAsset.CreateFontAsset(sourceFont);
+            _font = TMP_FontAsset.CreateFontAsset(
+                sourceFont, 90, 9, UnityEngine.TextCore.LowLevel.GlyphRenderMode.SDFAA,
+                2048, 2048, AtlasPopulationMode.Dynamic, true);
             _font.name = "SimKai SDF (Runtime)";
+            _font.isMultiAtlasTexturesEnabled = true;
             return _font;
         }
 
