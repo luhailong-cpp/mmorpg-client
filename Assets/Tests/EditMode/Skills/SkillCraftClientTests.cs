@@ -581,16 +581,17 @@ namespace MmorpgClient.Tests.EditMode.Skills
                 Assert.That(File.Exists(pngPath), Is.True, $"Missing sprite PNG: {pngPath}");
                 Assert.That(File.Exists(metaPath), Is.True, $"Missing sprite meta: {metaPath}");
 
-                byte[] header = new byte[24];
+                byte[] header = new byte[26];
                 using (var fs = File.OpenRead(pngPath))
                 {
-                    Assert.That(fs.Read(header, 0, header.Length), Is.EqualTo(24));
+                    Assert.That(fs.Read(header, 0, header.Length), Is.EqualTo(26));
                 }
                 Assert.That(header[0], Is.EqualTo(0x89), $"{key} is not a PNG binary");
                 Assert.That(header[1], Is.EqualTo(0x50), $"{key} is not a PNG binary");
                 int width = (header[16] << 24) | (header[17] << 16) | (header[18] << 8) | header[19];
                 int height = (header[20] << 24) | (header[21] << 16) | (header[22] << 8) | header[23];
                 Assert.That((width, height), Is.EqualTo((spec.W, spec.H)), $"Dimension mismatch for {key}");
+                Assert.That(header[25], Is.EqualTo((byte)6), $"{key} must be PNG-32 RGBA");
 
                 string meta = File.ReadAllText(metaPath);
                 Assert.That(meta, Does.Contain("textureType: 8"), $"{key} meta must import as Sprite");

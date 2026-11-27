@@ -4,6 +4,7 @@ using System.Linq;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Social;
 using MmorpgClient.Game.TrialJournal;
+using MmorpgClient.UI.Ugui.Jianghu;
 using MmorpgClient.UI.Ugui.TrialJournal;
 using MmorpgClient.World.Tianyong;
 using TMPro;
@@ -275,15 +276,25 @@ namespace MmorpgClient.UI.Ugui.Social
             Text(panel,person.Name,283,141,473,73,37,Jade);Text(panel,person.Level>0?person.Level+"级 · "+person.Title:"角色资料尚未同步",283,223,473,76,27,Muted,wrap:true);
             Text(panel,State.IsPreview?"结缘青云观，游历山川间。愿与四海仙友，共赴一程好风光。"
                 : "玩家编号 " + id + (id == State.PlayerId ? " · 这是你的角色。" : "。邀请这位道友，一起结伴游历。"),84,338,682,113,27,Muted,wrap:true);
-            bool canInvite = !State.IsPreview && id != 0 && id != State.PlayerId && TeamInviteRequested != null;
-            if (id != 0 && id != State.PlayerId)
-                Button(panel,"SocialInviteToTeam","邀请组队",84,459,325,61,()=>
+            bool isOtherPlayer = id != 0 && id != State.PlayerId;
+            bool canInvite = !State.IsPreview && isOtherPlayer && TeamInviteRequested != null;
+            bool canDuel = !State.IsPreview && isOtherPlayer && JianghuUiRoot.Instance != null;
+            if (isOtherPlayer)
+            {
+                Button(panel,"SocialInviteToTeam","邀请组队",84,459,214,61,()=>
                 {
-                    if (State.IsPreview || id == State.PlayerId || TeamInviteRequested == null) return;
+                    if (State.IsPreview || !isOtherPlayer || TeamInviteRequested == null) return;
                     CloseModal();
                     TeamInviteRequested.Invoke(id);
-                },true,enabled:canInvite,size:27);
-            Button(panel,"SocialModalDone","返回",id != State.PlayerId ? 441 : 301,459,325,61,()=>CloseModal(),size:27);
+                },true,enabled:canInvite,size:26);
+                Button(panel,"SocialChallengeDuel","下战书",318,459,214,61,()=>
+                {
+                    if (State.IsPreview || !isOtherPlayer || JianghuUiRoot.Instance == null) return;
+                    CloseModal(restore:false);
+                    JianghuUiRoot.Instance.OpenChallengeFor(id);
+                },false,enabled:canDuel,size:26);
+            }
+            Button(panel,"SocialModalDone","返回",isOtherPlayer ? 552 : 301,459,isOtherPlayer ? 214 : 325,61,()=>CloseModal(),size:26);
         }
         private void ShowCard(string card)
         {

@@ -475,5 +475,58 @@ namespace MmorpgClient.Tests.EditMode.Role
             }
             Assert.That(seenGuids.Count, Is.EqualTo(41));
         }
+
+        [Test]
+        public void RankedPlayV7Assets_All4SpritesDimensionsBordersAndUniqueGuidsMatchContract()
+        {
+            string cwd = Directory.GetCurrentDirectory();
+            string resourcesRoot = Directory.Exists(Path.Combine(cwd, "Assets", "Resources"))
+                ? Path.Combine(cwd, "Assets", "Resources")
+                : Path.Combine(cwd, "mmorpg-client", "Assets", "Resources");
+
+            const string noBorder = "spriteBorder: {x: 0, y: 0, z: 0, w: 0}";
+            const string threeSlice50 = "spriteBorder: {x: 50, y: 0, z: 50, w: 0}";
+            var expected = new (string RelPath, int Width, int Height, string Border)[]
+            {
+                ("UI/Ugui/RankedPlayV7/btn_rematch_duel.png", 240, 68, threeSlice50),
+                ("UI/Ugui/RankedPlayV7/icon_rematch_swords.png", 96, 96, noBorder),
+                ("UI/Ugui/RankedPlayV7/live_ranked_spectate_banner.png", 760, 76, threeSlice50),
+                ("UI/Ugui/RankedPlayV7/icon_live_spectate.png", 96, 96, noBorder),
+            };
+
+            var seenGuids = new HashSet<string>();
+            foreach (var (rel, wantW, wantH, border) in expected)
+            {
+                string pngPath = Path.Combine(resourcesRoot, rel.Replace('/', Path.DirectorySeparatorChar));
+                string metaPath = pngPath + ".meta";
+                Assert.That(File.Exists(pngPath), Is.True, $"Missing RankedPlayV7 PNG: {rel}");
+                Assert.That(File.Exists(metaPath), Is.True, $"Missing RankedPlayV7 meta: {rel}.meta");
+
+                byte[] header = new byte[26];
+                using (var fs = File.OpenRead(pngPath))
+                    Assert.That(fs.Read(header, 0, header.Length), Is.EqualTo(header.Length), rel);
+                int w = (header[16] << 24) | (header[17] << 16) | (header[18] << 8) | header[19];
+                int h = (header[20] << 24) | (header[21] << 16) | (header[22] << 8) | header[23];
+                Assert.That(w, Is.EqualTo(wantW), $"{rel} width");
+                Assert.That(h, Is.EqualTo(wantH), $"{rel} height");
+                Assert.That(header[25], Is.EqualTo((byte)6), $"{rel} must be transparent RGBA PNG-32");
+
+                string meta = File.ReadAllText(metaPath);
+                Assert.That(meta, Does.Contain("enableMipMap: 0"), rel);
+                Assert.That(meta, Does.Contain("alphaIsTransparency: 1"), rel);
+                Assert.That(meta, Does.Contain("textureType: 8"), rel);
+                Assert.That(meta, Does.Contain("spriteMode: 1"), rel);
+                Assert.That(meta, Does.Contain(border), rel);
+
+                string guidLine = null;
+                foreach (string line in File.ReadAllLines(metaPath))
+                {
+                    if (line.StartsWith("guid: ")) { guidLine = line.Substring(6).Trim(); break; }
+                }
+                Assert.That(guidLine, Is.Not.Null.And.Not.Empty, rel);
+                Assert.That(seenGuids.Add(guidLine), Is.True, $"Duplicate GUID {guidLine} on {rel}");
+            }
+            Assert.That(seenGuids.Count, Is.EqualTo(4));
+        }
     }
 }

@@ -172,6 +172,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 case Match.MatchMode.GuildWarPvp: return "帮战直打";
                 case Match.MatchMode.GuildWarSiege: return "帮战踢馆";
                 case Match.MatchMode.PvpChallenge: return "切磋 PK";
+                case Match.MatchMode.JianghuDuel: return "天墉生死擂";
                 default: return $"模式{(int)mode}";
             }
         }

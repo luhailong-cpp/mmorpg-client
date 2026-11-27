@@ -725,6 +725,15 @@ namespace MmorpgClient.Tests.EditMode.Role
                 ("UI/Ugui/TrialJournalV3/vow_icon_tight_rounds", UnityEngine.Vector4.zero),
                 ("UI/Ugui/TrialJournalV3/challenge_card_panel", new UnityEngine.Vector4(24f, 20f, 24f, 20f)),
                 ("UI/Ugui/TrialJournal/Badges/badge_trial_three_realms", UnityEngine.Vector4.zero),
+                ("UI/Ugui/TrialJournal/Badges/badge_season_s2_trial", UnityEngine.Vector4.zero),
+                ("UI/Ugui/TrialJournal/Badges/badge_season_s3_trial", UnityEngine.Vector4.zero),
+                ("UI/Ugui/TrialJournal/Badges/badge_season_s4_trial", UnityEngine.Vector4.zero),
+                ("UI/Ugui/TrialJournal/Badges/badge_season_s5_trial", UnityEngine.Vector4.zero),
+                ("UI/Ugui/TrialJournal/Badges/badge_season_s6_trial", UnityEngine.Vector4.zero),
+                ("UI/Ugui/TrialJournal/Badges/badge_season_s7_trial", UnityEngine.Vector4.zero),
+                ("UI/Ugui/TrialJournal/Badges/badge_season_s8_trial", UnityEngine.Vector4.zero),
+                ("UI/Ugui/TrialJournal/Badges/badge_season_s9_trial", UnityEngine.Vector4.zero),
+                ("UI/Ugui/TrialJournal/Badges/badge_season_s10_trial", UnityEngine.Vector4.zero),
             };
             foreach (var (path, border) in tjV3Expected)
             {
