@@ -96,7 +96,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             DrawAmount(body, "Bound", 562, "绑定", view.BoundUnitsAdded);
 
             string progress = view.WeeklyPhaseActive
-                ? $"周精进材料 {view.EarnedThisWeek}/{view.WeeklyLimit}"
+                ? $"精进滚存池 {view.EarnedThisWeek}/{view.WeeklyLimit}"
                 : $"永久首套 {view.LifetimeEarned}/{view.LifetimeLimit} · 账号可交易 {view.TradableEarnedTotal}/{view.TradableLifetimeLimit}";
             CoreLoopUiArt.Text("Progress", body, 22, 141, 575, 22,
                 progress, 17, CoreLoopUiArt.Muted);

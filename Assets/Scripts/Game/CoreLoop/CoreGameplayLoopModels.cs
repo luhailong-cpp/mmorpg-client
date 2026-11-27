@@ -1309,7 +1309,7 @@ namespace MmorpgClient.Game.CoreLoop
             {
                 headline = "本局无材料额度新增";
                 if (weeklyActive && earnedWeek >= weeklyLimit)
-                    headline = $"本周精进材料额度已达上限（{earnedWeek}/{weeklyLimit}）";
+                    headline = $"精进材料滚存池已达上限（{earnedWeek}/{weeklyLimit}）";
                 else if (!weeklyActive && lifetimeEarned >= lifetimeLimit)
                     headline = $"首套永久材料额度已满（{lifetimeEarned}/{lifetimeLimit}）";
                 detail = "正式评分、试炼志与赛季印进度不受材料封顶影响。";
@@ -1347,7 +1347,7 @@ namespace MmorpgClient.Game.CoreLoop
             if (materialLedger != null && materialLedger.WeeklyPhaseActive)
             {
                 uint weekLimit = materialLedger.WeeklyLimit != 0 ? materialLedger.WeeklyLimit : 150u;
-                matLabel = "周精进材料";
+                matLabel = "精进滚存池";
                 matValue = $"{materialLedger.EarnedThisWeek}/{weekLimit}（待领 {claimable}）";
             }
             else

@@ -111,6 +111,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void Redraw()
         {
+            // 整份重画会换掉行按钮:先记下焦点停在哪个控件上(控件都有固定名字),重画之后选回同名的那个;
+            // 那一行已经取走时落到同一位置上的控件。不这样做,每次数据变化(OnChanged)焦点都会跳回第一个(2026-11-26)。
+            var system = EventSystem.current;
+            var focused = system != null ? system.currentSelectedGameObject : null;
+            bool keepFocus = IsVisible && focused != null && focused.transform.IsChildOf(_root);
+            string focusedName = keepFocus ? focused.name : null;
+            int focusedIndex = keepFocus ? _input.Controls.FindIndex(control => control != null && control.gameObject == focused) : -1;
+
             var items = TemporaryBagModel.Items(_temporary);
             int pages = Math.Max(1, (items.Count + RowsPerPage - 1) / RowsPerPage);
             _page = Mathf.Clamp(_page, 0, pages - 1);
@@ -161,6 +169,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             controls.Add(_refresh);
             controls.Add(_close);
             _input.Controls = controls;
+            if (keepFocus) RestoreFocus(system, focusedName, focusedIndex, controls);
+        }
+
+        private static void RestoreFocus(EventSystem system, string name, int index, List<Selectable> controls)
+        {
+            if (controls.Count == 0) return;
+            var target = controls.Find(control => control != null && control.gameObject.name == name)
+                ?? controls[Mathf.Clamp(index, 0, controls.Count - 1)];
+            if (target != null) system.SetSelectedGameObject(target.gameObject);
         }
     }
 }

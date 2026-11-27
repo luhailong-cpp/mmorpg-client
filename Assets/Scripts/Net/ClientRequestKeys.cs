@@ -57,10 +57,13 @@ namespace MmorpgClient.Net
         }
 
         /// <summary>
-        /// 带键的请求在响应体里收到 kInvalidParameter:服务端认出这个键已经用于另一次参数不同的操作,
-        /// 说明客户端把旧键用在了新操作上(客户端缺陷)。调用方照常按拒绝收尾,这里只留下一条显眼的错误日志。
+        /// 带键的请求在响应体里收到 kInvalidParameter。服务端两种情况都回这个码:认出这个键已经用于另一次参数不同的操作
+        /// (旧键用在了新操作上),或者请求参数本身不合法(在查键之前就拒了)。两种都是客户端缺陷,单凭码分不开,
+        /// 所以日志把两种都写上,不断言是哪一种(2026-11-26;之前写死「key reused」,参数不合法时会误导排查)。
+        /// 调用方照常按拒绝收尾,这里只留下一条显眼的错误日志。
         /// </summary>
         public static void ReportKeyReused(string method)
-            => UnityEngine.Debug.LogError("[client-request] key reused for another operation: " + method);
+            => UnityEngine.Debug.LogError("[client-request] keyed request rejected as invalid parameter (request key reused for another operation, "
+                + "or a parameter the server rejected before the key check); both are client defects: " + method);
     }
 }

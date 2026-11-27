@@ -137,7 +137,7 @@ namespace MmorpgClient.Game.RewardedAd
         public static string BuildDialogBody(ulong rewardAmount, uint currencyType, uint remainingToday, uint dailyLimit)
         {
             string reward = CurrencyLabels.Format(rewardAmount, currencyType);
-            return $"观看一段完整广告视频后，可领取 {reward}（今日剩余 {remainingToday.ToString(CultureInfo.InvariantCulture)}/{dailyLimit.ToString(CultureInfo.InvariantCulture)} 次）。绑定银两仅用于角色个人养成消耗，不可交易。";
+            return $"观看一段完整广告视频后，可领取 {reward}（本周剩余 {remainingToday.ToString(CultureInfo.InvariantCulture)}/{dailyLimit.ToString(CultureInfo.InvariantCulture)} 次）。绑定银两仅用于角色个人养成消耗，不可交易。";
         }
 
         public static string BuildBalanceLine(ulong bindGoldBalance, ulong goldBalance)
@@ -220,7 +220,7 @@ namespace MmorpgClient.Game.RewardedAd
             (uint)rewarded_ad_error.KRewardedAdDisabled => "当前未开放广告奖励。",
             (uint)rewarded_ad_error.KRewardedAdPlatformUnsupported => "当前渠道暂不支持广告奖励。",
             (uint)rewarded_ad_error.KRewardedAdLevelNotEnough => "角色等级不足，暂不可参与。",
-            (uint)rewarded_ad_error.KRewardedAdDailyLimitReached => "今日广告奖励次数已领完，明日 05:00 重置。",
+            (uint)rewarded_ad_error.KRewardedAdDailyLimitReached => "本周广告奖励次数已领完，下周一 05:00 重置。",
             (uint)rewarded_ad_error.KRewardedAdCooldown => "领取过于频繁，请冷却结束后再试。",
             (uint)rewarded_ad_error.KRewardedAdSessionInvalid => "本次观看凭据无效，请重新观看。",
             (uint)rewarded_ad_error.KRewardedAdSessionExpired => "本次观看凭据已过期，请重新观看。",

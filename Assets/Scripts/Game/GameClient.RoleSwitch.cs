@@ -149,6 +149,8 @@ namespace MmorpgClient.Game
                         continue;
                     case EnterGameStep.LeaveThenEnter:
                     {
+                        // 防御分支:进入之前已经按 _enterRequestPlayerId 先 LeaveGame,正常走不到这里。留着是为了本地记的
+                        // 「可能绑着的角色」与服务端不一致时(例如应答丢了、本地已清零而服务端还绑着别的角色)由服务端的 2005 兜住。
                         Log($"[enter] another role may be bound on this connection; leaving before entering player_id={playerId}");
                         bool leftBound = false;
                         yield return LeaveGameOnConnection(gen, onError, done => leftBound = done);

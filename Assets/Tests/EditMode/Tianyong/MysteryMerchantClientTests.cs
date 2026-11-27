@@ -783,7 +783,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             ArriveOnMerchantLine();
             BuyShown(1, 1);
             UnityEngine.TestTools.LogAssert.Expect(UnityEngine.LogType.Error,
-                "[client-request] key reused for another operation: BuyMysteryMerchantGoods");
+                "[client-request] keyed request rejected as invalid parameter (request key reused for another operation, or a parameter the server rejected before the key check); both are client defects: BuyMysteryMerchantGoods");
             LastCall.Reply(new global::BuyMysteryMerchantGoodsResponse
             {
                 ErrorMessage = new TipInfoMessage { Id = (uint)common_error.KInvalidParameter },

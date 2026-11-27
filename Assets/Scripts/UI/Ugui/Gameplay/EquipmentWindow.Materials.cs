@@ -100,8 +100,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 {
                     string remaining = SeasonEconomyUiArt.FormatWeeklyResetRemaining(
                         snapshot.NextWeekResetAtMs, (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-                    softPillText = string.IsNullOrEmpty(remaining) ? "每周一 05:00 刷新" : "周一 05:00 刷新 · " + remaining;
-                    quotaText = $"本周精进池 {ledgerEarned}/{ledgerLimit} 份 · 仙途轻享卡可解锁胜局可交易产出\n" + batchSplit;
+                    softPillText = string.IsNullOrEmpty(remaining) ? "周一 05:00 +150 · 最多存4周" : "周一 +150(存4周) · " + remaining;
+                    quotaText = $"精进材料滚存池 {ledgerEarned}/{ledgerLimit} 份 · 仙途轻享卡可解锁胜局可交易产出\n" + batchSplit;
                 }
                 else
                 {

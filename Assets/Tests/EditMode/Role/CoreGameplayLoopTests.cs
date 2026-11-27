@@ -169,13 +169,13 @@ namespace MmorpgClient.Tests.EditMode.Role
                 new SeasonStateSnapshot { Available = true, ProgressPoints = 30, MaxPoints = 100 },
                 new TrialJournalSnapshot(),
                 paymentEnabled: false);
-            Assert.That(weeklyHub.MaterialProgressLabel, Is.EqualTo("周精进材料"));
+            Assert.That(weeklyHub.MaterialProgressLabel, Is.EqualTo("精进滚存池"));
             Assert.That(weeklyHub.MaterialProgressValue, Is.EqualTo("45/150（待领 15）"));
             var weeklyCappedView = CoreGameplayLoopModels.BuildSettlementRewardView(
                 new BattleEndS2C { MaterialCreditUnitsAdded = 0u },
                 new EquipmentMaterialRewardSnapshot { WeeklyPhaseActive = true, EarnedThisWeek = 150u });
             Assert.That(weeklyCappedView.WeeklyLimit, Is.EqualTo(150u));
-            Assert.That(weeklyCappedView.Headline, Is.EqualTo("本周精进材料额度已达上限（150/150）"));
+            Assert.That(weeklyCappedView.Headline, Is.EqualTo("精进材料滚存池已达上限（150/150）"));
         }
 
         [Test]

@@ -503,7 +503,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         {
             _client.CreateScheme("方案二");
             UnityEngine.TestTools.LogAssert.Expect(UnityEngine.LogType.Error,
-                "[client-request] key reused for another operation: CreateAttributeScheme");
+                "[client-request] keyed request rejected as invalid parameter (request key reused for another operation, or a parameter the server rejected before the key check); both are client defects: CreateAttributeScheme");
             _net.CallsOf(MessageIds.CreateAttributeScheme)[0].Respond(new CreateAttributeSchemeResponse
             {
                 ErrorMessage = new TipInfoMessage { Id = (uint)common_error.KInvalidParameter },

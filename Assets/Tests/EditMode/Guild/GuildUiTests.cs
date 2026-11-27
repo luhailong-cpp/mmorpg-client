@@ -2064,7 +2064,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(buttons.Single(b => b.name == "GuildDonate_2").interactable, Is.False);
             Assert.That(Label("GuildDonate_1"), Is.EqualTo("小捐"));
             Assert.That(Label("GuildDonate_3"), Is.EqualTo("捐献"));
-            Assert.That(ActiveText(), Does.Contain("今日 2/2"));
+            Assert.That(ActiveText(), Does.Contain("本周 2/2"));
             Click("GuildDonate_3");
             Assert.That(ActiveText(), Does.Contain("消耗 100 灵石"));
             Assert.That(donated, Is.Zero);

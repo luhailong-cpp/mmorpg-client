@@ -674,7 +674,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             var info = _client?.Info;
             if (info == null) { RenderOverview(); return; }
             Heading(_body, "帮会捐献", 12, 0, 1450, 64, 42);
-            Text(_body, "聚沙成塔，同心兴帮。每日 05:00 重置次数。", 12, 80, 1450, 58, 30, Muted);
+            Text(_body, "聚沙成塔，随缘添香。每周一 05:00 重置次数，帮战亦可获取大量资金与帮贡。", 12, 80, 1450, 58, 30, Muted);
             var donations = _client.Donations;
             string[] titles = { "银两捐献", "灵石捐献", "建设物资" };
             string[] icons = { "furnace", "crest", "scroll" };
@@ -717,6 +717,11 @@ namespace MmorpgClient.UI.Ugui.Guild
             var options = new List<GuildDonateOptionView>();
             foreach (var option in donations.Options)
                 if (option.CurrencyType == currencyType && options.Count < 2) options.Add(option);
+            if (options.Count == 0 && currencyType == 1u)
+            {
+                Text(_body, "已取消灵石捐献，帮会建设靠全员游玩共建。", x + 34, 270, 416, 120, 28, Muted, true);
+                return;
+            }
             string currency = CurrencyName(currencyType);
             for (int j = 0; j < options.Count; j++)
             {
@@ -724,7 +729,7 @@ namespace MmorpgClient.UI.Ugui.Guild
                 // 两行各 46 高、行距 48;第二个选项底边 262+106+48+46 = 462,不压 484 的按钮。
                 float y0 = 262 + j * 106;
                 Text(_body, option.Name + "：" + GuildClient.FormatAmount(option.CostAmount), x + 24, y0, 300, 46, 30);
-                Text(_body, option.Unlocked ? "今日 " + option.UsedToday + "/" + option.DailyLimit : "Lv." + option.MinGuildLevel + " 解锁",
+                Text(_body, option.Unlocked ? "本周 " + option.UsedToday + "/" + option.DailyLimit : "Lv." + option.MinGuildLevel + " 解锁",
                     x + 310, y0, 150, 46, 30, option.Unlocked ? Muted : Gold, alignment: TextAlignmentOptions.MidlineRight);
                 Text(_body, "帮贡 +" + option.ContributionGain + " · 资金 +" + GuildClient.FormatAmount(option.FundsGain),
                     x + 24, y0 + 48, 436, 46, 30, Muted);
@@ -832,6 +837,7 @@ namespace MmorpgClient.UI.Ugui.Guild
                 0 => "不限购",
                 1 => "今日 " + item.UsedCount + "/" + item.LimitCount,
                 2 => "本周 " + item.UsedCount + "/" + item.LimitCount,
+                3 => "终身 " + item.UsedCount + "/" + item.LimitCount,
                 _ => "限购 " + item.UsedCount + "/" + item.LimitCount,
             };
         }

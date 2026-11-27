@@ -789,6 +789,9 @@ namespace MmorpgClient.Game.PlayerFeatures
                 const string error = "尚未进入游戏，请进入角色后再试";
                 BagError = _equipmentReadError = MissionsError = ActivitiesError = error;
                 _equipActionError = string.Empty;
+                // 临时格面板的状态行读 TemporaryError:不一起写的话,未就绪时点「取回」什么都不显示,像没点上(2026-11-26)。
+                _temporaryReadError = error;
+                _temporaryActionError = string.Empty;
                 OnChanged?.Invoke();
                 OnError?.Invoke(error);
                 return false;

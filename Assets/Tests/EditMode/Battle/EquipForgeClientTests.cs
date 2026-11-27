@@ -1589,7 +1589,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             LoadBoth();
             _client.EnhanceEquip(Sword);
             UnityEngine.TestTools.LogAssert.Expect(UnityEngine.LogType.Error,
-                "[client-request] key reused for another operation: EnhanceEquip");
+                "[client-request] keyed request rejected as invalid parameter (request key reused for another operation, or a parameter the server rejected before the key check); both are client defects: EnhanceEquip");
             LastEnhance(Sword).Respond(new EnhanceEquipResponse
             {
                 ErrorMessage = new TipInfoMessage { Id = (uint)common_error.KInvalidParameter },
