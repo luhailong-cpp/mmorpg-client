@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MmorpgClient.Game.Battle;
 using TMPro;
 using UnityEngine;
 
@@ -7,20 +8,21 @@ namespace MmorpgClient.UI.Ugui.Battle
     /// <summary>
     /// 观战入口面板(场景内悬浮,构建/交互惯例照 BattleQueuePanel):
     ///   - 「随机观战」= SpectateClient.WatchRandom()(battle_id=0,由 match 挑场);
-    ///   - 战斗列表:RefreshList 拉 BattleWatchSummary,条目点击进指定观战;
+    ///   - 个人观战交流开关:控制自己参战时是否允许局外人观战交流(关闭仅禁交流,绝不禁止观战;下次进战斗生效);
+    ///   - 战斗列表:RefreshList 拉 BattleWatchSummary,条目点击进指定观战,并标注[可交流]/[静默观战];
     ///   - 列表条目只在 ApplyList 时重建(摘要是开局时刻快照,无实时刷新语义);
     ///   - 进入观战成功后由 BattleUiRoot 收面板(Watching 相位),这里不管关屏。
     /// </summary>
     public sealed class SpectatePanel
     {
         private const float PanelX = 60f;
-        private const float PanelY = 140f;
+        private const float PanelY = 100f;
         private const float PanelW = 640f;
-        private const float PanelH = 820f;
+        private const float PanelH = 900f;
 
         // 列表区几何(条目高度 x 条数决定面板下沿,改条数需同步 PanelH)
         private const int MaxEntries = 6;
-        private const float ListTop = 170f;
+        private const float ListTop = 248f;
         private const float EntryH = 84f;
         private const float EntryGap = 8f;
 
@@ -28,10 +30,13 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly RectTransform _root;
         private readonly UiTextButton _randomButton;
         private readonly UiTextButton _refreshButton;
+        private readonly UiTextButton _spectateChatToggleButton;
+        private readonly TMP_Text _spectateChatHintText;
         private readonly UiTextButton _closeButton;
         private readonly TMP_Text _emptyText;
         private readonly TMP_Text _statusText;
         private readonly List<UiTextButton> _entries = new();
+        private BattleSpectateChatClient _boundChatClient;
 
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
 
@@ -49,13 +54,23 @@ namespace MmorpgClient.UI.Ugui.Battle
                 "×", 28f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
             _closeButton.Button.onClick.AddListener(Hide);
 
-            _randomButton = BattleUiWidgets.CreateTextButton("WatchRandom", _root, 30f, 76f, 380f, 74f,
+            _randomButton = BattleUiWidgets.CreateTextButton("WatchRandom", _root, 30f, 76f, 380f, 68f,
                 "随机观战", 24f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
             _randomButton.Button.onClick.AddListener(OnRandomClicked);
 
-            _refreshButton = BattleUiWidgets.CreateTextButton("Refresh", _root, 430f, 76f, 180f, 74f,
+            _refreshButton = BattleUiWidgets.CreateTextButton("Refresh", _root, 430f, 76f, 180f, 68f,
                 "刷新", 24f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
             _refreshButton.Button.onClick.AddListener(RefreshList);
+
+            _spectateChatToggleButton = BattleUiWidgets.CreateTextButton("SpectateChatToggle", _root,
+                30f, 154f, PanelW - 60f, 50f,
+                "局外人观战交流：开", 20f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _spectateChatToggleButton.Button.onClick.AddListener(OnSpectateChatToggleClicked);
+
+            _spectateChatHintText = QdaoUguiFactory.CreateText("SpectateChatHint", _root,
+                30f, 208f, PanelW - 60f, 30f,
+                "关闭后仍可正常观战，仅禁止观战期间局外人交流（下次进战斗生效）",
+                16f, QdaoUguiTheme.StatusCream);
 
             _emptyText = QdaoUguiFactory.CreateText("Empty", _root, 30f, ListTop, PanelW - 60f, 60f,
                 "暂无可观战的战斗", 22f, QdaoUguiTheme.MutedBrown);
@@ -65,16 +80,21 @@ namespace MmorpgClient.UI.Ugui.Battle
                 string.Empty, 18f, QdaoUguiTheme.StatusCream);
 
             BattleFidelityArt.ApplyPanel(_root);
+            RefreshSpectateChatSettingUi();
             Hide();
         }
 
         public void Show()
         {
             if (_root != null) _root.gameObject.SetActive(true);
+            BindSettingClient();
+            _boundChatClient?.RefreshSetting();
+            RefreshSpectateChatSettingUi();
         }
 
         public void Hide()
         {
+            UnbindSettingClient();
             if (_root != null) _root.gameObject.SetActive(false);
         }
 
@@ -132,10 +152,11 @@ namespace MmorpgClient.UI.Ugui.Battle
                 30f, y, PanelW - 60f, EntryH, string.Empty, 20f,
                 BattleUiStyle.PanelBgLight, BattleUiStyle.ButtonText);
 
-            // 条目双行:上行 模式 + 开局相对时间(赛事局置顶标记),下行 玩家名单(超长省略号截断)
+            // 条目双行:上行 模式 + 交流状态标记 + 开局相对时间(赛事局置顶标记),下行 玩家名单(超长省略号截断)
             string featuredTag = summary.Featured ? "[赛事] " : string.Empty;
+            string chatTag = summary.SpectateChatEnabled ? "[可交流] " : "[静默观战] ";
             QdaoUguiFactory.CreateText("Head", entry.Rect, 16f, 8f, PanelW - 92f, 32f,
-                $"{featuredTag}{ModeName(summary.Mode)} · {DescribeElapsed(summary.CreatedAtMs)}",
+                $"{featuredTag}{chatTag}{ModeName(summary.Mode)} · {DescribeElapsed(summary.CreatedAtMs)}",
                 20f, QdaoUguiTheme.Cream);
             QdaoUguiFactory.CreateText("Players", entry.Rect, 16f, 44f, PanelW - 92f, 30f,
                 FormatPlayers(summary), 17f, QdaoUguiTheme.StatusCream);
@@ -144,6 +165,72 @@ namespace MmorpgClient.UI.Ugui.Battle
             entry.Button.onClick.AddListener(() => OnEntryClicked(battleId));
             _entries.Add(entry);
             BattleFidelityArt.ApplyPanel(_root);
+        }
+
+        private void BindSettingClient()
+        {
+            var current = BattleSpectateChatClient.Instance;
+            if (ReferenceEquals(_boundChatClient, current)) return;
+            UnbindSettingClient();
+            _boundChatClient = current;
+            if (_boundChatClient != null)
+            {
+                _boundChatClient.SettingChanged += OnSpectateChatSettingChanged;
+            }
+        }
+
+        private void UnbindSettingClient()
+        {
+            if (_boundChatClient != null)
+            {
+                _boundChatClient.SettingChanged -= OnSpectateChatSettingChanged;
+                _boundChatClient = null;
+            }
+        }
+
+        private void OnSpectateChatToggleClicked()
+        {
+            BindSettingClient();
+            if (_boundChatClient == null)
+            {
+                SetStatus("观战交流模块未就绪");
+                return;
+            }
+            _boundChatClient.SetAllowSpectateChat(!_boundChatClient.EffectiveAllowSpectateChat);
+            RefreshSpectateChatSettingUi();
+        }
+
+        private void OnSpectateChatSettingChanged()
+        {
+            RefreshSpectateChatSettingUi();
+            if (_boundChatClient != null && !string.IsNullOrEmpty(_boundChatClient.SettingStatus))
+            {
+                SetStatus(_boundChatClient.SettingStatus);
+            }
+        }
+
+        private void RefreshSpectateChatSettingUi()
+        {
+            if (_spectateChatToggleButton == null) return;
+            var client = _boundChatClient ?? BattleSpectateChatClient.Instance;
+            bool allow = client == null || client.EffectiveAllowSpectateChat;
+            bool saving = client != null && client.SettingSaving;
+            _spectateChatToggleButton.SetText(allow
+                ? "局外人观战交流：开（点击关闭）"
+                : "局外人观战交流：关（仍可观战，点击开启）");
+            _spectateChatToggleButton.SetInteractable(!saving);
+            if (_spectateChatToggleButton.Plate != null)
+            {
+                _spectateChatToggleButton.Plate.color = allow
+                    ? BattleUiStyle.ButtonPlateAccent
+                    : BattleUiStyle.ButtonPlate;
+            }
+            if (_spectateChatHintText != null)
+            {
+                _spectateChatHintText.text = allow
+                    ? "开启后你的公开战局支持局外人观战交流（PVP 需全员允许，下次进战斗生效）"
+                    : "已禁交流：他人仍可正常观战，但观战期间无法发言（下次进战斗生效）";
+            }
         }
 
         private void OnRandomClicked()

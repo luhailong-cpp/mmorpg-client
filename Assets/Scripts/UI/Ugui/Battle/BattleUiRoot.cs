@@ -216,6 +216,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void OnDestroy()
         {
             OnDisable();
+            _queuePanel?.Hide();
+            _spectatePanel?.Hide();
             _battleScreen?.Dispose();
             _battleScreen = null;
             if (Instance == this) Instance = null;

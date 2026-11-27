@@ -40,6 +40,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public const float RoundCounterX = 40f;
         public const float RoundCounterY = 20f;
         public static readonly Rect LogButtonRect = new Rect(356f, 28f, 170f, 54f);
+        public static readonly Rect SpectateChatButtonRect = new Rect(40f, 504f, 220f, 56f);
         public static readonly Rect TimerRect = new Rect((QdaoUguiTheme.DesignWidth - 90f) * 0.5f, 24f, 90f, 90f);
         public static readonly Rect StopWatchRect = new Rect(2300f, 980f, 220f, 64f);
         // 战报回放控制条(只在 _replay 模式可见,贴在 HudBottomBand 之下,与目标确认条同带且互斥)
@@ -108,6 +109,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly RectTransform _tacticalPuzzleBadgeRoot;
         private readonly TMP_Text _tacticalPuzzleBadgeText;
         private readonly BattleLogPanel _logPanel;
+        private readonly BattleSpectateChatPanel _spectateChatPanel;
         private readonly BattleActionOrderBar _orderBar;
         private readonly BattlePartyCards _partyCards;
         private readonly BattleCommandRing _commandRing;
@@ -425,6 +427,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _tacticalPuzzleBadgeText.raycastTarget = false;
             _tacticalPuzzleBadgeRoot.gameObject.SetActive(false);
             _logPanel = new BattleLogPanel(_hudRoot, LogButtonRect.x, LogButtonRect.y);
+            _spectateChatPanel = new BattleSpectateChatPanel(_hudRoot, msg => _owner?.ShowToast(msg));
             _phaseText = QdaoUguiFactory.CreateText("Phase", _hudRoot, 40f, 98f, 620f, 36f,
                 string.Empty, 24f, BattleUiStyle.WarnText, TextAlignmentOptions.MidlineLeft);
             _pendingText = QdaoUguiFactory.CreateText("Pending", _hudRoot,
@@ -1442,6 +1445,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _coreProtectedGuardActorId = 0;
             _surrenderRequestPending = false;
             _surrenderButton?.SetVisible(false);
+            _spectateChatPanel?.ResetAndHide();
             if (_guildWarFrenzyRoot != null) _guildWarFrenzyRoot.gameObject.SetActive(false);
             if (_tacticalPuzzleBadgeRoot != null) _tacticalPuzzleBadgeRoot.gameObject.SetActive(false);
             if (_surrenderConfirmStrip != null) _surrenderConfirmStrip.gameObject.SetActive(false);
@@ -1495,6 +1499,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>Scene teardown may destroy the canvas without the normal CloseBattle path.</summary>
         public void Dispose()
         {
+            _spectateChatPanel?.Dispose();
             _presenter.Dispose();
             foreach (var view in _views) view.Destroy();
             _views.Clear();
@@ -1699,6 +1704,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             RefreshWinStreakBanner(state);
             RefreshUnitTacticalPings(_owner?.Client?.CurrentTeamPings ?? state.TeamPings);
             RefreshUnitStatusPopup();
+            _spectateChatPanel?.Sync(state, _spectate, _replay);
         }
 
         private void RebuildUnits(BattleStateS2C state)
@@ -1761,6 +1767,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 SetTimer(-1, 0f);
                 return;
             }
+            _spectateChatPanel?.Tick();
             if (_playing)
             {
                 // 播放中行动窗口已在倒数(服务端广播前就起算):计时环照常显示,玩家能看到留给自己的时间

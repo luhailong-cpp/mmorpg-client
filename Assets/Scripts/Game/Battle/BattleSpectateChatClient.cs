@@ -4,7 +4,6 @@ using Match;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Net;
 using MmorpgClient.Net.Generated;
-using MmorpgClient.Net.Generated.Rpc;
 
 namespace MmorpgClient.Game.Battle
 {
@@ -69,13 +68,13 @@ namespace MmorpgClient.Game.Battle
         private const string NotInGameMessage = "当前未进入游戏，无法同步观战交流状态。";
 
         private readonly IBattleTransport _net;
-        private readonly Func<string> _connectionIdentity;
+        private readonly Func<object> _connectionIdentity;
         private readonly Func<double> _clock;
         private readonly RpcGuard _guard;
         private readonly List<BattleSpectateChatEntry> _messages = new List<BattleSpectateChatEntry>(MaxRetainedMessages);
         private readonly HashSet<ulong> _seenSeqs = new HashSet<ulong>();
 
-        private string _lastConnectionIdentity;
+        private object _lastConnectionIdentity;
         private int _generation;
         private bool _disposed;
 
@@ -114,21 +113,21 @@ namespace MmorpgClient.Game.Battle
 
         public BattleSpectateChatClient(
             IBattleTransport transport,
-            Func<string> connectionIdentity = null,
+            Func<object> connectionIdentity = null,
             Func<double> clock = null,
             RpcGuard guard = null)
         {
             _net = transport ?? throw new ArgumentNullException(nameof(transport));
-            _connectionIdentity = connectionIdentity ?? (() => string.Empty);
+            _connectionIdentity = connectionIdentity ?? (() => _net);
             _clock = clock ?? (() => 0.0);
             _guard = guard;
-            _lastConnectionIdentity = _connectionIdentity() ?? string.Empty;
+            _lastConnectionIdentity = _connectionIdentity();
             _net.Disconnected += HandleDisconnected;
         }
 
         public static BattleSpectateChatClient Attach(
             IBattleTransport transport,
-            Func<string> connectionIdentity = null,
+            Func<object> connectionIdentity = null,
             Func<double> clock = null,
             RpcGuard guard = null)
         {
@@ -530,8 +529,8 @@ namespace MmorpgClient.Game.Battle
 
         private void ObserveConnection()
         {
-            string current = _connectionIdentity() ?? string.Empty;
-            if (!string.Equals(current, _lastConnectionIdentity, StringComparison.Ordinal))
+            object current = _connectionIdentity();
+            if (!Equals(current, _lastConnectionIdentity))
             {
                 _lastConnectionIdentity = current;
                 ResetSessionState();

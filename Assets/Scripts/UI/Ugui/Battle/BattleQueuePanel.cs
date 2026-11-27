@@ -1,3 +1,4 @@
+using MmorpgClient.Game.Battle;
 using TMPro;
 using UnityEngine;
 
@@ -30,12 +31,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly UiTextButton _pvpButton;
         private readonly TMP_Text _matchHint;
         private readonly UiTextButton _continuousButton;
+        private readonly UiTextButton _spectateChatButton;
         private readonly UiTextButton _cancelButton;
         private readonly UiTextButton _duelButton;
         private readonly UiTextButton _closeButton;
         private readonly TMP_Text _queueText;
         private readonly TMP_Text _statusText;
         private readonly TMP_InputField _targetInput;
+        private BattleSpectateChatClient _boundChatClient;
 
         private bool _queueing;
         private float _queueStartRealtime;
@@ -95,9 +98,13 @@ namespace MmorpgClient.UI.Ugui.Battle
                 "取消排队", 22f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
             _cancelButton.Button.onClick.AddListener(OnCancelClicked);
 
-            _continuousButton = BattleUiWidgets.CreateTextButton("Continuous", _root, 30f, 556f, 460f, 56f,
+            _continuousButton = BattleUiWidgets.CreateTextButton("Continuous", _root, 30f, 556f, 224f, 56f,
                 "连续战斗:关", 20f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
             _continuousButton.Button.onClick.AddListener(OnContinuousClicked);
+
+            _spectateChatButton = BattleUiWidgets.CreateTextButton("SpectateChatPref", _root, 266f, 556f, 224f, 56f,
+                "观战交流:开", 20f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _spectateChatButton.Button.onClick.AddListener(OnSpectateChatToggleClicked);
 
             QdaoUguiFactory.CreateText("DuelDivider", _root, 30f, 636f, 460f, 30f,
                 "── 切磋 PK ──", 20f, QdaoUguiTheme.MutedBrown, TextAlignmentOptions.Center);
@@ -119,6 +126,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             RefreshButtons();
             RefreshContinuousButton();
+            RefreshSpectateChatButton();
             BattleFidelityArt.ApplyPanel(_root);
             Hide();
         }
@@ -127,10 +135,17 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (_root != null) _root.gameObject.SetActive(true);
             RefreshContinuousButton(); // 文案与 BattleClient.ContinuousBattle 对齐(懒绑定时序)
+            BindSettingClient();
+            if (_boundChatClient != null && !_boundChatClient.SettingLoaded)
+            {
+                _boundChatClient.RefreshSetting();
+            }
+            RefreshSpectateChatButton();
         }
 
         public void Hide()
         {
+            UnbindSettingClient();
             if (_root != null) _root.gameObject.SetActive(false);
         }
 
@@ -268,6 +283,58 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             bool on = _owner?.Client != null && _owner.Client.ContinuousBattle;
             _continuousButton?.SetText(on ? "连续战斗:开" : "连续战斗:关");
+        }
+
+        private void BindSettingClient()
+        {
+            var current = BattleSpectateChatClient.Instance;
+            if (ReferenceEquals(_boundChatClient, current)) return;
+            UnbindSettingClient();
+            _boundChatClient = current;
+            if (_boundChatClient != null)
+            {
+                _boundChatClient.SettingChanged += OnSpectateChatSettingChanged;
+            }
+        }
+
+        private void UnbindSettingClient()
+        {
+            if (_boundChatClient != null)
+            {
+                _boundChatClient.SettingChanged -= OnSpectateChatSettingChanged;
+                _boundChatClient = null;
+            }
+        }
+
+        private void OnSpectateChatToggleClicked()
+        {
+            BindSettingClient();
+            if (_boundChatClient == null)
+            {
+                SetStatus("观战交流模块未就绪");
+                return;
+            }
+            _boundChatClient.SetAllowSpectateChat(!_boundChatClient.EffectiveAllowSpectateChat);
+            RefreshSpectateChatButton();
+        }
+
+        private void OnSpectateChatSettingChanged()
+        {
+            RefreshSpectateChatButton();
+            if (_boundChatClient != null && !string.IsNullOrEmpty(_boundChatClient.SettingStatus))
+            {
+                SetStatus(_boundChatClient.SettingStatus);
+            }
+        }
+
+        private void RefreshSpectateChatButton()
+        {
+            if (_spectateChatButton == null) return;
+            var client = _boundChatClient ?? BattleSpectateChatClient.Instance;
+            bool allow = client == null || client.EffectiveAllowSpectateChat;
+            bool saving = client != null && client.SettingSaving;
+            _spectateChatButton.SetText(allow ? "观战交流:开" : "观战交流:关");
+            _spectateChatButton.SetInteractable(!saving);
         }
 
         private void OnCancelClicked()
