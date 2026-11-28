@@ -1,0 +1,1514 @@
+{
+  "schemaVersion": 2,
+  "deliveryStatus": "formal_runtime_tiles",
+  "key": "waterwheel-courtyard",
+  "sceneId": 20000,
+  "revision": "waterwheel-hd8-20261128",
+  "appearance": "spring",
+  "resourceRoot": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/",
+  "layoutSha256": "3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98",
+  "columns": 8,
+  "rows": 8,
+  "tilePixels": 1024,
+  "worldRect": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 320.0,
+    "height": 320.0
+  },
+  "effectiveWorldRect": {
+    "x": 0.0,
+    "y": 32.578125,
+    "width": 297.1484375,
+    "height": 287.421875
+  },
+  "imageRect": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 7607.0,
+    "height": 7358.0
+  },
+  "referenceWidth": 7607,
+  "referenceHeight": 7358,
+  "sourceImageCommit": "b36c0513f9b162919e7d2847bad81a08a03eec9c",
+  "sourceMasterPath": "designs/pc-20000-waterwheel-hd8-festivals-v001/full/spring.png",
+  "sourceMasterSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+  "edgePadding": "edge-clamp-right-585-bottom-834",
+  "deliveredTileCount": 64,
+  "deliveredImageBytes": 75730809,
+  "navigationPlanSha256": "6675b0bf38474b60b0a6ecccb98406236d94ab8056400e55c4c94a9816f94d7f",
+  "tiles": [
+    {
+      "row": 1,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r01_c01",
+      "sha256": "7b32c81f4040d8d601d22ef90ef6bbc9a74a3da989d058b96c3771bd1bea992f",
+      "bytes": 1714652,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        0,
+        1024,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "80defdf267adaa932db2f92bc42ffe445add5c4496de41e71a35414c31594e41"
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r01_c02",
+      "sha256": "fe8fe9df5029868a39a5bb844879e12abbd8272424cac05202aa86883e01d8d9",
+      "bytes": 1751273,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        0,
+        2048,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "787af5f0c5056182aac8ab2077f8268b5b6cd905226e26a17686d0b4a3069f4d"
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r01_c03",
+      "sha256": "8f6210dcb7f2fe0bcff9ee55991f6e9f9c2e0abf4c7525bd45249f5eff11a861",
+      "bytes": 1586959,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        0,
+        3072,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "bf71517092d475b5ff2d7ce6b6ba93002446043a41c8dc6b89ff6f81f317d784"
+    },
+    {
+      "row": 1,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r01_c04",
+      "sha256": "4a4c76b6dc1f7ba214159d19b5b7ef65b070a193fe1372cad5c8f44a2728b37f",
+      "bytes": 1543181,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        0,
+        4096,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "3f91d82e9c3703ef8928b3da5d60efd9ff920a893d00cdcc28cc4d985894bb26"
+    },
+    {
+      "row": 1,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r01_c05",
+      "sha256": "48e32f4c415efa1bbf12eafcc1be02fa58fb844e8151b6cf11f31716e3f3c9e4",
+      "bytes": 1393377,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        0,
+        5120,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "781f8b76adba367f14150758409c6ad3ca22b208a61a884cbc4840465060e046"
+    },
+    {
+      "row": 1,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r01_c06",
+      "sha256": "0d94b7d794c2b61087c64a1f256c0939ce306e200e2188f5b1caff8e03661233",
+      "bytes": 1573971,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        0,
+        6144,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "894ec30fd07e119df6a056c0265e74f3f686a1eb291d031b8850173797dfc1d3"
+    },
+    {
+      "row": 1,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r01_c07",
+      "sha256": "259f57f2094f65ef75aecf321dddcb111fdf8387800c487e3b5b247267779d47",
+      "bytes": 1539130,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        0,
+        7168,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "699a9ff913607f0d9618a71d6c9e453346b0a2334dc7953b10474b94a273196f"
+    },
+    {
+      "row": 1,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r01_c08",
+      "sha256": "dc05f2d0fe3f85f9dabc93253353b7f73c14f793f4990b0ebf0d4b158b926ecb",
+      "bytes": 715710,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        0,
+        7607,
+        1024
+      ],
+      "artSlicePixels": [
+        439,
+        1024
+      ],
+      "artSliceSha256": "08f6ba8314d261ab2b72001c4438ff140ee5be3275cb6580203d7cc3373c53aa"
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r02_c01",
+      "sha256": "500348e8fde8992a33ad2a54208619f4f9d0c24425ca1506adc103866ac1082f",
+      "bytes": 1588091,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        1024,
+        1024,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "29f38abadb56191a4ac1c3d9cbea81c390ee2669e08025d28a3e91c334eb9122"
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r02_c02",
+      "sha256": "617525a96d1599f6ecfef42a8d1d9acb33f2e9837bff8a5739224a404f638d6a",
+      "bytes": 1630734,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        1024,
+        2048,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "10b758b3ad06456377778fb8f614bd6e0bd22adc663a91bf857bc2f6f7d32339"
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r02_c03",
+      "sha256": "be731c96d108e2994a51de9c7a9ee73b12e76a2ae5a9e479d7fc9e331c42f9ab",
+      "bytes": 1550702,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        1024,
+        3072,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "86b8a6d8e6b3a49ecfa5fc3ea5ec7526d4a082d5a37d9d6c303d5e21bac79ea8"
+    },
+    {
+      "row": 2,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r02_c04",
+      "sha256": "267ec4ca59ef00d7ca52d0aa2cd3a609761a26be3d197422c1aaa2cdff13f662",
+      "bytes": 1411374,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        1024,
+        4096,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "24870eb3b33e201702267b1eb9a41cd0552d83cc436ef86e1d3b60d3363b1673"
+    },
+    {
+      "row": 2,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r02_c05",
+      "sha256": "7ed34d8858a6587ced8c37b6269967af9e13ce9d2a9b3a888b1976eff110be27",
+      "bytes": 1508674,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        1024,
+        5120,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "928e1b9c79e1eaf1c09bdee87091d97933ba8c528728e42dcf1466e5c14f5636"
+    },
+    {
+      "row": 2,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r02_c06",
+      "sha256": "a9d6ff7c83b16c1a675f00611917dade2c238dfeeb494fe63db033a06867d50b",
+      "bytes": 1581833,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        1024,
+        6144,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "a6fddb6cd03a7dd5792a997f45ab1d4c0b601f3e5bd6f96eb2e7cb9b3fa74533"
+    },
+    {
+      "row": 2,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r02_c07",
+      "sha256": "5949734524043b891644deec7ba78bccff4e7555793fe68abe6f681492dc4e9b",
+      "bytes": 1447702,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        1024,
+        7168,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "0d746e09609637a7bbce76e8e8f344bf010f5a71cc4ada7dfcc0b60e28216035"
+    },
+    {
+      "row": 2,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r02_c08",
+      "sha256": "d48163e859460facad5b85c82217930df722212036c9823cf44ee57a70b48566",
+      "bytes": 737346,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        1024,
+        7607,
+        2048
+      ],
+      "artSlicePixels": [
+        439,
+        1024
+      ],
+      "artSliceSha256": "221359b63e26b45d543ccfdaa66a86a70a1dea45947afaf2e2919413fe7b1574"
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r03_c01",
+      "sha256": "0c271aef6981dcd2094dfa747cce02c3bf5518a6bbea950869502a94c06a1a6e",
+      "bytes": 1554949,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        2048,
+        1024,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "17dec321d165182674c725847be13650884548371948f8fc506444e3e2a6816a"
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r03_c02",
+      "sha256": "67f3376bc2dbb3afd5d8710471992656ab44919ff96671207c11753929dee860",
+      "bytes": 1529447,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        2048,
+        2048,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "26ec84ddedffcb130e7593c3b4b6d58a391ff7ecc857532dab0386988d2ca2d2"
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r03_c03",
+      "sha256": "d0e166afbc06bf3bd83e7e32355345394daa0054e48081a6e5260f5ec1e6b689",
+      "bytes": 1330957,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        2048,
+        3072,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "7e2778314afebe59bb9a39e419a2e86aa000edef93682de67df826ebe81cf83e"
+    },
+    {
+      "row": 3,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r03_c04",
+      "sha256": "5fec07e91ff357d63a465c0a222dca864458901e941a3e22c68dfd317b3fe36b",
+      "bytes": 1348070,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        2048,
+        4096,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "f08128a4841bab6d2284956bcb9f35b4edd67dffa1ecf4328193c3f929ffdfd9"
+    },
+    {
+      "row": 3,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r03_c05",
+      "sha256": "7955b6f60e24c5b48cc3d19023281630444cb6e0010f458d84fc65c7db531e57",
+      "bytes": 1136066,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        2048,
+        5120,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "8ecf22be3724f50dd42579e1aa9582173822b4aa21967d158fb441e9687dff86"
+    },
+    {
+      "row": 3,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r03_c06",
+      "sha256": "5a5f7fa39f4dc5fdde1b7f690ed146a08a6caab5ef540bad4bc1948cf378aaa4",
+      "bytes": 1331530,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        2048,
+        6144,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "e21b189c00a0250ea2d7a98878a77d387d81865b5ad279271f9b3f7a8bee549b"
+    },
+    {
+      "row": 3,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r03_c07",
+      "sha256": "de912e5b94bf913099ba2ec2909509d1196a6c2950451dd38306fb3e888ebd02",
+      "bytes": 1327612,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        2048,
+        7168,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "c0f46298643ecaeb936b084db7883027cf584257db96acc5839d2a527c61d69f"
+    },
+    {
+      "row": 3,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r03_c08",
+      "sha256": "5f19f4245d2e95b9638279262ae042c13c60044df7ebc5a8898e13296ec96d3d",
+      "bytes": 634375,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        2048,
+        7607,
+        3072
+      ],
+      "artSlicePixels": [
+        439,
+        1024
+      ],
+      "artSliceSha256": "2c750f44dd81dc6117bb829fe9788b4335ebb6cc94c2bd19c18c90d6f912dbc9"
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r04_c01",
+      "sha256": "1a80fa38d3d75ab4b682a8e23de68e31c9096e8271d902736dd431e75e80250d",
+      "bytes": 1481027,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        3072,
+        1024,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "35a01ad53f39edf37d74f86a6d8f08bea8cd43d6570621ab51878bf7e2c61002"
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r04_c02",
+      "sha256": "cca6ffec106db1a35cb145e2d1d51a72611deccb35481160db692f9e240f827b",
+      "bytes": 1480290,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        3072,
+        2048,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "51c949fb1402b0b81978f9250d2800be8b7028d888c09fe9a3263cf2571145e2"
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r04_c03",
+      "sha256": "58d85a96ecb3fdcc4bd7387a284f99751a83500ceaa2fe574f5663208da59f81",
+      "bytes": 1191172,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        3072,
+        3072,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "fd97d9df57384f6ac6ae07e5abc4877329182291fca853f2f124d1a4facd934e"
+    },
+    {
+      "row": 4,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r04_c04",
+      "sha256": "08565adf73950fd8c58697292de3c27b45c007a5084d6498f21d2a0b0cf7230e",
+      "bytes": 1214903,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        3072,
+        4096,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "559a2e87613cc3afdf4720737119136807d78f74f4bbc23e0ec8d0c59ea73f6e"
+    },
+    {
+      "row": 4,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r04_c05",
+      "sha256": "ec588f6117edb669a202373fdea7fe6ecaca14d1e733c5d4e127d87cf2392f58",
+      "bytes": 1170489,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        3072,
+        5120,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "34d554ce8f05b0d065b485052ec4ff7616c997598d479c818dfd2e8fc0d6d1ea"
+    },
+    {
+      "row": 4,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r04_c06",
+      "sha256": "3b4cf61f04ea88c8b16cc9cff75a6e065834e397b6962b36deaf4d1304933932",
+      "bytes": 1345835,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        3072,
+        6144,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "1f5fe2598b21ad4d0be8bcdedb9e1b6df0ff2b1592eb4137bc1688d76d9f4341"
+    },
+    {
+      "row": 4,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r04_c07",
+      "sha256": "b5ac2d4e0dfad8e50a7472a74f7cd75f45b7e62e1a5d7e6f1f1f3e7ac427ef3a",
+      "bytes": 1460714,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        3072,
+        7168,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "d50cd1079eb1429301a791d31d7e702550add0c4557fbdaef452236482b6e869"
+    },
+    {
+      "row": 4,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r04_c08",
+      "sha256": "a8bb86e20398dbf0d555bc06df27c46278e972102f114b78e5185ab71f752d51",
+      "bytes": 696281,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        3072,
+        7607,
+        4096
+      ],
+      "artSlicePixels": [
+        439,
+        1024
+      ],
+      "artSliceSha256": "10f18bc5f9de35b0fed3f87ca4f87315da3d38b749c0b9a7aa51c0c0568d69f5"
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r05_c01",
+      "sha256": "8c6fc59b9699b7ad23539a6d52e1b046a2abcf710db960632ad78e056870e852",
+      "bytes": 1425595,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        4096,
+        1024,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "b402697aa7bc577e2905ca945030b2f18b0581f9d1994cf59fcb6b04ca0f1d81"
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r05_c02",
+      "sha256": "8c2128120cad4bbec4a830433310ce8482448270afc6947b2e25038d48d3255f",
+      "bytes": 1441520,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        4096,
+        2048,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "3385fcf5a34bafd30ddb34d07673f372cb2a98ea1619570ea3de9cb82eecab13"
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r05_c03",
+      "sha256": "9c04a166532459d378760217ad29488a8c1d14af78976ee1992e1a451115abd6",
+      "bytes": 1253103,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        4096,
+        3072,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "26663c948a943e91dbcbffeeaaedd6c5db434e4671ae0583f5ecb1ee8038e9d1"
+    },
+    {
+      "row": 5,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r05_c04",
+      "sha256": "305eaf25d6d5f22e1ab714d57c9d25d176f1eb0f1389b89d4e4e07f5d72510f1",
+      "bytes": 1072016,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        4096,
+        4096,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "575fb75bd3dc7ac0083b57160565f3ac57d46ac721d16d177bdaff73442c43e6"
+    },
+    {
+      "row": 5,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r05_c05",
+      "sha256": "39d1fd3d0ba0eb692d5f3bcfcf28cece17e3e5eb376ae692ca3cefca6fdfb335",
+      "bytes": 1056612,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        4096,
+        5120,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "7372781024d4b30d2afd4d0970eb1b897c9934a71a371557a1ca04fa71a8116d"
+    },
+    {
+      "row": 5,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r05_c06",
+      "sha256": "5b9855cccbf1acf249ae8facfde02e4f76fdbc44ab0a5843d3ddfcdd42149ae6",
+      "bytes": 1242293,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        4096,
+        6144,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "327ca94b229e975239fa8c39f6538d00adaf970899c757ca964efcb954b747c2"
+    },
+    {
+      "row": 5,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r05_c07",
+      "sha256": "74660a485dfd89ec3111b126af9d611191340bf05af08cfbc2896305343eef14",
+      "bytes": 1484443,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        4096,
+        7168,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "5c4bb8f3f8cb0d3c745ad5e398df9eabbc147a5c6d2b71323be731eaaeda417c"
+    },
+    {
+      "row": 5,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r05_c08",
+      "sha256": "17fe7de00af4372c49f22bd804f37ca0d8f60a386b333f0c9b91c147353885a3",
+      "bytes": 684556,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        4096,
+        7607,
+        5120
+      ],
+      "artSlicePixels": [
+        439,
+        1024
+      ],
+      "artSliceSha256": "e3d682e678be819259d53f60a7658e721c14879483673eed2277bb369d8aef0a"
+    },
+    {
+      "row": 6,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r06_c01",
+      "sha256": "e3fea1a41cffce074cc695a24e9fecdca04109a9e720f60eff47e825f682f1ed",
+      "bytes": 1432621,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        5120,
+        1024,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "d39f43b66addab0499f4b8f9e0f60e7e772d50edf722e5babcab262cdb5efdd2"
+    },
+    {
+      "row": 6,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r06_c02",
+      "sha256": "6509522627fa1e813255b744da6445b2a8cef5fba1f162590d2f5fa964c7d8f8",
+      "bytes": 1618794,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        5120,
+        2048,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "d0d80ef7178e04c2f6802a7364578bc0d9b213481ec1732c85a29d419e06f187"
+    },
+    {
+      "row": 6,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r06_c03",
+      "sha256": "1bc3c4f5e9a874f971ad302cb7c368a5526640f38e336e2d158270b84ad46497",
+      "bytes": 1459031,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        5120,
+        3072,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "f28d504e6d970caeaf92f27cef5716c8e392d1fe6d4edc9a991ba3878c14305e"
+    },
+    {
+      "row": 6,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r06_c04",
+      "sha256": "07e01016c406a366ebd5d583bccb68edf43de583977232531a06db519a5b33c8",
+      "bytes": 1114764,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        5120,
+        4096,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "7e13fe1c5b13b3bec054f62d6e3d4cbad2070479ab00dace2a7827b924bf29f5"
+    },
+    {
+      "row": 6,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r06_c05",
+      "sha256": "84fd8cca0a4a8a769b2a9f63e8b19fcb0d9d571a0bbd544838f2203a58bfb7d2",
+      "bytes": 1168393,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        5120,
+        5120,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "36576bae05a18cb5b38a7c70206a0046771e40d7c2bb4e0219a9eed557336881"
+    },
+    {
+      "row": 6,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r06_c06",
+      "sha256": "936d1345819dfd8d88867ab5481622153ad5b092bebbc82f6576b80dbe8735fd",
+      "bytes": 1475466,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        5120,
+        6144,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "6e2235b22fc8983240e0ea3b1594c4b389b33b6d47025595f4fb812657ac1499"
+    },
+    {
+      "row": 6,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r06_c07",
+      "sha256": "2c17b942e721f2af4470bd91983ead7c887d6c11db1981a9d27fd497cb889e88",
+      "bytes": 1471077,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        5120,
+        7168,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "3a7ff1640ac32f799b4322255c6f487aae1d57506818e304aa05586fde552b52"
+    },
+    {
+      "row": 6,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r06_c08",
+      "sha256": "f60f4ebce6d28c1a2e9b17d53da368e589fa5735246a4addb7fbb99b873dabab",
+      "bytes": 670500,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        5120,
+        7607,
+        6144
+      ],
+      "artSlicePixels": [
+        439,
+        1024
+      ],
+      "artSliceSha256": "c904e19ed9c3bceba8ffcc1409ce30acd7ac84d026eaaa30960ee635996e671c"
+    },
+    {
+      "row": 7,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r07_c01",
+      "sha256": "e24c7646441c95843c7538a13cd64e129ab9007f51b0d4b62f05d210f5f4c01a",
+      "bytes": 1359142,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        6144,
+        1024,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "389dcd8d0647c1e5640a0832b1ab2772e477ecd14e5a5056b95b62013be9abba"
+    },
+    {
+      "row": 7,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r07_c02",
+      "sha256": "da7a7c7fefc0c52a384afebece5bd5702506c25a1bf71487ad8d8623d3258be3",
+      "bytes": 1428475,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        6144,
+        2048,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "21f44c5284c841ac406b49a915b7f4fb7e3bbf50f802cc11d19e99875cf9c489"
+    },
+    {
+      "row": 7,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r07_c03",
+      "sha256": "47a0d18c8f6c09e5ea3b5c1acf84e4d3c127cebd638b364054da8e35da61af45",
+      "bytes": 1329694,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        6144,
+        3072,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "0b19707be84e2e43c20b6cb599fe3d0034f5a6a391e9072e2db5ed78f05d259a"
+    },
+    {
+      "row": 7,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r07_c04",
+      "sha256": "38aa4061a556d7c71221b888d5e33b56a29815a745e2a7620936a5482db05bbf",
+      "bytes": 1229531,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        6144,
+        4096,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "6dd228963ac8d1a8792059722884af5d59385bde1af499cee1315cf9a040ca1d"
+    },
+    {
+      "row": 7,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r07_c05",
+      "sha256": "ebaf6627e039e0eecea7fe86b3d041eb4c0cab0baa395f3d81c1f42f0cbf8448",
+      "bytes": 1442212,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        6144,
+        5120,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "59f20152681030d3c7751b8b5852a83a20a490b97fe5f048df60c955fa12b2f0"
+    },
+    {
+      "row": 7,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r07_c06",
+      "sha256": "18ceefb7eae25d5fcb15eaf2e8b33f568c5d1ae65b04b28be2468ef4d01dcba7",
+      "bytes": 1457334,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        6144,
+        6144,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "15d78e092877889f895371e45cb29d47f5a846a41591296bce46fe24e39d0576"
+    },
+    {
+      "row": 7,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r07_c07",
+      "sha256": "103d439bb5e8896ff91bdef807bc1dfa07df9add24566fdb54c66d10f4187ece",
+      "bytes": 1547769,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        6144,
+        7168,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ],
+      "artSliceSha256": "8e4ec775ddf2e8026835dca0ef7670fe8f8b4aacd379bc10567663fab50e12ce"
+    },
+    {
+      "row": 7,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r07_c08",
+      "sha256": "9a131f7a2f9a7312e8b73ae4a2c286865117502f4864d5f1d13fe450e2235449",
+      "bytes": 656116,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        6144,
+        7607,
+        7168
+      ],
+      "artSlicePixels": [
+        439,
+        1024
+      ],
+      "artSliceSha256": "d8f8e210a5095cc9d017840aa04e91f5962218d94403643fe94baa440dc296f4"
+    },
+    {
+      "row": 8,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r08_c01",
+      "sha256": "cf18f5264f1f37475270aefe1d75445c8ce118c41f3318d8751dd645c0acaf7b",
+      "bytes": 217017,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        0,
+        7168,
+        1024,
+        7358
+      ],
+      "artSlicePixels": [
+        1024,
+        190
+      ],
+      "artSliceSha256": "0adaba2644b8e2a12d323b5c4e098a408494c7655914ae14fbfc978bae69ee82"
+    },
+    {
+      "row": 8,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r08_c02",
+      "sha256": "649ec9a4dc247aaf745e475855dae13700b80f34d0612ae1984e3b59aadf7087",
+      "bytes": 215875,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        1024,
+        7168,
+        2048,
+        7358
+      ],
+      "artSlicePixels": [
+        1024,
+        190
+      ],
+      "artSliceSha256": "fd4521dfabb242921fbbda1dde1d5c50b3f531ec7ed838ef33459876f5d7d9fa"
+    },
+    {
+      "row": 8,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r08_c03",
+      "sha256": "6c31b1a4224a21422d2383355bba46c8b9bd3eb8f828bbcee9dbb8ff73651319",
+      "bytes": 194636,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        2048,
+        7168,
+        3072,
+        7358
+      ],
+      "artSlicePixels": [
+        1024,
+        190
+      ],
+      "artSliceSha256": "fa05139ce2073c6ce1903ffe7c5a272c3ece3297d057098fe390e71c041bddc2"
+    },
+    {
+      "row": 8,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r08_c04",
+      "sha256": "c19cfaacf9d64f39a5c6d4fa409381b5221233c7797f1e6d96b67051bbfacfad",
+      "bytes": 203369,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        3072,
+        7168,
+        4096,
+        7358
+      ],
+      "artSlicePixels": [
+        1024,
+        190
+      ],
+      "artSliceSha256": "4a9d7bc3d2124d56ba448e9d77a5229b66660746bd0275328b73856aac558d6c"
+    },
+    {
+      "row": 8,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r08_c05",
+      "sha256": "ce26e4ecb39ca76e93b263df9fb7fbca1cc72af837de754f7957580e3d74a217",
+      "bytes": 265113,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        4096,
+        7168,
+        5120,
+        7358
+      ],
+      "artSlicePixels": [
+        1024,
+        190
+      ],
+      "artSliceSha256": "7321d18df4a3e07409853b997e105ab6bdf0198ee4c133460705e4a47b039538"
+    },
+    {
+      "row": 8,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r08_c06",
+      "sha256": "1823b5c921a99dbe54adb3ff9f0bab55f599393b749d71faf3c9dda3691612ae",
+      "bytes": 248147,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        5120,
+        7168,
+        6144,
+        7358
+      ],
+      "artSlicePixels": [
+        1024,
+        190
+      ],
+      "artSliceSha256": "acb354ef28cd05bfe418f03ec7957d9c3484b0f6b3fdf93db67bbaa4d9e08de1"
+    },
+    {
+      "row": 8,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r08_c07",
+      "sha256": "8055d7a119dd1e82087395329d579df109a68e3ea94c4fb8caa7dff073418fe3",
+      "bytes": 268766,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        6144,
+        7168,
+        7168,
+        7358
+      ],
+      "artSlicePixels": [
+        1024,
+        190
+      ],
+      "artSliceSha256": "0fbb5db7728770edb6a3ce4040959ec03f16a758ad3abf5bbd3532ca02d6cd27"
+    },
+    {
+      "row": 8,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r08_c08",
+      "sha256": "d98837add6fbb38e345adfb7187c9fdfe24482905ec1aa561f52ce5d2d450073",
+      "bytes": 88403,
+      "nativeSha256": "04f8d9eb17edae6ae73335dca159250c349de70618c12f0e82be269db517df11",
+      "nativePixels": 7358,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        7168,
+        7607,
+        7358
+      ],
+      "artSlicePixels": [
+        439,
+        190
+      ],
+      "artSliceSha256": "ea44bb77e1b7d7a82442493162dd3273603fccfa7ef48fa59fe4d004f2625b23"
+    }
+  ]
+}

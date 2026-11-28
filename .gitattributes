@@ -28,8 +28,10 @@ Assets/Resources/World/CurrentMaps20261009/**/walkmask.txt -text
 /Assets/Resources/World/PcOriginalPreview20261123.meta -text
 /Docs/VerificationEvidence/pc-original-static-backgrounds-20261123/**/*.json -text
 /Docs/VerificationEvidence/biyuan-body-20261123/**/*.json -text
+/Docs/VerificationEvidence/qinglan-20261127-v002/**/*.json -text
 # Original map preview catalogs, manifests and receipts use exact SHA-256 bindings.
 /Assets/Resources/World/OriginalMapPreview20261124/**/*.json -text
 /Assets/Resources/World/OriginalMapPreview20261124/**/*.meta -text
 /Assets/Resources/World/OriginalMapPreview20261124.meta -text
 /Docs/VerificationEvidence/guideng-market-preview-20261124/**/*.json -text
+/Docs/VerificationEvidence/waterwheel-hd8-20261128/**/*.json -text

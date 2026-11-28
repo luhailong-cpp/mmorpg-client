@@ -9,6 +9,7 @@ namespace MmorpgClient.Editor.CurrentMaps
         public const string ScenePath = "Assets/Scenes/World/FestivalMaps.unity";
         public const string BajingBodyScenePath = "Assets/Scenes/World/BajingBody.unity";
         public const string BiyuanBodyScenePath = "Assets/Scenes/World/BiyuanBody.unity";
+        public const string QinglanTownScenePath = "Assets/Scenes/World/QinglanTown.unity";
         public const string YuexiBayScenePath = "Assets/Scenes/World/YuexiBayPreview.unity";
         public const string YuexiBayPlayableScenePath = "Assets/Scenes/World/YuexiBay.unity";
         public const string PcOriginalPreviewScenePath = "Assets/Scenes/World/PcOriginalMapPreview.unity";
@@ -22,6 +23,12 @@ namespace MmorpgClient.Editor.CurrentMaps
 
         [MenuItem("MMORPG/Maps/碧渊水宫双节本体走图")]
         public static void OpenBiyuanBody() => OpenScene(BiyuanBodyScenePath);
+
+        [MenuItem("MMORPG/Maps/水车庭院双节走图")]
+        public static void OpenWaterwheelCourtyard() => OpenScene(WaterwheelCourtyardScenePath);
+
+        [MenuItem("MMORPG/Maps/青岚镇双节走图")]
+        public static void OpenQinglanTown() => OpenScene(QinglanTownScenePath);
 
         [MenuItem("MMORPG/Maps/月汐湾双节离线预览")]
         public static void OpenYuexiBayPreview() => OpenScene(YuexiBayScenePath);
@@ -44,6 +51,7 @@ namespace MmorpgClient.Editor.CurrentMaps
         [MenuItem("MMORPG/Maps/节庆地图离线预览", true)]
         [MenuItem("MMORPG/Maps/八景岛双节本体预览", true)]
         [MenuItem("MMORPG/Maps/碧渊水宫双节本体走图", true)]
+        [MenuItem("MMORPG/Maps/青岚镇双节走图", true)]
         [MenuItem("MMORPG/Maps/月汐湾双节离线预览", true)]
         [MenuItem("MMORPG/Maps/月汐湾双节走图", true)]
         [MenuItem("MMORPG/Maps/端游原图静态背景预览 (36图)", true)]

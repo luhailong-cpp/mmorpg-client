@@ -1,0 +1,60 @@
+{
+  "worldRect": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 320.0,
+    "height": 320.0
+  },
+  "effectiveWorldRect": {
+    "x": 0.0,
+    "y": 32.578125,
+    "width": 297.1484375,
+    "height": 287.421875
+  },
+  "cellSize": 1.0,
+  "imageRect": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 7607.0,
+    "height": 7358.0
+  },
+  "referenceWidth": 7607,
+  "referenceHeight": 7358,
+  "walkmaskColumns": 320,
+  "walkmaskRows": 320,
+  "spawnWorld": {
+    "x": 160.0,
+    "y": 0.0,
+    "z": 140.0
+  },
+  "schemaVersion": 2,
+  "key": "waterwheel-courtyard",
+  "sceneId": 20000,
+  "name": "水车庭院",
+  "revision": "waterwheel-hd8-20261128",
+  "appearance": "mid-autumn",
+  "resourceRoot": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/",
+  "clientOnly": true,
+  "authoritativeServerRegistered": false,
+  "artStatus": "formal_tiles_overview",
+  "layoutPixels": {
+    "width": 4096,
+    "height": 4096
+  },
+  "layoutSha256": "739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312",
+  "layoutDerivation": "uniform-lanczos-long-edge-4096",
+  "sourceImageCommit": "b36c0513f9b162919e7d2847bad81a08a03eec9c",
+  "sourceMasterPath": "designs/pc-20000-waterwheel-hd8-festivals-v001/full/mid-autumn.png",
+  "sourceMasterSha256": "7bdb45bb9c7b4992831cfc7160b0186f6c0a5114e98d47fde062f4cc992483f1",
+  "sourceMasterBytes": 77716878,
+  "sourceMasterRgbSha256": "29fe26caeba6781356b1ea6f98ca0fd9ea60fa297ba058dabad02ddb74d0ca7f",
+  "sourceTilesManifestSha256": "976af2e773bdcd4f07e5716d143a1adfbabff13921087325d331d3ab7b62a5a5",
+  "runtimeAssemblyRgbSha256": "c84ac943d883a55b32b414fa6f475e0fb88b949c01972cde6fd7cc5fe172a3e6",
+  "navigationPlanPath": "Docs/VerificationEvidence/waterwheel-hd8-20261128/navigation-plan.json",
+  "navigationPlanSha256": "6675b0bf38474b60b0a6ecccb98406236d94ab8056400e55c4c94a9816f94d7f",
+  "navigationSha256": "a86d077d63162f4b1a6dc7924a06c2e1dc514bf4974e65e6dbb780c525506b9d",
+  "walkmaskSha256": "f81634666a4d0e91e8436851a10a6264e1a76e52cd49b74577c6049d9d5e00c7",
+  "walkmaskPackedSha256": "b3f75e1f84cfdcee468f168eabb27d14c4cb780e7f08e601ef0b12dd96a112dd",
+  "navigationStatus": "conservative_visible_ground_client_only",
+  "runtimeEngineAcceptance": false
+}

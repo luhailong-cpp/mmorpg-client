@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "key": "qinglan-town",
+  "sceneId": 4,
+  "revision": "qinglan-20261127-v002",
+  "appearance": "spring",
+  "layoutSha256": "6956d36f92ec80de9330439da782ebe4c7b2153c971110f261d6987faecf0d89",
+  "sourceSelectionSha256": "bfc51743af5c2cf79cda0e3ec5f53f0b7ab92446bf303402401a44f5fd98f09c",
+  "navigationPlanSha256": "27b85de21c75eaa75a2e3668d2887e4d1b4f9e343230e75bb715c4ebc940eb67",
+  "sourceLayoutPreview": {
+    "path": "image@d36d5575a8905f9a6d9381c0be2e875b2463edb0:designs/world-expansion-20261027/hd36-production-20261027/legacy-lanxian-town/continuous-20261127-v002/neutral/map.png",
+    "sha256": "1dea069af387130bb09af35b54148da7d4ef8c864e9c4e2f61425ced56eb977b"
+  },
+  "selectionAuthority": {
+    "path": "image@d36d5575a8905f9a6d9381c0be2e875b2463edb0:designs/world-expansion-20261027/hd36-production-20261027/legacy-lanxian-town/continuous-20261127-v002/atlas.json",
+    "sha256": "9b61b088c769b21697d1ea876c82b38d37676339ec4a88b0547889d7bd0f53ee",
+    "bytes": 6091
+  },
+  "tileEvidence": [
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r01_c01.json",
+      "sha256": "0329ebac4a48c3339f0023a8cedc906fcd52f52e08e313147fad26c8bbdf442f"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r01_c02.json",
+      "sha256": "760a6505a5b692ab179b9f00bee17b6417b5f0d3c1d6b38cac27ad78474cb7e6"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r01_c03.json",
+      "sha256": "8594943c756ca81b0d1951762a98ea380de173a21cd8e6bfe89e7e77126458e7"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r01_c04.json",
+      "sha256": "662987eeeccb2fe31b49d09097f0c1cdd7db4b0184b8e8a4a294e790f336f39b"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r02_c01.json",
+      "sha256": "c20d400389e8522776ae84328c1fe7a922be81c96cb1589baea5e248e0e94d32"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r02_c02.json",
+      "sha256": "052cd25bb111ce6a55d0144e73b7467cf3ba8e0a69e2417e768672acf4c7581c"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r02_c03.json",
+      "sha256": "1cdcd75dd56976a82a83d94560d013c96c38060813d944f354bfb8e7d0f20f3b"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r02_c04.json",
+      "sha256": "7616859ade5ef11fd0f465d833fcbde6107b42a6a4b07d1d823fc55b47b51b2e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r03_c01.json",
+      "sha256": "0f5e77028911768ca625b70cb9c786647c8b9835dd991fae5290b0257024368e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r03_c02.json",
+      "sha256": "04c548f0b4be21746c0d687c49b05563a621f61818a38f5a04d0f298aa6a9a5a"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r03_c03.json",
+      "sha256": "93ee24db1c76f58160679b98af18b64a2c168c98b1461b30eb52b0676bd4df71"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r03_c04.json",
+      "sha256": "85062a07cdbb74c69081a9407f1add4be3fc83c2e8ce92a356912fa9f47ec331"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r04_c01.json",
+      "sha256": "8c5720cf679bb238a19c16d852bb230297f5b93a0f003157e51e1b6cfab704d3"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r04_c02.json",
+      "sha256": "aab6f27aeb1ae3d5970ebb1d1525625de47c6fcd03a810a0212d0b3e3649b9ca"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r04_c03.json",
+      "sha256": "3b943d4e2fde2f83cdc3840d0bb2ad87d93f7acc52eb29220852bfe24e5e416b"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/spring/r04_c04.json",
+      "sha256": "d25d00d3e47d944c0daf4a23d31045b861ebb53504db918d65e3f16438a7a0f8"
+    }
+  ],
+  "formalArtAccepted": true,
+  "authoritativeServerRegistered": false
+}

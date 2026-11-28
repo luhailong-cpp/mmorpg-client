@@ -62,7 +62,15 @@ def checked_bytes(value):
     return data
 
 
-def inspect_png(data, dimensions, label):
+def effective_opaque_box(source_rect, offset_x=0, offset_y=0):
+    x, y, width, height = source_rect["x"], source_rect["y"], source_rect["width"], source_rect["height"]
+    coords = (x, y, x + width, y + height)
+    require(all(float(v).is_integer() for v in coords), "Transparent padding requires integer imageRect pixels")
+    x0, y0, x1, y1 = (int(v) for v in coords)
+    return x0 - offset_x, y0 - offset_y, x1 - offset_x, y1 - offset_y
+
+
+def inspect_png(data, dimensions, label, opaque_box=None):
     try:
         with Image.open(io.BytesIO(data)) as image:
             require(image.format == "PNG" and list(image.size) == list(dimensions), f"{label}: PNG dimensions")
@@ -71,7 +79,21 @@ def inspect_png(data, dimensions, label):
             image.load()
             require(image.mode in ("RGB", "RGBA"), f"{label}: RGB/RGBA PNG required")
             if image.mode == "RGBA":
-                require(image.getextrema()[3] == (255, 255), f"{label}: nonopaque map PNG")
+                if opaque_box is None:
+                    require(image.getextrema()[3] == (255, 255), f"{label}: nonopaque map PNG")
+                else:
+                    alpha = image.getchannel("A")
+                    width, height = image.size
+                    x0, y0, x1, y1 = opaque_box
+                    x0, y0 = max(0, min(width, x0)), max(0, min(height, y0))
+                    x1, y1 = max(0, min(width, x1)), max(0, min(height, y1))
+                    if x0 < x1 and y0 < y1:
+                        require(alpha.crop((x0, y0, x1, y1)).getextrema() == (255, 255),
+                                f"{label}: nonopaque pixel inside effective imageRect")
+                    for strip in ((0, 0, width, y0), (0, y1, width, height), (0, y0, x0, y1), (x1, y0, width, y1)):
+                        if strip[0] < strip[2] and strip[1] < strip[3]:
+                            require(alpha.crop(strip).getextrema() == (0, 0),
+                                    f"{label}: opaque pixel inside transparent padding")
     except (OSError, SyntaxError) as error:
         raise ValueError(f"{label}: PNG decode failed") from error
 
@@ -167,8 +189,10 @@ class BatchConfig:
             client_only = entry.get("clientOnly", True)
             server_registered = entry.get("authoritativeServerRegistered", False)
             allow_derived = entry.get("allowDerivedSource", False)
+            allow_transparent_padding = entry.get("allowTransparentPadding", False)
             require(isinstance(client_only, bool) and isinstance(server_registered, bool)
-                    and isinstance(allow_derived, bool) and not (client_only and server_registered),
+                    and isinstance(allow_derived, bool) and isinstance(allow_transparent_padding, bool)
+                    and not (client_only and server_registered),
                     "Invalid batch registration flags")
             require(type(columns) is int and type(rows) is int and columns > 0 and rows > 0
                     and columns * rows <= 128 and max(columns, rows) * 1024 <= 8192, "Invalid batch grid")
@@ -177,7 +201,8 @@ class BatchConfig:
             require(scene_id not in scenes or scenes[scene_id] == map_id, "Duplicate numeric map identity")
             scenes[scene_id] = map_id
             meta = dict(key=key, sceneId=scene_id, name=name, clientOnly=client_only,
-                        authoritativeServerRegistered=server_registered, allowDerivedSource=allow_derived)
+                        authoritativeServerRegistered=server_registered, allowDerivedSource=allow_derived,
+                        allowTransparentPadding=allow_transparent_padding)
             if map_id in meta_by_map:
                 require(meta_by_map[map_id] == meta, "Inconsistent batch metadata across appearances")
             meta_by_map[map_id] = meta
@@ -187,7 +212,8 @@ class BatchConfig:
     @staticmethod
     def _default_meta(map_id):
         return dict(key="map" + map_id, sceneId=int(map_id), name="地图 " + map_id,
-                    clientOnly=True, authoritativeServerRegistered=False, allowDerivedSource=False)
+                    clientOnly=True, authoritativeServerRegistered=False, allowDerivedSource=False,
+                    allowTransparentPadding=False)
 
     def meta(self, map_id):
         return self.entries[str(map_id)]
@@ -333,12 +359,12 @@ def build_overview(tile_bytes, columns, rows):
     return output.getvalue()
 
 
-def import_overview(item, tile_bytes, columns, rows):
+def import_overview(item, tile_bytes, columns, rows, opaque_box=None):
     """Keep reviewed PNG bytes, while proving every displayed pixel is a runtime tile."""
     if not item.get("derivedOverview"):
         return build_overview(tile_bytes, columns, rows)
     data = checked_bytes(item["derivedOverview"])
-    inspect_png(data, [columns * 1024, rows * 1024], "reviewed formal overview")
+    inspect_png(data, [columns * 1024, rows * 1024], "reviewed formal overview", opaque_box=opaque_box)
     with Image.open(io.BytesIO(data)) as overview:
         for row, column, runtime in tile_bytes:
             with Image.open(io.BytesIO(runtime)) as tile:
@@ -409,14 +435,22 @@ def import_maps(project, selection_path, navigation_path, batch=None):
         nav, mask = nav_results[map_id]
         geometry_matches(nav["source"], item)
         columns, rows = scope[map_id, appearance]
+        allow_pad = meta["allowTransparentPadding"]
+        atlas_opaque = effective_opaque_box(nav["source"]["imageRect"]) if allow_pad else None
+        verified_natives = set()
         files = []
         for tile in item["tiles"]:
-            native_data = checked_bytes(tile["native"])
-            inspect_png(native_data, tile["native"]["pixels"], tile["tile"] + " native")
+            native_key = (descriptor_path(tile["native"]), tile["native"]["sha256"])
+            if native_key not in verified_natives:
+                native_data = checked_bytes(tile["native"])
+                native_opaque = atlas_opaque if allow_pad and tile["native"]["pixels"] == [columns * 1024, rows * 1024] else None
+                inspect_png(native_data, tile["native"]["pixels"], tile["tile"] + " native", opaque_box=native_opaque)
+                verified_natives.add(native_key)
             runtime_data = checked_bytes(tile["runtime"])
-            inspect_png(runtime_data, [1024, 1024], tile["tile"] + " runtime")
+            tile_opaque = effective_opaque_box(nav["source"]["imageRect"], (tile["column"] - 1) * 1024, (tile["row"] - 1) * 1024) if allow_pad else None
+            inspect_png(runtime_data, [1024, 1024], tile["tile"] + " runtime", opaque_box=tile_opaque)
             files.append((tile["row"], tile["column"], runtime_data))
-        overview = import_overview(item, files, columns, rows)
+        overview = import_overview(item, files, columns, rows, opaque_box=atlas_opaque)
         layout_sha = digest(overview)
         navigation_layout_binding(nav_copy, map_id, appearance, layout_sha)
         resource_root = f"{RESOURCE_ROOT}{key}/{revision}/{appearance}/{layout_sha}/"
@@ -643,13 +677,16 @@ def verify(project, batch=None):
             png = folder / "tiles" / (name + ".png")
             data = png.read_bytes()
             require(digest(data) == entry["sha256"] and len(data) == entry["bytes"], "Runtime PNG SHA mismatch")
-            inspect_png(data, [1024, 1024], name)
+            tile_opaque = (effective_opaque_box(source["imageRect"], (entry["column"] - 1) * 1024, (entry["row"] - 1) * 1024)
+                           if meta["allowTransparentPadding"] else None)
+            inspect_png(data, [1024, 1024], name, opaque_box=tile_opaque)
             verify_meta(png, project)
             tile_bytes.append((*coord, data))
             total += len(data)
         overview_data = (folder / "layout.png").read_bytes()
         require(digest(overview_data) == layout_sha, "Formal assembled layout SHA mismatch")
-        inspect_png(overview_data, [columns * 1024, rows * 1024], "layout")
+        atlas_opaque = effective_opaque_box(source["imageRect"]) if meta["allowTransparentPadding"] else None
+        inspect_png(overview_data, [columns * 1024, rows * 1024], "layout", opaque_box=atlas_opaque)
         # Pixel equality avoids making portable verification depend on a Pillow encoder version.
         with Image.open(io.BytesIO(overview_data)) as overview:
             for row, column, data in tile_bytes:

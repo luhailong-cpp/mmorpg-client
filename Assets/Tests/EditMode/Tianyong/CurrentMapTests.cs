@@ -155,6 +155,61 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             }
         }
 
+        [Test]
+        public void InstalledQinglanTownSharesNavigationAcrossFestivalsAndStaysClientOnly()
+        {
+            var spring = CurrentMapCatalog.Find(4u);
+            Assert.That(spring, Is.Not.Null);
+            Assert.That(spring.Key, Is.EqualTo("qinglan-town"));
+            Assert.That(spring.Revision, Is.EqualTo("qinglan-20261127-v002"));
+            Assert.That(spring.Appearance, Is.EqualTo("spring"));
+            Assert.That(spring.CanTravelOnline, Is.False);
+            Assert.That(CurrentMapCatalog.FindForOnline(4u), Is.Null);
+            Assert.That(CurrentMapCatalog.FindForOnline("qinglan-town"), Is.Null);
+
+            var midAutumn = spring.ForAppearance("mid-autumn");
+            Assert.That(midAutumn, Is.Not.Null);
+            Assert.That(midAutumn.CanTravelOnline, Is.False);
+            Assert.That(spring.SharesNavigationWith(midAutumn), Is.True);
+            Assert.That(spring.ForAppearance("normal"), Is.Null);
+            Assert.That(spring.Spawn, Is.EqualTo(new Vector3(-83.6923828125f, 0f, -65.1943359375f)));
+            Assert.That(spring.WorldRect, Is.EqualTo(new Rect(-154f, -154f, 308f, 308f)));
+            Assert.That(spring.EffectiveWorldRect, Is.EqualTo(new Rect(-154f, -95.197265625f, 308f, 190.39453125f)));
+
+            var navigation = spring.CreateNavigation();
+            var centralStoneBridge = new Vector3(-22.7841796875f, 0f, -14.0615234375f);
+            var neCourtyard = new Vector3(82.865234375f, 0f, 40.455078125f);
+            var nwWoodBridge = new Vector3(-81.4365234375f, 0f, 40.0791015625f);
+            var seWoodBridge = new Vector3(64.4423828125f, 0f, -62.9384765625f);
+            Assert.That(navigation.FindPath(spring.Spawn, centralStoneBridge).Count, Is.GreaterThanOrEqualTo(2));
+            Assert.That(navigation.FindPath(spring.Spawn, neCourtyard).Count, Is.GreaterThanOrEqualTo(2));
+            Assert.That(navigation.FindPath(spring.Spawn, nwWoodBridge).Count, Is.GreaterThanOrEqualTo(2));
+            Assert.That(navigation.FindPath(spring.Spawn, seWoodBridge).Count, Is.GreaterThanOrEqualTo(2));
+            // 上下透明留白、溪流、西南牌坊屋顶、西市桌摊、北圃菜地、东北主殿屋顶均应阻挡。
+            Assert.That(navigation.IsWalkable(new Vector3(0f, 0f, 123.921875f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(0f, 0f, -124.22265625f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(-17.14453125f, 0f, -27.97265625f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(-108.8828125f, 0f, -57.298828125f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(-63.765625f, 0f, -11.8056640625f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(-23.912109375f, 0f, 56.998046875f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(97.15234375f, 0f, 68.27734375f)), Is.False);
+
+            foreach (var appearance in new[] { spring, midAutumn })
+            {
+                var layout = appearance.LoadTexture();
+                Assert.That(layout.width, Is.EqualTo(4096));
+                Assert.That(layout.height, Is.EqualTo(4096));
+                Assert.That(layout.mipmapCount, Is.EqualTo(1));
+                foreach (var tileId in new[] { "r01_c01", "r04_c04" })
+                {
+                    var tile = Resources.Load<Texture2D>(appearance.ResourceFolder + "tiles/" + tileId);
+                    Assert.That(tile, Is.Not.Null);
+                    Assert.That(tile.width, Is.EqualTo(1024));
+                    Assert.That(tile.height, Is.EqualTo(1024));
+                }
+            }
+        }
+
         [TestCase("http://127.0.0.1:18286", "127.0.0.1:28200", true, true)]
         [TestCase("http://[::1]:18286", "[::1]:28200", true, true)]
         [TestCase("http://127.0.0.1:18286", "127.0.0.1:28200", false, false)]
@@ -450,7 +505,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(actor.GetComponent<TianyongPlayerController>().enabled, Is.False);
                 Invoke(runtime, "EnterScene", 4u);
                 Assert.That(runtime.Map, Is.Null);
-                Assert.That(CurrentMapCatalog.Find(4u), Is.Null);
+                Assert.That(CurrentMapCatalog.FindForOnline(4u), Is.Null);
+                Assert.That(CurrentMapCatalog.Find(4u)?.Key, Is.EqualTo("qinglan-town"));
+                Assert.That(CurrentMapCatalog.Find(4u).CanTravelOnline, Is.False);
                 Invoke(runtime, "EnterScene", 999u);
                 Assert.That(runtime.Map, Is.Null);
             }

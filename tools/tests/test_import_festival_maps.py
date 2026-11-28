@@ -405,6 +405,65 @@ class FestivalImportTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "derived"):
             maps.verify(self.case, batch)
 
+    def test_transparent_padding_checks_opaque_image_rect_and_clear_margin(self):
+        art_dir = self.case / "pad-art"
+        w, h = 2048, 2048
+        atlas = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        atlas.paste((80, 140, 90, 255), (0, 512, 2048, 1536))
+        atlas_buf = io.BytesIO()
+        atlas.save(atlas_buf, format="PNG")
+        atlas_desc = descriptor(art_dir / "atlas.png", atlas_buf.getvalue(), [w, h])
+        tiles = []
+        for row in (1, 2):
+            for col in (1, 2):
+                tid = maps.tile_id(row, col)
+                crop = atlas.crop(((col - 1) * 1024, (row - 1) * 1024, col * 1024, row * 1024))
+                buf = io.BytesIO()
+                crop.save(buf, format="PNG")
+                rt = descriptor(art_dir / f"{tid}.png", buf.getvalue(), [1024, 1024])
+                gen = descriptor(art_dir / f"{tid}.gen.json", maps.json_bytes(dict(tile=tid)))
+                tiles.append(dict(tile=tid, row=row, column=col,
+                    imageRectHalfOpen=[(col - 1) * 1024, (row - 1) * 1024, col * 1024, row * 1024],
+                    native=atlas_desc, runtime=rt, runtimeGenerationRecord=gen,
+                    sourceNative=False, sourceDerived=True, formalArtAccepted=True))
+        selection = dict(schemaVersion=1, sets=[dict(
+            mapId="qinglan-test", appearance="spring", formalArtAccepted=True,
+            grid=dict(columns=2, rows=2, canvasPixels=[w, h]),
+            layoutSource=dict(path="atlas.png", sha256=atlas_desc["sha256"]),
+            selectionAuthority=dict(path="validation.json", sha256="b" * 64),
+            derivedOverview=atlas_desc, tiles=tiles)])
+        plan = dict(schemaVersion=1, maps={"qinglan-test": dict(
+            canvasPixels=[w, h], worldRect=dict(x=-10.0, y=-10.0, width=20.0, height=20.0),
+            imageRect=dict(x=0.0, y=512.0, width=2048.0, height=1024.0), referencePixels=[2048, 1024],
+            cellSize=1.0, spawnPixel=[1024.0, 1024.0],
+            walkablePolygons=[[[100, 600], [1900, 600], [1900, 1400], [100, 1400]]],
+            obstaclePolygons=[], expectedConnectedComponents=1)},
+            visuallyReviewedFormalAssemblies=[dict(mapId="qinglan-test", appearance="spring", sha256=atlas_desc["sha256"])])
+        batch = dict(schemaVersion=1, revision="pad-test",
+                     evidenceDirectory="Docs/VerificationEvidence/pad-test",
+                     scope=[dict(mapId="qinglan-test", key="qinglan-test", sceneId=4, name="青岚测试",
+                                 appearance="spring", columns=2, rows=2, clientOnly=True,
+                                 authoritativeServerRegistered=False, allowDerivedSource=True,
+                                 allowTransparentPadding=True)])
+        sel_p, plan_p = self.case / "pad-sel.json", self.case / "pad-plan.json"
+        sel_p.write_bytes(maps.json_bytes(selection))
+        plan_p.write_bytes(maps.json_bytes(plan))
+        self.assertTrue(maps.import_maps(self.case, sel_p, plan_p, batch)["ok"])
+        # Non-opaque pixel inside effective imageRect must be rejected.
+        bad_inside = atlas.crop((0, 0, 1024, 1024))
+        bad_inside.putpixel((500, 700), (80, 140, 90, 128))
+        bad_buf = io.BytesIO()
+        bad_inside.save(bad_buf, format="PNG")
+        with self.assertRaisesRegex(ValueError, "nonopaque pixel inside effective imageRect"):
+            maps.inspect_png(bad_buf.getvalue(), [1024, 1024], "bad_inside", opaque_box=(0, 512, 1024, 1024))
+        # Opaque pixel leaking into transparent padding must also be rejected.
+        bad_outside = atlas.crop((0, 0, 1024, 1024))
+        bad_outside.putpixel((500, 100), (80, 140, 90, 255))
+        bad_buf2 = io.BytesIO()
+        bad_outside.save(bad_buf2, format="PNG")
+        with self.assertRaisesRegex(ValueError, "opaque pixel inside transparent padding"):
+            maps.inspect_png(bad_buf2.getvalue(), [1024, 1024], "bad_outside", opaque_box=(0, 512, 1024, 1024))
+
 
 if __name__ == "__main__":
     unittest.main()

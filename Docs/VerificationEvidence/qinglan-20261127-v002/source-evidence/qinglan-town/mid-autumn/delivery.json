@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "key": "qinglan-town",
+  "sceneId": 4,
+  "revision": "qinglan-20261127-v002",
+  "appearance": "mid-autumn",
+  "layoutSha256": "7734c340dbb2de72a99834375ec9b14b38132a5f4b242c47433bfec1d22d504b",
+  "sourceSelectionSha256": "bfc51743af5c2cf79cda0e3ec5f53f0b7ab92446bf303402401a44f5fd98f09c",
+  "navigationPlanSha256": "27b85de21c75eaa75a2e3668d2887e4d1b4f9e343230e75bb715c4ebc940eb67",
+  "sourceLayoutPreview": {
+    "path": "image@d36d5575a8905f9a6d9381c0be2e875b2463edb0:designs/world-expansion-20261027/hd36-production-20261027/legacy-lanxian-town/continuous-20261127-v002/neutral/map.png",
+    "sha256": "1dea069af387130bb09af35b54148da7d4ef8c864e9c4e2f61425ced56eb977b"
+  },
+  "selectionAuthority": {
+    "path": "image@d36d5575a8905f9a6d9381c0be2e875b2463edb0:designs/world-expansion-20261027/hd36-production-20261027/legacy-lanxian-town/continuous-20261127-v002/atlas.json",
+    "sha256": "9b61b088c769b21697d1ea876c82b38d37676339ec4a88b0547889d7bd0f53ee",
+    "bytes": 6091
+  },
+  "tileEvidence": [
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r01_c01.json",
+      "sha256": "0813ae9a9f1b08cf0c6005c90ff59c8a145724869638783400225065ac4e86fa"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r01_c02.json",
+      "sha256": "b4f26ce3362b3f728cf10a06f4a95bc76eb45244bf58d09cf675157f0b85ead9"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r01_c03.json",
+      "sha256": "9dd1c7f0fcb97eb9df04ff8e0e619484adbaded9151f1ea9d59d999937a9c33a"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r01_c04.json",
+      "sha256": "c6d32900d35211ed1654e27dfdc7af194373ef9e0952cad54cf1d0f2ef77d650"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r02_c01.json",
+      "sha256": "7c0c1b32dc120aaf609f70762af088c2422057d1708576cef58d0ef068883e56"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r02_c02.json",
+      "sha256": "868031ce6e38dfc29d0ce7c113a2ef149a17570af38ece2bd4a2fcf9e833d7a5"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r02_c03.json",
+      "sha256": "302235e7679a79dd1720f51c9b561e9f069e5a89451272a1816935ee7664f3ec"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r02_c04.json",
+      "sha256": "8eef8a6da31b0cbfba0b16dd63b479562e05b14eb70932977d7508855a261227"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r03_c01.json",
+      "sha256": "b3f2c56b7965b933a160cc124b832e4abcfb4aae5ae5fd538fe402e1fe07da1a"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r03_c02.json",
+      "sha256": "58bfe417e2881a5a0a624d588d5053c5829f2475b356e72b030191f9223d432f"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r03_c03.json",
+      "sha256": "e7a1a0f57905dcde744959c128d49d07a2bca27691519d2217dc44e9fd05ec82"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r03_c04.json",
+      "sha256": "cda4ede5538f52a111a30e3154041eb1e20942d975632bab21b62325d273e614"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r04_c01.json",
+      "sha256": "c0235143f58cd0b0176bb382503af4cdd96049ac3abd6e5c1c63dbe037d28d61"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r04_c02.json",
+      "sha256": "ee762e4e42c67d0299787762f52a3fb1aa24c23730c2152a8616035237887327"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r04_c03.json",
+      "sha256": "e582b48d919a7ef4414afa5a3bab35bdcf788355fbb91fcbb4b3aec92cd74260"
+    },
+    {
+      "path": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/r04_c04.json",
+      "sha256": "400d546946d56a7f670e1d712d43072ccb19e8a5dedbac49862165bf37e5dc89"
+    }
+  ],
+  "formalArtAccepted": true,
+  "authoritativeServerRegistered": false
+}

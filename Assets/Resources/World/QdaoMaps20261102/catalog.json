@@ -270,6 +270,50 @@
           "artStatus": "formal_art_delivery"
         }
       ]
+    },
+    {
+      "key": "qinglan-town",
+      "sceneId": 4,
+      "name": "青岚镇",
+      "revision": "qinglan-20261127-v002",
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/qinglan-town/qinglan-20261127-v002/spring/6956d36f92ec80de9330439da782ebe4c7b2153c971110f261d6987faecf0d89/",
+          "layoutSha256": "6956d36f92ec80de9330439da782ebe4c7b2153c971110f261d6987faecf0d89",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/qinglan-town/qinglan-20261127-v002/mid-autumn/7734c340dbb2de72a99834375ec9b14b38132a5f4b242c47433bfec1d22d504b/",
+          "layoutSha256": "7734c340dbb2de72a99834375ec9b14b38132a5f4b242c47433bfec1d22d504b",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
+      "key": "waterwheel-courtyard",
+      "sceneId": 20000,
+      "name": "水车庭院",
+      "revision": "waterwheel-hd8-20261128",
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/",
+          "layoutSha256": "3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/",
+          "layoutSha256": "739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
     }
   ]
 }

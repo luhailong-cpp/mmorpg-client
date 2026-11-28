@@ -143,6 +143,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(destination.Name, Does.Contain("未开放"));
         }
 
+        [TestCase(4u, "spring")]
+        [TestCase(4u, "mid-autumn")]
         [TestCase(21003u, "spring")]
         [TestCase(21003u, "mid-autumn")]
         [TestCase(28007u, "spring")]

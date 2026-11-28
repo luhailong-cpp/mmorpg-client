@@ -798,7 +798,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     Description = map.SceneConfigId == 1 ? "主城暂用碧渊水宫替代，石桥连廊通往太极中庭、主殿与钟鼓亭。" :
                         map.SceneConfigId == 2 ? "八景仙岛四桥贯通中央太极广场与各色亭台。" :
                         map.SceneConfigId == 3 ? "月汐湾码头停舟，渔舍临海，石阶与海湾相连。" :
+                        map.SceneConfigId == 4 ? "青岚溪谷三桥贯通西市、北圃与东岸炉房，双节景色已收录，暂未开放传送。" :
                         map.SceneConfigId == 5 ? "碧水环抱重檐水宫，石桥连廊通往太极中庭、主殿与钟鼓亭。" :
+                        map.SceneConfigId == 20000 ? "飞瀑水车映重檐，太极中庭连石桥、临水亭与南北石阶。" :
                         map.CanTravelOnline ? "选择景色，沿石路自在游历。" : "景色已收录，此地图尚未开放传送。",
                     DayResourcePath = map.ForAppearance("normal")?.TexturePath,
                     FestivalResourcePath = map.ForAppearance("spring")?.TexturePath,

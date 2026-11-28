@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "revision": "qinglan-20261127-v002",
+  "evidenceDirectory": "Docs/VerificationEvidence/qinglan-20261127-v002",
+  "scope": [
+    {
+      "mapId": "qinglan-town",
+      "key": "qinglan-town",
+      "sceneId": 4,
+      "name": "青岚镇",
+      "appearance": "spring",
+      "columns": 4,
+      "rows": 4,
+      "clientOnly": true,
+      "authoritativeServerRegistered": false,
+      "allowDerivedSource": true,
+      "allowTransparentPadding": true
+    },
+    {
+      "mapId": "qinglan-town",
+      "key": "qinglan-town",
+      "sceneId": 4,
+      "name": "青岚镇",
+      "appearance": "mid-autumn",
+      "columns": 4,
+      "rows": 4,
+      "clientOnly": true,
+      "authoritativeServerRegistered": false,
+      "allowDerivedSource": true,
+      "allowTransparentPadding": true
+    }
+  ]
+}
