@@ -325,7 +325,7 @@ namespace MmorpgClient.UI.Ugui.Team
             float size, Color color, TextAlignmentOptions alignment = TextAlignmentOptions.MidlineLeft)
         {
             var label = TeamUiArt.Text(parent, text, x, y, w, Mathf.Max(h, size * 1.65f), size, color, alignment);
-            label.font = Social.SocialUiArt.BodyFont;
+            QdaoUguiTheme.ApplyTypographyAuto(label);
             label.overflowMode = TextOverflowModes.Ellipsis;
             return label;
         }
@@ -335,7 +335,8 @@ namespace MmorpgClient.UI.Ugui.Team
         {
             var button = TeamUiArt.Button(parent, text, x, y, w, h, click, primary, enabled, key, size);
             button.name = name;
-            button.GetComponentInChildren<TMP_Text>(true).font = Social.SocialUiArt.BodyFont;
+            QdaoUguiTheme.ApplyTypography(button.GetComponentInChildren<TMP_Text>(true),
+                primary ? QdaoUiTypographyRole.Primary : QdaoUiTypographyRole.Heading);
             return button;
         }
 

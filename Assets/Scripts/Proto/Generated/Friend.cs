@@ -76,40 +76,41 @@ namespace Friendpb {
             "ZXh0X2N1cnNvchgDIAEoCRIYChBvbmxpbmVfZGlyZWN0b3J5GAQgASgIImIK",
             "DkZyaWVuZEV2ZW50UzJDEisKBnJlYXNvbhgBIAEoDjIbLmZyaWVuZHBiLkZy",
             "aWVuZEV2ZW50UmVhc29uEhQKDGJ5X3BsYXllcl9pZBgCIAEoBBINCgV0c19t",
-            "cxgDIAEoAyJYCiBCYXRjaENoZWNrU29jaWFsUmVsYXRpb25zUmVxdWVzdBIZ",
+            "cxgDIAEoAyJ4CiBCYXRjaENoZWNrU29jaWFsUmVsYXRpb25zUmVxdWVzdBIZ",
             "ChFzaWRlX2FfcGxheWVyX2lkcxgBIAMoBBIZChFzaWRlX2JfcGxheWVyX2lk",
-            "cxgCIAMoBCJ7CiFCYXRjaENoZWNrU29jaWFsUmVsYXRpb25zUmVzcG9uc2US",
-            "JgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhUKDWhh",
-            "c19hbnlfYmxvY2sYAiABKAgSFwoPYWxsX2FyZV9mcmllbmRzGAMgASgIKocB",
-            "ChNGcmllbmRSZXF1ZXN0U3RhdHVzEhoKFkZSSUVORF9SRVFVRVNUX1VOS05P",
-            "V04QABIaChZGUklFTkRfUkVRVUVTVF9QRU5ESU5HEAESGwoXRlJJRU5EX1JF",
-            "UVVFU1RfQUNDRVBURUQQAhIbChdGUklFTkRfUkVRVUVTVF9SRUpFQ1RFRBAD",
-            "KowBChFGcmllbmRFdmVudFJlYXNvbhIjCh9GUklFTkRfRVZFTlRfUkVBU09O",
-            "X1VOU1BFQ0lGSUVEEAASKAokRlJJRU5EX0VWRU5UX1JFQVNPTl9SRVFVRVNU",
-            "X1JFQ0VJVkVEEAESKAokRlJJRU5EX0VWRU5UX1JFQVNPTl9SRVFVRVNUX0FD",
-            "Q0VQVEVEEAIy2gcKEkNsaWVudFBsYXllckZyaWVuZBJECglBZGRGcmllbmQS",
-            "Gi5mcmllbmRwYi5BZGRGcmllbmRSZXF1ZXN0GhsuZnJpZW5kcGIuQWRkRnJp",
-            "ZW5kUmVzcG9uc2USTQoMQWNjZXB0RnJpZW5kEh0uZnJpZW5kcGIuQWNjZXB0",
-            "RnJpZW5kUmVxdWVzdBoeLmZyaWVuZHBiLkFjY2VwdEZyaWVuZFJlc3BvbnNl",
-            "Ek0KDFJlamVjdEZyaWVuZBIdLmZyaWVuZHBiLlJlamVjdEZyaWVuZFJlcXVl",
-            "c3QaHi5mcmllbmRwYi5SZWplY3RGcmllbmRSZXNwb25zZRJNCgxSZW1vdmVG",
-            "cmllbmQSHS5mcmllbmRwYi5SZW1vdmVGcmllbmRSZXF1ZXN0Gh4uZnJpZW5k",
-            "cGIuUmVtb3ZlRnJpZW5kUmVzcG9uc2USUAoNR2V0RnJpZW5kTGlzdBIeLmZy",
-            "aWVuZHBiLkdldEZyaWVuZExpc3RSZXF1ZXN0Gh8uZnJpZW5kcGIuR2V0RnJp",
-            "ZW5kTGlzdFJlc3BvbnNlEl8KEkdldFBlbmRpbmdSZXF1ZXN0cxIjLmZyaWVu",
-            "ZHBiLkdldFBlbmRpbmdSZXF1ZXN0c1JlcXVlc3QaJC5mcmllbmRwYi5HZXRQ",
-            "ZW5kaW5nUmVxdWVzdHNSZXNwb25zZRI4CgVCbG9jaxIWLmZyaWVuZHBiLkJs",
-            "b2NrUmVxdWVzdBoXLmZyaWVuZHBiLkJsb2NrUmVzcG9uc2USPgoHVW5ibG9j",
-            "axIYLmZyaWVuZHBiLlVuYmxvY2tSZXF1ZXN0GhkuZnJpZW5kcGIuVW5ibG9j",
-            "a1Jlc3BvbnNlEkcKCkxpc3RCbG9ja3MSGy5mcmllbmRwYi5MaXN0QmxvY2tz",
-            "UmVxdWVzdBocLmZyaWVuZHBiLkxpc3RCbG9ja3NSZXNwb25zZRJZChBSZWNv",
-            "bW1lbmRGcmllbmRzEiEuZnJpZW5kcGIuUmVjb21tZW5kRnJpZW5kc1JlcXVl",
-            "c3QaIi5mcmllbmRwYi5SZWNvbW1lbmRGcmllbmRzUmVzcG9uc2USPAoRTm90",
-            "aWZ5RnJpZW5kRXZlbnQSGC5mcmllbmRwYi5GcmllbmRFdmVudFMyQxoGLkVt",
-            "cHR5IgWImcgBAhJ7ChlCYXRjaENoZWNrU29jaWFsUmVsYXRpb25zEiouZnJp",
-            "ZW5kcGIuQmF0Y2hDaGVja1NvY2lhbFJlbGF0aW9uc1JlcXVlc3QaKy5mcmll",
-            "bmRwYi5CYXRjaENoZWNrU29jaWFsUmVsYXRpb25zUmVzcG9uc2UiBYiZyAED",
-            "GgWIqMMBAUIVWhNmcmllbmQvcHJvdG8vZnJpZW5kYgZwcm90bzM="));
+            "cxgCIAMoBBIeChZtaW5fZnJpZW5kX2R1cmF0aW9uX21zGAMgASgDInsKIUJh",
+            "dGNoQ2hlY2tTb2NpYWxSZWxhdGlvbnNSZXNwb25zZRImCg1lcnJvcl9tZXNz",
+            "YWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USFQoNaGFzX2FueV9ibG9jaxgC",
+            "IAEoCBIXCg9hbGxfYXJlX2ZyaWVuZHMYAyABKAgqhwEKE0ZyaWVuZFJlcXVl",
+            "c3RTdGF0dXMSGgoWRlJJRU5EX1JFUVVFU1RfVU5LTk9XThAAEhoKFkZSSUVO",
+            "RF9SRVFVRVNUX1BFTkRJTkcQARIbChdGUklFTkRfUkVRVUVTVF9BQ0NFUFRF",
+            "RBACEhsKF0ZSSUVORF9SRVFVRVNUX1JFSkVDVEVEEAMqjAEKEUZyaWVuZEV2",
+            "ZW50UmVhc29uEiMKH0ZSSUVORF9FVkVOVF9SRUFTT05fVU5TUEVDSUZJRUQQ",
+            "ABIoCiRGUklFTkRfRVZFTlRfUkVBU09OX1JFUVVFU1RfUkVDRUlWRUQQARIo",
+            "CiRGUklFTkRfRVZFTlRfUkVBU09OX1JFUVVFU1RfQUNDRVBURUQQAjLaBwoS",
+            "Q2xpZW50UGxheWVyRnJpZW5kEkQKCUFkZEZyaWVuZBIaLmZyaWVuZHBiLkFk",
+            "ZEZyaWVuZFJlcXVlc3QaGy5mcmllbmRwYi5BZGRGcmllbmRSZXNwb25zZRJN",
+            "CgxBY2NlcHRGcmllbmQSHS5mcmllbmRwYi5BY2NlcHRGcmllbmRSZXF1ZXN0",
+            "Gh4uZnJpZW5kcGIuQWNjZXB0RnJpZW5kUmVzcG9uc2USTQoMUmVqZWN0RnJp",
+            "ZW5kEh0uZnJpZW5kcGIuUmVqZWN0RnJpZW5kUmVxdWVzdBoeLmZyaWVuZHBi",
+            "LlJlamVjdEZyaWVuZFJlc3BvbnNlEk0KDFJlbW92ZUZyaWVuZBIdLmZyaWVu",
+            "ZHBiLlJlbW92ZUZyaWVuZFJlcXVlc3QaHi5mcmllbmRwYi5SZW1vdmVGcmll",
+            "bmRSZXNwb25zZRJQCg1HZXRGcmllbmRMaXN0Eh4uZnJpZW5kcGIuR2V0RnJp",
+            "ZW5kTGlzdFJlcXVlc3QaHy5mcmllbmRwYi5HZXRGcmllbmRMaXN0UmVzcG9u",
+            "c2USXwoSR2V0UGVuZGluZ1JlcXVlc3RzEiMuZnJpZW5kcGIuR2V0UGVuZGlu",
+            "Z1JlcXVlc3RzUmVxdWVzdBokLmZyaWVuZHBiLkdldFBlbmRpbmdSZXF1ZXN0",
+            "c1Jlc3BvbnNlEjgKBUJsb2NrEhYuZnJpZW5kcGIuQmxvY2tSZXF1ZXN0Ghcu",
+            "ZnJpZW5kcGIuQmxvY2tSZXNwb25zZRI+CgdVbmJsb2NrEhguZnJpZW5kcGIu",
+            "VW5ibG9ja1JlcXVlc3QaGS5mcmllbmRwYi5VbmJsb2NrUmVzcG9uc2USRwoK",
+            "TGlzdEJsb2NrcxIbLmZyaWVuZHBiLkxpc3RCbG9ja3NSZXF1ZXN0GhwuZnJp",
+            "ZW5kcGIuTGlzdEJsb2Nrc1Jlc3BvbnNlElkKEFJlY29tbWVuZEZyaWVuZHMS",
+            "IS5mcmllbmRwYi5SZWNvbW1lbmRGcmllbmRzUmVxdWVzdBoiLmZyaWVuZHBi",
+            "LlJlY29tbWVuZEZyaWVuZHNSZXNwb25zZRI8ChFOb3RpZnlGcmllbmRFdmVu",
+            "dBIYLmZyaWVuZHBiLkZyaWVuZEV2ZW50UzJDGgYuRW1wdHkiBYiZyAECEnsK",
+            "GUJhdGNoQ2hlY2tTb2NpYWxSZWxhdGlvbnMSKi5mcmllbmRwYi5CYXRjaENo",
+            "ZWNrU29jaWFsUmVsYXRpb25zUmVxdWVzdBorLmZyaWVuZHBiLkJhdGNoQ2hl",
+            "Y2tTb2NpYWxSZWxhdGlvbnNSZXNwb25zZSIFiJnIAQMaBYiowwEBQhVaE2Zy",
+            "aWVuZC9wcm90by9mcmllbmRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Friendpb.FriendRequestStatus), typeof(global::Friendpb.FriendEventReason), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -138,7 +139,7 @@ namespace Friendpb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RecommendEntry), global::Friendpb.RecommendEntry.Parser, new[]{ "CandidatePlayerId", "MutualFriends", "IsOnline", "LastActiveMs", "Name", "Level", "ClassId", "Gender", "AppearanceId", "ZoneId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RecommendFriendsResponse), global::Friendpb.RecommendFriendsResponse.Parser, new[]{ "ErrorMessage", "Candidates", "NextCursor", "OnlineDirectory" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.FriendEventS2C), global::Friendpb.FriendEventS2C.Parser, new[]{ "Reason", "ByPlayerId", "TsMs" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.BatchCheckSocialRelationsRequest), global::Friendpb.BatchCheckSocialRelationsRequest.Parser, new[]{ "SideAPlayerIds", "SideBPlayerIds" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.BatchCheckSocialRelationsRequest), global::Friendpb.BatchCheckSocialRelationsRequest.Parser, new[]{ "SideAPlayerIds", "SideBPlayerIds", "MinFriendDurationMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.BatchCheckSocialRelationsResponse), global::Friendpb.BatchCheckSocialRelationsResponse.Parser, new[]{ "ErrorMessage", "HasAnyBlock", "AllAreFriends" }, null, null, null, null)
           }));
     }
@@ -6545,6 +6546,7 @@ namespace Friendpb {
     public BatchCheckSocialRelationsRequest(BatchCheckSocialRelationsRequest other) : this() {
       sideAPlayerIds_ = other.sideAPlayerIds_.Clone();
       sideBPlayerIds_ = other.sideBPlayerIds_.Clone();
+      minFriendDurationMs_ = other.minFriendDurationMs_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -6576,6 +6578,21 @@ namespace Friendpb {
       get { return sideBPlayerIds_; }
     }
 
+    /// <summary>Field number for the "min_friend_duration_ms" field.</summary>
+    public const int MinFriendDurationMsFieldNumber = 3;
+    private long minFriendDurationMs_;
+    /// <summary>
+    /// 可选：要求双方互为好友的最低持续时长（毫秒；0 = 不限，仅校验当前互为好友；好友外观赠礼传 7 天 = 604800000）。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long MinFriendDurationMs {
+      get { return minFriendDurationMs_; }
+      set {
+        minFriendDurationMs_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -6593,6 +6610,7 @@ namespace Friendpb {
       }
       if(!sideAPlayerIds_.Equals(other.sideAPlayerIds_)) return false;
       if(!sideBPlayerIds_.Equals(other.sideBPlayerIds_)) return false;
+      if (MinFriendDurationMs != other.MinFriendDurationMs) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -6602,6 +6620,7 @@ namespace Friendpb {
       int hash = 1;
       hash ^= sideAPlayerIds_.GetHashCode();
       hash ^= sideBPlayerIds_.GetHashCode();
+      if (MinFriendDurationMs != 0L) hash ^= MinFriendDurationMs.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -6622,6 +6641,10 @@ namespace Friendpb {
     #else
       sideAPlayerIds_.WriteTo(output, _repeated_sideAPlayerIds_codec);
       sideBPlayerIds_.WriteTo(output, _repeated_sideBPlayerIds_codec);
+      if (MinFriendDurationMs != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(MinFriendDurationMs);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -6634,6 +6657,10 @@ namespace Friendpb {
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
       sideAPlayerIds_.WriteTo(ref output, _repeated_sideAPlayerIds_codec);
       sideBPlayerIds_.WriteTo(ref output, _repeated_sideBPlayerIds_codec);
+      if (MinFriendDurationMs != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(MinFriendDurationMs);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -6646,6 +6673,9 @@ namespace Friendpb {
       int size = 0;
       size += sideAPlayerIds_.CalculateSize(_repeated_sideAPlayerIds_codec);
       size += sideBPlayerIds_.CalculateSize(_repeated_sideBPlayerIds_codec);
+      if (MinFriendDurationMs != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(MinFriendDurationMs);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -6660,6 +6690,9 @@ namespace Friendpb {
       }
       sideAPlayerIds_.Add(other.sideAPlayerIds_);
       sideBPlayerIds_.Add(other.sideBPlayerIds_);
+      if (other.MinFriendDurationMs != 0L) {
+        MinFriendDurationMs = other.MinFriendDurationMs;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -6689,6 +6722,10 @@ namespace Friendpb {
             sideBPlayerIds_.AddEntriesFrom(input, _repeated_sideBPlayerIds_codec);
             break;
           }
+          case 24: {
+            MinFriendDurationMs = input.ReadInt64();
+            break;
+          }
         }
       }
     #endif
@@ -6716,6 +6753,10 @@ namespace Friendpb {
           case 18:
           case 16: {
             sideBPlayerIds_.AddEntriesFrom(ref input, _repeated_sideBPlayerIds_codec);
+            break;
+          }
+          case 24: {
+            MinFriendDurationMs = input.ReadInt64();
             break;
           }
         }

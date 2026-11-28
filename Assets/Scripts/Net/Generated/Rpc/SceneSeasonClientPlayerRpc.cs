@@ -82,5 +82,10 @@ namespace MmorpgClient.Net.Generated
         public static void ResolveWuxingRealmEvent(IRpcChannel channel, global::ResolveWuxingRealmEventRequest request,
             RpcDone<global::ResolveWuxingRealmEventResponse> done)
             => channel.CallMethod(ResolveWuxingRealmEventMessageId, request, global::ResolveWuxingRealmEventResponse.Parser, done);
+
+        public const uint ExpandSavedBuildSlotsMessageId = 603;
+        public static void ExpandSavedBuildSlots(IRpcChannel channel, global::ExpandSavedBuildSlotsRequest request,
+            RpcDone<global::ExpandSavedBuildSlotsResponse> done)
+            => channel.CallMethod(ExpandSavedBuildSlotsMessageId, request, global::ExpandSavedBuildSlotsResponse.Parser, done);
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using MmorpgClient.Game.RewardedAd;
 using MmorpgClient.Game.TravelPass;
 using MmorpgClient.UI.Ugui.Gameplay;
 using MmorpgClient.World.Tianyong;
@@ -52,10 +53,11 @@ namespace MmorpgClient.UI.Ugui.TravelPass
         private static readonly Color PremiumTint = new Color(0.99f, 0.95f, 0.84f, 0.98f);
 
         private readonly RectTransform _root, _frame, _contentHost, _confirmOverlay, _progressFill;
+        private readonly Image _bannerBg;
         private readonly TMP_Text _titleText, _diamondText, _bindDiamondText, _progressText, _statusText;
         private readonly TMP_Text _confirmTitle, _confirmBody, _confirmNotice;
-        private readonly Button _claimAllButton, _unlockButton, _confirmUnlockButton, _confirmRechargeButton;
-        private readonly TMP_Text _claimAllLabel, _unlockLabel;
+        private readonly Button _claimAllButton, _unlockButton, _giftButton, _selectActiveButton, _confirmUnlockButton, _confirmRechargeButton;
+        private readonly TMP_Text _claimAllLabel, _unlockLabel, _selectActiveLabel;
 
         private TravelPassClient _client;
         private Action _openRechargeAction;
@@ -118,6 +120,17 @@ namespace MmorpgClient.UI.Ugui.TravelPass
             bannerBg.pixelsPerUnitMultiplier = 1f;
             if (bannerBg.sprite == null) bannerBg.color = new Color(0.93f, 0.89f, 0.79f, 0.94f);
             bannerBg.raycastTarget = false;
+            _bannerBg = bannerBg;
+
+            _selectActiveButton = Button(bannerBg.transform, "设为在研", 968f, 12f, 180f, 44f,
+                () =>
+                {
+                    var cur = _client?.State;
+                    if (cur != null && cur.PassId != 0u) _client.SelectActivePass(cur.PassId);
+                }, primary: false, fontSize: 20f);
+            _selectActiveButton.name = "TravelPassSelectActive";
+            _selectActiveLabel = _selectActiveButton.GetComponentInChildren<TMP_Text>(true);
+            _selectActiveButton.gameObject.SetActive(false);
 
             var promise = Text(bannerBg.transform,
                 "零日常 · 零签到 · 正常游玩自动累计游历点 · 先玩后买随时补领 · 解锁典藏永不过期 · 绑定仅自用零战力突破",
@@ -151,10 +164,27 @@ namespace MmorpgClient.UI.Ugui.TravelPass
             _claimAllButton.name = ClaimAllButtonName;
             _claimAllLabel = _claimAllButton.GetComponentInChildren<TMP_Text>(true);
 
-            _unlockButton = Button(bannerBg.transform, "解锁典藏 (180灵石)", 1444f, 41f, 276f, 66f,
-                OpenUnlockConfirmModal, primary: true, fontSize: 25f);
+            _unlockButton = Button(bannerBg.transform, "解锁典藏 (180灵石)", 1444f, 41f, 224f, 66f,
+                OpenUnlockConfirmModal, primary: true, fontSize: 23f);
             _unlockButton.name = UnlockButtonName;
             _unlockLabel = _unlockButton.GetComponentInChildren<TMP_Text>(true);
+
+            _giftButton = Button(bannerBg.transform, "赠礼", 1676f, 41f, 64f, 66f,
+                HandleGiftTravelPassClicked, primary: false, fontSize: 18f);
+            _giftButton.name = "TravelPassGiftFriend";
+            var giftSprite = AppearanceUiArt.LoadFriendGiftIcon();
+            if (giftSprite != null)
+            {
+                var giftIcon = QdaoUguiFactory.CreateImage("GiftIcon", _giftButton.transform, 14f, 4f, 36f, 36f, giftSprite);
+                giftIcon.preserveAspect = true;
+                giftIcon.raycastTarget = false;
+                var giftLbl = _giftButton.GetComponentInChildren<TMP_Text>(true);
+                if (giftLbl != null)
+                {
+                    giftLbl.rectTransform.anchoredPosition = new Vector2(0f, -18f);
+                    giftLbl.fontSize = 15f;
+                }
+            }
 
             CreateSkinOrFallbackArt(_frame, "TravelPassContentBg", "content_panel", "content_panel",
                 ContentX, ContentY, ContentWidth, ContentHeight);
@@ -238,6 +268,26 @@ namespace MmorpgClient.UI.Ugui.TravelPass
 
             var snap = _client?.State;
             _titleText.text = !string.IsNullOrWhiteSpace(snap?.Name) ? snap.Name : "青云游历手记";
+            if (_bannerBg != null)
+            {
+                Sprite bannerSprite = AppearanceUiArt.LoadTravelPassBanner(snap?.PassId ?? 0u, snap?.BannerAssetKey)
+                    ?? LoadOptionalSkin("travel_pass_banner");
+                _bannerBg.sprite = bannerSprite;
+                _bannerBg.type = bannerSprite != null && bannerSprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                _bannerBg.color = bannerSprite != null ? Color.white : new Color(0.93f, 0.89f, 0.79f, 0.94f);
+            }
+            if (_selectActiveButton != null)
+            {
+                bool showBookshelfSwitch = snap != null && snap.Available && snap.Bookshelf.Count > 1 && (_client?.SupportsSelectActive ?? false);
+                bool isActiveBook = snap != null && snap.ActivePassId == snap.PassId;
+                _selectActiveButton.gameObject.SetActive(showBookshelfSwitch);
+                if (showBookshelfSwitch)
+                {
+                    if (_selectActiveLabel != null)
+                        _selectActiveLabel.text = isActiveBook ? "★ 当前在研" : "设为在研";
+                    _selectActiveButton.interactable = !isActiveBook && snap.OpenForProgress && !(_client?.AnyWritePending ?? false);
+                }
+            }
             _diamondText.text = $"灵石：{(snap?.DiamondBalance ?? 0).ToString(CultureInfo.InvariantCulture)}";
             _bindDiamondText.text = $"绑定灵石：{(snap?.BindDiamondBalance ?? 0).ToString(CultureInfo.InvariantCulture)}（仅活动赠送，不抵扣典藏解锁）";
 
@@ -262,16 +312,25 @@ namespace MmorpgClient.UI.Ugui.TravelPass
                 _claimAllLabel.text = claimable > 0 ? $"一键领取 ({claimable})" : "暂无可领奖励";
             _claimAllButton.interactable = snap != null && snap.Available && claimable > 0 && !busy && !inBattle;
 
+            var distPolicy = ClientDistributionPolicy.Current;
+            bool showIap = distPolicy.IapEnabled;
+            _unlockButton.gameObject.SetActive(showIap || (snap != null && snap.PremiumUnlocked));
             if (snap != null && snap.PremiumUnlocked)
             {
                 if (_unlockLabel != null) _unlockLabel.text = "已解锁典藏 · 永不过期";
                 _unlockButton.interactable = false;
             }
-            else
+            else if (showIap)
             {
                 ulong price = snap != null && snap.PremiumPrice > 0 ? snap.PremiumPrice : 180UL;
                 if (_unlockLabel != null) _unlockLabel.text = $"解锁典藏 ({price}灵石)";
                 _unlockButton.interactable = snap != null && snap.Available && snap.OpenForUnlock && !busy && !inBattle;
+            }
+            if (_giftButton != null)
+            {
+                bool showGift = distPolicy.GiftingEnabled && snap != null && snap.Available && snap.PassId != 0u;
+                _giftButton.gameObject.SetActive(showGift);
+                _giftButton.interactable = showGift && !busy && !inBattle;
             }
 
             UpdateStatusLine();
@@ -325,13 +384,20 @@ namespace MmorpgClient.UI.Ugui.TravelPass
                 return;
             }
 
+            float headerY = 0f;
+            if (snap.Bookshelf.Count > 1)
+            {
+                DrawBookshelfBar(_contentHost, snap, 0f, 0f, viewW, 54f, _client.AnyWritePending);
+                headerY = 60f;
+            }
+
             // 顶部表头（三列坐标严格对齐 tier_row_*.png 竖线 x=328、x=1016）
-            var header = QdaoUguiFactory.CreateRect("TravelPassHeaderRow", _contentHost, 0f, 0f, viewW, 38f);
+            var header = QdaoUguiFactory.CreateRect("TravelPassHeaderRow", _contentHost, 0f, headerY, viewW, 38f);
             Text(header, "档位 / 游历点", 20f, 2f, RowColFreeX - 36f, 34f, 24f, Ink, alignment: TextAlignmentOptions.Center).raycastTarget = false;
             Text(header, "免费游历轨（零门槛全员可领）", RowColFreeX + 20f, 2f, RowColPremiumX - RowColFreeX - 40f, 34f, 24f, JadeAccent).raycastTarget = false;
             Text(header, "典藏进阶轨（180灵石 · 先玩后买 · 永不过期 · 零战力突破）", RowColPremiumX + 20f, 2f, viewW - RowColPremiumX - 36f, 34f, 23f, GoldAccent).raycastTarget = false;
 
-            float scrollTop = 42f;
+            float scrollTop = headerY + 42f;
             float cosmeticBarH = snap.UnlockedCosmeticKeys.Count > 0 ? 74f : 0f;
             float scrollH = viewH - scrollTop - cosmeticBarH;
 
@@ -366,6 +432,32 @@ namespace MmorpgClient.UI.Ugui.TravelPass
             if (cosmeticBarH > 0f)
             {
                 DrawCosmeticBar(_contentHost, snap, 0f, scrollTop + scrollH + 8f, viewW, cosmeticBarH - 8f, busy, inBattle);
+            }
+        }
+
+        private void DrawBookshelfBar(RectTransform parent, global::TravelPassSnapshot snap, float x, float y, float w, float h, bool busy)
+        {
+            var bar = QdaoUguiFactory.CreateRect("TravelPassBookshelfBar", parent, x, y, w, h);
+            int count = snap.Bookshelf.Count;
+            float gap = 10f;
+            float tabW = Math.Min(276f, (w - gap * Math.Max(0, count - 1)) / Math.Max(1, count));
+            float cursorX = 0f;
+            for (int i = 0; i < count; ++i)
+            {
+                var book = snap.Bookshelf[i];
+                bool viewing = book.PassId == snap.PassId;
+                string shortName = !string.IsNullOrWhiteSpace(book.Name) ? book.Name : $"第{book.PassId}期";
+                int dotIdx = shortName.IndexOf('·');
+                if (dotIdx > 0) shortName = shortName.Substring(0, dotIdx).Trim();
+                string prefix = book.IsActive ? "★" : "";
+                string claimTag = book.ClaimableCount > 0 ? $" +{book.ClaimableCount}" : "";
+                string label = $"{prefix}{shortName} {book.ProgressPoints}/{book.MaxPoints}{claimTag}";
+                uint capturedPassId = book.PassId;
+                var tabBtn = Button(bar, label, cursorX, 4f, tabW, h - 8f,
+                    () => _client?.RequestState(force: true, passId: capturedPassId),
+                    primary: viewing, enabled: !busy, fontSize: 19f);
+                tabBtn.name = $"TravelPassBookshelfTab_{book.PassId}";
+                cursorX += tabW + gap;
             }
         }
 
@@ -582,6 +674,21 @@ namespace MmorpgClient.UI.Ugui.TravelPass
             _client.UnlockPremium(quote);
         }
 
+        private void HandleGiftTravelPassClicked()
+        {
+            if (!ClientDistributionPolicy.Current.GiftingEnabled) return;
+            var snap = _client?.State;
+            if (snap == null || !snap.Available || snap.PassId == 0u) return;
+            ulong price = snap.PremiumPrice > 0 ? snap.PremiumPrice : 180UL;
+            string name = !string.IsNullOrWhiteSpace(snap.Name) ? snap.Name : $"游历手记第{snap.PassId}期";
+            AppearanceUiRoot.Instance?.OpenCosmeticGiftModal(
+                global::CosmeticGiftTargetKind.CosmeticGiftTargetTravelPass,
+                snap.PassId,
+                string.Empty,
+                $"{name}·典藏券",
+                price);
+        }
+
         private void HandleRechargeClicked()
         {
             Hide();
@@ -591,6 +698,8 @@ namespace MmorpgClient.UI.Ugui.TravelPass
         private static Sprite LoadOptionalSkin(string relativePath)
         {
             if (string.IsNullOrWhiteSpace(relativePath)) return null;
+            if (string.Equals(relativePath, "frame_lightcard_season_s1", StringComparison.Ordinal))
+                return Resources.Load<Sprite>("UI/Ugui/AfkPassV2/frame_lightcard_season_s1");
             return Resources.Load<Sprite>(SkinRoot + relativePath.TrimStart('/'));
         }
 

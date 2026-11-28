@@ -23,8 +23,9 @@ namespace MmorpgClient.UI.Ugui.Attribute
         internal static void Place(UnityEngine.Transform root,string name,float x,float y,float w,float h)=>Place(Find(root,name),x,y,w,h);
         internal static void Font(TMP_Text text,float size,Color? color=null,bool body=false)
         {
-            if(text==null)return;text.font=body?QdaoUguiTypography.ResolveBodyFont():QdaoUguiTheme.ResolveFont();
+            if(text==null)return;
             text.fontSize=size;text.fontStyle=FontStyles.Normal;if(color.HasValue)text.color=color.Value;
+            QdaoUguiTheme.ApplyTypographyAuto(text);
         }
         internal static TMP_Text Text(RectTransform root,string name,float x,float y,float w,float h,string value,float size,Color color,bool body=false)
         {

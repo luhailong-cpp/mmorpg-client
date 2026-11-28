@@ -12,7 +12,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void BuildSkills(float x, float width)
         {
-            Label("PetSkillsTitle", _body, x + 16f, 172f, width - 178f, 40f, "宝宝技能", 32f, Green, role: TypographyRole.Heading);
+            Label("PetSkillsTitle", _body, x + 16f, 172f, width - 178f, 40f, "宝宝技能", 32f, Green, role: QdaoUiTypographyRole.Heading);
             var state = SkillState;
             bool hasAuthority = state?.IsConnected == true && !state.IsReadOnly && state.Snapshot != null;
             var refresh = ActionButton("PetSkillsRefresh", _body, x + width - 132f, 170f, 132f, 42f, "刷新", false,
@@ -52,7 +52,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 icon.preserveAspect = true;
                 // pet_card_selected（guild_row_self）为浅玉绿纸底，用深玉墨绿保高对比度与帮会原图一致
                 Label("PetSkillName" + entry.Id, parent, 82f, 6f, listW - 96f, 34f, entry.Definition.name, 26f,
-                    isSelected ? Green : RichInk, role: TypographyRole.Heading);
+                    isSelected ? Green : RichInk, role: QdaoUiTypographyRole.Heading);
                 Label("PetSkillSummary" + entry.Id, parent, 82f, 40f, listW - 96f, 26f,
                     entry.Definition.KindLabel + " · " + (entry.Rank > 0 ? entry.Rank + "级" : "未学习"), 19f,
                     isSelected ? SelectedInk : Muted);
@@ -78,7 +78,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             var icon = Art("PetSelectedSkillIcon", _body, x + 22f, topY + 18f, 92f, 92f, "round_badge_taiji");
             icon.sprite = CharacterPetArt.Skill(entry.Id, 128) ?? CharacterPetArt.Get("round_badge_taiji");
             icon.preserveAspect = true;
-            Label("PetSelectedSkillName", _body, x + 130f, topY + 20f, width - 150f, 46f, definition.name, 33f, Green, role: TypographyRole.Heading);
+            Label("PetSelectedSkillName", _body, x + 130f, topY + 20f, width - 150f, 46f, definition.name, 33f, Green, role: QdaoUiTypographyRole.Heading);
             Label("PetSelectedSkillKind", _body, x + 130f, topY + 68f, width - 150f, 32f, definition.KindLabel + "技能", 21f, Muted);
 
             float scrollY = topY + 124f;

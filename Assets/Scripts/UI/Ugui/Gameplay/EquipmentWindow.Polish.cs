@@ -723,13 +723,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var loadoutSchemes = EquipLoadoutModel.ReferencedSchemesOf(_client?.EquipLoadouts, _talismanTargetItemId);
             string loadoutWarn = loadoutSchemes.Count == 0
                 ? string.Empty
-                : "\n• " + EquipLoadoutModel.FormatItemProtectionWarning(loadoutSchemes, "解封剥离");
+                : "\n· " + EquipLoadoutModel.FormatItemProtectionWarning(loadoutSchemes, "解封剥离");
             Label(_modalLayer, "UnsealDesc",
                 $"目标装备：{Name(item)}（当前强化 +{item?.EnhanceLevel ?? 0} · 绑定 B）\n\n"
-                + "• 消耗 1 张「解封剥离符」\n"
-                + "• 清空全部绑定养成：强化等级归 +0、保底清零、清空已装词条与宗师署名\n"
-                + "• 仅恢复为纯可交易（T）原胚，绝不把绑定材料洗白为可交易\n"
-                + "• 若装备上镶嵌了宝石，需先取下宝石再执行剥离" + loadoutWarn,
+                + "· 消耗 1 张「解封剥离符」\n"
+                + "· 清空全部绑定养成：强化等级归 +0、保底清零、清空已装词条与宗师署名\n"
+                + "· 仅恢复为纯可交易（T）原胚，绝不把绑定材料洗白为可交易\n"
+                + "· 若装备上镶嵌了宝石，需先取下宝石再执行剥离" + loadoutWarn,
                 1020, 315, 2100, 440, 40, true, Ink);
 
             var preview = _craft.Preview;
@@ -751,7 +751,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 && (loadoutSchemes.Count == 0 || _unsealLoadoutAck)
                 && preview?.Choice?.Operation == EquipmentCraftChoice.Types.Operation.UnsealToTradable
                 && preview.Choice.ItemId == _talismanTargetItemId;
+            ulong ownedUnseal = preview?.Material?.Available
+                ?? (ulong)EquipmentScreenModel.OwnedCount(_client?.CharacterBag, _client?.Equipment, 3409u);
             Button(_modalLayer, "UnsealCancel", "返回检查", 860, 1220, 720, CloseModal);
+            var spiritShop = MmorpgClient.UI.Ugui.SpiritShop.SpiritShopUiRoot.Instance;
+            if (ownedUnseal == 0 && spiritShop?.Client?.IsSupported == true)
+            {
+                Button(_modalLayer, "UnsealBuyInShop", "百宝阁购买剥离符", 1640, 1220, 480, () =>
+                {
+                    CloseModal();
+                    Hide();
+                    spiritShop.OpenTab(MmorpgClient.Game.SpiritShop.SpiritShopModels.TabAdvancement,
+                        MmorpgClient.Game.SpiritShop.SpiritShopModels.GoodsUnsealTalisman);
+                }, primary: false, enabled: !WriteBlocked);
+            }
             Button(_modalLayer, "UnsealCommit", _craft.Busy ? "剥离中…" : "确认剥离为纯 T 原胚", 2160, 1220, 960,
                 () => { if (canCommit) _craft.Commit(); }, true, canCommit);
         }
@@ -872,6 +885,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     x0 + 392f * s, y0 + 564f * s, 1250f * s, 72f * s, 32f, true, Danger);
 
                 // 右下双按钮 (y=655..717)
+                var inheritShop = MmorpgClient.UI.Ugui.SpiritShop.SpiritShopUiRoot.Instance;
+                if (ownedTalisman == 0 && inheritShop?.Client?.IsSupported == true)
+                {
+                    Button(_modalLayer, "InheritBuyInShop", "去百宝阁购买", x0 + 756f * s, y0 + 650f * s, 286f * s, () =>
+                    {
+                        CloseModal();
+                        Hide();
+                        inheritShop.OpenTab(MmorpgClient.Game.SpiritShop.SpiritShopModels.TabAdvancement,
+                            MmorpgClient.Game.SpiritShop.SpiritShopModels.GoodsInheritTalisman);
+                    }, primary: false, enabled: !WriteBlocked);
+                }
                 Button(_modalLayer, "InheritCancel", "取消", x0 + 1068f * s, y0 + 650f * s, 240f * s, CloseModal);
                 Button(_modalLayer, "InheritCommit", _craft.Busy ? "继承中…" : "确认继承",
                     x0 + 1336f * s, y0 + 650f * s, 332f * s, () => { if (canCommit) _craft.Commit(); }, true, canCommit);

@@ -24,8 +24,9 @@ namespace MmorpgClient.UI.Ugui.Battle
             Skin(image,close?"close_button":command?"slider_thumb":primary?"button_primary":"button_secondary");
             foreach(var text in button.GetComponentsInChildren<TMP_Text>(true))
             {
-                text.font=QdaoUguiTheme.ResolveFont();text.fontStyle=FontStyles.Normal;text.color=primary||command?QdaoRefreshArt.Ivory:Ink;
+                text.fontStyle=FontStyles.Normal;text.color=primary||command?QdaoRefreshArt.Ivory:Ink;
                 if(text.name=="Detail"&&text.text.StartsWith("冷却",StringComparison.Ordinal))text.color=QdaoUguiTheme.Html("#92611D");
+                QdaoUguiTheme.ApplyTypography(text, primary||command ? QdaoUiTypographyRole.Primary : QdaoUiTypographyRole.Heading);
             }
             if(close&&label!=null)label.gameObject.SetActive(false);
         }
@@ -37,8 +38,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             foreach(var label in root.GetComponentsInChildren<TMP_Text>(true))
             {
                 if(label.name=="VerdictText"||label.name=="MvpBadgeText"||label.name=="HighlightPillText")continue;
-                label.font=label.name.EndsWith("Title",StringComparison.Ordinal)?QdaoUguiTheme.ResolveFont():QdaoUguiTypography.ResolveBodyFont();
                 label.fontStyle=FontStyles.Normal;label.color=label.name=="Title"?Ink:Muted;
+                QdaoUguiTheme.ApplyTypography(label, label.name.EndsWith("Title",StringComparison.Ordinal) ? QdaoUiTypographyRole.Heading : QdaoUiTypographyRole.Body);
             }
             foreach(var button in root.GetComponentsInChildren<Button>(true))
                 Button(button,button.name.Contains("Join")||button.name.Contains("WatchRandom")||button.name.Contains("WatchReplay")||
@@ -52,7 +53,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     var plate=QdaoUguiFactory.CreateImage("FidelityTitlePlate",root,(root.rect.width-420)*.5f,4,420,70,QdaoUguiTheme.RequireSprite(Root+"title_plate"));
                     plate.raycastTarget=false;plate.transform.SetAsFirstSibling();
                 }
-                if(title!=null){title.rectTransform.anchoredPosition=new Vector2((root.rect.width-400)*.5f,-14);title.rectTransform.sizeDelta=new Vector2(400,50);title.fontSize=30;title.alignment=TextAlignmentOptions.Center;title.color=QdaoRefreshArt.Ivory;}
+                if(title!=null){title.rectTransform.anchoredPosition=new Vector2((root.rect.width-400)*.5f,-14);title.rectTransform.sizeDelta=new Vector2(400,50);title.fontSize=30;title.alignment=TextAlignmentOptions.Center;title.color=QdaoRefreshArt.Ivory;QdaoUguiTheme.ApplyTypography(title, QdaoUiTypographyRole.Primary);}
             }
         }
         internal static void ApplyParty(RectTransform root)
@@ -63,7 +64,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 Skin(child.GetComponent<Image>(),"pet_card_normal");
                 foreach(var label in child.GetComponentsInChildren<TMP_Text>(true))
                     if(label.name=="Name"||label.name=="Level")
-                    {label.font=QdaoUguiTheme.ResolveFont();label.color=label.name=="Name"?Ink:Muted;}
+                    {label.color=label.name=="Name"?Ink:Muted;QdaoUguiTheme.ApplyTypography(label, label.name=="Name"?QdaoUiTypographyRole.Heading:QdaoUiTypographyRole.Body);}
             }
         }
         internal static void ApplyHud(RectTransform root)

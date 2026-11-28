@@ -41,6 +41,8 @@ namespace MmorpgClient.UI.Ugui.Pet
         private UiTextButton _confirmButton;
         private TMP_Text _statusText;
         private RectTransform _detailsRoot;
+        private RectTransform _squadPresetsRoot;
+        private RectTransform _squadPresetsList;
         private PetArchivePreview _archivePreview;
         private PetShopPanel _shop;
         private TMP_Text _detailText;
@@ -78,6 +80,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             BuildRightColumn();
             BuildTabs();
             BuildDetails();
+            BuildSquadPresetsModal();
             var archiveRoot = QdaoUguiFactory.CreateRect("PetArchiveGallery", _root, 40f, 46f, 1920f, 840f);
             _archivePreview = archiveRoot.gameObject.AddComponent<PetArchivePreview>();
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
@@ -125,10 +128,20 @@ namespace MmorpgClient.UI.Ugui.Pet
             _emptyText.alignment = TextAlignmentOptions.Center;
 
             var help = CreateAction("CultivationHelp", _root, FidelityPetGeometry.LeftX,
-                806f, 256f, 76f, "培养说明", false);
+                806f, 168f, 76f, "培养说明", false);
             help.Button.onClick.AddListener(ShowDetails);
-            _summonButton = CreateAction("Summon", _root, FidelityPetGeometry.LeftX + 274f,
-                806f, 256f, 76f, "出 战", true);
+            var squadBtn = CreateAction("PetSquadPresetsBtn", _root, FidelityPetGeometry.LeftX + 176f,
+                806f, 168f, 76f, "编 队", false);
+            var squadIcon = MmorpgClient.UI.Ugui.Gameplay.AppearanceUiArt.LoadPetSquadPresetIcon();
+            if (squadIcon != null)
+            {
+                var ic = QdaoUguiFactory.CreateImage("SquadIcon", squadBtn.Rect, 12f, 18f, 40f, 40f, squadIcon);
+                ic.preserveAspect = true;
+                ic.raycastTarget = false;
+            }
+            squadBtn.Button.onClick.AddListener(ShowSquadPresets);
+            _summonButton = CreateAction("Summon", _root, FidelityPetGeometry.LeftX + 352f,
+                806f, 178f, 76f, "出 战", true);
             _summonButton.Button.onClick.AddListener(OnSummonClicked);
 
             QdaoUguiFactory.CreateImage("RosterDivider", _root, 626f, 102f,
@@ -323,6 +336,88 @@ namespace MmorpgClient.UI.Ugui.Pet
             SetStatus("购买成功，已选中宝宝，点击「出战」即可参战。");
         }
 
+        private void BuildSquadPresetsModal()
+        {
+            _squadPresetsRoot = CreatePaintedPanel("PetSquadPresetsModal", _root, 580f, 148f,
+                1240f, 640f, "window_frame").rectTransform;
+            _squadPresetsRoot.GetComponent<Image>().raycastTarget = true;
+            QdaoUguiFactory.CreateText("SquadTitle", _squadPresetsRoot, 52f, 34f,
+                860f, 54f, "灵宠编队快捷预设（免费 2 套 + 轻享卡赠 1 套 + 可永久扩至 5 套）", 28f, PetUiStyle.FieldLabel);
+            var close = CreateAction("SquadClose", _squadPresetsRoot, 1028f, 28f, 160f, 62f, "关 闭", false);
+            close.Button.onClick.AddListener(() => _squadPresetsRoot.gameObject.SetActive(false));
+            _squadPresetsList = QdaoUguiFactory.CreateRect("SquadPresetsList", _squadPresetsRoot, 48f, 108f, 1144f, 492f);
+            _squadPresetsRoot.gameObject.SetActive(false);
+        }
+
+        private void ShowSquadPresets()
+        {
+            if (_squadPresetsRoot == null) return;
+            _detailsRoot.gameObject.SetActive(false);
+            _archivePreview.gameObject.SetActive(false);
+            RenderSquadPresets();
+            _squadPresetsRoot.gameObject.SetActive(true);
+        }
+
+        private void RenderSquadPresets()
+        {
+            if (_squadPresetsList == null) return;
+            for (int i = _squadPresetsList.childCount - 1; i >= 0; --i)
+            {
+                var child = _squadPresetsList.GetChild(i).gameObject;
+                if (Application.isPlaying) UnityEngine.Object.Destroy(child);
+                else UnityEngine.Object.DestroyImmediate(child);
+            }
+            uint unlocked = _list != null && _list.UnlockedSquadPresetSlots > 0u ? _list.UnlockedSquadPresetSlots : 2u;
+            uint effective = _list != null && _list.EffectiveSquadPresetSlots > 0u ? _list.EffectiveSquadPresetSlots : unlocked;
+            uint maxSlots = _list != null && _list.MaxSquadPresetSlots > 0u ? _list.MaxSquadPresetSlots : 5u;
+            bool allowIap = MmorpgClient.Game.RewardedAd.ClientDistributionPolicy.Current.IapEnabled;
+
+            for (uint slot = 1u; slot <= maxSlots; slot++)
+            {
+                uint capturedSlot = slot;
+                float y = (slot - 1u) * 94f;
+                var row = CreatePaintedPanel($"SquadRow_{slot}", _squadPresetsList, 0f, y, 1144f, 84f, "pet_card_normal").rectTransform;
+                PetSquadPresetInfo preset = null;
+                if (_list != null)
+                {
+                    for (int k = 0; k < _list.SquadPresets.Count; ++k)
+                        if (_list.SquadPresets[k].SlotId == slot) { preset = _list.SquadPresets[k]; break; }
+                }
+                bool isAvailable = slot <= effective;
+                bool isLightCardTemp = slot > unlocked && slot <= effective;
+                string summary = !isAvailable ? "未解锁槽位（永久扩容 60 真实灵石，零战力）"
+                    : preset != null && preset.PetIds.Count > 0 ? $"已编入 {preset.PetIds.Count} 只灵宠（首发 #{preset.PetIds[0]}）"
+                    : (isLightCardTemp ? "轻享卡期赠槽 · 暂无预设" : "空闲预设槽 · 可一键保存当前选中灵宠");
+                QdaoUguiFactory.CreateText("SlotLabel", row, 22f, 18f, 640f, 48f,
+                    $"编队 {slot} · {summary}", 24f, PetUiStyle.FieldLabel);
+
+                if (isAvailable)
+                {
+                    var saveBtn = CreateAction($"SaveSquad_{slot}", row, 678f, 14f, 210f, 56f, "保存当前宠", false);
+                    saveBtn.Button.onClick.AddListener(() =>
+                    {
+                        if (_selectedPetId == 0ul) { SetStatus("请先在左侧选择一只宝宝。", true); return; }
+                        _owner.Client?.SaveSquadPreset(capturedSlot, 0u, new[] { _selectedPetId }, summonFirst: false);
+                    });
+                    var applyBtn = CreateAction($"ApplySquad_{slot}", row, 902f, 14f, 220f, 56f, "切首发参战", true);
+                    applyBtn.Button.onClick.AddListener(() =>
+                    {
+                        var ids = preset != null && preset.PetIds.Count > 0
+                            ? (IReadOnlyList<ulong>)preset.PetIds
+                            : (_selectedPetId != 0ul ? new[] { _selectedPetId } : System.Array.Empty<ulong>());
+                        if (ids.Count == 0) { SetStatus("该编队尚未保存灵宠。", true); return; }
+                        _owner.Client?.SaveSquadPreset(capturedSlot, preset?.Tag ?? 0u, ids, summonFirst: true);
+                    });
+                }
+                else if (allowIap && slot == unlocked + 1u)
+                {
+                    uint capturedUnlocked = unlocked;
+                    var unlockBtn = CreateAction($"UnlockSquad_{slot}", row, 840f, 14f, 282f, 56f, "永久解锁 (60灵石)", true);
+                    unlockBtn.Button.onClick.AddListener(() => _owner.Client?.UnlockSquadPresetSlot(capturedUnlocked, 60ul));
+                }
+            }
+        }
+
         private void BuildDetails()
         {
             _detailsRoot = CreatePaintedPanel("PetDetails", _root, 726f, 230f,
@@ -472,6 +567,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             HideTooltip();
             if (_archivePreview != null) _archivePreview.gameObject.SetActive(false);
             if (_detailsRoot != null) _detailsRoot.gameObject.SetActive(false);
+            if (_squadPresetsRoot != null) _squadPresetsRoot.gameObject.SetActive(false);
             if (_root != null) _root.gameObject.SetActive(false);
         }
 
@@ -520,6 +616,8 @@ namespace MmorpgClient.UI.Ugui.Pet
             _list = list;
             HideTooltip();
             _detailsRoot.gameObject.SetActive(false);
+            if (_squadPresetsRoot != null && _squadPresetsRoot.gameObject.activeSelf)
+                RenderSquadPresets();
 
             if (_requestedPetTableId != 0)
             {

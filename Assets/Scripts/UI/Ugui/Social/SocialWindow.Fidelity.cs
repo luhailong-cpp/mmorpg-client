@@ -73,8 +73,9 @@ namespace MmorpgClient.UI.Ugui.Social
             else if(resolved==Jade)resolved=QdaoUguiTheme.Html("#153F2E");
             else if(resolved==Muted)resolved=QdaoUguiTheme.Html("#675E48");
             var text=QdaoUguiFactory.CreateText(name,parent,x,y,w,h,value,size,resolved,align);
-            text.font=QdaoUguiTheme.ResolveFont();text.richText=false;
-            if(size>=24)text.fontStyle=FontStyles.Bold;
+            text.richText=false;
+            if(size>=24) QdaoUguiTheme.ApplyTypography(text, resolved.r+resolved.g>1.4f ? QdaoUiTypographyRole.Primary : QdaoUiTypographyRole.Heading);
+            else QdaoUguiTheme.ApplyTypographyAuto(text);
             text.textWrappingMode=wrap?TextWrappingModes.Normal:TextWrappingModes.NoWrap;
             text.overflowMode=TextOverflowModes.Ellipsis;
             return text;
@@ -155,14 +156,32 @@ namespace MmorpgClient.UI.Ugui.Social
                     var capturedMsg=message;
                     FHit(row,"SocialReport_"+message.Id,"举报",bubbleX+bubble-54,0,54,32,()=>ShowReportModal(State.Channel,capturedMsg),size:17,color:Muted);
                 }
-                var paper=FImage(row,"message_bubble",bubbleX,34,bubble,textHeight+14+cardHeight);
-                if(self){paper.color=QdaoUguiTheme.Html("#E0EFD5");paper.rectTransform.localScale=new UnityEngine.Vector3(-1,1,1);paper.rectTransform.anchoredPosition+=new Vector2(bubble,0);}
+                var bubbleSkin = message.BubbleSkinId != 0u
+                    ? MmorpgClient.UI.Ugui.Gameplay.AppearanceUiArt.LoadShowcaseById(message.BubbleSkinId)
+                    : null;
+                var paper = bubbleSkin != null
+                    ? QdaoUguiFactory.CreateImage("SocialBubbleSkin_" + message.Id, row, bubbleX, 34, bubble, textHeight + 14 + cardHeight, bubbleSkin)
+                    : FImage(row, "message_bubble", bubbleX, 34, bubble, textHeight + 14 + cardHeight);
+                if (bubbleSkin != null)
+                {
+                    paper.type = bubbleSkin.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                    paper.color = Color.white;
+                }
+                else if (self)
+                {
+                    paper.color = QdaoUguiTheme.Html("#E0EFD5");
+                    paper.rectTransform.localScale = new UnityEngine.Vector3(-1, 1, 1);
+                    paper.rectTransform.anchoredPosition += new Vector2(bubble, 0);
+                }
                 FText(row,"MessageText",displayText,bubbleX+18,39,bubble-36,textHeight+4,24,Ink,true,TextAlignmentOptions.TopLeft);
+                var shareCardSkin = message.ShareCardSkinId != 0u
+                    ? MmorpgClient.UI.Ugui.Gameplay.AppearanceUiArt.LoadShowcaseById(message.ShareCardSkinId)
+                    : null;
                 if(hasTrialCard)
                 {
                     ulong capturedCardId=trialCardId;
                     float cardY=43+textHeight;
-                    var v3Panel=Resources.Load<Sprite>("UI/Ugui/TrialJournalV3/challenge_card_panel");
+                    var v3Panel=shareCardSkin??Resources.Load<Sprite>("UI/Ugui/TrialJournalV3/challenge_card_panel");
                     if(v3Panel!=null)
                     {
                         var cardBg=QdaoUguiFactory.CreateImage("SocialTrialCardBg_"+message.Id,row,bubbleX+14,cardY,bubble-28,56,v3Panel);
@@ -190,7 +209,7 @@ namespace MmorpgClient.UI.Ugui.Social
                 {
                     ulong capturedPuzzleId=puzzleCardId;
                     float cardY=43+textHeight;
-                    var puzzleCardBg=Resources.Load<Sprite>("UI/Ugui/TacticalPuzzleV1/puzzle_chat_card_bg");
+                    var puzzleCardBg=shareCardSkin??Resources.Load<Sprite>("UI/Ugui/TacticalPuzzleV1/puzzle_chat_card_bg");
                     if(puzzleCardBg!=null)
                     {
                         var cardBg=QdaoUguiFactory.CreateImage("SocialPuzzleCardBg_"+message.Id,row,bubbleX+14,cardY,bubble-28,64,puzzleCardBg);

@@ -46,7 +46,7 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
         private readonly RectTransform _root, _frame, _contentHost, _confirmOverlay, _confirmChoiceHost;
         private readonly TMP_Text _diamondText, _bindDiamondText, _statusText;
         private readonly TMP_Text _confirmTitle, _confirmBody, _confirmNotice;
-        private readonly Button _confirmBuyButton, _confirmRechargeButton;
+        private readonly Button _rechargeButton, _adSupplyButton, _confirmBuyButton, _confirmRechargeButton;
         private readonly Button[] _tabButtons = new Button[4];
         private readonly Dictionary<uint, uint> _selectedCounts = new();
         private readonly List<(TMP_Text label, string prefix, ulong endTimeMs)> _countdownLabels = new();
@@ -109,11 +109,23 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             _bindDiamondText.name = "SpiritShopBindDiamondBalance";
             _bindDiamondText.raycastTarget = false;
 
+            _adSupplyButton = Button(_frame, MmorpgClient.Game.RewardedAd.RewardedAdModel.EntryButtonText,
+                990f, 24f, 316f, 48f, () =>
+                {
+                    RewardedAdUiRoot.Instance?.OpenConfirmForSlot(
+                        MmorpgClient.Game.RewardedAd.RewardedAdModel.DefaultSlotId,
+                        0u, string.Empty,
+                        ok => { if (ok) _client?.RequestInfo(force: true); });
+                }, primary: false, fontSize: 19f);
+            _adSupplyButton.name = "SpiritShopRewardedAdSupply";
+            RewardedAdUiRoot.AttachVideoBadge(_adSupplyButton.transform, 24f);
+            _adSupplyButton.gameObject.SetActive(false);
+
             var rechargeSprite = LoadOptionalSkin("ui/btn_recharge_gold");
-            var rechargeBtn = rechargeSprite != null
+            _rechargeButton = rechargeSprite != null
                 ? CreateOptionalButton(_frame, RechargeButtonName, "充值灵石", 1320f, 30f, 240f, 68f, rechargeSprite, HandleRechargeClicked, Ink, 28f)
                 : Button(_frame, "充值灵石", 1320f, 30f, 240f, 68f, HandleRechargeClicked, primary: true, fontSize: 28f);
-            rechargeBtn.name = RechargeButtonName;
+            _rechargeButton.name = RechargeButtonName;
 
             var refreshBtn = Button(_frame, "刷新", 1574f, 30f, 120f, 68f, () => _client?.RequestInfo(force: true), fontSize: 26f);
             refreshBtn.name = RefreshButtonName;
@@ -274,6 +286,14 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             }
             _diamondText.text = $"灵石：{(info?.DiamondBalance ?? 0).ToString(CultureInfo.InvariantCulture)}";
             _bindDiamondText.text = $"绑定灵石：{(info?.BindDiamondBalance ?? 0).ToString(CultureInfo.InvariantCulture)}（仅活动赠送，不抵扣直售商品）";
+            if (_rechargeButton != null)
+                _rechargeButton.gameObject.SetActive(MmorpgClient.Game.RewardedAd.ClientDistributionPolicy.Current.IapEnabled);
+            if (_adSupplyButton != null)
+            {
+                var adRoot = RewardedAdUiRoot.Instance;
+                _adSupplyButton.gameObject.SetActive(adRoot != null
+                    && adRoot.CanShowSlot(MmorpgClient.Game.RewardedAd.RewardedAdModel.DefaultSlotId, out _));
+            }
 
             UpdateTabVisuals(info);
             UpdateStatusLine();
@@ -723,7 +743,7 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
                 : "安全提示：所购物品全部为绑定仅自用，确认价格与内容无误后点击「确认购买」。";
 
             if (_confirmRechargeButton != null)
-                _confirmRechargeButton.gameObject.SetActive(shortBalance);
+                _confirmRechargeButton.gameObject.SetActive(shortBalance && MmorpgClient.Game.RewardedAd.ClientDistributionPolicy.Current.IapEnabled);
             if (_confirmBuyButton != null)
                 _confirmBuyButton.interactable = !(_client?.BuyPending ?? false);
         }

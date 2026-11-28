@@ -51,14 +51,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private RectTransform _hud;
         private RectTransform _window;
         private RectTransform _recapWindow;
-        private Button _entry, _buy, _autoReturnButton, _battleScriptButton, _recapConfirmButton;
-        private TMP_Text _state, _price, _balance, _benefits, _status, _buyLabel, _autoReturnLabel, _battleScriptSummary;
+        private Button _entry, _buy, _plan1Button, _plan2Button, _autoReturnButton, _battleScriptButton, _recapConfirmButton;
+        private TMP_Text _state, _price, _balance, _benefits, _status, _buyLabel, _plan1Label, _plan2Label, _autoReturnLabel, _battleScriptSummary;
+        private Image _planTokenIcon, _planFramePreview;
         private TMP_Text _recapSubtitle, _recapBattles, _recapExp, _recapSilver, _recapItems;
         private bool _available;
         private ulong _shownRecapStartedAt;
+        private uint _selectedPlanId = 1u;
         private float _armedAt = float.NegativeInfinity;
+        private uint _armedPlanId;
         private uint _armedCurrency;
         private ulong _armedPrice;
+        private uint _armedPeriodDays;
         // 按钮此刻显示的是「确认开通」:时限到了要收回来。
         private bool _confirmShown;
         // 状态行上一次显示的文字:倒计时每帧在走,只有文字变了才重写。
@@ -155,7 +159,32 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             float scriptW = scriptBarSprite != null ? 856f : 920f;
             _battleScriptSummary = GameplayUiArt.Text(frame, "组队副本托管剧本：默认出招", scriptX, 464, scriptW, 48, 24, AccentJade);
 
-            _status = GameplayUiArt.Text(frame, "", 80, 526, 920, 48, 25, GameplayUiArt.Muted);
+            _status = GameplayUiArt.Text(frame, "", 80, 526, 920, 44, 23, GameplayUiArt.Muted);
+
+            // 双档套餐切换（30 天月享卡 / 90 天季享卡，含令牌与季享附赠头像框实图预览）
+            _planTokenIcon = QdaoUguiFactory.CreateImage("AfkPassPlanTokenIcon", frame, 80, 570, 48, 48,
+                Resources.Load<Sprite>("UI/Ugui/AfkPassV2/icon_season_pass_90d"));
+            _planTokenIcon.preserveAspect = true;
+            _planTokenIcon.raycastTarget = false;
+            _planTokenIcon.gameObject.SetActive(_planTokenIcon.sprite != null);
+
+            _plan1Button = GameplayUiArt.Button(frame, "月享卡 · 30天 (300灵石)", 136, 572, 340, 46,
+                () => SelectPlan(1u), primary: true, fontSize: 21);
+            _plan1Button.name = "AfkPassPlan1";
+            _plan1Label = _plan1Button.GetComponentInChildren<TMP_Text>(true);
+
+            _plan2Button = GameplayUiArt.Button(frame, "季享卡 · 90天 (780灵石 省120)", 488, 572, 396, 46,
+                () => SelectPlan(2u), primary: false, fontSize: 21);
+            _plan2Button.name = "AfkPassPlan2";
+            _plan2Label = _plan2Button.GetComponentInChildren<TMP_Text>(true);
+            _plan2Button.gameObject.SetActive(false);
+
+            _planFramePreview = QdaoUguiFactory.CreateImage("AfkPassPlanFramePreview", frame, 896, 566, 56, 56,
+                Resources.Load<Sprite>("UI/Ugui/AfkPassV2/frame_lightcard_season_s1"));
+            _planFramePreview.preserveAspect = true;
+            _planFramePreview.raycastTarget = false;
+            _planFramePreview.gameObject.SetActive(_planFramePreview.sprite != null);
+
             var close = GameplayUiArt.Button(frame, "关闭", 80, 628, 240, 80, HidePanel);
             close.name = CloseButtonName;
             GameplayUiArt.ApplyOptionalAfkTeamSprite(close.image, "afk_pass_btn_secondary");
@@ -228,7 +257,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Bind(AppBootstrap.Instance?.GameClient);
             BindBattleScripts(BattleScriptUiRoot.Instance?.Client);
             bool battleLayer = BattleUiRoot.Instance?.IsBattleLayerVisible ?? false;
-            _available = _game != null && _game.InGame && _game.IsGateReady && !battleLayer && (_client?.IsSupported ?? false);
+            bool allowIap = MmorpgClient.Game.RewardedAd.ClientDistributionPolicy.Current.IapEnabled;
+            _available = _game != null && _game.InGame && _game.IsGateReady && !battleLayer
+                && (_client?.IsSupported ?? false)
+                && (allowIap || (_client?.Active ?? false));
             _client?.Tick();
             _hud.gameObject.SetActive(_available);
             if (!_available)
@@ -360,24 +392,40 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             return "组队副本托管剧本：默认出招";
         }
 
+        private void SelectPlan(uint planId)
+        {
+            if (_selectedPlanId == planId) return;
+            _selectedPlanId = planId;
+            _armedAt = float.NegativeInfinity;
+            Render();
+        }
+
         private void HandleBuyClicked()
         {
             if (_client == null) return;
             var info = _client.Info;
             if (info == null || !_client.ForSale) return;
+            var plan = AfkPassModels.FindPlan(info, _selectedPlanId);
+            uint planId = plan != null ? plan.PlanId : 0u;
+            uint currency = plan != null ? plan.PriceCurrencyType : info.PriceCurrencyType;
+            ulong price = plan != null ? plan.Price : info.Price;
+            uint periodDays = plan != null ? plan.PeriodDays : info.PeriodDays;
             float now = Time.unscaledTime;
-            if (now - _armedAt > ConfirmWindowSeconds || info.PriceCurrencyType != _armedCurrency || info.Price != _armedPrice)
+            if (now - _armedAt > ConfirmWindowSeconds || planId != _armedPlanId || currency != _armedCurrency
+                || price != _armedPrice || periodDays != _armedPeriodDays)
             {
-                // 第一次点击:只亮出「确认开通(价格)」,不扣钱;记下报价,期间热更涨价则撤回确认。
+                // 第一次点击:只亮出「确认开通(价格)」,不扣钱;记下报价,期间热更涨价或切换套餐则撤回确认。
                 _armedAt = now;
-                _armedCurrency = info.PriceCurrencyType;
-                _armedPrice = info.Price;
+                _armedPlanId = planId;
+                _armedCurrency = currency;
+                _armedPrice = price;
+                _armedPeriodDays = periodDays;
                 Render();
                 return;
             }
             if (now - _armedAt < ConfirmMinIntervalSeconds) return;   // 双击的第二下不算确认
             _armedAt = float.NegativeInfinity;
-            _client.Buy();
+            _client.Buy(planId);
             Render();
         }
 
@@ -387,21 +435,52 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var info = _client?.Info;
             _stateShown = null;
             UpdateStateText();
-            if (info == null)
+            var selectedPlan = AfkPassModels.FindPlan(info, _selectedPlanId);
+            uint shownCurrencyType = selectedPlan != null ? selectedPlan.PriceCurrencyType : (info?.PriceCurrencyType ?? 1u);
+            ulong shownPrice = selectedPlan != null ? selectedPlan.Price : (info?.Price ?? 0ul);
+            uint shownPeriodDays = selectedPlan != null ? selectedPlan.PeriodDays : (info?.PeriodDays ?? 0u);
+            uint shownPlanId = selectedPlan != null ? selectedPlan.PlanId : 0u;
+
+            bool allowIap = MmorpgClient.Game.RewardedAd.ClientDistributionPolicy.Current.IapEnabled;
+            if (info == null || !allowIap)
             {
                 _price.text = "";
                 _balance.text = "";
             }
             else if (_client.ForSale)
             {
-                string currency = AfkPassModels.CurrencyName(info.PriceCurrencyType);
-                _price.text = $"{info.Price} {currency} / {info.PeriodDays} 天，可叠加，剩余最多 {info.MaxRemainingDays} 天";
+                string currency = AfkPassModels.CurrencyName(shownCurrencyType);
+                string bonusLine = AfkPassModels.FormatPlanBonus(selectedPlan);
+                _price.text = bonusLine.Length > 0
+                    ? $"{shownPrice} {currency} / {shownPeriodDays} 天（叠加上限 {info.MaxRemainingDays} 天） · {bonusLine}"
+                    : $"{shownPrice} {currency} / {shownPeriodDays} 天，可叠加，剩余最多 {info.MaxRemainingDays} 天";
                 _balance.text = $"持有{currency}：{info.Balance}";
             }
             else
             {
                 _price.text = AfkPassModels.NotForSaleText;
                 _balance.text = "";
+            }
+            if (_planTokenIcon != null)
+                _planTokenIcon.gameObject.SetActive(allowIap && _planTokenIcon.sprite != null);
+            if (_planFramePreview != null)
+                _planFramePreview.gameObject.SetActive(allowIap && _planFramePreview.sprite != null);
+            if (_plan1Button != null && _plan2Button != null)
+            {
+                bool hasMultiPlans = allowIap && info != null && info.Plans.Count >= 2;
+                _plan1Button.gameObject.SetActive(hasMultiPlans);
+                _plan2Button.gameObject.SetActive(hasMultiPlans);
+                if (hasMultiPlans)
+                {
+                    var p1 = info.Plans[0];
+                    var p2 = info.Plans[1];
+                    if (_plan1Label != null)
+                        _plan1Label.text = $"{(string.IsNullOrWhiteSpace(p1.PlanName) ? "月享卡" : p1.PlanName)} · {p1.PeriodDays}天 ({p1.Price}灵石)";
+                    if (_plan2Label != null)
+                        _plan2Label.text = $"{(string.IsNullOrWhiteSpace(p2.PlanName) ? "季享卡" : p2.PlanName)} · {p2.PeriodDays}天 ({p2.Price}灵石)";
+                    GameplayUiArt.ApplyOptionalAfkTeamSprite(_plan1Button.image, _selectedPlanId == p1.PlanId ? "afk_pass_btn_primary" : "afk_pass_btn_secondary");
+                    GameplayUiArt.ApplyOptionalAfkTeamSprite(_plan2Button.image, _selectedPlanId == p2.PlanId ? "afk_pass_btn_primary" : "afk_pass_btn_secondary");
+                }
             }
             if (_benefits != null)
             {
@@ -412,15 +491,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _status.color = (_client?.StatusIsError ?? false) ? ErrorInk : GameplayUiArt.Muted;
 
             bool pending = _client != null && _client.BuyPending;
-            bool canBuy = _client != null && _client.Ready && _client.ForSale && !pending && !_client.RequiresReconnect;
-            if (info == null || info.PriceCurrencyType != _armedCurrency || info.Price != _armedPrice)
+            bool canBuy = allowIap && _client != null && _client.Ready && _client.ForSale && !pending && !_client.RequiresReconnect;
+            if (info == null || shownPlanId != _armedPlanId || shownCurrencyType != _armedCurrency
+                || shownPrice != _armedPrice || shownPeriodDays != _armedPeriodDays)
                 _armedAt = float.NegativeInfinity;
+            _buy.gameObject.SetActive(allowIap);
             _buy.interactable = canBuy;
             _confirmShown = canBuy && info != null && Time.unscaledTime - _armedAt <= ConfirmWindowSeconds;
             string action = _client != null && _client.Active ? "续费" : "开通";
             _buyLabel.text = pending ? $"{action}中…"
-                : _confirmShown ? $"确认{action}（{info.Price} {AfkPassModels.CurrencyName(info.PriceCurrencyType)}）"
-                : action;
+                : _confirmShown ? $"确认{action}（{shownPrice} {AfkPassModels.CurrencyName(shownCurrencyType)}）"
+                : $"{action}（{shownPeriodDays}天）";
 
             bool settingsReady = _client != null && _client.Ready && _client.SupportsSettings && !_client.SettingsPending && info != null;
             bool autoReturn = _client != null && _client.AutoReturnCityOnTeamEnd;
@@ -533,6 +614,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _game?.Skills?.Refresh(SkillBookContext.Character());
             _game?.Features?.RequestEquipmentMaterialReward();
             _game?.Features?.RequestEquipLoadouts();
+            _game?.TravelPass?.RequestState(force: true);
+            AppearanceUiRoot.Instance?.Client?.RequestInfo(force: true);
         }
 
         private static void HandleReminder(string text) => BattleUiRoot.Instance?.ShowToast(text);

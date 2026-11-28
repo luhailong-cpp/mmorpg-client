@@ -23,7 +23,7 @@ public static partial class GuildErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvZ3VpbGRfZXJyb3JfdGlwLnBy",
-          "b3RvKp8RCgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
+          "b3RvKpgSCgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
           "dWlsZEFscmVhZHlJbkd1aWxkELBtEhMKDmtHdWlsZE5vdEZvdW5kELFtEhUK",
           "EGtHdWlsZE5vdEluR3VpbGQQsm0SDwoKa0d1aWxkRnVsbBCzbRIaChVrR3Vp",
           "bGRMZWFkZXJDYW50TGVhdmUQtG0SFAoPa0d1aWxkTm90TGVhZGVyELVtEhcK",
@@ -72,8 +72,10 @@ public static partial class GuildErrorTipReflection {
           "dWlsZFdhclNlcnZpY2VCdXN5EPdtEhoKFWtHdWlsZFdhckZldWRDb29sZG93",
           "bhD4bRIfChprR3VpbGRXYXJGZXVkQWxyZWFkeUFjdGl2ZRD5bRIaChVrR3Vp",
           "bGRXYXJGZXVkTm90Rm91bmQQ+m0SHwoaa0d1aWxkV2FyRmV1ZEludmFsaWRU",
-          "YXJnZXQQ+21CJAoOY29tLmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90YWJs",
-          "ZWIGcHJvdG8z"));
+          "YXJnZXQQ+20SGAoTa0d1aWxkRW1ibGVtSW52YWxpZBD8bRIgChtrR3VpbGRF",
+          "bWJsZW1BbHJlYWR5VW5sb2NrZWQQ/W0SHAoXa0d1aWxkRW1ibGVtTm90VW5s",
+          "b2NrZWQQ/m0SHQoYa0d1aWxkRW1ibGVtUHJpY2VDaGFuZ2VkEP9tQiQKDmNv",
+          "bS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::guild_error), }, null, null));
@@ -160,6 +162,10 @@ public enum guild_error {
   [pbr::OriginalName("kGuildWarFeudAlreadyActive")] KGuildWarFeudAlreadyActive = 14073,
   [pbr::OriginalName("kGuildWarFeudNotFound")] KGuildWarFeudNotFound = 14074,
   [pbr::OriginalName("kGuildWarFeudInvalidTarget")] KGuildWarFeudInvalidTarget = 14075,
+  [pbr::OriginalName("kGuildEmblemInvalid")] KGuildEmblemInvalid = 14076,
+  [pbr::OriginalName("kGuildEmblemAlreadyUnlocked")] KGuildEmblemAlreadyUnlocked = 14077,
+  [pbr::OriginalName("kGuildEmblemNotUnlocked")] KGuildEmblemNotUnlocked = 14078,
+  [pbr::OriginalName("kGuildEmblemPriceChanged")] KGuildEmblemPriceChanged = 14079,
 }
 
 #endregion

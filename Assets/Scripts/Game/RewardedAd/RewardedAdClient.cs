@@ -109,12 +109,27 @@ namespace MmorpgClient.Game.RewardedAd
             Changed?.Invoke();
         }
 
-        public RewardedAdViewState Snapshot()
+        public RewardedAdViewState Snapshot() => Snapshot(_slotId);
+
+        public RewardedAdViewState Snapshot(uint slotId)
         {
+            uint resolvedSlot = slotId == 0 ? _slotId : slotId;
             ulong estServerNow = EstimateServerNowMs();
+            if (!ClientDistributionPolicy.Current.RewardedAdAllowed)
+            {
+                return RewardedAdModel.Evaluate(
+                    null,
+                    resolvedSlot,
+                    false,
+                    false,
+                    string.Empty,
+                    _inBattle,
+                    Busy,
+                    estServerNow);
+            }
             return RewardedAdModel.Evaluate(
                 Info,
-                _slotId,
+                resolvedSlot,
                 _bridge.IsSupported,
                 _bridge.IsAdReady,
                 _adUnitId,
@@ -165,8 +180,15 @@ namespace MmorpgClient.Game.RewardedAd
         }
 
         public bool StartWatch(Action<bool> completed = null)
+            => StartWatch(_slotId, 0u, string.Empty, completed);
+
+        public bool StartWatch(uint targetParamU32, string targetParamStr, Action<bool> completed = null)
+            => StartWatch(_slotId, targetParamU32, targetParamStr, completed);
+
+        public bool StartWatch(uint slotId, uint targetParamU32, string targetParamStr, Action<bool> completed = null)
         {
-            if (_disposed || !IsSupported)
+            uint resolvedSlot = slotId == 0 ? _slotId : slotId;
+            if (_disposed || !IsSupported || !ClientDistributionPolicy.Current.RewardedAdAllowed)
             {
                 completed?.Invoke(false);
                 return false;
@@ -177,7 +199,7 @@ namespace MmorpgClient.Game.RewardedAd
                 completed?.Invoke(false);
                 return false;
             }
-            var view = Snapshot();
+            var view = Snapshot(resolvedSlot);
             if (!view.CanClickWatch)
             {
                 completed?.Invoke(false);
@@ -192,7 +214,7 @@ namespace MmorpgClient.Game.RewardedAd
 
             var req = new global::BeginRewardedAdSessionRequest
             {
-                SlotId = _slotId,
+                SlotId = resolvedSlot,
                 ClientPlatform = _bridge.ClientPlatform,
             };
             _net.Call(_messageIds.BeginSession, req, global::BeginRewardedAdSessionResponse.Parser,
@@ -238,7 +260,8 @@ namespace MmorpgClient.Game.RewardedAd
                         }
 
                         _pendingClaim = new RewardedAdPendingClaim(
-                            playerId, _slotId, adSessionId, requestKey, showResult.SsvProof);
+                            playerId, resolvedSlot, adSessionId, requestKey, showResult.SsvProof,
+                            targetParamU32, targetParamStr);
                         _nextPendingClaimRetryAt = float.NegativeInfinity;
                         TryDispatchPendingClaim(completed);
                     });
@@ -297,6 +320,8 @@ namespace MmorpgClient.Game.RewardedAd
                 SlotId = claim.SlotId,
                 AdSessionId = claim.AdSessionId,
                 SsvProof = claim.SsvProof,
+                TargetParamU32 = claim.TargetParamU32,
+                TargetParamStr = claim.TargetParamStr,
             };
 
             bool resent = false;
@@ -332,7 +357,7 @@ namespace MmorpgClient.Game.RewardedAd
 
                         _pendingClaim = default;
                         ApplyClaimSuccess(resp);
-                        SetStatus(RewardedAdModel.BuildClaimedToast(resp.RewardAmount, resp.CurrencyType), false);
+                        SetStatus(RewardedAdModel.BuildClaimedToastForKind(resp.RewardKind, resp.RewardAmount, resp.CurrencyType), false);
                         MaybePreload();
                         Changed?.Invoke();
                         Claimed?.Invoke(resp);
@@ -400,11 +425,17 @@ namespace MmorpgClient.Game.RewardedAd
 
         private void MaybePreload()
         {
-            if (!_bridge.IsSupported || string.IsNullOrWhiteSpace(_adUnitId)) return;
-            var slot = RewardedAdModel.FindSlot(Info, _slotId);
-            if (slot != null && slot.Enabled && slot.ClaimedToday < slot.DailyLimit)
+            if (!ClientDistributionPolicy.Current.RewardedAdAllowed || !_bridge.IsSupported || string.IsNullOrWhiteSpace(_adUnitId))
+                return;
+            if (Info?.Slots == null) return;
+            for (int i = 0; i < Info.Slots.Count; i++)
             {
-                _bridge.Preload(_adUnitId);
+                var slot = Info.Slots[i];
+                if (slot != null && slot.Enabled && slot.ClaimedToday < slot.DailyLimit)
+                {
+                    _bridge.Preload(_adUnitId);
+                    return;
+                }
             }
         }
 

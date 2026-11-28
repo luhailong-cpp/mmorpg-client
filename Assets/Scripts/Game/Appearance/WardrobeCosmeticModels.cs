@@ -9,6 +9,7 @@ namespace MmorpgClient.Game.Appearance
         Character = 0,
         Pet = 1,
         SkillEffect = 2,
+        Showcase = 3,
     }
 
     public enum WardrobeCosmeticRowState
@@ -105,6 +106,9 @@ namespace MmorpgClient.Game.Appearance
         public uint CardItemCount { get; }
         public uint OwnedCardCount { get; }
         public uint SpiritShopGoodsId { get; }
+        public uint SlotKind { get; }
+        public string AssetKey { get; }
+        public string SecondaryAssetKey { get; }
 
         public bool IsBaseDefault => ConfigId == 0u;
         public bool IsOwned => State == WardrobeCosmeticRowState.BaseDefault
@@ -133,7 +137,10 @@ namespace MmorpgClient.Game.Appearance
             uint cardItemId = 0u,
             uint cardItemCount = 0u,
             uint ownedCardCount = 0u,
-            uint spiritShopGoodsId = 0u)
+            uint spiritShopGoodsId = 0u,
+            uint slotKind = 0u,
+            string assetKey = "",
+            string secondaryAssetKey = "")
         {
             Category = category;
             ConfigId = configId;
@@ -156,6 +163,9 @@ namespace MmorpgClient.Game.Appearance
             CardItemCount = cardItemCount;
             OwnedCardCount = ownedCardCount;
             SpiritShopGoodsId = spiritShopGoodsId;
+            SlotKind = slotKind;
+            AssetKey = assetKey ?? string.Empty;
+            SecondaryAssetKey = secondaryAssetKey ?? string.Empty;
         }
     }
 
@@ -209,6 +219,21 @@ namespace MmorpgClient.Game.Appearance
             if (info == null || skillTableId == 0u || info.EquippedSkillVfx == null) return 0u;
             return info.EquippedSkillVfx.TryGetValue(skillTableId, out uint id) ? id : 0u;
         }
+
+        public static uint FindEquippedShowcaseCosmeticId(global::PlayerAppearanceInfo info, uint slotKind)
+        {
+            if (info == null || slotKind == 0u || info.EquippedShowcaseCosmetics == null) return 0u;
+            return info.EquippedShowcaseCosmetics.TryGetValue(slotKind, out uint id) ? id : 0u;
+        }
+
+        public static string ShowcaseSlotName(uint slotKind) => slotKind switch
+        {
+            1u => "五行阵纹",
+            2u => "入场胜利横幅",
+            3u => "聊天气泡",
+            4u => "战报分享底纹",
+            _ => "全部排面",
+        };
 
         public static bool IsPetSpeciesCompatible(uint targetPetTableId, uint petTableId)
             => targetPetTableId == 0u || petTableId == 0u || targetPetTableId == petTableId;
@@ -537,6 +562,151 @@ namespace MmorpgClient.Game.Appearance
 
             return new WardrobePrimaryAction(WardrobePrimaryActionKind.EquipCosmetic, "启用特效", canSubmit);
         }
+
+        public static List<WardrobeCosmeticRowView> BuildShowcaseRows(
+            global::PlayerAppearanceInfo info,
+            uint filterSlotKind,
+            bool isSpiritShopSupported = false)
+        {
+            var rows = new List<WardrobeCosmeticRowView>();
+            if (info == null) return rows;
+
+            uint activeSlot = filterSlotKind;
+            if (activeSlot == 0u && info.ShowcaseCosmetics != null && info.ShowcaseCosmetics.Count > 0)
+                activeSlot = info.ShowcaseCosmetics[0].SlotKind;
+
+            uint equippedForSlot = activeSlot != 0u ? FindEquippedShowcaseCosmeticId(info, activeSlot) : 0u;
+            bool baseActive = activeSlot != 0u && equippedForSlot == 0u;
+
+            rows.Add(new WardrobeCosmeticRowView(
+                WardrobeCategoryTab.Showcase,
+                configId: 0u,
+                key: "showcase_default",
+                name: "默认排面",
+                targetPetTableId: 0u,
+                visualPetTableId: 0u,
+                visualArtKey: string.Empty,
+                skillTableId: 0u,
+                fxId: string.Empty,
+                projectileFxId: string.Empty,
+                telegraphFxId: string.Empty,
+                tintHex: string.Empty,
+                state: baseActive ? WardrobeCosmeticRowState.Equipped : WardrobeCosmeticRowState.BaseDefault,
+                stateLabel: baseActive ? "当前生效" : "默认样式",
+                mallSkuId: 0ul,
+                acquireHint: string.Empty,
+                description: "使用当前槽位的系统默认展示样式。",
+                slotKind: activeSlot));
+
+            if (info.ShowcaseCosmetics == null) return rows;
+            for (int i = 0; i < info.ShowcaseCosmetics.Count; i++)
+            {
+                var entry = info.ShowcaseCosmetics[i];
+                if (entry == null) continue;
+                if (filterSlotKind != 0u && entry.SlotKind != filterSlotKind) continue;
+
+                uint slotEquipped = FindEquippedShowcaseCosmeticId(info, entry.SlotKind);
+                bool isEquipped = entry.Owned && slotEquipped == entry.ConfigId;
+                bool canVoucherUnlock = !entry.Owned && entry.CardItemId != 0u && entry.CardItemCount > 0u
+                    && entry.OwnedCardCount >= entry.CardItemCount;
+                bool spiritShopSellable = !entry.Owned && entry.CardItemId != 0u && entry.CardItemCount > 0u
+                    && entry.SpiritShopGoodsId != 0u && isSpiritShopSupported;
+                bool purchasable = canVoucherUnlock || spiritShopSellable;
+                WardrobeCosmeticRowState state = isEquipped ? WardrobeCosmeticRowState.Equipped
+                    : entry.Owned ? WardrobeCosmeticRowState.Owned
+                    : purchasable ? WardrobeCosmeticRowState.LockedPurchasable
+                    : WardrobeCosmeticRowState.LockedUnavailable;
+                string badge = state switch
+                {
+                    WardrobeCosmeticRowState.Equipped => "当前生效",
+                    WardrobeCosmeticRowState.Owned => "已拥有",
+                    _ when canVoucherUnlock => "可解锁",
+                    _ => "未拥有",
+                };
+                rows.Add(new WardrobeCosmeticRowView(
+                    WardrobeCategoryTab.Showcase,
+                    entry.ConfigId,
+                    entry.CosmeticKey,
+                    entry.Name,
+                    targetPetTableId: 0u,
+                    visualPetTableId: 0u,
+                    visualArtKey: entry.AssetKey,
+                    skillTableId: 0u,
+                    fxId: string.Empty,
+                    projectileFxId: string.Empty,
+                    telegraphFxId: string.Empty,
+                    tintHex: string.Empty,
+                    state: state,
+                    stateLabel: badge,
+                    mallSkuId: 0ul,
+                    acquireHint: entry.AcquireHint,
+                    description: string.IsNullOrWhiteSpace(entry.Desc) ? "纯视觉排面装饰，不提供任何战力属性。" : entry.Desc,
+                    cardItemId: entry.CardItemId,
+                    cardItemCount: entry.CardItemCount,
+                    ownedCardCount: entry.OwnedCardCount,
+                    spiritShopGoodsId: entry.SpiritShopGoodsId,
+                    slotKind: entry.SlotKind,
+                    assetKey: entry.AssetKey,
+                    secondaryAssetKey: entry.SecondaryAssetKey));
+            }
+            return rows;
+        }
+
+        public static WardrobePrimaryAction ResolveShowcasePrimaryAction(
+            WardrobeCosmeticRowView selected,
+            bool canSubmit,
+            bool busy,
+            bool previewOnly)
+        {
+            if (selected == null)
+                return new WardrobePrimaryAction(WardrobePrimaryActionKind.NoneDisabled, "暂无可用排面", false);
+            if (busy)
+                return new WardrobePrimaryAction(WardrobePrimaryActionKind.NoneDisabled, "提交中…", false);
+            if (previewOnly)
+                return new WardrobePrimaryAction(WardrobePrimaryActionKind.NoneDisabled, "首测预览", false, detailHint: "当前为预览模式。");
+
+            if (selected.State == WardrobeCosmeticRowState.LockedPurchasable)
+            {
+                if (selected.CanUnlockWithHeldVoucher)
+                {
+                    return new WardrobePrimaryAction(
+                        WardrobePrimaryActionKind.UnlockWithVoucher,
+                        $"解锁并启用（耗{selected.CardItemCount}张券）",
+                        canSubmit,
+                        detailHint: $"背包持有 {selected.OwnedCardCount} 张排面装饰券，消耗 {selected.CardItemCount} 张永久解锁并启用。");
+                }
+                if (selected.SpiritShopGoodsId != 0u)
+                {
+                    string hint = string.IsNullOrWhiteSpace(selected.AcquireHint)
+                        ? "前往灵石百宝阁购买「排面装饰券」后即可永久解锁。"
+                        : selected.AcquireHint;
+                    return new WardrobePrimaryAction(
+                        WardrobePrimaryActionKind.OpenSpiritShopVoucher,
+                        "前往百宝阁购买",
+                        canSubmit,
+                        detailHint: hint,
+                        spiritShopGoodsId: selected.SpiritShopGoodsId);
+                }
+            }
+            if (selected.State == WardrobeCosmeticRowState.LockedUnavailable)
+            {
+                string hint = string.IsNullOrWhiteSpace(selected.AcquireHint) ? "限定外观暂未开放购买" : selected.AcquireHint;
+                return new WardrobePrimaryAction(WardrobePrimaryActionKind.NoneDisabled, "限定外观", false, detailHint: hint);
+            }
+
+            if (selected.IsBaseDefault)
+            {
+                bool hasOverride = selected.State != WardrobeCosmeticRowState.Equipped;
+                return hasOverride
+                    ? new WardrobePrimaryAction(WardrobePrimaryActionKind.RestoreDefault, "恢复默认", canSubmit)
+                    : new WardrobePrimaryAction(WardrobePrimaryActionKind.NoneDisabled, "当前为默认", false);
+            }
+
+            if (selected.State == WardrobeCosmeticRowState.Equipped)
+                return new WardrobePrimaryAction(WardrobePrimaryActionKind.RestoreDefault, "恢复默认", canSubmit);
+
+            return new WardrobePrimaryAction(WardrobePrimaryActionKind.EquipCosmetic, "启用排面", canSubmit);
+        }
     }
 
     /// <summary>
@@ -548,12 +718,15 @@ namespace MmorpgClient.Game.Appearance
         public WardrobeCategoryTab ActiveCategory { get; private set; } = WardrobeCategoryTab.Character;
         public uint SelectedPetCosmeticId { get; private set; }
         public uint SelectedSkillVfxId { get; private set; }
+        public uint SelectedShowcaseCosmeticId { get; private set; }
         public ulong SelectedPetId { get; private set; }
         public uint FilterSkillTableId { get; private set; }
+        public uint FilterShowcaseSlotKind { get; private set; }
         public bool CompareOriginalPet { get; private set; }
         public bool CompactDetailOpen { get; private set; }
         public float PetScrollNormalized { get; private set; } = 1f;
         public float SkillScrollNormalized { get; private set; } = 1f;
+        public float ShowcaseScrollNormalized { get; private set; } = 1f;
 
         public void OpenContextual(WardrobeCategoryTab category, ulong targetPetId = 0ul, uint targetSkillTableId = 0u)
         {
@@ -587,7 +760,16 @@ namespace MmorpgClient.Game.Appearance
             {
                 SelectedSkillVfxId = cosmeticId;
             }
+            else if (category == WardrobeCategoryTab.Showcase)
+            {
+                SelectedShowcaseCosmeticId = cosmeticId;
+            }
             CompactDetailOpen = openCompactDetail;
+        }
+
+        public void CycleShowcaseSlotFilter()
+        {
+            FilterShowcaseSlotKind = (FilterShowcaseSlotKind + 1u) % 5u;
         }
 
         public void ExitCompactDetail()
@@ -648,9 +830,11 @@ namespace MmorpgClient.Game.Appearance
             {
                 if (category == WardrobeCategoryTab.Pet) SelectedPetCosmeticId = 0u;
                 else if (category == WardrobeCategoryTab.SkillEffect) SelectedSkillVfxId = 0u;
+                else if (category == WardrobeCategoryTab.Showcase) SelectedShowcaseCosmeticId = 0u;
                 return null;
             }
-            uint current = category == WardrobeCategoryTab.Pet ? SelectedPetCosmeticId : SelectedSkillVfxId;
+            uint current = category == WardrobeCategoryTab.Pet ? SelectedPetCosmeticId
+                : (category == WardrobeCategoryTab.Showcase ? SelectedShowcaseCosmeticId : SelectedSkillVfxId);
             for (int i = 0; i < rows.Count; i++)
                 if (rows[i].ConfigId == current) return rows[i];
 
@@ -664,6 +848,7 @@ namespace MmorpgClient.Game.Appearance
 
             if (category == WardrobeCategoryTab.Pet) SelectedPetCosmeticId = picked.ConfigId;
             else if (category == WardrobeCategoryTab.SkillEffect) SelectedSkillVfxId = picked.ConfigId;
+            else if (category == WardrobeCategoryTab.Showcase) SelectedShowcaseCosmeticId = picked.ConfigId;
             return picked;
         }
 
@@ -671,6 +856,7 @@ namespace MmorpgClient.Game.Appearance
         {
             WardrobeCategoryTab.Pet => PetScrollNormalized,
             WardrobeCategoryTab.SkillEffect => SkillScrollNormalized,
+            WardrobeCategoryTab.Showcase => ShowcaseScrollNormalized,
             _ => 1f,
         };
 
@@ -679,6 +865,7 @@ namespace MmorpgClient.Game.Appearance
             float clamped = normalized < 0f ? 0f : (normalized > 1f ? 1f : normalized);
             if (category == WardrobeCategoryTab.Pet) PetScrollNormalized = clamped;
             else if (category == WardrobeCategoryTab.SkillEffect) SkillScrollNormalized = clamped;
+            else if (category == WardrobeCategoryTab.Showcase) ShowcaseScrollNormalized = clamped;
         }
 
         public void ResetForClose()
@@ -692,12 +879,15 @@ namespace MmorpgClient.Game.Appearance
             ActiveCategory = WardrobeCategoryTab.Character;
             SelectedPetCosmeticId = 0u;
             SelectedSkillVfxId = 0u;
+            SelectedShowcaseCosmeticId = 0u;
             SelectedPetId = 0ul;
             FilterSkillTableId = 0u;
+            FilterShowcaseSlotKind = 0u;
             CompareOriginalPet = false;
             CompactDetailOpen = false;
             PetScrollNormalized = 1f;
             SkillScrollNormalized = 1f;
+            ShowcaseScrollNormalized = 1f;
         }
     }
 }

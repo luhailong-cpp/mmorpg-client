@@ -613,5 +613,40 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 UnityEngine.Object.DestroyImmediate(hostGo);
             }
         }
+
+        [Test]
+        public void SelectActivePass_SwitchesBookshelfVolumeAndComputesTotalClaimable()
+        {
+            var net = new FakeTransport();
+            object conn = new object();
+            float now = 10f;
+            var snap2 = SampleSnapshot(points: 30, unlocked: false);
+            snap2.PassId = 202602;
+            snap2.ActivePassId = 202602;
+            snap2.Name = "山海游历手记 · 第二期";
+            snap2.Bookshelf.Add(new global::TravelPassCatalogEntry { PassId = 202601, Name = "第一期", ClaimableCount = 2 });
+            snap2.Bookshelf.Add(new global::TravelPassCatalogEntry { PassId = 202602, Name = "第二期", ClaimableCount = 1, IsActive = true });
+
+            net.Responder = (msgId, req) =>
+            {
+                if (msgId == SceneActivityClientPlayerRpc.SelectActiveTravelPassMessageId)
+                {
+                    var sel = (global::SelectActiveTravelPassRequest)req;
+                    Assert.AreEqual(202602u, sel.PassId);
+                    return (new global::SelectActiveTravelPassResponse { Snapshot = snap2 }, null);
+                }
+                return (new global::GetTravelPassStateResponse { Snapshot = SampleSnapshot() }, null);
+            };
+
+            using var client = new TravelPassClient(net, () => conn, () => now);
+            Assert.IsTrue(client.SupportsSelectActive);
+            Assert.IsTrue(client.SelectActivePass(202602u));
+            net.Flush();
+
+            Assert.AreEqual(202602u, client.State.ActivePassId);
+            Assert.AreEqual(3u, TravelPassModels.TotalBookshelfClaimable(client.State));
+            Assert.AreEqual(3u, client.ClaimableCount);
+            Assert.AreEqual("季享流光头像框", TravelPassModels.ResolveCosmeticName(client.State, "frame_lightcard_season_s1"));
+        }
     }
 }

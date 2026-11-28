@@ -294,41 +294,50 @@ public static partial class PlayerBagReflection {
           "CCABKA0SGgoSc3BlbnRfYmluZF9kaWFtb25kGAkgASgEEhUKDXNwZW50X2Rp",
           "YW1vbmQYCiABKAQSFQoDYmFnGAsgASgLMgguQmFnSW5mbxInCghzbmFwc2hv",
           "dBgMIAEoCzIVLkVxdWlwTG9hZG91dFNuYXBzaG90IjEKB091dGNvbWUSCwoH",
-          "VU5LTk9XThAAEgwKCFJFSkVDVEVEEAESCwoHQVBQTElFRBACKqABChZFcXVp",
-          "cExvYWRvdXRTbG90U3RhdHVzEhwKGEVRVUlQX0xPQURPVVRfU0xPVF9FTVBU",
-          "WRAAEh8KG0VRVUlQX0xPQURPVVRfU0xPVF9FUVVJUFBFRBABEh0KGUVRVUlQ",
-          "X0xPQURPVVRfU0xPVF9JTl9CQUcQAhIoCiRFUVVJUF9MT0FET1VUX1NMT1Rf",
-          "TUlTU0lOR19PUl9TVE9SRUQQAzKsCgoUU2NlbmVCYWdDbGllbnRQbGF5ZXIS",
-          "KQoGR2V0QmFnEg4uR2V0QmFnUmVxdWVzdBoPLkdldEJhZ1Jlc3BvbnNlEiwK",
-          "B1NvcnRCYWcSDy5Tb3J0QmFnUmVxdWVzdBoQLlNvcnRCYWdSZXNwb25zZRIy",
-          "CglFcXVpcEl0ZW0SES5FcXVpcEl0ZW1SZXF1ZXN0GhIuRXF1aXBJdGVtUmVz",
-          "cG9uc2USOAoLVW5lcXVpcEl0ZW0SEy5VbmVxdWlwSXRlbVJlcXVlc3QaFC5V",
-          "bmVxdWlwSXRlbVJlc3BvbnNlEjgKC0dtR3JhbnRJdGVtEhMuR21HcmFudEl0",
-          "ZW1SZXF1ZXN0GhQuR21HcmFudEl0ZW1SZXNwb25zZRI7CgxFbmhhbmNlRXF1",
-          "aXASFC5FbmhhbmNlRXF1aXBSZXF1ZXN0GhUuRW5oYW5jZUVxdWlwUmVzcG9u",
-          "c2USLwoISW5sYXlHZW0SEC5JbmxheUdlbVJlcXVlc3QaES5JbmxheUdlbVJl",
-          "c3BvbnNlEjIKCVJlbW92ZUdlbRIRLlJlbW92ZUdlbVJlcXVlc3QaEi5SZW1v",
-          "dmVHZW1SZXNwb25zZRJZChZSZXRyaWV2ZVRlbXBvcmFyeUl0ZW1zEh4uUmV0",
-          "cmlldmVUZW1wb3JhcnlJdGVtc1JlcXVlc3QaHy5SZXRyaWV2ZVRlbXBvcmFy",
-          "eUl0ZW1zUmVzcG9uc2USWQoWR2V0RXF1aXBtZW50Q3JhZnRSdWxlcxIeLkdl",
-          "dEVxdWlwbWVudENyYWZ0UnVsZXNSZXF1ZXN0Gh8uR2V0RXF1aXBtZW50Q3Jh",
-          "ZnRSdWxlc1Jlc3BvbnNlElYKFVByZXZpZXdFcXVpcG1lbnRDcmFmdBIdLlBy",
-          "ZXZpZXdFcXVpcG1lbnRDcmFmdFJlcXVlc3QaHi5QcmV2aWV3RXF1aXBtZW50",
-          "Q3JhZnRSZXNwb25zZRJTChRDb21taXRFcXVpcG1lbnRDcmFmdBIcLkNvbW1p",
-          "dEVxdWlwbWVudENyYWZ0UmVxdWVzdBodLkNvbW1pdEVxdWlwbWVudENyYWZ0",
-          "UmVzcG9uc2USZQoaR2V0RXF1aXBtZW50TWF0ZXJpYWxSZXdhcmQSIi5HZXRF",
-          "cXVpcG1lbnRNYXRlcmlhbFJld2FyZFJlcXVlc3QaIy5HZXRFcXVpcG1lbnRN",
-          "YXRlcmlhbFJld2FyZFJlc3BvbnNlEmsKHENsYWltRXF1aXBtZW50TWF0ZXJp",
-          "YWxSZXdhcmQSJC5DbGFpbUVxdWlwbWVudE1hdGVyaWFsUmV3YXJkUmVxdWVz",
-          "dBolLkNsYWltRXF1aXBtZW50TWF0ZXJpYWxSZXdhcmRSZXNwb25zZRJHChBH",
-          "ZXRFcXVpcExvYWRvdXRzEhguR2V0RXF1aXBMb2Fkb3V0c1JlcXVlc3QaGS5H",
-          "ZXRFcXVpcExvYWRvdXRzUmVzcG9uc2USRwoQU2F2ZUVxdWlwTG9hZG91dBIY",
-          "LlNhdmVFcXVpcExvYWRvdXRSZXF1ZXN0GhkuU2F2ZUVxdWlwTG9hZG91dFJl",
-          "c3BvbnNlEk0KElN3aXRjaEVxdWlwTG9hZG91dBIaLlN3aXRjaEVxdWlwTG9h",
-          "ZG91dFJlcXVlc3QaGy5Td2l0Y2hFcXVpcExvYWRvdXRSZXNwb25zZRJNChJV",
-          "bmxvY2tFcXVpcExvYWRvdXQSGi5VbmxvY2tFcXVpcExvYWRvdXRSZXF1ZXN0",
-          "GhsuVW5sb2NrRXF1aXBMb2Fkb3V0UmVzcG9uc2UaCoCowwEBiKjDAQFCDloF",
-          "c2NlbmWAAQGY1GEDYgZwcm90bzM="));
+          "VU5LTk9XThAAEgwKCFJFSkVDVEVEEAESCwoHQVBQTElFRBACIoIBChhFeHBh",
+          "bmRCYWdDYXBhY2l0eVJlcXVlc3QSGQoRY2xpZW50X3JlcXVlc3RfaWQYASAB",
+          "KAQSEAoIYmFnX3R5cGUYAiABKA0SGQoRZXhwZWN0ZWRfY2FwYWNpdHkYAyAB",
+          "KA0SHgoWZXhwZWN0ZWRfcHJpY2VfZGlhbW9uZBgEIAEoBCLIAQoZRXhwYW5k",
+          "QmFnQ2FwYWNpdHlSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8u",
+          "VGlwSW5mb01lc3NhZ2USEAoIcmVwbGF5ZWQYAiABKAgSFAoMbmV3X2NhcGFj",
+          "aXR5GAMgASgNEhQKDG1heF9jYXBhY2l0eRgEIAEoDRIVCg1zcGVudF9kaWFt",
+          "b25kGAUgASgEEhcKD2RpYW1vbmRfYmFsYW5jZRgGIAEoBBIVCgNiYWcYByAB",
+          "KAsyCC5CYWdJbmZvKqABChZFcXVpcExvYWRvdXRTbG90U3RhdHVzEhwKGEVR",
+          "VUlQX0xPQURPVVRfU0xPVF9FTVBUWRAAEh8KG0VRVUlQX0xPQURPVVRfU0xP",
+          "VF9FUVVJUFBFRBABEh0KGUVRVUlQX0xPQURPVVRfU0xPVF9JTl9CQUcQAhIo",
+          "CiRFUVVJUF9MT0FET1VUX1NMT1RfTUlTU0lOR19PUl9TVE9SRUQQAzL4CgoU",
+          "U2NlbmVCYWdDbGllbnRQbGF5ZXISKQoGR2V0QmFnEg4uR2V0QmFnUmVxdWVz",
+          "dBoPLkdldEJhZ1Jlc3BvbnNlEiwKB1NvcnRCYWcSDy5Tb3J0QmFnUmVxdWVz",
+          "dBoQLlNvcnRCYWdSZXNwb25zZRIyCglFcXVpcEl0ZW0SES5FcXVpcEl0ZW1S",
+          "ZXF1ZXN0GhIuRXF1aXBJdGVtUmVzcG9uc2USOAoLVW5lcXVpcEl0ZW0SEy5V",
+          "bmVxdWlwSXRlbVJlcXVlc3QaFC5VbmVxdWlwSXRlbVJlc3BvbnNlEjgKC0dt",
+          "R3JhbnRJdGVtEhMuR21HcmFudEl0ZW1SZXF1ZXN0GhQuR21HcmFudEl0ZW1S",
+          "ZXNwb25zZRI7CgxFbmhhbmNlRXF1aXASFC5FbmhhbmNlRXF1aXBSZXF1ZXN0",
+          "GhUuRW5oYW5jZUVxdWlwUmVzcG9uc2USLwoISW5sYXlHZW0SEC5JbmxheUdl",
+          "bVJlcXVlc3QaES5JbmxheUdlbVJlc3BvbnNlEjIKCVJlbW92ZUdlbRIRLlJl",
+          "bW92ZUdlbVJlcXVlc3QaEi5SZW1vdmVHZW1SZXNwb25zZRJZChZSZXRyaWV2",
+          "ZVRlbXBvcmFyeUl0ZW1zEh4uUmV0cmlldmVUZW1wb3JhcnlJdGVtc1JlcXVl",
+          "c3QaHy5SZXRyaWV2ZVRlbXBvcmFyeUl0ZW1zUmVzcG9uc2USWQoWR2V0RXF1",
+          "aXBtZW50Q3JhZnRSdWxlcxIeLkdldEVxdWlwbWVudENyYWZ0UnVsZXNSZXF1",
+          "ZXN0Gh8uR2V0RXF1aXBtZW50Q3JhZnRSdWxlc1Jlc3BvbnNlElYKFVByZXZp",
+          "ZXdFcXVpcG1lbnRDcmFmdBIdLlByZXZpZXdFcXVpcG1lbnRDcmFmdFJlcXVl",
+          "c3QaHi5QcmV2aWV3RXF1aXBtZW50Q3JhZnRSZXNwb25zZRJTChRDb21taXRF",
+          "cXVpcG1lbnRDcmFmdBIcLkNvbW1pdEVxdWlwbWVudENyYWZ0UmVxdWVzdBod",
+          "LkNvbW1pdEVxdWlwbWVudENyYWZ0UmVzcG9uc2USZQoaR2V0RXF1aXBtZW50",
+          "TWF0ZXJpYWxSZXdhcmQSIi5HZXRFcXVpcG1lbnRNYXRlcmlhbFJld2FyZFJl",
+          "cXVlc3QaIy5HZXRFcXVpcG1lbnRNYXRlcmlhbFJld2FyZFJlc3BvbnNlEmsK",
+          "HENsYWltRXF1aXBtZW50TWF0ZXJpYWxSZXdhcmQSJC5DbGFpbUVxdWlwbWVu",
+          "dE1hdGVyaWFsUmV3YXJkUmVxdWVzdBolLkNsYWltRXF1aXBtZW50TWF0ZXJp",
+          "YWxSZXdhcmRSZXNwb25zZRJHChBHZXRFcXVpcExvYWRvdXRzEhguR2V0RXF1",
+          "aXBMb2Fkb3V0c1JlcXVlc3QaGS5HZXRFcXVpcExvYWRvdXRzUmVzcG9uc2US",
+          "RwoQU2F2ZUVxdWlwTG9hZG91dBIYLlNhdmVFcXVpcExvYWRvdXRSZXF1ZXN0",
+          "GhkuU2F2ZUVxdWlwTG9hZG91dFJlc3BvbnNlEk0KElN3aXRjaEVxdWlwTG9h",
+          "ZG91dBIaLlN3aXRjaEVxdWlwTG9hZG91dFJlcXVlc3QaGy5Td2l0Y2hFcXVp",
+          "cExvYWRvdXRSZXNwb25zZRJNChJVbmxvY2tFcXVpcExvYWRvdXQSGi5Vbmxv",
+          "Y2tFcXVpcExvYWRvdXRSZXF1ZXN0GhsuVW5sb2NrRXF1aXBMb2Fkb3V0UmVz",
+          "cG9uc2USSgoRRXhwYW5kQmFnQ2FwYWNpdHkSGS5FeHBhbmRCYWdDYXBhY2l0",
+          "eVJlcXVlc3QaGi5FeHBhbmRCYWdDYXBhY2l0eVJlc3BvbnNlGgqAqMMBAYio",
+          "wwEBQg5aBXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::CurrencyCompReflection.Descriptor, global::PlayerEquipLoadoutCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::EquipLoadoutSlotStatus), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -393,7 +402,9 @@ public static partial class PlayerBagReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::SwitchEquipLoadoutRequest), global::SwitchEquipLoadoutRequest.Parser, new[]{ "SchemeId", "ApplyLinkedSchemes", "StateVersion", "RequestId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SwitchEquipLoadoutResponse), global::SwitchEquipLoadoutResponse.Parser, new[]{ "ErrorMessage", "Bag", "Equipment", "Snapshot", "MissingSlots", "LinkedNotices", "RequestId", "Replayed" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UnlockEquipLoadoutRequest), global::UnlockEquipLoadoutRequest.Parser, new[]{ "ClientRequestId", "ExpectedUnlockedCount", "UseBindDiamondFirst" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::UnlockEquipLoadoutResponse), global::UnlockEquipLoadoutResponse.Parser, new[]{ "ErrorMessage", "ClientRequestId", "Outcome", "Durable", "Replayed", "ResultUnlockedCount", "CurrentUnlockedCount", "UsedItemConfigId", "SpentBindDiamond", "SpentDiamond", "Bag", "Snapshot" }, null, new[]{ typeof(global::UnlockEquipLoadoutResponse.Types.Outcome) }, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::UnlockEquipLoadoutResponse), global::UnlockEquipLoadoutResponse.Parser, new[]{ "ErrorMessage", "ClientRequestId", "Outcome", "Durable", "Replayed", "ResultUnlockedCount", "CurrentUnlockedCount", "UsedItemConfigId", "SpentBindDiamond", "SpentDiamond", "Bag", "Snapshot" }, null, new[]{ typeof(global::UnlockEquipLoadoutResponse.Types.Outcome) }, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ExpandBagCapacityRequest), global::ExpandBagCapacityRequest.Parser, new[]{ "ClientRequestId", "BagType", "ExpectedCapacity", "ExpectedPriceDiamond" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ExpandBagCapacityResponse), global::ExpandBagCapacityResponse.Parser, new[]{ "ErrorMessage", "Replayed", "NewCapacity", "MaxCapacity", "SpentDiamond", "DiamondBalance", "Bag" }, null, null, null, null)
         }));
   }
   #endregion
@@ -25712,6 +25723,771 @@ public sealed partial class UnlockEquipLoadoutResponse : pb::IMessage<UnlockEqui
 
   }
   #endregion
+
+}
+
+/// <summary>
+/// 仓库容量扩容（仅支持 bag_type=1 仓库，每次 +20 格、最多扩 5 次至 300 格，60 真实灵石/次，零战力纯整理便利）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class ExpandBagCapacityRequest : pb::IMessage<ExpandBagCapacityRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ExpandBagCapacityRequest> _parser = new pb::MessageParser<ExpandBagCapacityRequest>(() => new ExpandBagCapacityRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ExpandBagCapacityRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[62]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ExpandBagCapacityRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ExpandBagCapacityRequest(ExpandBagCapacityRequest other) : this() {
+    clientRequestId_ = other.clientRequestId_;
+    bagType_ = other.bagType_;
+    expectedCapacity_ = other.expectedCapacity_;
+    expectedPriceDiamond_ = other.expectedPriceDiamond_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ExpandBagCapacityRequest Clone() {
+    return new ExpandBagCapacityRequest(this);
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 1;
+  private ulong clientRequestId_;
+  /// <summary>
+  /// 持久化幂等键（必须非 0）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "bag_type" field.</summary>
+  public const int BagTypeFieldNumber = 2;
+  private uint bagType_;
+  /// <summary>
+  /// 必须为 1（kWarehouse 仓库）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BagType {
+    get { return bagType_; }
+    set {
+      bagType_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "expected_capacity" field.</summary>
+  public const int ExpectedCapacityFieldNumber = 3;
+  private uint expectedCapacity_;
+  /// <summary>
+  /// 客户端看到的当前仓库格数（防连点连扩）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ExpectedCapacity {
+    get { return expectedCapacity_; }
+    set {
+      expectedCapacity_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "expected_price_diamond" field.</summary>
+  public const int ExpectedPriceDiamondFieldNumber = 4;
+  private ulong expectedPriceDiamond_;
+  /// <summary>
+  /// 客户端看到的本次报价（真实灵石，防价差）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ExpectedPriceDiamond {
+    get { return expectedPriceDiamond_; }
+    set {
+      expectedPriceDiamond_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ExpandBagCapacityRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ExpandBagCapacityRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ClientRequestId != other.ClientRequestId) return false;
+    if (BagType != other.BagType) return false;
+    if (ExpectedCapacity != other.ExpectedCapacity) return false;
+    if (ExpectedPriceDiamond != other.ExpectedPriceDiamond) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
+    if (BagType != 0) hash ^= BagType.GetHashCode();
+    if (ExpectedCapacity != 0) hash ^= ExpectedCapacity.GetHashCode();
+    if (ExpectedPriceDiamond != 0UL) hash ^= ExpectedPriceDiamond.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (BagType != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(BagType);
+    }
+    if (ExpectedCapacity != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(ExpectedCapacity);
+    }
+    if (ExpectedPriceDiamond != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(ExpectedPriceDiamond);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (BagType != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(BagType);
+    }
+    if (ExpectedCapacity != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(ExpectedCapacity);
+    }
+    if (ExpectedPriceDiamond != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(ExpectedPriceDiamond);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ClientRequestId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
+    }
+    if (BagType != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BagType);
+    }
+    if (ExpectedCapacity != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ExpectedCapacity);
+    }
+    if (ExpectedPriceDiamond != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedPriceDiamond);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ExpandBagCapacityRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ClientRequestId != 0UL) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    if (other.BagType != 0) {
+      BagType = other.BagType;
+    }
+    if (other.ExpectedCapacity != 0) {
+      ExpectedCapacity = other.ExpectedCapacity;
+    }
+    if (other.ExpectedPriceDiamond != 0UL) {
+      ExpectedPriceDiamond = other.ExpectedPriceDiamond;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          BagType = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          ExpectedCapacity = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          ExpectedPriceDiamond = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          BagType = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          ExpectedCapacity = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          ExpectedPriceDiamond = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class ExpandBagCapacityResponse : pb::IMessage<ExpandBagCapacityResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ExpandBagCapacityResponse> _parser = new pb::MessageParser<ExpandBagCapacityResponse>(() => new ExpandBagCapacityResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ExpandBagCapacityResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[63]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ExpandBagCapacityResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ExpandBagCapacityResponse(ExpandBagCapacityResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    replayed_ = other.replayed_;
+    newCapacity_ = other.newCapacity_;
+    maxCapacity_ = other.maxCapacity_;
+    spentDiamond_ = other.spentDiamond_;
+    diamondBalance_ = other.diamondBalance_;
+    bag_ = other.bag_ != null ? other.bag_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ExpandBagCapacityResponse Clone() {
+    return new ExpandBagCapacityResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "replayed" field.</summary>
+  public const int ReplayedFieldNumber = 2;
+  private bool replayed_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Replayed {
+    get { return replayed_; }
+    set {
+      replayed_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "new_capacity" field.</summary>
+  public const int NewCapacityFieldNumber = 3;
+  private uint newCapacity_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint NewCapacity {
+    get { return newCapacity_; }
+    set {
+      newCapacity_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_capacity" field.</summary>
+  public const int MaxCapacityFieldNumber = 4;
+  private uint maxCapacity_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaxCapacity {
+    get { return maxCapacity_; }
+    set {
+      maxCapacity_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "spent_diamond" field.</summary>
+  public const int SpentDiamondFieldNumber = 5;
+  private ulong spentDiamond_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong SpentDiamond {
+    get { return spentDiamond_; }
+    set {
+      spentDiamond_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "diamond_balance" field.</summary>
+  public const int DiamondBalanceFieldNumber = 6;
+  private ulong diamondBalance_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong DiamondBalance {
+    get { return diamondBalance_; }
+    set {
+      diamondBalance_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "bag" field.</summary>
+  public const int BagFieldNumber = 7;
+  private global::BagInfo bag_;
+  /// <summary>
+  /// 扩容后的最新仓库全量
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::BagInfo Bag {
+    get { return bag_; }
+    set {
+      bag_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ExpandBagCapacityResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ExpandBagCapacityResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (Replayed != other.Replayed) return false;
+    if (NewCapacity != other.NewCapacity) return false;
+    if (MaxCapacity != other.MaxCapacity) return false;
+    if (SpentDiamond != other.SpentDiamond) return false;
+    if (DiamondBalance != other.DiamondBalance) return false;
+    if (!object.Equals(Bag, other.Bag)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (Replayed != false) hash ^= Replayed.GetHashCode();
+    if (NewCapacity != 0) hash ^= NewCapacity.GetHashCode();
+    if (MaxCapacity != 0) hash ^= MaxCapacity.GetHashCode();
+    if (SpentDiamond != 0UL) hash ^= SpentDiamond.GetHashCode();
+    if (DiamondBalance != 0UL) hash ^= DiamondBalance.GetHashCode();
+    if (bag_ != null) hash ^= Bag.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(16);
+      output.WriteBool(Replayed);
+    }
+    if (NewCapacity != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(NewCapacity);
+    }
+    if (MaxCapacity != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(MaxCapacity);
+    }
+    if (SpentDiamond != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(SpentDiamond);
+    }
+    if (DiamondBalance != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(DiamondBalance);
+    }
+    if (bag_ != null) {
+      output.WriteRawTag(58);
+      output.WriteMessage(Bag);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(16);
+      output.WriteBool(Replayed);
+    }
+    if (NewCapacity != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(NewCapacity);
+    }
+    if (MaxCapacity != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(MaxCapacity);
+    }
+    if (SpentDiamond != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(SpentDiamond);
+    }
+    if (DiamondBalance != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(DiamondBalance);
+    }
+    if (bag_ != null) {
+      output.WriteRawTag(58);
+      output.WriteMessage(Bag);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (Replayed != false) {
+      size += 1 + 1;
+    }
+    if (NewCapacity != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NewCapacity);
+    }
+    if (MaxCapacity != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaxCapacity);
+    }
+    if (SpentDiamond != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(SpentDiamond);
+    }
+    if (DiamondBalance != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(DiamondBalance);
+    }
+    if (bag_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Bag);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ExpandBagCapacityResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.Replayed != false) {
+      Replayed = other.Replayed;
+    }
+    if (other.NewCapacity != 0) {
+      NewCapacity = other.NewCapacity;
+    }
+    if (other.MaxCapacity != 0) {
+      MaxCapacity = other.MaxCapacity;
+    }
+    if (other.SpentDiamond != 0UL) {
+      SpentDiamond = other.SpentDiamond;
+    }
+    if (other.DiamondBalance != 0UL) {
+      DiamondBalance = other.DiamondBalance;
+    }
+    if (other.bag_ != null) {
+      if (bag_ == null) {
+        Bag = new global::BagInfo();
+      }
+      Bag.MergeFrom(other.Bag);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 24: {
+          NewCapacity = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          MaxCapacity = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          SpentDiamond = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          DiamondBalance = input.ReadUInt64();
+          break;
+        }
+        case 58: {
+          if (bag_ == null) {
+            Bag = new global::BagInfo();
+          }
+          input.ReadMessage(Bag);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 24: {
+          NewCapacity = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          MaxCapacity = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          SpentDiamond = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          DiamondBalance = input.ReadUInt64();
+          break;
+        }
+        case 58: {
+          if (bag_ == null) {
+            Bag = new global::BagInfo();
+          }
+          input.ReadMessage(Bag);
+          break;
+        }
+      }
+    }
+  }
+  #endif
 
 }
 

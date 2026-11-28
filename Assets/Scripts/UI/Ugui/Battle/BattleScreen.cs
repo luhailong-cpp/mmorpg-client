@@ -345,6 +345,11 @@ namespace MmorpgClient.UI.Ugui.Battle
         private BattlePingKind _armedPingKind = BattlePingKind.BattlePingUnspecified;
         private RectTransform _winStreakBanner;
         private TMP_Text _winStreakBannerText;
+        // B2 擂台/会武入场与胜利演出横幅（battle_banner_entrance_01..03，纯视觉零数值）
+        private RectTransform _showcaseBannerRoot;
+        private Image _showcaseBannerBg;
+        private TMP_Text _showcaseBannerText;
+        private float _showcaseBannerHideAt;
 
         private bool IsReadOnly => _spectate || _replay;
 
@@ -1259,6 +1264,21 @@ namespace MmorpgClient.UI.Ugui.Battle
             _winStreakBannerText.raycastTarget = false;
             _winStreakBanner.gameObject.SetActive(false);
 
+            // B2 擂台/会武入场与胜利演出横幅（720×220，中间留白叠放角色名与入场/凯旋文案）
+            var scBanner = QdaoUguiFactory.CreateImage("ShowcaseEntranceBanner", _hudRoot,
+                (QdaoUguiTheme.DesignWidth - 720f) * 0.5f, 126f, 720f, 140f, null);
+            scBanner.raycastTarget = false;
+            _showcaseBannerRoot = scBanner.rectTransform;
+            _showcaseBannerBg = scBanner;
+            _showcaseBannerText = QdaoUguiFactory.CreateText("ShowcaseEntranceBannerText", _showcaseBannerRoot,
+                96f, 18f, 528f, 104f, string.Empty, 30f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
+            _showcaseBannerText.fontStyle = FontStyles.Bold;
+            _showcaseBannerText.enableAutoSizing = true;
+            _showcaseBannerText.fontSizeMin = 20f;
+            _showcaseBannerText.fontSizeMax = 30f;
+            _showcaseBannerText.raycastTarget = false;
+            _showcaseBannerRoot.gameObject.SetActive(false);
+
             BattleFidelityArt.ApplyHud(_hudRoot);
             _statusPopup = QdaoUguiFactory.CreateStretch("UnitStatusPopup", _hudRoot, Vector4.zero);
             var statusDismiss = QdaoUguiFactory.CreateHitButton("DismissStatus", _statusPopup,
@@ -1430,7 +1450,37 @@ namespace MmorpgClient.UI.Ugui.Battle
             RefreshSpectateHeader();
             SetReplayControlsVisible(replay);
             _presenter.PlayEntrance(_views);
+            TryShowShowcaseBanner(state, victory: false, winnerTeam: 0u);
             _logPanel.Append(replay ? "回放开始" : "战斗开始");
+        }
+
+        private void TryShowShowcaseBanner(BattleStateS2C state, bool victory, uint winnerTeam)
+        {
+            if (_showcaseBannerRoot == null || _showcaseBannerBg == null || _showcaseBannerText == null || state == null)
+                return;
+            BattleActorState featured = null;
+            foreach (var actor in state.Actors)
+            {
+                if (actor.ActorType != eBattleActorType.BattleActorTypePlayer || actor.EntranceVictorySkinId == 0u)
+                    continue;
+                if (victory && actor.TeamIndex != winnerTeam)
+                    continue;
+                if (featured == null || actor.ActorId == _myId)
+                {
+                    featured = actor;
+                    if (actor.ActorId == _myId) break;
+                }
+            }
+            if (featured == null) return;
+            var sprite = MmorpgClient.UI.Ugui.Gameplay.AppearanceUiArt.LoadShowcaseById(featured.EntranceVictorySkinId);
+            if (sprite == null) return;
+            _showcaseBannerBg.sprite = sprite;
+            _showcaseBannerBg.type = sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+            _showcaseBannerBg.color = Color.white;
+            string actorName = string.IsNullOrWhiteSpace(featured.Name) ? $"道友{featured.ActorId}" : featured.Name;
+            _showcaseBannerText.text = victory ? $"{actorName} · 演武制胜" : $"{actorName} · 登台亮剑";
+            _showcaseBannerRoot.gameObject.SetActive(true);
+            _showcaseBannerHideAt = Time.unscaledTime + (victory ? 4.0f : 2.8f);
         }
 
         public void Close()
@@ -1447,6 +1497,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _surrenderButton?.SetVisible(false);
             _spectateChatPanel?.ResetAndHide();
             if (_guildWarFrenzyRoot != null) _guildWarFrenzyRoot.gameObject.SetActive(false);
+            if (_showcaseBannerRoot != null) _showcaseBannerRoot.gameObject.SetActive(false);
+            _showcaseBannerHideAt = 0f;
             if (_tacticalPuzzleBadgeRoot != null) _tacticalPuzzleBadgeRoot.gameObject.SetActive(false);
             if (_surrenderConfirmStrip != null) _surrenderConfirmStrip.gameObject.SetActive(false);
             if (_surrenderVoteStrip != null) _surrenderVoteStrip.gameObject.SetActive(false);
@@ -1692,6 +1744,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 {
                     uint winnerTeam = state.Outcome == eBattleOutcome.BattleOutcomeSideAWin ? 0u : 1u;
                     _presenter.PlayVictory(_views, winnerTeam == _myTeam);
+                    TryShowShowcaseBanner(state, victory: true, winnerTeam: winnerTeam);
                 }
             }
 
@@ -1755,6 +1808,12 @@ namespace MmorpgClient.UI.Ugui.Battle
         public void Tick()
         {
             if (!IsOpen) return;
+            if (_showcaseBannerRoot != null && _showcaseBannerRoot.gameObject.activeSelf
+                && _showcaseBannerHideAt > 0f && Time.unscaledTime >= _showcaseBannerHideAt)
+            {
+                _showcaseBannerRoot.gameObject.SetActive(false);
+                _showcaseBannerHideAt = 0f;
+            }
             float pulseAlpha = 0.85f + 0.15f * Mathf.Sin(Time.unscaledTime * 5f);
             foreach (var view in _views) view.UpdateChargeBadge(pulseAlpha);
             ApplyTopSafety();
@@ -2293,7 +2352,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             for (int i = 0; i < summary.Buffs.Count; i++)
             {
                 var b = summary.Buffs[i];
-                sb.Append($"\n• {b.SourceName}");
+                sb.Append($"\n· {b.SourceName}");
                 string effects = FormatBuffEffects(b, resolveBuff);
                 if (!string.IsNullOrEmpty(effects)) sb.Append($"  {effects}");
                 if (b.RemainRounds > 0)

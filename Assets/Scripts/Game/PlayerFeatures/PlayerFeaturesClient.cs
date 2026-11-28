@@ -977,6 +977,52 @@ namespace MmorpgClient.Game.PlayerFeatures
             OnError?.Invoke(ActivitiesError);
         }
 
+        /// <summary>仓库容量真实灵石扩容（仅 bag_type=1 仓库，每次 +20 格，上限 300 格，60 真实灵石/次）。</summary>
+        public bool ExpandWarehouseCapacity(uint expectedCapacity, ulong expectedPriceDiamond = 60ul,
+            Action<ExpandBagCapacityResponse> onResult = null)
+        {
+            if (_disposed || !_net.IsReady)
+            {
+                OnError?.Invoke("尚未进入游戏");
+                return false;
+            }
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey))
+            {
+                OnError?.Invoke(ClientRequestKeys.UnavailableText);
+                return false;
+            }
+            var req = new ExpandBagCapacityRequest
+            {
+                ClientRequestId = requestKey,
+                BagType = 1u,
+                ExpectedCapacity = expectedCapacity,
+                ExpectedPriceDiamond = expectedPriceDiamond,
+            };
+            int epoch = _epoch;
+            _net.Call(MessageIds.ExpandBagCapacity, req, ExpandBagCapacityResponse.Parser,
+                response =>
+                {
+                    if (_disposed || epoch != _epoch) return;
+                    if (response.ErrorMessage == null || response.ErrorMessage.Id == 0u)
+                    {
+                        if (response.Bag != null && _bags.Length > 1)
+                            _bags[1] = response.Bag;
+                        OnChanged?.Invoke();
+                    }
+                    else
+                    {
+                        OnError?.Invoke(DescribeTip("仓库扩容", response.ErrorMessage));
+                    }
+                    onResult?.Invoke(response);
+                },
+                err =>
+                {
+                    if (_disposed || epoch != _epoch) return;
+                    OnError?.Invoke(string.IsNullOrWhiteSpace(err) ? "仓库扩容请求失败，请重试" : err);
+                });
+            return true;
+        }
+
         private void HandleDisconnected()
         {
             if (_disposed) return;

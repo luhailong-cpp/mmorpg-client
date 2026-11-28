@@ -144,6 +144,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly RectTransform _root;
         private readonly CanvasGroup _group;
         private readonly Image _ring;
+        private readonly Image _formationSkin;
         private readonly Image _shadow;
         private readonly Image _body;
         private readonly RectTransform _bodyRect;
@@ -235,6 +236,12 @@ namespace MmorpgClient.UI.Ugui.Battle
             _ring = QdaoUguiFactory.CreateImage("Ring", _root, RootWidth * 0.5f - 110f, GroundY - 55f, 220f, 110f, ring);
             _ring.preserveAspect = false;
             _ring.gameObject.SetActive(false);
+
+            // B2 脚底五行阵纹排面贴图（纯视觉零数值，中心半透不遮脚底）
+            _formationSkin = QdaoUguiFactory.CreateImage("FormationSkin", _root, RootWidth * 0.5f - 128f, GroundY - 64f, 256f, 128f, null);
+            _formationSkin.preserveAspect = true;
+            _formationSkin.raycastTarget = false;
+            _formationSkin.gameObject.SetActive(false);
 
             // 脚底阴影
             _shadow = QdaoUguiFactory.CreateImage("Shadow", _root, RootWidth * 0.5f - 60f, GroundY - 22f, 120f, 44f,
@@ -591,6 +598,14 @@ namespace MmorpgClient.UI.Ugui.Battle
             SetBarsImmediate();
             RebuildBuffIcons(state);
             RefreshStatusOverlay(state);
+            if (_formationSkin != null)
+            {
+                var formSprite = state.FormationSkinId != 0u
+                    ? MmorpgClient.UI.Ugui.Gameplay.AppearanceUiArt.LoadShowcaseById(state.FormationSkinId)
+                    : null;
+                _formationSkin.sprite = formSprite;
+                _formationSkin.gameObject.SetActive(formSprite != null && !state.IsDead && !state.Fled);
+            }
 
             bool dead = state.IsDead;
             bool captured = state.CapturedByPlayerId != 0;

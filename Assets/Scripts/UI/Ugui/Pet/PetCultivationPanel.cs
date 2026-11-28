@@ -46,14 +46,6 @@ namespace MmorpgClient.UI.Ugui.Pet
         private static readonly Color BackdropDim = new Color(0.02f, 0.065f, 0.05f, 0.56f);
         private static readonly Color ModalDim = new Color(0.015f, 0.05f, 0.04f, 0.62f);
 
-        private enum TypographyRole { Body, Heading, Primary, Title }
-
-        private static Material _matBase;
-        private static Material _matBody;
-        private static Material _matHeading;
-        private static Material _matPrimary;
-        private static Material _matTitle;
-
         private readonly Func<PetClient> _getClient;
         private readonly Func<ISkillBookSource> _getSkills;
         private readonly Func<bool> _battleLocked;
@@ -335,7 +327,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             Art("CultivationFrame", _shell, 0f, 0f, ShellNativeWidth, ShellNativeHeight, "guild_empty_shell");
             Art("CultivationFrameInput", _shell, 125f, 70f, 1660f, 712f, "shell-close-hit", true);
             Label("CultivationTitle", _shell, 726f, 20f, 480f, 62f, "宝宝培养", 46f, TitleCream,
-                TextAlignmentOptions.Center, role: TypographyRole.Title);
+                TextAlignmentOptions.Center, role: QdaoUiTypographyRole.Title);
             ActionButton("CultivationClose", _shell, 1780f, 22f, 88f, 84f, "", false, RequestClose, "shell-close-hit");
 
             _body = Rect("CultivationBody", _shell, 0f, 0f, ShellNativeWidth, ShellNativeHeight);
@@ -358,7 +350,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             }
 
             // 左栏：我的宝宝（严格落在帮会原图左栏 183..727 内）
-            Label("PetRosterHeadingText", _shell, LeftColX + 10f, 172f, 160f, 40f, "我的宝宝", 32f, Green, role: TypographyRole.Heading);
+            Label("PetRosterHeadingText", _shell, LeftColX + 10f, 172f, 160f, 40f, "我的宝宝", 32f, Green, role: QdaoUiTypographyRole.Heading);
             GuildUiArt.Line(_shell, "PetRosterHeadingRule", LeftColX + 162f, 192f, LeftColWidth - 168f);
             BuildRoster(LeftColX, LeftColWidth);
 
@@ -429,22 +421,22 @@ namespace MmorpgClient.UI.Ugui.Pet
                 Art("PetPortraitRing" + i, parent, 40f, 10f, 94f, 94f,
                     string.IsNullOrEmpty(pet.CultivationArtKey) ? "portrait_frame" : "ring-" + pet.CultivationArtKey).preserveAspect = true;
                 Label("PetName" + i, parent, 148f, 14f, width - 254f, 44f, pet.Name, 31f,
-                    selected ? Green : RichInk, role: TypographyRole.Heading);
+                    selected ? Green : RichInk, role: QdaoUiTypographyRole.Heading);
                 Label("PetLevel" + i, parent, 148f, 62f, width - 260f, 34f,
                     $"{pet.Level}级 · {(string.IsNullOrEmpty(pet.CultivationTierName) ? "—" : pet.CultivationTierName)}", 21f,
                     selected ? SelectedInk : Ink);
                 // 保持 18px 精确右内距，防止边框裁字并满足布局断言
                 Label("PetState" + i, parent, width - 102f, 62f, 84f, 34f, pet.IsActive ? "出战" : "休息", 21f,
                     pet.IsActive ? Green : Muted, TextAlignmentOptions.MidlineRight,
-                    role: pet.IsActive ? TypographyRole.Heading : TypographyRole.Body);
+                    role: pet.IsActive ? QdaoUiTypographyRole.Heading : QdaoUiTypographyRole.Body);
                 GuildUiArt.Line(parent, "PetRosterRule" + i, 4f, rowHeight - 2f, width - 8f);
             }
         }
 
         private void BuildFourStats(float x, float width)
         {
-            Label("FourStatsTitle", _body, x + 16f, 172f, 160f, 40f, "四维加点", 32f, Green, role: TypographyRole.Heading);
-            _remaining = Label("FourStatsRemaining", _body, x + 186f, 174f, 280f, 38f, "剩余属性点 —", 25f, Green, role: TypographyRole.Heading);
+            Label("FourStatsTitle", _body, x + 16f, 172f, 160f, 40f, "四维加点", 32f, Green, role: QdaoUiTypographyRole.Heading);
+            _remaining = Label("FourStatsRemaining", _body, x + 186f, 174f, 280f, 38f, "剩余属性点 —", 25f, Green, role: QdaoUiTypographyRole.Heading);
             _budget = Label("FourStatsBudget", _body, x + width - 468f, 178f, 464f, 32f, "", 20f, Muted, TextAlignmentOptions.MidlineRight);
 
             float rowX = x, rowW = width, current = rowW * .36f, increment = rowW * .61f, after = rowW * .86f;
@@ -466,16 +458,16 @@ namespace MmorpgClient.UI.Ugui.Pet
                 var row = new StatRow { Dimension = d };
                 _statRows.Add(row);
                 var plate = Art("FourStatRow" + i, content, 0f, i * rowStride, rowW, rowHeight, "mail_row_normal").rectTransform;
-                Label("FourStatName" + i, plate, 42f, 20f, current - 120f, 44f, d.Name, 28f, RichInk, role: TypographyRole.Heading);
+                Label("FourStatName" + i, plate, 42f, 20f, current - 120f, 44f, d.Name, 28f, RichInk, role: QdaoUiTypographyRole.Heading);
                 row.Current = Label("FourStatCurrent" + i, plate, current - 60f, 21f, 120f, 42f, "", 25f, Ink, TextAlignmentOptions.Center);
                 row.Minus = ActionButton("Row" + i + "Minus", plate, increment - 104f, 18f, 48f, 48f, "", false,
                     () => Step(d.DimensionId, -1), "step-minus-normal");
                 Art("FourStatIncrementField" + i, plate, increment - 44f, 21f, 88f, 42f, "stat_field");
-                row.Increment = Label("FourStatIncrement" + i, plate, increment - 44f, 21f, 88f, 42f, "", 24f, Blue, TextAlignmentOptions.Center, role: TypographyRole.Heading);
+                row.Increment = Label("FourStatIncrement" + i, plate, increment - 44f, 21f, 88f, 42f, "", 24f, Blue, TextAlignmentOptions.Center, role: QdaoUiTypographyRole.Heading);
                 row.Plus = ActionButton("Row" + i + "Plus", plate, increment + 56f, 18f, 48f, 48f, "", false,
                     () => Step(d.DimensionId, 1), "step-plus-normal");
                 Art("FourStatAfterField" + i, plate, after - 46f, 21f, 92f, 42f, "stat_field");
-                row.After = Label("FourStatAfter" + i, plate, after - 46f, 21f, 92f, 42f, "", 24f, RichInk, TextAlignmentOptions.Center, role: TypographyRole.Heading);
+                row.After = Label("FourStatAfter" + i, plate, after - 46f, 21f, 92f, 42f, "", 24f, RichInk, TextAlignmentOptions.Center, role: QdaoUiTypographyRole.Heading);
                 GuildUiArt.Line(plate, "FourStatRule" + i, 4f, rowHeight - 2f, rowW - 8f);
             }
             if (count == 0)
@@ -556,10 +548,10 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void BuildUnavailableEntries(float x, float width)
         {
-            Label("EntryPointsTitle", _body, x + 16f, 172f, 130f, 40f, "条目点", 32f, Green, role: TypographyRole.Heading);
+            Label("EntryPointsTitle", _body, x + 16f, 172f, 130f, 40f, "条目点", 32f, Green, role: QdaoUiTypographyRole.Heading);
             GuildUiArt.Line(_body, "EntryHeadingRule", x + 144f, 192f, 112f);
             Label("EntryPointsBudget", _body, x + 260f, 176f, width - 264f, 34f, "总点数 —       已用 —       剩余 —",
-                22f, RichInk, TextAlignmentOptions.MidlineRight, role: TypographyRole.Heading);
+                22f, RichInk, TextAlignmentOptions.MidlineRight, role: QdaoUiTypographyRole.Heading);
 
             string[] categories = { "全部", "输出", "障碍", "辅助" };
             float catW = (width - 36f) * 0.25f;
@@ -606,7 +598,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         private void BuildAttributes(float x, float width)
         {
             var pet = Selected;
-            Label("PetOverviewTitle", _body, x + 16f, 172f, 260f, 40f, pet?.Name ?? "宝宝属性", 32f, Green, role: TypographyRole.Heading);
+            Label("PetOverviewTitle", _body, x + 16f, 172f, 260f, 40f, pet?.Name ?? "宝宝属性", 32f, Green, role: QdaoUiTypographyRole.Heading);
             GuildUiArt.Line(_body, "PetOverviewHeadingRule", x + 206f, 192f, width - 212f);
             var d = pet?.Derived;
             string[] names = { "气血", "法力", "物理攻击", "法术攻击", "防御", "速度" };
@@ -615,7 +607,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             for (int i = 0; i < names.Length; i++)
             {
                 var row = Art("PetOverview" + i, _body, x, 224f + i * 62f, width, 58f, "mail_row_normal").rectTransform;
-                Label("PetOverviewLabel" + i, row, 32f, 10f, 240f, 38f, names[i], 25f, RichInk, role: TypographyRole.Heading);
+                Label("PetOverviewLabel" + i, row, 32f, 10f, 240f, 38f, names[i], 25f, RichInk, role: QdaoUiTypographyRole.Heading);
                 Label("PetOverviewValue" + i, row, width - 380f, 10f, 348f, 38f, values[i], 25f, Ink, TextAlignmentOptions.MidlineRight);
                 GuildUiArt.Line(row, "PetOverviewRule" + i, 4f, 56f, width - 8f);
             }
@@ -624,7 +616,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             float buttonWidth = isMaxTier ? 410f : 268f;
             Label("PetOverviewGrowth", _body, x + 8f, 608f, width - 16f, 32f,
                 pet == null ? "等级 — · 成长率 —" : $"等级 {pet.Level} · 成长率 {pet.Growth / 100f:0.##}% · 灵阶：{(string.IsNullOrEmpty(pet.CultivationTierName) ? "—" : pet.CultivationTierName)}",
-                22f, RichInk, role: TypographyRole.Heading);
+                22f, RichInk, role: QdaoUiTypographyRole.Heading);
             if (pet != null)
             {
                 bool hasNextTier = HasNextTier(pet);
@@ -650,65 +642,6 @@ namespace MmorpgClient.UI.Ugui.Pet
             if (entry?.id == "legacy-ling-yue") return CharacterPetArt.Get("portrait_lingyue");
             if (entry?.id == "legacy-yun-jiu-jiu") return CharacterPetArt.Get("portrait_yunjiujiu");
             return QdaoPetCatalog.LoadPortrait(entry?.id) ?? CharacterPetArt.Get("round_badge_taiji");
-        }
-
-        private static void DestroyMaterial(ref Material mat)
-        {
-            if (mat == null) return;
-            if (Application.isPlaying) UnityEngine.Object.Destroy(mat);
-            else UnityEngine.Object.DestroyImmediate(mat);
-            mat = null;
-        }
-
-        /// <summary>
-        /// 按帮会原图 approved-guild-reference.png 实测笔画厚度（正文 2px / 标题与页签 3~4px / 牌匾 4~6px）
-        /// 派生四档 SDF 材质，用 GPU 距离场自然加厚 SimKai 笔触，告别细飘电脑字感。
-        /// </summary>
-        private static Material ResolveTypographyMaterial(TMP_FontAsset font, TypographyRole role)
-        {
-            if (font == null || font.material == null) return null;
-            if (!ReferenceEquals(_matBase, font.material) || _matBody == null || _matHeading == null || _matPrimary == null || _matTitle == null)
-            {
-                DestroyMaterial(ref _matBody);
-                DestroyMaterial(ref _matHeading);
-                DestroyMaterial(ref _matPrimary);
-                DestroyMaterial(ref _matTitle);
-                _matBase = font.material;
-
-                _matBody = new Material(_matBase) { name = "PetSimKaiBody", hideFlags = HideFlags.DontSave };
-                _matBody.SetFloat("_FaceDilate", 0.11f);
-                _matBody.SetFloat("_OutlineSoftness", 0.02f);
-
-                _matHeading = new Material(_matBase) { name = "PetSimKaiHeading", hideFlags = HideFlags.DontSave };
-                _matHeading.SetFloat("_FaceDilate", 0.21f);
-                _matHeading.SetFloat("_OutlineSoftness", 0.02f);
-
-                _matPrimary = new Material(_matBase) { name = "PetSimKaiPrimary", hideFlags = HideFlags.DontSave };
-                _matPrimary.SetFloat("_FaceDilate", 0.23f);
-                _matPrimary.EnableKeyword("UNDERLAY_ON");
-                _matPrimary.SetColor("_UnderlayColor", new Color(0.01f, 0.09f, 0.045f, 0.86f));
-                _matPrimary.SetFloat("_UnderlayOffsetX", 0f);
-                _matPrimary.SetFloat("_UnderlayOffsetY", -0.45f);
-                _matPrimary.SetFloat("_UnderlayDilate", 0.20f);
-                _matPrimary.SetFloat("_UnderlaySoftness", 0.22f);
-
-                _matTitle = new Material(_matBase) { name = "PetSimKaiTitle", hideFlags = HideFlags.DontSave };
-                _matTitle.SetFloat("_FaceDilate", 0.29f);
-                _matTitle.EnableKeyword("UNDERLAY_ON");
-                _matTitle.SetColor("_UnderlayColor", new Color(0.01f, 0.08f, 0.04f, 0.88f));
-                _matTitle.SetFloat("_UnderlayOffsetX", 0f);
-                _matTitle.SetFloat("_UnderlayOffsetY", -0.52f);
-                _matTitle.SetFloat("_UnderlayDilate", 0.26f);
-                _matTitle.SetFloat("_UnderlaySoftness", 0.24f);
-            }
-
-            return role switch
-            {
-                TypographyRole.Title => _matTitle,
-                TypographyRole.Primary => _matPrimary,
-                TypographyRole.Heading => _matHeading,
-                _ => _matBody,
-            };
         }
 
         private static RectTransform Rect(string name, UnityEngine.Transform parent, float x, float y, float w, float h)
@@ -740,13 +673,10 @@ namespace MmorpgClient.UI.Ugui.Pet
         private static TMP_Text Label(string name, UnityEngine.Transform parent, float x, float y, float w, float h, string value,
             float size, Color color, TextAlignmentOptions alignment = TextAlignmentOptions.MidlineLeft,
             bool wrap = false, bool autoSize = false, float minSize = 15f,
-            TypographyRole role = TypographyRole.Body)
+            QdaoUiTypographyRole role = QdaoUiTypographyRole.Body)
         {
             var text = QdaoUguiFactory.CreateText(name, parent, x, y, w, h, value ?? "", size, color, alignment);
-            var font = QdaoUguiTheme.ResolveFont();
-            text.font = font;
-            var mat = ResolveTypographyMaterial(font, role);
-            if (mat != null) text.fontSharedMaterial = mat;
+            QdaoUguiTheme.ApplyTypography(text, role);
             text.richText = false;
             text.textWrappingMode = wrap ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
             text.overflowMode = wrap ? TextOverflowModes.Overflow : TextOverflowModes.Ellipsis;
@@ -792,7 +722,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 Label(name + "Text", art.rectTransform, padX, 2f, Mathf.Max(20f, w - padX * 2f), Mathf.Max(20f, h - 4f),
                     text, fontSize, primary ? Cream : RichInk, TextAlignmentOptions.Center,
                     wrap: false, autoSize: autoSize, minSize: Mathf.Max(14f, fontSize - 7f),
-                    role: primary ? TypographyRole.Primary : TypographyRole.Heading);
+                    role: primary ? QdaoUiTypographyRole.Primary : QdaoUiTypographyRole.Heading);
             }
             return button;
         }

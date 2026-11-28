@@ -23,7 +23,7 @@ public static partial class PetErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "CixnZW5lcmF0ZWQvY29kZS9wcm90by90aXAvcGV0X2Vycm9yX3RpcC5wcm90",
-          "byqSBQoJcGV0X2Vycm9yEhAKDGtQZXRfZXJyb3JPSxAAEhIKDGtQZXROb3RG",
+          "byrqBQoJcGV0X2Vycm9yEhAKDGtQZXRfZXJyb3JPSxAAEhIKDGtQZXROb3RG",
           "b3VuZBCQywESGQoTa1BldFRhYmxlUm93TWlzc2luZxCRywESEgoMa1BldFNs",
           "b3RGdWxsEJLLARIdChdrUGV0T3duZXJMZXZlbE5vdEVub3VnaBCTywESFwoR",
           "a1BldEFscmVhZHlBY3RpdmUQlMsBEhMKDWtQZXROb3RBY3RpdmUQlcsBEhgK",
@@ -37,8 +37,10 @@ public static partial class PetErrorTipReflection {
           "ChNrUGV0Tm90VHJhbnNmZXJhYmxlEKLLARIYChJrUGV0VGllck1heFJlYWNo",
           "ZWQQo8sBEhUKD2tQZXRUaWVyQ2hhbmdlZBCkywESHAoWa1BldFRpZXJMZXZl",
           "bE5vdEVub3VnaBClywESHwoZa1BldFRpZXJNYXRlcmlhbE5vdEVub3VnaBCm",
-          "ywESHAoWa1BldEVudHJ5UHJlc2V0SW52YWxpZBCnywFCJAoOY29tLmdhbWUu",
-          "dGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
+          "ywESHAoWa1BldEVudHJ5UHJlc2V0SW52YWxpZBCnywESGQoTa1BldFNxdWFk",
+          "U2xvdExvY2tlZBCoywESHgoYa1BldFNxdWFkTWF4U2xvdHNSZWFjaGVkEKnL",
+          "ARIbChVrUGV0U3F1YWRQcmljZUNoYW5nZWQQqssBQiQKDmNvbS5nYW1lLnRh",
+          "YmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::pet_error), }, null, null));
@@ -73,6 +75,9 @@ public enum pet_error {
   [pbr::OriginalName("kPetTierLevelNotEnough")] KPetTierLevelNotEnough = 26021,
   [pbr::OriginalName("kPetTierMaterialNotEnough")] KPetTierMaterialNotEnough = 26022,
   [pbr::OriginalName("kPetEntryPresetInvalid")] KPetEntryPresetInvalid = 26023,
+  [pbr::OriginalName("kPetSquadSlotLocked")] KPetSquadSlotLocked = 26024,
+  [pbr::OriginalName("kPetSquadMaxSlotsReached")] KPetSquadMaxSlotsReached = 26025,
+  [pbr::OriginalName("kPetSquadPriceChanged")] KPetSquadPriceChanged = 26026,
 }
 
 #endregion

@@ -131,6 +131,30 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             NativeButton(_body, "SortBag", _sorting ? "整理中" : "整理", "bag-sort", 1005, 700, 158, 54,
                 () => SortRequested?.Invoke(), !_bagLoading && !_sorting && !_equipBusy && _bag?.Layout != null && _bag.Layout.CanSort && _bag.Layout.BagType == 0, 30);
+            // B3 背包/仓库切换与仓库扩容入口（仅仓库 bag_type=1 且容量 < 300 且渠道允许付费时展示扩容按钮）
+            bool isWarehouse = _bagType == 1u;
+            NativeButton(_body, "ToggleWarehouseBag", isWarehouse ? "切背包" : "切仓库", "bag-tab-normal", 1172, 700, 118, 54,
+                () =>
+                {
+                    _bagType = isWarehouse ? 0u : 1u;
+                    _bagPage = 0;
+                    BagRequested?.Invoke(_bagType);
+                    Render();
+                }, !_bagLoading, 24);
+            uint whCap = _bag?.Layout?.Capacity ?? 200u;
+            if (isWarehouse && whCap < 300u && MmorpgClient.Game.RewardedAd.ClientDistributionPolicy.Current.IapEnabled)
+            {
+                uint capturedCap = whCap;
+                var expandBtn = NativeButton(_body, "ExpandWarehouseBtn", "扩容+20格 (60灵石)", "bag-button-primary", 1298, 700, 260, 54,
+                    () => WarehouseExpandRequested?.Invoke(capturedCap), !_bagLoading, 20);
+                var expIcon = AppearanceUiArt.LoadWarehouseExpandIcon();
+                if (expIcon != null)
+                {
+                    var img = QdaoUguiFactory.CreateImage("WarehouseExpandIcon", expandBtn.transform, 6, 9, 36, 36, expIcon);
+                    img.preserveAspect = true;
+                    img.raycastTarget = false;
+                }
+            }
             var worn = EquipBagModel.Slots(_equipment);
             var items = _bag?.Items.GroupBy(i => i.ItemId).ToDictionary(g => g.Key, g => g.First()) ?? new Dictionary<ulong, BagItemInfo>();
             var slots = _bag?.Layout?.Slots.OrderBy(s => s.Slot).Where(s => items.ContainsKey(s.ItemId)).ToList() ?? new List<BagSlotInfo>();

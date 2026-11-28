@@ -27,6 +27,8 @@ namespace MmorpgClient.Game.Battle
         public ulong MaxHealth;
         public uint ChargingSkillId;
         public string ChargingSkillName;
+        public uint FormationSkinId;
+        public uint EntranceVictorySkinId;
         public bool IsCharging => ChargingSkillId != 0;
         public float ShieldRatio => MaxHealth > 0 ? Math.Min(1f, (float)TotalShieldCapacity / MaxHealth) : 0f;
         public readonly List<BattleUnitBuffDetail> Buffs = new();
@@ -46,6 +48,8 @@ namespace MmorpgClient.Game.Battle
             summary.ActorId = actor.ActorId;
             summary.MaxHealth = actor.MaxHealth;
             summary.ChargingSkillId = actor.ChargingSkillId;
+            summary.FormationSkinId = actor.FormationSkinId;
+            summary.EntranceVictorySkinId = actor.EntranceVictorySkinId;
             if (actor.ChargingSkillId != 0)
             {
                 summary.ChargingSkillName = resolveSkillName?.Invoke(actor.ChargingSkillId) ?? $"技能 #{actor.ChargingSkillId}";

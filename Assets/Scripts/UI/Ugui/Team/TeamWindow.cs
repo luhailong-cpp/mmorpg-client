@@ -832,8 +832,8 @@ namespace MmorpgClient.UI.Ugui.Team
             // Noto CJK line metrics exceed the old KaiTi boxes; Ellipsis otherwise hides a whole line.
             h = Mathf.Max(h, size * 1.18f);
             var label = Text(parent, value, x, y, w, h, size, color ?? BodyInk, alignment: alignment);
-            label.font = BodyFont();
-            label.fontStyle = bold ? FontStyles.Bold : FontStyles.Normal;
+            QdaoUguiTheme.ApplyTypography(label, bold ? QdaoUiTypographyRole.Heading : QdaoUiTypographyRole.Body);
+            label.fontStyle = FontStyles.Normal;
             label.textWrappingMode = wrap ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
             return label;
         }
@@ -843,7 +843,7 @@ namespace MmorpgClient.UI.Ugui.Team
         {
             var button = Button(parent, value, x, y, w, h, click, primary, enabled, key, size);
             var caption = button.GetComponentInChildren<TMP_Text>(true);
-            caption.font = BodyFont();
+            QdaoUguiTheme.ApplyTypography(caption, primary ? QdaoUiTypographyRole.Primary : QdaoUiTypographyRole.Heading);
             // Only approved fixed application actions use baked source captions. Pending labels remain native.
             if (w >= 200 && w <= 230 && h >= 50 && h <= 60 && (value == "拒绝" || value == "同意"))
             {

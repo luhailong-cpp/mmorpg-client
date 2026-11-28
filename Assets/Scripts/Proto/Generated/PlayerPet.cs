@@ -51,121 +51,142 @@ public static partial class PlayerPetReflection {
           "EiABKAkSGwoTY3VsdGl2YXRpb25fYXJ0X2tleRgTIAEoCRIgCgdlbnRyaWVz",
           "GBQgASgLMg8uUGV0RW50cmllc0luZm8SKAoJbmV4dF90aWVyGBUgASgLMhUu",
           "UGV0VGllckFzY2Vuc2lvbkluZm8SDAoEZGVzYxgQIAEoCRITCgtjb3NtZXRp",
-          "Y19pZBgWIAEoDRIYChBjb3NtZXRpY19hcnRfa2V5GBcgASgJImgKC1BldExp",
-          "c3RJbmZvEhYKBHBldHMYASADKAsyCC5QZXRJbmZvEhUKDWFjdGl2ZV9wZXRf",
-          "aWQYAiABKAQSEAoIbWF4X3BldHMYAyABKA0SGAoQcmVuYW1lX2Nvc3RfZ29s",
-          "ZBgEIAEoBCITChFHZXRQZXRMaXN0UmVxdWVzdCJYChJHZXRQZXRMaXN0UmVz",
-          "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
-          "EhoKBHBldHMYAiABKAsyDC5QZXRMaXN0SW5mbyIiChBTdW1tb25QZXRSZXF1",
-          "ZXN0Eg4KBnBldF9pZBgBIAEoBCJXChFTdW1tb25QZXRSZXNwb25zZRImCg1l",
+          "Y19pZBgWIAEoDRIYChBjb3NtZXRpY19hcnRfa2V5GBcgASgJIkMKElBldFNx",
+          "dWFkUHJlc2V0SW5mbxIPCgdzbG90X2lkGAEgASgNEgsKA3RhZxgCIAEoDRIP",
+          "CgdwZXRfaWRzGAMgAygEIqYCCgtQZXRMaXN0SW5mbxIWCgRwZXRzGAEgAygL",
+          "MgguUGV0SW5mbxIVCg1hY3RpdmVfcGV0X2lkGAIgASgEEhAKCG1heF9wZXRz",
+          "GAMgASgNEhgKEHJlbmFtZV9jb3N0X2dvbGQYBCABKAQSKgoNc3F1YWRfcHJl",
+          "c2V0cxgFIAMoCzITLlBldFNxdWFkUHJlc2V0SW5mbxIjCht1bmxvY2tlZF9z",
+          "cXVhZF9wcmVzZXRfc2xvdHMYBiABKA0SJAocZWZmZWN0aXZlX3NxdWFkX3By",
+          "ZXNldF9zbG90cxgHIAEoDRIeChZtYXhfc3F1YWRfcHJlc2V0X3Nsb3RzGAgg",
+          "ASgNEiUKHW5leHRfc3F1YWRfc2xvdF9wcmljZV9kaWFtb25kGAkgASgEIhMK",
+          "EUdldFBldExpc3RSZXF1ZXN0IlgKEkdldFBldExpc3RSZXNwb25zZRImCg1l",
           "cnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USGgoEcGV0cxgC",
-          "IAEoCzIMLlBldExpc3RJbmZvIhIKEFJlY2FsbFBldFJlcXVlc3QiVwoRUmVj",
-          "YWxsUGV0UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcElu",
-          "Zm9NZXNzYWdlEhoKBHBldHMYAiABKAsyDC5QZXRMaXN0SW5mbyKZAQoYQWxs",
-          "b2NhdGVQZXRQb2ludHNSZXF1ZXN0Eg4KBnBldF9pZBgBIAEoBBI7CglhbGxv",
-          "Y2F0ZWQYAiADKAsyKC5BbGxvY2F0ZVBldFBvaW50c1JlcXVlc3QuQWxsb2Nh",
-          "dGVkRW50cnkaMAoOQWxsb2NhdGVkRW50cnkSCwoDa2V5GAEgASgNEg0KBXZh",
-          "bHVlGAIgASgNOgI4ASJfChlBbGxvY2F0ZVBldFBvaW50c1Jlc3BvbnNlEiYK",
-          "DWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIaCgRwZXRz",
-          "GAIgASgLMgwuUGV0TGlzdEluZm8iJwoVUmVzZXRQZXRQb2ludHNSZXF1ZXN0",
-          "Eg4KBnBldF9pZBgBIAEoBCJcChZSZXNldFBldFBvaW50c1Jlc3BvbnNlEiYK",
-          "DWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIaCgRwZXRz",
-          "GAIgASgLMgwuUGV0TGlzdEluZm8iLgocQXV0b0FsbG9jYXRlUGV0UG9pbnRz",
-          "UmVxdWVzdBIOCgZwZXRfaWQYASABKAQiywEKHUF1dG9BbGxvY2F0ZVBldFBv",
-          "aW50c1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
-          "TWVzc2FnZRIOCgZwZXRfaWQYAiABKAQSQAoJc3VnZ2VzdGVkGAMgAygLMi0u",
-          "QXV0b0FsbG9jYXRlUGV0UG9pbnRzUmVzcG9uc2UuU3VnZ2VzdGVkRW50cnka",
-          "MAoOU3VnZ2VzdGVkRW50cnkSCwoDa2V5GAEgASgNEg0KBXZhbHVlGAIgASgN",
-          "OgI4ASIwChBSZW5hbWVQZXRSZXF1ZXN0Eg4KBnBldF9pZBgBIAEoBBIMCgRu",
-          "YW1lGAIgASgJIlcKEVJlbmFtZVBldFJlc3BvbnNlEiYKDWVycm9yX21lc3Nh",
+          "IAEoCzIMLlBldExpc3RJbmZvIiIKEFN1bW1vblBldFJlcXVlc3QSDgoGcGV0",
+          "X2lkGAEgASgEIlcKEVN1bW1vblBldFJlc3BvbnNlEiYKDWVycm9yX21lc3Nh",
           "Z2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIaCgRwZXRzGAIgASgLMgwuUGV0",
-          "TGlzdEluZm8iLwoRUGV0TGlzdENoYW5nZWRTMkMSGgoEcGV0cxgBIAEoCzIM",
-          "LlBldExpc3RJbmZvIikKEUdtR3JhbnRQZXRSZXF1ZXN0EhQKDHBldF90YWJs",
-          "ZV9pZBgBIAEoDSJoChJHbUdyYW50UGV0UmVzcG9uc2USJgoNZXJyb3JfbWVz",
+          "TGlzdEluZm8iEgoQUmVjYWxsUGV0UmVxdWVzdCJXChFSZWNhbGxQZXRSZXNw",
+          "b25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2US",
+          "GgoEcGV0cxgCIAEoCzIMLlBldExpc3RJbmZvIpkBChhBbGxvY2F0ZVBldFBv",
+          "aW50c1JlcXVlc3QSDgoGcGV0X2lkGAEgASgEEjsKCWFsbG9jYXRlZBgCIAMo",
+          "CzIoLkFsbG9jYXRlUGV0UG9pbnRzUmVxdWVzdC5BbGxvY2F0ZWRFbnRyeRow",
+          "Cg5BbGxvY2F0ZWRFbnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06",
+          "AjgBIl8KGUFsbG9jYXRlUGV0UG9pbnRzUmVzcG9uc2USJgoNZXJyb3JfbWVz",
           "c2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhoKBHBldHMYAiABKAsyDC5Q",
-          "ZXRMaXN0SW5mbxIOCgZwZXRfaWQYAyABKAQifAoMUGV0U2hvcE9mZmVyEhQK",
-          "DHBldF90YWJsZV9pZBgBIAEoDRIMCgRuYW1lGAIgASgJEhAKCG1vZGVsX2lk",
-          "GAMgASgNEhQKDHVubG9ja19sZXZlbBgEIAEoDRISCgpwcmljZV9nb2xkGAUg",
-          "ASgEEgwKBGRlc2MYBiABKAkiEwoRR2V0UGV0U2hvcFJlcXVlc3QiiQEKEkdl",
-          "dFBldFNob3BSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
-          "SW5mb01lc3NhZ2USHQoGb2ZmZXJzGAIgAygLMg0uUGV0U2hvcE9mZmVyEgwK",
-          "BGdvbGQYAyABKAQSHgoWbmV4dF9wdXJjaGFzZV9zZXF1ZW5jZRgEIAEoBCJU",
-          "Cg1CdXlQZXRSZXF1ZXN0EhQKDHBldF90YWJsZV9pZBgBIAEoDRIZChFwdXJj",
-          "aGFzZV9zZXF1ZW5jZRgCIAEoBBISCgpwcmljZV9nb2xkGAMgASgEIpIBCg5C",
-          "dXlQZXRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
-          "b01lc3NhZ2USGgoEcGV0cxgCIAEoCzIMLlBldExpc3RJbmZvEg4KBnBldF9p",
-          "ZBgDIAEoBBIMCgRnb2xkGAQgASgEEh4KFm5leHRfcHVyY2hhc2Vfc2VxdWVu",
-          "Y2UYBSABKAQi1wEKDFBldEVudHJ5SW5mbxIKCgJpZBgBIAEoDRIMCgRuYW1l",
-          "GAIgASgJEgwKBGRlc2MYAyABKAkSEAoIY2F0ZWdvcnkYBCABKA0SDwoHY2hh",
-          "bm5lbBgFIAEoDRISCgpzdGF0ZV9raW5kGAYgASgNEgsKA2NhcBgHIAEoDRIV",
-          "Cg1wZXJfcG9pbnRfYnBzGAggASgNEhEKCWFsbG9jYXRlZBgJIAEoDRIVCg1l",
-          "ZmZlY3RpdmVfYnBzGAogASgNEgwKBHNvcnQYCyABKA0SDAoEaWNvbhgMIAEo",
-          "CSK2AQoVUGV0RW50cnlQcmVzZXRTdW1tYXJ5Eg8KB3Nsb3RfaWQYASABKA0S",
-          "CwoDdGFnGAIgASgNEhMKC3VzZWRfcG9pbnRzGAMgASgNEjgKCWFsbG9jYXRl",
-          "ZBgEIAMoCzIlLlBldEVudHJ5UHJlc2V0U3VtbWFyeS5BbGxvY2F0ZWRFbnRy",
-          "eRowCg5BbGxvY2F0ZWRFbnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiAB",
-          "KA06AjgBIu4CCg5QZXRFbnRyaWVzSW5mbxIOCgZwZXRfaWQYASABKAQSFQoN",
-          "c3RhdGVfdmVyc2lvbhgCIAEoBBIWCg5jb25maWdfdmVyc2lvbhgDIAEoDRIU",
-          "Cgx0b3RhbF9wb2ludHMYBCABKA0SGAoQcmVtYWluaW5nX3BvaW50cxgFIAEo",
-          "DRIWCg5tYXhfZGlyZWN0aW9ucxgGIAEoDRIeCgdlbnRyaWVzGAcgAygLMg0u",
-          "UGV0RW50cnlJbmZvEicKB2VmZmVjdHMYCCABKAsyFi5QZXRDdWx0aXZhdGlv",
-          "bkVmZmVjdHMSEQoJZWZmZWN0aXZlGAkgASgIEhsKE3Vua25vd25fdXNlZF9w",
-          "b2ludHMYCiABKAQSFwoPbGFzdF9yZXF1ZXN0X2lkGAsgASgJEhoKEmFjdGl2",
-          "ZV9wcmVzZXRfc2xvdBgMIAEoDRInCgdwcmVzZXRzGA0gAygLMhYuUGV0RW50",
-          "cnlQcmVzZXRTdW1tYXJ5IiYKFEdldFBldEVudHJpZXNSZXF1ZXN0Eg4KBnBl",
-          "dF9pZBgBIAEoBCJhChVHZXRQZXRFbnRyaWVzUmVzcG9uc2USJgoNZXJyb3Jf",
-          "bWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiAKB2VudHJpZXMYAiAB",
-          "KAsyDy5QZXRFbnRyaWVzSW5mbyK/AQoYUHJldmlld1BldEVudHJpZXNSZXF1",
-          "ZXN0Eg4KBnBldF9pZBgBIAEoBBIVCg1zdGF0ZV92ZXJzaW9uGAIgASgEEhYK",
-          "DmNvbmZpZ192ZXJzaW9uGAMgASgNEjUKBnRhcmdldBgEIAMoCzIlLlByZXZp",
-          "ZXdQZXRFbnRyaWVzUmVxdWVzdC5UYXJnZXRFbnRyeRotCgtUYXJnZXRFbnRy",
-          "eRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBImUKGVByZXZpZXdQ",
-          "ZXRFbnRyaWVzUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRp",
-          "cEluZm9NZXNzYWdlEiAKB2VudHJpZXMYAiABKAsyDy5QZXRFbnRyaWVzSW5m",
-          "byLNAQoVU2F2ZVBldEVudHJpZXNSZXF1ZXN0Eg4KBnBldF9pZBgBIAEoBBIV",
-          "Cg1zdGF0ZV92ZXJzaW9uGAIgASgEEhYKDmNvbmZpZ192ZXJzaW9uGAMgASgN",
-          "EjIKBnRhcmdldBgEIAMoCzIiLlNhdmVQZXRFbnRyaWVzUmVxdWVzdC5UYXJn",
-          "ZXRFbnRyeRISCgpyZXF1ZXN0X2lkGAUgASgJGi0KC1RhcmdldEVudHJ5EgsK",
-          "A2tleRgBIAEoDRINCgV2YWx1ZRgCIAEoDToCOAEiiAEKFlNhdmVQZXRFbnRy",
-          "aWVzUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9N",
-          "ZXNzYWdlEiAKB2VudHJpZXMYAiABKAsyDy5QZXRFbnRyaWVzSW5mbxISCgpy",
-          "ZXF1ZXN0X2lkGAMgASgJEhAKCHJlcGxheWVkGAQgASgIIo4BChtTd2l0Y2hQ",
-          "ZXRFbnRyeVByZXNldFJlcXVlc3QSDgoGcGV0X2lkGAEgASgEEg8KB3Nsb3Rf",
-          "aWQYAiABKA0SCwoDdGFnGAMgASgNEhUKDXN0YXRlX3ZlcnNpb24YBCABKAQS",
-          "FgoOY29uZmlnX3ZlcnNpb24YBSABKA0SEgoKcmVxdWVzdF9pZBgGIAEoCSKO",
-          "AQocU3dpdGNoUGV0RW50cnlQcmVzZXRSZXNwb25zZRImCg1lcnJvcl9tZXNz",
-          "YWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIAoHZW50cmllcxgCIAEoCzIP",
-          "LlBldEVudHJpZXNJbmZvEhIKCnJlcXVlc3RfaWQYAyABKAkSEAoIcmVwbGF5",
-          "ZWQYBCABKAgiWAoUQXNjZW5kUGV0VGllclJlcXVlc3QSDgoGcGV0X2lkGAEg",
-          "ASgEEhUKDWV4cGVjdGVkX3RpZXIYAiABKA0SGQoRY2xpZW50X3JlcXVlc3Rf",
-          "aWQYAyABKAQiqAEKFUFzY2VuZFBldFRpZXJSZXNwb25zZRImCg1lcnJvcl9t",
-          "ZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USGgoEcGV0cxgCIAEoCzIM",
-          "LlBldExpc3RJbmZvEgwKBGdvbGQYAyABKAQSGQoRY2xpZW50X3JlcXVlc3Rf",
-          "aWQYBCABKAQSEAoIcmVwbGF5ZWQYBSABKAgSEAoIbmV3X3RpZXIYBiABKA0y",
-          "lAgKFFNjZW5lUGV0Q2xpZW50UGxheWVyEjUKCkdldFBldExpc3QSEi5HZXRQ",
-          "ZXRMaXN0UmVxdWVzdBoTLkdldFBldExpc3RSZXNwb25zZRIyCglTdW1tb25Q",
-          "ZXQSES5TdW1tb25QZXRSZXF1ZXN0GhIuU3VtbW9uUGV0UmVzcG9uc2USMgoJ",
-          "UmVjYWxsUGV0EhEuUmVjYWxsUGV0UmVxdWVzdBoSLlJlY2FsbFBldFJlc3Bv",
-          "bnNlEkoKEUFsbG9jYXRlUGV0UG9pbnRzEhkuQWxsb2NhdGVQZXRQb2ludHNS",
-          "ZXF1ZXN0GhouQWxsb2NhdGVQZXRQb2ludHNSZXNwb25zZRJBCg5SZXNldFBl",
-          "dFBvaW50cxIWLlJlc2V0UGV0UG9pbnRzUmVxdWVzdBoXLlJlc2V0UGV0UG9p",
-          "bnRzUmVzcG9uc2USVgoVQXV0b0FsbG9jYXRlUGV0UG9pbnRzEh0uQXV0b0Fs",
-          "bG9jYXRlUGV0UG9pbnRzUmVxdWVzdBoeLkF1dG9BbGxvY2F0ZVBldFBvaW50",
-          "c1Jlc3BvbnNlEjIKCVJlbmFtZVBldBIRLlJlbmFtZVBldFJlcXVlc3QaEi5S",
-          "ZW5hbWVQZXRSZXNwb25zZRI5ChROb3RpZnlQZXRMaXN0Q2hhbmdlZBISLlBl",
-          "dExpc3RDaGFuZ2VkUzJDGgYuRW1wdHkiBYiZyAECEjUKCkdtR3JhbnRQZXQS",
-          "Ei5HbUdyYW50UGV0UmVxdWVzdBoTLkdtR3JhbnRQZXRSZXNwb25zZRI1CgpH",
-          "ZXRQZXRTaG9wEhIuR2V0UGV0U2hvcFJlcXVlc3QaEy5HZXRQZXRTaG9wUmVz",
-          "cG9uc2USKQoGQnV5UGV0Eg4uQnV5UGV0UmVxdWVzdBoPLkJ1eVBldFJlc3Bv",
-          "bnNlEj4KDUdldFBldEVudHJpZXMSFS5HZXRQZXRFbnRyaWVzUmVxdWVzdBoW",
-          "LkdldFBldEVudHJpZXNSZXNwb25zZRJKChFQcmV2aWV3UGV0RW50cmllcxIZ",
-          "LlByZXZpZXdQZXRFbnRyaWVzUmVxdWVzdBoaLlByZXZpZXdQZXRFbnRyaWVz",
-          "UmVzcG9uc2USQQoOU2F2ZVBldEVudHJpZXMSFi5TYXZlUGV0RW50cmllc1Jl",
-          "cXVlc3QaFy5TYXZlUGV0RW50cmllc1Jlc3BvbnNlElMKFFN3aXRjaFBldEVu",
-          "dHJ5UHJlc2V0EhwuU3dpdGNoUGV0RW50cnlQcmVzZXRSZXF1ZXN0Gh0uU3dp",
-          "dGNoUGV0RW50cnlQcmVzZXRSZXNwb25zZRI+Cg1Bc2NlbmRQZXRUaWVyEhUu",
-          "QXNjZW5kUGV0VGllclJlcXVlc3QaFi5Bc2NlbmRQZXRUaWVyUmVzcG9uc2Ua",
-          "CoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
+          "ZXRMaXN0SW5mbyInChVSZXNldFBldFBvaW50c1JlcXVlc3QSDgoGcGV0X2lk",
+          "GAEgASgEIlwKFlJlc2V0UGV0UG9pbnRzUmVzcG9uc2USJgoNZXJyb3JfbWVz",
+          "c2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhoKBHBldHMYAiABKAsyDC5Q",
+          "ZXRMaXN0SW5mbyIuChxBdXRvQWxsb2NhdGVQZXRQb2ludHNSZXF1ZXN0Eg4K",
+          "BnBldF9pZBgBIAEoBCLLAQodQXV0b0FsbG9jYXRlUGV0UG9pbnRzUmVzcG9u",
+          "c2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEg4K",
+          "BnBldF9pZBgCIAEoBBJACglzdWdnZXN0ZWQYAyADKAsyLS5BdXRvQWxsb2Nh",
+          "dGVQZXRQb2ludHNSZXNwb25zZS5TdWdnZXN0ZWRFbnRyeRowCg5TdWdnZXN0",
+          "ZWRFbnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBIjAKEFJl",
+          "bmFtZVBldFJlcXVlc3QSDgoGcGV0X2lkGAEgASgEEgwKBG5hbWUYAiABKAki",
+          "VwoRUmVuYW1lUGV0UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIP",
+          "LlRpcEluZm9NZXNzYWdlEhoKBHBldHMYAiABKAsyDC5QZXRMaXN0SW5mbyIv",
+          "ChFQZXRMaXN0Q2hhbmdlZFMyQxIaCgRwZXRzGAEgASgLMgwuUGV0TGlzdElu",
+          "Zm8iKQoRR21HcmFudFBldFJlcXVlc3QSFAoMcGV0X3RhYmxlX2lkGAEgASgN",
+          "ImgKEkdtR3JhbnRQZXRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
+          "Mg8uVGlwSW5mb01lc3NhZ2USGgoEcGV0cxgCIAEoCzIMLlBldExpc3RJbmZv",
+          "Eg4KBnBldF9pZBgDIAEoBCJ8CgxQZXRTaG9wT2ZmZXISFAoMcGV0X3RhYmxl",
+          "X2lkGAEgASgNEgwKBG5hbWUYAiABKAkSEAoIbW9kZWxfaWQYAyABKA0SFAoM",
+          "dW5sb2NrX2xldmVsGAQgASgNEhIKCnByaWNlX2dvbGQYBSABKAQSDAoEZGVz",
+          "YxgGIAEoCSITChFHZXRQZXRTaG9wUmVxdWVzdCKJAQoSR2V0UGV0U2hvcFJl",
+          "c3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2Fn",
+          "ZRIdCgZvZmZlcnMYAiADKAsyDS5QZXRTaG9wT2ZmZXISDAoEZ29sZBgDIAEo",
+          "BBIeChZuZXh0X3B1cmNoYXNlX3NlcXVlbmNlGAQgASgEIlQKDUJ1eVBldFJl",
+          "cXVlc3QSFAoMcGV0X3RhYmxlX2lkGAEgASgNEhkKEXB1cmNoYXNlX3NlcXVl",
+          "bmNlGAIgASgEEhIKCnByaWNlX2dvbGQYAyABKAQikgEKDkJ1eVBldFJlc3Bv",
+          "bnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIa",
+          "CgRwZXRzGAIgASgLMgwuUGV0TGlzdEluZm8SDgoGcGV0X2lkGAMgASgEEgwK",
+          "BGdvbGQYBCABKAQSHgoWbmV4dF9wdXJjaGFzZV9zZXF1ZW5jZRgFIAEoBCLX",
+          "AQoMUGV0RW50cnlJbmZvEgoKAmlkGAEgASgNEgwKBG5hbWUYAiABKAkSDAoE",
+          "ZGVzYxgDIAEoCRIQCghjYXRlZ29yeRgEIAEoDRIPCgdjaGFubmVsGAUgASgN",
+          "EhIKCnN0YXRlX2tpbmQYBiABKA0SCwoDY2FwGAcgASgNEhUKDXBlcl9wb2lu",
+          "dF9icHMYCCABKA0SEQoJYWxsb2NhdGVkGAkgASgNEhUKDWVmZmVjdGl2ZV9i",
+          "cHMYCiABKA0SDAoEc29ydBgLIAEoDRIMCgRpY29uGAwgASgJIrYBChVQZXRF",
+          "bnRyeVByZXNldFN1bW1hcnkSDwoHc2xvdF9pZBgBIAEoDRILCgN0YWcYAiAB",
+          "KA0SEwoLdXNlZF9wb2ludHMYAyABKA0SOAoJYWxsb2NhdGVkGAQgAygLMiUu",
+          "UGV0RW50cnlQcmVzZXRTdW1tYXJ5LkFsbG9jYXRlZEVudHJ5GjAKDkFsbG9j",
+          "YXRlZEVudHJ5EgsKA2tleRgBIAEoDRINCgV2YWx1ZRgCIAEoDToCOAEi7gIK",
+          "DlBldEVudHJpZXNJbmZvEg4KBnBldF9pZBgBIAEoBBIVCg1zdGF0ZV92ZXJz",
+          "aW9uGAIgASgEEhYKDmNvbmZpZ192ZXJzaW9uGAMgASgNEhQKDHRvdGFsX3Bv",
+          "aW50cxgEIAEoDRIYChByZW1haW5pbmdfcG9pbnRzGAUgASgNEhYKDm1heF9k",
+          "aXJlY3Rpb25zGAYgASgNEh4KB2VudHJpZXMYByADKAsyDS5QZXRFbnRyeUlu",
+          "Zm8SJwoHZWZmZWN0cxgIIAEoCzIWLlBldEN1bHRpdmF0aW9uRWZmZWN0cxIR",
+          "CgllZmZlY3RpdmUYCSABKAgSGwoTdW5rbm93bl91c2VkX3BvaW50cxgKIAEo",
+          "BBIXCg9sYXN0X3JlcXVlc3RfaWQYCyABKAkSGgoSYWN0aXZlX3ByZXNldF9z",
+          "bG90GAwgASgNEicKB3ByZXNldHMYDSADKAsyFi5QZXRFbnRyeVByZXNldFN1",
+          "bW1hcnkiJgoUR2V0UGV0RW50cmllc1JlcXVlc3QSDgoGcGV0X2lkGAEgASgE",
+          "ImEKFUdldFBldEVudHJpZXNSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEg",
+          "ASgLMg8uVGlwSW5mb01lc3NhZ2USIAoHZW50cmllcxgCIAEoCzIPLlBldEVu",
+          "dHJpZXNJbmZvIr8BChhQcmV2aWV3UGV0RW50cmllc1JlcXVlc3QSDgoGcGV0",
+          "X2lkGAEgASgEEhUKDXN0YXRlX3ZlcnNpb24YAiABKAQSFgoOY29uZmlnX3Zl",
+          "cnNpb24YAyABKA0SNQoGdGFyZ2V0GAQgAygLMiUuUHJldmlld1BldEVudHJp",
+          "ZXNSZXF1ZXN0LlRhcmdldEVudHJ5Gi0KC1RhcmdldEVudHJ5EgsKA2tleRgB",
+          "IAEoDRINCgV2YWx1ZRgCIAEoDToCOAEiZQoZUHJldmlld1BldEVudHJpZXNS",
+          "ZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3Nh",
+          "Z2USIAoHZW50cmllcxgCIAEoCzIPLlBldEVudHJpZXNJbmZvIs0BChVTYXZl",
+          "UGV0RW50cmllc1JlcXVlc3QSDgoGcGV0X2lkGAEgASgEEhUKDXN0YXRlX3Zl",
+          "cnNpb24YAiABKAQSFgoOY29uZmlnX3ZlcnNpb24YAyABKA0SMgoGdGFyZ2V0",
+          "GAQgAygLMiIuU2F2ZVBldEVudHJpZXNSZXF1ZXN0LlRhcmdldEVudHJ5EhIK",
+          "CnJlcXVlc3RfaWQYBSABKAkaLQoLVGFyZ2V0RW50cnkSCwoDa2V5GAEgASgN",
+          "Eg0KBXZhbHVlGAIgASgNOgI4ASKIAQoWU2F2ZVBldEVudHJpZXNSZXNwb25z",
+          "ZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIAoH",
+          "ZW50cmllcxgCIAEoCzIPLlBldEVudHJpZXNJbmZvEhIKCnJlcXVlc3RfaWQY",
+          "AyABKAkSEAoIcmVwbGF5ZWQYBCABKAgijgEKG1N3aXRjaFBldEVudHJ5UHJl",
+          "c2V0UmVxdWVzdBIOCgZwZXRfaWQYASABKAQSDwoHc2xvdF9pZBgCIAEoDRIL",
+          "CgN0YWcYAyABKA0SFQoNc3RhdGVfdmVyc2lvbhgEIAEoBBIWCg5jb25maWdf",
+          "dmVyc2lvbhgFIAEoDRISCgpyZXF1ZXN0X2lkGAYgASgJIo4BChxTd2l0Y2hQ",
+          "ZXRFbnRyeVByZXNldFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
+          "Dy5UaXBJbmZvTWVzc2FnZRIgCgdlbnRyaWVzGAIgASgLMg8uUGV0RW50cmll",
+          "c0luZm8SEgoKcmVxdWVzdF9pZBgDIAEoCRIQCghyZXBsYXllZBgEIAEoCCJY",
+          "ChRBc2NlbmRQZXRUaWVyUmVxdWVzdBIOCgZwZXRfaWQYASABKAQSFQoNZXhw",
+          "ZWN0ZWRfdGllchgCIAEoDRIZChFjbGllbnRfcmVxdWVzdF9pZBgDIAEoBCKo",
+          "AQoVQXNjZW5kUGV0VGllclJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASAB",
+          "KAsyDy5UaXBJbmZvTWVzc2FnZRIaCgRwZXRzGAIgASgLMgwuUGV0TGlzdElu",
+          "Zm8SDAoEZ29sZBgDIAEoBBIZChFjbGllbnRfcmVxdWVzdF9pZBgEIAEoBBIQ",
+          "CghyZXBsYXllZBgFIAEoCBIQCghuZXdfdGllchgGIAEoDSJgChlTYXZlUGV0",
+          "U3F1YWRQcmVzZXRSZXF1ZXN0Eg8KB3Nsb3RfaWQYASABKA0SCwoDdGFnGAIg",
+          "ASgNEg8KB3BldF9pZHMYAyADKAQSFAoMc3VtbW9uX2ZpcnN0GAQgASgIImAK",
+          "GlNhdmVQZXRTcXVhZFByZXNldFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
+          "ASABKAsyDy5UaXBJbmZvTWVzc2FnZRIaCgRwZXRzGAIgASgLMgwuUGV0TGlz",
+          "dEluZm8ifQofVW5sb2NrUGV0U3F1YWRQcmVzZXRTbG90UmVxdWVzdBIZChFj",
+          "bGllbnRfcmVxdWVzdF9pZBgBIAEoBBIfChdleHBlY3RlZF91bmxvY2tlZF9z",
+          "bG90cxgCIAEoDRIeChZleHBlY3RlZF9wcmljZV9kaWFtb25kGAMgASgEIsAB",
+          "CiBVbmxvY2tQZXRTcXVhZFByZXNldFNsb3RSZXNwb25zZRImCg1lcnJvcl9t",
+          "ZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USEAoIcmVwbGF5ZWQYAiAB",
+          "KAgSFgoOdW5sb2NrZWRfc2xvdHMYAyABKA0SFQoNc3BlbnRfZGlhbW9uZBgE",
+          "IAEoBBIXCg9kaWFtb25kX2JhbGFuY2UYBSABKAQSGgoEcGV0cxgGIAEoCzIM",
+          "LlBldExpc3RJbmZvMsQJChRTY2VuZVBldENsaWVudFBsYXllchI1CgpHZXRQ",
+          "ZXRMaXN0EhIuR2V0UGV0TGlzdFJlcXVlc3QaEy5HZXRQZXRMaXN0UmVzcG9u",
+          "c2USMgoJU3VtbW9uUGV0EhEuU3VtbW9uUGV0UmVxdWVzdBoSLlN1bW1vblBl",
+          "dFJlc3BvbnNlEjIKCVJlY2FsbFBldBIRLlJlY2FsbFBldFJlcXVlc3QaEi5S",
+          "ZWNhbGxQZXRSZXNwb25zZRJKChFBbGxvY2F0ZVBldFBvaW50cxIZLkFsbG9j",
+          "YXRlUGV0UG9pbnRzUmVxdWVzdBoaLkFsbG9jYXRlUGV0UG9pbnRzUmVzcG9u",
+          "c2USQQoOUmVzZXRQZXRQb2ludHMSFi5SZXNldFBldFBvaW50c1JlcXVlc3Qa",
+          "Fy5SZXNldFBldFBvaW50c1Jlc3BvbnNlElYKFUF1dG9BbGxvY2F0ZVBldFBv",
+          "aW50cxIdLkF1dG9BbGxvY2F0ZVBldFBvaW50c1JlcXVlc3QaHi5BdXRvQWxs",
+          "b2NhdGVQZXRQb2ludHNSZXNwb25zZRIyCglSZW5hbWVQZXQSES5SZW5hbWVQ",
+          "ZXRSZXF1ZXN0GhIuUmVuYW1lUGV0UmVzcG9uc2USOQoUTm90aWZ5UGV0TGlz",
+          "dENoYW5nZWQSEi5QZXRMaXN0Q2hhbmdlZFMyQxoGLkVtcHR5IgWImcgBAhI1",
+          "CgpHbUdyYW50UGV0EhIuR21HcmFudFBldFJlcXVlc3QaEy5HbUdyYW50UGV0",
+          "UmVzcG9uc2USNQoKR2V0UGV0U2hvcBISLkdldFBldFNob3BSZXF1ZXN0GhMu",
+          "R2V0UGV0U2hvcFJlc3BvbnNlEikKBkJ1eVBldBIOLkJ1eVBldFJlcXVlc3Qa",
+          "Dy5CdXlQZXRSZXNwb25zZRI+Cg1HZXRQZXRFbnRyaWVzEhUuR2V0UGV0RW50",
+          "cmllc1JlcXVlc3QaFi5HZXRQZXRFbnRyaWVzUmVzcG9uc2USSgoRUHJldmll",
+          "d1BldEVudHJpZXMSGS5QcmV2aWV3UGV0RW50cmllc1JlcXVlc3QaGi5QcmV2",
+          "aWV3UGV0RW50cmllc1Jlc3BvbnNlEkEKDlNhdmVQZXRFbnRyaWVzEhYuU2F2",
+          "ZVBldEVudHJpZXNSZXF1ZXN0GhcuU2F2ZVBldEVudHJpZXNSZXNwb25zZRJT",
+          "ChRTd2l0Y2hQZXRFbnRyeVByZXNldBIcLlN3aXRjaFBldEVudHJ5UHJlc2V0",
+          "UmVxdWVzdBodLlN3aXRjaFBldEVudHJ5UHJlc2V0UmVzcG9uc2USPgoNQXNj",
+          "ZW5kUGV0VGllchIVLkFzY2VuZFBldFRpZXJSZXF1ZXN0GhYuQXNjZW5kUGV0",
+          "VGllclJlc3BvbnNlEk0KElNhdmVQZXRTcXVhZFByZXNldBIaLlNhdmVQZXRT",
+          "cXVhZFByZXNldFJlcXVlc3QaGy5TYXZlUGV0U3F1YWRQcmVzZXRSZXNwb25z",
+          "ZRJfChhVbmxvY2tQZXRTcXVhZFByZXNldFNsb3QSIC5VbmxvY2tQZXRTcXVh",
+          "ZFByZXNldFNsb3RSZXF1ZXN0GiEuVW5sb2NrUGV0U3F1YWRQcmVzZXRTbG90",
+          "UmVzcG9uc2UaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, global::PetCultivationEffectsReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -173,7 +194,8 @@ public static partial class PlayerPetReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::PetDerivedInfo), global::PetDerivedInfo.Parser, new[]{ "MaxHealth", "MaxMana", "PhysicalAttack", "MagicAttack", "Speed", "Defense", "Health", "Mana" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PetTierAscensionInfo), global::PetTierAscensionInfo.Parser, new[]{ "NextTier", "NextTierName", "NextArtKey", "MinPetLevel", "CostItemId", "CostItemCount", "CostGold", "BonusEntryPoints", "OwnedItemCount", "CanAscend", "BlockTipId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PetInfo), global::PetInfo.Parser, new[]{ "PetId", "PetTableId", "Name", "Level", "Quality", "ModelId", "IsActive", "TotalPoints", "RemainingPoints", "PoolId", "ResetCostGold", "Growth", "Dimensions", "Derived", "SkillTableIds", "CultivationTier", "CultivationTierName", "CultivationArtKey", "Entries", "NextTier", "Desc", "CosmeticId", "CosmeticArtKey" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PetListInfo), global::PetListInfo.Parser, new[]{ "Pets", "ActivePetId", "MaxPets", "RenameCostGold" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PetSquadPresetInfo), global::PetSquadPresetInfo.Parser, new[]{ "SlotId", "Tag", "PetIds" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PetListInfo), global::PetListInfo.Parser, new[]{ "Pets", "ActivePetId", "MaxPets", "RenameCostGold", "SquadPresets", "UnlockedSquadPresetSlots", "EffectiveSquadPresetSlots", "MaxSquadPresetSlots", "NextSquadSlotPriceDiamond" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetPetListRequest), global::GetPetListRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetPetListResponse), global::GetPetListResponse.Parser, new[]{ "ErrorMessage", "Pets" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SummonPetRequest), global::SummonPetRequest.Parser, new[]{ "PetId" }, null, null, null, null),
@@ -208,7 +230,11 @@ public static partial class PlayerPetReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::SwitchPetEntryPresetRequest), global::SwitchPetEntryPresetRequest.Parser, new[]{ "PetId", "SlotId", "Tag", "StateVersion", "ConfigVersion", "RequestId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SwitchPetEntryPresetResponse), global::SwitchPetEntryPresetResponse.Parser, new[]{ "ErrorMessage", "Entries", "RequestId", "Replayed" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::AscendPetTierRequest), global::AscendPetTierRequest.Parser, new[]{ "PetId", "ExpectedTier", "ClientRequestId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::AscendPetTierResponse), global::AscendPetTierResponse.Parser, new[]{ "ErrorMessage", "Pets", "Gold", "ClientRequestId", "Replayed", "NewTier" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::AscendPetTierResponse), global::AscendPetTierResponse.Parser, new[]{ "ErrorMessage", "Pets", "Gold", "ClientRequestId", "Replayed", "NewTier" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SavePetSquadPresetRequest), global::SavePetSquadPresetRequest.Parser, new[]{ "SlotId", "Tag", "PetIds", "SummonFirst" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SavePetSquadPresetResponse), global::SavePetSquadPresetResponse.Parser, new[]{ "ErrorMessage", "Pets" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::UnlockPetSquadPresetSlotRequest), global::UnlockPetSquadPresetSlotRequest.Parser, new[]{ "ClientRequestId", "ExpectedUnlockedSlots", "ExpectedPriceDiamond" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::UnlockPetSquadPresetSlotResponse), global::UnlockPetSquadPresetSlotResponse.Parser, new[]{ "ErrorMessage", "Replayed", "UnlockedSlots", "SpentDiamond", "DiamondBalance", "Pets" }, null, null, null, null)
         }));
   }
   #endregion
@@ -2832,6 +2858,278 @@ public sealed partial class PetInfo : pb::IMessage<PetInfo>
 }
 
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class PetSquadPresetInfo : pb::IMessage<PetSquadPresetInfo>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<PetSquadPresetInfo> _parser = new pb::MessageParser<PetSquadPresetInfo>(() => new PetSquadPresetInfo());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<PetSquadPresetInfo> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[4]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public PetSquadPresetInfo() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public PetSquadPresetInfo(PetSquadPresetInfo other) : this() {
+    slotId_ = other.slotId_;
+    tag_ = other.tag_;
+    petIds_ = other.petIds_.Clone();
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public PetSquadPresetInfo Clone() {
+    return new PetSquadPresetInfo(this);
+  }
+
+  /// <summary>Field number for the "slot_id" field.</summary>
+  public const int SlotIdFieldNumber = 1;
+  private uint slotId_;
+  /// <summary>
+  /// 1..5
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SlotId {
+    get { return slotId_; }
+    set {
+      slotId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "tag" field.</summary>
+  public const int TagFieldNumber = 2;
+  private uint tag_;
+  /// <summary>
+  /// 0默认 / 1日常PVE / 2会武PVP / 3首领试炼
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Tag {
+    get { return tag_; }
+    set {
+      tag_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pet_ids" field.</summary>
+  public const int PetIdsFieldNumber = 3;
+  private static readonly pb::FieldCodec<ulong> _repeated_petIds_codec
+      = pb::FieldCodec.ForUInt64(26);
+  private readonly pbc::RepeatedField<ulong> petIds_ = new pbc::RepeatedField<ulong>();
+  /// <summary>
+  /// 已自动剔除已放生/已交易失效引用的宝宝 ID 列表（最多 3 只）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<ulong> PetIds {
+    get { return petIds_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as PetSquadPresetInfo);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(PetSquadPresetInfo other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (SlotId != other.SlotId) return false;
+    if (Tag != other.Tag) return false;
+    if(!petIds_.Equals(other.petIds_)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (SlotId != 0) hash ^= SlotId.GetHashCode();
+    if (Tag != 0) hash ^= Tag.GetHashCode();
+    hash ^= petIds_.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (SlotId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SlotId);
+    }
+    if (Tag != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(Tag);
+    }
+    petIds_.WriteTo(output, _repeated_petIds_codec);
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (SlotId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SlotId);
+    }
+    if (Tag != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(Tag);
+    }
+    petIds_.WriteTo(ref output, _repeated_petIds_codec);
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (SlotId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SlotId);
+    }
+    if (Tag != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Tag);
+    }
+    size += petIds_.CalculateSize(_repeated_petIds_codec);
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(PetSquadPresetInfo other) {
+    if (other == null) {
+      return;
+    }
+    if (other.SlotId != 0) {
+      SlotId = other.SlotId;
+    }
+    if (other.Tag != 0) {
+      Tag = other.Tag;
+    }
+    petIds_.Add(other.petIds_);
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          SlotId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Tag = input.ReadUInt32();
+          break;
+        }
+        case 26:
+        case 24: {
+          petIds_.AddEntriesFrom(input, _repeated_petIds_codec);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          SlotId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Tag = input.ReadUInt32();
+          break;
+        }
+        case 26:
+        case 24: {
+          petIds_.AddEntriesFrom(ref input, _repeated_petIds_codec);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class PetListInfo : pb::IMessage<PetListInfo>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
@@ -2846,7 +3144,7 @@ public sealed partial class PetListInfo : pb::IMessage<PetListInfo>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[4]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2870,6 +3168,11 @@ public sealed partial class PetListInfo : pb::IMessage<PetListInfo>
     activePetId_ = other.activePetId_;
     maxPets_ = other.maxPets_;
     renameCostGold_ = other.renameCostGold_;
+    squadPresets_ = other.squadPresets_.Clone();
+    unlockedSquadPresetSlots_ = other.unlockedSquadPresetSlots_;
+    effectiveSquadPresetSlots_ = other.effectiveSquadPresetSlots_;
+    maxSquadPresetSlots_ = other.maxSquadPresetSlots_;
+    nextSquadSlotPriceDiamond_ = other.nextSquadSlotPriceDiamond_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2932,6 +3235,77 @@ public sealed partial class PetListInfo : pb::IMessage<PetListInfo>
     }
   }
 
+  /// <summary>Field number for the "squad_presets" field.</summary>
+  public const int SquadPresetsFieldNumber = 5;
+  private static readonly pb::FieldCodec<global::PetSquadPresetInfo> _repeated_squadPresets_codec
+      = pb::FieldCodec.ForMessage(42, global::PetSquadPresetInfo.Parser);
+  private readonly pbc::RepeatedField<global::PetSquadPresetInfo> squadPresets_ = new pbc::RepeatedField<global::PetSquadPresetInfo>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::PetSquadPresetInfo> SquadPresets {
+    get { return squadPresets_; }
+  }
+
+  /// <summary>Field number for the "unlocked_squad_preset_slots" field.</summary>
+  public const int UnlockedSquadPresetSlotsFieldNumber = 6;
+  private uint unlockedSquadPresetSlots_;
+  /// <summary>
+  /// 永久已解锁套数（2..5）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint UnlockedSquadPresetSlots {
+    get { return unlockedSquadPresetSlots_; }
+    set {
+      unlockedSquadPresetSlots_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "effective_squad_preset_slots" field.</summary>
+  public const int EffectiveSquadPresetSlotsFieldNumber = 7;
+  private uint effectiveSquadPresetSlots_;
+  /// <summary>
+  /// 当前生效可用套数（含轻享卡临时 +1，封顶 5）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EffectiveSquadPresetSlots {
+    get { return effectiveSquadPresetSlots_; }
+    set {
+      effectiveSquadPresetSlots_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_squad_preset_slots" field.</summary>
+  public const int MaxSquadPresetSlotsFieldNumber = 8;
+  private uint maxSquadPresetSlots_;
+  /// <summary>
+  /// 总上限（5）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaxSquadPresetSlots {
+    get { return maxSquadPresetSlots_; }
+    set {
+      maxSquadPresetSlots_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "next_squad_slot_price_diamond" field.</summary>
+  public const int NextSquadSlotPriceDiamondFieldNumber = 9;
+  private ulong nextSquadSlotPriceDiamond_;
+  /// <summary>
+  /// 解锁下一套永久槽位报价（真实灵石 60；已满为 0）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong NextSquadSlotPriceDiamond {
+    get { return nextSquadSlotPriceDiamond_; }
+    set {
+      nextSquadSlotPriceDiamond_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2951,6 +3325,11 @@ public sealed partial class PetListInfo : pb::IMessage<PetListInfo>
     if (ActivePetId != other.ActivePetId) return false;
     if (MaxPets != other.MaxPets) return false;
     if (RenameCostGold != other.RenameCostGold) return false;
+    if(!squadPresets_.Equals(other.squadPresets_)) return false;
+    if (UnlockedSquadPresetSlots != other.UnlockedSquadPresetSlots) return false;
+    if (EffectiveSquadPresetSlots != other.EffectiveSquadPresetSlots) return false;
+    if (MaxSquadPresetSlots != other.MaxSquadPresetSlots) return false;
+    if (NextSquadSlotPriceDiamond != other.NextSquadSlotPriceDiamond) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2962,6 +3341,11 @@ public sealed partial class PetListInfo : pb::IMessage<PetListInfo>
     if (ActivePetId != 0UL) hash ^= ActivePetId.GetHashCode();
     if (MaxPets != 0) hash ^= MaxPets.GetHashCode();
     if (RenameCostGold != 0UL) hash ^= RenameCostGold.GetHashCode();
+    hash ^= squadPresets_.GetHashCode();
+    if (UnlockedSquadPresetSlots != 0) hash ^= UnlockedSquadPresetSlots.GetHashCode();
+    if (EffectiveSquadPresetSlots != 0) hash ^= EffectiveSquadPresetSlots.GetHashCode();
+    if (MaxSquadPresetSlots != 0) hash ^= MaxSquadPresetSlots.GetHashCode();
+    if (NextSquadSlotPriceDiamond != 0UL) hash ^= NextSquadSlotPriceDiamond.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2993,6 +3377,23 @@ public sealed partial class PetListInfo : pb::IMessage<PetListInfo>
       output.WriteRawTag(32);
       output.WriteUInt64(RenameCostGold);
     }
+    squadPresets_.WriteTo(output, _repeated_squadPresets_codec);
+    if (UnlockedSquadPresetSlots != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(UnlockedSquadPresetSlots);
+    }
+    if (EffectiveSquadPresetSlots != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(EffectiveSquadPresetSlots);
+    }
+    if (MaxSquadPresetSlots != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(MaxSquadPresetSlots);
+    }
+    if (NextSquadSlotPriceDiamond != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(NextSquadSlotPriceDiamond);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3016,6 +3417,23 @@ public sealed partial class PetListInfo : pb::IMessage<PetListInfo>
       output.WriteRawTag(32);
       output.WriteUInt64(RenameCostGold);
     }
+    squadPresets_.WriteTo(ref output, _repeated_squadPresets_codec);
+    if (UnlockedSquadPresetSlots != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(UnlockedSquadPresetSlots);
+    }
+    if (EffectiveSquadPresetSlots != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(EffectiveSquadPresetSlots);
+    }
+    if (MaxSquadPresetSlots != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(MaxSquadPresetSlots);
+    }
+    if (NextSquadSlotPriceDiamond != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(NextSquadSlotPriceDiamond);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -3035,6 +3453,19 @@ public sealed partial class PetListInfo : pb::IMessage<PetListInfo>
     }
     if (RenameCostGold != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RenameCostGold);
+    }
+    size += squadPresets_.CalculateSize(_repeated_squadPresets_codec);
+    if (UnlockedSquadPresetSlots != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnlockedSquadPresetSlots);
+    }
+    if (EffectiveSquadPresetSlots != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(EffectiveSquadPresetSlots);
+    }
+    if (MaxSquadPresetSlots != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaxSquadPresetSlots);
+    }
+    if (NextSquadSlotPriceDiamond != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(NextSquadSlotPriceDiamond);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -3057,6 +3488,19 @@ public sealed partial class PetListInfo : pb::IMessage<PetListInfo>
     }
     if (other.RenameCostGold != 0UL) {
       RenameCostGold = other.RenameCostGold;
+    }
+    squadPresets_.Add(other.squadPresets_);
+    if (other.UnlockedSquadPresetSlots != 0) {
+      UnlockedSquadPresetSlots = other.UnlockedSquadPresetSlots;
+    }
+    if (other.EffectiveSquadPresetSlots != 0) {
+      EffectiveSquadPresetSlots = other.EffectiveSquadPresetSlots;
+    }
+    if (other.MaxSquadPresetSlots != 0) {
+      MaxSquadPresetSlots = other.MaxSquadPresetSlots;
+    }
+    if (other.NextSquadSlotPriceDiamond != 0UL) {
+      NextSquadSlotPriceDiamond = other.NextSquadSlotPriceDiamond;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -3091,6 +3535,26 @@ public sealed partial class PetListInfo : pb::IMessage<PetListInfo>
         }
         case 32: {
           RenameCostGold = input.ReadUInt64();
+          break;
+        }
+        case 42: {
+          squadPresets_.AddEntriesFrom(input, _repeated_squadPresets_codec);
+          break;
+        }
+        case 48: {
+          UnlockedSquadPresetSlots = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          EffectiveSquadPresetSlots = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          MaxSquadPresetSlots = input.ReadUInt32();
+          break;
+        }
+        case 72: {
+          NextSquadSlotPriceDiamond = input.ReadUInt64();
           break;
         }
       }
@@ -3128,6 +3592,26 @@ public sealed partial class PetListInfo : pb::IMessage<PetListInfo>
           RenameCostGold = input.ReadUInt64();
           break;
         }
+        case 42: {
+          squadPresets_.AddEntriesFrom(ref input, _repeated_squadPresets_codec);
+          break;
+        }
+        case 48: {
+          UnlockedSquadPresetSlots = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          EffectiveSquadPresetSlots = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          MaxSquadPresetSlots = input.ReadUInt32();
+          break;
+        }
+        case 72: {
+          NextSquadSlotPriceDiamond = input.ReadUInt64();
+          break;
+        }
       }
     }
   }
@@ -3150,7 +3634,7 @@ public sealed partial class GetPetListRequest : pb::IMessage<GetPetListRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[5]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3311,7 +3795,7 @@ public sealed partial class GetPetListResponse : pb::IMessage<GetPetListResponse
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[6]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[7]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3567,7 +4051,7 @@ public sealed partial class SummonPetRequest : pb::IMessage<SummonPetRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[7]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3765,7 +4249,7 @@ public sealed partial class SummonPetResponse : pb::IMessage<SummonPetResponse>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[8]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4021,7 +4505,7 @@ public sealed partial class RecallPetRequest : pb::IMessage<RecallPetRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[9]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[10]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4182,7 +4666,7 @@ public sealed partial class RecallPetResponse : pb::IMessage<RecallPetResponse>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[10]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4438,7 +4922,7 @@ public sealed partial class AllocatePetPointsRequest : pb::IMessage<AllocatePetP
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[11]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4665,7 +5149,7 @@ public sealed partial class AllocatePetPointsResponse : pb::IMessage<AllocatePet
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[12]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[13]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4921,7 +5405,7 @@ public sealed partial class ResetPetPointsRequest : pb::IMessage<ResetPetPointsR
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[13]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[14]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5119,7 +5603,7 @@ public sealed partial class ResetPetPointsResponse : pb::IMessage<ResetPetPoints
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[14]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[15]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5375,7 +5859,7 @@ public sealed partial class AutoAllocatePetPointsRequest : pb::IMessage<AutoAllo
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[15]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[16]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5573,7 +6057,7 @@ public sealed partial class AutoAllocatePetPointsResponse : pb::IMessage<AutoAll
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[16]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[17]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5846,7 +6330,7 @@ public sealed partial class RenamePetRequest : pb::IMessage<RenamePetRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[17]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[18]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6081,7 +6565,7 @@ public sealed partial class RenamePetResponse : pb::IMessage<RenamePetResponse>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[18]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[19]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6337,7 +6821,7 @@ public sealed partial class PetListChangedS2C : pb::IMessage<PetListChangedS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[19]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[20]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6549,7 +7033,7 @@ public sealed partial class GmGrantPetRequest : pb::IMessage<GmGrantPetRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[20]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[21]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6747,7 +7231,7 @@ public sealed partial class GmGrantPetResponse : pb::IMessage<GmGrantPetResponse
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[21]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[22]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7040,7 +7524,7 @@ public sealed partial class PetShopOffer : pb::IMessage<PetShopOffer>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[22]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[23]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7423,7 +7907,7 @@ public sealed partial class GetPetShopRequest : pb::IMessage<GetPetShopRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[23]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[24]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7584,7 +8068,7 @@ public sealed partial class GetPetShopResponse : pb::IMessage<GetPetShopResponse
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[24]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[25]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7891,7 +8375,7 @@ public sealed partial class BuyPetRequest : pb::IMessage<BuyPetRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[25]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[26]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8166,7 +8650,7 @@ public sealed partial class BuyPetResponse : pb::IMessage<BuyPetResponse>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[26]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[27]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8533,7 +9017,7 @@ public sealed partial class PetEntryInfo : pb::IMessage<PetEntryInfo>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[27]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[28]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9138,7 +9622,7 @@ public sealed partial class PetEntryPresetSummary : pb::IMessage<PetEntryPresetS
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[28]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[29]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9448,7 +9932,7 @@ public sealed partial class PetEntriesInfo : pb::IMessage<PetEntriesInfo>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[29]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[30]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10086,7 +10570,7 @@ public sealed partial class GetPetEntriesRequest : pb::IMessage<GetPetEntriesReq
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[30]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[31]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10284,7 +10768,7 @@ public sealed partial class GetPetEntriesResponse : pb::IMessage<GetPetEntriesRe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[31]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[32]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10537,7 +11021,7 @@ public sealed partial class PreviewPetEntriesRequest : pb::IMessage<PreviewPetEn
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[32]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[33]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10835,7 +11319,7 @@ public sealed partial class PreviewPetEntriesResponse : pb::IMessage<PreviewPetE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[33]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[34]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11088,7 +11572,7 @@ public sealed partial class SavePetEntriesRequest : pb::IMessage<SavePetEntriesR
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[34]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[35]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11426,7 +11910,7 @@ public sealed partial class SavePetEntriesResponse : pb::IMessage<SavePetEntries
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[35]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[36]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11756,7 +12240,7 @@ public sealed partial class SwitchPetEntryPresetRequest : pb::IMessage<SwitchPet
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[36]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[37]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12145,7 +12629,7 @@ public sealed partial class SwitchPetEntryPresetResponse : pb::IMessage<SwitchPe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[37]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[38]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12475,7 +12959,7 @@ public sealed partial class AscendPetTierRequest : pb::IMessage<AscendPetTierReq
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[38]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[39]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12753,7 +13237,7 @@ public sealed partial class AscendPetTierResponse : pb::IMessage<AscendPetTierRe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerPetReflection.Descriptor.MessageTypes[39]; }
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[40]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13130,6 +13614,1250 @@ public sealed partial class AscendPetTierResponse : pb::IMessage<AscendPetTierRe
         }
         case 48: {
           NewTier = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 保存或一键套用灵宠编队快捷预设（战外免费；仅保存本人当前拥有的 pet_id 引用，summon_first=true 时同步切出战首发宠）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SavePetSquadPresetRequest : pb::IMessage<SavePetSquadPresetRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SavePetSquadPresetRequest> _parser = new pb::MessageParser<SavePetSquadPresetRequest>(() => new SavePetSquadPresetRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SavePetSquadPresetRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[41]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SavePetSquadPresetRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SavePetSquadPresetRequest(SavePetSquadPresetRequest other) : this() {
+    slotId_ = other.slotId_;
+    tag_ = other.tag_;
+    petIds_ = other.petIds_.Clone();
+    summonFirst_ = other.summonFirst_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SavePetSquadPresetRequest Clone() {
+    return new SavePetSquadPresetRequest(this);
+  }
+
+  /// <summary>Field number for the "slot_id" field.</summary>
+  public const int SlotIdFieldNumber = 1;
+  private uint slotId_;
+  /// <summary>
+  /// 1..effective_squad_preset_slots
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SlotId {
+    get { return slotId_; }
+    set {
+      slotId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "tag" field.</summary>
+  public const int TagFieldNumber = 2;
+  private uint tag_;
+  /// <summary>
+  /// 0..3
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Tag {
+    get { return tag_; }
+    set {
+      tag_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pet_ids" field.</summary>
+  public const int PetIdsFieldNumber = 3;
+  private static readonly pb::FieldCodec<ulong> _repeated_petIds_codec
+      = pb::FieldCodec.ForUInt64(26);
+  private readonly pbc::RepeatedField<ulong> petIds_ = new pbc::RepeatedField<ulong>();
+  /// <summary>
+  /// 最多 3 只；空列表表示清空该预设槽
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<ulong> PetIds {
+    get { return petIds_; }
+  }
+
+  /// <summary>Field number for the "summon_first" field.</summary>
+  public const int SummonFirstFieldNumber = 4;
+  private bool summonFirst_;
+  /// <summary>
+  /// true = 同时将 pet_ids[0] 设为当前出战宝宝（若非空）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool SummonFirst {
+    get { return summonFirst_; }
+    set {
+      summonFirst_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SavePetSquadPresetRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SavePetSquadPresetRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (SlotId != other.SlotId) return false;
+    if (Tag != other.Tag) return false;
+    if(!petIds_.Equals(other.petIds_)) return false;
+    if (SummonFirst != other.SummonFirst) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (SlotId != 0) hash ^= SlotId.GetHashCode();
+    if (Tag != 0) hash ^= Tag.GetHashCode();
+    hash ^= petIds_.GetHashCode();
+    if (SummonFirst != false) hash ^= SummonFirst.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (SlotId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SlotId);
+    }
+    if (Tag != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(Tag);
+    }
+    petIds_.WriteTo(output, _repeated_petIds_codec);
+    if (SummonFirst != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(SummonFirst);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (SlotId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SlotId);
+    }
+    if (Tag != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(Tag);
+    }
+    petIds_.WriteTo(ref output, _repeated_petIds_codec);
+    if (SummonFirst != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(SummonFirst);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (SlotId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SlotId);
+    }
+    if (Tag != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Tag);
+    }
+    size += petIds_.CalculateSize(_repeated_petIds_codec);
+    if (SummonFirst != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SavePetSquadPresetRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.SlotId != 0) {
+      SlotId = other.SlotId;
+    }
+    if (other.Tag != 0) {
+      Tag = other.Tag;
+    }
+    petIds_.Add(other.petIds_);
+    if (other.SummonFirst != false) {
+      SummonFirst = other.SummonFirst;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          SlotId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Tag = input.ReadUInt32();
+          break;
+        }
+        case 26:
+        case 24: {
+          petIds_.AddEntriesFrom(input, _repeated_petIds_codec);
+          break;
+        }
+        case 32: {
+          SummonFirst = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          SlotId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Tag = input.ReadUInt32();
+          break;
+        }
+        case 26:
+        case 24: {
+          petIds_.AddEntriesFrom(ref input, _repeated_petIds_codec);
+          break;
+        }
+        case 32: {
+          SummonFirst = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SavePetSquadPresetResponse : pb::IMessage<SavePetSquadPresetResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SavePetSquadPresetResponse> _parser = new pb::MessageParser<SavePetSquadPresetResponse>(() => new SavePetSquadPresetResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SavePetSquadPresetResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[42]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SavePetSquadPresetResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SavePetSquadPresetResponse(SavePetSquadPresetResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    pets_ = other.pets_ != null ? other.pets_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SavePetSquadPresetResponse Clone() {
+    return new SavePetSquadPresetResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pets" field.</summary>
+  public const int PetsFieldNumber = 2;
+  private global::PetListInfo pets_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::PetListInfo Pets {
+    get { return pets_; }
+    set {
+      pets_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SavePetSquadPresetResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SavePetSquadPresetResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (!object.Equals(Pets, other.Pets)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (pets_ != null) hash ^= Pets.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (pets_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(Pets);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (pets_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(Pets);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (pets_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Pets);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SavePetSquadPresetResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.pets_ != null) {
+      if (pets_ == null) {
+        Pets = new global::PetListInfo();
+      }
+      Pets.MergeFrom(other.Pets);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (pets_ == null) {
+            Pets = new global::PetListInfo();
+          }
+          input.ReadMessage(Pets);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (pets_ == null) {
+            Pets = new global::PetListInfo();
+          }
+          input.ReadMessage(Pets);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 永久解锁下一套灵宠编队快捷预设槽位（3..5 套，每套 60 真实灵石，零战力纯切换便利）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class UnlockPetSquadPresetSlotRequest : pb::IMessage<UnlockPetSquadPresetSlotRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<UnlockPetSquadPresetSlotRequest> _parser = new pb::MessageParser<UnlockPetSquadPresetSlotRequest>(() => new UnlockPetSquadPresetSlotRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<UnlockPetSquadPresetSlotRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[43]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UnlockPetSquadPresetSlotRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UnlockPetSquadPresetSlotRequest(UnlockPetSquadPresetSlotRequest other) : this() {
+    clientRequestId_ = other.clientRequestId_;
+    expectedUnlockedSlots_ = other.expectedUnlockedSlots_;
+    expectedPriceDiamond_ = other.expectedPriceDiamond_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UnlockPetSquadPresetSlotRequest Clone() {
+    return new UnlockPetSquadPresetSlotRequest(this);
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 1;
+  private ulong clientRequestId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "expected_unlocked_slots" field.</summary>
+  public const int ExpectedUnlockedSlotsFieldNumber = 2;
+  private uint expectedUnlockedSlots_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ExpectedUnlockedSlots {
+    get { return expectedUnlockedSlots_; }
+    set {
+      expectedUnlockedSlots_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "expected_price_diamond" field.</summary>
+  public const int ExpectedPriceDiamondFieldNumber = 3;
+  private ulong expectedPriceDiamond_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ExpectedPriceDiamond {
+    get { return expectedPriceDiamond_; }
+    set {
+      expectedPriceDiamond_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as UnlockPetSquadPresetSlotRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(UnlockPetSquadPresetSlotRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ClientRequestId != other.ClientRequestId) return false;
+    if (ExpectedUnlockedSlots != other.ExpectedUnlockedSlots) return false;
+    if (ExpectedPriceDiamond != other.ExpectedPriceDiamond) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
+    if (ExpectedUnlockedSlots != 0) hash ^= ExpectedUnlockedSlots.GetHashCode();
+    if (ExpectedPriceDiamond != 0UL) hash ^= ExpectedPriceDiamond.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (ExpectedUnlockedSlots != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ExpectedUnlockedSlots);
+    }
+    if (ExpectedPriceDiamond != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(ExpectedPriceDiamond);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (ExpectedUnlockedSlots != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ExpectedUnlockedSlots);
+    }
+    if (ExpectedPriceDiamond != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(ExpectedPriceDiamond);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ClientRequestId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
+    }
+    if (ExpectedUnlockedSlots != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ExpectedUnlockedSlots);
+    }
+    if (ExpectedPriceDiamond != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedPriceDiamond);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(UnlockPetSquadPresetSlotRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ClientRequestId != 0UL) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    if (other.ExpectedUnlockedSlots != 0) {
+      ExpectedUnlockedSlots = other.ExpectedUnlockedSlots;
+    }
+    if (other.ExpectedPriceDiamond != 0UL) {
+      ExpectedPriceDiamond = other.ExpectedPriceDiamond;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          ExpectedUnlockedSlots = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          ExpectedPriceDiamond = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          ExpectedUnlockedSlots = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          ExpectedPriceDiamond = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class UnlockPetSquadPresetSlotResponse : pb::IMessage<UnlockPetSquadPresetSlotResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<UnlockPetSquadPresetSlotResponse> _parser = new pb::MessageParser<UnlockPetSquadPresetSlotResponse>(() => new UnlockPetSquadPresetSlotResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<UnlockPetSquadPresetSlotResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerPetReflection.Descriptor.MessageTypes[44]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UnlockPetSquadPresetSlotResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UnlockPetSquadPresetSlotResponse(UnlockPetSquadPresetSlotResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    replayed_ = other.replayed_;
+    unlockedSlots_ = other.unlockedSlots_;
+    spentDiamond_ = other.spentDiamond_;
+    diamondBalance_ = other.diamondBalance_;
+    pets_ = other.pets_ != null ? other.pets_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UnlockPetSquadPresetSlotResponse Clone() {
+    return new UnlockPetSquadPresetSlotResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "replayed" field.</summary>
+  public const int ReplayedFieldNumber = 2;
+  private bool replayed_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Replayed {
+    get { return replayed_; }
+    set {
+      replayed_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "unlocked_slots" field.</summary>
+  public const int UnlockedSlotsFieldNumber = 3;
+  private uint unlockedSlots_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint UnlockedSlots {
+    get { return unlockedSlots_; }
+    set {
+      unlockedSlots_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "spent_diamond" field.</summary>
+  public const int SpentDiamondFieldNumber = 4;
+  private ulong spentDiamond_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong SpentDiamond {
+    get { return spentDiamond_; }
+    set {
+      spentDiamond_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "diamond_balance" field.</summary>
+  public const int DiamondBalanceFieldNumber = 5;
+  private ulong diamondBalance_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong DiamondBalance {
+    get { return diamondBalance_; }
+    set {
+      diamondBalance_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pets" field.</summary>
+  public const int PetsFieldNumber = 6;
+  private global::PetListInfo pets_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::PetListInfo Pets {
+    get { return pets_; }
+    set {
+      pets_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as UnlockPetSquadPresetSlotResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(UnlockPetSquadPresetSlotResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (Replayed != other.Replayed) return false;
+    if (UnlockedSlots != other.UnlockedSlots) return false;
+    if (SpentDiamond != other.SpentDiamond) return false;
+    if (DiamondBalance != other.DiamondBalance) return false;
+    if (!object.Equals(Pets, other.Pets)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (Replayed != false) hash ^= Replayed.GetHashCode();
+    if (UnlockedSlots != 0) hash ^= UnlockedSlots.GetHashCode();
+    if (SpentDiamond != 0UL) hash ^= SpentDiamond.GetHashCode();
+    if (DiamondBalance != 0UL) hash ^= DiamondBalance.GetHashCode();
+    if (pets_ != null) hash ^= Pets.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(16);
+      output.WriteBool(Replayed);
+    }
+    if (UnlockedSlots != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(UnlockedSlots);
+    }
+    if (SpentDiamond != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(SpentDiamond);
+    }
+    if (DiamondBalance != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(DiamondBalance);
+    }
+    if (pets_ != null) {
+      output.WriteRawTag(50);
+      output.WriteMessage(Pets);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(16);
+      output.WriteBool(Replayed);
+    }
+    if (UnlockedSlots != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(UnlockedSlots);
+    }
+    if (SpentDiamond != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(SpentDiamond);
+    }
+    if (DiamondBalance != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(DiamondBalance);
+    }
+    if (pets_ != null) {
+      output.WriteRawTag(50);
+      output.WriteMessage(Pets);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (Replayed != false) {
+      size += 1 + 1;
+    }
+    if (UnlockedSlots != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnlockedSlots);
+    }
+    if (SpentDiamond != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(SpentDiamond);
+    }
+    if (DiamondBalance != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(DiamondBalance);
+    }
+    if (pets_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Pets);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(UnlockPetSquadPresetSlotResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.Replayed != false) {
+      Replayed = other.Replayed;
+    }
+    if (other.UnlockedSlots != 0) {
+      UnlockedSlots = other.UnlockedSlots;
+    }
+    if (other.SpentDiamond != 0UL) {
+      SpentDiamond = other.SpentDiamond;
+    }
+    if (other.DiamondBalance != 0UL) {
+      DiamondBalance = other.DiamondBalance;
+    }
+    if (other.pets_ != null) {
+      if (pets_ == null) {
+        Pets = new global::PetListInfo();
+      }
+      Pets.MergeFrom(other.Pets);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 24: {
+          UnlockedSlots = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          SpentDiamond = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          DiamondBalance = input.ReadUInt64();
+          break;
+        }
+        case 50: {
+          if (pets_ == null) {
+            Pets = new global::PetListInfo();
+          }
+          input.ReadMessage(Pets);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 24: {
+          UnlockedSlots = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          SpentDiamond = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          DiamondBalance = input.ReadUInt64();
+          break;
+        }
+        case 50: {
+          if (pets_ == null) {
+            Pets = new global::PetListInfo();
+          }
+          input.ReadMessage(Pets);
           break;
         }
       }

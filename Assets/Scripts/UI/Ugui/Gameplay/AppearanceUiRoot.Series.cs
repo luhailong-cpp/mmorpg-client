@@ -48,6 +48,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private TMP_Text _seriesBannerDesc;
         private Button _seriesEpilogueBtn;
         private TMP_Text _seriesEpilogueBtnLabel;
+        private Button _seriesBundleBtn;
+        private TMP_Text _seriesBundleBtnLabel;
+        private uint _pendingBundleConfirmSeriesId;
 
         // 弹层 4：系列合篇故事阅读层（仅在服务端权威 Completed == true 时解锁）
         private GameObject _seriesEpilogueOverlay;
@@ -174,6 +177,24 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _seriesEpilogueBtnLabel.fontSizeMin = 13f;
                 _seriesEpilogueBtnLabel.fontSizeMax = 18f;
             }
+
+            _seriesBundleBtn = AppearanceUiArt.ActionButton(bannerCard.transform, "AppearanceBuySeriesBundle",
+                "8.5折补齐", 360f, 24f, 232f, 50f, HandleBuySeriesBundleClicked, primary: true, fontSize: 17f);
+            _seriesBundleBtnLabel = _seriesBundleBtn.GetComponentInChildren<TMP_Text>(true);
+            if (_seriesBundleBtnLabel != null)
+            {
+                _seriesBundleBtnLabel.rectTransform.offsetMin = new Vector2(28f, 0f);
+                _seriesBundleBtnLabel.rectTransform.offsetMax = new Vector2(-28f, 0f);
+                _seriesBundleBtnLabel.textWrappingMode = TextWrappingModes.NoWrap;
+                _seriesBundleBtnLabel.fontSizeMin = 12f;
+                _seriesBundleBtnLabel.fontSizeMax = 17f;
+            }
+            var bundleBg = _seriesBundleBtn.GetComponent<Image>();
+            var bundleTagSprite = AppearanceUiArt.LoadSprite("UI/Ugui/AfkPassV2/badge_series_bundle_tag");
+            if (bundleBg != null && bundleTagSprite != null)
+                AppearanceUiArt.ApplyHorizontalSlice(bundleBg, bundleTagSprite, 50f, AppearanceUiArt.SeriesGoldInk);
+            _seriesBundleBtn.gameObject.SetActive(false);
+
             _seriesBannerRoot = bannerCard.gameObject;
             _seriesBannerRoot.SetActive(false);
 
@@ -454,6 +475,41 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
             bool epilogueUnlocked = AppearanceSeriesModels.TryGetUnlockedEpilogue(
                 info, series.SeriesId, LookupSeriesEpilogueBody, out var epilogue);
+            bool showBundle = !completed && !_corePreviewOnly
+                && _client != null && _client.IsSeriesBundleSupported
+                && AppearanceSeriesModels.CanBuySeriesBundle(series);
+            if (!showBundle && _pendingBundleConfirmSeriesId == series.SeriesId)
+                _pendingBundleConfirmSeriesId = 0;
+
+            if (_seriesBundleBtn != null)
+            {
+                bool allowBundle = showBundle && MmorpgClient.Game.RewardedAd.ClientDistributionPolicy.Current.IapEnabled;
+                _seriesBundleBtn.gameObject.SetActive(allowBundle);
+                if (allowBundle)
+                {
+                    bool busy = _client.ActionPending || _client.RequiresReconnect || !_client.Ready;
+                    _seriesBundleBtn.interactable = !busy && !_state.HasOverlay;
+                    bool confirming = _pendingBundleConfirmSeriesId == series.SeriesId;
+                    if (_seriesBundleBtnLabel != null)
+                    {
+                        _seriesBundleBtnLabel.text = _client.ActionPending ? "补齐中…"
+                            : confirming ? $"再点确认 · {series.BundleDiscountDiamond}灵石"
+                            : AppearanceSeriesModels.FormatSeriesBundleLabel(series);
+                        _seriesBundleBtnLabel.color = AppearanceUiArt.WarmCream;
+                        _seriesBundleBtnLabel.fontStyle = FontStyles.Bold;
+                    }
+                    var bImg = _seriesBundleBtn.GetComponent<Image>();
+                    var tagSprite = AppearanceUiArt.LoadSprite("UI/Ugui/AfkPassV2/badge_series_bundle_tag")
+                        ?? AppearanceUiArt.LoadGameplay("button_primary");
+                    if (bImg != null)
+                    {
+                        float targetHeight = _compactLayout ? 56f : 50f;
+                        AppearanceUiArt.ApplyHorizontalSlice(bImg, tagSprite, targetHeight, AppearanceUiArt.SeriesGoldInk);
+                    }
+                }
+            }
+
+            _seriesEpilogueBtn.gameObject.SetActive(!showBundle);
             _seriesEpilogueBtn.interactable = epilogueUnlocked && !_state.HasOverlay;
             var btnImg = _seriesEpilogueBtn.GetComponent<Image>();
             if (btnImg != null)
@@ -540,6 +596,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void HandleSelectSeriesClicked(uint seriesId)
         {
             if (_state.HasOverlay) return;
+            _pendingBundleConfirmSeriesId = 0;
             _state.SelectSeries(seriesId, CurrentListPosition());
             _compactDetail = false;
             Render();
@@ -548,6 +605,23 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _listScroll.velocity = Vector2.zero;
                 _listScroll.verticalNormalizedPosition = 1f;
             }
+        }
+
+        private void HandleBuySeriesBundleClicked()
+        {
+            if (_corePreviewOnly || _state.HasOverlay || _client?.Info == null || _state.SelectedSeriesId == AppearanceSeriesModels.AllSeriesId)
+                return;
+            var series = AppearanceSeriesModels.FindSeries(_client.Info, _state.SelectedSeriesId);
+            if (!AppearanceSeriesModels.CanBuySeriesBundle(series)) return;
+            if (_pendingBundleConfirmSeriesId != series.SeriesId)
+            {
+                _pendingBundleConfirmSeriesId = series.SeriesId;
+                Render();
+                return;
+            }
+            _pendingBundleConfirmSeriesId = 0;
+            _client.BuySeriesBundle(series.SeriesId);
+            Render();
         }
 
         private void HandleReadSeriesEpilogueClicked()
@@ -620,6 +694,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                             PlaceTopLeft(_seriesBannerBadgeLabel.rectTransform, 28f, 0f, 164f, SeriesBadgeHeight);
                         MoveReadingElement(banner, "SeriesBannerDesc", 100f, 52f, 610f, 28f);
                         MoveReadingElement(banner, "AppearanceReadSeriesEpilogue", 736f, 18f, 304f, 56f);
+                        MoveReadingElement(banner, "AppearanceBuySeriesBundle", 736f, 18f, 304f, 56f);
                         var epilogueBtnImg = _seriesEpilogueBtn != null ? _seriesEpilogueBtn.GetComponent<Image>() : null;
                         if (epilogueBtnImg != null && epilogueBtnImg.sprite != null)
                             AppearanceUiArt.ApplyHorizontalSlice(epilogueBtnImg, epilogueBtnImg.sprite, 56f, AppearanceUiArt.SeriesDimBg);
@@ -658,6 +733,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                             PlaceTopLeft(_seriesBannerBadgeLabel.rectTransform, 28f, 0f, 130f, SeriesBadgeHeight);
                         MoveReadingElement(banner, "SeriesBannerDesc", 102f, 84f, 490f, 24f);
                         MoveReadingElement(banner, "AppearanceReadSeriesEpilogue", 360f, 24f, 232f, 50f);
+                        MoveReadingElement(banner, "AppearanceBuySeriesBundle", 360f, 24f, 232f, 50f);
                         var epilogueBtnImg = _seriesEpilogueBtn != null ? _seriesEpilogueBtn.GetComponent<Image>() : null;
                         if (epilogueBtnImg != null && epilogueBtnImg.sprite != null)
                             AppearanceUiArt.ApplyHorizontalSlice(epilogueBtnImg, epilogueBtnImg.sprite, 50f, AppearanceUiArt.SeriesDimBg);

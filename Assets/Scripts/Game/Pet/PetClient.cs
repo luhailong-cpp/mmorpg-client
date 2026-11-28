@@ -423,6 +423,58 @@ namespace MmorpgClient.Game.Pet
             ApplyList(message.Pets);
         }
 
+        /// <summary>保存或套用灵宠编队快捷预设（战外免费；summonFirst=true 时同步切换首发宠）。</summary>
+        public void SaveSquadPreset(uint slotId, uint tag, System.Collections.Generic.IReadOnlyList<ulong> petIds, bool summonFirst = false)
+        {
+            if (!BeginWrite(slotId == 0u || slotId > 5u ? "无效的灵宠编队槽位" : null)) return;
+            var req = new SavePetSquadPresetRequest { SlotId = slotId, Tag = tag, SummonFirst = summonFirst };
+            if (petIds != null)
+            {
+                for (int i = 0; i < petIds.Count; ++i) req.PetIds.Add(petIds[i]);
+            }
+            int session = _sessionVersion;
+            _net.Call(MessageIds.SavePetSquadPreset, req, SavePetSquadPresetResponse.Parser,
+                response =>
+                {
+                    if (_disposed || session != _sessionVersion) return;
+                    CompleteWrite("保存灵宠编队", response.ErrorMessage, response.Pets);
+                },
+                err =>
+                {
+                    if (_disposed || session != _sessionVersion) return;
+                    FailWrite(string.IsNullOrWhiteSpace(err) ? "保存灵宠编队失败" : err);
+                });
+        }
+
+        /// <summary>永久解锁下一套灵宠编队快捷预设槽位（3..5 套，每套 60 真实灵石）。</summary>
+        public void UnlockSquadPresetSlot(uint expectedUnlockedSlots, ulong expectedPriceDiamond = 60ul)
+        {
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey))
+            {
+                OnError?.Invoke(ClientRequestKeys.UnavailableText);
+                return;
+            }
+            if (!BeginWrite(null)) return;
+            var req = new UnlockPetSquadPresetSlotRequest
+            {
+                ClientRequestId = requestKey,
+                ExpectedUnlockedSlots = expectedUnlockedSlots,
+                ExpectedPriceDiamond = expectedPriceDiamond,
+            };
+            int session = _sessionVersion;
+            _net.Call(MessageIds.UnlockPetSquadPresetSlot, req, UnlockPetSquadPresetSlotResponse.Parser,
+                response =>
+                {
+                    if (_disposed || session != _sessionVersion) return;
+                    CompleteWrite("解锁灵宠编队槽位", response.ErrorMessage, response.Pets);
+                },
+                err =>
+                {
+                    if (_disposed || session != _sessionVersion) return;
+                    FailWrite(string.IsNullOrWhiteSpace(err) ? "解锁灵宠编队槽位失败" : err);
+                });
+        }
+
         /// <summary>登出、换角、静默重连或跨区重定向时清空列表、商店序号与在途请求。</summary>
         public void Reset()
         {

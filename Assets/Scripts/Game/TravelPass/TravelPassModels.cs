@@ -14,25 +14,30 @@ namespace MmorpgClient.Game.TravelPass
         public uint UnlockPremium { get; }
         public uint ClaimReward { get; }
         public uint EquipCosmetic { get; }
+        public uint SelectActive { get; }
 
         public bool IsSupported =>
             GetState != 0 && UnlockPremium != 0 && ClaimReward != 0 && EquipCosmetic != 0
             && GetState != UnlockPremium && GetState != ClaimReward && GetState != EquipCosmetic
             && UnlockPremium != ClaimReward && UnlockPremium != EquipCosmetic && ClaimReward != EquipCosmetic;
 
-        public TravelPassMessageIds(uint getState, uint unlockPremium, uint claimReward, uint equipCosmetic)
+        public bool SupportsSelectActive => IsSupported && SelectActive != 0;
+
+        public TravelPassMessageIds(uint getState, uint unlockPremium, uint claimReward, uint equipCosmetic, uint selectActive = 0)
         {
             GetState = getState;
             UnlockPremium = unlockPremium;
             ClaimReward = claimReward;
             EquipCosmetic = equipCosmetic;
+            SelectActive = selectActive;
         }
 
         public static TravelPassMessageIds Generated => new TravelPassMessageIds(
             SceneActivityClientPlayerRpc.GetTravelPassStateMessageId,
             SceneActivityClientPlayerRpc.UnlockTravelPassPremiumMessageId,
             SceneActivityClientPlayerRpc.ClaimTravelPassRewardMessageId,
-            SceneActivityClientPlayerRpc.EquipTravelPassCosmeticMessageId);
+            SceneActivityClientPlayerRpc.EquipTravelPassCosmeticMessageId,
+            SceneActivityClientPlayerRpc.SelectActiveTravelPassMessageId);
     }
 
     /// <summary>
@@ -98,10 +103,19 @@ namespace MmorpgClient.Game.TravelPass
         public const string TitlePrefix = "title_";
 
         public static bool HasClaimable(global::TravelPassSnapshot snapshot)
-            => snapshot != null && snapshot.Available && (snapshot.ClaimableFreeCount + snapshot.ClaimablePremiumCount) > 0;
+            => TotalBookshelfClaimable(snapshot) > 0;
 
         public static uint TotalClaimable(global::TravelPassSnapshot snapshot)
             => snapshot == null || !snapshot.Available ? 0u : snapshot.ClaimableFreeCount + snapshot.ClaimablePremiumCount;
+
+        public static uint TotalBookshelfClaimable(global::TravelPassSnapshot snapshot)
+        {
+            if (snapshot == null || !snapshot.Available) return 0u;
+            uint sum = 0u;
+            for (int i = 0; i < snapshot.Bookshelf.Count; ++i)
+                sum += snapshot.Bookshelf[i].ClaimableCount;
+            return sum > 0u ? sum : TotalClaimable(snapshot);
+        }
 
         public static bool HasOwnedCosmetic(global::TravelPassSnapshot snapshot, string cosmeticKey)
         {
@@ -143,6 +157,23 @@ namespace MmorpgClient.Game.TravelPass
                 "frame_travel_qingyun_s1" => "青云游历头像框",
                 "title_travel_free_s1" => "游历初成",
                 "title_travel_qingyun_s1" => "青云雅客",
+                "frame_travel_xuanshuang_s2" => "玄霜问剑头像框",
+                "title_travel_free_s2" => "问剑初成",
+                "title_travel_xuanshuang_s2" => "玄霜剑客",
+                "frame_travel_chiyan_s3" => "炽焰丹心头像框",
+                "title_travel_free_s3" => "丹心初成",
+                "title_travel_chiyan_s3" => "赤焰真君",
+                "frame_travel_canglan_s4" => "沧澜听雨头像框",
+                "title_travel_free_s4" => "听雨初成",
+                "title_travel_canglan_s4" => "沧澜雅士",
+                "frame_travel_lingmu_s5" => "灵木问道头像框",
+                "title_travel_free_s5" => "问道初成",
+                "title_travel_lingmu_s5" => "青木隐仙",
+                "frame_travel_houtu_s6" => "厚土镇岳头像框",
+                "title_travel_free_s6" => "镇岳初成",
+                "title_travel_houtu_s6" => "坤岳道宗",
+                "frame_lightcard_s1" => "轻享流光头像框",
+                "frame_lightcard_season_s1" => "季享流光头像框",
                 _ => cosmeticKey,
             };
         }

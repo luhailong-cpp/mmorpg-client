@@ -8,12 +8,8 @@ namespace MmorpgClient.UI.Ugui.Social
     internal static class SocialUiArt
     {
         public const string ResourceRoot="UI/Ugui/SocialV1/";
-        public static readonly Color Ink=QdaoUguiTheme.Html("#3B4B37"), Muted=QdaoUguiTheme.Html("#786B51"), Cream=QdaoUguiTheme.Html("#FFF1CF"), Jade=QdaoUguiTheme.Html("#315D40"), Gold=QdaoUguiTheme.Html("#B59B62");
-        private static TMP_FontAsset _body;
-        public static TMP_FontAsset BodyFont
-        {
-            get { if(_body!=null)return _body;var font=Resources.Load<Font>("Fonts/TeamNotoSansSC");if(font==null)return QdaoUguiTheme.ResolveFont();_body=TMP_FontAsset.CreateFontAsset(font);_body.name="Social Noto Sans SC (Dynamic)";_body.isMultiAtlasTexturesEnabled=true;return _body; }
-        }
+        public static readonly Color Ink=QdaoUguiTheme.GuildInk, Muted=QdaoUguiTheme.GuildMuted, Cream=QdaoUguiTheme.GuildTabCream, Jade=QdaoUguiTheme.GuildDeepJade, Gold=QdaoUguiTheme.Html("#B59B62");
+        public static TMP_FontAsset BodyFont => QdaoUguiTheme.ResolveFont();
         public static Sprite Load(string key)=>QdaoUguiTheme.RequireSprite(ResourceRoot+key);
         public static Image Art(UnityEngine.Transform parent,string key,float x,float y,float w,float h,bool aspect=false)
         {
@@ -25,16 +21,22 @@ namespace MmorpgClient.UI.Ugui.Social
         public static TMP_Text Text(UnityEngine.Transform parent,string value,float x,float y,float w,float h,float size=28,Color? color=null,bool wrap=false,bool heading=false,TextAlignmentOptions align=TextAlignmentOptions.MidlineLeft,string name="Label")
         {
             h=Mathf.Max(h,size*1.65f);var text=QdaoUguiFactory.CreateText(name,parent,x,y,w,h,value,size,color??Ink,align);
-            text.font=heading?QdaoUguiTheme.ResolveFont():BodyFont;text.richText=false;text.textWrappingMode=wrap?TextWrappingModes.Normal:TextWrappingModes.NoWrap;
+            if(heading) QdaoUguiTheme.ApplyTypography(text, size>=38f && text.color.r+text.color.g>1.4f ? QdaoUiTypographyRole.Title : QdaoUiTypographyRole.Heading);
+            else QdaoUguiTheme.ApplyTypographyAuto(text);
+            text.richText=false;text.textWrappingMode=wrap?TextWrappingModes.Normal:TextWrappingModes.NoWrap;
             text.overflowMode=TextOverflowModes.Ellipsis;if(wrap)text.alignment=TextAlignmentOptions.TopLeft;return text;
         }
         public static Button Button(UnityEngine.Transform parent,string name,string label,float x,float y,float w,float h,Action clicked,bool primary=false,bool enabled=true,float size=28,string key=null)
         {
             var button=QdaoUguiFactory.CreateArtButton(name,parent,x,y,w,h,Load(key??(primary?"button_primary":"button_secondary")),out var image);
             image.type=image.sprite.border.sqrMagnitude>0?Image.Type.Sliced:Image.Type.Simple;button.interactable=enabled;button.navigation=new Navigation{mode=Navigation.Mode.Automatic};
-            var colors=button.colors;colors.highlightedColor=new Color(1,.96f,.81f);colors.selectedColor=new Color(1,.95f,.75f);button.colors=colors;
+            var colors=button.colors;colors.highlightedColor=new Color(1,.96f,.81f);colors.selectedColor=new Color(1,.95f,.75f);
+            colors.disabledColor=primary?new Color(.82f,.88f,.84f,.88f):new Color(.88f,.87f,.84f,.80f);button.colors=colors;
             if(clicked!=null)button.onClick.AddListener(()=>clicked());
-            if(!string.IsNullOrEmpty(label))Text(button.transform,label,12,(h-size*1.65f)*.5f,w-24,size*1.65f,size,primary?Cream:Ink,align:TextAlignmentOptions.Center);
+            if(!string.IsNullOrEmpty(label)){
+                var caption=Text(button.transform,label,12,(h-size*1.65f)*.5f,w-24,size*1.65f,size,primary?Cream:QdaoUguiTheme.GuildRichInk,align:TextAlignmentOptions.Center);
+                QdaoUguiTheme.ApplyTypography(caption, primary?QdaoUiTypographyRole.Primary:QdaoUiTypographyRole.Heading);
+            }
             return button;
         }
         public static TMP_InputField Input(UnityEngine.Transform parent,string name,string hint,string value,float x,float y,float w,float h,bool multiline=false,int limit=120)

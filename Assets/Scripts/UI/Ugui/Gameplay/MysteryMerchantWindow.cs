@@ -100,6 +100,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public event Action<MysteryMerchantQuote> BuyRequested;
         /// <summary>玩家点了「前往 N线」。</summary>
         public event Action TravelRequested;
+        /// <summary>玩家点击广告刷新个人货架（Slot 4，受零拒审门禁控制）。</summary>
+        public event Action AdRefreshRequested;
         public event Action Closed;
 
         public RectTransform Root => _root;
@@ -117,7 +119,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private readonly RectTransform _root, _list;
         private readonly Image _frameArt, _titleArt, _shelfArt, _crossMapSeal;
         private readonly TMP_Text _title, _headline, _status, _balance, _pageLabel;
-        private readonly Button _previous, _next, _travel;
+        private readonly Button _previous, _next, _travel, _adRefresh;
         private readonly TMP_Text _travelLabel;
         private readonly Func<float> _clock;
         private MysteryMerchantShopView _view;
@@ -145,6 +147,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _title = Text(frame, TitleText, 100, -7, 400, 84, 49, Cream, alignment: TextAlignmentOptions.Center);
             _headline = Text(frame, "", 604, 40, 1060, 58, 30, Muted);
             _headline.name = "MysteryMerchantHeadline";
+            _adRefresh = Button(frame, MmorpgClient.Game.RewardedAd.RewardedAdModel.MerchantRefreshEntryText,
+                1310, 36, 386, 62, () => AdRefreshRequested?.Invoke(), primary: false, fontSize: 20);
+            _adRefresh.name = "MysteryMerchantAdRefresh";
+            RewardedAdUiRoot.AttachVideoBadge(_adRefresh.transform, 26f);
+            _adRefresh.gameObject.SetActive(false);
 
             _shelfArt = Art(frame, "content_panel", 56, 150, FrameWidth - 112, 632);
             _crossMapSeal = QdaoUguiFactory.CreateImage("MysteryMerchantCrossMapSeal", frame,
@@ -388,6 +395,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
 
             _balance.text = DescribeBalance(_view);
+            if (_adRefresh != null)
+            {
+                var adRoot = RewardedAdUiRoot.Instance;
+                bool showAdRefresh = _view.Presence == MysteryMerchantPresence.Here
+                    && _view.RoundId != 0ul
+                    && !_view.InBattle
+                    && _view.BuyingGoodsId == 0
+                    && adRoot != null
+                    && adRoot.CanShowSlot(MmorpgClient.Game.RewardedAd.RewardedAdModel.SlotIdMerchantPersonalRefresh, out _);
+                _adRefresh.gameObject.SetActive(showAdRefresh);
+                if (_headline != null)
+                    _headline.rectTransform.sizeDelta = new Vector2(showAdRefresh ? 690f : 1060f, 58f);
+            }
             string status = DescribeStatus(_view, out bool isError);
             StatusIsError = isError;
             _status.text = status;

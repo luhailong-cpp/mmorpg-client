@@ -29,6 +29,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public const string StyleRoot = "UI/Ugui/AppearanceChronicleV2/";
         public const string SeriesStyleRoot = "UI/Ugui/AppearanceSeriesV1/";
         public const string WardrobeCosmeticsRoot = "UI/Ugui/WardrobeCosmetics/";
+        public const string ShowcaseCosmeticsRoot = "UI/Ugui/ShowcaseCosmeticsV1/";
+        public const string CelebrationPropsRoot = "World/CelebrationProps/";
 
         public static readonly Color JadeInk = QdaoUguiTheme.Html("#304736");
         public static readonly Color DeepJade = QdaoUguiTheme.Html("#205B46");
@@ -65,6 +67,97 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (string.IsNullOrWhiteSpace(key)) return null;
             return LoadSprite(WardrobeCosmeticsRoot + key);
         }
+
+        /// <summary>加载排面装饰与赠礼图标切片（Assets/Resources/UI/Ugui/ShowcaseCosmeticsV1/）。</summary>
+        public static Sprite LoadShowcaseCosmetic(string key)
+        {
+            if (string.IsNullOrWhiteSpace(key)) return null;
+            return LoadSprite(key) ?? LoadSprite(ShowcaseCosmeticsRoot + key) ?? LoadSprite(CelebrationPropsRoot + key);
+        }
+
+        /// <summary>按服务端权威 CosmeticShowcase ID 解析战斗阵纹/入场横幅/聊天气泡/战报卡底纹切片。</summary>
+        public static Sprite LoadShowcaseById(uint cosmeticId)
+        {
+            if (cosmeticId == 0u) return null;
+            if (MmorpgClient.Table.CosmeticShowcaseTableManager.Instance.KvData.TryGetValue(cosmeticId, out var row)
+                && !string.IsNullOrWhiteSpace(row.AssetKey))
+            {
+                var fromTable = LoadShowcaseCosmetic(row.AssetKey);
+                if (fromTable != null) return fromTable;
+            }
+            string fallback = cosmeticId switch
+            {
+                1u => "formation_skin_metal",
+                2u => "formation_skin_wood",
+                3u => "formation_skin_water",
+                4u => "formation_skin_fire",
+                5u => "formation_skin_earth",
+                6u => "battle_banner_entrance_01",
+                7u => "battle_banner_entrance_02",
+                8u => "battle_banner_entrance_03",
+                9u => "chat_bubble_skin_01",
+                10u => "chat_bubble_skin_02",
+                11u => "share_card_skin_01",
+                12u => "share_card_skin_02",
+                13u => "formation_skin_starlight",
+                _ => null,
+            };
+            var sprite = LoadShowcaseCosmetic(fallback);
+            if (sprite == null && cosmeticId == 13u) sprite = LoadShowcaseCosmetic("formation_skin_metal");
+            return sprite;
+        }
+
+        public static Sprite LoadTravelPassBanner(uint passId, string explicitKey)
+        {
+            if (!string.IsNullOrWhiteSpace(explicitKey))
+            {
+                var direct = LoadSprite(explicitKey);
+                if (direct != null) return direct;
+            }
+            string key = passId switch
+            {
+                2u => "UI/Ugui/TravelPassV2/banner_travel_pass_s2",
+                3u => "UI/Ugui/TravelPassV2/banner_travel_pass_s3",
+                4u => "UI/Ugui/TravelPassV2/banner_travel_pass_s4",
+                5u => "UI/Ugui/TravelPassV2/banner_travel_pass_s5",
+                6u => "UI/Ugui/TravelPassV2/banner_travel_pass_s6",
+                _ => null,
+            };
+            return LoadSprite(key);
+        }
+
+        public static Sprite LoadCelebrationIcon(uint itemConfigId) => itemConfigId switch
+        {
+            3418u => LoadShowcaseCosmetic("icon_city_lantern"),
+            3419u => LoadShowcaseCosmetic("icon_city_firework"),
+            3420u => LoadShowcaseCosmetic("icon_city_tea_table"),
+            _ => null,
+        };
+
+        public static Sprite LoadCelebrationWorldProp(uint itemConfigId) => itemConfigId switch
+        {
+            3418u => LoadSprite(CelebrationPropsRoot + "prop_city_lantern_world") ?? LoadCelebrationIcon(itemConfigId),
+            3420u => LoadSprite(CelebrationPropsRoot + "prop_city_tea_table_world") ?? LoadCelebrationIcon(itemConfigId),
+            _ => LoadCelebrationIcon(itemConfigId),
+        };
+
+        public static Sprite LoadFriendGiftIcon() => LoadShowcaseCosmetic("icon_friend_cosmetic_gift");
+
+        public static Sprite LoadGuildEmblem(uint emblemId) => emblemId switch
+        {
+            1u => LoadSprite("UI/Ugui/GuildEmblemsV1/guild_emblem_01"),
+            2u => LoadSprite("UI/Ugui/GuildEmblemsV1/guild_emblem_02"),
+            3u => LoadSprite("UI/Ugui/GuildEmblemsV1/guild_emblem_03"),
+            4u => LoadSprite("UI/Ugui/GuildEmblemsV1/guild_emblem_04"),
+            5u => LoadSprite("UI/Ugui/GuildEmblemsV1/guild_emblem_05"),
+            6u => LoadSprite("UI/Ugui/GuildEmblemsV1/guild_emblem_06"),
+            _ => null,
+        };
+
+        public static Sprite LoadWarehouseExpandIcon() => LoadSprite("UI/Ugui/UtilityExpandV1/icon_warehouse_expand");
+        public static Sprite LoadPetSquadPresetIcon() => LoadSprite("UI/Ugui/UtilityExpandV1/icon_pet_squad_preset");
+        public static Sprite LoadReplayBookmarkExpandIcon() => LoadSprite("UI/Ugui/UtilityExpandV1/icon_replay_bookmark_expand");
+        public static Sprite LoadRewardedVideoBadge() => LoadSprite("UI/Ugui/RewardedAdV1/icon_rewarded_video_badge");
 
         /// <summary>加载系列印章图：优先专属系列印章，缺省回退通用点亮/灰态印章。</summary>
         public static Sprite LoadSeriesSeal(string seriesKey, bool completed)

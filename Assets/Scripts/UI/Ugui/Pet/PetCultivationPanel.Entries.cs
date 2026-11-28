@@ -50,9 +50,9 @@ namespace MmorpgClient.UI.Ugui.Pet
             _entryRows.Clear(); _entryPresetButtons.Clear(); _entryBudget = null; _entryTagButton = _entryClearAll = null;
             if (EntryState == null) { BuildUnavailableEntries(x, width); return; }
 
-            Label("EntryPointsTitle", _body, x + 16f, 172f, 130f, 40f, "条目点", 32f, Green, role: TypographyRole.Heading);
+            Label("EntryPointsTitle", _body, x + 16f, 172f, 130f, 40f, "条目点", 32f, Green, role: QdaoUiTypographyRole.Heading);
             GuildUiArt.Line(_body, "EntryHeadingRule", x + 144f, 192f, 112f);
-            _entryBudget = Label("EntryPointsBudget", _body, x + 260f, 176f, width - 264f, 34f, "", 22f, RichInk, TextAlignmentOptions.MidlineRight, role: TypographyRole.Heading);
+            _entryBudget = Label("EntryPointsBudget", _body, x + 260f, 176f, width - 264f, 34f, "", 22f, RichInk, TextAlignmentOptions.MidlineRight, role: QdaoUiTypographyRole.Heading);
 
             // 顶部 3 套条目方案切换条 + 用途标签切换（严守安全内距与自动字号，杜绝溢框）
             uint activeSlot = ActiveEntryPresetSlot;
@@ -118,9 +118,9 @@ namespace MmorpgClient.UI.Ugui.Pet
                 var state = new EntryRow { Data = e };
                 state.Minus = ActionButton("EntryMinus" + e.Id, row, adjust - 94f, 6f, 40f, 40f, "", false, () => ChangeEntry(e.Id, -1), "step-minus-normal");
                 Art("EntryField" + e.Id, row, adjust - 46f, 8f, 74f, 36f, "stat_field");
-                state.Value = Label("EntryValue" + e.Id, row, adjust - 46f, 8f, 74f, 36f, "", 22f, RichInk, TextAlignmentOptions.Center, role: TypographyRole.Heading);
+                state.Value = Label("EntryValue" + e.Id, row, adjust - 46f, 8f, 74f, 36f, "", 22f, RichInk, TextAlignmentOptions.Center, role: QdaoUiTypographyRole.Heading);
                 state.Plus = ActionButton("EntryPlus" + e.Id, row, adjust + 36f, 6f, 40f, 40f, "", false, () => ChangeEntry(e.Id, 1), "step-plus-normal");
-                state.Benefit = Label("EntryBenefit" + e.Id, row, rowW - 196f, 8f, 102f, 36f, "", 21f, Green, TextAlignmentOptions.MidlineRight, autoSize: true, minSize: 15f, role: TypographyRole.Heading);
+                state.Benefit = Label("EntryBenefit" + e.Id, row, rowW - 196f, 8f, 102f, 36f, "", 21f, Green, TextAlignmentOptions.MidlineRight, autoSize: true, minSize: 15f, role: QdaoUiTypographyRole.Heading);
                 ActionButton("EntryDetail" + e.Id, row, rowW - 86f, 8f, 78f, 36f, "详情", false,
                     () => ShowEntryDetail(e), null, 20f, autoSize: false);
                 GuildUiArt.Line(row, "EntryRowRule" + e.Id, 4f, rowHeight - 1f, rowW - 8f);

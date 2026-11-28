@@ -574,31 +574,38 @@ namespace MmorpgClient.UI.Ugui.Battle
 
                 var captured = build;
                 ulong battleId = replay.BattleId;
-                var saveBtn = BattleUiWidgets.CreateTextButton("SaveBookmark", rRect, ListWidth - 168f, 30f, 152f, 54f,
-                    "一键收藏", 18f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
-                saveBtn.Button.onClick.AddListener(() =>
-                {
-                    var season = SeasonClient.Instance;
-                    if (season == null) { SetStatus("赛季模块未就绪"); return; }
-                    var bm = new global::SavedBattleBuildBookmarkView
-                    {
-                        Title = string.IsNullOrWhiteSpace(captured.Name) ? $"战报#{battleId}" : $"{captured.Name}的配装",
-                        SourceBattleId = battleId,
-                        SourcePlayerId = captured.PlayerId,
-                        SourcePlayerName = captured.Name ?? string.Empty,
-                        ClassId = captured.ClassId,
-                        FormationId = captured.FormationId,
-                        SeasonSealId = captured.SeasonSealId,
-                        ActivePetTableId = captured.ActivePetTableId,
-                        ActivePetName = captured.ActivePetName ?? string.Empty,
-                    };
-                    for (int s = 0; s < captured.SkillTableIds.Count; ++s) bm.SkillTableIds.Add(captured.SkillTableIds[s]);
-                    for (int g = 0; g < captured.WuxingSigilIds.Count; ++g) bm.WuxingSigilIds.Add(captured.WuxingSigilIds[g]);
-                    season.SaveBattleBuildBookmark(bm);
-                    SetStatus($"已提交收藏：{bm.Title}");
-                });
+                var saveBtn = BattleUiWidgets.CreateTextButton("SaveBookmark", rRect, ListWidth - 312f, 30f, 144f, 54f,
+                    "一键收藏", 17f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
+                saveBtn.Button.onClick.AddListener(() => SubmitSaveBookmark(captured, battleId, pinReplay: false));
+
+                var pinBtn = BattleUiWidgets.CreateTextButton("SavePinBookmark", rRect, ListWidth - 160f, 30f, 148f, 54f,
+                    "收藏并置顶", 17f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+                pinBtn.Button.onClick.AddListener(() => SubmitSaveBookmark(captured, battleId, pinReplay: true));
             }
             SetStatus($"正在查看战报 #{replay.BattleId} 的公开配装");
+        }
+
+        private void SubmitSaveBookmark(global::BattleActorBuildSummary captured, ulong battleId, bool pinReplay)
+        {
+            var season = SeasonClient.Instance;
+            if (season == null) { SetStatus("赛季模块未就绪"); return; }
+            var bm = new global::SavedBattleBuildBookmarkView
+            {
+                Title = string.IsNullOrWhiteSpace(captured.Name) ? $"战报#{battleId}" : $"{captured.Name}的配装",
+                SourceBattleId = battleId,
+                SourcePlayerId = captured.PlayerId,
+                SourcePlayerName = captured.Name ?? string.Empty,
+                ClassId = captured.ClassId,
+                FormationId = captured.FormationId,
+                SeasonSealId = captured.SeasonSealId,
+                ActivePetTableId = captured.ActivePetTableId,
+                ActivePetName = captured.ActivePetName ?? string.Empty,
+                PinReplay = pinReplay,
+            };
+            for (int s = 0; s < captured.SkillTableIds.Count; ++s) bm.SkillTableIds.Add(captured.SkillTableIds[s]);
+            for (int g = 0; g < captured.WuxingSigilIds.Count; ++g) bm.WuxingSigilIds.Add(captured.WuxingSigilIds[g]);
+            season.SaveBattleBuildBookmark(bm);
+            SetStatus(pinReplay ? $"已提交永久置顶收藏：{bm.Title}" : $"已提交收藏：{bm.Title}");
         }
 
         private void RenderBookmarksView()
@@ -606,18 +613,51 @@ namespace MmorpgClient.UI.Ugui.Battle
             var season = SeasonClient.Instance;
             var builds = season?.SavedBuilds;
             int count = builds?.Count ?? 0;
+            uint cap = season?.SavedBuildCapacity ?? (uint)WuxingExpansionModels.MaxSavedBuildBookmarks;
+            uint maxCap = season?.MaxSavedBuildCapacity ?? 48u;
+            ulong expandPrice = season?.NextSavedBuildExpandPriceDiamond ?? 60ul;
+
+            // B3 战报配装收藏夹扩容条（每次 +12 槽，上限 48 槽，60 真实灵石，受 M-8 IapEnabled 门控）
+            if (season != null && cap < maxCap && MmorpgClient.Game.RewardedAd.ClientDistributionPolicy.Current.IapEnabled)
+            {
+                var expRow = BattleUiWidgets.CreatePanel("ExpandBookmarksBar", _content,
+                    0f, 0f, ListWidth, 72f, BattleUiStyle.PanelBgLight);
+                var eRect = (RectTransform)expRow.transform;
+                _rows.Add(expRow.gameObject);
+                var expIcon = MmorpgClient.UI.Ugui.Gameplay.AppearanceUiArt.LoadReplayBookmarkExpandIcon();
+                if (expIcon != null)
+                {
+                    var img = QdaoUguiFactory.CreateImage("BookmarkExpandIcon", eRect, 14f, 12f, 48f, 48f, expIcon);
+                    img.preserveAspect = true;
+                    img.raycastTarget = false;
+                }
+                QdaoUguiFactory.CreateText("ExpandDesc", eRect, 74f, 16f, ListWidth - 340f, 40f,
+                    $"收藏夹容量：{count}/{cap}（最高可扩至 {maxCap} 槽，永久生效，零战力）", 17f, QdaoUguiTheme.Cream);
+                uint capturedCap = cap;
+                ulong capturedPrice = expandPrice;
+                var expBtn = BattleUiWidgets.CreateTextButton("ExpandSavedBuildsBtn", eRect, ListWidth - 244f, 12f, 228f, 48f,
+                    $"扩容+12槽 ({expandPrice}灵石)", 16f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
+                expBtn.Button.onClick.AddListener(() =>
+                {
+                    season.ExpandSavedBuildSlots(capturedCap, capturedPrice);
+                    SetStatus($"已提交收藏夹扩容请求（{capturedCap} → {Math.Min(maxCap, capturedCap + 12u)} 槽）");
+                });
+            }
+
+            float baseOffsetY = _rows.Count > 0 ? 80f : 0f;
             for (int i = 0; i < count; ++i)
             {
                 var bm = builds[i];
                 if (bm == null) continue;
-                float y = _rows.Count * (EntryH + EntryGap);
+                float y = baseOffsetY + i * (EntryH + EntryGap);
                 var row = BattleUiWidgets.CreatePanel($"Bm_{bm.BookmarkId}", _content,
                     0f, y, ListWidth, EntryH, BattleUiStyle.PanelBgLight);
                 var rRect = (RectTransform)row.transform;
                 _rows.Add(row.gameObject);
 
+                string pinTag = bm.PinReplay ? "★[置顶] " : string.Empty;
                 QdaoUguiFactory.CreateText("BmTitle", rRect, 18f, 12f, ListWidth - 340f, 34f,
-                    $"{bm.Title} · {WuxingExpansionModels.FormationName(bm.FormationId)}", 19f, QdaoUguiTheme.Cream);
+                    $"{pinTag}{bm.Title} · {WuxingExpansionModels.FormationName(bm.FormationId)}", 19f, QdaoUguiTheme.Cream);
                 string detail = $"来源：{bm.SourcePlayerName} · 印#{bm.SeasonSealId} · 宠：{bm.ActivePetName}";
                 QdaoUguiFactory.CreateText("BmDetail", rRect, 18f, 52f, ListWidth - 340f, 44f,
                     detail, 16f, QdaoUguiTheme.StatusCream);
@@ -655,7 +695,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     SetStatus("已请求删除收藏配装，请稍候刷新");
                 });
             }
-            SetStatus($"配装收藏夹：{count} / {WuxingExpansionModels.MaxSavedBuildBookmarks}");
+            SetStatus($"配装收藏夹：{count} / {cap}（上限 {maxCap}，带★标记永久置顶防淘汰）");
         }
 
         private void ClearRows()

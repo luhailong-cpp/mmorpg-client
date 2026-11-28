@@ -80,5 +80,39 @@ namespace MmorpgClient.Net.Generated
         public static void BuyAppearanceSeriesBundle(IRpcChannel channel, global::BuyAppearanceSeriesBundleRequest request,
             RpcDone<global::BuyAppearanceSeriesBundleResponse> done)
             => channel.CallMethod(BuyAppearanceSeriesBundleMessageId, request, global::BuyAppearanceSeriesBundleResponse.Parser, done);
+
+        public const uint EquipShowcaseCosmeticMessageId = 593;
+        public static void EquipShowcaseCosmetic(IRpcChannel channel, global::EquipShowcaseCosmeticRequest request,
+            RpcDone<global::EquipShowcaseCosmeticResponse> done)
+            => channel.CallMethod(EquipShowcaseCosmeticMessageId, request, global::EquipShowcaseCosmeticResponse.Parser, done);
+
+        public const uint CastCityCelebrationMessageId = 594;
+        public static void CastCityCelebration(IRpcChannel channel, global::CastCityCelebrationRequest request,
+            RpcDone<global::CastCityCelebrationResponse> done)
+            => channel.CallMethod(CastCityCelebrationMessageId, request, global::CastCityCelebrationResponse.Parser, done);
+
+        public const uint ClaimCityCelebrationGiftMessageId = 595;
+        public static void ClaimCityCelebrationGift(IRpcChannel channel, global::ClaimCityCelebrationGiftRequest request,
+            RpcDone<global::ClaimCityCelebrationGiftResponse> done)
+            => channel.CallMethod(ClaimCityCelebrationGiftMessageId, request, global::ClaimCityCelebrationGiftResponse.Parser, done);
+
+        public const uint NotifyCityCelebrationMessageId = 596;
+        public static void OnNotifyCityCelebration(IRpcChannel channel, Action<global::CityCelebrationNotify> handler,
+            Action<InvalidProtocolBufferException> onMalformed = null)
+        {
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
+            channel.RegisterNotify(NotifyCityCelebrationMessageId, mc =>
+            {
+                global::CityCelebrationNotify message;
+                try { message = global::CityCelebrationNotify.Parser.ParseFrom(mc.SerializedMessage); }
+                catch (InvalidProtocolBufferException ex) { onMalformed?.Invoke(ex); return; }
+                handler(message);
+            });
+        }
+
+        public const uint SendCosmeticGiftMessageId = 597;
+        public static void SendCosmeticGift(IRpcChannel channel, global::SendCosmeticGiftRequest request,
+            RpcDone<global::SendCosmeticGiftResponse> done)
+            => channel.CallMethod(SendCosmeticGiftMessageId, request, global::SendCosmeticGiftResponse.Parser, done);
     }
 }

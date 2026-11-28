@@ -16,6 +16,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     public sealed partial class GameplayWindow : IDisposable
     {
         public event Action<uint> BagRequested;
+        public event Action<uint> WarehouseExpandRequested;
         public event Action SortRequested;
         /// <summary>打开 / 刷新背包页时与 <see cref="BagRequested"/> 一起发:装备栏是另一份快照(bag_type = 2)。</summary>
         public event Action EquipmentRequested;

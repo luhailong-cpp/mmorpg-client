@@ -101,6 +101,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private Button _trialBtn;
         private Image _trialBtnImage;
         private TMP_Text _trialLabel;
+        private Button _adTrialBtn;
         private Button _switchBtn;
         private TMP_Text _switchLabel;
         private TMP_Text _status;
@@ -212,6 +213,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _entry.name = EntryName;
             WorldHudNavigation.Register(WorldHudEntry.Appearance, (RectTransform)_entry.transform, _entry,
                 _entry.GetComponentInChildren<TMP_Text>(true));
+            BuildCelebrationHud(_hud);
 
             BuildWindow(canvasObject.transform);
             _hud.gameObject.SetActive(false);
@@ -274,6 +276,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             BuildStoryOverlay(_fittedRoot);
             BuildSeriesUi((RectTransform)_mainPanelGroup.transform, _fittedRoot);
             BuildWardrobeCosmeticsUi((RectTransform)_mainPanelGroup.transform);
+            BuildCelebrationAndGiftPanelControls((RectTransform)_mainPanelGroup.transform, _fittedRoot);
             BuildReadingOverlays(_fittedRoot);
 
             _window.gameObject.SetActive(false);
@@ -472,6 +475,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 1340f, 772f, 752f, 74f, "", 22f, AppearanceUiArt.MutedInk, TextAlignmentOptions.TopLeft);
             _status.richText = false;
             _status.textWrappingMode = TextWrappingModes.Normal;
+
+            _adTrialBtn = AppearanceUiArt.ActionButton(mainRoot, "AppearanceAdTrial",
+                MmorpgClient.Game.RewardedAd.RewardedAdModel.WardrobeTrialEntryText,
+                1338f, 850f, 440f, 54f, HandleAdTrialClicked, primary: false, fontSize: 21f);
+            RewardedAdUiRoot.AttachVideoBadge(_adTrialBtn.transform, 26f);
+            _adTrialBtn.gameObject.SetActive(false);
         }
 
         private static RectTransform CreateOverlayBackdrop(RectTransform parent, string name)
@@ -696,6 +705,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _available = _game != null && _game.InGame && _game.IsGateReady && !battleLayer && (_client?.IsSupported ?? false);
                 _client?.Tick();
                 _hud.gameObject.SetActive(_available);
+                RefreshCityCelebrationHud();
                 if (!_available)
                 {
                     HidePanel();
@@ -775,6 +785,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _state.SelectAppearance(_state.SelectedAppearanceId, _listScroll.verticalNormalizedPosition);
             OnWardrobeCosmeticsHide(wasVisible);
             _state.ResetForCloseOrDisconnect();
+            _pendingBundleConfirmSeriesId = 0;
+            CloseCosmeticGiftModal();
             SyncOverlayVisibility();
             if (_window != null) _window.gameObject.SetActive(false);
             ReleaseReadingPortraits();
@@ -804,6 +816,16 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _state.ClearPendingSwitchConfirmation();
             _client.StartTrial(_state.SelectedAppearanceId);
             Render();
+        }
+
+        private void HandleAdTrialClicked()
+        {
+            if (_corePreviewOnly || _state.HasOverlay || _client == null || string.IsNullOrEmpty(_state.SelectedAppearanceId)) return;
+            string targetId = _state.SelectedAppearanceId;
+            RewardedAdUiRoot.Instance?.OpenConfirmForSlot(
+                MmorpgClient.Game.RewardedAd.RewardedAdModel.SlotIdWardrobe1hTrial,
+                0u, targetId,
+                ok => { if (ok) _client?.RequestInfo(force: true); });
         }
 
         private void HandleCancelTrialClicked()
@@ -1030,6 +1052,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_cosmeticState.ActiveCategory != WardrobeCategoryTab.Character)
             {
                 RenderCosmeticTab(info);
+                RefreshCelebrationAndGiftPanelState();
                 SyncOverlayVisibility();
                 return;
             }
@@ -1094,6 +1117,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 bool isPermanent = selected.AppearanceId == info.PermanentAppearanceId;
                 bool isOwned = isPermanent || selected.Owned;
                 bool isTrialing = _client.HasActiveTrial && selected.AppearanceId == info.TrialAppearanceId;
+                uint lightCardTrialRemaining = info.LightCardTrialQuota > info.LightCardTrialUsed
+                    ? info.LightCardTrialQuota - info.LightCardTrialUsed : 0u;
                 if (isTrialing)
                 {
                     string permanentName = ResolveEntryName(info, info.PermanentAppearanceId);
@@ -1113,14 +1138,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 else if (!selected.CardUnlockable)
                 {
                     _previewStatus.text = selected.TrialUsed
-                        ? "状态：未获得（专属玩法/活动解锁，已试用过）"
+                        ? (lightCardTrialRemaining > 0
+                            ? $"状态：未获得（专属玩法解锁；轻享卡本周剩余 {lightCardTrialRemaining}/{info.LightCardTrialQuota} 次随心试穿）"
+                            : "状态：未获得（专属玩法/活动解锁，已试用过）")
                         : "状态：未获得（专属玩法/活动解锁，可免费试用 1 小时）";
-                    _previewStatus.color = AppearanceUiArt.MutedInk;
+                    _previewStatus.color = lightCardTrialRemaining > 0 || !selected.TrialUsed ? AppearanceUiArt.TrialGreen : AppearanceUiArt.MutedInk;
                 }
                 else if (selected.TrialUsed)
                 {
-                    _previewStatus.text = "状态：未获得（已免费试用过，消耗形象卡可永久解锁）";
-                    _previewStatus.color = AppearanceUiArt.MutedInk;
+                    _previewStatus.text = lightCardTrialRemaining > 0
+                        ? $"状态：未获得（轻享卡本周剩余 {lightCardTrialRemaining}/{info.LightCardTrialQuota} 次随心试穿，或耗形象卡永久解锁）"
+                        : "状态：未获得（已免费试用过，消耗形象卡可永久解锁）";
+                    _previewStatus.color = lightCardTrialRemaining > 0 ? AppearanceUiArt.TrialGreen : AppearanceUiArt.MutedInk;
                 }
                 else
                 {
@@ -1173,7 +1202,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             bool isTargetTrialUsed = selected != null && selected.TrialUsed;
             bool isTargetTrialing = selected != null && _client.HasActiveTrial && selected.AppearanceId == info.TrialAppearanceId;
 
-            bool trialEnabled = !busy && selected != null && !isTargetPermanent && !isTargetOwned && !isTargetTrialUsed;
+            uint extraTrialLeft = info.LightCardTrialQuota > info.LightCardTrialUsed
+                ? info.LightCardTrialQuota - info.LightCardTrialUsed : 0u;
+            bool canUseLightCardTrial = isTargetTrialUsed && extraTrialLeft > 0;
+            bool trialEnabled = !busy && selected != null && !isTargetPermanent && !isTargetOwned && (!isTargetTrialUsed || canUseLightCardTrial);
             _trialBtn.interactable = trialEnabled;
             if (_trialBtnImage != null)
             {
@@ -1183,9 +1215,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _trialLabel.text = isTargetPermanent ? "当前使用中"
                 : isTargetOwned ? "已拥有（免费切换）"
                 : isTargetTrialing ? "正在免费试用中"
+                : canUseLightCardTrial ? $"轻享试穿 ({extraTrialLeft}/{info.LightCardTrialQuota})"
                 : isTargetTrialUsed ? "该形象已试用过"
                 : "免费试用 1 小时";
             _trialLabel.color = trialEnabled ? AppearanceUiArt.JadeInk : AppearanceUiArt.MutedInk;
+            if (_adTrialBtn != null)
+            {
+                var adRoot = RewardedAdUiRoot.Instance;
+                bool showAdTrial = !_corePreviewOnly && !busy && selected != null && !isTargetPermanent && !isTargetOwned
+                    && isTargetTrialUsed && !canUseLightCardTrial && adRoot != null
+                    && adRoot.CanShowSlot(MmorpgClient.Game.RewardedAd.RewardedAdModel.SlotIdWardrobe1hTrial, out _);
+                _adTrialBtn.gameObject.SetActive(showAdTrial);
+            }
 
             bool canSwitch = !busy && selected != null && !isTargetPermanent && (isTargetOwned || isTargetCardUnlockable);
             _switchBtn.interactable = canSwitch;
@@ -1198,15 +1239,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             UpdateStatusText();
             RenderSeriesUi(info);
             RenderOverlays(info, requiredCards, priceText);
+            RefreshCelebrationAndGiftPanelState();
             SyncOverlayVisibility();
             ApplyCorePreviewMode();
         }
 
         private void ApplyCorePreviewMode()
         {
-            if (_buyMallBtn != null) _buyMallBtn.gameObject.SetActive(!_corePreviewOnly);
+            bool allowIap = MmorpgClient.Game.RewardedAd.ClientDistributionPolicy.Current.IapEnabled;
+            if (_buyMallBtn != null) _buyMallBtn.gameObject.SetActive(!_corePreviewOnly && allowIap);
             if (_corePreviewBadge != null) _corePreviewBadge.gameObject.SetActive(_corePreviewOnly);
-            if (_noCardMallBtn != null) _noCardMallBtn.gameObject.SetActive(!_corePreviewOnly);
+            if (_noCardMallBtn != null) _noCardMallBtn.gameObject.SetActive(!_corePreviewOnly && allowIap);
+            if (_seriesBundleBtn != null && (_corePreviewOnly || !allowIap)) _seriesBundleBtn.gameObject.SetActive(false);
+            if (_adTrialBtn != null && _corePreviewOnly) _adTrialBtn.gameObject.SetActive(false);
             if (!_corePreviewOnly) return;
             if (_trialBtn != null) _trialBtn.interactable = false;
             if (_switchBtn != null) _switchBtn.interactable = false;

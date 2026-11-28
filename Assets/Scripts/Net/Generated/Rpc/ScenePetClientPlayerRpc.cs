@@ -106,5 +106,15 @@ namespace MmorpgClient.Net.Generated
         public static void AscendPetTier(IRpcChannel channel, global::AscendPetTierRequest request,
             RpcDone<global::AscendPetTierResponse> done)
             => channel.CallMethod(AscendPetTierMessageId, request, global::AscendPetTierResponse.Parser, done);
+
+        public const uint SavePetSquadPresetMessageId = 601;
+        public static void SavePetSquadPreset(IRpcChannel channel, global::SavePetSquadPresetRequest request,
+            RpcDone<global::SavePetSquadPresetResponse> done)
+            => channel.CallMethod(SavePetSquadPresetMessageId, request, global::SavePetSquadPresetResponse.Parser, done);
+
+        public const uint UnlockPetSquadPresetSlotMessageId = 602;
+        public static void UnlockPetSquadPresetSlot(IRpcChannel channel, global::UnlockPetSquadPresetSlotRequest request,
+            RpcDone<global::UnlockPetSquadPresetSlotResponse> done)
+            => channel.CallMethod(UnlockPetSquadPresetSlotMessageId, request, global::UnlockPetSquadPresetSlotResponse.Parser, done);
     }
 }

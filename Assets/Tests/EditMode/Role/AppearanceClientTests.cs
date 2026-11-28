@@ -568,5 +568,285 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(state.HasOverlay, Is.False);
             Assert.That(state.SavedListScrollNormalized, Is.EqualTo(0.41f).Within(0.0001f));
         }
+
+        [Test]
+        public void BuySeriesBundle_SendsSortedMissingIdsQuoteAndHandlesPriceChanged()
+        {
+            var bundleIds = new AppearanceMessageIds(442, 443, 444, 445, 447, 530, 531, 592);
+            var net = new FakeTransport();
+            float now = 100f;
+            var conn = new object();
+            var series = new CharacterAppearanceSeriesProgress
+            {
+                SeriesId = 1,
+                Name = "留灯院旧友",
+                OwnedCount = 1,
+                TotalCount = 3,
+                Completed = false,
+                MissingUnlockableCount = 2,
+                BundleOriginalDiamond = 200,
+                BundleDiscountDiamond = 170,
+                BundleDiscountBps = 8500,
+            };
+            series.MissingAppearanceIds.Add("10_crimson_spear_girl");
+            series.MissingAppearanceIds.Add("01_bamboo_flute_girl");
+            var initInfo = new PlayerAppearanceInfo
+            {
+                PermanentAppearanceId = "00_reference_topright_boy",
+                ActiveAppearanceId = "00_reference_topright_boy",
+                DiamondBalance = 500,
+                LightCardTrialQuota = 3,
+                LightCardTrialUsed = 1,
+            };
+            initInfo.SeriesProgress.Add(series);
+
+            Assert.That(AppearanceSeriesModels.CanBuySeriesBundle(series), Is.True);
+            Assert.That(AppearanceSeriesModels.SeriesBundleSavingsDiamond(series), Is.EqualTo(30UL));
+            Assert.That(AppearanceSeriesModels.FormatSeriesBundleLabel(series), Is.EqualTo("8.5折补齐 · 170灵石(省30)"));
+
+            int buyCalls = 0;
+            net.Responder = (msgId, req) =>
+            {
+                if (msgId == bundleIds.Get) return (new GetAppearanceInfoResponse { Info = initInfo }, null);
+                if (msgId == bundleIds.BuySeriesBundle)
+                {
+                    var buyReq = (BuyAppearanceSeriesBundleRequest)req;
+                    Assert.That(buyReq.SeriesId, Is.EqualTo(1u));
+                    Assert.That(buyReq.ExpectedPriceDiamond, Is.EqualTo(170UL));
+                    Assert.That(buyReq.ExpectedMissingAppearanceIds, Is.EqualTo(new[] { "01_bamboo_flute_girl", "10_crimson_spear_girl" }));
+                    buyCalls++;
+                    if (buyCalls == 1)
+                    {
+                        return (new BuyAppearanceSeriesBundleResponse
+                        {
+                            ErrorMessage = new TipInfoMessage { Id = (uint)appearance_error.KAppearanceSeriesBundlePriceChanged }
+                        }, null);
+                    }
+                    var doneInfo = initInfo.Clone();
+                    doneInfo.SeriesProgress[0].OwnedCount = 3;
+                    doneInfo.SeriesProgress[0].Completed = true;
+                    doneInfo.SeriesProgress[0].MissingUnlockableCount = 0;
+                    doneInfo.SeriesProgress[0].MissingAppearanceIds.Clear();
+                    return (new BuyAppearanceSeriesBundleResponse
+                    {
+                        Info = doneInfo,
+                        UnlockedCount = 2,
+                        SpentDiamond = 170,
+                    }, null);
+                }
+                throw new InvalidOperationException("unexpected msgId " + msgId);
+            };
+
+            using var client = new AppearanceClient(net, () => conn, () => now, bundleIds);
+            client.RequestInfo(force: true);
+            net.Flush();
+
+            Assert.That(client.BuySeriesBundle(1u), Is.True);
+            net.Flush();
+            Assert.That(client.StatusIsError, Is.True);
+            Assert.That(client.Status, Does.Contain("已变动"));
+
+            now += 2f;
+            Assert.That(client.BuySeriesBundle(1u), Is.True);
+            net.Flush();
+            Assert.That(client.StatusIsError, Is.False);
+            Assert.That(client.Info.SeriesProgress[0].Completed, Is.True);
+        }
+
+        [Test]
+        public void ShowcaseCelebrationAndGift_EndToEndClientContractAndBattleChatProjection()
+        {
+            var b2Ids = new AppearanceMessageIds(442, 443, 444, 445, 447, 530, 531, 592, 593, 594, 595, 596, 597);
+            var net = new FakeTransport();
+            float now = 100f;
+            var conn = new object();
+
+            var info = new PlayerAppearanceInfo
+            {
+                PermanentAppearanceId = "00_reference_topright_boy",
+                ActiveAppearanceId = "00_reference_topright_boy",
+                DiamondBalance = 500,
+                ServerNow = 2000,
+                CelebrationBindGoldWeeklyCap = 3000,
+                CosmeticGiftWeeklyLimit = 5,
+            };
+            info.ShowcaseCosmetics.Add(new ShowcaseCosmeticEntry
+            {
+                ConfigId = 1,
+                CosmeticKey = "formation_metal",
+                SlotKind = 1,
+                Name = "庚金阵纹",
+                AssetKey = "formation_skin_metal",
+                Owned = false,
+                CardItemId = 3417,
+                CardItemCount = 1,
+                OwnedCardCount = 1,
+                SpiritShopGoodsId = 307,
+            });
+            info.ShowcaseCosmetics.Add(new ShowcaseCosmeticEntry
+            {
+                ConfigId = 13,
+                CosmeticKey = "formation_founder",
+                SlotKind = 1,
+                Name = "留灯创始阵纹",
+                AssetKey = "formation_skin_founder",
+                Owned = false,
+                CardItemId = 0,
+                SpiritShopGoodsId = 0,
+            });
+
+            var rows = WardrobeCosmeticModels.BuildShowcaseRows(info, 1u, isSpiritShopSupported: true);
+            Assert.That(rows.Count, Is.EqualTo(3));
+            var unlockAction = WardrobeCosmeticModels.ResolveShowcasePrimaryAction(rows[1], true, false, false);
+            Assert.That(unlockAction.Kind, Is.EqualTo(WardrobePrimaryActionKind.UnlockWithVoucher));
+            var exclusiveAction = WardrobeCosmeticModels.ResolveShowcasePrimaryAction(rows[2], true, false, false);
+            Assert.That(exclusiveAction.Interactable, Is.False);
+
+            int giftAttempts = 0;
+            net.Responder = (msgId, req) =>
+            {
+                if (msgId == b2Ids.Get) return (new GetAppearanceInfoResponse { Info = info }, null);
+                if (msgId == b2Ids.EquipShowcaseCosmetic)
+                {
+                    var eq = (EquipShowcaseCosmeticRequest)req;
+                    Assert.That(eq.SlotKind, Is.EqualTo(1u));
+                    Assert.That(eq.CosmeticId, Is.EqualTo(1u));
+                    var updated = info.Clone();
+                    updated.ShowcaseCosmetics[0].Owned = true;
+                    updated.EquippedShowcaseCosmetics[1] = 1;
+                    return (new EquipShowcaseCosmeticResponse { Info = updated, SlotKind = 1, EquippedCosmeticId = 1 }, null);
+                }
+                if (msgId == b2Ids.CastCityCelebration)
+                {
+                    var cast = (CastCityCelebrationRequest)req;
+                    Assert.That(cast.ItemConfigId, Is.EqualTo(3418u));
+                    return (new CastCityCelebrationResponse
+                    {
+                        Celebration = new CityCelebrationView
+                        {
+                            CelebrationId = 77,
+                            CasterPlayerId = 9001,
+                            CasterName = "青云道友",
+                            ItemConfigId = 3418,
+                            BindGoldReward = 150,
+                            StartedAtSec = 2000,
+                            ExpiresAtSec = 2120,
+                            SceneConfigId = 1,
+                        }
+                    }, null);
+                }
+                if (msgId == b2Ids.ClaimCityCelebrationGift)
+                {
+                    var claim = (ClaimCityCelebrationGiftRequest)req;
+                    Assert.That(claim.CelebrationId, Is.EqualTo(77ul));
+                    return (new ClaimCityCelebrationGiftResponse
+                    {
+                        CelebrationId = 77,
+                        GrantedBindGold = 150,
+                        WeeklyClaimedTotal = 150,
+                        WeeklyCap = 3000,
+                    }, null);
+                }
+                if (msgId == b2Ids.SendCosmeticGift)
+                {
+                    var gift = (SendCosmeticGiftRequest)req;
+                    Assert.That(gift.TargetPlayerId, Is.EqualTo(9002ul));
+                    Assert.That(gift.TargetKind, Is.EqualTo(CosmeticGiftTargetKind.CosmeticGiftTargetTravelPass));
+                    Assert.That(gift.TargetIdU32, Is.EqualTo(2u));
+                    giftAttempts++;
+                    if (giftAttempts == 1) return (null, OutstandingCalls.TimeoutDetail);
+                    return (new SendCosmeticGiftResponse
+                    {
+                        GiftOrderId = 5001,
+                        SpentDiamond = 180,
+                        DiamondBalance = 320,
+                        SentThisWeek = 1,
+                        WeeklyLimit = 5,
+                        Replayed = true,
+                    }, null);
+                }
+                throw new InvalidOperationException("unexpected msgId " + msgId);
+            };
+
+            using var client = new AppearanceClient(net, () => conn, () => now, b2Ids);
+            Assert.That(client.IsShowcaseSupported && client.IsCelebrationSupported && client.IsGiftSupported, Is.True);
+            client.RequestInfo(force: true);
+            net.Flush();
+
+            Assert.That(client.EquipShowcaseCosmetic(1u, 1u, expectFreeEquip: false), Is.True);
+            net.Flush();
+            Assert.That(WardrobeCosmeticModels.FindEquippedShowcaseCosmeticId(client.Info, 1u), Is.EqualTo(1u));
+
+            now += 2f;
+            CityCelebrationNotify pushed = null;
+            client.CityCelebrationReceived += n => pushed = n;
+            Assert.That(client.CastCityCelebration(3418u), Is.True);
+            net.Flush();
+            net.EmitNotify(b2Ids.NotifyCityCelebration, new CityCelebrationNotify
+            {
+                Celebration = new CityCelebrationView { CelebrationId = 77, CasterPlayerId = 9001, ExpiresAtSec = 2120 },
+                ActiveCountInScene = 1,
+            });
+            Assert.That(pushed, Is.Not.Null);
+            Assert.That(client.ActiveCityCelebrations.Count, Is.EqualTo(1));
+
+            now += 2f;
+            Assert.That(client.ClaimCityCelebrationGift(77ul), Is.True);
+            net.Flush();
+            Assert.That(client.Info.CelebrationBindGoldClaimed, Is.EqualTo(150u));
+            Assert.That(client.ActiveCityCelebrations[0].ClaimedByMe, Is.True);
+
+            now += 2f;
+            Assert.That(client.SendCosmeticGift(9002ul, CosmeticGiftTargetKind.CosmeticGiftTargetTravelPass, 2u, "", 180ul), Is.True);
+            net.Flush();
+            Assert.That(giftAttempts, Is.EqualTo(2), "赠礼超时应自动使用同一幂等键单次重发");
+            Assert.That(client.Info.DiamondBalance, Is.EqualTo(320ul));
+            Assert.That(client.Info.CosmeticGiftSentThisWeek, Is.EqualTo(1u));
+
+            // 同步验证战斗单位投影与聊天显示模型消费 M-6 服务端权威皮肤字段。
+            var actorSummary = BattleUnitStatusInspector.Inspect(new BattleActorState
+            {
+                ActorId = 9001,
+                FormationSkinId = 1,
+                EntranceVictorySkinId = 6,
+            });
+            Assert.That(actorSummary.FormationSkinId, Is.EqualTo(1u));
+            Assert.That(actorSummary.EntranceVictorySkinId, Is.EqualTo(6u));
+
+            var social = new MmorpgClient.Game.Social.SocialState();
+            social.Reset(9001);
+            social.ApplyPushed(MmorpgClient.Game.Social.SocialChannel.World, new Chatpb.ChatMessage
+            {
+                Channel = Chatpb.ChatChannelType.World,
+                SenderPlayerId = 9002,
+                Content = "庆典同乐！",
+                SendTimeMs = 1700000000000,
+                BubbleSkinId = 9,
+                ShareCardSkinId = 11,
+            });
+            var msgList = social.Messages(MmorpgClient.Game.Social.SocialChannel.World);
+            Assert.That(msgList.Count, Is.EqualTo(1));
+            Assert.That(msgList[0].BubbleSkinId, Is.EqualTo(9u));
+            Assert.That(msgList[0].ShareCardSkinId, Is.EqualTo(11u));
+        }
+
+        [Test]
+        public void BatchB3_UtilityExpandAndGuildEmblemCatalog_AndMessageIdWiring()
+        {
+            Assert.That(MessageIds.ExpandBagCapacity, Is.GreaterThan(0u));
+            Assert.That(MessageIds.SavePetSquadPreset, Is.GreaterThan(0u));
+            Assert.That(MessageIds.UnlockPetSquadPresetSlot, Is.GreaterThan(0u));
+            Assert.That(MessageIds.ExpandSavedBuildSlots, Is.GreaterThan(0u));
+            Assert.That(MessageIds.UnlockGuildEmblem, Is.GreaterThan(0u));
+            Assert.That(MessageIds.EquipGuildEmblem, Is.GreaterThan(0u));
+            Assert.That(UtilityExpandAndGuildEmblemCatalog.GuildEmblems.Length, Is.EqualTo(6));
+            Assert.That(UtilityExpandAndGuildEmblemCatalog.GuildEmblems[0].PriceDiamond, Is.EqualTo(180ul));
+            Assert.That(UtilityExpandAndGuildEmblemCatalog.GuildEmblems[5].PriceDiamond, Is.EqualTo(300ul));
+            Assert.That(UtilityExpandAndGuildEmblemCatalog.IsEmblemUnlocked(0ul, 0u), Is.True);
+            Assert.That(UtilityExpandAndGuildEmblemCatalog.IsEmblemUnlocked(0ul, 1u), Is.False);
+            Assert.That(UtilityExpandAndGuildEmblemCatalog.IsEmblemUnlocked(1ul << 2, 3u), Is.True);
+            Assert.That(UtilityExpandAndGuildEmblemCatalog.GetEmblemResourcePath(6u),
+                Is.EqualTo("UI/Ugui/GuildEmblemsV1/guild_emblem_06"));
+        }
     }
 }

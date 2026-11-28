@@ -98,6 +98,8 @@ namespace MmorpgClient.UI.Ugui.Guild
             _window.ApplicationsRequested += () => { if (_available) _client?.LoadApplications(); };
             _window.AnnouncementRequested += text => { if (_available) _client?.SaveAnnouncement(text); };
             _window.RenameRequested += name => { if (_available) _client?.Rename(name); };
+            _window.UnlockEmblemRequested += (id, price) => { if (_available) _client?.UnlockGuildEmblem(id, price); };
+            _window.EquipEmblemRequested += id => { if (_available) _client?.EquipGuildEmblem(id); };
             _window.LeaveRequested += () => { if (_available) _client?.Leave(); };
             _window.DisbandRequested += () => { if (_available) _client?.Disband(); };
             // 经济(B5):捐献页 / 商店页 / 总览升级。

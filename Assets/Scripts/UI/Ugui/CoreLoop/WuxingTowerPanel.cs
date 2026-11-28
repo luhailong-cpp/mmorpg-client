@@ -213,7 +213,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
             float tx = icon != null ? x + 60f : x + 10f;
             float tw = icon != null ? w - 66f : w - 20f;
             CoreLoopUiArt.Text(key + "Title", transform, tx, y + 10f, tw, 28f,
-                isCurrent ? $"▶ {title}" : (isCleared ? $"✓ {title}" : title),
+                isCurrent ? $"→ {title}" : (isCleared ? $"√ {title}" : title),
                 18f, isCurrent ? CoreLoopUiArt.Ivory : CoreLoopUiArt.Ink, true);
             CoreLoopUiArt.Text(key + "Sub", transform, tx, y + 42f, tw, 28f,
                 subtitle, 16f, isCurrent ? SeasonV1UiArt.BadgeIvoryText : CoreLoopUiArt.DeepJade, true);
@@ -253,7 +253,7 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
 
             float tx = icon != null ? x + 54f : x + 10f;
             float tw = icon != null ? w - 60f : w - 20f;
-            string prefix = isActive ? "▶ " : (isCleared ? "✓ " : "");
+            string prefix = isActive ? "→ " : (isCleared ? "√ " : "");
             CoreLoopUiArt.Text(key + "Lbl", transform, tx, y + 18f, tw, 34f,
                 prefix + label, 17f, isActive ? CoreLoopUiArt.Ivory : CoreLoopUiArt.Ink, true);
         }
@@ -627,6 +627,21 @@ namespace MmorpgClient.UI.Ugui.CoreLoop
                 uint capturedId = boonId;
                 CoreLoopUiArt.Button("PickSigilBtn" + i, transform, cx + 35f, cy + cardH + 18f, 280f, 58f,
                     "选择此策", () => season.PickWuxingTowerSigil(capturedId), !busy, true, 23f);
+            }
+
+            var adRoot = RewardedAdUiRoot.Instance;
+            if (!busy && tower.RunId != 0ul && adRoot != null
+                && adRoot.CanShowSlot(MmorpgClient.Game.RewardedAd.RewardedAdModel.SlotIdTowerBoonReroll, out _))
+            {
+                uint runIdLow = (uint)tower.RunId;
+                var rerollBtn = CoreLoopUiArt.Button("AdRerollBoonBtn", transform, 1050f, 824f, 460f, 54f,
+                    MmorpgClient.Game.RewardedAd.RewardedAdModel.TowerRerollEntryText,
+                    () => adRoot.OpenConfirmForSlot(
+                        MmorpgClient.Game.RewardedAd.RewardedAdModel.SlotIdTowerBoonReroll,
+                        runIdLow, string.Empty,
+                        ok => { if (ok) season.RequestWuxingTowerState(force: true); }),
+                    true, false, 20f);
+                RewardedAdUiRoot.AttachVideoBadge(rerollBtn.transform, 26f);
             }
 
             CoreLoopUiArt.Text("SigilPickFooter", transform, 540f, 890f, 1480f, 34f,

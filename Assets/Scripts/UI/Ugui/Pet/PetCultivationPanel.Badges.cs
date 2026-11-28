@@ -44,7 +44,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             Art("PetBadgeFrame", shell, 0f, 0f, ShellNativeWidth, ShellNativeHeight, "guild_empty_shell");
             Art("PetBadgeFrameInput", shell, 125f, 70f, 1660f, 712f, "shell-close-hit", true);
             Label("PetBadgeTitle", shell, 676f, 20f, 580f, 62f, "五阶徽章与头像框", 44f, TitleCream,
-                TextAlignmentOptions.Center, role: TypographyRole.Title);
+                TextAlignmentOptions.Center, role: QdaoUiTypographyRole.Title);
             ActionButton("PetBadgeClose", shell, 1780f, 22f, 88f, 84f, "", false,
                 () => { _badgesVisible = false; _badgeDialog.gameObject.SetActive(false); }, "shell-close-hit");
 
@@ -67,7 +67,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 const float badgeSize = 148f;
                 const float ringSize = 180f;
                 Art("BadgeArt" + i, panel, (columnW - badgeSize) * 0.5f, 78f, badgeSize, badgeSize, "badge-" + ids[i]).preserveAspect = true;
-                Label("BadgeCaption" + i, panel, 16f, 232f, columnW - 32f, 30f, "徽章", 23f, RichInk, TextAlignmentOptions.Center, role: TypographyRole.Heading);
+                Label("BadgeCaption" + i, panel, 16f, 232f, columnW - 32f, 30f, "徽章", 23f, RichInk, TextAlignmentOptions.Center, role: QdaoUiTypographyRole.Heading);
                 GuildUiArt.Line(panel, "BadgeArtRule" + i, 34f, 268f, columnW - 68f);
                 float portraitSize = ringSize * .74f;
                 var portrait = Art("BadgePetPortrait" + i, panel, (columnW - portraitSize) * 0.5f,
@@ -75,7 +75,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 portrait.sprite = Selected == null ? CharacterPetArt.Get("round_badge_taiji") : Portrait(Selected);
                 portrait.preserveAspect = true;
                 Art("BadgeRing" + i, panel, (columnW - ringSize) * 0.5f, 282f, ringSize, ringSize, "ring-" + ids[i]).preserveAspect = true;
-                Label("BadgeRingCaption" + i, panel, 16f, 468f, columnW - 32f, 32f, "头像框", 23f, RichInk, TextAlignmentOptions.Center, role: TypographyRole.Heading);
+                Label("BadgeRingCaption" + i, panel, 16f, 468f, columnW - 32f, 32f, "头像框", 23f, RichInk, TextAlignmentOptions.Center, role: QdaoUiTypographyRole.Heading);
             }
 
             GuildUiArt.Line(shell, "PetBadgeFooterRule", startX + 28f, 654f, galleryW - 56f);
@@ -86,7 +86,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             Label("PetBadgeCurrent", shell, startX + 34f, 670f, galleryW - buttonWidth - 82f, 34f,
                 "当前阶：" + (string.IsNullOrEmpty(Selected?.CultivationTierName) ? "—" : Selected.CultivationTierName) +
                 "  ·  品质：" + quality + "  ·  当前预览：" + names[_previewBadge],
-                23f, RichInk, role: TypographyRole.Heading);
+                23f, RichInk, role: QdaoUiTypographyRole.Heading);
             Label("PetBadgeExplanation", shell, startX + 34f, 706f, galleryW - buttonWidth - 82f, 28f,
                 "当前阶由服务器独立身份确定；样式预览不改变宝宝身份、点数或成长。", 19f, Muted);
 
@@ -130,7 +130,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             var panel = Art("PetAscendFrame", _ascendDialog, Mathf.Round((_width - boxW) * 0.5f), 240f, boxW, boxH, "guild_announcement", true).rectTransform;
             Art("PetAscendTitlePlate", panel, 223f, 24f, 454f, 62f, "guild_tab_selected");
             Label("PetAscendTitle", panel, 238f, 24f, 424f, 62f, $"{pet.Name} · 灵阶突破", 34f, TitleCream,
-                TextAlignmentOptions.Center, autoSize: true, minSize: 22f, role: TypographyRole.Primary);
+                TextAlignmentOptions.Center, autoSize: true, minSize: 22f, role: QdaoUiTypographyRole.Primary);
             ActionButton("PetAscendClose", panel, boxW - 76f, 16f, 58f, 58f, "", false,
                 () => { _ascendVisible = false; _ascendDialog.gameObject.SetActive(false); }, "guild_close");
 
@@ -139,12 +139,12 @@ namespace MmorpgClient.UI.Ugui.Pet
             string curName = string.IsNullOrEmpty(pet.CultivationTierName) ? "普通" : pet.CultivationTierName;
 
             Art("PetAscendCurBadge", panel, 182f, 106f, 136f, 136f, "badge-" + curKey).preserveAspect = true;
-            Label("PetAscendCurName", panel, 150f, 246f, 200f, 34f, $"当前：{curName}", 24f, RichInk, TextAlignmentOptions.Center, role: TypographyRole.Heading);
+            Label("PetAscendCurName", panel, 150f, 246f, 200f, 34f, $"当前：{curName}", 24f, RichInk, TextAlignmentOptions.Center, role: QdaoUiTypographyRole.Heading);
             // SimKai 原生支持 ─ (U+2500) 与 → (U+2192)，杜绝缺失字形豆腐块
-            Label("PetAscendArrow", panel, 386f, 152f, 128f, 46f, "──→", 34f, Green, TextAlignmentOptions.Center, role: TypographyRole.Heading);
+            Label("PetAscendArrow", panel, 386f, 152f, 128f, 46f, "──→", 34f, Green, TextAlignmentOptions.Center, role: QdaoUiTypographyRole.Heading);
             string nextKey = string.IsNullOrEmpty(next.NextArtKey) ? TierArtKey(next.NextTier) : next.NextArtKey;
             Art("PetAscendNextBadge", panel, boxW - 318f, 106f, 136f, 136f, "badge-" + nextKey).preserveAspect = true;
-            Label("PetAscendNextName", panel, boxW - 350f, 246f, 200f, 34f, $"突破至：{next.NextTierName}", 24f, Green, TextAlignmentOptions.Center, role: TypographyRole.Heading);
+            Label("PetAscendNextName", panel, boxW - 350f, 246f, 200f, 34f, $"突破至：{next.NextTierName}", 24f, Green, TextAlignmentOptions.Center, role: QdaoUiTypographyRole.Heading);
 
             var infoPlate = Art("PetAscendInfoCard", panel, 68f, 294f, boxW - 136f, 204f, "mail_row_normal").rectTransform;
             string curTotal = EntryState?.TotalPoints.ToString() ?? "—";

@@ -23,7 +23,7 @@ public static partial class BagErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "CixnZW5lcmF0ZWQvY29kZS9wcm90by90aXAvYmFnX2Vycm9yX3RpcC5wcm90",
-          "byqjBAoJYmFnX2Vycm9yEhAKDGtCYWdfZXJyb3JPSxAAEhsKFmtCYWdEZWxl",
+          "byrbBAoJYmFnX2Vycm9yEhAKDGtCYWdfZXJyb3JPSxAAEhsKFmtCYWdEZWxl",
           "dGVJdGVtRmluZEd1aWQQ8C4SIQoca0JhZ0RlbGV0ZUl0ZW1BbHJlYWR5SGFz",
           "R3VpZBDxLhIjCh5rQmFnQWRkSXRlbUhhc05vdEJhc2VDb21wb25lbnQQ8i4S",
           "GwoWa0JhZ0FkZEl0ZW1JbnZhbGlkR3VpZBDzLhIcChdrQmFnQWRkSXRlbUlu",
@@ -35,8 +35,9 @@ public static partial class BagErrorTipReflection {
           "blNpemVNaXNtYXRjaBD9LhIdChhrQmFnSW5zdWZmaWNpZW50QmFnU3BhY2UQ",
           "/i4SHgoZa0JhZ1RlbXBvcmFyeUl0ZW1Ob3RGb3VuZBD/LhIhChxrQmFnVGVt",
           "cG9yYXJ5UmV0cmlldmVCYWdGdWxsEIAvEh4KGWtCYWdUZW1wb3JhcnlSZXRy",
-          "aWV2ZUJ1c3kQgS9CJAoOY29tLmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90",
-          "YWJsZWIGcHJvdG8z"));
+          "aWV2ZUJ1c3kQgS8SGQoUa0JhZ0V4cGFuZE1heFJlYWNoZWQQgi8SGwoWa0Jh",
+          "Z0V4cGFuZFByaWNlQ2hhbmdlZBCDL0IkCg5jb20uZ2FtZS50YWJsZVoSZ2Vu",
+          "ZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::bag_error), }, null, null));
@@ -65,6 +66,8 @@ public enum bag_error {
   [pbr::OriginalName("kBagTemporaryItemNotFound")] KBagTemporaryItemNotFound = 6015,
   [pbr::OriginalName("kBagTemporaryRetrieveBagFull")] KBagTemporaryRetrieveBagFull = 6016,
   [pbr::OriginalName("kBagTemporaryRetrieveBusy")] KBagTemporaryRetrieveBusy = 6017,
+  [pbr::OriginalName("kBagExpandMaxReached")] KBagExpandMaxReached = 6018,
+  [pbr::OriginalName("kBagExpandPriceChanged")] KBagExpandPriceChanged = 6019,
 }
 
 #endregion

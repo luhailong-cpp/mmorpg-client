@@ -108,10 +108,10 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 : (afk.Active ? "当前已开通：" + afk.RemainingText : "当前未开通（点击下方按钮可查看或开通）");
             GameplayUiArt.Text(left, liveState, 36f, 78f, 628f, 40f, 22f, GameplayUiArt.Gold);
             GameplayUiArt.Text(left,
-                "• 零氪同样 100% 免费 +10 毕业，不售数值毕业资格\n"
-                + "• 月卡解锁市场可交易产出与轻度离线便利\n"
-                + "• 官方小额直售仅提供外观、匠心配套与限量绑定追赶\n"
-                + "• 严守平台合规：商城不展示扫码或第三方支付图标",
+                "· 零氪同样 100% 免费 +10 毕业，不售数值毕业资格\n"
+                + "· 月卡解锁市场可交易产出与轻度离线便利\n"
+                + "· 官方小额直售仅提供外观、匠心配套与限量绑定追赶\n"
+                + "· 严守平台合规：商城不展示扫码或第三方支付图标",
                 36f, 124f, 628f, 174f, 21f, GameplayUiArt.Ink, wrap: true);
 
             var talisman = SeasonEconomyUiArt.LoadTradeSlice("icon_unseal_talisman");

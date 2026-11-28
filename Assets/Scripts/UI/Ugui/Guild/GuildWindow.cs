@@ -22,6 +22,8 @@ namespace MmorpgClient.UI.Ugui.Guild
         public event Action EconomyRecoveryRequested;
         public event Action<uint> RankRequested;
         public event Action<string> CreateRequested, AnnouncementRequested, RenameRequested;
+        public event Action<uint, ulong> UnlockEmblemRequested;
+        public event Action<uint> EquipEmblemRequested;
         // 申请制取代“加入”:排行页只发申请 / 撤回,入帮与否由帮主或长老审批。
         public event Action<ulong> ApplyRequested, CancelApplicationRequested, KickRequested, TransferRequested;
         public event Action<ulong, uint> RoleRequested;
@@ -341,6 +343,16 @@ namespace MmorpgClient.UI.Ugui.Guild
             crest.name = "GuildCrest";
             crest.type = Image.Type.Simple;
             crest.raycastTarget = false;
+            var emblemInfo = _client?.Info;
+            if (emblemInfo != null && emblemInfo.EmblemSkinId != 0u)
+            {
+                var emblemSprite = MmorpgClient.UI.Ugui.Gameplay.AppearanceUiArt.LoadGuildEmblem(emblemInfo.EmblemSkinId);
+                if (emblemSprite != null)
+                {
+                    crest.sprite = emblemSprite;
+                    crest.preserveAspect = true;
+                }
+            }
             // 若已拉取帮战 V2 战况，在帮旗旁叠挂动态灵脉镇守与本周功臣徽牌（不改变原帮会测试的既有控件坐标）。
             var honor = _warOverview?.BannerHonor;
             if (honor != null && (honor.OccupiedLeylineId != 0 || honor.WeeklyMvps.Count > 0))
@@ -365,7 +377,10 @@ namespace MmorpgClient.UI.Ugui.Guild
             Art(_rail, "guild_level_plate", 274, 74, 171, 55);
             FidelityLabel(_rail, "GuildLevel", info.Level + " 级帮会", 283, 79, 153, 44, 25, Ink, align: TextAlignmentOptions.Center);
             if (_client.IsLeader)
+            {
                 NamedButton(_rail, "RenameGuild", "改名", 453, 81, 74, 42, ShowRename, enabled: !Busy, fontSize: 21);
+                NamedButton(_rail, "CustomizeGuildEmblem", "帮徽", 16, 108, 74, 38, ShowGuildEmblemModal, enabled: !Busy, fontSize: 19);
+            }
             if (_client.IsOfficerOrLeader)
                 NamedButton(_rail, "UpgradeGuild", info.UpgradeCostFunds == 0 ? "已满级" : "升级", 265, 139, 115, 40,
                     ShowUpgrade, enabled: _client.CanUpgrade && !Busy, fontSize: 22);
@@ -1375,6 +1390,50 @@ namespace MmorpgClient.UI.Ugui.Guild
             NamedButton(frame, "CancelCreateGuild", "取消", 66, 460, 300, 82, CloseModal);
             EventSystem.current?.SetSelectedGameObject(input.gameObject);
         }
+        private void ShowGuildEmblemModal()
+        {
+            if (Busy || _client?.IsLeader != true || _client.Info == null) return;
+            var info = _client.Info;
+            bool allowIap = MmorpgClient.Game.RewardedAd.ClientDistributionPolicy.Current.IapEnabled;
+            var frame = Modal("帮会定制帮徽", "仅帮主个人真实灵石买断（绝不动帮会资金，零战力加成）；已解锁帮徽免费切换。");
+            ulong bits = info.UnlockedEmblemBits;
+            for (uint id = 1u; id <= 6u; id++)
+            {
+                uint capturedId = id;
+                ulong price = id <= 3u ? 180ul : 300ul;
+                bool unlocked = (bits & (1ul << (int)(id - 1u))) != 0ul;
+                bool equipped = info.EmblemSkinId == id;
+                float col = (id - 1u) % 3u;
+                float row = (id - 1u) / 3u;
+                float cx = 66f + col * 324f;
+                float cy = 196f + row * 124f;
+                var iconSprite = MmorpgClient.UI.Ugui.Gameplay.AppearanceUiArt.LoadGuildEmblem(id);
+                var icon = QdaoUguiFactory.CreateImage($"GuildEmblemPreview_{id}", frame, cx, cy, 88f, 88f, iconSprite);
+                icon.preserveAspect = true;
+                icon.raycastTarget = false;
+                string btnText = equipped ? "已佩戴" : unlocked ? "佩戴" : $"买断 {price}灵石";
+                bool canClick = !equipped && (unlocked || allowIap);
+                if (unlocked || allowIap)
+                {
+                    NamedButton(frame, $"GuildEmblemAction_{id}", btnText, cx + 96f, cy + 16f, 206f, 56f,
+                        () =>
+                        {
+                            CloseModal();
+                            if (unlocked) EquipEmblemRequested?.Invoke(capturedId);
+                            else UnlockEmblemRequested?.Invoke(capturedId, price);
+                        }, primary: !unlocked, enabled: canClick, fontSize: 20);
+                }
+                else
+                {
+                    Text(frame, "暂未开放", cx + 96f, cy + 26f, 200f, 36f, 20, Muted);
+                }
+            }
+            if (info.EmblemSkinId != 0u)
+                NamedButton(frame, "ResetDefaultGuildEmblem", "恢复默认帮徽", 66, 460, 300, 82,
+                    () => { CloseModal(); EquipEmblemRequested?.Invoke(0u); });
+            NamedButton(frame, "CloseGuildEmblemModal", "关闭", 692, 460, 340, 82, CloseModal, true);
+        }
+
         private void ShowRename()
         {
             if (Busy || _client?.IsLeader != true || _client.Info == null) return;

@@ -442,11 +442,11 @@ namespace MmorpgClient.UI.Ugui.Ranked
             uint winTarget = _profile.MilestoneWinMatches;
             uint wins = p?.Wins ?? 0u;
             _rewardSummaryText.text =
-                $"• 4/8/12 场永久外观：头像纹样({(hasAvatar ? "已获" : $"{Math.Min(valid, 4u)}/4")}) · " +
+                $"· 4/8/12 场永久外观：头像纹样({(hasAvatar ? "已获" : $"{Math.Min(valid, 4u)}/4")}) · " +
                 $"名片底纹({(hasCard ? "已获" : $"{Math.Min(valid, 8u)}/8")}) · " +
                 $"青云玉符({(hasTalisman ? "已获" : $"{Math.Min(valid, 12u)}/12")})\n" +
-                $"• {winTarget} 胜永久「锋芒」称号：{(hasWinTitle ? "已取得（可于已获外观佩戴）" : $"{Math.Min(wins, winTarget)}/{winTarget}")}\n" +
-                $"• 封榜荣誉（云章 / 天枢 / 无双）：{(hasRankHonor ? "已取得永久段位徽章与称号" : "赛季封榜达云章及以上永久解锁")}";
+                $"· {winTarget} 胜永久「锋芒」称号：{(hasWinTitle ? "已取得（可于已获外观佩戴）" : $"{Math.Min(wins, winTarget)}/{winTarget}")}\n" +
+                $"· 封榜荣誉（云章 / 天枢 / 无双）：{(hasRankHonor ? "已取得永久段位徽章与称号" : "赛季封榜达云章及以上永久解锁")}";
 
             var lines = new List<string>(5);
             if (_profile.TopRivals != null && _profile.TopRivals.Count > 0)

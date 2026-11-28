@@ -114,6 +114,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _window = new MysteryMerchantWindow(design);
             _window.BuyRequested += quote => { if (_available) _client?.Buy(quote, 1); };
             _window.TravelRequested += TravelToMerchant;
+            _window.AdRefreshRequested += HandleAdRefreshRequested;
             _hud.gameObject.SetActive(false);
         }
 
@@ -432,6 +433,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (reason == SceneChannelBlockReason.None) return true;
             blockedText = SceneChannelModels.DescribeBlock(reason, channel.CooldownRemainingSeconds);
             return false;
+        }
+
+        private void HandleAdRefreshRequested()
+        {
+            if (!_available || _client?.Info == null || _client.Presence != MysteryMerchantPresence.Here) return;
+            uint roundLow = (uint)_client.Info.RoundId;
+            if (roundLow == 0u) return;
+            RewardedAdUiRoot.Instance?.OpenConfirmForSlot(
+                MmorpgClient.Game.RewardedAd.RewardedAdModel.SlotIdMerchantPersonalRefresh,
+                roundLow, string.Empty,
+                ok => { if (ok) _client?.RequestInfo(); });
         }
 
         private void TravelToMerchant()

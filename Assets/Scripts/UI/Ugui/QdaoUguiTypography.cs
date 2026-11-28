@@ -10,7 +10,6 @@ namespace MmorpgClient.UI.Ugui
     {
         public const string BodyFontResourcePath = "Fonts/QdaoBody SDF";
         public const string BodyFontSourcePath = "Fonts/TeamNotoSansSC";
-        private static TMP_FontAsset _bodyFont;
 
         /// <summary>全量界面正文与控件统一收口为帮会原图同源 SimKai SDF 楷体；QdaoBody SDF 仅作为符号兜底挂载在主字库上。</summary>
         public static TMP_FontAsset ResolveBodyFont() => QdaoUguiTheme.ResolveFont();
@@ -70,6 +69,6 @@ namespace MmorpgClient.UI.Ugui
             QdaoUguiTheme.ApplyTypography(text, luma >= 0.72f ? QdaoUiTypographyRole.Primary : QdaoUiTypographyRole.Heading);
         }
 
-        public static void ResetRuntimeCache() => _bodyFont = null;
+        public static void ResetRuntimeCache() { }
     }
 }

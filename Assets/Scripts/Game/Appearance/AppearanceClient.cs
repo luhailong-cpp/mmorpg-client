@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Google.Protobuf;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Net;
+using MmorpgClient.Net.Generated;
 
 namespace MmorpgClient.Game.Appearance
 {
@@ -15,12 +17,24 @@ namespace MmorpgClient.Game.Appearance
         public uint NotifyState { get; }
         public uint EquipPetCosmetic { get; }
         public uint EquipSkillVfx { get; }
+        public uint BuySeriesBundle { get; }
+        public uint EquipShowcaseCosmetic { get; }
+        public uint CastCityCelebration { get; }
+        public uint ClaimCityCelebrationGift { get; }
+        public uint NotifyCityCelebration { get; }
+        public uint SendCosmeticGift { get; }
 
         public bool IsSupported => Get != 0 && Switch != 0 && StartTrial != 0 && CancelTrial != 0;
         public bool IsCosmeticsSupported => IsSupported && EquipPetCosmetic != 0 && EquipSkillVfx != 0;
+        public bool IsSeriesBundleSupported => IsSupported && BuySeriesBundle != 0;
+        public bool IsShowcaseSupported => IsSupported && EquipShowcaseCosmetic != 0;
+        public bool IsCelebrationSupported => IsSupported && CastCityCelebration != 0 && ClaimCityCelebrationGift != 0;
+        public bool IsGiftSupported => IsSupported && SendCosmeticGift != 0;
 
         public AppearanceMessageIds(uint get, uint @switch, uint startTrial, uint cancelTrial, uint notifyState,
-            uint equipPetCosmetic = 0, uint equipSkillVfx = 0)
+            uint equipPetCosmetic = 0, uint equipSkillVfx = 0, uint buySeriesBundle = 0,
+            uint equipShowcaseCosmetic = 0, uint castCityCelebration = 0, uint claimCityCelebrationGift = 0,
+            uint notifyCityCelebration = 0, uint sendCosmeticGift = 0)
         {
             Get = get;
             Switch = @switch;
@@ -29,6 +43,12 @@ namespace MmorpgClient.Game.Appearance
             NotifyState = notifyState;
             EquipPetCosmetic = equipPetCosmetic;
             EquipSkillVfx = equipSkillVfx;
+            BuySeriesBundle = buySeriesBundle;
+            EquipShowcaseCosmetic = equipShowcaseCosmetic;
+            CastCityCelebration = castCityCelebration;
+            ClaimCityCelebrationGift = claimCityCelebrationGift;
+            NotifyCityCelebration = notifyCityCelebration;
+            SendCosmeticGift = sendCosmeticGift;
         }
 
         public static AppearanceMessageIds Generated => new AppearanceMessageIds(
@@ -38,7 +58,13 @@ namespace MmorpgClient.Game.Appearance
             MessageIds.CancelAppearanceTrial,
             MessageIds.NotifyAppearanceState,
             MessageIds.EquipPetCosmetic,
-            MessageIds.EquipSkillVfx);
+            MessageIds.EquipSkillVfx,
+            SceneAppearanceClientPlayerRpc.BuyAppearanceSeriesBundleMessageId,
+            SceneAppearanceClientPlayerRpc.EquipShowcaseCosmeticMessageId,
+            SceneAppearanceClientPlayerRpc.CastCityCelebrationMessageId,
+            SceneAppearanceClientPlayerRpc.ClaimCityCelebrationGiftMessageId,
+            SceneAppearanceClientPlayerRpc.NotifyCityCelebrationMessageId,
+            SceneAppearanceClientPlayerRpc.SendCosmeticGiftMessageId);
     }
 
     /// <summary>角色形象系统的纯规则与文案函数（不引用 UnityEngine，EditMode 测试直接调用）。</summary>
@@ -91,6 +117,24 @@ namespace MmorpgClient.Game.Appearance
             (uint)appearance_error.KAppearanceNotCardUnlockable => "该角色形象需通过专属玩法或活动解锁，暂不可使用形象卡兑换。",
             (uint)appearance_error.KAppearanceAlreadyOwned => "已拥有该角色形象，可直接免费切换，无需试用。",
             (uint)appearance_error.KAppearanceNotOwned => "尚未拥有该外观，请先获取后再穿戴。",
+            (uint)appearance_error.KAppearanceSeriesBundleUnavailable => "该收藏系列暂未开放补齐优惠。",
+            (uint)appearance_error.KAppearanceSeriesAlreadyCompleted => "该收藏系列已集齐，无需再次补齐。",
+            (uint)appearance_error.KAppearanceSeriesBundlePriceChanged => "系列缺失成员或补齐价格已变动，已为您刷新报价。",
+            (uint)appearance_error.KAppearanceSeriesBundleCurrencyNotEnough => "真实充值灵石不足，无法补齐（绑定灵石不可抵扣系列补齐包）。",
+            (uint)appearance_error.KCityCelebrationNotSafeCity => "仅可在天墉城或归元城安全区内施放全城同乐庆典。",
+            (uint)appearance_error.KCityCelebrationChannelFull => "当前分线同时进行的庆典已达 5 场上限，请稍后再放。",
+            (uint)appearance_error.KCityCelebrationNoItem => "背包缺少对应的全城同乐庆典道具，请先前往百宝阁选购。",
+            (uint)appearance_error.KCityCelebrationNotFound => "该全城庆典已结束或不存在。",
+            (uint)appearance_error.KCityCelebrationAlreadyClaimed => "您已领取过该场庆典的绑银红包。",
+            (uint)appearance_error.KCityCelebrationLevelTooLow => "角色需达到 10 级方可领取全城同乐绑银红包。",
+            (uint)appearance_error.KCityCelebrationWeeklyCapReached => "本周领取全城同乐绑银已达 3000 上限。",
+            (uint)appearance_error.KCosmeticGiftNotFriend7Days => "需成为好友满 7 天且未互拉黑，方可互赠纯外观或游历手记。",
+            (uint)appearance_error.KCosmeticGiftTargetAlreadyOwned => "对方已拥有该外观或该期游历手记，无需重复赠送。",
+            (uint)appearance_error.KCosmeticGiftWeeklyLimitReached => "本周外观赠礼次数已达 5 次上限。",
+            (uint)appearance_error.KCosmeticGiftInvalidTarget => "受赠目标无效或该外观暂不支持赠礼。",
+            (uint)appearance_error.KCosmeticGiftCurrencyNotEnough => "真实充值灵石不足（绑定灵石不可用于好友赠礼）。",
+            (uint)appearance_error.KCosmeticGiftPriceChanged => "赠礼报价已更新，已为您刷新价格。",
+            (uint)appearance_error.KCosmeticGiftServiceUnavailable => "好友赠礼服务暂时不可用，请稍后再试。",
             (uint)pet_error.KPetNotFound => "目标灵宠不存在或已离队，请刷新后重试。",
             (uint)common_error.KRateLimitExceeded => "操作太快了，请稍候再试。",
             (uint)common_error.KServiceUnavailable => "服务暂时不可用，请稍后再试。",
@@ -138,8 +182,12 @@ namespace MmorpgClient.Game.Appearance
         public event Action Changed;
         public event Action<string> Notice;
         public event Action<ulong, uint> PetCosmeticEquipped;
+        public event Action<global::CityCelebrationNotify> CityCelebrationReceived;
+
+        private readonly List<global::CityCelebrationView> _activeCelebrations = new();
 
         public global::PlayerAppearanceInfo Info { get; private set; }
+        public IReadOnlyList<global::CityCelebrationView> ActiveCityCelebrations => _activeCelebrations;
         public bool InfoPending { get; private set; }
         public bool ActionPending { get; private set; }
         public bool RequiresReconnect { get; private set; }
@@ -148,6 +196,10 @@ namespace MmorpgClient.Game.Appearance
 
         public bool IsSupported => _messageIds.IsSupported;
         public bool IsCosmeticsSupported => _messageIds.IsCosmeticsSupported;
+        public bool IsSeriesBundleSupported => _messageIds.IsSeriesBundleSupported;
+        public bool IsShowcaseSupported => _messageIds.IsShowcaseSupported;
+        public bool IsCelebrationSupported => _messageIds.IsCelebrationSupported;
+        public bool IsGiftSupported => _messageIds.IsGiftSupported;
         public bool Ready => IsSupported && !_disposed && _net.IsReady && _net.PlayerId != 0;
 
         public ulong ServerNowSec
@@ -178,6 +230,8 @@ namespace MmorpgClient.Game.Appearance
             _net.Disconnected += HandleDisconnected;
             if (_messageIds.NotifyState != 0)
                 _net.RegisterNotify(_messageIds.NotifyState, HandleAppearanceStateNotify);
+            if (_messageIds.NotifyCityCelebration != 0)
+                _net.RegisterNotify(_messageIds.NotifyCityCelebration, HandleCityCelebrationNotify);
             if (!IsSupported) SetStatus(UnsupportedMessage, false);
         }
 
@@ -517,6 +571,357 @@ namespace MmorpgClient.Game.Appearance
             return true;
         }
 
+        /// <summary>Steam 式按缺口 8.5 折一键补齐收藏系列缺失角色（仅扣真实充值灵石，强制幂等键与报价防呆）。</summary>
+        public bool BuySeriesBundle(uint seriesId)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (!IsSeriesBundleSupported) return RejectLocally("当前服务器暂未开放收藏系列补齐优惠。");
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (RequiresReconnect) return RejectLocally(RecoveryMessage);
+            if (ActionPending) return false;
+            var series = AppearanceSeriesModels.FindSeries(Info, seriesId);
+            if (!AppearanceSeriesModels.CanBuySeriesBundle(series))
+                return RejectLocally(AppearanceModels.DescribeTip((uint)appearance_error.KAppearanceSeriesBundleUnavailable));
+            float now = _clock();
+            if (now < _nextActionAt) return RejectLocally(TooFastMessage);
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey)) return RejectLocally(ClientRequestKeys.UnavailableText);
+
+            var expectedIds = new List<string>(series.MissingAppearanceIds.Count);
+            for (int i = 0; i < series.MissingAppearanceIds.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(series.MissingAppearanceIds[i]))
+                    expectedIds.Add(series.MissingAppearanceIds[i]);
+            }
+            expectedIds.Sort(StringComparer.Ordinal);
+            if (expectedIds.Count == 0)
+                return RejectLocally(AppearanceModels.DescribeTip((uint)appearance_error.KAppearanceSeriesBundleUnavailable));
+
+            _nextActionAt = now + MinActionIntervalSeconds;
+            ActionPending = true;
+            int generation = _generation;
+            SetStatus($"正在补齐系列【{series.Name}】…", false);
+            Changed?.Invoke();
+
+            var request = new global::BuyAppearanceSeriesBundleRequest
+            {
+                ClientRequestId = requestKey,
+                SeriesId = seriesId,
+                ExpectedPriceDiamond = series.BundleDiscountDiamond,
+            };
+            request.ExpectedMissingAppearanceIds.AddRange(expectedIds);
+
+            int attempt = 0;
+            bool resent = false;
+            void Send()
+            {
+                int mine = ++attempt;
+                _net.Call(_messageIds.BuySeriesBundle, request, global::BuyAppearanceSeriesBundleResponse.Parser,
+                    response =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        ActionPending = false;
+                        uint tipId = response.ErrorMessage?.Id ?? 0;
+                        if (tipId != 0)
+                        {
+                            HandleWriteTip("BuyAppearanceSeriesBundle", tipId);
+                            return;
+                        }
+                        if (response.Info != null) ApplyInfo(response.Info);
+                        string msg = response.UnlockedCount > 0
+                            ? $"已补齐 {response.UnlockedCount} 位角色（消耗 {response.SpentDiamond} 灵石），系列印章与合篇已解锁。"
+                            : "已完成系列补齐。";
+                        SetStatus(msg, false);
+                        Changed?.Invoke();
+                    },
+                    error =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        if (!resent && ClientRequestKeys.ShouldResendOnce(error))
+                        {
+                            resent = true;
+                            Send();
+                            return;
+                        }
+                        HandleWriteTransportError(error, resent);
+                    });
+            }
+            Send();
+            return true;
+        }
+
+        /// <summary>穿戴、耗排面装饰券解锁并穿戴或恢复默认排面装饰（slotKind=1阵纹/2入场胜利/3气泡/4战报卡，cosmeticId=0恢复默认）。</summary>
+        public bool EquipShowcaseCosmetic(uint slotKind, uint cosmeticId, bool expectFreeEquip = true)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (!IsShowcaseSupported) return RejectLocally("当前服务器暂未开放排面装饰。");
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (RequiresReconnect) return RejectLocally(RecoveryMessage);
+            if (ActionPending) return false;
+            if (slotKind < 1u || slotKind > 4u) return RejectLocally("请选择有效的排面槽位。");
+            float now = _clock();
+            if (now < _nextActionAt) return RejectLocally(TooFastMessage);
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey)) return RejectLocally(ClientRequestKeys.UnavailableText);
+
+            _nextActionAt = now + MinActionIntervalSeconds;
+            ActionPending = true;
+            int generation = _generation;
+            SetStatus(cosmeticId == 0u ? "正在恢复默认排面…" : (expectFreeEquip ? "正在穿戴排面装饰…" : "正在解锁并穿戴排面装饰…"), false);
+            Changed?.Invoke();
+
+            var request = new global::EquipShowcaseCosmeticRequest
+            {
+                ClientRequestId = requestKey,
+                SlotKind = slotKind,
+                CosmeticId = cosmeticId,
+                ExpectFreeEquip = expectFreeEquip,
+            };
+            int attempt = 0;
+            bool resent = false;
+            void Send()
+            {
+                int mine = ++attempt;
+                _net.Call(_messageIds.EquipShowcaseCosmetic, request, global::EquipShowcaseCosmeticResponse.Parser,
+                    response =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        ActionPending = false;
+                        uint tipId = response.ErrorMessage?.Id ?? 0;
+                        if (tipId != 0)
+                        {
+                            HandleWriteTip("EquipShowcaseCosmetic", tipId);
+                            return;
+                        }
+                        if (response.Info != null) ApplyInfo(response.Info);
+                        SetStatus(response.EquippedCosmeticId == 0u ? "已恢复默认排面。" : (expectFreeEquip ? "已启用排面装饰。" : "已永久解锁并启用排面装饰。"), false);
+                        Changed?.Invoke();
+                    },
+                    error =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        if (!expectFreeEquip && !resent && ClientRequestKeys.ShouldResendOnce(error))
+                        {
+                            resent = true;
+                            Send();
+                            return;
+                        }
+                        ActionPending = false;
+                        uint tipId = RpcStatus.TryParseLegacyServerTip(error, out uint parsed) ? parsed : 0;
+                        SetStatus(tipId != 0 ? AppearanceModels.DescribeTip(tipId) : "请求超时，正在重新确认当前生效状态…", true);
+                        RequestInfo(force: true);
+                        Changed?.Invoke();
+                    });
+            }
+            Send();
+            return true;
+        }
+
+        /// <summary>在安全区主城施放全城同乐氛围耗材（天墉灵灯/庆功烟花/仙茶同乐席）。</summary>
+        public bool CastCityCelebration(uint itemConfigId)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (!IsCelebrationSupported) return RejectLocally("当前服务器暂未开放全城同乐庆典。");
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (RequiresReconnect) return RejectLocally(RecoveryMessage);
+            if (ActionPending) return false;
+            if (itemConfigId == 0u) return RejectLocally("请选择有效的庆典道具。");
+            float now = _clock();
+            if (now < _nextActionAt) return RejectLocally(TooFastMessage);
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey)) return RejectLocally(ClientRequestKeys.UnavailableText);
+
+            _nextActionAt = now + MinActionIntervalSeconds;
+            ActionPending = true;
+            int generation = _generation;
+            SetStatus("正在施放全城同乐庆典…", false);
+            Changed?.Invoke();
+
+            var request = new global::CastCityCelebrationRequest
+            {
+                ClientRequestId = requestKey,
+                ItemConfigId = itemConfigId,
+            };
+            int attempt = 0;
+            bool resent = false;
+            void Send()
+            {
+                int mine = ++attempt;
+                _net.Call(_messageIds.CastCityCelebration, request, global::CastCityCelebrationResponse.Parser,
+                    response =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        ActionPending = false;
+                        uint tipId = response.ErrorMessage?.Id ?? 0;
+                        if (tipId != 0)
+                        {
+                            HandleWriteTip("CastCityCelebration", tipId);
+                            return;
+                        }
+                        if (response.Celebration != null) UpsertCelebration(response.Celebration);
+                        SetStatus("全城同乐庆典已绽放！城中道友均可沾喜领绑银。", false);
+                        Changed?.Invoke();
+                    },
+                    error =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        if (!resent && ClientRequestKeys.ShouldResendOnce(error))
+                        {
+                            resent = true;
+                            Send();
+                            return;
+                        }
+                        HandleWriteTransportError(error, resent);
+                    });
+            }
+            Send();
+            return true;
+        }
+
+        /// <summary>领取当前主城活跃庆典的绑银红包（≥10级，每人每场限 1 次，每周 3000 绑银上限）。</summary>
+        public bool ClaimCityCelebrationGift(ulong celebrationId)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (!IsCelebrationSupported) return RejectLocally("当前服务器暂未开放全城同乐庆典。");
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (RequiresReconnect) return RejectLocally(RecoveryMessage);
+            if (ActionPending) return false;
+            if (celebrationId == 0ul) return RejectLocally("该庆典已结束。");
+            float now = _clock();
+            if (now < _nextActionAt) return RejectLocally(TooFastMessage);
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey)) return RejectLocally(ClientRequestKeys.UnavailableText);
+
+            _nextActionAt = now + MinActionIntervalSeconds;
+            ActionPending = true;
+            int generation = _generation;
+            SetStatus("正在领取全城同乐绑银…", false);
+            Changed?.Invoke();
+
+            var request = new global::ClaimCityCelebrationGiftRequest
+            {
+                ClientRequestId = requestKey,
+                CelebrationId = celebrationId,
+            };
+            int attempt = 0;
+            bool resent = false;
+            void Send()
+            {
+                int mine = ++attempt;
+                _net.Call(_messageIds.ClaimCityCelebrationGift, request, global::ClaimCityCelebrationGiftResponse.Parser,
+                    response =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        ActionPending = false;
+                        uint tipId = response.ErrorMessage?.Id ?? 0;
+                        if (tipId != 0)
+                        {
+                            HandleWriteTip("ClaimCityCelebrationGift", tipId);
+                            return;
+                        }
+                        MarkCelebrationClaimed(response.CelebrationId != 0ul ? response.CelebrationId : celebrationId);
+                        if (Info != null)
+                        {
+                            Info.CelebrationBindGoldClaimed = response.WeeklyClaimedTotal;
+                            if (response.WeeklyCap > 0u) Info.CelebrationBindGoldWeeklyCap = response.WeeklyCap;
+                        }
+                        SetStatus($"已领取 {response.GrantedBindGold} 绑定银两（本周 {response.WeeklyClaimedTotal}/{response.WeeklyCap}）。", false);
+                        Changed?.Invoke();
+                    },
+                    error =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        if (!resent && ClientRequestKeys.ShouldResendOnce(error))
+                        {
+                            resent = true;
+                            Send();
+                            return;
+                        }
+                        HandleWriteTransportError(error, resent);
+                    });
+            }
+            Send();
+            return true;
+        }
+
+        /// <summary>向满 7 天好友赠送绑定纯外观或游历手记（仅扣真实充值灵石，强制幂等键与报价校验）。</summary>
+        public bool SendCosmeticGift(
+            ulong targetPlayerId,
+            global::CosmeticGiftTargetKind targetKind,
+            uint targetIdU32,
+            string targetIdStr,
+            ulong expectedPriceDiamond)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (!IsGiftSupported) return RejectLocally("当前服务器暂未开放好友外观赠礼。");
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (RequiresReconnect) return RejectLocally(RecoveryMessage);
+            if (ActionPending) return false;
+            if (targetPlayerId == 0ul || targetPlayerId == _net.PlayerId)
+                return RejectLocally(AppearanceModels.DescribeTip((uint)appearance_error.KCosmeticGiftInvalidTarget));
+            if (targetKind == global::CosmeticGiftTargetKind.CosmeticGiftTargetUnspecified || expectedPriceDiamond == 0ul)
+                return RejectLocally(AppearanceModels.DescribeTip((uint)appearance_error.KCosmeticGiftInvalidTarget));
+            float now = _clock();
+            if (now < _nextActionAt) return RejectLocally(TooFastMessage);
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey)) return RejectLocally(ClientRequestKeys.UnavailableText);
+
+            _nextActionAt = now + MinActionIntervalSeconds;
+            ActionPending = true;
+            int generation = _generation;
+            SetStatus("正在发送好友外观赠礼…", false);
+            Changed?.Invoke();
+
+            var request = new global::SendCosmeticGiftRequest
+            {
+                ClientRequestId = requestKey,
+                TargetPlayerId = targetPlayerId,
+                TargetKind = targetKind,
+                TargetIdU32 = targetIdU32,
+                TargetIdStr = targetIdStr ?? string.Empty,
+                ExpectedPriceDiamond = expectedPriceDiamond,
+            };
+            int attempt = 0;
+            bool resent = false;
+            void Send()
+            {
+                int mine = ++attempt;
+                _net.Call(_messageIds.SendCosmeticGift, request, global::SendCosmeticGiftResponse.Parser,
+                    response =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        ActionPending = false;
+                        uint tipId = response.ErrorMessage?.Id ?? 0;
+                        if (tipId != 0)
+                        {
+                            HandleWriteTip("SendCosmeticGift", tipId);
+                            return;
+                        }
+                        if (Info != null)
+                        {
+                            Info.DiamondBalance = response.DiamondBalance;
+                            Info.CosmeticGiftSentThisWeek = response.SentThisWeek;
+                            if (response.WeeklyLimit > 0u) Info.CosmeticGiftWeeklyLimit = response.WeeklyLimit;
+                        }
+                        SetStatus($"赠礼已发出（消耗 {response.SpentDiamond} 灵石，本周 {response.SentThisWeek}/{response.WeeklyLimit}）。", false);
+                        Changed?.Invoke();
+                    },
+                    error =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        if (!resent && ClientRequestKeys.ShouldResendOnce(error))
+                        {
+                            resent = true;
+                            Send();
+                            return;
+                        }
+                        HandleWriteTransportError(error, resent);
+                    });
+            }
+            Send();
+            return true;
+        }
+
         public void HandleSceneEntered()
         {
             if (_disposed) return;
@@ -557,6 +962,52 @@ namespace MmorpgClient.Game.Appearance
             Changed?.Invoke();
         }
 
+        private void HandleCityCelebrationNotify(MessageContent mc)
+        {
+            if (_disposed || mc == null) return;
+            ObserveConnection();
+            if (!Ready) return;
+            global::CityCelebrationNotify notify;
+            try { notify = global::CityCelebrationNotify.Parser.ParseFrom(mc.SerializedMessage); }
+            catch (InvalidProtocolBufferException) { return; }
+            if (notify.Celebration != null)
+            {
+                UpsertCelebration(notify.Celebration);
+                string caster = string.IsNullOrWhiteSpace(notify.Celebration.CasterName)
+                    ? $"道友 {notify.Celebration.CasterPlayerId}" : notify.Celebration.CasterName;
+                Notice?.Invoke($"{caster} 正在主城施放全城同乐庆典，可沾喜领绑银！");
+            }
+            CityCelebrationReceived?.Invoke(notify);
+            Changed?.Invoke();
+        }
+
+        private void UpsertCelebration(global::CityCelebrationView view)
+        {
+            if (view == null || view.CelebrationId == 0ul) return;
+            ulong nowSec = ServerNowSec;
+            for (int i = _activeCelebrations.Count - 1; i >= 0; i--)
+            {
+                if (_activeCelebrations[i].CelebrationId == view.CelebrationId
+                    || (nowSec > 0ul && _activeCelebrations[i].ExpiresAtSec <= nowSec))
+                {
+                    _activeCelebrations.RemoveAt(i);
+                }
+            }
+            _activeCelebrations.Add(view);
+        }
+
+        private void MarkCelebrationClaimed(ulong celebrationId)
+        {
+            for (int i = 0; i < _activeCelebrations.Count; i++)
+            {
+                if (_activeCelebrations[i].CelebrationId == celebrationId)
+                {
+                    _activeCelebrations[i].ClaimedByMe = true;
+                    break;
+                }
+            }
+        }
+
         private bool PrepareWriteAction(string targetAppearanceId, out ulong requestKey, out float now)
         {
             requestKey = 0;
@@ -584,6 +1035,13 @@ namespace MmorpgClient.Game.Appearance
                 || tipId == (uint)appearance_error.KAppearanceNotOwned
                 || tipId == (uint)appearance_error.KAppearanceNotCardUnlockable
                 || tipId == (uint)appearance_error.KAppearanceAlreadyOwned
+                || tipId == (uint)appearance_error.KAppearanceSeriesBundleUnavailable
+                || tipId == (uint)appearance_error.KAppearanceSeriesAlreadyCompleted
+                || tipId == (uint)appearance_error.KAppearanceSeriesBundlePriceChanged
+                || tipId == (uint)appearance_error.KCityCelebrationNoItem
+                || tipId == (uint)appearance_error.KCityCelebrationWeeklyCapReached
+                || tipId == (uint)appearance_error.KCosmeticGiftPriceChanged
+                || tipId == (uint)appearance_error.KCosmeticGiftWeeklyLimitReached
                 || tipId == (uint)pet_error.KPetNotFound)
                 RequestInfo(force: true);
             Changed?.Invoke();
@@ -626,6 +1084,7 @@ namespace MmorpgClient.Game.Appearance
         {
             ++_generation;
             Info = null;
+            _activeCelebrations.Clear();
             InfoPending = false;
             ActionPending = false;
             RequiresReconnect = false;

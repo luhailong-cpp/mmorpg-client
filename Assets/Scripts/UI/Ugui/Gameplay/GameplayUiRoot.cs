@@ -76,6 +76,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _equipmentWindow = new EquipmentWindow(design);
             _window.EquipmentOverviewRequested += OpenEquipment;
             _window.BagRequested += type => _client?.RequestBag(type);
+            _window.WarehouseExpandRequested += expectedCap => _client?.ExpandWarehouseCapacity(expectedCap, 60ul);
             _window.SortRequested += () => _client?.SortBag();
             _window.EquipmentRequested += () => _client?.RequestEquipment();
             _window.TemporaryRequested += () => _client?.RequestTemporary();

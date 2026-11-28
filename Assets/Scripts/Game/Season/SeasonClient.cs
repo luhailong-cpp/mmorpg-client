@@ -50,6 +50,9 @@ namespace MmorpgClient.Game.Season
             Snapshot != null
                 ? (System.Collections.Generic.IReadOnlyList<global::SavedBattleBuildBookmarkView>)Snapshot.SavedBuilds
                 : System.Array.Empty<global::SavedBattleBuildBookmarkView>();
+        public uint SavedBuildCapacity => Snapshot != null && Snapshot.SavedBuildCapacity > 0u ? Snapshot.SavedBuildCapacity : 12u;
+        public uint MaxSavedBuildCapacity => Snapshot != null && Snapshot.MaxSavedBuildCapacity > 0u ? Snapshot.MaxSavedBuildCapacity : 48u;
+        public ulong NextSavedBuildExpandPriceDiamond => Snapshot?.NextSavedBuildExpandPriceDiamond ?? 60ul;
         public bool StatePending { get; private set; }
         public bool ActionPending { get; private set; }
         public bool RequiresReconnect { get; private set; }
@@ -771,6 +774,49 @@ namespace MmorpgClient.Game.Season
                 && incoming.Revision < Snapshot.Revision)
                 return;
             Snapshot = incoming.Clone();
+        }
+
+        /// <summary>扩容战报与配装收藏夹容量（12 -> 24 -> 36 -> 48，每次 +12 条、60 真实灵石）。</summary>
+        public bool ExpandSavedBuildSlots(uint expectedCapacity, ulong expectedPriceDiamond = 60ul)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (_messageIds.ExpandSavedBuildSlots == 0u) return RejectLocally(UnsupportedMessage);
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (ActionPending) return false;
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey)) return RejectLocally(ClientRequestKeys.UnavailableText);
+
+            ActionPending = true;
+            int generation = _generation;
+            SetStatus("正在扩容配装与战报收藏位…", false);
+            Changed?.Invoke();
+            var req = new global::ExpandSavedBuildSlotsRequest
+            {
+                ClientRequestId = requestKey,
+                ExpectedCapacity = expectedCapacity,
+                ExpectedPriceDiamond = expectedPriceDiamond,
+            };
+            _net.Call(_messageIds.ExpandSavedBuildSlots, req, global::ExpandSavedBuildSlotsResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    if (response.State != null) ApplySnapshot(response.State);
+                    uint tipId = response.ErrorMessage?.Id ?? 0u;
+                    if (tipId != 0u) { HandleWriteTip("ExpandSavedBuildSlots", tipId); return; }
+                    string done = $"收藏夹已扩容至 {response.NewCapacity} 条。";
+                    SetStatus(done, false);
+                    Notice?.Invoke(done);
+                    Changed?.Invoke();
+                },
+                _ =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    SetStatus(RecoveryMessage, true);
+                    Changed?.Invoke();
+                });
+            return true;
         }
 
         private void ObserveConnection()

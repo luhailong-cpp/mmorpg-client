@@ -229,7 +229,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         private static void Place(RectTransform rect,float x,float y,float width,float height)
         {if(rect==null)return;rect.anchoredPosition=new Vector2(x,-y);rect.sizeDelta=new Vector2(width,height);}
         private static void Font(TMP_Text text,float size,Color? color=null,bool body=false)
-        {if(text==null)return;text.font=body?QdaoUguiTypography.ResolveBodyFont():QdaoUguiTheme.ResolveFont();text.fontSize=size;text.fontStyle=FontStyles.Normal;if(color.HasValue)text.color=color.Value;}
+        {if(text==null)return;text.fontSize=size;text.fontStyle=FontStyles.Normal;if(color.HasValue)text.color=color.Value;QdaoUguiTheme.ApplyTypographyAuto(text);}
         private static void Button(UiTextButton button,float x,float y,float width,float height,float size)
         {Place(button.Rect,x,y,width,height);Place(button.Label.rectTransform,8,0,width-16,height);Font(button.Label,size);button.Plate.pixelsPerUnitMultiplier=button.Plate.sprite==null?1:button.Plate.sprite.rect.height/height;}
         private TMP_Text Label(string name,float x,float y,float width,float height,string value,float size,Color color,UnityEngine.Transform parent=null,bool body=false)

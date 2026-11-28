@@ -57,7 +57,8 @@ namespace MmorpgClient.Game.TravelPass
         public bool UnlockPending { get; private set; }
         public bool ClaimPending { get; private set; }
         public bool EquipPending { get; private set; }
-        public bool AnyWritePending => UnlockPending || ClaimPending || EquipPending;
+        public bool SelectActivePending { get; private set; }
+        public bool AnyWritePending => UnlockPending || ClaimPending || EquipPending || SelectActivePending;
         public bool RequiresReconnect { get; private set; }
         public string Status { get; private set; } = string.Empty;
         public bool StatusIsError { get; private set; }
@@ -74,11 +75,12 @@ namespace MmorpgClient.Game.TravelPass
         }
 
         public bool IsSupported => _messageIds.IsSupported;
+        public bool SupportsSelectActive => _messageIds.SupportsSelectActive;
         public bool Ready => IsSupported && !_disposed && _net.IsReady && _net.PlayerId != 0;
         public ulong DiamondBalance => State?.DiamondBalance ?? 0;
         public ulong BindDiamondBalance => State?.BindDiamondBalance ?? 0;
         public bool HasClaimableReward => TravelPassModels.HasClaimable(State);
-        public uint ClaimableCount => TravelPassModels.TotalClaimable(State);
+        public uint ClaimableCount => TravelPassModels.TotalBookshelfClaimable(State);
 
         public TravelPassClient(
             IBattleTransport transport,
@@ -102,7 +104,7 @@ namespace MmorpgClient.Game.TravelPass
             _net.Disconnected -= HandleDisconnected;
             _disposed = true;
             ++_generation;
-            StatePending = StateQueued = UnlockPending = ClaimPending = EquipPending = false;
+            StatePending = StateQueued = UnlockPending = ClaimPending = EquipPending = SelectActivePending = false;
         }
 
         public TravelPassUnlockQuote CurrentUnlockQuote() => TravelPassUnlockQuote.Of(State);
@@ -404,6 +406,78 @@ namespace MmorpgClient.Game.TravelPass
             return true;
         }
 
+        /// <summary>零消耗切换当前在研游历手记期次（永不绝版书架制，战斗结算点数将注入所选期次）。</summary>
+        public bool SelectActivePass(uint passId, Action<bool> completed = null)
+        {
+            if (_disposed || !_messageIds.SupportsSelectActive)
+            {
+                completed?.Invoke(false);
+                return false;
+            }
+            ObserveSessionBoundary();
+            if (AnyWritePending)
+            {
+                completed?.Invoke(false);
+                return false;
+            }
+            if (!Ready)
+            {
+                RejectLocally("尚未连接到游戏。");
+                completed?.Invoke(false);
+                return false;
+            }
+            if (passId == 0u)
+            {
+                RejectLocally(TravelPassModels.DescribeTip((uint)common_error.KInvalidParameter));
+                completed?.Invoke(false);
+                return false;
+            }
+            float now = _clock();
+            if (now < _nextWriteAt)
+            {
+                RejectLocally(TooFastMessage);
+                completed?.Invoke(false);
+                return false;
+            }
+
+            _nextWriteAt = now + MinWriteIntervalSeconds;
+            SelectActivePending = true;
+            int generation = _generation;
+            SetStatus("正在切换在研手记…", false);
+            Changed?.Invoke();
+
+            _net.Call(_messageIds.SelectActive, new global::SelectActiveTravelPassRequest { PassId = passId },
+                global::SelectActiveTravelPassResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    SelectActivePending = false;
+                    uint tipId = response.ErrorMessage?.Id ?? 0;
+                    if (tipId != 0)
+                    {
+                        HandleWriteTip(tipId);
+                        Changed?.Invoke();
+                        completed?.Invoke(false);
+                        return;
+                    }
+                    if (response.Snapshot != null) State = response.Snapshot;
+                    SetStatus($"已将「{State?.Name ?? $"第 {passId} 期"}」设为在研手记，后续战斗自动累计本期游历点。", false);
+                    Changed?.Invoke();
+                    completed?.Invoke(true);
+                },
+                error =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    SelectActivePending = false;
+                    uint tipId = ParseEnvelopeTip(error);
+                    if (tipId != 0) HandleWriteTip(tipId);
+                    else SetStatus("切换在研手记失败，请稍后重试。", true);
+                    Changed?.Invoke();
+                    completed?.Invoke(false);
+                });
+            return true;
+        }
+
         public void HandleBattleSettled()
         {
             if (_disposed || !IsSupported || !Ready) return;
@@ -585,7 +659,7 @@ namespace MmorpgClient.Game.TravelPass
             ++_generation;
             State = null;
             StatePending = StateQueued = _requeryAfterPending = false;
-            UnlockPending = ClaimPending = EquipPending = false;
+            UnlockPending = ClaimPending = EquipPending = SelectActivePending = false;
             RequiresReconnect = false;
             _nextStateAt = float.NegativeInfinity;
             _nextWriteAt = float.NegativeInfinity;

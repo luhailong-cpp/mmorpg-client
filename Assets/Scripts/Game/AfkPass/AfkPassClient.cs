@@ -43,14 +43,45 @@ namespace MmorpgClient.Game.AfkPass
         public const string HostingDescription =
             "开通后，断线时角色不会在 25 秒后下线：留在原地离线托管，组队时照常跟着队长走，直到重新登录或月卡到期。";
 
-        /// <summary>仙途轻享卡零战力便利权益汇总（复用单真相 afk_pass_expires_at；方案 A 装备/战法/加点三合一共享 7 套席位）。</summary>
+        /// <summary>仙途轻享卡零战力便利权益汇总（复用单真相 afk_pass_expires_at；零每日打卡、零战力突破）。</summary>
         public static string LightCardBenefitsSummary(global::AfkPassInfo info)
         {
             uint slots = info != null && info.UnlockedLoadoutSlots > 0 ? info.UnlockedLoadoutSlots : 2u;
             bool stage2Tradable = info != null && info.Stage2TradableEnabled;
+            uint marketSlots = info != null && info.MarketListingLimit > 0 ? info.MarketListingLimit : 10u;
+            uint stallHours = info != null && info.StallDurationHours > 0 ? info.StallDurationHours : 48u;
+            uint trialQuota = info != null ? info.WeeklyFreeTrialQuota : 0u;
+            uint trialUsed = info != null ? info.WeeklyFreeTrialUsed : 0u;
+            uint trialLeft = trialQuota > trialUsed ? trialQuota - trialUsed : 0u;
             return stage2Tradable
-                ? $"轻享卡生效：离线跟队托管 · 装备/战法/加点共享流派席位 +2 套（当前 {slots} 套，上限 7 套）· 阶段二胜局可交易资格已激活（零战力加成）"
-                : $"开通「仙途轻享卡」解锁：离线跟队托管 · 装备/战法/加点共享流派席位 +2 套（当前 {slots} 套，上限 7 套）· 阶段二胜局可交易资格（零战力加成）";
+                ? $"轻享卡生效：离线托管 · 共享流派席位 {slots}/7 · 集市挂单 {marketSlots} 位 · 离线摆摊 {stallHours}h · 本周衣柜随心试穿余 {trialLeft}/{trialQuota} 次 · 阶段二胜局可交易已激活（零战力）"
+                : $"开通「仙途轻享卡」解锁：离线托管 · 共享流派席位 +2 · 集市挂单 10→20 位 · 摆摊 48h→96h · 每周 3 次衣柜随心试穿 · 阶段二胜局可交易（零每日打卡、零战力）";
+        }
+
+        public static global::AfkPassPlanView FindPlan(global::AfkPassInfo info, uint planId)
+        {
+            if (info == null || info.Plans.Count == 0) return null;
+            if (planId == 0u) planId = 1u;
+            for (int i = 0; i < info.Plans.Count; ++i)
+            {
+                if (info.Plans[i].PlanId == planId) return info.Plans[i];
+            }
+            return info.Plans[0];
+        }
+
+        public static string FormatPlanBonus(global::AfkPassPlanView plan)
+        {
+            if (plan == null) return "";
+            string itemPart = plan.BonusItemId != 0 && plan.BonusItemCount > 0
+                ? $"{(string.IsNullOrWhiteSpace(plan.BonusItemName) ? MmorpgClient.Game.SpiritShop.SpiritShopModels.ResolveItemName(plan.BonusItemId) : plan.BonusItemName)}×{plan.BonusItemCount}(绑定)"
+                : "";
+            string framePart = !string.IsNullOrWhiteSpace(plan.BonusFrameKey)
+                ? (plan.BonusFrameKey == "frame_lightcard_season_s1" ? "季享流光头像框" : "轻享流光头像框")
+                : "";
+            if (itemPart.Length > 0 && framePart.Length > 0) return $"开卡一次性直赠：{itemPart} + {framePart}";
+            if (itemPart.Length > 0) return $"开卡一次性直赠：{itemPart}";
+            if (framePart.Length > 0) return $"开卡一次性直赠：{framePart}";
+            return "";
         }
 
         public static string CurrencyName(uint currencyType) => MmorpgClient.Game.Common.CurrencyLabels.Name(currencyType);
@@ -99,6 +130,8 @@ namespace MmorpgClient.Game.AfkPass
             (uint)afk_pass_error.KAfkPassStackLimit => "挂机月卡剩余时长已达上限，暂不能续费。",
             (uint)afk_pass_error.KAfkPassFrozen => "角色当前状态不能开通挂机月卡，请稍后再试。",
             (uint)afk_pass_error.KAfkPassUnavailable => "挂机月卡暂时无法开通。",
+            (uint)afk_pass_error.KAfkPassBagFull => "背包空间不足，请至少留出空位后再开通仙途轻享卡。",
+            (uint)afk_pass_error.KAfkPassPlanInvalid => "所选轻享卡套餐已更新，请刷新后再试。",
             (uint)common_error.KRateLimitExceeded => "操作太快了，请稍候再试。",
             (uint)common_error.KServiceUnavailable => "服务暂时不可用，请稍后再试。",
             _ => $"开通失败（{tipId}）。",
@@ -106,7 +139,9 @@ namespace MmorpgClient.Game.AfkPass
 
         /// <summary>这个拒绝说明手里的报价已经过时:要重新查一次。</summary>
         public static bool TipMeansStale(uint tipId) =>
-            tipId == (uint)afk_pass_error.KAfkPassPriceChanged || tipId == (uint)afk_pass_error.KAfkPassStackLimit;
+            tipId == (uint)afk_pass_error.KAfkPassPriceChanged
+            || tipId == (uint)afk_pass_error.KAfkPassStackLimit
+            || tipId == (uint)afk_pass_error.KAfkPassPlanInvalid;
 
         /// <summary>低于该托管时长且 0 场战斗的瞬时断线不弹收获简报(静默确认),避免短断线打扰。</summary>
         public const ulong RecapAutoShowMinDurationSeconds = 60;
@@ -174,6 +209,8 @@ namespace MmorpgClient.Game.AfkPass
         public event Action<string> Reminder;
         /// <summary>服务端确认开通/续费成功后触发，供宿主刷新配装槽位与材料可交易资格。</summary>
         public event Action Purchased;
+        /// <summary>开卡一次性直赠绑定道具入包后的最新背包快照。</summary>
+        public event Action<global::BagInfo> BagReceived;
 
         /// <summary>最近一份服务端结论;null = 还没问到(或断线后已复位)。只读:不要改它的字段。</summary>
         public global::AfkPassInfo Info { get; private set; }
@@ -295,10 +332,11 @@ namespace MmorpgClient.Game.AfkPass
         // ── 开通 ────────────────────────────────────────────────────────────
 
         /// <summary>
-        /// 按此刻手里的报价(<see cref="Info"/> 的价格与币种)开通 / 续费一次。返回 false = 本地拒绝(原因在 <see cref="Status"/>),
-        /// 没有发出请求;返回 true 只表示请求已发出,结论看随后的 <see cref="Changed"/>。
+        /// 按此刻手里的报价(<see cref="Info"/> 的价格与币种)开通 / 续费一次。planId == 0 兼容默认月享卡(套餐 1)，2 = 90 天季享卡。
         /// </summary>
-        public bool Buy()
+        public bool Buy() => Buy(0u);
+
+        public bool Buy(uint planId)
         {
             if (_disposed) return false;
             ObserveConnection();
@@ -318,6 +356,12 @@ namespace MmorpgClient.Game.AfkPass
             // 拿到明确结果之前的重发都带它,服务端按 (玩家, 键) 去重,不会扣两次钱。
             if (!ClientRequestKeys.TryCreate(out ulong requestKey)) return RejectLocally(ClientRequestKeys.UnavailableText);
 
+            var plan = planId != 0u ? AfkPassModels.FindPlan(Info, planId) : null;
+            uint currencyType = plan != null ? plan.PriceCurrencyType : Info.PriceCurrencyType;
+            ulong price = plan != null ? plan.Price : Info.Price;
+            uint periodDays = plan != null ? plan.PeriodDays : 0u;
+            uint resolvedPlanId = plan != null ? plan.PlanId : planId;
+
             _nextBuyAt = now + MinBuyIntervalSeconds;
             BuyPending = true;
             int generation = _generation;
@@ -327,8 +371,10 @@ namespace MmorpgClient.Game.AfkPass
             var request = new global::BuyAfkPassRequest
             {
                 ClientRequestId = requestKey,
-                ExpectedCurrencyType = Info.PriceCurrencyType,
-                ExpectedPrice = Info.Price,
+                ExpectedCurrencyType = currencyType,
+                ExpectedPrice = price,
+                PlanId = resolvedPlanId,
+                ExpectedPeriodDays = periodDays,
             };
             // 回调只认最近一次发出的那一个:重发之后前一次的迟到回调不能收掉这一次。
             int attempt = 0;
@@ -354,6 +400,7 @@ namespace MmorpgClient.Game.AfkPass
                         // replayed = true 是首次那一次的结果(重发命中了已成交的那一次,没有再扣钱):与普通成功走同一条路。
                         if (response.Info != null) ApplyInfo(response.Info);
                         SetStatus(BoughtMessage, false);
+                        if (response.Bag != null) BagReceived?.Invoke(response.Bag);
                         Changed?.Invoke();
                         Purchased?.Invoke();
                     },

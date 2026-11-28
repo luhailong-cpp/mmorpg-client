@@ -37,16 +37,32 @@ namespace MmorpgClient.Game.RewardedAd
         public ulong AdSessionId { get; }
         public ulong ClientRequestId { get; }
         public string SsvProof { get; }
+        public uint TargetParamU32 { get; }
+        public string TargetParamStr { get; }
 
         public bool IsValid => PlayerId != 0 && SlotId != 0 && AdSessionId != 0 && ClientRequestId != 0;
 
         public RewardedAdPendingClaim(ulong playerId, uint slotId, ulong adSessionId, ulong clientRequestId, string ssvProof)
+            : this(playerId, slotId, adSessionId, clientRequestId, ssvProof, 0u, string.Empty)
+        {
+        }
+
+        public RewardedAdPendingClaim(
+            ulong playerId,
+            uint slotId,
+            ulong adSessionId,
+            ulong clientRequestId,
+            string ssvProof,
+            uint targetParamU32,
+            string targetParamStr)
         {
             PlayerId = playerId;
             SlotId = slotId;
             AdSessionId = adSessionId;
             ClientRequestId = clientRequestId;
             SsvProof = ssvProof ?? string.Empty;
+            TargetParamU32 = targetParamU32;
+            TargetParamStr = targetParamStr ?? string.Empty;
         }
     }
 
@@ -71,10 +87,11 @@ namespace MmorpgClient.Game.RewardedAd
         public ulong RewardAmount { get; }
         public ulong BindGoldBalance { get; }
         public ulong GoldBalance { get; }
+        public uint RewardKind { get; }
 
         /// <summary>
         /// 零拒审硬门禁（防 App Store 2.1 空按钮与首审暴露）：
-        /// 仅在服务端总开关开启、当前宿主支持且广告素材已加载就绪、配置了广告位 ID、今日尚有余量且非战斗态时展示入口。
+        /// 仅在服务端总开关开启、当前宿主支持且广告素材已加载就绪、配置了广告位 ID、本周期尚有余量且非战斗态时展示入口。
         /// </summary>
         public bool ShouldShowEntry =>
             ServerEnabled && BridgeSupported && BridgeReady && HasAdUnitId && RemainingToday > 0 && !InBattle;
@@ -95,7 +112,8 @@ namespace MmorpgClient.Game.RewardedAd
             uint currencyType,
             ulong rewardAmount,
             ulong bindGoldBalance,
-            ulong goldBalance)
+            ulong goldBalance,
+            uint rewardKind = RewardedAdModel.RewardKindBindGold)
         {
             SlotId = slotId;
             ServerEnabled = serverEnabled;
@@ -111,6 +129,7 @@ namespace MmorpgClient.Game.RewardedAd
             RewardAmount = rewardAmount;
             BindGoldBalance = bindGoldBalance;
             GoldBalance = goldBalance;
+            RewardKind = rewardKind == 0u ? RewardedAdModel.RewardKindBindGold : rewardKind;
         }
     }
 
@@ -120,11 +139,24 @@ namespace MmorpgClient.Game.RewardedAd
     public static class RewardedAdModel
     {
         public const uint DefaultSlotId = 1u;
+        public const uint SlotIdTowerBoonReroll = 2u;
+        public const uint SlotIdWardrobe1hTrial = 3u;
+        public const uint SlotIdMerchantPersonalRefresh = 4u;
+
+        public const uint RewardKindBindGold = 1u;
+        public const uint RewardKindTowerBoonReroll = 2u;
+        public const uint RewardKindWardrobe1hTrial = 3u;
+        public const uint RewardKindMerchantPersonalRefresh = 4u;
+
         public const string VideoIconResourcePath = "UI/Icons/icon_rewarded_ad_video";
+        public const string VideoBadgeV2ResourcePath = "UI/Ugui/RewardedAdV1/icon_rewarded_video_badge";
 
         // 严格中立合规文案：仅客观描述广告奖励规则，与抖音/微信/AdMob 合规细则对齐。
         public const string VideoBadgeText = "[广告]";
         public const string EntryButtonText = "观看广告领绑定银两";
+        public const string TowerRerollEntryText = "观看广告重随本轮奇策";
+        public const string WardrobeTrialEntryText = "观看广告续时试穿 1 小时";
+        public const string MerchantRefreshEntryText = "观看广告刷新本轮个人货架";
         public const string DialogTitleText = "广告奖励";
         public const string ConfirmWatchButtonText = "观看广告领取";
         public const string CancelButtonText = "关闭";
@@ -134,10 +166,30 @@ namespace MmorpgClient.Game.RewardedAd
         public const string UnavailableStatusText = "暂无可播放的广告视频，请稍后再试。";
         public const string ReconnectPendingStatusText = "网络波动，恢复连接后将自动为您补发奖励。";
 
+        public static string EntryButtonTextForKind(uint rewardKind) => rewardKind switch
+        {
+            RewardKindTowerBoonReroll => TowerRerollEntryText,
+            RewardKindWardrobe1hTrial => WardrobeTrialEntryText,
+            RewardKindMerchantPersonalRefresh => MerchantRefreshEntryText,
+            _ => EntryButtonText,
+        };
+
         public static string BuildDialogBody(ulong rewardAmount, uint currencyType, uint remainingToday, uint dailyLimit)
         {
             string reward = CurrencyLabels.Format(rewardAmount, currencyType);
             return $"观看一段完整广告视频后，可领取 {reward}（本周剩余 {remainingToday.ToString(CultureInfo.InvariantCulture)}/{dailyLimit.ToString(CultureInfo.InvariantCulture)} 次）。绑定银两仅用于角色个人养成消耗，不可交易。";
+        }
+
+        public static string BuildDialogBodyForKind(uint rewardKind, ulong rewardAmount, uint currencyType, uint remainingToday, uint dailyLimit)
+        {
+            string quota = $"本周剩余 {remainingToday.ToString(CultureInfo.InvariantCulture)}/{dailyLimit.ToString(CultureInfo.InvariantCulture)} 次";
+            return rewardKind switch
+            {
+                RewardKindTowerBoonReroll => $"观看一段完整广告视频后，可重随当前五行幻境三选一奇策一次（每局限 1 次，{quota}）。奇策仅本局生效，出图清零。",
+                RewardKindWardrobe1hTrial => $"观看一段完整广告视频后，可获得所选未拥有外观的 1 小时临时试穿体验（{quota}）。试穿到期自动还原，不影响永久收藏。",
+                RewardKindMerchantPersonalRefresh => $"观看一段完整广告视频后，可刷新当前轮次神秘商人的个人货架一次（每轮限 1 次，{quota}）。刷新后仍按标准币种与限购规则购买。",
+                _ => BuildDialogBody(rewardAmount, currencyType, remainingToday, dailyLimit),
+            };
         }
 
         public static string BuildBalanceLine(ulong bindGoldBalance, ulong goldBalance)
@@ -145,6 +197,14 @@ namespace MmorpgClient.Game.RewardedAd
 
         public static string BuildClaimedToast(ulong rewardAmount, uint currencyType)
             => $"已领取 {CurrencyLabels.Format(rewardAmount, currencyType)}。";
+
+        public static string BuildClaimedToastForKind(uint rewardKind, ulong rewardAmount, uint currencyType) => rewardKind switch
+        {
+            RewardKindTowerBoonReroll => "已重随本轮奇策选项。",
+            RewardKindWardrobe1hTrial => "已开启 1 小时临时试穿。",
+            RewardKindMerchantPersonalRefresh => "已刷新本轮个人货架。",
+            _ => BuildClaimedToast(rewardAmount, currencyType),
+        };
 
         public static string BuildCooldownButtonText(ulong cooldownRemainingSec)
             => cooldownRemainingSec > 0
@@ -201,7 +261,8 @@ namespace MmorpgClient.Game.RewardedAd
                 currencyType: slot.CurrencyType,
                 rewardAmount: slot.RewardAmount,
                 bindGoldBalance: info?.BindGoldBalance ?? 0,
-                goldBalance: info?.GoldBalance ?? 0);
+                goldBalance: info?.GoldBalance ?? 0,
+                rewardKind: slot.RewardKind == 0u ? RewardKindBindGold : slot.RewardKind);
         }
 
         public static global::RewardedAdSlotView FindSlot(global::GetRewardedAdInfoResponse info, uint slotId)

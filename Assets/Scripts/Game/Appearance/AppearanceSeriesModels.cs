@@ -149,5 +149,40 @@ namespace MmorpgClient.Game.Appearance
                 body);
             return true;
         }
+
+        /// <summary>该收藏系列当前是否支持 Steam 式按缺口折扣一键补齐。</summary>
+        public static bool CanBuySeriesBundle(global::CharacterAppearanceSeriesProgress series)
+        {
+            return series != null
+                && !series.Completed
+                && series.BundleDiscountBps > 0
+                && series.BundleDiscountBps < 10000
+                && series.MissingUnlockableCount > 0
+                && series.BundleDiscountDiamond > 0
+                && series.MissingAppearanceIds != null
+                && series.MissingAppearanceIds.Count > 0;
+        }
+
+        /// <summary>按缺口补齐较单买节省的真实灵石数。</summary>
+        public static ulong SeriesBundleSavingsDiamond(global::CharacterAppearanceSeriesProgress series)
+        {
+            if (!CanBuySeriesBundle(series) || series.BundleOriginalDiamond <= series.BundleDiscountDiamond)
+                return 0UL;
+            return series.BundleOriginalDiamond - series.BundleDiscountDiamond;
+        }
+
+        /// <summary>格式化系列补齐按钮短文案（例如「8.5折补齐 · 170灵石(省30)」）。</summary>
+        public static string FormatSeriesBundleLabel(global::CharacterAppearanceSeriesProgress series)
+        {
+            if (!CanBuySeriesBundle(series)) return string.Empty;
+            double fold = Math.Round(series.BundleDiscountBps / 1000.0, 1, MidpointRounding.AwayFromZero);
+            string foldText = Math.Abs(fold - Math.Round(fold)) < 0.05
+                ? $"{(int)Math.Round(fold)}折"
+                : $"{fold:0.0}折";
+            ulong saved = SeriesBundleSavingsDiamond(series);
+            return saved > 0
+                ? $"{foldText}补齐 · {series.BundleDiscountDiamond}灵石(省{saved})"
+                : $"{foldText}补齐 · {series.BundleDiscountDiamond}灵石";
+        }
     }
 }

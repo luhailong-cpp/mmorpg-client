@@ -169,6 +169,51 @@ namespace MmorpgClient.UI.EditorTools
             Debug.Log("PET_CULTIVATION_FIDELITY_CAPTURE_PASSED|" + captured.Count + "|" + OutputDirectory);
         }
 
+        /// <summary>全量 UI 画质/字体升级后的多界面批量实机抓图（复用既有各模块验收抓图器，输出到独立验收目录）。</summary>
+        public static void CaptureGlobalRollout()
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode)
+                throw new InvalidOperationException("CaptureGlobalRollout requires Edit Mode.");
+            if (Application.isBatchMode && string.IsNullOrEmpty(SceneManager.GetActiveScene().path))
+                EditorSceneManager.OpenScene("Assets/Scenes/Bootstrap.unity", OpenSceneMode.Single);
+
+            string root = Path.GetFullPath(Path.Combine(Application.dataPath, "../.codex-artifacts/global-ui-fidelity-v1"));
+            Directory.CreateDirectory(root);
+            var summary = new List<string>();
+            void RunModule(string name, Action<string> action)
+            {
+                string dir = Path.Combine(root, name);
+                Directory.CreateDirectory(dir);
+                try
+                {
+                    action(dir);
+                    int count = Directory.GetFiles(dir, "*.png", SearchOption.AllDirectories).Length;
+                    summary.Add($"PASS|{name}|pngs={count}|{dir}");
+                }
+                catch (Exception ex)
+                {
+                    summary.Add($"FAIL|{name}|{ex.Message}");
+                    Debug.LogException(ex);
+                }
+            }
+
+            RunModule("pet-cultivation", dir => { OutputDirectory = dir; CaptureAll(); });
+            RunModule("guild", dir =>
+            {
+                var t = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("GuildUiVerification")).First(x => x != null);
+                t.GetField("OutputDirectory", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static).SetValue(null, dir);
+                t.GetMethod("CaptureAll", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static).Invoke(null, null);
+            });
+            RunModule("attributes", dir => { AttributePanelV10Verification.OutputDirectory = dir; AttributePanelV10Verification.CaptureAll(); });
+            RunModule("skills", dir => { SkillUiVerification.OutputDirectory = dir; SkillUiVerification.CaptureAll(); });
+            RunModule("mail", dir => { MailUiVerification.OutputDirectory = dir; MailUiVerification.CaptureAll(); });
+            RunModule("social", dir => { SocialFidelityVerification.OutputDirectory = dir; SocialFidelityVerification.Capture(); });
+            RunModule("equipment", dir => { EquipmentUiVerification.OutputDirectory = dir; EquipmentUiVerification.CaptureAll(); });
+
+            File.WriteAllLines(Path.Combine(root, "rollout-summary.txt"), summary);
+            Debug.Log("GLOBAL_UI_FIDELITY_ROLLOUT_FINISHED\n" + string.Join("\n", summary));
+        }
+
         private static void CaptureAtResolution(int width, int height, bool captureAllStates,
             List<string> checks, List<string> captured)
         {

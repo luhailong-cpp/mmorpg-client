@@ -43,9 +43,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private TMP_Text _windowSubTitleText;
 
         private RectTransform _categoryTabBar;
-        private readonly Button[] _categoryTabButtons = new Button[3];
-        private readonly Image[] _categoryTabImages = new Image[3];
-        private readonly TMP_Text[] _categoryTabLabels = new TMP_Text[3];
+        private readonly Button[] _categoryTabButtons = new Button[4];
+        private readonly Image[] _categoryTabImages = new Image[4];
+        private readonly TMP_Text[] _categoryTabLabels = new TMP_Text[4];
 
         private RectTransform _cosmeticsRoot;
         private Button _cosmeticCompactBackBtn;
@@ -153,21 +153,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void BuildWardrobeCosmeticsUi(RectTransform mainRoot)
         {
-            // 顶部三类别页签：人物 / 灵宠 / 特效
+            // 顶部四类别页签：人物 / 灵宠 / 特效 / 排面
             _categoryTabBar = QdaoUguiFactory.CreateRect("WardrobeCategoryTabBar", mainRoot, 68f, 24f, 640f, 56f);
-            string[] tabLabels = { "人物", "灵宠", "特效" };
-            for (int i = 0; i < 3; i++)
+            string[] tabLabels = { "人物", "灵宠", "特效", "排面" };
+            for (int i = 0; i < 4; i++)
             {
                 int idx = i;
                 var sprite = AppearanceUiArt.LoadWardrobeCosmetic(i == 0 ? "tab-selected" : "tab-default");
                 var btn = QdaoUguiFactory.CreateArtButton("WardrobeTab_" + idx, _categoryTabBar,
-                    i * 211f, 0f, 198f, 56f, sprite, out var img);
+                    i * 158f, 0f, 148f, 56f, sprite, out var img);
                 img.type = Image.Type.Simple;
                 img.preserveAspect = true;
                 img.color = sprite != null ? Color.white : (i == 0 ? AppearanceUiArt.DeepJade : AppearanceUiArt.ParchmentInner);
                 btn.navigation = new Navigation { mode = Navigation.Mode.Automatic };
                 btn.onClick.AddListener(() => SelectWardrobeCategory((WardrobeCategoryTab)idx));
-                var lbl = QdaoUguiFactory.CreateText("Label", btn.transform, 10f, 0f, 178f, 56f,
+                var lbl = QdaoUguiFactory.CreateText("Label", btn.transform, 10f, 0f, 128f, 56f,
                     tabLabels[i], 24f, i == 0 ? AppearanceUiArt.WarmCream : AppearanceUiArt.JadeInk,
                     TextAlignmentOptions.Center);
                 lbl.rectTransform.anchorMin = Vector2.zero;
@@ -380,7 +380,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void RenderWardrobeCategoryShell()
         {
             var cat = _cosmeticState.ActiveCategory;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 bool active = (int)cat == i;
                 if (_categoryTabImages[i] != null)
@@ -406,6 +406,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 {
                     WardrobeCategoryTab.Pet => "灵宠幻化",
                     WardrobeCategoryTab.SkillEffect => "技能特效",
+                    WardrobeCategoryTab.Showcase => "排面装饰",
                     _ => "形象与人物志",
                 };
             }
@@ -420,7 +421,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (cat == WardrobeCategoryTab.Character || _cosmeticsRoot == null) return;
 
             bool isPet = cat == WardrobeCategoryTab.Pet;
-            _cosmeticSectionTitle.text = isPet ? "幻化外观" : "技能特效";
+            bool isShowcase = cat == WardrobeCategoryTab.Showcase;
+            _cosmeticSectionTitle.text = isPet ? "幻化外观" : (isShowcase ? "排面装饰" : "技能特效");
 
             Func<ulong, bool> isSellableSku = skuId =>
                 _sellableMallSkuOverride != null
@@ -435,7 +437,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _cosmeticEmptyLabel.gameObject.SetActive(true);
                 _cosmeticRetryBtn.gameObject.SetActive(_client?.InfoPending != true);
                 _cosmeticRetryBtn.interactable = _client?.Ready == true;
-                _cosmeticDetailTitle.text = isPet ? "灵宠幻化" : "技能特效";
+                _cosmeticDetailTitle.text = isPet ? "灵宠幻化" : (isShowcase ? "排面装饰" : "技能特效");
                 _cosmeticDetailState.text = "";
                 _cosmeticDescText.text = _client?.Status ?? "";
                 _cosmeticPreviewImage.enabled = false;
@@ -457,6 +459,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 selectedPet = _cosmeticState.SyncPetTarget(_petTargetBuffer, PetClient.Instance?.Pets?.ActivePetId ?? 0ul);
                 _currentCosmeticRowViews = WardrobeCosmeticModels.BuildPetRows(info, selectedPet, isSellableSku, spiritShopSupported);
             }
+            else if (isShowcase)
+            {
+                _currentCosmeticRowViews = WardrobeCosmeticModels.BuildShowcaseRows(info, _cosmeticState.FilterShowcaseSlotKind, spiritShopSupported);
+            }
             else
             {
                 RebuildSkillTargets(info);
@@ -464,7 +470,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
 
             var selectedRow = _cosmeticState.SyncSelectedRow(cat, _currentCosmeticRowViews);
-            if (!isPet && selectedRow != null)
+            if (!isPet && !isShowcase && selectedRow != null)
             {
                 selectedSkill = FindSkillTarget(selectedRow.SkillTableId);
             }
@@ -474,14 +480,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _cosmeticRetryBtn.gameObject.SetActive(emptyCatalog);
             if (emptyCatalog)
             {
-                _cosmeticEmptyLabel.text = isPet ? "当前暂无可展示灵宠幻化" : "当前暂无可展示技能特效";
+                _cosmeticEmptyLabel.text = isPet ? "当前暂无可展示灵宠幻化" : (isShowcase ? "当前暂无可展示排面装饰" : "当前暂无可展示技能特效");
             }
 
             SyncCosmeticListRows(_currentCosmeticRowViews, selectedRow?.ConfigId ?? 0u);
 
             if (selectedRow == null)
             {
-                _cosmeticDetailTitle.text = isPet ? "暂无灵宠幻化" : "暂无技能特效";
+                _cosmeticDetailTitle.text = isPet ? "暂无灵宠幻化" : (isShowcase ? "暂无排面装饰" : "暂无技能特效");
                 _cosmeticDetailState.text = "";
                 _cosmeticDescText.text = "";
                 _cosmeticPreviewImage.enabled = false;
@@ -496,6 +502,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 StopVfxPreview();
                 RenderPetCosmeticDetails(selectedRow, selectedPet);
             }
+            else if (isShowcase)
+            {
+                StopVfxPreview();
+                RenderShowcaseCosmeticDetails(selectedRow);
+            }
             else
             {
                 RenderSkillVfxDetails(selectedRow, selectedSkill);
@@ -507,6 +518,53 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _cosmeticStatusText.color = (_client?.StatusIsError == true)
                     ? AppearanceUiArt.CrimsonInk : AppearanceUiArt.MutedInk;
             }
+        }
+
+        private void RenderShowcaseCosmeticDetails(WardrobeCosmeticRowView selected)
+        {
+            _cosmeticDetailTitle.text = selected.Name;
+            _cosmeticDetailState.text = selected.StateLabel;
+            _cosmeticDetailState.color = selected.State == WardrobeCosmeticRowState.Equipped
+                ? AppearanceUiArt.TrialGreen
+                : (selected.IsOwned ? AppearanceUiArt.JadeInk : AppearanceUiArt.CrimsonInk);
+
+            _cosmeticTargetCaption.text = "装饰槽位";
+            _cosmeticTargetValue.text = WardrobeCosmeticModels.ShowcaseSlotName(selected.SlotKind);
+            _cosmeticTargetChangeBtn.gameObject.SetActive(true);
+            _cosmeticTargetChangeLabel.text = _cosmeticState.FilterShowcaseSlotKind == 0u ? "筛选槽位 >" : "切换槽位 >";
+
+            _cosmeticScopeCaption.text = "生效范围";
+            _cosmeticScopeValue.text = selected.SlotKind switch
+            {
+                1u => "所有回合战斗与观战脚底阵纹",
+                2u => "擂台/会武入场与胜利横幅",
+                3u => "世界与频道发言气泡底板",
+                4u => "战报与残局分享卡片底纹",
+                _ => "纯视觉排面装饰（零战力）",
+            };
+
+            bool canSubmit = _client != null && _client.Ready && !_client.RequiresReconnect && _client.IsShowcaseSupported;
+            bool busy = _client != null && _client.ActionPending;
+            var primary = WardrobeCosmeticModels.ResolveShowcasePrimaryAction(selected, canSubmit, busy, _corePreviewOnly);
+
+            string desc = selected.Description;
+            if (!string.IsNullOrEmpty(primary.DetailHint) && !desc.Contains(primary.DetailHint))
+                desc = string.IsNullOrEmpty(desc) ? primary.DetailHint : desc + "\n" + primary.DetailHint;
+            _cosmeticDescText.text = desc;
+
+            Sprite previewSprite = AppearanceUiArt.LoadShowcaseCosmetic(selected.AssetKey);
+            _cosmeticPreviewImage.sprite = previewSprite;
+            _cosmeticPreviewImage.color = Color.white;
+            _cosmeticPreviewImage.enabled = previewSprite != null;
+            _cosmeticPreviewMissing.gameObject.SetActive(previewSprite == null);
+            if (previewSprite == null) _cosmeticPreviewMissing.text = $"{selected.Name}\n系统默认排面样式";
+            _cosmeticPreviewBadge.gameObject.SetActive(false);
+
+            _cosmeticSecondaryBtn.interactable = true;
+            _cosmeticSecondaryLabel.text = "切换槽位";
+
+            _cosmeticPrimaryBtn.interactable = primary.Interactable;
+            _cosmeticPrimaryLabel.text = primary.Label;
         }
 
         private void RenderPetCosmeticDetails(WardrobeCosmeticRowView selected, WardrobePetTargetOption targetPet)
@@ -709,7 +767,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
                 Sprite icon = item.Category == WardrobeCategoryTab.Pet
                     ? LoadPetArtPortrait(item.VisualArtKey, item.VisualPetTableId, 0u)
-                    : LoadSkillCosmeticIcon(item);
+                    : (item.Category == WardrobeCategoryTab.Showcase
+                        ? AppearanceUiArt.LoadShowcaseCosmetic(item.AssetKey)
+                        : LoadSkillCosmeticIcon(item));
                 view.IconImage.sprite = icon;
                 view.IconImage.enabled = icon != null;
                 view.IconMissingText.gameObject.SetActive(icon == null);
@@ -811,6 +871,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 }
                 Render();
             }
+            else if (_cosmeticState.ActiveCategory == WardrobeCategoryTab.Showcase)
+            {
+                _cosmeticState.CycleShowcaseSlotFilter();
+                Render();
+            }
         }
 
         private void HandleCosmeticSecondaryClicked()
@@ -823,6 +888,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             else if (_cosmeticState.ActiveCategory == WardrobeCategoryTab.SkillEffect)
             {
                 ReplayVfxPreview();
+            }
+            else if (_cosmeticState.ActiveCategory == WardrobeCategoryTab.Showcase)
+            {
+                _cosmeticState.CycleShowcaseSlotFilter();
+                Render();
             }
         }
 
@@ -894,12 +964,40 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     _client.EquipSkillVfx(selected.SkillTableId, selected.ConfigId, expectFreeEquip: true);
                 }
             }
+            else if (_cosmeticState.ActiveCategory == WardrobeCategoryTab.Showcase)
+            {
+                bool canSubmit = _client.Ready && !_client.RequiresReconnect && _client.IsShowcaseSupported;
+                var action = WardrobeCosmeticModels.ResolveShowcasePrimaryAction(selected, canSubmit, _client.ActionPending, _corePreviewOnly);
+                if (!action.Interactable) return;
+                if (action.Kind == WardrobePrimaryActionKind.OpenSpiritShopVoucher)
+                {
+                    HidePanel();
+                    MmorpgClient.UI.Ugui.SpiritShop.SpiritShopUiRoot.Instance?.OpenTab(
+                        MmorpgClient.Game.SpiritShop.SpiritShopModels.TabAppearanceAndConvenience,
+                        action.SpiritShopGoodsId);
+                }
+                else if (action.Kind == WardrobePrimaryActionKind.UnlockWithVoucher)
+                {
+                    _client.EquipShowcaseCosmetic(selected.SlotKind, selected.ConfigId, expectFreeEquip: false);
+                }
+                else if (action.Kind == WardrobePrimaryActionKind.RestoreDefault)
+                {
+                    _client.EquipShowcaseCosmetic(selected.SlotKind, 0u, expectFreeEquip: true);
+                }
+                else if (action.Kind == WardrobePrimaryActionKind.EquipCosmetic)
+                {
+                    _client.EquipShowcaseCosmetic(selected.SlotKind, selected.ConfigId, expectFreeEquip: true);
+                }
+            }
         }
 
         private WardrobeCosmeticRowView FindCurrentSelectedCosmeticRow()
         {
             uint targetId = _cosmeticState.ActiveCategory == WardrobeCategoryTab.Pet
-                ? _cosmeticState.SelectedPetCosmeticId : _cosmeticState.SelectedSkillVfxId;
+                ? _cosmeticState.SelectedPetCosmeticId
+                : (_cosmeticState.ActiveCategory == WardrobeCategoryTab.Showcase
+                    ? _cosmeticState.SelectedShowcaseCosmeticId
+                    : _cosmeticState.SelectedSkillVfxId);
             for (int i = 0; i < _currentCosmeticRowViews.Count; i++)
                 if (_currentCosmeticRowViews[i].ConfigId == targetId) return _currentCosmeticRowViews[i];
             return null;
@@ -1029,21 +1127,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 float tabBarX = inCosmetic ? 66f : 56f;
                 float tabBarY = inCosmetic ? 74f : 68f;
                 float tabBarH = inCosmetic ? 47f : 40f;
-                PlaceTopLeft(_categoryTabBar, tabBarX, tabBarY, 470f, tabBarH);
-                for (int i = 0; i < 3; i++)
+                PlaceTopLeft(_categoryTabBar, tabBarX, tabBarY, 500f, tabBarH);
+                for (int i = 0; i < 4; i++)
                 {
                     if (_categoryTabButtons[i] != null)
-                        PlaceTopLeft((RectTransform)_categoryTabButtons[i].transform, i * 158f, 0f, 145f, tabBarH);
-                    if (_categoryTabLabels[i] != null) _categoryTabLabels[i].fontSize = 20f;
+                        PlaceTopLeft((RectTransform)_categoryTabButtons[i].transform, i * 124f, 0f, 114f, tabBarH);
+                    if (_categoryTabLabels[i] != null) _categoryTabLabels[i].fontSize = 19f;
                 }
             }
             else
             {
                 PlaceTopLeft(_categoryTabBar, 68f, 24f, 640f, 56f);
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     if (_categoryTabButtons[i] != null)
-                        PlaceTopLeft((RectTransform)_categoryTabButtons[i].transform, i * 211f, 0f, 198f, 56f);
+                        PlaceTopLeft((RectTransform)_categoryTabButtons[i].transform, i * 158f, 0f, 148f, 56f);
                     if (_categoryTabLabels[i] != null) _categoryTabLabels[i].fontSize = 24f;
                 }
             }

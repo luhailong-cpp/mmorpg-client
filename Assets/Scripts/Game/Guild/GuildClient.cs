@@ -499,6 +499,7 @@ namespace MmorpgClient.Game.Guild
                 if (change.Kind == GuildChangeKind.Disbanded) _pendingNotice = "帮会已被帮主解散。";
                 else if (change.Kind == GuildChangeKind.MemberKicked && aboutMe) _pendingNotice = "你已被请离帮会。";
                 else if (change.Kind == GuildChangeKind.Renamed) _pendingNotice = "帮会名称已更新。";
+                else if (change.Kind == GuildChangeKind.EmblemChanged) _pendingNotice = "帮会徽记已更新。";
                 if (_pendingNotice != null) Status = _pendingNotice; // 立即可见;Refresh 回包后再次落定
             }
             else if (Info == null && aboutMe && change.Kind == GuildChangeKind.MemberJoined)
@@ -2094,6 +2095,38 @@ namespace MmorpgClient.Game.Guild
             // 保证 Dispose 之后到来的推送不再改动状态。
             _disposed = true; ++_generation; Busy = false;
             _syncReads = GuildSyncRead.None; _currentSyncAck = null;
+        }
+
+        /// <summary>帮主自愿以个人真实灵石买断本帮永久定制徽记（1..3=180 灵石，4..6=300 灵石，绝不扣帮会资金）。</summary>
+        public void UnlockGuildEmblem(uint emblemId, ulong expectedPriceDiamond)
+        {
+            if (Info == null || !IsLeader) { Reject("仅帮主可解锁帮会徽记。"); return; }
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey))
+            {
+                Reject(ClientRequestKeys.UnavailableText);
+                return;
+            }
+            Request(MessageIds.UnlockGuildEmblem, new UnlockGuildEmblemRequest
+                { ClientRequestId = requestKey, EmblemId = emblemId, ExpectedPriceDiamond = expectedPriceDiamond },
+                UnlockGuildEmblemResponse.Parser, response =>
+                {
+                    if (!Accept(response.ErrorMessage)) return;
+                    if (response.Guild != null) Apply(response.Guild);
+                    Status = response.Status == GuildAssetOrderStatus.Applied ? "已为本帮解锁并佩戴新徽记。" : "帮会徽记买断请求已提交，正在结算。";
+                });
+        }
+
+        /// <summary>帮主免费在默认帮徽（0）与本帮已解锁定制徽记（1..6）之间切换。</summary>
+        public void EquipGuildEmblem(uint emblemId)
+        {
+            if (Info == null || !IsLeader) { Reject("仅帮主可更换帮会徽记。"); return; }
+            Request(MessageIds.EquipGuildEmblem, new EquipGuildEmblemRequest { EmblemId = emblemId },
+                EquipGuildEmblemResponse.Parser, response =>
+                {
+                    if (!Accept(response.ErrorMessage)) return;
+                    if (response.Guild != null) Apply(response.Guild);
+                    Status = emblemId == 0u ? "已切换回默认帮徽。" : "已更换帮会定制徽记。";
+                });
         }
     }
 }

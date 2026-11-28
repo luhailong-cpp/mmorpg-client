@@ -27,8 +27,9 @@ namespace MmorpgClient.UI.Ugui.Mail
             float size=28,Color? color=null,bool wrap=false,bool title=false,TextAlignmentOptions align=TextAlignmentOptions.MidlineLeft)
         {
             var text=QdaoUguiFactory.CreateText(name,parent,x,y,w,Mathf.Max(h,size*1.6f),value,size,color??Ink,align);
-            text.font=title?QdaoUguiTheme.ResolveFont():BodyFont; text.richText=false;
-            if(title)text.fontStyle=FontStyles.Bold;
+            text.richText=false;
+            if(title) QdaoUguiTheme.ApplyTypography(text, size>=38f && text.color.r+text.color.g>1.4f ? QdaoUiTypographyRole.Title : QdaoUiTypographyRole.Heading);
+            else QdaoUguiTheme.ApplyTypographyAuto(text);
             text.textWrappingMode=wrap?TextWrappingModes.Normal:TextWrappingModes.NoWrap;
             text.overflowMode=wrap?TextOverflowModes.Overflow:TextOverflowModes.Ellipsis; return text;
         }
@@ -40,10 +41,13 @@ namespace MmorpgClient.UI.Ugui.Mail
             image.type=image.sprite!=null&&image.sprite.border.sqrMagnitude>0?Image.Type.Sliced:Image.Type.Simple;
             button.navigation=new Navigation {mode=Navigation.Mode.Automatic};
             var colors=button.colors;colors.highlightedColor=new Color(1,.96f,.82f);
-            colors.selectedColor=new Color(1,.93f,.68f);colors.disabledColor=new Color(.68f,.68f,.64f,.75f);button.colors=colors;
+            colors.selectedColor=new Color(1,.93f,.68f);colors.disabledColor=primary?new Color(.82f,.88f,.84f,.88f):new Color(.88f,.87f,.84f,.80f);button.colors=colors;
             if(click!=null)button.onClick.AddListener(()=>click());
-            if(!string.IsNullOrEmpty(label))Label(button.transform,"ButtonLabel",label,14,(h-size*1.6f)/2,w-28,size*1.6f,size,
-                primary?Cream:Ink,align:TextAlignmentOptions.Center);
+            if(!string.IsNullOrEmpty(label)){
+                var caption=Label(button.transform,"ButtonLabel",label,14,(h-size*1.6f)/2,w-28,size*1.6f,size,
+                    primary?Cream:QdaoUguiTheme.GuildRichInk,align:TextAlignmentOptions.Center);
+                QdaoUguiTheme.ApplyTypography(caption, primary?QdaoUiTypographyRole.Primary:QdaoUiTypographyRole.Heading);
+            }
             return button;
         }
         public static void SetLabel(Button button,string value)

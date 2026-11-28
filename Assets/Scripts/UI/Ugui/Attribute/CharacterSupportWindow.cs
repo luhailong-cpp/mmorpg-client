@@ -12,12 +12,13 @@ namespace MmorpgClient.UI.Ugui.Attribute
     /// <summary>04/05/06动态人物页。独立控件按已交付render坐标重建,窗外不加场景或遮罩。</summary>
     public sealed class CharacterSupportWindow
     {
-        private static readonly Color Ink = Hex("34483b"), Green = Hex("1e604c"), Muted = Hex("655840"), Cream = Hex("fbf2d7");
+        private static readonly Color Ink = QdaoUguiTheme.GuildInk, Green = QdaoUguiTheme.GuildDeepJade,
+            Muted = QdaoUguiTheme.GuildMuted, Cream = QdaoUguiTheme.GuildTabCream;
         private readonly AttributeUiRoot _owner;
         private readonly RectTransform _root, _overview, _effects, _details, _popup, _sourceRows, _renamePopup;
-        private readonly Text _title, _overviewName, _overviewLevel, _overviewExpText, _detailName, _detailLevel, _skillName, _skillCategory;
-        private readonly Text[] _values = new Text[6], _detailValues = new Text[4], _detailLabels = new Text[4];
-        private readonly Text _healing, _shield, _rules, _rulesSecond, _status, _sourceTitle, _sourceTotal, _renameStatus;
+        private readonly TMP_Text _title, _overviewName, _overviewLevel, _overviewExpText, _detailName, _detailLevel, _skillName, _skillCategory;
+        private readonly TMP_Text[] _values = new TMP_Text[6], _detailValues = new TMP_Text[4], _detailLabels = new TMP_Text[4];
+        private readonly TMP_Text _healing, _shield, _rules, _rulesSecond, _status, _sourceTitle, _sourceTotal, _renameStatus;
         private readonly Image _overviewPortrait, _detailPortrait, _overviewPortraitRing, _detailPortraitRing, _skillIcon, _overviewExpFill;
         private readonly Button _healChoice, _shieldChoice;
         private readonly Button _allocation, _allocationTab, _renameButton, _renameConfirmButton;
@@ -41,7 +42,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _root.gameObject.AddComponent<MmorpgClient.World.Tianyong.GameplayInputBlocker>();
             Picture("TitlePlate", _root, 955, 54, 650, 110, "title_plate");
             Picture("Taiji", _root, 1252, 23, 56, 56, "round_badge_taiji");
-            _title = Label("Title", _root, 955, 81, 650, 58, "人物属性", 46, Cream, TextAnchor.UpperCenter);
+            _title = Label("Title", _root, 955, 81, 650, 58, "人物属性", 46, QdaoUguiTheme.GuildTitleCream, TextAlignmentOptions.Top);
             Action("Close", _root, 2350, 106, 61, 72, "", "close-jade", Hide, false);
 
             _overview = Rect("OverviewPage", _root, 0, 0, 2560, 1080);
@@ -109,10 +110,10 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _popup = Rect("EffectSourcePopup", _root, 0, 0, 2560, 1080);
             Picture("SourceFrame", _popup, 1020, 209, 1315, 635, "window_frame", true, true, .66f);
             Picture("SourceTitlePlate", _popup, 1447, 170, 468, 79, "title_plate");
-            Label("SourceHeading", _popup, 1447, 189, 468, 43, "效果来源", 32, Cream, TextAnchor.UpperCenter);
+            Label("SourceHeading", _popup, 1447, 189, 468, 43, "效果来源", 32, QdaoUguiTheme.GuildTitleCream, TextAlignmentOptions.Top);
             Action("CloseSources", _popup, 2260, 230, 45, 53, "", "close-jade", CloseSource, false);
             _sourceTitle = Label("SourceEffectName", _popup, 1093, 284, 1000, 48, "", 36, Ink);
-            Label("ContributionLabel", _popup, 2030, 296, 199, 32, "贡献值", 23, Muted, TextAnchor.UpperRight);
+            Label("ContributionLabel", _popup, 2030, 296, 199, 32, "贡献值", 23, Muted, TextAlignmentOptions.TopRight);
             var viewport = Rect("SourceViewport", _popup, 1093, 344, 1153, 300);
             var hit = viewport.gameObject.AddComponent<Image>(); hit.color = new Color(1, 1, 1, 0.001f);
             viewport.gameObject.AddComponent<RectMask2D>();
@@ -121,7 +122,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             scroll.horizontal = false; scroll.vertical = true; scroll.movementType = ScrollRect.MovementType.Clamped; scroll.scrollSensitivity = 45;
             Picture("TotalBackground", _popup, 1093, 658, 1153, 61, "mail_tab_selected", true);
             Label("TotalLabel", _popup, 1121, 670, 700, 40, "合计", 29, Cream);
-            _sourceTotal = Label("SourceTotal", _popup, 1900, 670, 322, 40, "—", 29, Cream, TextAnchor.UpperRight);
+            _sourceTotal = Label("SourceTotal", _popup, 1900, 670, 322, 40, "—", 29, Cream, TextAlignmentOptions.TopRight);
             Label("SourceNote", _popup, 1121, 744, 1090, 65, "单件贡献不等于封顶后的生效值；未同步项目不按零计入合计。", 21, Muted);
 
             _renamePopup = Rect("RoleRenamePopup", _root, 0, 0, 2560, 1080);
@@ -129,7 +130,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             renameScrim.color = new Color(0.02f, 0.04f, 0.03f, 0.56f);
             Picture("RenameFrame", _renamePopup, 830, 310, 900, 440, "window_frame", true, true, .66f);
             Picture("RenameTitlePlate", _renamePopup, 1046, 271, 468, 79, "title_plate");
-            Label("RenameHeading", _renamePopup, 1046, 290, 468, 43, "修改角色名", 32, Cream, TextAnchor.UpperCenter);
+            Label("RenameHeading", _renamePopup, 1046, 290, 468, 43, "修改角色名", 32, QdaoUguiTheme.GuildTitleCream, TextAlignmentOptions.Top);
             Action("CloseRename", _renamePopup, 1656, 331, 45, 53, "", "close-jade", HideRenamePopup, false);
             Label("RenameRuleHint", _renamePopup, 900, 376, 760, 62,
                 "需消耗背包中的「改名卡」，每次改名冷却 7 天，旧名保留保护 7 天；角色名仅限汉字、字母与数字。", 23, Muted);
@@ -304,19 +305,19 @@ namespace MmorpgClient.UI.Ugui.Attribute
                 float height = detailed ? 91 : 58;
                 Picture("SourceRow" + i, _sourceRows, 0, y, 1153, height - 3, "mail_row_normal", true);
                 Label("SourceName" + i, _sourceRows, 28, y + 12, 870, 34, sources[i].Name, 25, Ink);
-                Label("SourceValue" + i, _sourceRows, 920, y + 11, 209, 34, sources[i].Value, 25, Green, TextAnchor.UpperRight);
+                Label("SourceValue" + i, _sourceRows, 920, y + 11, 209, 34, sources[i].Value, 25, Green, TextAlignmentOptions.TopRight);
                 if (detailed) Label("SourceReason" + i, _sourceRows, 28, y + 48, 1095, 34, sources[i].Detail, 21, Muted);
                 y += height;
             }
             _sourceRows.sizeDelta = new Vector2(1153, Mathf.Max(300, y));
         }
-        private Text EffectRow(bool shield, float y)
+        private TMP_Text EffectRow(bool shield, float y)
         {
             Action(shield ? "ShieldDetail" : "HealingDetail", _effects, 1036, y, 1315, 127, "", "mail_row_normal",
                 () => ShowSkill(shield ? CharacterSupportModel.ShieldSkillId : CharacterSupportModel.HealingSkillId));
             Label(shield ? "ShieldLabel" : "HealingLabel", _effects, 1071, y + 44, 620, 44,
                 shield ? "护盾容量加成" : "施放治疗加成", 34, Ink);
-            var value = Label(shield ? "ShieldBonus" : "HealingBonus", _effects, 1690, y + 40, 260, 49, "—", 38, Green, TextAnchor.UpperRight);
+            var value = Label(shield ? "ShieldBonus" : "HealingBonus", _effects, 1690, y + 40, 260, 49, "—", 38, Green, TextAlignmentOptions.TopRight);
             Action(shield ? "ShieldSources" : "HealingSources", _effects, 2041, y + 34, 253, 58, "查看来源", "button_primary", () => ShowSource(shield));
             return value;
         }
@@ -332,7 +333,11 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private static void SelectChoice(Button button, bool selected)
         {
             button.image.sprite = CharacterPetArt.Get(selected ? "pet_card_selected" : "mail_row_normal");
-            foreach (var label in button.GetComponentsInChildren<Text>()) label.color = selected ? Cream : label.name == "Name" ? Green : Muted;
+            foreach (var label in button.GetComponentsInChildren<TMP_Text>())
+            {
+                label.color = selected ? Cream : label.name == "Name" ? Green : Muted;
+                QdaoUguiTheme.ApplyTypographyAuto(label);
+            }
         }
         private static Image Portrait(Transform parent, float x, float y, float size, out Image ring)
         {
@@ -349,7 +354,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private static void Plate(Transform parent, string text, float x, float y)
         {
             Picture(text + "Plate", parent, x, y, 282, 48, "section_plate");
-            Label(text + "Heading", parent, x + 4, y + 8, 230, 36, text, 28, Cream, TextAnchor.UpperCenter);
+            Label(text + "Heading", parent, x + 4, y + 8, 230, 36, text, 28, Cream, TextAlignmentOptions.Top);
         }
         private static RectTransform Rect(string name, Transform parent, float x, float y, float w, float h)
         {
@@ -364,13 +369,12 @@ namespace MmorpgClient.UI.Ugui.Attribute
             image.pixelsPerUnitMultiplier = 1f / (key == "application_card" ? .85f : borderScale);
             image.raycastTarget = raycast; image.enabled = image.sprite != null; return image;
         }
-        private static Text Label(string name, Transform parent, float x, float y, float w, float h, string text, int size, Color color, TextAnchor alignment = TextAnchor.UpperLeft)
+        private static TMP_Text Label(string name, Transform parent, float x, float y, float w, float h, string text, int size, Color color, TextAlignmentOptions alignment = TextAlignmentOptions.TopLeft)
         {
-            var label = Rect(name, parent, x, y, w, h).gameObject.AddComponent<Text>();
-            label.font = CharacterPetArt.Font; label.fontSize = size; label.color = color; label.text = text;
-            label.supportRichText = false; label.raycastTarget = false; label.alignment = alignment;
-            label.horizontalOverflow = HorizontalWrapMode.Wrap; label.verticalOverflow = VerticalWrapMode.Truncate;
-            label.resizeTextForBestFit = true; label.resizeTextMinSize = Mathf.Max(16, size - 8); label.resizeTextMaxSize = size;
+            var label = QdaoUguiFactory.CreateText(name, parent, x, y, w, h, text, size, color, alignment);
+            label.richText = false; label.raycastTarget = false;
+            label.textWrappingMode = TextWrappingModes.Normal; label.overflowMode = TextOverflowModes.Truncate;
+            label.enableAutoSizing = true; label.fontSizeMin = Mathf.Max(16f, size - 8f); label.fontSizeMax = size;
             return label;
         }
         private static Button Action(string name, Transform parent, float x, float y, float w, float h, string caption, string key, UnityEngine.Events.UnityAction callback, bool sliced = true)
@@ -380,13 +384,21 @@ namespace MmorpgClient.UI.Ugui.Attribute
             else if (key == "mail_tab_selected" || key == "mail_tab_normal") image.pixelsPerUnitMultiplier = 1f / .9f;
             var button = image.gameObject.AddComponent<Button>(); button.targetGraphic = image;
             button.navigation = new Navigation { mode = Navigation.Mode.Automatic };
-            var colors = button.colors; colors.highlightedColor = new Color(1, .96f, .78f); colors.pressedColor = new Color(.75f, .85f, .77f); button.colors = colors;
+            bool isPrimary = key == "button_primary" || key == "mail_tab_selected";
+            var colors = button.colors;
+            colors.highlightedColor = new Color(1, .96f, .78f);
+            colors.pressedColor = new Color(.84f, .92f, .86f);
+            colors.disabledColor = isPrimary ? new Color(.82f, .88f, .84f, .88f) : new Color(.88f, .87f, .84f, .80f);
+            button.colors = colors;
             button.onClick.AddListener(callback);
-            if (!string.IsNullOrEmpty(caption)) Label("Label", button.transform, 8, 0, w - 16, h, caption, 27,
-                key == "button_primary" || key == "mail_tab_selected" ? Cream : Ink, TextAnchor.MiddleCenter);
+            if (!string.IsNullOrEmpty(caption))
+            {
+                var lbl = Label("Label", button.transform, 10, 0, w - 20, h, caption, 27,
+                    isPrimary ? Cream : QdaoUguiTheme.GuildRichInk, TextAlignmentOptions.Center);
+                QdaoUguiTheme.ApplyTypography(lbl, isPrimary ? QdaoUiTypographyRole.Primary : QdaoUiTypographyRole.Heading);
+            }
             return button;
         }
-        private static Color Hex(string value) { ColorUtility.TryParseHtmlString("#" + value, out var color); return color; }
     }
 
     /// <summary>原生圆形头像裁剪,不把预览人物或背景烘焙进控件。</summary>

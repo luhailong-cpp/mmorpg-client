@@ -49,7 +49,7 @@ public static partial class PlayerSeasonReflection {
           "b25XZWVrbHlBZmZpeFZpZXcSEgoKd2Vla19pbmRleBgBIAEoDRIQCghhZmZp",
           "eF9pZBgCIAEoDRIMCgRuYW1lGAMgASgJEhMKC2Rlc2NyaXB0aW9uGAQgASgJ",
           "EhQKDHN0cmF0ZWd5X3RpcBgFIAEoCRIcChRyZWNvbW1lbmRlZF9zZWFsX2lk",
-          "cxgGIAMoDSLYCAoTU2Vhc29uU3RhdGVTbmFwc2hvdBIRCglhdmFpbGFibGUY",
+          "cxgGIAMoDSLHCQoTU2Vhc29uU3RhdGVTbmFwc2hvdBIRCglhdmFpbGFibGUY",
           "ASABKAgSGgoSdW5hdmFpbGFibGVfcmVhc29uGAIgASgJEhEKCXNlYXNvbl9p",
           "ZBgDIAEoDRITCgtzZWFzb25fbmFtZRgEIAEoCRITCgtzZWFzb25fZGVzYxgF",
           "IAEoCRIUCgxzdGFydHNfYXRfbXMYBiABKAQSEgoKZW5kc19hdF9tcxgHIAEo",
@@ -73,123 +73,135 @@ public static partial class PlayerSeasonReflection {
           "YWZmaXgYIiABKAsyFi5TZWFzb25XZWVrbHlBZmZpeFZpZXcSEwoLc2Vhc29u",
           "X3Rlcm0YIyABKA0SEwoLY3ljbGVfaW5kZXgYJCABKA0SFwoPY3ljbGVfcG9v",
           "bF9zaXplGCUgASgNEiQKHHJldHJvX2hvbm9yX3RhcmdldF9zZWFzb25faWQY",
-          "JiABKA0SIwobcmV0cm9faG9ub3JfdGFyZ2V0X2V4cGxpY2l0GCcgASgIItAC",
-          "ChxTYXZlZEJhdHRsZUJ1aWxkQm9va21hcmtWaWV3EhMKC2Jvb2ttYXJrX2lk",
-          "GAEgASgEEg0KBXRpdGxlGAIgASgJEhgKEHNvdXJjZV9iYXR0bGVfaWQYAyAB",
-          "KAQSGAoQc291cmNlX3BsYXllcl9pZBgEIAEoBBIaChJzb3VyY2VfcGxheWVy",
-          "X25hbWUYBSABKAkSEAoIY2xhc3NfaWQYBiABKA0SFAoMZm9ybWF0aW9uX2lk",
-          "GAcgASgNEhYKDnNlYXNvbl9zZWFsX2lkGAggASgNEhsKE2FjdGl2ZV9wZXRf",
-          "dGFibGVfaWQYCSABKA0SFwoPYWN0aXZlX3BldF9uYW1lGAogASgJEhcKD3Nr",
-          "aWxsX3RhYmxlX2lkcxgLIAMoDRIYChB3dXhpbmdfc2lnaWxfaWRzGAwgAygN",
-          "EhMKC3NhdmVkX2F0X21zGA0gASgEIjMKG0VxdWlwV3V4aW5nRm9ybWF0aW9u",
-          "UmVxdWVzdBIUCgxmb3JtYXRpb25faWQYASABKA0iigEKHEVxdWlwV3V4aW5n",
-          "Rm9ybWF0aW9uUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRp",
-          "cEluZm9NZXNzYWdlEh0KFWVxdWlwcGVkX2Zvcm1hdGlvbl9pZBgCIAEoDRIj",
-          "CgVzdGF0ZRgDIAEoCzIULlNlYXNvblN0YXRlU25hcHNob3Qi2QEKG1d1eGlu",
-          "Z1Rvd2VyTGVhZGVyYm9hcmRFbnRyeRIMCgRyYW5rGAEgASgNEhEKCXBsYXll",
-          "cl9pZBgCIAEoBBITCgtwbGF5ZXJfbmFtZRgDIAEoCRISCgpiZXN0X2Zsb29y",
-          "GAQgASgNEhMKC2Jlc3Rfcm91bmRzGAUgASgNEhQKDGZvcm1hdGlvbl9pZBgG",
-          "IAEoDRIRCglzaWdpbF9pZHMYByADKA0SFwoPdXNlX2ZyZWVfcHJlc2V0GAgg",
-          "ASgIEhkKEXJlc29uYW5jZV9lbGVtZW50GAkgASgNIuMGChhXdXhpbmdUb3dl",
-          "clN0YXRlU25hcHNob3QSEAoId2Vla19rZXkYASABKA0SEgoKcnVuX2FjdGl2",
-          "ZRgCIAEoCBIOCgZydW5faWQYAyABKAQSFQoNY3VycmVudF9mbG9vchgEIAEo",
-          "DRISCgptYXhfZmxvb3JzGAUgASgNEiAKGGN1cnJlbnRfZmxvb3JfZHVuZ2Vv",
-          "bl9pZBgGIAEoDRIlCh1jdXJyZW50X2Zsb29yX2xleWxpbmVfZWxlbWVudBgH",
-          "IAEoDRIYChBydW5fdG90YWxfcm91bmRzGAggASgNEhgKEGFjdGl2ZV9zaWdp",
-          "bF9pZHMYCSADKA0SHwoXcGVuZGluZ19vZmZlcl9zaWdpbF9pZHMYCiADKA0S",
-          "GwoTd2Vla2x5X2NsZWFyZWRfbWFzaxgLIAEoDRIZChF3ZWVrbHlfYmVzdF9m",
-          "bG9vchgMIAEoDRIaChJ3ZWVrbHlfYmVzdF9yb3VuZHMYDSABKA0SEAoIcmV2",
-          "aXNpb24YDiABKAQSOAoSd2Vla2x5X2xlYWRlcmJvYXJkGA8gAygLMhwuV3V4",
-          "aW5nVG93ZXJMZWFkZXJib2FyZEVudHJ5EhQKDHJ1bl93ZWVrX2tleRgQIAEo",
-          "DRIVCg1yZWFsbV92ZXJzaW9uGBEgASgNEhcKD3VzZV9mcmVlX3ByZXNldBgS",
-          "IAEoCBIbChNjaGFyYWN0ZXJfcHJlc2V0X2lkGBMgASgNEhUKDXBldF9wcmVz",
-          "ZXRfaWQYFCABKA0SGQoRY3VycmVudF9ub2RlX2tpbmQYFSABKA0SGgoScGVu",
-          "ZGluZ19ldmVudF9raW5kGBYgASgNEiAKGGFjdGl2ZV9yZXNvbmFuY2VfZWxl",
-          "bWVudBgXIAEoDRIZChFyb3V0ZV9jaG9pY2VfbWFzaxgYIAEoDRIYChBiZXN0",
-          "X3JvdW5kc19zZWxmGBkgASgNEhoKEmJlc3Rfcm91bmRzX3ByZXNldBgaIAEo",
-          "DRIgChh3ZWVrbHlfYmVzdF9mbG9vcl9wcmVzZXQYGyABKA0SIQoZd2Vla2x5",
-          "X2Jlc3Rfcm91bmRzX3ByZXNldBgcIAEoDRI/Chl3ZWVrbHlfbGVhZGVyYm9h",
-          "cmRfcHJlc2V0GB0gAygLMhwuV3V4aW5nVG93ZXJMZWFkZXJib2FyZEVudHJ5",
-          "IhwKGkdldFd1eGluZ1Rvd2VyU3RhdGVSZXF1ZXN0Im8KG0dldFd1eGluZ1Rv",
-          "d2VyU3RhdGVSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
-          "SW5mb01lc3NhZ2USKAoFc3RhdGUYAiABKAsyGS5XdXhpbmdUb3dlclN0YXRl",
-          "U25hcHNob3QiaQoaU3RhcnRXdXhpbmdUb3dlclJ1blJlcXVlc3QSFwoPdXNl",
-          "X2ZyZWVfcHJlc2V0GAEgASgIEhsKE2NoYXJhY3Rlcl9wcmVzZXRfaWQYAiAB",
-          "KA0SFQoNcGV0X3ByZXNldF9pZBgDIAEoDSJvChtTdGFydFd1eGluZ1Rvd2Vy",
-          "UnVuUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9N",
-          "ZXNzYWdlEigKBXN0YXRlGAIgASgLMhkuV3V4aW5nVG93ZXJTdGF0ZVNuYXBz",
-          "aG90IkgKG1BpY2tXdXhpbmdUb3dlclNpZ2lsUmVxdWVzdBIXCg9leHBlY3Rl",
-          "ZF9ydW5faWQYASABKAQSEAoIc2lnaWxfaWQYAiABKA0icAocUGlja1d1eGlu",
-          "Z1Rvd2VyU2lnaWxSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8u",
+          "JiABKA0SIwobcmV0cm9faG9ub3JfdGFyZ2V0X2V4cGxpY2l0GCcgASgIEhwK",
+          "FHNhdmVkX2J1aWxkX2NhcGFjaXR5GCggASgNEiAKGG1heF9zYXZlZF9idWls",
+          "ZF9jYXBhY2l0eRgpIAEoDRItCiVuZXh0X3NhdmVkX2J1aWxkX2V4cGFuZF9w",
+          "cmljZV9kaWFtb25kGCogASgEIuQCChxTYXZlZEJhdHRsZUJ1aWxkQm9va21h",
+          "cmtWaWV3EhMKC2Jvb2ttYXJrX2lkGAEgASgEEg0KBXRpdGxlGAIgASgJEhgK",
+          "EHNvdXJjZV9iYXR0bGVfaWQYAyABKAQSGAoQc291cmNlX3BsYXllcl9pZBgE",
+          "IAEoBBIaChJzb3VyY2VfcGxheWVyX25hbWUYBSABKAkSEAoIY2xhc3NfaWQY",
+          "BiABKA0SFAoMZm9ybWF0aW9uX2lkGAcgASgNEhYKDnNlYXNvbl9zZWFsX2lk",
+          "GAggASgNEhsKE2FjdGl2ZV9wZXRfdGFibGVfaWQYCSABKA0SFwoPYWN0aXZl",
+          "X3BldF9uYW1lGAogASgJEhcKD3NraWxsX3RhYmxlX2lkcxgLIAMoDRIYChB3",
+          "dXhpbmdfc2lnaWxfaWRzGAwgAygNEhMKC3NhdmVkX2F0X21zGA0gASgEEhIK",
+          "CnBpbl9yZXBsYXkYDiABKAgiMwobRXF1aXBXdXhpbmdGb3JtYXRpb25SZXF1",
+          "ZXN0EhQKDGZvcm1hdGlvbl9pZBgBIAEoDSKKAQocRXF1aXBXdXhpbmdGb3Jt",
+          "YXRpb25SZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
+          "b01lc3NhZ2USHQoVZXF1aXBwZWRfZm9ybWF0aW9uX2lkGAIgASgNEiMKBXN0",
+          "YXRlGAMgASgLMhQuU2Vhc29uU3RhdGVTbmFwc2hvdCLZAQobV3V4aW5nVG93",
+          "ZXJMZWFkZXJib2FyZEVudHJ5EgwKBHJhbmsYASABKA0SEQoJcGxheWVyX2lk",
+          "GAIgASgEEhMKC3BsYXllcl9uYW1lGAMgASgJEhIKCmJlc3RfZmxvb3IYBCAB",
+          "KA0SEwoLYmVzdF9yb3VuZHMYBSABKA0SFAoMZm9ybWF0aW9uX2lkGAYgASgN",
+          "EhEKCXNpZ2lsX2lkcxgHIAMoDRIXCg91c2VfZnJlZV9wcmVzZXQYCCABKAgS",
+          "GQoRcmVzb25hbmNlX2VsZW1lbnQYCSABKA0i4wYKGFd1eGluZ1Rvd2VyU3Rh",
+          "dGVTbmFwc2hvdBIQCgh3ZWVrX2tleRgBIAEoDRISCgpydW5fYWN0aXZlGAIg",
+          "ASgIEg4KBnJ1bl9pZBgDIAEoBBIVCg1jdXJyZW50X2Zsb29yGAQgASgNEhIK",
+          "Cm1heF9mbG9vcnMYBSABKA0SIAoYY3VycmVudF9mbG9vcl9kdW5nZW9uX2lk",
+          "GAYgASgNEiUKHWN1cnJlbnRfZmxvb3JfbGV5bGluZV9lbGVtZW50GAcgASgN",
+          "EhgKEHJ1bl90b3RhbF9yb3VuZHMYCCABKA0SGAoQYWN0aXZlX3NpZ2lsX2lk",
+          "cxgJIAMoDRIfChdwZW5kaW5nX29mZmVyX3NpZ2lsX2lkcxgKIAMoDRIbChN3",
+          "ZWVrbHlfY2xlYXJlZF9tYXNrGAsgASgNEhkKEXdlZWtseV9iZXN0X2Zsb29y",
+          "GAwgASgNEhoKEndlZWtseV9iZXN0X3JvdW5kcxgNIAEoDRIQCghyZXZpc2lv",
+          "bhgOIAEoBBI4ChJ3ZWVrbHlfbGVhZGVyYm9hcmQYDyADKAsyHC5XdXhpbmdU",
+          "b3dlckxlYWRlcmJvYXJkRW50cnkSFAoMcnVuX3dlZWtfa2V5GBAgASgNEhUK",
+          "DXJlYWxtX3ZlcnNpb24YESABKA0SFwoPdXNlX2ZyZWVfcHJlc2V0GBIgASgI",
+          "EhsKE2NoYXJhY3Rlcl9wcmVzZXRfaWQYEyABKA0SFQoNcGV0X3ByZXNldF9p",
+          "ZBgUIAEoDRIZChFjdXJyZW50X25vZGVfa2luZBgVIAEoDRIaChJwZW5kaW5n",
+          "X2V2ZW50X2tpbmQYFiABKA0SIAoYYWN0aXZlX3Jlc29uYW5jZV9lbGVtZW50",
+          "GBcgASgNEhkKEXJvdXRlX2Nob2ljZV9tYXNrGBggASgNEhgKEGJlc3Rfcm91",
+          "bmRzX3NlbGYYGSABKA0SGgoSYmVzdF9yb3VuZHNfcHJlc2V0GBogASgNEiAK",
+          "GHdlZWtseV9iZXN0X2Zsb29yX3ByZXNldBgbIAEoDRIhChl3ZWVrbHlfYmVz",
+          "dF9yb3VuZHNfcHJlc2V0GBwgASgNEj8KGXdlZWtseV9sZWFkZXJib2FyZF9w",
+          "cmVzZXQYHSADKAsyHC5XdXhpbmdUb3dlckxlYWRlcmJvYXJkRW50cnkiHAoa",
+          "R2V0V3V4aW5nVG93ZXJTdGF0ZVJlcXVlc3QibwobR2V0V3V4aW5nVG93ZXJT",
+          "dGF0ZVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
+          "TWVzc2FnZRIoCgVzdGF0ZRgCIAEoCzIZLld1eGluZ1Rvd2VyU3RhdGVTbmFw",
+          "c2hvdCJpChpTdGFydFd1eGluZ1Rvd2VyUnVuUmVxdWVzdBIXCg91c2VfZnJl",
+          "ZV9wcmVzZXQYASABKAgSGwoTY2hhcmFjdGVyX3ByZXNldF9pZBgCIAEoDRIV",
+          "Cg1wZXRfcHJlc2V0X2lkGAMgASgNIm8KG1N0YXJ0V3V4aW5nVG93ZXJSdW5S",
+          "ZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3Nh",
+          "Z2USKAoFc3RhdGUYAiABKAsyGS5XdXhpbmdUb3dlclN0YXRlU25hcHNob3Qi",
+          "SAobUGlja1d1eGluZ1Rvd2VyU2lnaWxSZXF1ZXN0EhcKD2V4cGVjdGVkX3J1",
+          "bl9pZBgBIAEoBBIQCghzaWdpbF9pZBgCIAEoDSJwChxQaWNrV3V4aW5nVG93",
+          "ZXJTaWdpbFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJ",
+          "bmZvTWVzc2FnZRIoCgVzdGF0ZRgCIAEoCzIZLld1eGluZ1Rvd2VyU3RhdGVT",
+          "bmFwc2hvdCI3ChxBYmFuZG9uV3V4aW5nVG93ZXJSdW5SZXF1ZXN0EhcKD2V4",
+          "cGVjdGVkX3J1bl9pZBgBIAEoBCJxCh1BYmFuZG9uV3V4aW5nVG93ZXJSdW5S",
+          "ZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3Nh",
+          "Z2USKAoFc3RhdGUYAiABKAsyGS5XdXhpbmdUb3dlclN0YXRlU25hcHNob3Qi",
+          "SQoeQ2hvb3NlV3V4aW5nUmVhbG1CcmFuY2hSZXF1ZXN0EhcKD2V4cGVjdGVk",
+          "X3J1bl9pZBgBIAEoBBIOCgZicmFuY2gYAiABKA0icwofQ2hvb3NlV3V4aW5n",
+          "UmVhbG1CcmFuY2hSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8u",
           "VGlwSW5mb01lc3NhZ2USKAoFc3RhdGUYAiABKAsyGS5XdXhpbmdUb3dlclN0",
-          "YXRlU25hcHNob3QiNwocQWJhbmRvbld1eGluZ1Rvd2VyUnVuUmVxdWVzdBIX",
-          "Cg9leHBlY3RlZF9ydW5faWQYASABKAQicQodQWJhbmRvbld1eGluZ1Rvd2Vy",
-          "UnVuUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9N",
-          "ZXNzYWdlEigKBXN0YXRlGAIgASgLMhkuV3V4aW5nVG93ZXJTdGF0ZVNuYXBz",
-          "aG90IkkKHkNob29zZVd1eGluZ1JlYWxtQnJhbmNoUmVxdWVzdBIXCg9leHBl",
-          "Y3RlZF9ydW5faWQYASABKAQSDgoGYnJhbmNoGAIgASgNInMKH0Nob29zZVd1",
-          "eGluZ1JlYWxtQnJhbmNoUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEo",
-          "CzIPLlRpcEluZm9NZXNzYWdlEigKBXN0YXRlGAIgASgLMhkuV3V4aW5nVG93",
-          "ZXJTdGF0ZVNuYXBzaG90ImcKHlJlc29sdmVXdXhpbmdSZWFsbUV2ZW50UmVx",
-          "dWVzdBIXCg9leHBlY3RlZF9ydW5faWQYASABKAQSFAoMb3B0aW9uX2luZGV4",
-          "GAIgASgNEhYKDnRhcmdldF9ib29uX2lkGAMgASgNIowBCh9SZXNvbHZlV3V4",
-          "aW5nUmVhbG1FdmVudFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
-          "Dy5UaXBJbmZvTWVzc2FnZRIoCgVzdGF0ZRgCIAEoCzIZLld1eGluZ1Rvd2Vy",
-          "U3RhdGVTbmFwc2hvdBIXCg9ncmFudGVkX2Jvb25faWQYAyABKA0iUQoeU2F2",
-          "ZUJhdHRsZUJ1aWxkQm9va21hcmtSZXF1ZXN0Ei8KCGJvb2ttYXJrGAEgASgL",
-          "Mh0uU2F2ZWRCYXR0bGVCdWlsZEJvb2ttYXJrVmlldyKtAQofU2F2ZUJhdHRs",
-          "ZUJ1aWxkQm9va21hcmtSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
-          "Mg8uVGlwSW5mb01lc3NhZ2USLAoFc2F2ZWQYAiABKAsyHS5TYXZlZEJhdHRs",
-          "ZUJ1aWxkQm9va21hcmtWaWV3EjQKDWFsbF9ib29rbWFya3MYAyADKAsyHS5T",
-          "YXZlZEJhdHRsZUJ1aWxkQm9va21hcmtWaWV3IjcKIERlbGV0ZUJhdHRsZUJ1",
-          "aWxkQm9va21hcmtSZXF1ZXN0EhMKC2Jvb2ttYXJrX2lkGAEgASgEIoEBCiFE",
-          "ZWxldGVCYXR0bGVCdWlsZEJvb2ttYXJrUmVzcG9uc2USJgoNZXJyb3JfbWVz",
-          "c2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEjQKDWFsbF9ib29rbWFya3MY",
-          "AiADKAsyHS5TYXZlZEJhdHRsZUJ1aWxkQm9va21hcmtWaWV3IhcKFUdldFNl",
-          "YXNvblN0YXRlUmVxdWVzdCJlChZHZXRTZWFzb25TdGF0ZVJlc3BvbnNlEiYK",
-          "DWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIjCgVzdGF0",
-          "ZRgCIAEoCzIULlNlYXNvblN0YXRlU25hcHNob3QiPAoWRXF1aXBTZWFzb25T",
-          "ZWFsUmVxdWVzdBIRCglzZWFzb25faWQYASABKA0SDwoHc2VhbF9pZBgCIAEo",
-          "DSJmChdFcXVpcFNlYXNvblNlYWxSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdl",
-          "GAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIwoFc3RhdGUYAiABKAsyFC5TZWFz",
-          "b25TdGF0ZVNuYXBzaG90Ip0BChhDYXRjaHVwU2Vhc29uU2VhbFJlcXVlc3QS",
-          "GQoRY2xpZW50X3JlcXVlc3RfaWQYASABKAQSEQoJc2Vhc29uX2lkGAIgASgN",
-          "EhUKDXBvaW50c190b19idXkYAyABKA0SHgoWZXhwZWN0ZWRfY3VycmVuY3lf",
-          "dHlwZRgEIAEoDRIcChRleHBlY3RlZF90b3RhbF9wcmljZRgFIAEoBCKoAQoZ",
-          "Q2F0Y2h1cFNlYXNvblNlYWxSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEg",
-          "ASgLMg8uVGlwSW5mb01lc3NhZ2USIwoFc3RhdGUYAiABKAsyFC5TZWFzb25T",
-          "dGF0ZVNuYXBzaG90EhAKCHJlcGxheWVkGAMgASgIEhQKDGFkZGVkX3BvaW50",
-          "cxgEIAEoDRIWCg5zcGVudF9jdXJyZW5jeRgFIAEoBCIvChpTZXRSZXRyb0hv",
-          "bm9yVGFyZ2V0UmVxdWVzdBIRCglzZWFzb25faWQYASABKA0iagobU2V0UmV0",
-          "cm9Ib25vclRhcmdldFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
+          "YXRlU25hcHNob3QiZwoeUmVzb2x2ZVd1eGluZ1JlYWxtRXZlbnRSZXF1ZXN0",
+          "EhcKD2V4cGVjdGVkX3J1bl9pZBgBIAEoBBIUCgxvcHRpb25faW5kZXgYAiAB",
+          "KA0SFgoOdGFyZ2V0X2Jvb25faWQYAyABKA0ijAEKH1Jlc29sdmVXdXhpbmdS",
+          "ZWFsbUV2ZW50UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRp",
+          "cEluZm9NZXNzYWdlEigKBXN0YXRlGAIgASgLMhkuV3V4aW5nVG93ZXJTdGF0",
+          "ZVNuYXBzaG90EhcKD2dyYW50ZWRfYm9vbl9pZBgDIAEoDSJRCh5TYXZlQmF0",
+          "dGxlQnVpbGRCb29rbWFya1JlcXVlc3QSLwoIYm9va21hcmsYASABKAsyHS5T",
+          "YXZlZEJhdHRsZUJ1aWxkQm9va21hcmtWaWV3Iq0BCh9TYXZlQmF0dGxlQnVp",
+          "bGRCb29rbWFya1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5U",
+          "aXBJbmZvTWVzc2FnZRIsCgVzYXZlZBgCIAEoCzIdLlNhdmVkQmF0dGxlQnVp",
+          "bGRCb29rbWFya1ZpZXcSNAoNYWxsX2Jvb2ttYXJrcxgDIAMoCzIdLlNhdmVk",
+          "QmF0dGxlQnVpbGRCb29rbWFya1ZpZXciNwogRGVsZXRlQmF0dGxlQnVpbGRC",
+          "b29rbWFya1JlcXVlc3QSEwoLYm9va21hcmtfaWQYASABKAQigQEKIURlbGV0",
+          "ZUJhdHRsZUJ1aWxkQm9va21hcmtSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdl",
+          "GAEgASgLMg8uVGlwSW5mb01lc3NhZ2USNAoNYWxsX2Jvb2ttYXJrcxgCIAMo",
+          "CzIdLlNhdmVkQmF0dGxlQnVpbGRCb29rbWFya1ZpZXciFwoVR2V0U2Vhc29u",
+          "U3RhdGVSZXF1ZXN0ImUKFkdldFNlYXNvblN0YXRlUmVzcG9uc2USJgoNZXJy",
+          "b3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiMKBXN0YXRlGAIg",
+          "ASgLMhQuU2Vhc29uU3RhdGVTbmFwc2hvdCI8ChZFcXVpcFNlYXNvblNlYWxS",
+          "ZXF1ZXN0EhEKCXNlYXNvbl9pZBgBIAEoDRIPCgdzZWFsX2lkGAIgASgNImYK",
+          "F0VxdWlwU2Vhc29uU2VhbFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASAB",
+          "KAsyDy5UaXBJbmZvTWVzc2FnZRIjCgVzdGF0ZRgCIAEoCzIULlNlYXNvblN0",
+          "YXRlU25hcHNob3QinQEKGENhdGNodXBTZWFzb25TZWFsUmVxdWVzdBIZChFj",
+          "bGllbnRfcmVxdWVzdF9pZBgBIAEoBBIRCglzZWFzb25faWQYAiABKA0SFQoN",
+          "cG9pbnRzX3RvX2J1eRgDIAEoDRIeChZleHBlY3RlZF9jdXJyZW5jeV90eXBl",
+          "GAQgASgNEhwKFGV4cGVjdGVkX3RvdGFsX3ByaWNlGAUgASgEIqgBChlDYXRj",
+          "aHVwU2Vhc29uU2VhbFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
           "Dy5UaXBJbmZvTWVzc2FnZRIjCgVzdGF0ZRgCIAEoCzIULlNlYXNvblN0YXRl",
-          "U25hcHNob3Qy8AgKF1NjZW5lU2Vhc29uQ2xpZW50UGxheWVyEkEKDkdldFNl",
-          "YXNvblN0YXRlEhYuR2V0U2Vhc29uU3RhdGVSZXF1ZXN0GhcuR2V0U2Vhc29u",
-          "U3RhdGVSZXNwb25zZRJECg9FcXVpcFNlYXNvblNlYWwSFy5FcXVpcFNlYXNv",
-          "blNlYWxSZXF1ZXN0GhguRXF1aXBTZWFzb25TZWFsUmVzcG9uc2USSgoRQ2F0",
-          "Y2h1cFNlYXNvblNlYWwSGS5DYXRjaHVwU2Vhc29uU2VhbFJlcXVlc3QaGi5D",
-          "YXRjaHVwU2Vhc29uU2VhbFJlc3BvbnNlElMKFEVxdWlwV3V4aW5nRm9ybWF0",
-          "aW9uEhwuRXF1aXBXdXhpbmdGb3JtYXRpb25SZXF1ZXN0Gh0uRXF1aXBXdXhp",
-          "bmdGb3JtYXRpb25SZXNwb25zZRJQChNHZXRXdXhpbmdUb3dlclN0YXRlEhsu",
-          "R2V0V3V4aW5nVG93ZXJTdGF0ZVJlcXVlc3QaHC5HZXRXdXhpbmdUb3dlclN0",
-          "YXRlUmVzcG9uc2USUAoTU3RhcnRXdXhpbmdUb3dlclJ1bhIbLlN0YXJ0V3V4",
-          "aW5nVG93ZXJSdW5SZXF1ZXN0GhwuU3RhcnRXdXhpbmdUb3dlclJ1blJlc3Bv",
-          "bnNlElMKFFBpY2tXdXhpbmdUb3dlclNpZ2lsEhwuUGlja1d1eGluZ1Rvd2Vy",
-          "U2lnaWxSZXF1ZXN0Gh0uUGlja1d1eGluZ1Rvd2VyU2lnaWxSZXNwb25zZRJW",
-          "ChVBYmFuZG9uV3V4aW5nVG93ZXJSdW4SHS5BYmFuZG9uV3V4aW5nVG93ZXJS",
-          "dW5SZXF1ZXN0Gh4uQWJhbmRvbld1eGluZ1Rvd2VyUnVuUmVzcG9uc2USXAoX",
-          "U2F2ZUJhdHRsZUJ1aWxkQm9va21hcmsSHy5TYXZlQmF0dGxlQnVpbGRCb29r",
-          "bWFya1JlcXVlc3QaIC5TYXZlQmF0dGxlQnVpbGRCb29rbWFya1Jlc3BvbnNl",
-          "EmIKGURlbGV0ZUJhdHRsZUJ1aWxkQm9va21hcmsSIS5EZWxldGVCYXR0bGVC",
-          "dWlsZEJvb2ttYXJrUmVxdWVzdBoiLkRlbGV0ZUJhdHRsZUJ1aWxkQm9va21h",
-          "cmtSZXNwb25zZRJQChNTZXRSZXRyb0hvbm9yVGFyZ2V0EhsuU2V0UmV0cm9I",
-          "b25vclRhcmdldFJlcXVlc3QaHC5TZXRSZXRyb0hvbm9yVGFyZ2V0UmVzcG9u",
-          "c2USXAoXQ2hvb3NlV3V4aW5nUmVhbG1CcmFuY2gSHy5DaG9vc2VXdXhpbmdS",
-          "ZWFsbUJyYW5jaFJlcXVlc3QaIC5DaG9vc2VXdXhpbmdSZWFsbUJyYW5jaFJl",
-          "c3BvbnNlElwKF1Jlc29sdmVXdXhpbmdSZWFsbUV2ZW50Eh8uUmVzb2x2ZVd1",
-          "eGluZ1JlYWxtRXZlbnRSZXF1ZXN0GiAuUmVzb2x2ZVd1eGluZ1JlYWxtRXZl",
-          "bnRSZXNwb25zZRoKgKjDAQGIqMMBAUIOWgVzY2VuZYABAZjUYQNiBnByb3Rv",
-          "Mw=="));
+          "U25hcHNob3QSEAoIcmVwbGF5ZWQYAyABKAgSFAoMYWRkZWRfcG9pbnRzGAQg",
+          "ASgNEhYKDnNwZW50X2N1cnJlbmN5GAUgASgEIi8KGlNldFJldHJvSG9ub3JU",
+          "YXJnZXRSZXF1ZXN0EhEKCXNlYXNvbl9pZBgBIAEoDSJqChtTZXRSZXRyb0hv",
+          "bm9yVGFyZ2V0UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRp",
+          "cEluZm9NZXNzYWdlEiMKBXN0YXRlGAIgASgLMhQuU2Vhc29uU3RhdGVTbmFw",
+          "c2hvdCJ0ChxFeHBhbmRTYXZlZEJ1aWxkU2xvdHNSZXF1ZXN0EhkKEWNsaWVu",
+          "dF9yZXF1ZXN0X2lkGAEgASgEEhkKEWV4cGVjdGVkX2NhcGFjaXR5GAIgASgN",
+          "Eh4KFmV4cGVjdGVkX3ByaWNlX2RpYW1vbmQYAyABKAQi2gEKHUV4cGFuZFNh",
+          "dmVkQnVpbGRTbG90c1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
+          "Dy5UaXBJbmZvTWVzc2FnZRIQCghyZXBsYXllZBgCIAEoCBIUCgxuZXdfY2Fw",
+          "YWNpdHkYAyABKA0SFAoMbWF4X2NhcGFjaXR5GAQgASgNEhUKDXNwZW50X2Rp",
+          "YW1vbmQYBSABKAQSFwoPZGlhbW9uZF9iYWxhbmNlGAYgASgEEiMKBXN0YXRl",
+          "GAcgASgLMhQuU2Vhc29uU3RhdGVTbmFwc2hvdDLICQoXU2NlbmVTZWFzb25D",
+          "bGllbnRQbGF5ZXISQQoOR2V0U2Vhc29uU3RhdGUSFi5HZXRTZWFzb25TdGF0",
+          "ZVJlcXVlc3QaFy5HZXRTZWFzb25TdGF0ZVJlc3BvbnNlEkQKD0VxdWlwU2Vh",
+          "c29uU2VhbBIXLkVxdWlwU2Vhc29uU2VhbFJlcXVlc3QaGC5FcXVpcFNlYXNv",
+          "blNlYWxSZXNwb25zZRJKChFDYXRjaHVwU2Vhc29uU2VhbBIZLkNhdGNodXBT",
+          "ZWFzb25TZWFsUmVxdWVzdBoaLkNhdGNodXBTZWFzb25TZWFsUmVzcG9uc2US",
+          "UwoURXF1aXBXdXhpbmdGb3JtYXRpb24SHC5FcXVpcFd1eGluZ0Zvcm1hdGlv",
+          "blJlcXVlc3QaHS5FcXVpcFd1eGluZ0Zvcm1hdGlvblJlc3BvbnNlElAKE0dl",
+          "dFd1eGluZ1Rvd2VyU3RhdGUSGy5HZXRXdXhpbmdUb3dlclN0YXRlUmVxdWVz",
+          "dBocLkdldFd1eGluZ1Rvd2VyU3RhdGVSZXNwb25zZRJQChNTdGFydFd1eGlu",
+          "Z1Rvd2VyUnVuEhsuU3RhcnRXdXhpbmdUb3dlclJ1blJlcXVlc3QaHC5TdGFy",
+          "dFd1eGluZ1Rvd2VyUnVuUmVzcG9uc2USUwoUUGlja1d1eGluZ1Rvd2VyU2ln",
+          "aWwSHC5QaWNrV3V4aW5nVG93ZXJTaWdpbFJlcXVlc3QaHS5QaWNrV3V4aW5n",
+          "VG93ZXJTaWdpbFJlc3BvbnNlElYKFUFiYW5kb25XdXhpbmdUb3dlclJ1bhId",
+          "LkFiYW5kb25XdXhpbmdUb3dlclJ1blJlcXVlc3QaHi5BYmFuZG9uV3V4aW5n",
+          "VG93ZXJSdW5SZXNwb25zZRJcChdTYXZlQmF0dGxlQnVpbGRCb29rbWFyaxIf",
+          "LlNhdmVCYXR0bGVCdWlsZEJvb2ttYXJrUmVxdWVzdBogLlNhdmVCYXR0bGVC",
+          "dWlsZEJvb2ttYXJrUmVzcG9uc2USYgoZRGVsZXRlQmF0dGxlQnVpbGRCb29r",
+          "bWFyaxIhLkRlbGV0ZUJhdHRsZUJ1aWxkQm9va21hcmtSZXF1ZXN0GiIuRGVs",
+          "ZXRlQmF0dGxlQnVpbGRCb29rbWFya1Jlc3BvbnNlElAKE1NldFJldHJvSG9u",
+          "b3JUYXJnZXQSGy5TZXRSZXRyb0hvbm9yVGFyZ2V0UmVxdWVzdBocLlNldFJl",
+          "dHJvSG9ub3JUYXJnZXRSZXNwb25zZRJcChdDaG9vc2VXdXhpbmdSZWFsbUJy",
+          "YW5jaBIfLkNob29zZVd1eGluZ1JlYWxtQnJhbmNoUmVxdWVzdBogLkNob29z",
+          "ZVd1eGluZ1JlYWxtQnJhbmNoUmVzcG9uc2USXAoXUmVzb2x2ZVd1eGluZ1Jl",
+          "YWxtRXZlbnQSHy5SZXNvbHZlV3V4aW5nUmVhbG1FdmVudFJlcXVlc3QaIC5S",
+          "ZXNvbHZlV3V4aW5nUmVhbG1FdmVudFJlc3BvbnNlElYKFUV4cGFuZFNhdmVk",
+          "QnVpbGRTbG90cxIdLkV4cGFuZFNhdmVkQnVpbGRTbG90c1JlcXVlc3QaHi5F",
+          "eHBhbmRTYXZlZEJ1aWxkU2xvdHNSZXNwb25zZRoKgKjDAQGIqMMBAUIOWgVz",
+          "Y2VuZYABAZjUYQNiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -197,8 +209,8 @@ public static partial class PlayerSeasonReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::SeasonSkillSummary), global::SeasonSkillSummary.Parser, new[]{ "SkillTableId", "Name", "Description", "IconKey", "Category", "TargetTeam", "MaxTargets", "ManaPercent", "CooldownRounds", "UnlockLevel", "MaxRank", "EffectiveRank", "Unlocked", "AbilityKind", "CasterMask", "ActionTags" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SeasonHonorView), global::SeasonHonorView.Parser, new[]{ "SeasonId", "SeasonName", "HonorTitleName", "HonorBadgeIconKey", "ProgressPoints", "MaxPoints", "Unlocked", "IsCurrentSeason", "IsRetroTarget", "RetroProgressPoints" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SeasonWeeklyAffixView), global::SeasonWeeklyAffixView.Parser, new[]{ "WeekIndex", "AffixId", "Name", "Description", "StrategyTip", "RecommendedSealIds" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SeasonStateSnapshot), global::SeasonStateSnapshot.Parser, new[]{ "Available", "UnavailableReason", "SeasonId", "SeasonName", "SeasonDesc", "StartsAtMs", "EndsAtMs", "ServerNowMs", "EquippedSealId", "ProgressPoints", "MaxPoints", "BattlePoints", "CatchupPoints", "CurrentMaxHealthBps", "CapMaxHealthBps", "CurrentDefenseBps", "CapDefenseBps", "PveWinPoints", "PvpWinPoints", "PvpOtherPoints", "CatchupCurrencyType", "CatchupPricePerPoint", "CatchupRemainingTotalPrice", "CurrencyBalance", "CanSwitchSeal", "CanCatchup", "ActionUnavailableReason", "Revision", "Seals", "SeasonSkills", "EquippedFormationId", "SavedBuilds", "Honors", "WeeklyAffix", "SeasonTerm", "CycleIndex", "CyclePoolSize", "RetroHonorTargetSeasonId", "RetroHonorTargetExplicit" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SavedBattleBuildBookmarkView), global::SavedBattleBuildBookmarkView.Parser, new[]{ "BookmarkId", "Title", "SourceBattleId", "SourcePlayerId", "SourcePlayerName", "ClassId", "FormationId", "SeasonSealId", "ActivePetTableId", "ActivePetName", "SkillTableIds", "WuxingSigilIds", "SavedAtMs" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SeasonStateSnapshot), global::SeasonStateSnapshot.Parser, new[]{ "Available", "UnavailableReason", "SeasonId", "SeasonName", "SeasonDesc", "StartsAtMs", "EndsAtMs", "ServerNowMs", "EquippedSealId", "ProgressPoints", "MaxPoints", "BattlePoints", "CatchupPoints", "CurrentMaxHealthBps", "CapMaxHealthBps", "CurrentDefenseBps", "CapDefenseBps", "PveWinPoints", "PvpWinPoints", "PvpOtherPoints", "CatchupCurrencyType", "CatchupPricePerPoint", "CatchupRemainingTotalPrice", "CurrencyBalance", "CanSwitchSeal", "CanCatchup", "ActionUnavailableReason", "Revision", "Seals", "SeasonSkills", "EquippedFormationId", "SavedBuilds", "Honors", "WeeklyAffix", "SeasonTerm", "CycleIndex", "CyclePoolSize", "RetroHonorTargetSeasonId", "RetroHonorTargetExplicit", "SavedBuildCapacity", "MaxSavedBuildCapacity", "NextSavedBuildExpandPriceDiamond" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SavedBattleBuildBookmarkView), global::SavedBattleBuildBookmarkView.Parser, new[]{ "BookmarkId", "Title", "SourceBattleId", "SourcePlayerId", "SourcePlayerName", "ClassId", "FormationId", "SeasonSealId", "ActivePetTableId", "ActivePetName", "SkillTableIds", "WuxingSigilIds", "SavedAtMs", "PinReplay" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipWuxingFormationRequest), global::EquipWuxingFormationRequest.Parser, new[]{ "FormationId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipWuxingFormationResponse), global::EquipWuxingFormationResponse.Parser, new[]{ "ErrorMessage", "EquippedFormationId", "State" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::WuxingTowerLeaderboardEntry), global::WuxingTowerLeaderboardEntry.Parser, new[]{ "Rank", "PlayerId", "PlayerName", "BestFloor", "BestRounds", "FormationId", "SigilIds", "UseFreePreset", "ResonanceElement" }, null, null, null, null),
@@ -226,7 +238,9 @@ public static partial class PlayerSeasonReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::CatchupSeasonSealRequest), global::CatchupSeasonSealRequest.Parser, new[]{ "ClientRequestId", "SeasonId", "PointsToBuy", "ExpectedCurrencyType", "ExpectedTotalPrice" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::CatchupSeasonSealResponse), global::CatchupSeasonSealResponse.Parser, new[]{ "ErrorMessage", "State", "Replayed", "AddedPoints", "SpentCurrency" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SetRetroHonorTargetRequest), global::SetRetroHonorTargetRequest.Parser, new[]{ "SeasonId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SetRetroHonorTargetResponse), global::SetRetroHonorTargetResponse.Parser, new[]{ "ErrorMessage", "State" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::SetRetroHonorTargetResponse), global::SetRetroHonorTargetResponse.Parser, new[]{ "ErrorMessage", "State" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ExpandSavedBuildSlotsRequest), global::ExpandSavedBuildSlotsRequest.Parser, new[]{ "ClientRequestId", "ExpectedCapacity", "ExpectedPriceDiamond" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ExpandSavedBuildSlotsResponse), global::ExpandSavedBuildSlotsResponse.Parser, new[]{ "ErrorMessage", "Replayed", "NewCapacity", "MaxCapacity", "SpentDiamond", "DiamondBalance", "State" }, null, null, null, null)
         }));
   }
   #endregion
@@ -2736,6 +2750,9 @@ public sealed partial class SeasonStateSnapshot : pb::IMessage<SeasonStateSnapsh
     cyclePoolSize_ = other.cyclePoolSize_;
     retroHonorTargetSeasonId_ = other.retroHonorTargetSeasonId_;
     retroHonorTargetExplicit_ = other.retroHonorTargetExplicit_;
+    savedBuildCapacity_ = other.savedBuildCapacity_;
+    maxSavedBuildCapacity_ = other.maxSavedBuildCapacity_;
+    nextSavedBuildExpandPriceDiamond_ = other.nextSavedBuildExpandPriceDiamond_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -3242,6 +3259,51 @@ public sealed partial class SeasonStateSnapshot : pb::IMessage<SeasonStateSnapsh
     }
   }
 
+  /// <summary>Field number for the "saved_build_capacity" field.</summary>
+  public const int SavedBuildCapacityFieldNumber = 40;
+  private uint savedBuildCapacity_;
+  /// <summary>
+  /// 战报配装收藏夹当前容量（默认 12，每次 +12 封顶 48）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SavedBuildCapacity {
+    get { return savedBuildCapacity_; }
+    set {
+      savedBuildCapacity_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_saved_build_capacity" field.</summary>
+  public const int MaxSavedBuildCapacityFieldNumber = 41;
+  private uint maxSavedBuildCapacity_;
+  /// <summary>
+  /// 战报配装收藏夹最大容量（48）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaxSavedBuildCapacity {
+    get { return maxSavedBuildCapacity_; }
+    set {
+      maxSavedBuildCapacity_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "next_saved_build_expand_price_diamond" field.</summary>
+  public const int NextSavedBuildExpandPriceDiamondFieldNumber = 42;
+  private ulong nextSavedBuildExpandPriceDiamond_;
+  /// <summary>
+  /// 下一次扩容 +12 位报价（真实灵石 60；已满为 0）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong NextSavedBuildExpandPriceDiamond {
+    get { return nextSavedBuildExpandPriceDiamond_; }
+    set {
+      nextSavedBuildExpandPriceDiamond_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -3296,6 +3358,9 @@ public sealed partial class SeasonStateSnapshot : pb::IMessage<SeasonStateSnapsh
     if (CyclePoolSize != other.CyclePoolSize) return false;
     if (RetroHonorTargetSeasonId != other.RetroHonorTargetSeasonId) return false;
     if (RetroHonorTargetExplicit != other.RetroHonorTargetExplicit) return false;
+    if (SavedBuildCapacity != other.SavedBuildCapacity) return false;
+    if (MaxSavedBuildCapacity != other.MaxSavedBuildCapacity) return false;
+    if (NextSavedBuildExpandPriceDiamond != other.NextSavedBuildExpandPriceDiamond) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -3342,6 +3407,9 @@ public sealed partial class SeasonStateSnapshot : pb::IMessage<SeasonStateSnapsh
     if (CyclePoolSize != 0) hash ^= CyclePoolSize.GetHashCode();
     if (RetroHonorTargetSeasonId != 0) hash ^= RetroHonorTargetSeasonId.GetHashCode();
     if (RetroHonorTargetExplicit != false) hash ^= RetroHonorTargetExplicit.GetHashCode();
+    if (SavedBuildCapacity != 0) hash ^= SavedBuildCapacity.GetHashCode();
+    if (MaxSavedBuildCapacity != 0) hash ^= MaxSavedBuildCapacity.GetHashCode();
+    if (NextSavedBuildExpandPriceDiamond != 0UL) hash ^= NextSavedBuildExpandPriceDiamond.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -3504,6 +3572,18 @@ public sealed partial class SeasonStateSnapshot : pb::IMessage<SeasonStateSnapsh
       output.WriteRawTag(184, 2);
       output.WriteBool(RetroHonorTargetExplicit);
     }
+    if (SavedBuildCapacity != 0) {
+      output.WriteRawTag(192, 2);
+      output.WriteUInt32(SavedBuildCapacity);
+    }
+    if (MaxSavedBuildCapacity != 0) {
+      output.WriteRawTag(200, 2);
+      output.WriteUInt32(MaxSavedBuildCapacity);
+    }
+    if (NextSavedBuildExpandPriceDiamond != 0UL) {
+      output.WriteRawTag(208, 2);
+      output.WriteUInt64(NextSavedBuildExpandPriceDiamond);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3658,6 +3738,18 @@ public sealed partial class SeasonStateSnapshot : pb::IMessage<SeasonStateSnapsh
       output.WriteRawTag(184, 2);
       output.WriteBool(RetroHonorTargetExplicit);
     }
+    if (SavedBuildCapacity != 0) {
+      output.WriteRawTag(192, 2);
+      output.WriteUInt32(SavedBuildCapacity);
+    }
+    if (MaxSavedBuildCapacity != 0) {
+      output.WriteRawTag(200, 2);
+      output.WriteUInt32(MaxSavedBuildCapacity);
+    }
+    if (NextSavedBuildExpandPriceDiamond != 0UL) {
+      output.WriteRawTag(208, 2);
+      output.WriteUInt64(NextSavedBuildExpandPriceDiamond);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -3776,6 +3868,15 @@ public sealed partial class SeasonStateSnapshot : pb::IMessage<SeasonStateSnapsh
     }
     if (RetroHonorTargetExplicit != false) {
       size += 2 + 1;
+    }
+    if (SavedBuildCapacity != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(SavedBuildCapacity);
+    }
+    if (MaxSavedBuildCapacity != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(MaxSavedBuildCapacity);
+    }
+    if (NextSavedBuildExpandPriceDiamond != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(NextSavedBuildExpandPriceDiamond);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -3900,6 +4001,15 @@ public sealed partial class SeasonStateSnapshot : pb::IMessage<SeasonStateSnapsh
     }
     if (other.RetroHonorTargetExplicit != false) {
       RetroHonorTargetExplicit = other.RetroHonorTargetExplicit;
+    }
+    if (other.SavedBuildCapacity != 0) {
+      SavedBuildCapacity = other.SavedBuildCapacity;
+    }
+    if (other.MaxSavedBuildCapacity != 0) {
+      MaxSavedBuildCapacity = other.MaxSavedBuildCapacity;
+    }
+    if (other.NextSavedBuildExpandPriceDiamond != 0UL) {
+      NextSavedBuildExpandPriceDiamond = other.NextSavedBuildExpandPriceDiamond;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -4077,6 +4187,18 @@ public sealed partial class SeasonStateSnapshot : pb::IMessage<SeasonStateSnapsh
         }
         case 312: {
           RetroHonorTargetExplicit = input.ReadBool();
+          break;
+        }
+        case 320: {
+          SavedBuildCapacity = input.ReadUInt32();
+          break;
+        }
+        case 328: {
+          MaxSavedBuildCapacity = input.ReadUInt32();
+          break;
+        }
+        case 336: {
+          NextSavedBuildExpandPriceDiamond = input.ReadUInt64();
           break;
         }
       }
@@ -4257,6 +4379,18 @@ public sealed partial class SeasonStateSnapshot : pb::IMessage<SeasonStateSnapsh
           RetroHonorTargetExplicit = input.ReadBool();
           break;
         }
+        case 320: {
+          SavedBuildCapacity = input.ReadUInt32();
+          break;
+        }
+        case 328: {
+          MaxSavedBuildCapacity = input.ReadUInt32();
+          break;
+        }
+        case 336: {
+          NextSavedBuildExpandPriceDiamond = input.ReadUInt64();
+          break;
+        }
       }
     }
   }
@@ -4312,6 +4446,7 @@ public sealed partial class SavedBattleBuildBookmarkView : pb::IMessage<SavedBat
     skillTableIds_ = other.skillTableIds_.Clone();
     wuxingSigilIds_ = other.wuxingSigilIds_.Clone();
     savedAtMs_ = other.savedAtMs_;
+    pinReplay_ = other.pinReplay_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -4475,6 +4610,18 @@ public sealed partial class SavedBattleBuildBookmarkView : pb::IMessage<SavedBat
     }
   }
 
+  /// <summary>Field number for the "pin_replay" field.</summary>
+  public const int PinReplayFieldNumber = 14;
+  private bool pinReplay_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool PinReplay {
+    get { return pinReplay_; }
+    set {
+      pinReplay_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -4503,6 +4650,7 @@ public sealed partial class SavedBattleBuildBookmarkView : pb::IMessage<SavedBat
     if(!skillTableIds_.Equals(other.skillTableIds_)) return false;
     if(!wuxingSigilIds_.Equals(other.wuxingSigilIds_)) return false;
     if (SavedAtMs != other.SavedAtMs) return false;
+    if (PinReplay != other.PinReplay) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -4523,6 +4671,7 @@ public sealed partial class SavedBattleBuildBookmarkView : pb::IMessage<SavedBat
     hash ^= skillTableIds_.GetHashCode();
     hash ^= wuxingSigilIds_.GetHashCode();
     if (SavedAtMs != 0UL) hash ^= SavedAtMs.GetHashCode();
+    if (PinReplay != false) hash ^= PinReplay.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -4587,6 +4736,10 @@ public sealed partial class SavedBattleBuildBookmarkView : pb::IMessage<SavedBat
       output.WriteRawTag(104);
       output.WriteUInt64(SavedAtMs);
     }
+    if (PinReplay != false) {
+      output.WriteRawTag(112);
+      output.WriteBool(PinReplay);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -4643,6 +4796,10 @@ public sealed partial class SavedBattleBuildBookmarkView : pb::IMessage<SavedBat
       output.WriteRawTag(104);
       output.WriteUInt64(SavedAtMs);
     }
+    if (PinReplay != false) {
+      output.WriteRawTag(112);
+      output.WriteBool(PinReplay);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -4687,6 +4844,9 @@ public sealed partial class SavedBattleBuildBookmarkView : pb::IMessage<SavedBat
     size += wuxingSigilIds_.CalculateSize(_repeated_wuxingSigilIds_codec);
     if (SavedAtMs != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(SavedAtMs);
+    }
+    if (PinReplay != false) {
+      size += 1 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -4734,6 +4894,9 @@ public sealed partial class SavedBattleBuildBookmarkView : pb::IMessage<SavedBat
     wuxingSigilIds_.Add(other.wuxingSigilIds_);
     if (other.SavedAtMs != 0UL) {
       SavedAtMs = other.SavedAtMs;
+    }
+    if (other.PinReplay != false) {
+      PinReplay = other.PinReplay;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -4808,6 +4971,10 @@ public sealed partial class SavedBattleBuildBookmarkView : pb::IMessage<SavedBat
           SavedAtMs = input.ReadUInt64();
           break;
         }
+        case 112: {
+          PinReplay = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -4879,6 +5046,10 @@ public sealed partial class SavedBattleBuildBookmarkView : pb::IMessage<SavedBat
         }
         case 104: {
           SavedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 112: {
+          PinReplay = input.ReadBool();
           break;
         }
       }
@@ -13033,6 +13204,719 @@ public sealed partial class SetRetroHonorTargetResponse : pb::IMessage<SetRetroH
           break;
         }
         case 18: {
+          if (state_ == null) {
+            State = new global::SeasonStateSnapshot();
+          }
+          input.ReadMessage(State);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 扩容战报与配装收藏夹容量（12 -> 24 -> 36 -> 48，每次 +12 条、60 真实灵石，零战力纯收藏便利）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class ExpandSavedBuildSlotsRequest : pb::IMessage<ExpandSavedBuildSlotsRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ExpandSavedBuildSlotsRequest> _parser = new pb::MessageParser<ExpandSavedBuildSlotsRequest>(() => new ExpandSavedBuildSlotsRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ExpandSavedBuildSlotsRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[34]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ExpandSavedBuildSlotsRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ExpandSavedBuildSlotsRequest(ExpandSavedBuildSlotsRequest other) : this() {
+    clientRequestId_ = other.clientRequestId_;
+    expectedCapacity_ = other.expectedCapacity_;
+    expectedPriceDiamond_ = other.expectedPriceDiamond_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ExpandSavedBuildSlotsRequest Clone() {
+    return new ExpandSavedBuildSlotsRequest(this);
+  }
+
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 1;
+  private ulong clientRequestId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "expected_capacity" field.</summary>
+  public const int ExpectedCapacityFieldNumber = 2;
+  private uint expectedCapacity_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ExpectedCapacity {
+    get { return expectedCapacity_; }
+    set {
+      expectedCapacity_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "expected_price_diamond" field.</summary>
+  public const int ExpectedPriceDiamondFieldNumber = 3;
+  private ulong expectedPriceDiamond_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ExpectedPriceDiamond {
+    get { return expectedPriceDiamond_; }
+    set {
+      expectedPriceDiamond_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ExpandSavedBuildSlotsRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ExpandSavedBuildSlotsRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ClientRequestId != other.ClientRequestId) return false;
+    if (ExpectedCapacity != other.ExpectedCapacity) return false;
+    if (ExpectedPriceDiamond != other.ExpectedPriceDiamond) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
+    if (ExpectedCapacity != 0) hash ^= ExpectedCapacity.GetHashCode();
+    if (ExpectedPriceDiamond != 0UL) hash ^= ExpectedPriceDiamond.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (ExpectedCapacity != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ExpectedCapacity);
+    }
+    if (ExpectedPriceDiamond != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(ExpectedPriceDiamond);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ClientRequestId);
+    }
+    if (ExpectedCapacity != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ExpectedCapacity);
+    }
+    if (ExpectedPriceDiamond != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(ExpectedPriceDiamond);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ClientRequestId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
+    }
+    if (ExpectedCapacity != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ExpectedCapacity);
+    }
+    if (ExpectedPriceDiamond != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedPriceDiamond);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ExpandSavedBuildSlotsRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ClientRequestId != 0UL) {
+      ClientRequestId = other.ClientRequestId;
+    }
+    if (other.ExpectedCapacity != 0) {
+      ExpectedCapacity = other.ExpectedCapacity;
+    }
+    if (other.ExpectedPriceDiamond != 0UL) {
+      ExpectedPriceDiamond = other.ExpectedPriceDiamond;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          ExpectedCapacity = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          ExpectedPriceDiamond = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          ExpectedCapacity = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          ExpectedPriceDiamond = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class ExpandSavedBuildSlotsResponse : pb::IMessage<ExpandSavedBuildSlotsResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ExpandSavedBuildSlotsResponse> _parser = new pb::MessageParser<ExpandSavedBuildSlotsResponse>(() => new ExpandSavedBuildSlotsResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ExpandSavedBuildSlotsResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSeasonReflection.Descriptor.MessageTypes[35]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ExpandSavedBuildSlotsResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ExpandSavedBuildSlotsResponse(ExpandSavedBuildSlotsResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    replayed_ = other.replayed_;
+    newCapacity_ = other.newCapacity_;
+    maxCapacity_ = other.maxCapacity_;
+    spentDiamond_ = other.spentDiamond_;
+    diamondBalance_ = other.diamondBalance_;
+    state_ = other.state_ != null ? other.state_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ExpandSavedBuildSlotsResponse Clone() {
+    return new ExpandSavedBuildSlotsResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "replayed" field.</summary>
+  public const int ReplayedFieldNumber = 2;
+  private bool replayed_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Replayed {
+    get { return replayed_; }
+    set {
+      replayed_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "new_capacity" field.</summary>
+  public const int NewCapacityFieldNumber = 3;
+  private uint newCapacity_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint NewCapacity {
+    get { return newCapacity_; }
+    set {
+      newCapacity_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_capacity" field.</summary>
+  public const int MaxCapacityFieldNumber = 4;
+  private uint maxCapacity_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaxCapacity {
+    get { return maxCapacity_; }
+    set {
+      maxCapacity_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "spent_diamond" field.</summary>
+  public const int SpentDiamondFieldNumber = 5;
+  private ulong spentDiamond_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong SpentDiamond {
+    get { return spentDiamond_; }
+    set {
+      spentDiamond_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "diamond_balance" field.</summary>
+  public const int DiamondBalanceFieldNumber = 6;
+  private ulong diamondBalance_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong DiamondBalance {
+    get { return diamondBalance_; }
+    set {
+      diamondBalance_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "state" field.</summary>
+  public const int StateFieldNumber = 7;
+  private global::SeasonStateSnapshot state_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::SeasonStateSnapshot State {
+    get { return state_; }
+    set {
+      state_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ExpandSavedBuildSlotsResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ExpandSavedBuildSlotsResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (Replayed != other.Replayed) return false;
+    if (NewCapacity != other.NewCapacity) return false;
+    if (MaxCapacity != other.MaxCapacity) return false;
+    if (SpentDiamond != other.SpentDiamond) return false;
+    if (DiamondBalance != other.DiamondBalance) return false;
+    if (!object.Equals(State, other.State)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (Replayed != false) hash ^= Replayed.GetHashCode();
+    if (NewCapacity != 0) hash ^= NewCapacity.GetHashCode();
+    if (MaxCapacity != 0) hash ^= MaxCapacity.GetHashCode();
+    if (SpentDiamond != 0UL) hash ^= SpentDiamond.GetHashCode();
+    if (DiamondBalance != 0UL) hash ^= DiamondBalance.GetHashCode();
+    if (state_ != null) hash ^= State.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(16);
+      output.WriteBool(Replayed);
+    }
+    if (NewCapacity != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(NewCapacity);
+    }
+    if (MaxCapacity != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(MaxCapacity);
+    }
+    if (SpentDiamond != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(SpentDiamond);
+    }
+    if (DiamondBalance != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(DiamondBalance);
+    }
+    if (state_ != null) {
+      output.WriteRawTag(58);
+      output.WriteMessage(State);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (Replayed != false) {
+      output.WriteRawTag(16);
+      output.WriteBool(Replayed);
+    }
+    if (NewCapacity != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(NewCapacity);
+    }
+    if (MaxCapacity != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(MaxCapacity);
+    }
+    if (SpentDiamond != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(SpentDiamond);
+    }
+    if (DiamondBalance != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(DiamondBalance);
+    }
+    if (state_ != null) {
+      output.WriteRawTag(58);
+      output.WriteMessage(State);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (Replayed != false) {
+      size += 1 + 1;
+    }
+    if (NewCapacity != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NewCapacity);
+    }
+    if (MaxCapacity != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaxCapacity);
+    }
+    if (SpentDiamond != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(SpentDiamond);
+    }
+    if (DiamondBalance != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(DiamondBalance);
+    }
+    if (state_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(State);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ExpandSavedBuildSlotsResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.Replayed != false) {
+      Replayed = other.Replayed;
+    }
+    if (other.NewCapacity != 0) {
+      NewCapacity = other.NewCapacity;
+    }
+    if (other.MaxCapacity != 0) {
+      MaxCapacity = other.MaxCapacity;
+    }
+    if (other.SpentDiamond != 0UL) {
+      SpentDiamond = other.SpentDiamond;
+    }
+    if (other.DiamondBalance != 0UL) {
+      DiamondBalance = other.DiamondBalance;
+    }
+    if (other.state_ != null) {
+      if (state_ == null) {
+        State = new global::SeasonStateSnapshot();
+      }
+      State.MergeFrom(other.State);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 24: {
+          NewCapacity = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          MaxCapacity = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          SpentDiamond = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          DiamondBalance = input.ReadUInt64();
+          break;
+        }
+        case 58: {
+          if (state_ == null) {
+            State = new global::SeasonStateSnapshot();
+          }
+          input.ReadMessage(State);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 16: {
+          Replayed = input.ReadBool();
+          break;
+        }
+        case 24: {
+          NewCapacity = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          MaxCapacity = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          SpentDiamond = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          DiamondBalance = input.ReadUInt64();
+          break;
+        }
+        case 58: {
           if (state_ == null) {
             State = new global::SeasonStateSnapshot();
           }

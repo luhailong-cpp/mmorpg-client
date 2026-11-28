@@ -417,5 +417,50 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That((int)sp.rect.height, Is.EqualTo(size), key);
             }
         }
+
+        [Test]
+        public void BuySeasonPlan90d_SendsPlanIdEmitsBagAndFormatsInstantPerks()
+        {
+            var info = Info(0);
+            info.MarketListingLimit = 20;
+            info.StallDurationHours = 96;
+            info.WeeklyFreeTrialQuota = 3;
+            info.Plans.Add(new global::AfkPassPlanView
+            {
+                PlanId = 1, PlanName = "仙途轻享卡（30天）", PeriodDays = 30,
+                PriceCurrencyType = 1, Price = 300, BonusItemId = 3405, BonusItemCount = 1,
+                BonusFrameKey = "frame_lightcard_s1",
+            });
+            info.Plans.Add(new global::AfkPassPlanView
+            {
+                PlanId = 2, PlanName = "仙途季享卡（90天）", PeriodDays = 90,
+                PriceCurrencyType = 1, Price = 780, BonusItemId = 3405, BonusItemCount = 3,
+                BonusFrameKey = "frame_lightcard_season_s1", IconKey = "icon_season_pass_90d",
+            });
+            EnterWith(info);
+
+            Assert.That(AfkPassModels.FormatPlanBonus(info.Plans[1]), Does.Contain("定星保底符×3").And.Contain("头像框"));
+            Assert.That(AfkPassModels.LightCardBenefitsSummary(info), Does.Contain("20").And.Contain("96h").And.Contain("3 次"));
+
+            global::BagInfo receivedBag = null;
+            _client.BagReceived += bag => receivedBag = bag;
+
+            Assert.That(_client.Buy(2u), Is.True);
+            var req = LastCall.Request as global::BuyAfkPassRequest;
+            Assert.That(req, Is.Not.Null);
+            Assert.That(req.PlanId, Is.EqualTo(2u));
+            Assert.That(req.ExpectedPrice, Is.EqualTo(780UL));
+            Assert.That(req.ExpectedPeriodDays, Is.EqualTo(90u));
+
+            var updated = Info(Now + 90 * Day);
+            LastCall.Reply(new global::BuyAfkPassResponse
+            {
+                Info = updated,
+                Bag = new global::BagInfo(),
+            });
+            Assert.That(_client.Active, Is.True);
+            Assert.That(receivedBag, Is.Not.Null);
+            Assert.That(AfkPassModels.DescribeTip((uint)afk_pass_error.KAfkPassBagFull), Does.Contain("背包"));
+        }
     }
 }

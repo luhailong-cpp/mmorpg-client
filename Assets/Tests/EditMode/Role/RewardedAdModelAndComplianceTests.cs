@@ -255,8 +255,17 @@ namespace MmorpgClient.Tests.EditMode.Role
                 RewardedAdModel.UnavailableStatusText,
                 RewardedAdModel.ReconnectPendingStatusText,
                 RewardedAdModel.BuildDialogBody(300, CurrencyLabels.BindGold, 2, 2),
+                RewardedAdModel.BuildDialogBodyForKind(RewardedAdModel.RewardKindTowerBoonReroll, 0, 3, 7, 7),
+                RewardedAdModel.BuildDialogBodyForKind(RewardedAdModel.RewardKindWardrobe1hTrial, 0, 7, 7, 7),
+                RewardedAdModel.BuildDialogBodyForKind(RewardedAdModel.RewardKindMerchantPersonalRefresh, 0, 5, 5, 5),
+                RewardedAdModel.EntryButtonTextForKind(RewardedAdModel.RewardKindTowerBoonReroll),
+                RewardedAdModel.EntryButtonTextForKind(RewardedAdModel.RewardKindWardrobe1hTrial),
+                RewardedAdModel.EntryButtonTextForKind(RewardedAdModel.RewardKindMerchantPersonalRefresh),
                 RewardedAdModel.BuildBalanceLine(300, 500),
                 RewardedAdModel.BuildClaimedToast(300, CurrencyLabels.BindGold),
+                RewardedAdModel.BuildClaimedToastForKind(RewardedAdModel.RewardKindTowerBoonReroll, 0, 3),
+                RewardedAdModel.BuildClaimedToastForKind(RewardedAdModel.RewardKindWardrobe1hTrial, 0, 3),
+                RewardedAdModel.BuildClaimedToastForKind(RewardedAdModel.RewardKindMerchantPersonalRefresh, 0, 3),
                 RewardedAdModel.BuildCooldownButtonText(30),
             };
             foreach (uint code in new uint[]
@@ -387,6 +396,111 @@ namespace MmorpgClient.Tests.EditMode.Role
                 Assert.That(seenGuids.Add(guidLine), Is.True, $"Duplicate GUID {guidLine} on {resPath}");
             }
             Assert.That(seenGuids.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void BatchB4AndB5_MultiSlotParams_V2BadgeAsset_AndM8DistributionPolicy()
+        {
+            // 1. 验证 B4 新增槽位 2..4 在服务端默认 enabled=false 时全部隐藏
+            var resp = new global::GetRewardedAdInfoResponse { ServerTimeMs = 1_760_000_000_000UL };
+            for (uint slotId = 1u; slotId <= 4u; slotId++)
+            {
+                resp.Slots.Add(new global::RewardedAdSlotView
+                {
+                    SlotId = slotId,
+                    Enabled = false,
+                    DailyLimit = 7u,
+                    ClaimedToday = 0u,
+                    RewardKind = slotId,
+                });
+                var view = RewardedAdModel.Evaluate(resp, slotId, true, true, "adunit-x", false, false, resp.ServerTimeMs);
+                Assert.That(view.ShouldShowEntry, Is.False, $"Slot {slotId} must stay hidden when enabled=false");
+                Assert.That(view.RewardKind, Is.EqualTo(slotId));
+            }
+
+            // 2. 验证 Slot 3 透传 target_param_str 到 ClaimRewardedAdRequest
+            var net = new FakeTransport();
+            var bridge = new FakeAdBridge();
+            object conn = new object();
+            float nowSec = 10f;
+            var ids = new RewardedAdMessageIds(540, 541, 542);
+            using var client = new RewardedAdClient(net, () => conn, () => nowSec, bridge, RewardedAdModel.SlotIdWardrobe1hTrial, ids);
+            client.ConfigureAdUnitId("adunit-slot3");
+            global::ClaimRewardedAdRequest capturedClaim = null;
+            net.Responder = (msgId, req) =>
+            {
+                if (msgId == 540)
+                {
+                    var enabledResp = new global::GetRewardedAdInfoResponse { ServerTimeMs = 1_760_000_000_000UL };
+                    enabledResp.Slots.Add(new global::RewardedAdSlotView
+                    {
+                        SlotId = RewardedAdModel.SlotIdWardrobe1hTrial,
+                        Enabled = true,
+                        DailyLimit = 7u,
+                        RewardKind = RewardedAdModel.RewardKindWardrobe1hTrial,
+                    });
+                    return (enabledResp, null);
+                }
+                if (msgId == 541) return (new global::BeginRewardedAdSessionResponse { AdSessionId = 888999UL }, null);
+                if (msgId == 542)
+                {
+                    capturedClaim = (global::ClaimRewardedAdRequest)req;
+                    return (new global::ClaimRewardedAdResponse
+                    {
+                        RewardKind = RewardedAdModel.RewardKindWardrobe1hTrial,
+                    }, null);
+                }
+                return (null, "unexpected");
+            };
+            client.RequestInfo(force: true);
+            net.Flush();
+            Assert.That(client.StartWatch(0u, "02"), Is.True);
+            net.Flush();
+            bridge.CompleteShow(new RewardedAdShowResult(RewardedAdShowStatus.Completed));
+            net.Flush();
+            Assert.That(capturedClaim, Is.Not.Null);
+            Assert.That(capturedClaim.TargetParamStr, Is.EqualTo("02"));
+            Assert.That(client.Status, Is.EqualTo("已开启 1 小时临时试穿。"));
+
+            // 3. 验证 Phase 0 落盘的 V2 广告角标切图存在
+            string cwd = Directory.GetCurrentDirectory();
+            string resourcesRoot = Directory.Exists(Path.Combine(cwd, "Assets", "Resources"))
+                ? Path.Combine(cwd, "Assets", "Resources")
+                : Path.Combine(cwd, "mmorpg-client", "Assets", "Resources");
+            string v2Badge = Path.Combine(resourcesRoot, RewardedAdModel.VideoBadgeV2ResourcePath.Replace('/', Path.DirectorySeparatorChar) + ".png");
+            Assert.That(File.Exists(v2Badge), Is.True, "Missing RewardedAdV1/icon_rewarded_video_badge.png");
+            Assert.That(File.Exists(v2Badge + ".meta"), Is.True, "Missing RewardedAdV1/icon_rewarded_video_badge.png.meta");
+
+            // 4. 验证 B5 M-8 渠道门禁矩阵
+            var wx = ClientDistributionPolicy.Resolve(ClientDistributionChannel.WechatMinigameUnlicensed);
+            var dy = ClientDistributionPolicy.Resolve(ClientDistributionChannel.DouyinMinigameUnlicensed);
+            Assert.That(wx.IapEnabled || wx.GiftingEnabled || wx.SteamDlcEnabled || wx.ExternalPaymentAllowed, Is.False);
+            Assert.That(dy.IapEnabled || dy.GiftingEnabled || dy.SteamDlcEnabled || dy.ExternalPaymentAllowed, Is.False);
+            Assert.That(wx.RewardedAdAllowed && dy.RewardedAdAllowed, Is.True);
+
+            var steam = ClientDistributionPolicy.Resolve(ClientDistributionChannel.SteamPc);
+            Assert.That(steam.IapEnabled && steam.GiftingEnabled && steam.SteamDlcEnabled, Is.True);
+            Assert.That(steam.RewardedAdAllowed, Is.False);
+            Assert.That(steam.ExternalPaymentAllowed, Is.False);
+
+            var ios = ClientDistributionPolicy.Resolve(ClientDistributionChannel.GlobalIos);
+            Assert.That(ios.IapEnabled && ios.GiftingEnabled, Is.True);
+            Assert.That(ios.SteamDlcEnabled || ios.ExternalPaymentAllowed, Is.False);
+
+            // 5. 验证运行时 ActiveChannel=SteamPc 强制屏蔽 RewardedAdClient 全部槽位（并还原）
+            var savedChannel = ClientDistributionPolicy.ActiveChannel;
+            try
+            {
+                ClientDistributionPolicy.ActiveChannel = ClientDistributionChannel.GlobalAndroid;
+                Assert.That(client.Snapshot(RewardedAdModel.SlotIdWardrobe1hTrial).ShouldShowEntry, Is.True);
+                ClientDistributionPolicy.ActiveChannel = ClientDistributionChannel.SteamPc;
+                Assert.That(client.Snapshot(RewardedAdModel.SlotIdWardrobe1hTrial).ShouldShowEntry, Is.False);
+                Assert.That(client.StartWatch(RewardedAdModel.SlotIdWardrobe1hTrial, 0u, "02"), Is.False);
+            }
+            finally
+            {
+                ClientDistributionPolicy.ActiveChannel = savedChannel;
+            }
         }
     }
 }

@@ -81,7 +81,9 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             if (_hud == null || _window == null) { Unbind(); return; }
             Bind(AppBootstrap.Instance?.GameClient);
             bool battleLayer = BattleUiRoot.Instance?.IsBattleLayerVisible ?? false;
-            _available = _game != null && _game.InGame && _game.IsGateReady && !battleLayer && (_client?.IsSupported ?? false);
+            _available = _game != null && _game.InGame && _game.IsGateReady && !battleLayer
+                && (_client?.IsSupported ?? false)
+                && MmorpgClient.Game.RewardedAd.ClientDistributionPolicy.Current.IapEnabled;
             _hud.gameObject.SetActive(_available);
             if (!_available && _window.IsVisible) _window.Hide();
             else if (_window.IsVisible) _window.TickCountdown(Time.unscaledTime);

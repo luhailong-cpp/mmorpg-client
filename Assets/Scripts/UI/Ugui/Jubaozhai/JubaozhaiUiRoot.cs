@@ -156,7 +156,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         /// <summary>快捷跳转到聚宝斋官方商城指定子页签（如衣柜灵宠/特效直跳「永久衣柜」）。</summary>
         public void OpenOfficialMallSubTab(OfficialShopTab subTab)
         {
-            if (!HasView || !_available) return;
+            if (!HasView || !_available || !MmorpgClient.Game.RewardedAd.ClientDistributionPolicy.Current.IapEnabled) return;
             CityPanelRegistry.HideOthers(this);
             _window.Hide();
             _commerceWindow.ShowOfficialShopSubTab((int)subTab);

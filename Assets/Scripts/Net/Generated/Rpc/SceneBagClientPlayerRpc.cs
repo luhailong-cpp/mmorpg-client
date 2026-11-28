@@ -127,5 +127,13 @@ namespace MmorpgClient.Net.Generated
         public static void UnlockEquipLoadout(IRpcChannel channel, global::UnlockEquipLoadoutRequest request,
             RpcDone<global::UnlockEquipLoadoutResponse> done)
             => channel.CallMethod(UnlockEquipLoadoutMessageId, request, global::UnlockEquipLoadoutResponse.Parser, done);
+
+        public const uint ExpandBagCapacityMessageId = 600;
+        /// <summary>
+        /// ── 仓库扩容（method index 18）──
+        /// </summary>
+        public static void ExpandBagCapacity(IRpcChannel channel, global::ExpandBagCapacityRequest request,
+            RpcDone<global::ExpandBagCapacityResponse> done)
+            => channel.CallMethod(ExpandBagCapacityMessageId, request, global::ExpandBagCapacityResponse.Parser, done);
     }
 }

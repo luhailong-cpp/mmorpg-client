@@ -270,5 +270,18 @@ namespace MmorpgClient.Net.Generated
         public static void GetGuildJianghuGrudgeWall(IRpcChannel channel, global::Guildpb.GetGuildJianghuGrudgeWallRequest request,
             RpcDone<global::Guildpb.GetGuildJianghuGrudgeWallResponse> done)
             => channel.CallMethod(GetGuildJianghuGrudgeWallMessageId, request, global::Guildpb.GetGuildJianghuGrudgeWallResponse.Parser, done);
+
+        public const uint UnlockGuildEmblemMessageId = 598;
+        /// <summary>
+        /// 帮会徽记/旗帜定制外观（帮主自愿以个人真实灵石买断，绝不扣帮会资金、绝不催帮众捐钱，零数值加成）。
+        /// </summary>
+        public static void UnlockGuildEmblem(IRpcChannel channel, global::Guildpb.UnlockGuildEmblemRequest request,
+            RpcDone<global::Guildpb.UnlockGuildEmblemResponse> done)
+            => channel.CallMethod(UnlockGuildEmblemMessageId, request, global::Guildpb.UnlockGuildEmblemResponse.Parser, done);
+
+        public const uint EquipGuildEmblemMessageId = 599;
+        public static void EquipGuildEmblem(IRpcChannel channel, global::Guildpb.EquipGuildEmblemRequest request,
+            RpcDone<global::Guildpb.EquipGuildEmblemResponse> done)
+            => channel.CallMethod(EquipGuildEmblemMessageId, request, global::Guildpb.EquipGuildEmblemResponse.Parser, done);
     }
 }

@@ -309,6 +309,14 @@ $whitelist = @{
     "ClientPlayerTeamNotifyTeamEvent"              = "NotifyTeamEvent"
     "ClientPlayerTeamSetTeamFormation"             = "SetTeamFormation"
     "ClientPlayerTeamRecallTeamMembers"            = "RecallTeamMembers"
+
+    # 不肝不氪增收体系 V2 · 批次 B3（仓库扩容 / 灵宠编队预设 / 战报收藏扩容 / 帮会徽记定制）
+    "SceneBagClientPlayerExpandBagCapacity"        = "ExpandBagCapacity"
+    "ScenePetClientPlayerSavePetSquadPreset"       = "SavePetSquadPreset"
+    "ScenePetClientPlayerUnlockPetSquadPresetSlot" = "UnlockPetSquadPresetSlot"
+    "SceneSeasonClientPlayerExpandSavedBuildSlots" = "ExpandSavedBuildSlots"
+    "GuildServiceUnlockGuildEmblem"                = "UnlockGuildEmblem"
+    "GuildServiceEquipGuildEmblem"                 = "EquipGuildEmblem"
 }
 
 $optionalUnsupportedMethods = @(

@@ -16,6 +16,7 @@ namespace MmorpgClient.Game.Social
     [Serializable] public sealed class SocialMessage
     {
         public string Id, Text, Card, SenderName; public ulong Sender; public long TimeMs; public bool Local;
+        public uint BubbleSkinId, ShareCardSkinId;
         public string TimeLabel { get { try { return DateTimeOffset.FromUnixTimeMilliseconds(TimeMs).ToLocalTime().ToString("HH:mm"); } catch { return "时间未知"; } } }
     }
     [Serializable] public sealed class SocialGroup
@@ -151,6 +152,7 @@ namespace MmorpgClient.Game.Social
         }
         // 服务端显示原件转本地消息。ChatMessage 没有消息号,Id 用(发送者, 发送时刻, 正文)拼:同一条消息经历史或推送到达得到同一个 Id。
         private SocialMessage FromProto(ChatMessage m) => new SocialMessage { Sender = m.SenderPlayerId, Text = m.Content, TimeMs = m.SendTimeMs,
+            BubbleSkinId = m.BubbleSkinId, ShareCardSkinId = m.ShareCardSkinId,
             Id = m.SenderPlayerId + ":" + m.SendTimeMs + ":" + m.Content, SenderName = m.SenderPlayerId == PlayerId ? "我" : "道友 " + m.SenderPlayerId };
         public static bool Matches(SocialChannel c, ChatChannelType proto) => c switch
         { SocialChannel.World => proto == ChatChannelType.World, SocialChannel.Team => proto == ChatChannelType.Team, SocialChannel.System => proto == ChatChannelType.System, _ => false };

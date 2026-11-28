@@ -186,10 +186,16 @@ namespace MmorpgClient.Game.SpiritShop
         public const uint GoodsStarterPack300 = 103;
         public const uint GoodsStarGuaranteeCharm = 201;
         public const uint GoodsCelestialInk = 202;
+        public const uint GoodsUnsealTalisman = 203;
+        public const uint GoodsInheritTalisman = 204;
         public const uint GoodsAppearanceCard = 301;
         public const uint GoodsRenameCard = 302;
         public const uint GoodsPetMorphCard = 303;
         public const uint GoodsSkillVfxCard = 304;
+        public const uint GoodsShowcaseVoucher = 307;
+        public const uint GoodsCityLantern = 308;
+        public const uint GoodsCityFirework = 309;
+        public const uint GoodsCityTeaTable = 310;
         public const uint GoodsSpringBundle401 = 401;
         public const uint GoodsSpringChoice402 = 402;
 
@@ -199,8 +205,14 @@ namespace MmorpgClient.Game.SpiritShop
         public const uint ItemAppearanceCard = 3402;
         public const uint ItemStarGuaranteeCharm = 3405;
         public const uint ItemCelestialInk = 3408;
+        public const uint ItemUnsealTalisman = 3409;
+        public const uint ItemInheritTalisman = 3410;
         public const uint ItemPetMorphCard = 3411;
         public const uint ItemSkillVfxCard = 3412;
+        public const uint ItemShowcaseVoucher = 3417;
+        public const uint ItemCityLantern = 3418;
+        public const uint ItemCityFirework = 3419;
+        public const uint ItemCityTeaTable = 3420;
 
         public const uint StarterLimitGroupId = 1;
         public const uint MaxBuyPerRequestHardCap = 99;
@@ -413,8 +425,14 @@ namespace MmorpgClient.Game.SpiritShop
                 ItemAppearanceCard => "角色形象卡",
                 ItemStarGuaranteeCharm => "定星保底符",
                 ItemCelestialInk => "天工秘墨",
+                ItemUnsealTalisman => "解封剥离符",
+                ItemInheritTalisman => "流派副套继承符",
                 ItemPetMorphCard => "灵宠幻化符",
                 ItemSkillVfxCard => "技能特效卷",
+                ItemShowcaseVoucher => "排面装饰券",
+                ItemCityLantern => "天墉灵灯",
+                ItemCityFirework => "庆功烟花",
+                ItemCityTeaTable => "仙茶同乐席",
                 _ => $"道具#{itemConfigId}",
             };
         }

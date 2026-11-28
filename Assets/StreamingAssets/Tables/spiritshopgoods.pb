@@ -29,3 +29,11 @@ PX�`h�江湖洗尘
 X�`h�解封原胚
 ��( *流派副套继承符2�仅自用绑定配套符箓：将当前高阶装备的强化等级与养成进度平迁继承至同部位副套装备，方便零焦虑切换多流派，不突破战力上限。:,UI/Ugui/EconomyTradeV2/icon_inherit_talisman@HxP
 X�`h�副套继承
+��F *排面装饰券2�仅自用绑定外观券：可在衣柜「排面装饰」页永久解锁一款阵纹、入场横幅、聊天气泡或战报分享卡底纹（纯视觉零数值）。:5UI/Ugui/ShowcaseCosmeticsV1/icon_friend_cosmetic_gift@HPP
+X�`h�排面装饰
+��P *天墉灵灯2�主城和平分线全城同乐气氛道具：放飞一盏天墉灵灯，全图路人赏灯并各领150绑定银两（周上限3000，0流通通胀）。:-UI/Ugui/ShowcaseCosmeticsV1/icon_city_lantern@HP
+X�`h�全城同乐
+��Z *庆功烟花2�主城和平分线全城同乐气氛道具：燃放漫天庆功烟花，全图路人观礼并各领300绑定银两（周上限3000，0流通通胀）。:.UI/Ugui/ShowcaseCosmeticsV1/icon_city_firework@H2P
+X�`h�全城同乐
+��d *仙茶同乐席2�主城和平分线全城同乐气氛道具：摆开一桌仙茶同乐席，全图路人共饮并各领400绑定银两（周上限3000，0流通通胀）。:/UI/Ugui/ShowcaseCosmeticsV1/icon_city_tea_table@H<P
+X�`h�全城同乐

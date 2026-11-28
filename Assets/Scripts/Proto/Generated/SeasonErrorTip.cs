@@ -23,7 +23,7 @@ public static partial class SeasonErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci9nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvc2Vhc29uX2Vycm9yX3RpcC5w",
-          "cm90byq3AwoMc2Vhc29uX2Vycm9yEhMKD2tTZWFzb25fZXJyb3JPSxAAEhQK",
+          "cm90byqGBAoMc2Vhc29uX2Vycm9yEhMKD2tTZWFzb25fZXJyb3JPSxAAEhQK",
           "DmtTZWFzb25Ob3RPcGVuENCJAhIVCg9rU2Vhc29uTWlzbWF0Y2gQ0YkCEhgK",
           "EmtTZWFzb25TZWFsSW52YWxpZBDSiQISIAoaa1NlYXNvblNlYWxBbHJlYWR5",
           "RXF1aXBwZWQQ04kCEhsKFWtTZWFzb25TZWFsQWxyZWFkeU1heBDUiQISHAoW",
@@ -32,8 +32,10 @@ public static partial class SeasonErrorTipReflection {
           "bm91Z2gQ14kCEhMKDWtTZWFzb25Gcm96ZW4Q2IkCEhUKD2tTZWFzb25JbkJh",
           "dHRsZRDZiQISGwoVa1NlYXNvblNraWxsTm9VcGdyYWRlENqJAhIYChJrU2Vh",
           "c29uVW5hdmFpbGFibGUQ24kCEiEKG2tTZWFzb25Ib25vckFscmVhZHlVbmxv",
-          "Y2tlZBDciQISHwoZa1NlYXNvbkhvbm9yVGFyZ2V0SW52YWxpZBDdiQJCJAoO",
-          "Y29tLmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
+          "Y2tlZBDciQISHwoZa1NlYXNvbkhvbm9yVGFyZ2V0SW52YWxpZBDdiQISJQof",
+          "a1NlYXNvbkJ1aWxkQm9va21hcmtNYXhFeHBhbmRlZBDeiQISJgoga1NlYXNv",
+          "bkJ1aWxkQm9va21hcmtQcmljZUNoYW5nZWQQ34kCQiQKDmNvbS5nYW1lLnRh",
+          "YmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::season_error), }, null, null));
@@ -58,6 +60,8 @@ public enum season_error {
   [pbr::OriginalName("kSeasonUnavailable")] KSeasonUnavailable = 34011,
   [pbr::OriginalName("kSeasonHonorAlreadyUnlocked")] KSeasonHonorAlreadyUnlocked = 34012,
   [pbr::OriginalName("kSeasonHonorTargetInvalid")] KSeasonHonorTargetInvalid = 34013,
+  [pbr::OriginalName("kSeasonBuildBookmarkMaxExpanded")] KSeasonBuildBookmarkMaxExpanded = 34014,
+  [pbr::OriginalName("kSeasonBuildBookmarkPriceChanged")] KSeasonBuildBookmarkPriceChanged = 34015,
 }
 
 #endregion

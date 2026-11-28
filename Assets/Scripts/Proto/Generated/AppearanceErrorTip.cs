@@ -23,7 +23,7 @@ public static partial class AppearanceErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "CjNnZW5lcmF0ZWQvY29kZS9wcm90by90aXAvYXBwZWFyYW5jZV9lcnJvcl90",
-          "aXAucHJvdG8qhQQKEGFwcGVhcmFuY2VfZXJyb3ISFwoTa0FwcGVhcmFuY2Vf",
+          "aXAucHJvdG8q+wcKEGFwcGVhcmFuY2VfZXJyb3ISFwoTa0FwcGVhcmFuY2Vf",
           "ZXJyb3JPSxAAEhgKEmtBcHBlYXJhbmNlSW52YWxpZBDogQISHwoZa0FwcGVh",
           "cmFuY2VBbHJlYWR5Q3VycmVudBDpgQISFwoRa0FwcGVhcmFuY2VOb0NhcmQQ",
           "6oECEiEKG2tBcHBlYXJhbmNlVHJpYWxBbHJlYWR5VXNlZBDrgQISHgoYa0Fw",
@@ -34,8 +34,19 @@ public static partial class AppearanceErrorTipReflection {
           "cHBlYXJhbmNlU2VyaWVzQnVuZGxlVW5hdmFpbGFibGUQ8oECEicKIWtBcHBl",
           "YXJhbmNlU2VyaWVzQWxyZWFkeUNvbXBsZXRlZBDzgQISKQoja0FwcGVhcmFu",
           "Y2VTZXJpZXNCdW5kbGVQcmljZUNoYW5nZWQQ9IECEi4KKGtBcHBlYXJhbmNl",
-          "U2VyaWVzQnVuZGxlQ3VycmVuY3lOb3RFbm91Z2gQ9YECQiQKDmNvbS5nYW1l",
-          "LnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
+          "U2VyaWVzQnVuZGxlQ3VycmVuY3lOb3RFbm91Z2gQ9YECEiEKG2tDaXR5Q2Vs",
+          "ZWJyYXRpb25Ob3RTYWZlQ2l0eRD2gQISIQoba0NpdHlDZWxlYnJhdGlvbkNo",
+          "YW5uZWxGdWxsEPeBAhIcChZrQ2l0eUNlbGVicmF0aW9uTm9JdGVtEPiBAhIe",
+          "ChhrQ2l0eUNlbGVicmF0aW9uTm90Rm91bmQQ+YECEiQKHmtDaXR5Q2VsZWJy",
+          "YXRpb25BbHJlYWR5Q2xhaW1lZBD6gQISIQoba0NpdHlDZWxlYnJhdGlvbkxl",
+          "dmVsVG9vTG93EPuBAhImCiBrQ2l0eUNlbGVicmF0aW9uV2Vla2x5Q2FwUmVh",
+          "Y2hlZBD8gQISIQoba0Nvc21ldGljR2lmdE5vdEZyaWVuZDdEYXlzEP2BAhIl",
+          "Ch9rQ29zbWV0aWNHaWZ0VGFyZ2V0QWxyZWFkeU93bmVkEP6BAhIlCh9rQ29z",
+          "bWV0aWNHaWZ0V2Vla2x5TGltaXRSZWFjaGVkEP+BAhIgChprQ29zbWV0aWNH",
+          "aWZ0SW52YWxpZFRhcmdldBCAggISJAoea0Nvc21ldGljR2lmdEN1cnJlbmN5",
+          "Tm90RW5vdWdoEIGCAhIfChlrQ29zbWV0aWNHaWZ0UHJpY2VDaGFuZ2VkEIKC",
+          "AhIlCh9rQ29zbWV0aWNHaWZ0U2VydmljZVVuYXZhaWxhYmxlEIOCAkIkCg5j",
+          "b20uZ2FtZS50YWJsZVoSZ2VuZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::appearance_error), }, null, null));
@@ -60,6 +71,20 @@ public enum appearance_error {
   [pbr::OriginalName("kAppearanceSeriesAlreadyCompleted")] KAppearanceSeriesAlreadyCompleted = 33011,
   [pbr::OriginalName("kAppearanceSeriesBundlePriceChanged")] KAppearanceSeriesBundlePriceChanged = 33012,
   [pbr::OriginalName("kAppearanceSeriesBundleCurrencyNotEnough")] KAppearanceSeriesBundleCurrencyNotEnough = 33013,
+  [pbr::OriginalName("kCityCelebrationNotSafeCity")] KCityCelebrationNotSafeCity = 33014,
+  [pbr::OriginalName("kCityCelebrationChannelFull")] KCityCelebrationChannelFull = 33015,
+  [pbr::OriginalName("kCityCelebrationNoItem")] KCityCelebrationNoItem = 33016,
+  [pbr::OriginalName("kCityCelebrationNotFound")] KCityCelebrationNotFound = 33017,
+  [pbr::OriginalName("kCityCelebrationAlreadyClaimed")] KCityCelebrationAlreadyClaimed = 33018,
+  [pbr::OriginalName("kCityCelebrationLevelTooLow")] KCityCelebrationLevelTooLow = 33019,
+  [pbr::OriginalName("kCityCelebrationWeeklyCapReached")] KCityCelebrationWeeklyCapReached = 33020,
+  [pbr::OriginalName("kCosmeticGiftNotFriend7Days")] KCosmeticGiftNotFriend7Days = 33021,
+  [pbr::OriginalName("kCosmeticGiftTargetAlreadyOwned")] KCosmeticGiftTargetAlreadyOwned = 33022,
+  [pbr::OriginalName("kCosmeticGiftWeeklyLimitReached")] KCosmeticGiftWeeklyLimitReached = 33023,
+  [pbr::OriginalName("kCosmeticGiftInvalidTarget")] KCosmeticGiftInvalidTarget = 33024,
+  [pbr::OriginalName("kCosmeticGiftCurrencyNotEnough")] KCosmeticGiftCurrencyNotEnough = 33025,
+  [pbr::OriginalName("kCosmeticGiftPriceChanged")] KCosmeticGiftPriceChanged = 33026,
+  [pbr::OriginalName("kCosmeticGiftServiceUnavailable")] KCosmeticGiftServiceUnavailable = 33027,
 }
 
 #endregion

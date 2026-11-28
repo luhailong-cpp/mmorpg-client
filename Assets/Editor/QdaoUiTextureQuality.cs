@@ -30,21 +30,35 @@ namespace MmorpgClient.UI.EditorTools
             => path.StartsWith(UiRoot + "/", StringComparison.Ordinal);
 
         /// <summary>
-        /// 1254×1254 超高分辨率图标/徽章/头像在界面里常缩小 6~27 倍显示，
-        /// 必须启用 Kaiser Mipmap + Trilinear 消除双线性下采样走样锯齿。
+        /// 高分辨率（1024×1024 ~ 4096×4096）图标/徽章/头像/立绘在界面里常缩小 4~40 倍显示，
+        /// 必须启用 Kaiser Mipmap + Trilinear 消除双线性下采样走样锯齿（不触碰战斗特效等要求关 Mipmap 目录）。
         /// </summary>
         private static bool RequiresHighRatioMipmaps(string path)
         {
-            const string prefix = "Assets/Resources/UI/Ugui/CharacterPet/Controls/";
-            if (!path.StartsWith(prefix, StringComparison.Ordinal))
-                return false;
             string name = Path.GetFileName(path);
-            if (string.Equals(name, "portrait_frame.png", StringComparison.Ordinal))
-                return false;
-            return name.StartsWith("badge-", StringComparison.Ordinal)
-                || name.StartsWith("ring-", StringComparison.Ordinal)
-                || name.StartsWith("portrait_", StringComparison.Ordinal)
-                || name.StartsWith("row_", StringComparison.Ordinal);
+            if (path.StartsWith("Assets/Resources/UI/Ugui/CharacterPet/Controls/", StringComparison.Ordinal))
+            {
+                if (string.Equals(name, "portrait_frame.png", StringComparison.Ordinal))
+                    return false;
+                return name.StartsWith("badge-", StringComparison.Ordinal)
+                    || name.StartsWith("ring-", StringComparison.Ordinal)
+                    || name.StartsWith("portrait_", StringComparison.Ordinal)
+                    || name.StartsWith("row_", StringComparison.Ordinal);
+            }
+            if (path.StartsWith("Assets/Resources/UI/Ugui/GuildV2/avatar-", StringComparison.Ordinal))
+                return true;
+            if (path.StartsWith("Assets/Resources/UI/Ugui/GuiyuanNpcV1/Npcs/npc_guiyuan_", StringComparison.Ordinal))
+                return true;
+            if (path.StartsWith("Assets/Resources/UI/Ugui/RefreshV8/", StringComparison.Ordinal))
+                return name.StartsWith("companion_", StringComparison.Ordinal)
+                    || string.Equals(name, "hero.png", StringComparison.Ordinal);
+            if (path.StartsWith("Assets/Resources/UI/Ugui/SocialV1/", StringComparison.Ordinal))
+                return string.Equals(name, "lotus-healer.png", StringComparison.Ordinal)
+                    || string.Equals(name, "hero-headband.png", StringComparison.Ordinal)
+                    || (name.Length > 3 && char.IsDigit(name[0]) && char.IsDigit(name[1]) && name[2] == '_');
+            if (string.Equals(path, "Assets/Resources/UI/Ugui/FestivalBeastV1/beast_illustration.png", StringComparison.Ordinal))
+                return true;
+            return false;
         }
 
         private static List<string> PlatformNames(TextureImporter importer)

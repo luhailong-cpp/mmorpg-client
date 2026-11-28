@@ -22,6 +22,7 @@ namespace MmorpgClient.Game.Season
         public uint SetRetroHonorTarget { get; }
         public uint ChooseWuxingRealmBranch { get; }
         public uint ResolveWuxingRealmEvent { get; }
+        public uint ExpandSavedBuildSlots { get; }
 
         public bool IsSupported => GetState != 0 && EquipSeal != 0 && CatchupSeal != 0;
 
@@ -38,7 +39,8 @@ namespace MmorpgClient.Game.Season
             uint deleteBattleBuildBookmark = 0u,
             uint setRetroHonorTarget = 0u,
             uint chooseWuxingRealmBranch = 0u,
-            uint resolveWuxingRealmEvent = 0u)
+            uint resolveWuxingRealmEvent = 0u,
+            uint expandSavedBuildSlots = 0u)
         {
             GetState = getState;
             EquipSeal = equipSeal;
@@ -53,6 +55,7 @@ namespace MmorpgClient.Game.Season
             SetRetroHonorTarget = setRetroHonorTarget;
             ChooseWuxingRealmBranch = chooseWuxingRealmBranch;
             ResolveWuxingRealmEvent = resolveWuxingRealmEvent;
+            ExpandSavedBuildSlots = expandSavedBuildSlots;
         }
 
         public static SeasonMessageIds Generated => new SeasonMessageIds(
@@ -68,7 +71,8 @@ namespace MmorpgClient.Game.Season
             SceneSeasonClientPlayerRpc.DeleteBattleBuildBookmarkMessageId,
             SceneSeasonClientPlayerRpc.SetRetroHonorTargetMessageId,
             SceneSeasonClientPlayerRpc.ChooseWuxingRealmBranchMessageId,
-            SceneSeasonClientPlayerRpc.ResolveWuxingRealmEventMessageId);
+            SceneSeasonClientPlayerRpc.ResolveWuxingRealmEventMessageId,
+            SceneSeasonClientPlayerRpc.ExpandSavedBuildSlotsMessageId);
     }
 
     /// <summary>赛季印进度追赶成功回执（不可变值对象，跨模块事件传递安全）。</summary>
