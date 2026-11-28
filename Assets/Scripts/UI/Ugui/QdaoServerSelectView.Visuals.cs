@@ -378,6 +378,7 @@ namespace MmorpgClient.UI.Ugui
             _appleSignInButton.onClick.AddListener(OnAppleSignInClicked);
             _googleSignInButton.onClick.AddListener(OnGoogleSignInClicked);
             BindPassportEvents();
+            BindAccountSessionEvents();
             BindPrivacyEvents();
             BindLoginUtilityEvents();
         }
@@ -390,12 +391,19 @@ namespace MmorpgClient.UI.Ugui
             _appleSignInButton.onClick.RemoveListener(OnAppleSignInClicked);
             _googleSignInButton.onClick.RemoveListener(OnGoogleSignInClicked);
             UnbindPassportEvents();
+            UnbindAccountSessionEvents();
             UnbindPrivacyEvents();
             UnbindLoginUtilityEvents();
         }
 
         private void OnLandingServers() { if (!_busy && !LoginUtilityOpen) ShowLanding(false); }
-        private void OnLandingAccount() { if (!_busy && !LoginUtilityOpen) { ShowCredentialPanel(true, true); SetStatus("请输入账号和密码"); } }
+        private void OnLandingAccount()
+        {
+            if (_busy || LoginUtilityOpen) return;
+            ShowCredentialPanel(true, true);
+            string idle = FormatSavedSessionIdleStatus();
+            SetStatus(string.IsNullOrEmpty(idle) ? "请选择登录方式或输入账号密码" : idle);
+        }
         private void OnLandingEnter()
         {
             if (_busy || LoginUtilityOpen) return;

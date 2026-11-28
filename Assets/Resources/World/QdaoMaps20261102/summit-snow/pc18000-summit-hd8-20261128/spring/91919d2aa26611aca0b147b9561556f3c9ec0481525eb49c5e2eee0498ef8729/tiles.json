@@ -1,0 +1,1626 @@
+{
+  "schemaVersion": 2,
+  "deliveryStatus": "formal_runtime_tiles",
+  "key": "summit-snow",
+  "sceneId": 18000,
+  "revision": "pc18000-summit-hd8-20261128",
+  "appearance": "spring",
+  "resourceRoot": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/",
+  "layoutSha256": "91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729",
+  "columns": 8,
+  "rows": 9,
+  "tilePixels": 1024,
+  "worldRect": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 320.0,
+    "height": 360.0
+  },
+  "effectiveWorldRect": {
+    "x": 0.0,
+    "y": 6.484375,
+    "width": 282.8125,
+    "height": 353.515625
+  },
+  "imageRect": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 7240.0,
+    "height": 9050.0
+  },
+  "referenceWidth": 7240,
+  "referenceHeight": 9050,
+  "sourceImageCommit": "69b44b971160d97a1b4f6fddb6e42a127fcbdefa",
+  "sourceMasterPath": "designs/client18000-summit-hd8x-20261127-v001/spring.png",
+  "sourceMasterSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+  "edgePadding": "edge-clamp-right-952-bottom-166",
+  "deliveredTileCount": 72,
+  "deliveredImageBytes": 66397312,
+  "navigationPlanSha256": "788c4aa9e01795a0cac8b3a503ca5c78172d03b63d68bf071909910023addd99",
+  "tiles": [
+    {
+      "row": 1,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r01_c01",
+      "sha256": "1cd599757f1cf56816e4caab8a1f5843411240c8bd7563eda4aa716d292fe8e6",
+      "bytes": 761028,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        0,
+        1024,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r01_c02",
+      "sha256": "4f7d2d79da987ea6c78723f4ec253c0b5266236393c95805d0a24b7c272a8889",
+      "bytes": 686943,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        0,
+        2048,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r01_c03",
+      "sha256": "04bf7aa44f010cd363b9d51809da1674ea28fbcc97b643c81940a13d83f58510",
+      "bytes": 1702779,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        0,
+        3072,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 1,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r01_c04",
+      "sha256": "ab1413ec9c54402c89bb6f5ca0750626a379f390d5c2ba535e9828f914cd842a",
+      "bytes": 1522504,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        0,
+        4096,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 1,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r01_c05",
+      "sha256": "626c44d4774b1a6c45fdb56ed8afd2a462a3d1837ace31701b00d687a8b2cc0e",
+      "bytes": 722127,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        0,
+        5120,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 1,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r01_c06",
+      "sha256": "3243ab392e6fdb542f7a71d780cf2fea04b876395a17bb3a3f2a23735cc59fe8",
+      "bytes": 668676,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        0,
+        6144,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 1,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r01_c07",
+      "sha256": "4a25465c1389158d26987ceade92d0891e08b81e2f0423c23ff3423691a88c9a",
+      "bytes": 625206,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        0,
+        7168,
+        1024
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 1,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r01_c08",
+      "sha256": "517a2c9d7e3d1d92d107d7f13998d76359cf3bbaca37e9fdf9ce20cf7c732cdd",
+      "bytes": 50173,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        0,
+        7240,
+        1024
+      ],
+      "artSlicePixels": [
+        72,
+        1024
+      ]
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r02_c01",
+      "sha256": "7afa416beba617c202f6caa44d5a56de8abb9b440339487bd8f922f04217ab32",
+      "bytes": 548321,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        1024,
+        1024,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r02_c02",
+      "sha256": "72378ed19340e8b1d6a508cf74784b244960bc335c3c5fe3371b980eda59ebb0",
+      "bytes": 840377,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        1024,
+        2048,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r02_c03",
+      "sha256": "d3b3e92b0f89f4489f2817489efc53480c2259b5621ba8565d2d6cd4f913fcd6",
+      "bytes": 1246797,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        1024,
+        3072,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 2,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r02_c04",
+      "sha256": "aacf83a74067825d07f9b7bc8bd36c8df256caf692434254b17a0bd82bf62548",
+      "bytes": 1356065,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        1024,
+        4096,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 2,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r02_c05",
+      "sha256": "f2e196712d76354410e0eeba3026c20911a6e0d22f587f5bce3bc9338f8bc5b2",
+      "bytes": 1337397,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        1024,
+        5120,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 2,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r02_c06",
+      "sha256": "a1737fc93a003c5c1b0ebb501cb5c116be26c6fd79eb9e4352f37ee2bd3e78ef",
+      "bytes": 875238,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        1024,
+        6144,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 2,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r02_c07",
+      "sha256": "5b43be42af828d9c5d8ba037c18c14fdd76686973ec9a4c3db7bb5b7b01579d8",
+      "bytes": 764903,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        1024,
+        7168,
+        2048
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 2,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r02_c08",
+      "sha256": "0e69296457ead2621e473a9ba69fdaa03fc8a0f87584cbf984112227efc9d056",
+      "bytes": 69120,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        1024,
+        7240,
+        2048
+      ],
+      "artSlicePixels": [
+        72,
+        1024
+      ]
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r03_c01",
+      "sha256": "51fac75f6cb228d0ea1d7021765d221fde8dd5ce5bb79c9d3b843a6ccd485e21",
+      "bytes": 742510,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        2048,
+        1024,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r03_c02",
+      "sha256": "32dc746840ef0557d41482e921ba99017b4c7f95347f3c0d4bfef796feebaefc",
+      "bytes": 1045844,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        2048,
+        2048,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r03_c03",
+      "sha256": "bd044f13ee82de0d17ecf3ad81d99b940b3a0823a766526b05a0a59b7b60b425",
+      "bytes": 1497204,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        2048,
+        3072,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 3,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r03_c04",
+      "sha256": "a9750fb66f12583ca8da5438a0a70e993a6f320f0eba2c7774e22a9cf120e758",
+      "bytes": 1437500,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        2048,
+        4096,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 3,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r03_c05",
+      "sha256": "3b85b44652a4153b72757ab4b048278760eac9bfb25809e9269803824d314f00",
+      "bytes": 1148143,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        2048,
+        5120,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 3,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r03_c06",
+      "sha256": "07e332b5cfbccd506dab16f8d4b7ab47bc081bad692910c79208a995e36e48ae",
+      "bytes": 941340,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        2048,
+        6144,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 3,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r03_c07",
+      "sha256": "c1d0db0058f3af4864a56e1f85a076c91a5d5da58e19b059909089ceb958e21d",
+      "bytes": 833186,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        2048,
+        7168,
+        3072
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 3,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r03_c08",
+      "sha256": "7514e0da342248fccaad02a5f506ca592d194437ad97d0b9ed30d5a82c47ee44",
+      "bytes": 65190,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        2048,
+        7240,
+        3072
+      ],
+      "artSlicePixels": [
+        72,
+        1024
+      ]
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r04_c01",
+      "sha256": "105075a5d8557e35cad8c32367bebc5364b0866625b2b1ea77c4e5e3836ee00f",
+      "bytes": 890661,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        3072,
+        1024,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r04_c02",
+      "sha256": "2b1415fa899fd34f14d46f9fb083d1e1791b18999c0ba0a0f18b2677a1044f7d",
+      "bytes": 1003481,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        3072,
+        2048,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r04_c03",
+      "sha256": "8a9542af0c1bef523fed26d398144f2ff2c38d885055e01d89a141543d0f2f4a",
+      "bytes": 1105258,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        3072,
+        3072,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 4,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r04_c04",
+      "sha256": "7e9859f6e78b545b6d166307ba5dd276560b19addb767bd6f99a3c51eb01f58b",
+      "bytes": 1090527,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        3072,
+        4096,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 4,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r04_c05",
+      "sha256": "6845fa0a10d0fb3996a5e2e8201cea52b770b5e25d83f6425c9d2ea3b2f876d6",
+      "bytes": 903980,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        3072,
+        5120,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 4,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r04_c06",
+      "sha256": "4c1dfce5d501a3cc3fb40396a257830549f391a065711d60ab4dd6753cd3f405",
+      "bytes": 1089476,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        3072,
+        6144,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 4,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r04_c07",
+      "sha256": "a821946e269d4a14fceb2d8d5ab7269b0603506d4d9e780ebece1b109d4e36bc",
+      "bytes": 917537,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        3072,
+        7168,
+        4096
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 4,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r04_c08",
+      "sha256": "c4c882dc17c161fdeeca80e36ab62be57711ab79a6e1d01ad0f0af4b17eabb94",
+      "bytes": 41512,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        3072,
+        7240,
+        4096
+      ],
+      "artSlicePixels": [
+        72,
+        1024
+      ]
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r05_c01",
+      "sha256": "b3bc9abe0f0e65eb9cf606ad476cb1af5b8ae679dcc31c04556aa2e8011bd1ff",
+      "bytes": 930969,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        4096,
+        1024,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r05_c02",
+      "sha256": "c51f483d6b8dae316086d79f446b442eb62cf25309a651b17fa374a4f149b47b",
+      "bytes": 1113550,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        4096,
+        2048,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r05_c03",
+      "sha256": "732e0cf4f2d98824bb93c7f3e46436e4654c3f549ed011671f8bca3ed6a50856",
+      "bytes": 1425300,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        4096,
+        3072,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 5,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r05_c04",
+      "sha256": "2331d4ec2593bb581c4e250342ee802916a7bbb91213c4d480853668a925301d",
+      "bytes": 1318979,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        4096,
+        4096,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 5,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r05_c05",
+      "sha256": "bdb256a97f6f3badd20f0c3410b2cfbc53147dfe53300d5f9ad126234f3b495a",
+      "bytes": 1261109,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        4096,
+        5120,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 5,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r05_c06",
+      "sha256": "4b8b05982d1c2f2e9fbc546c9a6e213b86c12e383a4de7eb400245c86f37de32",
+      "bytes": 1256016,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        4096,
+        6144,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 5,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r05_c07",
+      "sha256": "72aa3bf99bf855d85bec039a9a0b8b17898749a6eb6b1d9b89621323f46bf8ff",
+      "bytes": 866185,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        4096,
+        7168,
+        5120
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 5,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r05_c08",
+      "sha256": "db5e5d89e4ad6abcbf225aec42fd2795830df7c59cce019f9984271fde7f149d",
+      "bytes": 42394,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        4096,
+        7240,
+        5120
+      ],
+      "artSlicePixels": [
+        72,
+        1024
+      ]
+    },
+    {
+      "row": 6,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r06_c01",
+      "sha256": "2511e982749f4d9ebffc8f7469546b741f930b26aafd9f8f3c00b654901c23f9",
+      "bytes": 868246,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        5120,
+        1024,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 6,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r06_c02",
+      "sha256": "7f5e46996337af389f3b6a94f0419744c5f1eed616e2e69df2652f19bcce3ec8",
+      "bytes": 1072490,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        5120,
+        2048,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 6,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r06_c03",
+      "sha256": "ffe0b43566a389b2e4aff920b051da1b57cd191611ae7a3362aaa05627d1f7bb",
+      "bytes": 1294613,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        5120,
+        3072,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 6,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r06_c04",
+      "sha256": "aac80900a19ef9f95520c8b6a7829875ee4ec6b08d11afe6f33dddd02797794d",
+      "bytes": 1244224,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        5120,
+        4096,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 6,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r06_c05",
+      "sha256": "af94ae2bb576f36071a5b238d220c815242baecdca6826aaec15b3b67a1b2fce",
+      "bytes": 1242021,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        5120,
+        5120,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 6,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r06_c06",
+      "sha256": "edc9201ea072d6c025e019777d2371993b700c673094644d1eec18788966776d",
+      "bytes": 1275519,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        5120,
+        6144,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 6,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r06_c07",
+      "sha256": "68b20743ad4fcdff9c31c6571505ceb0fed0b82b20698f68be592a83ead5a025",
+      "bytes": 944021,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        5120,
+        7168,
+        6144
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 6,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r06_c08",
+      "sha256": "6aab0cbfe15d86c6b23ee6ed2be6132203d1878cc1a24d050b323dc7205bca0e",
+      "bytes": 39863,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        5120,
+        7240,
+        6144
+      ],
+      "artSlicePixels": [
+        72,
+        1024
+      ]
+    },
+    {
+      "row": 7,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r07_c01",
+      "sha256": "277ea0b33734d120109128f42cb7751d5b281f219974684d37dae35a97d0c364",
+      "bytes": 1025555,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        6144,
+        1024,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 7,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r07_c02",
+      "sha256": "02c178edbd8235f7e9cb973a4d7f51f7e562d0e778920d2986570f2afc15b1ee",
+      "bytes": 767822,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        6144,
+        2048,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 7,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r07_c03",
+      "sha256": "d43e5cf112cde0538882f1eecfd6b86e3e5e9769337f7264a1cb9cfc99edb349",
+      "bytes": 769473,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        6144,
+        3072,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 7,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r07_c04",
+      "sha256": "5d5eea013c63d2861f00aca2b613ed3b25223c4def945753e4a3cf49af4684b9",
+      "bytes": 1032993,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        6144,
+        4096,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 7,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r07_c05",
+      "sha256": "7f1830a96c2e3c4d741b8808a379892204a6280f04ce63ccb53181c2dcf5c1a4",
+      "bytes": 1592932,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        6144,
+        5120,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 7,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r07_c06",
+      "sha256": "6f250e95443f2c5479c12236b1f664a4fd77cb6674bebe6608ad3a33100a857f",
+      "bytes": 1459669,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        6144,
+        6144,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 7,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r07_c07",
+      "sha256": "158874312533ff6ad682f7bc980aa05a2eeda0e641770ca694f2bc7004280766",
+      "bytes": 1240311,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        6144,
+        7168,
+        7168
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 7,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r07_c08",
+      "sha256": "4dfe3c3a42ccfc9989f4f03d3615ae9bd39dbe76d88dde8f8f29903348f91b91",
+      "bytes": 55551,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        6144,
+        7240,
+        7168
+      ],
+      "artSlicePixels": [
+        72,
+        1024
+      ]
+    },
+    {
+      "row": 8,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r08_c01",
+      "sha256": "e52d84b408307d41d9ba34371b3eaf401cea52de39f35cc7fc0963b289640b8a",
+      "bytes": 898076,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        0,
+        7168,
+        1024,
+        8192
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 8,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r08_c02",
+      "sha256": "88ddc436b77d0e92faee5a7aafa255b4d627e65534228ee206fa2a4e5bd423d6",
+      "bytes": 813236,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        1024,
+        7168,
+        2048,
+        8192
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 8,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r08_c03",
+      "sha256": "4b0914e9e296f30873b5b69704fa5a80bcf92b59d7e92a54be89481598f747d6",
+      "bytes": 920705,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        2048,
+        7168,
+        3072,
+        8192
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 8,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r08_c04",
+      "sha256": "199c75c944cba835a4d02794d4d03d86c63d0da121ddcb365611de2be0bc538e",
+      "bytes": 941594,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        3072,
+        7168,
+        4096,
+        8192
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 8,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r08_c05",
+      "sha256": "56100ab5ef433037395897d388288c8d1ee6f5fb2a4a2b9b4765c5071fdcddcc",
+      "bytes": 1488856,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        4096,
+        7168,
+        5120,
+        8192
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 8,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r08_c06",
+      "sha256": "c4558638b93bce33aaa99a2f63d970b0ae6e3ea494af733b16fe5cf45bc4e868",
+      "bytes": 1406426,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        5120,
+        7168,
+        6144,
+        8192
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 8,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r08_c07",
+      "sha256": "b74c33ef15d09362f7235c03c5f945604771980d746625f538e831769a99c4b3",
+      "bytes": 1161364,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": false,
+      "artSliceRect": [
+        6144,
+        7168,
+        7168,
+        8192
+      ],
+      "artSlicePixels": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "row": 8,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r08_c08",
+      "sha256": "767211d5ac3efcfc581afb1271c905d4cf911d2694383dfed50a36bbde697d06",
+      "bytes": 79156,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        7168,
+        7240,
+        8192
+      ],
+      "artSlicePixels": [
+        72,
+        1024
+      ]
+    },
+    {
+      "row": 9,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r09_c01",
+      "sha256": "c7aaff33449191d2ce772af494a669db587ade850dfa5ef5650c089ea289fa15",
+      "bytes": 748694,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        0,
+        8192,
+        1024,
+        9050
+      ],
+      "artSlicePixels": [
+        1024,
+        858
+      ]
+    },
+    {
+      "row": 9,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r09_c02",
+      "sha256": "5b729665c331be9644342b3e910719851b5710e82b059919a0528adbf3acda88",
+      "bytes": 854894,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        1024,
+        8192,
+        2048,
+        9050
+      ],
+      "artSlicePixels": [
+        1024,
+        858
+      ]
+    },
+    {
+      "row": 9,
+      "column": 3,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r09_c03",
+      "sha256": "e6aeb35c6c89a2c1492eeca3e51d62152f5ad035074e9a26944fc2a7713d04bf",
+      "bytes": 947800,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        2048,
+        8192,
+        3072,
+        9050
+      ],
+      "artSlicePixels": [
+        1024,
+        858
+      ]
+    },
+    {
+      "row": 9,
+      "column": 4,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r09_c04",
+      "sha256": "23c7f124e3f60718ed80064f9d3a0f0b521f23fefa3be3397d7e9c4087829018",
+      "bytes": 879772,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        3072,
+        8192,
+        4096,
+        9050
+      ],
+      "artSlicePixels": [
+        1024,
+        858
+      ]
+    },
+    {
+      "row": 9,
+      "column": 5,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r09_c05",
+      "sha256": "dd9405581dbb1202449a9e078b7a0af5eb040d203a4512e73337ebe397f2f5dc",
+      "bytes": 751561,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        4096,
+        8192,
+        5120,
+        9050
+      ],
+      "artSlicePixels": [
+        1024,
+        858
+      ]
+    },
+    {
+      "row": 9,
+      "column": 6,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r09_c06",
+      "sha256": "8f5a2326752124f5ebaf8acaee975f759df39ac8a033cd79cc9eeecddf3a33df",
+      "bytes": 825186,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        5120,
+        8192,
+        6144,
+        9050
+      ],
+      "artSlicePixels": [
+        1024,
+        858
+      ]
+    },
+    {
+      "row": 9,
+      "column": 7,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r09_c07",
+      "sha256": "56efd60fcfff548084e47734a0b6ca561db20e2957ed91507372fa7fb6ee01e1",
+      "bytes": 929760,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        6144,
+        8192,
+        7168,
+        9050
+      ],
+      "artSlicePixels": [
+        1024,
+        858
+      ]
+    },
+    {
+      "row": 9,
+      "column": 8,
+      "resourcePath": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/tiles/r09_c08",
+      "sha256": "73c9a0ab7c63a5727188f0e304f4c7690e82345acd989ae8da3fe46dc8d3e5f3",
+      "bytes": 79424,
+      "nativeSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "nativePixels": 7240,
+      "sourceNative": false,
+      "sourceDerived": true,
+      "edgeClamped": true,
+      "artSliceRect": [
+        7168,
+        8192,
+        7240,
+        9050
+      ],
+      "artSlicePixels": [
+        72,
+        858
+      ]
+    }
+  ]
+}

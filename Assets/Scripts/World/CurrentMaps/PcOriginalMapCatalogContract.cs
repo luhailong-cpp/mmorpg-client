@@ -195,7 +195,8 @@ namespace MmorpgClient.World.CurrentMaps
             if (!PcOriginalMapContract.IsValidArtStage(artStage))
                 throw new InvalidOperationException($"{label}: unsupported artStage '{artStage}'.");
             if ((artStage == PcOriginalMapContract.ArtStageQdaoRedrawn ||
-                 artStage == PcOriginalMapContract.ArtStageDeliveryCandidate) && isTemporaryOriginal)
+                 artStage == PcOriginalMapContract.ArtStageDeliveryCandidate ||
+                 artStage == PcOriginalMapContract.ArtStageFormalDelivery) && isTemporaryOriginal)
                 throw new InvalidOperationException($"{label}: {artStage} must have isTemporaryOriginal=false.");
             if (string.IsNullOrWhiteSpace(revision))
                 throw new InvalidOperationException($"{label}: missing revision.");
@@ -417,7 +418,8 @@ namespace MmorpgClient.World.CurrentMaps
             if (!PcOriginalMapContract.IsValidArtStage(artStage))
                 throw new InvalidOperationException($"{mapId}: unsupported artStage '{artStage}'.");
             if ((artStage == PcOriginalMapContract.ArtStageQdaoRedrawn ||
-                 artStage == PcOriginalMapContract.ArtStageDeliveryCandidate) && isTemporaryOriginal)
+                 artStage == PcOriginalMapContract.ArtStageDeliveryCandidate ||
+                 artStage == PcOriginalMapContract.ArtStageFormalDelivery) && isTemporaryOriginal)
                 throw new InvalidOperationException($"{mapId}: {artStage} must have isTemporaryOriginal=false.");
             if (string.IsNullOrWhiteSpace(revision))
                 throw new InvalidOperationException($"{mapId}: missing revision.");

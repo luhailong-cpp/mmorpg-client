@@ -1,0 +1,60 @@
+{
+  "assetId": "original:biyuan-water-palace",
+  "file": "exec-ae113fed-8fc3-4b94-b8d4-c5ceb0e32f13.png",
+  "sha256": "8c396891b77e6adf620e4df07bf393c54abd8d22c4c0e96c6124828f66849698",
+  "width": 1448,
+  "height": 1086,
+  "format": "PNG",
+  "mode": "RGB",
+  "generatedAt": "2026-11-28T01:43:32.310455+00:00",
+  "submittedAt": "2026-11-28T01:42:40.851Z",
+  "tool": "image_gen.imagegen",
+  "route": "builtin",
+  "toolResultFile": "exec-ae113fed-8fc3-4b94-b8d4-c5ceb0e32f13.png",
+  "configSnapshot": {
+    "model": "gpt-image-2.6-sunburst",
+    "quality": "max",
+    "builtin_product": "ChatGPT Images 2.6",
+    "verified_on": "2026-11-26",
+    "sources": {
+      "release": "https://openai.com/index/introducing-images-2-6/",
+      "model": "https://developers.openai.com/api/docs/models/gpt-image-2.6-sunburst",
+      "quality": "https://developers.openai.com/api/docs/guides/image-prompting"
+    }
+  },
+  "submittedParameters": {
+    "model": null,
+    "quality": null,
+    "transparent_background": false
+  },
+  "actualModel": null,
+  "actualQuality": null,
+  "unverifiedReason": "宿主管理，工具未披露模型与画质；PNG未披露可核实的型号信息。",
+  "references": [
+    {
+      "reference": "coordinate-reference.png",
+      "submittedLocalPath": "C:/Users/luyua/AppData/Local/Temp/biyuan-rebuild-20261127/coordinate-reference.png",
+      "sha256": "296fa66a1a4608c53d85384506cdfa6227b4b43e5208f1f9d61d36eb1b970518",
+      "operation": "原有碧渊运行图取有效5120x3840区并Lanczos缩到1600x1200作为构图坐标参照",
+      "projectSource": "designs/map-production-delivery-20261108/biyuan-water-palace/runtime-20261123/biyuan-water-palace-runtime.zip"
+    },
+    {
+      "reference": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/preview/normal/attempt-001/native.png",
+      "submittedLocalPath": "F:/work/image/designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/preview/normal/attempt-001/native.png",
+      "sha256": "0f7ce94115e259775744686c9edaa3dd0798d686d614d77777b2524aef2244da"
+    },
+    {
+      "reference": "designs/mail-ui-v1/01-mail-event.png",
+      "submittedLocalPath": "F:/work/image/designs/mail-ui-v1/01-mail-event.png",
+      "sha256": "f1c1cb5cac9cab31aea470a01de0e8c5f5a353840f1c61d4b5dc14d41bd53413"
+    },
+    {
+      "reference": "designs/team-ui-v2/team-ui-v2.png",
+      "submittedLocalPath": "F:/work/image/designs/team-ui-v2/team-ui-v2.png",
+      "sha256": "bc2451d031e4c5bb30bdd80856587dcbbc12564f3bfda8706faa042958859e94"
+    }
+  ],
+  "promptFile": "base.prompt.txt",
+  "sourceRole": "base",
+  "referencedPngPreservedInThisDelivery": false
+}

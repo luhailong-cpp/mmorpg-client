@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "key": "linghe-ferry",
+  "sceneId": 7,
+  "revision": "linghe-ferry-20261128-v001",
+  "appearance": "spring",
+  "layoutSha256": "e1adb6c5f1f506b1e7d887cf3cf0220683fd8c41db781286d64433c6576bc7c4",
+  "sourceSelectionSha256": "2b211edb724fa74d2bee8c7ca68405fafc849776c82734efc3745021632c97fa",
+  "navigationPlanSha256": "16843290fc5a8df622dc479590fe6a00d2f0fd761c19a1e3c6a17416cede67b3",
+  "sourceLayoutPreview": {
+    "path": "image@bff6f3b8f0dc0476a425cbbdb4b1f1a343f83b45:designs/world-expansion-20261027/hd36-production-20261027/linghe-ferry/continuous-hd-20261127-v002/neutral.png",
+    "sha256": "eed57ad6d7a632bdc11ac6b30a3120aed48b9e69ee6364ea2e46314b732a2ebf"
+  },
+  "selectionAuthority": {
+    "path": "image@bff6f3b8f0dc0476a425cbbdb4b1f1a343f83b45:designs/world-expansion-20261027/hd36-production-20261027/linghe-ferry/continuous-hd-20261127-v002/tiles-spring/manifest.json",
+    "sha256": "caf514adbbe5b7642435c79ff0cf4de99b98a2c5b8f2cacc33466709fca8579e",
+    "bytes": 19127
+  },
+  "tileEvidence": [
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r01_c01.json",
+      "sha256": "6ab92a833f0144c11f35dabb16f1a034ec17be4e5bd0992db507081a098189d9"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r01_c02.json",
+      "sha256": "1097e137cade932495de66d64dac8a5d10f50cd3aeef6324e08865a9d59611af"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r01_c03.json",
+      "sha256": "7297b0672482c3546f38b6f5042bacde745baf6972fa74eb0d5a0ee15b77a430"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r01_c04.json",
+      "sha256": "01293ac38a54e76200f61aa00bce89b7bbab572f79a7d31b873959665d8ff1f7"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r01_c05.json",
+      "sha256": "ca503adc32eaed514c2686bb9588851eb8f75d19f758611d7d10131ee337d145"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r01_c06.json",
+      "sha256": "d3cae1731b09761830497989fe3f9e9a355e7c92c26d5051f49a815c486bdb2e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r02_c01.json",
+      "sha256": "9a52040e05b520465ea509fa88facb3f1bb4674e48735f0da252a9388e251cb0"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r02_c02.json",
+      "sha256": "df1da8b8220b35a29943b710fba35717a968e71f134049a260081871557a246a"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r02_c03.json",
+      "sha256": "af6a0b2acc0371b5566509a3e1cf677a9a774fe4c662f5dcfc69ffccff907af1"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r02_c04.json",
+      "sha256": "ee84815779801cda6bccda8102c9a27a133f49dc35fa622601a9787242afb83b"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r02_c05.json",
+      "sha256": "5f025240832e754645d4e3653a212b15156a5bfde7ee38b3192bd39b5a8d5397"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r02_c06.json",
+      "sha256": "be3e7e37a715e863a17b81a3844409dd0927ffd6a2d172ee600456691408ca4e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r03_c01.json",
+      "sha256": "96c0e3eb8485f7ee21e65cd6b7bfcf3dce3a8d150731324c78fead012f66e2b4"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r03_c02.json",
+      "sha256": "3446a16b1dc43cca1610aaa1367d8bd2f45291e0c8c00ed0720d9b334cb92449"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r03_c03.json",
+      "sha256": "b69743f080d911362412b7d90fa3fcbd5a028f7e2ea21bc7aa08fcb1429b548e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r03_c04.json",
+      "sha256": "a76d2f158231b8a478cb80be325d859d8d89939b2adf0fb446cae76dc772a390"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r03_c05.json",
+      "sha256": "c38722232abd0321c5a53c4622b5781c75d5be602dc6522a5e25f7f4ec15bc13"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r03_c06.json",
+      "sha256": "ae1f2552d5867b18a8186c1680811bdf0fcdbc3d881fa86dce6e423459dc76ab"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r04_c01.json",
+      "sha256": "917763180c3ef89cbe7039ac5d0d23860ef8db0634e85fbdde3389ac9547b091"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r04_c02.json",
+      "sha256": "a8f35a8a91fd12691c9e641d638299e9c73b63043057a9a58ba42f0c75821050"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r04_c03.json",
+      "sha256": "58624a50f09c812e605284cad868179399e56a1134e695d5a830c649ebdff53d"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r04_c04.json",
+      "sha256": "0cdee3f083faf5173689682b1c56fac9b4e2a365275a0a741fa12e90fe51add2"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r04_c05.json",
+      "sha256": "e5092a272cde9d034975df843bb97181ad3745084af2000caab46bfdfb108a67"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r04_c06.json",
+      "sha256": "a7d3cee6d2315fd4cf3aebc5b607e19c2ef09dc833b8b503e43e6881b5977f45"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r05_c01.json",
+      "sha256": "b1d5d659b4141ffba1f71fe729be9541889ee09252bfbc9bf59e5546d5ace10d"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r05_c02.json",
+      "sha256": "740d291475c97b153d1ec3b3ec96b4afd2c736142411d09c0ad1f9cb07dcb684"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r05_c03.json",
+      "sha256": "bc40b59d979dba68d6b8057ca4e46258ac2238d24b307b84cd4a9228b886af9f"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r05_c04.json",
+      "sha256": "680e4595aa0ec34cc29692b7314bfa46d40bff37c1a8b7c2f2ef98d91cdfdcd8"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r05_c05.json",
+      "sha256": "28f14e6c7d0cd2062db44244bf956e977670a67043ddb42d925c2a42e6884660"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r05_c06.json",
+      "sha256": "81abab32bc2f045da6f55496d84b15773f60c51416b14e33297c76e64d284b37"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r06_c01.json",
+      "sha256": "d4a2bedd54662866d2e83f1ca7a85190cc3ef4f5d60c5f3e9e345d1a9f1840e5"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r06_c02.json",
+      "sha256": "4132fccf86868fae0c24b7c01b2c7c1b182c63ff41b4ba46cad6c10abc912880"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r06_c03.json",
+      "sha256": "dec697e30f5bda268ff9806ca17c3122e10b5985167be2c611af1c12bf74a3f8"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r06_c04.json",
+      "sha256": "23fa5ef9dd2bb582f05422072e02f1f95f7661f3d1ad30c27901a3c24cd8be3b"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r06_c05.json",
+      "sha256": "8323e3cb9ccff65123e126a465059e3fb1da31837682af61a6d5c28b3ebf569e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r06_c06.json",
+      "sha256": "90a805653d7f0db9eaec9d839c3e1c1f43251c385629935494ababe3a5659cb1"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r07_c01.json",
+      "sha256": "7643f3bf155ed682d46ab10bdb90dd967c7d453251087c5e0d6fbc838587e3dd"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r07_c02.json",
+      "sha256": "dec6c6bd636dec74f756f6ddd8312c9353e3cff1ebaa43c27ab5a75723327a0b"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r07_c03.json",
+      "sha256": "5adfd8127ac0d1c28aef31673f35f8d4e50f676a606b0fb51df6d54de05fb611"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r07_c04.json",
+      "sha256": "d4e4ec2fa32e08bc50976b861ef9b85a760b2f19ed3301f8cda77b2b81c58515"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r07_c05.json",
+      "sha256": "d36ec2cfd3157ad9271b0ad05bda78569f3b7673e28984da43555908871a743e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r07_c06.json",
+      "sha256": "9b0c40f63d99dbea338d0d88303da3c36698d519ec78599fe82b6fc209069bf3"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r08_c01.json",
+      "sha256": "bc60eef80fa77d582d6ec23d2732ab70975cbcf8bf840afc5553cf7795932583"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r08_c02.json",
+      "sha256": "265d5a0a3737d48bd792aabc49dffe9b2022a4bd194ac21f18daab0c73c13ca4"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r08_c03.json",
+      "sha256": "29470c798124eac9c7b08ca3efff60ca891f2bed95d061ed157300744b6e99aa"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r08_c04.json",
+      "sha256": "4c8723989564d907f731d48c48238c5f4f19b826b086696dd82154fa82e7a50a"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r08_c05.json",
+      "sha256": "82290ab8aedf317c9a8502616eb9b70f3809b5732df9ac5c274f2d64fda8a558"
+    },
+    {
+      "path": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/spring/r08_c06.json",
+      "sha256": "248edc1546bd9c7d64f31d88d63eb25cbaf4d046b2af75e2fe47333e3a0d9fbc"
+    }
+  ],
+  "formalArtAccepted": true,
+  "authoritativeServerRegistered": true
+}

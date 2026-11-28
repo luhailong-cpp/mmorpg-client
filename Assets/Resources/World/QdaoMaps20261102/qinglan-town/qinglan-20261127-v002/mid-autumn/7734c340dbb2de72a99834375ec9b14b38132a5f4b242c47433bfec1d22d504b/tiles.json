@@ -223,7 +223,7 @@
   "deliveredTileCount": 16,
   "deliveredImageBytes": 21883860,
   "sourceSelectionSha256": "bfc51743af5c2cf79cda0e3ec5f53f0b7ab92446bf303402401a44f5fd98f09c",
-  "sourceEvidenceSha256": "21d918f961d4829119dfdd16e27c51d49fdb884115ef39d067b4e5069c10515e",
+  "sourceEvidenceSha256": "b588f16f4304edf2615ef5ee6be7dc7b3bfaa33e69118fa1bb43ea264be06414",
   "navigationPlanSha256": "27b85de21c75eaa75a2e3668d2887e4d1b4f9e343230e75bb715c4ebc940eb67",
   "wholeMapRuntimeAccepted": false,
   "worldRect": {

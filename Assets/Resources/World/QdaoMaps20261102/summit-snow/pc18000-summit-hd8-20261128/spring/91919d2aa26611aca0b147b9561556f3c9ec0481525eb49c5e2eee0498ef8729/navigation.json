@@ -1,0 +1,572 @@
+{
+  "schemaVersion": 1,
+  "key": "summit-snow",
+  "sceneId": 18000,
+  "revision": "pc18000-summit-hd8-20261128",
+  "navigationPlanPath": "Docs/VerificationEvidence/pc18000-summit-hd8-20261128/navigation-plan.json",
+  "navigationPlanSha256": "788c4aa9e01795a0cac8b3a503ca5c78172d03b63d68bf071909910023addd99",
+  "source": {
+    "worldRect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 320.0,
+      "height": 360.0
+    },
+    "effectiveWorldRect": {
+      "x": 0.0,
+      "y": 6.484375,
+      "width": 282.8125,
+      "height": 353.515625
+    },
+    "cellSize": 1.0,
+    "imageRect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 7240.0,
+      "height": 9050.0
+    },
+    "referenceWidth": 7240,
+    "referenceHeight": 9050,
+    "walkmaskColumns": 320,
+    "walkmaskRows": 360,
+    "spawnWorld": {
+      "x": 148.4375,
+      "y": 0.0,
+      "z": 249.84375
+    }
+  },
+  "stats": {
+    "walkableCells": 12464,
+    "totalCells": 115200,
+    "componentCount": 1,
+    "componentSizes": [
+      12464
+    ],
+    "spawnComponent": 0,
+    "landmarks": {
+      "spawn": {
+        "pixel": [
+          3800,
+          2820
+        ],
+        "world": {
+          "x": 148.4375,
+          "y": 0.0,
+          "z": 249.84375
+        },
+        "component": 0
+      },
+      "nwSteppingStonesTop": {
+        "pixel": [
+          240,
+          180
+        ],
+        "world": {
+          "x": 9.375,
+          "y": 0.0,
+          "z": 352.96875
+        },
+        "component": 0
+      },
+      "nwSteppingStonesMid": {
+        "pixel": [
+          820,
+          640
+        ],
+        "world": {
+          "x": 32.03125,
+          "y": 0.0,
+          "z": 335.0
+        },
+        "component": 0
+      },
+      "nwUpperLedge": {
+        "pixel": [
+          1520,
+          1080
+        ],
+        "world": {
+          "x": 59.375,
+          "y": 0.0,
+          "z": 317.8125
+        },
+        "component": 0
+      },
+      "stairNwMid": {
+        "pixel": [
+          2020,
+          1320
+        ],
+        "world": {
+          "x": 78.90625,
+          "y": 0.0,
+          "z": 308.4375
+        },
+        "component": 0
+      },
+      "shrineCourtyardWest": {
+        "pixel": [
+          3100,
+          940
+        ],
+        "world": {
+          "x": 121.09375,
+          "y": 0.0,
+          "z": 323.28125
+        },
+        "component": 0
+      },
+      "shrineCourtyardEast": {
+        "pixel": [
+          3920,
+          640
+        ],
+        "world": {
+          "x": 153.125,
+          "y": 0.0,
+          "z": 335.0
+        },
+        "component": 0
+      },
+      "stairShrineMid": {
+        "pixel": [
+          2620,
+          1280
+        ],
+        "world": {
+          "x": 102.34375,
+          "y": 0.0,
+          "z": 310.0
+        },
+        "component": 0
+      },
+      "upperSplitLanding": {
+        "pixel": [
+          2540,
+          1560
+        ],
+        "world": {
+          "x": 99.21875,
+          "y": 0.0,
+          "z": 299.0625
+        },
+        "component": 0
+      },
+      "stairUpperMid": {
+        "pixel": [
+          3200,
+          1980
+        ],
+        "world": {
+          "x": 125.0,
+          "y": 0.0,
+          "z": 282.65625
+        },
+        "component": 0
+      },
+      "circularTerraceCenter": {
+        "pixel": [
+          4340,
+          2580
+        ],
+        "world": {
+          "x": 169.53125,
+          "y": 0.0,
+          "z": 259.21875
+        },
+        "component": 0
+      },
+      "circularTerraceEast": {
+        "pixel": [
+          5460,
+          2320
+        ],
+        "world": {
+          "x": 213.28125,
+          "y": 0.0,
+          "z": 269.375
+        },
+        "component": 0
+      },
+      "snowPromenadeMid": {
+        "pixel": [
+          2600,
+          3480
+        ],
+        "world": {
+          "x": 101.5625,
+          "y": 0.0,
+          "z": 224.0625
+        },
+        "component": 0
+      },
+      "snowPromenadeWest": {
+        "pixel": [
+          1500,
+          3780
+        ],
+        "world": {
+          "x": 58.59375,
+          "y": 0.0,
+          "z": 212.34375
+        },
+        "component": 0
+      },
+      "stairMidLeft": {
+        "pixel": [
+          2160,
+          4160
+        ],
+        "world": {
+          "x": 84.375,
+          "y": 0.0,
+          "z": 197.5
+        },
+        "component": 0
+      },
+      "middlePlateauCenter": {
+        "pixel": [
+          3260,
+          4360
+        ],
+        "world": {
+          "x": 127.34375,
+          "y": 0.0,
+          "z": 189.6875
+        },
+        "component": 0
+      },
+      "stairMidRight": {
+        "pixel": [
+          3660,
+          5200
+        ],
+        "world": {
+          "x": 142.96875,
+          "y": 0.0,
+          "z": 156.875
+        },
+        "component": 0
+      },
+      "lowerMidLanding": {
+        "pixel": [
+          3640,
+          5800
+        ],
+        "world": {
+          "x": 142.1875,
+          "y": 0.0,
+          "z": 133.4375
+        },
+        "component": 0
+      },
+      "stairLowerMid": {
+        "pixel": [
+          3600,
+          6460
+        ],
+        "world": {
+          "x": 140.625,
+          "y": 0.0,
+          "z": 107.65625
+        },
+        "component": 0
+      },
+      "lowerWestLedge": {
+        "pixel": [
+          3300,
+          6980
+        ],
+        "world": {
+          "x": 128.90625,
+          "y": 0.0,
+          "z": 87.34375
+        },
+        "component": 0
+      },
+      "stairBottom": {
+        "pixel": [
+          3860,
+          7340
+        ],
+        "world": {
+          "x": 150.78125,
+          "y": 0.0,
+          "z": 73.28125
+        },
+        "component": 0
+      },
+      "lowerTerraceWest": {
+        "pixel": [
+          3760,
+          7880
+        ],
+        "world": {
+          "x": 146.875,
+          "y": 0.0,
+          "z": 52.1875
+        },
+        "component": 0
+      },
+      "lowerTerraceSouth": {
+        "pixel": [
+          5060,
+          8300
+        ],
+        "world": {
+          "x": 197.65625,
+          "y": 0.0,
+          "z": 35.78125
+        },
+        "component": 0
+      },
+      "lowerTerraceEast": {
+        "pixel": [
+          6520,
+          7640
+        ],
+        "world": {
+          "x": 254.6875,
+          "y": 0.0,
+          "z": 61.5625
+        },
+        "component": 0
+      }
+    },
+    "blockedLandmarks": [
+      "rightPadding",
+      "bottomPadding",
+      "shrineRoof",
+      "shrineDoorstep",
+      "midAutumnOfferingTable",
+      "midAutumnMoonBackdrop",
+      "bigBareTreeNorth",
+      "eastMountainVoid",
+      "westCliffVoid",
+      "frozenWaterfallUpper",
+      "frozenWaterfallLower",
+      "leftGuardianStatue",
+      "rightGuardianStatue",
+      "guardianPoolWater",
+      "bottomLeftAutumnPath",
+      "bottomLeftStream"
+    ],
+    "connectedRoutes": [
+      [
+        "spawn",
+        "circularTerraceCenter"
+      ],
+      [
+        "circularTerraceCenter",
+        "circularTerraceEast"
+      ],
+      [
+        "spawn",
+        "stairUpperMid"
+      ],
+      [
+        "stairUpperMid",
+        "upperSplitLanding"
+      ],
+      [
+        "upperSplitLanding",
+        "stairShrineMid"
+      ],
+      [
+        "stairShrineMid",
+        "shrineCourtyardWest"
+      ],
+      [
+        "shrineCourtyardWest",
+        "shrineCourtyardEast"
+      ],
+      [
+        "upperSplitLanding",
+        "stairNwMid"
+      ],
+      [
+        "stairNwMid",
+        "nwUpperLedge"
+      ],
+      [
+        "nwUpperLedge",
+        "nwSteppingStonesMid"
+      ],
+      [
+        "nwSteppingStonesMid",
+        "nwSteppingStonesTop"
+      ],
+      [
+        "spawn",
+        "snowPromenadeMid"
+      ],
+      [
+        "snowPromenadeMid",
+        "snowPromenadeWest"
+      ],
+      [
+        "snowPromenadeWest",
+        "stairMidLeft"
+      ],
+      [
+        "stairMidLeft",
+        "middlePlateauCenter"
+      ],
+      [
+        "middlePlateauCenter",
+        "stairMidRight"
+      ],
+      [
+        "stairMidRight",
+        "lowerMidLanding"
+      ],
+      [
+        "lowerMidLanding",
+        "stairLowerMid"
+      ],
+      [
+        "stairLowerMid",
+        "lowerWestLedge"
+      ],
+      [
+        "lowerWestLedge",
+        "stairBottom"
+      ],
+      [
+        "stairBottom",
+        "lowerTerraceWest"
+      ],
+      [
+        "lowerTerraceWest",
+        "lowerTerraceSouth"
+      ],
+      [
+        "lowerTerraceSouth",
+        "lowerTerraceEast"
+      ]
+    ],
+    "routeMeasurements": [
+      {
+        "from": "spawn",
+        "to": "circularTerraceCenter",
+        "gridDistanceWorldUnits": 25.142135623730955
+      },
+      {
+        "from": "circularTerraceCenter",
+        "to": "circularTerraceEast",
+        "gridDistanceWorldUnits": 48.14213562373092
+      },
+      {
+        "from": "spawn",
+        "to": "stairUpperMid",
+        "gridDistanceWorldUnits": 44.52691193458117
+      },
+      {
+        "from": "stairUpperMid",
+        "to": "upperSplitLanding",
+        "gridDistanceWorldUnits": 33.041630560342625
+      },
+      {
+        "from": "upperSplitLanding",
+        "to": "stairShrineMid",
+        "gridDistanceWorldUnits": 12.242640687119284
+      },
+      {
+        "from": "stairShrineMid",
+        "to": "shrineCourtyardWest",
+        "gridDistanceWorldUnits": 24.384776310850242
+      },
+      {
+        "from": "shrineCourtyardWest",
+        "to": "shrineCourtyardEast",
+        "gridDistanceWorldUnits": 36.970562748477136
+      },
+      {
+        "from": "upperSplitLanding",
+        "to": "stairNwMid",
+        "gridDistanceWorldUnits": 24.72792206135786
+      },
+      {
+        "from": "stairNwMid",
+        "to": "nwUpperLedge",
+        "gridDistanceWorldUnits": 22.72792206135786
+      },
+      {
+        "from": "nwUpperLedge",
+        "to": "nwSteppingStonesMid",
+        "gridDistanceWorldUnits": 34.45584412271572
+      },
+      {
+        "from": "nwSteppingStonesMid",
+        "to": "nwSteppingStonesTop",
+        "gridDistanceWorldUnits": 30.041630560342625
+      },
+      {
+        "from": "spawn",
+        "to": "snowPromenadeMid",
+        "gridDistanceWorldUnits": 57.355339059327335
+      },
+      {
+        "from": "snowPromenadeMid",
+        "to": "snowPromenadeWest",
+        "gridDistanceWorldUnits": 47.97056274847711
+      },
+      {
+        "from": "snowPromenadeWest",
+        "to": "stairMidLeft",
+        "gridDistanceWorldUnits": 32.213203435596434
+      },
+      {
+        "from": "stairMidLeft",
+        "to": "middlePlateauCenter",
+        "gridDistanceWorldUnits": 46.31370849898475
+      },
+      {
+        "from": "middlePlateauCenter",
+        "to": "stairMidRight",
+        "gridDistanceWorldUnits": 44.8700576850888
+      },
+      {
+        "from": "stairMidRight",
+        "to": "lowerMidLanding",
+        "gridDistanceWorldUnits": 25.48528137423857
+      },
+      {
+        "from": "lowerMidLanding",
+        "to": "stairLowerMid",
+        "gridDistanceWorldUnits": 27.656854249492383
+      },
+      {
+        "from": "stairLowerMid",
+        "to": "lowerWestLedge",
+        "gridDistanceWorldUnits": 24.970562748477146
+      },
+      {
+        "from": "lowerWestLedge",
+        "to": "stairBottom",
+        "gridDistanceWorldUnits": 27.798989873223338
+      },
+      {
+        "from": "stairBottom",
+        "to": "lowerTerraceWest",
+        "gridDistanceWorldUnits": 22.65685424949238
+      },
+      {
+        "from": "lowerTerraceWest",
+        "to": "lowerTerraceSouth",
+        "gridDistanceWorldUnits": 58.04163056034261
+      },
+      {
+        "from": "lowerTerraceSouth",
+        "to": "lowerTerraceEast",
+        "gridDistanceWorldUnits": 67.7695526217004
+      }
+    ],
+    "maximumListedRouteSecondsAt18": 3.764975145650022,
+    "separatedRoutes": [],
+    "maskSha256": "5030e8450cf4639db9fe1f8745da40d920b3c4f081fc1357f36fb8858ad48946",
+    "maskBytes": 14400,
+    "engineAccepted": false,
+    "serverNavigationPublished": false
+  }
+}

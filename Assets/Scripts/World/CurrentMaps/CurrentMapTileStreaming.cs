@@ -280,21 +280,77 @@ namespace MmorpgClient.World.CurrentMaps
             return true;
         }
 
+        /// <summary>
+        /// 按地图有效像素边界裁剪运行块渲染矩形与 UV；对落入 RGB24 透明填充区的裁切边内缩半纹素，
+        /// 避免双线性采样混入填充区黑色像素，同时保持图块内部拼缝精确对齐。
+        /// </summary>
+        internal static bool TryComputeEffectiveTileQuad(Rect tileRect, Rect effectiveWorldRect, int tilePixels,
+            out Rect quadRect, out Vector2 uvOffset, out Vector2 uvScale)
+        {
+            if (tileRect.width <= 0f || tileRect.height <= 0f || tilePixels < 1)
+            {
+                quadRect = default;
+                uvOffset = Vector2.zero;
+                uvScale = Vector2.one;
+                return false;
+            }
+            if (effectiveWorldRect.width <= 0f || effectiveWorldRect.height <= 0f)
+            {
+                quadRect = tileRect;
+                uvOffset = Vector2.zero;
+                uvScale = Vector2.one;
+                return true;
+            }
+            float xMin = Mathf.Max(tileRect.xMin, effectiveWorldRect.xMin);
+            float xMax = Mathf.Min(tileRect.xMax, effectiveWorldRect.xMax);
+            float yMin = Mathf.Max(tileRect.yMin, effectiveWorldRect.yMin);
+            float yMax = Mathf.Min(tileRect.yMax, effectiveWorldRect.yMax);
+            if (xMax <= xMin || yMax <= yMin)
+            {
+                quadRect = default;
+                uvOffset = Vector2.zero;
+                uvScale = Vector2.one;
+                return false;
+            }
+            quadRect = Rect.MinMaxRect(xMin, yMin, xMax, yMax);
+            float uMin = Mathf.Clamp01((xMin - tileRect.xMin) / tileRect.width);
+            float uMax = Mathf.Clamp01((xMax - tileRect.xMin) / tileRect.width);
+            float vMin = Mathf.Clamp01((yMin - tileRect.yMin) / tileRect.height);
+            float vMax = Mathf.Clamp01((yMax - tileRect.yMin) / tileRect.height);
+            float halfTexel = 0.5f / tilePixels;
+            float epsX = tileRect.width * (0.01f / tilePixels);
+            float epsY = tileRect.height * (0.01f / tilePixels);
+            if (xMin > tileRect.xMin + epsX) uMin = Mathf.Min(uMax, uMin + halfTexel);
+            if (xMax < tileRect.xMax - epsX) uMax = Mathf.Max(uMin, uMax - halfTexel);
+            if (yMin > tileRect.yMin + epsY) vMin = Mathf.Min(vMax, vMin + halfTexel);
+            if (yMax < tileRect.yMax - epsY) vMax = Mathf.Max(vMin, vMax - halfTexel);
+            uvOffset = new Vector2(uMin, vMin);
+            uvScale = new Vector2(uMax - uMin, vMax - vMin);
+            return true;
+        }
+
         private void CreateQuad(Tile tile, Texture2D texture)
         {
+            if (!TryComputeEffectiveTileQuad(tile.Rect, Manifest.EffectiveWorldRect, Manifest.tilePixels,
+                out var quadRect, out var uvOffset, out var uvScale))
+            {
+                Release(tile);
+                return;
+            }
             var shader = Shader.Find("Unlit/Texture") ?? Shader.Find("Sprites/Default") ?? Shader.Find("UI/Default");
             if (shader == null) throw new InvalidOperationException("缺少分片纹理 Shader。");
             var quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
             tile.Quad = quad;
             quad.name = $"CurrentMapTile_r{tile.Entry.row:00}_c{tile.Entry.column:00}";
             quad.transform.SetParent(transform, false);
-            quad.transform.localPosition = new Vector3(tile.Rect.center.x, GroundHeight, tile.Rect.center.y);
+            quad.transform.localPosition = new Vector3(quadRect.center.x, GroundHeight, quadRect.center.y);
             quad.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
-            quad.transform.localScale = new Vector3(tile.Rect.width, tile.Rect.height, 1f);
+            quad.transform.localScale = new Vector3(quadRect.width, quadRect.height, 1f);
             var collider = quad.GetComponent<Collider>();
             collider.enabled = false;
             DestroyOwned(collider);
             tile.Material = new Material(shader) { name = quad.name, mainTexture = texture,
+                mainTextureOffset = uvOffset, mainTextureScale = uvScale,
                 renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry };
             var renderer = quad.GetComponent<MeshRenderer>();
             renderer.sharedMaterial = tile.Material;

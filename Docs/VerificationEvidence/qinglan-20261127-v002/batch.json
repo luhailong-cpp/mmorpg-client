@@ -11,8 +11,8 @@
       "appearance": "spring",
       "columns": 4,
       "rows": 4,
-      "clientOnly": true,
-      "authoritativeServerRegistered": false,
+      "clientOnly": false,
+      "authoritativeServerRegistered": true,
       "allowDerivedSource": true,
       "allowTransparentPadding": true
     },
@@ -24,8 +24,8 @@
       "appearance": "mid-autumn",
       "columns": 4,
       "rows": 4,
-      "clientOnly": true,
-      "authoritativeServerRegistered": false,
+      "clientOnly": false,
+      "authoritativeServerRegistered": true,
       "allowDerivedSource": true,
       "allowTransparentPadding": true
     }

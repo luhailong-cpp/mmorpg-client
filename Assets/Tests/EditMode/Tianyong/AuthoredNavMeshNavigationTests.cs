@@ -122,6 +122,22 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(nav.IsSegmentWalkable(start, acrossHole), Is.False);
                 Assert.That(nav.FindPath(start, acrossHole), Is.Not.Empty, "A complete route around the hole exists.");
                 Assert.That(nav.FindPath(start, island), Is.Empty, "A partial path to another island must be rejected.");
+
+                // 贴近寻路：点洞中心、点孤岛、点空洞深处均应在己方连通域内走到欧氏最近合法点。
+                var holeApproach = nav.FindApproachPath(start, new Vector3(5, 0, 5));
+                Assert.That(holeApproach.Count, Is.GreaterThanOrEqualTo(2), "点击障碍洞心应贴近洞缘。");
+                Assert.That(nav.IsWalkable(holeApproach[holeApproach.Count - 1]), Is.True);
+                for (var i = 1; i < holeApproach.Count; i++)
+                    Assert.That(nav.IsSegmentWalkable(holeApproach[i - 1], holeApproach[i]), Is.True);
+
+                var islandApproach = nav.FindApproachPath(start, island);
+                Assert.That(islandApproach.Count, Is.GreaterThanOrEqualTo(2), "点击不连通孤岛应走到己方最近岸边。");
+                var shore = islandApproach[islandApproach.Count - 1];
+                Assert.That(nav.IsWalkable(shore), Is.True);
+                Assert.That(shore.x, Is.GreaterThan(9.0f).And.LessThanOrEqualTo(10.0f));
+                Assert.That(shore.z, Is.EqualTo(5f).Within(0.6f));
+                for (var i = 1; i < islandApproach.Count; i++)
+                    Assert.That(nav.IsSegmentWalkable(islandApproach[i - 1], islandApproach[i]), Is.True);
             }
             finally { UnityEngine.Object.DestroyImmediate(data); }
         }

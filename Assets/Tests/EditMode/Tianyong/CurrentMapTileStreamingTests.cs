@@ -471,5 +471,59 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             }
             finally { map?.Dispose(); }
         }
+
+        [Test]
+        public void EffectiveTileQuadClipsRightBottomPaddingAndInsetsOnlyPaddedBilinearEdges()
+        {
+            const float tileSpan = 58.02734375f;
+            var world = new Rect(0f, -56.2139892578125f, 6f * tileSpan, 8f * tileSpan);
+            var effective = new Rect(0f, 0f, 340.00396728515625f, 408.0047607421875f);
+
+            // 内部满块 r01_c01：不裁切，UV 保持精确 [0,1]×[0,1]。
+            var interior = new Rect(0f, world.yMax - tileSpan, tileSpan, tileSpan);
+            Assert.That(CurrentMapTileStreaming.TryComputeEffectiveTileQuad(interior, effective, 1024,
+                out var q1, out var o1, out var s1), Is.True);
+            Assert.That(q1, Is.EqualTo(interior));
+            Assert.That(o1, Is.EqualTo(Vector2.zero));
+            Assert.That(s1, Is.EqualTo(Vector2.one));
+
+            // 右边缘块 r01_c06（有效宽 880/1024）：左/上/下保持无缝，右缘内缩半纹素避开 RGB24 填充黑边。
+            var rightEdge = new Rect(5f * tileSpan, world.yMax - tileSpan, tileSpan, tileSpan);
+            Assert.That(CurrentMapTileStreaming.TryComputeEffectiveTileQuad(rightEdge, effective, 1024,
+                out var qR, out var oR, out var sR), Is.True);
+            Assert.That(qR.xMin, Is.EqualTo(rightEdge.xMin));
+            Assert.That(qR.xMax, Is.EqualTo(effective.xMax).Within(1e-4f));
+            Assert.That(oR.x, Is.EqualTo(0f));
+            Assert.That(oR.y, Is.EqualTo(0f));
+            Assert.That(sR.x, Is.EqualTo(879.5f / 1024f).Within(1e-5f));
+            Assert.That(sR.y, Is.EqualTo(1f));
+
+            // 底边缘块 r08_c01（有效高 32/1024）：仅底缘内缩半纹素。
+            var bottomEdge = new Rect(0f, world.yMin, tileSpan, tileSpan);
+            Assert.That(CurrentMapTileStreaming.TryComputeEffectiveTileQuad(bottomEdge, effective, 1024,
+                out var qB, out var oB, out var sB), Is.True);
+            Assert.That(qB.yMin, Is.EqualTo(effective.yMin).Within(1e-4f));
+            Assert.That(qB.yMax, Is.EqualTo(bottomEdge.yMax).Within(1e-4f));
+            Assert.That(oB.x, Is.EqualTo(0f));
+            Assert.That(oB.y, Is.EqualTo(992.5f / 1024f).Within(1e-5f));
+            Assert.That(sB.x, Is.EqualTo(1f));
+            Assert.That(oB.y + sB.y, Is.EqualTo(1f).Within(1e-5f));
+
+            // 右下角块 r08_c06（有效 880×32）：右缘与底缘同时内缩半纹素，内侧拼缝 (u=0, v=1) 保持精确。
+            var corner = new Rect(5f * tileSpan, world.yMin, tileSpan, tileSpan);
+            Assert.That(CurrentMapTileStreaming.TryComputeEffectiveTileQuad(corner, effective, 1024,
+                out var qC, out var oC, out var sC), Is.True);
+            Assert.That(qC.xMax, Is.EqualTo(effective.xMax).Within(1e-4f));
+            Assert.That(qC.yMin, Is.EqualTo(effective.yMin).Within(1e-4f));
+            Assert.That(oC.x, Is.EqualTo(0f));
+            Assert.That(oC.x + sC.x, Is.EqualTo(879.5f / 1024f).Within(1e-5f));
+            Assert.That(oC.y, Is.EqualTo(992.5f / 1024f).Within(1e-5f));
+            Assert.That(oC.y + sC.y, Is.EqualTo(1f).Within(1e-5f));
+
+            // 完全落在有效范围外的切片应返回 false，不生成填充块。
+            var outside = new Rect(400f, -120f, tileSpan, tileSpan);
+            Assert.That(CurrentMapTileStreaming.TryComputeEffectiveTileQuad(outside, effective, 1024,
+                out _, out _, out _), Is.False);
+        }
     }
 }

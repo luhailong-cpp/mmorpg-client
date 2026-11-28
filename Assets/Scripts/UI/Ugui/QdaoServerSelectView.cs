@@ -170,6 +170,7 @@ namespace MmorpgClient.UI.Ugui
             if (QdaoUguiTheme.ResolveFont() == null)
                 throw new MissingReferenceException("The qdao uGUI TMP font asset is missing.");
             EnsurePassportUi();
+            EnsureAccountSessionUi();
             EnsurePrivacyConsentUi();
             BindEvents();
             BindClientEvents();
@@ -273,7 +274,7 @@ namespace MmorpgClient.UI.Ugui
                     EnsureDefaultSelection();
                     RebuildFilteredList();
                     RefreshVisualState();
-                    SetStatus(session.Zones.Count == 0 ? "暂无可用区服" : string.Empty);
+                    SetStatus(session.Zones.Count == 0 ? "暂无可用区服" : FormatSavedSessionIdleStatus());
                 },
                 err =>
                 {
@@ -515,6 +516,7 @@ namespace MmorpgClient.UI.Ugui
             _boundGameClient.OnFlowStatus += SetStatus;
             _boundGameClient.OnQueueUpdate += _queueUpdateHandler;
             _boundGameClient.OnDisconnected += _disconnectedHandler;
+            BindAccountSessionClientEvents(_boundGameClient);
         }
 
         private void UnbindClientEvents()
@@ -523,6 +525,7 @@ namespace MmorpgClient.UI.Ugui
 
             if (_boundGameClient != null)
             {
+                UnbindAccountSessionClientEvents(_boundGameClient);
                 _boundGameClient.OnFlowStatus -= SetStatus;
                 _boundGameClient.OnQueueUpdate -= _queueUpdateHandler;
                 _boundGameClient.OnDisconnected -= _disconnectedHandler;
@@ -646,7 +649,7 @@ namespace MmorpgClient.UI.Ugui
             if (_busy) return;
             if (_credentialForRealName) SubmitRealNameFromPanel();
             else if (_credentialForDeletion) SubmitPasswordDeletion();
-            else OnEnterClicked();
+            else OnEnterClicked(allowRememberedSession: false);
         }
 
         private void OnAccountSubmitted(string _)
@@ -681,7 +684,9 @@ namespace MmorpgClient.UI.Ugui
             return zone;
         }
 
-        private void OnEnterClicked()
+        private void OnEnterClicked() => OnEnterClicked(allowRememberedSession: true);
+
+        private void OnEnterClicked(bool allowRememberedSession)
         {
             var zone = ResolveEnterableZone();
             if (zone == null) return;
@@ -690,6 +695,15 @@ namespace MmorpgClient.UI.Ugui
 
             // 小游戏包(微信 / 抖音宿主里)没有账号口令:点「进入」直接向宿主要一次性的登录 code 去换账号。
             if (MiniGameLogin.AuthType != null) { BeginChannelSignIn(MiniGameLogin.AuthType); return; }
+
+            // 防盗号免重登:首页/选服页点「进入」且本机系统加密存储里有有效 RefreshToken 时直接续期进区。
+            if (allowRememberedSession &&
+                ClientAuthStorage.RememberedSession.TryGetSavedSession(out var savedSession, out string savedRefreshToken))
+            {
+                ShowCredentialPanel(false);
+                RunEnterZoneWithRememberedSession(zone, savedSession, savedRefreshToken);
+                return;
+            }
 
             var account = (_accountInput.text ?? string.Empty).Trim();
             var password = _passwordInput.text ?? string.Empty;
@@ -715,6 +729,9 @@ namespace MmorpgClient.UI.Ugui
 
             session.Account = account;
             session.Password = password;
+            _pendingAuthType = LoginAuthTypes.Password;
+            _pendingAuthRawLabel = account;
+            _pendingRememberedInfo = default;
 
             // Persist the immutable inputs that actually completed,
             // not any UI/session value changed by a later callback.
@@ -749,6 +766,17 @@ namespace MmorpgClient.UI.Ugui
                         candidate => candidate.zone_id == zone.zone_id);
                     session.SetTokensFromClient(_app.GameClient);
                     session.RecordZoneEntered(zone.zone_id);
+                    string completedAuthType = !string.IsNullOrEmpty(_pendingAuthType)
+                        ? _pendingAuthType
+                        : (credential.AuthType == LoginAuthTypes.AccessToken ? ClientSettings.LastLoginMethod : credential.AuthType);
+                    string completedRawLabel = !string.IsNullOrEmpty(_pendingAuthRawLabel)
+                        ? _pendingAuthRawLabel
+                        : (credential.IsPassword ? credential.Account : string.Empty);
+                    if (!string.IsNullOrEmpty(completedAuthType))
+                        RecordSuccessfulLoginSession(completedAuthType, completedRawLabel, zone.zone_id);
+                    _pendingAuthType = null;
+                    _pendingAuthRawLabel = null;
+                    _pendingRememberedInfo = default;
                     SetStatus(string.Empty);
                     gameObject.SetActive(false);
                 },
@@ -894,6 +922,14 @@ namespace MmorpgClient.UI.Ugui
                     return;
                 }
                 ShowCredentialPanel(false);
+                string displayName = string.Empty;
+                if (authType == LoginAuthTypes.Passport)
+                    PassportOAuthProtocol.TryExtractDisplayName(result.IdentityToken, out displayName);
+                _pendingAuthType = authType;
+                _pendingAuthRawLabel = displayName;
+                _pendingRememberedInfo = default;
+                if (_passwordInput != null) _passwordInput.SetTextWithoutNotify(string.Empty);
+                if (_app?.Session != null) _app.Session.Password = string.Empty;
                 RunEnterZone(zone, LoginCredential.ForThirdParty(authType, result.IdentityToken), null);
             });
         }
@@ -988,6 +1024,7 @@ namespace MmorpgClient.UI.Ugui
             _appleSignInButton.interactable = canInteract;
             _googleSignInButton.interactable = canInteract;
             RefreshPassportUiState(canInteract);
+            RefreshAccountSessionUiState(canInteract);
             _landingServers.interactable = canInteract;
             _landingAccount.interactable = canInteract;
             _landingEnter.interactable = canInteract && !_serverListLoading && (chosen == null || enterable);

@@ -215,7 +215,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 1 => "归元城",
                 2 => "八景岛",
                 3 => "月汐湾",
+                4 => "青岚镇",
                 5 => "碧渊水宫",
+                6 => "沧澜港",
+                7 => "灵禾渡",
+                18000 => "山顶雪区",
+                20000 => "水车庭院",
                 _ => FindDestination(_destinations, sceneConfigId)?.Name ?? ""
             };
         }

@@ -34,8 +34,8 @@
   "revision": "waterwheel-hd8-20261128",
   "appearance": "spring",
   "resourceRoot": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/",
-  "clientOnly": true,
-  "authoritativeServerRegistered": false,
+  "clientOnly": false,
+  "authoritativeServerRegistered": true,
   "artStatus": "formal_tiles_overview",
   "layoutPixels": {
     "width": 4096,
@@ -52,9 +52,9 @@
   "runtimeAssemblyRgbSha256": "0ee4f468aea12a972b3c539e1545b226247ecf744adff79732f7a4bda1b92621",
   "navigationPlanPath": "Docs/VerificationEvidence/waterwheel-hd8-20261128/navigation-plan.json",
   "navigationPlanSha256": "6675b0bf38474b60b0a6ecccb98406236d94ab8056400e55c4c94a9816f94d7f",
-  "navigationSha256": "a86d077d63162f4b1a6dc7924a06c2e1dc514bf4974e65e6dbb780c525506b9d",
+  "navigationSha256": "c1f1f30db557ad9d616cbef7f9647fac126fb84062fbcdf8afc1fe5705076c0c",
   "walkmaskSha256": "f81634666a4d0e91e8436851a10a6264e1a76e52cd49b74577c6049d9d5e00c7",
   "walkmaskPackedSha256": "b3f75e1f84cfdcee468f168eabb27d14c4cb780e7f08e601ef0b12dd96a112dd",
-  "navigationStatus": "conservative_visible_ground_client_only",
-  "runtimeEngineAcceptance": false
+  "navigationStatus": "conservative_visible_ground",
+  "runtimeEngineAcceptance": true
 }

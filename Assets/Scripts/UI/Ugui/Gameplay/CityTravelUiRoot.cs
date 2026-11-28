@@ -798,9 +798,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     Description = map.SceneConfigId == 1 ? "主城暂用碧渊水宫替代，石桥连廊通往太极中庭、主殿与钟鼓亭。" :
                         map.SceneConfigId == 2 ? "八景仙岛四桥贯通中央太极广场与各色亭台。" :
                         map.SceneConfigId == 3 ? "月汐湾码头停舟，渔舍临海，石阶与海湾相连。" :
-                        map.SceneConfigId == 4 ? "青岚溪谷三桥贯通西市、北圃与东岸炉房，双节景色已收录，暂未开放传送。" :
+                        map.SceneConfigId == 4 ? "青岚溪谷三桥贯通西市、北圃与东岸炉房，春节与中秋双景自在游历。" :
                         map.SceneConfigId == 5 ? "碧水环抱重檐水宫，石桥连廊通往太极中庭、主殿与钟鼓亭。" :
+                        map.SceneConfigId == 6 ? "沧澜渔港双码头与北鱼市、船厂石阶相连，春节与中秋双景自在游历。" :
+                        map.SceneConfigId == 7 ? "灵禾渡双岸木桥连通粮仓、农舍、水车坊与东西渡口，春节与中秋双景自在游历。" :
                         map.SceneConfigId == 20000 ? "飞瀑水车映重檐，太极中庭连石桥、临水亭与南北石阶。" :
+                        map.SceneConfigId == 18000 ? "冰瀑雪崖绕云峰，双石像雪池沿盘山石阶贯通圆台、浮空石径与山顶道祠。" :
+                        map.SceneConfigId == 19003 ? "弯渠木石双桥贯通东侧主院与西南药圃小院，双节景色已收录，暂未开放传送。" :
                         map.CanTravelOnline ? "选择景色，沿石路自在游历。" : "景色已收录，此地图尚未开放传送。",
                     DayResourcePath = map.ForAppearance("normal")?.TexturePath,
                     FestivalResourcePath = map.ForAppearance("spring")?.TexturePath,

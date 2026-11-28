@@ -266,8 +266,8 @@ def validate_selection(selection, batch=None):
                 native = tile["native"]
                 pixels = native.get("pixels")
                 require(SHA.fullmatch(native["sha256"]) and native["bytes"] > 0 and isinstance(pixels, list)
-                        and len(pixels) == 2 and all(type(v) is int and v >= 1024 for v in pixels)
-                        and pixels[0] == pixels[1], "Frozen body source PNG provenance invalid")
+                        and len(pixels) == 2 and all(type(v) is int and v >= 1024 for v in pixels),
+                        "Frozen body source PNG provenance invalid")
                 runtime = tile["runtime"]
                 require(SHA.fullmatch(runtime["sha256"]) and runtime["bytes"] > 0 and runtime["pixels"] == [1024, 1024],
                         "Frozen PNG provenance invalid")

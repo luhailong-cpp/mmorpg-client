@@ -471,6 +471,41 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(File.Exists(v2Badge), Is.True, "Missing RewardedAdV1/icon_rewarded_video_badge.png");
             Assert.That(File.Exists(v2Badge + ".meta"), Is.True, "Missing RewardedAdV1/icon_rewarded_video_badge.png.meta");
 
+            // 3b. 验证 B5 Steam 创始典藏包 2 张 PNG-32 切图与 .meta 契约
+            var b5Specs = new (string rel, int w, int h)[]
+            {
+                ("UI/Ugui/ShowcaseCosmeticsV1/formation_skin_starlight", 1024, 512),
+                ("UI/Ugui/ShowcaseCosmeticsV1/banner_founder_supporter_pack", 1200, 320),
+                ("UI/Ugui/ShowcaseCosmeticsV1/icon_showcase_voucher", 512, 512),
+                ("UI/Ugui/Skills/Scrolls/scroll_8", 128, 128),
+                ("UI/Ugui/Skills/Scrolls/scroll_9", 128, 128),
+                ("UI/Skills/16001", 512, 512),
+                ("UI/Skills/16002", 512, 512),
+                ("UI/Skills/16003", 512, 512),
+                ("UI/Skills/16004", 512, 512),
+                ("UI/Skills/16005", 512, 512),
+                ("UI/Skills/16006", 512, 512),
+                ("UI/Skills/16007", 512, 512),
+                ("UI/Skills/16008", 512, 512),
+                ("UI/Skills/16009", 512, 512),
+                ("UI/Skills/16010", 512, 512),
+                ("UI/Skills/16011", 512, 512),
+            };
+            foreach (var spec in b5Specs)
+            {
+                string png = Path.Combine(resourcesRoot, spec.rel.Replace('/', Path.DirectorySeparatorChar) + ".png");
+                Assert.That(File.Exists(png), Is.True, $"Missing B5 PNG: {spec.rel}");
+                Assert.That(File.Exists(png + ".meta"), Is.True, $"Missing B5 meta: {spec.rel}.meta");
+                byte[] hdr = new byte[26];
+                using (var fs = File.OpenRead(png))
+                    Assert.That(fs.Read(hdr, 0, hdr.Length), Is.EqualTo(hdr.Length), spec.rel);
+                int w = (hdr[16] << 24) | (hdr[17] << 16) | (hdr[18] << 8) | hdr[19];
+                int h = (hdr[20] << 24) | (hdr[21] << 16) | (hdr[22] << 8) | hdr[23];
+                Assert.That(w, Is.EqualTo(spec.w), $"{spec.rel} width");
+                Assert.That(h, Is.EqualTo(spec.h), $"{spec.rel} height");
+                Assert.That(hdr[25], Is.EqualTo((byte)6), $"{spec.rel} must be RGBA PNG-32");
+            }
+
             // 4. 验证 B5 M-8 渠道门禁矩阵
             var wx = ClientDistributionPolicy.Resolve(ClientDistributionChannel.WechatMinigameUnlicensed);
             var dy = ClientDistributionPolicy.Resolve(ClientDistributionChannel.DouyinMinigameUnlicensed);

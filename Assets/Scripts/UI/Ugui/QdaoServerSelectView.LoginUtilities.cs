@@ -480,6 +480,7 @@ namespace MmorpgClient.UI.Ugui
             session.RefreshToken = null;
             _passwordInput.SetTextWithoutNotify(string.Empty);
             _app.GameClient.SetTokens(null, null, 0);
+            ClientAuthStorage.RememberedSession.Clear();
             ClientSettings.LastLoginMethod = string.Empty;
             if (authType == LoginAuthTypes.Google) PlatformSignIn.ClearGoogleCredentialState();
         }

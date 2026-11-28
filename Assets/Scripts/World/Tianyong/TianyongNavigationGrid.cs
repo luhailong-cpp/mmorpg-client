@@ -19,6 +19,7 @@ namespace MmorpgClient.World.Tianyong
         };
 
         private readonly bool[,] _walkable;
+        private readonly int[] _domainIds;
 
         public TianyongNavigationGrid(float cellSize = TianyongMapDefinition.NavigationCellSize)
         {
@@ -52,6 +53,7 @@ namespace MmorpgClient.World.Tianyong
 
             // Raised martial arena in the east-central district.
             BlockRect(new Rect(314f, 119f, 55f, 55f));
+            _domainIds = LabelConnectedDomains();
         }
 
         /// <summary>
@@ -91,6 +93,7 @@ namespace MmorpgClient.World.Tianyong
             for (var z = 0; z < Depth; z++)
                 _walkable[x, z] = CellIntersectsEffectiveBounds(x, z) && walkableSampler != null &&
                                   walkableSampler(CellToWorld(new Vector2Int(x, z), 0f));
+            _domainIds = LabelConnectedDomains();
         }
 
         public float CellSize { get; }
@@ -192,12 +195,15 @@ namespace MmorpgClient.World.Tianyong
 
         public List<Vector3> FindPath(Vector3 start, Vector3 target)
         {
+            if (!Finite(start) || !Finite(target)) return new List<Vector3>();
             start = ClampXZ(start);
             target = ClampXZ(target);
 
             var startCell = FindNearestWalkable(WorldToCell(start));
             var targetCell = FindNearestWalkable(WorldToCell(target));
             if (startCell.x < 0 || targetCell.x < 0)
+                return new List<Vector3>();
+            if (_domainIds[CellIndex(startCell.x, startCell.y)] != _domainIds[CellIndex(targetCell.x, targetCell.y)])
                 return new List<Vector3>();
 
             // A click may land on a roof, wall or the canal. Route to the
@@ -206,56 +212,114 @@ namespace MmorpgClient.World.Tianyong
             var resolvedStart = IsWalkable(start) ? start : CellToWorld(startCell, start.y);
             var resolvedTarget = IsWalkable(target) ? target : CellToWorld(targetCell, target.y);
 
-            var g = new float[Width, Depth];
-            var closed = new bool[Width, Depth];
-            var hasParent = new bool[Width, Depth];
-            var parent = new Vector2Int[Width, Depth];
-            for (var x = 0; x < Width; x++)
-            for (var z = 0; z < Depth; z++)
-                g[x, z] = float.PositiveInfinity;
+            return RunAStar(resolvedStart, resolvedTarget, startCell, targetCell);
+        }
 
-            var open = new List<Vector2Int> { startCell };
-            g[startCell.x, startCell.y] = 0f;
+        public List<Vector3> FindApproachPath(Vector3 start, Vector3 target)
+        {
+            if (!Finite(start) || !Finite(target)) return new List<Vector3>();
 
-            while (open.Count > 0)
+            Vector2Int startCell;
+            Vector3 resolvedStart;
+            if (IsWalkable(start))
             {
-                var bestIndex = 0;
-                var bestScore = float.PositiveInfinity;
-                for (var i = 0; i < open.Count; i++)
+                startCell = WorldToCell(start);
+                resolvedStart = start;
+            }
+            else
+            {
+                startCell = FindNearestWalkable(WorldToCell(ClampXZ(start, 0f)));
+                if (startCell.x < 0) return new List<Vector3>();
+                resolvedStart = CellToWorld(startCell, start.y);
+            }
+
+            var startDomain = _domainIds[CellIndex(startCell.x, startCell.y)];
+            if (startDomain == 0) return new List<Vector3>();
+
+            // 快速路径：目标本身合法且与起点处于同一连通域，直接走精确目标点。
+            if (IsWalkable(target))
+            {
+                var directCell = WorldToCell(target);
+                if (_domainIds[CellIndex(directCell.x, directCell.y)] == startDomain)
                 {
-                    var c = open[i];
-                    var score = g[c.x, c.y] + Heuristic(c, targetCell);
-                    if (score >= bestScore) continue;
-                    bestScore = score;
-                    bestIndex = i;
+                    var exactTarget = new Vector3(target.x, resolvedStart.y, target.z);
+                    if (directCell == startCell && HorizontalDistanceSq(resolvedStart, exactTarget) <= 0.0025f)
+                        return new List<Vector3> { resolvedStart };
+                    return RunAStar(resolvedStart, exactTarget, startCell, directCell);
                 }
+            }
 
-                var current = open[bestIndex];
-                open.RemoveAt(bestIndex);
-                if (closed[current.x, current.y]) continue;
-                closed[current.x, current.y] = true;
+            // 阻挡/越界/孤岛目标：在起点连通域内按几何下界环扩求严格欧氏最近可走格。
+            if (!TryFindNearestReachableCell(startDomain, resolvedStart, target, out var targetCell))
+                return new List<Vector3>();
 
-                if (current == targetCell)
-                    return BuildWorldPath(resolvedStart, resolvedTarget, startCell, targetCell, parent, hasParent);
+            var resolvedTarget = CellToWorld(targetCell, resolvedStart.y);
+            if (targetCell == startCell && HorizontalDistanceSq(resolvedStart, resolvedTarget) <= 0.0025f)
+                return new List<Vector3> { resolvedStart };
+
+            return RunAStar(resolvedStart, resolvedTarget, startCell, targetCell);
+        }
+
+        private List<Vector3> RunAStar(
+            Vector3 resolvedStart,
+            Vector3 resolvedTarget,
+            Vector2Int startCell,
+            Vector2Int targetCell)
+        {
+            if (startCell == targetCell)
+                return new List<Vector3> { resolvedStart, resolvedTarget };
+
+            var total = Width * Depth;
+            var g = new float[total];
+            var closed = new bool[total];
+            var hasParent = new bool[total];
+            var parent = new int[total];
+            for (var i = 0; i < total; i++) g[i] = float.PositiveInfinity;
+
+            var startIdx = CellIndex(startCell.x, startCell.y);
+            var targetIdx = CellIndex(targetCell.x, targetCell.y);
+            g[startIdx] = 0f;
+
+            var heapCells = new int[64];
+            var heapScores = new float[64];
+            var heapCount = 0;
+            HeapPush(ref heapCells, ref heapScores, ref heapCount, startIdx, Heuristic(startCell, targetCell));
+
+            while (heapCount > 0)
+            {
+                var currentIdx = HeapPop(heapCells, heapScores, ref heapCount);
+                if (closed[currentIdx]) continue;
+                closed[currentIdx] = true;
+
+                if (currentIdx == targetIdx)
+                    return BuildWorldPath(resolvedStart, resolvedTarget, startIdx, targetIdx, parent, hasParent);
+
+                var cx = currentIdx % Width;
+                var cz = currentIdx / Width;
+                var currentG = g[currentIdx];
 
                 foreach (var direction in Directions)
                 {
-                    var next = current + direction;
-                    if (!IsWalkable(next.x, next.y) || closed[next.x, next.y]) continue;
+                    var nx = cx + direction.x;
+                    var nz = cz + direction.y;
+                    if (!IsWalkable(nx, nz)) continue;
+                    var nextIdx = CellIndex(nx, nz);
+                    if (closed[nextIdx]) continue;
 
                     var diagonal = direction.x != 0 && direction.y != 0;
                     if (diagonal &&
-                        (!IsWalkable(current.x + direction.x, current.y) ||
-                         !IsWalkable(current.x, current.y + direction.y)))
+                        (!IsWalkable(cx + direction.x, cz) ||
+                         !IsWalkable(cx, cz + direction.y)))
                         continue;
 
-                    var tentative = g[current.x, current.y] + (diagonal ? 1.41421356f : 1f);
-                    if (tentative >= g[next.x, next.y]) continue;
+                    var tentative = currentG + (diagonal ? 1.41421356f : 1f);
+                    if (tentative >= g[nextIdx]) continue;
 
-                    g[next.x, next.y] = tentative;
-                    parent[next.x, next.y] = current;
-                    hasParent[next.x, next.y] = true;
-                    open.Add(next);
+                    g[nextIdx] = tentative;
+                    parent[nextIdx] = currentIdx;
+                    hasParent[nextIdx] = true;
+                    HeapPush(ref heapCells, ref heapScores, ref heapCount,
+                        nextIdx, tentative + Heuristic(new Vector2Int(nx, nz), targetCell));
                 }
             }
 
@@ -265,19 +329,19 @@ namespace MmorpgClient.World.Tianyong
         private List<Vector3> BuildWorldPath(
             Vector3 exactStart,
             Vector3 exactTarget,
-            Vector2Int start,
-            Vector2Int target,
-            Vector2Int[,] parent,
-            bool[,] hasParent)
+            int startIdx,
+            int targetIdx,
+            int[] parent,
+            bool[] hasParent)
         {
             var cells = new List<Vector2Int>();
-            var current = target;
-            cells.Add(current);
-            while (current != start)
+            var current = targetIdx;
+            cells.Add(new Vector2Int(current % Width, current / Width));
+            while (current != startIdx)
             {
-                if (!hasParent[current.x, current.y]) return new List<Vector3>();
-                current = parent[current.x, current.y];
-                cells.Add(current);
+                if (!hasParent[current]) return new List<Vector3>();
+                current = parent[current];
+                cells.Add(new Vector2Int(current % Width, current / Width));
             }
             cells.Reverse();
 
@@ -298,6 +362,7 @@ namespace MmorpgClient.World.Tianyong
                 for (var candidate = raw.Count - 1; candidate > anchor + 1; candidate--)
                 {
                     if (!HasLineOfSight(raw[anchor], raw[candidate])) continue;
+                    if (PreciseNetworkMovement && !IsMaskSegmentWalkable(raw[anchor], raw[candidate])) continue;
                     furthest = candidate;
                     break;
                 }
@@ -387,6 +452,198 @@ namespace MmorpgClient.World.Tianyong
 
         private bool IsWalkable(int x, int z)
             => x >= 0 && x < Width && z >= 0 && z < Depth && _walkable[x, z];
+
+        private int CellIndex(int x, int z) => z * Width + x;
+
+        // 加载期预计算 4-连通域编号：因对角步禁止穿角（要求两正交邻格同时可走），
+        // 8-邻无穿角的可达等价类与 4-连通域严格一致。
+        private int[] LabelConnectedDomains()
+        {
+            var domains = new int[Width * Depth];
+            var queue = new int[domains.Length];
+            var nextLabel = 0;
+            for (var start = 0; start < domains.Length; start++)
+            {
+                if (domains[start] != 0) continue;
+                var sx = start % Width;
+                var sz = start / Width;
+                if (!_walkable[sx, sz]) continue;
+
+                domains[start] = ++nextLabel;
+                var head = 0;
+                var tail = 0;
+                queue[tail++] = start;
+                while (head < tail)
+                {
+                    var cur = queue[head++];
+                    var cx = cur % Width;
+                    var cz = cur / Width;
+                    for (var dir = 0; dir < 4; dir++)
+                    {
+                        var nx = cx + (dir == 0 ? 1 : dir == 1 ? -1 : 0);
+                        var nz = cz + (dir == 2 ? 1 : dir == 3 ? -1 : 0);
+                        if (!IsWalkable(nx, nz)) continue;
+                        var next = CellIndex(nx, nz);
+                        if (domains[next] != 0) continue;
+                        domains[next] = nextLabel;
+                        queue[tail++] = next;
+                    }
+                }
+            }
+            return domains;
+        }
+
+        private bool TryFindNearestReachableCell(int startDomain, Vector3 resolvedStart, Vector3 target, out Vector2Int bestCell)
+        {
+            bestCell = default;
+            var seedX = Mathf.Clamp(Mathf.FloorToInt((target.x - Bounds.xMin) / CellSize), 0, Width - 1);
+            var seedZ = Mathf.Clamp(Mathf.FloorToInt((target.z - Bounds.yMin) / CellSize), 0, Depth - 1);
+            var maxRadius = Mathf.Max(
+                Mathf.Max(seedX, Width - 1 - seedX),
+                Mathf.Max(seedZ, Depth - 1 - seedZ));
+
+            var outsideX = target.x < EffectiveBounds.xMin ? EffectiveBounds.xMin - target.x
+                : target.x > EffectiveBounds.xMax ? target.x - EffectiveBounds.xMax : 0f;
+            var outsideZ = target.z < EffectiveBounds.yMin ? EffectiveBounds.yMin - target.z
+                : target.z > EffectiveBounds.yMax ? target.z - EffectiveBounds.yMax : 0f;
+
+            var found = false;
+            var candidateBest = default(Vector2Int);
+            var bestDistSq = float.PositiveInfinity;
+            var bestStartDistSq = float.PositiveInfinity;
+
+            void Evaluate(int x, int z)
+            {
+                if (_domainIds[CellIndex(x, z)] != startDomain) return;
+                var center = CellToWorld(new Vector2Int(x, z), resolvedStart.y);
+                var dx = center.x - target.x;
+                var dz = center.z - target.z;
+                var distSq = dx * dx + dz * dz;
+                var sx = center.x - resolvedStart.x;
+                var sz = center.z - resolvedStart.z;
+                var startDistSq = sx * sx + sz * sz;
+                if (!found || distSq < bestDistSq - 1e-4f ||
+                    (Mathf.Abs(distSq - bestDistSq) <= 1e-4f && startDistSq < bestStartDistSq))
+                {
+                    found = true;
+                    candidateBest = new Vector2Int(x, z);
+                    bestDistSq = distSq;
+                    bestStartDistSq = startDistSq;
+                }
+            }
+
+            for (var r = 0; r <= maxRadius; r++)
+            {
+                if (found && r > 0)
+                {
+                    var minVertXGap = float.PositiveInfinity;
+                    if (seedX + r < Width)
+                        minVertXGap = Mathf.Min(minVertXGap, Mathf.Max(0f, Bounds.xMin + (seedX + r) * CellSize - target.x));
+                    if (seedX - r >= 0)
+                        minVertXGap = Mathf.Min(minVertXGap, Mathf.Max(0f, target.x - (Bounds.xMin + (seedX - r + 1) * CellSize)));
+
+                    var minHorizZGap = float.PositiveInfinity;
+                    if (seedZ + r < Depth)
+                        minHorizZGap = Mathf.Min(minHorizZGap, Mathf.Max(0f, Bounds.yMin + (seedZ + r) * CellSize - target.z));
+                    if (seedZ - r >= 0)
+                        minHorizZGap = Mathf.Min(minHorizZGap, Mathf.Max(0f, target.z - (Bounds.yMin + (seedZ - r + 1) * CellSize)));
+
+                    var vertMinSq = float.IsPositiveInfinity(minVertXGap) ? float.PositiveInfinity
+                        : minVertXGap * minVertXGap + outsideZ * outsideZ;
+                    var horizMinSq = float.IsPositiveInfinity(minHorizZGap) ? float.PositiveInfinity
+                        : outsideX * outsideX + minHorizZGap * minHorizZGap;
+                    if (Mathf.Min(vertMinSq, horizMinSq) > bestDistSq + 1e-4f) break;
+                }
+
+                if (r == 0)
+                {
+                    Evaluate(seedX, seedZ);
+                    continue;
+                }
+
+                var minX = Mathf.Max(0, seedX - r);
+                var maxX = Mathf.Min(Width - 1, seedX + r);
+                var minZ = Mathf.Max(0, seedZ - r + 1);
+                var maxZ = Mathf.Min(Depth - 1, seedZ + r - 1);
+
+                var topZ = seedZ + r;
+                if (topZ < Depth)
+                    for (var x = minX; x <= maxX; x++) Evaluate(x, topZ);
+
+                var bottomZ = seedZ - r;
+                if (bottomZ >= 0)
+                    for (var x = minX; x <= maxX; x++) Evaluate(x, bottomZ);
+
+                var leftX = seedX - r;
+                if (leftX >= 0)
+                    for (var z = minZ; z <= maxZ; z++) Evaluate(leftX, z);
+
+                var rightX = seedX + r;
+                if (rightX < Width)
+                    for (var z = minZ; z <= maxZ; z++) Evaluate(rightX, z);
+            }
+
+            bestCell = candidateBest;
+            return found;
+        }
+
+        private static void HeapPush(ref int[] cells, ref float[] scores, ref int count, int cell, float score)
+        {
+            if (count == cells.Length)
+            {
+                System.Array.Resize(ref cells, cells.Length * 2);
+                System.Array.Resize(ref scores, scores.Length * 2);
+            }
+            var index = count++;
+            while (index > 0)
+            {
+                var parent = (index - 1) >> 1;
+                if (scores[parent] <= score) break;
+                cells[index] = cells[parent];
+                scores[index] = scores[parent];
+                index = parent;
+            }
+            cells[index] = cell;
+            scores[index] = score;
+        }
+
+        private static int HeapPop(int[] cells, float[] scores, ref int count)
+        {
+            var top = cells[0];
+            count--;
+            if (count > 0)
+            {
+                var lastCell = cells[count];
+                var lastScore = scores[count];
+                var index = 0;
+                while (true)
+                {
+                    var left = (index << 1) + 1;
+                    if (left >= count) break;
+                    var right = left + 1;
+                    var smallest = right < count && scores[right] < scores[left] ? right : left;
+                    if (lastScore <= scores[smallest]) break;
+                    cells[index] = cells[smallest];
+                    scores[index] = scores[smallest];
+                    index = smallest;
+                }
+                cells[index] = lastCell;
+                scores[index] = lastScore;
+            }
+            return top;
+        }
+
+        private static float HorizontalDistanceSq(Vector3 a, Vector3 b)
+        {
+            var dx = a.x - b.x;
+            var dz = a.z - b.z;
+            return dx * dx + dz * dz;
+        }
+
+        private static bool Finite(Vector3 value)
+            => !float.IsNaN(value.x) && !float.IsInfinity(value.x) &&
+               !float.IsNaN(value.y) && !float.IsInfinity(value.y) &&
+               !float.IsNaN(value.z) && !float.IsInfinity(value.z);
 
         private static float Heuristic(Vector2Int a, Vector2Int b)
         {

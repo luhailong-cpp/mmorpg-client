@@ -84,7 +84,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(destinations.Length, Is.EqualTo(CurrentMapCatalog.All.Count + (CurrentMapCatalog.Find(4u) == null ? 1 : 0)));
             Assert.That(destinations.Select(x => x.SceneConfigId).Distinct().Count(), Is.EqualTo(destinations.Length));
             Assert.That(destinations.Any(x => x.SceneConfigId == uint.MaxValue), Is.False);
-            foreach (uint id in new uint[] { 1, 2, 3, 5 })
+            foreach (uint id in new uint[] { 1, 2, 3, 4, 5, 6, 18000, 20000 })
             {
                 var destination = destinations.Single(x => x.SceneConfigId == id);
                 Assert.That(destination.FestivalResourcePath, Does.StartWith(MapDeliveryContract.ResourceRoot));
@@ -143,8 +143,6 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(destination.Name, Does.Contain("未开放"));
         }
 
-        [TestCase(4u, "spring")]
-        [TestCase(4u, "mid-autumn")]
         [TestCase(21003u, "spring")]
         [TestCase(21003u, "mid-autumn")]
         [TestCase(28007u, "spring")]

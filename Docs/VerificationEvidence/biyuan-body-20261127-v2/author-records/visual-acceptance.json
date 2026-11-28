@@ -1,0 +1,33 @@
+{
+  "revision": "biyuan-body-20261127-v2",
+  "mapId": "original:biyuan-water-palace",
+  "status": "visual-and-raster-passed",
+  "reviewedAt": "2026-11-28T02:01:00.334669+00:00",
+  "sceneId": 5,
+  "reviewedLayouts": [
+    "spring",
+    "mid-autumn"
+  ],
+  "visualReview": {
+    "scope": "整图、导航叠图和主殿近景；桥头、阶梯、水岸、回廊、茶亭、檐下和节庆饰件",
+    "accepted": "保持原等距视角、同源双节、日景、清楚桥阶，不遮挡导航通路"
+  },
+  "seasonal": {
+    "spring": {
+      "decorations": 8,
+      "pixelsChangedInsideOrnamentBoxes": 34994,
+      "changedWalkablePixels": 0,
+      "changedPixelsOutsideOrnamentBoxes": 0
+    },
+    "mid-autumn": {
+      "decorations": 9,
+      "pixelsChangedInsideOrnamentBoxes": 42433,
+      "changedWalkablePixels": 0,
+      "changedPixelsOutsideOrnamentBoxes": 0
+    }
+  },
+  "walkMaskSha256": "11bab27de9e7b0bfc6ae4800c42b4355f1fdb2e9d856147aed439e6e5e98e86e",
+  "existingWalkableNavigationCells": 9093,
+  "unityRuntimeAcceptance": false,
+  "azureBaseCommitAtStart": "68e573fa2a65d4509e56a78bebf104def881d412"
+}

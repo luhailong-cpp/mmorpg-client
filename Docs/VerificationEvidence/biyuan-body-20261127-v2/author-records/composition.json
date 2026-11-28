@@ -1,0 +1,312 @@
+{
+  "assetId": "original:biyuan-water-palace",
+  "runtimeCanvas": [
+    5120,
+    4096
+  ],
+  "effectiveRectHalfOpen": [
+    0,
+    128,
+    5120,
+    3968
+  ],
+  "regions": {
+    "hall": {
+      "medianGeometricCorrectionPxAt800": 0.326,
+      "medianLocalLumaResidual": 8.321,
+      "fractionConfident": 0.9883,
+      "runtimeBoxHalfOpen": [
+        416,
+        128,
+        2816,
+        1928
+      ],
+      "registeredDetailPixels": 3743447
+    },
+    "east-upper": {
+      "medianGeometricCorrectionPxAt800": 0.312,
+      "medianLocalLumaResidual": 13.097,
+      "fractionConfident": 0.9567,
+      "runtimeBoxHalfOpen": [
+        2496,
+        128,
+        4896,
+        1928
+      ],
+      "registeredDetailPixels": 3658322
+    },
+    "east-crossing": {
+      "medianGeometricCorrectionPxAt800": 0.451,
+      "medianLocalLumaResidual": 11.926,
+      "fractionConfident": 0.9709,
+      "runtimeBoxHalfOpen": [
+        2290,
+        1468,
+        4690,
+        3268
+      ],
+      "registeredDetailPixels": 3689883
+    },
+    "tea-pavilion": {
+      "medianGeometricCorrectionPxAt800": 0.484,
+      "medianLocalLumaResidual": 10.553,
+      "fractionConfident": 0.8798,
+      "runtimeBoxHalfOpen": [
+        320,
+        1916,
+        2720,
+        3716
+      ],
+      "registeredDetailPixels": 3445364
+    },
+    "south-entrance": {
+      "medianGeometricCorrectionPxAt800": 0.387,
+      "medianLocalLumaResidual": 10.759,
+      "fractionConfident": 0.9906,
+      "runtimeBoxHalfOpen": [
+        2400,
+        2168,
+        4800,
+        3968
+      ],
+      "registeredDetailPixels": 3752474
+    }
+  },
+  "seasonPlacements": {
+    "spring": [
+      {
+        "ornament": "lantern",
+        "sourceQuadrant": [
+          0,
+          0
+        ],
+        "runtimeBoxHalfOpen": [
+          1148,
+          851,
+          1215,
+          961
+        ]
+      },
+      {
+        "ornament": "lantern",
+        "sourceQuadrant": [
+          0,
+          0
+        ],
+        "runtimeBoxHalfOpen": [
+          2272,
+          816,
+          2339,
+          926
+        ]
+      },
+      {
+        "ornament": "fortune",
+        "sourceQuadrant": [
+          1,
+          1
+        ],
+        "runtimeBoxHalfOpen": [
+          1710,
+          900,
+          1827,
+          1016
+        ]
+      },
+      {
+        "ornament": "knot",
+        "sourceQuadrant": [
+          1,
+          0
+        ],
+        "runtimeBoxHalfOpen": [
+          3221,
+          3018,
+          3299,
+          3128
+        ]
+      },
+      {
+        "ornament": "knot",
+        "sourceQuadrant": [
+          1,
+          0
+        ],
+        "runtimeBoxHalfOpen": [
+          3822,
+          2951,
+          3900,
+          3061
+        ]
+      },
+      {
+        "ornament": "gift-tray",
+        "sourceQuadrant": [
+          0,
+          1
+        ],
+        "runtimeBoxHalfOpen": [
+          1048,
+          3007,
+          1152,
+          3103
+        ]
+      },
+      {
+        "ornament": "lantern",
+        "sourceQuadrant": [
+          0,
+          0
+        ],
+        "runtimeBoxHalfOpen": [
+          4373,
+          1948,
+          4431,
+          2043
+        ]
+      },
+      {
+        "ornament": "knot",
+        "sourceQuadrant": [
+          1,
+          0
+        ],
+        "runtimeBoxHalfOpen": [
+          989,
+          1889,
+          1052,
+          1978
+        ]
+      }
+    ],
+    "mid-autumn": [
+      {
+        "ornament": "rabbit-lantern",
+        "sourceQuadrant": [
+          0,
+          0
+        ],
+        "runtimeBoxHalfOpen": [
+          1145,
+          847,
+          1217,
+          965
+        ]
+      },
+      {
+        "ornament": "rabbit-lantern",
+        "sourceQuadrant": [
+          0,
+          0
+        ],
+        "runtimeBoxHalfOpen": [
+          2269,
+          812,
+          2341,
+          930
+        ]
+      },
+      {
+        "ornament": "moon-medallion",
+        "sourceQuadrant": [
+          1,
+          0
+        ],
+        "runtimeBoxHalfOpen": [
+          1731,
+          890,
+          1805,
+          1000
+        ]
+      },
+      {
+        "ornament": "moon-medallion",
+        "sourceQuadrant": [
+          1,
+          0
+        ],
+        "runtimeBoxHalfOpen": [
+          3224,
+          3019,
+          3297,
+          3128
+        ]
+      },
+      {
+        "ornament": "moon-medallion",
+        "sourceQuadrant": [
+          1,
+          0
+        ],
+        "runtimeBoxHalfOpen": [
+          3825,
+          2952,
+          3898,
+          3061
+        ]
+      },
+      {
+        "ornament": "mooncake-tray",
+        "sourceQuadrant": [
+          0,
+          1
+        ],
+        "runtimeBoxHalfOpen": [
+          1064,
+          3022,
+          1143,
+          3083
+        ]
+      },
+      {
+        "ornament": "rabbit-lantern",
+        "sourceQuadrant": [
+          0,
+          0
+        ],
+        "runtimeBoxHalfOpen": [
+          4373,
+          1948,
+          4431,
+          2043
+        ]
+      },
+      {
+        "ornament": "osmanthus",
+        "sourceQuadrant": [
+          1,
+          1
+        ],
+        "runtimeBoxHalfOpen": [
+          4196,
+          2170,
+          4312,
+          2350
+        ]
+      },
+      {
+        "ornament": "osmanthus",
+        "sourceQuadrant": [
+          1,
+          1
+        ],
+        "runtimeBoxHalfOpen": [
+          974,
+          1861,
+          1070,
+          2010
+        ]
+      }
+    ]
+  },
+  "ornamentPixelIntersectionWithExistingWalkMask": 0,
+  "pcScaleReference": {
+    "mapId": "26000",
+    "staticPixels": [
+      3200,
+      2400
+    ]
+  },
+  "actualBuiltinCalls": 8,
+  "originalProjectRouteOverride": "用户本轮指定宿主内置并直接新作"
+}

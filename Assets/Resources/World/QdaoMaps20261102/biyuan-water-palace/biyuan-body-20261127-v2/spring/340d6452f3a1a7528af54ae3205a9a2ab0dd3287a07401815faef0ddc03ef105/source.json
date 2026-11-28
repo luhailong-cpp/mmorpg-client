@@ -1,0 +1,56 @@
+{
+  "worldRect": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 320.0,
+    "height": 256.0
+  },
+  "effectiveWorldRect": {
+    "x": 0.0,
+    "y": 8.0,
+    "width": 320.0,
+    "height": 240.0
+  },
+  "cellSize": 1.0,
+  "imageRect": {
+    "x": 0.0,
+    "y": 128.0,
+    "width": 5120.0,
+    "height": 3840.0
+  },
+  "referenceWidth": 3200,
+  "referenceHeight": 2400,
+  "walkmaskColumns": 320,
+  "walkmaskRows": 256,
+  "spawnWorld": {
+    "x": 222.5,
+    "y": 0.0,
+    "z": 58.5
+  },
+  "schemaVersion": 2,
+  "key": "biyuan-water-palace",
+  "sceneId": 5,
+  "name": "碧渊水宫",
+  "revision": "biyuan-body-20261127-v2",
+  "appearance": "spring",
+  "resourceRoot": "World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/",
+  "clientOnly": false,
+  "authoritativeServerRegistered": true,
+  "artStatus": "formal_tiles_overview",
+  "layoutPixels": {
+    "width": 5120,
+    "height": 4096
+  },
+  "layoutSha256": "340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105",
+  "sourceSelectionPath": "Docs/VerificationEvidence/biyuan-body-20261127-v2/selection.json",
+  "sourceSelectionSha256": "51fbeefaf363b7d64f4fed0e67db2d183e42e11fb3245929e46979c7fcb05776",
+  "sourceEvidencePath": "Docs/VerificationEvidence/biyuan-body-20261127-v2/source-evidence/biyuan-water-palace/spring/delivery.json",
+  "sourceEvidenceSha256": "db9f97ee01b87182054ae551e5357c2de5f3a6b426c39d5c324c71789ae6a0e2",
+  "navigationPlanPath": "Docs/VerificationEvidence/biyuan-body-20261127-v2/navigation-plan.json",
+  "navigationPlanSha256": "30b5a824e8c8c74c1d64f99ebda12e2774a130d43d0c57abca4f2ae18fc9253b",
+  "navigationSha256": "15e21bf1aac3098a1418278c3a8bc899a800b853293ad0cb1fb627c2ee77f557",
+  "walkmaskSha256": "11bab27de9e7b0bfc6ae4800c42b4355f1fdb2e9d856147aed439e6e5e98e86e",
+  "walkmaskPackedSha256": "3096b2878df33b19cfff1ffc0ad2c1fc323afcd1070c9c93ab2fabb57e7e5774",
+  "navigationStatus": "conservative_visible_ground",
+  "runtimeEngineAcceptance": false
+}

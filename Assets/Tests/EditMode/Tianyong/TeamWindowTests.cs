@@ -50,6 +50,38 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                     Object.DestroyImmediate(WorldHudNavigation.Instance.gameObject);
             }
         }
+
+        [Test]
+        public void TeamFollowUiRootAwakeBuildsStateBadgeAndRecallBannerWithoutMissingSprites()
+        {
+            const System.Reflection.BindingFlags hidden = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+            Assert.That(TeamFollowUiRoot.Instance == null, Is.True, "隔离测试不应替换现存跟随宿主");
+            var navigation = WorldHudNavigation.Instance;
+            var host = new GameObject("TeamFollowUiRootAwakeTest");
+            host.SetActive(false);
+            var root = host.AddComponent<TeamFollowUiRoot>();
+            var type = typeof(TeamFollowUiRoot);
+            void Invoke(string name) => type.GetMethod(name, hidden).Invoke(root, null);
+            try
+            {
+                Assert.DoesNotThrow(() => Invoke("Awake"));
+                var badge = host.GetComponentsInChildren<UnityEngine.Transform>(true).FirstOrDefault(t => t.name == "ProtagonistStateBadge");
+                var banner = host.GetComponentsInChildren<UnityEngine.Transform>(true).FirstOrDefault(t => t.name == TeamFollowUiRoot.RecallBannerName);
+                Assert.That(badge, Is.Not.Null);
+                Assert.That(banner, Is.Not.Null);
+                Assert.That(badge.GetComponent<Image>()?.sprite, Is.Not.Null);
+                Assert.That(banner.GetComponent<Image>()?.sprite, Is.Not.Null);
+                Assert.That(badge.gameObject.activeSelf, Is.False);
+                Assert.That(banner.gameObject.activeSelf, Is.False);
+            }
+            finally
+            {
+                Invoke("OnDestroy");
+                Object.DestroyImmediate(host);
+                if (WorldHudNavigation.Instance != null && WorldHudNavigation.Instance != navigation)
+                    Object.DestroyImmediate(WorldHudNavigation.Instance.gameObject);
+            }
+        }
     }
 
     public sealed class TeamWindowTests

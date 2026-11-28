@@ -156,20 +156,20 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void InstalledQinglanTownSharesNavigationAcrossFestivalsAndStaysClientOnly()
+        public void InstalledQinglanTownSharesNavigationAcrossFestivalsAndEnablesOnlineTravel()
         {
             var spring = CurrentMapCatalog.Find(4u);
             Assert.That(spring, Is.Not.Null);
             Assert.That(spring.Key, Is.EqualTo("qinglan-town"));
             Assert.That(spring.Revision, Is.EqualTo("qinglan-20261127-v002"));
             Assert.That(spring.Appearance, Is.EqualTo("spring"));
-            Assert.That(spring.CanTravelOnline, Is.False);
-            Assert.That(CurrentMapCatalog.FindForOnline(4u), Is.Null);
-            Assert.That(CurrentMapCatalog.FindForOnline("qinglan-town"), Is.Null);
+            Assert.That(spring.CanTravelOnline, Is.True);
+            Assert.That(CurrentMapCatalog.FindForOnline(4u), Is.SameAs(spring));
+            Assert.That(CurrentMapCatalog.FindForOnline("qinglan-town"), Is.SameAs(spring));
 
             var midAutumn = spring.ForAppearance("mid-autumn");
             Assert.That(midAutumn, Is.Not.Null);
-            Assert.That(midAutumn.CanTravelOnline, Is.False);
+            Assert.That(midAutumn.CanTravelOnline, Is.True);
             Assert.That(spring.SharesNavigationWith(midAutumn), Is.True);
             Assert.That(spring.ForAppearance("normal"), Is.Null);
             Assert.That(spring.Spawn, Is.EqualTo(new Vector3(-83.6923828125f, 0f, -65.1943359375f)));
@@ -206,6 +206,389 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                     Assert.That(tile, Is.Not.Null);
                     Assert.That(tile.width, Is.EqualTo(1024));
                     Assert.That(tile.height, Is.EqualTo(1024));
+                }
+            }
+        }
+
+        [Test]
+        public void InstalledCanglanHarborSharesNavigationAcrossFestivalsAndEnablesOnlineTravel()
+        {
+            var spring = CurrentMapCatalog.Find(6u);
+            Assert.That(spring, Is.Not.Null);
+            Assert.That(spring.Key, Is.EqualTo("canglan-harbor"));
+            Assert.That(spring.Name, Is.EqualTo("沧澜港"));
+            Assert.That(spring.Revision, Is.EqualTo("canglan-harbor-20261128-v001"));
+            Assert.That(spring.Appearance, Is.EqualTo("spring"));
+            Assert.That(spring.CanTravelOnline, Is.True);
+            Assert.That(CurrentMapCatalog.FindForOnline(6u), Is.SameAs(spring));
+            Assert.That(CurrentMapCatalog.FindForOnline("canglan-harbor"), Is.SameAs(spring));
+
+            var midAutumn = spring.ForAppearance("mid-autumn");
+            Assert.That(midAutumn, Is.Not.Null);
+            Assert.That(midAutumn.CanTravelOnline, Is.True);
+            Assert.That(spring.SharesNavigationWith(midAutumn), Is.True);
+            Assert.That(spring.ForAppearance("normal"), Is.Null);
+            Assert.That(spring.Spawn.x, Is.EqualTo(23.110906512290242f).Within(0.001f));
+            Assert.That(spring.Spawn.y, Is.EqualTo(0f));
+            Assert.That(spring.Spawn.z, Is.EqualTo(129.4218017965555f).Within(0.001f));
+            Assert.That(spring.WorldRect, Is.EqualTo(new Rect(0f, -49.52916717529297f, 369.52911376953125f, 369.52911376953125f)));
+            Assert.That(spring.EffectiveWorldRect.xMin, Is.EqualTo(0f));
+            Assert.That(spring.EffectiveWorldRect.yMin, Is.GreaterThanOrEqualTo(0f));
+            Assert.That(spring.EffectiveWorldRect.xMax, Is.LessThanOrEqualTo(320f));
+            Assert.That(spring.EffectiveWorldRect.yMax, Is.LessThanOrEqualTo(320f));
+
+            var navigation = spring.CreateNavigation();
+            var destinations = new[]
+            {
+                new Vector3(120.889067839f, 0f, 126.221802367f), // 中央石阶
+                new Vector3(148.266339535f, 0f, 120.533616179f), // 中央码头
+                new Vector3(239.644502001f, 0f, 242.844505022f), // 北鱼市
+                new Vector3(288.710859205f, 0f, 247.466325457f), // 北码头
+                new Vector3(196.266330985f, 0f, 44.4445403606f), // 船厂前场
+            };
+            foreach (var target in destinations)
+            {
+                var path = navigation.FindPath(spring.Spawn, target);
+                Assert.That(path.Count, Is.GreaterThanOrEqualTo(2), "Path missing to " + target);
+                Assert.That(Vector3.Distance(path[path.Count - 1], target), Is.LessThan(2f), "Path did not reach " + target);
+            }
+            // 水面、北鱼市货摊、官署室内、船体与右/下填充边均应阻挡。
+            Assert.That(navigation.IsWalkable(new Vector3(270.22177312672136f, 0f, 159.99997509270906f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(195.55542048290374f, 0f, 230.75541780441995f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(142.22179592549801f, 0f, 99.19998592212798f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(145.0663401044905f, 0f, 190.2217909671366f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(331.99881315231323f, 0f, 256.84799844026566f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(72.17365503311157f, 0f, -15.60754930973053f)), Is.False);
+
+            foreach (var appearance in new[] { spring, midAutumn })
+            {
+                var layout = appearance.LoadTexture();
+                Assert.That(layout.width, Is.EqualTo(4096));
+                Assert.That(layout.height, Is.EqualTo(4096));
+                Assert.That(layout.mipmapCount, Is.EqualTo(1));
+                foreach (var tileId in new[] { "r01_c01", "r04_c04" })
+                {
+                    var tile = Resources.Load<Texture2D>(appearance.ResourceFolder + "tiles/" + tileId);
+                    Assert.That(tile, Is.Not.Null);
+                    Assert.That(tile.width, Is.EqualTo(1024));
+                    Assert.That(tile.height, Is.EqualTo(1024));
+                }
+            }
+        }
+
+        [Test]
+        public void InstalledLingheFerrySharesNavigationAcrossFestivalsAndEnablesOnlineTravel()
+        {
+            var spring = CurrentMapCatalog.Find(7u);
+            Assert.That(spring, Is.Not.Null);
+            Assert.That(spring.Key, Is.EqualTo("linghe-ferry"));
+            Assert.That(spring.Name, Is.EqualTo("灵禾渡"));
+            Assert.That(spring.Revision, Is.EqualTo("linghe-ferry-20261128-v001"));
+            Assert.That(spring.Appearance, Is.EqualTo("spring"));
+            Assert.That(spring.CanTravelOnline, Is.True);
+            Assert.That(CurrentMapCatalog.FindForOnline(7u), Is.SameAs(spring));
+            Assert.That(CurrentMapCatalog.FindForOnline("linghe-ferry"), Is.SameAs(spring));
+
+            var midAutumn = spring.ForAppearance("mid-autumn");
+            Assert.That(midAutumn, Is.Not.Null);
+            Assert.That(midAutumn.CanTravelOnline, Is.True);
+            Assert.That(spring.SharesNavigationWith(midAutumn), Is.True);
+            Assert.That(spring.ForAppearance("normal"), Is.Null);
+            Assert.That(spring.Spawn.x, Is.EqualTo(56.667327880859375f).Within(0.001f));
+            Assert.That(spring.Spawn.y, Is.EqualTo(0f));
+            Assert.That(spring.Spawn.z, Is.EqualTo(134.8682403564453f).Within(0.001f));
+            Assert.That(spring.WorldRect, Is.EqualTo(new Rect(0f, -56.2139892578125f, 348.1640625f, 464.21875f)));
+            Assert.That(spring.EffectiveWorldRect, Is.EqualTo(new Rect(0f, 0f, 340.00396728515625f, 408.0047607421875f)));
+
+            var navigation = spring.CreateNavigation();
+            var destinations = new[]
+            {
+                new Vector3(41.08381271362305f, 0f, 92.93441772460938f),  // 西南太极牌坊
+                new Vector3(129.20150756835938f, 0f, 155.2684783935547f), // 西渡口栈桥
+                new Vector3(55.53398132324219f, 0f, 268.03646087646484f), // 双粮仓西前场
+                new Vector3(138.26828002929688f, 0f, 307.1369171142578f), // 西北农舍石阶
+                new Vector3(170.00198364257812f, 0f, 240.26947021484375f),// 主木桥桥面
+                new Vector3(279.9365997314453f, 0f, 270.8698272705078f),  // 东主屋月台
+                new Vector3(250.46958923339844f, 0f, 336.3205909729004f), // 东北水车坊门前
+                new Vector3(248.20289611816406f, 0f, 173.68535995483398f),// 东渡口栈桥
+                new Vector3(285.60333251953125f, 0f, 194.65227127075195f),// 东岸小屋前
+            };
+            foreach (var target in destinations)
+            {
+                var path = navigation.FindPath(spring.Spawn, target);
+                Assert.That(path.Count, Is.GreaterThanOrEqualTo(2), "Path missing to " + target);
+                Assert.That(Vector3.Distance(path[path.Count - 1], target), Is.LessThan(2f), "Path did not reach " + target);
+            }
+            // 河道、乌篷船、粮仓木车、主桥护栏、东渡口凉亭以及右/底/右下透明填充边均应阻挡。
+            Assert.That(navigation.IsWalkable(new Vector3(164.3352508544922f, 0f, 323.00376892089844f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(173.4020233154297f, 0f, 156.40182495117188f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(70.83415985107422f, 0f, 264.0697479248047f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(170.00198364257812f, 0f, 248.76956939697266f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(170.00198364257812f, 0f, 232.33604431152344f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(249.33624267578125f, 0f, 184.16881561279297f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(344.0840148925781f, 0f, 204.00238037109375f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(170.00198364257812f, 0f, -28.333663940429688f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(344.0840148925781f, 0f, -28.333663940429688f)), Is.False);
+
+            foreach (var appearance in new[] { spring, midAutumn })
+            {
+                var layout = appearance.LoadTexture();
+                Assert.That(layout.width, Is.EqualTo(6144));
+                Assert.That(layout.height, Is.EqualTo(8192));
+                Assert.That(layout.mipmapCount, Is.EqualTo(1));
+                foreach (var tileId in new[] { "r01_c01", "r01_c06", "r08_c01", "r08_c06" })
+                {
+                    var tile = Resources.Load<Texture2D>(appearance.ResourceFolder + "tiles/" + tileId);
+                    Assert.That(tile, Is.Not.Null);
+                    Assert.That(tile.width, Is.EqualTo(1024));
+                    Assert.That(tile.height, Is.EqualTo(1024));
+                }
+            }
+        }
+
+        [Test]
+        public void InstalledWaterwheelCourtyardSharesNavigationAcrossFestivalsAndCoversBridgeStairsAndRoads()
+        {
+            var spring = CurrentMapCatalog.Find(20000u);
+            Assert.That(spring, Is.Not.Null);
+            Assert.That(spring.Key, Is.EqualTo("waterwheel-courtyard"));
+            Assert.That(spring.Name, Is.EqualTo("水车庭院"));
+            Assert.That(spring.Revision, Is.EqualTo("waterwheel-hd8-20261128"));
+            Assert.That(spring.Appearance, Is.EqualTo("spring"));
+            Assert.That(spring.CanTravelOnline, Is.True);
+            Assert.That(CurrentMapCatalog.Find("waterwheel-courtyard"), Is.SameAs(spring));
+            Assert.That(CurrentMapCatalog.FindForOnline(20000u), Is.SameAs(spring));
+            Assert.That(CurrentMapCatalog.FindForOnline("waterwheel-courtyard"), Is.SameAs(spring));
+
+            var midAutumn = spring.ForAppearance("mid-autumn");
+            Assert.That(midAutumn, Is.Not.Null);
+            Assert.That(midAutumn.CanTravelOnline, Is.True);
+            Assert.That(spring.SharesNavigationWith(midAutumn), Is.True);
+            Assert.That(spring.ForAppearance("normal"), Is.Null);
+            Assert.That(spring.Spawn, Is.EqualTo(new Vector3(160f, 0f, 140f)));
+            Assert.That(spring.WorldRect, Is.EqualTo(new Rect(0f, 0f, 320f, 320f)));
+            Assert.That(spring.EffectiveWorldRect, Is.EqualTo(new Rect(0f, 32.578125f, 297.1484375f, 287.421875f)));
+
+            var navigation = spring.CreateNavigation();
+            var destinations = new[]
+            {
+                new Vector3(196.09375f, 0f, 237.1875f), // 主殿台阶顶月台
+                new Vector3(126.5625f, 0f, 314.53125f), // 北上山道石阶顶
+                new Vector3(79.6875f, 0f, 176.25f),     // 西铺石阶
+                new Vector3(225.78125f, 0f, 132.5f),    // 东侧主路
+                new Vector3(236.71875f, 0f, 87.96875f), // 东南小殿台阶顶
+                new Vector3(148.4375f, 0f, 87.1875f),   // 石拱桥桥顶
+                new Vector3(80.46875f, 0f, 80.546875f), // 临水亭通道
+                new Vector3(42.1875f, 0f, 80.15625f),   // 西侧临水观景台
+            };
+            foreach (var target in destinations)
+            {
+                var path = navigation.FindPath(spring.Spawn, target);
+                Assert.That(path.Count, Is.GreaterThanOrEqualTo(2), "Path missing to " + target);
+                Assert.That(Vector3.Distance(path[path.Count - 1], target), Is.LessThan(1.5f), "Path did not reach " + target);
+            }
+
+            // 瀑布、水车、西侧河流、南侧荷池、主殿屋顶、桥北栏杆、石灯笼、临水亭玉兔灯与右/下填充边均应阻挡。
+            var blocked = new[]
+            {
+                new Vector3(22.65625f, 0f, 273.125f),   // 瀑布
+                new Vector3(52.34375f, 0f, 261.40625f), // 水车
+                new Vector3(11.71875f, 0f, 124.6875f),  // 西侧河流
+                new Vector3(146.484375f, 0f, 54.375f),  // 南侧荷池
+                new Vector3(203.125f, 0f, 277.03125f),  // 主殿屋顶
+                new Vector3(148.4375f, 0f, 94.21875f),  // 石拱桥北栏杆
+                new Vector3(200.78125f, 0f, 86.40625f), // 东南石灯笼
+                new Vector3(80.6640625f, 0f, 74.296875f), // 临水亭中秋玉兔灯
+                new Vector3(308.59375f, 0f, 163.75f),   // 右侧有效画幅外填充区
+                new Vector3(156.25f, 0f, 15.3125f),     // 下侧有效画幅外填充区
+            };
+            foreach (var point in blocked)
+                Assert.That(navigation.IsWalkable(point), Is.False, "Expected blocked: " + point);
+
+            foreach (var appearance in new[] { spring, midAutumn })
+            {
+                var layout = appearance.LoadTexture();
+                Assert.That(layout.width, Is.EqualTo(4096));
+                Assert.That(layout.height, Is.EqualTo(4096));
+                Assert.That(layout.mipmapCount, Is.EqualTo(1));
+                Assert.That(layout.wrapMode, Is.EqualTo(TextureWrapMode.Clamp));
+                foreach (var tileId in new[] { "r01_c01", "r01_c02", "r02_c01", "r08_c08" })
+                {
+                    var tile = Resources.Load<Texture2D>(appearance.ResourceFolder + "tiles/" + tileId);
+                    Assert.That(tile, Is.Not.Null, tileId);
+                    Assert.That(tile.width, Is.EqualTo(1024));
+                    Assert.That(tile.height, Is.EqualTo(1024));
+                    Assert.That(tile.mipmapCount, Is.EqualTo(1));
+                }
+            }
+        }
+
+        [Test]
+        public void InstalledMap19003SharesNavigationAcrossFestivalsAndCoversBridgesCourtyardsAndEntries()
+        {
+            var spring = CurrentMapCatalog.Find(19003u);
+            Assert.That(spring, Is.Not.Null);
+            Assert.That(spring.Key, Is.EqualTo("map19003"));
+            Assert.That(spring.Name, Is.EqualTo("地图 19003"));
+            Assert.That(spring.Revision, Is.EqualTo("pc19003-hd8-20261128"));
+            Assert.That(spring.Appearance, Is.EqualTo("spring"));
+            Assert.That(spring.CanTravelOnline, Is.False);
+            Assert.That(CurrentMapCatalog.Find("map19003"), Is.SameAs(spring));
+            Assert.That(CurrentMapCatalog.FindForOnline(19003u), Is.Null);
+            Assert.That(CurrentMapCatalog.FindForOnline("map19003"), Is.Null);
+
+            var midAutumn = spring.ForAppearance("mid-autumn");
+            Assert.That(midAutumn, Is.Not.Null);
+            Assert.That(midAutumn.CanTravelOnline, Is.False);
+            Assert.That(spring.SharesNavigationWith(midAutumn), Is.True);
+            Assert.That(spring.ForAppearance("normal"), Is.Null);
+            Assert.That(spring.Spawn, Is.EqualTo(new Vector3(125f, 0f, 51.25f)));
+            Assert.That(spring.WorldRect, Is.EqualTo(new Rect(0f, 0f, 240f, 120f)));
+            Assert.That(spring.EffectiveWorldRect, Is.EqualTo(new Rect(0f, 0.46875f, 212.5f, 119.53125f)));
+
+            var navigation = spring.CreateNavigation();
+            var destinations = new[]
+            {
+                new Vector3(125.0f, 0f, 71.7578125f),      // 亭台前阶
+                new Vector3(173.4375f, 0f, 59.0625f),      // 东侧主门
+                new Vector3(206.25f, 0f, 58.28125f),       // 东边入口
+                new Vector3(154.296875f, 0f, 98.125f),     // 东北宽石桥中段
+                new Vector3(156.640625f, 0f, 116.875f),    // 北边东侧入口
+                new Vector3(125.78125f, 0f, 110.8203125f), // 北岸弯道
+                new Vector3(57.03125f, 0f, 82.890625f),    // 西侧短木桥中段
+                new Vector3(5.46875f, 0f, 93.6328125f),    // 西边上部入口
+                new Vector3(15.625f, 0f, 42.65625f),       // 西南外环步道
+                new Vector3(67.1875f, 0f, 42.65625f),      // 药圃小院内东侧
+                new Vector3(51.5625f, 0f, 36.2109375f),    // 药圃小院内南侧
+                new Vector3(107.8125f, 0f, 5.15625f),      // 南边中部入口
+                new Vector3(148.2421875f, 0f, 35.0390625f),// 主院南侧台阶
+                new Vector3(183.984375f, 0f, 43.828125f),  // 东南外环步道
+            };
+            foreach (var target in destinations)
+            {
+                var path = navigation.FindPath(spring.Spawn, target);
+                Assert.That(path.Count, Is.GreaterThanOrEqualTo(2), "Path missing to " + target);
+                Assert.That(Vector3.Distance(path[path.Count - 1], target), Is.LessThan(1.5f), "Path did not reach " + target);
+            }
+
+            // 水渠、瀑布、桥栏、亭顶、双节装饰并集、药圃花坛、假山松树、护栏立柱与右/下填充区均应阻挡。
+            var blocked = new[]
+            {
+                new Vector3(226.5625f, 0f, 61.40625f),     // 右侧 704px 填充区
+                new Vector3(105.46875f, 0f, 0.234375f),    // 下侧 12px 填充区
+                new Vector3(49.21875f, 0f, 98.125f),       // 西北瀑布水潭
+                new Vector3(100.0f, 0f, 91.09375f),        // 中央弯渠水面
+                new Vector3(178.125f, 0f, 95.78125f),      // 东侧水面
+                new Vector3(194.53125f, 0f, 16.09375f),    // 东南瀑布
+                new Vector3(56.25f, 0f, 87.96875f),        // 短木桥北护栏
+                new Vector3(144.53125f, 0f, 98.125f),      // 宽石桥西护栏
+                new Vector3(164.84375f, 0f, 98.125f),      // 宽石桥东护栏
+                new Vector3(125.0f, 0f, 81.71875f),        // 亭台屋顶
+                new Vector3(157.03125f, 0f, 65.3125f),     // 主院东侧双节桌案并集
+                new Vector3(102.34375f, 0f, 59.84375f),    // 主院西侧中秋桂花兔灯
+                new Vector3(50.78125f, 0f, 46.5625f),      // 药圃小院双节中央摆设并集
+                new Vector3(32.03125f, 0f, 46.5625f),      // 药圃西侧花坛
+                new Vector3(125.0f, 0f, 32.5f),            // 南侧假山松树
+                new Vector3(176.171875f, 0f, 43.828125f),  // 东南主院护栏
+            };
+            foreach (var point in blocked)
+                Assert.That(navigation.IsWalkable(point), Is.False, "Expected blocked: " + point);
+
+            foreach (var appearance in new[] { spring, midAutumn })
+            {
+                var layout = appearance.LoadTexture();
+                Assert.That(layout.width, Is.EqualTo(4096));
+                Assert.That(layout.height, Is.EqualTo(2048));
+                Assert.That(layout.mipmapCount, Is.EqualTo(1));
+                Assert.That(layout.wrapMode, Is.EqualTo(TextureWrapMode.Clamp));
+                foreach (var tileId in new[] { "r01_c01", "r01_c04", "r02_c03", "r03_c06" })
+                {
+                    var tile = Resources.Load<Texture2D>(appearance.ResourceFolder + "tiles/" + tileId);
+                    Assert.That(tile, Is.Not.Null, tileId);
+                    Assert.That(tile.width, Is.EqualTo(1024));
+                    Assert.That(tile.height, Is.EqualTo(1024));
+                    Assert.That(tile.mipmapCount, Is.EqualTo(1));
+                }
+            }
+        }
+
+        [Test]
+        public void InstalledSummitSnowSharesNavigationAcrossFestivalsAndCoversStairsTerraceShrineAndLowerPoolRim()
+        {
+            var spring = CurrentMapCatalog.Find(18000u);
+            Assert.That(spring, Is.Not.Null);
+            Assert.That(spring.Key, Is.EqualTo("summit-snow"));
+            Assert.That(spring.Name, Is.EqualTo("山顶雪区"));
+            Assert.That(spring.Revision, Is.EqualTo("pc18000-summit-hd8-20261128"));
+            Assert.That(spring.Appearance, Is.EqualTo("spring"));
+            Assert.That(spring.CanTravelOnline, Is.True);
+            Assert.That(CurrentMapCatalog.Find("summit-snow"), Is.SameAs(spring));
+            Assert.That(CurrentMapCatalog.FindForOnline(18000u), Is.SameAs(spring));
+            Assert.That(CurrentMapCatalog.FindForOnline("summit-snow"), Is.SameAs(spring));
+
+            var midAutumn = spring.ForAppearance("mid-autumn");
+            Assert.That(midAutumn, Is.Not.Null);
+            Assert.That(midAutumn.CanTravelOnline, Is.True);
+            Assert.That(spring.SharesNavigationWith(midAutumn), Is.True);
+            Assert.That(spring.ForAppearance("normal"), Is.Null);
+            Assert.That(spring.Spawn, Is.EqualTo(new Vector3(148.4375f, 0f, 249.84375f)));
+            Assert.That(spring.WorldRect, Is.EqualTo(new Rect(0f, 0f, 320f, 360f)));
+            Assert.That(spring.EffectiveWorldRect, Is.EqualTo(new Rect(0f, 6.484375f, 282.8125f, 353.515625f)));
+
+            var navigation = spring.CreateNavigation();
+            var destinations = new[]
+            {
+                new Vector3(9.375f, 0f, 352.96875f),      // 西北浮空石阶顶端
+                new Vector3(121.09375f, 0f, 323.28125f),  // 山顶雪祠前院西侧
+                new Vector3(153.125f, 0f, 335.0f),        // 山顶雪祠前院东侧
+                new Vector3(169.53125f, 0f, 259.21875f),  // 圆台广场中心
+                new Vector3(213.28125f, 0f, 269.375f),    // 圆台东侧雪台
+                new Vector3(58.59375f, 0f, 212.34375f),   // 长雪道西南端
+                new Vector3(127.34375f, 0f, 189.6875f),   // 中层雪台
+                new Vector3(142.1875f, 0f, 133.4375f),    // 下中弯道平台
+                new Vector3(146.875f, 0f, 52.1875f),      // 双石像下层雪台西侧
+                new Vector3(197.65625f, 0f, 35.78125f),   // 双石像下层雪台南侧
+                new Vector3(254.6875f, 0f, 61.5625f),     // 双石像下层雪台东侧
+            };
+            foreach (var target in destinations)
+            {
+                var path = navigation.FindPath(spring.Spawn, target);
+                Assert.That(path.Count, Is.GreaterThanOrEqualTo(2), "Path missing to " + target);
+                Assert.That(Vector3.Distance(path[path.Count - 1], target), Is.LessThan(1.5f), "Path did not reach " + target);
+            }
+
+            // 填充边、道祠主体、中秋圆台玉兔月饼案台、树干、冰瀑、双石像与雪池及左下角秋径均应阻挡。
+            var blocked = new[]
+            {
+                new Vector3(300.78125f, 0f, 184.21875f),  // 右侧 952px 填充区
+                new Vector3(140.625f, 0f, 3.359375f),     // 下侧 166px 填充区
+                new Vector3(121.09375f, 0f, 346.71875f),  // 山顶道祠屋顶
+                new Vector3(182.8125f, 0f, 268.59375f),   // 中秋圆台玉兔月饼案台
+                new Vector3(174.609375f, 0f, 285.78125f), // 圆台北侧雪树干
+                new Vector3(203.125f, 0f, 203.75f),       // 上段冰瀑
+                new Vector3(203.125f, 0f, 133.4375f),     // 下段冰瀑
+                new Vector3(184.375f, 0f, 70.9375f),      // 左侧石像
+                new Vector3(219.53125f, 0f, 84.21875f),   // 右侧石像
+                new Vector3(203.125f, 0f, 58.4375f),      // 雪池水面
+                new Vector3(31.25f, 0f, 43.59375f),       // 左下未连通秋区土路
+            };
+            foreach (var point in blocked)
+                Assert.That(navigation.IsWalkable(point), Is.False, "Expected blocked: " + point);
+
+            foreach (var appearance in new[] { spring, midAutumn })
+            {
+                var layout = appearance.LoadTexture();
+                Assert.That(layout.width, Is.EqualTo(4096));
+                Assert.That(layout.height, Is.EqualTo(4608));
+                Assert.That(layout.mipmapCount, Is.EqualTo(1));
+                Assert.That(layout.wrapMode, Is.EqualTo(TextureWrapMode.Clamp));
+                foreach (var tileId in new[] { "r01_c01", "r01_c08", "r05_c04", "r09_c08" })
+                {
+                    var tile = Resources.Load<Texture2D>(appearance.ResourceFolder + "tiles/" + tileId);
+                    Assert.That(tile, Is.Not.Null, tileId);
+                    Assert.That(tile.width, Is.EqualTo(1024));
+                    Assert.That(tile.height, Is.EqualTo(1024));
+                    Assert.That(tile.mipmapCount, Is.EqualTo(1));
                 }
             }
         }
@@ -483,7 +866,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             {
                 runtime.Initialize(null, null, null, null);
                 GameObject previous = null;
-                foreach (uint scene in new[] { 1u, 2u, 3u, 5u, 1u })
+                foreach (uint scene in new[] { 1u, 2u, 3u, 4u, 5u, 6u, 18000u, 20000u, 1u })
                 {
                     Invoke(runtime, "HandleLocalPlayerChanged", (object)null);
                     Invoke(runtime, "EnterScene", scene);
@@ -503,11 +886,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Invoke(runtime, "HandleDisconnected");
                 Assert.That(runtime.Map, Is.Null);
                 Assert.That(actor.GetComponent<TianyongPlayerController>().enabled, Is.False);
-                Invoke(runtime, "EnterScene", 4u);
+                Invoke(runtime, "EnterScene", 21003u);
                 Assert.That(runtime.Map, Is.Null);
-                Assert.That(CurrentMapCatalog.FindForOnline(4u), Is.Null);
-                Assert.That(CurrentMapCatalog.Find(4u)?.Key, Is.EqualTo("qinglan-town"));
-                Assert.That(CurrentMapCatalog.Find(4u).CanTravelOnline, Is.False);
+                Assert.That(CurrentMapCatalog.FindForOnline(21003u), Is.Null);
                 Invoke(runtime, "EnterScene", 999u);
                 Assert.That(runtime.Map, Is.Null);
             }

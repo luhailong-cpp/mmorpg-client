@@ -165,7 +165,8 @@ namespace MmorpgClient.World.Tianyong
 
                 if (_cameraController == null) _cameraController = CreateCameraController();
                 _cameraController.SetTheme(TianyongTheme.City, true);
-                _cameraController.SetMapMinimumZoom(selected.IsYuexiBay ? 6f : selected.SceneConfigId == 20000u ? 15f : (float?)null);
+                _cameraController.SetMapMinimumZoom(selected.IsYuexiBay ? 6f :
+                    (selected.SceneConfigId == 20000u || selected.SceneConfigId == 19003u || selected.SceneConfigId == 18000u) ? 15f : (float?)null);
                 _cameraController.SetWorldBounds(selected.EffectiveWorldRect);
                 _cameraController.SetTarget(controller.transform);
                 candidate.Root.SetActive(true);

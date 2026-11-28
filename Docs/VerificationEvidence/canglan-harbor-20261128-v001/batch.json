@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "revision": "canglan-harbor-20261128-v001",
+  "evidenceDirectory": "Docs/VerificationEvidence/canglan-harbor-20261128-v001",
+  "scope": [
+    {
+      "mapId": "canglan-harbor",
+      "key": "canglan-harbor",
+      "sceneId": 6,
+      "name": "沧澜港",
+      "appearance": "spring",
+      "columns": 4,
+      "rows": 4,
+      "clientOnly": false,
+      "authoritativeServerRegistered": true,
+      "allowDerivedSource": true,
+      "allowTransparentPadding": true
+    },
+    {
+      "mapId": "canglan-harbor",
+      "key": "canglan-harbor",
+      "sceneId": 6,
+      "name": "沧澜港",
+      "appearance": "mid-autumn",
+      "columns": 4,
+      "rows": 4,
+      "clientOnly": false,
+      "authoritativeServerRegistered": true,
+      "allowDerivedSource": true,
+      "allowTransparentPadding": true
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "kind": "EXACT_RUNTIME_TILE_CROP",
+  "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r01_c02.png",
+  "sha256": "6275b8085bccb7a361eb47591696c29918052b501595e1c83a74eb830f63ef88",
+  "bytes": 1633116,
+  "width": 1024,
+  "height": 1024,
+  "format": "PNG",
+  "derivedAt": "2026-11-28T02:01:07.621267+00:00",
+  "route": "deterministic_local_export",
+  "newAICalls": 0,
+  "derivedFrom": {
+    "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/layout.png",
+    "sha256": "340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105",
+    "generationRecord": {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring-layout.png.generation.json",
+      "sha256": "2aa16401ebc36b5b1795f8ac12ab63ec9fdbad92ebf4bd80dc2dc91f5417eb75",
+      "bytes": 1057
+    }
+  },
+  "operation": "integer-coordinate half-open crop; no scaling or color conversion",
+  "sourceRectHalfOpen": [
+    1024,
+    0,
+    2048,
+    1024
+  ],
+  "sourcePixels": [
+    5120,
+    4096
+  ],
+  "nativeMapTile": false
+}

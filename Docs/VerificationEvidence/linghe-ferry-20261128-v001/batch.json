@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "revision": "linghe-ferry-20261128-v001",
+  "evidenceDirectory": "Docs/VerificationEvidence/linghe-ferry-20261128-v001",
+  "scope": [
+    {
+      "mapId": "linghe-ferry",
+      "key": "linghe-ferry",
+      "sceneId": 7,
+      "name": "灵禾渡",
+      "appearance": "spring",
+      "columns": 6,
+      "rows": 8,
+      "clientOnly": false,
+      "authoritativeServerRegistered": true,
+      "allowDerivedSource": true,
+      "allowTransparentPadding": true
+    },
+    {
+      "mapId": "linghe-ferry",
+      "key": "linghe-ferry",
+      "sceneId": 7,
+      "name": "灵禾渡",
+      "appearance": "mid-autumn",
+      "columns": 6,
+      "rows": 8,
+      "clientOnly": false,
+      "authoritativeServerRegistered": true,
+      "allowDerivedSource": true,
+      "allowTransparentPadding": true
+    }
+  ]
+}

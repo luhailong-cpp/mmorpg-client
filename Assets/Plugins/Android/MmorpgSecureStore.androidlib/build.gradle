@@ -1,0 +1,16 @@
+// Android KeyStore AES-256-GCM 凭据存储模块(零第三方依赖,仅使用 Android SDK API 26+ 标准库)。
+apply plugin: 'com.android.library'
+
+android {
+    namespace 'com.mmorpg.secure'
+    compileSdk = (project.findProperty('unity.compileSdkVersion') ?: '35') as int
+    defaultConfig {
+        minSdk = (project.findProperty('unity.minSdkVersion') ?: '26') as int
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+        }
+    }
+}

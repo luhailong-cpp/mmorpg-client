@@ -280,6 +280,51 @@ namespace MmorpgClient.Net
             return true;
         }
 
+        /// <summary>
+        /// 仅在内存里从 id_token 载荷读取展示用账号名(name / preferred_username / displayName / email),
+        /// 供客户端脱敏后写入本地历史账号列表;不验签(验签由服务端完成)、不记日志、不落盘令牌原文。
+        /// </summary>
+        public static bool TryExtractDisplayName(string idToken, out string displayName)
+        {
+            displayName = string.Empty;
+            if (!LooksLikeCompactJwt(idToken)) return false;
+            int firstDot = idToken.IndexOf('.');
+            int secondDot = idToken.IndexOf('.', firstDot + 1);
+            if (firstDot <= 0 || secondDot <= firstDot + 1) return false;
+            string payloadSegment = idToken.Substring(firstDot + 1, secondDot - firstDot - 1);
+            if (!TryBase64UrlDecodeUtf8(payloadSegment, out string payloadJson)) return false;
+            foreach (string claim in new[] { "name", "preferred_username", "displayName", "email" })
+            {
+                if (!TryReadJsonStringProperty(payloadJson, claim, out string value)) continue;
+                string trimmed = (value ?? string.Empty).Trim();
+                if (trimmed.Length == 0) continue;
+                displayName = trimmed.Length > 64 ? trimmed.Substring(0, 64) : trimmed;
+                return true;
+            }
+            return false;
+        }
+
+        private static bool TryBase64UrlDecodeUtf8(string segment, out string text)
+        {
+            text = string.Empty;
+            if (string.IsNullOrEmpty(segment) || segment.Length > 16384) return false;
+            string padded = segment.Replace('-', '+').Replace('_', '/');
+            int rem = padded.Length % 4;
+            if (rem == 1) return false;
+            if (rem == 2) padded += "==";
+            else if (rem == 3) padded += "=";
+            try
+            {
+                byte[] bytes = Convert.FromBase64String(padded);
+                text = Encoding.UTF8.GetString(bytes);
+                return !string.IsNullOrEmpty(text);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
         internal static bool LooksLikeCompactJwt(string token)
         {
             if (string.IsNullOrEmpty(token) || token.Length > 16384) return false;

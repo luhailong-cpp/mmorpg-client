@@ -26,6 +26,10 @@ namespace MmorpgClient.World.Tianyong
         private readonly NavMeshQueryFilter _filter;
         private NavMeshDataInstance _instance;
         private bool _disposed;
+        private Vector3[] _triVertices;
+        private int[] _triIndices;
+        private int[] _triDomains;
+        private bool _triangulationBuilt;
 
         public AuthoredNavMeshNavigation(NavMeshData data, Rect bounds, Vector3 spawn)
         {
@@ -66,6 +70,10 @@ namespace MmorpgClient.World.Tianyong
         {
             if (_instance.valid) _instance.Remove();
             _instance = default;
+            _triVertices = null;
+            _triIndices = null;
+            _triDomains = null;
+            _triangulationBuilt = false;
             if (ReferenceEquals(s_active, this)) s_active = null;
         }
 
@@ -172,6 +180,274 @@ namespace MmorpgClient.World.Tianyong
             }
             result.Reverse();
             return result;
+        }
+
+        public List<Vector3> FindApproachPath(Vector3 start, Vector3 target)
+        {
+            var empty = new List<Vector3>();
+            if (!IsActive || !Finite(start) || !Finite(target) || !IsWalkable(start)) return empty;
+
+            var flatStart = new Vector3(start.x, 0f, start.z);
+            var flatTarget = new Vector3(target.x, 0f, target.z);
+            if (IsWalkable(flatTarget))
+            {
+                if (HorizontalDistanceSq(flatStart, flatTarget) <= 0.0025f)
+                    return new List<Vector3> { flatStart };
+                var direct = FindPath(flatStart, flatTarget);
+                if (direct.Count > 0) return direct;
+            }
+
+            // 优先基于 NavMesh 三角网连通分量精确投影：无 128 多边形截断，也不被孤岛吸偏。
+            EnsureTriangulation();
+            if (_triDomains != null && _triDomains.Length > 0 &&
+                TryFindStartDomain(flatStart, out var startDomain))
+            {
+                var triCount = _triDomains.Length;
+                var candidates = new List<(float distSq, float startDistSq, Vector3 point, Vector3 centroid)>(16);
+                for (var t = 0; t < triCount; t++)
+                {
+                    if (_triDomains[t] != startDomain) continue;
+                    var a = _triVertices[_triIndices[t * 3]];
+                    var b = _triVertices[_triIndices[t * 3 + 1]];
+                    var c = _triVertices[_triIndices[t * 3 + 2]];
+                    var closest = ClosestPointOnTriangleXZ(flatTarget, a, b, c);
+                    var distSq = HorizontalDistanceSq(closest, flatTarget);
+                    var startDistSq = HorizontalDistanceSq(closest, flatStart);
+                    var centroid = new Vector3((a.x + b.x + c.x) / 3f, 0f, (a.z + b.z + c.z) / 3f);
+                    candidates.Add((distSq, startDistSq, closest, centroid));
+                }
+
+                candidates.Sort((x, y) =>
+                {
+                    if (Mathf.Abs(x.distSq - y.distSq) > 1e-4f) return x.distSq.CompareTo(y.distSq);
+                    return x.startDistSq.CompareTo(y.startDistSq);
+                });
+
+                var maxTry = Mathf.Min(candidates.Count, 12);
+                for (var i = 0; i < maxTry; i++)
+                {
+                    var cand = candidates[i];
+                    var path = TryPlanToBoundaryCandidate(flatStart, cand.point, cand.centroid, flatTarget);
+                    if (path.Count > 0) return path;
+                }
+            }
+
+            // 兜底：使用 Unity NavMesh 分级 SamplePosition + PathPartial。
+            float[] radii = { 2f, 6f, 18f, 50f, 150f, 400f };
+            for (var i = 0; i < radii.Length; i++)
+            {
+                if (!NavMesh.SamplePosition(flatTarget, out var hit, radii[i], _filter)) continue;
+                var navPath = new NavMeshPath();
+                if (!NavMesh.CalculatePath(flatStart, hit.position, _filter, navPath)) continue;
+                if ((navPath.status != NavMeshPathStatus.PathComplete &&
+                     navPath.status != NavMeshPathStatus.PathPartial) ||
+                    navPath.corners.Length == 0) continue;
+
+                var end = new Vector3(navPath.corners[navPath.corners.Length - 1].x, 0f,
+                    navPath.corners[navPath.corners.Length - 1].z);
+                var pullToward = navPath.corners.Length >= 2
+                    ? new Vector3(navPath.corners[navPath.corners.Length - 2].x, 0f,
+                        navPath.corners[navPath.corners.Length - 2].z)
+                    : flatStart;
+                var fallback = TryPlanToBoundaryCandidate(flatStart, end, pullToward, flatTarget);
+                if (fallback.Count > 0) return fallback;
+            }
+
+            return empty;
+        }
+
+        private List<Vector3> TryPlanToBoundaryCandidate(
+            Vector3 flatStart, Vector3 boundaryPoint, Vector3 interiorHint, Vector3 rawTarget)
+        {
+            var probes = new List<Vector3>(24) { boundaryPoint };
+            var inward = interiorHint - boundaryPoint;
+            inward.y = 0f;
+            var inwardLen = inward.magnitude;
+            if (inwardLen > 1e-4f)
+            {
+                var dir = inward / inwardLen;
+                foreach (var inset in new[] { 0.03f, 0.08f, 0.2f, 0.4f })
+                {
+                    if (inset < inwardLen) probes.Add(boundaryPoint + dir * inset);
+                }
+                probes.Add(interiorHint);
+            }
+            foreach (var radius in new[] { 0.05f, 0.15f, 0.35f })
+            {
+                for (var angle = 0; angle < 8; angle++)
+                {
+                    var rad = angle * Mathf.PI / 4f;
+                    probes.Add(boundaryPoint + new Vector3(Mathf.Cos(rad) * radius, 0f, Mathf.Sin(rad) * radius));
+                }
+            }
+
+            probes.Sort((a, b) => HorizontalDistanceSq(a, rawTarget).CompareTo(HorizontalDistanceSq(b, rawTarget)));
+            for (var i = 0; i < probes.Count; i++)
+            {
+                var probe = new Vector3(probes[i].x, 0f, probes[i].z);
+                if (!IsWalkable(probe)) continue;
+                if (HorizontalDistanceSq(flatStart, probe) <= 0.0025f)
+                    return new List<Vector3> { flatStart };
+                var path = FindPath(flatStart, probe);
+                if (path.Count > 0) return path;
+            }
+            return new List<Vector3>();
+        }
+
+        private void EnsureTriangulation()
+        {
+            if (_triangulationBuilt) return;
+            _triangulationBuilt = true;
+            var tri = NavMesh.CalculateTriangulation();
+            if (tri.vertices == null || tri.indices == null || tri.indices.Length < 3) return;
+
+            var triCount = tri.indices.Length / 3;
+            _triVertices = tri.vertices;
+            _triIndices = tri.indices;
+            _triDomains = new int[triCount];
+
+            // 按 1mm 量化顶点坐标焊接跨 tile 公共边，构建共享边邻接表后 BFS 标记连通域。
+            var edgeOwners = new Dictionary<(long, long), List<int>>(triCount * 3);
+            var vertKeys = new long[_triVertices.Length];
+            for (var i = 0; i < _triVertices.Length; i++)
+            {
+                var v = _triVertices[i];
+                var qx = (long)Mathf.RoundToInt(v.x * 1000f);
+                var qz = (long)Mathf.RoundToInt(v.z * 1000f);
+                vertKeys[i] = (qx << 32) ^ (uint)qz;
+            }
+
+            var adj = new List<int>[triCount];
+            for (var t = 0; t < triCount; t++)
+            {
+                adj[t] = new List<int>(3);
+                var k0 = vertKeys[_triIndices[t * 3]];
+                var k1 = vertKeys[_triIndices[t * 3 + 1]];
+                var k2 = vertKeys[_triIndices[t * 3 + 2]];
+                RegisterEdge(edgeOwners, adj, t, k0, k1);
+                RegisterEdge(edgeOwners, adj, t, k1, k2);
+                RegisterEdge(edgeOwners, adj, t, k2, k0);
+            }
+
+            var queue = new int[triCount];
+            var nextLabel = 0;
+            for (var t = 0; t < triCount; t++)
+            {
+                if (_triDomains[t] != 0) continue;
+                _triDomains[t] = ++nextLabel;
+                var head = 0;
+                var tail = 0;
+                queue[tail++] = t;
+                while (head < tail)
+                {
+                    var cur = queue[head++];
+                    var neighbors = adj[cur];
+                    for (var i = 0; i < neighbors.Count; i++)
+                    {
+                        var next = neighbors[i];
+                        if (_triDomains[next] != 0) continue;
+                        _triDomains[next] = nextLabel;
+                        queue[tail++] = next;
+                    }
+                }
+            }
+        }
+
+        private static void RegisterEdge(
+            Dictionary<(long, long), List<int>> edgeOwners, List<int>[] adj, int tri, long a, long b)
+        {
+            if (a == b) return;
+            var key = a < b ? (a, b) : (b, a);
+            if (!edgeOwners.TryGetValue(key, out var owners))
+            {
+                owners = new List<int>(2) { tri };
+                edgeOwners[key] = owners;
+                return;
+            }
+            for (var i = 0; i < owners.Count; i++)
+            {
+                var other = owners[i];
+                adj[tri].Add(other);
+                adj[other].Add(tri);
+            }
+            owners.Add(tri);
+        }
+
+        private bool TryFindStartDomain(Vector3 flatStart, out int domain)
+        {
+            domain = 0;
+            var bestDistSq = float.PositiveInfinity;
+            var bestDomain = 0;
+            for (var t = 0; t < _triDomains.Length; t++)
+            {
+                var a = _triVertices[_triIndices[t * 3]];
+                var b = _triVertices[_triIndices[t * 3 + 1]];
+                var c = _triVertices[_triIndices[t * 3 + 2]];
+                var closest = ClosestPointOnTriangleXZ(flatStart, a, b, c);
+                var distSq = HorizontalDistanceSq(flatStart, closest);
+                if (distSq < bestDistSq)
+                {
+                    bestDistSq = distSq;
+                    bestDomain = _triDomains[t];
+                    if (distSq <= 1e-8f) break;
+                }
+            }
+            if (bestDomain == 0 || bestDistSq > 0.25f) return false;
+            domain = bestDomain;
+            return true;
+        }
+
+        private static Vector3 ClosestPointOnTriangleXZ(Vector3 p, Vector3 a, Vector3 b, Vector3 c)
+        {
+            var abx = b.x - a.x; var abz = b.z - a.z;
+            var acx = c.x - a.x; var acz = c.z - a.z;
+            var apx = p.x - a.x; var apz = p.z - a.z;
+            var d1 = abx * apx + abz * apz;
+            var d2 = acx * apx + acz * apz;
+            if (d1 <= 0f && d2 <= 0f) return new Vector3(a.x, 0f, a.z);
+
+            var bpx = p.x - b.x; var bpz = p.z - b.z;
+            var d3 = abx * bpx + abz * bpz;
+            var d4 = acx * bpx + acz * bpz;
+            if (d3 >= 0f && d4 <= d3) return new Vector3(b.x, 0f, b.z);
+
+            var vc = d1 * d4 - d3 * d2;
+            if (vc <= 0f && d1 >= 0f && d3 <= 0f)
+            {
+                var v = d1 / (d1 - d3);
+                return new Vector3(a.x + v * abx, 0f, a.z + v * abz);
+            }
+
+            var cpx = p.x - c.x; var cpz = p.z - c.z;
+            var d5 = abx * cpx + abz * cpz;
+            var d6 = acx * cpx + acz * cpz;
+            if (d6 >= 0f && d5 <= d6) return new Vector3(c.x, 0f, c.z);
+
+            var vb = d5 * d2 - d1 * d6;
+            if (vb <= 0f && d2 >= 0f && d6 <= 0f)
+            {
+                var w = d2 / (d2 - d6);
+                return new Vector3(a.x + w * acx, 0f, a.z + w * acz);
+            }
+
+            var va = d3 * d6 - d5 * d4;
+            if (va <= 0f && (d4 - d3) >= 0f && (d5 - d6) >= 0f)
+            {
+                var w = (d4 - d3) / ((d4 - d3) + (d5 - d6));
+                return new Vector3(b.x + w * (c.x - b.x), 0f, b.z + w * (c.z - b.z));
+            }
+
+            var denom = 1f / (va + vb + vc);
+            var v2 = vb * denom;
+            var w2 = vc * denom;
+            return new Vector3(a.x + abx * v2 + acx * w2, 0f, a.z + abz * v2 + acz * w2);
+        }
+
+        private static float HorizontalDistanceSq(Vector3 a, Vector3 b)
+        {
+            var dx = a.x - b.x;
+            var dz = a.z - b.z;
+            return dx * dx + dz * dz;
         }
 
         private void AddCandidate(List<Vector3> candidates, Vector3 point)

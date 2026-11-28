@@ -46,10 +46,10 @@ internal static class Program
             var catalog = JsonSerializer.Deserialize<PcOriginalMapCatalog>(File.ReadAllText(catalogPath), JsonOptions);
             Require(catalog != null, "Deserialized catalog is null.");
 
-            Check("Committed catalog validates with exact 36 ready / 4 gaps / 2 HOLD", () =>
+            Check("Committed catalog validates with exact 35 ready / 4 gaps / 2 HOLD", () =>
             {
                 catalog.Validate();
-                Require(catalog.readyCount == 36 && catalog.maps.Length == 36, "Expected 36 ready maps.");
+                Require(catalog.readyCount == 35 && catalog.maps.Length == 35, "Expected 35 ready maps (39001 retired).");
                 Require(catalog.unavailableCount == 4 && catalog.unavailableMaps.Length == 4, "Expected 4 unavailable maps.");
                 Require(catalog.specialHoldCount == 2 && catalog.specialHoldCandidates.Length == 2, "Expected 2 special HOLD candidates.");
                 Require(catalog.staticBackOnly && !catalog.completeGameplaySceneClaimed && !catalog.productionTravelEnabled,
@@ -114,8 +114,8 @@ internal static class Program
                         totalVariants++;
                     }
                 }
-                Require(totalVariants == 54, $"Expected 54 total appearance variants across 36 maps, got {totalVariants}.");
-                Require(totalTiles == 1395, $"Expected 1395 total tiles across all variants, got {totalTiles}.");
+                Require(totalVariants == 53, $"Expected 53 total appearance variants across 35 maps, got {totalVariants}.");
+                Require(totalTiles == 1383, $"Expected 1383 total tiles across all variants, got {totalTiles}.");
             });
 
             Check("Map 08001 keeps original 3200x2400 default while exposing 6400x4800 4x HD dual-festival candidates on identical world bounds", () =>
@@ -399,6 +399,68 @@ internal static class Program
                 var badExtent = JsonSerializer.Deserialize<PcOriginalMapCatalog>(File.ReadAllText(catalogPath), JsonOptions);
                 badExtent.FindByMapId("08001").appearances[1].worldGrid.widthPixels = 6400;
                 Reject(() => badExtent.Validate(), "HD appearance altering map world bounds");
+            });
+
+            Check("Original map preview catalog validates guideng-market festivals-20261127-v001, row-3 683px abutment, and preserved legacy candidate", () =>
+            {
+                string origCatalogPath = Path.Combine(repoRoot, "Assets", "Resources", "World", "OriginalMapPreview20261124", "catalog.json");
+                Require(File.Exists(origCatalogPath), "Missing OriginalMapPreview20261124/catalog.json");
+                var origCatalog = JsonSerializer.Deserialize<PcOriginalMapCatalog>(File.ReadAllText(origCatalogPath), JsonOptions);
+                Require(origCatalog != null && origCatalog.IsOriginalCatalog, "Original catalog failed to parse.");
+                origCatalog.Validate();
+                Require(origCatalog.staticBackOnly && !origCatalog.completeGameplaySceneClaimed && !origCatalog.productionTravelEnabled,
+                    "Original catalog must stay staticBackOnly and non-online.");
+
+                var guideng = origCatalog.FindByMapId("original:guideng-market");
+                Require(guideng != null && guideng.numericMapId == 0u, "Missing original:guideng-market entry.");
+                Require(guideng.artStage == PcOriginalMapContract.ArtStageFormalDelivery && !guideng.isTemporaryOriginal,
+                    "Guideng active stage must be formal_art_delivery with isTemporaryOriginal=false.");
+                Require(guideng.revision == "festivals-20261127-v001-spring", $"Unexpected guideng revision: {guideng.revision}");
+                Require(guideng.nativeWidth == 4096 && guideng.nativeHeight == 2731 && !guideng.hasAlpha,
+                    "Guideng dimensions/alpha mismatch.");
+
+                var spring = guideng.ResolveAppearance("spring");
+                var midautumn = guideng.ResolveAppearance("midautumn");
+                var midAlias = guideng.ResolveAppearance("mid-autumn");
+                Require(spring != null && midautumn != null && midAlias != null, "Guideng appearance resolution failed.");
+                Require(midAlias.resourceRoot == midautumn.resourceRoot, "mid-autumn alias must map to midautumn.");
+                Require(spring.resourceRoot.Contains("/festivals-20261127-v001/spring/") &&
+                        midautumn.resourceRoot.Contains("/festivals-20261127-v001/midautumn/"),
+                    "Guideng must resolve to separate festivals-20261127-v001 revision directory.");
+
+                foreach (var variant in new[] { spring, midautumn })
+                {
+                    variant.Validate(allowOriginalId: true);
+                    string tPath = Path.Combine(repoRoot, "Assets", "Resources",
+                        variant.tilesManifestResourcePath.Replace('/', Path.DirectorySeparatorChar) + ".json");
+                    Require(File.Exists(tPath), "Missing guideng tiles.json: " + tPath);
+                    var tm = JsonSerializer.Deserialize<PcOriginalTileManifest>(File.ReadAllText(tPath), JsonOptions);
+                    tm.Validate(variant, allowOriginalId: true);
+                    Require(tm.tiles.Length == 12, "Guideng must have 12 tiles.");
+                    foreach (var t in tm.tiles)
+                    {
+                        int expH = t.row == 3 ? 683 : 1024;
+                        Require(t.width == 1024 && t.height == expH, $"Guideng tile ({t.row},{t.column}) size {t.width}x{t.height} mismatch.");
+                    }
+                    var topLeft = PcOriginalViewportPlanner.TileWorldRect(tm, tm.tiles[0]);
+                    var botRight = PcOriginalViewportPlanner.TileWorldRect(tm, tm.tiles[11]);
+                    Require(Math.Abs(topLeft.XMin) < 1e-6f && Math.Abs(topLeft.YMax - 2731f / 1024f) < 1e-6f &&
+                            Math.Abs(botRight.XMax - 4f) < 1e-6f && Math.Abs(botRight.YMin) < 1e-6f,
+                        "Guideng 4096x2731 world rect coverage mismatch.");
+                }
+
+                // Legacy candidate directory must remain untouched.
+                string legacyRoot = Path.Combine(repoRoot, "Assets", "Resources", "World", "OriginalMapPreview20261124",
+                    "guideng-market", "delivery-candidate-v001");
+                Require(File.Exists(Path.Combine(legacyRoot, "spring", "tiles.json")) &&
+                        File.Exists(Path.Combine(legacyRoot, "midautumn", "tiles.json")),
+                    "Legacy delivery-candidate-v001 directory must remain preserved.");
+
+                // Reject formal_art_delivery marked isTemporaryOriginal=true.
+                var badFormal = JsonSerializer.Deserialize<PcOriginalMapCatalog>(File.ReadAllText(origCatalogPath), JsonOptions);
+                badFormal.maps[0].isTemporaryOriginal = true;
+                badFormal.maps[0].appearances[0].isTemporaryOriginal = true;
+                Reject(() => badFormal.Validate(), "formal_art_delivery with isTemporaryOriginal=true");
             });
 
             Console.WriteLine($"PcOriginalMapPreviewTests PASS: {Passed.Count}/{Passed.Count} checks succeeded.");

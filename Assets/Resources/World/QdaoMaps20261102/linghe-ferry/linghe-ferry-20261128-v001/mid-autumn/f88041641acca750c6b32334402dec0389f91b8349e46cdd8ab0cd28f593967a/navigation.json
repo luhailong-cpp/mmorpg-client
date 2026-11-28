@@ -1,0 +1,515 @@
+{
+  "schemaVersion": 1,
+  "key": "linghe-ferry",
+  "sceneId": 7,
+  "revision": "linghe-ferry-20261128-v001",
+  "navigationPlanPath": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/navigation-plan.json",
+  "navigationPlanSha256": "16843290fc5a8df622dc479590fe6a00d2f0fd761c19a1e3c6a17416cede67b3",
+  "source": {
+    "worldRect": {
+      "x": 0.0,
+      "y": -56.2139892578125,
+      "width": 348.1640625,
+      "height": 464.21875
+    },
+    "effectiveWorldRect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 340.00396728515625,
+      "height": 408.0047607421875
+    },
+    "cellSize": 1.5,
+    "imageRect": {
+      "x": 0,
+      "y": 0,
+      "width": 6000,
+      "height": 7200
+    },
+    "referenceWidth": 6000,
+    "referenceHeight": 7200,
+    "walkmaskColumns": 233,
+    "walkmaskRows": 310,
+    "spawnWorld": {
+      "x": 56.667327880859375,
+      "y": 0.0,
+      "z": 134.8682403564453
+    }
+  },
+  "stats": {
+    "walkableCells": 4580,
+    "totalCells": 72230,
+    "componentCount": 1,
+    "componentSizes": [
+      4580
+    ],
+    "spawnComponent": 0,
+    "landmarks": {
+      "spawn": {
+        "pixel": [
+          1000.0,
+          4820.0
+        ],
+        "world": {
+          "x": 56.667327880859375,
+          "y": 0.0,
+          "z": 134.8682403564453
+        },
+        "component": 0
+      },
+      "sw-entry-south": {
+        "pixel": [
+          340.0,
+          6600.0
+        ],
+        "world": {
+          "x": 19.266891479492188,
+          "y": 0.0,
+          "z": 34.000396728515625
+        },
+        "component": 0
+      },
+      "sw-taiji-gate": {
+        "pixel": [
+          725.0,
+          5560.0
+        ],
+        "world": {
+          "x": 41.08381271362305,
+          "y": 0.0,
+          "z": 92.93441772460938
+        },
+        "component": 0
+      },
+      "west-ferry-apron": {
+        "pixel": [
+          1740.0,
+          4660.0
+        ],
+        "world": {
+          "x": 98.60115051269531,
+          "y": 0.0,
+          "z": 143.9350128173828
+        },
+        "component": 0
+      },
+      "west-ferry-pier": {
+        "pixel": [
+          2280.0,
+          4460.0
+        ],
+        "world": {
+          "x": 129.20150756835938,
+          "y": 0.0,
+          "z": 155.2684783935547
+        },
+        "component": 0
+      },
+      "south-riverbank-mid": {
+        "pixel": [
+          2480.0,
+          5200.0
+        ],
+        "world": {
+          "x": 140.53497314453125,
+          "y": 0.0,
+          "z": 113.33465576171875
+        },
+        "component": 0
+      },
+      "south-riverbank-end": {
+        "pixel": [
+          3260.0,
+          5540.0
+        ],
+        "world": {
+          "x": 184.73548889160156,
+          "y": 0.0,
+          "z": 94.06776428222656
+        },
+        "component": 0
+      },
+      "west-road-mid": {
+        "pixel": [
+          900.0,
+          3860.0
+        ],
+        "world": {
+          "x": 51.00059509277344,
+          "y": 0.0,
+          "z": 189.2688751220703
+        },
+        "component": 0
+      },
+      "west-bridgehead": {
+        "pixel": [
+          1680.0,
+          3060.0
+        ],
+        "world": {
+          "x": 95.20111083984375,
+          "y": 0.0,
+          "z": 234.6027374267578
+        },
+        "component": 0
+      },
+      "granary-courtyard-east": {
+        "pixel": [
+          1455.0,
+          2520.0
+        ],
+        "world": {
+          "x": 82.45096206665039,
+          "y": 0.0,
+          "z": 265.2030944824219
+        },
+        "component": 0
+      },
+      "granary-courtyard-west": {
+        "pixel": [
+          980.0,
+          2470.0
+        ],
+        "world": {
+          "x": 55.53398132324219,
+          "y": 0.0,
+          "z": 268.03646087646484
+        },
+        "component": 0
+      },
+      "nw-farmhouse-steps": {
+        "pixel": [
+          2440.0,
+          1780.0
+        ],
+        "world": {
+          "x": 138.26828002929688,
+          "y": 0.0,
+          "z": 307.1369171142578
+        },
+        "component": 0
+      },
+      "bridge-center": {
+        "pixel": [
+          3000.0,
+          2960.0
+        ],
+        "world": {
+          "x": 170.00198364257812,
+          "y": 0.0,
+          "z": 240.26947021484375
+        },
+        "component": 0
+      },
+      "east-bridgehead": {
+        "pixel": [
+          4060.0,
+          3030.0
+        ],
+        "world": {
+          "x": 230.06935119628906,
+          "y": 0.0,
+          "z": 236.3027572631836
+        },
+        "component": 0
+      },
+      "east-hall-fork": {
+        "pixel": [
+          4500.0,
+          2740.0
+        ],
+        "world": {
+          "x": 255.0029754638672,
+          "y": 0.0,
+          "z": 252.7362823486328
+        },
+        "component": 0
+      },
+      "east-hall-stairs-mid": {
+        "pixel": [
+          4820.0,
+          2580.0
+        ],
+        "world": {
+          "x": 273.1365203857422,
+          "y": 0.0,
+          "z": 261.8030548095703
+        },
+        "component": 0
+      },
+      "east-hall-terrace": {
+        "pixel": [
+          4940.0,
+          2420.0
+        ],
+        "world": {
+          "x": 279.9365997314453,
+          "y": 0.0,
+          "z": 270.8698272705078
+        },
+        "component": 0
+      },
+      "east-north-corridor": {
+        "pixel": [
+          3960.0,
+          2040.0
+        ],
+        "world": {
+          "x": 224.40261840820312,
+          "y": 0.0,
+          "z": 292.4034118652344
+        },
+        "component": 0
+      },
+      "ne-watermill-doorstep": {
+        "pixel": [
+          4420.0,
+          1265.0
+        ],
+        "world": {
+          "x": 250.46958923339844,
+          "y": 0.0,
+          "z": 336.3205909729004
+        },
+        "component": 0
+      },
+      "ne-watermill-west-bend": {
+        "pixel": [
+          3860.0,
+          1210.0
+        ],
+        "world": {
+          "x": 218.7358856201172,
+          "y": 0.0,
+          "z": 339.43729400634766
+        },
+        "component": 0
+      },
+      "east-cottage-front": {
+        "pixel": [
+          5040.0,
+          3765.0
+        ],
+        "world": {
+          "x": 285.60333251953125,
+          "y": 0.0,
+          "z": 194.65227127075195
+        },
+        "component": 0
+      },
+      "east-ferry-steps": {
+        "pixel": [
+          4680.0,
+          4240.0
+        ],
+        "world": {
+          "x": 265.2030944824219,
+          "y": 0.0,
+          "z": 167.73529052734375
+        },
+        "component": 0
+      },
+      "east-ferry-pier": {
+        "pixel": [
+          4380.0,
+          4135.0
+        ],
+        "world": {
+          "x": 248.20289611816406,
+          "y": 0.0,
+          "z": 173.68535995483398
+        },
+        "component": 0
+      }
+    },
+    "blockedLandmarks": [
+      "river-north-center",
+      "river-south-center",
+      "river-se-lotus-water",
+      "moored-covered-boat",
+      "drifting-skiff",
+      "rice-terrace-golden",
+      "west-vegetable-plot",
+      "taiji-gate-left-pillar",
+      "taiji-gate-right-pillar",
+      "granary-left-building",
+      "granary-right-building",
+      "granary-cart",
+      "granary-east-fence",
+      "nw-farmhouse-roof",
+      "bridge-north-rail",
+      "bridge-south-rail",
+      "bridge-nw-post",
+      "bridge-sw-post",
+      "bridge-se-post",
+      "west-ferry-cottage",
+      "east-main-hall-roof",
+      "east-hall-right-pot",
+      "ne-watermill-wheel",
+      "ne-watermill-pond",
+      "east-ferry-shelter",
+      "east-ferry-south-rail",
+      "east-cottage-roof",
+      "south-bank-reeds",
+      "sw-big-tree",
+      "right-transparent-padding",
+      "bottom-transparent-padding",
+      "bottom-right-transparent-padding"
+    ],
+    "connectedRoutes": [
+      [
+        "spawn",
+        "sw-entry-south"
+      ],
+      [
+        "spawn",
+        "sw-taiji-gate"
+      ],
+      [
+        "spawn",
+        "west-ferry-pier"
+      ],
+      [
+        "spawn",
+        "south-riverbank-end"
+      ],
+      [
+        "spawn",
+        "granary-courtyard-east"
+      ],
+      [
+        "spawn",
+        "granary-courtyard-west"
+      ],
+      [
+        "spawn",
+        "nw-farmhouse-steps"
+      ],
+      [
+        "spawn",
+        "bridge-center"
+      ],
+      [
+        "spawn",
+        "east-bridgehead"
+      ],
+      [
+        "spawn",
+        "east-hall-terrace"
+      ],
+      [
+        "spawn",
+        "ne-watermill-doorstep"
+      ],
+      [
+        "spawn",
+        "ne-watermill-west-bend"
+      ],
+      [
+        "spawn",
+        "east-cottage-front"
+      ],
+      [
+        "spawn",
+        "east-ferry-pier"
+      ],
+      [
+        "west-ferry-pier",
+        "east-ferry-pier"
+      ],
+      [
+        "nw-farmhouse-steps",
+        "ne-watermill-doorstep"
+      ]
+    ],
+    "routeMeasurements": [
+      {
+        "from": "spawn",
+        "to": "sw-entry-south",
+        "gridDistanceWorldUnits": 116.0330085889911
+      },
+      {
+        "from": "spawn",
+        "to": "sw-taiji-gate",
+        "gridDistanceWorldUnits": 48.21320343559642
+      },
+      {
+        "from": "spawn",
+        "to": "west-ferry-pier",
+        "gridDistanceWorldUnits": 81.57716446627536
+      },
+      {
+        "from": "spawn",
+        "to": "south-riverbank-end",
+        "gridDistanceWorldUnits": 148.2609306503489
+      },
+      {
+        "from": "spawn",
+        "to": "granary-courtyard-east",
+        "gridDistanceWorldUnits": 148.51828996322962
+      },
+      {
+        "from": "spawn",
+        "to": "granary-courtyard-west",
+        "gridDistanceWorldUnits": 179.13961030678925
+      },
+      {
+        "from": "spawn",
+        "to": "nw-farmhouse-steps",
+        "gridDistanceWorldUnits": 215.00714267493606
+      },
+      {
+        "from": "spawn",
+        "to": "bridge-center",
+        "gridDistanceWorldUnits": 202.73149339882605
+      },
+      {
+        "from": "spawn",
+        "to": "east-bridgehead",
+        "gridDistanceWorldUnits": 262.73149339882605
+      },
+      {
+        "from": "spawn",
+        "to": "east-hall-terrace",
+        "gridDistanceWorldUnits": 325.2792206135789
+      },
+      {
+        "from": "spawn",
+        "to": "ne-watermill-doorstep",
+        "gridDistanceWorldUnits": 387.3563850798545
+      },
+      {
+        "from": "spawn",
+        "to": "ne-watermill-west-bend",
+        "gridDistanceWorldUnits": 403.7056274847721
+      },
+      {
+        "from": "spawn",
+        "to": "east-cottage-front",
+        "gridDistanceWorldUnits": 335.6284630184965
+      },
+      {
+        "from": "spawn",
+        "to": "east-ferry-pier",
+        "gridDistanceWorldUnits": 365.22034611053346
+      },
+      {
+        "from": "west-ferry-pier",
+        "to": "east-ferry-pier",
+        "gridDistanceWorldUnits": 434.7975105768085
+      },
+      {
+        "from": "nw-farmhouse-steps",
+        "to": "ne-watermill-doorstep",
+        "gridDistanceWorldUnits": 354.5071426749368
+      }
+    ],
+    "maximumListedRouteSecondsAt18": 24.15541725426714,
+    "separatedRoutes": [],
+    "maskSha256": "9b528ee552e63e8fe1be3b32a31f45bc5da6fcd6eaa99bf9149cf5b4e37d89e7",
+    "maskBytes": 9029,
+    "engineAccepted": false,
+    "serverNavigationPublished": false
+  },
+  "runtimeEngineAcceptance": false,
+  "authoritativeServerRegistered": true
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "LOSSLESS_COPY_OF_FINISHED_CONTINUOUS_MAP",
+  "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/layout.png",
+  "sha256": "340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105",
+  "bytes": 29636411,
+  "width": 5120,
+  "height": 4096,
+  "format": "PNG",
+  "derivedAt": "2026-11-28T02:01:07.621267+00:00",
+  "route": "deterministic_local_export",
+  "newAICalls": 0,
+  "operation": "exact byte copy of the finished input PNG",
+  "derivedFrom": {
+    "inputFilename": "spring.png",
+    "sha256": "340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105",
+    "generationRecord": {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/upstream/spring.input.generation.json",
+      "sha256": "3c0427e6c05e96c7daa29fe8d5a79f1984fb2578ec25f943bf8d4797fb1ecd98",
+      "bytes": 2759
+    }
+  },
+  "inputGenerationRecordStatus": "included_as_supplied",
+  "nativeMapTile": false,
+  "nativeImageClaim": false
+}

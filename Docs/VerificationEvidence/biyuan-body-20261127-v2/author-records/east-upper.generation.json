@@ -1,0 +1,55 @@
+{
+  "assetId": "original:biyuan-water-palace",
+  "file": "exec-5efe8676-806b-4c14-a03a-d4fa47fe37fd.png",
+  "sha256": "6c6cd6d450001ac40f5d7d954366d0d8ac81977bd5bd782cbe18bac93eaa2036",
+  "width": 1448,
+  "height": 1086,
+  "format": "PNG",
+  "mode": "RGB",
+  "generatedAt": "2026-11-28T01:48:12.853Z",
+  "submittedAt": "2026-11-28T01:47:05.586Z",
+  "tool": "image_gen.imagegen",
+  "route": "builtin",
+  "toolResultFile": "exec-5efe8676-806b-4c14-a03a-d4fa47fe37fd.png",
+  "configSnapshot": {
+    "model": "gpt-image-2.6-sunburst",
+    "quality": "max",
+    "builtin_product": "ChatGPT Images 2.6",
+    "verified_on": "2026-11-26",
+    "sources": {
+      "release": "https://openai.com/index/introducing-images-2-6/",
+      "model": "https://developers.openai.com/api/docs/models/gpt-image-2.6-sunburst",
+      "quality": "https://developers.openai.com/api/docs/guides/image-prompting"
+    }
+  },
+  "submittedParameters": {
+    "model": null,
+    "quality": null,
+    "transparent_background": false
+  },
+  "actualModel": null,
+  "actualQuality": null,
+  "unverifiedReason": "宿主管理，工具未披露模型与画质；PNG未披露可核实的型号信息。",
+  "references": [
+    {
+      "reference": "east-upper-input.png",
+      "submittedLocalPath": "C:/Users/luyua/AppData/Local/Temp/biyuan-rebuild-20261127/east-upper-input.png",
+      "sha256": "cc10271aa1a13d845feb9aeb69fd07555e626f42cf90e30f42aab6059d6ceec5"
+    }
+  ],
+  "promptFile": "east-upper.prompt.txt",
+  "sourceRole": "east-upper",
+  "referencedPngPreservedInThisDelivery": false,
+  "regionalComposition": {
+    "medianGeometricCorrectionPxAt800": 0.312,
+    "medianLocalLumaResidual": 13.097,
+    "fractionConfident": 0.9567,
+    "runtimeBoxHalfOpen": [
+      2496,
+      128,
+      4896,
+      1928
+    ],
+    "registeredDetailPixels": 3658322
+  }
+}

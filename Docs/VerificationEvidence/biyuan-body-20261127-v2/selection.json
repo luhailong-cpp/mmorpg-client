@@ -1,0 +1,1097 @@
+{
+  "schemaVersion": 1,
+  "key": "biyuan-water-palace",
+  "sceneId": 5,
+  "revision": "biyuan-body-20261127-v2",
+  "scope": "finished input layouts and lossless runtime crops",
+  "sets": [
+    {
+      "mapId": "biyuan-water-palace",
+      "appearance": "spring",
+      "resourceRoot": "World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/",
+      "layout": {
+        "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/layout.png",
+        "sha256": "340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105",
+        "bytes": 29636411,
+        "pixels": [
+          5120,
+          4096
+        ],
+        "generationRecord": {
+          "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring-layout.png.generation.json",
+          "sha256": "2aa16401ebc36b5b1795f8ac12ab63ec9fdbad92ebf4bd80dc2dc91f5417eb75",
+          "bytes": 1057
+        },
+        "inputGenerationRecord": {
+          "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/upstream/spring.input.generation.json",
+          "sha256": "3c0427e6c05e96c7daa29fe8d5a79f1984fb2578ec25f943bf8d4797fb1ecd98",
+          "bytes": 2759
+        }
+      },
+      "grid": {
+        "columns": 5,
+        "rows": 4,
+        "canvasPixels": [
+          5120,
+          4096
+        ]
+      },
+      "tiles": [
+        {
+          "tile": "r01_c01",
+          "row": 1,
+          "column": 1,
+          "imageRectHalfOpen": [
+            0,
+            0,
+            1024,
+            1024
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r01_c01.png",
+            "sha256": "ee5222e0b2d1b2ea328166aa2746fb4df7461207086b88950556f8743ea29b40",
+            "bytes": 1499564,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r01_c01.png.generation.json",
+            "sha256": "a07f4d60625265cdcc8292ad8c32c5a8c564ec76871e753905aa2978e07d6f22",
+            "bytes": 1246
+          }
+        },
+        {
+          "tile": "r01_c02",
+          "row": 1,
+          "column": 2,
+          "imageRectHalfOpen": [
+            1024,
+            0,
+            2048,
+            1024
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r01_c02.png",
+            "sha256": "6275b8085bccb7a361eb47591696c29918052b501595e1c83a74eb830f63ef88",
+            "bytes": 1633116,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r01_c02.png.generation.json",
+            "sha256": "972e22b2b6f6ad5fdb69be021854738e4b472ee619f7daa7191ac203cda475b2",
+            "bytes": 1249
+          }
+        },
+        {
+          "tile": "r01_c03",
+          "row": 1,
+          "column": 3,
+          "imageRectHalfOpen": [
+            2048,
+            0,
+            3072,
+            1024
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r01_c03.png",
+            "sha256": "0dfb0fcc4650b75cd72bdaace687398f850c34e464eacbf748ee0c0c5a0fa619",
+            "bytes": 1473436,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r01_c03.png.generation.json",
+            "sha256": "61a2440a3dab39dc90e511efd35f2dfc0301caa42173ee70558f758bf0631880",
+            "bytes": 1249
+          }
+        },
+        {
+          "tile": "r01_c04",
+          "row": 1,
+          "column": 4,
+          "imageRectHalfOpen": [
+            3072,
+            0,
+            4096,
+            1024
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r01_c04.png",
+            "sha256": "4fbe59c248bdf5d00b164ae11dd7543a75a488dcb774e77c350c67c38bd5eb84",
+            "bytes": 1497126,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r01_c04.png.generation.json",
+            "sha256": "6a723cce8f053b6f841d2532ba9f8e01a88231a89f0217a463a73a33259831d9",
+            "bytes": 1249
+          }
+        },
+        {
+          "tile": "r01_c05",
+          "row": 1,
+          "column": 5,
+          "imageRectHalfOpen": [
+            4096,
+            0,
+            5120,
+            1024
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r01_c05.png",
+            "sha256": "46ae7b367bd271105919b49838184eff61ba6bdb0515464d98408416d1332072",
+            "bytes": 1556506,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r01_c05.png.generation.json",
+            "sha256": "b4e4e0572d559453fa48bd094fb9c65c4d91e223b5b69a8d77ba93e9a5d8edcc",
+            "bytes": 1249
+          }
+        },
+        {
+          "tile": "r02_c01",
+          "row": 2,
+          "column": 1,
+          "imageRectHalfOpen": [
+            0,
+            1024,
+            1024,
+            2048
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r02_c01.png",
+            "sha256": "def023d93122bbb69d0296a7afe27105f6c6873996b703f3bfb433c4a1d0c554",
+            "bytes": 1545394,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r02_c01.png.generation.json",
+            "sha256": "9276b947701a2e32043ad3899b9a0f49fadb51397bb7e3ffb66d2ead7f15ec51",
+            "bytes": 1249
+          }
+        },
+        {
+          "tile": "r02_c02",
+          "row": 2,
+          "column": 2,
+          "imageRectHalfOpen": [
+            1024,
+            1024,
+            2048,
+            2048
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r02_c02.png",
+            "sha256": "7250754f7e768dcc8d11a1b06d5d6b1b6129095998cbbd6003fc8f0040b5b251",
+            "bytes": 1580430,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r02_c02.png.generation.json",
+            "sha256": "82a5edd18072ebdbf650a4e49eff6d5f0d12c124609ceeba56cd7656b48c24b7",
+            "bytes": 1252
+          }
+        },
+        {
+          "tile": "r02_c03",
+          "row": 2,
+          "column": 3,
+          "imageRectHalfOpen": [
+            2048,
+            1024,
+            3072,
+            2048
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r02_c03.png",
+            "sha256": "2a244ea2c58742507e40f683c8002a75cb0d99571fb82d1f8cfbaf309448a5ae",
+            "bytes": 1680319,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r02_c03.png.generation.json",
+            "sha256": "433aa4f32fb3937543bda9ca7b1d35988a834686e8fe9c474de5cba23e401115",
+            "bytes": 1252
+          }
+        },
+        {
+          "tile": "r02_c04",
+          "row": 2,
+          "column": 4,
+          "imageRectHalfOpen": [
+            3072,
+            1024,
+            4096,
+            2048
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r02_c04.png",
+            "sha256": "7bff086a5a507d7beaa95583fbfbc273d62f7cb3020de74380d530339eafcf8f",
+            "bytes": 1654056,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r02_c04.png.generation.json",
+            "sha256": "9590a5e9cd62be1902925c5bfe73ed31c44a08313d5035d7a0d8b814070432a6",
+            "bytes": 1252
+          }
+        },
+        {
+          "tile": "r02_c05",
+          "row": 2,
+          "column": 5,
+          "imageRectHalfOpen": [
+            4096,
+            1024,
+            5120,
+            2048
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r02_c05.png",
+            "sha256": "6b25806295594175e74918402ed594baab36f660fa812b930cb8c5794517668f",
+            "bytes": 1685591,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r02_c05.png.generation.json",
+            "sha256": "f9424af35f6f7044a823d40e38348ea5ae2b79735dab96bdd01f90b768b2e292",
+            "bytes": 1252
+          }
+        },
+        {
+          "tile": "r03_c01",
+          "row": 3,
+          "column": 1,
+          "imageRectHalfOpen": [
+            0,
+            2048,
+            1024,
+            3072
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r03_c01.png",
+            "sha256": "79a6ceba283091cb58154aadce6a945baa2def5c3f0cf1d0f58213c58bf2baf8",
+            "bytes": 1458578,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r03_c01.png.generation.json",
+            "sha256": "0ea6d5b92c9dfd73b717578d3f9458c2c2ebf781b5dec8e17a64f2eef7f89de4",
+            "bytes": 1249
+          }
+        },
+        {
+          "tile": "r03_c02",
+          "row": 3,
+          "column": 2,
+          "imageRectHalfOpen": [
+            1024,
+            2048,
+            2048,
+            3072
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r03_c02.png",
+            "sha256": "854e3c907072d682eb8ce2791076d21800d805dd9f94dbd0a7f16acea44df0a4",
+            "bytes": 1706927,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r03_c02.png.generation.json",
+            "sha256": "03cb9fb9d1dc3115751e5a41aec7d56eb8e74afea3f83e82cce9665c023d6505",
+            "bytes": 1252
+          }
+        },
+        {
+          "tile": "r03_c03",
+          "row": 3,
+          "column": 3,
+          "imageRectHalfOpen": [
+            2048,
+            2048,
+            3072,
+            3072
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r03_c03.png",
+            "sha256": "97e4117f3f5e834c5ab50078a4c9dd5d77fe6657eb90cf630be1b15df443b0a1",
+            "bytes": 1526378,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r03_c03.png.generation.json",
+            "sha256": "510a87e1587e5476d2f374f577e74dd7aa6464d61f0c4d7a5bde47cfdc8502ae",
+            "bytes": 1252
+          }
+        },
+        {
+          "tile": "r03_c04",
+          "row": 3,
+          "column": 4,
+          "imageRectHalfOpen": [
+            3072,
+            2048,
+            4096,
+            3072
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r03_c04.png",
+            "sha256": "fe2a25ddd4912368652b8715422935f35250b17e2794dbefaafa71185c427393",
+            "bytes": 1583402,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r03_c04.png.generation.json",
+            "sha256": "a3d3fc83fb08fd1d85277871fe59e1fdc3fcf9e75d4dc283445acbae61b256c7",
+            "bytes": 1252
+          }
+        },
+        {
+          "tile": "r03_c05",
+          "row": 3,
+          "column": 5,
+          "imageRectHalfOpen": [
+            4096,
+            2048,
+            5120,
+            3072
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r03_c05.png",
+            "sha256": "089706d8de2355a7a97e36342338f89400dc151f7e390c5842e29d1f3672b34c",
+            "bytes": 1454099,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r03_c05.png.generation.json",
+            "sha256": "4f4f84d1aa74e73ec0b1379ccec0ade5aff907aa7ef44792e74828c36939f62e",
+            "bytes": 1252
+          }
+        },
+        {
+          "tile": "r04_c01",
+          "row": 4,
+          "column": 1,
+          "imageRectHalfOpen": [
+            0,
+            3072,
+            1024,
+            4096
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r04_c01.png",
+            "sha256": "9aa33dd2a2d5c7d8a3e3eacc117fba34212c590d7175f16f80b5ce970c093602",
+            "bytes": 1380472,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r04_c01.png.generation.json",
+            "sha256": "3bd6fb6633cf8a166255ced54231ba082736b14d7b5db6cb1b2055a3a891e984",
+            "bytes": 1249
+          }
+        },
+        {
+          "tile": "r04_c02",
+          "row": 4,
+          "column": 2,
+          "imageRectHalfOpen": [
+            1024,
+            3072,
+            2048,
+            4096
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r04_c02.png",
+            "sha256": "49004324bd870398e2f23ba6c1b328aff86f9a87a2d8c2b914cacc7b60574a40",
+            "bytes": 1357326,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r04_c02.png.generation.json",
+            "sha256": "4c920633793e96b1783922a0e6b80b8a2bb28359a9155961c06c4f8854bab98d",
+            "bytes": 1252
+          }
+        },
+        {
+          "tile": "r04_c03",
+          "row": 4,
+          "column": 3,
+          "imageRectHalfOpen": [
+            2048,
+            3072,
+            3072,
+            4096
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r04_c03.png",
+            "sha256": "2fa390986f526fe0c50ccdaec986e16c24ea5cf97b436a6a9200db757805043d",
+            "bytes": 1300587,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r04_c03.png.generation.json",
+            "sha256": "fcb215a9d62530670937c7180941f9447a420b46c4d0781d52671f6bcc3beeda",
+            "bytes": 1252
+          }
+        },
+        {
+          "tile": "r04_c04",
+          "row": 4,
+          "column": 4,
+          "imageRectHalfOpen": [
+            3072,
+            3072,
+            4096,
+            4096
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r04_c04.png",
+            "sha256": "178ed394ca329c4d6961585b606eb3ed6c243160c843a54eacc94d2588cd90b2",
+            "bytes": 1604847,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r04_c04.png.generation.json",
+            "sha256": "6ca33c7d1e39e62e9de5ada840e10c9dad92336bc68d0298610fdfa271a54d92",
+            "bytes": 1252
+          }
+        },
+        {
+          "tile": "r04_c05",
+          "row": 4,
+          "column": 5,
+          "imageRectHalfOpen": [
+            4096,
+            3072,
+            5120,
+            4096
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/spring/340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105/tiles/r04_c05.png",
+            "sha256": "b5b5997e281bbd49705618f4868b8f7b4edc1cd39a2013f58afb06e5b72d2261",
+            "bytes": 1462173,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r04_c05.png.generation.json",
+            "sha256": "cc05b7dbc7fcea18f2e1fe8e1cf2d7dbe577381f1f894356599b36030598559b",
+            "bytes": 1252
+          }
+        }
+      ]
+    },
+    {
+      "mapId": "biyuan-water-palace",
+      "appearance": "mid-autumn",
+      "resourceRoot": "World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/",
+      "layout": {
+        "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/layout.png",
+        "sha256": "bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a",
+        "bytes": 29647339,
+        "pixels": [
+          5120,
+          4096
+        ],
+        "generationRecord": {
+          "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn-layout.png.generation.json",
+          "sha256": "8f5d3c33e8450f7e7d9aacff0d302018243ccf003f6cf11a4efbcba050944227",
+          "bytes": 1069
+        },
+        "inputGenerationRecord": {
+          "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/upstream/mid-autumn.input.generation.json",
+          "sha256": "7cc619b18cc6c8f36924d3c09013cac98b4042fb5b3b589321cacff33bddb29f",
+          "bytes": 3034
+        }
+      },
+      "grid": {
+        "columns": 5,
+        "rows": 4,
+        "canvasPixels": [
+          5120,
+          4096
+        ]
+      },
+      "tiles": [
+        {
+          "tile": "r01_c01",
+          "row": 1,
+          "column": 1,
+          "imageRectHalfOpen": [
+            0,
+            0,
+            1024,
+            1024
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r01_c01.png",
+            "sha256": "ee5222e0b2d1b2ea328166aa2746fb4df7461207086b88950556f8743ea29b40",
+            "bytes": 1499564,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r01_c01.png.generation.json",
+            "sha256": "c9b2e3d9b20342491e9422664761a913ebc1072dc2d73fb266d2626c0604a1f8",
+            "bytes": 1258
+          }
+        },
+        {
+          "tile": "r01_c02",
+          "row": 1,
+          "column": 2,
+          "imageRectHalfOpen": [
+            1024,
+            0,
+            2048,
+            1024
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r01_c02.png",
+            "sha256": "9be626202ef844289e0f95478d60a8ea11d4d32899480262ffcaff971f24246a",
+            "bytes": 1631395,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r01_c02.png.generation.json",
+            "sha256": "2eea9f4f46df14321cd49991d1798ad285d3e1e53bb0d22d0b5717f39f7c21f0",
+            "bytes": 1261
+          }
+        },
+        {
+          "tile": "r01_c03",
+          "row": 1,
+          "column": 3,
+          "imageRectHalfOpen": [
+            2048,
+            0,
+            3072,
+            1024
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r01_c03.png",
+            "sha256": "f9901644496e99606aaf877cd737ffebeee7e057e2c46384d0b33b72b87c4c48",
+            "bytes": 1474937,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r01_c03.png.generation.json",
+            "sha256": "8878c2f5bc91178ec1bd5d39b1a0f7b7ca74dedf6b974b5c344e0d4a412e746e",
+            "bytes": 1261
+          }
+        },
+        {
+          "tile": "r01_c04",
+          "row": 1,
+          "column": 4,
+          "imageRectHalfOpen": [
+            3072,
+            0,
+            4096,
+            1024
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r01_c04.png",
+            "sha256": "4fbe59c248bdf5d00b164ae11dd7543a75a488dcb774e77c350c67c38bd5eb84",
+            "bytes": 1497126,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r01_c04.png.generation.json",
+            "sha256": "1ae1ea87994c069c41b36938945ea9a472e3ccaf93b51cdf5eac9c212c97eb97",
+            "bytes": 1261
+          }
+        },
+        {
+          "tile": "r01_c05",
+          "row": 1,
+          "column": 5,
+          "imageRectHalfOpen": [
+            4096,
+            0,
+            5120,
+            1024
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r01_c05.png",
+            "sha256": "46ae7b367bd271105919b49838184eff61ba6bdb0515464d98408416d1332072",
+            "bytes": 1556506,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r01_c05.png.generation.json",
+            "sha256": "426930d3ba4576f304e409a29922088127be932748dbc9ccf2b05a08e07e06e3",
+            "bytes": 1261
+          }
+        },
+        {
+          "tile": "r02_c01",
+          "row": 2,
+          "column": 1,
+          "imageRectHalfOpen": [
+            0,
+            1024,
+            1024,
+            2048
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r02_c01.png",
+            "sha256": "916b3c4c193fed4eb69bc9726ac4a8870ded7be6236e1f05bd6ac3ef28f83799",
+            "bytes": 1547909,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r02_c01.png.generation.json",
+            "sha256": "d7c5f80f053deec94d0b207bc05db13e627dd60bf2ef37d1e8fe29aac2b069b1",
+            "bytes": 1261
+          }
+        },
+        {
+          "tile": "r02_c02",
+          "row": 2,
+          "column": 2,
+          "imageRectHalfOpen": [
+            1024,
+            1024,
+            2048,
+            2048
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r02_c02.png",
+            "sha256": "e035b778786283e4655b5bbc433bcf86c4cd8f8d4fc5809910b6741f4269c25c",
+            "bytes": 1583630,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r02_c02.png.generation.json",
+            "sha256": "65c4d68c99a889aa2932652a98ca36739afeb76c1c1b153a0b398c14407a5d99",
+            "bytes": 1264
+          }
+        },
+        {
+          "tile": "r02_c03",
+          "row": 2,
+          "column": 3,
+          "imageRectHalfOpen": [
+            2048,
+            1024,
+            3072,
+            2048
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r02_c03.png",
+            "sha256": "2a244ea2c58742507e40f683c8002a75cb0d99571fb82d1f8cfbaf309448a5ae",
+            "bytes": 1680319,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r02_c03.png.generation.json",
+            "sha256": "ddabdb0dcd76b5dfcdf67fa00ba1b8e3ecf52d323b41c05278f654cf322b8260",
+            "bytes": 1264
+          }
+        },
+        {
+          "tile": "r02_c04",
+          "row": 2,
+          "column": 4,
+          "imageRectHalfOpen": [
+            3072,
+            1024,
+            4096,
+            2048
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r02_c04.png",
+            "sha256": "7bff086a5a507d7beaa95583fbfbc273d62f7cb3020de74380d530339eafcf8f",
+            "bytes": 1654056,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r02_c04.png.generation.json",
+            "sha256": "879472cd856544e064566eb7d443c266a6b4c75e9a8edffbece7f66ad14a5a41",
+            "bytes": 1264
+          }
+        },
+        {
+          "tile": "r02_c05",
+          "row": 2,
+          "column": 5,
+          "imageRectHalfOpen": [
+            4096,
+            1024,
+            5120,
+            2048
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r02_c05.png",
+            "sha256": "e350ef15b2f461c5f112c382d6681a8c6e6f6f08a0a4a508642e021c038126cf",
+            "bytes": 1686485,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r02_c05.png.generation.json",
+            "sha256": "91febecf35ed14a0a95571ee26e2506de9f922966108834429f6415066d6b0b4",
+            "bytes": 1264
+          }
+        },
+        {
+          "tile": "r03_c01",
+          "row": 3,
+          "column": 1,
+          "imageRectHalfOpen": [
+            0,
+            2048,
+            1024,
+            3072
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r03_c01.png",
+            "sha256": "79a6ceba283091cb58154aadce6a945baa2def5c3f0cf1d0f58213c58bf2baf8",
+            "bytes": 1458578,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r03_c01.png.generation.json",
+            "sha256": "2cd7d47f43891c6e486374057e204f6d4b702849a9f365662416ca1d127a9bd3",
+            "bytes": 1261
+          }
+        },
+        {
+          "tile": "r03_c02",
+          "row": 3,
+          "column": 2,
+          "imageRectHalfOpen": [
+            1024,
+            2048,
+            2048,
+            3072
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r03_c02.png",
+            "sha256": "e254d1b633e55148b41c4919fba5a433cf7d880a86c60c1f69ac689b32292478",
+            "bytes": 1707017,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r03_c02.png.generation.json",
+            "sha256": "ba18f36b6ff762e37855e7fe40423357a99711a46ba8b0b29f9f235b8e773b13",
+            "bytes": 1264
+          }
+        },
+        {
+          "tile": "r03_c03",
+          "row": 3,
+          "column": 3,
+          "imageRectHalfOpen": [
+            2048,
+            2048,
+            3072,
+            3072
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r03_c03.png",
+            "sha256": "97e4117f3f5e834c5ab50078a4c9dd5d77fe6657eb90cf630be1b15df443b0a1",
+            "bytes": 1526378,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r03_c03.png.generation.json",
+            "sha256": "d11907f8ed4283cb4710bba06c75bde2593afd3d6db0f2c7ace00d2ff43efd23",
+            "bytes": 1264
+          }
+        },
+        {
+          "tile": "r03_c04",
+          "row": 3,
+          "column": 4,
+          "imageRectHalfOpen": [
+            3072,
+            2048,
+            4096,
+            3072
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r03_c04.png",
+            "sha256": "a332f39766e1a370a34ec464c60e8c10e8879122ee9c3d1c546dfffec8314b91",
+            "bytes": 1582315,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r03_c04.png.generation.json",
+            "sha256": "320ab3c857dac0b0bf53d07d6fdad57d6ef6c4c46d83a9186963bb58bed4f99b",
+            "bytes": 1264
+          }
+        },
+        {
+          "tile": "r03_c05",
+          "row": 3,
+          "column": 5,
+          "imageRectHalfOpen": [
+            4096,
+            2048,
+            5120,
+            3072
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r03_c05.png",
+            "sha256": "dfcce03428d9a8fa6bd36a80033be0b37d5bbec1d8ae59bb9f0b74d9f57b8555",
+            "bytes": 1460062,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r03_c05.png.generation.json",
+            "sha256": "00fba3f844b929bf6537ca38db99a1d1ecca7c88d96bc4996af69d278ad58762",
+            "bytes": 1264
+          }
+        },
+        {
+          "tile": "r04_c01",
+          "row": 4,
+          "column": 1,
+          "imageRectHalfOpen": [
+            0,
+            3072,
+            1024,
+            4096
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r04_c01.png",
+            "sha256": "9aa33dd2a2d5c7d8a3e3eacc117fba34212c590d7175f16f80b5ce970c093602",
+            "bytes": 1380472,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r04_c01.png.generation.json",
+            "sha256": "796f283b572a3705c8465fa61ac6a9e179583289eca0c020857daa32fdf82aa5",
+            "bytes": 1261
+          }
+        },
+        {
+          "tile": "r04_c02",
+          "row": 4,
+          "column": 2,
+          "imageRectHalfOpen": [
+            1024,
+            3072,
+            2048,
+            4096
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r04_c02.png",
+            "sha256": "b246ace5582ed4d21157aaced6e15f40f403797905820b13f3359165119eab87",
+            "bytes": 1355892,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r04_c02.png.generation.json",
+            "sha256": "88c4fae5b83ae70e0b8b22eb26eeb7772c62103c7f4e4911388b9eb2408bf6c9",
+            "bytes": 1264
+          }
+        },
+        {
+          "tile": "r04_c03",
+          "row": 4,
+          "column": 3,
+          "imageRectHalfOpen": [
+            2048,
+            3072,
+            3072,
+            4096
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r04_c03.png",
+            "sha256": "2fa390986f526fe0c50ccdaec986e16c24ea5cf97b436a6a9200db757805043d",
+            "bytes": 1300587,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r04_c03.png.generation.json",
+            "sha256": "c6fcd9fdaa3f3dba2ac646b768c2e0087a2cd82a0a64d6b2ef67c916dc218631",
+            "bytes": 1264
+          }
+        },
+        {
+          "tile": "r04_c04",
+          "row": 4,
+          "column": 4,
+          "imageRectHalfOpen": [
+            3072,
+            3072,
+            4096,
+            4096
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r04_c04.png",
+            "sha256": "f8ae4962e966ea20e171dc26d34fe3c01d0553a4d716258166e71b78c15727b1",
+            "bytes": 1604915,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r04_c04.png.generation.json",
+            "sha256": "0c7135fc5d6ff3ab37b4c793e2249da24b26d415732f69e83de0f0c0a30d621a",
+            "bytes": 1264
+          }
+        },
+        {
+          "tile": "r04_c05",
+          "row": 4,
+          "column": 5,
+          "imageRectHalfOpen": [
+            4096,
+            3072,
+            5120,
+            4096
+          ],
+          "runtime": {
+            "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/tiles/r04_c05.png",
+            "sha256": "b5b5997e281bbd49705618f4868b8f7b4edc1cd39a2013f58afb06e5b72d2261",
+            "bytes": 1462173,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "generationRecord": {
+            "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn/r04_c05.png.generation.json",
+            "sha256": "91c487db36b72882841906d5f75f2912a709461a66f5e6151b181953d747fe6a",
+            "bytes": 1264
+          }
+        }
+      ]
+    }
+  ],
+  "sharedNeutral": {
+    "file": "design-source/neutral.png",
+    "sha256": "8b4dace9948b7ae38860a31fc858300d7dfc6362271ba553e44b4e336373dce0",
+    "bytes": 29600803,
+    "pixels": [
+      5120,
+      4096
+    ],
+    "generationRecord": {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/neutral-layout.png.generation.json",
+      "sha256": "6116a53a72195c94905f1f06ef98dbb8658aaa0c44245b012c0a01551c6131cd",
+      "bytes": 918
+    },
+    "inputGenerationRecord": {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/upstream/neutral.input.generation.json",
+      "sha256": "1905e518083d3d60339f4e8a84dcceb600fd72da0171e8922c475847b5eedd55",
+      "bytes": 3986
+    }
+  },
+  "visualAcceptancePerformedByExporter": false
+}

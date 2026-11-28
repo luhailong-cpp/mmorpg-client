@@ -1,0 +1,25 @@
+{
+  "kind": "LOSSLESS_COPY_OF_FINISHED_CONTINUOUS_MAP",
+  "file": "design-source/neutral.png",
+  "sha256": "8b4dace9948b7ae38860a31fc858300d7dfc6362271ba553e44b4e336373dce0",
+  "bytes": 29600803,
+  "width": 5120,
+  "height": 4096,
+  "format": "PNG",
+  "derivedAt": "2026-11-28T02:01:07.621267+00:00",
+  "route": "deterministic_local_export",
+  "newAICalls": 0,
+  "operation": "exact byte copy of the finished input PNG",
+  "derivedFrom": {
+    "inputFilename": "neutral.png",
+    "sha256": "8b4dace9948b7ae38860a31fc858300d7dfc6362271ba553e44b4e336373dce0",
+    "generationRecord": {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/upstream/neutral.input.generation.json",
+      "sha256": "1905e518083d3d60339f4e8a84dcceb600fd72da0171e8922c475847b5eedd55",
+      "bytes": 3986
+    }
+  },
+  "inputGenerationRecordStatus": "included_as_supplied",
+  "nativeMapTile": false,
+  "nativeImageClaim": false
+}

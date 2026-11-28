@@ -1,0 +1,55 @@
+{
+  "assetId": "original:biyuan-water-palace",
+  "file": "exec-f99f00e9-cad7-4f7b-a75c-bbf180f421a6.png",
+  "sha256": "6c29db09d91b5e021796c88b339fc21bf3f56f2c628001fffe319b2b6ffd63a0",
+  "width": 1448,
+  "height": 1086,
+  "format": "PNG",
+  "mode": "RGB",
+  "generatedAt": "2026-11-28T01:47:04.084Z",
+  "submittedAt": "2026-11-28T01:46:13.328Z",
+  "tool": "image_gen.imagegen",
+  "route": "builtin",
+  "toolResultFile": "exec-f99f00e9-cad7-4f7b-a75c-bbf180f421a6.png",
+  "configSnapshot": {
+    "model": "gpt-image-2.6-sunburst",
+    "quality": "max",
+    "builtin_product": "ChatGPT Images 2.6",
+    "verified_on": "2026-11-26",
+    "sources": {
+      "release": "https://openai.com/index/introducing-images-2-6/",
+      "model": "https://developers.openai.com/api/docs/models/gpt-image-2.6-sunburst",
+      "quality": "https://developers.openai.com/api/docs/guides/image-prompting"
+    }
+  },
+  "submittedParameters": {
+    "model": null,
+    "quality": null,
+    "transparent_background": false
+  },
+  "actualModel": null,
+  "actualQuality": null,
+  "unverifiedReason": "宿主管理，工具未披露模型与画质；PNG未披露可核实的型号信息。",
+  "references": [
+    {
+      "reference": "hall-input.png",
+      "submittedLocalPath": "C:/Users/luyua/AppData/Local/Temp/biyuan-rebuild-20261127/hall-input.png",
+      "sha256": "88ccad6ecfb4363296910a9cf9d1588deb1b80e12260f211aef85b1d5cad47f5"
+    }
+  ],
+  "promptFile": "hall.prompt.txt",
+  "sourceRole": "hall",
+  "referencedPngPreservedInThisDelivery": false,
+  "regionalComposition": {
+    "medianGeometricCorrectionPxAt800": 0.326,
+    "medianLocalLumaResidual": 8.321,
+    "fractionConfident": 0.9883,
+    "runtimeBoxHalfOpen": [
+      416,
+      128,
+      2816,
+      1928
+    ],
+    "registeredDetailPixels": 3743447
+  }
+}

@@ -134,6 +134,59 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 "The resolved approach point must remain outside the padded building footprint.");
         }
 
+        [Test]
+        public void ApproachPath_LargeObstacleBeyondEightCells_ResolvesTrueEuclideanNearestShore()
+        {
+            // 60x60 世界（cell=1），中央 40x40 巨大湖泊（x,z ∈ [10,50)），远超旧 8 格上限。
+            var bounds = new Rect(0f, 0f, 60f, 60f);
+            var grid = new TianyongNavigationGrid(1f,
+                p => p.x < 10f || p.x >= 50f || p.z < 10f || p.z >= 50f,
+                bounds, bounds, preciseNetworkMovement: true);
+            var start = new Vector3(5.5f, 0f, 30.5f);
+            // 点在湖中偏东侧（距东岸 x=50.5 仅 15.5m，距西岸 25.5m，距南北岸 20.5m）。
+            var clickInLake = new Vector3(35f, 0f, 30.5f);
+            Assert.That(grid.IsWalkable(clickInLake), Is.False);
+            Assert.That(grid.TryFindNearestWalkable(clickInLake, out _), Is.False,
+                "旧有界脱困查询仍须保持 8 格上限，不破坏既有契约。");
+
+            var path = grid.FindApproachPath(start, clickInLake);
+            Assert.That(path.Count, Is.GreaterThanOrEqualTo(2));
+            var end = path[path.Count - 1];
+            Assert.That(grid.IsWalkable(end), Is.True);
+            Assert.That(end.x, Is.EqualTo(50.5f).Within(0.01f), "必须选到真正欧氏最近的东岸而非左下偏置点。");
+            Assert.That(end.z, Is.EqualTo(30.5f).Within(0.01f));
+            for (var i = 1; i < path.Count; i++)
+                Assert.That(grid.IsSegmentWalkable(path[i - 1], path[i]), Is.True);
+        }
+
+        [Test]
+        public void ApproachPath_DisconnectedIsland_RoutesToNearestReachableShoreWhileStrictFindPathRejects()
+        {
+            // 左岸 x∈[0,10)，中间宽河 x∈[10,25) 阻挡，右岸孤岛 x∈[25,35)。
+            var bounds = new Rect(0f, 0f, 35f, 20f);
+            var grid = new TianyongNavigationGrid(1f,
+                p => p.x < 10f || p.x >= 25f,
+                bounds, bounds, preciseNetworkMovement: true);
+            var start = new Vector3(2.5f, 0f, 10.5f);
+            var islandPoint = new Vector3(30.5f, 0f, 14.5f);
+
+            Assert.That(grid.IsWalkable(islandPoint), Is.True);
+            Assert.That(grid.FindPath(start, islandPoint), Is.Empty, "严格 FindPath 必须继续拒绝跨孤岛目标。");
+
+            var approach = grid.FindApproachPath(start, islandPoint);
+            Assert.That(approach.Count, Is.GreaterThanOrEqualTo(2));
+            var end = approach[approach.Count - 1];
+            Assert.That(end.x, Is.EqualTo(9.5f).Within(0.01f), "必须停在起点所在左岸最靠东边缘。");
+            Assert.That(end.z, Is.EqualTo(14.5f).Within(0.01f), "必须对齐目标的纵向坐标达到最小欧氏距离。");
+            for (var i = 1; i < approach.Count; i++)
+                Assert.That(grid.IsSegmentWalkable(approach[i - 1], approach[i]), Is.True);
+
+            // 已经站在最近岸边时再点孤岛，返回单点路径表示已贴到最近处。
+            var alreadyThere = grid.FindApproachPath(end, islandPoint);
+            Assert.That(alreadyThere.Count, Is.EqualTo(1));
+            Assert.That(grid.FindApproachPath(start, new Vector3(float.NaN, 0f, 0f)), Is.Empty);
+        }
+
         private static TianyongBuildingSpec FindBuilding(string name)
         {
             foreach (var building in TianyongMapDefinition.Buildings)

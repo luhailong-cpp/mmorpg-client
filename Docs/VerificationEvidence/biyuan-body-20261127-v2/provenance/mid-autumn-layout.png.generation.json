@@ -1,0 +1,25 @@
+{
+  "kind": "LOSSLESS_COPY_OF_FINISHED_CONTINUOUS_MAP",
+  "file": "Assets/Resources/World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261127-v2/mid-autumn/bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a/layout.png",
+  "sha256": "bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a",
+  "bytes": 29647339,
+  "width": 5120,
+  "height": 4096,
+  "format": "PNG",
+  "derivedAt": "2026-11-28T02:01:07.621267+00:00",
+  "route": "deterministic_local_export",
+  "newAICalls": 0,
+  "operation": "exact byte copy of the finished input PNG",
+  "derivedFrom": {
+    "inputFilename": "mid-autumn.png",
+    "sha256": "bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a",
+    "generationRecord": {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/upstream/mid-autumn.input.generation.json",
+      "sha256": "7cc619b18cc6c8f36924d3c09013cac98b4042fb5b3b589321cacff33bddb29f",
+      "bytes": 3034
+    }
+  },
+  "inputGenerationRecordStatus": "included_as_supplied",
+  "nativeMapTile": false,
+  "nativeImageClaim": false
+}

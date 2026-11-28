@@ -846,8 +846,11 @@ namespace MmorpgClient.World.Tianyong
             float panelHeight = singleMapCompact ? 268f : Mathf.Max(320f, Screen.height - 24f);
             _sidebarGuiRect = new Rect(12f, 12f, panelWidth, panelHeight);
 
+            string activeStage = _currentMap != null ? _currentMap.artStage : _catalog.artStageDefault;
             string panelTitle = isOriginalCatalog
-                ? "原创地图双节预览（交付候选 · 未验收）"
+                ? (activeStage == PcOriginalMapContract.ArtStageFormalDelivery
+                    ? "原创地图双节预览（正式美术 · 静态预览）"
+                    : "原创地图双节预览（交付候选 · 未验收）")
                 : $"端游原图本地预览 ({_catalog.readyCount} 张就绪 / {_catalog.unavailableCount} 缺口)";
             GUI.Box(_sidebarGuiRect, panelTitle);
 

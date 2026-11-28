@@ -1,0 +1,113 @@
+{
+  "file": "neutral.png",
+  "sha256": "8b4dace9948b7ae38860a31fc858300d7dfc6362271ba553e44b4e336373dce0",
+  "width": 5120,
+  "height": 4096,
+  "format": "PNG",
+  "kind": "COMPOSED_RUNTIME_CANVAS",
+  "route": "local_map_composition",
+  "newAICalls": 0,
+  "nativeModelOutput": false,
+  "derivedFrom": [
+    {
+      "sourceRole": "base",
+      "file": "exec-ae113fed-8fc3-4b94-b8d4-c5ceb0e32f13.png",
+      "sha256": "8c396891b77e6adf620e4df07bf393c54abd8d22c4c0e96c6124828f66849698",
+      "generationRecord": "Docs/VerificationEvidence/biyuan-body-20261127-v2/author-records/base.generation.json"
+    },
+    {
+      "sourceRole": "hall",
+      "file": "exec-f99f00e9-cad7-4f7b-a75c-bbf180f421a6.png",
+      "sha256": "6c29db09d91b5e021796c88b339fc21bf3f56f2c628001fffe319b2b6ffd63a0",
+      "generationRecord": "Docs/VerificationEvidence/biyuan-body-20261127-v2/author-records/hall.generation.json"
+    },
+    {
+      "sourceRole": "east-upper",
+      "file": "exec-5efe8676-806b-4c14-a03a-d4fa47fe37fd.png",
+      "sha256": "6c6cd6d450001ac40f5d7d954366d0d8ac81977bd5bd782cbe18bac93eaa2036",
+      "generationRecord": "Docs/VerificationEvidence/biyuan-body-20261127-v2/author-records/east-upper.generation.json"
+    },
+    {
+      "sourceRole": "east-crossing",
+      "file": "exec-188399d9-4eab-4738-9314-61d434abe577.png",
+      "sha256": "8fd1bdf5b6295c9a1769dc6a81500c149da199273bc5d64537aaa8fe3c6e4192",
+      "generationRecord": "Docs/VerificationEvidence/biyuan-body-20261127-v2/author-records/east-crossing.generation.json"
+    },
+    {
+      "sourceRole": "tea-pavilion",
+      "file": "exec-d8f3ba8a-3018-4ed9-b902-9028a13d692b.png",
+      "sha256": "5a7a1d20d311b592bbae297c0270dbb6150b6b962185d9ea031c3e629be547ff",
+      "generationRecord": "Docs/VerificationEvidence/biyuan-body-20261127-v2/author-records/tea-pavilion.generation.json"
+    },
+    {
+      "sourceRole": "south-entrance",
+      "file": "exec-4ccd0087-1ab5-4cfe-b359-e5383e0dee0e.png",
+      "sha256": "3a2320faea4390353c81da9f37ec6873c4152e796e978566f66405e7e079dd70",
+      "generationRecord": "Docs/VerificationEvidence/biyuan-body-20261127-v2/author-records/south-entrance.generation.json"
+    }
+  ],
+  "operation": "将1448×1086宿主中立底图映射至5120×3840。五处实画局部经光流对齐，在共同低频画面上叠合可信高频细节；有效画面上下各128像素作不可行走衬边。",
+  "seasonPlacements": null,
+  "regions": {
+    "hall": {
+      "medianGeometricCorrectionPxAt800": 0.326,
+      "medianLocalLumaResidual": 8.321,
+      "fractionConfident": 0.9883,
+      "runtimeBoxHalfOpen": [
+        416,
+        128,
+        2816,
+        1928
+      ],
+      "registeredDetailPixels": 3743447
+    },
+    "east-upper": {
+      "medianGeometricCorrectionPxAt800": 0.312,
+      "medianLocalLumaResidual": 13.097,
+      "fractionConfident": 0.9567,
+      "runtimeBoxHalfOpen": [
+        2496,
+        128,
+        4896,
+        1928
+      ],
+      "registeredDetailPixels": 3658322
+    },
+    "east-crossing": {
+      "medianGeometricCorrectionPxAt800": 0.451,
+      "medianLocalLumaResidual": 11.926,
+      "fractionConfident": 0.9709,
+      "runtimeBoxHalfOpen": [
+        2290,
+        1468,
+        4690,
+        3268
+      ],
+      "registeredDetailPixels": 3689883
+    },
+    "tea-pavilion": {
+      "medianGeometricCorrectionPxAt800": 0.484,
+      "medianLocalLumaResidual": 10.553,
+      "fractionConfident": 0.8798,
+      "runtimeBoxHalfOpen": [
+        320,
+        1916,
+        2720,
+        3716
+      ],
+      "registeredDetailPixels": 3445364
+    },
+    "south-entrance": {
+      "medianGeometricCorrectionPxAt800": 0.387,
+      "medianLocalLumaResidual": 10.759,
+      "fractionConfident": 0.9906,
+      "runtimeBoxHalfOpen": [
+        2400,
+        2168,
+        4800,
+        3968
+      ],
+      "registeredDetailPixels": 3752474
+    }
+  }
+}

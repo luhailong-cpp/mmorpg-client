@@ -1,0 +1,71 @@
+{
+  "worldRect": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 320.0,
+    "height": 360.0
+  },
+  "effectiveWorldRect": {
+    "x": 0.0,
+    "y": 6.484375,
+    "width": 282.8125,
+    "height": 353.515625
+  },
+  "cellSize": 1.0,
+  "imageRect": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 7240.0,
+    "height": 9050.0
+  },
+  "referenceWidth": 7240,
+  "referenceHeight": 9050,
+  "walkmaskColumns": 320,
+  "walkmaskRows": 360,
+  "spawnWorld": {
+    "x": 148.4375,
+    "y": 0.0,
+    "z": 249.84375
+  },
+  "schemaVersion": 2,
+  "key": "summit-snow",
+  "sceneId": 18000,
+  "name": "山顶雪区",
+  "revision": "pc18000-summit-hd8-20261128",
+  "appearance": "mid-autumn",
+  "resourceRoot": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/mid-autumn/bbb55edcb8bfe0626ce0027dfd2570708934a819a9dcc5383217e1bcd0662861/",
+  "clientOnly": false,
+  "authoritativeServerRegistered": true,
+  "artStatus": "formal_tiles_overview",
+  "layoutPixels": {
+    "width": 4096,
+    "height": 4608
+  },
+  "layoutSha256": "bbb55edcb8bfe0626ce0027dfd2570708934a819a9dcc5383217e1bcd0662861",
+  "layoutDerivation": "uniform-lanczos-half-scale-4096x4608",
+  "sourceImageCommit": "69b44b971160d97a1b4f6fddb6e42a127fcbdefa",
+  "sourceMasterPath": "designs/client18000-summit-hd8x-20261127-v001/midautumn.png",
+  "sourceMasterSha256": "9c80018b3bffdff3e20112f0b166d0c0fb1cef64343f128f9d7bc3cf1c09ebb5",
+  "sourceMasterBytes": 72334650,
+  "sourceMasterRgbSha256": "aa10b4589ed46015e503202f34f9c445d93297378ebeb65e5b42c2611b50147a",
+  "sourceSlicesManifestSha256": "68187f85510580ac9e36a6671037c64fe078e524082d47e9bcd3ce403e5bbf41",
+  "runtimeAssemblyRgbSha256": "15a17f8b81b2b5b6f9602cd1e651c9a4881e7e90f39664cb31b67b1dded29eb0",
+  "navigationPlanPath": "Docs/VerificationEvidence/pc18000-summit-hd8-20261128/navigation-plan.json",
+  "navigationPlanSha256": "788c4aa9e01795a0cac8b3a503ca5c78172d03b63d68bf071909910023addd99",
+  "navigationSha256": "03e66cf8c2517e2d798902a82f9e477e3c7c9d89446fae62983a91bd53fcddbc",
+  "walkmaskSha256": "369b08653399de0d18956f2271abb4a30cb468089154dbf7952ac42d316a706a",
+  "walkmaskPackedSha256": "5030e8450cf4639db9fe1f8745da40d920b3c4f081fc1357f36fb8858ad48946",
+  "navigationStatus": "conservative_visible_ground",
+  "runtimeEngineAcceptance": false,
+  "pcOriginalFullPixels": [
+    6400,
+    7200
+  ],
+  "pcOriginalSummitCropHalfOpen": [
+    3072,
+    0,
+    5632,
+    3200
+  ],
+  "hdTextureScaleRational": "181/64"
+}

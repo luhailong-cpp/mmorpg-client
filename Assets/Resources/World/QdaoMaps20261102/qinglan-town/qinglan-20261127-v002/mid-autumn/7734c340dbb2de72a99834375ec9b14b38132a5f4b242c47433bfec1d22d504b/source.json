@@ -34,8 +34,8 @@
   "revision": "qinglan-20261127-v002",
   "appearance": "mid-autumn",
   "resourceRoot": "World/QdaoMaps20261102/qinglan-town/qinglan-20261127-v002/mid-autumn/7734c340dbb2de72a99834375ec9b14b38132a5f4b242c47433bfec1d22d504b/",
-  "clientOnly": true,
-  "authoritativeServerRegistered": false,
+  "clientOnly": false,
+  "authoritativeServerRegistered": true,
   "artStatus": "formal_tiles_overview",
   "layoutPixels": {
     "width": 4096,
@@ -45,12 +45,12 @@
   "sourceSelectionPath": "Docs/VerificationEvidence/qinglan-20261127-v002/selection.json",
   "sourceSelectionSha256": "bfc51743af5c2cf79cda0e3ec5f53f0b7ab92446bf303402401a44f5fd98f09c",
   "sourceEvidencePath": "Docs/VerificationEvidence/qinglan-20261127-v002/source-evidence/qinglan-town/mid-autumn/delivery.json",
-  "sourceEvidenceSha256": "21d918f961d4829119dfdd16e27c51d49fdb884115ef39d067b4e5069c10515e",
+  "sourceEvidenceSha256": "b588f16f4304edf2615ef5ee6be7dc7b3bfaa33e69118fa1bb43ea264be06414",
   "navigationPlanPath": "Docs/VerificationEvidence/qinglan-20261127-v002/navigation-plan.json",
   "navigationPlanSha256": "27b85de21c75eaa75a2e3668d2887e4d1b4f9e343230e75bb715c4ebc940eb67",
-  "navigationSha256": "f5db07bcd7f7a1e32652d9b0fa2ace2745c57ad4d6e04e2b3ca3805181b33c68",
+  "navigationSha256": "3d83fcba7aa022db365c160c1ac6497a58670ab99bcc2576255c93d05419a29d",
   "walkmaskSha256": "22bc2e3a38ee36ac1479c573477b4e0bba5609bbc3e0af62a49b9d31a738a6ef",
   "walkmaskPackedSha256": "109f8eb4d2dc756de5d440498ac5bce999548a3e1c46c282c1b08f7ff1494977",
-  "navigationStatus": "conservative_visible_ground_client_only",
+  "navigationStatus": "conservative_visible_ground",
   "runtimeEngineAcceptance": false
 }

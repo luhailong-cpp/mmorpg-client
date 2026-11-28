@@ -1,0 +1,55 @@
+{
+  "assetId": "original:biyuan-water-palace",
+  "file": "exec-188399d9-4eab-4738-9314-61d434abe577.png",
+  "sha256": "8fd1bdf5b6295c9a1769dc6a81500c149da199273bc5d64537aaa8fe3c6e4192",
+  "width": 1448,
+  "height": 1086,
+  "format": "PNG",
+  "mode": "RGB",
+  "generatedAt": "2026-11-28T01:49:16.179Z",
+  "submittedAt": "2026-11-28T01:48:14.941Z",
+  "tool": "image_gen.imagegen",
+  "route": "builtin",
+  "toolResultFile": "exec-188399d9-4eab-4738-9314-61d434abe577.png",
+  "configSnapshot": {
+    "model": "gpt-image-2.6-sunburst",
+    "quality": "max",
+    "builtin_product": "ChatGPT Images 2.6",
+    "verified_on": "2026-11-26",
+    "sources": {
+      "release": "https://openai.com/index/introducing-images-2-6/",
+      "model": "https://developers.openai.com/api/docs/models/gpt-image-2.6-sunburst",
+      "quality": "https://developers.openai.com/api/docs/guides/image-prompting"
+    }
+  },
+  "submittedParameters": {
+    "model": null,
+    "quality": null,
+    "transparent_background": false
+  },
+  "actualModel": null,
+  "actualQuality": null,
+  "unverifiedReason": "宿主管理，工具未披露模型与画质；PNG未披露可核实的型号信息。",
+  "references": [
+    {
+      "reference": "east-crossing-input.png",
+      "submittedLocalPath": "C:/Users/luyua/AppData/Local/Temp/biyuan-rebuild-20261127/east-crossing-input.png",
+      "sha256": "d9a251cca6484e68055e655d4d45b86e7aa31e6e38f8709ee5e087fb53234794"
+    }
+  ],
+  "promptFile": "east-crossing.prompt.txt",
+  "sourceRole": "east-crossing",
+  "referencedPngPreservedInThisDelivery": false,
+  "regionalComposition": {
+    "medianGeometricCorrectionPxAt800": 0.451,
+    "medianLocalLumaResidual": 11.926,
+    "fractionConfident": 0.9709,
+    "runtimeBoxHalfOpen": [
+      2290,
+      1468,
+      4690,
+      3268
+    ],
+    "registeredDetailPixels": 3689883
+  }
+}

@@ -1,0 +1,484 @@
+{
+  "planSha256": "7c6481ee9aaac0ee829ff4394430e38df400d5b0a40e62a26ab203acaaf2c8f1",
+  "source": {
+    "worldRect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 240.0,
+      "height": 120.0
+    },
+    "effectiveWorldRect": {
+      "x": 0.0,
+      "y": 0.46875,
+      "width": 212.5,
+      "height": 119.53125
+    },
+    "cellSize": 1.0,
+    "imageRect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 5440.0,
+      "height": 3060.0
+    },
+    "referenceWidth": 5440,
+    "referenceHeight": 3060,
+    "walkmaskColumns": 240,
+    "walkmaskRows": 120,
+    "spawnWorld": {
+      "x": 125.0,
+      "y": 0.0,
+      "z": 51.25
+    }
+  },
+  "stats": {
+    "walkableCells": 6136,
+    "totalCells": 28800,
+    "componentCount": 1,
+    "componentSizes": [
+      6136
+    ],
+    "spawnComponent": 0,
+    "landmarks": {
+      "spawn": {
+        "pixel": [
+          3200,
+          1760
+        ],
+        "world": {
+          "x": 125.0,
+          "y": 0.0,
+          "z": 51.25
+        },
+        "component": 0
+      },
+      "westEntry": {
+        "pixel": [
+          140,
+          675
+        ],
+        "world": {
+          "x": 5.46875,
+          "y": 0.0,
+          "z": 93.6328125
+        },
+        "component": 0
+      },
+      "westCrossroads": {
+        "pixel": [
+          880,
+          1260
+        ],
+        "world": {
+          "x": 34.375,
+          "y": 0.0,
+          "z": 70.78125
+        },
+        "component": 0
+      },
+      "woodFootbridgeMid": {
+        "pixel": [
+          1460,
+          950
+        ],
+        "world": {
+          "x": 57.03125,
+          "y": 0.0,
+          "z": 82.890625
+        },
+        "component": 0
+      },
+      "northBankRoad": {
+        "pixel": [
+          3220,
+          235
+        ],
+        "world": {
+          "x": 125.78125,
+          "y": 0.0,
+          "z": 110.8203125
+        },
+        "component": 0
+      },
+      "northEntry": {
+        "pixel": [
+          4010,
+          80
+        ],
+        "world": {
+          "x": 156.640625,
+          "y": 0.0,
+          "z": 116.875
+        },
+        "component": 0
+      },
+      "stoneBridgeMid": {
+        "pixel": [
+          3950,
+          560
+        ],
+        "world": {
+          "x": 154.296875,
+          "y": 0.0,
+          "z": 98.125
+        },
+        "component": 0
+      },
+      "neCornerRoad": {
+        "pixel": [
+          4570,
+          1230
+        ],
+        "world": {
+          "x": 178.515625,
+          "y": 0.0,
+          "z": 71.953125
+        },
+        "component": 0
+      },
+      "eastEntry": {
+        "pixel": [
+          5280,
+          1580
+        ],
+        "world": {
+          "x": 206.25,
+          "y": 0.0,
+          "z": 58.28125
+        },
+        "component": 0
+      },
+      "eastMainGate": {
+        "pixel": [
+          4440,
+          1560
+        ],
+        "world": {
+          "x": 173.4375,
+          "y": 0.0,
+          "z": 59.0625
+        },
+        "component": 0
+      },
+      "pavilionFrontStairs": {
+        "pixel": [
+          3200,
+          1235
+        ],
+        "world": {
+          "x": 125.0,
+          "y": 0.0,
+          "z": 71.7578125
+        },
+        "component": 0
+      },
+      "mainCourtyardWest": {
+        "pixel": [
+          2540,
+          1820
+        ],
+        "world": {
+          "x": 99.21875,
+          "y": 0.0,
+          "z": 48.90625
+        },
+        "component": 0
+      },
+      "southCourtyardStairs": {
+        "pixel": [
+          3795,
+          2175
+        ],
+        "world": {
+          "x": 148.2421875,
+          "y": 0.0,
+          "z": 35.0390625
+        },
+        "component": 0
+      },
+      "seOuterRoad": {
+        "pixel": [
+          4710,
+          1950
+        ],
+        "world": {
+          "x": 183.984375,
+          "y": 0.0,
+          "z": 43.828125
+        },
+        "component": 0
+      },
+      "southEntry": {
+        "pixel": [
+          2760,
+          2940
+        ],
+        "world": {
+          "x": 107.8125,
+          "y": 0.0,
+          "z": 5.15625
+        },
+        "component": 0
+      },
+      "lowerWalkway": {
+        "pixel": [
+          2020,
+          2450
+        ],
+        "world": {
+          "x": 78.90625,
+          "y": 0.0,
+          "z": 24.296875
+        },
+        "component": 0
+      },
+      "swOuterRoad": {
+        "pixel": [
+          400,
+          1980
+        ],
+        "world": {
+          "x": 15.625,
+          "y": 0.0,
+          "z": 42.65625
+        },
+        "component": 0
+      },
+      "herbGardenEast": {
+        "pixel": [
+          1720,
+          1980
+        ],
+        "world": {
+          "x": 67.1875,
+          "y": 0.0,
+          "z": 42.65625
+        },
+        "component": 0
+      },
+      "herbGardenSouth": {
+        "pixel": [
+          1320,
+          2145
+        ],
+        "world": {
+          "x": 51.5625,
+          "y": 0.0,
+          "z": 36.2109375
+        },
+        "component": 0
+      }
+    },
+    "blockedLandmarks": [
+      "rightPadding",
+      "bottomPadding",
+      "nwWaterfallPool",
+      "centralCanalWater",
+      "eastCanalWater",
+      "seWaterfall",
+      "woodBridgeNorthRail",
+      "stoneBridgeWestRail",
+      "stoneBridgeEastRail",
+      "pavilionRoof",
+      "courtyardEastPropUnion",
+      "courtyardWestMidAutumnProp",
+      "herbGardenCenterPropUnion",
+      "herbGardenWestPlanter",
+      "southRockeryPine",
+      "southRockeryStones",
+      "courtyardNorthEastBalustrade",
+      "seCourtyardBalustrade",
+      "northBankPillar",
+      "southEntryRightPillar"
+    ],
+    "connectedRoutes": [
+      [
+        "spawn",
+        "pavilionFrontStairs"
+      ],
+      [
+        "spawn",
+        "mainCourtyardWest"
+      ],
+      [
+        "spawn",
+        "eastMainGate"
+      ],
+      [
+        "eastMainGate",
+        "eastEntry"
+      ],
+      [
+        "eastMainGate",
+        "neCornerRoad"
+      ],
+      [
+        "neCornerRoad",
+        "stoneBridgeMid"
+      ],
+      [
+        "stoneBridgeMid",
+        "northEntry"
+      ],
+      [
+        "stoneBridgeMid",
+        "northBankRoad"
+      ],
+      [
+        "northBankRoad",
+        "woodFootbridgeMid"
+      ],
+      [
+        "woodFootbridgeMid",
+        "westCrossroads"
+      ],
+      [
+        "westCrossroads",
+        "westEntry"
+      ],
+      [
+        "westCrossroads",
+        "swOuterRoad"
+      ],
+      [
+        "swOuterRoad",
+        "lowerWalkway"
+      ],
+      [
+        "lowerWalkway",
+        "herbGardenEast"
+      ],
+      [
+        "herbGardenEast",
+        "herbGardenSouth"
+      ],
+      [
+        "lowerWalkway",
+        "southEntry"
+      ],
+      [
+        "spawn",
+        "southCourtyardStairs"
+      ],
+      [
+        "southCourtyardStairs",
+        "southEntry"
+      ],
+      [
+        "southCourtyardStairs",
+        "seOuterRoad"
+      ],
+      [
+        "seOuterRoad",
+        "eastEntry"
+      ]
+    ],
+    "routeMeasurements": [
+      {
+        "from": "spawn",
+        "to": "pavilionFrontStairs",
+        "gridDistanceWorldUnits": 20.0
+      },
+      {
+        "from": "spawn",
+        "to": "mainCourtyardWest",
+        "gridDistanceWorldUnits": 27.242640687119284
+      },
+      {
+        "from": "spawn",
+        "to": "eastMainGate",
+        "gridDistanceWorldUnits": 51.31370849898474
+      },
+      {
+        "from": "eastMainGate",
+        "to": "eastEntry",
+        "gridDistanceWorldUnits": 33.41421356237309
+      },
+      {
+        "from": "eastMainGate",
+        "to": "neCornerRoad",
+        "gridDistanceWorldUnits": 14.071067811865476
+      },
+      {
+        "from": "neCornerRoad",
+        "to": "stoneBridgeMid",
+        "gridDistanceWorldUnits": 38.11269837220809
+      },
+      {
+        "from": "stoneBridgeMid",
+        "to": "northEntry",
+        "gridDistanceWorldUnits": 18.82842712474619
+      },
+      {
+        "from": "stoneBridgeMid",
+        "to": "northBankRoad",
+        "gridDistanceWorldUnits": 37.72792206135786
+      },
+      {
+        "from": "northBankRoad",
+        "to": "woodFootbridgeMid",
+        "gridDistanceWorldUnits": 81.3553390593273
+      },
+      {
+        "from": "woodFootbridgeMid",
+        "to": "westCrossroads",
+        "gridDistanceWorldUnits": 27.970562748477146
+      },
+      {
+        "from": "westCrossroads",
+        "to": "westEntry",
+        "gridDistanceWorldUnits": 38.526911934581186
+      },
+      {
+        "from": "westCrossroads",
+        "to": "swOuterRoad",
+        "gridDistanceWorldUnits": 35.87005768508881
+      },
+      {
+        "from": "swOuterRoad",
+        "to": "lowerWalkway",
+        "gridDistanceWorldUnits": 72.21320343559643
+      },
+      {
+        "from": "lowerWalkway",
+        "to": "herbGardenEast",
+        "gridDistanceWorldUnits": 22.55634918610405
+      },
+      {
+        "from": "herbGardenEast",
+        "to": "herbGardenSouth",
+        "gridDistanceWorldUnits": 18.48528137423857
+      },
+      {
+        "from": "lowerWalkway",
+        "to": "southEntry",
+        "gridDistanceWorldUnits": 36.8700576850888
+      },
+      {
+        "from": "spawn",
+        "to": "southCourtyardStairs",
+        "gridDistanceWorldUnits": 29.62741699796953
+      },
+      {
+        "from": "southCourtyardStairs",
+        "to": "southEntry",
+        "gridDistanceWorldUnits": 55.183766184073534
+      },
+      {
+        "from": "southCourtyardStairs",
+        "to": "seOuterRoad",
+        "gridDistanceWorldUnits": 44.455844122715696
+      },
+      {
+        "from": "seOuterRoad",
+        "to": "eastEntry",
+        "gridDistanceWorldUnits": 34.48528137423857
+      }
+    ],
+    "maximumListedRouteSecondsAt18": 4.519741058851517,
+    "separatedRoutes": [],
+    "maskSha256": "b7147fb200785403321a0df54b77615ea0230bf1b0c1d6f241b86617b366ab92",
+    "maskBytes": 3600,
+    "engineAccepted": false,
+    "serverNavigationPublished": false
+  }
+}

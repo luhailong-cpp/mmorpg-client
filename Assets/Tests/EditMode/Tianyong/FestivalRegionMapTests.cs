@@ -14,7 +14,12 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase(1u)]
         [TestCase(2u)]
         [TestCase(3u)]
+        [TestCase(4u)]
         [TestCase(5u)]
+        [TestCase(6u)]
+        [TestCase(7u)]
+        [TestCase(18000u)]
+        [TestCase(20000u)]
         public void CurrentLayouts_KeepNativeTexturesAndMatchingPlayableGeometry(uint sceneId)
         {
             var region = CurrentMapCatalog.FindForOnline(sceneId);
@@ -80,7 +85,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 runtime.Initialize(null, null, null, TianyongMapConfig.LoadDefault());
                 GameObject previousRoot = null;
                 TianyongNavigationGrid previousNavigation = null;
-                foreach (uint sceneId in new uint[] { 1, 2, 3, 5, 1 })
+                foreach (uint sceneId in new uint[] { 1, 2, 3, 4, 5, 6, 7, 18000, 20000, 1 })
                 {
                     // GameClient clears its actor world before publishing the scene notification.
                     Invoke(runtime, "HandleLocalPlayerChanged", (object)null);
@@ -117,8 +122,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(runtime.Appearance, Is.EqualTo("spring"), "A fresh connection must reset to default appearance.");
                 Invoke(runtime, "EnterScene", 999u);
                 Assert.That(runtime.Map, Is.Null, "Unsupported scenes must never retain a different map's navigation.");
-                Invoke(runtime, "EnterScene", 4u);
-                Assert.That(runtime.Map, Is.Null, "Undelivered current maps must not load removed legacy resources.");
+                Invoke(runtime, "EnterScene", 21003u);
+                Assert.That(runtime.Map, Is.Null, "Client-only festival maps must not load on online EnterScene.");
             }
             finally
             {

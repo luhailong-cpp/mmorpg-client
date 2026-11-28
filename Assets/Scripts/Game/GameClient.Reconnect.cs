@@ -62,7 +62,15 @@ namespace MmorpgClient.Game
                 yield return _http.RefreshToken(RefreshToken, r => refreshed = r, e => refreshError = e);
                 if (gen != _pipelineGen) yield break;
                 if (refreshError != null || refreshed == null || refreshed.code != 0 || string.IsNullOrEmpty(refreshed.access_token))
-                { FailReconnect(gen, "refresh failed"); yield break; }
+                {
+                    if (refreshError == null && refreshed != null && refreshed.code == GatewayLoginResult.CodeAuthRejected)
+                    {
+                        SetTokens(null, null, 0);
+                        OnSessionInvalidated?.Invoke();
+                    }
+                    FailReconnect(gen, "refresh failed");
+                    yield break;
+                }
                 SetTokens(refreshed.access_token, refreshed.refresh_token, refreshed.access_token_expire);
             }
 

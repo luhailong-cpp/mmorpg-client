@@ -54,6 +54,10 @@ namespace MmorpgClient.Editor.CurrentMaps
             new ViewSpec("05-closest-sw-bridge-road", 920f / 1024f, (2731f - 2100f) / 1024f, 0.30f),
             // 6. Closest zoom on northeast gate & courtyard branch road (spans x=3072 seam)
             new ViewSpec("06-closest-ne-gate-road", 3220f / 1024f, (2731f - 540f) / 1024f, 0.30f),
+            // 7. Closest zoom on northwest wooden bridge & approaches (protected rect [290,212,875,570])
+            new ViewSpec("07-closest-nw-wood-bridge", 582f / 1024f, (2731f - 391f) / 1024f, 0.28f),
+            // 8. Closest zoom on teahouse eaves, steps & shopfront transition (protected steps [2550,1064,2760,1180])
+            new ViewSpec("08-closest-teahouse-steps", 2750f / 1024f, (2731f - 1030f) / 1024f, 0.24f),
         };
 
         [Serializable]
@@ -124,7 +128,7 @@ namespace MmorpgClient.Editor.CurrentMaps
         private sealed class Report
         {
             public string result = "FAIL";
-            public string scope = "Unity Editor batchmode visual & import verification for original:guideng-market (DELIVERY_CANDIDATE_NOT_FORMAL); no navigation/collision/online acceptance";
+            public string scope = "Unity Editor batchmode visual & import verification for original:guideng-market/festivals-20261127-v001 (formal_art_delivery static preview); no navigation/collision/online acceptance";
             public string startedUtc;
             public string finishedUtc;
             public string unityVersion;
@@ -134,6 +138,7 @@ namespace MmorpgClient.Editor.CurrentMaps
             public string scenePath;
             public string mapId;
             public bool standaloneSceneVerified;
+            public bool legacyCandidatePreserved;
             public bool appearanceSwitchPreservedCamera;
             public bool eastTilesSwitchedTextures;
             public bool roundTripSwitchVerified;
@@ -160,7 +165,7 @@ namespace MmorpgClient.Editor.CurrentMaps
         private static float _preSwitchZoom;
         private static bool _awaitingSwitchCheck;
 
-        [MenuItem("MMORPG/Maps/验收桂灯集双节候选预览")]
+        [MenuItem("MMORPG/Maps/验收桂灯集双节预览")]
         public static void RunMenuVerification()
         {
             StartVerification(exitOnComplete: false);
@@ -183,8 +188,8 @@ namespace MmorpgClient.Editor.CurrentMaps
             _viewIndex = 0;
 
             string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
-            _captureDir = Path.Combine(projectRoot, ".codex-artifacts", "guideng-preview-verification-20261124");
-            _evidenceDir = Path.Combine(projectRoot, "Docs", "VerificationEvidence", "guideng-market-preview-20261124");
+            _captureDir = Path.Combine(projectRoot, ".codex-artifacts", "guideng-preview-verification-20261128");
+            _evidenceDir = Path.Combine(projectRoot, "Docs", "VerificationEvidence", "guideng-market-festivals-20261127-v001");
             Directory.CreateDirectory(_captureDir);
             Directory.CreateDirectory(_evidenceDir);
 
@@ -226,6 +231,17 @@ namespace MmorpgClient.Editor.CurrentMaps
                 var mapEntry = catalog.FindByMapId(MapId);
                 if (mapEntry == null)
                     throw new InvalidOperationException("Missing map entry: " + MapId);
+                if (mapEntry.artStage != PcOriginalMapContract.ArtStageFormalDelivery ||
+                    !mapEntry.resourceRoot.Contains("/festivals-20261127-v001/"))
+                    throw new InvalidOperationException(
+                        $"Expected formal_art_delivery at festivals-20261127-v001, got stage={mapEntry.artStage} root={mapEntry.resourceRoot}");
+                string legacySpringTiles = Path.Combine(projectRoot, "Assets", "Resources", "World",
+                    "OriginalMapPreview20261124", "guideng-market", "delivery-candidate-v001", "spring", "tiles.json");
+                string legacyMidTiles = Path.Combine(projectRoot, "Assets", "Resources", "World",
+                    "OriginalMapPreview20261124", "guideng-market", "delivery-candidate-v001", "midautumn", "tiles.json");
+                if (!File.Exists(legacySpringTiles) || !File.Exists(legacyMidTiles))
+                    throw new InvalidOperationException("Preserved legacy delivery-candidate-v001 directory is missing.");
+                _report.legacyCandidatePreserved = true;
 
                 foreach (string appId in new[] { "spring", "midautumn" })
                 {

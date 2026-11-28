@@ -1,0 +1,146 @@
+{
+  "file": "mid-autumn.png",
+  "sha256": "bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a",
+  "width": 5120,
+  "height": 4096,
+  "format": "PNG",
+  "kind": "COMPOSED_RUNTIME_CANVAS",
+  "route": "local_map_composition",
+  "newAICalls": 0,
+  "nativeModelOutput": false,
+  "derivedFrom": [
+    {
+      "sourceRole": "neutral",
+      "file": "design-source/neutral.png",
+      "sha256": "8b4dace9948b7ae38860a31fc858300d7dfc6362271ba553e44b4e336373dce0",
+      "generationRecord": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/neutral-layout.png.generation.json"
+    },
+    {
+      "sourceRole": "mid-autumn-props",
+      "file": "exec-0d9ec197-50e8-4535-80ea-a7463c75b372.png",
+      "sha256": "afa9904b8c4e006e387ac18b41b0cea49b486a2981e0aab457839b5a692586c1",
+      "generationRecord": "Docs/VerificationEvidence/biyuan-body-20261127-v2/author-records/mid-autumn-props.generation.json"
+    }
+  ],
+  "operation": "在共同中立底图的既有结构位置套合宿主生成的透明静态节庆物件。位置逐像素保护现有导航。",
+  "seasonPlacements": [
+    {
+      "ornament": "rabbit-lantern",
+      "sourceQuadrant": [
+        0,
+        0
+      ],
+      "runtimeBoxHalfOpen": [
+        1145,
+        847,
+        1217,
+        965
+      ]
+    },
+    {
+      "ornament": "rabbit-lantern",
+      "sourceQuadrant": [
+        0,
+        0
+      ],
+      "runtimeBoxHalfOpen": [
+        2269,
+        812,
+        2341,
+        930
+      ]
+    },
+    {
+      "ornament": "moon-medallion",
+      "sourceQuadrant": [
+        1,
+        0
+      ],
+      "runtimeBoxHalfOpen": [
+        1731,
+        890,
+        1805,
+        1000
+      ]
+    },
+    {
+      "ornament": "moon-medallion",
+      "sourceQuadrant": [
+        1,
+        0
+      ],
+      "runtimeBoxHalfOpen": [
+        3224,
+        3019,
+        3297,
+        3128
+      ]
+    },
+    {
+      "ornament": "moon-medallion",
+      "sourceQuadrant": [
+        1,
+        0
+      ],
+      "runtimeBoxHalfOpen": [
+        3825,
+        2952,
+        3898,
+        3061
+      ]
+    },
+    {
+      "ornament": "mooncake-tray",
+      "sourceQuadrant": [
+        0,
+        1
+      ],
+      "runtimeBoxHalfOpen": [
+        1064,
+        3022,
+        1143,
+        3083
+      ]
+    },
+    {
+      "ornament": "rabbit-lantern",
+      "sourceQuadrant": [
+        0,
+        0
+      ],
+      "runtimeBoxHalfOpen": [
+        4373,
+        1948,
+        4431,
+        2043
+      ]
+    },
+    {
+      "ornament": "osmanthus",
+      "sourceQuadrant": [
+        1,
+        1
+      ],
+      "runtimeBoxHalfOpen": [
+        4196,
+        2170,
+        4312,
+        2350
+      ]
+    },
+    {
+      "ornament": "osmanthus",
+      "sourceQuadrant": [
+        1,
+        1
+      ],
+      "runtimeBoxHalfOpen": [
+        974,
+        1861,
+        1070,
+        2010
+      ]
+    }
+  ],
+  "regions": null
+}

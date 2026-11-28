@@ -310,6 +310,10 @@ namespace MmorpgClient.Game
 
         public event Action<string> OnLog;
         public event Action OnDisconnected;
+        /// <summary>服务端签发或轮换 RefreshToken 后触发(仅新令牌非空时),供外层同步更新系统安全存储。</summary>
+        public event Action<string> OnRefreshTokenUpdated;
+        /// <summary>服务端确认当前登录态已失效(401 拒绝刷新、改密/停用或注销踢线)时触发,供外层立刻清除本地加密 RefreshToken。</summary>
+        public event Action OnSessionInvalidated;
         /// <summary>Queue progress during EnterZone (assign-gate code=100).</summary>
         public event Action<AssignGateResult> OnQueueUpdate;
         /// <summary>Coarse progress text for the UI status line.</summary>
@@ -771,6 +775,8 @@ namespace MmorpgClient.Game
             AccessToken = access;
             RefreshToken = refresh;
             _accessTokenExpire = accessExpire;
+            if (!string.IsNullOrEmpty(refresh))
+                OnRefreshTokenUpdated?.Invoke(refresh);
         }
 
         /// <summary>本区暂停创建新角色时给玩家的文案:服务端建角被拒(tip kLoginZoneCreateRoleClosed)与排队前的预判共用。</summary>
@@ -845,6 +851,67 @@ namespace MmorpgClient.Game
         /// docs/design/real-name-anti-addiction.md §5.2):管线等这个协程结束。协程里由界面收集姓名和身份证号、调
         /// <see cref="SubmitRealName"/>;提交成功后 <see cref="AntiAddiction"/> 随之更新,管线据此继续或停下。不传时按失败回 onError。
         /// </param>
+        /// <summary>
+        /// 用本地系统安全存储持久化的 RefreshToken 静默续期并直接进区:
+        ///   1. POST /api/refresh-token 轮换新令牌对(触发 <see cref="OnRefreshTokenUpdated"/>,先持久化新 RefreshToken 再进区);
+        ///   2. 401 失效(过期、吊销、通行证改密/封禁/删除)时清内存令牌、触发 <see cref="OnSessionInvalidated"/> 并通知 onSessionExpired;
+        ///   3. 网络或 500 故障不清除本地 RefreshToken,方便玩家稍后重试;
+        ///   4. 轮换成功后携新 AccessToken 走完整 <see cref="EnterZone"/>(含实名、注销冷静期、排队与建角)。
+        /// </summary>
+        public IEnumerator EnterZoneWithRefreshToken(uint zoneId, string refreshToken, string deviceId,
+                                                     Action onSuccess, Action<string> onError,
+                                                     Action onSessionExpired = null,
+                                                     bool zoneCreateRoleClosed = false,
+                                                     Action<uint, long> onAccountDeletionPending = null,
+                                                     Func<long, IEnumerator> previousAccountDeletedNotice = null,
+                                                     Func<IEnumerator> realNameRequired = null)
+        {
+            if (string.IsNullOrEmpty(refreshToken))
+            {
+                onSessionExpired?.Invoke();
+                onError(ChannelCredentialRejectedMessage);
+                yield break;
+            }
+            CancelReconnect();
+            int gen = ++_pipelineGen;
+            Status("正在恢复登录状态…");
+            GatewayRefreshTokenResult refreshed = null;
+            string refreshErr = null;
+            yield return _http.RefreshToken(refreshToken, x => refreshed = x, e => refreshErr = e);
+            if (gen != _pipelineGen) yield break;
+
+            if (refreshErr != null || refreshed == null)
+            {
+                Log($"remembered session refresh failed: {refreshErr ?? "empty response"}");
+                onError("连接登录服务失败，请稍后重试");
+                yield break;
+            }
+            if (refreshed.code == GatewayLoginResult.CodeInternal)
+            {
+                Log($"remembered session refresh internal error: {refreshed.message}");
+                onError("登录服务暂时繁忙，请稍后重试");
+                yield break;
+            }
+            if (refreshed.code != GatewayLoginResult.CodeOk || string.IsNullOrEmpty(refreshed.access_token))
+            {
+                Log($"remembered session rejected code={refreshed.code} msg={refreshed.message}");
+                SetTokens(null, null, 0);
+                OnSessionInvalidated?.Invoke();
+                onSessionExpired?.Invoke();
+                onError(DescribeChannelCredentialRejected(new GatewayLoginResult
+                {
+                    code = refreshed.code,
+                    message = refreshed.message,
+                }));
+                yield break;
+            }
+
+            SetTokens(refreshed.access_token, refreshed.refresh_token, refreshed.access_token_expire);
+            yield return EnterZone(zoneId, LoginCredential.ForAccessToken(refreshed.access_token), deviceId,
+                onSuccess, onError, zoneCreateRoleClosed,
+                onAccountDeletionPending, previousAccountDeletedNotice, realNameRequired);
+        }
+
         public IEnumerator EnterZone(uint zoneId, LoginCredential credential, string deviceId,
                                      Action onSuccess, Action<string> onError, bool zoneCreateRoleClosed = false,
                                      Action<uint, long> onAccountDeletionPending = null,
@@ -894,6 +961,11 @@ namespace MmorpgClient.Game
                 }
                 if (r.code != GatewayLoginResult.CodeOk)
                 {
+                    if (credential.AuthType == LoginAuthTypes.AccessToken && r.code == GatewayLoginResult.CodeAuthRejected)
+                    {
+                        SetTokens(null, null, 0);
+                        OnSessionInvalidated?.Invoke();
+                    }
                     // 渠道凭证被拒不是「账号或密码错误」:渠道令牌一次性,要重新向渠道取,不重发旧的。
                     onError(!credential.IsPassword && r.code == GatewayLoginResult.CodeAuthRejected
                         ? DescribeChannelCredentialRejected(r)
@@ -989,7 +1061,13 @@ namespace MmorpgClient.Game
                     string refreshErr = null;
                     yield return _http.RefreshToken(RefreshToken, x => refreshed = x, e => refreshErr = e);
                     if (gen != _pipelineGen) yield break;
-                    if (refreshErr == null && refreshed.code == GatewayLoginResult.CodeAuthRejected) { onError(LoginExpiredMessage); yield break; }
+                    if (refreshErr == null && refreshed.code == GatewayLoginResult.CodeAuthRejected)
+                    {
+                        SetTokens(null, null, 0);
+                        OnSessionInvalidated?.Invoke();
+                        onError(LoginExpiredMessage);
+                        yield break;
+                    }
                     if (refreshErr == null && refreshed.code == GatewayLoginResult.CodeOk && !string.IsNullOrEmpty(refreshed.access_token))
                     {
                         SetTokens(refreshed.access_token, refreshed.refresh_token, refreshed.access_token_expire);
@@ -2886,6 +2964,13 @@ namespace MmorpgClient.Game
                 }
                 var text = DescribeKickReason(reasonId);
                 Log($"[gate] kicked by server reason={reasonId}");
+                if (reasonId == (uint)login_error.KLoginPassportCredentialChanged ||
+                    reasonId == (uint)login_error.KLoginAccountDeletionPending ||
+                    reasonId == (uint)login_error.KLoginAccountDeletionInProgress)
+                {
+                    SetTokens(null, null, 0);
+                    OnSessionInvalidated?.Invoke();
+                }
                 if (text == null)
                 {
                     Disconnect();

@@ -535,5 +535,5 @@
     "serverNavigationPublished": false
   },
   "runtimeEngineAcceptance": false,
-  "authoritativeServerRegistered": false
+  "authoritativeServerRegistered": true
 }

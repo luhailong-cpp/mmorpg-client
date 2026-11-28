@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using MmorpgClient.World.CurrentMaps;
 using NUnit.Framework;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
     public sealed class GuidengOriginalMapPreviewTests
     {
         private const string MapId = "original:guideng-market";
+        private const string ActiveRevision = "festivals-20261127-v001";
 
         [Test]
         public void CommittedGuidengCatalogValidatesDualFestivalsAndExactRowThreeGeometry()
@@ -26,13 +28,24 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var map = catalog.FindByMapId(MapId);
             Assert.That(map, Is.Not.Null);
             Assert.That(map.numericMapId, Is.EqualTo(0u));
-            Assert.That(map.artStage, Is.EqualTo(PcOriginalMapContract.ArtStageDeliveryCandidate));
+            Assert.That(map.artStage, Is.EqualTo(PcOriginalMapContract.ArtStageFormalDelivery));
+            Assert.That(map.revision, Is.EqualTo(ActiveRevision + "-spring"));
+            Assert.That(map.resourceRoot, Does.Contain("/" + ActiveRevision + "/spring/"));
             Assert.That(map.nativeWidth, Is.EqualTo(4096));
             Assert.That(map.nativeHeight, Is.EqualTo(2731));
             Assert.That(map.columns, Is.EqualTo(4));
             Assert.That(map.rows, Is.EqualTo(3));
             Assert.That(map.tileCount, Is.EqualTo(12));
             Assert.That(map.defaultAppearance, Is.EqualTo("spring"));
+
+            // Legacy delivery-candidate-v001 must remain preserved in its original directory.
+            string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
+            string legacyDir = Path.Combine(projectRoot, "Assets", "Resources", "World",
+                "OriginalMapPreview20261124", "guideng-market", "delivery-candidate-v001");
+            Assert.That(File.Exists(Path.Combine(legacyDir, "spring", "tiles.json")), Is.True,
+                "Legacy delivery-candidate-v001 spring directory must stay preserved.");
+            Assert.That(File.Exists(Path.Combine(legacyDir, "midautumn", "tiles.json")), Is.True,
+                "Legacy delivery-candidate-v001 midautumn directory must stay preserved.");
 
             var spring = map.ResolveAppearance("spring");
             var midAutumn = map.ResolveAppearance("midautumn");

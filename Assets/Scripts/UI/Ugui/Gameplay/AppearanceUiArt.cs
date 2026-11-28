@@ -143,6 +143,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         public static Sprite LoadFriendGiftIcon() => LoadShowcaseCosmetic("icon_friend_cosmetic_gift");
 
+        public static Sprite LoadShowcaseVoucherIcon() => LoadShowcaseCosmetic("icon_showcase_voucher");
+
+        public static Sprite LoadFounderSupporterBanner() => LoadShowcaseCosmetic("banner_founder_supporter_pack");
+
         public static Sprite LoadGuildEmblem(uint emblemId) => emblemId switch
         {
             1u => LoadSprite("UI/Ugui/GuildEmblemsV1/guild_emblem_01"),

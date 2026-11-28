@@ -62,6 +62,7 @@ namespace MmorpgClient.World.Tianyong
         private const int MaxReplansOnBlock = 3;
         private Vector3? _destination;
         private int _replanOnBlock;
+        private bool _alreadyAtApproachTarget;
 
         // ── 组队跟随:服务器驱动(服务端 docs/design/team-follow-server-trail.md §5)──────────
         private bool _serverDriven;
@@ -478,6 +479,7 @@ namespace MmorpgClient.World.Tianyong
         /// </summary>
         public bool SetDestination(Vector3 feetDestination)
         {
+            _alreadyAtApproachTarget = false;
             if (_serverDriven)
             {
                 FollowInputRejected?.Invoke();
@@ -495,6 +497,7 @@ namespace MmorpgClient.World.Tianyong
 
         private bool PlanPath(Vector3 feetDestination)
         {
+            _alreadyAtApproachTarget = false;
             if (_navigation == null) return false;
 
             feetDestination = ClampToMap(feetDestination, 2f);
@@ -503,13 +506,18 @@ namespace MmorpgClient.World.Tianyong
             _destination = feetDestination;
 
             _path.Clear();
-            _path.AddRange(_navigation.FindPath(feet, feetDestination));
+            _path.AddRange(_navigation.FindApproachPath(feet, feetDestination));
             _waypoint = _path.Count > 1 ? 1 : _path.Count;
             _networkTarget = _path.Count > 0 ? _path[^1] : (Vector3?)null;
             if (_waypoint < _path.Count) return true;
 
             _destination = null;
             StopMoving();
+            if (_path.Count == 1)
+            {
+                _alreadyAtApproachTarget = true;
+                return false;
+            }
             if (_navigation.IsAuthoredFlat) NavigationRejected?.Invoke("目标不可到达");
             return false;
         }
@@ -662,6 +670,11 @@ namespace MmorpgClient.World.Tianyong
         {
             if (!SetDestination(groundPoint))
             {
+                if (_alreadyAtApproachTarget && _path.Count == 1)
+                {
+                    TianyongClickMarker.Spawn(_path[0], _camera);
+                    return true;
+                }
                 if (_navigation != null && _navigation.IsAuthoredFlat && !_serverDriven)
                 {
                     const string message = "目标不可到达";

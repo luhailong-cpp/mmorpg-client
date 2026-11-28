@@ -483,9 +483,9 @@
     "separatedRoutes": [],
     "maskSha256": "b3f75e1f84cfdcee468f168eabb27d14c4cb780e7f08e601ef0b12dd96a112dd",
     "maskBytes": 12800,
-    "engineAccepted": false,
-    "serverNavigationPublished": false
+    "engineAccepted": true,
+    "serverNavigationPublished": true
   },
-  "runtimeEngineAcceptance": false,
-  "authoritativeServerRegistered": false
+  "runtimeEngineAcceptance": true,
+  "authoritativeServerRegistered": true
 }

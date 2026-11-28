@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "revision": "biyuan-body-20261127-v2",
+  "layoutSha256": "340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105",
+  "sourceSelectionSha256": "51fbeefaf363b7d64f4fed0e67db2d183e42e11fb3245929e46979c7fcb05776",
+  "navigationPlanSha256": "30b5a824e8c8c74c1d64f99ebda12e2774a130d43d0c57abca4f2ae18fc9253b",
+  "tileEvidence": [
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r01_c01.png.generation.json",
+      "sha256": "a07f4d60625265cdcc8292ad8c32c5a8c564ec76871e753905aa2978e07d6f22",
+      "bytes": 1246
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r01_c02.png.generation.json",
+      "sha256": "972e22b2b6f6ad5fdb69be021854738e4b472ee619f7daa7191ac203cda475b2",
+      "bytes": 1249
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r01_c03.png.generation.json",
+      "sha256": "61a2440a3dab39dc90e511efd35f2dfc0301caa42173ee70558f758bf0631880",
+      "bytes": 1249
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r01_c04.png.generation.json",
+      "sha256": "6a723cce8f053b6f841d2532ba9f8e01a88231a89f0217a463a73a33259831d9",
+      "bytes": 1249
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r01_c05.png.generation.json",
+      "sha256": "b4e4e0572d559453fa48bd094fb9c65c4d91e223b5b69a8d77ba93e9a5d8edcc",
+      "bytes": 1249
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r02_c01.png.generation.json",
+      "sha256": "9276b947701a2e32043ad3899b9a0f49fadb51397bb7e3ffb66d2ead7f15ec51",
+      "bytes": 1249
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r02_c02.png.generation.json",
+      "sha256": "82a5edd18072ebdbf650a4e49eff6d5f0d12c124609ceeba56cd7656b48c24b7",
+      "bytes": 1252
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r02_c03.png.generation.json",
+      "sha256": "433aa4f32fb3937543bda9ca7b1d35988a834686e8fe9c474de5cba23e401115",
+      "bytes": 1252
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r02_c04.png.generation.json",
+      "sha256": "9590a5e9cd62be1902925c5bfe73ed31c44a08313d5035d7a0d8b814070432a6",
+      "bytes": 1252
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r02_c05.png.generation.json",
+      "sha256": "f9424af35f6f7044a823d40e38348ea5ae2b79735dab96bdd01f90b768b2e292",
+      "bytes": 1252
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r03_c01.png.generation.json",
+      "sha256": "0ea6d5b92c9dfd73b717578d3f9458c2c2ebf781b5dec8e17a64f2eef7f89de4",
+      "bytes": 1249
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r03_c02.png.generation.json",
+      "sha256": "03cb9fb9d1dc3115751e5a41aec7d56eb8e74afea3f83e82cce9665c023d6505",
+      "bytes": 1252
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r03_c03.png.generation.json",
+      "sha256": "510a87e1587e5476d2f374f577e74dd7aa6464d61f0c4d7a5bde47cfdc8502ae",
+      "bytes": 1252
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r03_c04.png.generation.json",
+      "sha256": "a3d3fc83fb08fd1d85277871fe59e1fdc3fcf9e75d4dc283445acbae61b256c7",
+      "bytes": 1252
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r03_c05.png.generation.json",
+      "sha256": "4f4f84d1aa74e73ec0b1379ccec0ade5aff907aa7ef44792e74828c36939f62e",
+      "bytes": 1252
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r04_c01.png.generation.json",
+      "sha256": "3bd6fb6633cf8a166255ced54231ba082736b14d7b5db6cb1b2055a3a891e984",
+      "bytes": 1249
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r04_c02.png.generation.json",
+      "sha256": "4c920633793e96b1783922a0e6b80b8a2bb28359a9155961c06c4f8854bab98d",
+      "bytes": 1252
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r04_c03.png.generation.json",
+      "sha256": "fcb215a9d62530670937c7180941f9447a420b46c4d0781d52671f6bcc3beeda",
+      "bytes": 1252
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r04_c04.png.generation.json",
+      "sha256": "6ca33c7d1e39e62e9de5ada840e10c9dad92336bc68d0298610fdfa271a54d92",
+      "bytes": 1252
+    },
+    {
+      "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring/r04_c05.png.generation.json",
+      "sha256": "cc05b7dbc7fcea18f2e1fe8e1cf2d7dbe577381f1f894356599b36030598559b",
+      "bytes": 1252
+    }
+  ],
+  "runtimeTilesDecoded": true,
+  "layoutPixelsMatchRuntimeTiles": true,
+  "visualAcceptancePerformedByExporter": false,
+  "runtimeEngineAcceptance": false
+}

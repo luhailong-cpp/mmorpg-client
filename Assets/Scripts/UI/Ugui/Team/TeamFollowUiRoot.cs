@@ -159,7 +159,7 @@ namespace MmorpgClient.UI.Ugui.Team
             var rect = QdaoUguiFactory.CreateRect("ProtagonistStateBadge", _hud,
                 ToggleX, ToggleY + BattleUiStyle.HudEntryHeight + 8f, ToggleWidth, 34f);
             var bg = rect.gameObject.AddComponent<Image>();
-            bg.sprite = GameplayUiArt.Load("hud_panel");
+            bg.sprite = GameplayUiArt.Load("paper_tile");
             if (bg.sprite != null && bg.sprite.border.sqrMagnitude > 0f) bg.type = Image.Type.Sliced;
             bg.color = new Color(0.14f, 0.17f, 0.16f, 0.88f);
             bg.raycastTarget = false;
@@ -174,7 +174,7 @@ namespace MmorpgClient.UI.Ugui.Team
         {
             var rect = QdaoUguiFactory.CreateRect(RecallBannerName, design, (2560f - 660f) * 0.5f, 148f, 660f, 84f);
             var bg = rect.gameObject.AddComponent<Image>();
-            bg.sprite = GameplayUiArt.Load("hud_panel");
+            bg.sprite = GameplayUiArt.Load("paper_tile");
             if (bg.sprite != null && bg.sprite.border.sqrMagnitude > 0f) bg.type = Image.Type.Sliced;
             bg.color = new Color(0.11f, 0.20f, 0.16f, 0.94f);
             bool hasCustomBanner = GameplayUiArt.TryLoadAfkTeamArt("team_recall_banner_bg") != null;

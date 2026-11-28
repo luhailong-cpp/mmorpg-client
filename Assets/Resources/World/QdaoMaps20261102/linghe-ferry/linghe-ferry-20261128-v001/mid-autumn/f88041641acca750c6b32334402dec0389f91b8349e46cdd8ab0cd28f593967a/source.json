@@ -1,0 +1,56 @@
+{
+  "worldRect": {
+    "x": 0.0,
+    "y": -56.2139892578125,
+    "width": 348.1640625,
+    "height": 464.21875
+  },
+  "effectiveWorldRect": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 340.00396728515625,
+    "height": 408.0047607421875
+  },
+  "cellSize": 1.5,
+  "imageRect": {
+    "x": 0,
+    "y": 0,
+    "width": 6000,
+    "height": 7200
+  },
+  "referenceWidth": 6000,
+  "referenceHeight": 7200,
+  "walkmaskColumns": 233,
+  "walkmaskRows": 310,
+  "spawnWorld": {
+    "x": 56.667327880859375,
+    "y": 0.0,
+    "z": 134.8682403564453
+  },
+  "schemaVersion": 2,
+  "key": "linghe-ferry",
+  "sceneId": 7,
+  "name": "灵禾渡",
+  "revision": "linghe-ferry-20261128-v001",
+  "appearance": "mid-autumn",
+  "resourceRoot": "World/QdaoMaps20261102/linghe-ferry/linghe-ferry-20261128-v001/mid-autumn/f88041641acca750c6b32334402dec0389f91b8349e46cdd8ab0cd28f593967a/",
+  "clientOnly": false,
+  "authoritativeServerRegistered": true,
+  "artStatus": "formal_tiles_overview",
+  "layoutPixels": {
+    "width": 6144,
+    "height": 8192
+  },
+  "layoutSha256": "f88041641acca750c6b32334402dec0389f91b8349e46cdd8ab0cd28f593967a",
+  "sourceSelectionPath": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/selection.json",
+  "sourceSelectionSha256": "2b211edb724fa74d2bee8c7ca68405fafc849776c82734efc3745021632c97fa",
+  "sourceEvidencePath": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/source-evidence/linghe-ferry/mid-autumn/delivery.json",
+  "sourceEvidenceSha256": "bfe3b7eb7e3ae0a6f2d5f214764363d38b0a10d62ec4ad633d9446ab26da4856",
+  "navigationPlanPath": "Docs/VerificationEvidence/linghe-ferry-20261128-v001/navigation-plan.json",
+  "navigationPlanSha256": "16843290fc5a8df622dc479590fe6a00d2f0fd761c19a1e3c6a17416cede67b3",
+  "navigationSha256": "238b602b0a8b7291729adc8480e98b370b18cb915594d6e13b08115634968e07",
+  "walkmaskSha256": "892d6bf93a7b541693bca55c015de5fc0b7712b018537a2da03b1369e5052129",
+  "walkmaskPackedSha256": "9b528ee552e63e8fe1be3b32a31f45bc5da6fcd6eaa99bf9149cf5b4e37d89e7",
+  "navigationStatus": "conservative_visible_ground",
+  "runtimeEngineAcceptance": false
+}

@@ -1,0 +1,335 @@
+{
+    "result": "PASS",
+    "unityVersion": "6000.6.0f1",
+    "graphicsDevice": "NVIDIA GeForce RTX 3070 Ti",
+    "scenePath": "Assets/Scenes/World/WaterwheelCourtyard.unity",
+    "sceneId": 20000,
+    "mapKey": "waterwheel-courtyard",
+    "startedUtc": "2026-11-28T09:39:56.2224388Z",
+    "finishedUtc": "2026-11-28T09:41:01.9414468Z",
+    "minimumZoomObserved": 15.0,
+    "switchPreservedFeet": true,
+    "switchPreservedNavigation": true,
+    "festivalPixelDiffVerified": true,
+    "mainHallDiffPixels": 84010,
+    "blockedInputPreventedCrossing": true,
+    "captureDirectory": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\waterwheel-play-verification-20261128",
+    "error": "",
+    "walks": [
+        {
+            "name": "main-road-to-main-hall-stairs",
+            "start": [
+                160.0,
+                0.0,
+                140.0
+            ],
+            "target": [
+                196.09375,
+                0.0,
+                237.1875
+            ],
+            "arrived": [
+                195.82240295410156,
+                0.006999969482421875,
+                236.4568634033203
+            ],
+            "errorMeters": 0.7793965935707092,
+            "elapsedSeconds": 5.716332912445068,
+            "frames": 4012,
+            "passed": true
+        },
+        {
+            "name": "north-road-to-upper-stairs",
+            "start": [
+                112.5,
+                0.0,
+                229.375
+            ],
+            "target": [
+                126.5625,
+                0.0,
+                314.53125
+            ],
+            "arrived": [
+                126.12368774414063,
+                0.006999969482421875,
+                313.8826904296875
+            ],
+            "errorMeters": 0.7830617427825928,
+            "elapsedSeconds": 4.953859329223633,
+            "frames": 3516,
+            "passed": true
+        },
+        {
+            "name": "courtyard-to-west-shop-stairs",
+            "start": [
+                115.0,
+                0.0,
+                175.0
+            ],
+            "target": [
+                79.6875,
+                0.0,
+                176.25
+            ],
+            "arrived": [
+                80.43354797363281,
+                0.006999969482421875,
+                176.06715393066406
+            ],
+            "errorMeters": 0.7681277394294739,
+            "elapsedSeconds": 1.939962387084961,
+            "frames": 1094,
+            "passed": true
+        },
+        {
+            "name": "courtyard-to-shrine-stairs",
+            "start": [
+                160.0,
+                0.0,
+                140.0
+            ],
+            "target": [
+                236.71875,
+                0.0,
+                87.96875
+            ],
+            "arrived": [
+                235.97842407226563,
+                0.0069999098777771,
+                87.73789978027344
+            ],
+            "errorMeters": 0.775483250617981,
+            "elapsedSeconds": 6.592593193054199,
+            "frames": 4722,
+            "passed": true
+        },
+        {
+            "name": "south-approach-across-bridge-to-balcony",
+            "start": [
+                194.53125,
+                0.0,
+                74.6875
+            ],
+            "target": [
+                42.1875,
+                0.0,
+                80.15625
+            ],
+            "arrived": [
+                42.96128845214844,
+                0.006999969482421875,
+                80.14933013916016
+            ],
+            "errorMeters": 0.7738193869590759,
+            "elapsedSeconds": 8.549884796142578,
+            "frames": 6317,
+            "passed": true
+        }
+    ],
+    "captures": [
+        {
+            "key": "01-spring-overview-spawn",
+            "appearance": "spring",
+            "file": "01-spring-overview-spawn.png",
+            "requestedZoom": 35.0,
+            "actualZoom": 35.0,
+            "cameraPos": [
+                160.0,
+                109.99999237060547,
+                140.0
+            ],
+            "visibleTiles": 12,
+            "loadedVisibleTiles": 6,
+            "pendingTiles": 0,
+            "loadedTilePaths": [
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r04_c04",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r04_c05",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r05_c04",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r05_c05",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r06_c04",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r06_c05"
+            ],
+            "edgeClampVerified": false
+        },
+        {
+            "key": "02-midautumn-overview-spawn",
+            "appearance": "mid-autumn",
+            "file": "02-midautumn-overview-spawn.png",
+            "requestedZoom": 35.0,
+            "actualZoom": 35.0,
+            "cameraPos": [
+                160.0,
+                109.99999237060547,
+                140.0
+            ],
+            "visibleTiles": 12,
+            "loadedVisibleTiles": 6,
+            "pendingTiles": 0,
+            "loadedTilePaths": [
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r04_c04",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r04_c05",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r05_c04",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r05_c05",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r06_c04",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r06_c05"
+            ],
+            "edgeClampVerified": false
+        },
+        {
+            "key": "03-spring-closest-waterfall-seams",
+            "appearance": "spring",
+            "file": "03-spring-closest-waterfall-seams.png",
+            "requestedZoom": 15.0,
+            "actualZoom": 15.0,
+            "cameraPos": [
+                28.0,
+                109.99999237060547,
+                272.0
+            ],
+            "visibleTiles": 4,
+            "loadedVisibleTiles": 4,
+            "pendingTiles": 0,
+            "loadedTilePaths": [
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r01_c01",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r01_c02",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r02_c01",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r02_c02"
+            ],
+            "edgeClampVerified": false
+        },
+        {
+            "key": "04-midautumn-closest-waterfall-seams",
+            "appearance": "mid-autumn",
+            "file": "04-midautumn-closest-waterfall-seams.png",
+            "requestedZoom": 15.0,
+            "actualZoom": 15.0,
+            "cameraPos": [
+                28.0,
+                109.99999237060547,
+                272.0
+            ],
+            "visibleTiles": 4,
+            "loadedVisibleTiles": 4,
+            "pendingTiles": 0,
+            "loadedTilePaths": [
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r01_c01",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r01_c02",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r02_c01",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r02_c02"
+            ],
+            "edgeClampVerified": false
+        },
+        {
+            "key": "05-spring-closest-main-hall-stairs",
+            "appearance": "spring",
+            "file": "05-spring-closest-main-hall-stairs.png",
+            "requestedZoom": 15.0,
+            "actualZoom": 15.0,
+            "cameraPos": [
+                192.0,
+                109.99999237060547,
+                232.0
+            ],
+            "visibleTiles": 4,
+            "loadedVisibleTiles": 4,
+            "pendingTiles": 0,
+            "loadedTilePaths": [
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r02_c05",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r02_c06",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r03_c05",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r03_c06"
+            ],
+            "edgeClampVerified": false
+        },
+        {
+            "key": "06-midautumn-closest-main-hall-stairs",
+            "appearance": "mid-autumn",
+            "file": "06-midautumn-closest-main-hall-stairs.png",
+            "requestedZoom": 15.0,
+            "actualZoom": 15.0,
+            "cameraPos": [
+                192.0,
+                109.99999237060547,
+                232.0
+            ],
+            "visibleTiles": 4,
+            "loadedVisibleTiles": 4,
+            "pendingTiles": 0,
+            "loadedTilePaths": [
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r02_c05",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r02_c06",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r03_c05",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r03_c06"
+            ],
+            "edgeClampVerified": false
+        },
+        {
+            "key": "07-spring-closest-bridge-pavilion-seams",
+            "appearance": "spring",
+            "file": "07-spring-closest-bridge-pavilion-seams.png",
+            "requestedZoom": 15.0,
+            "actualZoom": 15.0,
+            "cameraPos": [
+                122.0,
+                109.99999237060547,
+                85.99999237060547
+            ],
+            "visibleTiles": 4,
+            "loadedVisibleTiles": 4,
+            "pendingTiles": 0,
+            "loadedTilePaths": [
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r06_c03",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r06_c04",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r07_c03",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r07_c04"
+            ],
+            "edgeClampVerified": false
+        },
+        {
+            "key": "08-midautumn-closest-bridge-pavilion-seams",
+            "appearance": "mid-autumn",
+            "file": "08-midautumn-closest-bridge-pavilion-seams.png",
+            "requestedZoom": 15.0,
+            "actualZoom": 15.0,
+            "cameraPos": [
+                122.0,
+                109.99999237060547,
+                85.99999237060547
+            ],
+            "visibleTiles": 4,
+            "loadedVisibleTiles": 4,
+            "pendingTiles": 0,
+            "loadedTilePaths": [
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r06_c03",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r06_c04",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r07_c03",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/tiles/r07_c04"
+            ],
+            "edgeClampVerified": false
+        },
+        {
+            "key": "09-spring-closest-effective-edge-clamp",
+            "appearance": "spring",
+            "file": "09-spring-closest-effective-edge-clamp.png",
+            "requestedZoom": 15.0,
+            "actualZoom": 15.0,
+            "cameraPos": [
+                270.4817810058594,
+                109.99999237060547,
+                47.57811737060547
+            ],
+            "visibleTiles": 4,
+            "loadedVisibleTiles": 4,
+            "pendingTiles": 0,
+            "loadedTilePaths": [
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r07_c07",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r07_c08",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r08_c07",
+                "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/tiles/r08_c08"
+            ],
+            "edgeClampVerified": true
+        }
+    ],
+    "runtimeErrors": []
+}

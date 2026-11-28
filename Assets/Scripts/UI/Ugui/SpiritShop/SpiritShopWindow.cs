@@ -411,6 +411,11 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             {
                 DrawAfkPassAggregateCard(content, 8f, y, viewW - 16f);
                 y += 126f;
+                if (MmorpgClient.Game.RewardedAd.ClientDistributionPolicy.Current.SteamDlcEnabled)
+                {
+                    DrawFounderSupporterBannerCard(content, 8f, y, viewW - 16f);
+                    y += 174f;
+                }
             }
 
             var items = SpiritShopModels.CollectGoodsForTab(info, _activeTab);
@@ -494,6 +499,35 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             var openBtn = Button(card.transform, "前往月卡详情", w - 286f, 22f, 260f, 68f, HandleOpenAfkPassClicked,
                 primary: true, enabled: true, fontSize: 25f);
             openBtn.name = AfkPassCardButtonName;
+        }
+
+        private void DrawFounderSupporterBannerCard(RectTransform parent, float x, float y, float w)
+        {
+            const float h = 160f;
+            Sprite bannerBg = AppearanceUiArt.LoadFounderSupporterBanner();
+            Sprite bgSprite = bannerBg ?? LoadOptionalSkin("ui/card_bg_featured") ?? Load("pet_card_normal");
+            var card = QdaoUguiFactory.CreateImage("SpiritShopFounderSupporterBanner", parent, x, y, w, h, bgSprite);
+            card.color = bannerBg != null ? Color.white : FocusTint;
+            card.preserveAspect = false;
+            if (bannerBg == null && bgSprite != null && bgSprite.border.sqrMagnitude > 0f) card.type = Image.Type.Sliced;
+            card.raycastTarget = false;
+
+            float textX = bannerBg != null ? w * 0.14f : 24f;
+            float textW = bannerBg != null ? w * 0.45f : w - 340f;
+            var nameTxt = Text(card.transform, "留灯院创始典藏包 · Steam DLC", textX, 34f, textW, 40f, 27f, Ink);
+            nameTxt.fontStyle = FontStyles.Bold;
+            nameTxt.raycastTarget = false;
+
+            var descTxt = Text(card.transform, "含永久限定「星河初启阵纹」等纯视觉纪念收藏（零战力加成，Steam 商店激活自动到账）",
+                textX, 78f, textW, 48f, 21f, Muted, wrap: true);
+            descTxt.raycastTarget = false;
+
+            var previewBtn = Button(card.transform, "衣柜预览阵纹", w - 286f, 46f, 250f, 68f, () =>
+            {
+                Hide();
+                AppearanceUiRoot.Instance?.ShowPanel();
+            }, primary: false, enabled: true, fontSize: 23f);
+            previewBtn.name = "SpiritShopFounderPreviewBtn";
         }
 
         private void DrawGoodsCard(
@@ -816,6 +850,11 @@ namespace MmorpgClient.UI.Ugui.SpiritShop
             {
                 var vfx = QdaoUguiTheme.LoadSprite("UI/Ugui/WardrobeCosmetics/item_skill_vfx_scroll");
                 if (vfx != null) return vfx;
+            }
+            if (firstItemId == SpiritShopModels.ItemShowcaseVoucher)
+            {
+                var voucher = AppearanceUiArt.LoadShowcaseVoucherIcon();
+                if (voucher != null) return voucher;
             }
             return Load("icon_scroll");
         }

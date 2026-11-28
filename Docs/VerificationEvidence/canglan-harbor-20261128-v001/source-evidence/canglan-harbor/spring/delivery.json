@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "key": "canglan-harbor",
+  "sceneId": 6,
+  "revision": "canglan-harbor-20261128-v001",
+  "appearance": "spring",
+  "layoutSha256": "ac60977706a2119809d0988b80b3a3d4ef09096e8bcd38063b4d853b8fdbd985",
+  "sourceSelectionSha256": "e0c0fa72009bf927ee61a2f2152810a21dbfb3b60a7e414413b0eb9c432cdf5b",
+  "navigationPlanSha256": "ba4590dc17300cf628bdd8bb10b75f2aa72db5065d77ca4daa0efb04b5a04a34",
+  "sourceLayoutPreview": {
+    "path": "image@da646ecd39f9b94aa4b068cdd511b32f41d4d95e:designs/world-expansion-20261027/hd36-production-20261027/current-fishing-village/new-builtin-dual-festival-20261128-v001/neutral.png",
+    "sha256": "48c7312c26d83f2dba46658a008c50c8699600459e33affb6df46b2d98129f7a"
+  },
+  "selectionAuthority": {
+    "path": "image@da646ecd39f9b94aa4b068cdd511b32f41d4d95e:designs/world-expansion-20261027/hd36-production-20261027/current-fishing-village/new-builtin-dual-festival-20261128-v001/runtime/runtime-manifest.json",
+    "sha256": "e188ae4224eab847b6580c9205ba81eb472fc710ab8f02fca9eca45b08d6ddd7",
+    "bytes": 39072
+  },
+  "tileEvidence": [
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r01_c01.json",
+      "sha256": "852ef654f8f5166ca363ab0ddf2dc5dc0196d33c0aef0a7f278c0b3e389bda2e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r01_c02.json",
+      "sha256": "82d82fb23f28ee54b75b78830eb00e791272d1d7f27a5de59be5ec9973df82e7"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r01_c03.json",
+      "sha256": "0e8e9d82e5394e9be685fd0ed8cb2b155fee35228fc8a2cf5df65b3835987aab"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r01_c04.json",
+      "sha256": "7e8a193966db134f2c68257f2e9bbe4cd570f293fd0dc76199b9c6de6c664801"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r02_c01.json",
+      "sha256": "4c229adbcaa04a75db3b3ee057c9eee0015c784e06b5af2fffc189c568646d50"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r02_c02.json",
+      "sha256": "88beb7842e212e5f03d7a459e931e64fa20191a2bf7220f89d2bf6c2e81e2d8b"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r02_c03.json",
+      "sha256": "3309bc59ba3578ae3ed614fdb21a6c84f80b860674379ba03677190b44941de5"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r02_c04.json",
+      "sha256": "30aea1079c019b59df012df938e85bca0d433febb51ab060cf13ff26d2b120be"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r03_c01.json",
+      "sha256": "5e4e97f302fe2db549ee95d5839f022fc766cc38124e5771fe2a7cba9d2c0943"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r03_c02.json",
+      "sha256": "1f8957760dc00fca5624ab6447caa9edc5809669088bcdbce9da922627695114"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r03_c03.json",
+      "sha256": "3a9cbc62d67f7f7e5a5713ef193e2a28664f52d2536c0ef381d339c9bfe34cec"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r03_c04.json",
+      "sha256": "57c75f3e81982290382198d73fe87a1ba3bd3e2d3516e3ebfc1a057a987113cb"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r04_c01.json",
+      "sha256": "19eb7506f96a8e9b89a55d521b73c20215cd47d931726df70e9c76d0f304731d"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r04_c02.json",
+      "sha256": "9f047a4be28e9d58fe5a1fe41d0c6dcd35f4e3e84da53079d4812556c1c01d5e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r04_c03.json",
+      "sha256": "f9215933a4fd6a9a459c9401dfdae47d52ced1085847973a641cbdc5a60ef46c"
+    },
+    {
+      "path": "Docs/VerificationEvidence/canglan-harbor-20261128-v001/source-evidence/canglan-harbor/spring/r04_c04.json",
+      "sha256": "8c654206ca636dfcac92d67c11a2f38bda45c9ae61ee0903804cb9b75cc74c02"
+    }
+  ],
+  "formalArtAccepted": true,
+  "authoritativeServerRegistered": true
+}

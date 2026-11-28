@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "imageRepo": "https://luyuacpp.visualstudio.com/image/_git/image",
+  "imageCommit": "69b44b971160d97a1b4f6fddb6e42a127fcbdefa",
+  "artPackage": "designs/client18000-summit-hd8x-20261127-v001/slices/slices-manifest.json",
+  "artSlicesManifestSha256": "68187f85510580ac9e36a6671037c64fe078e524082d47e9bcd3ce403e5bbf41",
+  "clientKey": "summit-snow",
+  "sceneId": 18000,
+  "displayName": "山顶雪区",
+  "clientOnly": false,
+  "authoritativeServerRegistered": true,
+  "revision": "pc18000-summit-hd8-20261128",
+  "scope": "summit snow region only (pc:18000 half-open crop [3072, 0, 5632, 3200))",
+  "originalFullMapPixels": [
+    6400,
+    7200
+  ],
+  "originalSummitCropPixels": [
+    2560,
+    3200
+  ],
+  "masterPixels": [
+    7240,
+    9050
+  ],
+  "hdTextureScaleRational": "181/64",
+  "runtimeGrid": {
+    "columns": 8,
+    "rows": 9,
+    "tilePixels": 1024,
+    "canvasPixels": [
+      8192,
+      9216
+    ]
+  },
+  "edgePadding": "edge-clamp (right 952 px from x=7239, bottom 166 px from y=9049)",
+  "reassembledEffectiveRgbMatchesMaster": true,
+  "fallbackDerivation": {
+    "sourceCanvas": [
+      8192,
+      9216
+    ],
+    "targetLayout": [
+      4096,
+      4608
+    ],
+    "resampling": "Pillow LANCZOS"
+  },
+  "navigation": {
+    "planPath": "Docs/VerificationEvidence/pc18000-summit-hd8-20261128/navigation-plan.json",
+    "planSha256": "788c4aa9e01795a0cac8b3a503ca5c78172d03b63d68bf071909910023addd99",
+    "columns": 320,
+    "rows": 360,
+    "cellSize": 1.0,
+    "worldRect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 320.0,
+      "height": 360.0
+    },
+    "effectiveWorldRect": {
+      "x": 0.0,
+      "y": 6.484375,
+      "width": 282.8125,
+      "height": 353.515625
+    },
+    "imageRect": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 7240.0,
+      "height": 9050.0
+    },
+    "walkableCells": 12464,
+    "componentCount": 1,
+    "sharedBothAppearances": true,
+    "packedMaskSha256": "5030e8450cf4639db9fe1f8745da40d920b3c4f081fc1357f36fb8858ad48946",
+    "spawnWorld": {
+      "x": 148.4375,
+      "y": 0.0,
+      "z": 249.84375
+    }
+  },
+  "appearances": {
+    "spring": {
+      "sourceMasterPath": "designs/client18000-summit-hd8x-20261127-v001/spring.png",
+      "sourceMasterSha256": "296d487b15721346e0954eb9e65b1ec3611e98dbf6b504f6d0da28082cb2e0ce",
+      "sourceMasterBytes": 72112603,
+      "sourceMasterRgbSha256": "1391a8cc44a355620da5bd9f3f4a174835bd31543291c518b030488ac8d12bef",
+      "runtimeTiles": 72,
+      "runtimeBytes": 66397312,
+      "layoutBytes": 23684086,
+      "layoutSha256": "91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729",
+      "layoutPixels": {
+        "width": 4096,
+        "height": 4608
+      },
+      "resourceRoot": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/",
+      "sourceSha256": "2c1111754e90bef785ebb6c9bb73310abe69da7a98fc8b2c36125883a4bdd143",
+      "tilesManifestSha256": "495becd5c3f94aa0e70516a3954efb577cf50aa7a9f5ec0d4836aebeddc79cb2",
+      "navigationSha256": "03e66cf8c2517e2d798902a82f9e477e3c7c9d89446fae62983a91bd53fcddbc",
+      "walkmaskTextSha256": "369b08653399de0d18956f2271abb4a30cb468089154dbf7952ac42d316a706a"
+    },
+    "mid-autumn": {
+      "sourceMasterPath": "designs/client18000-summit-hd8x-20261127-v001/midautumn.png",
+      "sourceMasterSha256": "9c80018b3bffdff3e20112f0b166d0c0fb1cef64343f128f9d7bc3cf1c09ebb5",
+      "sourceMasterBytes": 72334650,
+      "sourceMasterRgbSha256": "aa10b4589ed46015e503202f34f9c445d93297378ebeb65e5b42c2611b50147a",
+      "runtimeTiles": 72,
+      "runtimeBytes": 66605201,
+      "layoutBytes": 23738516,
+      "layoutSha256": "bbb55edcb8bfe0626ce0027dfd2570708934a819a9dcc5383217e1bcd0662861",
+      "layoutPixels": {
+        "width": 4096,
+        "height": 4608
+      },
+      "resourceRoot": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/mid-autumn/bbb55edcb8bfe0626ce0027dfd2570708934a819a9dcc5383217e1bcd0662861/",
+      "sourceSha256": "71fe6afe30c42f0b23b59073ee5ff8dad7d57ac83f4f51d6281f34fb726a0a70",
+      "tilesManifestSha256": "6dbfd114e26c90e7eea96efbc376182cf0d9d42dcba6897a32a3f482bb20a3d8",
+      "navigationSha256": "03e66cf8c2517e2d798902a82f9e477e3c7c9d89446fae62983a91bd53fcddbc",
+      "walkmaskTextSha256": "369b08653399de0d18956f2271abb4a30cb468089154dbf7952ac42d316a706a"
+    }
+  }
+}

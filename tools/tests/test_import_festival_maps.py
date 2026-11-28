@@ -464,6 +464,55 @@ class FestivalImportTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "opaque pixel inside transparent padding"):
             maps.inspect_png(bad_buf2.getvalue(), [1024, 1024], "bad_outside", opaque_box=(0, 512, 1024, 1024))
 
+    def test_rectangular_derived_master_with_right_bottom_padding(self):
+        art_dir = self.case / "rect-art"
+        mw, mh = 1800, 2000
+        cw, ch = 2048, 2048
+        master = Image.new("RGB", (mw, mh), (70, 130, 85))
+        mbuf = io.BytesIO()
+        master.save(mbuf, format="PNG")
+        master_desc = descriptor(art_dir / "spring.png", mbuf.getvalue(), [mw, mh])
+        padded = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
+        padded.paste(master.convert("RGBA"), (0, 0))
+        tiles, tile_bytes = [], []
+        for row in (1, 2):
+            for col in (1, 2):
+                tid = maps.tile_id(row, col)
+                crop = padded.crop(((col - 1) * 1024, (row - 1) * 1024, col * 1024, row * 1024))
+                buf = io.BytesIO()
+                crop.save(buf, format="PNG")
+                raw = buf.getvalue()
+                rt = descriptor(art_dir / f"{tid}.png", raw, [1024, 1024])
+                gen = descriptor(art_dir / f"{tid}.gen.json", maps.json_bytes(dict(tile=tid)))
+                tiles.append(dict(tile=tid, row=row, column=col,
+                    imageRectHalfOpen=[(col - 1) * 1024, (row - 1) * 1024, col * 1024, row * 1024],
+                    native=master_desc, runtime=rt, runtimeGenerationRecord=gen,
+                    sourceNative=False, sourceDerived=True, formalArtAccepted=True))
+                tile_bytes.append((row, col, raw))
+        ov_sha = maps.digest(maps.build_overview(tile_bytes, 2, 2))
+        selection = dict(schemaVersion=1, sets=[dict(
+            mapId="linghe-rect-test", appearance="spring", formalArtAccepted=True,
+            grid=dict(columns=2, rows=2, canvasPixels=[cw, ch]),
+            layoutSource=dict(path="neutral.png", sha256=master_desc["sha256"]),
+            selectionAuthority=dict(path="manifest.json", sha256="c" * 64), tiles=tiles)])
+        plan = dict(schemaVersion=1, maps={"linghe-rect-test": dict(
+            canvasPixels=[cw, ch], worldRect=dict(x=0.0, y=-1.5, width=64.0, height=64.0),
+            imageRect=dict(x=0, y=0, width=mw, height=mh), referencePixels=[mw, mh],
+            cellSize=2.0, spawnPixel=[900.0, 1000.0],
+            walkablePolygons=[[[200, 200], [1600, 200], [1600, 1800], [200, 1800]]],
+            obstaclePolygons=[], expectedConnectedComponents=1)},
+            visuallyReviewedFormalAssemblies=[dict(mapId="linghe-rect-test", appearance="spring", sha256=ov_sha)])
+        batch = dict(schemaVersion=1, revision="rect-test",
+                     evidenceDirectory="Docs/VerificationEvidence/rect-test",
+                     scope=[dict(mapId="linghe-rect-test", key="linghe-rect-test", sceneId=7, name="矩形测试",
+                                 appearance="spring", columns=2, rows=2, clientOnly=True,
+                                 authoritativeServerRegistered=False, allowDerivedSource=True,
+                                 allowTransparentPadding=True)])
+        sel_p, plan_p = self.case / "rect-sel.json", self.case / "rect-plan.json"
+        sel_p.write_bytes(maps.json_bytes(selection))
+        plan_p.write_bytes(maps.json_bytes(plan))
+        self.assertTrue(maps.import_maps(self.case, sel_p, plan_p, batch)["ok"])
+
 
 if __name__ == "__main__":
     unittest.main()

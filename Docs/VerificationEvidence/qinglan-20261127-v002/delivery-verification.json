@@ -510,7 +510,7 @@
         "engineAccepted": false,
         "serverNavigationPublished": false
       },
-      "clientOnly": true
+      "clientOnly": false
     },
     {
       "key": "qinglan-town",
@@ -1020,7 +1020,7 @@
         "engineAccepted": false,
         "serverNavigationPublished": false
       },
-      "clientOnly": true
+      "clientOnly": false
     }
   ],
   "maps": 1,
@@ -1035,6 +1035,6 @@
   "layoutPixelsMatchRuntimeTiles": true,
   "artCheckoutRequiredForVerification": false,
   "highestNativePNGsCopied": false,
-  "authoritativeServerRegistered": false,
+  "authoritativeServerRegistered": true,
   "unityRenderedAcceptance": false
 }

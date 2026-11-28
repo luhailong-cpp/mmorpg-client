@@ -7,7 +7,7 @@
   "clientKey": "waterwheel-courtyard",
   "sceneId": 20000,
   "displayName": "水车庭院",
-  "clientOnly": true,
+  "clientOnly": false,
   "revision": "waterwheel-hd8-20261128",
   "masterPixels": [
     7607,
@@ -84,9 +84,9 @@
         "height": 4096
       },
       "resourceRoot": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/",
-      "sourceSha256": "1f5ef0f5ef8782c63e94a1054c95304916fdb6fdea06e56924f8de2401964d4e",
+      "sourceSha256": "36bd725dff304551014fa68f265ef2702ebd68d163f80c405459ff962cdee21c",
       "tilesManifestSha256": "6c2c691d98bf2b53bebc7485a526a7d245c9101efc4621ee5e766b0eb7fda647",
-      "navigationSha256": "a86d077d63162f4b1a6dc7924a06c2e1dc514bf4974e65e6dbb780c525506b9d",
+      "navigationSha256": "c1f1f30db557ad9d616cbef7f9647fac126fb84062fbcdf8afc1fe5705076c0c",
       "walkmaskTextSha256": "f81634666a4d0e91e8436851a10a6264e1a76e52cd49b74577c6049d9d5e00c7"
     },
     "mid-autumn": {
@@ -103,10 +103,11 @@
         "height": 4096
       },
       "resourceRoot": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/",
-      "sourceSha256": "41823a4891604117055d942220f7695d4bad3f02955472fd2ef885c6cbd70310",
+      "sourceSha256": "d2323c726c38c6aba7e7b1f2ee8451eb78a444b46731ef427474309bdbc26732",
       "tilesManifestSha256": "b4fd1fe726c528d9867956ff24029392e4ad6bfaf92bf422064cc3ede8476d1b",
-      "navigationSha256": "a86d077d63162f4b1a6dc7924a06c2e1dc514bf4974e65e6dbb780c525506b9d",
+      "navigationSha256": "c1f1f30db557ad9d616cbef7f9647fac126fb84062fbcdf8afc1fe5705076c0c",
       "walkmaskTextSha256": "f81634666a4d0e91e8436851a10a6264e1a76e52cd49b74577c6049d9d5e00c7"
     }
-  }
+  },
+  "authoritativeServerRegistered": true
 }

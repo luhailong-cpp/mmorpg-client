@@ -1,0 +1,61 @@
+{
+  "worldRect": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 240.0,
+    "height": 120.0
+  },
+  "effectiveWorldRect": {
+    "x": 0.0,
+    "y": 0.46875,
+    "width": 212.5,
+    "height": 119.53125
+  },
+  "cellSize": 1.0,
+  "imageRect": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 5440.0,
+    "height": 3060.0
+  },
+  "referenceWidth": 5440,
+  "referenceHeight": 3060,
+  "walkmaskColumns": 240,
+  "walkmaskRows": 120,
+  "spawnWorld": {
+    "x": 125.0,
+    "y": 0.0,
+    "z": 51.25
+  },
+  "schemaVersion": 2,
+  "key": "map19003",
+  "sceneId": 19003,
+  "name": "地图 19003",
+  "revision": "pc19003-hd8-20261128",
+  "appearance": "spring",
+  "resourceRoot": "World/QdaoMaps20261102/map19003/pc19003-hd8-20261128/spring/523985037bbcb939558e9d0580e1231a5259c9ac464fe257fafe1b394985f146/",
+  "clientOnly": true,
+  "authoritativeServerRegistered": false,
+  "artStatus": "formal_tiles_overview",
+  "layoutPixels": {
+    "width": 4096,
+    "height": 2048
+  },
+  "layoutSha256": "523985037bbcb939558e9d0580e1231a5259c9ac464fe257fafe1b394985f146",
+  "layoutDerivation": "uniform-lanczos-long-edge-4096",
+  "sourceImageCommit": "040a19d7c95172a0f5862eb83d071f2914383b81",
+  "sourceMasterPath": "designs/client-19003-original-replacement-hd-20261127-v001/spring/continuous.png",
+  "sourceMasterSha256": "d7cc13ce2c05e623cf9790b701570b2bd3bc3fa3cbc1e000a3620723c90e9031",
+  "sourceMasterBytes": 28341312,
+  "sourceMasterRgbSha256": "7e48cbf812ec7f079040628d4fe95d767c13933bb1b677528f8519d3b7837bd2",
+  "sourceDeliveryManifestSha256": "f709f1e70ea3e5b4d8c65ba378ccfc85b5692f130659200e94743bce6905a27a",
+  "sourceTileMappingSha256": "12b3115acd2b105555d0e72e68a6d0f7ef7e1f38c3036bc7422bfae09ee52e9b",
+  "runtimeAssemblyRgbSha256": "aefb439010a56af40c215fbbe4fd11ac0afc01aaac64260610809e1cf7020fa7",
+  "navigationPlanPath": "Docs/VerificationEvidence/pc19003-hd8-20261128/navigation-plan.json",
+  "navigationPlanSha256": "7c6481ee9aaac0ee829ff4394430e38df400d5b0a40e62a26ab203acaaf2c8f1",
+  "navigationSha256": "0f63605ebf7a0740deb42a23275778dbb41c851d379ce6047afb3bfae9703236",
+  "walkmaskSha256": "f839b9af3cf38449b72e1c72673d7884433d8cecaed8f929304b5d1e70e99111",
+  "walkmaskPackedSha256": "b7147fb200785403321a0df54b77615ea0230bf1b0c1d6f241b86617b366ab92",
+  "navigationStatus": "conservative_visible_ground_client_only",
+  "runtimeEngineAcceptance": false
+}

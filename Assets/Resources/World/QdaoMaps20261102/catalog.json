@@ -272,11 +272,33 @@
       ]
     },
     {
+      "key": "waterwheel-courtyard",
+      "sceneId": 20000,
+      "name": "水车庭院",
+      "revision": "waterwheel-hd8-20261128",
+      "clientOnly": false,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/",
+          "layoutSha256": "3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/",
+          "layoutSha256": "739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
       "key": "qinglan-town",
       "sceneId": 4,
       "name": "青岚镇",
       "revision": "qinglan-20261127-v002",
-      "clientOnly": true,
+      "clientOnly": false,
       "defaultAppearance": "spring",
       "appearances": [
         {
@@ -294,23 +316,89 @@
       ]
     },
     {
-      "key": "waterwheel-courtyard",
-      "sceneId": 20000,
-      "name": "水车庭院",
-      "revision": "waterwheel-hd8-20261128",
+      "key": "canglan-harbor",
+      "sceneId": 6,
+      "name": "沧澜港",
+      "revision": "canglan-harbor-20261128-v001",
+      "clientOnly": false,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/canglan-harbor/canglan-harbor-20261128-v001/spring/ac60977706a2119809d0988b80b3a3d4ef09096e8bcd38063b4d853b8fdbd985/",
+          "layoutSha256": "ac60977706a2119809d0988b80b3a3d4ef09096e8bcd38063b4d853b8fdbd985",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/canglan-harbor/canglan-harbor-20261128-v001/mid-autumn/6335a0fe971a63ba71babefa623b8945e74e02cf88e10d75e60c24c913336c13/",
+          "layoutSha256": "6335a0fe971a63ba71babefa623b8945e74e02cf88e10d75e60c24c913336c13",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
+      "key": "map19003",
+      "sceneId": 19003,
+      "name": "地图 19003",
+      "revision": "pc19003-hd8-20261128",
       "clientOnly": true,
       "defaultAppearance": "spring",
       "appearances": [
         {
           "id": "spring",
-          "resourceRoot": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/spring/3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98/",
-          "layoutSha256": "3b20918c9ddf8815d250e88ed6a9bc8478ab72921aac03e3df4bb156e6d6aa98",
+          "resourceRoot": "World/QdaoMaps20261102/map19003/pc19003-hd8-20261128/spring/523985037bbcb939558e9d0580e1231a5259c9ac464fe257fafe1b394985f146/",
+          "layoutSha256": "523985037bbcb939558e9d0580e1231a5259c9ac464fe257fafe1b394985f146",
           "artStatus": "formal_art_delivery"
         },
         {
           "id": "mid-autumn",
-          "resourceRoot": "World/QdaoMaps20261102/waterwheel-courtyard/waterwheel-hd8-20261128/mid-autumn/739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312/",
-          "layoutSha256": "739ae1458cfbead8c1f5ff1eba3c39b026b19f80d561f53927ac96703ddea312",
+          "resourceRoot": "World/QdaoMaps20261102/map19003/pc19003-hd8-20261128/mid-autumn/0bd9f2cc66eb730d8b87403e0f1f8014ae6f8da2e316f1ab547cc27920c0b070/",
+          "layoutSha256": "0bd9f2cc66eb730d8b87403e0f1f8014ae6f8da2e316f1ab547cc27920c0b070",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
+      "key": "summit-snow",
+      "sceneId": 18000,
+      "name": "山顶雪区",
+      "revision": "pc18000-summit-hd8-20261128",
+      "clientOnly": false,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/spring/91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729/",
+          "layoutSha256": "91919d2aa26611aca0b147b9561556f3c9ec0481525eb49c5e2eee0498ef8729",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/summit-snow/pc18000-summit-hd8-20261128/mid-autumn/bbb55edcb8bfe0626ce0027dfd2570708934a819a9dcc5383217e1bcd0662861/",
+          "layoutSha256": "bbb55edcb8bfe0626ce0027dfd2570708934a819a9dcc5383217e1bcd0662861",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
+      "key": "linghe-ferry",
+      "sceneId": 7,
+      "name": "灵禾渡",
+      "revision": "linghe-ferry-20261128-v001",
+      "clientOnly": false,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/linghe-ferry/linghe-ferry-20261128-v001/spring/e1adb6c5f1f506b1e7d887cf3cf0220683fd8c41db781286d64433c6576bc7c4/",
+          "layoutSha256": "e1adb6c5f1f506b1e7d887cf3cf0220683fd8c41db781286d64433c6576bc7c4",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/linghe-ferry/linghe-ferry-20261128-v001/mid-autumn/f88041641acca750c6b32334402dec0389f91b8349e46cdd8ab0cd28f593967a/",
+          "layoutSha256": "f88041641acca750c6b32334402dec0389f91b8349e46cdd8ab0cd28f593967a",
           "artStatus": "formal_art_delivery"
         }
       ]

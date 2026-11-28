@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "validation": "geometry_and_bytes_only",
+  "mapId": "biyuan-water-palace",
+  "sceneId": 5,
+  "revision": "biyuan-body-20261127-v2",
+  "canvasPixels": [
+    5120,
+    4096
+  ],
+  "effectiveImageBoxHalfOpen": [
+    0,
+    128,
+    5120,
+    3968
+  ],
+  "tileCount": 40,
+  "appearances": [
+    {
+      "appearance": "spring",
+      "tileCount": 20,
+      "runtimeImageBytes": 30640327,
+      "layoutSha256": "340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105",
+      "generationRecord": {
+        "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/spring-layout.png.generation.json",
+        "sha256": "2aa16401ebc36b5b1795f8ac12ab63ec9fdbad92ebf4bd80dc2dc91f5417eb75",
+        "bytes": 1057
+      },
+      "inputGenerationRecordIncluded": true
+    },
+    {
+      "appearance": "mid-autumn",
+      "tileCount": 20,
+      "runtimeImageBytes": 30650316,
+      "layoutSha256": "bc0aae7144a0da86ab24b5543dcfa3ab1bbe50b94dc4934052ccd6b29c67a56a",
+      "generationRecord": {
+        "file": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/mid-autumn-layout.png.generation.json",
+        "sha256": "8f5d3c33e8450f7e7d9aacff0d302018243ccf003f6cf11a4efbcba050944227",
+        "bytes": 1069
+      },
+      "inputGenerationRecordIncluded": true
+    }
+  ],
+  "runtimeTilesDecoded": true,
+  "layoutPixelsMatchRuntimeTiles": true,
+  "sameExistingNavigationAndWalkmask": true,
+  "visualAcceptancePerformedByExporter": false,
+  "unityRenderedAcceptance": false,
+  "runtimeEngineAcceptance": false
+}

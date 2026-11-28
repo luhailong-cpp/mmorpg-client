@@ -1,0 +1,133 @@
+{
+  "file": "spring.png",
+  "sha256": "340d6452f3a1a7528af54ae3205a9a2ab0dd3287a07401815faef0ddc03ef105",
+  "width": 5120,
+  "height": 4096,
+  "format": "PNG",
+  "kind": "COMPOSED_RUNTIME_CANVAS",
+  "route": "local_map_composition",
+  "newAICalls": 0,
+  "nativeModelOutput": false,
+  "derivedFrom": [
+    {
+      "sourceRole": "neutral",
+      "file": "design-source/neutral.png",
+      "sha256": "8b4dace9948b7ae38860a31fc858300d7dfc6362271ba553e44b4e336373dce0",
+      "generationRecord": "Docs/VerificationEvidence/biyuan-body-20261127-v2/provenance/neutral-layout.png.generation.json"
+    },
+    {
+      "sourceRole": "spring-props",
+      "file": "exec-9792bfb8-98f5-4372-9aa8-9e95f07b460b.png",
+      "sha256": "323e70fc75a516a09352acf82fb36dfc5f9a44d414936f6b191b0c66583977ac",
+      "generationRecord": "Docs/VerificationEvidence/biyuan-body-20261127-v2/author-records/spring-props.generation.json"
+    }
+  ],
+  "operation": "在共同中立底图的既有结构位置套合宿主生成的透明静态节庆物件。位置逐像素保护现有导航。",
+  "seasonPlacements": [
+    {
+      "ornament": "lantern",
+      "sourceQuadrant": [
+        0,
+        0
+      ],
+      "runtimeBoxHalfOpen": [
+        1148,
+        851,
+        1215,
+        961
+      ]
+    },
+    {
+      "ornament": "lantern",
+      "sourceQuadrant": [
+        0,
+        0
+      ],
+      "runtimeBoxHalfOpen": [
+        2272,
+        816,
+        2339,
+        926
+      ]
+    },
+    {
+      "ornament": "fortune",
+      "sourceQuadrant": [
+        1,
+        1
+      ],
+      "runtimeBoxHalfOpen": [
+        1710,
+        900,
+        1827,
+        1016
+      ]
+    },
+    {
+      "ornament": "knot",
+      "sourceQuadrant": [
+        1,
+        0
+      ],
+      "runtimeBoxHalfOpen": [
+        3221,
+        3018,
+        3299,
+        3128
+      ]
+    },
+    {
+      "ornament": "knot",
+      "sourceQuadrant": [
+        1,
+        0
+      ],
+      "runtimeBoxHalfOpen": [
+        3822,
+        2951,
+        3900,
+        3061
+      ]
+    },
+    {
+      "ornament": "gift-tray",
+      "sourceQuadrant": [
+        0,
+        1
+      ],
+      "runtimeBoxHalfOpen": [
+        1048,
+        3007,
+        1152,
+        3103
+      ]
+    },
+    {
+      "ornament": "lantern",
+      "sourceQuadrant": [
+        0,
+        0
+      ],
+      "runtimeBoxHalfOpen": [
+        4373,
+        1948,
+        4431,
+        2043
+      ]
+    },
+    {
+      "ornament": "knot",
+      "sourceQuadrant": [
+        1,
+        0
+      ],
+      "runtimeBoxHalfOpen": [
+        989,
+        1889,
+        1052,
+        1978
+      ]
+    }
+  ],
+  "regions": null
+}
